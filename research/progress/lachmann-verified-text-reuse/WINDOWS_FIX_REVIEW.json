@@ -1,0 +1,56 @@
+{
+  "schema": "eo-independent-engineering-review/v1",
+  "verdict": "approve",
+  "head": "3472d444f1bce6fa05053cdf5b219e6340e4d231",
+  "prior_reviewed_head": "a923a9e28debbed5dd52582d9b257633e2b01746",
+  "scope": "Test-only Windows newline fixture correction; no runtime behavior relaxation",
+  "exact_test_sha256": "e3f04c94fe694a743befcd4397ee1fee32f21966f26f4d60efb3eec7416db62c",
+  "test_path": "jobs/claim-kit/test_lachmann_reuse.py",
+  "unchanged_runtime_sha256": {
+    "jobs/claim-kit/assemble.py": "dd0e89fa05bcf619fa795e6ee5702255c89d69e79663d5f06ac9143557e8da6f",
+    "jobs/claim-kit/batch.py": "9f628cb4b55eb0f2219d0e7410ccb44d4c8381100de7163f64fbca5cae143b3d",
+    "jobs/claim-kit/build.py": "065618f809371a8dbe4365bed9e919f9b5443da3df8abb620ba58bb389a32e96",
+    "jobs/claim-kit/fragment_cache.py": "a13046b1b79f1b1dbb13042ded6c16198ce449c05f3c7a81bd6917cb9b8f07ca",
+    "jobs/claim-kit/inputs.py": "2d87a9f958bc625e1d13db3f8536d0a9d4764a12cb699f883c36f5b972c629f3",
+    "jobs/claim-kit/status_overlay.py": "733d88b41899781b900ed915f9764ca1316ecf66069fa64ee7f42efc4d94bcdc",
+    "jobs/claim-kit/working_text.py": "5be415c903d0bba3c3cec374d9b234708bb9d3e72b62224f4ea0e87159cc2b8d",
+    "jobs/readiness-tracker/tracker.py": "4c7bbe095a0ef829872b3f545496e3cfe081e5a3a44817fb279feffe86a2ebf3"
+  },
+  "all_runtime_source_files_unchanged": true,
+  "code_pins_verified": 13,
+  "artifact_pins_verified": 57,
+  "historical_demo_and_validation_pins_unchanged": 49,
+  "focused_tests": {
+    "command": "python3 -IB jobs/claim-kit/test_lachmann_reuse.py",
+    "tests": 8,
+    "skips": 0,
+    "exit_code": 0
+  },
+  "checks": [
+    "Ordinary fixture explicitly writes LF independent of host newline translation.",
+    "Portable CRLF fixture writes exact bytes and computes text hash from raw bytes.",
+    "Policy accepts raw.decode UTF-8 quote/span and refuses universal-newline LF-normalized quote/span with both original hosted errors.",
+    "git diff --check passed."
+  ],
+  "hosted_failure": {
+    "job_id": "125458139147",
+    "retained_summary": "research/progress/lachmann-verified-text-reuse/validation/windows-job-125458139147.json",
+    "sha256": "bffe79be3272fc2ef459132387448fd23d9feb208e930de3b0f8fed8ca0b8096",
+    "independently_rerun_windows": false,
+    "hosted_rerun": "Root CI pending; local run was Linux."
+  },
+  "findings": [],
+  "previous_runtime_probes": "Previous41 runtime probes remain applicable because every runtime file is byte-identical; no need to repeat them.",
+  "costs": {
+    "configured_model": "gpt-6.1-sol",
+    "configured_reasoning_effort": "high",
+    "self_observed_model": "GPT-6-based Codex; exact tier not introspectable",
+    "family": "OpenAI",
+    "tokens": null,
+    "cash": null,
+    "full_session_seconds": null,
+    "active_labor_seconds": null,
+    "savings_claimed": false
+  },
+  "tree_mutations": "None; preserved pre-existing untracked sparse temp; no shared edits."
+}

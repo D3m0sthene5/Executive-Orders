@@ -68,7 +68,8 @@ merged too. A job with no output yet is simply skipped (the summary says so).
 ## What it writes (in `output/`)
 
 - `DRAFT_CLAIMS.jsonl`: one line per order **with a provisional status** (all
-  3,359 decided orders). Each line is
+  currently adopted decided orders; the historical 3,359-row fixture is not a
+  ceiling on later owner-merged additions). Each line is
   `{"draft_schema": "eo-claim-draft/v1", "instrument_id", "claim", "_draft"}`.
   - `claim` is in the exact Stage 19 format. It contains only mechanical facts:
     the provisional status copied from the ledger, an original-text reference

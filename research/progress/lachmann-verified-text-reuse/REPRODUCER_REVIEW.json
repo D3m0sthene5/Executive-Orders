@@ -1,0 +1,58 @@
+{
+  "schema": "eo-independent-engineering-review/v1",
+  "verdict": "approve",
+  "head": "ffd1577ce70d336c22e79360d39a34939a99a852",
+  "prior_reviewed_head": "3472d444f1bce6fa05053cdf5b219e6340e4d231",
+  "scope": "Report-only repair of construction-count reproducibility; no runtime/test changes",
+  "exact_file_sha256": {
+    "research/progress/lachmann-verified-text-reuse/index_constructions.py": "7c05f5ee727d868accd152cb3db674847bc363e6552e42abb77fab3e22c19b70",
+    "research/progress/lachmann-verified-text-reuse/prior-source/MANIFEST.json": "7421720d73955563bff7c9a6e973f78046aec207f8c992098e9671aa73acbd9f",
+    "research/progress/lachmann-verified-text-reuse/prior-source/f07-to-prior-python.patch": "8a5ba30155cc395b03e8957d042d292f2af9e03d18eabf19b3aae58336614ae1",
+    "research/progress/lachmann-verified-text-reuse/ARTIFACT_PINS.json": "d99cc47ac90c5cb57f8407c9b1a83e189f18a5a08d073423c18ccdc95b57fc55",
+    "research/progress/lachmann-verified-text-reuse/REPORT.md": "777be6fce16f496d23b0c3c87ced8fbceed9203a3580bf7098fb9567e5a34fb4",
+    "research/progress/lachmann-verified-text-reuse/validation/archived-cache-constructions.json": "1b6a6479232bbcb23de0f659ac9e249941cb7754fe38ec8d5ab34aca021685ac"
+  },
+  "checks": {
+    "all65_base_paths_and_SHA256_match_published_f07_tree": true,
+    "all66_prior_paths_and_SHA256_match_exact47fa_tree": true,
+    "archived_patch_native_git_apply_check_and_apply_pass": true,
+    "reconstructed66_prior_files_byte_equal47fa": true,
+    "native_route_script_unchanged": true,
+    "CODE_PINS_byte_identical": true,
+    "all_runtime_and_test_code_unchanged": true,
+    "all_updated_artifact_pins_verified": 60,
+    "all_historical_demo_validation_proofs_unchanged": 52,
+    "fresh_explicit_output_works_and_existing_output_refuses": true
+  },
+  "isolated_reproduction": {
+    "method": "Separate bare Git object store contains only f07 commit, needed directory trees and65 base source blobs; no prior commit, parent history, alternate store or remote. GIT_NO_LAZY_FETCH=1.",
+    "stored_objects": 75,
+    "47fa_object_absence_verified": true,
+    "only_published_dependency": "f07b023133640f288fd44c10c5176888c49f23e2",
+    "prior_index_constructions": 14,
+    "final_index_constructions": 1,
+    "prior_python_files_verified": 66,
+    "output": "/workspace/scratch/2ce4a2b0ce32/reviews/lachmann-archived-reproduction.json",
+    "output_sha256": "1b6a6479232bbcb23de0f659ac9e249941cb7754fe38ec8d5ab34aca021685ac",
+    "equals_retained_archived_proof": true
+  },
+  "findings": [],
+  "limits": [
+    "Construction multiplicity on synthetic native batch routes only; no corpus runtime/token/cash or total savings inferred.",
+    "Previous525-test validation and41 runtime probes were not repeated because source/runtime/tests are byte-identical.",
+    "Historical47fa Git object used only for independent archive byte comparison; harness reproduction executed without that object."
+  ],
+  "costs": {
+    "configured_model": "gpt-6.1-sol",
+    "configured_reasoning_effort": "high",
+    "self_observed_model": "GPT-6-based Codex; exact tier not introspectable",
+    "family": "OpenAI",
+    "started_utc": "2026-11-02T18:49:05.715707+00:00",
+    "bounded_review_seconds": 1.5613358289992902,
+    "tokens": null,
+    "cash": null,
+    "complete_labor_seconds": null,
+    "savings_claimed": false
+  },
+  "tree_mutation": "None; source copies/object store/output only in reviewer scratch; no shared records edited."
+}

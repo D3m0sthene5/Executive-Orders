@@ -11,6 +11,11 @@ from pathlib import Path
 
 RULING = 'research/readiness/owner_rulings/2026-10-21-transcription-as-text.md'
 NOTE = 'original not yet held; replace and re-check quotes when an official copy is retrieved.'
+CONFIRMATION_SCHEMA = 'eo-lachmann-confirmation/v1'
+CONFIRMATION_METHODS = frozenset({'machine', 'agent'})
+CONFIRMATION_PATHS = ('jobs/lachmann/output/CONFIRMATIONS.jsonl',
+                      'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl')
+PINNED_FIELDS = ('instrument_id', 'grade', 'sha256', 'text_sha256', 'text_path')
 OFFICIAL_PRODUCERS = frozenset({'fr-originals', 'ofr-compilations',
     'isthmian-canal-1911', 'indian-reservations-1912'})
 GRADES = frozenset({'compiled_transcription', 'compiled_transcription_lead',
@@ -139,15 +144,109 @@ def confirmation(ref):
 
 
 def key(ref):
-    return tuple(ref.get(k) for k in ('instrument_id', 'grade', 'sha256', 'text_sha256', 'text_path'))
+    return tuple(ref.get(k) for k in PINNED_FIELDS)
 
 
-def blank(disclosed_refs):
+def load_confirmations(repo):
+    """Last record per order wins, including a negative agent review."""
+    root = Path(repo)
+    result = {}
+    for rel in CONFIRMATION_PATHS:
+        path = root / rel
+        if not path.is_file():
+            continue
+        with path.open(encoding='utf-8') as fh:
+            for line in fh:
+                if not line.strip():
+                    continue
+                try:
+                    record = json.loads(line)
+                except ValueError:
+                    continue
+                if isinstance(record, dict) and isinstance(record.get('instrument_id'), str):
+                    result[record['instrument_id']] = {'source_path': rel, 'record': record}
+    return result
+
+
+def confirmation_rejection(c, index, root):
+    """The tracker and claim-kit share the existing exact-record acceptance rule."""
+    if not isinstance(c, dict):
+        return 'malformed_record_or_unknown_schema_or_method'
+    if (c.get('schema') != CONFIRMATION_SCHEMA or not isinstance(c.get('instrument_id'), str)
+            or c.get('method') not in CONFIRMATION_METHODS):
+        return 'malformed_record_or_unknown_schema_or_method'
+    if c.get('acceptable_as_original') is not False:
+        return 'acceptable_as_original_not_false'
+    if c.get('grade') not in GRADES:
+        return 'grade_not_a_working_text_grade'
+    if c.get('confirmed') is not True:
+        return 'not_confirmed'
+    if c.get('identity_confirmed') is not True:
+        return 'identity_not_confirmed'
+    if c.get('complete_text_confirmed') is not True:
+        return 'complete_text_not_confirmed'
+    matches = [r for r in index.by_sha.get(source_sha({'sha256': c.get('sha256')}) or '', [])
+               if all(r.get(k) == c.get(k) for k in PINNED_FIELDS)]
+    if not matches:
+        return 'pinned_fields_match_no_loaded_fragment'
+    if ((c.get('requires_page_check') is not False or any(r['requires_page_check'] for r in matches))
+            and c.get('pages_confirmed') is not True):
+        return 'pages_not_confirmed_but_page_check_required'
+    if any(r.get('complete_text') is False for r in matches):
+        return 'fragment_declares_text_incomplete'
+    try:
+        raw = _child(root, c['text_path']).read_bytes()
+    except (OSError, ValueError, KeyError):
+        return 'text_file_missing_or_hash_mismatch'
+    if hashlib.sha256(raw).hexdigest() != c.get('text_sha256'):
+        return 'text_file_missing_or_hash_mismatch'
+    return None
+
+
+def matching_confirmation(ref, repo, records=None, index=None):
+    """Only the selected representation may inherit a current valid confirmation."""
+    records = load_confirmations(repo) if records is None else records
+    current = records.get(ref.get('instrument_id'))
+    if not current or key(current['record']) != key(ref):
+        return None
+    if index is None:
+        # Existing provider cache verifies all fragment bytes and consulted path
+        # resolutions on each use; it never caches confirmation records or text.
+        from fragment_cache import shared
+        index = shared(repo)
+    if confirmation_rejection(current['record'], index, repo):
+        return None
+    # Preserve the applicable declaration set, including its page requirements.
+    # A later source edit must not keep an old affirmation alive merely because
+    # the five headline fields still happen to match.
+    applicable = [r for r in index.by_sha.get(source_sha(current['record']), [])
+                  if key(r) == key(current['record'])]
+    return dict(deepcopy(current), fragments=sorted(deepcopy(applicable),
+                 key=lambda r: json.dumps(r, sort_keys=True)))
+
+
+def require_current_confirmation(dossier, repo, records=None, index=None):
+    prior = dossier.get('working_text_confirmation')
+    if prior is None:
+        return
+    original = dossier.get('evidence', {}).get(dossier.get('original_source_id'), {})
+    ref = original.get('source', {})
+    current = matching_confirmation(ref, repo, records, index)
+    if current != prior:
+        raise ValueError('changed or invalid working-text confirmation: ' + str(dossier.get('instrument_id')))
+
+
+def blank(disclosed_refs, prior=None):
     distinct = {key(ref): ref for ref in disclosed_refs}
     return {'ruling': RULING, 'standing_note': NOTE,
             'replacement_required': True, 'quotation_recheck_required': True,
-            'confirmations': [dict(confirmation(ref), identity_confirmed=False,
-                                   complete_text_confirmed=False, pages_confirmed=False)
+            'confirmations': [dict(confirmation(ref),
+                                   identity_confirmed=bool(prior and key(prior['record']) == key(ref)),
+                                   complete_text_confirmed=bool(prior and key(prior['record']) == key(ref)),
+                                   pages_confirmed=(prior['record'].get('pages_confirmed') is True)
+                                       if prior and key(prior['record']) == key(ref) else False,
+                                   **({'prior_confirmation': deepcopy(prior)}
+                                      if prior and key(prior['record']) == key(ref) else {}))
                               for ref in distinct.values()]}
 
 
@@ -219,6 +318,8 @@ def policy(claim, repo, index=None):
     by_key = {key(c): c for c in confirmations}
     if len(by_key) != len(confirmations) or set(by_key) != {key(r) for r in dependent}:
         errors.append('working_text:confirmation_membership_mismatch')
+    reused_records = load_confirmations(repo) if any(c.get('prior_confirmation') is not None for c in confirmations) else {}
+    current_by_key = {}
     for ref in dependent:
         for candidate in index.official.get(ref.get('instrument_id'), []):
             if candidate['sha256'] == ref.get('sha256'):
@@ -233,6 +334,15 @@ def policy(claim, repo, index=None):
             except (OSError, ValueError):
                 continue
         c = by_key.get(key(ref), {})
+        prior = c.get('prior_confirmation')
+        if prior is not None:
+            if key(ref) not in current_by_key:
+                current_by_key[key(ref)] = matching_confirmation(ref, repo, records=reused_records, index=index)
+            current = current_by_key[key(ref)]
+            if current != prior:
+                errors.append('working_text:prior_confirmation_stale')
+            elif c != blank([ref], current)['confirmations'][0]:
+                errors.append('working_text:prior_confirmation_changed')
         if c.get('identity_confirmed') is not True or c.get('complete_text_confirmed') is not True:
             errors.append('working_text:identity_and_complete_text_confirmation_required')
         if any(r['requires_page_check'] for r in index.match(ref)) and c.get('pages_confirmed') is not True:

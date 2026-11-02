@@ -1,0 +1,235 @@
+{
+  "schema": "eo-independent-engineering-review/v1",
+  "verdict": "approve",
+  "head": "47fa75a34a8a330d2e07bdd50909b7ce715f2aa9",
+  "base": "f07b023133640f288fd44c10c5176888c49f23e2",
+  "scope": "Exact standalone provisional working-text reuse and unchanged authoritative tracker validation; no legal/source certification",
+  "exact_file_sha256": {
+    "jobs/claim-kit/AGENT_PROTOCOL.md": "34e0e3fe05e5f4777a83032a8fed7cf55262dc1ba65c70c78b2c0c3295e71da1",
+    "jobs/claim-kit/assemble.py": "dd0e89fa05bcf619fa795e6ee5702255c89d69e79663d5f06ac9143557e8da6f",
+    "jobs/claim-kit/batch.py": "cb155345d4e72c4b71ddad195ad1f8111bd9118dacdd4f58319f2f88aac8f8e7",
+    "jobs/claim-kit/build.py": "ab5deaa0a7c14ecf592b6d55f0e4b8a0f13b2eb46e7e6265c42f3f218ce7cf6f",
+    "jobs/claim-kit/status_overlay.py": "733d88b41899781b900ed915f9764ca1316ecf66069fa64ee7f42efc4d94bcdc",
+    "jobs/claim-kit/test_batch.py": "cab4f427bcaca241de83e54199c0fecaa2d38864374b2a01aa1a021e72afe522",
+    "jobs/claim-kit/test_build.py": "342b243fff4f6a03b6f893c46905e6758e2d4bbf156e774614e38a5408cb39c2",
+    "jobs/claim-kit/test_continuous_route.py": "e2d84f7e29a7de0e0a09ca19a6d19a117382559a2fec1475daa0a79775a43524",
+    "jobs/claim-kit/test_lachmann_reuse.py": "74271f03577c2eca6262ed24441d0965f145c0067bdce6ad98cfeb5d1c27a1b1",
+    "jobs/claim-kit/working_text.py": "b2fccd0f365dc6b80d95ecdc28940518c87ea9cee414f25c6c7aa2e3873aec3b",
+    "jobs/readiness-tracker/tracker.py": "4c7bbe095a0ef829872b3f545496e3cfe081e5a3a44817fb279feffe86a2ebf3"
+  },
+  "artifact_manifest_sha256": "c0b77c610bce27fd38ba700b9ad1dff111c417a44c5ba63b9703c2688ec35642",
+  "artifact_manifest_all_29_entries_verified": 29,
+  "findings": [],
+  "native_tests": [
+    {
+      "command": "python3 -B -m unittest discover -s jobs/claim-kit -p test_*.py",
+      "tests": 521,
+      "skips": 7,
+      "seconds": 13.823,
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s jobs/readiness-tracker -p test_*.py",
+      "tests": 54,
+      "seconds": 1.082,
+      "exit_code": 0,
+      "warnings": "existing unclosed fixture CSV ResourceWarnings"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s jobs/lachmann -p test_*.py",
+      "tests": 46,
+      "seconds": 0.027,
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check f07b0231 47fa75a3",
+      "exit_code": 0
+    }
+  ],
+  "independent_probes": [
+    {
+      "name": "native exact direct policy and current dossier accept with false-original/replacement obligations",
+      "result": "pass"
+    },
+    {
+      "name": "shared validator equals pinned old tracker rule across15 affirmative/negative gate combinations",
+      "result": "pass",
+      "cases": 15
+    },
+    {
+      "name": "direct policy + dossier stale on later override",
+      "result": "pass",
+      "change": {
+        "confirmed": false
+      }
+    },
+    {
+      "name": "direct policy + dossier stale on later override",
+      "result": "pass",
+      "change": {
+        "method": "invalid"
+      }
+    },
+    {
+      "name": "direct policy + dossier stale on later override",
+      "result": "pass",
+      "change": {
+        "schema": "invalid"
+      }
+    },
+    {
+      "name": "direct policy + dossier stale on later override",
+      "result": "pass",
+      "change": {
+        "evidence": {
+          "changed_nonidentity_field": true
+        }
+      }
+    },
+    {
+      "name": "direct policy refuses deleted confirmation",
+      "result": "pass"
+    },
+    {
+      "name": "direct policy refuses altered carried affirmation identity_confirmed",
+      "result": "pass"
+    },
+    {
+      "name": "direct policy refuses altered carried affirmation complete_text_confirmed",
+      "result": "pass"
+    },
+    {
+      "name": "direct policy refuses altered carried affirmation pages_confirmed",
+      "result": "pass"
+    },
+    {
+      "name": "direct policy refuses altered carried method",
+      "result": "pass"
+    },
+    {
+      "name": "selected representation mismatch refuses text_path",
+      "result": "pass"
+    },
+    {
+      "name": "selected representation mismatch refuses grade",
+      "result": "pass"
+    },
+    {
+      "name": "selected representation mismatch refuses sha256",
+      "result": "pass"
+    },
+    {
+      "name": "selected representation mismatch refuses instrument_id",
+      "result": "pass"
+    },
+    {
+      "name": "changed applicable fragment metadata stales direct policy",
+      "result": "pass"
+    },
+    {
+      "name": "known incomplete matching fragment blocks reuse",
+      "result": "pass"
+    },
+    {
+      "name": "all matching fragments must waive pages before false page affirmation can reuse",
+      "result": "pass"
+    },
+    {
+      "name": "sealed packet refuses deleted confirmation",
+      "result": "pass"
+    },
+    {
+      "name": "sealed packet refuses changed applicable fragment metadata",
+      "result": "pass"
+    },
+    {
+      "name": "sealed packet refuses changed exact text bytes",
+      "result": "pass"
+    },
+    {
+      "name": "sealed packet apply refuses changed working_text policy pin",
+      "result": "pass"
+    },
+    {
+      "name": "unrelated negative agent order does not stale current packet",
+      "result": "pass"
+    },
+    {
+      "name": "dossier-based checker refuses dropped reuse provenance",
+      "result": "pass"
+    },
+    {
+      "name": "ordinary undecided prepare retains unset status and approval false; negative override refuses packet and evidence",
+      "result": "pass"
+    },
+    {
+      "name": "native EO1079 baseline/repaired build prepare blank apply zero claims and later negative refusal",
+      "result": "pass"
+    }
+  ],
+  "native_replay": {
+    "directory": "/workspace/scratch/2ce4a2b0ce32/reviews/lachmann-native-replay",
+    "input_output_pins": {
+      "baseline_SHEET.json": "dc95ae904767d63bc34c1bd974fc8a4033983afdd12246847cb460a77e05517b",
+      "baseline_DOSSIER.json": "72c5f623f8edb1f7af170c23cf1304cfe05bed1f3f5c2d75797e3ddeded3df2d",
+      "repaired.log": "a5275e37934d80d0e1108b0058d420781b95ec388b039b7f3359c80d482a6c38",
+      "repaired_SHEET.json": "878e3b7fbe449ce5421efb3070194a0ea203b5e9d884bf12c3e7963d5d73f4d3",
+      "RECEIPT.json": "0c0501d780c0ab941ac379317552b3ce4846e5161f7d747ad71c6409b180888a",
+      "repaired_DOSSIER.json": "e87133e99a666f949017f46a71b9d5f9865fe6d1d104e2f01ab2964ccc6b0b36",
+      "MAIN_DOSSIER.json": "8b6b8db9982b87ac6f6062e691cb6f5591fbfe0b454ecccca1279bd5e0e7529b",
+      "baseline.log": "61ba25477c4688eb37d2bd3971dabb21d5521ef7f79a43e45e27ec699b3a3e14",
+      "PACKET/decisions.csv": "374805e39e4bf59014eaacef0ad50b3ecc01399c650e5f1610ed8b9a6c39c63c",
+      "PACKET/READ.md": "23c135ddb6bed1eaecf8eb13d63b711866d970d56491a0a4dc6220dc304c9586",
+      "PACKET/PACKET.json": "5ee25c6aa20dda15e98be6d746ccb045d4b95b331be68ad49f0992180a6e7ef9",
+      "PACKET/clauses.csv": "b8a2f8a6a7197053000cdddde4c7b8298be535c87adfb807fe185b90e31d43aa",
+      "PACKET/PREPARE.json": "c5d9ebc9e60c433aefdff383d9e81ca1e40f4591d653593ebdd88ac2c26414f8",
+      "PACKET/RATIONALES.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "INPUTS/research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv": "9a5b1eb547ee8cf054c5f16794eed6d3b7ce02661722bcef8a628a5754822986",
+      "INPUTS/research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv": "98f4989b7a6d2501d3a985563452fd2e191d764efc75c073ad7c6868eb8c192f",
+      "INPUTS/jobs/lachmann/output/CONFIRMATIONS.jsonl": "62825478e3f100383801d5335d744340cc79e2274e2900344b9bf2c6f210a5bd",
+      "INPUTS/jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl": "c06f34bbee6b06acd89b73f8ae5f31774c8ca20a0656b802f227d4c7055e6cac",
+      "INPUTS/jobs/pinakes-proquest-ingest/output/texts/EO_1079.txt": "540ab1b6b7f94aa12c640b9d8699d0498d4558971eeb4068a8b23537d56f142c",
+      "PACKET/applied/SUMMARY.json": "1d909b30f72cd7769234d954333f3b5033838456d3e8dfbf238188d601d29727",
+      "PACKET/applied/CLAIMS.proposed.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "PACKET/applied/AUDIT.json": "27102fba732ddc8370327e24645e65bd71c1804ddaa2b8f9dc97ce426d70024b"
+    },
+    "method": "Actual producer replay rerun with destination only redirected to reviewer scratch",
+    "claims_emitted": 0,
+    "certifications": 0,
+    "authority_changes": 0
+  },
+  "assessments": {
+    "shared_tracker_validator_equivalent_for_valid_dict_records": true,
+    "negative_agent_override_precedence": true,
+    "exact_five_fields_actual_text_bytes_and_matching_fragment_requirements": true,
+    "full_confirmation_and_fragment_record_changes_stale": true,
+    "policy_and_compiler_pins_cover_working_text": true,
+    "ordinary_preparation_and_undecided_route_exercised": true,
+    "selected_representation_mismatch_refuses": true,
+    "source_supplement_unchanged": true,
+    "canonical_science_and_census_unchanged": true
+  },
+  "limitations": [
+    "Native case is a bounded single-source projection, not a full corpus regeneration or source/page-image/legal examination.",
+    "521-test suite has7 disclosed optional fixture/platform skips; no zero-skip claim.",
+    "No original authentication, legal closure, claim publication, human certification, or total savings inferred.",
+    "Existing manual fresh producer confirmations remain supported; this change freezes/checks reused prior confirmations.",
+    "Shared Kean/HANDOFF recording left to coordinator under read-only assignment."
+  ],
+  "costs": {
+    "configured_model": "gpt-6.1-sol",
+    "configured_reasoning_effort": "high",
+    "configuration_source": "Coordinator supplied configured identity under AGENTS delegation rule",
+    "self_observed_model": "GPT-6-based Codex; exact tier not introspectable",
+    "family": "OpenAI",
+    "tokens": null,
+    "cash": null,
+    "full_session_seconds": null,
+    "active_labor_seconds": null,
+    "bounded_probe_started_utc": "2026-11-02T17:59:21.910089+00:00",
+    "bounded_probe_seconds": 0.34173364299931563,
+    "earlier_review_time": "unknown, not zero",
+    "savings_claimed": false
+  },
+  "mutations": "Reviewer scratch/temp fixtures only; producer tree and preexisting untracked sparse temp preserved."
+}

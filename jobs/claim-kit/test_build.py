@@ -112,6 +112,60 @@ class BuildIntegrationTests(unittest.TestCase):
                            "reason": "The fixture's express revocation ends this duty; no earlier term applies."})
         return sheet
 
+    def confirmed_derivative(self, iid="EO:2", *, pages=True):
+        """Give the existing fixture one declared provisional source and Lachmann record."""
+        provenance_path = self.repo / "jobs/future-source/data/PROVENANCE.json"
+        provenance = json.loads(provenance_path.read_text())
+        entry = next(r for r in provenance["representations"] if r["instrument_id"] == iid)
+        entry["acceptable_as_original"] = False
+        entry["grade"] = "machine_read_government_printed_copy"
+        entry["source"].update(grade=entry["grade"], acceptable_as_original=False,
+                               requires_page_check=True)
+        write_json(provenance_path, provenance)
+        record = {"instrument_id": iid, "kind": "original_representation", "produced_by": "future-source",
+                  "data": {"sha256": entry["source"]["sha256"],
+                           "text_sha256": entry["source"]["text_sha256"],
+                           "text_path": entry["text_path"], "grade": entry["grade"],
+                           "acceptable_as_original": False, "requires_page_check": True}}
+        fragments = self.repo / "jobs/future-source/output/FRAGMENTS.jsonl"
+        write_jsonl(fragments, read_jsonl(fragments) + [record])
+        c = {"schema": "eo-lachmann-confirmation/v1", "method": "machine", "instrument_id": iid,
+             "grade": entry["grade"], "sha256": entry["source"]["sha256"],
+             "text_sha256": entry["source"]["text_sha256"], "text_path": entry["text_path"],
+             "acceptable_as_original": False, "confirmed": True, "identity_confirmed": True,
+             "complete_text_confirmed": True, "requires_page_check": True, "pages_confirmed": pages}
+        write_jsonl(self.repo / "jobs/lachmann/output/CONFIRMATIONS.jsonl", [c])
+        return c
+
+    def test_reuses_only_current_confirmed_selected_working_text(self):
+        c = self.confirmed_derivative()
+        self.run_build()
+        d = self.dossier("EO:2")
+        self.assertEqual(d["working_text_confirmation"]["record"], c)
+        original = d["evidence"][d["original_source_id"]]
+        self.assertFalse(original["acceptable_as_original"])
+        sheet = A.blank_sheet(d)
+        selected = next(x for x in sheet["working_text"]["confirmations"]
+                        if x["instrument_id"] == "EO:2")
+        self.assertTrue(selected["identity_confirmed"])
+        self.assertTrue(selected["complete_text_confirmed"])
+        self.assertTrue(selected["pages_confirmed"])
+        self.assertTrue(sheet["working_text"]["replacement_required"])
+        self.assertTrue(sheet["working_text"]["quotation_recheck_required"])
+        self.assertFalse(sheet["approved"])
+        self.assertFalse(sheet["original_confirmed"])
+        self.assertFalse(sheet["inventory_confirmed"])
+
+    def test_refuses_missing_page_check_and_negative_agent_override(self):
+        c = self.confirmed_derivative(pages=False)
+        self.run_build()
+        self.assertNotIn("working_text_confirmation", self.dossier("EO:2"))
+        c["pages_confirmed"] = True
+        c.update(method="agent", confirmed=False)
+        write_jsonl(self.repo / "jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl", [c])
+        self.run_build()
+        self.assertNotIn("working_text_confirmation", self.dossier("EO:2"))
+
     def test_whole_population_including_yes_no_undecided_and_missing(self):
         summary = self.run_build()
         self.assertTrue(summary["lead_only"])

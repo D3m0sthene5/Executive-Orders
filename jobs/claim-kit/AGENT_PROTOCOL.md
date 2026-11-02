@@ -160,8 +160,17 @@ records are order-specific `original_representation` rows in existing
 `jobs/*/output/FRAGMENTS*.jsonl` or `jobs/*/data/**/FRAGMENTS*.jsonl`; ungraded or
 unmapped provenance stays blocked rather than acquiring an invented grade.
 
-`blank_sheet` supplies a `working_text` disclosure and blank confirmations for
-these sources. Independently inspect the source before setting each source's
+`blank_sheet` supplies a `working_text` disclosure. After a claim-kit rebuild,
+ordinary preparation reuses an existing standalone Lachmann confirmation only
+for the selected working representation whose order, grade, source hash, text
+path and text hash match exactly. The dossier and sheet retain the exact record,
+its file and the matching fragment declarations, with its machine/agent method.
+Current text bytes, completeness and page requirements must still pass the
+tracker's existing validator. A later negative agent record, changed record or
+changed applicable declaration requires rebuilding and reviewing a new packet.
+The confirmations are visible in `view --order` and `READ.md`; they approve no
+inventory, ending, savings, status or whole-case judgment. Other working sources
+keep blank confirmations. Independently inspect the source before setting each source's
 `identity_confirmed` and `complete_text_confirmed` to true, plus `pages_confirmed`
 when its fragment calls for a page check. This confirms the held representation,
 not original authentication. A web transcription has no printed pages: for an

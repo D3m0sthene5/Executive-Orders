@@ -22,6 +22,13 @@ until a combined checker and tracker run succeeds. Mechanical checks establish
 custody, quotations, identity, dates, and structure; human certification remains a
 separate measure.
 
+After newly retained PDFs or source-catalogue changes, refresh the combined
+checker and drafts before interpreting the tracker or preparing fresh claim-kit
+packets. Keep them in the same dependency-ordered run when possible. A recovered
+PDF can resolve custody; it does not establish that the document applies to the
+claimed order, that an event happened, or that a legal command ended. Preserve
+exact receipt versions and source grades.
+
 ## What it checks
 
 For every claim (Stage 19 format, see `research/stage19/CLAIM_SCHEMA.md`) and every

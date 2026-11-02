@@ -125,6 +125,133 @@ class BatchTests(T.BuildIntegrationTests):
         rel=next(iter(packet['held_text_file_pins']));(self.repo/rel).write_bytes(b'changed')
         with self.assertRaisesRegex(ValueError,'changed held source'):batch.apply(self.repo,p,p/'applied')
 
+    def test_confirmed_working_text_is_frozen_and_negative_agent_review_stales_packet(self):
+        c=self.confirmed_derivative();p=self.packet(('EO:2',))
+        packet,dossiers=batch.load_packet(p,self.repo)
+        self.assertEqual(dossiers['EO:2']['working_text_confirmation']['record'],c)
+        self.assertIn('working_text_confirmation',(p/'READ.md').read_text())
+        self.assertIn('working_text_confirmation',batch.view(self.repo,p,order='EO:2'))
+        row=batch.rows(p/'decisions.csv')[0]
+        prior=json.loads(row['working_text'])
+        self.assertTrue(prior['confirmations'][0]['identity_confirmed'])
+        self.assertFalse(json.loads(row['approved']))
+        c.update(method='agent',confirmed=False)
+        write_json(self.repo/'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl',c)
+        with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
+            batch.apply(self.repo,p,p/'applied')
+
+    def test_confirmed_working_text_changed_pinned_record_stales_packet(self):
+        c=self.confirmed_derivative();p=self.packet(('EO:2',))
+        c['identity_route']='later_review'
+        write_json(self.repo/'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl',c)
+        with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
+            batch.load_packet(p,self.repo)
+
+    def test_reused_confirmation_flows_through_native_apply_without_legal_approval(self):
+        self.confirmed_derivative();p=self.packet(('EO:2',))
+        row=batch.rows(p/'decisions.csv')[0]
+        self.assertEqual(row['outcome'],'unresolved')
+        self.assertEqual(row['approved'],'false')
+        self.fill(p,'EO:2')
+        result=batch.apply(self.repo,p,p/'applied')
+        self.assertEqual(result['counts'],{'assembled_proposal':1})
+        proposed=json.loads((p/'applied/CLAIMS.proposed.jsonl').read_text().splitlines()[0])
+        self.assertFalse(proposed['original_representation']['acceptable_as_original'])
+        self.assertTrue(proposed['working_text']['replacement_required'])
+        self.assertTrue(proposed['working_text']['quotation_recheck_required'])
+        self.assertEqual(proposed['working_text']['confirmations'][0]['prior_confirmation']['record']['method'],'machine')
+
+    def test_reused_confirmation_does_not_approve_producer_or_allow_lost_provenance(self):
+        import assemble
+        self.confirmed_derivative();p=self.packet(('EO:2',));self.fill(p,'EO:2')
+        order=batch.rows(p/'decisions.csv');order[0]['approved']='false';order[0]['inventory_confirmed']='false'
+        batch.csv_write(p/'decisions.csv',batch.ROW_FIELDS,order)
+        result=batch.apply(self.repo,p,p/'failed')
+        self.assertEqual((p/'failed/CLAIMS.proposed.jsonl').read_text(),'')
+        self.assertNotEqual(result['counts'],{'assembled_proposal':1})
+        order[0]['approved']='true';order[0]['inventory_confirmed']='true'
+        batch.csv_write(p/'decisions.csv',batch.ROW_FIELDS,order)
+        batch.apply(self.repo,p,p/'applied')
+        claim=json.loads((p/'applied/CLAIMS.proposed.jsonl').read_text())
+        _,ds=batch.load_packet(p,self.repo)
+        del claim['working_text']['confirmations'][0]['prior_confirmation']
+        self.assertIn('working_text:prior_confirmation_changed',
+                      assemble.check_claim(claim,self.repo,ds['EO:2']))
+
+    def test_reused_confirmations_share_verified_provider_index_across_batches(self):
+        from unittest.mock import patch
+        import tempfile
+        import working_text as W
+        import fragment_cache as FC
+        self.confirmed_derivative();self.run_build()
+        original=W.Index.__init__;constructions=[]
+        def count(instance,*args,**kwargs):
+            constructions.append(str(args[0]))
+            original(instance,*args,**kwargs)
+        with tempfile.TemporaryDirectory() as cache, patch.dict('os.environ',
+                {'CLAIM_KIT_CACHE_DIR':cache,'CLAIM_KIT_INDEX_CACHE':'1'}), \
+                patch.object(W.Index,'__init__',count):
+            FC._SHARED.clear()
+            for n in range(2):
+                folder=self.repo/('research/cache-reuse/packet'+str(n))
+                batch.prepare(self.repo,self.out,folder,['EO:2'],'producer')
+                self.fill(folder,'EO:2')
+                result=batch.apply(self.repo,folder,folder/'applied')
+                self.assertEqual(result['counts'],{'assembled_proposal':1})
+                batch.check(self.repo,folder,folder/'applied',actual=False)
+            self.assertEqual(len(constructions),1,
+                             'Repeated preparation, assembly and checking must not parse providers again')
+            # A changed provider is re-hashed and rebuilt, then fails completeness.
+            fragment=self.repo/'jobs/future-source/output/FRAGMENTS.jsonl'
+            rows=T.read_jsonl(fragment)
+            for r in rows:
+                if r.get('kind')=='original_representation':r['data']['complete_text']=False
+            T.write_jsonl(fragment,rows)
+            with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
+                batch.load_packet(folder,self.repo)
+            self.assertEqual(len(constructions),2)
+
+    def test_confirmation_cache_rechecks_record_text_and_path_without_provider_edit(self):
+        from unittest.mock import patch
+        import tempfile
+        import working_text as W
+        import fragment_cache as FC
+        c=self.confirmed_derivative();folder=self.packet(('EO:2',))
+        with tempfile.TemporaryDirectory() as cache, patch.dict('os.environ',
+                {'CLAIM_KIT_CACHE_DIR':cache,'CLAIM_KIT_INDEX_CACHE':'1'}):
+            FC._SHARED.clear()
+            batch.load_packet(folder,self.repo)
+            original=(self.repo/c['text_path']).read_bytes()
+            (self.repo/c['text_path']).write_bytes(original+b'changed')
+            with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
+                batch.load_packet(folder,self.repo)
+            (self.repo/c['text_path']).write_bytes(original)
+            batch.load_packet(folder,self.repo)
+            T.write_jsonl(self.repo/'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl',
+                          [dict(c,method='agent',confirmed=False)])
+            with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
+                batch.load_packet(folder,self.repo)
+            (self.repo/'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl').unlink()
+            target=self.repo/c['text_path'];target.unlink()
+            with tempfile.TemporaryDirectory() as outside:
+                other=Path(outside)/'outside.txt';other.write_bytes(original)
+                try:target.symlink_to(other)
+                except (OSError,NotImplementedError):return
+                with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
+                    batch.load_packet(folder,self.repo)
+
+    def test_fragment_cache_dependency_pins_refuse_old_packet_policy(self):
+        from unittest.mock import patch
+        import inputs
+        self.assertIn('fragment_cache.py',inputs.COMPILER_FILES)
+        p=self.packet();packet,_=batch.load_packet(p,self.repo)
+        key='jobs/claim-kit/fragment_cache.py'
+        self.assertEqual(packet['policy_code_sha256'][key],batch.file_sha(Path(batch.fragment_cache.__file__)))
+        changed={**batch.policy_code_pins(),key:'0'*64}
+        with patch.object(batch,'policy_code_pins',return_value=changed):
+            with self.assertRaisesRegex(ValueError,'direct policy code changed'):
+                batch.apply(self.repo,p,p/'changed-cache-policy')
+
     def test_missing_member_cannot_disappear(self):
         p=self.packet();r=batch.rows(p/'decisions.csv')[:1];batch.csv_write(p/'decisions.csv',batch.ROW_FIELDS,r)
         with self.assertRaisesRegex(ValueError,'every packet member'):batch.apply(self.repo,p,p/'applied')

@@ -31,7 +31,7 @@ CLAUSE_FIELDS=['instrument_id','scope_id','clause_id','state','end_id','effectiv
  'later_event_ids','later_events','reason','inventory_source_id','inventory_char_start',
  'inventory_char_end','inventory_reason']
 TAG='@eo:'
-POLICY_CODE_FILES = ('jobs/claim-kit/working_text.py', 'jobs/claim-kit/factual_events.py',
+POLICY_CODE_FILES = ('jobs/claim-kit/fragment_cache.py', 'jobs/claim-kit/working_text.py', 'jobs/claim-kit/factual_events.py',
                      'jobs/norton/model.py', 'jobs/claim-kit/lifecycle_obligations.py',
                      'jobs/claim-kit/prior_research.py', 'jobs/claim-kit/status_overlay.py')
 
@@ -255,6 +255,12 @@ def load_packet(folder,repo,check_sources=True):
     if packet.get('preflight_dependency_sha256')!=preflight_dependency_pins():raise ValueError('evidence preflight dependencies changed; prepare a reviewed package')
     packet['fingerprint']=fp;dossiers=decode(packet)
     if check_sources:
+        import working_text as W
+        confirmed={i:d for i,d in dossiers.items() if d.get('working_text_confirmation') is not None}
+        if confirmed:
+            records=W.load_confirmations(repo);index=fragment_cache.shared(repo)
+            for d in confirmed.values():
+                W.require_current_confirmation(d,repo,records,index)
         if ((folder/'SOURCE_SUPPLEMENT.json').exists() or
                 any(d.get('source_supplement') or any(
                     str(eid).startswith('SUPPLEMENT:') or record.get('role')=='unreviewed_source_excerpt'
@@ -358,12 +364,12 @@ def render(packet,dossiers):
                 lines.extend(['  Exact retained record text (unshared):',text]);rendered_text.add(text)
         lines.extend(['','### Complete operative inventory',''])
         for c in d.get('clauses',[]):lines.append('- '+c['scope_id']+' → '+str(c.get('id'))+'; characters '+str(c.get('char_start'))+'–'+str(c.get('char_end')))
-        for key in ('own_terms','actor_contexts','actor_provisions','chain','current_law_leads','machine_searches',
+        for key in ('working_text_confirmation','own_terms','actor_contexts','actor_provisions','chain','current_law_leads','machine_searches',
                     'draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
             if key in d:lines.extend(['','### '+key,'',canon(d[key])])
         remaining={k:v for k,v in d.items() if k not in {'schema','instrument_id','whole_order_status','fingerprint',
             'legal_cutoff','original_source_id','clauses','evidence','own_terms','actor_contexts','actor_provisions',
-            'chain','current_law_leads','machine_searches','draft_gate_errors','conflicts','draft_material_gaps',
+            'chain','current_law_leads','working_text_confirmation','machine_searches','draft_gate_errors','conflicts','draft_material_gaps',
             'missing','status_history','notice'}}
         if remaining:lines.extend(['','### Additional dossier metadata','',canon(remaining)])
         lines.extend(['','### Preflight','',canon(packet['preflight'][iid]),''])
@@ -401,7 +407,7 @@ def view(repo,folder,order=None,source=None):
             meta={k:v for k,v in e.items() if k not in ('text','provision_text','alternative_provisions')}
             lines.append(eid+' '+canon(meta))
         for key in ('clauses','own_terms','lifecycle_obligations','actor_contexts','actor_provisions','chain','current_law_leads',
-                    'machine_searches','draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
+                    'working_text_confirmation','machine_searches','draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
             if key in d:lines.append(key+' '+canon(d[key]))
         lines.append('Preflight '+canon(packet['preflight'][order]))
         if packet.get('prior_research') is not None:
@@ -458,6 +464,8 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
             if not dossier_paths and (d.get('fingerprint')!=index[iid]['fingerprint'] or d.get('whole_order_status')!=index[iid]['status']):raise ValueError('dossier does not match current INDEX: '+iid)
             pins[iid]={'file_sha256':file_sha(p),'fingerprint':d['fingerprint'],'path':str(p.relative_to(repo))}
         if d.get('instrument_id')!=iid or d.get('fingerprint')!=canonical_sha(d):raise ValueError('stale dossier '+iid)
+        import working_text as W
+        W.require_current_confirmation(d,repo)
         dossiers[iid]=d
         routing[iid]={**owned.get(iid,{}),'route':'owner_reviewable_replacement_proposal' if iid in owned else 'new_producer_proposal'}
         flight[iid]=preflight(d,repo)

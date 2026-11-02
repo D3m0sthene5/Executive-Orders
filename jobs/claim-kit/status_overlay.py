@@ -19,6 +19,7 @@ import time
 
 from assemble import assemble, blank_sheet, canonical_sha, check_claim
 from build import package
+import working_text as W
 from inputs import COMPILER_FILES, STATUSES, UNIVERSE
 
 INPUT_SCHEMA = "eo-claim-kit-overlay-input/v1"
@@ -312,7 +313,9 @@ def _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads
               "machine_searches": deepcopy(inputs.get("machine_searches", {})),
               "current_law": {iid: deepcopy(leads.get("current_law_leads", []))},
               "status_histories": {iid: deepcopy(leads.get("status_history"))}}
-    dossier = package(iid, corpus, selected, clause, terms, acts, chain, missing, actor_ids)
+    dossier = package(iid, corpus, selected, clause, terms, acts, chain, missing, actor_ids,
+                      inputs.get('working_text_confirmation'))
+    W.require_current_confirmation(dossier, root)
     # package() uses paths relative to the canonical compiler output for
     # large actor contexts. Qualify those pointers before moving a dossier
     # into an isolated bundle, and pin the actual shared context record.
@@ -548,6 +551,7 @@ def validate_evidence(repo, evidence, _context=None):
     ctx = _context or _ValidationContext(repo)
     _sealed(evidence, EVIDENCE_SCHEMA)
     iid = evidence["instrument_id"]
+    W.require_current_confirmation(evidence["base_dossier"], repo)
     if ctx.authority(iid) != evidence.get("authority"):
         raise ValueError("stale_authority_snapshot")
     compiled = evidence["compiled"]

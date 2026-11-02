@@ -1,0 +1,17 @@
+{
+  "cause": "Fixture write_text used platform-default newline; subsequent read_text normalized CRLF to LF while runtime policy validates raw UTF-8 decoded source bytes.",
+  "correction": "Explicit LF newline for ordinary fixture. New independent CRLF-byte fixture accepts raw.decode quote/span and refuses universal-newline-normalized quote/span on every host.",
+  "historical_logs": "preserved unchanged",
+  "host": "Windows Road",
+  "hosted_windows_rerun": "pending root CI",
+  "job_id": "125458139147",
+  "pull_request": 128,
+  "reported_by": "root integration",
+  "reported_errors": [
+    "original_representation:working_text_quote_mismatch",
+    "original_representation:working_text_incomplete_representation_span"
+  ],
+  "reported_result": "single test failure; Linux passed",
+  "runtime_changed": false,
+  "test": "test_only_matching_source_inherits_and_policy_rechecks_without_dossier"
+}
