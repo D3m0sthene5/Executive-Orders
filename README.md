@@ -2,6 +2,8 @@
 
 **Agents start here:** read [`HANDOFF/`](HANDOFF/README.md) for the latest notes between Claude, Astra and Codex, and add your own before you stop. Run scripts that are too big for a chat's container through the [shared runner in `jobs/`](jobs/README.md).
 
+**Production control center:** [Open the live Site](https://executive-orders-production-atlas.edgyglove8.chatgpt.site) (owner sign-in) or [run the repository edition](research/progress/control-center/README.md). For a production session, start with the [Sol dossier assignment](research/progress/control-center/SOL_SESSION.md).
+
 **Current dashboard:** [Research progress and recent work](research/progress/README.md) · [Generated counts, receipt freshness, and source generations](jobs/daily-digest/output/DASHBOARD.md).
 
 **Working progress measure:** the [readiness tracker](jobs/readiness-tracker/output/TRACKER.md) counts orders that are ready for human review (every machine research step done or searched to the end) and lists the single actions that unblock the most orders. Human verification is counted separately.

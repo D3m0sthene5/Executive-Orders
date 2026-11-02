@@ -34,7 +34,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 110; `search` finds the rest)
+## Newest results (6 of 111; `search` finds the rest)
 
 - 2026-11-02 F-20261102-population-contract-repair **worked**: Reproduce failed refresh and reconcile claim-kit contract to already-owner-merged PR119 rows Lesson: Carry accepted adoption into the independent population contract; do not infer authorization from mutable progress CSVs
 - 2026-11-02 F-20261102-mountweazel-notes **worked**: Preserve optional source notes on blinded reviewer cards Lesson: Normalize optional presentation keys without erasing evidence or changing canonical/control payloads
@@ -43,4 +43,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-02 F-20261102-held-actor-handoff **partly worked**: Replay four blocked Erasmus cases through existing exact source supplements Lesson: Use existing source-supplement interface, rehash actual raw bytes and reconcile reports to final exact receipts
 - 2026-11-02 F-20261102-final-recovery-generation **worked**: Publish and audit the combined recovered main generation Lesson: Verify published native generations and actual input maps; never renew stale packets or infer scientific approval from engineering completion
 
-Register: 18 owner decisions, 2 answered questions, 110 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 111 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
