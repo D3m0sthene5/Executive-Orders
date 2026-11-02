@@ -1,0 +1,51 @@
+{
+  "base_commit": "f07b023133640f288fd44c10c5176888c49f23e2",
+  "tests": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "jobs/claim-kit",
+        "-p",
+        "test_source_supplement.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.836,
+      "output": ".................\n----------------------------------------------------------------------\nRan 17 tests in 0.722s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "jobs/claim-kit",
+        "-p",
+        "test_batch.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.794,
+      "output": ".................\n----------------------------------------------------------------------\nRan 17 tests in 0.679s\n\nOK\n"
+    }
+  ],
+  "native_refusals": {
+    "already_supplemented": "stale or already supplemented parent dossier: EO:11026",
+    "boolean_span": "invalid source excerpt span",
+    "changed_sha256": "source supplement hash mismatch: sha256",
+    "changed_text_sha256": "source supplement hash mismatch: text_sha256",
+    "foreign_member": "source targets must be distinct parent members",
+    "invented_grade": "source fields do not declare legal identity or grade",
+    "rehashed_stale_packet": "evidence preflight dependencies changed; prepare a reviewed package",
+    "stale_dossier": "stale or already supplemented parent dossier: EO:8129"
+  },
+  "native_result": "native/RESULT.json",
+  "valla_context_present": true,
+  "valla_unmaterialized_package_count": 139,
+  "model_family": "OpenAI; runtime does not expose exact model/tokens/cash for this worker",
+  "scientific_adoption": false,
+  "shared_runtime_code_changed": false
+}

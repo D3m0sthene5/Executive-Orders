@@ -1,0 +1,88 @@
+{
+  "schema": "erasmus-retention-preparation-validation/v1",
+  "job_code_sha256": "46edd83dacfd05708ba220a7eb7744200bb55d383d21153dbf4dd1fa5f474f03",
+  "method": "AST-loaded unchanged sha, validate_manifest, retained_import functions; no job main, fetcher or network source call executed",
+  "checks": [
+    {
+      "name": "actual_three_item_default_against_amended_queue",
+      "outcome": "pass"
+    },
+    {
+      "name": "all_expected_hashes_match_prior_held_receipts",
+      "outcome": "pass"
+    },
+    {
+      "name": "unbounded_page_count_refused",
+      "outcome": "expected_refusal",
+      "exception": "ValueError",
+      "message": "Page requests must be bounded, positive one-based integers"
+    },
+    {
+      "name": "zero_page_refused",
+      "outcome": "expected_refusal",
+      "exception": "ValueError",
+      "message": "Page requests must be bounded, positive one-based integers"
+    },
+    {
+      "name": "invalid_expected_hash_refused",
+      "outcome": "expected_refusal",
+      "exception": "ValueError",
+      "message": "Invalid expected SHA-256"
+    },
+    {
+      "name": "retained_import_missing_expected_hash_refused",
+      "outcome": "expected_refusal",
+      "exception": "ValueError",
+      "message": "Retained imports require a relative repository path and exact expected hash"
+    },
+    {
+      "name": "actual_wrong_bytes_for_expected_board_pdf_hash_refused",
+      "outcome": "expected_refusal",
+      "exception": "ValueError",
+      "message": "Retained import hash mismatch"
+    },
+    {
+      "name": "missing_retained_object_refused",
+      "outcome": "expected_refusal",
+      "exception": "FileNotFoundError",
+      "message": "Demanded retained object is not materialized: research/progress/erasmus-board-source-readiness-2026-11-02/not-retained.pdf"
+    },
+    {
+      "name": "missing_exact_board_queue_pair_refused",
+      "outcome": "expected_refusal",
+      "exception": "ValueError",
+      "message": "Every instrument/URL pair must already be in FETCH_QUEUE"
+    }
+  ],
+  "all_three_manifest_items_have_exact_expected_sha256": true,
+  "selected_pages": [
+    [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    [
+      1,
+      2
+    ]
+  ],
+  "EO13062_existing_pair_reused": true,
+  "manifest_validation_limit": "validate_manifest accepts an absent expected hash for ordinary network acquisition; no claim of general missing-hash refusal. All3 production requests here explicitly pin it. Retained imports require it.",
+  "source_acquisition_performed": false,
+  "scientific_adoption": false
+}

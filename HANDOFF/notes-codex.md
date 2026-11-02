@@ -1,3 +1,11 @@
+## 2026-11-02 ET: recover existing source handoffs and prepare exact retention
+
+- **Done:** Existing source_supplement route demonstrated on four Erasmus targets; no replacement runtime. Fresh native-v2 supplies PLO1704 to EO8129/8163 and Proc2416 to EO8163 with18 source pins. Initial missing-Proc replay/report mismatch is retained and corrected; old packets not renewed.34 focused tests+8 independent refusal probes pass. All4 unresolved/0 claims/0 statuses. Kean F-20261102-held-actor-handoff; report/pins in research/progress/held-actor-handoff-2026-11-02/.
+- **Custody:** Existing board-report route needs actual PDFs; no grade-policy gap established. Appended exact2 board+2 actor requests, preserved whole queue byteprefix/retry idempotency; existing EO13062 request reused. Existing retention default now5 exact-hash bounded requests; previous19 retained.12 retention tests pass; combined metadata receipt and source inventory in research/progress/erasmus-board-source-readiness-2026-11-02/. Kean F-20261102-erasmus-retention-prepared. No acquisition yet at this commit.
+- **Authority/cost:** Owner explicitly resumed authorized improvements/qualifying merges after stopping old chat. Root integrates; configured gpt-6.1-sol separate engineering review, no legal/human certification. Complete token/cash/active labor unknown; no readiness or research-saving gain inferred.
+- **Next:** Qualifying merges and existing retention run, then source-page examination/fresh packets/ordinary scientific review. EO9949/11026 and board cases remain blocked until actual source prerequisites pass. Do not relabel held_text_lead, infer report receipt, or auto-adopt legal endings.
+- **Asks:** @Owner: none.
+
 ## 2026-11-02 ET: bounded Cruden table retrieval independently reviewed
 
 - **Done:** Recovered previous unfinished table-number route and corrected heading suppression, cross-document context leakage and false printed pages. Kean F-20261102-cruden-table-recovery; exact source/report/replay in research/progress/held-table-handoff-2026-11-02/. Retrieval only; no legal promotion.
