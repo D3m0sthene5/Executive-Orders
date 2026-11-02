@@ -1,5 +1,9 @@
 # Lachmann verified working-text reuse
 
+## Hosted Windows fixture correction
+
+PR128 Windows Road job `125458139147` reported one failing new test, while Linux passed. The source fixture used platform-default newline writing; its later `read_text()` converted Windows CRLF to LF before constructing a quote/span, so the exact-byte runtime correctly refused both the quote and shortened full representation. The LF fixture now specifies `newline='\n'`. A separate cross-platform CRLF-byte regression accepts `raw.decode('utf-8')` with exact character offsets and refuses the universal-newline-normalized quote/span with the same two errors. Runtime code is unchanged. The root-reported hosted failure summary is retained in `validation/windows-job-125458139147.json`; prior logs and demonstrations are unchanged. Focused 8 tests pass; full claim-kit 525 tests pass with 7 skips in `validation/newline-claim-kit-tests.log`. Hosted Windows rerun remains with root CI.
+
 ## Follow-on: preserve existing verified provider-index reuse
 
 Root integration found that the initial Lachmann implementation bypassed PR104's `fragment_cache.policy_index`: repeated prepare/assembly/check paths built the full provider index again. The follow-on uses the existing `fragment_cache.shared` in confirmation matching's default index path and the build/packet-load entry routes. This is the existing cache, with provider re-globbing/content hashing and text-existence/path-resolution witness checks on every shared lookup. Confirmation records and held-text hashes remain independently checked each time. Explicit supplied indexes and disabled-cache behavior remain unchanged; direct `working_text.policy` calls retain their fresh-index default.
@@ -28,7 +32,7 @@ This bounded single-source run omits unrelated corpus context. It establishes tr
 
 ## Verification and integration
 
-- Claim-kit final: 524 tests, 7 skips, passed (initial implementation: 521). Skips depend on absent optional corpus fixtures/platform behavior; this is not an all-corpus acceptance run.
+- Claim-kit latest: 525 tests, 7 skips, passed (cache follow-on: 524; initial implementation: 521). Skips depend on absent optional corpus fixtures/platform behavior; this is not an all-corpus acceptance run.
 - Readiness tracker: 54 tests passed. Existing ResourceWarnings for unclosed fixture CSV handles remain.
 - Lachmann: 46 tests passed.
 - New refusal coverage includes invalid schema/method/grade/flags, wrong order/source/text/path, missing bytes, required pages, known incomplete fragments, changed source metadata/record, later negative overrides, preserved provenance, selected-source scope, no implicit producer/inventory approval, and ordinary undecided preparation with unset status.

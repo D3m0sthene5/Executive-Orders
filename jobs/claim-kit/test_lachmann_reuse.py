@@ -18,7 +18,7 @@ class ReuseTests(unittest.TestCase):
         self.repo = Path(self.temp.name)
         text_path = self.repo / 'jobs/source/output/order.txt'
         text_path.parent.mkdir(parents=True)
-        text_path.write_text('Executive Order 7\nThe Board shall report.\n', encoding='utf-8')
+        text_path.write_text('Executive Order 7\nThe Board shall report.\n', encoding='utf-8', newline='\n')
         self.text_path = 'jobs/source/output/order.txt'
         sha = hashlib.sha256(text_path.read_bytes()).hexdigest()
         self.record = {'schema': W.CONFIRMATION_SCHEMA, 'method': 'machine',
@@ -110,6 +110,33 @@ class ReuseTests(unittest.TestCase):
         self.assertIn('working_text:prior_confirmation_changed', W.policy(changed,self.repo)[0])
         self.machine.write_text(json.dumps(dict(self.record, evidence={'revision':2}))+'\n')
         self.assertIn('working_text:prior_confirmation_stale', W.policy(claim,self.repo)[0])
+
+    def test_crlf_source_requires_exact_decoded_bytes_not_universal_newlines(self):
+        path=self.repo/self.text_path
+        raw=b'Executive Order 7\r\nThe Board shall report.\r\n'
+        path.write_bytes(raw)
+        self.record['text_sha256']=hashlib.sha256(raw).hexdigest()
+        fragment_path=self.repo/'jobs/source/output/FRAGMENTS.jsonl'
+        fragment=json.loads(fragment_path.read_text())
+        fragment['data']['text_sha256']=self.record['text_sha256']
+        fragment_path.write_text(json.dumps(fragment)+'\n',encoding='utf-8',newline='\n')
+        self.machine.write_text(json.dumps(self.record)+'\n',encoding='utf-8',newline='\n')
+        prior=W.matching_confirmation(self.record,self.repo)
+        self.assertIsNotNone(prior)
+        exact=raw.decode('utf-8')
+        ref=dict(self.record,char_start=0,char_end=len(exact),quote=exact)
+        claim={'instrument_id':'EO:7','original_representation':ref,
+               'working_text':W.blank([ref],prior)}
+        self.assertEqual(W.policy(claim,self.repo)[0],[])
+        # read_text's default universal-newline conversion reproduces the
+        # Windows fixture failure on every host; production must refuse it.
+        normalized=path.read_text(encoding='utf-8')
+        self.assertNotEqual(normalized,exact)
+        changed=deepcopy(claim)
+        changed['original_representation'].update(quote=normalized,char_end=len(normalized))
+        errors=W.policy(changed,self.repo)[0]
+        self.assertIn('original_representation:working_text_quote_mismatch',errors)
+        self.assertIn('original_representation:working_text_incomplete_representation_span',errors)
 
     def test_negative_or_invalid_agent_overrides_and_last_record_semantics(self):
         agent = self.repo/W.CONFIRMATION_PATHS[1]
