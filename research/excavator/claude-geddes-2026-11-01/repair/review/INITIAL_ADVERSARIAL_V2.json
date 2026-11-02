@@ -1,0 +1,489 @@
+{
+  "probes": [
+    {
+      "name": "legitimate_recital_outside_clause_envelope",
+      "pass": false,
+      "expected": "No false absence for recital within correct own-order boundaries",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "attributed_phrase_absent",
+            "detail": "claim.research_rationale.narrative: quoted wording is outside the verified target envelope; it occurs elsewhere in the file and may be a recital or neighboring order, requiring inspection"
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "stock_concept_outside_target_envelope",
+            "concept": "hearing_recital",
+            "detail": "concept appears elsewhere in the verified source; recital versus neighboring-order attribution requires inspection"
+          },
+          {
+            "code": "ambiguous_attributed_content",
+            "field": "claim.research_rationale",
+            "detail": "explicit order-content paraphrase is not an exact held-text match; human interpretation required"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "neighbor_quote_excluded",
+      "pass": true,
+      "expected": "Neighbor quote cannot establish own text",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "attributed_phrase_absent",
+            "detail": "claim.research_rationale.narrative: quoted wording is outside the verified target envelope; it occurs elsewhere in the file and may be a recital or neighboring order, requiring inspection"
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "ambiguous_attributed_content",
+            "field": "claim.research_rationale",
+            "detail": "explicit order-content paraphrase is not an exact held-text match; human interpretation required"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "valid_inventory_override",
+      "pass": false,
+      "expected": "Valid reconstructed override outside old clause envelope accepted",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "quotation_not_in_held_text",
+            "detail": "operative_clauses[0]: cited quotation absent from this order's exact held-text span",
+            "source_id": "T1ZFUlJJREU6T1JJR0lOQUw6RU86MTAwIzE1MS0yMDg"
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "operative_clause_not_covered",
+            "scope_id": "EO:100#main"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "own_quote_cannot_be_supported_by_actor",
+      "pass": true,
+      "expected": "Actor wording cannot validate own quote",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "attributed_phrase_absent",
+            "detail": "claim.research_rationale.narrative: 'The Blue Marsh Refuge is renamed Green Marsh Refuge.' is absent from the verified cited order text"
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "ambiguous_attributed_content",
+            "field": "claim.research_rationale",
+            "detail": "explicit order-content paraphrase is not an exact held-text match; human interpretation required"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "actor_quote_cannot_be_supported_by_own",
+      "pass": true,
+      "expected": "Own wording cannot validate actor quote",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "later_event_quote_not_in_cited_source",
+            "detail": "later-event quotation is absent from its exact cited source span",
+            "source_id": "ACT:EO:100>EO:7001A"
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "actual_actor_suffix_loss",
+      "pass": true,
+      "expected": "Source-bound actor suffix mismatch flagged",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "suffix_dropped",
+            "detail": "later-event actor EO:7001 does not preserve source label EO 7001A",
+            "source_id": "ACT:EO:100>EO:7001A"
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "signing_and_filing_not_publication",
+      "pass": true,
+      "expected": "Signing/filing dates are not issue-date errors",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "wrong_own_fr_page",
+      "pass": false,
+      "expected": "Explicit own FR page mismatch flagged",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "wrong_own_fr_issue",
+      "pass": false,
+      "expected": "Explicit own FR issue mismatch flagged",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "object_not_actor_in_later_events_sentence",
+      "pass": true,
+      "expected": "Object EO99 must not require its own event",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "missing_active_actor",
+      "pass": true,
+      "expected": "Active actor EO7002 must be recorded",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [
+          {
+            "code": "later_instrument_named_without_event_source",
+            "detail": "reasoning names EO 7002 as an actor/change without a matching later_events source"
+          }
+        ],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "no_other_order_number_only",
+      "pass": true,
+      "expected": "Number search does not prove literal-name coverage",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          },
+          {
+            "code": "literal_name_search_missing",
+            "name": "Blue Marsh Refuge",
+            "assertion": "No other held order names Blue Marsh Refuge."
+          },
+          {
+            "code": "literal_name_corpus_search",
+            "name": "Blue Marsh Refuge",
+            "matched_file_count": 2,
+            "matches": [
+              {
+                "path": "own.txt",
+                "sha256": "661920b92586c577051640f98f9a24c8def2aed5a9d0086af27827f8176b71df"
+              },
+              {
+                "path": "actor.txt",
+                "sha256": "bd1723a3266deeb62e92cfd9df4ee9e8832fa37376c1a33694ca7417e6070f2f"
+              }
+            ],
+            "matches_truncated": false,
+            "corpus_kind": "hash_pinned_Apollo_packet_held_texts",
+            "indexed_files": 2,
+            "unavailable_files": 0,
+            "available_pins_hash_verified": true,
+            "all_indexed_files_verified": true,
+            "known_full_scope": {},
+            "full_discovered_corpus_covered": false
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    },
+    {
+      "name": "same_size_same_mtime_hash_mutation",
+      "pass": false,
+      "expected": "Rehash content rather than trusting size+mtime cache",
+      "output": [
+        {
+          "Blue Marsh Refuge": [
+            {
+              "path": "own.txt",
+              "sha256": "661920b92586c577051640f98f9a24c8def2aed5a9d0086af27827f8176b71df"
+            },
+            {
+              "path": "extra.txt",
+              "sha256": "51988a8bfafff41277f5703a25392348c273147332a6f968ce320ad42a9c6a49"
+            },
+            {
+              "path": "actor.txt",
+              "sha256": "bd1723a3266deeb62e92cfd9df4ee9e8832fa37376c1a33694ca7417e6070f2f"
+            }
+          ]
+        },
+        [],
+        3,
+        {}
+      ]
+    },
+    {
+      "name": "packet_pin_set_change",
+      "pass": false,
+      "expected": "New missing corpus pin invalidates cache and appears in coverage",
+      "output": [
+        {
+          "Blue Marsh Refuge": [
+            {
+              "path": "own.txt",
+              "sha256": "661920b92586c577051640f98f9a24c8def2aed5a9d0086af27827f8176b71df"
+            },
+            {
+              "path": "extra.txt",
+              "sha256": "51988a8bfafff41277f5703a25392348c273147332a6f968ce320ad42a9c6a49"
+            },
+            {
+              "path": "actor.txt",
+              "sha256": "bd1723a3266deeb62e92cfd9df4ee9e8832fa37376c1a33694ca7417e6070f2f"
+            }
+          ]
+        },
+        [],
+        3,
+        {}
+      ]
+    },
+    {
+      "name": "numeric_coverage_not_identity_coverage",
+      "pass": false,
+      "expected": "A matching numeric count is not exact full-corpus identity coverage",
+      "output": {
+        "line": 1,
+        "instrument_id": "EO:100",
+        "flags": [],
+        "coverage_gaps": [
+          {
+            "code": "own_order_recitals_outside_envelope",
+            "detail": "text is limited to the min/max pinned target-clause spans; recitals outside that envelope are not verified"
+          },
+          {
+            "code": "later_events_none_recorded",
+            "clause": 0
+          },
+          {
+            "code": "literal_name_corpus_search",
+            "name": "Blue Marsh Refuge",
+            "matched_file_count": 3,
+            "matches": [
+              {
+                "path": "own.txt",
+                "sha256": "661920b92586c577051640f98f9a24c8def2aed5a9d0086af27827f8176b71df"
+              },
+              {
+                "path": "extra.txt",
+                "sha256": "51988a8bfafff41277f5703a25392348c273147332a6f968ce320ad42a9c6a49"
+              },
+              {
+                "path": "actor.txt",
+                "sha256": "bd1723a3266deeb62e92cfd9df4ee9e8832fa37376c1a33694ca7417e6070f2f"
+              }
+            ],
+            "matches_truncated": false,
+            "corpus_kind": "hash_pinned_Apollo_packet_held_texts",
+            "indexed_files": 3,
+            "unavailable_files": 0,
+            "available_pins_hash_verified": true,
+            "all_indexed_files_verified": true,
+            "known_full_scope": {
+              "scope": "all held text",
+              "discovered_count": 3,
+              "readable_count": 3
+            },
+            "full_discovered_corpus_covered": true
+          }
+        ],
+        "held_text_sources_checked": 2,
+        "held_text_sources_missing": 0,
+        "held_text_integrity_failures": 0
+      }
+    }
+  ],
+  "passed": 8,
+  "total": 15,
+  "code_pins": {
+    "jobs/geddes/geddes.py": "3472f558def50808177602e7e86472e156286c32aa2fed460e2563d3e94f398b",
+    "jobs/geddes/job.py": "1a91d987e637ea4369c2e970afe92af6f15f864a804d5f1cc9fd0375c4575ff2",
+    "jobs/geddes/source_checks.py": "51f1fc597d7c8273315dee2a7a2e6572270b62eff8db8a7df55e08ed523bdc3f",
+    "jobs/geddes/test_geddes.py": "c13bd24b5a76026ae00dfba8f999d71a1833225e4ae2b9772b92e6c684934b48",
+    "jobs/geddes/test_source_checks.py": "b85dd860a8119d858c95a3a6af847db475bedf9724cd78ea9e18462ba5ebc69c"
+  },
+  "probe_sha256": "59f5637d4127c6136164aa64af19af65b31a627573b8ef366efd30405fa52e02",
+  "elapsed_seconds": 0.018384404000244103,
+  "scientific_approval": false,
+  "tokens": null
+}

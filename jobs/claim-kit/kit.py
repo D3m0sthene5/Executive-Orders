@@ -120,6 +120,24 @@ def pick(repo,out,agent,n,excluded=None,scope='all'):
             'preparation_route':'decided_dossier' if by[iid].get('status') is not None else 'frozen_full_undecided_dossier',
             'whole_order_status':by[iid].get('status')} for iid in selected]
 
+def geddes_advisory(result,repo,applied,strict):
+    """Run the advisory Geddes linter on the applied directory and add result['geddes'].
+
+    Geddes never changes a claim, status or review verdict, and any Geddes failure is recorded
+    rather than raised. Returns True only when strict is set and the gate fails or cannot run.
+    """
+    started=time.monotonic()
+    try:
+        folder=repo/'jobs/geddes'
+        if not (folder/'geddes.py').is_file():folder=HERE.parent/'geddes'
+        if str(folder) not in sys.path:sys.path.insert(0,str(folder))
+        import geddes
+        result['geddes']=geddes.lint_for_kit(Path(applied).resolve(),repo,strict)
+    except Exception as e:
+        result['geddes']={'error':type(e).__name__+': '+str(e),'seconds':round(time.monotonic()-started,3)}
+        return strict
+    return strict and not result['geddes'].get('gate',{}).get('passed',False)
+
 def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--repo',type=Path,default=HERE.parents[1]);p.add_argument('--output',type=Path)
@@ -132,7 +150,7 @@ def main(argv=None):
     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true')
     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
-    s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path)
+    s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path);s.add_argument('--geddes-strict',action='store_true',help='exit nonzero unless every Geddes lint flag has a resolution (geddes gate)')
     s=sub.add_parser('complete');s.add_argument('manifest',type=Path);s.add_argument('--write',type=Path,required=True);s.add_argument('--publish',action='store_true')
     for key in ('history','base-commit','write'):
         s.add_argument('--diagnostic-'+key)
@@ -206,7 +224,9 @@ def main(argv=None):
             else:result=batch.check(repo,a.packet,a.applied)
             failed=(result.get('strict_claim_fail',0)>0 or result.get('counts',{}).get('rejected',0)>0)
             actual=result.get('actual_claim_checker',{})
-            if a.command=='batch-check':failed=failed or actual.get('claims_all_checks_passed',0)!=result.get('claims_checked',0)
+            if a.command=='batch-check':
+                failed=failed or actual.get('claims_all_checks_passed',0)!=result.get('claims_checked',0)
+                failed=failed or geddes_advisory(result,repo,a.applied,a.geddes_strict)
             print(json.dumps(result,ensure_ascii=False,indent=2));return int(failed)
         if a.command in ('history','status-sheet'):
             # Reuse the status-history producer; this creates no rival dossier,

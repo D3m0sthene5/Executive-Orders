@@ -1,0 +1,97 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/executive-orders/research/excavator/claude-erasmus-2026-11-02/e1/packet/supp/PACKET.json",
+  "seconds": 24.64,
+  "files_read": 39779,
+  "file_reads": 79654,
+  "packet_fingerprint": "3bbd71db1264992316fddd8b5048f61c227c7cf4a704c54b5d1caff616443c88",
+  "claims_checked": 4,
+  "defect_flags": 1,
+  "coverage_gaps": 2,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:6321",
+      "flags": [
+        {
+          "code": "literal_name_counterexample",
+          "field": "claim.research_rationale.member_checks.earlier_end_check",
+          "assertion": "no held order text cites EO 6321 by number, and one held order names the Code of Fair Competition for the Motor Vehicle Retailing Trade",
+          "counterexamples": [
+            {
+              "instrument_id": "EO:6948A",
+              "date": "1935-01-18",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6948-code-fair-competition-for-the-motor-vehicle-maintenance-trade.txt",
+              "text_sha256": "7757c581f31a3141b804e7f744d6db0af8578bb3e15f1e3aa0d449401f14e269",
+              "char_start": 1740,
+              "char_end": 1802,
+              "quote": "Code of Fair Competition for the Motor Vehicle Retailing Trade",
+              "matched_literal_name": "code of fair competition for the motor vehicle retailing trade",
+              "publisher_title": "Executive Order 6948-A—Code of Fair Competition for the Motor Vehicle Maintenance Trade",
+              "publisher_url": "https://www.presidency.ucsb.edu/documents/executive-order-6948-code-fair-competition-for-the-motor-vehicle-maintenance-trade",
+              "publisher_index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54"
+            }
+          ],
+          "detail": "A distinct held publisher-identified order contains the asserted name; inspect the source before retaining this negative assertion.",
+          "flag_id": "b08a7cd28aef1992"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "literal_name_corpus_scope",
+          "inventory_commit": "a807ba938aabcd333282caa69cd8e80608513cc8",
+          "inventory_kind": "tracked_jobs_texts",
+          "inventory_sha256": "2c819f2b1ff5bd5ed3235bb33089f9eab3ca4c48d9d7cd3db20fe74f6c6d070f",
+          "tracked_files": 39770,
+          "verified_files": 39770,
+          "missing_files": 0,
+          "changed_files": [],
+          "full_discovered_corpus_covered": true,
+          "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+        },
+        {
+          "code": "literal_name_search_performed",
+          "field": "claim.research_rationale.member_checks.earlier_end_check",
+          "names": [
+            "code of fair competition for the motor vehicle retailing trade",
+            "motor vehicle retailing trade"
+          ],
+          "after_date": null,
+          "counterexamples": 1,
+          "negative_established": false,
+          "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:6684C",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:6811",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 4,
+      "instrument_id": "EO:7000",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

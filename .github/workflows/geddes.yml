@@ -1,0 +1,89 @@
+name: Geddes advisory lint
+
+on:
+  push:
+    paths:
+      - 'jobs/geddes/**'
+      - '.github/workflows/geddes.yml'
+  pull_request:
+    paths:
+      - 'jobs/geddes/**'
+      - '.github/workflows/geddes.yml'
+  workflow_dispatch:
+    inputs:
+      applied_dir:
+        description: Applied proposal directory, relative to repository root
+        required: false
+        default: research/excavator/claude-apollo-2026-10-31/g01/packet/supp/applied-v3
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /jobs/geddes/**
+            /jobs/claim-kit/*.py
+            /jobs/norton/model.py
+            /jobs/clause-drafts/segment.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run Geddes unit tests
+        run: python3 -I -m unittest discover -s jobs/geddes -p 'test_*.py'
+      - name: Materialize selected source inputs
+        if: github.event_name == 'workflow_dispatch' && inputs.applied_dir != ''
+        run: |
+          git sparse-checkout add '/jobs/**/*.txt' \
+            '/jobs/app-executive-orders/output/INDEX.jsonl' \
+            '/research/excavator/claude-apollo-2026-10-31/**' \
+            '/research/excavator/claude-nira-sweep-2026-10-29/SHARED_ANALYSIS.md'
+      - name: Run source-based advisory lint
+        if: github.event_name == 'workflow_dispatch' && inputs.applied_dir != ''
+        env:
+          APPLIED_DIR: ${{ inputs.applied_dir }}
+        run: python3 -I jobs/geddes/geddes.py lint "$APPLIED_DIR" > geddes-lint.json
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' && inputs.applied_dir != ''
+        with:
+          name: geddes-lint-${{ github.run_id }}
+          path: geddes-lint.json
+  benchmark:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /jobs/geddes/**
+            /jobs/claim-kit/*.py
+            /jobs/norton/model.py
+            /jobs/clause-drafts/segment.py
+            /jobs/app-executive-orders/output/INDEX.jsonl
+            /jobs/**/*.txt
+            /research/readiness/claims/claude-2026-10-31-apollo-*.jsonl
+            /research/excavator/claude-apollo-2026-10-31/**
+            /research/excavator/claude-geddes-2026-11-01/**
+            /research/excavator/claude-nira-sweep-2026-10-29/SHARED_ANALYSIS.md
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact Apollo comparison with the retained text corpus
+        run: python3 research/excavator/claude-geddes-2026-11-01/repair/evaluate.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: geddes-repair-benchmark-${{ github.run_id }}
+          path: |
+            research/excavator/claude-geddes-2026-11-01/repair/EVALUATION.json
+            research/excavator/claude-geddes-2026-11-01/repair/NATIVE_RECEIPT.json
+            research/excavator/claude-geddes-2026-11-01/repair/measurements/

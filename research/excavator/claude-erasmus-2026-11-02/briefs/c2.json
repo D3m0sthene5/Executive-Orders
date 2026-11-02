@@ -1,0 +1,45 @@
+{
+ "batch": "c2",
+ "orders": [
+  {
+   "instrument_id": "EO:10010",
+   "kind": "filed_claim_correction",
+   "prior_claim": {
+    "path": "research/readiness/claims/claude-2026-10-31-apollo-g03.jsonl",
+    "line": null
+   },
+   "classification": "supported_structural_omission",
+   "defects": [
+    {
+     "code": "later_instrument_named_without_event_source",
+     "scope_id": "EO:10010#whole",
+     "actor": "EO:10015",
+     "reasoning_sentence": "Executive Order 10015 (signed November 1948, effective as of October 18, 1948) amended this order by adding six carriers to List A and renaming two List B organizations",
+     "detail": "Reasoning describes EO:10015 as a later actor but this clause has no source-backed later_events entry for it."
+    }
+   ],
+   "audit_notes": {
+    "claim_file_sha256": "e37c05a0fd04b69e91a725e6dc95cfb3621dd2568c7cd3c3e4b09d7b5fe05de4",
+    "claim_physical_record_sha256": "642693083a11257bc11360670a4a4ab65a129d4eaf302405a36c212b1ecb29f2",
+    "claim_reasons": [
+     "Terminated by Executive Order 12553, signed February 25, 1986, which orders that the listed Executive Orders, and any amendments thereto, are revoked, with no stated delayed effective date and no saving clause; the effective date is therefore the signing date, 1986-02-25. The table of revoked orders in the held text of Executive Order 12553 lists number 10010 with the subject \"Creating an emergency board to investigate railroad labor disputes\". This order created a board of three members to investigate the dispute between the Akron & Barberton Belt Railroad Company and other carriers named in List A and employees represented by the sixteen railway labor organizations named in List B, barred interested members, required a report within thirty days of October 18, 1948 (due by November 17, 1948), and froze changes in conditions from that date until thirty days after the report. Under the owner ruling of 2026-10-21 on report deadlines, the report deadline and the end of the standstill are spent facts, functionally spent after the board reported and the standstill ran, and they are not the end; the order remained on the books until this express revocation. Executive Order 10015 (signed November 1948, effective as of October 18, 1948) amended this order by adding six carriers to List A and renaming two List B organizations. It is an amendment, not an end, because it left the order in force; it is not recorded as a later event on this clause because the only record of it in this order's dossier cites a transcription while an official Federal Register copy is held, and the policy requires the official copy. Executive Order 10015 has its own claim in this packet and ends on the same date."
+    ],
+    "later_events_empty_verified": true,
+    "review_note": "Reasoning expressly describes amendments/later events while the matching clause later_events is empty. This exactly supports the source-backed-event omission warning; it does not independently settle every event legal effect or whole lifecycle.",
+    "source_examination": [
+     {
+      "instrument_id": "EO:10015",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10015.txt",
+      "text_sha256": "117838559ff84b610ca16bc986f1570765a5f85332a478a45707600352f482f1",
+      "span": [
+       2032,
+       3574
+      ],
+      "source_excerpt": "EXECUTIVE ORDER 10015\nAmendment of E xecutive O rder N o. \n10010, Creating an E mergency B oard \nTo Investigate Disputes  B etween  the \nAkron & B arberton B elt R ailroad \nCompany  and Other Carriers, and Cer­\ntain of T heir E mployees\nBy virtue of authority vested in me by \nsection 10 of the Railway Labor Act, as \namended (45 H  S. C. 160), Executive Or­\nder No. 10010 of October 18, 1948, en­\ntitled “Creating an Emergency Board to\nInvestigate Disputes between the Akron \n& Barberton Belt Railroad Company and \nOther Carriers, and Certain of Their Em­\nployees,”  is hereby amended as follows:\n1 . The following-named carriers are \nhereby added to the list of carriers com­\nprising List A attached to and made a \npart of the said Executive order;\nThe New York & Long Branch Railroad  \nCompany\nWharton & Northern Railroad\nJersey Central Transportation Company\nGrand Central Terminals\nState University Railroad Company\nWoodstock & Blockton Railway Company\n2. The railway labor organizations des­\nignated in List B attached to and made \na part of the said Executive order as \n“Brotherhood of Railway Carmen of \nAmerica” and “Hotel and Restaurant \nEmployes* International Alliance and \nBartenders’ Int. League of America” are \nhereby designated respectively as “Broth­\nerhood Railway Carmen of America” and \n“Hotel & Restaurant Employees and Bar- \ntenders’ International Union.”\nThis order shall be effective as of Octo­\nber 18, 1948.\nHarry S. T ruman\nThe W hite House,\nNovember 5,1948.\n[F. R. Doc. 48-9888; Filed, Nov. 8, 1948;\n11:17 a. m.j\n",
+      "note": "Own actor heading/body expressly amends EO10010 lists and gives retroactive effective date. Source wrapper also contains other orders, excluded from this span."
+     }
+    ]
+   }
+  }
+ ]
+}

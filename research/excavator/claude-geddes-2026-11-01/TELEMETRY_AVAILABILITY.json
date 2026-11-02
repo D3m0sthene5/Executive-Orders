@@ -1,0 +1,55 @@
+{
+  "schema": "geddes-worker-availability/v1",
+  "workers": [
+    {
+      "task": "geddes_engineering",
+      "role": "engineering",
+      "configured_model": "gpt-6-luna",
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_input_tokens": null,
+      "active_seconds": null,
+      "note": "Collaboration API provides no usage export or transcript paths. No retrospective timing reconstructed."
+    },
+    {
+      "task": "apollo_retry_inventory",
+      "role": "deterministic inventory",
+      "configured_model": "gpt-6-luna",
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_input_tokens": null,
+      "active_seconds": null,
+      "note": "No Sonnet production or Opus review performed. Initial hydration interruption and resumed same worker retained."
+    },
+    {
+      "task": "geddes_review",
+      "role": "independent engineering review",
+      "configured_model": "gpt-6-astra",
+      "input_tokens": null,
+      "output_tokens": null,
+      "cache_read_input_tokens": null,
+      "active_seconds": null,
+      "note": "Prospective wall includes waits, not active labor. Exact phase records in review/. No scientific review.",
+      "prospective_review_wall_seconds": 1099.014,
+      "final_acceptance_wall_seconds": 0.766
+    }
+  ],
+  "requested_producers": {
+    "model": "Sonnet",
+    "started": 0,
+    "reason": "Not exposed by available agent runtime; no Claude executable or Anthropic credential configured."
+  },
+  "requested_reviewers": {
+    "model": "Opus",
+    "started": 0,
+    "reason": "Not exposed by available agent runtime; no Claude executable or Anthropic credential configured."
+  },
+  "moon_telemetry": {
+    "script": "research/excavator/claude-apollo-2026-10-31/tools/moon_telemetry.py",
+    "reuse_status": "inspected; cannot run on unavailable worker transcripts",
+    "missing": "Anthropic-format per-message usage records and timestamps for these workers. No fabricated transcript adapter, zero tokens, or active-time totals."
+  },
+  "actual_new_filed_claims": 0,
+  "certified_whole_lifecycle": 0,
+  "actual_token_savings_vs_apollo": null
+}

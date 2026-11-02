@@ -1,0 +1,52 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/executive-orders/research/excavator/claude-erasmus-2026-11-02/e2/packet/PACKET.json",
+  "seconds": 13.374,
+  "files_read": 39776,
+  "file_reads": 79560,
+  "packet_fingerprint": "d9048f37f4261d1bed9227f77cd526698a244f4688b01cfe14a510a056732db0",
+  "claims_checked": 1,
+  "defect_flags": 1,
+  "coverage_gaps": 0,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 0,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:11303",
+      "flags": [
+        {
+          "code": "reference_instrument_does_not_cite_order",
+          "scope_id": "whole",
+          "field": "claim.research_rationale",
+          "span": "nd only this order's own texts and copies of EO 12553; a full read of EO 12553 (held FR text, 33,227 characters); and a full read of EO 10804 (held FR and APP texts).",
+          "detail": "The reasoning names EO 10804 as a matching note or full-read reference for this order, but no held, identity-bound text of EO 10804 contains the number 11303 (3 text(s) checked).",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-10804-delegating-the-civil-service-commission-the-authority-the-president.txt",
+            "text_sha256": "41b6c5dd182ed7ccad05cc344eca506899f5c377f74aae393d04bc880af51215",
+            "char_start": 0,
+            "char_end": 1343,
+            "quote": "By virtue of the authority vested in me by section 301 of title 3 of the United States Code, and as President of the United States, it is ordered as follows:\n\nSECTION 1. There is hereby delegated to the United States Civil Service Commission the authority vested in the President by section 5 of the Federal Employees International Organization Service Act (72 Stat. 961).\n\nSEC. 2. Executive Order No. 9721 ' of May 10, 1946; Executive Order No. 10103 of February 1, 1950; and Executive Order No. 10774 of July 25, 1958, insofar as it affects any employee covered by section 6 (a) of the International Atomic Energy Agency Participation Act of 1957 prior to the repeal of that section by the Federal Employees International Organization Service Act, are revoked except that each shall be considered to remain in effect with respect to any employee subject thereto serving with an international organization on the date of enactment of the Federal Employees International Organization Service Act who does not elect to have coverage under the latter Act pursuant to the provisions of section 6 of that Act, and for the purposes of any rights and benefits vested under each such order prior to the date of the enactment of the Federal Employees International Organization Service Act.\n\nDWIGHT D. EISENHOWER\n\nTHE WHITE HOUSE,\n\nFebruary 12, 1959.\n",
+            "instrument_id": "EO:10804",
+            "date": "1959-02-12",
+            "identity_basis": "app_publisher_listing",
+            "checked_texts": [
+              "jobs/app-executive-orders/output/texts/executive-order-10804-delegating-the-civil-service-commission-the-authority-the-president.txt",
+              "jobs/fr-originals/output/texts/EO_10804.txt",
+              "jobs/fr-originals/data/full_run/texts/EO_10804.txt"
+            ]
+          },
+          "flag_id": "a90a0e350b6ec1c2"
+        }
+      ],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
