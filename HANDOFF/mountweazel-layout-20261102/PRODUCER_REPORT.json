@@ -1,0 +1,75 @@
+{
+  "schema": "eo-bounded-engineering-repair/v1",
+  "status": "local_patch_ready_for_independent_root_review",
+  "base": "aeafe6ef3b5d53d38d34b6fec7fc25fb8851efd0",
+  "checkout": "/workspace/scratch/2ce4a2b0ce32/mountweazel-layout",
+  "patch": "/workspace/scratch/2ce4a2b0ce32/reviews/mountweazel-source-notes-layout.patch",
+  "patch_sha256": "c0d20b5c15fa2c6d178d2aa6b643dda67349b8908d43f5ad96431b5900ab3b35",
+  "files_sha256": {
+    "jobs/mountweazel/mountweazel.py": "d0fa54243ce9a76e986a7cf9fb1283641460e71ad795743d41bd583090b21d76",
+    "jobs/mountweazel/test_mountweazel.py": "0a591cc09d6877f169c0c9bc648677703eb5ae5ab56b5d7910d6b06ce5fa7910",
+    "jobs/mountweazel/README.md": "8e6f91b9b85e6f54d7525707c5017ec154a2f53a7116ff5534540dff79fac3a1"
+  },
+  "baseline_sha256": {
+    "jobs/mountweazel/mountweazel.py": "f288a150cdc571722f2569f65a6b4858e328d9f78232972bdf33fdf4dc9dee54",
+    "jobs/mountweazel/test_mountweazel.py": "b24e1f1b422ebe3f19a77a96af2ed5311b41d5ee4735fd55e8736b7f94426db0",
+    "jobs/mountweazel/README.md": "e07002eae2982157a4d5e898f25e32f2f5bef1b0813a9097ebb4b61e758bfe35"
+  },
+  "concrete_cause": "The real-card shape in hosted failure adds source_notes. Existing claim_card normalizes working_text only. A genuine claim with source notes can therefore be distinguished by that optional key when selected plants lack it.",
+  "preexisting": {
+    "mountweazel_source_byte_equal_published_f07": true,
+    "PR128_changed_mountweazel_source": false,
+    "interpretation": "Preexisting presentation gap exposed by the selected richer claim pool; not introduced by Lachmann runtime changes."
+  },
+  "hosted_evidence": {
+    "run_id": "41499117178",
+    "job_id": "125461706710",
+    "logs_fetched_independently_via": "GitHub fetch_workflow_job_logs",
+    "failure_excerpt": "/workspace/scratch/2ce4a2b0ce32/reviews/mountweazel-hosted-failure.log",
+    "excerpt_sha256": "41d7eef2cd7eca4adb5419d2eae18c82c56c7aff09e6d3dc041fee17c8668ee6",
+    "observed": "46 Mountweazel tests; one failure in test_plants_share_layout_with_real_items; extra real-card key source_notes"
+  },
+  "repair": [
+    "Reviewer cards always show source_notes, using null only when absent. Existing values, working_text disclosures and source grades remain unchanged.",
+    "Blinded raw fixtures/base fingerprints remain unchanged; only presentation-copy shape and manifest explanation change.",
+    "Exact-copy scanner recognizes new source-notes-normalized form, prior working_text-only form and original raw payloads. No exemptions widened."
+  ],
+  "verification": {
+    "deterministic_mixed_fixture_old_code": "Expected failure2 layouts versus1; no errors; pinned old claim_card substituted into patched regression.",
+    "old_code_failure_log": "/workspace/scratch/2ce4a2b0ce32/reviews/mountweazel-baseline-regression.log",
+    "focused_tests": 7,
+    "focused_seconds": 0.063,
+    "paired_control_tests": 2,
+    "paired_seconds": 0.014,
+    "explicit_optional_value_conservation_probes": 10,
+    "diff_check": "pass",
+    "unchanged_operator_and_scoring_function_ASTs": true,
+    "changed_function_ASTs": [
+      "claim_card",
+      "seed_cmd",
+      "check"
+    ],
+    "fixture_checks": "Mixed fixture retains exact single mutation, raw payload absence/presence and base hashes, source values and pool immutability; raw/new/old rendered exact-copy leaks all detected."
+  },
+  "limits": [
+    "Not independently reviewed yet; root retains integration/merge authority.",
+    "No full46-test hosted-pilot rerun and no whole-corpus acceptance claim.",
+    "Sparse checkout initial materialization failed on missing objects; first attempted corpus test had empty pool and was invalid as a defect reproduction. Acquisition then partially restored20 of104 tracked claim files before stopped; corpus-based shape test on partial subset passed but is not full-pool evidence.",
+    "Paired tests initially invoked with isolated script path and then lacked BATCH.md in sparse checkout; corrected to unittest discovery and materialized exact pinned method document; both pass.",
+    "No seeded content, key, canonical claims, statuses, source bytes or production inputs changed."
+  ],
+  "canonical_mutations": 0,
+  "remote_mutations": 0,
+  "root_checkout_mutations": 0,
+  "costs": {
+    "configured_model": "gpt-6.1-sol",
+    "configured_reasoning_effort": "high",
+    "self_observed_model": "GPT-6-based Codex; exact tier not introspectable",
+    "tokens": null,
+    "cash": null,
+    "full_session_seconds": null,
+    "active_labor_seconds": null,
+    "savings_claimed": false
+  },
+  "coordination": "Root must record any integrated finding/HANDOFF; no shared records changed under bounded assignment."
+}

@@ -77,6 +77,8 @@ class SeedTests(Base):
                       "confirmations": [{"grade": "compiled_transcription", "identity_confirmed": True,
                                          "complete_text_confirmed": True, "pages_confirmed": True}]}
         pool[real]["claim"]["working_text"] = copy.deepcopy(disclosure)
+        source_notes = [{"source": source, "note": "Synthetic source limits must remain visible."}]
+        pool[real]["claim"]["source_notes"] = copy.deepcopy(source_notes)
         frozen = copy.deepcopy(pool)
         with mock.patch.object(mw, "load_claim_pool", return_value=pool):
             out, fx = self.seed("mixed", n=4, extra=("--codes", "D3", "--share", "0.25"))
@@ -87,12 +89,14 @@ class SeedTests(Base):
             card = json.loads((out / f"batch/items/{item['item_id']}.json").read_text())["claim"]
             shapes.add(tuple(sorted(card)))
             self.assertEqual(card["working_text"], disclosure if item["base_order"] == real else None)
+            self.assertEqual(card.get("source_notes"), source_notes if item["base_order"] == real else None)
             self.assertEqual(card["original_representation"], source)
             self.assertNotIn("claim_kit", card)
             if item["is_seeded"]:
                 fixture = json.loads((fx / (item["item_id"] + ".seeded.json")).read_text())
                 self.assertEqual(fixture["base"]["sha256"], mw.sha(pool[item["base_order"]]["claim"]))
                 self.assertNotIn("working_text", fixture["seeded_payload"])
+                self.assertNotIn("source_notes", fixture["seeded_payload"])
                 # The raw payload remains the original plus its one documented mutation.
                 raw = mw._deflag(fixture["seeded_payload"])
                 expected = copy.deepcopy(pool[item["base_order"]]["claim"])
@@ -207,9 +211,11 @@ class CheckTests(Base):
         # isolated exact-copy check: both required marker errors still apply.
         self.assertTrue(mw.check(repo, fx)["ok"])
         target = repo / "jobs/other/claims.jsonl"
-        target.write_text(json.dumps(mw.claim_card(payload)) + "\n")
-        result = mw.check(repo, fx)
-        self.assertTrue(any(p["problem"] == "exact copy of a planted item" for p in result["problems"]), result)
+        legacy_card = dict(mw.claim_card(payload)); legacy_card.pop("source_notes")
+        for card in (payload, legacy_card, mw.claim_card(payload)):
+            target.write_text(json.dumps(card) + "\n")
+            result = mw.check(repo, fx)
+            self.assertTrue(any(p["problem"] == "exact copy of a planted item" for p in result["problems"]), result)
         target.write_text(json.dumps(dict(mw.claim_card(payload), research_rationale="different real fixture")) + "\n")
         self.assertTrue(mw.check(repo, fx)["ok"])
 
