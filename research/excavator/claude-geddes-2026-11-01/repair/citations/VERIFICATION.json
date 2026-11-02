@@ -1,0 +1,181 @@
+{
+  "schema": "geddes-citation-repair-verification/v1",
+  "model": "gpt-6-sol",
+  "tokens": "unavailable",
+  "start_utc": "2026-11-01T21:20:11Z",
+  "start_monotonic_seconds": 5727.695514636,
+  "end_utc": "2026-11-01T21:32:43.123032+00:00",
+  "end_monotonic_seconds": 6479.405256453,
+  "source_provenance": {
+    "app_index_path": "jobs/app-executive-orders/output/INDEX.jsonl",
+    "app_index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54",
+    "app_index_git_blob": "1e1c01dc52dfde3023c67b804e0d5acd047c4c6e",
+    "scope": "APP INDEX is a held publisher listing consulted after Apollo; it was not an Apollo packet-pinned input. Candidate texts are verified against exact member LOOKUPS.details raw_sha256; originals against dossier text_sha256."
+  },
+  "code_sha256": "e7c2963f48d549c89f8a853a614cfd0a581dc8ac25d58747b9be50a5389baa77",
+  "test_sha256": "8729b804efc19f64eb70e5b77a9cc37c725ecf17c093203accff333bb25317c1",
+  "unit_tests": "9 passed with python3 -I jobs/geddes/test_citation_checks.py",
+  "broader_latest_proposal_scan": {
+    "scope": "latest applied-v per 19 Apollo packets, 300 proposals; advisory engineering scan, not scientific review or filed-claim precision",
+    "count": 300,
+    "new_flags": 6,
+    "distinct_claims_flagged": 6,
+    "non_target_flags": 0
+  },
+  "target_examples": [
+    {
+      "instrument_id": "EO:6275",
+      "packet_path": "research/excavator/claude-apollo-2026-10-31/n02/packet/supp/PACKET.json",
+      "packet_sha256": "98e9d6cbbe123bd1ff34b5ced34b34188597fd98a86b0a030e202282ef39c238",
+      "claim_path": "research/excavator/claude-apollo-2026-10-31/n02/packet/supp/applied-v1/CLAIMS.proposed.jsonl",
+      "claim_file_sha256": "2813d6a5a64a2decdc207e8430c9cd05735e0facc6e1d0da5f0d29c8c0116f40",
+      "claim_record_sha256": "1bb732ee871621b9abc49e99752a0f5fbb2f89a572cdb6635c8b2a90bcac9bce",
+      "flags": [
+        {
+          "code": "reasoning_order_identity_mismatch",
+          "field": "claim.research_rationale.member_checks.earlier_end_check",
+          "detail": "reasoning identifies EO 6513; hash-verified lookup and APP publisher title/date identify EO 6513I",
+          "source_path": "jobs/app-executive-orders/output/texts/executive-order-6513-i-code-fair-competition-for-the-cast-iron-soil-pipe-industry.txt",
+          "lookup_raw_sha256": "c3673e3d800c2749929446e6cddb7dc84c4e896fe12094960b6aa160e5cc42ff",
+          "actual_text_sha256": "c3673e3d800c2749929446e6cddb7dc84c4e896fe12094960b6aa160e5cc42ff"
+        }
+      ],
+      "coverage_gaps": [],
+      "original_source": {
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6275-code-fair-competition-for-the-cast-iron-soil-pipe-industry.txt",
+        "text_sha256": "460667e183c3f173dd0aa3ffd8b2543bce4f9854e0423dbd26526de96bf7c38f",
+        "page_or_item": "Executive Order 6275—Code of Fair Competition for the Cast Iron Soil Pipe Industry; September 07, 1933; APP node 362099; common-crawl capture 2025-09-07T17:49:19Z",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-6275-code-fair-competition-for-the-cast-iron-soil-pipe-industry"
+      },
+      "lookup_path": "research/excavator/claude-apollo-2026-10-31/n02/packet/supp/LOOKUPS.details.json",
+      "lookup_sha256": "b4bda6334e93a9278c6fd8d0c9a69625961e1a31a618dc361d6ce1fb64bd1131"
+    },
+    {
+      "instrument_id": "EO:6312",
+      "packet_path": "research/excavator/claude-apollo-2026-10-31/n02/packet/supp/PACKET.json",
+      "packet_sha256": "98e9d6cbbe123bd1ff34b5ced34b34188597fd98a86b0a030e202282ef39c238",
+      "claim_path": "research/excavator/claude-apollo-2026-10-31/n02/packet/supp/applied-v1/CLAIMS.proposed.jsonl",
+      "claim_file_sha256": "2813d6a5a64a2decdc207e8430c9cd05735e0facc6e1d0da5f0d29c8c0116f40",
+      "claim_record_sha256": "c46589fccc169fd90f64a44a8b2dd250a49f3077542940a881da5a98619fddc1",
+      "flags": [
+        {
+          "code": "reasoning_order_identity_mismatch",
+          "field": "claim.research_rationale.member_checks.earlier_end_check",
+          "detail": "reasoning identifies EO 6885; hash-verified lookup and APP publisher title/date identify EO 6885A",
+          "source_path": "jobs/app-executive-orders/output/texts/executive-order-6885-amended-code-fair-competition-for-the-builders-supplies-trade.txt",
+          "lookup_raw_sha256": "3a2933ada3d4f979da3d0f20786713da29d65d5ba6e1b14cb8142e6779724d12",
+          "actual_text_sha256": "3a2933ada3d4f979da3d0f20786713da29d65d5ba6e1b14cb8142e6779724d12"
+        }
+      ],
+      "coverage_gaps": [],
+      "original_source": {
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6312-code-fair-competition-for-the-builders-supplies-trade.txt",
+        "text_sha256": "0c37832752311e5a6b97af39cf71ade089980b5f862e6c51078e666b93a9a05b",
+        "page_or_item": "Executive Order 6312—Code of Fair Competition for the Builders Supplies Trade; October 03, 1933; APP node 362137; common-crawl capture 2025-10-11T05:26:34Z",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-6312-code-fair-competition-for-the-builders-supplies-trade"
+      },
+      "lookup_path": "research/excavator/claude-apollo-2026-10-31/n02/packet/supp/LOOKUPS.details.json",
+      "lookup_sha256": "b4bda6334e93a9278c6fd8d0c9a69625961e1a31a618dc361d6ce1fb64bd1131"
+    },
+    {
+      "instrument_id": "EO:6578",
+      "packet_path": "research/excavator/claude-apollo-2026-10-31/n02/packet/supp/PACKET.json",
+      "packet_sha256": "98e9d6cbbe123bd1ff34b5ced34b34188597fd98a86b0a030e202282ef39c238",
+      "claim_path": "research/excavator/claude-apollo-2026-10-31/n02/packet/supp/applied-v1/CLAIMS.proposed.jsonl",
+      "claim_file_sha256": "2813d6a5a64a2decdc207e8430c9cd05735e0facc6e1d0da5f0d29c8c0116f40",
+      "claim_record_sha256": "e792a330924a1edf4b30b2eca8159d685cc30c6d3fbfc7222acd732b69fcad33",
+      "flags": [
+        {
+          "code": "reasoning_order_identity_mismatch",
+          "field": "claim.research_rationale.member_checks.earlier_end_check",
+          "detail": "reasoning identifies EO 6925; hash-verified lookup and APP publisher title/date identify EO 6925A",
+          "source_path": "jobs/app-executive-orders/output/texts/executive-order-6925-canceling-order-approving-code-for-the-cinders-ashes-and-scavenger.txt",
+          "lookup_raw_sha256": "0adfc659b43fda3d3d72f922a934c1b9db6205f25e277c90dfc17d1e48d1f2fd",
+          "actual_text_sha256": "0adfc659b43fda3d3d72f922a934c1b9db6205f25e277c90dfc17d1e48d1f2fd"
+        }
+      ],
+      "coverage_gaps": [],
+      "original_source": {
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6578-code-fair-competition-for-the-construction-industry.txt",
+        "text_sha256": "2df69e0133b015f60e635c36cf860734ee4fa1f93e93c0e0d98d95783ad9cb56",
+        "page_or_item": "Executive Order 6578—Code of Fair Competition for the Construction Industry; January 31, 1934; APP node 362340; common-crawl capture 2025-03-26T12:34:38Z",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-6578-code-fair-competition-for-the-construction-industry"
+      },
+      "lookup_path": "research/excavator/claude-apollo-2026-10-31/n02/packet/supp/LOOKUPS.details.json",
+      "lookup_sha256": "b4bda6334e93a9278c6fd8d0c9a69625961e1a31a618dc361d6ce1fb64bd1131"
+    },
+    {
+      "instrument_id": "EO:9538",
+      "packet_path": "research/excavator/claude-apollo-2026-10-31/g02/packet/supp/PACKET.json",
+      "packet_sha256": "f5b0f2e529859041b7c819191d5c5bba22af40bb4fc9ae12c462dd896a1ac439",
+      "claim_path": "research/excavator/claude-apollo-2026-10-31/g02/packet/supp/applied-v3/CLAIMS.proposed.jsonl",
+      "claim_file_sha256": "213cdc8b01d99fb7e92e81feeee86e2252239d8414a2a7380da7d268e888df96",
+      "claim_record_sha256": "6dfb3fbdb448a0291b29bc1065f0d5b8fe9520d0cfe9a214b3a9bf1db687b9f9",
+      "flags": [
+        {
+          "code": "fr_issue_date_mismatch",
+          "field": "claim.research_rationale",
+          "detail": "reasoning says issue 1945-04-27; pinned original issue is 1945-04-17",
+          "source_id": "ORIGINAL:EO:9538"
+        }
+      ],
+      "coverage_gaps": [],
+      "original_source": {
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_9538.txt",
+        "text_sha256": "ecec53317ed94fa51ebda868a777d21550e54bb9da05c68de907e91b27ef1154",
+        "page_or_item": "10 FR 4057, PDF pages 1-1",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1945-04-17/pdf/FR-1945-04-17.pdf"
+      }
+    },
+    {
+      "instrument_id": "EO:10138",
+      "packet_path": "research/excavator/claude-apollo-2026-10-31/g04/packet/PACKET.json",
+      "packet_sha256": "ca09813c7a85d3b4c4edceee89bc2376e1fec825834e121c922f26b1043c3bd1",
+      "claim_path": "research/excavator/claude-apollo-2026-10-31/g04/packet/applied-v3/CLAIMS.proposed.jsonl",
+      "claim_file_sha256": "9edad24fa62c0034ba9a0002a12c6f0345f577fc8465e3898bdc8f47b9a0bae6",
+      "claim_record_sha256": "32df4078862dba4e1339ffbb97deb47d2072cead2343a3cc74e079b1c5f7a7b6",
+      "flags": [
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.research_rationale.member_checks.scope_check",
+          "detail": "reasoning cites 15 FR 4333; pinned original cites [('15', '4241')]",
+          "source_id": "ORIGINAL:EO:10138"
+        }
+      ],
+      "coverage_gaps": [],
+      "original_source": {
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10138.txt",
+        "text_sha256": "f64f31b0e582fe272db8ed610f168749f479c4dc274e57cd0cdfa47c40df1d15",
+        "page_or_item": "15 FR 4241, PDF pages 3-3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1950-07-04/pdf/FR-1950-07-04.pdf"
+      },
+      "lookup_path": "research/excavator/claude-apollo-2026-10-31/g04/packet/LOOKUPS.details.json",
+      "lookup_sha256": "4814cb83d8c4f27e606fabc2af204fa1a49d70041ed2c564cd3d5416fb1902bf"
+    },
+    {
+      "instrument_id": "EO:10139",
+      "packet_path": "research/excavator/claude-apollo-2026-10-31/g04/packet/PACKET.json",
+      "packet_sha256": "ca09813c7a85d3b4c4edceee89bc2376e1fec825834e121c922f26b1043c3bd1",
+      "claim_path": "research/excavator/claude-apollo-2026-10-31/g04/packet/applied-v3/CLAIMS.proposed.jsonl",
+      "claim_file_sha256": "9edad24fa62c0034ba9a0002a12c6f0345f577fc8465e3898bdc8f47b9a0bae6",
+      "claim_record_sha256": "c2685db4a5605aa53b23ec5714f50a2617468f995b9d17e427b1530bfc1e8c1a",
+      "flags": [
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.research_rationale.member_checks.scope_check",
+          "detail": "reasoning cites 15 FR 4333; pinned original cites [('15', '4241')]",
+          "source_id": "ORIGINAL:EO:10139"
+        }
+      ],
+      "coverage_gaps": [],
+      "original_source": {
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10139.txt",
+        "text_sha256": "0ac5dcdd605720fec6ccc662136b54b82ffb61e2834c9bd4daecae248d33bf38",
+        "page_or_item": "15 FR 4241, PDF pages 3-3",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1950-07-04/pdf/FR-1950-07-04.pdf"
+      },
+      "lookup_path": "research/excavator/claude-apollo-2026-10-31/g04/packet/LOOKUPS.details.json",
+      "lookup_sha256": "4814cb83d8c4f27e606fabc2af204fa1a49d70041ed2c564cd3d5416fb1902bf"
+    }
+  ]
+}

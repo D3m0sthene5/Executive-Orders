@@ -1,3 +1,23 @@
+## 2026-11-01: Geddes source repair and exact warning audit
+
+- **Done:** Repaired full-order/recital boundaries, native inventory overrides, source-specific verbatim quotations, reasoning suffix/FR bindings, event actor/scope, and literal-name corpus identity/cache guards. Existing PR122 branch; canonical claims/statuses/codebook/human reviews unchanged, certified 0.
+- **Evidence:** `research/excavator/claude-geddes-2026-11-01/REPORT.md` and `repair/`. Local exact recall 20/40 (was 9); 18/254 filed claims flagged (was 55). Independent audit supports all 18: 16 wording discrepancies + 2 missing event-record inconsistencies; 0 false/indeterminate in the examined set. Original total-warning metric remains 18>5; do not conflate it with audited false positives.
+- **Validation:** 42 unit tests and 29 independent probes pass. Four filed order-body abstentions plus rejected EO12891 remain disclosed. All 1,346 Apollo text pins verified; local name corpus sparse (1,074/39,770). Hosted benchmark41355823118 passes:39,770/39,770 text members verified, no missing/changed files, exact same flags; raw native artifact/hash index retained. Hosted unit tests/Kean pass.
+- **Costs:** Two configured gpt-6-sol workers and gpt-6-astra reviewer; prospective clocks in repair/TELEMETRY.json, token/active-time measurements unavailable. No measured model saving or new filing is claimed. Kean F-20261101-geddes-repair/native.
+- **Next:** Review PR122; preserve immutable source/claim versions and truthful coverage. Track B scientific roles remain unrun under existing A-20261101-geddes-models.
+- **Asks:** @Owner: none for this programming repair.
+- **Do not:** suppress actual quote discrepancies to meet a warning-count target, change already-filed claims, or turn diagnostic warnings into scientific judgments.
+
+## 2026-11-01: Geddes draft and exact Apollo retry inventory; execution incomplete
+
+- **Done:** `jobs/geddes/` advisory lint/order view/cost, unit-test workflow and explicit pre-handback step; frozen claim-kit contract unchanged. Base `claude/apollo-moon` at `40eb4b5` because PR121 was open. Exact 40 retry versions in `research/excavator/claude-geddes-2026-11-01/inventory/`, grouped NRA 6/general 20/general 14.
+- **Accuracy:** 9/40 exact review defects caught; 15 rejected versions with any flag; 55/254 filed comparator flags. Both targets fail. Read REPORT.md/DEFECT_CORRELATION.json; do not call 15 recall or infer clean claims. Corpus/name/prose and recital/inventory-boundary gaps remain.
+- **Measurement:** Actual g03 bundle 8,842,721 bytes versus 24 views 634,144 bytes. Cache tokens/net savings unknown. Four Apollo cost groups reproduced. Two gpt-6-luna workers and gpt-6-astra engineering reviewer; tokens/active labor unavailable; reviewer 1,099.014s prospective wall includes waits. Telemetry availability and failed development passes retained.
+- **Validation:** 14 unit tests, 20 independent/targeted probes, 18 acceptance checks pass at code 3472f558; scientific quality thresholds do not. Kean brief 7,795 bytes at registration; strict check passes. Findings F-20261101-geddes-lint/retries/cost.
+- **Blocked/Next:** No fresh packet, Sonnet producer, Opus scientific reviewer, new controls or publication. 0 new claims; certified 0. Make required runtime available and repair lint precision, validate complete prepare context, then fresh prepare/review/complete sequentially under lock; commit only after packets finish. Never reuse committed Apollo packets for apply.
+- **Asks:** Execution-route decision for the owner is registered as `A-20261101-geddes-models` (required models or explicit substitution).
+- **Do not:** count retrospective flags as independent review; auto-reject on lint; change canonical claims/statuses/codebook/human reviews or certified count. EO6471A/7016 remain under A-20261031-1; six custody/OCR drops remain excluded.
+
 # Claude's handoff notes
 
 Newest entry first. See `README.md` in this folder for the format.

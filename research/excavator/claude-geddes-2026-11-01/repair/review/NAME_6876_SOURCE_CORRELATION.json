@@ -1,0 +1,43 @@
+{
+  "instrument_id": "EO:6876",
+  "exact_historical_defect": "No held order after October16,1934 names CottonTextileCode. Historical review specifically identifies EO6930 dated1934-12-27 as counterexample.",
+  "exact_defect_caught": true,
+  "flag": {
+    "code": "literal_name_counterexample",
+    "field": "claim.research_rationale.member_checks.earlier_end_check",
+    "assertion": "No held order after October 16, 1934 names the Cotton Textile Code",
+    "counterexamples": [
+      {
+        "instrument_id": "EO:6930",
+        "date": "1934-12-27",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6930-amending-executive-order-no-6878-providing-rules-and-regulations-for.txt",
+        "text_sha256": "2d237594f29e3a1063d931a395ffb01744dd0dfa73ec701dc87308689f7125d5",
+        "char_start": 200,
+        "char_end": 214,
+        "quote": "Cotton Textile",
+        "matched_literal_name": "cotton textile",
+        "publisher_title": "Executive Order 6930\u2014Amending Executive Order No. 6878 Providing Rules and Regulations for the Cotton, Silk and Wool Textile Work Assignment Boards",
+        "publisher_url": "https://www.presidency.ucsb.edu/documents/executive-order-6930-amending-executive-order-no-6878-providing-rules-and-regulations-for",
+        "publisher_index_sha256": "1049f35a504f99d38059524f4017d79d8f9635ddc44a4a8c0b92342ab9007f54"
+      }
+    ],
+    "detail": "A distinct held publisher-identified order contains the asserted name; inspect the source before retaining this negative assertion."
+  },
+  "source_sha256": "2d237594f29e3a1063d931a395ffb01744dd0dfa73ec701dc87308689f7125d5",
+  "source_path": "jobs/app-executive-orders/output/texts/executive-order-6930-amending-executive-order-no-6878-providing-rules-and-regulations-for.txt",
+  "source_context_span": [
+    156,
+    280
+  ],
+  "source_context": "under the Codes of Fair Competition for the Cotton Textile Industry, the Silk Textile Industry and the Wool Textile Industry",
+  "date_basis": "APP publisher record1934-12-27 matches terminal signature December27,1934 in held source; after1934-10-16.",
+  "scope": "The literal alias hit alone would be insufficient; independent source reading confirms it specifically denotes the Codes of Fair Competition for the Cotton Textile Industry. This is source-content contradiction, not legal-effect adjudication.",
+  "code_pins": {
+    "jobs/geddes/citation_checks.py": "e7c2963f48d549c89f8a853a614cfd0a581dc8ac25d58747b9be50a5389baa77",
+    "jobs/geddes/event_checks.py": "390887ac6476da5d1741f215bbc99d6beac94172b0de6db3df3aa7e82ef57308",
+    "jobs/geddes/job.py": "93148ca0a4a1ddda5c456885b6d0dea130698177406a717cc7488be80ad2438b",
+    "jobs/geddes/name_checks.py": "4392356d9ed4a269053aed364c24b0597d234ad1bfe820c4ea05630b97e859f2",
+    "jobs/geddes/source_checks.py": "e394ed3c1c700ca255d8a4131d79668181ab78bd29ee63e11f2f756ad5355806",
+    "jobs/geddes/geddes.py": "aece609ab3c9b97af64f90cc6fc9b17dbbe05613d3a3d01dc4a4563f6b5ac370"
+  }
+}
