@@ -242,7 +242,7 @@
       "text": "Russ from compulsory retirement for age for a period of one year ending February 29, 1940."
     }
   },
-  "fingerprint": "b2cc0373401b181c3d2d794a8e9abb0ae1385e884a1f93357465d6a17239e47b",
+  "fingerprint": "d91f11374ffc0863bb19357dfe61a14f8eb217c517f3780e07d4b9435d2e4f47",
   "instrument_id": "EO:8047",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -307,6 +307,18 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
@@ -334,5 +346,77 @@
     "notice": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
     "observation_count": 1
   },
-  "whole_order_status": "no"
+  "whole_order_status": "no",
+  "working_text_confirmation": {
+    "fragments": [
+      {
+        "acceptable_as_original": false,
+        "complete_text": null,
+        "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+        "grade": "mirror_transcription",
+        "instrument_id": "EO:8047",
+        "requires_page_check": true,
+        "sha256": "bc196630c74722c4607d0bbaf256a449826139d8963b12cc171d17645c110f7f",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-8047-exemption-edward-b-russ-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "4ce201318688ce2241c32df61c6f39eb86a804d2f14568b9d4d2679587bfd9f3",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-8047-exemption-edward-b-russ-from-compulsory-retirement-for-age"
+      }
+    ],
+    "record": {
+      "acceptable_as_original": false,
+      "complete_text_confirmed": true,
+      "confirmed": true,
+      "evidence": {
+        "complete_detail": {
+          "end_cue_kind": "signature",
+          "start_kind": "title_words"
+        },
+        "complete_route": "own_start_and_end",
+        "first_cue_snippet": "Whereas, in my judgment, the public interest requires that Edward B. Russ, Chief",
+        "identity_detail": {
+          "source_heading": "Executive Order 8047—Exemption of Edward B. Russ From Compulsory Retirement for Age",
+          "source_heading_producer": "app-executive-orders",
+          "title_overlap_body_opening": 0.8333,
+          "title_overlap_heading": 1.0
+        },
+        "identity_route": "source_heading",
+        "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+        "matched_date": "February 11, 1939",
+        "matched_number": null,
+        "pages_detail": {
+          "app_date": "1939-02-11",
+          "app_heading": "Executive Order 8047—Exemption of Edward B. Russ From Compulsory Retirement for ",
+          "app_subject_overlap": 0.8333
+        },
+        "register_date": "1939-02-11",
+        "register_number": "8047",
+        "similarity": [],
+        "skipped_witnesses": [],
+        "source_heading": "Executive Order 8047—Exemption of Edward B. Russ From Compulsory Retirement for Age",
+        "text_chars": 721
+      },
+      "grade": "mirror_transcription",
+      "identity_confirmed": true,
+      "instrument_id": "EO:8047",
+      "method": "machine",
+      "pages_confirmed": true,
+      "reasons": [],
+      "requires_page_check": true,
+      "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+      "schema": "eo-lachmann-confirmation/v1",
+      "sha256": "bc196630c74722c4607d0bbaf256a449826139d8963b12cc171d17645c110f7f",
+      "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+      "text_path": "jobs/app-executive-orders/output/texts/executive-order-8047-exemption-edward-b-russ-from-compulsory-retirement-for-age.txt",
+      "text_sha256": "4ce201318688ce2241c32df61c6f39eb86a804d2f14568b9d4d2679587bfd9f3",
+      "witnesses": [
+        {
+          "grade": "mirror_transcription",
+          "producer": "app-executive-orders",
+          "sha256": "bc196630c74722c4607d0bbaf256a449826139d8963b12cc171d17645c110f7f",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-8047-exemption-edward-b-russ-from-compulsory-retirement-for-age.txt"
+        }
+      ]
+    },
+    "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+  }
 }

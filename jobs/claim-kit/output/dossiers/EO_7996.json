@@ -242,7 +242,7 @@
       "text": "Now, Therefore, by virtue of and pursuant to the authority vested in me by section 204 of the act of June 30, 1932, 47 Stat. 382, 404 (U.S.C., title 5, sec. 715a), I hereby exempt the said Wallace Streater from compulsory retirement for age for a period of one year ending November 30, 1939."
     }
   },
-  "fingerprint": "7e3f1e9e52ba7667c2d23e3a0d3c9611f0d0183c26a976727840b3b7410d4d5f",
+  "fingerprint": "a7c8d7f0d4d9ef3033722481d04089899bc4bdd66cf18aff5dd2fefc73f4aa26",
   "instrument_id": "EO:7996",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -306,6 +306,18 @@
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "later-events:ofr_catalog"
+    },
+    {
+      "complete": true,
+      "entry": {
+        "checked_on": "2026-10-28",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "searched_by": "jobs/namier (machine search)"
+      },
+      "machine_hits_for_this_order": 0,
+      "scope_note": "",
+      "search_id": "namier:held_texts_person_name"
     }
   ],
   "missing": [
@@ -335,5 +347,77 @@
     "notice": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
     "observation_count": 1
   },
-  "whole_order_status": "no"
+  "whole_order_status": "no",
+  "working_text_confirmation": {
+    "fragments": [
+      {
+        "acceptable_as_original": false,
+        "complete_text": null,
+        "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+        "grade": "mirror_transcription",
+        "instrument_id": "EO:7996",
+        "requires_page_check": true,
+        "sha256": "2c69400cd961b08f39f1822278058b2d3e2bf2964ceff085706861da4e926b92",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-7996-exemption-wallace-streater-from-compulsory-retirement-for-age.txt",
+        "text_sha256": "701f1b9024034de3fbe3331813e154b1b9f2bc18f50281d9076ada31fae6d7a0",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-7996-exemption-wallace-streater-from-compulsory-retirement-for-age"
+      }
+    ],
+    "record": {
+      "acceptable_as_original": false,
+      "complete_text_confirmed": true,
+      "confirmed": true,
+      "evidence": {
+        "complete_detail": {
+          "end_cue_kind": "signature",
+          "start_kind": "title_words"
+        },
+        "complete_route": "own_start_and_end",
+        "first_cue_snippet": "Whereas, in my judgment, the public interest requires that Wallace Streater, sen",
+        "identity_detail": {
+          "source_heading": "Executive Order 7996—Exemption of Wallace Streater From Compulsory Retirement for Age",
+          "source_heading_producer": "app-executive-orders",
+          "title_overlap_body_opening": 0.8333,
+          "title_overlap_heading": 1.0
+        },
+        "identity_route": "source_heading",
+        "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+        "matched_date": "October 28, 1938",
+        "matched_number": null,
+        "pages_detail": {
+          "app_date": "1938-10-28",
+          "app_heading": "Executive Order 7996—Exemption of Wallace Streater From Compulsory Retirement fo",
+          "app_subject_overlap": 0.8333
+        },
+        "register_date": "1938-10-28",
+        "register_number": "7996",
+        "similarity": [],
+        "skipped_witnesses": [],
+        "source_heading": "Executive Order 7996—Exemption of Wallace Streater From Compulsory Retirement for Age",
+        "text_chars": 713
+      },
+      "grade": "mirror_transcription",
+      "identity_confirmed": true,
+      "instrument_id": "EO:7996",
+      "method": "machine",
+      "pages_confirmed": true,
+      "reasons": [],
+      "requires_page_check": true,
+      "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+      "schema": "eo-lachmann-confirmation/v1",
+      "sha256": "2c69400cd961b08f39f1822278058b2d3e2bf2964ceff085706861da4e926b92",
+      "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+      "text_path": "jobs/app-executive-orders/output/texts/executive-order-7996-exemption-wallace-streater-from-compulsory-retirement-for-age.txt",
+      "text_sha256": "701f1b9024034de3fbe3331813e154b1b9f2bc18f50281d9076ada31fae6d7a0",
+      "witnesses": [
+        {
+          "grade": "mirror_transcription",
+          "producer": "app-executive-orders",
+          "sha256": "2c69400cd961b08f39f1822278058b2d3e2bf2964ceff085706861da4e926b92",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-7996-exemption-wallace-streater-from-compulsory-retirement-for-age.txt"
+        }
+      ]
+    },
+    "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+  }
 }
