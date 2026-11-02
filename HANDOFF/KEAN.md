@@ -36,13 +36,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 98; `search` finds the rest)
+## Newest results (6 of 99; `search` finds the rest)
 
+- 2026-11-02 F-20261102-population-contract-repair **worked**: Reproduce failed refresh and reconcile claim-kit contract to already-owner-merged PR119 rows Lesson: Carry accepted adoption into the independent population contract; do not infer authorization from mutable progress CSVs
 - 2026-11-02 F-20261101-geddes-native **partly worked**: Verify repaired Geddes on full held corpus Lesson: Keep raw native receipt and distinguish true warnings from false positives.
 - 2026-11-01 F-20261101-geddes-retries **stopped at gate**: Reconcile Apollo retry inputs Lesson: Keep exact defects and hashes; never substitute review models silently.
 - 2026-11-01 F-20261101-geddes-repair **partly worked**: Repair Geddes source binding Lesson: Separate true source problems from false flags; never hide abstentions.
 - 2026-11-01 F-20261101-geddes-lint **partly worked**: Test Geddes advisory lint Lesson: Source-role probes do not establish production precision.
 - 2026-11-01 F-20261101-geddes-cost **analysis**: Measure Geddes order views and Apollo cost Lesson: Payload reduction is not measured cache-token savings.
-- 2026-11-01 F-20261101-1 **worked**: Erasmus: resubmit 40 Apollo rejects, correct 20 flagged filed claims; wire Geddes into batch-check Lesson: Batch more orders per agent; see REPORT.md
 
-Register: 18 owner decisions, 2 answered questions, 98 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 99 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
