@@ -18,3 +18,8 @@ Workflow `#workflow`.
 
 The Workflow tab added on 2026-10-31 changed only the page (styles, one tab button, one section, one script
 block) and added the `workflow_nodes` dataset; the seven existing datasets were left as Codex published them.
+
+
+## November 2 refresh
+
+Job tiers (`#tiers`) adds 85 dated editorial assessments, with search, kind/tier filters and source-backed details. `../tiers/JOB_TIERS.json` is embedded by `../tiers/build_job_tiers.py`. The Workflow feed now has 82 nodes including Apollo, Erasmus and Geddes. Replace only `tools` with `snapshots/2026-11-02/TOOLS.csv` and `workflow_nodes` with `workflow/WORKFLOW_NODES.csv`, then publish this page into the same private artifact. The six other feeds and the mission clock remain unchanged: current main confirms the identical readiness CSV blob, so later filings are not added to readiness. The visible main-check strip names its source commit and tracker date.

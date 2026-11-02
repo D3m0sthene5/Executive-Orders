@@ -1,3 +1,21 @@
+## 2026-11-02 ET: final recovery integration, before main production refresh
+
+- **Landed:** PR125 repairs adopted-population validation; PR126 adds bounded Cruden table leads; PR127 retains five exact missing PDFs; PR124 archives the published 85-entry tier tab and 82-node map. The live dashboard retains its dated 498 snapshot and was not republished in this recovery.
+- **Runtime:** PR128 carries exact Lachmann confirmations into fresh packets through the existing verified cache. Linux and Windows Road, publication audit and Kean passed at 43d1fef1. Independent runtime/cache and test-fixture reviews are retained. The producer's 525 claim-kit tests passed with seven disclosed skips; tracker 54 and Lachmann 46 also passed. The fixture's 14-to-one index construction result is not a claim of total research savings.
+- **Source use:** The fresh four-order replay has 20 source pins and source IDs for every member. All four remain unresolved, with zero claims or statuses emitted. EO11029 names EO11025; its application to EO11026 is unexamined. See F-20261102-held-actor-retained-replay and the native-v3-retained report/review.
+- **Generation:** d4d424f7 remains a merge parent preserving its 3,315-file branch generation. Those outputs predate the combined custody/archive inputs and are excluded from current output. Every jobs/*/output path stays exactly at main86 until the final main runtime merge starts ordinary regeneration. Never renew old fingerprints or treat a stale generation as current.
+- **Authority:** No canonical claim, status, census, grade, ruling or human-certification changes. Prior Jacquard/working-text wiring notes now describe already-merged decisions and pending final regeneration. Scoped recovery merge authorization does not answer the older standing future-merge question. Workers/reviewers were configured as gpt-6.1-sol; complete token, cash and active-labor totals are unavailable.
+- **Refresh selection:** The checker documentation now explains the post-custody combined refresh, and the draft documentation removes the obsolete 3,359-order ceiling. These two existing job-folder updates select checker and drafts alongside compiler, tracker and Kean through the ordinary runner; no replacement dispatcher is introduced.
+- **Next:** Inspect final main native receipts, population validation, compiler confirmation reuse and tracker results. Record actual results after completion; do not credit prior Apollo/Erasmus readiness growth to this engineering work. The broader Valla pilot remains separately visible.
+- **Asks:** @Owner: none.
+
+## 2026-11-02 ET: five exact raw-source prerequisites retained and audited
+
+- **Done:** Existing retention run41497558869 succeeded; publisheda3fbcbfe retains all5exact PDFs(47,090,803bytes),20page texts and5selected-text files. Independent configuredgpt-6.1-sol custody audit rehashes actualGitbytes and proves oldsource265→270/attempt343→348prefixes;allprior artifactIDs preserved,zero deletions. Kean F-20261102-erasmus-retention-native; NATIVE_CUSTODY_REVIEW.json and SOURCE_INTEGRATION_REVIEW.json in research/progress/erasmus-board-source-readiness-2026-11-02/.
+- **Limits:** NoPNGs(renderer unavailable);3empty page texts. Actualsource-page examination/freshpackets/scientificreview remain required. RequestedtargetIDs remain unauthenticated;no claim/status/grade/census/certification changed. Native fetch/extract24.962s excludes setup/publication;complete token/cash/labor unknown.
+- **Integration:** Sourceoutput1866blobs/modes/paths andnewerKeanoutput remain exacta3fbbytes while currentmain126is merged;no actualGitconflict occurred despite earlierAPI dirty state. Rootowns qualifyingmerge and remainingLachmann/dashboardintegration under resumed scopedauthorization.
+- **Asks:** @Owner: none.
+
 ## 2026-11-02 ET: exact confirmed-text reuse and existing-cache integration
 
 - **Done:** Lachmann confirmations now flow into fresh ordinary decided/undecided dossiers and sheets, preserving provisional grades/replacement/quote-recheck obligations and scientific gates. Exact records/fragments/source versions and negative agent overrides revalidated on preparation/loading/direct policy. Kean F-20261102-lachmann-reuse; report, native initial/final replays, code/artifact pins and both independent reviews in research/progress/lachmann-verified-text-reuse/.
@@ -30,6 +48,29 @@
 - **Next:** Merge first repair after hosted checks, integrate independently reviewed Cruden and Lachmann changes, demonstrate existing source supplements and finish board-report custody requests.
 - **Asks:** @Owner: none. Standing future-merge question remains separate from this scoped authorization.
 - **Do not:** renew old packet fingerprints, turn diagnostic/source access into legal approval, or edit canonical statuses/claims to evade the contract.
+
+## 2026-11-02 ET: small remaining dossier handoffs assessed
+
+- **Done:** Read-only mainb3fc50647c assessment. Strongest scalable gap: Lachmann confirmations reach tracker but not claim-kit blank sheets;1,674 is a candidate ceiling. Strongest direct pilot: four Erasmus packets need already-held later-instrument evidence IDs through existing supplements. Board-report facts and Cruden bare-number table leads remain bounded follow-ups. Full source trace: research/progress/remaining-work/tiers/HANDOFF_OPPORTUNITIES.md.
+- **Freshness:** PR119/120 already merged (888 statuses,1,674 text confirmations); tracker/compiler generation still predates them. Refresh existing ordered production before selecting another cohort. Dashboard map omitted separate Jacquard/Lachmann nodes; add them in a catalog correction, preserving latest-published498 headline until native refresh.
+- **Scope/costs:** No implementation, acquisition, scientific job, adoption, grade or count change. Bounded configured gpt-6-sol reader; tokens/complete labor/cash unavailable. Kean F-20261102-dossier-handoffs.
+- **Next/Asks:** Reproduce exact confirmation-to-packet reuse and four source-ID cases before coding. @Owner: none. Do not repeat already-merged wiring or infer completed dossiers from candidate counts.
+
+## 2026-11-02 ET: Apollo Job tiers published and live-verified — PR124
+
+- **Published:** Original private artifact https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#tiers, page15 from exact source401d7bd3909f97ec7b49f00f2a73a0f25f37cf59; tools46 rows/v10; workflow82 nodes/v3. New Job tiers85 assessments, dated results/limits/source links, search and kind/tier filters. Six older feeds and rocket preserved. Source PR124 remains open; no main merge.
+- **Verified:** All six live tabs, reload route, tier search/detail/Escape/filter/empty state, workflow sources, recent-session toggle,46 tool rows/82 nodes and Mission SVG/498-ready/0-certified. Initial v14 failed in the host because a JSON DOM script was removed; v15 uses one executable script and button/hidden-panel controls. Local 390px layout inspected. Publisher confirmed earlier two prose edits were already preserved. Snapshot README/MANIFEST/JOB_TIERS.png retain evidence.
+- **Counts:** Checked mainb3fc50647c; tracker last ranOct31, same per-order blob asOct30. Still498 (306 original-supported+192 transcription-dependent),194 replacement/recheck obligations each. Apollo254 and Erasmus52 filings (including20 replacements) are later and await recount. No scientific jobs, status/source-grade adoption or human certification.
+- **Review/costs:** Independent configured gpt-6-sol reader/reviewer; corrected integrated Cruden timings, Mansfield12 integrated/four held and source-record shape, then approved. Root retained judgment/integration; authoring session Opus5.5High only published exact files. Tokens, active labor/cash unavailable; no savings claimed. Kean F-20261102-apollo-tiers and F-20261102-apollo-tiers-live.
+- **Next/Asks:** @Owner: none. Review PR124; ratings are editorial within-role usefulness judgments, not scientific authority or measured ROI. No watcher or background research remains.
+
+## 2026-11-02 ET: Apollo main refresh and Job tiers prepared
+
+- **Done:** Checked main b3fc50647c after PR123. Updated retained dashboard with pinned current-work strip, 85 editorial tier assessments and 82 workflow nodes; tools catalog now 46 dated rows. Independent configured gpt-6-sol review corrected Cruden timing, stale Mansfield integration and source-list shape. Evidence in research/progress/remaining-work/snapshots/2026-11-02/.
+- **Counts:** Current tracker last ran Oct31, still498 ready (306 original-supported+192 transcription-dependent), exact same per-order Git blob as Oct30. Apollo254 and Erasmus52 filings are later;20 Erasmus corrections are replacements. Human-certified0. No production/research job or scientific adoption.
+- **Validation:** Six builder tests, script syntax and local tier search/dialog/Escape/F filter pass. Authoring publication and full live feed checks pending at this commit. Existing six readiness/effort/mission feeds preserved; replace only tools/workflow_nodes and page in the original private artifact.
+- **Kean/costs:** F-20261102-apollo-tiers. Bounded worker configured gpt-6-sol; tokens, active labor and cash unavailable. No savings inferred.
+- **Next:** Publish exact page and two feeds, verify six tabs/rocket/new records and update this handoff with result. @Owner: none.
 
 ## 2026-10-31 UTC: revised R1-R4 integrated and coordinated production verified
 
@@ -358,3 +399,4 @@ Newest entry first. See `README.md` in this folder for the format.
 - **Running:** PR50 live run 39802916101; that branch is untouched by this cleanup. Reconcile its final fresh outputs before integrating generated results from other branches.
 - **Next:** Owner adoption remains a separate merge decision; the six holds require resolution through the existing review process. PR48's GitGuardian flag was independently verified as a historical test-log SHA-256, not a credential; no security control was disabled.
 - **Do not:** Change the codebook, source-audit holds, human certifications or original review verdicts. No per-order research was performed; model tokens/cash/active labor were not measured. This append-only handoff avoids a concurrent top-of-file insertion conflict with PR50's existing Codex notes; consolidate ordering after integration.
+

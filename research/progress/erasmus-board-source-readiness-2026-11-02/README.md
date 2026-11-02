@@ -63,3 +63,25 @@ After the read-only investigation above, root authorized exactly the two board U
 - The hash-refusal probe uses an existing text file solely as deliberately wrong PDF bytes. It creates no PDF or source acceptance. General network requests may omit an expected hash under the unchanged interface; these three requests explicitly pin theirs. No stricter policy is asserted or implemented.
 
 No acquisition was run. Root will combine its actor-source requests into the existing default manifest and dispatch ordinary retention on integrated main. Subsequent custody, source examination, fresh preparation, independent review and scientific gates remain required. No source grade, source content, claim, status, readiness count, shared register or handoff was changed in this follow-through.
+
+## Native five-source acquisition and independent custody audit
+
+Run [41497558869](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41497558869)
+succeeded and published exact output commit `a3fbcbfe960c417e006a821b1a053a0bb3e482e7`.
+All five requested PDFs matched their expected hashes and were retained: 47,090,803
+bytes, seven HTTP requests, five completed extractions. The job reports 24.962
+seconds of native work; setup/materialization/publication are additional costs.
+`NATIVE_CUSTODY_REVIEW.json` independently rehashes the five actual Git PDFs,
+20 page-text files, five selected-page text files and extraction directories.
+Sources append 265 to 270 and attempts 343 to 348 with exact prior prefixes;
+all prior retained artifact paths/object IDs remain, with zero deletions.
+Requested targets remain separate from authenticated document identity.
+
+No PNGs were produced: all 20 requested pages record an unavailable renderer,
+and three page-text extractions are empty. This is retained PDF custody and
+text extraction, not visual page review, authentication, delivery evidence,
+source-grade promotion or a legal conclusion. Actual page examination, fresh
+source supplements and ordinary independent scientific review remain necessary.
+`SOURCE_INTEGRATION_REVIEW.json` also verifies unchanged native output bytes
+while merging the current main coordination history. Earlier source-blocked
+reports and request-preparation receipts remain historical; they are not erased.

@@ -1,0 +1,626 @@
+diff --git a/jobs/claim-kit/assemble.py b/jobs/claim-kit/assemble.py
+index 65d55bba..1a277ef5 100644
+--- a/jobs/claim-kit/assemble.py
++++ b/jobs/claim-kit/assemble.py
+@@ -132,7 +132,7 @@ def blank_sheet(dossier, agent=""):
+     refs = [r.get("source", {}) for r in _records(dossier).values()
+             if isinstance(r, dict) and r.get("source", {}).get("acceptable_as_original") is False]
+     if refs:
+-        sheet["working_text"] = W.blank(refs)
++        sheet["working_text"] = W.blank(refs, dossier.get("working_text_confirmation"))
+     return sheet
+ 
+ 
+@@ -324,6 +324,17 @@ def _check_claim(claim, repo, dossier=None):
+             representation = claim.get("original_representation")
+             if not isinstance(representation, dict) or _reference_id(representation) != dossier.get("original_source_id"):
+                 errors.append("original_source_id_mismatch")
++            prior = dossier.get("working_text_confirmation")
++            if prior is not None:
++                try:
++                    W.require_current_confirmation(dossier, repo)
++                except ValueError:
++                    errors.append("working_text:prior_confirmation_stale")
++                confirmed = (claim.get("working_text") or {}).get("confirmations", [])
++                expected = [c for c in confirmed if isinstance(c, dict) and c.get("prior_confirmation") == prior]
++                if len(expected) != 1 or expected[0] != next((c for c in W.blank(
++                        [dossier["evidence"][dossier["original_source_id"]]["source"]], prior)["confirmations"]), None):
++                    errors.append("working_text:prior_confirmation_changed")
+ 
+     clauses = claim.get("operative_clauses", [])
+     if isinstance(clauses, list):
+@@ -427,6 +438,11 @@ def _assemble(sheet, dossier, repo):
+                               ("source_grade", "kind", "role", "type", "origin"))
+     provisional = original_record.get("acceptable_as_original") is False or original.get("acceptable_as_original") is False
+     if provisional:
++        if dossier.get("working_text_confirmation") is not None:
++            try:
++                W.require_current_confirmation(dossier, repo)
++            except ValueError:
++                errors.append("working_text:prior_confirmation_stale")
+         if original.get("grade") not in W.GRADES or original.get("acceptable_as_original") is not False:
+             errors.append("lead_is_not_original:working_text_grade_required")
+         if not isinstance(sheet.get("working_text"), dict):
+diff --git a/jobs/claim-kit/batch.py b/jobs/claim-kit/batch.py
+index 90015e26..26041c09 100644
+--- a/jobs/claim-kit/batch.py
++++ b/jobs/claim-kit/batch.py
+@@ -255,6 +255,12 @@ def load_packet(folder,repo,check_sources=True):
+     if packet.get('preflight_dependency_sha256')!=preflight_dependency_pins():raise ValueError('evidence preflight dependencies changed; prepare a reviewed package')
+     packet['fingerprint']=fp;dossiers=decode(packet)
+     if check_sources:
++        import working_text as W
++        confirmed={i:d for i,d in dossiers.items() if d.get('working_text_confirmation') is not None}
++        if confirmed:
++            records=W.load_confirmations(repo);index=W.Index(repo)
++            for d in confirmed.values():
++                W.require_current_confirmation(d,repo,records,index)
+         if ((folder/'SOURCE_SUPPLEMENT.json').exists() or
+                 any(d.get('source_supplement') or any(
+                     str(eid).startswith('SUPPLEMENT:') or record.get('role')=='unreviewed_source_excerpt'
+@@ -358,12 +364,12 @@ def render(packet,dossiers):
+                 lines.extend(['  Exact retained record text (unshared):',text]);rendered_text.add(text)
+         lines.extend(['','### Complete operative inventory',''])
+         for c in d.get('clauses',[]):lines.append('- '+c['scope_id']+' → '+str(c.get('id'))+'; characters '+str(c.get('char_start'))+'–'+str(c.get('char_end')))
+-        for key in ('own_terms','actor_contexts','actor_provisions','chain','current_law_leads','machine_searches',
++        for key in ('working_text_confirmation','own_terms','actor_contexts','actor_provisions','chain','current_law_leads','machine_searches',
+                     'draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
+             if key in d:lines.extend(['','### '+key,'',canon(d[key])])
+         remaining={k:v for k,v in d.items() if k not in {'schema','instrument_id','whole_order_status','fingerprint',
+             'legal_cutoff','original_source_id','clauses','evidence','own_terms','actor_contexts','actor_provisions',
+-            'chain','current_law_leads','machine_searches','draft_gate_errors','conflicts','draft_material_gaps',
++            'chain','current_law_leads','working_text_confirmation','machine_searches','draft_gate_errors','conflicts','draft_material_gaps',
+             'missing','status_history','notice'}}
+         if remaining:lines.extend(['','### Additional dossier metadata','',canon(remaining)])
+         lines.extend(['','### Preflight','',canon(packet['preflight'][iid]),''])
+@@ -401,7 +407,7 @@ def view(repo,folder,order=None,source=None):
+             meta={k:v for k,v in e.items() if k not in ('text','provision_text','alternative_provisions')}
+             lines.append(eid+' '+canon(meta))
+         for key in ('clauses','own_terms','lifecycle_obligations','actor_contexts','actor_provisions','chain','current_law_leads',
+-                    'machine_searches','draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
++                    'working_text_confirmation','machine_searches','draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
+             if key in d:lines.append(key+' '+canon(d[key]))
+         lines.append('Preflight '+canon(packet['preflight'][order]))
+         if packet.get('prior_research') is not None:
+@@ -458,6 +464,8 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
+             if not dossier_paths and (d.get('fingerprint')!=index[iid]['fingerprint'] or d.get('whole_order_status')!=index[iid]['status']):raise ValueError('dossier does not match current INDEX: '+iid)
+             pins[iid]={'file_sha256':file_sha(p),'fingerprint':d['fingerprint'],'path':str(p.relative_to(repo))}
+         if d.get('instrument_id')!=iid or d.get('fingerprint')!=canonical_sha(d):raise ValueError('stale dossier '+iid)
++        import working_text as W
++        W.require_current_confirmation(d,repo)
+         dossiers[iid]=d
+         routing[iid]={**owned.get(iid,{}),'route':'owner_reviewable_replacement_proposal' if iid in owned else 'new_producer_proposal'}
+         flight[iid]=preflight(d,repo)
+diff --git a/jobs/claim-kit/build.py b/jobs/claim-kit/build.py
+index e075cf1d..f1cbf297 100644
+--- a/jobs/claim-kit/build.py
++++ b/jobs/claim-kit/build.py
+@@ -178,7 +178,7 @@ def unlocated_reason(source_event):
+     if proposal.get('mechanism')==NAME_MATCH_MECHANISM:return NAME_MATCH_LEAD
+     return TARGET_NOT_LOCATED
+ 
+-def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, known_actors=None):
++def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, known_actors=None, prior_confirmation=None):
+     draft=corpus['drafts'].get(iid,{})
+     d=draft.get('_draft',{})
+     evidence={}
+@@ -269,6 +269,8 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing,
+         'missing':sorted(set(missing)),
+         'lifecycle_obligations':obligations(iid, clauses, terms, acts),
+         'notice':'MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.'}
++    if prior_confirmation is not None:
++        dossier['working_text_confirmation']=prior_confirmation
+     if iid in corpus.get('status_histories',{}):
+         dossier['status_history']=corpus['status_histories'][iid]
+     if corpus.get('factual_obligations',{}).get(iid):
+@@ -464,6 +466,8 @@ def build(repo, out, cache=None):
+     for target,actor,_ in pairs:known_actors_by[target].add(actor)
+     counts['known_pairs']=len({(t,a) for t,a,_ in pairs});counts['located_actor_pairs']=sum(map(len,actors_by.values()))
+     counts['orders_with_held_text']=len(selected);counts['generic_references_excluded']=generic_total
++    confirmation_records=W.load_confirmations(repo)
++    confirmation_index=W.Index(repo) if confirmation_records else None
+     families=collections.defaultdict(set)
+     index=[]
+     with ShardedJsonl(out/'CLAUSES.jsonl') as cf, ShardedJsonl(out/'OWN_TERMS.jsonl') as tf, ShardedJsonl(out/'ACTING_PROVISIONS.jsonl') as af, ShardedJsonl(out/'CHAINS.jsonl') as chf, ShardedJsonl(out/'STATUS_LEADS.jsonl') as sf, ShardedJsonl(out/'OVERLAY_INPUTS.jsonl') as of:
+@@ -484,16 +488,19 @@ def build(repo, out, cache=None):
+                 families['source:'+str(src.get('sha256') or src.get('url'))].add(iid)
+             chain_rec=chain(iid,acts,generic_refs_excluded=generic_total)
+             line(chf,chain_rec)
++            original=selected.get(iid,{}).get('source',{})
++            prior=W.matching_confirmation(original,repo,confirmation_records,confirmation_index) if confirmation_records else None
+             if iid not in corpus['statuses']:
+                 draft=corpus['drafts'].get(iid,{})
+                 search_ids={s.get('search_id') for s in draft.get('_draft',{}).get('proposals',{}).get('later_source_search_machine',[])}
+                 line(of,{'schema':'eo-claim-kit-overlay-input/v1','instrument_id':iid,
++                         **({'working_text_confirmation':prior} if prior is not None else {}),
+                          'selected':{k:v for k,v in selected[iid].items() if k!='text'} if iid in selected else None,
+                          'draft':draft,'machine_searches':{k:v for k,v in corpus['machine_searches'].items() if k in search_ids},
+                          'known_actor_ids':sorted(known_actors_by.get(iid,[]))})
+                 line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),**({'factual_obligations':corpus['factual_obligations'][iid]} if corpus.get('factual_obligations',{}).get(iid) else {}),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
+                 continue
+-            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid))
++            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid),prior)
+             name=filename(iid)
+             dump(out/'dossiers'/(name+'.json'),dossier)
+             dump(out/'sheets'/(name+'.decision.json'),blank_sheet(dossier))
+diff --git a/jobs/claim-kit/status_overlay.py b/jobs/claim-kit/status_overlay.py
+index 1b43242b..5a8ab7d2 100644
+--- a/jobs/claim-kit/status_overlay.py
++++ b/jobs/claim-kit/status_overlay.py
+@@ -19,6 +19,7 @@ import time
+ 
+ from assemble import assemble, blank_sheet, canonical_sha, check_claim
+ from build import package
++import working_text as W
+ from inputs import COMPILER_FILES, STATUSES, UNIVERSE
+ 
+ INPUT_SCHEMA = "eo-claim-kit-overlay-input/v1"
+@@ -312,7 +313,9 @@ def _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads
+               "machine_searches": deepcopy(inputs.get("machine_searches", {})),
+               "current_law": {iid: deepcopy(leads.get("current_law_leads", []))},
+               "status_histories": {iid: deepcopy(leads.get("status_history"))}}
+-    dossier = package(iid, corpus, selected, clause, terms, acts, chain, missing, actor_ids)
++    dossier = package(iid, corpus, selected, clause, terms, acts, chain, missing, actor_ids,
++                      inputs.get('working_text_confirmation'))
++    W.require_current_confirmation(dossier, root)
+     # package() uses paths relative to the canonical compiler output for
+     # large actor contexts. Qualify those pointers before moving a dossier
+     # into an isolated bundle, and pin the actual shared context record.
+@@ -548,6 +551,7 @@ def validate_evidence(repo, evidence, _context=None):
+     ctx = _context or _ValidationContext(repo)
+     _sealed(evidence, EVIDENCE_SCHEMA)
+     iid = evidence["instrument_id"]
++    W.require_current_confirmation(evidence["base_dossier"], repo)
+     if ctx.authority(iid) != evidence.get("authority"):
+         raise ValueError("stale_authority_snapshot")
+     compiled = evidence["compiled"]
+diff --git a/jobs/claim-kit/test_batch.py b/jobs/claim-kit/test_batch.py
+index 02aee0b0..ee741bcb 100644
+--- a/jobs/claim-kit/test_batch.py
++++ b/jobs/claim-kit/test_batch.py
+@@ -125,6 +125,59 @@ class BatchTests(T.BuildIntegrationTests):
+         rel=next(iter(packet['held_text_file_pins']));(self.repo/rel).write_bytes(b'changed')
+         with self.assertRaisesRegex(ValueError,'changed held source'):batch.apply(self.repo,p,p/'applied')
+ 
++    def test_confirmed_working_text_is_frozen_and_negative_agent_review_stales_packet(self):
++        c=self.confirmed_derivative();p=self.packet(('EO:2',))
++        packet,dossiers=batch.load_packet(p,self.repo)
++        self.assertEqual(dossiers['EO:2']['working_text_confirmation']['record'],c)
++        self.assertIn('working_text_confirmation',(p/'READ.md').read_text())
++        self.assertIn('working_text_confirmation',batch.view(self.repo,p,order='EO:2'))
++        row=batch.rows(p/'decisions.csv')[0]
++        prior=json.loads(row['working_text'])
++        self.assertTrue(prior['confirmations'][0]['identity_confirmed'])
++        self.assertFalse(json.loads(row['approved']))
++        c.update(method='agent',confirmed=False)
++        write_json(self.repo/'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl',c)
++        with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
++            batch.apply(self.repo,p,p/'applied')
++
++    def test_confirmed_working_text_changed_pinned_record_stales_packet(self):
++        c=self.confirmed_derivative();p=self.packet(('EO:2',))
++        c['identity_route']='later_review'
++        write_json(self.repo/'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl',c)
++        with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
++            batch.load_packet(p,self.repo)
++
++    def test_reused_confirmation_flows_through_native_apply_without_legal_approval(self):
++        self.confirmed_derivative();p=self.packet(('EO:2',))
++        row=batch.rows(p/'decisions.csv')[0]
++        self.assertEqual(row['outcome'],'unresolved')
++        self.assertEqual(row['approved'],'false')
++        self.fill(p,'EO:2')
++        result=batch.apply(self.repo,p,p/'applied')
++        self.assertEqual(result['counts'],{'assembled_proposal':1})
++        proposed=json.loads((p/'applied/CLAIMS.proposed.jsonl').read_text().splitlines()[0])
++        self.assertFalse(proposed['original_representation']['acceptable_as_original'])
++        self.assertTrue(proposed['working_text']['replacement_required'])
++        self.assertTrue(proposed['working_text']['quotation_recheck_required'])
++        self.assertEqual(proposed['working_text']['confirmations'][0]['prior_confirmation']['record']['method'],'machine')
++
++    def test_reused_confirmation_does_not_approve_producer_or_allow_lost_provenance(self):
++        import assemble
++        self.confirmed_derivative();p=self.packet(('EO:2',));self.fill(p,'EO:2')
++        order=batch.rows(p/'decisions.csv');order[0]['approved']='false';order[0]['inventory_confirmed']='false'
++        batch.csv_write(p/'decisions.csv',batch.ROW_FIELDS,order)
++        result=batch.apply(self.repo,p,p/'failed')
++        self.assertEqual((p/'failed/CLAIMS.proposed.jsonl').read_text(),'')
++        self.assertNotEqual(result['counts'],{'assembled_proposal':1})
++        order[0]['approved']='true';order[0]['inventory_confirmed']='true'
++        batch.csv_write(p/'decisions.csv',batch.ROW_FIELDS,order)
++        batch.apply(self.repo,p,p/'applied')
++        claim=json.loads((p/'applied/CLAIMS.proposed.jsonl').read_text())
++        _,ds=batch.load_packet(p,self.repo)
++        del claim['working_text']['confirmations'][0]['prior_confirmation']
++        self.assertIn('working_text:prior_confirmation_changed',
++                      assemble.check_claim(claim,self.repo,ds['EO:2']))
++
+     def test_missing_member_cannot_disappear(self):
+         p=self.packet();r=batch.rows(p/'decisions.csv')[:1];batch.csv_write(p/'decisions.csv',batch.ROW_FIELDS,r)
+         with self.assertRaisesRegex(ValueError,'every packet member'):batch.apply(self.repo,p,p/'applied')
+diff --git a/jobs/claim-kit/test_build.py b/jobs/claim-kit/test_build.py
+index be205b64..2a2bb41d 100644
+--- a/jobs/claim-kit/test_build.py
++++ b/jobs/claim-kit/test_build.py
+@@ -112,6 +112,60 @@ class BuildIntegrationTests(unittest.TestCase):
+                            "reason": "The fixture's express revocation ends this duty; no earlier term applies."})
+         return sheet
+ 
++    def confirmed_derivative(self, iid="EO:2", *, pages=True):
++        """Give the existing fixture one declared provisional source and Lachmann record."""
++        provenance_path = self.repo / "jobs/future-source/data/PROVENANCE.json"
++        provenance = json.loads(provenance_path.read_text())
++        entry = next(r for r in provenance["representations"] if r["instrument_id"] == iid)
++        entry["acceptable_as_original"] = False
++        entry["grade"] = "machine_read_government_printed_copy"
++        entry["source"].update(grade=entry["grade"], acceptable_as_original=False,
++                               requires_page_check=True)
++        write_json(provenance_path, provenance)
++        record = {"instrument_id": iid, "kind": "original_representation", "produced_by": "future-source",
++                  "data": {"sha256": entry["source"]["sha256"],
++                           "text_sha256": entry["source"]["text_sha256"],
++                           "text_path": entry["text_path"], "grade": entry["grade"],
++                           "acceptable_as_original": False, "requires_page_check": True}}
++        fragments = self.repo / "jobs/future-source/output/FRAGMENTS.jsonl"
++        write_jsonl(fragments, read_jsonl(fragments) + [record])
++        c = {"schema": "eo-lachmann-confirmation/v1", "method": "machine", "instrument_id": iid,
++             "grade": entry["grade"], "sha256": entry["source"]["sha256"],
++             "text_sha256": entry["source"]["text_sha256"], "text_path": entry["text_path"],
++             "acceptable_as_original": False, "confirmed": True, "identity_confirmed": True,
++             "complete_text_confirmed": True, "requires_page_check": True, "pages_confirmed": pages}
++        write_jsonl(self.repo / "jobs/lachmann/output/CONFIRMATIONS.jsonl", [c])
++        return c
++
++    def test_reuses_only_current_confirmed_selected_working_text(self):
++        c = self.confirmed_derivative()
++        self.run_build()
++        d = self.dossier("EO:2")
++        self.assertEqual(d["working_text_confirmation"]["record"], c)
++        original = d["evidence"][d["original_source_id"]]
++        self.assertFalse(original["acceptable_as_original"])
++        sheet = A.blank_sheet(d)
++        selected = next(x for x in sheet["working_text"]["confirmations"]
++                        if x["instrument_id"] == "EO:2")
++        self.assertTrue(selected["identity_confirmed"])
++        self.assertTrue(selected["complete_text_confirmed"])
++        self.assertTrue(selected["pages_confirmed"])
++        self.assertTrue(sheet["working_text"]["replacement_required"])
++        self.assertTrue(sheet["working_text"]["quotation_recheck_required"])
++        self.assertFalse(sheet["approved"])
++        self.assertFalse(sheet["original_confirmed"])
++        self.assertFalse(sheet["inventory_confirmed"])
++
++    def test_refuses_missing_page_check_and_negative_agent_override(self):
++        c = self.confirmed_derivative(pages=False)
++        self.run_build()
++        self.assertNotIn("working_text_confirmation", self.dossier("EO:2"))
++        c["pages_confirmed"] = True
++        c.update(method="agent", confirmed=False)
++        write_jsonl(self.repo / "jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl", [c])
++        self.run_build()
++        self.assertNotIn("working_text_confirmation", self.dossier("EO:2"))
++
+     def test_whole_population_including_yes_no_undecided_and_missing(self):
+         summary = self.run_build()
+         self.assertTrue(summary["lead_only"])
+diff --git a/jobs/claim-kit/test_continuous_route.py b/jobs/claim-kit/test_continuous_route.py
+index 3a314987..225bff44 100644
+--- a/jobs/claim-kit/test_continuous_route.py
++++ b/jobs/claim-kit/test_continuous_route.py
+@@ -36,6 +36,23 @@ class ContinuousRouteTests(unittest.TestCase):
+         self.assertEqual(kit.load_dossier(self.out,'EO:1',self.repo),ds['EO:1'])
+         self.assertIn('one investigation',(folder/'READ.md').read_text())
+ 
++    def test_undecided_reuses_exact_confirmation_and_refuses_later_negative_review(self):
++        self.fixture.fixture.confirmed_derivative('EO:1')
++        self.fixture.fixture.run_build()
++        folder=self.prepare();packet,ds=batch.load_packet(folder,self.repo)
++        prior=ds['EO:1']['working_text_confirmation']
++        self.assertIsNone(ds['EO:1']['whole_order_status'])
++        row=batch.rows(folder/'decisions.csv')[0]
++        self.assertTrue(json.loads(row['working_text'])['confirmations'][0]['identity_confirmed'])
++        self.assertEqual(row['approved'],'false')
++        c=dict(prior['record'],method='agent',confirmed=False)
++        from test_build import write_jsonl
++        write_jsonl(self.repo/'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl',[c])
++        with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
++            batch.load_packet(folder,self.repo)
++        with self.assertRaisesRegex(ValueError,'changed or invalid working-text confirmation'):
++            O.validate_evidence(self.repo,json.loads((self.repo/packet['undecided_evidence']['EO:1']['path']).read_bytes()))
++
+     def test_changed_frozen_input_and_wrong_reservation_are_rejected(self):
+         folder=self.prepare();packet,_=batch.load_packet(folder,self.repo)
+         evidence=self.repo/packet['undecided_evidence']['EO:1']['path']
+diff --git a/jobs/claim-kit/test_lachmann_reuse.py b/jobs/claim-kit/test_lachmann_reuse.py
+new file mode 100644
+index 00000000..c04149b5
+--- /dev/null
++++ b/jobs/claim-kit/test_lachmann_reuse.py
+@@ -0,0 +1,136 @@
++"""Exact standalone confirmation reuse and current-record refusals."""
++from copy import deepcopy
++import hashlib
++import json
++from pathlib import Path
++import sys
++import tempfile
++import unittest
++
++sys.path.insert(0, str(Path(__file__).parent))
++import working_text as W
++
++
++class ReuseTests(unittest.TestCase):
++    def setUp(self):
++        self.temp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temp.cleanup)
++        self.repo = Path(self.temp.name)
++        text_path = self.repo / 'jobs/source/output/order.txt'
++        text_path.parent.mkdir(parents=True)
++        text_path.write_text('Executive Order 7\nThe Board shall report.\n', encoding='utf-8')
++        self.text_path = 'jobs/source/output/order.txt'
++        sha = hashlib.sha256(text_path.read_bytes()).hexdigest()
++        self.record = {'schema': W.CONFIRMATION_SCHEMA, 'method': 'machine',
++                       'instrument_id': 'EO:7', 'grade': 'mirror_transcription',
++                       'sha256': 'a' * 64, 'text_sha256': sha, 'text_path': self.text_path,
++                       'acceptable_as_original': False, 'confirmed': True,
++                       'identity_confirmed': True, 'complete_text_confirmed': True,
++                       'requires_page_check': True, 'pages_confirmed': True}
++        fragment = {'kind': 'original_representation', 'instrument_id': 'EO:7',
++                    'data': {'grade': self.record['grade'], 'acceptable_as_original': False,
++                             'sha256': self.record['sha256'], 'text_sha256': sha,
++                             'text_path': self.text_path, 'requires_page_check': True}}
++        (self.repo / 'jobs/source/output/FRAGMENTS.jsonl').write_text(json.dumps(fragment) + '\n')
++        self.machine = self.repo / W.CONFIRMATION_PATHS[0]
++        self.machine.parent.mkdir(parents=True)
++        self.machine.write_text(json.dumps(self.record) + '\n')
++
++    def test_exact_match_and_current_record(self):
++        prior = W.matching_confirmation(self.record, self.repo)
++        self.assertEqual(prior['record'], self.record)
++        self.assertEqual(prior['source_path'], W.CONFIRMATION_PATHS[0])
++        self.assertTrue(W.blank([self.record], prior)['confirmations'][0]['pages_confirmed'])
++        dossier = {'instrument_id': 'EO:7', 'original_source_id': 'ORIGINAL:EO:7',
++                   'evidence': {'ORIGINAL:EO:7': {'source': self.record}},
++                   'working_text_confirmation': prior}
++        W.require_current_confirmation(dossier, self.repo)
++        agent = self.repo / W.CONFIRMATION_PATHS[1]
++        agent.write_text(json.dumps(dict(self.record, method='agent', confirmed=False)) + '\n')
++        self.assertIsNone(W.matching_confirmation(self.record, self.repo))
++        with self.assertRaisesRegex(ValueError, 'changed or invalid'):
++            W.require_current_confirmation(dossier, self.repo)
++
++    def test_refusals_for_pages_grade_identity_and_bytes(self):
++        index = W.Index(self.repo)
++        self.assertEqual(W.confirmation_rejection(dict(self.record, pages_confirmed=False), index, self.repo),
++                         'pages_not_confirmed_but_page_check_required')
++        self.assertEqual(W.confirmation_rejection(dict(self.record, grade='compiled_transcription'), index, self.repo),
++                         'pinned_fields_match_no_loaded_fragment')
++        self.assertIsNone(W.matching_confirmation(dict(self.record, text_path='other'), self.repo))
++        (self.repo / self.text_path).write_text('changed', encoding='utf-8')
++        self.assertEqual(W.confirmation_rejection(self.record, index, self.repo),
++                         'text_file_missing_or_hash_mismatch')
++
++    def test_each_confirmation_gate_refuses_reuse(self):
++        changes = [dict(schema='unknown'), dict(method='human'),
++                   dict(acceptable_as_original=True), dict(grade='original'),
++                   dict(confirmed=False), dict(identity_confirmed=False),
++                   dict(complete_text_confirmed=False), dict(pages_confirmed=False),
++                   dict(instrument_id='EO:8'), dict(sha256='b'*64),
++                   dict(text_sha256='c'*64), dict(text_path='../outside.txt')]
++        for change in changes:
++            with self.subTest(change=change):
++                self.machine.write_text(json.dumps(dict(self.record, **change))+'\n')
++                self.assertIsNone(W.matching_confirmation(self.record, self.repo))
++
++    def test_fragment_completeness_and_new_page_requirement_stale_prior(self):
++        fragment_path = self.repo/'jobs/source/output/FRAGMENTS.jsonl'
++        fragment = json.loads(fragment_path.read_text())
++        prior = W.matching_confirmation(self.record, self.repo)
++        dossier = {'original_source_id':'o', 'evidence':{'o':{'source':self.record}},
++                   'working_text_confirmation':prior}
++        fragment['data']['complete_text'] = False
++        fragment_path.write_text(json.dumps(fragment)+'\n')
++        self.assertIsNone(W.matching_confirmation(self.record, self.repo))
++        with self.assertRaisesRegex(ValueError, 'changed or invalid'):
++            W.require_current_confirmation(dossier, self.repo)
++        fragment['data'].pop('complete_text')
++        fragment['data']['url'] = 'https://example.gov/new-citation'
++        fragment_path.write_text(json.dumps(fragment)+'\n')
++        # A still-valid confirmation with changed source metadata needs a new dossier.
++        self.assertIsNotNone(W.matching_confirmation(self.record, self.repo))
++        with self.assertRaisesRegex(ValueError, 'changed or invalid'):
++            W.require_current_confirmation(dossier, self.repo)
++
++    def test_only_matching_source_inherits_and_policy_rechecks_without_dossier(self):
++        prior = W.matching_confirmation(self.record, self.repo)
++        other = dict(self.record, instrument_id='EO:8')
++        disclosure = W.blank([self.record, other], prior)
++        self.assertTrue(disclosure['confirmations'][0]['identity_confirmed'])
++        self.assertFalse(disclosure['confirmations'][1]['identity_confirmed'])
++        self.assertNotIn('prior_confirmation', disclosure['confirmations'][1])
++        text = (self.repo/self.text_path).read_text()
++        ref = dict(self.record, char_start=0, char_end=len(text), quote=text)
++        claim = {'instrument_id':'EO:7', 'original_representation':ref,
++                 'working_text':W.blank([ref], prior)}
++        self.assertEqual(W.policy(claim, self.repo)[0], [])
++        changed = deepcopy(claim)
++        changed['working_text']['confirmations'][0]['pages_confirmed'] = False
++        self.assertIn('working_text:prior_confirmation_changed', W.policy(changed,self.repo)[0])
++        self.machine.write_text(json.dumps(dict(self.record, evidence={'revision':2}))+'\n')
++        self.assertIn('working_text:prior_confirmation_stale', W.policy(claim,self.repo)[0])
++
++    def test_negative_or_invalid_agent_overrides_and_last_record_semantics(self):
++        agent = self.repo/W.CONFIRMATION_PATHS[1]
++        for change in [dict(confirmed=False), dict(schema='unknown'), dict(method='unknown')]:
++            agent.write_text(json.dumps(dict(self.record, **change))+'\n')
++            self.assertIsNone(W.matching_confirmation(self.record, self.repo))
++        agent.write_text(json.dumps(dict(self.record, confirmed=False))+'\n'+
++                         json.dumps(dict(self.record, method='agent'))+'\n')
++        self.assertEqual(W.matching_confirmation(self.record,self.repo)['record']['method'],'agent')
++
++    def test_no_pages_needed_only_when_both_record_and_fragments_agree(self):
++        self.record.update(requires_page_check=False,pages_confirmed=False)
++        self.machine.write_text(json.dumps(self.record)+'\n')
++        self.assertIsNone(W.matching_confirmation(self.record,self.repo))
++        path=self.repo/'jobs/source/output/FRAGMENTS.jsonl'
++        fragment=json.loads(path.read_text());fragment['data']['requires_page_check']=False
++        path.write_text(json.dumps(fragment)+'\n')
++        self.assertIsNotNone(W.matching_confirmation(self.record,self.repo))
++        (self.repo/self.text_path).unlink()
++        self.assertIsNone(W.matching_confirmation(self.record,self.repo))
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/jobs/claim-kit/working_text.py b/jobs/claim-kit/working_text.py
+index f3886bf2..fe4f71c0 100644
+--- a/jobs/claim-kit/working_text.py
++++ b/jobs/claim-kit/working_text.py
+@@ -11,6 +11,11 @@ from pathlib import Path
+ 
+ RULING = 'research/readiness/owner_rulings/2026-10-21-transcription-as-text.md'
+ NOTE = 'original not yet held; replace and re-check quotes when an official copy is retrieved.'
++CONFIRMATION_SCHEMA = 'eo-lachmann-confirmation/v1'
++CONFIRMATION_METHODS = frozenset({'machine', 'agent'})
++CONFIRMATION_PATHS = ('jobs/lachmann/output/CONFIRMATIONS.jsonl',
++                      'jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl')
++PINNED_FIELDS = ('instrument_id', 'grade', 'sha256', 'text_sha256', 'text_path')
+ OFFICIAL_PRODUCERS = frozenset({'fr-originals', 'ofr-compilations',
+     'isthmian-canal-1911', 'indian-reservations-1912'})
+ GRADES = frozenset({'compiled_transcription', 'compiled_transcription_lead',
+@@ -139,15 +144,105 @@ def confirmation(ref):
+ 
+ 
+ def key(ref):
+-    return tuple(ref.get(k) for k in ('instrument_id', 'grade', 'sha256', 'text_sha256', 'text_path'))
++    return tuple(ref.get(k) for k in PINNED_FIELDS)
+ 
+ 
+-def blank(disclosed_refs):
++def load_confirmations(repo):
++    """Last record per order wins, including a negative agent review."""
++    root = Path(repo)
++    result = {}
++    for rel in CONFIRMATION_PATHS:
++        path = root / rel
++        if not path.is_file():
++            continue
++        with path.open(encoding='utf-8') as fh:
++            for line in fh:
++                if not line.strip():
++                    continue
++                try:
++                    record = json.loads(line)
++                except ValueError:
++                    continue
++                if isinstance(record, dict) and isinstance(record.get('instrument_id'), str):
++                    result[record['instrument_id']] = {'source_path': rel, 'record': record}
++    return result
++
++
++def confirmation_rejection(c, index, root):
++    """The tracker and claim-kit share the existing exact-record acceptance rule."""
++    if not isinstance(c, dict):
++        return 'malformed_record_or_unknown_schema_or_method'
++    if (c.get('schema') != CONFIRMATION_SCHEMA or not isinstance(c.get('instrument_id'), str)
++            or c.get('method') not in CONFIRMATION_METHODS):
++        return 'malformed_record_or_unknown_schema_or_method'
++    if c.get('acceptable_as_original') is not False:
++        return 'acceptable_as_original_not_false'
++    if c.get('grade') not in GRADES:
++        return 'grade_not_a_working_text_grade'
++    if c.get('confirmed') is not True:
++        return 'not_confirmed'
++    if c.get('identity_confirmed') is not True:
++        return 'identity_not_confirmed'
++    if c.get('complete_text_confirmed') is not True:
++        return 'complete_text_not_confirmed'
++    matches = [r for r in index.by_sha.get(source_sha({'sha256': c.get('sha256')}) or '', [])
++               if all(r.get(k) == c.get(k) for k in PINNED_FIELDS)]
++    if not matches:
++        return 'pinned_fields_match_no_loaded_fragment'
++    if ((c.get('requires_page_check') is not False or any(r['requires_page_check'] for r in matches))
++            and c.get('pages_confirmed') is not True):
++        return 'pages_not_confirmed_but_page_check_required'
++    if any(r.get('complete_text') is False for r in matches):
++        return 'fragment_declares_text_incomplete'
++    try:
++        raw = _child(root, c['text_path']).read_bytes()
++    except (OSError, ValueError, KeyError):
++        return 'text_file_missing_or_hash_mismatch'
++    if hashlib.sha256(raw).hexdigest() != c.get('text_sha256'):
++        return 'text_file_missing_or_hash_mismatch'
++    return None
++
++
++def matching_confirmation(ref, repo, records=None, index=None):
++    """Only the selected representation may inherit a current valid confirmation."""
++    records = load_confirmations(repo) if records is None else records
++    current = records.get(ref.get('instrument_id'))
++    if not current or key(current['record']) != key(ref):
++        return None
++    index = index or Index(repo)
++    if confirmation_rejection(current['record'], index, repo):
++        return None
++    # Preserve the applicable declaration set, including its page requirements.
++    # A later source edit must not keep an old affirmation alive merely because
++    # the five headline fields still happen to match.
++    applicable = [r for r in index.by_sha.get(source_sha(current['record']), [])
++                  if key(r) == key(current['record'])]
++    return dict(deepcopy(current), fragments=sorted(deepcopy(applicable),
++                 key=lambda r: json.dumps(r, sort_keys=True)))
++
++
++def require_current_confirmation(dossier, repo, records=None, index=None):
++    prior = dossier.get('working_text_confirmation')
++    if prior is None:
++        return
++    original = dossier.get('evidence', {}).get(dossier.get('original_source_id'), {})
++    ref = original.get('source', {})
++    current = matching_confirmation(ref, repo, records, index)
++    if current != prior:
++        raise ValueError('changed or invalid working-text confirmation: ' + str(dossier.get('instrument_id')))
++
++
++def blank(disclosed_refs, prior=None):
+     distinct = {key(ref): ref for ref in disclosed_refs}
+     return {'ruling': RULING, 'standing_note': NOTE,
+             'replacement_required': True, 'quotation_recheck_required': True,
+-            'confirmations': [dict(confirmation(ref), identity_confirmed=False,
+-                                   complete_text_confirmed=False, pages_confirmed=False)
++            'confirmations': [dict(confirmation(ref),
++                                   identity_confirmed=bool(prior and key(prior['record']) == key(ref)),
++                                   complete_text_confirmed=bool(prior and key(prior['record']) == key(ref)),
++                                   pages_confirmed=(prior['record'].get('pages_confirmed') is True)
++                                       if prior and key(prior['record']) == key(ref) else False,
++                                   **({'prior_confirmation': deepcopy(prior)}
++                                      if prior and key(prior['record']) == key(ref) else {}))
+                               for ref in distinct.values()]}
+ 
+ 
+@@ -219,6 +314,8 @@ def policy(claim, repo, index=None):
+     by_key = {key(c): c for c in confirmations}
+     if len(by_key) != len(confirmations) or set(by_key) != {key(r) for r in dependent}:
+         errors.append('working_text:confirmation_membership_mismatch')
++    reused_records = load_confirmations(repo) if any(c.get('prior_confirmation') is not None for c in confirmations) else {}
++    current_by_key = {}
+     for ref in dependent:
+         for candidate in index.official.get(ref.get('instrument_id'), []):
+             if candidate['sha256'] == ref.get('sha256'):
+@@ -233,6 +330,15 @@ def policy(claim, repo, index=None):
+             except (OSError, ValueError):
+                 continue
+         c = by_key.get(key(ref), {})
++        prior = c.get('prior_confirmation')
++        if prior is not None:
++            if key(ref) not in current_by_key:
++                current_by_key[key(ref)] = matching_confirmation(ref, repo, records=reused_records, index=index)
++            current = current_by_key[key(ref)]
++            if current != prior:
++                errors.append('working_text:prior_confirmation_stale')
++            elif c != blank([ref], current)['confirmations'][0]:
++                errors.append('working_text:prior_confirmation_changed')
+         if c.get('identity_confirmed') is not True or c.get('complete_text_confirmed') is not True:
+             errors.append('working_text:identity_and_complete_text_confirmation_required')
+         if any(r['requires_page_check'] for r in index.match(ref)) and c.get('pages_confirmed') is not True:

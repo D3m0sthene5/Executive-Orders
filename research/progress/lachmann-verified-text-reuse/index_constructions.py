@@ -1,4 +1,5 @@
 """Count genuine provider-index construction across identical native batch routes."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -7,8 +8,29 @@ import sys
 import tempfile
 
 ROOT=Path(__file__).resolve().parents[3]
-PRIOR='47fa75a34a8a330d2e07bdd50909b7ce715f2aa9'
-DEST=Path(__file__).parent/'validation/cache-constructions.json'
+HERE=Path(__file__).parent
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--output',type=Path,default=HERE/'validation/cache-constructions.json')
+DEST=parser.parse_args().output
+archive=HERE/'prior-source'
+manifest_raw=(archive/'MANIFEST.json').read_bytes()
+manifest=json.loads(manifest_raw)
+patch=archive/manifest['patch']
+assert hashlib.sha256(patch.read_bytes()).hexdigest()==manifest['patch_sha256']
+
+def restore_prior(code):
+    # Only this published base git object is needed; the local prior commit id
+    # in the manifest is a historical label, never an input to git show.
+    for rel,digest in manifest['base_files'].items():
+        raw=subprocess.check_output(['git','show',manifest['base_commit']+':'+rel],cwd=ROOT)
+        assert hashlib.sha256(raw).hexdigest()==digest,rel
+        q=code/rel;q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(raw)
+    subprocess.run(['git','apply','--check',str(patch)],cwd=code,check=True)
+    subprocess.run(['git','apply',str(patch)],cwd=code,check=True)
+    actual={p.relative_to(code).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
+            for folder in manifest['folders'] for p in (code/folder).glob('*.py')}
+    assert actual==manifest['prior_files'],'restored prior Python closure mismatch'
+
 if DEST.exists():raise SystemExit('refusing overwrite '+str(DEST))
 script=r'''
 import json,os,sys,tempfile
@@ -47,17 +69,24 @@ results={}
 with tempfile.TemporaryDirectory(prefix='lachmann-index-proof-') as tmp:
  for generation in ['prior','repaired']:
   code=Path(tmp)/generation
-  for folder in ['jobs/claim-kit','jobs/clause-drafts','jobs/norton','jobs/status-history','research/stage19/code']:
-   for p in (ROOT/folder).glob('*.py'):
-    rel=p.relative_to(ROOT).as_posix()
-    raw=subprocess.check_output(['git','show',PRIOR+':'+rel],cwd=ROOT) if generation=='prior' else p.read_bytes()
-    q=code/rel;q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(raw)
+  if generation=='prior':
+   restore_prior(code)
+  else:
+   for folder in manifest['folders']:
+    for p in (ROOT/folder).glob('*.py'):
+     rel=p.relative_to(ROOT).as_posix()
+     q=code/rel;q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(p.read_bytes())
   r=subprocess.run([sys.executable,'-B','-c',script,str(code)],capture_output=True,text=True)
   assert r.returncode==0,r.stderr
   results[generation]=json.loads(r.stdout.splitlines()[-1])
 assert results['repaired']['total_index_constructions']==1,results
-results['prior_commit']=PRIOR
+results['prior_commit_reference_only']=manifest['prior_commit_reference_only']
+results['prior_source_restore']={'base_commit':manifest['base_commit'],
+ 'manifest_sha256':hashlib.sha256(manifest_raw).hexdigest(),
+ 'patch_sha256':manifest['patch_sha256'],'prior_python_files_verified':len(manifest['prior_files']),
+ 'requires_prior_git_object':False}
 results['implementation_sha256']={n:hashlib.sha256((ROOT/'jobs/claim-kit'/n).read_bytes()).hexdigest()
  for n in ['working_text.py','fragment_cache.py','build.py','batch.py','inputs.py']}
+DEST.parent.mkdir(parents=True,exist_ok=True)
 DEST.write_text(json.dumps(results,sort_keys=True,indent=2)+'\n')
 print(DEST.read_text())
