@@ -178,8 +178,6 @@ report.update({
     "scope": "Exact accounting and existing Capcom builder; no scientific production",
 })
 (OUT / "RECONCILIATION.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-print(json.dumps(report, indent=2))
-
 # Use native Kean CLI in an output-only overlay. Explicit child Git context
 # reads the actual tracked index/HEAD, without changing its working tree.
 stage = OUT / "kean-publication"
@@ -208,3 +206,7 @@ subprocess.run([sys.executable, "-I", str(kean_path), "--root", str(stage),
 shutil.copyfile(stage / "jobs/kean/register/findings.jsonl", OUT / "KEAN_FINDINGS.jsonl")
 shutil.copyfile(stage / "HANDOFF/KEAN.md", OUT / "KEAN_BRIEF.md")
 shutil.rmtree(stage)
+
+report["elapsed_seconds"] = round(time.monotonic() - START, 3)
+(OUT / "RECONCILIATION.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+print(json.dumps(report, indent=2))
