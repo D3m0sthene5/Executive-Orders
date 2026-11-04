@@ -1,0 +1,49 @@
+{
+  "agent": "claude",
+  "approved": true,
+  "clauses": [
+    {
+      "checked_through": null,
+      "current_basis_id": null,
+      "current_legal_basis": null,
+      "effective_date": "1945-06-05",
+      "effective_date_confirmed": true,
+      "end_id": "ORIGINAL:EO:9566",
+      "later_event_ids": [],
+      "later_events": [],
+      "mechanism": "one_time_revocation_performed_on_signing_date (no effective-date wording; read as effective on signing)",
+      "reason": "whole: Executive Order 9090 of March 6, 1942, establishing an airspace reservation over portions of Ulster and Dutchess Counties, New York, is hereby revoked (the words \"is hereby\" and 'revoked' are on separate printed lines). The order states no effective date, so the revocation was performed on signing, June 5, 1945; the filing date, June 6, 1945, is not used. The command is exhausted by performance and the reservation stays revoked as a surviving consequence.",
+      "scope_id": "EO:9566#whole",
+      "state": "terminated"
+    }
+  ],
+  "conflict_resolutions": {},
+  "dossier_sha256": "aece736d860dcbf13d4fd06ae2ce6aad9b015a9a58cfe28205effeea62347f78",
+  "instrument_id": "EO:9566",
+  "inventory_confirmed": true,
+  "inventory_overrides": [
+    {
+      "char_end": 4062,
+      "char_start": 3768,
+      "reason": "The dossier inventory has four scopes: the lead paragraph (offsets 3768-4062, which is the whole operative text of EO 9566) and three scopes (EO:9566#3, #3-dup2, #b) that are text of War Food Order No. 66, Amendment 10, a Department of Agriculture regulation printed under the order on the same Federal Register page. The regulation is not part of EO 9566, so the inventory is replaced by one scope covering the lead paragraph.",
+      "scope_id": "EO:9566#whole",
+      "source_id": "ORIGINAL:EO:9566"
+    }
+  ],
+  "original_confirmed": true,
+  "original_pages_confirmed": false,
+  "research_rationale": "EO 9566 (signed June 5, 1945; F.R. Doc. 45-9823, filed June 6, 1945) was read in full in the registered held text (machine-extracted text layer of the official Federal Register PDF, grade original_representation_unverified, under jobs/fr-originals); the heading, body, signature, date and filing line were read; page images were not compared. Its only operative text is one paragraph, issued under section 4 of the Air Commerce Act of 1926, revoking EO 9090 of March 6, 1942 (airspace reservation over portions of Ulster and Dutchess Counties, New York). The held page text goes on to print War Food Order 66 Amendment 10 and other regulations; the machine inventory wrongly included the War Food Order amendment as scopes, so the inventory is corrected by override to the single paragraph. The revocation states no effective date and was performed on signing, 1945-06-05; EO 9090 stays revoked as a surviving consequence. AI producer hypothesis only; not human certification.\nMember checks: {\"earlier_end_check\":\"A ripgrep scan run on 2026-11-04 over every .txt file under jobs/ (jobs/clause-drafts excluded) for the number 9566 followed by 'of' or 'dated' and a month name, together with the Cruden number-citation lookup in the packet LOOKUPS.md, found no held text citing this order. The machine searches current-law:usc, current-law:ecfr and later-events:ofr_catalog were read for coverage (all three marked complete, no scope note) and are recorded as leads, not as independent review. Nothing shows an earlier end or a postponement of the revocation; the order states no effective date.\",\"independent_command_check\":\"No independent command: one revocation, performed on signing.\",\"savings_check\":\"No savings clause in EO 9566; the revocation's result is an accrued effect and nothing continues as a command.\",\"scope_check\":\"Inventory corrected to one scope (EO:9566#whole) by override over offsets 3768-4062 of the held text; the other three machine scopes are text of War Food Order 66 Amendment 10, not of this order. The signature, date and filing line carry no command.\"}",
+  "savings": {
+    "reason": "EO 9566 has no savings, transfer or exemption language. The lasting effect, that the airspace reservation established by EO 9090 no longer exists, is an accrued consequence of the performed revocation. The War Food Order savings sentence on the same page belongs to a different document.",
+    "source_id": "ORIGINAL:EO:9566",
+    "state": "transferred_or_accrued"
+  },
+  "schema": "eo-claim-kit-decision/v1",
+  "search_ids": [
+    "current-law:usc",
+    "current-law:ecfr",
+    "later-events:ofr_catalog"
+  ],
+  "source_notes": [],
+  "unresolved_material_gaps": []
+}
