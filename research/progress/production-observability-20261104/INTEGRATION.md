@@ -1,5 +1,7 @@
 # Integration and resumption
 
+Reviewable draft: https://github.com/D3m0sthene5/Executive-Orders/pull/136 . Combined data/source commit `ce13b8dbce5a1e3673db755cc324459d29b77aff`; later receipt-only commit records publication verification without changing reviewed engineering or data. See `PUBLICATION_RECEIPT.json`.
+
 Work is isolated on `sol/production-observability-20261104`, based on assignment/source proposal54db2cf5948d7c0cdd91c8f66a96349224aee6a1 and main600ae3018f71025b3e53dc8538b8f92e6e159b76. Engineering was published first as2d80b033140435db8488807ecf6080f535f293c5, so the hub's new collector link resolves to actual reviewed code. The combined branch contains the original checkpoint-conveyor source proposal plus the new data, code and handoff. It does not depend on PR132 or133 and does not merge them.
 
 ## Hosted consumer
