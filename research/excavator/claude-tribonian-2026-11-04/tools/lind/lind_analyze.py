@@ -22,6 +22,8 @@ from pathlib import Path
 
 TX = Path("/root/.claude/projects/-home-claude/113ce3b2-4ba3-50df-9241-eb6576e0f367/subagents")
 HASH_RE = re.compile(r"hashlib|sha256sum|sha256\(|char_start|char_end")
+OFFSET_RE = re.compile(r"char_start|char_end")
+TEXTHASH_RE = re.compile(r"text_sha256")
 
 
 def ts(s):
@@ -30,6 +32,9 @@ def ts(s):
 
 def transcript(agent_id):
     usage, tools, bash, hash_scripts, text_reads, receipt_reads = {}, Counter(), 0, 0, 0, 0
+    files_read = set()
+    cruden_calls = 0
+    offset_scripts = texthash_scripts = 0
     first = last = None
     prev = None
     active = 0.0
@@ -57,6 +62,16 @@ def transcript(agent_id):
                 bash += 1
             if name in ("Bash", "Write") and HASH_RE.search(inp):
                 hash_scripts += 1
+            if name in ("Bash", "Write") and OFFSET_RE.search(inp):
+                offset_scripts += 1
+            if name in ("Bash", "Write") and TEXTHASH_RE.search(inp):
+                texthash_scripts += 1
+            if name == "Read":
+                fp = str(c.get("input", {}).get("file_path", ""))
+                if fp.startswith("/home/claude/executive-orders/"):
+                    files_read.add(fp[len("/home/claude/executive-orders/"):])
+            if name == "Bash" and "cruden.py" in inp:
+                cruden_calls += 1
             if name == "Read" and "/output/texts/" in inp:
                 text_reads += 1
             if "MECHANICAL.json" in inp:
@@ -70,8 +85,10 @@ def transcript(agent_id):
         tok["cache_write_1h"] += cc.get("ephemeral_1h_input_tokens") or 0
         tok["output"] += u.get("output_tokens") or 0
     return {"assistant_calls": len(usage), "tokens": dict(tok), "tool_uses": dict(tools), "bash_calls": bash,
-            "hash_or_offset_script_calls": hash_scripts, "held_text_reads": text_reads,
-            "receipt_reads": receipt_reads,
+            "hash_or_offset_script_calls": hash_scripts, "quote_offset_script_calls": offset_scripts,
+            "text_sha256_script_calls": texthash_scripts, "held_text_reads": text_reads,
+            "receipt_reads": receipt_reads, "cruden_search_calls": cruden_calls,
+            "repo_files_opened_with_read": sorted(files_read),
             "wall_seconds": (last - first).total_seconds() if first and last else None,
             "active_seconds_gaps_le_300s": round(active, 1),
             "started_utc": first.isoformat() if first else None, "ended_utc": last.isoformat() if last else None}
