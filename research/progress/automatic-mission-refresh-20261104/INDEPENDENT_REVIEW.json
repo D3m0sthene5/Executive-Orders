@@ -116,7 +116,7 @@
     "research/progress/control-center/README.md": "ed0948bfab56e5351ad3944679343def4699aaad22021ac2229028f130062480",
     "research/progress/control-center/app.js": "a61b6af1fdc707e46900314e8493ed883673a5cee667f60cfe7511ebd12f5458",
     "research/progress/control-center/index.html": "d286769ffa61845bcc1d8556670c2d2974a7f063e9d01c4fdfe37edec7a38864",
-    "research/progress/control-center/mission.css": "e5da697288631c6c106b298a4ec905f87c1669ad63b492843baeb0279f23455d",
+    "research/progress/control-center/mission.css": "35f8bbf91f080fd03d8dbd26024809f30cbc95543e73b5d59d57e9b09da1a4c6",
     "research/progress/control-center/mission.js": "34abe7c7f67c1eb290e5a3c76dc60cb96d6a6f49be257914dbc8da3826d46a44",
     "research/progress/control-center/mission.test.js": "d0adb787190aaa48e4d5dc5113ddb6a0955871f08ca1ffc8895b58f2e2dfae26",
     "research/progress/remaining-work/build_mission_log.py": "7190afec96dbfc7815035b88f078bab58c9850576f72f4485682749a02da0a39"
@@ -169,5 +169,28 @@
     "reported_by": "coordinator",
     "new_main": "5289ac5aad4b9e96ef156095081f5572669c5d84",
     "context": "PR142 reported merged externally during review; 784 belongs to review base only. Rebase/integration onto newer main belongs to coordinator and is outside this exact-source pre-rebase review."
-  }
+  },
+  "integration_addenda": [
+    {
+      "reviewed_utc": "2026-11-04T21:14:50.255878+00:00",
+      "verdict": "approved",
+      "observed_head": "2683a96fdf617bd4a76e1c78de8bbd588bde2587",
+      "coordinator_reported_incoming_main": "4871e1e (PR145)",
+      "scope": "Read-only verification of final source bytes during coordinator resolved merge; no repository/index mutation.",
+      "css_change": {
+        "path": "research/progress/control-center/mission.css",
+        "old_bytes": 2525,
+        "new_bytes": 2524,
+        "old_sha256": "e5da697288631c6c106b298a4ec905f87c1669ad63b492843baeb0279f23455d",
+        "new_sha256": "35f8bbf91f080fd03d8dbd26024809f30cbc95543e73b5d59d57e9b09da1a4c6",
+        "verification": "Exact removal of one ASCII space immediately before terminal newline; old.rstrip() equals new.rstrip()."
+      },
+      "other_reviewed_source_pins": {
+        "count": 14,
+        "all_unchanged": true
+      },
+      "tests": "Not repeated: one trailing CSS space only; no behavior change.",
+      "limits": "Kean conflict resolution and regenerated brief were reported by coordinator, not independently re-adjudicated in this bounded check."
+    }
+  ]
 }
