@@ -51,11 +51,13 @@ def batch_row(b):
     row["after_reveal"] = {r.get("instrument_id"): r.get("verdict") for r in jsonl(pk / "reviews/AFTER_REVEAL.jsonl")}
     row["blind_review_amended"] = (pk / "reviews/BLIND_REVIEW_AMENDED.jsonl").exists()
     tally = None
-    for c in reversed(completes):
-        if (c / "TALLY.json").exists():
-            tally = json.loads((c / "TALLY.json").read_text())
-            row["tally_from"] = c.name
-            break
+    # The disposition is the newest completion that published; a later refused or dry run is listed
+    # in complete_versions but does not replace it.
+    tallies = [(c, json.loads((c / "TALLY.json").read_text())) for c in completes if (c / "TALLY.json").exists()]
+    published = [x for x in tallies if (x[1].get("claims_published") or 0) > 0]
+    if published or tallies:
+        c, tally = (published or tallies)[-1]
+        row["tally_from"] = c.name
     if tally:
         row["state"] = "completed"
         row["attempted"] = tally.get("attempted")
