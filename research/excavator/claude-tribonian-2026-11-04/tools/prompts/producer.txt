@@ -22,6 +22,8 @@ GEDDES LINT BEFORE HANDBACK: after batch-check passes, run `python3 -I jobs/gedd
 FAMILYBRIEF
 FILE DISCIPLINE (other packets break if you ignore this): never run `kit.py prepare` or `source_supplement.py prepare` yourself and never create a nested or refreshed packet; inside your packet create only views/, applied-vN/ and PRODUCER_REPORT.md, and edit only decisions.csv, clauses.csv and RATIONALES.json; put every scratch or generator file under /tmp/claude-0/tribonian-work/BATCH/ (create it); never write files anywhere else in the repository. If view or apply says "changed prior research" or "changed Valla review context", stop and report it rather than working around it.
 
+Known checker note: a "date_valid" result on working_text.confirmations[N].prior_confirmation.record.evidence.matched_date is recorded as verbatim evidence, not a failure; do not try to change that field.
+
 Pace: you have many orders; decide each on its own text, but do not re-read the rulings per order. If an order needs a source that is not held (current CFR or U.S. Code text the packet lacks, an FR page image, a public land order), block it with the precise missing source at once rather than searching at length; such blocks are expected and are not failures.
 
 Then run in your tool's background mode, from the repository root: `python3 jobs/claim-kit/kit.py apply <packet> --write <packet>/applied-v1`, then `python3 jobs/claim-kit/kit.py batch-check <packet> <packet>/applied-v1`. Fix actionable failures in a new applied-vN (never overwrite one). If apply refuses with "changed Valla review context", stop and report it.
