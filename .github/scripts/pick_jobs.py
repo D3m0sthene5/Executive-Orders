@@ -10,6 +10,7 @@ Pushes stay light (owner, 2026-10-28: adding a file must not mean waiting on the
 - The daily scheduled run (09:17 UTC) runs every job whose folder contains a file named DAILY,
   plus their consumers.
 - A manual run runs the named job(s), separated by spaces or commas, plus their consumers.
+  Manual diagnostics run only the requested jobs; the workflow retains receipts without publishing.
 Picked jobs are ordered so that any job listed in a job's after.txt runs before it. Folders
 starting with "_" (the template) are never run. The result goes to the step output "jobs" as a
 space-separated list; jobs a sweep runs only as consumers go to "downstream".
@@ -223,6 +224,7 @@ def main():
             if not name.startswith("_") and runnable(name) and os.path.isfile(os.path.join("jobs", name, "DAILY"))
         )
     elif os.environ.get("EVENT") == "workflow_dispatch":
+        consumers = os.environ.get("DIAGNOSTIC") != "true"
         picked = []
         for name in re.split(r"[\s,]+", os.environ.get("INPUT_JOB") or ""):
             name = name.strip().strip("/").removeprefix("jobs/")
@@ -253,6 +255,7 @@ def main():
         print("Running only because a job they read changed:", ", ".join(downstream))
     with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
         fh.write(f"jobs={' '.join(picked)}\n")
+        fh.write(f"direct={' '.join(dict.fromkeys(direct))}\n")
         if runtime_tests:
             fh.write("runtime_tests=claim-kit\n")
         if downstream:

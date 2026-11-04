@@ -6,6 +6,13 @@ set -euo pipefail
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+# Expose the actual publication decision to the Actions run summary.
+report_publication() {
+  if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
+    echo "publication=$1" >> "$GITHUB_OUTPUT"
+  fi
+}
+
 ALL_JOBS="$JOBS"
 if [ -f oversized/runner-freshness/ATTEMPTS.json ]; then
   JOBS="$(python - <<'PY'
@@ -42,16 +49,18 @@ Path('HANDOFF/DIGEST.md').write_bytes(p.read_bytes())
 PYDIGEST
   paths+=("HANDOFF/DIGEST.md")
 fi
-[ ${#paths[@]} -eq 0 ] && { echo "No results to commit."; exit 0; }
+[ ${#paths[@]} -eq 0 ] && { echo "No results to commit."; report_publication no-results; exit 0; }
 
 git add -A -- "${paths[@]}"
 if git diff --cached --quiet; then
+  report_publication unchanged
   echo "Results are unchanged; nothing to commit."
   exit 0
 fi
 # On the daily run, skip the commit when only the run record (times, log)
 # changed, so an unchanged tracker does not add a commit every day.
 if [ "${EVENT:-}" = "schedule" ] && ! git diff --cached --name-only | grep -qvE '/output/(STATUS\.json|log\.txt|install-log\.txt|RUNNER_INPUTS\.json)$'; then
+  report_publication records-only
   echo "Only the run record changed; nothing new to commit."
   exit 0
 fi
@@ -67,6 +76,7 @@ for p in "${paths[@]}"; do mkdir -p "$saved/$(dirname "$p")"; cp -a "$p" "$saved
 
 for attempt in 1 2 3 4 5; do
   if git push -q origin "HEAD:$BRANCH"; then
+    report_publication pushed
     echo "Results pushed to $BRANCH."
     exit 0
   fi

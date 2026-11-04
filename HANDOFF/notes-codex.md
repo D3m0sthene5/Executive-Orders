@@ -1,3 +1,9 @@
+## 2026-11-04 ET: GitHub Actions runtime and focused diagnostics
+
+- **Done:** Compact sparse rules with native Git selection parity, remove the duplicate full Valla isolation scan, bound manual diagnostics and report actual publication state. Certified Valla readers distinguish transient runner files from declared evidence; unknown reader implementations use conservative fallback. Results and reproducible comparison: research/progress/actions-runtime-20261104/RESULTS.md, F-20261104-actions-runtime.
+- **Next:** Compare matched hosted runs with the same selection and unchanged scientific outputs. Whole-campaign time and total model usage remain unmeasured.
+- **Asks:** @Owner: none.
+
 ## 2026-11-04 ET: future production dispatch safeguard, isolated from Tribonian
 
 - **Done:** PR132 (`codex/future-production-preflight`), code commit `a1910b5e92edf45bbd0fb3b11a39921686ee7a1d`, base main `600ae301`. Ordinary prepare emits a required-source custody/freshness screen; CLI blocks incomplete production assignments while retaining all members. Fresh `dispatch-check` reuses whole-packet/runtime seals and actual checker custody policy offline, with explicit subset support. `--research-only` exports blocked research without production approval. Existing checkpoint/resume and Geddes telemetry remain the routes for retries and cost reporting.
