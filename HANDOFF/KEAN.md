@@ -8,7 +8,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (11)
+## Waiting for the owner (12)
 
 - **A-20261018-1** (2026-10-18, Claude): Send the drafted archival reference and scan requests (National Archives letters-received series and others)? *Pre-1862 orders have no other route to an original; none of the drafted requests has been sent.*
 - **A-20261019-1** (2026-10-19, Claude): Approve, trial or reject risk-tiered review (a lighter independent review for low-risk cases)? *X1's model projected it would cut the post-series remainder from 11,256 to 10,027 agent-hours; that figure is an assumption, never measured.*
@@ -21,6 +21,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **A-20261029-1** (2026-10-29, Claude): Approve a Valla change so a packet's context excludes its own and unrelated committed packages, and raise the 100-package limit? *Committing any packet now stales every packet in flight, and 76 of the 100-package hard limit are tracked; the permission layer refused the change because it relaxes an integrity check.*
 - **A-20261031-1** (2026-10-31, Claude): Keep claims EO 6471A, 7016 (blinding slip)? *Apollo REPORT.md*
 - **A-20261101-geddes-models** (2026-11-01, Codex): Provide Sonnet/Opus execution or authorize substitute models for Apollo retries? *This runtime exposes only OpenAI agents; 40 retries remain unrun.*
+- **A-20261104-1** (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1? *Scoped occurrence intervals are usable now. Whole-case legal intervals need a separate scientific contract and fresh legal review. This is a contract proposal, not a request to choose case answers or relax production.*
 
 ## Standing owner requirements
 
@@ -34,13 +35,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 112; `search` finds the rest)
+## Newest results (6 of 118; `search` finds the rest)
 
-- 2026-11-04 F-20261104-codex-maitland **worked**: Extend existing claim-kit and later-events with reviewed provision histories and examine Valla stale refusals… Lesson: Separate documentary dates/text from legal effect; pin review membership and restored ancestry; stale Valla reviews need source examination, not hash renewal; source-ready inference and whole-case re…
-- 2026-11-02 F-20261102-population-contract-repair **worked**: Reproduce failed refresh and reconcile claim-kit contract to already-owner-merged PR119 rows Lesson: Carry accepted adoption into the independent population contract; do not infer authorization from mutable progress CSVs
-- 2026-11-02 F-20261102-mountweazel-notes **worked**: Preserve optional source notes on blinded reviewer cards Lesson: Normalize optional presentation keys without erasing evidence or changing canonical/control payloads
-- 2026-11-02 F-20261102-lachmann-reuse **worked**: Reuse exact standalone Lachmann working-text checks in ordinary claim-kit preparation Lesson: Reuse only the current exact source-bound confirmation; a changed record or declaration needs a new packet. Text verification never approves legal judgment or original authentication.
-- 2026-11-02 F-20261102-held-actor-retained-replay **worked**: Use newly retained raw PDFs in a fresh final-runtime four-order supplement replay Lesson: Fresh exact-byte evidence access is useful preparation, never proof that an instrument applies or ends a command
-- 2026-11-02 F-20261102-held-actor-handoff **partly worked**: Replay four blocked Erasmus cases through existing exact source supplements Lesson: Use existing source-supplement interface, rehash actual raw bytes and reconcile reports to final exact receipts
+- 2026-11-04 F-20261104-sol-supported-occurrence **worked**: Retain source-reviewed occurrence intervals through ordinary partial research Lesson: Occurrence, date precision and legal effect require separate proof; partial review is not whole readiness
+- 2026-11-04 F-20261104-sol-integration **worked**: Independently review exact source and PR132 combined runtime Lesson: Integrate between waves with fresh packets and actual-head revalidation; no stale hash renewal or net savings estimate
+- 2026-11-04 F-20261104-sol-history-consumer **worked**: Carry reviewed MAITLAND histories into ordinary assignments Lesson: Use exact reviewed context and preserve bounded unknowns instead of copying legal conclusions
+- 2026-11-04 F-20261104-sol-eo13792-research **partly worked**: Examine new held and public EO13792 report witnesses independently Lesson: Submission, draft transmission, public release, receipt and legal exhaustion are distinct; new sources need exact custody and fresh application review
+- 2026-11-04 F-20261104-sol-blind-bytes **worked**: Reuse exact source byte checks on actual blinded inputs Lesson: Explicit blinded cards and narrow source access; nested bound witnesses and missing raw custody must remain visible
+- 2026-11-04 F-20261104-sol-batch-views **worked**: Share repeated Geddes setup across explicit batch members Lesson: Measured rendering gain is not lower total model or research cost
 
-Register: 18 owner decisions, 2 answered questions, 112 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 118 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

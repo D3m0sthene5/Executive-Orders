@@ -46,16 +46,28 @@ occurrence by the queried day is unknown on L <= day < U; it has occurred by the
 end of U. This says nothing about reinstatement, other duties or operative state
 without their separately reviewed transitions. Documentary chronology stays separate.
 
-Only a complete inventory whose every operative clause has a supported first
-ending permits a whole-order first-ending envelope:
+Only complete reviewed state histories establishing a common cessation permit a
+whole-order ending envelope. The following formula is restricted to monotone
+cessation: each complete-inventory clause has a supported first ending and remains
+ended through the last such ending; added and successor operative duties are also
+accounted for. To call this the *first* whole-order ending, the reviewed joint
+history must also exclude every earlier whole-order cessation, including gaps
+before later or conditional duties activated. Determine whether a latent command
+legally persisted separately; do not equate nonactivation with no command. Without
+that exclusion, label the result only a latest-clause-first-ending envelope.
+Under these restrictions the enclosing whole-order ending bounds are:
 
 `[max(clause earliest), max(clause latest)]`.
 
 This is an enclosing bound, not an assertion that every day inside it is feasible
 or that clause timings are independent. Common-source correlations are retained;
 any more precise result needs independently supported joint constraints. An
-unknown, surviving or unexamined clause prevents that aggregation. Restorations
-and continuing legal consequences require separate history treatment. No midpoint
+unknown, surviving or unexamined clause prevents that aggregation. A clause
+that ends, restarts, and stays active before another clause first ends defeats
+this aggregation. Refuse the whole-order ending inference unless separately
+reviewed state histories establish simultaneous cessation; without that, the
+formula is only a latest-clause-first-ending envelope. Restorations and continuing
+legal consequences require separate history treatment. No midpoint
 or upper bound may populate a v1 exact-date field.
 
 ## Adoption and migration gates

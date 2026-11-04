@@ -1,0 +1,40 @@
+diff --git a/jobs/claim-kit/kit.py b/jobs/claim-kit/kit.py
+index c7849b1c..e1d019eb 100644
+--- a/jobs/claim-kit/kit.py
++++ b/jobs/claim-kit/kit.py
+@@ -154,7 +154,8 @@ def main(argv=None):
+     s=sub.add_parser('history-impact',help='use Valla to identify historical answers requiring revalidation');s.add_argument('results',type=Path);s.add_argument('--changed',type=Path,required=True);s.add_argument('--write',type=Path)
+     s=sub.add_parser('factual-at',help='query reviewed bounded occurrence facts, not legal state');s.add_argument('packet',type=Path);s.add_argument('--order',required=True);s.add_argument('--on',required=True)
+     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
+-    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--history-bundle',type=Path,action='append',default=[])
++    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--history-bundle',type=Path,action='append',default=[]);s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
++    s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path)
+     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
+     s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path);s.add_argument('--geddes-strict',action='store_true',help='exit nonzero unless every Geddes lint flag has a resolution (geddes gate)')
+     s=sub.add_parser('complete');s.add_argument('manifest',type=Path);s.add_argument('--write',type=Path,required=True);s.add_argument('--publish',action='store_true')
+@@ -278,6 +279,15 @@ def main(argv=None):
+                 result=batch.views(repo,folder,a.orders)
+                 if a.write_dir:raise ValueError('--write-dir requires --slim')
+             print(json.dumps(result,ensure_ascii=False,indent=2));return 0
++        if a.command=='dispatch-check':
++            from dispatch import check,summary
++            if a.write and a.write.exists():raise ValueError('Dispatch receipt exists; refusing overwrite')
++            if a.write and not a.write.resolve().is_relative_to(a.packet.resolve()):raise ValueError('Dispatch receipt must stay inside its packet')
++            result=check(repo,a.packet,a.order)
++            if a.write:dump(a.write,result)
++            compact=summary(result)
++            if a.write:compact['receipt']=str(a.write)
++            print(json.dumps(compact,ensure_ascii=False,indent=2));return int(not result['ok'])
+         if a.command=='view':
+             import batch
+             print(batch.view(repo,a.packet,a.order,a.source));return 0
+@@ -287,6 +297,9 @@ def main(argv=None):
+             elif a.command=='apply':result=batch.apply(repo,a.packet,a.write)
+             else:result=batch.check(repo,a.packet,a.applied)
+             failed=(result.get('strict_claim_fail',0)>0 or result.get('counts',{}).get('rejected',0)>0)
++            if a.command=='prepare':
++                result['research_only']=a.research_only
++                failed=failed or (not result['dispatch_check']['ok'] and not a.research_only)
+             actual=result.get('actual_claim_checker',{})
+             if a.command=='batch-check':
+                 failed=failed or actual.get('claims_all_checks_passed',0)!=result.get('claims_checked',0)

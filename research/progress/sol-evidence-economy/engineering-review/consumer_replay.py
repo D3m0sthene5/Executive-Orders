@@ -37,4 +37,14 @@ for label,args in [('view',['view',str(history_packet.parent),'--order',iid]),('
         if label=='slim':
             v=json.loads(proc.stdout)[0]; q=v['reviewed_histories']['queries']
             item['queries']=[{'id':r.get('provision_id'),'state':r.get('operative_state'),'canonical_approval':r.get('canonical_approval')} for r in q]
+with tempfile.TemporaryDirectory() as td:
+    args=[sys.executable,'-B',str(root/'jobs/claim-kit/kit.py'),'views',str(history_packet.parent),iid,'--slim','--write-dir',td]
+    proc=subprocess.run(args,capture_output=True,text=True,cwd=root)
+    err=proc.stderr[-500:]
+    report['slim_folder_export']={'exit':proc.returncode,'stderr':err}
+    if proc.returncode==0:
+        dest=Path(td)/(iid.replace(':','_')+'.view.json')
+        v=json.loads(dest.read_bytes())
+        summary=json.loads(proc.stdout)
+        report['slim_folder_export'].update(exported_view_has_scoped_history=bool(v['reviewed_histories']['queries']),summary_matches=summary==[geddes.view_summary(dict(v,written_to=str(dest)))])
 print(json.dumps(report,indent=2))

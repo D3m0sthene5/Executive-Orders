@@ -1,0 +1,413 @@
+diff --git a/jobs/claim-checker/checker.py b/jobs/claim-checker/checker.py
+index 45a92fb8..e160fde9 100644
+--- a/jobs/claim-checker/checker.py
++++ b/jobs/claim-checker/checker.py
+@@ -650,7 +650,7 @@ def _row(rows, step, check, field, result, status, detail=""):
+                  "status": status, "detail": (detail or "")[:600]})
+ 
+ 
+-def check_source(ref, field, ctx, rows):
++def check_source(ref, field, ctx, rows, *, allow_download=True):
+     step = step_for_path(field)
+     raw = ref.get("sha256") or ref.get("local_file_sha256")
+     sha = S.sha_hex(raw)
+@@ -686,9 +686,9 @@ def check_source(ref, field, ctx, rows):
+             status, detail = "gpo_published_hash_match", (
+                 f"GPO publishes these bytes at {g.get('url')} with this SHA-256 (PREMIS {g.get('premis_url')}, "
+                 f"checked {g.get('checked_utc')}); verifiable by re-fetching")
+-        elif verify_by_download(url, sha, ctx.cache_dir):
++        elif allow_download and verify_by_download(url, sha, ctx.cache_dir):
+             status, detail = "held_bytes_verified", "re-downloaded from the cited URL and re-hashed on this machine; match"
+-        elif verify_by_archive(sha, ctx.archive_captures.get(sha), ctx.cache_dir):
++        elif allow_download and verify_by_archive(sha, ctx.archive_captures.get(sha), ctx.cache_dir):
+             cap = ctx.archive_captures[sha]
+             status, detail = "held_bytes_verified", (
+                 f"re-fetched from the archived capture ({cap.get('archive')} {cap.get('captured_utc', '')}) "
+diff --git a/jobs/claim-kit/batch.py b/jobs/claim-kit/batch.py
+index 92d09ce6..f009535f 100644
+--- a/jobs/claim-kit/batch.py
++++ b/jobs/claim-kit/batch.py
+@@ -517,6 +517,12 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
+         'round_trip_exact':True,'shared_text_blocks':len(packet['text_blocks']),'source_catalogue_entries':len(packet['sources']),
+         'known_mechanical_tasks':len(shared),'bounded_preparation_seconds':round(time.monotonic()-started,4),
+         'model_tokens':None,'no_legal_outcomes_inferred':True}
++    # Check custody before assigning a model, using the existing checker policy.
++    # Preserve the full packet, including blocked members, for source research.
++    from dispatch import check as dispatch_check
++    dispatch=dispatch_check(repo,dest)
++    dump(dest/'DISPATCH_CHECK.json',dispatch)
++    metrics['dispatch_check']={k:dispatch[k] for k in ('ok','dispatchable_ids','source_blocked_ids','state')}
+     dump(dest/'PREPARE.json',metrics);return metrics
+ 
+ 
+@@ -535,15 +541,20 @@ def rationale(v,shared):
+     return v
+ 
+ 
++def validate_runtime(packet):
++    """Same frozen runtime requirements at dispatch and application."""
++    if packet.get('codec_code_sha256') != file_sha(Path(__file__)):raise ValueError('batch codec changed or missing; prepare a reviewed package')
++    if packet.get('policy_code_sha256') != policy_code_pins():raise ValueError('direct policy code changed or missing; prepare a reviewed package')
++    if packet.get('assembler_code_sha256')!=file_sha(Path(__file__).with_name('assemble.py')):raise ValueError('assembler changed; prepare a reviewed package')
++    if packet.get('preflight_code_sha256')!=file_sha(Path(__file__).with_name('evidence_preflight.py')):raise ValueError('evidence preflight changed or missing; prepare a reviewed package')
++
++
+ def apply(repo,folder,write):
+     started=time.monotonic();repo=Path(repo).resolve();folder=Path(folder).resolve();write=Path(write).resolve()
+     if write.exists():raise ValueError('apply destination exists; refusing overwrite')
+     if not write.is_relative_to(folder):raise ValueError('apply results must stay under frozen work package; no automatic publication')
+     packet,dossiers=load_packet(folder,repo)
+-    if packet.get('codec_code_sha256') != file_sha(Path(__file__)):raise ValueError('batch codec changed or missing; prepare a reviewed package')
+-    if packet.get('policy_code_sha256') != policy_code_pins():raise ValueError('direct policy code changed or missing; prepare a reviewed package')
+-    if packet['assembler_code_sha256']!=file_sha(Path(__file__).with_name('assemble.py')):raise ValueError('assembler changed; prepare a reviewed package')
+-    if packet.get('preflight_code_sha256')!=file_sha(Path(__file__).with_name('evidence_preflight.py')):raise ValueError('evidence preflight changed or missing; prepare a reviewed package')
++    validate_runtime(packet)
+     order_rows=rows(folder/'decisions.csv');clause_rows=rows(folder/'clauses.csv');shared=json.loads((folder/'RATIONALES.json').read_bytes())
+     counts=Counter(r.get('instrument_id') for r in order_rows)
+     if set(counts)!=set(dossiers) or any(n!=1 for n in counts.values()):raise ValueError('decision rows must name every packet member exactly once')
+diff --git a/jobs/claim-kit/dispatch.py b/jobs/claim-kit/dispatch.py
+new file mode 100644
+index 00000000..b0772a70
+--- /dev/null
++++ b/jobs/claim-kit/dispatch.py
+@@ -0,0 +1,127 @@
++"""Offline, bounded source/freshness screen before spending model tokens.
++
++This is a preparation diagnostic, never a source authentication or legal verdict.
++It reuses frozen-packet validation and the actual checker's custody policy. No
++downloads, source requests, reservations, decisions or scientific outputs change.
++"""
++import importlib.util
++import time
++from pathlib import Path
++from types import SimpleNamespace
++
++import batch
++
++
++def actual_checker():
++    path = Path(__file__).resolve().parents[1] / 'claim-checker/checker.py'
++    spec = importlib.util.spec_from_file_location('claim_kit_dispatch_checker', path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++def check(repo, folder, orders=None):
++    """Recheck the whole seal; screen the explicitly requested members (all by default).
++
++    Required original/inventory evidence blocks dispatch when mechanically unusable.
++    Unselected actor/current-law/contrary leads stay visible and do not select a
++    legal theory. Once selected in a claim, all sources face ordinary full checks.
++    """
++    started = time.monotonic()
++    repo, folder = Path(repo).resolve(), Path(folder).resolve()
++    packet, dossiers = batch.load_packet(folder, repo, check_sources=True)
++    batch.validate_runtime(packet)
++    if not 1 <= len(dossiers) <= 50:
++        raise ValueError('dispatch requires 1-50 packet members')
++    ids = list(dossiers) if orders is None else list(orders)
++    if not ids or len(set(ids)) != len(ids) or set(ids) - set(dossiers):
++        raise ValueError('dispatch order selection must be distinct packet members')
++    checker = actual_checker()
++    index = checker.S.build_index(repo, Path(checker.__file__).parent, exclude_jobs=('claim-checker',))
++    # Only custody APIs are needed; avoid Context's unrelated status, gate and
++    # signing loads. allow_download=False is explicit, independent of env/global budgets.
++    ctx = SimpleNamespace(index=index, reader=checker.S.TextReader(packed=index.packed_texts),
++                          gpo_matched=checker.load_gpo_matched(repo), archive_captures={}, cache_dir=None)
++    checked, texts, members = {}, {}, []
++    for iid in ids:
++        d = dossiers[iid]
++        evidence = d.get('evidence', {})
++        required = {d.get('original_source_id')} | {c.get('id') for c in d.get('clauses', [])}
++        required.discard(None)
++        blockers, source_results = [], []
++        if not d.get('original_source_id') or not d.get('clauses'):
++            blockers.append({'kind': 'original_or_inventory_absent', 'reason': 'Held original and nonempty inventory required for production; retain packet for source research.'})
++        for eid in sorted(required - set(evidence)):
++            blockers.append({'kind': 'required_evidence_absent', 'evidence_id': eid})
++        for eid, item in sorted(evidence.items()):
++            ref = item.get('source') or item.get('actor_source')
++            mandatory = eid in required
++            if not isinstance(ref, dict):
++                if mandatory:
++                    blockers.append({'kind': 'required_source_absent', 'evidence_id': eid})
++                continue
++            # Custody depends on byte hash/URL/archive id, not producer prose or grade.
++            key = batch.canon({k: ref.get(k) for k in ('sha256', 'local_file_sha256', 'url', 'archival_id')})
++            if key not in checked:
++                rows = []
++                checker.check_source(ref, 'source', ctx, rows, allow_download=False)
++                checked[key] = rows
++            results = checked[key]
++            result = {'evidence_id': eid, 'required': mandatory,
++                      'source': {k: ref[k] for k in ('url', 'sha256', 'local_file_sha256') if k in ref},
++                      'checks': results}
++            source_results.append(result)
++            if mandatory and (not results or any(r['result'] != 'pass' for r in results)):
++                blockers.append({'kind': 'required_source_custody', 'evidence_id': eid,
++                                 'checks': results, 'source': result['source']})
++            if mandatory:
++                rel, sha = ref.get('text_path'), ref.get('text_sha256')
++                tkey = (rel, sha)
++                if tkey not in texts:
++                    try:
++                        if not isinstance(rel, str) or not checker.S.sha_hex(sha):
++                            raise ValueError('required text path/hash absent')
++                        path = batch.safe(repo, rel)
++                        if path.stat().st_size > 32_000_000:
++                            raise ValueError('required text exceeds bounded screen')
++                        raw = path.read_bytes()
++                        if batch.digest(raw) != sha.lower():
++                            raise ValueError('required text hash mismatch')
++                        texts[tkey] = raw.decode('utf-8')
++                    except (OSError, ValueError, UnicodeError) as exc:
++                        texts[tkey] = exc
++                body = texts[tkey]
++                if isinstance(body, Exception):
++                    blockers.append({'kind': 'required_text_unavailable', 'evidence_id': eid, 'reason': str(body)})
++                else:
++                    a, b = item.get('char_start', ref.get('char_start')), item.get('char_end', ref.get('char_end'))
++                    quote = item.get('text', item.get('provision_text'))
++                    if type(a) is not int or type(b) is not int or not 0 <= a < b <= len(body) or body[a:b] != quote:
++                        blockers.append({'kind': 'required_span_not_verified', 'evidence_id': eid})
++        members.append({'instrument_id': iid, 'state': 'source_blocked' if blockers else 'dispatchable_for_research',
++                        'blockers': blockers, 'sources': source_results,
++                        'research_tasks': packet['preflight'][iid]['mechanical_tasks']})
++    blocked = [m['instrument_id'] for m in members if m['blockers']]
++    return {'schema': 'eo-claim-kit-dispatch-check/v1', 'packet_sha256': batch.file_sha(folder/'PACKET.json'),
++            'code_pins': {p.name: batch.file_sha(p) for p in (Path(__file__), Path(checker.__file__), Path(checker.S.__file__))},
++            'packet_fingerprint': packet['fingerprint'], 'packet_members': list(dossiers), 'checked_ids': ids,
++            'state': 'source_blocked' if blocked else 'dispatchable_for_research', 'ok': not blocked,
++            'dispatchable_ids': [m['instrument_id'] for m in members if not m['blockers']],
++            'source_blocked_ids': blocked, 'members': members, 'unique_custody_checks': len(checked),
++            'unique_required_text_checks': len(texts), 'wall_seconds': round(time.monotonic()-started, 6),
++            'source_index_notes': index.notes,
++            'network_requests': 0, 'model_tokens': None, 'scientific_approval': False,
++            'notice': 'Re-run immediately before assignment. A receipt is not a lasting dispatch permit. Optional source gaps remain research tasks; all selected claim sources still require the actual checker and independent review.'}
++
++
++def summary(result):
++    """Keep routine agent output small; full source checks belong in the receipt."""
++    out = {k: result[k] for k in ('state', 'ok', 'packet_sha256', 'dispatchable_ids', 'source_blocked_ids',
++                                  'unique_custody_checks', 'wall_seconds', 'scientific_approval')}
++    out['exceptions'] = [{'instrument_id': m['instrument_id'],
++                          'blockers': [{'kind': b['kind'], 'evidence_id': b.get('evidence_id')} for b in m['blockers']],
++                          'optional_source_gaps': [s['evidence_id'] for s in m['sources']
++                                                   if not s['required'] and any(c['result'] != 'pass' for c in s['checks'])]}
++                         for m in result['members'] if m['blockers'] or any(
++                             not s['required'] and any(c['result'] != 'pass' for c in s['checks']) for s in m['sources'])]
++    return out
+diff --git a/jobs/claim-kit/kit.py b/jobs/claim-kit/kit.py
+index 3205ddfe..31f3f60d 100644
+--- a/jobs/claim-kit/kit.py
++++ b/jobs/claim-kit/kit.py
+@@ -148,7 +148,8 @@ def main(argv=None):
+         s=sub.add_parser(cmd);s.add_argument('instrument_id');s.add_argument('--agent',default='');s.add_argument('--write',type=Path)
+     s=sub.add_parser('history');s.add_argument('instrument_id');s.add_argument('--full',action='store_true')
+     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
+-    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true')
++    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
++    s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path)
+     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
+     s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path);s.add_argument('--geddes-strict',action='store_true',help='exit nonzero unless every Geddes lint flag has a resolution (geddes gate)')
+     s=sub.add_parser('complete');s.add_argument('manifest',type=Path);s.add_argument('--write',type=Path,required=True);s.add_argument('--publish',action='store_true')
+@@ -214,6 +215,15 @@ def main(argv=None):
+             result=overlay.write_bundle(repo,a.write,proposal,decision,review,evidence,
+                 lifecycle_sheet=read(a.lifecycle_sheet) if a.lifecycle_sheet else None)
+             print(json.dumps({'proposal_fingerprint':proposal['fingerprint'],'folder':str(a.write),'owner_acceptance':proposal['owner_acceptance'],'statuses_published':0}));return 0
++        if a.command=='dispatch-check':
++            from dispatch import check,summary
++            if a.write and a.write.exists():raise ValueError('Dispatch receipt exists; refusing overwrite')
++            if a.write and not a.write.resolve().is_relative_to(a.packet.resolve()):raise ValueError('Dispatch receipt must stay inside its packet')
++            result=check(repo,a.packet,a.order)
++            if a.write:dump(a.write,result)
++            compact=summary(result)
++            if a.write:compact['receipt']=str(a.write)
++            print(json.dumps(compact,ensure_ascii=False,indent=2));return int(not result['ok'])
+         if a.command=='view':
+             import batch
+             print(batch.view(repo,a.packet,a.order,a.source));return 0
+@@ -223,6 +233,9 @@ def main(argv=None):
+             elif a.command=='apply':result=batch.apply(repo,a.packet,a.write)
+             else:result=batch.check(repo,a.packet,a.applied)
+             failed=(result.get('strict_claim_fail',0)>0 or result.get('counts',{}).get('rejected',0)>0)
++            if a.command=='prepare':
++                result['research_only']=a.research_only
++                failed=failed or (not result['dispatch_check']['ok'] and not a.research_only)
+             actual=result.get('actual_claim_checker',{})
+             if a.command=='batch-check':
+                 failed=failed or actual.get('claims_all_checks_passed',0)!=result.get('claims_checked',0)
+diff --git a/jobs/claim-kit/test_dispatch.py b/jobs/claim-kit/test_dispatch.py
+new file mode 100644
+index 00000000..f7a62fad
+--- /dev/null
++++ b/jobs/claim-kit/test_dispatch.py
+@@ -0,0 +1,167 @@
++"""Real frozen packets and the actual custody policy; no model/network calls."""
++from contextlib import redirect_stdout, redirect_stderr
++import io
++import json
++from pathlib import Path
++import unittest
++from unittest.mock import patch
++
++import test_build as T
++import batch
++import dispatch
++import kit
++
++
++class DispatchTests(unittest.TestCase):
++    setUp = T.BuildIntegrationTests.setUp
++    run_build = T.BuildIntegrationTests.run_build
++
++    def retain(self, missing=()):
++        records = json.loads((self.repo/'jobs/future-source/data/PROVENANCE.json').read_text())['representations']
++        rows = []
++        for r in records:
++            raw = 'raw/' + r['instrument_id'].replace(':', '_') + '.bin'
++            path = self.repo/'jobs/future-source/output'/raw
++            if r['instrument_id'] not in missing:
++                path.parent.mkdir(parents=True, exist_ok=True)
++                path.write_bytes((self.repo/r['text_path']).read_bytes())
++            rows.append({**r['source'], 'text_path': r['text_path'], 'cache_path': raw,
++                         'instrument_ids': [r['instrument_id']]})
++        T.write_jsonl(self.repo/'jobs/future-source/output/SOURCES.jsonl', rows)
++
++    def packet(self, ids=('EO:1', 'EO:2'), missing=()):
++        self.retain(missing)
++        self.run_build()
++        folder = self.repo/'research/test/packet'
++        batch.prepare(self.repo, self.out, folder, list(ids), 'producer')
++        return folder
++
++    def cli(self, *args):
++        out = io.StringIO()
++        with redirect_stdout(out), redirect_stderr(io.StringIO()):
++            code = kit.main(['--repo', str(self.repo), *map(str, args)])
++        return code, out.getvalue()
++
++    def test_prepare_wires_source_check_and_deduplicates_shared_references(self):
++        folder = self.packet()
++        report = json.loads((folder/'DISPATCH_CHECK.json').read_text())
++        self.assertTrue(report['ok'])
++        self.assertEqual(report['dispatchable_ids'], ['EO:1', 'EO:2'])
++        # Original + inventory reuse one source; the shared EO:5 actor is checked once.
++        self.assertEqual(report['unique_custody_checks'], 3)
++        self.assertEqual(report['unique_required_text_checks'], 2)
++        self.assertFalse(report['scientific_approval'])
++        self.assertIsNone(report['model_tokens'])
++        self.assertFalse(batch.rows(folder/'decisions.csv')[0]['approved'] == 'true')
++
++    def test_record_only_blocks_then_exact_retained_bytes_reopen_without_reprepare(self):
++        folder = self.packet(missing=('EO:1',))
++        before = (folder/'PACKET.json').read_bytes()
++        blocked = dispatch.check(self.repo, folder)
++        self.assertEqual(blocked['source_blocked_ids'], ['EO:1'])
++        self.assertEqual(blocked['dispatchable_ids'], ['EO:2'])
++        self.assertIn('custody_record_only', json.dumps(blocked['members'][0]['blockers']))
++        self.retain()
++        self.assertTrue(dispatch.check(self.repo, folder)['ok'])
++        self.assertEqual(before, (folder/'PACKET.json').read_bytes())
++
++    def test_optional_actor_custody_gap_does_not_choose_or_block_legal_theory(self):
++        folder = self.packet(missing=('EO:5',))
++        report = dispatch.check(self.repo, folder)
++        self.assertTrue(report['ok'])
++        self.assertIn('custody_record_only', json.dumps(report))
++        self.assertTrue(dispatch.summary(report)['exceptions'])
++
++    def test_raw_corruption_refuses_but_text_unchanged(self):
++        folder = self.packet()
++        (self.repo/'jobs/future-source/output/raw/EO_1.bin').write_bytes(b'corrupt')
++        report = dispatch.check(self.repo, folder)
++        self.assertFalse(report['ok'])
++        self.assertIn('held_record_but_local_bytes_differ', json.dumps(report))
++
++    def test_provisional_working_text_remains_researchable_without_authentication(self):
++        T.BuildIntegrationTests.confirmed_derivative(self)
++        folder = self.packet(ids=('EO:2',))
++        packet, dossiers = batch.load_packet(folder, self.repo)
++        original = dossiers['EO:2']['evidence'][dossiers['EO:2']['original_source_id']]
++        self.assertFalse(original['acceptable_as_original'])
++        report = dispatch.check(self.repo, folder)
++        self.assertTrue(report['ok'])
++        self.assertFalse(report['scientific_approval'])
++        self.assertTrue(report['members'][0]['research_tasks'])
++        self.assertEqual(batch.rows(folder/'decisions.csv')[0]['original_confirmed'], 'false')
++
++    def test_text_and_packet_tampering_refused(self):
++        folder = self.packet()
++        p = folder/'PACKET.json'
++        original = p.read_bytes()
++        p.write_bytes(original.replace(b'2026-10-14', b'2026-10-15'))
++        with self.assertRaisesRegex(ValueError, 'changed work package'):
++            dispatch.check(self.repo, folder)
++        p.write_bytes(original)
++        (self.repo/'jobs/future-source/data/texts/EO_1.txt').write_bytes(b'changed')
++        with self.assertRaisesRegex(ValueError, 'changed held source'):
++            dispatch.check(self.repo, folder)
++
++    def test_runtime_change_refused_even_with_valid_packet_seal(self):
++        folder = self.packet()
++        p = folder/'PACKET.json'
++        doc = json.loads(p.read_bytes())
++        doc.pop('fingerprint')
++        doc['assembler_code_sha256'] = '0'*64
++        doc['fingerprint'] = batch.digest(batch.canon(doc).encode())
++        batch.dump(p, doc)
++        with self.assertRaisesRegex(ValueError, 'assembler changed'):
++            dispatch.check(self.repo, folder)
++
++    def test_new_relevant_ruling_requires_new_packet(self):
++        folder = self.packet()
++        rule = self.repo/'research/readiness/owner_rulings/new.md'
++        rule.parent.mkdir(parents=True, exist_ok=True)
++        rule.write_text('# Ruling\nEO:1 requires a different source examination.\n')
++        with self.assertRaisesRegex(ValueError, 'changed prior research'):
++            dispatch.check(self.repo, folder)
++
++    def test_offline_even_if_download_budget_initialized_and_no_repository_writes(self):
++        folder = self.packet(missing=('EO:1',))
++        checker = dispatch.actual_checker()
++        checker._VERIFY['left'] = 400
++        before = {str(p.relative_to(self.repo)): p.read_bytes() for p in self.repo.rglob('*') if p.is_file()}
++        with patch.object(dispatch, 'actual_checker', return_value=checker), \
++             patch.object(checker, 'verify_by_download', side_effect=AssertionError('network')), \
++             patch.object(checker, 'verify_by_archive', side_effect=AssertionError('network')):
++            result = dispatch.check(self.repo, folder)
++        after = {str(p.relative_to(self.repo)): p.read_bytes() for p in self.repo.rglob('*') if p.is_file()}
++        self.assertEqual(before, after)
++        self.assertEqual(result['network_requests'], 0)
++        self.assertFalse(result['ok'])
++
++    def test_mixed_packet_cli_nonzero_explicit_subset_and_immutable_receipts(self):
++        folder = self.packet(missing=('EO:1',))
++        receipt = folder/'dispatch-v2.json'
++        code, stdout = self.cli('dispatch-check', folder, '--write', receipt)
++        self.assertEqual(code, 1)
++        self.assertEqual(json.loads(stdout)['source_blocked_ids'], ['EO:1'])
++        code, _ = self.cli('dispatch-check', folder, '--order', 'EO:2')
++        self.assertEqual(code, 0)
++        self.assertEqual(self.cli('dispatch-check', folder, '--order', 'EO:999')[0], 2)
++        self.assertEqual(self.cli('dispatch-check', folder, '--write', receipt)[0], 2)
++        self.assertEqual(self.cli('dispatch-check', folder, '--write', self.repo/'outside.json')[0], 2)
++
++    def test_prepare_cli_blocks_production_but_allows_explicit_source_research(self):
++        self.retain(missing=('EO:1',))
++        self.run_build()
++        folder = self.repo/'research/blocked/packet'
++        code, _ = self.cli('prepare', 'EO:1', '--agent', 'producer', '--write', folder)
++        self.assertEqual(code, 1)
++        self.assertTrue((folder/'PACKET.json').exists())
++        other = self.repo/'research/source-research/packet'
++        code, stdout = self.cli('prepare', 'EO:1', '--agent', 'producer', '--write', other, '--research-only')
++        self.assertEqual(code, 0)
++        result = json.loads(stdout)
++        self.assertTrue(result['research_only'])
++        self.assertFalse(result['dispatch_check']['ok'])
++
++
++if __name__ == '__main__':
++    unittest.main()

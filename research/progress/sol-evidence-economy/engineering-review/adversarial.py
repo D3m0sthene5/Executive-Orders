@@ -50,6 +50,16 @@ def blind_probe():
         f.source['local_path']='held/loop'
         (f.root/f.source['local_path']).symlink_to('loop')
         probe('symlink_cycle_refused_in_report',lambda:run()['ok'],False)
+        f.source['local_path']='held/raw.pdf'; f.verify()
+        pin=hashlib.sha256(f.file.read_bytes()).hexdigest()
+        f.card['claim']['scientific_conclusion']='different prose'
+        f.verify()
+        probe('old_card_byte_pin_refuses_semantic_only_edit',
+              lambda:B.B.verify_files([f.file],f.root,['held'],expected_card_sha256=[pin])['ok'],False)
+        pointer=b'version https://git-lfs.github.com/spec/v1\noid sha256:'+b'0'*64+b'\nsize 130000\n'
+        (f.root/'held/raw.pdf').write_bytes(pointer)
+        f.source['sha256']=nested['sha256']=hashlib.sha256(pointer).hexdigest()
+        probe('matching_hash_of_raw_lfs_pointer_refused',lambda:run()['ok'],False)
     finally:f.doCleanups()
 
 def interval_probe():

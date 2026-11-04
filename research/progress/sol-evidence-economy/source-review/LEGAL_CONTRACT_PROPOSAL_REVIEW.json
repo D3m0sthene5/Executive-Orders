@@ -1,0 +1,47 @@
+{
+  "schema": "sol-legal-contract-proposal-review/v1",
+  "proposal_path": "research/progress/sol-evidence-economy/LEGAL_INTERVAL_CONTRACT_PROPOSAL.md",
+  "proposal_sha256": "6257fdd209087f997ab4b3f0a31e09c262b574f6f8a11c7ae88a016802caf1ed",
+  "reviewed_utc": "2026-11-04T09:33:54.067769+00:00",
+  "reviewer": {
+    "role": "proposal examiner",
+    "model": "gpt-6-astra",
+    "family": "OpenAI",
+    "human": false,
+    "different_family": false
+  },
+  "recommendation": "suitable for owner consideration as a proposed versioned extension",
+  "revision_history": [
+    {
+      "sha256": "7427ba9e00ec591d67b51bd238755c7eb20874c45ea6cdf342c265ed805ca27b",
+      "source_commit": "94d3f319",
+      "verdict": "require revision",
+      "problem": "A and B operate Jan 1. A ends Jan 2, resumes Jan 3, and ends again Jan 6. B first ends Jan 4. Both inactive at cutoff. Maximum first end is Jan 4; first simultaneous cessation is Jan 6. A complete list of first ends does not distinguish these cases."
+    },
+    {
+      "sha256": "e374e2dd023a956dde4842e0a9e374665cd89a35fd13309a5056cff0b23c8645",
+      "verdict": "revival defect repaired; clarify earlier periods of joint inactivity",
+      "problem": "A operates Jan 1, ends Jan 2. New B becomes operative Jan 5 and ends Jan 6; no legally surviving or latent duty in the gap. Both are monotone after their first ends; latest first end Jan 6 is not first whole-order cessation Jan 2. A latent mandate could change that result; whether one subsisted needs legal examination."
+    },
+    {
+      "sha256": "6257fdd209087f997ab4b3f0a31e09c262b574f6f8a11c7ae88a016802caf1ed",
+      "verdict": "supported as a proposal only",
+      "change": "Requires exclusion of earlier common cessation and continuity between activations in addition to the monotone first-ending and inventory screens. Under those assumptions the maximum interval formula is a valid enclosure. Unknown episodes are a refusal, not evidence of continuous legal operation."
+    }
+  ],
+  "assessment": {
+    "event_and_effect": "A factual performance date alone does not answer first legal ending. Determine legal mechanism and duty, scope, earlier candidates, effect on residual duties and independent legal review. The June and December EO13792 dates established by DOI do not on their own establish receipt or first legal ending.",
+    "inclusive_queries": "Correct for an independently supported legal first-ending envelope on a civil-date end-of-day convention. If t<L, the event has not yet occurred. On L<=t<U an envelope alone leaves occurrence by t unresolved. If t>=U the event has occurred. Current normativity, activation and revival require episode histories. A one-day result belongs in the exact mode.",
+    "aggregation": "max of endpoint bounds encloses the latest clause-first-ending time even with correlated timings. To call it first whole-order cessation, require a complete joint operative history, no earlier state of whole-order cessation, continuous cessation of ended clauses through the last ending, and coverage of additions, successions, conditional mandates and revivals. Do not infer legal effect or coverage from the formula.",
+    "unknowns": "Keep uncertain occurrence, uncertain timing and uncertain legal effect distinct. A proven fact with no reliable bound remains partial; surviving, unexamined, or missing duties prevent whole-order inference. Track consequences under independent authority separately.",
+    "compatibility": "Freeze Stage19 v1 exact date gates. For v2 define an exclusive tagged representation for exact or bounded timing; bounded data cannot silently populate a v1 date field with midpoint, upper bound, default/sentinel, or empty placeholder. Stale v1 or factual review cannot confer v2 legal review.",
+    "adoption": "October 28 owner ruling authorizes research using established intervals. A new canonical schema, migration or reporting category is a distinct scientific-contract decision. This proposal and its independent reading grant no adoption or readiness credit."
+  },
+  "references": [
+    "research/stage19/CLAIM_SCHEMA.md",
+    "research/stage19/code/claim_gate.py",
+    "jobs/claim-kit/PROVISION_HISTORY.md",
+    "research/readiness/owner_rulings/2026-10-28-evidence-not-convenience.md"
+  ],
+  "adoption_or_registry_write": false
+}
