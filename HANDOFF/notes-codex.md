@@ -1,3 +1,12 @@
+## 2026-11-04 ET: observability recovered and integrated on isolated branch
+
+- **Done:** Four bounded workers plus independent engineering/evidence review recovered pinned baseline,58 historical worker rows,27 exact completions and306 review-matched eligible versions; repaired Hamilton supported-export normalization and explicit NEYMAN bridge; added versioned partial-cost/coverage view. Findings F-20261104-observability-baseline, F-20261104-historical-observability, F-20261104-supported-usage-normalization, F-20261104-hub-observability. Detailed report: research/progress/production-observability-20261104/REPORT.md.
+- **Validation:**26 Hamilton tests,10 hub tests, native count verifier, deterministic recovery and direct synthetic CLI→NEYMAN replay. Same OpenAI-family engineering review; no scientific/human certification or new readiness gain. Complete session usage/cash/active labor unavailable.
+- **Publication:** sol/production-observability-20261104; engineering commit2d80b033140435db8488807ecf6080f535f293c5 uses [skip actions]. Data/hub publication and final pins recorded in INTEGRATION.md. Hosted checks skipped, not passed. No production dispatch.
+- **Next:** When Opus dependency window closes, review draft PR, rebase on then-current main, reconcile append-only Kean/notes, rerun focused checks and explicit required CI, refresh any affected runner declarations/freshness. Corrected collection is explicit CLI, not automatic Geddes capture.
+- **Asks:** @Owner: none.
+- **Do not:** change protected Tribonian checkout/versions/checkpoints/reservations/quota; infer activity or vacancy from published plan/old locks; turn filings/corrections into marginal readiness, cache volume into cash or transcript gaps into active labor. Raw source caches/control identities excluded.
+
 ## 2026-11-04 ET: goals-led observability assignment and isolated source publication
 
 - **Done:** Owner authorized pushing provided the paused Opus run waiting for Claude quota can resume unchanged. Added research/progress/control-center/SOL_OBSERVABILITY.md: five measurement-gap goals, historical recovery/prospective coverage, cost/outcome joins, cheap existing-tool collection, hub integration and prior lessons. This designs the next Sol workflow; it does not run it.

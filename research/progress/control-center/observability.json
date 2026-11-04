@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-04T09:51:10.061093+00:00",
+  "source_pin": "600ae3018f71025b3e53dc8538b8f92e6e159b76",
+  "baseline": {
+    "source_pin": "600ae3018f71025b3e53dc8538b8f92e6e159b76",
+    "finished_utc": "2026-11-02T19:33:11Z",
+    "orders_total": 14972,
+    "ready": 784,
+    "unfinished": 14188,
+    "human_certified": 0,
+    "first_missing": {
+      "commands": 7892,
+      "evidence": 18,
+      "gates": 1,
+      "lifecycle": 49,
+      "ready": 784,
+      "text": 6228
+    },
+    "open_anywhere": {
+      "commands": 14120,
+      "evidence": 12757,
+      "gates": 1,
+      "lifecycle": 14165,
+      "text": 6228
+    }
+  },
+  "sources": [
+    {
+      "id": "tracker",
+      "path": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv",
+      "ref": "600ae3018f71025b3e53dc8538b8f92e6e159b76"
+    },
+    {
+      "id": "checker",
+      "path": "jobs/claim-checker/output/SUMMARY.json",
+      "ref": "600ae3018f71025b3e53dc8538b8f92e6e159b76"
+    },
+    {
+      "id": "apollo",
+      "path": "research/excavator/claude-apollo-2026-10-31/TELEMETRY.csv",
+      "ref": "600ae3018f71025b3e53dc8538b8f92e6e159b76"
+    },
+    {
+      "id": "erasmus",
+      "path": "research/excavator/claude-erasmus-2026-11-02/TELEMETRY.csv",
+      "ref": "600ae3018f71025b3e53dc8538b8f92e6e159b76"
+    },
+    {
+      "id": "erasmus_report",
+      "path": "research/excavator/claude-erasmus-2026-11-02/REPORT.md",
+      "ref": "600ae3018f71025b3e53dc8538b8f92e6e159b76"
+    },
+    {
+      "id": "hamilton",
+      "path": "jobs/hamilton-token-audit/README.md",
+      "ref": "2d80b033140435db8488807ecf6080f535f293c5"
+    },
+    {
+      "id": "neyman",
+      "path": "jobs/neyman/AFTER_COMPLETION.md",
+      "ref": "600ae3018f71025b3e53dc8538b8f92e6e159b76"
+    },
+    {
+      "id": "erasmus_tally",
+      "path": "research/excavator/claude-erasmus-2026-11-02/e1/packet/supp/complete-v1/TALLY.json",
+      "ref": "600ae3018f71025b3e53dc8538b8f92e6e159b76"
+    },
+    {
+      "id": "apollo_tally",
+      "path": "research/excavator/claude-apollo-2026-10-31/g03/packet/complete-v1/TALLY.json",
+      "ref": "600ae3018f71025b3e53dc8538b8f92e6e159b76"
+    },
+    {
+      "id": "tribonian",
+      "path": "research/excavator/claude-tribonian-2026-11-04/tools/batches.json",
+      "ref": "cacfb8f4af6db949476bd7bec8220a464055c931"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": "apollo",
+      "label": "Apollo",
+      "window": "2026-10-31",
+      "workers": 38,
+      "scope": "Published transcript-derived worker aggregates; historical reconstruction, not independently verified provider-final usage or a project bill",
+      "coverage": "Coordinator excluded. Legacy exporter takes first usage, zero-fills omissions and reports modal model; CSV categories can undercount final usage. Row count is not execution count.",
+      "tokens": {
+        "fresh_input": 5466,
+        "cache_read": 496350796,
+        "cache_creation": 13313052,
+        "output": 2407390
+      },
+      "api_equivalent_usd": null,
+      "actual_cash_usd": null,
+      "source_ids": [
+        "apollo",
+        "apollo_tally"
+      ],
+      "outcomes": "Native attempt/review/completion versions are retained in the recovery ledger; the linked tally is one exact example. Filing and isolated replay gains are not current marginal readiness or human certification."
+    },
+    {
+      "id": "erasmus",
+      "label": "Erasmus",
+      "window": "2026-11-02",
+      "workers": 20,
+      "scope": "Published transcript-derived worker aggregates; historical reconstruction, not independently verified provider-final usage or a project bill",
+      "coverage": "Coordinator excluded. Legacy exporter takes first usage, zero-fills omissions and reports modal model; CSV categories can undercount final usage. Row count is not execution count.",
+      "tokens": {
+        "fresh_input": 2124,
+        "cache_read": 182772589,
+        "cache_creation": 3669178,
+        "output": 926723
+      },
+      "api_equivalent_usd": null,
+      "actual_cash_usd": null,
+      "source_ids": [
+        "erasmus",
+        "erasmus_tally"
+      ],
+      "outcomes": "Native attempt/review/completion versions are retained in the recovery ledger; the linked tally is one exact example. Filing and isolated replay gains are not current marginal readiness or human certification."
+    }
+  ],
+  "roles": [
+    {
+      "campaign_id": "apollo",
+      "role": "producer",
+      "model": "claude-sonnet-5-5",
+      "workers": 19,
+      "tokens": {
+        "fresh_input": 3804,
+        "cache_read": 379500958,
+        "cache_creation": 9120024,
+        "output": 1838599
+      },
+      "coverage": "Published aggregate worker rows; reported model is modal in the worker transcript, not observed per-token attribution. Call-level phase usage unavailable"
+    },
+    {
+      "campaign_id": "apollo",
+      "role": "reviewer",
+      "model": "claude-opus-5-5",
+      "workers": 19,
+      "tokens": {
+        "fresh_input": 1662,
+        "cache_read": 116849838,
+        "cache_creation": 4193028,
+        "output": 568791
+      },
+      "coverage": "Published aggregate worker rows; reported model is modal in the worker transcript, not observed per-token attribution. Call-level phase usage unavailable"
+    },
+    {
+      "campaign_id": "erasmus",
+      "role": "builder",
+      "model": "claude-opus-5-5",
+      "workers": 1,
+      "tokens": {
+        "fresh_input": 228,
+        "cache_read": 25086604,
+        "cache_creation": 341700,
+        "output": 120441
+      },
+      "coverage": "Published aggregate worker rows; reported model is modal in the worker transcript, not observed per-token attribution. Call-level phase usage unavailable"
+    },
+    {
+      "campaign_id": "erasmus",
+      "role": "builder",
+      "model": "claude-sonnet-5-5",
+      "workers": 1,
+      "tokens": {
+        "fresh_input": 88,
+        "cache_read": 5909405,
+        "cache_creation": 351670,
+        "output": 63975
+      },
+      "coverage": "Published aggregate worker rows; reported model is modal in the worker transcript, not observed per-token attribution. Call-level phase usage unavailable"
+    },
+    {
+      "campaign_id": "erasmus",
+      "role": "producer",
+      "model": "claude-opus-5-5",
+      "workers": 6,
+      "tokens": {
+        "fresh_input": 810,
+        "cache_read": 80009439,
+        "cache_creation": 1267811,
+        "output": 376129
+      },
+      "coverage": "Published aggregate worker rows; reported model is modal in the worker transcript, not observed per-token attribution. Call-level phase usage unavailable"
+    },
+    {
+      "campaign_id": "erasmus",
+      "role": "producer",
+      "model": "claude-sonnet-5-5",
+      "workers": 3,
+      "tokens": {
+        "fresh_input": 284,
+        "cache_read": 23428006,
+        "cache_creation": 574623,
+        "output": 145882
+      },
+      "coverage": "Published aggregate worker rows; reported model is modal in the worker transcript, not observed per-token attribution. Call-level phase usage unavailable"
+    },
+    {
+      "campaign_id": "erasmus",
+      "role": "reviewer",
+      "model": "claude-opus-5-5",
+      "workers": 9,
+      "tokens": {
+        "fresh_input": 714,
+        "cache_read": 48339135,
+        "cache_creation": 1133374,
+        "output": 220296
+      },
+      "coverage": "Published aggregate worker rows; reported model is modal in the worker transcript, not observed per-token attribution. Call-level phase usage unavailable"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "phase_role",
+      "title": "Tokens and money by phase and role",
+      "recovered": "Apollo and Erasmus worker-row token categories are recovered by published role/model. Batch costs remain at batch scope; coordinator coverage is absent.",
+      "prospective": "Hamilton now reconciles streamed call revisions and exports supported JSONL observations to the existing NEYMAN effort contract with explicit role, model, interval and downstream membership.",
+      "unavailable": "Complete call denominator, coordinator usage, historical phase splits, cache TTL and actual cash cannot be recovered from aggregate CSVs. No per-call or project bill is inferred.",
+      "source_ids": [
+        "apollo",
+        "erasmus",
+        "hamilton"
+      ]
+    },
+    {
+      "id": "repetition",
+      "title": "Repeated evidence and context",
+      "recovered": "Cache-read totals show context rereading in the observed worker rows. They do not identify source/page repetition or avoidable work; independent review may require rereading.",
+      "prospective": "Retain stable message identities, provider cache categories and supported evidence digests when future ordinary exports provide them. Source-read purpose must distinguish review from optional duplication.",
+      "unavailable": "Historical CSVs contain no source/page digests, context resets or cache-hit chronology. Their aggregate counts cannot reconstruct which source reads were avoidable.",
+      "source_ids": [
+        "apollo",
+        "erasmus",
+        "hamilton"
+      ]
+    },
+    {
+      "id": "blockers_retries",
+      "title": "Late blockers, corrections and retries",
+      "recovered": "Published exact native completion and review outcomes are joined to campaign/batch telemetry. Erasmus has 64 attempt-members: 52 eligible, 11 blocked and one mechanical rejection. Its 52 filed orders include 20 superseding corrections.",
+      "prospective": "Carry exact attempt/output/review versions, first blocker detection phase and already-spent observed effort through existing completion/NEYMAN receipts; retain rejected and resumed members.",
+      "unavailable": "Historical first-detection times and tokens spent before blockers are absent. A completion blocker is not evidence that it was detected late. No savings are attributed to preflight.",
+      "source_ids": [
+        "checker",
+        "erasmus_report",
+        "erasmus_tally",
+        "neyman"
+      ]
+    },
+    {
+      "id": "ready_conversion",
+      "title": "Cost per additional ready dossier",
+      "recovered": "Current readiness is pinned separately from exact campaign filings and isolated tracker-replay transitions. Corrections, review approvals, eligible filings and net newly ready orders remain distinct.",
+      "prospective": "Use baseline/final native IDs plus exact attempt and usage identities. Count shared costs once; expose failed cohorts and zero conversion. Preserve probability samples and unfinished members.",
+      "unavailable": "Complete run-attributable marginal readiness gains and complete effort are unavailable. Tokens per newly ready dossier and dollars per newly ready dossier remain undefined, rather than zero.",
+      "source_ids": [
+        "tracker",
+        "apollo",
+        "erasmus_report",
+        "neyman"
+      ]
+    },
+    {
+      "id": "time",
+      "title": "Waiting, compute and worker time",
+      "recovered": "Native generation timestamps, CSV event-gap timing fields and bounded machine replays retain their original methods. Published protected-wave membership is planned work, not observed active workers.",
+      "prospective": "Use explicit timezone-aware occupied intervals and native command clocks, with shared interval unions. The collector records its own bounded machine overhead; a token reset is external wait.",
+      "unavailable": "Private worker activity, review capacity, evidence-access waits, complete critical path and pause duration are unavailable. Gaps between transcript events do not establish active labor.",
+      "source_ids": [
+        "tracker",
+        "erasmus",
+        "tribonian",
+        "hamilton"
+      ]
+    }
+  ],
+  "boundaries": [
+    "First missing checks partition the displayed workload; overlapping checks are not separate queues or worker locations.",
+    "The tracker generation remains November 2 even when the repository head is checked on November 4. Unpublished work is not zero work.",
+    "Tribonian's 40 published planned batches contain 1,218 unique members; local progress and consumption remain unobserved. These assignments are protected.",
+    "Erasmus reports 27 executions including resumptions but publishes 20 worker rows. Those denominators are not interchangeable.",
+    "Shared work is counted once at supported scope. Cash, cached-token volume and dated API-equivalent value have different meanings; no price conversion is made here.",
+    "No legal claims, provisional statuses, census identities, source grades, review gates or human certifications are changed by this observability work."
+  ]
+}

@@ -1,0 +1,181 @@
+{
+ "schema": "hamilton.profile/2",
+ "label": "synthetic",
+ "model_calls": 1,
+ "cost_units": 58,
+ "usd_per_unit": null,
+ "unit": "input-token equivalents",
+ "tokens": {
+  "input": 3,
+  "read": 5,
+  "write5m": 0,
+  "write1h": 0,
+  "output": 11
+ },
+ "coverage": {
+  "input": {
+   "observed_tokens": 3,
+   "calls_missing_field": 0,
+   "session_total": null,
+   "fraction": null
+  },
+  "read": {
+   "observed_tokens": 5,
+   "calls_missing_field": 0,
+   "session_total": null,
+   "fraction": null
+  },
+  "write5m": {
+   "observed_tokens": 0,
+   "calls_missing_field": 1,
+   "session_total": null,
+   "fraction": null
+  },
+  "write1h": {
+   "observed_tokens": 0,
+   "calls_missing_field": 1,
+   "session_total": null,
+   "fraction": null
+  },
+  "output": {
+   "observed_tokens": 11,
+   "calls_missing_field": 0,
+   "session_total": null,
+   "fraction": null,
+   "complete_final_usage_observed": true
+  }
+ },
+ "usage_records": [
+  {
+   "scope": "call",
+   "agent": "main",
+   "message_id": "synthetic-call",
+   "model": "synthetic-anthropic-model",
+   "observed_at": "2000-01-01T00:00:10Z",
+   "tokens": {
+    "input": 3,
+    "read": 5,
+    "write5m": null,
+    "write1h": null,
+    "output": 11
+   },
+   "cache_creation_tokens": 7,
+   "reasoning_tokens_included_in_output": 4,
+   "output_final": true,
+   "billing": {
+    "cash_charge_usd": null,
+    "basis": "unavailable at call scope"
+   }
+  }
+ ],
+ "usage_semantics": {
+  "provider": "anthropic",
+  "input": "fresh uncached input; excludes cache read and creation",
+  "cache_creation": "aggregate includes TTL breakdown; never add both",
+  "output": "includes reasoning when separately reported",
+  "scope": "observed calls only",
+  "possible_calls": null,
+  "possible_calls_coverage": "unknown denominator"
+ },
+ "cache_write_unclassified_tokens": 7,
+ "unpriced_or_unclassified_usage": true,
+ "session_tokens": {
+  "input": null,
+  "read": null,
+  "write5m": null,
+  "write1h": null,
+  "output": null
+ },
+ "session_token_value_usd": null,
+ "cash_charge_usd": null,
+ "observed_window_token_value_usd": null,
+ "priced_observed_tokens_usd": null,
+ "pricing": {
+  "basis": "relative price assumptions retained from the original Hamilton audit",
+  "weights": {
+   "input": 1.0,
+   "read": 0.1,
+   "write5m": 1.25,
+   "write1h": 2.0,
+   "output": 5.0
+  },
+  "absolute_rates": null,
+  "model": null,
+  "as_of": null
+ },
+ "valuation_note": "Session token value is separate from cash charges. Unknown or partial capture is never scaled to the full session. Output may be a streaming lower bound.",
+ "attribution": {
+  "method": "characters/4 context-size estimate and first-call setup proxy",
+  "scope": "observed usage only",
+  "causal_identification": false,
+  "diagnostic_views_overlap": [
+   "cache_rebuilds",
+   "status_checks_in_large_context",
+   "subagents"
+  ],
+  "add_diagnostic_views_to_cause_total": false
+ },
+ "effort_accounting": {
+  "phases": {
+   "production": null,
+   "build": null,
+   "coordination": null,
+   "monitoring": null,
+   "review": null,
+   "rework": null,
+   "integration": null
+  },
+  "missing_phases": [
+   "production",
+   "build",
+   "coordination",
+   "monitoring",
+   "review",
+   "rework",
+   "integration"
+  ],
+  "note": "Phase values annotate session totals; do not add them again. Complete campaign cost requires build, coordination, monitoring, review, rework and integration."
+ },
+ "cost_by_cause": [
+  {
+   "cause": "model continuing",
+   "cost": 58.0,
+   "share": 0.9915,
+   "fresh": 58.0,
+   "reread": 0
+  },
+  {
+   "cause": "fixed setup (system prompt, tools, rules)",
+   "cost": 0.5,
+   "share": 0.0085,
+   "fresh": 0,
+   "reread": 0.5
+  }
+ ],
+ "cache_rebuilds": {
+  "count": 0,
+  "cost": 0,
+  "examples": []
+ },
+ "status_checks_in_large_context": {},
+ "subagents": {
+  "count": 0,
+  "cost": 0
+ },
+ "files_read_more_than_twice": [],
+ "events": 2,
+ "collector": {
+  "elapsed_seconds": 0.0010846290024346672,
+  "input_bytes": 1112,
+  "input_files": 1,
+  "input_pins": [
+   {
+    "sha256": "e71dc71c605d3f350ad0f2f91d53c0972ad0b7cbaea8c243878dff760e8ee4d8",
+    "bytes": 1112
+   }
+  ],
+  "model_calls": 0,
+  "scope": "offline load, normalize and hash; excludes output serialization",
+  "worker_active_seconds": null
+ }
+}

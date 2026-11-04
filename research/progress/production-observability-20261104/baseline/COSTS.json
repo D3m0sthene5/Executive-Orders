@@ -1,0 +1,40 @@
+{
+  "schema": "eo-observability-worker-cost/v1",
+  "worker": "queues_baseline",
+  "configured_model": "gpt-6.1-sol",
+  "observation_window": {
+    "started_utc": "2026-11-04T09:35:00.246Z",
+    "finished_utc": "2026-11-04T09:45:31.670Z",
+    "elapsed_seconds": 631.424,
+    "scope": "Bounded observation from after initial handoff reads through baseline drafting; includes tool waits, interpretation and review wait. Not exclusive active model labor or complete session time."
+  },
+  "worker_active_seconds": null,
+  "full_worker_elapsed_seconds": null,
+  "tokens": null,
+  "cache_tokens": null,
+  "actual_cash": null,
+  "api_equivalent_cash": null,
+  "tool_observations": {
+    "github_readonly_requests": 31,
+    "github_fetch_file": 25,
+    "github_fetch": 2,
+    "github_search_branches": 2,
+    "github_fetch_commit": 2,
+    "failed_github_requests": 3,
+    "source": "Manual enumeration of this worker's visible tool calls; includes missing-argument and404 responses. No provider/call usage meter exposed."
+  },
+  "failures_and_corrections": [
+    "Initial metadata calls lacked required connector args; retried readonly.",
+    "Wrong guessed Stage19 STATUS path404; tree inventory found PROGRESS.json.",
+    "Large native CSV fetch_file returned empty content; verified existing identical Git blob instead.",
+    "One commit metadata request returned an unnecessary large diff; no usage precision reconstructed.",
+    "Initial generated source-write command failed Python quoting before writing; replaced with exact apply_patch plus blob checks.",
+    "Initial aggregate blocker validation failed because detailed code suffixes needed native unique-family normalization.",
+    "Independent review found unstable blocker ties, unpinned sanitized tally and ambiguous queue labels; all corrected.",
+    "Independent privacy review removed individual reveal markers; sanitized snapshot repinned."
+  ],
+  "production_jobs_dispatched": 0,
+  "claude_quota_used": 0,
+  "measurement_effect_on_scientific_outputs": "None; builder only reads pinned copies and writes derived baseline beside itself.",
+  "savings_claim": null
+}
