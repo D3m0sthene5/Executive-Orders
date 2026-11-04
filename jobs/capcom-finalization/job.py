@@ -187,7 +187,7 @@ for name in ("asks.jsonl", "decisions.jsonl", "findings.jsonl", "legacy_reports.
     rel = "jobs/kean/register/" + name
     read(rel)
     shutil.copyfile(ROOT / rel, stage / rel)
-child_env = dict(os.environ, GIT_DIR=git("rev-parse", "--absolute-git-dir"), GIT_WORK_TREE=str(ROOT))
+child_env = dict(os.environ, GIT_DIR=git("rev-parse", "--absolute-git-dir"), GIT_WORK_TREE=str(stage))
 run_url = tracker_status["run_url"]
 subprocess.run([
     sys.executable, "-I", str(kean_path), "--root", str(stage), "add-finding",
@@ -207,6 +207,7 @@ shutil.copyfile(stage / "jobs/kean/register/findings.jsonl", OUT / "KEAN_FINDING
 shutil.copyfile(stage / "HANDOFF/KEAN.md", OUT / "KEAN_BRIEF.md")
 shutil.rmtree(stage)
 
+report["finished_utc"] = datetime.now(timezone.utc).isoformat()
 report["elapsed_seconds"] = round(time.monotonic() - START, 3)
 (OUT / "RECONCILIATION.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(report, indent=2))
