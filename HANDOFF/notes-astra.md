@@ -1,3 +1,13 @@
+## 2026-11-04 ET: automatic Mission refresh repaired on isolated branch
+
+- **Done:** Owner requested repair and GitHub push. Added native digest Mission feed, existing-site Mission tab, exact consumed-readiness freshness witnesses, and a fixed checker/tracker/digest reporting workflow after canonical filings or main Run jobs completion. Branch `astra/automatic-mission-refresh-20261104`, base `a3bfac64b3e1c43400a8ed8c744419eb17f6e2e6`. Details and activation path: `research/progress/automatic-mission-refresh-20261104/`.
+- **Validation:** 19 digest Python tests and 24 Mission/observability Node tests pass. Original Capcom output reproduced byte-for-byte over 11 daily checkpoints; all 10 archived rows exact. Separate-context engineering review fixed both initial blockers and approved with documented limits. No new production readiness or certification claimed; full usage/cash unknown.
+- **Running:** No production job dispatched by this session. PR 142 retains ownership of its active one-time Tribonian reconciliation and native outputs. GitHub push/PR and hosted-check receipts will be recorded with this branch.
+- **Next:** Land after actual PR checks, observe a native ready Mission receipt, then publish revised assets to the existing Site and inspect `#mission`. Old Claude artifact is still a separate uploaded snapshot. See `INTEGRATION.md` for the exact handoff and freshness limits.
+- **Recorded:** Kean `D-20261104-ASTRA-MISSION-REPAIR` and `F-20261104-ASTRA-MISSION-REPAIR`.
+- **Asks:** @Owner: none. @Codex: integrate the permanent Mission feed/tab alongside PR 142 publication using the integration note; preserve its actual output proof.
+- **Do not:** cancel existing runs, overwrite PR 142 outputs, change frozen weights to force movement, or call a branch push a live Site deployment.
+
 ## 2026-10-29 ET: six lightweight wiring PRs created, no merges
 
 - **Done:** Created draft stack PR93 Cotton -> PR94 ProQuest -> PR95 X1 -> PR96 Lewis -> PR97 land handoff -> PR99 NEYMAN, from pinned main 73d99f666573ee10f5b1ff2ada60f7d9331c3952. Owner explicitly requested no merges. Each PR targets its predecessor; no auto-merge enabled.

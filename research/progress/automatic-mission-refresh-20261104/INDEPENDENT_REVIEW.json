@@ -1,0 +1,173 @@
+{
+  "schema": "eo-rocket-independent-engineering-review/v1",
+  "reviewed_utc": "2026-11-04T20:59:16.068813+00:00",
+  "reviewer": "independent OpenAI agent; configured model not separately exposed; same-family engineering review",
+  "base_commit": "a3bfac64b3e1c43400a8ed8c744419eb17f6e2e6",
+  "verdict": "approved_with_documented_limits",
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "blocking",
+      "file": ".github/workflows/mission-tests.yml",
+      "problem": "Isolated Python execution cannot import sibling mission module.",
+      "reproduction": "python3 -I jobs/daily-digest/test_mission.py",
+      "observed": "exit 1: ModuleNotFoundError: No module named mission",
+      "fix": "Bootstrap test module path or change isolated test launcher and test exact CI command.",
+      "status": "resolved",
+      "resolution": "Exact CI command changed to isolated unittest discovery, validated successfully."
+    },
+    {
+      "id": "R2",
+      "severity": "blocking",
+      "file": "research/progress/control-center/mission.js",
+      "problem": "Old successful outputs at a newer canonical claim commit are classified current; no current claim/input witness is checked. Same retained generation remains after checker failure blocks digest.",
+      "reproduction": "Load valid JS fixture at ref a*40; reload same output documents with ref c*40.",
+      "observed": {
+        "state": "current",
+        "message": "Mission and tracker sources match at the checked main revision.",
+        "repository_input_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "checked_ref": "cccccccccccccccccccccccccccccccccccccccc"
+      },
+      "fix": "Bind Mission acceptance to consumed canonical input versions at checked main; retain last-good as pending on changed inputs or verification unavailable.",
+      "status": "resolved",
+      "resolution": "Backend requires clean canonical readiness tree and exact same consumed blob map from both checker and tracker manifests. Mission plus refresh receipt carry this tree witness. UI independently resolves current commit research/readiness tree with two nonrecursive API calls, compares witnesses, and retains pending on changed/unknown evidence. Current checker STATUS and census raw bytes are also checked."
+    }
+  ],
+  "checks": [
+    {
+      "command": "python3 -m unittest discover -s jobs/daily-digest -p test_*.py -v",
+      "result": "16 passed"
+    },
+    {
+      "command": "node --test research/progress/control-center/mission.test.js research/progress/control-center/observability-core.test.js",
+      "result": "18 passed"
+    },
+    {
+      "check": "daily-digest input scope comparison",
+      "result": "15659 tracked paths in current and prior scope; zero omitted; dynamic SUMMARY/STATUS/HANDOFF reads retained"
+    },
+    {
+      "check": "pinned-base 784-ready tracker independent retained Capcom calculation",
+      "result": "snapshot equals retained formula: census 14972, goal 16286, done 17175, open 81381, progress .13597, met_hours 14.876"
+    },
+    {
+      "check": "workflow static review",
+      "result": "main-only guard and push; fixed claim-checker/readiness-tracker/daily-digest; existing materializer/transactional runner/publisher; distinct concurrency group cancel-in-progress false; no acquisition or compiler dispatch added"
+    },
+    {
+      "command": "python3 -I .github/scripts/test_result_freshness.py",
+      "result": "37 run: 27 pass, 9 errors missing sparse claim-kit/inputs.txt, 1 failure missing sparse astra-source-retention fixture"
+    },
+    {
+      "command": "python3 -I .github/scripts/test_pick_jobs.py",
+      "result": "22 run: 16 pass, 1 skipped, 5 repository-wiring failures due absent sparse directories/declarations; unchanged files"
+    },
+    {
+      "command": "python3 -I -m unittest discover -s jobs/daily-digest -p test_mission.py -v",
+      "result": "10/10 passed at first repair; subsequent full suite covers final 11 mission tests"
+    },
+    {
+      "command": "python3 -I -m unittest discover -s jobs/daily-digest -p test_*.py -v",
+      "result": "19/19 passed on final combined source"
+    },
+    {
+      "command": "node --test research/progress/control-center/mission.test.js research/progress/control-center/observability-core.test.js",
+      "result": "24/24 passed on final combined source, including new main + unchanged outputs + changed canonical inputs, output-only advance, failed/replaced checker, changed census, missing/truncated/wrong tree, and cached nonrecursive tree reads"
+    },
+    {
+      "command": "node --check research/progress/control-center/app.js; node --check research/progress/control-center/mission.js",
+      "result": "both passed"
+    },
+    {
+      "check": "canonical readiness input closure for both checker and tracker",
+      "result": "713/713 current tracked readiness blobs included in both existing scope declarations; no omitted paths"
+    },
+    {
+      "check": "independent same-day history replacement adversarial probe",
+      "result": "passed: exactly one current-day row, latest actual uncommitted generation retained, prior archival checkpoint preserved"
+    },
+    {
+      "check": "root retained golden-history proof inspected",
+      "path": "/workspace/scratch/bd9cf5121472/mission-history-equivalence.json",
+      "sha256": "cd941bf95ea82108daf0a72b5ffd075bcd61115510b3bff1a47473f31bd7b942",
+      "result": "Root reports original-builder byte equality over 11 actual complete-history checkpoints; 10 archival checkpoints exact. This reviewer inspected proof and independently verified latest arithmetic; did not duplicate full-history replay."
+    }
+  ],
+  "limits": [
+    "No hosted Actions or Windows execution performed by this reviewer.",
+    "No new production readiness, human certification, source/legal adjudication, or cost savings inferred.",
+    "Native positive fixture is synthetic two identities. The native tracker at pinned review base a3bfac64b3e1c43400a8ed8c744419eb17f6e2e6 has 784 ready; this is historical base data, not latest-main readiness.",
+    "Root coordinates Kean registration and handoff; reviewer leaves implementation/index untouched.",
+    "Tokens and cash unavailable.",
+    "Freshness is deliberately scoped: canonical research/readiness tree, current tracker/checker status, exact tracker CSV/summary, census projection, frozen weights and human register. It is not proof that every scientific source, external upstream output, status register outside readiness, or legal conclusion is current.",
+    "A newly failed run that preserves all previously successful outputs and has no observed canonical/input change is not exposed as a separate latest-attempt receipt by this UI; displayed successful generation date remains explicit.",
+    "No browser visual or live GitHub tree API execution was repeated by this reviewer; root owns hosted/browser acceptance.",
+    "Reporting runs on canonical readiness, exact census/status, model/workflow changes, explicit dispatch, and completion of main same-repository Run jobs. Other manually committed upstream-source changes continue through the existing sweep routes."
+  ],
+  "sha256": {
+    ".github/workflows/mission-tests.yml": "8914a13a45ff7dfc03ba602b7d429de1792f56df59d6e14c4cd154245f55b19b",
+    ".github/workflows/refresh-readiness.yml": "d3cae7171e78545d200e1e64dc52ce5721023cf324380198affc584327fb88dd",
+    ".github/workflows/road-tests.yml": "d6cd9a129d044550490e40a08cef506f2533a293ed38735132d8c523866e5924",
+    "jobs/daily-digest/inputs.txt": "65c865f393a785f1e69d00f27898d5ede24a5470c941927e87c0e752eca8325c",
+    "jobs/daily-digest/job.py": "dea64915664e43c0c65c1824c3e31e760595d7f8832f903cc96da54b19220d85",
+    "jobs/daily-digest/mission.py": "c9ac1232b27eb5a94072dc11ea036bbe77652b2281132bab50a69f430e1aa7e3",
+    "jobs/daily-digest/test_mission.py": "e12c949650f5b20ffd46880acf0b1fb178c59c1c6afe59563f6b55420188c2ed",
+    "jobs/daily-digest/triggers.txt": "0f7ff893b68535519ed014292cfc4240b87932320e117f91baf3e32fa8027b9d",
+    "research/progress/control-center/README.md": "ed0948bfab56e5351ad3944679343def4699aaad22021ac2229028f130062480",
+    "research/progress/control-center/app.js": "a61b6af1fdc707e46900314e8493ed883673a5cee667f60cfe7511ebd12f5458",
+    "research/progress/control-center/index.html": "d286769ffa61845bcc1d8556670c2d2974a7f063e9d01c4fdfe37edec7a38864",
+    "research/progress/control-center/mission.css": "e5da697288631c6c106b298a4ec905f87c1669ad63b492843baeb0279f23455d",
+    "research/progress/control-center/mission.js": "34abe7c7f67c1eb290e5a3c76dc60cb96d6a6f49be257914dbc8da3826d46a44",
+    "research/progress/control-center/mission.test.js": "d0adb787190aaa48e4d5dc5113ddb6a0955871f08ca1ffc8895b58f2e2dfae26",
+    "research/progress/remaining-work/build_mission_log.py": "7190afec96dbfc7815035b88f078bab58c9850576f72f4485682749a02da0a39"
+  },
+  "initial_review": {
+    "path": "/workspace/scratch/bd9cf5121472/rocket-review-initial.json",
+    "sha256": "82041525ef24cdfea1b82a4c8eab5430085a257ef674a9b1387f74e12de8f7a9",
+    "verdict": "changes_requested",
+    "both_findings_resolved": true
+  },
+  "completion_trigger_review": {
+    "verdict": "approved",
+    "source": ".github/workflows/refresh-readiness.yml",
+    "sha256": "d3cae7171e78545d200e1e64dc52ce5721023cf324380198affc584327fb88dd",
+    "prior_review_path": "/workspace/scratch/bd9cf5121472/rocket-review-before-completion-trigger.json",
+    "prior_review_sha256": "d1dbd381850d4660d2946ff291917d8a4e5bc191369033ee8242ebae0ae01cb3",
+    "reason": "General Run jobs push intentionally selects edited jobs only and GITHUB_TOKEN output commits do not trigger push workflows. The completed upstream workflow trigger closes this real publication gap.",
+    "reviewed_controls": [
+      "Only Run jobs completed events on main; job additionally requires main ref, upstream main head branch, and matching head repository.",
+      "Always checkout trusted latest refs/heads/main; no upstream head checkout, downloaded artifact, or upstream cache consumed.",
+      "Refresh after failed as well as successful upstream completion because runner can publish independent successes despite overall failure.",
+      "Fixed checker/tracker/digest job list; distinct workflow name and concurrency group, cancel-in-progress false; no acquisition/compiler dispatch or recursion.",
+      "Publisher branch explicitly main; existing transactional freshness checks remain unchanged.",
+      "Exact census projection and provisional-status register push paths added.",
+      "Per-process GITHUB_SHA rebound to actual checked-out HEAD before running native jobs; reserved GITHUB_ENV is not rewritten.",
+      "Concurrency is job-scoped after the trusted-main guard, fixed readiness-publication-main with cancellation false; untrusted skipped jobs do not join the shared pending group."
+    ],
+    "native_probe": {
+      "result": "passed",
+      "method": "Execute exact YAML run step against existing native FreshnessTests runner fixture with event SHA older than checked-out second commit.",
+      "event_sha": "e57b817d4b98d65ff78863f077b78001b154a714",
+      "checked_out_head": "bc14cc3181861cef08323b4a4fec3dc007880a63",
+      "status_commit_run": "bc14cc3181861cef08323b4a4fec3dc007880a63",
+      "manifest_base_commit": "bc14cc3181861cef08323b4a4fec3dc007880a63",
+      "output": "Native job consumed newer committed input successfully.",
+      "final_workflow_note": "The exact run-step shell tested remains unchanged in the final job-concurrency revision."
+    },
+    "documentation_sources": [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run",
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow"
+    ],
+    "limitations": [
+      "Hosted workflow_run event delivery was not executed locally.",
+      "Completion hooks require this workflow file to be on default branch.",
+      "Concurrent unrelated input changes may still cause transactional publication refusal; queued completion reads latest main and remains the recovery path.",
+      "A general Run jobs invocation that already executed the reporting trio can cause one redundant deterministic trio after completion. No sound cheap existing freshness-skip API was established. This bounded duplicate does not start acquisition or compilers and is not a performance-saving claim."
+    ]
+  },
+  "base_advance_notice": {
+    "reported_by": "coordinator",
+    "new_main": "5289ac5aad4b9e96ef156095081f5572669c5d84",
+    "context": "PR142 reported merged externally during review; 784 belongs to review base only. Rebase/integration onto newer main belongs to coordinator and is outside this exact-source pre-rebase review."
+  }
+}
