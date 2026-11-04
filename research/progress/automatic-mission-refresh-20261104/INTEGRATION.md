@@ -3,8 +3,8 @@
 ## Ownership
 
 This branch owns the permanent reporting adapter, reporting trigger, Mission tab,
-and offline regressions. Concurrent PR 142 owns the one-time Tribonian readiness
-reconciliation, its native outputs, and its current publication session. The
+and offline regressions. PR 142 merged separately and published 1,331 ready dossiers. Its session owns the
+one-time Tribonian reconciliation, native output evidence, and its publication work. The
 changed file lists were disjoint when checked on November 4. Do not overwrite its
 outputs, cancel its workflows, or restart its recount to test this UI repair.
 
