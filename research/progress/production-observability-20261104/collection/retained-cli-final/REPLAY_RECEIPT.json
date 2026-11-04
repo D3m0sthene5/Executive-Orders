@@ -1,0 +1,80 @@
+{
+  "schema": "sol.collection-cli-replay/1",
+  "scope": "synthetic engineering acceptance; no historical provider calls or production gains",
+  "base_commit": "54db2cf5948d7c0cdd91c8f66a96349224aee6a1",
+  "started_utc": "2026-11-04T09:44:56.449018+00:00",
+  "finished_utc": "2026-11-04T09:44:56.624446+00:00",
+  "elapsed_seconds": 0.1754270390010788,
+  "commands": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/c2e28a9091fb/eo-observability/jobs/hamilton-token-audit/profile.py",
+        "/workspace/scratch/c2e28a9091fb/eo-observability/research/progress/production-observability-20261104/collection/retained-cli-final/fixture-repo/worker.output",
+        "--label",
+        "synthetic",
+        "--production-metadata",
+        "/workspace/scratch/c2e28a9091fb/eo-observability/research/progress/production-observability-20261104/collection/retained-cli-final/fixture-repo/metadata.json",
+        "--out",
+        "/workspace/scratch/c2e28a9091fb/eo-observability/research/progress/production-observability-20261104/collection/retained-cli-final/fixture-repo/normalized"
+      ],
+      "elapsed_seconds": 0.09595688700210303,
+      "exit_code": 0,
+      "stdout": "{\n \"label\": \"synthetic\",\n \"events\": 2,\n \"model_calls\": 1,\n \"cost_units\": 58,\n \"unit\": \"input-token equivalents\"\n}\n 99.2%        58.0  model continuing\n  0.9%         0.5  fixed setup (system prompt, tools, rules)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "/workspace/scratch/c2e28a9091fb/eo-observability/jobs/neyman/diagnose.py",
+        "--repo",
+        "/workspace/scratch/c2e28a9091fb/eo-observability/research/progress/production-observability-20261104/collection/retained-cli-final/fixture-repo",
+        "--manifest",
+        "IMPORT.json",
+        "--out",
+        "/workspace/scratch/c2e28a9091fb/eo-observability/research/progress/production-observability-20261104/collection/retained-cli-final/native-diagnosis"
+      ],
+      "elapsed_seconds": 0.07505524800217245,
+      "exit_code": 0,
+      "stdout": "{\"censored_orders\": 0, \"completion_machine_seconds_lower_bound\": 0, \"completion_machine_seconds_total\": null, \"completion_occupied_wall_seconds\": null, \"diagnoses\": {\"requires_scoped_assessment\": 2}, \"failed_completion_invocations\": 0, \"net_hours_saved\": null, \"observed_orders\": 2, \"population_inference_supported\": false, \"primary_cost_bottleneck\": \"not_identified_with_available_effort_coverage\", \"ready_in_isolated_replay\": 0, \"research_attempts\": 2, \"reviewed_partials\": 0, \"reviewed_whole_case_proposals\": 0, \"total_agent_hours\": null, \"unique_completion_invocations\": 0, \"verified_savings\": false, \"worker_effort_coverage\": \"partial_observed_intervals\"}\n",
+      "stderr": ""
+    }
+  ],
+  "implementation_sha256": {
+    "jobs/hamilton-token-audit/profile.py": "865b6b9152496b649febd82f321764d19c29d0a5cc6ede1817c5f4f197a93971",
+    "jobs/neyman/diagnose.py": "aba82132ad518a3e69a7dceda83d932628b7ef114a470b1de3cf95c72adb96ca",
+    "jobs/neyman/production_receipts.py": "b43f5bfffee891afbb8ecd7b1c32a875f33a348b0f28c0b65911ae57f145f0c6",
+    "jobs/neyman/survey.py": "e16592067dfa8cfeb383d156057c231bd7abec3b9077b1afbafe4c001efedc14"
+  },
+  "collector": {
+    "elapsed_seconds": 0.007289774999662768,
+    "input_bytes": 1112,
+    "input_files": 1,
+    "input_pins": [
+      {
+        "sha256": "e71dc71c605d3f350ad0f2f91d53c0972ad0b7cbaea8c243878dff760e8ee4d8",
+        "bytes": 1112
+      }
+    ],
+    "model_calls": 0,
+    "scope": "offline load, normalize and hash; excludes output serialization",
+    "worker_active_seconds": null
+  },
+  "normalized_observed_tokens": {
+    "input_uncached": 3,
+    "cache_read": 5,
+    "cache_write": 7,
+    "output": 11,
+    "reasoning": 4
+  },
+  "shared_calls_counted": 1,
+  "ready_gain": 0,
+  "cost_per_new_ready_dossier": null,
+  "cost_per_new_ready_reason": "undefined with zero newly ready dossiers",
+  "historical_labor_measured": false,
+  "model_calls": 0,
+  "tokens_used_by_engineering_session": null,
+  "cash_charge_usd": null
+}

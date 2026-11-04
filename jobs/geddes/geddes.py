@@ -434,6 +434,7 @@ def _later_events_view(dossier):
     citable = []
     for ident, record in sorted(evidence.items()):
         if not isinstance(record, dict) or ident.startswith(("CLAUSES:", "TERM:", "ORIGINAL:")): continue
+        if record.get("role") == "reviewed_occurrence_interval": continue
         actor = record.get("actor_id")
         by_actor[actor].append(ident)
         source = record.get("actor_source") or record.get("source")
@@ -463,7 +464,7 @@ def _packet_side_file(packet_path, name):
     return None
 
 
-def _clause_inventory_view(dossier, iid, packet_path):
+def _clause_inventory_view(dossier, iid, packet_path, context=None):
     obligations = {o.get("scope_id"): o for o in dossier.get("lifecycle_obligations") or [] if isinstance(o, dict)}
     rows = []
     for clause in dossier.get("clauses") or []:
@@ -486,14 +487,17 @@ def _clause_inventory_view(dossier, iid, packet_path):
     shared = {}
     rationales = _packet_side_file(packet_path, "RATIONALES.json")
     if rationales:
-        try: shared = read_json(rationales)
+        try: shared = context.json(rationales) if context else read_json(rationales)
         except (OSError, ValueError): shared = {}
     def resolve(value):
         if isinstance(value, str) and value.startswith("@rationale:") and isinstance(shared.get(value.split(":", 1)[1]), str):
             return shared[value.split(":", 1)[1]]
         return value
-    with sheet.open(encoding="utf-8-sig", newline="") as f:
-        mine = [r for r in csv.DictReader(f) if r.get("instrument_id") == iid]
+    if context:
+        mine = context.clause_rows(sheet, iid)
+    else:
+        with sheet.open(encoding="utf-8-sig", newline="") as f:
+            mine = [r for r in csv.DictReader(f) if r.get("instrument_id") == iid]
     known = {c.get("scope_id") for c in dossier.get("clauses") or [] if isinstance(c, dict)}
     drafts = [{"scope_id": r.get("scope_id"), "in_dossier_inventory": r.get("scope_id") in known, "state": r.get("state"),
                "end_id": r.get("end_id"), "effective_date": r.get("effective_date"), "mechanism": r.get("mechanism"),
@@ -514,18 +518,79 @@ def _shrink_strings(value, limit):
     return value
 
 
-def _canonical_claim_view(iid, repo, full_claim=False):
-    """Latest claim for the order across research/readiness/claims, resolved as batch.owners does (last file, last line)."""
-    found = None
+def _claim_records(repo, iids):
+    """One ordered scan, preserving the single-order filename/physical-line rule."""
+    found = {}
+    selected = set(iids)
+    needles = tuple(json.dumps(iid) for iid in selected)
     folder = Path(repo) / "research/readiness/claims"
-    needle = json.dumps(iid)
     for path in sorted(folder.glob("*.jsonl")) if folder.is_dir() else []:
         for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-            if needle not in line: continue
+            if not any(needle in line for needle in needles): continue
             try: claim = json.loads(line)
             except ValueError: continue
-            if isinstance(claim, dict) and claim.get("instrument_id") == iid:
-                found = (path, n, claim)
+            if isinstance(claim, dict) and isinstance(claim.get("instrument_id"), str) and claim["instrument_id"] in selected:
+                found[claim["instrument_id"]] = (path, n, claim)
+    return found
+
+
+class _ViewContext:
+    """Invocation-local shared presentation inputs; never a source-verification cache.
+
+    Source checks still read and hash the actual held file for every order.
+    Side sheets and current claims describe a single invocation's snapshot.
+    """
+    def __init__(self, packet_path, repo, iids):
+        self.packet_path = Path(packet_path)
+        self.repo = Path(repo).resolve()
+        self.packet = read_json(self.packet_path)
+        native = self.packet.get("schema") == batch.SCHEMA or bool(re.fullmatch(r"[0-9a-f]{64}", str(self.packet.get("fingerprint", ""))))
+        if native:
+            if self.packet.get("schema") != batch.SCHEMA:
+                raise ValueError("changed work package: native schema missing")
+            # Native frozen-envelope integrity, without pretending that a slim
+            # source view has rerun every current preparation/review gate.
+            unsigned = {k: v for k, v in self.packet.items() if k != "fingerprint"}
+            if (self.packet.get("fingerprint") != batch.canonical_sha(unsigned)
+                    or any(not isinstance(self.packet.get(k), dict) for k in
+                           ("dossiers", "sources", "text_blocks", "shared_objects", "held_text_file_pins"))):
+                raise ValueError("changed work package")
+        self.dossiers = batch.decode(self.packet)
+        for iid in iids:
+            if iid not in self.dossiers: raise KeyError(f"{iid} is not in packet")
+        if self.packet.get("reviewed_histories") is not None:
+            from history_context import verify
+            from assemble import CUTOFF
+            if self.packet.get("legal_cutoff") != CUTOFF:
+                raise ValueError("reviewed history cutoff differs from project cutoff")
+            verify(self.repo, list(self.dossiers), self.packet["reviewed_histories"], CUTOFF)
+        self.claims = _claim_records(self.repo, iids)
+        self.packet_bytes = self.packet_path.stat().st_size
+        self.jsons, self.sheets, self.memos = {}, {}, {}
+        self.body_cache = {}  # SC._verified always rehashes, even on cache hits.
+
+    def json(self, path):
+        if path not in self.jsons: self.jsons[path] = read_json(path)
+        return self.jsons[path]
+
+    def clause_rows(self, path, iid):
+        if path not in self.sheets:
+            rows = defaultdict(list)
+            with path.open(encoding="utf-8-sig", newline="") as f:
+                for row in csv.DictReader(f): rows[row.get("instrument_id")].append(row)
+            self.sheets[path] = rows
+        return self.sheets[path].get(iid, [])
+
+    def memo(self, path):
+        if path not in self.memos:
+            raw = path.read_bytes()
+            self.memos[path] = (_markdown_sections(raw.decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")), hashlib.sha256(raw).hexdigest())
+        return self.memos[path]
+
+
+def _canonical_claim_view(iid, repo, full_claim=False, claims=None):
+    """Latest claim for the order across research/readiness/claims, resolved as batch.owners does (last file, last line)."""
+    found = (claims if claims is not None else _claim_records(repo, [iid])).get(iid)
     if found is None:
         return {"found": False, "note": "No filed claim for this order under research/readiness/claims."}
     path, n, claim = found
@@ -557,11 +622,35 @@ def view_summary(compact):
 
 
 def view(packet_path: Path, eo: str, write: Path | None = None, repo: Path | None = None, full_claim: bool = False):
-    repo = Path(repo or REPO).resolve()
-    packet = read_json(packet_path); dossiers = batch.decode(packet)
     iid = eo if eo.startswith("EO:") else "EO:" + eo
-    dossier = dossiers.get(iid)
-    if dossier is None: raise KeyError(f"{iid} is not in packet")
+    context = _ViewContext(packet_path, repo or REPO, [iid])
+    return _view_one(context, iid, write, full_claim)
+
+
+def view_many(packet_path: Path, eos, write_dir: Path | None = None, repo: Path | None = None, full_claim: bool = False):
+    """Render exact ordinary views with shared setup, in the requested order.
+
+    No cross-invocation state, model-facing deduplication or additional caps.
+    Validate all members and filenames before creating any output.
+    """
+    iids = [eo if eo.startswith("EO:") else "EO:" + eo for eo in eos]
+    if not iids: raise ValueError("at least one order is required")
+    if len(set(iids)) != len(iids): raise ValueError("duplicate order in view request")
+    destinations = [None] * len(iids)
+    if write_dir is not None:
+        # Match build.filename for ordinary EO identifiers; reject path syntax.
+        if any(not re.fullmatch(r"EO:[0-9]+[A-Za-z0-9_-]*", iid) for iid in iids):
+            raise ValueError("unsafe order identifier for view filename")
+        destinations = [Path(write_dir) / (iid.replace(":", "_") + ".view.json") for iid in iids]
+        if any(destination.exists() or destination.is_symlink() for destination in destinations):
+            raise ValueError("view destination exists; refusing overwrite")
+    context = _ViewContext(packet_path, repo or REPO, iids)
+    return [_view_one(context, iid, destination, full_claim) for iid, destination in zip(iids, destinations)]
+
+
+def _view_one(context, iid, write, full_claim):
+    packet_path, repo = context.packet_path, context.repo
+    packet, dossier = context.packet, context.dossiers[iid]
     keep = {"instrument_id", "title", "signing_date", "whole_order_status", "original_source_id", "clauses", "missing", "fingerprint"}
     compact = {k: dossier[k] for k in keep if k in dossier}
     evidence = dossier.get("evidence", {})
@@ -569,7 +658,7 @@ def view(packet_path: Path, eo: str, write: Path | None = None, repo: Path | Non
     original_meta = evidence.get(dossier.get("original_source_id"), {}).get("source", {})
     compact["target_source_metadata"] = {k: original_meta.get(k) for k in ("instrument_id", "page_or_item", "signing_date", "filing_date", "grade", "url") if k in original_meta}
     original = evidence.get(dossier.get("original_source_id"), {})
-    body, body_source, body_gap = SC._own_body({"instrument_id": iid, "claim_kit": {}}, dossier, repo, {})
+    body, body_source, body_gap = SC._own_body({"instrument_id": iid, "claim_kit": {}}, dossier, repo, context.body_cache)
     if body is None:
         compact["own_original_text"], partial_scope = bounded_own_text(dossier)
         compact["own_text_boundary"] = {"verified_whole_order": False, "scope": partial_scope, "coverage_gap": body_gap}
@@ -586,12 +675,12 @@ def view(packet_path: Path, eo: str, write: Path | None = None, repo: Path | Non
     lookup_path = packet_dir / "LOOKUPS.json"
     if not lookup_path.is_file(): lookup_path = packet_dir.parent / "LOOKUPS.json"
     if lookup_path.is_file():
-        lookup = read_json(lookup_path)
+        lookup = context.json(lookup_path)
         compact["lookup_leads"] = lookup.get("members", {}).get(iid, {})
     details_path = packet_dir / "LOOKUPS.details.json"
     if not details_path.is_file(): details_path = packet_dir.parent / "LOOKUPS.details.json"
     if details_path.is_file():
-        details = read_json(details_path)
+        details = context.json(details_path)
         compact["bounded_name_search"] = details.get("members", {}).get(iid, {})
         cov = details.get("corpus", {}).get("coverage", {})
         compact["lookup_corpus_scope"] = {k: (len(cov[k]) if isinstance(cov.get(k), (list, dict)) else cov.get(k)) for k in (
@@ -604,24 +693,33 @@ def view(packet_path: Path, eo: str, write: Path | None = None, repo: Path | Non
     if batch_name:
         memo = repo / "research/excavator/claude-nira-sweep-2026-10-29/SHARED_ANALYSIS.md"
         if memo.is_file():
-            sections = _markdown_sections(memo.read_text(encoding="utf-8"))
+            sections, memo_sha = context.memo(memo)
             selected = ["Conclusion", "Events that do not end a code approval", "What each order still needs"]
             title = str(dossier.get("title", ""))
             if re.search(r"\b(?:denial|denies|dismiss|exemption)\b", title, re.I):
                 selected.append("Denials of exemption and other one-time determinations")
-            compact["shared_analysis_memo"] = {"path": str(memo.relative_to(repo)), "sha256": hashlib.sha256(memo.read_bytes()).hexdigest(),
+            compact["shared_analysis_memo"] = {"path": str(memo.relative_to(repo)), "sha256": memo_sha,
                 "sections": {h: sections[h] for h in selected if h in sections},
                 "scope_note": "Batch-level shared context. It makes no order-specific determination; read this order's own text and sources."}
         else:
             compact["shared_analysis_memo"] = {"missing": "SHARED_ANALYSIS.md not available", "coverage_gap": True}
     compact["machine_searches"] = _machine_searches_view(dossier)
     compact["later_events_chain"] = _later_events_view(dossier)
-    compact["clause_inventory"] = _clause_inventory_view(dossier, iid, packet_path)
-    compact["current_canonical_claim"] = _canonical_claim_view(iid, repo, full_claim)
+    compact["clause_inventory"] = _clause_inventory_view(dossier, iid, packet_path, context)
+    compact["current_canonical_claim"] = _canonical_claim_view(iid, repo, full_claim, context.claims)
+    if packet.get("reviewed_histories") is not None:
+        from history_context import for_order
+        compact["reviewed_histories"] = for_order(packet["reviewed_histories"], iid)
+    if dossier.get("factual_interval_ids") or any(isinstance(e, dict) and e.get("role") == "reviewed_occurrence_interval" for e in evidence.values()):
+        import factual_events as F
+        compact["reviewed_occurrence_intervals"] = {
+            "records": {eid: e for eid, e in evidence.items() if isinstance(e, dict) and e.get("role") == "reviewed_occurrence_interval"},
+            "observations": F.observations_at(dossier, packet.get("legal_cutoff", F.MODEL.CUTOFF), repo=repo),
+            "notice": "Reviewed factual occurrence intervals only; no text-version, legal-effect or whole-order approval. Event dates and legal endings remain separate."}
     compact["view_caps"] = dict(VIEW_CAPS)
     compact["packet_fingerprint"] = packet.get("fingerprint")
     compact_bytes = len(json.dumps(compact, ensure_ascii=False).encode("utf-8"))
-    packet_bytes = Path(packet_path).stat().st_size
+    packet_bytes = context.packet_bytes
     compact["view_bytes"] = compact_bytes
     compact["approx_view_tokens"] = (compact_bytes + 3) // 4
     compact["approx_full_packet_tokens"] = (packet_bytes + 3) // 4
@@ -904,6 +1002,10 @@ def main(argv=None):
     x.add_argument("applied", type=Path); x.add_argument("--resolutions", type=Path); x.add_argument("--repo", type=Path, default=REPO)
     x = sub.add_parser("view"); x.add_argument("packet", type=Path); x.add_argument("eo"); x.add_argument("--write", type=Path); x.add_argument("--repo", type=Path, default=REPO)
     x.add_argument("--full-claim", action="store_true", help="include the current filed claim without shortening long strings")
+    x = sub.add_parser("views", help="render several ordinary order views with one shared setup")
+    x.add_argument("packet", type=Path); x.add_argument("eos", nargs="+")
+    x.add_argument("--write-dir", type=Path); x.add_argument("--repo", type=Path, default=REPO)
+    x.add_argument("--full-claim", action="store_true")
     x = sub.add_parser("cost", help="summarize one telemetry CSV, or compare it (as NEW) against --compare BASELINE")
     x.add_argument("telemetry", type=Path, metavar="TELEMETRY_OR_NEW.csv"); x.add_argument("--filed-manifest", type=Path)
     x.add_argument("--compare", type=Path, metavar="BASELINE.csv"); x.add_argument("--filed-baseline", type=Path); x.add_argument("--filed-new", type=Path)
@@ -920,9 +1022,11 @@ def main(argv=None):
                 for u in result["unresolved"]:
                     print(f"UNRESOLVED {u['flag_id']} {u['instrument_id']} {u['code']}: {u['detail']}", file=sys.stderr)
         elif a.cmd == "view": result = view(a.packet, a.eo, a.write, a.repo, a.full_claim)
+        elif a.cmd == "views": result = view_many(a.packet, a.eos, a.write_dir, a.repo, a.full_claim)
         elif a.compare: result = cost_compare(a.compare, a.telemetry, a.filed_baseline, a.filed_new)
         else: result = cost(a.telemetry, a.filed_manifest)
         printed = view_summary(result) if a.cmd == "view" and a.write else result
+        if a.cmd == "views" and a.write_dir: printed = [view_summary(v) for v in result]
         print(json.dumps(printed, ensure_ascii=False, indent=2))
         return code
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:

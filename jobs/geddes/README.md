@@ -73,6 +73,41 @@ true total and whether it was cut. A filed claim larger than 20,000 bytes has st
 characters shortened and says so; `--full-claim` keeps them whole. With `--write`, the full view goes only to
 the file and standard output shows a short summary (sizes, section bounds and the claim's path).
 
+For a producer assigned several members of one packet, render their ordinary views
+in one process:
+
+```sh
+python3 -I jobs/geddes/geddes.py views research/excavator/<batch>/packet/PACKET.json EO:1234A EO:1235 --write-dir /tmp/assigned-views
+```
+
+The command writes `EO_1234A.view.json` and `EO_1235.view.json`, with the same
+content and caps as separate `view` calls, and prints only summaries. Without
+`--write-dir` it prints an ordered JSON list of the complete views. `--full-claim`
+keeps filed-claim strings whole for every member. All requested members are checked
+before output starts; duplicate members and existing output files or symlinks are rejected. The Python interface is
+`view_many(packet_path, eos, write_dir=None, repo=None, full_claim=False)`.
+
+This shares packet decoding, current-claim selection, side-sheet parsing and shared
+memo reads only for that invocation. Actual held sources are still read and hashed
+for each member, so a changed source cannot be hidden by the shared presentation
+context. Native packet schemas (or a native-sized 64-hex fingerprint) require
+an intact native envelope hash and codec maps. Historical schema-less exports
+without that fingerprint remain navigable with their original dossier/source
+checks; they carry no native envelope verification. This rendering check does
+not rerun the full production preparation, ownership and prior-research gates.
+Member scopes, source pointers, coverage qualifications and overflow bounds
+stay identical. This does not remove existing view caps: consult the pinned packet,
+source files and the indicated claim path/line for complete material beyond a cap.
+Optional reviewed provision histories are live-validated once and scoped to each
+member, with unknowns, independent review limits and source dependencies intact.
+Reviewed factual occurrence intervals retain their full source marker and distinct
+occurrence/observational scope; they are revalidated per member and are excluded
+from the citable legal-actor catalogue. Changed sources/reviews refuse the new
+context rather than silently presenting stale research. Nothing is cached between commands. The output is the same size as the ordinary
+views; model-token and cash savings have not been measured. A retained 23-order
+rendering benchmark and exact parity checks are recorded in
+`research/progress/sol-evidence-economy/batch-views/`.
+
 `cost` aggregates the columns actually present in a telemetry CSV by track,
 role, and model. Per-filed-claim values require a sibling `REPORT.md`
 with explicit track counts or a `--filed-manifest` JSON sidecar such as

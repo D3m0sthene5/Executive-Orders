@@ -1,0 +1,75 @@
+{
+  "schema": "research-only-interval-candidate-replay/v1",
+  "source_commit": "c733e69dbd0fa1e57a1f2614a33d77bdd600f122",
+  "question": {
+    "schema": "norton-question/v1",
+    "entity_id": "Secretary of the Interior acting pursuant to EO:13792",
+    "object": "Final Report assessing 27 national monuments",
+    "scope": "submission for Presidential consideration",
+    "origin": "machine_extracted",
+    "interval_start": "2017-04-26",
+    "interval_end": "2026-10-14",
+    "event_kind": "report_delivery",
+    "proposition": "Did the Secretary submit the Final Report identified in the DOI testimony for consideration to the President?",
+    "question_key": "NQ:805072362d29a3634da27c0482b492f977513971c5630d176651d672d8188ee3"
+  },
+  "candidate": {
+    "schema": "norton-occurrence-evidence/v2",
+    "question_key": "NQ:805072362d29a3634da27c0482b492f977513971c5630d176651d672d8188ee3",
+    "entity_id": "Secretary of the Interior acting pursuant to EO:13792",
+    "event_kind": "report_delivery",
+    "event_date": null,
+    "source": {
+      "url": "https://www.doi.gov/node/26508",
+      "page_or_item": "H.R. 4532 testimony, Background",
+      "sha256": "5960e47c7c1e1dce79cf2ac8d55f26a9042e150f66a04443e7990678af82fc19",
+      "text_sha256": "98f68af21a5735f965c77e58ccfb72060907c99bbd175a63a9936932714825c7",
+      "raw_path": "research/production/astra-portfolio-repair-2026-10-20/panizzi/live-probe/files/5960e47c7c1e1dce79cf2ac8d55f26a9042e150f66a04443e7990678af82fc19.html",
+      "text_path": "research/production/astra-portfolio-repair-2026-10-20/panizzi/live-probe/texts/queue_EO_13792_Astra_portfolio_DOI_congressional_testimony_concerning_EO_13792_b46d370fb0.txt",
+      "primary": true,
+      "retrieved_utc": "2026-10-20T15:52:45Z",
+      "route": "given/given",
+      "edition": "DOI January 30, 2018 written testimony, retained HTML"
+    },
+    "text": "In response to strong local concerns about egregious past abuses of the Act, President Trump signed Executive Order 13792 on April 26, 2017, which tasked the Secretary to conduct a review of all Presidential designations or expansions of designations under the Antiquities Act since January 1, 1996, that exceeded 100,000 acres, or any others that were made without coordination and outreach to the public. The Secretary, in accordance with the Executive Order, submitted two reports for consideration to the President. The first was an Interim Report specifically addressing the Bears Ears National Monument. The Final Report features an assessment of 27 monuments, which was informed by travel to eight monument sites; dozens of meetings with stakeholders, ranging from tribal, local, and state officials to conservation organizations; and the first ever formal comment period tied to the Antiquities Act.",
+    "char_start": 3792,
+    "char_end": 4699,
+    "occurrence_interval": {
+      "occurrence": "established",
+      "start": "2017-04-26",
+      "end": "2018-01-30",
+      "start_basis": {
+        "witness": "occurrence_span",
+        "reason": "The same paragraph places the submission in accordance with this specific order, signed April 26, 2017. Issuance only bounds the event below."
+      },
+      "end_basis": {
+        "witness": {
+          "source": {
+            "url": "https://www.doi.gov/node/26508",
+            "page_or_item": "H.R. 4532 testimony, Background",
+            "sha256": "5960e47c7c1e1dce79cf2ac8d55f26a9042e150f66a04443e7990678af82fc19",
+            "text_sha256": "98f68af21a5735f965c77e58ccfb72060907c99bbd175a63a9936932714825c7",
+            "raw_path": "research/production/astra-portfolio-repair-2026-10-20/panizzi/live-probe/files/5960e47c7c1e1dce79cf2ac8d55f26a9042e150f66a04443e7990678af82fc19.html",
+            "text_path": "research/production/astra-portfolio-repair-2026-10-20/panizzi/live-probe/texts/queue_EO_13792_Astra_portfolio_DOI_congressional_testimony_concerning_EO_13792_b46d370fb0.txt",
+            "primary": true,
+            "retrieved_utc": "2026-10-20T15:52:45Z",
+            "route": "given/given",
+            "edition": "DOI January 30, 2018 written testimony, retained HTML"
+          },
+          "text": "January 30, 2018",
+          "char_start": 2113,
+          "char_end": 2129
+        },
+        "reason": "The dated testimony expressly describes the two submissions in the past tense. Its date bounds the fact above; it is not an observed date of delivery."
+      }
+    },
+    "id": "NE:df1b7063abf29f026d7a805fdc7be2656a06c68227f0c75b638e5643e46765fa"
+  },
+  "producer": "sol-intervals",
+  "evidence_errors": [],
+  "independent_review": null,
+  "legal_effect": "unresolved",
+  "whole_order_status_proposed": false,
+  "source_qualified_scope": "Single retained witness; conservative inclusive bounds, not a representation of the narrowest bounds obtainable from other sources. Exact final transmission/receipt, version, routing, complete performance, savings, and first ending remain unestablished. Distinguish the interim report, which has separate leads.",
+  "next_step": "Examine the exact final transmittal, recipient logs and transmitted version; see sibling casework comparison of the August 24 draft and December public release. Obtain independent question/answer and clause examination. Neither release alone dates final submission. The casework desk found Senate testimony stating December 2017: request exact official bytes and review that narrower factual interval; do not silently replace this single-witness candidate."
+}

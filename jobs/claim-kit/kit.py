@@ -143,12 +143,19 @@ def main(argv=None):
     p.add_argument('--repo',type=Path,default=HERE.parents[1]);p.add_argument('--output',type=Path)
     sub=p.add_subparsers(dest='command',required=True)
     sub.add_parser('build')
+    from blind_verify import add_arguments as blind_arguments
+    blind_arguments(sub.add_parser('blind-verify',help='check explicit blinded inputs; no legal verdict'))
     s=sub.add_parser('next');s.add_argument('--agent',required=True);s.add_argument('--n',type=int,default=20);s.add_argument('--exclude',type=Path);s.add_argument('--scope',choices=('all','decided','undecided'),default='all')
     for cmd in ('dossier','sheet'):
         s=sub.add_parser(cmd);s.add_argument('instrument_id');s.add_argument('--agent',default='');s.add_argument('--write',type=Path)
     s=sub.add_parser('history');s.add_argument('instrument_id');s.add_argument('--full',action='store_true')
+    s=sub.add_parser('history-at',help='MAITLAND: query an independently reviewed provision history; research only');s.add_argument('bundle',type=Path);s.add_argument('--provision',required=True);s.add_argument('--on',required=True);s.add_argument('--write',type=Path)
+    s=sub.add_parser('history-check',help='validate a bounded MAITLAND research bundle');s.add_argument('bundle',type=Path)
+    s=sub.add_parser('history-impact',help='use Valla to identify historical answers requiring revalidation');s.add_argument('results',type=Path);s.add_argument('--changed',type=Path,required=True);s.add_argument('--write',type=Path)
+    s=sub.add_parser('factual-at',help='query reviewed bounded occurrence facts, not legal state');s.add_argument('packet',type=Path);s.add_argument('--order',required=True);s.add_argument('--on',required=True)
     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
-    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true')
+    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--history-bundle',type=Path,action='append',default=[]);s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
+    s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path)
     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path);s.add_argument('--geddes-strict',action='store_true',help='exit nonzero unless every Geddes lint flag has a resolution (geddes gate)')
     s=sub.add_parser('complete');s.add_argument('manifest',type=Path);s.add_argument('--write',type=Path,required=True);s.add_argument('--publish',action='store_true')
@@ -158,6 +165,7 @@ def main(argv=None):
         s.add_argument('--diagnostic-'+key,action='append',default=[])
     s=sub.add_parser('publication-audit');g=s.add_mutually_exclusive_group();g.add_argument('--base',default='origin/main');g.add_argument('--merge-commit')
     s=sub.add_parser('view');s.add_argument('packet',type=Path);g=s.add_mutually_exclusive_group();g.add_argument('--order');g.add_argument('--source')
+    s=sub.add_parser('views');s.add_argument('packet',type=Path);s.add_argument('orders',nargs='+');s.add_argument('--slim',action='store_true');s.add_argument('--full-claim',action='store_true');s.add_argument('--write-dir',type=Path)
     s=sub.add_parser('overlay-prepare');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-review-sheet');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--reviewer',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-propose');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--review',type=Path,required=True);s.add_argument('--lifecycle-sheet',type=Path);s.add_argument('--write',type=Path,required=True)
@@ -169,6 +177,9 @@ def main(argv=None):
     s=sub.add_parser('release');s.add_argument('--agent',required=True);s.add_argument('instrument_ids',nargs='+')
     a=p.parse_args(argv);repo=a.repo.resolve();out=(a.output or repo/'jobs/claim-kit/output').resolve()
     try:
+        if a.command=='blind-verify':
+            from blind_verify import run
+            return run(a)
         if a.command=='publication-audit':
             from completion import publication_audit
             result=publication_audit(repo,None if a.merge_commit else a.base,a.merge_commit);print(json.dumps(result,ensure_ascii=False,indent=2));return int(not result['ok'])
@@ -214,15 +225,81 @@ def main(argv=None):
             result=overlay.write_bundle(repo,a.write,proposal,decision,review,evidence,
                 lifecycle_sheet=read(a.lifecycle_sheet) if a.lifecycle_sheet else None)
             print(json.dumps({'proposal_fingerprint':proposal['fingerprint'],'folder':str(a.write),'owner_acceptance':proposal['owner_acceptance'],'statuses_published':0}));return 0
+        if a.command=='dispatch-check':
+            from dispatch import check,summary
+            if a.write and a.write.exists():raise ValueError('Dispatch receipt exists; refusing overwrite')
+            if a.write and not a.write.resolve().is_relative_to(a.packet.resolve()):raise ValueError('Dispatch receipt must stay inside its packet')
+            result=check(repo,a.packet,a.order)
+            if a.write:dump(a.write,result)
+            compact=summary(result)
+            if a.write:compact['receipt']=str(a.write)
+            print(json.dumps(compact,ensure_ascii=False,indent=2));return int(not result['ok'])
+        if a.command=='history-check':
+            from provision_history import load
+            h=load(repo,a.bundle)
+            print(json.dumps({'mechanical_validation_passed':True,'provisions':len(h['provisions']),
+                'transitions':len(h['ordered']),'reviewed_record_scopes':len(h['reviews']),
+                'canonical_approval':False,'human_certified':False},indent=2));return 0
+        if a.command in ('history-at','history-impact'):
+            from provision_history import query,revalidation_report
+            if a.write:
+                if a.write.exists():raise ValueError('Historical query output exists; refusing overwrite')
+                if a.write.suffix!='.json' or not a.write.resolve().is_relative_to(repo/'research/progress'):
+                    raise ValueError('Historical research output requires a new JSON file under research/progress')
+            if a.command=='history-at':result=query(repo,a.bundle,a.provision,a.on)
+            else:
+                saved=read(a.results)
+                if isinstance(saved,dict) and saved.get('schema')=='eo-provision-history-query/v1':
+                    saved={'schema':'eo-provision-history-results/v1','queries':[saved]}
+                if (not isinstance(saved,dict) or saved.get('schema')!='eo-provision-history-results/v1'
+                        or not isinstance(saved.get('queries'),list) or len(saved['queries'])>10000
+                        or any(not isinstance(q,dict) or not isinstance(q.get('query_id'),str)
+                               or not isinstance(q.get('provision_id'),str) or not isinstance(q.get('dependencies'),dict)
+                               or any(not isinstance(k,str) or not isinstance(v,str) for k,v in q['dependencies'].items())
+                               for q in saved['queries'])):
+                    raise ValueError('Invalid bounded historical query results')
+                changed=read(a.changed)
+                if not isinstance(changed,dict) or any(not isinstance(k,str) or (v is not None and not isinstance(v,str)) for k,v in changed.items()):
+                    raise ValueError('Invalid historical dependency hash map')
+                result=revalidation_report(saved,changed)
+            if a.write:dump(a.write,result)
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
+        if a.command=='factual-at':
+            import batch
+            from factual_events import observations_at
+            packet,dossiers=batch.load_packet(a.packet.resolve(),repo)
+            if a.order not in dossiers:raise ValueError('order outside packet')
+            result={'schema':'eo-factual-observations-at/v1','instrument_id':a.order,'on':a.on,
+                    'packet_fingerprint':packet['fingerprint'],
+                    'observations':observations_at(dossiers[a.order],a.on,repo=repo),
+                    'legal_effect':'unresolved','human_certified':False,
+                    'notice':'Reviewed occurrence only; no legal state, first ending or whole-order conclusion.'}
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
+        if a.command=='views':
+            folder=a.packet.parent if a.packet.name=='PACKET.json' else a.packet
+            if a.slim:
+                sys.path.insert(0,str(HERE.parent/'geddes'))
+                import geddes
+                result=geddes.view_many(folder/'PACKET.json',a.orders,write_dir=a.write_dir,repo=repo,full_claim=a.full_claim)
+                if a.write_dir:result=[geddes.view_summary(v) for v in result]
+            else:
+                if a.full_claim:raise ValueError('--full-claim requires --slim')
+                import batch
+                result=batch.views(repo,folder,a.orders)
+                if a.write_dir:raise ValueError('--write-dir requires --slim')
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
         if a.command=='view':
             import batch
             print(batch.view(repo,a.packet,a.order,a.source));return 0
         if a.command in ('prepare','apply','batch-check'):
             import batch
-            if a.command=='prepare':result=batch.prepare(repo,out,a.write,a.instrument_ids,a.agent,replacement_proposal=a.replacement_proposal)
+            if a.command=='prepare':result=batch.prepare(repo,out,a.write,a.instrument_ids,a.agent,replacement_proposal=a.replacement_proposal,history_bundles=a.history_bundle)
             elif a.command=='apply':result=batch.apply(repo,a.packet,a.write)
             else:result=batch.check(repo,a.packet,a.applied)
             failed=(result.get('strict_claim_fail',0)>0 or result.get('counts',{}).get('rejected',0)>0)
+            if a.command=='prepare':
+                result['research_only']=a.research_only
+                failed=failed or (not result['dispatch_check']['ok'] and not a.research_only)
             actual=result.get('actual_claim_checker',{})
             if a.command=='batch-check':
                 failed=failed or actual.get('claims_all_checks_passed',0)!=result.get('claims_checked',0)

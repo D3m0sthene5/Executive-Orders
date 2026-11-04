@@ -360,6 +360,21 @@ def selected_claim(inputs, member, manifest, planted, held):
         if isinstance(value, dict):
             if value.get('text_path') and value.get('text_sha256'):
                 inputs.pin(value['text_path'], value['text_sha256'])
+            marker = value.get('norton_factual_event')
+            if isinstance(marker, dict) and 'occurrence_interval' in marker:
+                interval = marker['occurrence_interval']
+                require(isinstance(interval, dict), 'malformed factual occurrence interval')
+                sources = [value]
+                for key in ('start_basis', 'end_basis'):
+                    bound = interval.get(key)
+                    require(isinstance(bound, dict), 'missing factual interval bound')
+                    witness = bound.get('witness')
+                    if witness != 'occurrence_span':
+                        require(isinstance(witness, dict) and isinstance(witness.get('source'), dict),
+                                'malformed factual interval bound witness')
+                        sources.append(witness['source'])
+                for source in sources:
+                    inputs.pin(source['raw_path'], source['sha256'])
             for child in value.values():
                 pin_texts(child)
         elif isinstance(value, list):

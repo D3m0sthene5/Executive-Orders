@@ -1,0 +1,309 @@
+======================================================================
+ERROR: test_later_reinstatement_does_not_restart_an_original_fixed_term (test_reinstatement_handoff.ReinstatementExtractionTests.test_later_reinstatement_does_not_restart_an_original_fixed_term)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 126, in test_later_reinstatement_does_not_restart_an_original_fixed_term
+    self.assertIsNone(acts[0]["effective_date"])
+                      ~~~~^^^
+IndexError: list index out of range
+
+======================================================================
+FAIL: test_existing_dossier_alternatives_and_chain_keep_both_operations (test_reinstatement_handoff.ReinstatementBuildTransportTests.test_existing_dossier_alternatives_and_chain_keep_both_operations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 167, in test_existing_dossier_alternatives_and_chain_keep_both_operations
+    self.assertEqual([e["verb"] for e in dossier["chain"]["events"]], ["reinstate", "amend"])
+AssertionError: Lists differ: ['amend'] != ['reinstate', 'amend']
+
+First differing element 0:
+'amend'
+'reinstate'
+
+Second list contains 1 additional elements.
+First extra element 1:
+'amend'
+
+- ['amend']
++ ['reinstate', 'amend']
+
+======================================================================
+FAIL: test_bare_join_preserves_transfer_target_list_suffixes (test_reinstatement_handoff.ReinstatementExtractionTests.test_bare_join_preserves_transfer_target_list_suffixes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 70, in test_bare_join_preserves_transfer_target_list_suffixes
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'transfer'), ('EO:2A', 'transfer'), ('EO:2½', 'transfer')] != [('EO:1', 'reinstate'), ('EO:2A', 'transfer'), ('EO:2½', 'transfer')]
+
+First differing element 0:
+('EO:1', 'transfer')
+('EO:1', 'reinstate')
+
+- [('EO:1', 'transfer'), ('EO:2A', 'transfer'), ('EO:2½', 'transfer')]
++ [('EO:1', 'reinstate'), ('EO:2A', 'transfer'), ('EO:2½', 'transfer')]
+
+======================================================================
+FAIL: test_chain_expands_existing_alternatives_once (test_reinstatement_handoff.ReinstatementExtractionTests.test_chain_expands_existing_alternatives_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 113, in test_chain_expands_existing_alternatives_once
+    self.assertEqual([e["verb"] for e in events], ["reinstate", "amend"])
+AssertionError: Lists differ: ['amend'] != ['reinstate', 'amend']
+
+First differing element 0:
+'amend'
+'reinstate'
+
+Second list contains 1 additional elements.
+First extra element 1:
+'amend'
+
+- ['amend']
++ ['reinstate', 'amend']
+
+======================================================================
+FAIL: test_held_eo14189_four_distinct_operations_and_unchanged_target_terms (test_reinstatement_handoff.ReinstatementExtractionTests.test_held_eo14189_four_distinct_operations_and_unchanged_target_terms)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 135, in test_held_eo14189_four_distinct_operations_and_unchanged_target_terms
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:13934', 'amend')] != [('EO:13933', 'reinstate'), ('EO:13934', 'reinstate[48 chars]te')]
+
+First differing element 0:
+('EO:13934', 'amend')
+('EO:13933', 'reinstate')
+
+Second list contains 3 additional elements.
+First extra element 1:
+('EO:13934', 'reinstate')
+
++ [('EO:13933', 'reinstate'),
++  ('EO:13934', 'reinstate'),
+- [('EO:13934', 'amend')]
+? ^                     ^
+
++  ('EO:13934', 'amend'),
+? ^                     ^
+
++  ('EO:13978', 'reinstate')]
+
+======================================================================
+FAIL: test_historical_revoker_is_not_reinstated (test_reinstatement_handoff.ReinstatementExtractionTests.test_historical_revoker_is_not_reinstated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 23, in test_historical_revoker_is_not_reinstated
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts], [("EO:1", "reinstate")])
+AssertionError: Lists differ: [] != [('EO:1', 'reinstate')]
+
+Second list contains 1 additional elements.
+First extra element 0:
+('EO:1', 'reinstate')
+
+- []
++ [('EO:1', 'reinstate')]
+
+======================================================================
+FAIL: test_mixed_same_target_keeps_both_reinstatement_and_transfer (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_same_target_keeps_both_reinstatement_and_transfer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 85, in test_mixed_same_target_keeps_both_reinstatement_and_transfer
+    self.assertEqual([a["verb"] for a in acts], ["reinstate", "transfer"])
+AssertionError: Lists differ: ['transfer'] != ['reinstate', 'transfer']
+
+First differing element 0:
+'transfer'
+'reinstate'
+
+Second list contains 1 additional elements.
+First extra element 1:
+'transfer'
+
+- ['transfer']
++ ['reinstate', 'transfer']
+
+======================================================================
+FAIL: test_mixed_transfer_join_keeps_reinstated_target_list (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_transfer_join_keeps_reinstated_target_list)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 78, in test_mixed_transfer_join_keeps_reinstated_target_list
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'transfer'), ('EO:2', 'transfer'), ('EO:3', 'transfer')] != [('EO:1', 'reinstate'), ('EO:2', 'reinstate'), ('EO:3', 'transfer')]
+
+First differing element 0:
+('EO:1', 'transfer')
+('EO:1', 'reinstate')
+
+- [('EO:1', 'transfer'), ('EO:2', 'transfer'), ('EO:3', 'transfer')]
+?            - ^  ^ -              - ^  ^ -
+
++ [('EO:1', 'reinstate'), ('EO:2', 'reinstate'), ('EO:3', 'transfer')]
+?             ^^  ^^^                ^^  ^^^
+
+
+======================================================================
+FAIL: test_mixed_transfer_remains_target_scoped_without_cross_binding (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_transfer_remains_target_scoped_without_cross_binding) (text='Executive Order 1 is reinstated, and functions under Executive Order 2 are transferred to the Secretary of State.')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 55, in test_mixed_transfer_remains_target_scoped_without_cross_binding
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'transfer'), ('EO:2', 'transfer')] != [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+
+First differing element 0:
+('EO:1', 'transfer')
+('EO:1', 'reinstate')
+
+- [('EO:1', 'transfer'), ('EO:2', 'transfer')]
+?            - ^  ^ -
+
++ [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+?             ^^  ^^^
+
+
+======================================================================
+FAIL: test_mixed_transfer_remains_target_scoped_without_cross_binding (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_transfer_remains_target_scoped_without_cross_binding) (text='Executive Order 1 is reinstated and functions under Executive Order 2 are transferred to the Secretary of State.')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 55, in test_mixed_transfer_remains_target_scoped_without_cross_binding
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'transfer'), ('EO:2', 'transfer')] != [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+
+First differing element 0:
+('EO:1', 'transfer')
+('EO:1', 'reinstate')
+
+- [('EO:1', 'transfer'), ('EO:2', 'transfer')]
+?            - ^  ^ -
+
++ [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+?             ^^  ^^^
+
+
+======================================================================
+FAIL: test_mixed_transfer_remains_target_scoped_without_cross_binding (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_transfer_remains_target_scoped_without_cross_binding) (text='functions under Executive Order 2 are transferred to the Secretary of State; Executive Order 1 is reinstated.')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 55, in test_mixed_transfer_remains_target_scoped_without_cross_binding
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'transfer'), ('EO:2', 'transfer')] != [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+
+First differing element 0:
+('EO:1', 'transfer')
+('EO:1', 'reinstate')
+
+- [('EO:1', 'transfer'), ('EO:2', 'transfer')]
+?            - ^  ^ -
+
++ [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+?             ^^  ^^^
+
+
+======================================================================
+FAIL: test_mixed_transfer_remains_target_scoped_without_cross_binding (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_transfer_remains_target_scoped_without_cross_binding) (text='functions under Executive Order 2 are transferred to the Secretary of State and Executive Order 1 is reinstated.')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 55, in test_mixed_transfer_remains_target_scoped_without_cross_binding
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'transfer'), ('EO:2', 'transfer')] != [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+
+First differing element 0:
+('EO:1', 'transfer')
+('EO:1', 'reinstate')
+
+- [('EO:1', 'transfer'), ('EO:2', 'transfer')]
+?            - ^  ^ -
+
++ [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+?             ^^  ^^^
+
+
+======================================================================
+FAIL: test_mixed_transfer_remains_target_scoped_without_cross_binding (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_transfer_remains_target_scoped_without_cross_binding) (text='Executive Order 1 is reinstated and Executive Order 2 is transferred to the Secretary of State.')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 55, in test_mixed_transfer_remains_target_scoped_without_cross_binding
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'transfer'), ('EO:2', 'transfer')] != [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+
+First differing element 0:
+('EO:1', 'transfer')
+('EO:1', 'reinstate')
+
+- [('EO:1', 'transfer'), ('EO:2', 'transfer')]
+?            - ^  ^ -
+
++ [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+?             ^^  ^^^
+
+
+======================================================================
+FAIL: test_mixed_transfer_remains_target_scoped_without_cross_binding (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_transfer_remains_target_scoped_without_cross_binding) (text='Executive Order 1 is reinstated and I hereby transfer functions under Executive Order 2 to the Secretary of State.')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 55, in test_mixed_transfer_remains_target_scoped_without_cross_binding
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'transfer'), ('EO:2', 'transfer')] != [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+
+First differing element 0:
+('EO:1', 'transfer')
+('EO:1', 'reinstate')
+
+- [('EO:1', 'transfer'), ('EO:2', 'transfer')]
+?            - ^  ^ -
+
++ [('EO:1', 'reinstate'), ('EO:2', 'transfer')]
+?             ^^  ^^^
+
+
+======================================================================
+FAIL: test_plural_suffix_partial_and_exception_are_preserved (test_reinstatement_handoff.ReinstatementExtractionTests.test_plural_suffix_partial_and_exception_are_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 91, in test_plural_suffix_partial_and_exception_are_preserved
+    self.assertEqual({a["target_id"] for a in acts}, {"EO:1A", "EO:1½"})
+AssertionError: Items in the second set but not the first:
+'EO:1½'
+'EO:1A'
+
+======================================================================
+FAIL: test_same_actor_retains_reinstatement_and_separate_amendment (test_reinstatement_handoff.ReinstatementExtractionTests.test_same_actor_retains_reinstatement_and_separate_amendment)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 32, in test_same_actor_retains_reinstatement_and_separate_amendment
+    self.assertEqual([(a["target_id"], a["verb"], a["scope"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'amend', 'partial'), ('EO:2', 'amend', 'partial')] != [('EO:1', 'reinstate', 'whole'), ('EO:1', 'amend', 'partial')]
+
+First differing element 0:
+('EO:1', 'amend', 'partial')
+('EO:1', 'reinstate', 'whole')
+
+- [('EO:1', 'amend', 'partial'), ('EO:2', 'amend', 'partial')]
++ [('EO:1', 'reinstate', 'whole'), ('EO:1', 'amend', 'partial')]
+
+======================================================================
+FAIL: test_same_sentence_different_targets_do_not_cross_bind (test_reinstatement_handoff.ReinstatementExtractionTests.test_same_sentence_different_targets_do_not_cross_bind)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/4fcab884091a/eo-maitland-combined/jobs/claim-kit/test_reinstatement_handoff.py", line 43, in test_same_sentence_different_targets_do_not_cross_bind
+    self.assertEqual([(a["target_id"], a["verb"]) for a in acts],
+AssertionError: Lists differ: [('EO:1', 'amend'), ('EO:2', 'amend')] != [('EO:1', 'reinstate'), ('EO:2', 'amend')]
+
+First differing element 0:
+('EO:1', 'amend')
+('EO:1', 'reinstate')
+
+- [('EO:1', 'amend'), ('EO:2', 'amend')]
+?             ^ --
+
++ [('EO:1', 'reinstate'), ('EO:2', 'amend')]
+?            ++++++ ^
+
+
+----------------------------------------------------------------------
+Ran 584 tests in 82.142s
+
+FAILED (failures=16, errors=1, skipped=7)
+{"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 1, "generic_references_excluded": 1, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+{"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 2, "generic_references_excluded": 0, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+{"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 3, "distinct_held_text_artifacts": 3, "dossiers": 3, "families": 5, "generic_references_excluded": 0, "held_texts_scanned": 3, "known_pairs": 3, "located_actor_pairs": 3, "orders_with_held_text": 3, "status_leads": 0, "universe_orders": 3}
+{"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 1, "dossiers": 3, "families": 1, "generic_references_excluded": 0, "held_texts_scanned": 1, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+{"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 3, "distinct_held_text_artifacts": 3, "dossiers": 3, "families": 5, "generic_references_excluded": 0, "held_texts_scanned": 3, "known_pairs": 2, "located_actor_pairs": 2, "orders_with_held_text": 3, "status_leads": 0, "universe_orders": 3}
+{"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 2, "generic_references_excluded": 0, "held_texts_scanned": 2, "known_pairs": 1, "located_actor_pairs": 0, "orders_with_held_text": 2, "status_leads": 0, "universe_orders": 3}

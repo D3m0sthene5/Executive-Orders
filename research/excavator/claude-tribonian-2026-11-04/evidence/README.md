@@ -1,0 +1,13 @@
+# Tribonian execution evidence (sanitized snapshot, 2026-11-04)
+
+These files let an analyst who did not run the session check whether maintained mechanical receipts and shared prior research actually removed model work, or only moved it into review and corrections. Every file was produced by an existing collector or receipt, not written by a model, except this README and `../REPORT.md`. Raw transcripts, review sets, planted claim versions and control keys stay private: the transcripts are in the coordinator's machine-local agent logs, and the review artifacts are on branch `claude/tribonian-state`. A missing value is empty or null, never zero.
+
+- `DISPOSITION.json` / `.csv`: one row per batch, from the native completion receipts (`tools/disposition.py`). It gives the packet state, every applied and complete version, the version whose tally is used, attempted, eligible and blocked counts, claims filed, controls and whether each was caught, after-reveal verdicts, and the first reason line for every order not filed. "Blocked" covers both producer blocks (missing source named) and review rejections (defect named). "rejected_mechanical" means the claim passed review but failed the actual checker at completion.
+- `LIND_TRIAL.json`: the paired review trial (`tools/lind/lind_analyze.py`). For each batch and arm it records the agent id, model calls, tokens by category (fresh input, cache read, 5-minute and 1-hour cache write, output; one count per message id), tool uses by name, Bash calls, and commands touching quote offsets or text hashes. It also records receipt reads, number-search calls, wall time and active time (gaps of at most 300 s, so usage-limit pauses are excluded), verdict counts, control verdicts and the claims on which the arms disagreed. `design.known_limits` lists the measurement and blinding limits.
+- `../telemetry/AGENT_USAGE.csv` and `SUMMARY.json`: Hamilton profiler totals for every agent in the run, by role, phase, batch and model. `../telemetry/effort/*.json` holds the NEYMAN `production-effort/1` receipts that Hamilton's supported bridge wrote, one per agent (it refused five agents with no instrument ids). Hamilton's full per-agent profiles embed tool labels and file paths and are kept private.
+
+What these files can and cannot show:
+
+- Token counts come from the harness's per-message usage records. They are not an invoice, and cash is unknown.
+- The coordinator's transcript covers only the period after a context compaction, so coordination totals are a lower bound.
+- Command counts come from regular expressions over tool inputs. A command that only reads offset fields for display is counted too.

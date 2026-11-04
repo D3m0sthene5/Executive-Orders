@@ -1,5 +1,9 @@
 # Prepared evidence to explicit reviewed proposals
 
+For MAITLAND's separate reviewed provision/version queries, see
+[PROVISION_HISTORY.md](PROVISION_HISTORY.md). Historical reconstruction is derived
+research; it does not file a claim, approve a status or replace this workflow.
+
 Run from the repository root. Check `output/STATUS.json`, `SUMMARY.json` and the
 runner's `RUNNER_INPUTS.json` first. Source matches and status observations are
 leads. Only explicit `complete --publish` files eligible claims or isolated
@@ -7,6 +11,7 @@ replacement proposals; no command publishes a status, identity or human review.
 
 ```text
 python jobs/claim-kit/kit.py prepare EO:NUMBER EO:OTHER --agent NAME --write research/excavator/RUN/packet
+python jobs/claim-kit/kit.py dispatch-check research/excavator/RUN/packet --write research/excavator/RUN/packet/dispatch-v2.json
 python jobs/claim-kit/kit.py view research/excavator/RUN/packet
 python jobs/claim-kit/kit.py view research/excavator/RUN/packet --source TEXT_BLOCK_ID
 python jobs/claim-kit/kit.py apply research/excavator/RUN/packet --write research/excavator/RUN/packet/applied-v1
@@ -30,6 +35,55 @@ metadata instead of printing both large representations. READ links evidence to
 exact text blocks and absolute character spans. Unverified text remains literal;
 missing material, overflow pointers and codec warnings remain visible. Overflow
 is an explicit load task, not a claim that its body was reviewed.
+
+## Before assigning a producer
+
+Ordinary preparation now also writes `DISPATCH_CHECK.json`. It checks the frozen
+runtime, source/research/review context, required original/inventory text and exact
+spans, and raw-source custody using the actual checker's existing policy with
+downloads explicitly disabled. One source index and deduplicated custody checks
+serve the whole bounded packet. Results include exact affected evidence IDs and
+source URLs/hashes, source-index coverage notes, machine time and unknown model
+usage. This detects unavailable sources before expensive model analysis; it
+cannot establish that a legal investigation will succeed.
+
+`prepare` exits 1 when any member has a mandatory source blocker. The packet and
+all members are retained. For deliberate acquisition/research assignments,
+`prepare --research-only` exports the same blocked packet with exit 0 and an
+explicit research-only response; it confers no production eligibility. Python
+callers of `batch.prepare` must inspect `result['dispatch_check']['ok']` rather
+than treating evidence export as production dispatch approval.
+
+Immediately before launching each producer, run `dispatch-check` again and
+require exit 0. An old receipt is not a permit: later source, ruling, policy or
+review changes still invalidate the packet. Keep shared inputs fixed during a
+wave and integrate changes between waves; never suppress or rewrite a freshness
+failure. Source retention that only adds the exact already-cited raw bytes may
+unblock a recheck without altering the frozen text or research.
+
+Mixed packets list `dispatchable_ids` and `source_blocked_ids` without dropping
+members. To assign only usable members, explicitly repeat `--order EO:N` for the
+intended subset; the whole packet's seal/context is still checked. Use a new
+`--write` filename inside that packet for each full receipt. Standard output is
+compact. Optional actor/current-law/contrary leads remain visible gaps, not
+automatic blockers or a selected legal theory. Page inspection, provisional-text
+disclosures, complete-inventory judgment and every substantive decision remain
+producer duties. All sources ultimately selected in a claim still face ordinary
+full checker, review and completion gates. A missing ending source discovered
+during analysis must still block that claim.
+
+Finish deterministic commands before handback, keeping full logs on disk and
+returning paths, completion status and actionable errors. Do not assign a model
+to repeatedly poll them. Reuse the checkpoint/resume route below for source
+blocks; unchanged gaps should not launch another identical investigation.
+
+At handoff use existing `jobs/geddes/telemetry.py` with an explicit
+`agent_id,batch,role,track` roster, then the existing `geddes.py cost` interface.
+Record failed, blocked and correction work too. Do not infer track from new batch
+prefixes: the legacy fallback only knows `n` and `g`. Missing usage is unknown;
+inspect coverage before interpreting zero totals. Compare cost per filed,
+reviewed claim, including cache reads/writes and output separately. This dispatch
+screen measures machine work; it makes no measured token-savings claim.
 
 Existing claims and frozen upstream proposals are routed to their owner. An
 explicit `--replacement-proposal` permits an isolated proposal for owner review;

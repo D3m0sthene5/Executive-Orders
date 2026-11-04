@@ -1,0 +1,131 @@
+{
+  "schema": "sol-batch-views-benchmark/v1",
+  "orders": [
+    "EO:6258A",
+    "EO:6308",
+    "EO:6368",
+    "EO:6381",
+    "EO:6403",
+    "EO:6406",
+    "EO:6426",
+    "EO:6430",
+    "EO:6446",
+    "EO:6471A",
+    "EO:6486",
+    "EO:6487A",
+    "EO:6513K",
+    "EO:6543M",
+    "EO:6543N",
+    "EO:6684F",
+    "EO:6725A",
+    "EO:6790",
+    "EO:6837",
+    "EO:6895",
+    "EO:6922",
+    "EO:7014",
+    "EO:7016"
+  ],
+  "packet_sha256": "98793fe45b451945e077c548a22b76259e1031274dee1d68f5e8c0fc7372694b",
+  "packet_bytes": 376232,
+  "baseline_code_sha256": "76849de0252f4a99fd1c726dfe84462bc79b6582687297a6f801f921b09c3236",
+  "source_pins_verified": 28,
+  "source_pins_total": 28,
+  "claims_fixture_files": 1,
+  "ordinary_and_full_claim_parity": true,
+  "output_utf8_bytes": 704268,
+  "source_integrity_failures": 0,
+  "source_unavailable": 0,
+  "whole_order_body_verified": 0,
+  "warm_observations": {
+    "baseline": [
+      {
+        "seconds": 0.3547309469940956,
+        "path_read_calls": 219,
+        "distinct_path_reads": 27
+      },
+      {
+        "seconds": 0.31741229799808934,
+        "path_read_calls": 219,
+        "distinct_path_reads": 27
+      },
+      {
+        "seconds": 0.28409474000363844,
+        "path_read_calls": 219,
+        "distinct_path_reads": 27
+      },
+      {
+        "seconds": 0.29244288399786456,
+        "path_read_calls": 219,
+        "distinct_path_reads": 27
+      },
+      {
+        "seconds": 0.2923041930043837,
+        "path_read_calls": 219,
+        "distinct_path_reads": 27
+      }
+    ],
+    "batch": [
+      {
+        "seconds": 0.05833543799963081,
+        "path_read_calls": 108,
+        "distinct_path_reads": 27
+      },
+      {
+        "seconds": 0.05573285799619043,
+        "path_read_calls": 108,
+        "distinct_path_reads": 27
+      },
+      {
+        "seconds": 0.05065226700389758,
+        "path_read_calls": 108,
+        "distinct_path_reads": 27
+      },
+      {
+        "seconds": 0.0526313329974073,
+        "path_read_calls": 108,
+        "distinct_path_reads": 27
+      },
+      {
+        "seconds": 0.044306854004389606,
+        "path_read_calls": 108,
+        "distinct_path_reads": 27
+      }
+    ]
+  },
+  "fresh_process_observations": {
+    "baseline": {
+      "process_wall_seconds": 0.5327159060034319,
+      "worker": {
+        "seconds": 0.38338974700309336,
+        "path_read_calls": 219,
+        "distinct_path_reads": 27
+      }
+    },
+    "batch": {
+      "process_wall_seconds": 0.2544997160002822,
+      "worker": {
+        "seconds": 0.11327841100137448,
+        "path_read_calls": 108,
+        "distinct_path_reads": 27
+      }
+    }
+  },
+  "one_order_warm_seconds": {
+    "baseline": 0.009109849997912534,
+    "batch": 0.013797089995932765
+  },
+  "shared_setup_seconds": 0.035445426001388114,
+  "all_member_render_seconds": 0.039678689994616434,
+  "median_seconds": {
+    "baseline": 0.29244288399786456,
+    "batch": 0.0526313329974073
+  },
+  "limits": [
+    "No model invocation or measured token/cash saving.",
+    "Fixture has one retained claims file; not all 104 current claim files.",
+    "APP publisher INDEX unavailable in sparse checkout; body boundary gaps remain explicit.",
+    "File read counters cover Path.read_bytes/read_text; CSV open is not counted.",
+    "Cold means fresh Python process; operating-system file cache is not flushed.",
+    "Baseline competently loops existing per-order renderer in one process; no repeated import penalty."
+  ]
+}

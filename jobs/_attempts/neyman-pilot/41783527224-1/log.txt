@@ -1,0 +1,11 @@
+........................................
+----------------------------------------------------------------------
+Ran 40 tests in 1.303s
+
+OK
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/neyman-pilot/job.py", line 26, in <module>
+    check_pins(root,manifest['input_hashes'])
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/neyman/survey.py", line 88, in check_pins
+    raise ValueError('stale sampling inputs: '+', '.join(changed[:12]))
+ValueError: stale sampling inputs: jobs/claim-checker/output/PER_CLAIM.json, jobs/claim-kit/assemble.py, jobs/claim-kit/batch.py, jobs/claim-kit/build.py, jobs/claim-kit/fragment_cache.py, jobs/claim-kit/inputs.py, jobs/claim-kit/kit.py, jobs/claim-kit/output/ACTING_PROVISIONS.jsonl, jobs/claim-kit/output/FAMILIES.json, jobs/claim-kit/output/INDEX.json, jobs/claim-kit/output/OWN_TERMS.jsonl, jobs/claim-kit/output/STATUS_LEADS.jsonl

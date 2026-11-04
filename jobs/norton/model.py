@@ -87,9 +87,61 @@ def source_span(repo, record, require_bytes=False):
             errors.append('source_bytes_not_held')
     return errors
 
+INTERVAL_SCHEMA = 'norton-occurrence-evidence/v2'
+
+def interval_errors(repo, q, evidence):
+    """Bounds are inclusive, not endpoints inferred from the question/search window."""
+    interval = evidence.get('occurrence_interval')
+    if not isinstance(interval, dict) or set(interval) != {'start', 'end', 'occurrence', 'start_basis', 'end_basis'}:
+        return ['invalid_occurrence_interval']
+    errors = []
+    start, end = interval['start'], interval['end']
+    if not (date(start) and date(end) and q['interval_start'] <= start < end <= q['interval_end']):
+        errors.append('interval_bounds_outside_question_or_not_ordered')
+    if interval['occurrence'] != 'established' or 'event_date' not in evidence or evidence['event_date'] is not None:
+        errors.append('affirmative_interval_only_no_exact_date')
+    for key in ('start_basis', 'end_basis'):
+        bound = interval[key]
+        if (not isinstance(bound, dict) or set(bound) != {'witness', 'reason'} or
+                not isinstance(bound.get('reason'), str) or len(bound['reason'].strip()) < 30):
+            errors.append('invalid_interval_' + key)
+            continue
+        w = bound['witness']
+        if w == 'occurrence_span':
+            continue
+        if not isinstance(w, dict) or set(w) != {'source', 'text', 'char_start', 'char_end'}:
+            errors.append('invalid_interval_witness:' + key)
+            continue
+        if not isinstance(w.get('source'), dict):
+            errors.append('invalid_interval_witness_source:' + key)
+            continue
+        errors += [key + ':' + e for e in source_span(repo, w, require_bytes=True)]
+        if not primary_provenance(w.get('source', {})):
+            errors.append('interval_witness_provenance:' + key)
+    return errors
+
+def primary_provenance(src):
+    return (isinstance(src, dict) and src.get('primary') is True and
+            all(isinstance(src.get(k), str) and src[k].strip() for k in ('retrieved_utc', 'route', 'edition')))
+
+def interval_binding_errors(answer, evidence, app=None):
+    """A review of IDs alone cannot approve changed interval witnesses or timing."""
+    pins = {e['id']: fingerprint(e) for e in evidence if e.get('schema') == INTERVAL_SCHEMA}
+    if not pins and 'interval_evidence_sha256' not in answer:
+        return []
+    errors = []
+    if not pins or pins != answer.get('interval_evidence_sha256'):
+        errors.append('interval_evidence_changed_or_unreviewed')
+    if app is not None and app.get('answer_sha256') != fingerprint(answer):
+        errors.append('interval_application_answer_changed_or_unreviewed')
+    return errors
+
 def evidence_errors(repo, q, evidence):
+    if not isinstance(evidence, dict) or not isinstance(evidence.get('source'), dict):
+        return ['invalid_evidence_source']
     errors = source_span(repo, evidence, require_bytes=True)
-    if evidence.get('schema') != 'norton-candidate-evidence/v1':
+    interval = evidence.get('schema') == INTERVAL_SCHEMA
+    if not interval and evidence.get('schema') != 'norton-candidate-evidence/v1':
         errors.append('wrong_evidence_schema')
     if evidence.get('question_key') != question_key(q):
         errors.append('wrong_question')
@@ -98,7 +150,13 @@ def evidence_errors(repo, q, evidence):
     if evidence.get('entity_id') != q['entity_id']:
         errors.append('entity_mismatch')
     d = evidence.get('event_date')
-    if not date(d) or not q['interval_start'] <= d <= q['interval_end']:
+    if interval:
+        errors += interval_errors(repo, q, evidence)
+        if not primary_provenance(evidence.get('source')):
+            errors.append('interval_occurrence_provenance')
+    elif 'occurrence_interval' in evidence:
+        errors.append('interval_requires_v2_evidence')
+    elif not date(d) or not q['interval_start'] <= d <= q['interval_end']:
         errors.append('event_date_outside_interval_or_unknown')
     src = evidence.get('source', {})
     if not src.get('primary') or not src.get('retrieved_utc') or not src.get('route') or not src.get('edition'):

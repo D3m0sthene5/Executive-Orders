@@ -1,3 +1,13 @@
+## 2026-11-04 (Claude, Tribonian wave, PR 131-137 integration, Lind trial)
+
+- **Filed 547 reviewed lifecycle claims** (`research/readiness/claims/claude-2026-11-04-tribonian-*.jsonl`): 492 new dossiers and 53 corrections from the drained wave, plus 2 from dispatch-checked o27. All 53 planted controls were caught; certified count 0. Report and per-batch disposition: `research/excavator/claude-tribonian-2026-11-04/REPORT.md`, `evidence/DISPOSITION.json`. Packets and reviews are on branch `claude/tribonian-state`.
+- **Integrated:** PRs 131-137 and Tribonian merged through PR #138 (`claude/integration-20261104`). Fixes: Valla materialization certificate re-established after an audit (`research/progress/integration-20261104/VALLA_CERTIFICATE.md`); x1-class-engine manifest bound; neyman-pilot declaration reverted. PR134 entered through PR136.
+- **Lind trial (negative):** mechanical receipts supplied to blind reviewers saved nothing measurable over 85 claims (53.7M vs 52.4M cache read). The second independent reviewer caught 7 extra defects. Receipts are not a default. Kean F-20261104-1.
+- **Dispatch-checked production (negative):** o26 and o27 cleared 60/60 orders, yet only 9 were submitted and 2 filed. Kean F-20261104-5.
+- **Blocked, with first step:** 47 reviewed claims stranded as custody_record_only need a new packet once the bytes are held (REPORT.md section "Still blocked"; Kean F-20261104-2). EO 10156 needs a better witness. o28-o30 have fresh packets with `dispatch-v2.json`.
+- **Next:** acquire the National Emergencies Act continuation notices and register the official FR texts of later orders (EO 13286 first); tighten the pre-assignment screen for YES orders without held current-law sources and for producer-cited hash-only sources; add `.job-cache/` and `jobs/_attempts/` handling to the runner's fallback capture (Kean F-20261104-4).
+- **@Owner:** A-20261103-1 (Bacon session files) and A-20261104-1 (legal first-ending contract adoption) remain open and are yours. The hosted dashboard is not redeployed; its tracker data refreshes from main.
+
 ## 2026-11-02 (Claude, Erasmus resubmission and Geddes wiring)
 
 - **Filed 52 claims** (`research/readiness/claims/claude-2026-11-02-erasmus-*.jsonl`): 32 of the 40 Apollo rejects

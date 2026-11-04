@@ -281,6 +281,9 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
                 evidence[event['id']]=event
         dossier['factual_event_ids']=[eid for eid,record in evidence.items()
                                      if record.get('role')=='reviewed_factual_event']
+        intervals = [eid for eid,record in evidence.items() if record.get('role')=='reviewed_occurrence_interval']
+        if intervals:
+            dossier['factual_interval_ids'] = intervals
     dossier['fingerprint']=canonical_sha(dossier)
     return dossier
 

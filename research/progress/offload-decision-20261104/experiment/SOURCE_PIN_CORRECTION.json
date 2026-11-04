@@ -1,0 +1,54 @@
+{
+  "schema": "offload-source-pin-correction/v1",
+  "recorded_at": "2026-11-04T10:23:43.337684+00:00",
+  "superseded_pin": {
+    "repository_path": "jobs/claim-kit/batch.py",
+    "local_path": "../paths/inputs/jobs/claim-kit/batch.py",
+    "commit": "600ae3018f71025b3e53dc8538b8f92e6e159b76",
+    "git_blob": "820bf90786b43870980f6a1cb4ced2d3f0dc350f",
+    "sha256": "568f000905c0ae612ffb7f3e12d1d6d8a2135f85f738e1fa3d5fd833a1187920",
+    "bytes": 44358
+  },
+  "correct_pin": {
+    "repository_path": "jobs/claim-kit/batch.py",
+    "local_path": "inputs/batch.py",
+    "commit": "600ae3018f71025b3e53dc8538b8f92e6e159b76",
+    "git_blob": "92d09ce698f598bda75c5c73ff7eb18b4607b5f0",
+    "sha256": "9f628cb4b55eb0f2219d0e7410ccb44d4c8381100de7163f64fbca5cae143b3d",
+    "bytes": 44357
+  },
+  "prior_result_scope": "Earlier exact-native-source attribution was incorrect: the consumed copy had one extra terminal LF. All extracted pure function ASTs were unchanged; earlier timings and native-source attribution are superseded by corrected rerun.",
+  "observed_review_refusal": {
+    "error": "stale_source_pin",
+    "cause": "Shared paths source corrected from44358-byte copy to44357-byte exact remote input after first replay; experiment correctly refused old SHA256.",
+    "reported_by": "offload_review"
+  },
+  "superseded_pooled_result": {
+    "decode_seconds": 0.005521679995581508,
+    "encode_seconds": 0.02659817699895939,
+    "encoded_bytes": 162556,
+    "encoded_sha256": "f18f59fdfde0ea19facb01443d7ef33ca93f204e37c385ff8a1787c6a9e7b36d",
+    "exact_canonical_roundtrip": true,
+    "literal_bytes": 355545,
+    "literal_sha256": "4c53c17cde7180ab78e96c2034046d4bca6e0bf1739325ce2711d0b162a3153e",
+    "reconstructed_sha256": "4c53c17cde7180ab78e96c2034046d4bca6e0bf1739325ce2711d0b162a3153e",
+    "shared_objects": 85,
+    "source_dictionary_entries": 4,
+    "source_files_read": 0,
+    "source_integrity_verdict": "not_performed"
+  },
+  "superseded_started_epoch": 1793787376.7042563,
+  "superseded_ended_epoch": 1793787376.8666956,
+  "external_confirmation": "offload_review independently confirmed batch.py through exact-ref utf8 and base64 retrieval, and confirmed claim/assemble input blobs.",
+  "other_two_input_pins_unchanged": true,
+  "corrected_result": {
+    "literal_bytes": 355545,
+    "encoded_bytes": 162556,
+    "encoded_sha256": "f18f59fdfde0ea19facb01443d7ef33ca93f204e37c385ff8a1787c6a9e7b36d",
+    "reconstructed_sha256": "4c53c17cde7180ab78e96c2034046d4bca6e0bf1739325ce2711d0b162a3153e",
+    "literal_sha256": "4c53c17cde7180ab78e96c2034046d4bca6e0bf1739325ce2711d0b162a3153e",
+    "exact_canonical_roundtrip": true
+  },
+  "corrected_all_eight_probes_pass": true,
+  "corrected_results_sha256": "51dfdad7cb2b3b47d363bd33af5f3d5b7cffeb7a70f0338e74e9a48bc01b9721"
+}

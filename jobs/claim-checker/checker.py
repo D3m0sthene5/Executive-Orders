@@ -78,6 +78,7 @@ P = {
 SOURCE_KEYS = ("original_representation", "original_source", "source")
 SOURCE_LIST_KEYS = ("sources", "source_refs")
 QUOTE_KEY = re.compile(r"(^|_)(quote|quotes|quoted|quotation|quotations|verbatim|excerpt|excerpts)($|_)")
+VERBATIM_EVIDENCE_KEYS = {"matched_date"}
 LEGAL_DATE_KEYS = {"date", "effective_date", "checked_through", "signing_date", "signed_on", "effective_on",
                    "end_date", "start_date", "expiration_date", "terminated_on", "publication_date"}
 ACTIVITY_DATE_KEYS = {"checked_on", "reviewed_on", "recorded_on", "retrieved_on", "accessed_on",
@@ -650,7 +651,7 @@ def _row(rows, step, check, field, result, status, detail=""):
                  "status": status, "detail": (detail or "")[:600]})
 
 
-def check_source(ref, field, ctx, rows):
+def check_source(ref, field, ctx, rows, *, allow_download=True):
     step = step_for_path(field)
     raw = ref.get("sha256") or ref.get("local_file_sha256")
     sha = S.sha_hex(raw)
@@ -686,9 +687,9 @@ def check_source(ref, field, ctx, rows):
             status, detail = "gpo_published_hash_match", (
                 f"GPO publishes these bytes at {g.get('url')} with this SHA-256 (PREMIS {g.get('premis_url')}, "
                 f"checked {g.get('checked_utc')}); verifiable by re-fetching")
-        elif verify_by_download(url, sha, ctx.cache_dir):
+        elif allow_download and verify_by_download(url, sha, ctx.cache_dir):
             status, detail = "held_bytes_verified", "re-downloaded from the cited URL and re-hashed on this machine; match"
-        elif verify_by_archive(sha, ctx.archive_captures.get(sha), ctx.cache_dir):
+        elif allow_download and verify_by_archive(sha, ctx.archive_captures.get(sha), ctx.cache_dir):
             cap = ctx.archive_captures[sha]
             status, detail = "held_bytes_verified", (
                 f"re-fetched from the archived capture ({cap.get('archive')} {cap.get('captured_utc', '')}) "
@@ -859,6 +860,12 @@ def check_dates(claim, ctx, rows):
                      "research activity date (may be after the legal cutoff)")
             continue
         if key not in LEGAL_DATE_KEYS and not key.endswith("_date"):
+            continue
+        if key in VERBATIM_EVIDENCE_KEYS and ".record.evidence." in f".{path}":
+            # A reused working-text confirmation embeds its source record, whose evidence holds the date
+            # exactly as printed in the text (e.g. "February 11, 1939"). It is a quotation, not a claimed date.
+            _row(rows, step, "date_valid", path, "pass", "verbatim_evidence_text",
+                 "date as printed in the matched text; not a claimed legal date, so no ISO form is required")
             continue
         if not exact_date(val):
             _row(rows, step, "date_valid", path, "fail", "not_exact_iso_date", f"{val!r} is not an exact YYYY-MM-DD date")

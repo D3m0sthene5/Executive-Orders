@@ -1,0 +1,137 @@
+{
+  "schema": "eo-temporal-control-adjudication/v1",
+  "blind_review_sha256": "9535354051453236dd527a5bec6a96f16d76ab2ce4f4e0c08c7de2492770438a",
+  "controls": [
+    {
+      "record_id": "T:14189:030-reinstate-13934-chapeau",
+      "field": "restore_version_id",
+      "before": "T:13978:030-amend-13934-chapeau",
+      "after": "P:13934:sec3c-chapeau::v0",
+      "genuine_sha256": "31bbf00745800212226d5e94faf85d952e8a70f5f9e1a217ff586203c80ecaea",
+      "planted_sha256": "c9c279d6e1824bc7e4ef7500d7dc9dba5de347bebaf97969097d6c250e145425",
+      "rationale": "Pre-revocation form includes the earlier EO13978 amendment, not the original chapeau.",
+      "blind_verdict": {
+        "record_id": "T:14189:030-reinstate-13934-chapeau",
+        "record_sha256": "c9c279d6e1824bc7e4ef7500d7dc9dba5de347bebaf97969097d6c250e145425",
+        "review_scope": "P:13934:sec3c-chapeau",
+        "independent": true,
+        "reviewer": "maitland-independent-source-review",
+        "scope": "text",
+        "verdict": "rejected",
+        "reason": "Rejected exact record: restoration of pre14029 state requires the13978-amended chapeau, not original v0. EO13978 section3(a) changed the v0 introduction to The and its correct resulting text is present in candidate T:13978:030-amend-13934-chapeau. restore_version_id pointing to v0 would undo that historical amendment, contrary to14189 section3(a), even though the record own uncertainty note says to retain it.",
+        "defects": [
+          {
+            "field": "restore_version_id",
+            "reason": "Original v0 chapeau predates the13978 amendment. The pre-revocation version has introduction The, so restoration cannot select unamended v0.",
+            "evidence": "jobs/fr-originals/data/full_run/texts/EO_14189.txt sha256=ec71488212d990c9222924a51e8faeebb2c1d72dbd610f1337d814415cf58ff5 chars[4686:5016] (Unicode, zero-based, half-open); SOURCE_FIRST.json source 13978, exact source span 13978/s3a; underlying text hash and quote offsets retained there; candidate T:13978:030-amend-13934-chapeau expected_new_text independently reconstructed"
+          }
+        ]
+      },
+      "legacy_mountweazel_correspondence": {
+        "mechanical_candidate": false,
+        "affected_locus_matched": [
+          "restore_version_id",
+          "p:13934:sec3c-chapeau"
+        ],
+        "material_issue_matched": false,
+        "event_identity_matched": true,
+        "matched_terms": [
+          "13978",
+          "restore_version_id"
+        ],
+        "needs_adjudication": true
+      },
+      "coordinator_adjudication": "caught",
+      "adjudication_basis": "Exact field rejected with the material source-specific discrepancy; see retained source spans. Legacy lexical false negatives are preserved, not retuned."
+    },
+    {
+      "record_id": "T:10973:0605-supersede-food-for-peace-sec111",
+      "field": "effective_date",
+      "before": "1961-09-30",
+      "after": "1961-11-03",
+      "genuine_sha256": "252dee3072077b6f636d8dcc120e3a0a3fe415a329fdc185ee470aa30fa476e2",
+      "planted_sha256": "9a1fede2ea470b20390fa4a639cf7633be68e96d3d079f63e9462957c3ca1fc0",
+      "rationale": "Section607 expressly supplies September30 effective time, distinct from November3 signing.",
+      "blind_verdict": {
+        "record_id": "T:10973:0605-supersede-food-for-peace-sec111",
+        "record_sha256": "9a1fede2ea470b20390fa4a639cf7633be68e96d3d079f63e9462957c3ca1fc0",
+        "review_scope": "P:10893:sec111-food-for-peace",
+        "independent": true,
+        "reviewer": "maitland-independent-source-review",
+        "scope": "text",
+        "verdict": "rejected",
+        "reason": "Rejected exact record: proposed effective_date1961-11-03 contradicts its own cited EO10973 section607, which states effective AS OF September30,1961. November3 is the signing date. Source605(b) expressly supersedes10915 section2, and605(a) addresses the10893 host with exceptions; correct source quotes do not cure the wrong date field.",
+        "defects": [
+          {
+            "field": "effective_date",
+            "reason": "1961-11-03 is signing, not the express retroactive effective date. Correct source date is1961-09-30.",
+            "evidence": "jobs/fr-originals/data/full_run/texts/EO_10973.txt sha256=ac9d459b0bc466d204f2bdfa53418e2e096f1f3911e8703e4cee54b88266749a chars[15946:16054] (Unicode, zero-based, half-open)"
+          }
+        ]
+      },
+      "legacy_mountweazel_correspondence": {
+        "mechanical_candidate": true,
+        "affected_locus_matched": [
+          "effective_date",
+          "p:10893:sec111-food-for-peace"
+        ],
+        "material_issue_matched": true,
+        "event_identity_matched": true,
+        "matched_terms": [
+          "10973",
+          "1961-09-30",
+          "effective_date"
+        ],
+        "needs_adjudication": false
+      },
+      "coordinator_adjudication": "caught",
+      "adjudication_basis": "Exact field rejected with the material source-specific discrepancy; see retained source spans. Legacy lexical false negatives are preserved, not retuned."
+    },
+    {
+      "record_id": "T:11963:020-renumber-food-for-peace",
+      "field": "new_label",
+      "before": "Section 5 of EO10900 (formerly section 6)",
+      "after": "Section 6: Director of the Food-for-Peace Program",
+      "genuine_sha256": "7442dfa8b258a36fbd26f4592c2164f4b989bcb589c031b0069559d9e634c99e",
+      "planted_sha256": "105eddc494d50dbacb6eaf484bcc69d7f31523999a1887fee72033531b21dfa5",
+      "rationale": "The reviewed norm moves from section6 to section5; the separately revoked old section5 is another provision.",
+      "blind_verdict": {
+        "record_id": "T:11963:020-renumber-food-for-peace",
+        "record_sha256": "105eddc494d50dbacb6eaf484bcc69d7f31523999a1887fee72033531b21dfa5",
+        "review_scope": "P:10900:food-for-peace-coordination",
+        "independent": true,
+        "reviewer": "maitland-independent-source-review",
+        "scope": "text",
+        "verdict": "rejected",
+        "reason": "Rejected exact record: new_label says Section6, but EO11963 section2 redesignates then-section6 as section5. EO10915 had inserted this Food-for-Peace provision as section6; the section5 revoked in1977 was the different prior presidential reporting reservation. Stable identity survives renumbering, but this proposed new label contradicts source and the record own uncertainty note.",
+        "defects": [
+          {
+            "field": "new_label",
+            "reason": "Proposed Section6 should be Section5 for the former section6 Food-for-Peace provision. The revocation of old section5 concerns a different provision.",
+            "evidence": "jobs/fr-originals/data/full_run/texts/EO_11963.txt sha256=afd92e7a4a6eb108d807c1adc1d5c894b3436d77dc4d57a9f90de2499ab849c5 chars[1610:1785] (Unicode, zero-based, half-open); SOURCE_FIRST.json source 10915, exact source span 10915/s1; underlying text hash and quote offsets retained there; SOURCE_FIRST.json source 10900, exact source span 10900/original-s5; underlying text hash and quote offsets retained there"
+          }
+        ]
+      },
+      "legacy_mountweazel_correspondence": {
+        "mechanical_candidate": false,
+        "affected_locus_matched": [
+          "new_label",
+          "p:10900:food-for-peace-coordination"
+        ],
+        "material_issue_matched": false,
+        "event_identity_matched": true,
+        "matched_terms": [
+          "11963",
+          "new_label"
+        ],
+        "needs_adjudication": true
+      },
+      "coordinator_adjudication": "caught",
+      "adjudication_basis": "Exact field rejected with the material source-specific discrepancy; see retained source spans. Legacy lexical false negatives are preserved, not retuned."
+    }
+  ],
+  "caught": 3,
+  "missed": 0,
+  "legacy_mechanical_candidates": 1,
+  "whole_claim_certification": false
+}

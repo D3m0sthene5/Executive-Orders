@@ -1,0 +1,148 @@
+{
+  "schema": "sol-bounded-casework/v1",
+  "producer": "sol-casework",
+  "instrument_id": "EO:13792",
+  "source_version": "c733e69dbd0fa1e57a1f2614a33d77bdd600f122",
+  "published": false,
+  "target": {
+    "path": "research/readiness/claims/claude-lambertini-s02-2026-10-20.jsonl",
+    "file_sha256": "98e19d8ded8e07f657c96e600dea3541cb15bbc5e684f57ddb7f7d3db9233cb0",
+    "line": 3,
+    "claim_sha256": "06a353a3f28f924ffbac24dbec9f56afd938f5d8de5ad580c5af4498fa859d42",
+    "pointers": [
+      "/operative_clauses/11/judgment_reason",
+      "/operative_clauses/11/first_end",
+      "/operative_clauses/12/judgment_reason",
+      "/operative_clauses/12/first_end",
+      "/unresolved_material_gaps"
+    ],
+    "change": "evidence addendum for reconsideration; no canonical replacement"
+  },
+  "dependencies": [
+    {
+      "path": "research/progress/sol-evidence-economy/casework/SOURCE_EXAM.json",
+      "sha256": "d9a1c6651851e2e2b582d79f01407fe85dec7d5a1dad85324b6c710ff9658515"
+    },
+    {
+      "path": "research/progress/sol-evidence-economy/casework/HELD_WITNESSES.json",
+      "sha256": "e5cfac9a0c217bac4a8baed0f5eecbd8d44d5bada89207a161829538e6daf11c"
+    },
+    {
+      "path": "research/progress/sol-evidence-economy/casework/RAW_ORIGINAL_PINS.json",
+      "sha256": "59fe8ffe3c4e3743af1224777a103045a43b31d46db644aa8eb94835dee47337"
+    },
+    {
+      "path": "research/progress/sol-evidence-economy/casework/FETCH_PROPOSALS.jsonl",
+      "sha256": "bacf81898992f16bb685db019f74cda9dd2f7ef04ea10483a668b1444e9692df"
+    },
+    {
+      "path": "research/progress/sol-evidence-economy/casework/QUEUE_COMPARISON.json",
+      "sha256": "e172e8167a6ef4d959ec8c13a96322bc56a428ea6e6a5d68eb83fa48af6bc1f9"
+    },
+    {
+      "path": "research/progress/sol-evidence-economy/casework/FETCH_PROPOSALS_V2.jsonl",
+      "sha256": "4fa667c28dee84a33c7b0fe1899966aecff1546832da66c8af2edace3d18ce19"
+    }
+  ],
+  "findings": [
+    {
+      "id": "interim_identity",
+      "evidence_tier": "held",
+      "witnesses": [
+        "2d",
+        "page9",
+        "submission"
+      ],
+      "finding": "The author of the final memorandum identifies the interim report as dated June 10, 2017, and attributes to it the recommendation that the President ask Congress for authority for tribal co-management within revised Bears Ears boundaries. The later DOI testimony attests submission to the President by January 30, 2018. Page 9 does not date transmission, establish receipt, or inventory the whole interim report."
+    },
+    {
+      "id": "interim_dispatch",
+      "evidence_tier": "public primary; native custody pending",
+      "sources": [
+        "agency_release_a",
+        "agency_memo"
+      ],
+      "finding": "In its June 12, 2017 release the Secretary’s office specifically dates submission of the interim report to President Trump to June 10. This matches the date attributed to the document on held page 9 on an independent documentary basis; it does not arise by adding 45 days. The public interim memorandum identifies its recipient and Bears Ears recommendations; neither item is a routing log or a receipt. Do not infer exhaustive compliance or exact first end."
+    },
+    {
+      "id": "final_versions",
+      "evidence_tier": "held plus separately identified public sources",
+      "witnesses": [
+        "2e",
+        "report_identity",
+        "submission"
+      ],
+      "sources": [
+        "agency_release_b",
+        "agency_answers",
+        "senate_answers"
+      ],
+      "finding": "The retained memorandum calls itself a final report and held testimony affirms submission by January 30, 2018. A separately read later public source narrows actual submission: in answer 8 the Secretary told Congress that the final report was submitted to the President in December 2017; answer 10 repeats December. The agency’s August 24 release identifies a draft, and its December 5 date refers to public release. December 4 presidential action shows recommendations reached the President, not which exact file the President then held. None of the three dates proves the day of receipt or legal exhaustion of section 2(e)."
+    },
+    {
+      "id": "residual",
+      "evidence_tier": "held",
+      "witnesses": [
+        "2d",
+        "2e",
+        "action",
+        "new_review",
+        "new_report",
+        "revocation"
+      ],
+      "finding": "Testimony connects the President’s December 4 action to a recommendation; EO13990 names Proclamation 9681 as the separate instrument establishing the boundaries it orders the Secretary to review. Its section 3 calls for a new review and report on possible restoration; section 7(a) revokes EO13792. Those provisions do not themselves restore the former boundary, prove continuation of the old reporting commands, or supply a date for their exhaustion. This qualifies the existing savings rationale, which already recognized independent authority, and does not determine monument status at cutoff."
+    }
+  ],
+  "unresolved": {
+    "sec2d": "Obtain exact transmitted version and contemporaneous routing/address/receipt through all four named offices; compare final interim memorandum and its findings/recommendations to section 2(d). Do not turn the factual dispatch date into a legal endpoint without an independent sufficiency and exhaustion judgment.",
+    "sec2e": "The public Senate evidence establishes December final submission, not the day, transmitted version, routing or receipt. Determine these if material; the original August 120-day term, draft transmission, presidential action, public release, exhaustion and any remaining duties are separate. Do not claim timely or complete compliance from transmission of the August draft.",
+    "whole_order": "Original review/consultation commands and any separately authorized consequences require their own evidence. No whole-order replacement or claim about later validity of the proclamations."
+  },
+  "first_end_replacement": null,
+  "native_interval_endpoint_proposed": false,
+  "status_or_whole_case_adoption": false,
+  "costs": {
+    "role": "source producer and acquisition research",
+    "model": "gpt-6-astra",
+    "family": "OpenAI",
+    "tokens": null,
+    "cash": null,
+    "wall_clock": "worker receipt separately; no campaign saving measured"
+  },
+  "revision": 2,
+  "previous_candidate": {
+    "path": "research/progress/sol-evidence-economy/casework/CANDIDATE.json",
+    "sha256": "884989b5abbcded9c38486423bdec53f3c082db5ccb7e8ce2876125aaf937daa"
+  },
+  "revision_origin": {
+    "scope": "Independent examiner located the hearing before reading the producer proposal. Producer separately inspected printed pages 96–97 of the public GovInfo scan. This revision follows disclosure; no new blind discovery by the producer.",
+    "path": "research/progress/sol-evidence-economy/source-review/SOURCE_FIRST_SUPPLEMENT.json",
+    "sha256": "3f0e554943eea01cdf24f8a85c15ef0f86be20ef9dc6be8d2f7a9a67e67f68b9"
+  },
+  "public_witness_added": {
+    "id": "senate_answers",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-115shrg29769/pdf/CHRG-115shrg29769.pdf",
+    "locator": "S. Hrg. 115-508; printed pp. 96–97, answers 8 and 10; 1-based PDF pp. 100–101 visually inspected.",
+    "role": "Secretary’s written description of actual final report submission; calendar-month precision only. External, not held/native."
+  },
+  "factual_dates": [
+    {
+      "scope": "EO:13792#sec2-d",
+      "event": "submission of interim report to President as attested by DOI; not receipt or cessation",
+      "precision": "day",
+      "earliest": "2017-06-10",
+      "latest": "2017-06-10",
+      "basis": "agency_release_a",
+      "native_held": false
+    },
+    {
+      "scope": "EO:13792#sec2-e",
+      "event": "submission of final report to President as attested by Secretary; not receipt or cessation",
+      "precision": "month",
+      "earliest": "2017-12-01",
+      "latest": "2017-12-31",
+      "basis": "senate_answers",
+      "native_held": false
+    }
+  ]
+}

@@ -29,7 +29,7 @@ from pathlib import Path
 DIRECTORY = 'research/readiness/act_overrides'
 PROVENANCE = 'agent_located'
 VERBS = {'revoke', 'supersede', 'terminate', 'abolish', 'rescind', 'nullify', 'amend', 'modify',
-         'suspend', 'extend', 'continue', 'supplement', 'ratify', 'transfer', 'other'}
+         'suspend', 'extend', 'continue', 'supplement', 'ratify', 'transfer', 'reinstate', 'other'}
 SCOPES = {'whole', 'partial', 'whole_via_parent'}
 REQUIRED = ('id', 'target_id', 'actor_id', 'producer', 'actor_source', 'char_start', 'char_end',
             'provision_text', 'provision_sha256', 'target_naming', 'verb', 'scope', 'names_target',

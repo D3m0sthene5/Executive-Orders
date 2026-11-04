@@ -1,5 +1,13 @@
 # Claim kit protocol (any AI or person)
 
+MAITLAND's optional `history-check`, `history-at` and `history-impact` commands
+query exact reviewed provision transitions. Ordinary `prepare --history-bundle PATH`
+freezes selected reviewed histories into the packet and validates them again at
+consumption. These are bounded research context, never claim evidence or whole-case
+approval. Read
+[PROVISION_HISTORY.md](PROVISION_HISTORY.md); textual reconstruction and operative
+effect have separate review scopes. These commands change no canonical findings.
+
 The kit is an offline machine dossier builder. Every output is a lead. No source,
 segmentation, candidate date, family grouping or search result establishes legal status.
 Start at the committed `output/SUMMARY.json` and `STATUS.json`: check the input commit
@@ -12,6 +20,14 @@ Undecided identities enter the same assignment with a full dossier and status
 unset, using the existing experimental-overlay path for a reviewed proposal;
 owner acceptance remains separate. The legacy individual
 JSON commands below remain supported.
+
+Before launching a production model, require a fresh `kit.py dispatch-check
+PACKET` exit 0 (use repeated `--order EO:N` only for an explicit subset).
+`prepare` writes an initial custody/freshness screen and exits nonzero on any
+mandatory source block. Keep blocked members for acquisition/checkpoint work;
+`prepare --research-only` exports evidence but does not authorize production.
+Recheck immediately before dispatch, freeze shared inputs during the wave, and
+never renew a stale seal. See BATCH.md for receipts and existing token telemetry.
 
 1. Pull the assigned branch and read `HANDOFF/README.md`, your current assignment,
    `jobs/claim-drafts/AGENT_GUIDE.md` and `research/stage19/CLAIM_SCHEMA.md`.
@@ -39,7 +55,13 @@ JSON commands below remain supported.
    copies sources/quotes and runs Stage 19 plus exact-span/hash checks. A failed
    sheet is reported and the batch is not emitted. `kit.py check <claims>` repeats
    the pre-gates. Run the actual claim-checker for custody, identity and date checks.
-6. A separate reviewer reads the sources, tests earlier endings, and writes an
+6. Before source interpretation, the separate reviewer runs the maintained
+   `kit.py blind-verify --card CARD --source-root ROOT --allow-source-root NARROW_SOURCE_DIR`
+   against the actual blinded input and only its supplied source directories. Repeat
+   `--card` and `--allow-source-root` explicitly as needed. See [BLIND_VERIFY.md](BLIND_VERIFY.md).
+   Preserve failures; a mechanical pass never supplies a scientific verdict. Do not
+   inspect genuine counterparts, producer conclusions or control keys to repair a
+   blind check. A separate reviewer reads the sources, tests earlier endings, and writes an
    **AI review record** under your pilot research folder (never an
    `eo-lifecycle-review/v1` human review). Commit only accepted claim lines to your
    own `research/readiness/claims/NAME-DATE.jsonl`. Use `kit.py complete` with the
