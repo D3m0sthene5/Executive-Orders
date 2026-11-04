@@ -1,0 +1,22 @@
+........................................
+----------------------------------------------------------------------
+Ran 40 tests in 0.509s
+
+OK
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/neyman-pilot/job.py", line 33, in <module>
+    tracker=load_tracker(root);live,problems=tracker.build(str(root));committed=csv_rows(root/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv')
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/tracker.py", line 473, in build
+    holds = load_source_audit_holds(root, claims, claim_gate, problems)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/tracker.py", line 720, in load_source_audit_holds
+    if not review.is_relative_to(base) or hashlib.sha256(review.read_bytes()).hexdigest()!=row['review_sha256']:
+                                                         ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/Executive-Orders/Executive-Orders/research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl'

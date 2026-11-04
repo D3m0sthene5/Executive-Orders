@@ -1,0 +1,25 @@
+.........................
+----------------------------------------------------------------------
+Ran 25 tests in 0.140s
+
+OK
+classified 8014 pre-1937 orders; 2472 census-gap candidate rows
+clusters: {'documents': 5004, 'clusters': 284, 'orders_in_clusters': 1317, 'clusters_5_plus': 56}
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/x1-class-engine/job.py", line 130, in <module>
+    main()
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/x1-class-engine/job.py", line 88, in main
+    reg, ev_states, ev_rows = events.map_events(repo, HERE, types, wpa)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/x1-class-engine/events.py", line 42, in map_events
+    states = source_state(repo, reg["events"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/x1-class-engine/events.py", line 20, in source_state
+    return event_sources.evaluate(repo, events, tx.compact)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/x1-class-engine/event_sources.py", line 92, in evaluate
+    held = read_sources(repo, {s["url"] for e in events for s in e["sources"]})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/x1-class-engine/event_sources.py", line 44, in read_sources
+    raise ValueError("event-source manifest exceeds bound: " + provider)
+ValueError: event-source manifest exceeds bound: app-transcriptions

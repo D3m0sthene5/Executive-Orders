@@ -1,0 +1,1156 @@
+{
+  "attempt_limit_seconds": 30,
+  "exploration_allowance": {
+    "allocation_to_neyman": null,
+    "cash_budget": null,
+    "exploration_share": 0.2,
+    "metered_model_calls_allowed": 0,
+    "nominal_exploration_api_value_usd": 2.0,
+    "note": "Existing allowance, not a new allocator. No model API calls in the job; session metering unavailable.",
+    "round_budget_api_value_usd": 10.0,
+    "source": "jobs/junto/config.json"
+  },
+  "frame_population": 14188,
+  "historical_samples_representative": false,
+  "human_certification_boundary": "unchanged",
+  "input_hashes": {
+    "jobs/app-executive-orders/output/FRAGMENTS.jsonl": "aa49fd47cd1a8db4bc154b863fddd9c2357b38aaa294ec26898235b9d5680247",
+    "jobs/app-executive-orders/output/MIRROR_FRAGMENTS.jsonl": "aa7bcfa80ccc68a690c742fb1bf77a387ca862f7a7a0ca166305c6f21777282d",
+    "jobs/claim-checker/output/PER_CLAIM.json": "c350869694bb00d8fa7cb2093d580c3c053a7fb36f02417e4c876f936f2eb220",
+    "jobs/claim-kit/act_overrides.py": "8683c33052f0604e07e790bede2fa6fed1c985707b45a12e14a7eb27f7c09280",
+    "jobs/claim-kit/assemble.py": "dd0e89fa05bcf619fa795e6ee5702255c89d69e79663d5f06ac9143557e8da6f",
+    "jobs/claim-kit/batch.py": "9f628cb4b55eb0f2219d0e7410ccb44d4c8381100de7163f64fbca5cae143b3d",
+    "jobs/claim-kit/build.py": "065618f809371a8dbe4365bed9e919f9b5443da3df8abb620ba58bb389a32e96",
+    "jobs/claim-kit/completion.py": "921cb0600d25bb2d15d0931d8ffbc9d726b8ba6c0b3ede617dde2df64e5cfe84",
+    "jobs/claim-kit/current_evidence.py": "b31d106f84c63736952ee3641a7f5809e804ecd85ae87d1687d5733591d1a93c",
+    "jobs/claim-kit/evidence_preflight.py": "8b57fb73c3fe3ba44541fd23c4b0ea66cf151dc196ef90c5b4316e3e35cf154c",
+    "jobs/claim-kit/excavate.py": "d869e4086c121e33da551ebbe17e678d945d1424d223c1cd1d891d0f2ca5347d",
+    "jobs/claim-kit/factual_events.py": "f8ba8ad809e5b0c845cb6a3b2946b1d33c0e4e88b916d126c3e58d2ee1c79659",
+    "jobs/claim-kit/fragment_cache.py": "a13046b1b79f1b1dbb13042ded6c16198ce449c05f3c7a81bd6917cb9b8f07ca",
+    "jobs/claim-kit/inputs.py": "2d87a9f958bc625e1d13db3f8536d0a9d4764a12cb699f883c36f5b972c629f3",
+    "jobs/claim-kit/job.py": "67a39c213771ffc5a6a4a3fdec7e94b7f2aeed45b38f3a7ef63747503ed04c37",
+    "jobs/claim-kit/kit.py": "b23f8432e8e981da8cf4d615beb1fc8a1b6aa6c93779d8134c3946890839e985",
+    "jobs/claim-kit/lifecycle_obligations.py": "61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab",
+    "jobs/claim-kit/output/ACTING_PROVISIONS.jsonl": "691741027c808edc7dc43e2352039d2b2c81930e8d89a888185afaee710f9186",
+    "jobs/claim-kit/output/ACTING_PROVISIONS.part0001.jsonl": "40b217cb408c322e7d6952193bbf831a202708016ba0a26bfebbe2a0aad4d9f0",
+    "jobs/claim-kit/output/FAMILIES.json": "28a09526cdb9c0680fd284a280a0acf4c2477f99eb91f5a77bff2a77f2bd8e43",
+    "jobs/claim-kit/output/INDEX.json": "3e7df7a410cab4cfd5a3405d60daaf7b50e95a137d0591a4002a234035f01961",
+    "jobs/claim-kit/output/OWN_TERMS.jsonl": "90224c5c8c4ba4fafe70e6d17d5d8b7458f698c1c7e8fc772693ee8899e65e94",
+    "jobs/claim-kit/output/STATUS_LEADS.jsonl": "583c81e2f0db40a5dd43b93452a820fe4ead2f5ce35ec97de0d7df368d39e119",
+    "jobs/claim-kit/population.py": "299596047de00d2849d26800f63ce1289412170f6b443445f05bf2d11a0d4859",
+    "jobs/claim-kit/prior_research.py": "593efd1250e2e515623df44c438ea1258be12d553d4d1290c15c717950293fc7",
+    "jobs/claim-kit/source_supplement.py": "6e1ee63a5c4b067e189ccdbec36dc6c2d12566f1ecf3a76045bb85b8f4025b9a",
+    "jobs/claim-kit/status_overlay.py": "733d88b41899781b900ed915f9764ca1316ecf66069fa64ee7f42efc4d94bcdc",
+    "jobs/claim-kit/test_act_overrides.py": "fea3bf238483d388f8581b777599b01c13bdbfdb3b373348848ac74b61fab42f",
+    "jobs/claim-kit/test_assemble.py": "b7fa48015056c614f3ae251937ef57cbfea3cfde8533a853e13234c7b0959993",
+    "jobs/claim-kit/test_batch.py": "b89aee96c4493bd54882c78aa43fd867c2e76a30663e5f10d16d24e6b9053ac0",
+    "jobs/claim-kit/test_build.py": "342b243fff4f6a03b6f893c46905e6758e2d4bbf156e774614e38a5408cb39c2",
+    "jobs/claim-kit/test_completion.py": "ae6dd781d2f00cbc58e03c0a85dd427370a325060c79304fba29fb8a7c55b8e5",
+    "jobs/claim-kit/test_completion_diagnosis.py": "9ecac75eb035537d8e73c45bf5821d694185b633fde85623acca6f52c156d2eb",
+    "jobs/claim-kit/test_continuous_route.py": "e2d84f7e29a7de0e0a09ca19a6d19a117382559a2fec1475daa0a79775a43524",
+    "jobs/claim-kit/test_evidence_preflight.py": "1c0a6c6cbd9e31480f6221d730212be48cf6615f439f84019a3e1174db864798",
+    "jobs/claim-kit/test_evidence_preflight_real.py": "2e5e2c4ab02b6bccc3327b6a3bcc4d8b9e34c26b7fc85760db475f977baa8305",
+    "jobs/claim-kit/test_excavate.py": "b6c75dad6dea582588152cd1cd4a70c5fcf50241301a62ee1f8e4436ed1a4450",
+    "jobs/claim-kit/test_factual_events.py": "ef4cdfa583e83ebe0f9a3818abdecf6aac1b5c03b83fa7201e2252c24bb8e048",
+    "jobs/claim-kit/test_inputs.py": "c602b5c6b2f080f0bbbcf624b64f8e051d7249182e977ff56c198fd3f6793f90",
+    "jobs/claim-kit/test_lachmann_reuse.py": "e3f04c94fe694a743befcd4397ee1fee32f21966f26f4d60efb3eec7416db62c",
+    "jobs/claim-kit/test_legacy_extent.py": "b5fb97ff18219edad431682873d404415b8d2c88bc3269f9ec0b955502d71c26",
+    "jobs/claim-kit/test_lifecycle_obligations.py": "a9bb04c6edbb6d729974c99303ac67c8102763d7c9b411db5da0d6ace2d3a05a",
+    "jobs/claim-kit/test_original_identity.py": "23a6a4bd5a7f4480f5607b9bfea0ef90669dd9b2ea24f63e7ca40308201b9d7c",
+    "jobs/claim-kit/test_overlay_completion.py": "299e9155725b712a748e160b218db1751feb25fae963172cd21943a18be9a0c2",
+    "jobs/claim-kit/test_population.py": "15e95d86ed4df2ee7619db18b6510223e3090b338c25846c300059b6f28e7346",
+    "jobs/claim-kit/test_preflight_dependencies.py": "b2104e25c959b86958a6bff684cf76a69925606f2d385d005e06a1ee8e410b9e",
+    "jobs/claim-kit/test_prior_research.py": "fe5b9f19a0cbe0bf8dcf0b0a21c70e29a0a03ca9c95f4ba282805aea900835c3",
+    "jobs/claim-kit/test_review_regressions.py": "f9627f34b2d65477eef1ae91ad2e2b884b1df4ef27d34199e24817174d5cedcf",
+    "jobs/claim-kit/test_shards.py": "2c1a327c30801fd5931857497c7427ddbf361629b3aa71ac86e4a55c068a9e48",
+    "jobs/claim-kit/test_source_supplement.py": "81ce8ae44fae88a2486b288988d1a34b5d72330c9f34eedcf96dfb8d61d34886",
+    "jobs/claim-kit/test_status_continuity.py": "f814033234b1d346ddbfde021bd5b8eaa32b08201cdde98a5ed82e95e6e512e1",
+    "jobs/claim-kit/test_status_overlay.py": "174f83d8a5aa21abb00d14b3d92966a312f3f526c12e54fb566869192b5c1faf",
+    "jobs/claim-kit/test_working_text_index.py": "86f4bd1759261fec16326188743297a1bbcff8c4896c0844aa64c7992e1b6ebd",
+    "jobs/claim-kit/working_text.py": "5be415c903d0bba3c3cec374d9b234708bb9d3e72b62224f4ea0e87159cc2b8d",
+    "jobs/corpus-excavator/combinations.py": "21c13ef56f36be43bab94488369cbde8d9797b4ee8de5a98593c069c97838c2b",
+    "jobs/corpus-excavator/measure.py": "e1edcbfd5d65b6c13b0703196448cbd9fe727f34e5235dd31272aeb30502611f",
+    "jobs/csc-annual-reports/output/FRAGMENTS.jsonl": "e479c336e45fba5496125548a9faba931be7298d9a333fdc56bc3764309020ea",
+    "jobs/current-law/output/ORDERS_CURRENT_LAW.csv": "e7f7d066e0a53a8d6a9736e06693a340dd035d41dabd4d56f042e0314d1fa55f",
+    "jobs/current-law/output/POSSIBLE_CONFLICTS.csv": "21cfdbe92ad81b40617669cd4cf5e8da5c2769bf748ddef432d5c3f4517792c9",
+    "jobs/current-law/output/STATUS.json": "9a4590dd9dd6a26073af4b6cbd391f7805bd553e84482d0a3e208eba352996f7",
+    "jobs/current-law/output/SUMMARY.json": "cef772dc74e004ffb75f6c07863ea9a251bc5471df1a354b49fc4c5cc61d7419",
+    "jobs/fr-originals/data/full_run/FRAGMENTS.jsonl": "b99927366dcf4f11f1ee9845f10374d23bbc3be7d693aa6daf5906fb99456444",
+    "jobs/fr-originals/output/FRAGMENTS.jsonl": "b99927366dcf4f11f1ee9845f10374d23bbc3be7d693aa6daf5906fb99456444",
+    "jobs/hathi-gpo-orders/output/FRAGMENTS.jsonl": "638ee7a61fd2ffdf2f33e99726375aa3c856c6450d753c5cc4384a40602154a8",
+    "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl": "4cfcc64bb0fe6b99688a3aabb529c55113cc13cddc0886df5257c59c86a49cc5",
+    "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": "712ff1ca97f2a88a96fbe48e133ac5d0dd7fea2203774cc0007cab4d55b00b6c",
+    "jobs/junto/config.json": "d759d9d5df9e99380e7dcdf921b9b6a607ad483597b4da2666adb95c32150b75",
+    "jobs/junto/contracts.py": "0f066efe4d1e5d64a0084d88eff5d0f0b4f81372a131a6dd90ac3f7d810525a3",
+    "jobs/junto/finders/neyman.py": "7beaa52ee8ea60f450daef840e3ab778973b0116908616c4cf796ffb1bfeec23",
+    "jobs/lachmann/output/AGENT_CONFIRMATIONS.jsonl": null,
+    "jobs/lachmann/output/CONFIRMATIONS.jsonl": "83238df3b9f4113a02f24805358dd735fd71abaf3112b74e6069a7ede09915ac",
+    "jobs/later-events/output/CATALOG_INDEX.csv": "f0f20cbc19b37c933a0889d25304c8db65322561a682be05ec7b6821376e74ac",
+    "jobs/later-events/output/COUNTEREVIDENCE_LEADS.csv": "7bcdd00035ee3aeb554d79533080824abec3fe156b3b9e27ba8320469e446aa0",
+    "jobs/later-events/output/STATUS.json": "bc028b1f1ac61c60a0251dc761102891110dd4dcdc2c31f2b0b385e3a29df257",
+    "jobs/later-events/output/SUMMARY.json": "3f2a3dce3fa9ac70e0c8c0b5af8519cf49671e3e7851f56657619e3fd8a56f8f",
+    "jobs/llull/llull.py": "af8029c2cf190ef0bc2fe704a96ebdffe82c27939c99b028d3b21a000a257db2",
+    "jobs/neyman/after_completion.py": "c8cce77a1cdf6b886fb8322d1d5533309465830372af826578aaeeb489b4236f",
+    "jobs/neyman/attempt.py": "a7f40a54bc33913d218ff1a6f2771dd2fbf0844942032142ff8b5441520ed73e",
+    "jobs/neyman/config.json": "216b9274d2cd36ff207ad9544a19a295d6479924c814da3dc69819aaf4ea00a8",
+    "jobs/neyman/diagnose.py": "aba82132ad518a3e69a7dceda83d932628b7ef114a470b1de3cf95c72adb96ca",
+    "jobs/neyman/job.py": "b69e394b52050419b061d4b5717f204c7560ea097e897508aea7cea2eae1a0d0",
+    "jobs/neyman/opportunities.py": "09232d59194da5a58a030de7e41cac28e78ae7ee03b3ad5efcef90b3bf560052",
+    "jobs/neyman/pilot.py": "08c5e55be453617aa71d6e9f618db431c0c88f0722425d0bcbc7ee67d8b71d12",
+    "jobs/neyman/production_receipts.py": "b43f5bfffee891afbb8ecd7b1c32a875f33a348b0f28c0b65911ae57f145f0c6",
+    "jobs/neyman/survey.py": "e16592067dfa8cfeb383d156057c231bd7abec3b9077b1afbafe4c001efedc14",
+    "jobs/neyman/test_after_completion.py": "e03a22680283389e2e33323c893d51070637ad72c7fe93145d1b04c24d4d441b",
+    "jobs/neyman/test_production_receipts.py": "8be964c987ec727b7ba8922102959168179c6ad4cb26e0d73fb64bcf75e69965",
+    "jobs/neyman/test_survey.py": "dd665f9a59f24810862e900993f1ef8cfdb625abc7662b6196dce51d117e5438",
+    "jobs/numbered-early-orders/output/FRAGMENTS.jsonl": "477028f1525b651c578ce0049ae482af8ac19759ecd32aac7fa3dd256409f429",
+    "jobs/ofr-compilations/output/FRAGMENTS.jsonl": "88cc05d7aa827a3a7d31a218d4217e0b8fd1969c8ae81a7ee1a0c8bc805802a5",
+    "jobs/opus-media-match/output/FRAGMENTS.jsonl": "9ffd24a719ae2ba15111d9a4d3dba1c744ac42a34b8329594497a2056e4d5555",
+    "jobs/opus-media-match/output/OPUS_CASE_MEDIA_STATUS.csv": "cb38f015b9bd98d59b329802c826cf8becafc038cd5ddfd541a5c3edcff96c54",
+    "jobs/opus-media-match/output/REFETCH_LIST.jsonl": "f69528d7379c9d5be29d7ea35cf1097b18bcebbb46cd9310ab9ce986ea00fe31",
+    "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl": "5cd4502e5e261bfe0ec7803c4673707a7dbb4da6dec424a8bfab055f7a38639c",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "f12ac50863234c47bc6dd4b459bf75c5a27425233a0519c804713b4942fff0ca",
+    "jobs/readiness-tracker/output/SUMMARY.json": "23da6a7bf6578bfe31aafb3e7c720fbbc0a466bf31b8a64612e150e8b3ed1552",
+    "jobs/readiness-tracker/tracker.py": "4c7bbe095a0ef829872b3f545496e3cfe081e5a3a44817fb279feffe86a2ebf3",
+    "jobs/richardson-volumes/output/FRAGMENTS.jsonl": "71cc6e670f5666a28a26b514f3698b674b423e66e5e4d8bbe4aca28e99c7ef72",
+    "jobs/source-ladder/output/RESULTS.csv": "0beb9924293573c5177d4aa51cc9f99d99b22eba9bfc24eaa7597e0f621ca520",
+    "jobs/source-ladder/output/SOURCES.jsonl": "c076e3106a10ddc64157fb8c04ea24e771a87c61147e6afadbe8c241742afcc3",
+    "jobs/status-history/output/INDEX.json": "a956aa9a68c9d9d0cc7b4c5ac86cd79386a4ec8b9b22efef6fe3dcb45683efe5",
+    "jobs/wikisource-texts/output/FRAGMENTS.jsonl": "a0b3d838d3eeff0b866f0dc79a18d037128d84a864828edc0b4cfb53b51fd676",
+    "research/excavator/2026-10-18/review/INDEPENDENT_AI_REVIEW.json": "6c542eb351d57b55bd59520eddd37d032b0fb848e6477d63d861a79f1c742ea9",
+    "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13101.audit.v1.json": "82f945ea19f2ade97519a67625ffdb6ddc574b3f22d658d861191b7757d9a43a",
+    "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13148.audit.v1.json": "36c46bb851347301f7fd3cbb6cb3c2347cb05703b143a92d5cf32e220a44c4e0",
+    "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13783.audit.v1.json": "b85db9ffd37a906c0c4b8e630c039c748c52556ad4ca76f49b5705e56d28d9c8",
+    "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13792.audit.v1.json": "e1ccedce9ab533824dd2a4916543427a923b151df333cf0b1b3f7373203bfba8",
+    "research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13807.audit.v1.json": "69c149cc4e518235912c2d31ef4c9d67221c7806a45ed69a966af08edf400758",
+    "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv": "d2594085e587da8ae929d7c03a576c8f24fb17e57054bf411e935879fe2318d8",
+    "research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json": "0d80cfa0122531d7122690945f67be00ccb2f90d221e9a859e4bda7a29c7b6f8",
+    "research/readiness/EXHAUSTED.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "research/readiness/SOURCE_AUDIT_HOLDS.jsonl": "0c59f39ce3d37888b22d7f974141f2a23ad464ef79f51a5330fb9a34243efd98",
+    "research/readiness/claims/astra-2026-10-17-p12553a.jsonl": "b3b4e784cc1822e2aa90e3191db43ec2c90887398b9477b23bb27abc1160dfe8",
+    "research/readiness/claims/astra-2026-10-17-p12553b.jsonl": "2c650f156a5961e1a290c472451ae143d9931aea300a1e3de97bc9ef71695c24",
+    "research/readiness/claims/astra-2026-10-17-p3originals.jsonl": "bb72c432d2e5e463bb4bd552b5f09654758ffee8031bc05b28897a29444ec55b",
+    "research/readiness/claims/astra-2026-10-17-pother.jsonl": "04178d56a1f25d785ef9dc859d6d1c9439256a55541bf155b17f5e8c53d01efe",
+    "research/readiness/claims/astra-2026-10-18-p3complete.jsonl": "1cf54964882321ba69cb623306bb9122f4a55983041a54863d4bae3926388894",
+    "research/readiness/claims/astra-cumulative-2026-10-24.jsonl": "8561b4e0edb35196a5e885ce76e6a70eb493ca7363cc4eb98f6e78ba00754b8a",
+    "research/readiness/claims/astra-source-first-2026-10-24.jsonl": "577a310974bec18286ee8bdc107118ac7dc2a3c20923e8764a52d2aae582c017",
+    "research/readiness/claims/claude-2026-10-18-codif-b0.jsonl": "1667184da881d742e468fe035aa3eedda6dd3be36949ac90faa4c368441ec29b",
+    "research/readiness/claims/claude-2026-10-18-codif-b1.jsonl": "ad802121f3908ab386762bda3f78303033544d5acb16d95de3ad9ca7443b417c",
+    "research/readiness/claims/claude-2026-10-18-codif-b2.jsonl": "eccaa5fe557d41c23befa0144c3b5ceb50a2ed590e11db57d7c67193c00b4610",
+    "research/readiness/claims/claude-2026-10-18-codif-b3.jsonl": "56540f4157563fc7590507546a8455fed2e3639e9900dd51644cc40e0d0fbb1d",
+    "research/readiness/claims/claude-2026-10-18-codif-b4.jsonl": "3d70d169c9e60afa9e57bda74275ac1302d2ff64141241bd999800b6157797c1",
+    "research/readiness/claims/claude-2026-10-18-codif-b5.jsonl": "1d2dc73c124011d77a11bcd12c3cbc5a52d599a5175ab8d1d2bd7ba004c3e6e7",
+    "research/readiness/claims/claude-2026-10-18-codif-b6.jsonl": "721d67c3f7fa07d4e94a6aa37d98bfce1f36b7a572bd7ade07a64a7f3ff03cb3",
+    "research/readiness/claims/claude-2026-10-18-codif-b7.jsonl": "adb93481b83b0702ba3a46e9dc21c22956652540b102844fb5d2aa71cb53d4d7",
+    "research/readiness/claims/claude-2026-10-19-x1-pilot.jsonl": "96fcf83d04d9a5950b567a96e735b8905cdf8d578da905541ee5c240273ad0cf",
+    "research/readiness/claims/claude-2026-10-28-production-b1a.jsonl": "efdad7eab3f36e9ad1178e9f9617ff0deddbfa87ca78f738bfc426c11cbc704b",
+    "research/readiness/claims/claude-2026-10-28-production-b1b.jsonl": "a253e0417c61dfb4f4e1c77ad3af5ebfe83b380e4d629f341fa21381fe45bf83",
+    "research/readiness/claims/claude-2026-10-28-production-b1c.jsonl": "3c3565692794068f2e20b2b47b24f6f72cd8f2db9c68f57321a8da82fb07c9a8",
+    "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl": "31cbd7554af8864a0d0f25d33df81da4482c48e433f2e6e9d8e8be9a91ed5c80",
+    "research/readiness/claims/claude-2026-10-29-nira-t1.jsonl": "b1a9154dc51089c7a17b080ac94be97341acf636dc4205dc6697262a40291529",
+    "research/readiness/claims/claude-2026-10-29-nira-t2.jsonl": "da1a87ec9f5154fa42ff29ba7a020b7e3acfe99e7cc8ec9c3223882603e49e75",
+    "research/readiness/claims/claude-2026-10-29-nira-t3.jsonl": "e19520cfd17dbb04c7fc699d8e00b975c5792503f56be9af29e166ec32425913",
+    "research/readiness/claims/claude-2026-10-29-nira-t4.jsonl": "13356773bd441cc6cc452dbf2b2756fab0b33bf794042e7f73df655e6c9be7ee",
+    "research/readiness/claims/claude-2026-10-29-nira-t5.jsonl": "c3936fcd8fa6d43dc87908a6ee07984f5c5efb5a88aca4e480a04679e73dbcd3",
+    "research/readiness/claims/claude-2026-10-29-nira-t6.jsonl": "f58250d4735ed74804ef07c70169a7c880854eebe960211e850189d9556b047d",
+    "research/readiness/claims/claude-2026-10-31-apollo-g01.jsonl": "75824be4caa6f1a18601de3b7c093440075cc6511d21767b74d6e2b371e21e66",
+    "research/readiness/claims/claude-2026-10-31-apollo-g02.jsonl": "03a2129af182e93269bb827f7755d021f35744811d653aa75da3a03ef7cc449c",
+    "research/readiness/claims/claude-2026-10-31-apollo-g03.jsonl": "e37c05a0fd04b69e91a725e6dc95cfb3621dd2568c7cd3c3e4b09d7b5fe05de4",
+    "research/readiness/claims/claude-2026-10-31-apollo-g04.jsonl": "c8cc95b7f444db26c21c8870802b845e795b2ec6a3763dc32b2ce354d7b978cf",
+    "research/readiness/claims/claude-2026-10-31-apollo-g05.jsonl": "c4cc2ac201e97675b07c1535888b94f1dbca52511fe62090658433c056c092b1",
+    "research/readiness/claims/claude-2026-10-31-apollo-g06.jsonl": "bc2131fec34d19724a5edb01aed667cd49d3b84ec761fdd04660a0382474814b",
+    "research/readiness/claims/claude-2026-10-31-apollo-g07.jsonl": "3020d4aeb53b8d8d20f485530423b36304bd6e5d03a8c0a3ec7c206846aabf3b",
+    "research/readiness/claims/claude-2026-10-31-apollo-g08.jsonl": "4093fecd9f9e1de3d87de70a639d4deacdc562bacdfdd386c65beb54d2d43b73",
+    "research/readiness/claims/claude-2026-10-31-apollo-g09.jsonl": "bb754c7f01cd126cc14c86f405effc06f9b3611d9e6a0f5f347ce7b8d729df19",
+    "research/readiness/claims/claude-2026-10-31-apollo-g10.jsonl": "1d8d1ca5af1bf937178fa8afa5793eeac0155212839cf3300123106597444d0c",
+    "research/readiness/claims/claude-2026-10-31-apollo-n01.jsonl": "77205764a7270bc35f6feaf15d9d47aceb598ec7eb338a12f842021d7a0228fd",
+    "research/readiness/claims/claude-2026-10-31-apollo-n02.jsonl": "d6ee772a947038774508b58371ec03f85549afdf725a42cf0d32106f4eb8719f",
+    "research/readiness/claims/claude-2026-10-31-apollo-n03.jsonl": "fdae1359c5e87c06fda8573661dd01d6d45f0fb67eca95ccb0fdfeecafcf377f",
+    "research/readiness/claims/claude-2026-10-31-apollo-n04.jsonl": "34b0566c3ba1f8d3786e3c68c1f1bf7c0a9ad38d2cf874ceb48e9e60f86514b8",
+    "research/readiness/claims/claude-2026-10-31-apollo-n05.jsonl": "7b4d8f8f5497109cf09cfa84d4a4c240d0092e8f3f744b690e937b4cb22c9321",
+    "research/readiness/claims/claude-2026-10-31-apollo-n06.jsonl": "5a8f0c27a26286ebeee928879df189a773c1012c2e27117280422e6b98c6a80f",
+    "research/readiness/claims/claude-2026-10-31-apollo-n07.jsonl": "06cafa03e81acc67bc70655fbc89ed9da32defce849d88a51cc0be23637a904e",
+    "research/readiness/claims/claude-2026-10-31-apollo-n08.jsonl": "14b420f1f5d723c6d1d86f0774e87bd8d9435e696a635118ff9a079afa4d5bbb",
+    "research/readiness/claims/claude-2026-10-31-apollo-n09.jsonl": "a39d35517157ee5d83edd78fc2762e3378919c8fd9c2159f70bb2c463cd3628a",
+    "research/readiness/claims/claude-2026-11-02-erasmus-c1.jsonl": "514ad8760d213b107de5b1b814a17633beab088f33a739ed42cd2b07d672132e",
+    "research/readiness/claims/claude-2026-11-02-erasmus-c2.jsonl": "e2fcb3655bac08cf4f9fe5962538e7b78a2d1ab9cfe301aedafc733c1700cd78",
+    "research/readiness/claims/claude-2026-11-02-erasmus-e1.jsonl": "099b32334e8fb1c3eac51f99c5c921b23d6b4a23cf7c835cce6722d7c124a7d0",
+    "research/readiness/claims/claude-2026-11-02-erasmus-e3.jsonl": "1831e9ecc0f8ba620d48cdc785ad56d9e145f947a160c3aa49fb42eaf8e94484",
+    "research/readiness/claims/claude-2026-11-02-erasmus-r1.jsonl": "5e80aec400e676ce145a38aa962b4f2484df99ad8b3b5650c2c74b0fd7fbb7c9",
+    "research/readiness/claims/claude-2026-11-02-erasmus-r2.jsonl": "ce1c97e37030ada4468fc353f0992467ccd08da11fe3537a19b716fa3a2b5d5a",
+    "research/readiness/claims/claude-2026-11-02-erasmus-r3.jsonl": "3d1c2fce37c0fa4e5064dd599985070d1d5186735b7db0107a84e91d3f89e071",
+    "research/readiness/claims/claude-2026-11-02-erasmus-r4.jsonl": "a134bd46190a5cab4c24b7aa7f0a6ba38c61a727453a499befba35db861e2436",
+    "research/readiness/claims/claude-b0-producer-2026-10-29-nira.jsonl": "ac1c897c17c2b6b459c89f1fb5ff119dd4edf1a98d2c1644913d69f66b5c225d",
+    "research/readiness/claims/claude-bowditch-y2-01-2026-10-20.jsonl": "b057707650d20d09ff326f37f3007a141508e7b28ac0db587397dde28b0ab4f4",
+    "research/readiness/claims/claude-bowditch-y2-02-2026-10-20.jsonl": "dbb0df83d958c2de069ffe925202c666e21644cf077bd959954847d21e467f24",
+    "research/readiness/claims/claude-lambertini-b02-2026-10-20.jsonl": "749132c0b0eb800e8d84846c99e19a8b55d82a5f86f8888179b945b50d8404ff",
+    "research/readiness/claims/claude-lambertini-i01-2026-10-20.jsonl": "eaddd412f6c7eb6bb23b91d28aa15193883a5c679b742e98152877e4277a9728",
+    "research/readiness/claims/claude-lambertini-i03-2026-10-20.jsonl": "3c808af1a5cf536fba2568209f7b7becc25941a41a1eb62a9b827a8a5dae45d0",
+    "research/readiness/claims/claude-lambertini-i04-2026-10-20.jsonl": "f1fe2cf8572aad9e0800c713c746bd21770d7e21aa533a714329e0ff62573c04",
+    "research/readiness/claims/claude-lambertini-i05-2026-10-20.jsonl": "823dafd027ac58895084dcd005b2fcb0966e0a7b960b6ed7af88f4cbb4a29350",
+    "research/readiness/claims/claude-lambertini-i06-2026-10-20.jsonl": "638033c43925f6bf0ef1c10e5929b40c51bcacba911da43a1fbf3f0242c79e3b",
+    "research/readiness/claims/claude-lambertini-i07-2026-10-20.jsonl": "6291aefc5ef1d8dda881b6a0b06db2f3f3be370eab1b79888ca1ce1275b8f4ee",
+    "research/readiness/claims/claude-lambertini-i08-2026-10-20.jsonl": "7945cf09ed2ae1bf31e916c69bd53efa90ff597dbb91877c26abc675239baeab",
+    "research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl": "977052d86a619732bb9ca65e2f35e083a4da44789b284af68b29cae7796f175c",
+    "research/readiness/claims/claude-lambertini-iv02b-2026-10-20.jsonl": "4e825aee5d235a9938a235fffb0a8e906a4587385ffe1721713b7f37609ce78e",
+    "research/readiness/claims/claude-lambertini-p1-2026-10-20.jsonl": "f86f6a866f18e0bb1801ea30f7a5ab3f44dab59b853df877f7ea432ae3e01c2d",
+    "research/readiness/claims/claude-lambertini-rr4-2026-10-20.jsonl": "74ee6ff8e8cf48b49f2840d2f64b86e65d4e34ed2d025007d576b684668dfeb0",
+    "research/readiness/claims/claude-lambertini-s01-2026-10-20.jsonl": "15f24f5ff5aba016bee03e1bf4ef6a705e772f3e44fe40d569da86cbe0b1e886",
+    "research/readiness/claims/claude-lambertini-s02-2026-10-20.jsonl": "98e19d8ded8e07f657c96e600dea3541cb15bbc5e684f57ddb7f7d3db9233cb0",
+    "research/readiness/claims/claude-lambertini-s03-2026-10-20.jsonl": "7f711905369ddcb7389c423c6f91977142b2d534b4619901281ded4c68b233fa",
+    "research/readiness/claims/claude-lamm-s03-2026-10-20.jsonl": "854ca338659c8c5188f7ede1c151387d07627c86eba800bd4f3be5c0be682ea4",
+    "research/readiness/claims/claude-lamm-s04-2026-10-20.jsonl": "d47d78c927b7006866b71e4777086852d6625d9432f0094bbecf9a91ca1d8628",
+    "research/readiness/claims/claude-lamm-t01-2026-10-20.jsonl": "f21678a1ab5372a1af31e23c0037a27f933e1e44191889ebbef36d81d10368a8",
+    "research/readiness/claims/claude-lamm-t02-2026-10-20.jsonl": "88c9cb971b766698fa3913f0deabea2ab48e547d79ab0b824037d3b47239c9b4",
+    "research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl": "f775ea3a68844679ef180f88438c3e66b55aa31bf58b2d41b7af93741094b21f",
+    "research/readiness/claims/claude-mansfield-b02-2026-10-22.jsonl": "4756fc816d2e9ad6f9c10d5306110dc65cc368ac4d966d0d0812ca303af0493f",
+    "research/readiness/claims/claude-mansfield-b03-2026-10-22.jsonl": "e966a03744258d02e4475fed4ca93171eb39de375a31e17812b0414a38fa0ccd",
+    "research/readiness/claims/claude-nearready-2026-10-20.jsonl": "adad549b5ddfbac3bdc688b0aaf14653a7b7e9bb2be4afbede6663e259575b7f",
+    "research/readiness/claims/claude-pagechk3-01-2026-10-20.jsonl": "ce56d3c1a4770064f42afc8c8e132bf831cbd3ccbde2152d80d0eb0efbed7451",
+    "research/readiness/claims/claude-r12553nb-01-2026-10-20.jsonl": "31fa86241151a2d0ea8acff280e6f25d91385bbc3b9f41ca02632e51ea0dbc7e",
+    "research/readiness/claims/claude-r12553nb-s2-2026-10-20.jsonl": "a39deb8e52eb37d40b2e9f0c97aaea72b797d92ec6b359a83dc5d4931708aa16",
+    "research/readiness/claims/claude-r12553nb-s3-2026-10-20.jsonl": "19524038776ebf49cb6789295f92e487623ad8c13e4e281fd0019d86f13a4bef",
+    "research/readiness/claims/claude-r12553nb-s4-2026-10-20.jsonl": "877e173a108dd62edb95fff2827fda78497458c0806b4e1634590a640d8e6797",
+    "research/readiness/claims/claude-r12553nb-s5-2026-10-20.jsonl": "97505d2e2e3af4996b2163abddabfc81687fae4002eaa95bceb273865092585b",
+    "research/readiness/claims/claude-r12553nb-s6-2026-10-20.jsonl": "48a9af669edeabcb324711b68d06f70d1d3402906494e985938c1466dc4c2f58",
+    "research/readiness/claims/claude-r9830-01-2026-10-20.jsonl": "0fd7ff75ce418a26676025ac89e21f29292b01f277217eb93876cbefc35a6de8",
+    "research/readiness/claims/claude-r9830-s1-2026-10-20.jsonl": "b4893fa1504ceb98c7d6f7d16d5c948b136a1ebf3f45e15a43544d523023a4dd",
+    "research/readiness/claims/claude-r9830-s2-2026-10-20.jsonl": "259423f0a4445f327beda0934aac22a26fd2f4fcccd3fefa02118307cd73624e",
+    "research/readiness/claims/claude-r9830-s3-2026-10-20.jsonl": "818b050d6f9e67d4e9c2fb7569a1aab5fbac1a411077d4a351347e110191e702",
+    "research/readiness/claims/claude-rastell-c01-2026-10-20.jsonl": "1efb0e00214f9eb89d3a2389eb751993d5f48989e378438abb0332087ada6d1f",
+    "research/readiness/claims/claude-rastell-c02-2026-10-20.jsonl": "0587d7897c1dbd8d42b7f3437cf9290d0283c205382a28e304f91a7faba74b50",
+    "research/readiness/claims/claude-viapar-m-2026-10-20.jsonl": "1f187aeae7f6a516e8a97caf0b715595ab83a1909cc90903c49abd101c3b15e3",
+    "research/readiness/claims/claude-viapar-p-2026-10-20.jsonl": "2cd90e66c2ddfc238acfbf79850119ea75ddfa4ef3cc3dfc30c7558f4f34f8b2",
+    "research/readiness/claims/claude-y2lead-01-2026-10-20.jsonl": "4e848c8aaf4282e54b04c43702d6903bccb253e01ad82f34564e49a280585833",
+    "research/readiness/claims/claude-y2lead-02-2026-10-20.jsonl": "75836d784468a8a54940dad6465ea0d300d231b1f6d45dd5c1df6a1c727ebcea",
+    "research/readiness/claims/codex-continuous-prior-2026-10-25.jsonl": "7fb4a50a6a4cbbc755e6adb4a6860433cb221cb4d70c01bb11b4d63329260512",
+    "research/readiness/claims/codex-continuous-prior-b04-2026-10-25.jsonl": "ea65c152f54f3b6fbdfd0f9d8f91de8b7de19674c21143cbbfeacc347e4d77e9",
+    "research/readiness/claims/codex-counterexample-20261026-7975a.jsonl": "e0d7244951475404d2115b0e4ae95fc6be6028bf49b8e52a505013b06b0c2c67",
+    "research/readiness/claims/codex-counterexample-20261026-whole.jsonl": "915d682e4bfe81e7e244e73f125f8402b83181f4ef8a88a9e7981acd7e7ea015",
+    "research/readiness/claims/codex-production-cost-trace-20261026-b1.jsonl": "8e40c3b4bb2171d765cbd34b54c18d8554bc7fa4e33f4295daf5da137a892886",
+    "research/readiness/claims/codex-production-cost-trace-20261026-b2.jsonl": "9aaad3572e5efe390dd568b5d3444b22aa77c7acebbf798daa677aec26ab8236",
+    "research/readiness/claims/codex-swarm-2026-10-21.jsonl": "308a4657e4c70d4f31a6352be0811a5e49836062420abdad5519748a5278c8b5",
+    "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv": "b931c9eb45ef8750c1e39ea7dd4a7c83d3a53dd049a464764a9fb29da5abcf8f",
+    "research/stage19/code/claim_gate.py": "709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875",
+    "research/stage19/code/early_ranger.py": "f8363e8f70db05b4781633c061511e45dd1206d3f64e7431ba4154ed680a5f64",
+    "research/stage19/code/lifecycle_excavator.py": "4b9580fb22fdb889d48db98ad8d9599b851f1b0f9513fec5733fbeb4258bdf19",
+    "research/stage19/code/test_excavators.py": "c360fca748075d9e95a5710da977476f59db95098aaa2a76e9a3d71ec7e37546",
+    "research/stage19/code/validate_worksheet.py": "44b49079b8b690937d5ac2eb6449780ca19aae276225c99a6bebf6c758eeea86",
+    "research/stage19/output/CAUSAL_QUEUE.csv": "b8fde96dfecece9676df8b92aa32e11823eeed7746683ba1f4b9140ba468ff97",
+    "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv": "c386dc72c2d6da78ff010d4ba1950386ec9e138146bb9a19a80ecb0287af3774",
+    "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv": "49373bde11a0bc68f63ae6ea030629325a7a53c8f93e3e389522bf6e0f2704b9",
+    "research/stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv": "41a047a872b9f2c2133abe03145891d77613aac6d9e3e91e2e097d2e959985a5",
+    "research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv": "08305c1ffe141be46c04b622ab5761743675775cbf5bfaf5a89257d07f42cd32",
+    "research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv": "97ce7ce38da5d33cf1e7c80c6241a53c15522cfa7a9003ea5548ded805b5d44a",
+    "research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl": null
+  },
+  "inventory_counts": {
+    "orders_total": 14972,
+    "orders_with_provisional_status": 4291,
+    "ready_for_human_review": 784
+  },
+  "macro_allocation": {
+    "1862-1906|no": 2,
+    "1862-1906|unknown": 2,
+    "1907-1936|no": 2,
+    "1907-1936|unknown": 2,
+    "1907-1936|yes": 2,
+    "1937-1989|no": 2,
+    "1937-1989|unknown": 2,
+    "1937-1989|yes": 2,
+    "1990-2026|no": 2,
+    "1990-2026|unknown": 2,
+    "1990-2026|yes": 2,
+    "undated|no": 1,
+    "undated|unknown": 1
+  },
+  "manifest_sha256": "598f536ae4c30b530d3d20dcfc3bb2a7cf30999b8b5c3fd7aeb8e3ea6692f89e",
+  "outcome_definitions": {
+    "blocked_access": "Attempt stopped at an unresolved access dependency; effort is not zero.",
+    "blocked_prerequisite": "Attempt stopped with missing research prerequisites; no completed dossier claimed.",
+    "censored_limit": "Attempt reached its prospective limit; incomplete right-censored observation.",
+    "complete": "Full attempt through review, corrections and integration; all required evidence checked.",
+    "incomplete_capability": "Available execution cannot perform/measure remaining legal or review work.",
+    "unsuccessful": "Attempt ended without a usable result; effort remains in denominator."
+  },
+  "phases": [
+    "preparation",
+    "acquisition",
+    "production",
+    "review",
+    "correction",
+    "coordination",
+    "integration"
+  ],
+  "pilot_scope": "Offline prerequisite investigation from held claim-kit dossiers and undecided status leads. Full legal production, independent review and complete end-to-end effort remain unavailable.",
+  "sample": [
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_PROVISIONAL_STATUS"
+      ],
+      "cell_population": 171,
+      "era": "1937-1989",
+      "families": [
+        "unknown_family"
+      ],
+      "inclusion_probability": 0.000835421888053467,
+      "instrument_id": "EO:11239",
+      "macro": "1937-1989|unknown",
+      "macro_cells": 14,
+      "open_steps": [
+        "provisional_status",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "unknown",
+      "sampled_cells": 2,
+      "stratum": "8b5187980b91be2d678d",
+      "weight": 1197.0
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "CURRENT_BASIS_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "OPUS_MEDIA_NONE_CITED"
+      ],
+      "cell_population": 1,
+      "era": "1937-1989",
+      "families": [
+        "own_term:until_event",
+        "source:fba4fd35748161a7cb968ea27914a0c398f6c163d8f124ad32b20b621bee0b98"
+      ],
+      "inclusion_probability": 0.008368200836820083,
+      "instrument_id": "EO:11471",
+      "macro": "1937-1989|yes",
+      "macro_cells": 239,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "opus_media"
+      ],
+      "original_text": "done",
+      "provisional_status": "yes",
+      "sampled_cells": 2,
+      "stratum": "d0e934de2b33be51d394",
+      "weight": 119.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "OPUS_MEDIA_PARTLY_RESOLVED"
+      ],
+      "cell_population": 1,
+      "era": "1937-1989",
+      "families": [
+        "own_term:report_deadline",
+        "source:d97b52cc9ec37557f25a31016c4983ed743fbcdbb997f5d5ad4c95b7d047b0ce"
+      ],
+      "inclusion_probability": 0.001260239445494644,
+      "instrument_id": "EO:11823",
+      "macro": "1937-1989|no",
+      "macro_cells": 1587,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "opus_media"
+      ],
+      "original_text": "done",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "9377e3530933b72a0d12",
+      "weight": 793.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "CURRENT_BASIS_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "OPUS_MEDIA_NONE_CITED"
+      ],
+      "cell_population": 1,
+      "era": "1937-1989",
+      "families": [
+        "own_term:condition",
+        "source:603cb6954ff88017d214b4344614b236825d243d93cd5e148aa516cf7d9930eb"
+      ],
+      "inclusion_probability": 0.008368200836820083,
+      "instrument_id": "EO:12465",
+      "macro": "1937-1989|yes",
+      "macro_cells": 239,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "opus_media"
+      ],
+      "original_text": "done",
+      "provisional_status": "yes",
+      "sampled_cells": 2,
+      "stratum": "b7df83054f4c04c70f71",
+      "weight": 119.5
+    },
+    {
+      "basis_evidence": [
+        "ending:held_candidate",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_PROVISIONAL_STATUS"
+      ],
+      "cell_population": 20,
+      "era": "1990-2026",
+      "families": [
+        "unknown_family"
+      ],
+      "inclusion_probability": 0.00909090909090909,
+      "instrument_id": "EO:12735",
+      "macro": "1990-2026|unknown",
+      "macro_cells": 11,
+      "open_steps": [
+        "provisional_status",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "unknown",
+      "sampled_cells": 2,
+      "stratum": "c5a91d3ee59e5e60f462",
+      "weight": 110.0
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED"
+      ],
+      "cell_population": 1,
+      "era": "1990-2026",
+      "families": [
+        "actor:EO:13454",
+        "source:db713765bde8975df66c0ed309c9dc6a606114aa04f2d27d47a904a74335f92d"
+      ],
+      "inclusion_probability": 0.008620689655172414,
+      "instrument_id": "EO:13420",
+      "macro": "1990-2026|no",
+      "macro_cells": 232,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals"
+      ],
+      "original_text": "done",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "ca2d77ccb9ee3bcc7570",
+      "weight": 116.0
+    },
+    {
+      "basis_evidence": [
+        "ending:held_candidate",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_PROVISIONAL_STATUS"
+      ],
+      "cell_population": 19,
+      "era": "1990-2026",
+      "families": [
+        "unknown_family"
+      ],
+      "inclusion_probability": 0.009569377990430622,
+      "instrument_id": "EO:13526",
+      "macro": "1990-2026|unknown",
+      "macro_cells": 11,
+      "open_steps": [
+        "provisional_status",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "unknown",
+      "sampled_cells": 2,
+      "stratum": "e08d07cb86e9d8f823d9",
+      "weight": 104.5
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "CURRENT_BASIS_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD:later-events"
+      ],
+      "cell_population": 1,
+      "era": "1990-2026",
+      "families": [
+        "actor:EO:14029",
+        "own_term:condition",
+        "own_term:fixed_term",
+        "source:1415c8dcce7d2c4f98d42f833b6f0c3859f31c7a8f610c2d966326e15638cd3d"
+      ],
+      "inclusion_probability": 0.01282051282051282,
+      "instrument_id": "EO:13933",
+      "macro": "1990-2026|yes",
+      "macro_cells": 156,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "yes",
+      "sampled_cells": 2,
+      "stratum": "c0ff0158097c96b9e147",
+      "weight": 78.0
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED"
+      ],
+      "cell_population": 1,
+      "era": "1990-2026",
+      "families": [
+        "actor:EO:14148",
+        "actor:EO:14168",
+        "own_term:condition",
+        "own_term:fixed_term",
+        "own_term:report_deadline",
+        "source:dedc3839fc161ca39c9a59f86a6acd5f7a9598a345570b9014848691e60bdd92"
+      ],
+      "inclusion_probability": 0.008620689655172414,
+      "instrument_id": "EO:14075",
+      "macro": "1990-2026|no",
+      "macro_cells": 232,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals"
+      ],
+      "original_text": "done",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "5659ce593af4a57db384",
+      "weight": 116.0
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "CURRENT_BASIS_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED"
+      ],
+      "cell_population": 1,
+      "era": "1990-2026",
+      "families": [
+        "own_term:condition",
+        "own_term:fixed_term",
+        "source:b62a16cad78794fc1c1d10affd94406058d8d69fa39a48a4b9f4e37161e050f4"
+      ],
+      "inclusion_probability": 0.01282051282051282,
+      "instrument_id": "EO:14177",
+      "macro": "1990-2026|yes",
+      "macro_cells": 156,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals"
+      ],
+      "original_text": "done",
+      "provisional_status": "yes",
+      "sampled_cells": 2,
+      "stratum": "35b5a66293c63c3590bf",
+      "weight": 78.0
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_OFFICIAL_SOURCE_LOCATED",
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+      ],
+      "cell_population": 1,
+      "era": "1862-1906",
+      "families": [
+        "source:455f811a4cf0257b50bc60807ca4aafd3476185ed669ecfaf61d5748837e36f6"
+      ],
+      "inclusion_probability": 0.011834319526627219,
+      "instrument_id": "EO:260",
+      "macro": "1862-1906|no",
+      "macro_cells": 169,
+      "open_steps": [
+        "original_text",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "open",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "c809f6132a13544d07bb",
+      "weight": 84.5
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_OFFICIAL_SOURCE_LOCATED",
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "NO_CLAUSE_INVENTORY",
+        "CURRENT_BASIS_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE",
+        "OPUS_MEDIA_REFETCH_NEEDED"
+      ],
+      "cell_population": 1,
+      "era": "1907-1936",
+      "families": [
+        "actor:EO:10668",
+        "actor:EO:12832",
+        "source:bca3a7da8d254cc5ab53cd6042805445960853cd3352aad47e2e6744854d8975"
+      ],
+      "inclusion_probability": 0.6666666666666666,
+      "instrument_id": "EO:2859",
+      "macro": "1907-1936|yes",
+      "macro_cells": 3,
+      "open_steps": [
+        "original_text",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence",
+        "opus_media"
+      ],
+      "original_text": "open",
+      "provisional_status": "yes",
+      "sampled_cells": 2,
+      "stratum": "06ecc2aba28bb92efa0b",
+      "weight": 1.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_PROVISIONAL_STATUS",
+        "NO_OFFICIAL_SOURCE_LOCATED",
+        "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
+      ],
+      "cell_population": 3796,
+      "era": "1907-1936",
+      "families": [
+        "unknown_family"
+      ],
+      "inclusion_probability": 3.763359927743489e-05,
+      "instrument_id": "EO:3129",
+      "macro": "1907-1936|unknown",
+      "macro_cells": 14,
+      "open_steps": [
+        "provisional_status",
+        "original_text",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "open",
+      "provisional_status": "unknown",
+      "sampled_cells": 2,
+      "stratum": "2dea426ad241dd0d6ef8",
+      "weight": 26572.0
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_OFFICIAL_SOURCE_LOCATED",
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+      ],
+      "cell_population": 1,
+      "era": "1862-1906",
+      "families": [
+        "source:242a4b31c1e0ae8c96b65f59a3757e1ddfd77c32ca78b3ab05215eaacd99f3d5"
+      ],
+      "inclusion_probability": 0.011834319526627219,
+      "instrument_id": "EO:360",
+      "macro": "1862-1906|no",
+      "macro_cells": 169,
+      "open_steps": [
+        "original_text",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "open",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "21f2c7fded550cf47519",
+      "weight": 84.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_PROVISIONAL_STATUS"
+      ],
+      "cell_population": 16,
+      "era": "1862-1906",
+      "families": [
+        "unknown_family"
+      ],
+      "inclusion_probability": 0.020833333333333332,
+      "instrument_id": "EO:370",
+      "macro": "1862-1906|unknown",
+      "macro_cells": 6,
+      "open_steps": [
+        "provisional_status",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "unknown",
+      "sampled_cells": 2,
+      "stratum": "f194b2b788fa4373bda9",
+      "weight": 48.0
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_PROVISIONAL_STATUS"
+      ],
+      "cell_population": 4,
+      "era": "1862-1906",
+      "families": [
+        "unknown_family"
+      ],
+      "inclusion_probability": 0.08333333333333333,
+      "instrument_id": "EO:527",
+      "macro": "1862-1906|unknown",
+      "macro_cells": 6,
+      "open_steps": [
+        "provisional_status",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "unknown",
+      "sampled_cells": 2,
+      "stratum": "bc8418a4c4115c460f9a",
+      "weight": 12.0
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_OFFICIAL_SOURCE_LOCATED",
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+      ],
+      "cell_population": 2,
+      "era": "undated",
+      "families": [
+        "source:a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4"
+      ],
+      "inclusion_probability": 0.045454545454545456,
+      "instrument_id": "EO:6513I",
+      "macro": "undated|no",
+      "macro_cells": 11,
+      "open_steps": [
+        "original_text",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "open",
+      "provisional_status": "no",
+      "sampled_cells": 1,
+      "stratum": "82a609fb1457ccae5282",
+      "weight": 22.0
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_PROVISIONAL_STATUS"
+      ],
+      "cell_population": 2,
+      "era": "undated",
+      "families": [
+        "unknown_family"
+      ],
+      "inclusion_probability": 0.08333333333333333,
+      "instrument_id": "EO:6644",
+      "macro": "undated|unknown",
+      "macro_cells": 6,
+      "open_steps": [
+        "provisional_status",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "provisional",
+      "provisional_status": "unknown",
+      "sampled_cells": 1,
+      "stratum": "6ee56e6654998efd82ab",
+      "weight": 12.0
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_OFFICIAL_SOURCE_LOCATED",
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "NO_CLAUSE_INVENTORY",
+        "CURRENT_BASIS_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD:later-events"
+      ],
+      "cell_population": 1,
+      "era": "1907-1936",
+      "families": [
+        "actor:EO:6958",
+        "actor:EO:7045",
+        "actor:EO:7098",
+        "actor:EO:7178",
+        "actor:EO:7182",
+        "actor:EO:7245",
+        "actor:EO:7274",
+        "actor:EO:7331",
+        "actor:EO:7364",
+        "actor:EO:7373",
+        "actor:EO:7389",
+        "actor:EO:7417",
+        "actor:EO:7425",
+        "actor:EO:7429",
+        "actor:EO:7435",
+        "actor:EO:7442",
+        "actor:EO:7491",
+        "actor:EO:7509",
+        "actor:EO:7515",
+        "actor:EO:7520",
+        "actor:EO:7523",
+        "actor:EO:7599",
+        "actor:EO:7713",
+        "actor:EO:8113",
+        "actor:EO:8153",
+        "actor:EO:8158",
+        "actor:EO:8380",
+        "actor:EO:8507",
+        "actor:EO:8578",
+        "actor:EO:8579",
+        "actor:EO:8598",
+        "actor:EO:8649",
+        "actor:EO:8652",
+        "actor:EO:8780",
+        "actor:EO:8790",
+        "actor:EO:8791",
+        "actor:EO:8792",
+        "actor:EO:8793",
+        "actor:EO:8794",
+        "actor:EO:8795",
+        "actor:EO:8830",
+        "actor:EO:8865",
+        "actor:EO:8874",
+        "actor:EO:8884",
+        "actor:EO:8892",
+        "actor:EO:8924",
+        "actor:EO:8956",
+        "actor:EO:8957",
+        "actor:EO:9042",
+        "actor:EO:9081",
+        "actor:EO:9101",
+        "actor:EO:9115",
+        "actor:EO:9143",
+        "own_term:condition",
+        "own_term:until_event",
+        "source:407c8cb464af2f7f3626e65a47a88dc724c8747cdb557ffa87d3bf46ea516ddf"
+      ],
+      "inclusion_probability": 0.6666666666666666,
+      "instrument_id": "EO:6910",
+      "macro": "1907-1936|yes",
+      "macro_cells": 3,
+      "open_steps": [
+        "original_text",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "open",
+      "provisional_status": "yes",
+      "sampled_cells": 2,
+      "stratum": "889a8734fd0167028723",
+      "weight": 1.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+      ],
+      "cell_population": 1,
+      "era": "1907-1936",
+      "families": [
+        "source:9d86d4121d7d0c3492a070e18d3668159296ff268f901f8693432db20f11bd22"
+      ],
+      "inclusion_probability": 0.0025412960609911056,
+      "instrument_id": "EO:6952A",
+      "macro": "1907-1936|no",
+      "macro_cells": 787,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "provisional",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "770aeb268aa4f51f9c0c",
+      "weight": 393.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+      ],
+      "cell_population": 1,
+      "era": "1907-1936",
+      "families": [
+        "source:a0b184527517e57d8e831935fb8bcf0b1ad8e87d68eade0524ba6cacc75779c8"
+      ],
+      "inclusion_probability": 0.0025412960609911056,
+      "instrument_id": "EO:6999",
+      "macro": "1907-1936|no",
+      "macro_cells": 787,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "provisional",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "c542605427d6a7630085",
+      "weight": 393.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_PROVISIONAL_STATUS"
+      ],
+      "cell_population": 12,
+      "era": "1907-1936",
+      "families": [
+        "unknown_family"
+      ],
+      "inclusion_probability": 0.011904761904761904,
+      "instrument_id": "EO:7521",
+      "macro": "1907-1936|unknown",
+      "macro_cells": 14,
+      "open_steps": [
+        "provisional_status",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "provisional",
+      "provisional_status": "unknown",
+      "sampled_cells": 2,
+      "stratum": "11b358c0756dbd9aa9b5",
+      "weight": 84.0
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED"
+      ],
+      "cell_population": 1,
+      "era": "1937-1989",
+      "families": [
+        "actor:EO:8396",
+        "own_term:condition",
+        "source:8139e7c859e04c77055190b20ddab8690453ce08eba46d86d328ee75cca7f09e"
+      ],
+      "inclusion_probability": 0.001260239445494644,
+      "instrument_id": "EO:8078",
+      "macro": "1937-1989|no",
+      "macro_cells": 1587,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals"
+      ],
+      "original_text": "done",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "d19d70be331ef45b7ce5",
+      "weight": 793.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_PROVISIONAL_STATUS"
+      ],
+      "cell_population": 265,
+      "era": "1937-1989",
+      "families": [
+        "unknown_family"
+      ],
+      "inclusion_probability": 0.0005390835579514824,
+      "instrument_id": "EO:8749",
+      "macro": "1937-1989|unknown",
+      "macro_cells": 14,
+      "open_steps": [
+        "provisional_status",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "unknown",
+      "sampled_cells": 2,
+      "stratum": "678ce8e582f887175bc6",
+      "weight": 1855.0
+    }
+  ],
+  "schema": "neyman.manifest/1",
+  "seed": 1727,
+  "selection_design": "era-status macro strata; SRS joint cells; one SRS order per selected cell",
+  "token_categories": [
+    "input_uncached",
+    "cache_read",
+    "cache_write",
+    "output",
+    "reasoning"
+  ]
+}
