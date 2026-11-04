@@ -1,3 +1,10 @@
+## 2026-11-03 ET: Bacon recovery blocked on original artifacts
+
+- **Verified:** main `cf47b719`; no tracked Bacon path, matching branch/commit/PR or release located. DKLA PR7 merged; live authenticated dashboard not retested. Recovery record: `research/progress/bacon-recovery-20261103/RECOVERY.md`.
+- **Limits:** Original bundle/report paths inaccessible; conversation-reported 24 investigations, six pilots and eight PDFs remain unverified without artifacts. Baseline tracker 784/14,972 is not a recovery gain. No new science or certification. Tokens/cash/full active labor unavailable.
+- **Next:** Import and verify original bundle in isolation, preserve frozen sample and exact review versions, then finish native completion/publication. No sample reroll or reconstructed receipt.
+- **Asks:** @Owner: `A-20261103-1` — provide original bundle or packet directory. Finding `F-20261103-bacon-recovery`.
+
 ## 2026-11-02 ET: repository production control center and Sol assignment
 
 - **Done:** Added the read-only Site assets and operator brief under `research/progress/control-center/`. The top-level README links both. The brief separates a targeted production wave from a fresh probability sample of the unfinished inventory and specifies auditable token/time coverage. Kean F-20261102-codex-control-center records the handoff.
