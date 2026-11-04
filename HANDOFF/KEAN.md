@@ -26,7 +26,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 135; `search` finds the rest)
+## Newest results (6 of 136; `search` finds the rest)
 
 - 2026-11-04 F-20261104-tribonian-finalization-recovery **worked**: Reconcile current Tribonian claims with the combined tracker and refresh retained Capcom history Lesson: Use exact current hashes and a successful combined generation; campaign filings and batch-local totals cannot replace a project-wide recount.
 - 2026-11-04 F-20261104-supported-usage-normalization **worked**: Extend existing Hamilton ingestion to supported Geddes-format JSONL and existing NEYMAN production-effort con… Lesson: Preserve final revisions sharing event IDs, verify caller intervals against observed usage timestamps, and bridge existing explicit diagnostic routes; successful synthetic integration does not establ…
@@ -35,4 +35,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-04 F-20261104-sol-history-consumer **worked**: Carry reviewed MAITLAND histories into ordinary assignments Lesson: Use exact reviewed context and preserve bounded unknowns instead of copying legal conclusions
 - 2026-11-04 F-20261104-sol-geddes-hosted-fixture **worked**: Run hosted Geddes check on the reviewed source Lesson: Test the actual CI input closure; preserve failure and extend fixture access without skipping gates or changing runtime
 
-Register: 21 owner decisions, 13 answered questions, 135 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 21 owner decisions, 13 answered questions, 136 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

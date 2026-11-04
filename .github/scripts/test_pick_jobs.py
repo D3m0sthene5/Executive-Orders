@@ -119,10 +119,10 @@ class SchedulerTest(unittest.TestCase):
         self.job('consumer', after=['producer'])
         with patch.object(picker, 'changed_files', return_value=['inputs/data.csv', 'jobs/consumer/job.py']):
             out = self.run_main(EVENT='push', AFTER='x')
-        self.assertEqual(out, {'jobs': 'consumer'})
+        self.assertEqual(out, {'jobs': 'consumer', 'direct': 'consumer'})
         with patch.object(picker, 'changed_files', return_value=['inputs/data.csv', 'HANDOFF/notes-claude.md']):
             out = self.run_main(EVENT='push', AFTER='x')
-        self.assertEqual(out, {'jobs': ''})
+        self.assertEqual(out, {'direct': '', 'jobs': ''})
 
     def test_sweep_runs_triggered_jobs_and_consumers_and_marks_downstream(self):
         self.job('producer', triggers=['inputs/*'])
@@ -130,14 +130,14 @@ class SchedulerTest(unittest.TestCase):
         self.job('unrelated')
         with patch.object(picker, 'recent_changes', return_value=['inputs/data.csv']):
             out = self.run_main(EVENT='schedule', SCHEDULE='47 */3 * * *')
-        self.assertEqual(out, {'jobs': 'producer consumer', 'downstream': 'consumer'})
+        self.assertEqual(out, {'direct': 'producer', 'jobs': 'producer consumer', 'downstream': 'consumer'})
 
     def test_daily_run_runs_daily_jobs_with_consumers_at_full_strength(self):
         self.job('producer')
         Path('jobs/producer/DAILY').touch()
         self.job('consumer', after=['producer'])
         out = self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON)
-        self.assertEqual(out, {'jobs': 'producer consumer'})
+        self.assertEqual(out, {'direct': 'producer', 'jobs': 'producer consumer'})
 
     def test_dispatch_deduplicates_and_orders_consumers(self):
         self.job('producer')
@@ -145,8 +145,16 @@ class SchedulerTest(unittest.TestCase):
         output = Path('outputs.txt')
         with patch.dict(os.environ, EVENT='workflow_dispatch', INPUT_JOB='jobs/producer,producer', GITHUB_OUTPUT=str(output)):
             picker.main()
-        self.assertEqual(output.read_text(), 'jobs=producer consumer\n')
+        self.assertEqual(output.read_text(), 'jobs=producer consumer\ndirect=producer\n')
 
+
+    def test_diagnostic_runs_only_named_jobs_in_dependency_order(self):
+        self.job('producer')
+        self.job('consumer', after=['producer'])
+        self.job('tracker', after=['consumer'])
+        out = self.run_main(EVENT='workflow_dispatch', INPUT_JOB='consumer,producer,consumer',
+                            DIAGNOSTIC='true')
+        self.assertEqual(out['jobs'], 'producer consumer')
 
     def test_runtime_push_exemption_is_exact_and_push_only(self):
         self.job('claim-kit')
@@ -190,11 +198,11 @@ class SchedulerTest(unittest.TestCase):
         runtime = ['jobs/claim-kit/completion.py']
         with patch.object(picker, 'claim_kit_runtime_only', return_value=True):
             with patch.object(picker, 'changed_files', return_value=runtime):
-                self.assertEqual(self.run_main(EVENT='push', AFTER='x'), {'jobs': '', 'runtime_tests': 'claim-kit'})
+                self.assertEqual(self.run_main(EVENT='push', AFTER='x'), {'direct': '', 'jobs': '', 'runtime_tests': 'claim-kit'})
             with patch.object(picker, 'recent_changes', return_value=runtime):
-                self.assertEqual(self.run_main(EVENT='schedule', SCHEDULE='47 */3 * * *'), {'jobs': 'claim-kit'})
-            self.assertEqual(self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON), {'jobs': 'claim-kit'})
-            self.assertEqual(self.run_main(EVENT='workflow_dispatch', INPUT_JOB='claim-kit'), {'jobs': 'claim-kit'})
+                self.assertEqual(self.run_main(EVENT='schedule', SCHEDULE='47 */3 * * *'), {'direct': 'claim-kit', 'jobs': 'claim-kit'})
+            self.assertEqual(self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON), {'direct': 'claim-kit', 'jobs': 'claim-kit'})
+            self.assertEqual(self.run_main(EVENT='workflow_dispatch', INPUT_JOB='claim-kit'), {'direct': 'claim-kit', 'jobs': 'claim-kit'})
 
 
 @unittest.skipUnless((ROOT / 'jobs').is_dir(), 'repository integration fixtures not present')

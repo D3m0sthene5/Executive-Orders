@@ -142,6 +142,27 @@ def input_closure(names, ref="HEAD"):
     return all_entries, by_job, by_job_patterns
 
 
+def compact_patterns(patterns):
+    """Drop generated positive rules already covered by a directory rule.
+
+    The bootstrap exclusions remain in Git's existing rule file. These new
+    rules are an additive union of escaped literals and /directory/** entries.
+    Avoid making Git re-evaluate thousands of redundant literals on each
+    subsequent sparse-checkout operation in the same runner.
+    """
+    patterns = set(patterns)
+    if "/**" in patterns:
+        return ["/**"]
+    directories = {p[:-3] for p in patterns if p.endswith("/**")}
+    result = []
+    for pattern in sorted(patterns):
+        # Don't compare a subtree pattern with its own directory.
+        path = pattern[:-3] if pattern.endswith("/**") else pattern
+        if not any(path[:i] in directories for i, char in enumerate(path) if char == "/"):
+            result.append(pattern)
+    return result
+
+
 def entries_digest(entries):
     """Fingerprint exact selected tracked object ids without reading blob bodies."""
     return hashlib.sha256(json.dumps(entries, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
@@ -171,7 +192,8 @@ def materialize(names, receipt=None):
         raise RuntimeError("Expected non-cone sparse checkout; broad cone materialization is unsafe")
     entries, by_job, by_job_patterns = input_closure(names)
     paths = set(entries)
-    patterns = sorted(set().union(*by_job_patterns.values()))
+    original_patterns = set().union(*by_job_patterns.values())
+    patterns = compact_patterns(original_patterns)
     if patterns:
         # `add` preserves the already-configured non-cone mode; it does not
         # expose a --no-cone switch on every supported Git version.
@@ -189,6 +211,7 @@ def materialize(names, receipt=None):
         "compatibility_fallback_jobs": fallback_jobs(names),
         "path_count": len(paths),
         "sparse_pattern_count": len(patterns),
+        "uncompacted_sparse_pattern_count": len(original_patterns),
         "materialized_bytes": total,
         "input_objects_sha256": entries_digest(entries),
         "per_job": {name: {"path_count": len(selected), "sparse_pattern_count": len(by_job_patterns[name]),

@@ -1,3 +1,9 @@
+## 2026-11-04 ET: GitHub Actions runtime and focused diagnostics
+
+- **Done:** Compact sparse rules with native Git selection parity, remove the duplicate full Valla isolation scan, bound manual diagnostics and report actual publication state. Certified Valla readers distinguish transient runner files from declared evidence; unknown reader implementations use conservative fallback. Results and reproducible comparison: research/progress/actions-runtime-20261104/RESULTS.md, F-20261104-actions-runtime.
+- **Next:** Compare matched hosted runs with the same selection and unchanged scientific outputs. Whole-campaign time and total model usage remain unmeasured.
+- **Asks:** @Owner: none.
+
 ## 2026-11-04 16:06 ET: Tribonian readiness and original rocket published
 
 - **Done:** Published 784 → 1,331 ready (+547) through merged PR142, main 5289ac5a; all 547 gains are Tribonian, all 784 baseline-ready retained, 0 unrelated gains/losses or filed campaign blocks. Current text tiers 804 original / 527 working; human-certified 0. Native output 51914da4 verifies547/547 exact canonical hashes and preserves 10 historical Mission checkpoints. Kean F-20261104-tribonian-finalization-recovery integrated with regenerated brief.
