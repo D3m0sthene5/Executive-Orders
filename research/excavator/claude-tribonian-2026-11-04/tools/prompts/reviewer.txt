@@ -9,3 +9,5 @@ For each claim: re-hash the cited text files and check every quoted span against
 Work efficiently: one python script for all hash and quoted-span checks, then spend your reading on the legal questions.
 
 Write one JSON object per claim, one per line, to PACKETDIR/reviews/BLIND_REVIEW.jsonl, reviewer "claude-blind-reviewer-BATCH-2026-11-04", model_family "Anthropic". claim_sha256 = sha256 of json.dumps(claim, sort_keys=True, separators=(",",":"), ensure_ascii=False).encode(). Record started_utc and ended_utc with `date -u +%FT%TZ`. Reply in at most 120 words: counts and each rejection's order and defect.
+
+Custody note: a source the claim checker marks "custody_record_only" (hash recorded, bytes not yet committed) is a custody gap the coordinator is fixing separately; it is not by itself a ground for rejection. Still re-hash every byte file that is held and check every quotation against the held text.
