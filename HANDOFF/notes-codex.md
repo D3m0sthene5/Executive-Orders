@@ -1,9 +1,20 @@
+## 2026-11-04 16:06 ET: Tribonian readiness and original rocket published
+
+- **Done:** Published 784 → 1,331 ready (+547) through merged PR142, main 5289ac5a; all 547 gains are Tribonian, all 784 baseline-ready retained, 0 unrelated gains/losses or filed campaign blocks. Current text tiers 804 original / 527 working; human-certified 0. Native output 51914da4 verifies547/547 exact canonical hashes and preserves 10 historical Mission checkpoints. Kean F-20261104-tribonian-finalization-recovery integrated with regenerated brief.
+- **Visible:** Original Claude Mission CSV saved/tested 12 rows; November 4 shows 1,331, 15.73% modeled work, T+17h13m. Existing control center live refresh independently shows 1,331, 804/527, 0 certified. Site audience unchanged. Legacy static November 2 annotation remains historical; model pace extrapolation is unvalidated.
+- **Evidence/replay:** research/diagnostics/tribonian-finalization-20261104/REPORT.md and PUBLICATION.json; jobs/capcom-finalization/output/RECONCILIATION.json,CAMPAIGN_ROWS.json,MISSION_LOG.csv. Native tracker 82s; whole tracker workflow 327s; Capcom runner 10s / adapter 7.055s, whole workflow 258s. Tokens, cash and whole active labor unavailable; no saving claimed.
+- **Limits:** Saved disposition 545 omitted o27 EO13128/13274. Their published claims/exact receipts are verified, but retained o27 completion/review folders were not located. Separate 48 mechanical refuses:32 custody-only, 1 custody + short quotation, 11 short quotation-only, 1 quotation mismatch, 3 instrument registration. Full IDs and first steps retained; do not add retry rows or unfiled cohorts to 547.
+- **Checks:** Independent source/workflow/output reviews pass; Linux/Windows Road passed exact implementation at f920a21b. Later 72cd Linux/native/Kean passed; pending Windows repeat canceled by metadata checkpoint, retained explicitly. Native Kean strict 0 errors / 0 warnings. Source/claim/hold/legal contracts unchanged.
+- **Running:** Original main runs 41896126390 and 41902988519 were not canceled; inspect their own final receipts. No further production work from this session is required.
+- **Asks:** @Owner: none.
+- **Do not:** Treat modeled rocket progress as a ready/identity ratio or a validated finish forecast; infer missing review artifacts, original authentication or human certification; overwrite newer outputs with older run data.
+
 ## 2026-11-04 ET: Publish readiness totals continuation — recovery checkpoint
 
 - **Done:** Recovered prior session; fresh separate reconciliation and independent receipt joins confirm547 effective passing Tribonian rows, zero overlap with784 baseline-ready; published main tracker still784 at a3bfac64. Saved exact pins,48 separate refusal IDs and reproduction in research/progress/tribonian-finalization-20261104/RECOVERY.md and RECOVERY.json on sol/tribonian-finalization-recovery. Previous sol/tribonian-finalization-publish is identical to main; uncommitted prior outputs not recovered.
 - **Running:** Reuse existing run41896126390 (tracker ran19:25:42→19:27:20 UTC; downstream jobs delay commit) and scheduled41902988519. No duplicate checker/tracker/research/source run launched. Neither run interrupted.
 - **Next:** Validate actual combined tracker publication and exact current claim hashes; refresh existing Capcom model/legacy rocket and dynamic control center. Session command runtime unavailable; supported GitHub bounded-job route may be needed solely for maintained Mission builder.
-- **Limits:**1331 is still a receipt-union expectation, not published. DISPOSITION545 omits published o27 pair13128/13274; retained o27 completion/reviews not located. Original replacement/quote rechecks and human-certified0 remain distinct. Same-family separate-context audits, tokens/cash/full labor unknown.
+- **Limits:**1331 is still a receipt-union expectation, not published. DISPOSITION545 omits published o27 pair13128/13274; retained o27 completion/reviews not located. Original replacement/quote rechecks and human-certified 0 remain distinct. Same-family separate-context audits, tokens/cash/full labor unknown.
 - **Asks:** @Owner: none.
 - **Do not:** duplicate or cancel active work, renew scientific hashes, infer missing review artifacts, add batch-local gains, or label unpublished totals current.
 
