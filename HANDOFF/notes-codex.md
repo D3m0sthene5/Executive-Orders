@@ -1,3 +1,13 @@
+## 2026-11-04 ET: future production dispatch safeguard, isolated from Tribonian
+
+- **Done:** PR132 (`codex/future-production-preflight`), code commit `a1910b5e92edf45bbd0fb3b11a39921686ee7a1d`, base main `600ae301`. Ordinary prepare emits a required-source custody/freshness screen; CLI blocks incomplete production assignments while retaining all members. Fresh `dispatch-check` reuses whole-packet/runtime seals and actual checker custody policy offline, with explicit subset support. `--research-only` exports blocked research without production approval. Existing checkpoint/resume and Geddes telemetry remain the routes for retries and cost reporting.
+- **Validation:** 536 claim-kit test cases pass (7 skips); 69 checker tests pass. Eleven new dispatch regressions plus seven independent engineering probes/replay. Exact five code/test hashes, source-index coverage notes, logs and limitations: `research/progress/future-production-preflight/`. Kean `F-20261104-codex-dispatch-preflight`; strict check 0 errors/warnings. Code pins match the independent review.
+- **Isolation:** No active Tribonian branch/workspace, packet, scientific output or workflow changed. Code publication used `[skip actions]`; this HANDOFF-only follow-up requests existing read-only PR checks without a job-folder push. No acquisition/compiler run dispatched. Main remains at the verified base at publication.
+- **Limits/cost:** Same-family OpenAI independent engineering review only. Full-corpus source-index overhead, complete model usage/cash/active labor and token-saving percentage are unmeasured. Receipt is point-in-time: recheck immediately before dispatch; no model-launcher endpoint automatically intercepts external agent assignment. Missing telemetry remains unknown.
+- **Next:** After the current Tribonian wave completes, reconcile its checker changes, run combined tests, integrate the PR and prepare fresh future-run packets. PR stays draft/unmerged meanwhile. Do not cherry-pick runtime changes into the ongoing wave, renew its seals, suppress source gaps or weaken review. This is no GPU migration.
+- **Running:** Read-only PR CI may run on this metadata commit; inspect actual statuses before integration.
+- **Asks:** @Owner: none.
+
 ## 2026-11-02 ET: repository production control center and Sol assignment
 
 - **Done:** Added the read-only Site assets and operator brief under `research/progress/control-center/`. The top-level README links both. The brief separates a targeted production wave from a fresh probability sample of the unfinished inventory and specifies auditable token/time coverage. Kean F-20261102-codex-control-center records the handoff.
