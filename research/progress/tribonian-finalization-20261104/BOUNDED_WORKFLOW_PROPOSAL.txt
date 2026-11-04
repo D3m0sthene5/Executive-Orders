@@ -1,0 +1,83 @@
+name: Tribonian bounded readiness publication
+
+on:
+  push:
+    branches:
+      - sol/tribonian-finalization-recovery
+    paths:
+      - .github/workflows/tribonian-finalization.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  GIT_LFS_SKIP_SMUDGE: "1"
+  JOBS: readiness-tracker
+  DOWNSTREAM_ONLY: ""
+  TRIGGER: bounded readiness finalization
+
+jobs:
+  recount:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/*/
+            /.github/**
+            /HANDOFF/**
+            /jobs/**
+            !/jobs/*/output/**
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reuse a generation published by the active run
+        id: reuse
+        run: |
+          git fetch origin main
+          python - <<'PY'
+          import datetime, json, os, subprocess
+          path = "jobs/readiness-tracker/output/STATUS.json"
+          status = json.loads(subprocess.check_output(["git", "show", "origin/main:" + path]))
+          finished = status.get("finished_utc", "")
+          reuse = (status.get("result") == "succeeded"
+                   and status.get("exit_code") == 0
+                   and finished >= "2026-11-04T19:25:42Z")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write("skip=" + str(reuse).lower() + "\n")
+          print("Existing fresh main generation found; no recount" if reuse else
+                "No published fresh tracker yet; run only the native tracker with retained checker receipts")
+          print(json.dumps(status, indent=2))
+          PY
+      - name: Materialize the native tracker's committed inputs
+        if: steps.reuse.outputs.skip != 'true'
+        run: python .github/scripts/materialize_job_inputs.py
+      - name: Recheck publication before starting the tracker
+        if: steps.reuse.outputs.skip != 'true'
+        id: final_reuse
+        run: |
+          git fetch origin main
+          python - <<'PY'
+          import json, os, subprocess
+          s = json.loads(subprocess.check_output(["git", "show", "origin/main:jobs/readiness-tracker/output/STATUS.json"]))
+          reuse = s.get("result") == "succeeded" and s.get("exit_code") == 0 and s.get("finished_utc", "") >= "2026-11-04T19:25:42Z"
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write("skip=" + str(reuse).lower() + "\n")
+          print("Reuse main generation" if reuse else "Proceed with bounded native tracker")
+          PY
+      - name: Run only the existing tracker and its tests
+        if: steps.reuse.outputs.skip != 'true' && steps.final_reuse.outputs.skip != 'true'
+        run: bash .github/scripts/run_jobs.sh
+      - name: Publish through the existing guarded result committer
+        if: always() && steps.reuse.outputs.skip != 'true' && steps.final_reuse.outputs.skip != 'true'
+        env:
+          EVENT: push
+          BRANCH: ${{ github.ref_name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash .github/scripts/commit_results.sh
