@@ -9,7 +9,7 @@ usage: python3 -I lind_analyze.py ARMS.json OUT.json
 Per arm and batch it reports: token categories (fresh input, cache read, cache write 5m/1h, output; message ids
 counted once, last snapshot wins), assistant calls, tool uses by name, Bash calls, Bash/Write commands that build
 hashing or quote-offset scripts (sha256/hashlib/char_start), Read calls on held text files, receipt-file reads,
-wall time (first to last record), verdict counts, planted-control catch, and paired verdict agreement.
+wall time (first to last record), active time (sum of record gaps of at most 300 s, so a usage-limit pause is excluded), verdict counts, planted-control catch, and paired verdict agreement.
 Token figures come from the transcript usage records the harness reports; they are observed counts, not an
 invoice. Hamilton's supported bridge remains the authority for the run-wide profile.
 """
@@ -31,11 +31,16 @@ def ts(s):
 def transcript(agent_id):
     usage, tools, bash, hash_scripts, text_reads, receipt_reads = {}, Counter(), 0, 0, 0, 0
     first = last = None
+    prev = None
+    active = 0.0
     for line in (TX / f"agent-{agent_id}.jsonl").open(encoding="utf-8"):
         r = json.loads(line)
         if r.get("timestamp"):
             t = ts(r["timestamp"])
             first = first or t
+            if prev is not None and 0 <= (t - prev).total_seconds() <= 300:
+                active += (t - prev).total_seconds()
+            prev = t
             last = t
         if r.get("type") != "assistant":
             continue
@@ -68,6 +73,7 @@ def transcript(agent_id):
             "hash_or_offset_script_calls": hash_scripts, "held_text_reads": text_reads,
             "receipt_reads": receipt_reads,
             "wall_seconds": (last - first).total_seconds() if first and last else None,
+            "active_seconds_gaps_le_300s": round(active, 1),
             "started_utc": first.isoformat() if first else None, "ended_utc": last.isoformat() if last else None}
 
 
