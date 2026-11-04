@@ -42,6 +42,92 @@ class DispatchTests(unittest.TestCase):
             code = kit.main(['--repo', str(self.repo), *map(str, args)])
         return code, out.getvalue()
 
+    def current_gaps(self, ids=('EO:1', 'EO:2'), *, citation='5 U.S.C. example predicate'):
+        path = self.repo/'jobs/future-source/output/FRAGMENTS.jsonl'
+        records = T.read_jsonl(path)
+        for iid in ids:
+            lead = {'evidence_gap': 'Current operative predicate text is not held.'}
+            if citation is not None:
+                lead['citation'] = citation
+            records.append({'instrument_id': iid, 'kind': 'current_law_candidates', 'data': [lead]})
+        T.write_jsonl(path, records)
+
+    def test_explicit_current_predicate_scope_blocks_known_tasks_only(self):
+        self.current_gaps()
+        folder = self.packet()
+        # A NO ending investigation can remain useful; no default theory choice.
+        self.assertTrue(dispatch.check(self.repo, folder)['ok'])
+        result = dispatch.check(self.repo, folder, require_task_kinds=['operative_current_law'])
+        self.assertFalse(result['ok'])
+        self.assertEqual(result['source_blocked_ids'], ['EO:1', 'EO:2'])
+        p = result['assignment_prerequisites']
+        self.assertEqual(p['required_task_kinds'], ['operative_current_law'])
+        self.assertEqual(len(p['unresolved']), 1)
+        self.assertEqual(p['unresolved'][0]['affected_orders'], ['EO:1', 'EO:2'])
+        self.assertEqual(len(p['unresolved'][0]['member_tasks']), 2)
+        self.assertEqual(p['unresolved'][0]['shared_key'], '{"citation":"5 U.S.C. example predicate"}')
+        for member in result['members']:
+            task = next(t for t in member['research_tasks'] if t['kind'] == 'operative_current_law')
+            self.assertIn({'kind': 'assignment_prerequisite_unresolved', 'task': task}, member['blockers'])
+        self.assertFalse(result['scientific_approval'])
+        self.assertEqual(result['network_requests'], 0)
+        self.assertEqual(dispatch.summary(result)['assignment_prerequisites']['unresolved_task_groups'], 1)
+
+    def test_explicit_scope_keeps_members_and_allows_only_explicit_subset(self):
+        self.current_gaps(ids=('EO:1',))
+        folder = self.packet()
+        code, stdout = self.cli('dispatch-check', folder, '--require-task-kind', 'operative_current_law')
+        self.assertEqual(code, 1)
+        self.assertEqual(json.loads(stdout)['dispatchable_ids'], ['EO:2'])
+        result = dispatch.check(self.repo, folder, ['EO:2'], require_task_kinds=['operative_current_law'])
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['packet_members'], ['EO:1', 'EO:2'])
+        self.assertEqual(result['checked_ids'], ['EO:2'])
+        self.assertEqual(result['assignment_prerequisites']['unresolved'], [])
+        self.assertEqual(self.cli('dispatch-check', folder, '--order', 'EO:2', '--require-task-kind', 'operative_current_law')[0], 0)
+
+    def test_unidentified_prerequisites_are_not_shared_questions(self):
+        self.current_gaps(citation=None)
+        folder = self.packet()
+        result = dispatch.check(self.repo, folder, require_task_kinds=['operative_current_law'])
+        tasks = result['assignment_prerequisites']['unresolved']
+        self.assertEqual(len(tasks), 2)
+        self.assertEqual([t['affected_orders'] for t in tasks], [['EO:1'], ['EO:2']])
+        self.assertTrue(all(t['shared_key'] == '{}' and not t['grouped_by_shared_key'] for t in tasks))
+
+    def test_unknown_duplicate_and_malformed_scope_refused(self):
+        folder = self.packet()
+        for kinds in (['operative_current_lwa'], ['operative_current_law']*2, 'operative_current_law', [None]):
+            with self.assertRaisesRegex(ValueError, 'supported assignment task kinds'):
+                dispatch.check(self.repo, folder, require_task_kinds=kinds)
+        with self.assertRaises(SystemExit):
+            self.cli('dispatch-check', folder, '--require-task-kind', 'operative_current_lwa')
+
+    def test_explicit_scope_preserves_source_and_stale_packet_refusals(self):
+        self.current_gaps()
+        folder = self.packet(missing=('EO:1',))
+        report = dispatch.check(self.repo, folder, require_task_kinds=['operative_current_law'])
+        self.assertIn('custody_record_only', json.dumps(report['members'][0]))
+        self.assertIn('assignment_prerequisite_unresolved', json.dumps(report['members'][0]))
+        # Clearing one source prerequisite never renews a changed packet/source.
+        self.retain()
+        (self.repo/'jobs/future-source/data/texts/EO_1.txt').write_bytes(b'changed')
+        with self.assertRaisesRegex(ValueError, 'changed held source'):
+            dispatch.check(self.repo, folder, require_task_kinds=['operative_current_law'])
+
+    def test_incomplete_prerequisite_payload_refused(self):
+        self.current_gaps()
+        folder = self.packet()
+        path = folder/'PACKET.json'
+        packet = json.loads(path.read_bytes())
+        task = next(t for t in packet['preflight']['EO:1']['mechanical_tasks'] if t['kind'] == 'operative_current_law')
+        task.pop('shared_key')
+        packet.pop('fingerprint')
+        packet['fingerprint'] = batch.digest(batch.canon(packet).encode())
+        batch.dump(path, packet)
+        with self.assertRaisesRegex(ValueError, 'Incomplete assignment prerequisite task'):
+            dispatch.check(self.repo, folder, require_task_kinds=['operative_current_law'])
+
     def test_prepare_wires_source_check_and_deduplicates_shared_references(self):
         folder = self.packet()
         report = json.loads((folder/'DISPATCH_CHECK.json').read_text())

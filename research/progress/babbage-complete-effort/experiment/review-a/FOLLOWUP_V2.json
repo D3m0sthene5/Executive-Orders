@@ -1,0 +1,74 @@
+{
+  "schema": "arm-a-independent-engineering-followup/v1",
+  "disposition": "ACCEPT_V2_BOUNDARY_CORRECTION_AND_MECHANICAL_PARITY",
+  "pins": {
+    "input": {
+      "path": "inputs/o25-preflight-only.json",
+      "sha256": "9293d5f0e75ab4590a607d81a8df3caeb21a87151c9c0f2daf9c33d5a267b27f"
+    },
+    "corrected_result": {
+      "path": "arm-a/result-v2.json",
+      "sha256": "b55b4a37b0e81d63c8f0d6294fbb302dcc1efadb963874ea7bbf4ce2111dbd3a"
+    },
+    "reusable_code": {
+      "path": "arm-a/baseline_route.py",
+      "sha256": "ab37a6ecabb8377beaa9adf153421d79a5f2ec39341da3a88ab557b0e3b7d0de"
+    }
+  },
+  "mechanical_recheck": {
+    "member_count": 30,
+    "matching_task_count": 355,
+    "group_count": 231,
+    "routes": {
+      "route_source_preparation": 30,
+      "no_known_declared_prerequisite": 0
+    },
+    "member_dispositions_and_tasks_match_input_exactly_in_order": true,
+    "literal_key_group_payloads_match_input_exactly": true,
+    "empty_object_keys_are_member_scoped": true
+  },
+  "boundary_recheck": {
+    "source_feasibility_disclaimed": true,
+    "legal_readiness_disclaimed": true,
+    "dispatch_approval_disclaimed": true,
+    "completed_dossier_work_disclaimed": true,
+    "wording": "Mechanical assignment-prerequisite routing only. This is not a source-feasibility or legal-readiness finding, does not approve dispatch, and is not completed dossier work. Groups are advisory task-key groups and establish neither shared source nor shared legal question.",
+    "assessment": "Explicit and sufficient for the requested boundary. The phrase 'does not approve dispatch' applies to dispatch approval generally, including native dispatch approval."
+  },
+  "cost_accounting": {
+    "v2_reported_repeat_execution": {
+      "configured_model": "gpt-6-luna",
+      "provider_tokens": null,
+      "cash_usage": null,
+      "tool_interactions_total": 4,
+      "shell_command_invocations_total": 4,
+      "elapsed_seconds_monotonic": 0.029158,
+      "scope": "Final reusable-script execution only; earlier bounded input inspection time was not instrumented.",
+      "one_time_setup_and_inspection_cost": "unmeasured",
+      "repeat_execution_model_contexts": 0
+    },
+    "producer_correction_cost_reported_separately": {
+      "configured_model": "gpt-6-luna",
+      "provider_tokens": null,
+      "cash_usage": null,
+      "tool_interactions": 1,
+      "shell_command_invocations_attempted": 2,
+      "shell_commands_executed": 2,
+      "elapsed_seconds_monotonic": 0.50813,
+      "utc_started": "2026-11-04T19:59:18.713031+00:00",
+      "utc_completed": "2026-11-04T19:59:19.221133+00:00",
+      "scope": "Correction pass only: preserve v1, update reusable script, regenerate v2, and record correction metadata. Timer excludes tool transport/startup."
+    },
+    "independent_reviewer_followup_cost": {
+      "configured_model": "gpt-6-luna",
+      "provider_tokens": null,
+      "cash_usage": null,
+      "functions_exec_calls": 2,
+      "shell_command_invocations_attempted": 2,
+      "shell_commands_executed": 2,
+      "elapsed_clock": "unmeasured"
+    },
+    "limitation": "The correction pass and reviewer followup are separately recorded. The one-time initial briefing/development/input inspection remains unmeasured, and no provider savings are inferred from this engineering check."
+  },
+  "review_scope": "Mechanical engineering comparison only. No legal or scientific source examination/certification. No provider savings conclusion. The original rejection remains sealed in REVIEW.json."
+}

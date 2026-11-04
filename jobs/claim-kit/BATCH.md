@@ -72,6 +72,18 @@ producer duties. All sources ultimately selected in a claim still face ordinary
 full checker, review and completion gates. A missing ending source discovered
 during analysis must still block that claim.
 
+For a caller assigning work that explicitly requires the current predicate,
+`dispatch-check PACKET --require-task-kind operative_current_law` additionally
+refuses members with that existing unresolved preparation task. Omit this flag
+for investigations that may establish another ending: a current-law gap is not
+a universal whole-order blocker. The default and `prepare` behavior are unchanged.
+The full receipt retains exact task payloads, affected members and shared keys;
+empty source metadata stays member-scoped rather than becoming a shared question.
+Use existing source preparation and checkpoint/resume for those known gaps before
+launching that scoped assignment. An absent task establishes neither complete
+coverage nor a current legal predicate. Unknown or duplicate task-kind declarations
+are refused. No source request, scientific conclusion or reviewer approval is created.
+
 Finish deterministic commands before handback, keeping full logs on disk and
 returning paths, completion status and actionable errors. Do not assign a model
 to repeatedly poll them. Reuse the checkpoint/resume route below for source

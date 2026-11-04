@@ -11,6 +11,55 @@ from types import SimpleNamespace
 
 import batch
 
+# These are existing unresolved preparation tasks, not legal classifications.
+# New kinds need an explicit caller contract before they can block assignments.
+ASSIGNMENT_TASK_KINDS = frozenset({'operative_current_law'})
+
+
+def _assignment_prerequisites(preflight, ids, require_task_kinds=None):
+    """Classify retained known tasks only; this pure slice never approves dispatch.
+
+    The ordinary caller runs it after current packet/runtime validation. A replay
+    on an older preflight demonstrates prerequisite routing, not source currency,
+    custody, legal feasibility or permission to launch that historical packet.
+    """
+    kinds = [] if require_task_kinds is None else require_task_kinds
+    if (not isinstance(kinds, (list, tuple)) or
+            any(not isinstance(k, str) or k not in ASSIGNMENT_TASK_KINDS for k in kinds) or
+            len(set(kinds)) != len(kinds)):
+        raise ValueError('Distinct supported assignment task kinds required: ' + ', '.join(sorted(ASSIGNMENT_TASK_KINDS)))
+    if (not isinstance(preflight, dict) or not isinstance(ids, (list, tuple)) or
+            not 1 <= len(ids) <= 50 or any(not isinstance(i, str) for i in ids) or
+            len(set(ids)) != len(ids) or set(ids) - set(preflight)):
+        raise ValueError('Distinct existing assignment members required')
+    member_blockers = {iid: [] for iid in ids}
+    groups = {}
+    if kinds:
+        for iid in ids:
+            member = preflight[iid]
+            tasks = member.get('mechanical_tasks') if isinstance(member, dict) else None
+            if not isinstance(tasks, list) or any(not isinstance(t, dict) for t in tasks):
+                raise ValueError('Invalid assignment prerequisite tasks: ' + iid)
+            for task in tasks:
+                if task.get('kind') not in kinds:
+                    continue
+                key = task.get('shared_key')
+                if (not isinstance(key, str) or not key or task.get('instrument_id') != iid or
+                        not isinstance(task.get('reason'), str) or not task['reason']):
+                    raise ValueError('Incomplete assignment prerequisite task: ' + iid)
+                member_blockers[iid].append({'kind': 'assignment_prerequisite_unresolved', 'task': task})
+                # Empty metadata is not evidence of one shared question/source.
+                # Keep its original key but scope grouping to the member.
+                groupable_key = key != '{}'
+                marker = (task['kind'], key, None if groupable_key else iid)
+                entry = groups.setdefault(marker, {'kind': task['kind'], 'shared_key': key,
+                    'grouped_by_shared_key': groupable_key, 'affected_orders': [], 'member_tasks': []})
+                if iid not in entry['affected_orders']:
+                    entry['affected_orders'].append(iid)
+                entry['member_tasks'].append(task)
+    return member_blockers, {'required_task_kinds': list(kinds), 'unresolved': list(groups.values()),
+        'notice': 'Only this explicitly declared assignment scope is blocked by these known tasks. Literal task-key grouping establishes no source identity, common legal consequence or reusable answer. Absence of a task is not complete source coverage, a supported current predicate or whole-case feasibility. Other legal research paths remain available; no scientific decision or source request is made.'}
+
 
 def actual_checker():
     path = Path(__file__).resolve().parents[1] / 'claim-checker/checker.py'
@@ -20,12 +69,15 @@ def actual_checker():
     return module
 
 
-def check(repo, folder, orders=None):
+def check(repo, folder, orders=None, *, require_task_kinds=None):
     """Recheck the whole seal; screen the explicitly requested members (all by default).
 
     Required original/inventory evidence blocks dispatch when mechanically unusable.
     Unselected actor/current-law/contrary leads stay visible and do not select a
     legal theory. Once selected in a claim, all sources face ordinary full checks.
+    An explicit require_task_kinds declaration refuses only an assignment that
+    requires resolution of those existing unresolved preparation tasks. It does
+    not make that requirement universal or decide which ending theory applies.
     """
     started = time.monotonic()
     repo, folder = Path(repo).resolve(), Path(folder).resolve()
@@ -36,6 +88,7 @@ def check(repo, folder, orders=None):
     ids = list(dossiers) if orders is None else list(orders)
     if not ids or len(set(ids)) != len(ids) or set(ids) - set(dossiers):
         raise ValueError('dispatch order selection must be distinct packet members')
+    prerequisite_blockers, prerequisites = _assignment_prerequisites(packet['preflight'], ids, require_task_kinds)
     checker = actual_checker()
     index = checker.S.build_index(repo, Path(checker.__file__).parent, exclude_jobs=('claim-checker',))
     # Only custody APIs are needed; avoid Context's unrelated status, gate and
@@ -48,7 +101,8 @@ def check(repo, folder, orders=None):
         evidence = d.get('evidence', {})
         required = {d.get('original_source_id')} | {c.get('id') for c in d.get('clauses', [])}
         required.discard(None)
-        blockers, source_results = [], []
+        blockers, source_results = list(prerequisite_blockers[iid]), []
+        tasks = packet['preflight'][iid]['mechanical_tasks']
         if not d.get('original_source_id') or not d.get('clauses'):
             blockers.append({'kind': 'original_or_inventory_absent', 'reason': 'Held original and nonempty inventory required for production; retain packet for source research.'})
         for eid in sorted(required - set(evidence)):
@@ -100,9 +154,9 @@ def check(repo, folder, orders=None):
                         blockers.append({'kind': 'required_span_not_verified', 'evidence_id': eid})
         members.append({'instrument_id': iid, 'state': 'source_blocked' if blockers else 'dispatchable_for_research',
                         'blockers': blockers, 'sources': source_results,
-                        'research_tasks': packet['preflight'][iid]['mechanical_tasks']})
+                        'research_tasks': tasks})
     blocked = [m['instrument_id'] for m in members if m['blockers']]
-    return {'schema': 'eo-claim-kit-dispatch-check/v1', 'packet_sha256': batch.file_sha(folder/'PACKET.json'),
+    report = {'schema': 'eo-claim-kit-dispatch-check/v1', 'packet_sha256': batch.file_sha(folder/'PACKET.json'),
             'code_pins': {p.name: batch.file_sha(p) for p in (Path(__file__), Path(checker.__file__), Path(checker.S.__file__))},
             'packet_fingerprint': packet['fingerprint'], 'packet_members': list(dossiers), 'checked_ids': ids,
             'state': 'source_blocked' if blocked else 'dispatchable_for_research', 'ok': not blocked,
@@ -112,6 +166,9 @@ def check(repo, folder, orders=None):
             'source_index_notes': index.notes,
             'network_requests': 0, 'model_tokens': None, 'scientific_approval': False,
             'notice': 'Re-run immediately before assignment. A receipt is not a lasting dispatch permit. Optional source gaps remain research tasks; all selected claim sources still require the actual checker and independent review.'}
+    if prerequisites['required_task_kinds']:
+        report['assignment_prerequisites'] = prerequisites
+    return report
 
 
 def summary(result):
@@ -119,9 +176,18 @@ def summary(result):
     out = {k: result[k] for k in ('state', 'ok', 'packet_sha256', 'dispatchable_ids', 'source_blocked_ids',
                                   'unique_custody_checks', 'wall_seconds', 'scientific_approval')}
     out['exceptions'] = [{'instrument_id': m['instrument_id'],
-                          'blockers': [{'kind': b['kind'], 'evidence_id': b.get('evidence_id')} for b in m['blockers']],
+                          'blockers': [{'kind': b['kind'], 'evidence_id': b.get('evidence_id'),
+                                        **({'task_kind': b['task']['kind'], 'shared_key': b['task']['shared_key']}
+                                           if b['kind'] == 'assignment_prerequisite_unresolved' else {})} for b in m['blockers']],
                           'optional_source_gaps': [s['evidence_id'] for s in m['sources']
                                                    if not s['required'] and any(c['result'] != 'pass' for c in s['checks'])]}
                          for m in result['members'] if m['blockers'] or any(
                              not s['required'] and any(c['result'] != 'pass' for c in s['checks']) for s in m['sources'])]
+    if 'assignment_prerequisites' in result:
+        p = result['assignment_prerequisites']
+        out['assignment_prerequisites'] = {'required_task_kinds': p['required_task_kinds'],
+            'unresolved_task_groups': len(p['unresolved']),
+            'affected_orders': [m['instrument_id'] for m in result['members'] if any(
+                b['kind'] == 'assignment_prerequisite_unresolved' for b in m['blockers'])],
+            'notice': p['notice']}
     return out

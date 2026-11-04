@@ -155,7 +155,7 @@ def main(argv=None):
     s=sub.add_parser('factual-at',help='query reviewed bounded occurrence facts, not legal state');s.add_argument('packet',type=Path);s.add_argument('--order',required=True);s.add_argument('--on',required=True)
     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--history-bundle',type=Path,action='append',default=[]);s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
-    s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path)
+    s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path);s.add_argument('--require-task-kind',action='append',default=[],choices=('operative_current_law',),help='explicit assignment requires resolution of this known preparation task; does not choose a legal theory')
     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path);s.add_argument('--geddes-strict',action='store_true',help='exit nonzero unless every Geddes lint flag has a resolution (geddes gate)')
     s=sub.add_parser('complete');s.add_argument('manifest',type=Path);s.add_argument('--write',type=Path,required=True);s.add_argument('--publish',action='store_true')
@@ -229,7 +229,7 @@ def main(argv=None):
             from dispatch import check,summary
             if a.write and a.write.exists():raise ValueError('Dispatch receipt exists; refusing overwrite')
             if a.write and not a.write.resolve().is_relative_to(a.packet.resolve()):raise ValueError('Dispatch receipt must stay inside its packet')
-            result=check(repo,a.packet,a.order)
+            result=check(repo,a.packet,a.order,require_task_kinds=a.require_task_kind)
             if a.write:dump(a.write,result)
             compact=summary(result)
             if a.write:compact['receipt']=str(a.write)

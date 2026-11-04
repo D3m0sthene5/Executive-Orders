@@ -28,6 +28,11 @@ mandatory source block. Keep blocked members for acquisition/checkpoint work;
 `prepare --research-only` exports evidence but does not authorize production.
 Recheck immediately before dispatch, freeze shared inputs during the wave, and
 never renew a stale seal. See BATCH.md for receipts and existing token telemetry.
+When the caller explicitly requires a current-predicate investigation, use
+`dispatch-check PACKET --require-task-kind operative_current_law` to route its
+already-known missing-predicate tasks to existing source preparation first.
+This optional scope does not block alternative-ending research, change default
+preparation, select a legal theory or establish full source coverage.
 
 1. Pull the assigned branch and read `HANDOFF/README.md`, your current assignment,
    `jobs/claim-drafts/AGENT_GUIDE.md` and `research/stage19/CLAIM_SCHEMA.md`.
