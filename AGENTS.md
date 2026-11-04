@@ -21,6 +21,12 @@ Commit code, primary-source acquisition outputs and clear status reports to GitH
 
 For the model-neutral claim-kit dossier/decision workflow, follow [`jobs/claim-kit/AGENT_PROTOCOL.md`](jobs/claim-kit/AGENT_PROTOCOL.md).
 
+For bounded provision/version questions at historical dates, use MAITLAND's
+`kit.py history-check/history-at/history-impact` route in
+[`jobs/claim-kit/PROVISION_HISTORY.md`](jobs/claim-kit/PROVISION_HISTORY.md).
+Its exact reviewed text and legal-effect scopes remain separate; derived histories
+do not approve statuses, original authentication, whole-order claims or human certification.
+
 **Ordinary production (owner, 2026-10-24):** use `kit.py prepare` / `view` /
 `apply` / `batch-check`, then `kit.py complete` for reviewed batch selection,
 gates, receipts, tally and authorized filing. Do not assign a model solely to

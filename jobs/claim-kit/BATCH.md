@@ -1,5 +1,9 @@
 # Prepared evidence to explicit reviewed proposals
 
+For MAITLAND's separate reviewed provision/version queries, see
+[PROVISION_HISTORY.md](PROVISION_HISTORY.md). Historical reconstruction is derived
+research; it does not file a claim, approve a status or replace this workflow.
+
 Run from the repository root. Check `output/STATUS.json`, `SUMMARY.json` and the
 runner's `RUNNER_INPUTS.json` first. Source matches and status observations are
 leads. Only explicit `complete --publish` files eligible claims or isolated

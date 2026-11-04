@@ -381,6 +381,10 @@ def render(packet,dossiers):
         lines.extend(['## Valla review leads and component attestations','',ctx['notice'],
             'Preparation attestations never approve legal conclusions or replace whole-case review.',''])
         for q in ctx['review_queue']:lines.append(canon(q))
+        if ctx.get('refused_method_reviews'):
+            lines.extend(['### Method reviews requiring fresh examination',
+                'These records were refused; they supply no new dependency, approval or invalidation.'])
+            for refusal in ctx['refused_method_reviews']:lines.append(canon(refusal))
         for iid,c in ctx['claims'].items():
             lines.append(canon({'instrument_id':iid,'invalidated_conclusion_pointers':c['invalidated_conclusion_pointers'],
                                'component_reviews':c['component_reviews']}))
@@ -416,7 +420,8 @@ def view(repo,folder,order=None,source=None):
         if packet.get('valla_context') is not None:
             ctx=packet['valla_context']
             lines.append('Valla '+canon({'notice':ctx['notice'],'claim':ctx['claims'].get(order),
-                'review_queue':[q for q in ctx['review_queue'] if q['instrument_id']==order]}))
+                'review_queue':[q for q in ctx['review_queue'] if q['instrument_id']==order],
+                'refused_method_reviews':[r for r in ctx.get('refused_method_reviews',[]) if r.get('instrument_id')==order]}))
         return '\n'.join(lines)
     return '\n'.join(['Packet '+packet['fingerprint'],'Orders: '+', '.join(dossiers),
         'Use view PACKET --source TEXT_ID for exact common text; --order ID for member metadata.',

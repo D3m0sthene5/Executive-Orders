@@ -1,5 +1,10 @@
 # Claim kit protocol (any AI or person)
 
+MAITLAND's optional `history-check`, `history-at` and `history-impact` commands
+query exact reviewed provision transitions beside this workflow. Read
+[PROVISION_HISTORY.md](PROVISION_HISTORY.md); textual reconstruction and operative
+effect have separate review scopes. These commands change no canonical findings.
+
 The kit is an offline machine dossier builder. Every output is a lead. No source,
 segmentation, candidate date, family grouping or search result establishes legal status.
 Start at the committed `output/SUMMARY.json` and `STATUS.json`: check the input commit

@@ -69,6 +69,11 @@ prefilter (a superset test for the ID string; exact `instrument_id` match decide
 relevance). Other IDs' claim lines and method reviews are skipped, not validated; the
 full build still checks every canonical claim and method review.
 
+Packet context also retains `refused_method_reviews` for the requested instruments,
+with instrument, record, path and refusal reason. An empty accepted review queue
+therefore does not hide an older review refused after a dependency changed. These
+diagnostics do not renew the review or invalidate any conclusion by themselves.
+
 ## Explicit revalidation and component reviews
 
 `research/readiness/method_reviews/*.jsonl` contains owner-routable review queue

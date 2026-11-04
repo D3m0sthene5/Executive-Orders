@@ -349,6 +349,21 @@ class VallaTests(unittest.TestCase):
             same = self.ctx(); (stage / 'valla.py').write_text((stage / 'valla.py').read_text() + '\n#\n')
             self.assertNotEqual(self.ctx(), same)
 
+    def test_packet_exposes_stale_review_without_invalidating_conclusions(self):
+        self.git_init(); self.method_review()
+        self.rule.write_text('The protocol changed; the old review must be examined again.')
+        ctx = V.attach(self.repo, self.IDS)
+        self.assertEqual(ctx['refused_method_reviews'], [{
+            'path': 'research/readiness/method_reviews/M1.jsonl',
+            'record_id': 'M1', 'instrument_id': 'EO:1',
+            'reason': 'dependency changed: jobs/claim-kit/BATCH.md'}])
+        self.assertFalse(any(q.get('dependency_confirmed') for q in ctx['review_queue']))
+        self.assertEqual(ctx['claims']['EO:1']['invalidated_conclusion_pointers'], [])
+        self.assertEqual(ctx['automatic_approvals'], 0)
+        before = V.canon(ctx)
+        self.method_review('other', 'EO:2')
+        self.assertEqual(V.canon(V.attach(self.repo, self.IDS)), before)
+
     def test_full_build_reports_all_packages_and_keeps_bound(self):
         self.git_init(); self.package('a', ['EO:1']); self.package('b', ['EO:2'])
         d = V.build(self.repo); scan = d['package_scan']

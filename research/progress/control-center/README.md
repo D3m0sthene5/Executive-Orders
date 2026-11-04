@@ -6,6 +6,13 @@ Look up an executive order, inspect its remaining steps, and follow the handoff 
 
 ## Run from a checkout
 
+For MAITLAND's bounded historical provision queries, see the
+[reviewed-history protocol](../../../jobs/claim-kit/PROVISION_HISTORY.md) and
+[source-reviewed demonstration](../maitland/native/SUMMARY.json). This separate
+research mode exposes exact text versions, dated operations and local unresolved
+legal-effect questions. It changes no tracker readiness or certification counts.
+The hosted dashboard has not been redeployed by this research PR.
+
 From the repository root, run the following command and open [the local center](http://127.0.0.1:8765/). The application uses relative asset paths and needs an HTTP origin.
 
 ```sh
