@@ -53,10 +53,13 @@ def main(batch, packet, applied, *flags):
     if missed:
         print(json.dumps({"batch": batch, "missed_controls": missed, "action": "re-review required; not completed"}))
         return
+    n = 1
+    while (packet / f"complete-v{n}").exists():
+        n += 1
     ccmd = ["python3", "jobs/claim-kit/kit.py", "complete", str(out / "COMPLETION.json"), "--write",
-            str(packet / "complete-v1")] + (["--publish"] if "--publish" in flags else [])
+            str(packet / f"complete-v{n}")] + (["--publish"] if "--publish" in flags else [])
     p = subprocess.run(ccmd, cwd=REPO, capture_output=True, text=True)
-    (packet / "COMPLETE_v1.log").write_text(p.stdout + "\n" + p.stderr)
+    (packet / f"COMPLETE_v{n}.log").write_text(p.stdout + "\n" + p.stderr)
     print(p.stdout[-1500:], p.stderr[-800:], "exit", p.returncode)
 
 
