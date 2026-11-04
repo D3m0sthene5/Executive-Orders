@@ -25,13 +25,13 @@ Nothing.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 111; `search` finds the rest)
+## Newest results (6 of 115; `search` finds the rest)
 
+- 2026-11-04 F-20261104-4 **worked**: Integrate PRs 131-137 and run the combined jobs. Lesson: Any change to jobs/valla or the runner scripts needs an audited certificate update in the same PR; separately, add .job-cache/ and jobs/_attempts/ handling to the fallback capture (runner tests alrea…
+- 2026-11-04 F-20261104-3 **analysis**: Prepare correction packets (c01-c03) while other batches' completions were still being written. Lesson: Serialize: finish every completion that can mention a correction's ids before preparing the correction packet; check overlap by substring (an id like EO:1209 also matches EO:12090).
+- 2026-11-04 F-20261104-2 **partly worked**: Re-complete reviewed claims that failed completion as custody_record_only after Cotton/astra retention later… Lesson: Custody must be settled before review and completion: run PR132 dispatch-check (custody preflight) before assigning a batch. Stranded claims need a new prepare for exactly those ids, the reviewed row…
+- 2026-11-04 F-20261104-1 **failed**: Lind paired trial: 85 claims (a03, c01-c03) each reviewed by two fresh Opus blind reviewers launched together… Lesson: Do not wire receipts into the review prompt as a default; review cost is reading and legal judgment, and reviewers fold mechanical checks into the scripts they already write to read claims. Producers…
 - 2026-11-02 F-20261102-population-contract-repair **worked**: Reproduce failed refresh and reconcile claim-kit contract to already-owner-merged PR119 rows Lesson: Carry accepted adoption into the independent population contract; do not infer authorization from mutable progress CSVs
 - 2026-11-02 F-20261102-mountweazel-notes **worked**: Preserve optional source notes on blinded reviewer cards Lesson: Normalize optional presentation keys without erasing evidence or changing canonical/control payloads
-- 2026-11-02 F-20261102-lachmann-reuse **worked**: Reuse exact standalone Lachmann working-text checks in ordinary claim-kit preparation Lesson: Reuse only the current exact source-bound confirmation; a changed record or declaration needs a new packet. Text verification never approves legal judgment or original authentication.
-- 2026-11-02 F-20261102-held-actor-retained-replay **worked**: Use newly retained raw PDFs in a fresh final-runtime four-order supplement replay Lesson: Fresh exact-byte evidence access is useful preparation, never proof that an instrument applies or ends a command
-- 2026-11-02 F-20261102-held-actor-handoff **partly worked**: Replay four blocked Erasmus cases through existing exact source supplements Lesson: Use existing source-supplement interface, rehash actual raw bytes and reconcile reports to final exact receipts
-- 2026-11-02 F-20261102-final-recovery-generation **worked**: Publish and audit the combined recovered main generation Lesson: Verify published native generations and actual input maps; never renew stale packets or infer scientific approval from engineering completion
 
-Register: 19 owner decisions, 13 answered questions, 111 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 19 owner decisions, 13 answered questions, 115 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
