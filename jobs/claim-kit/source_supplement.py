@@ -45,6 +45,11 @@ def registered(repo, source, index=None):
     choose the grade; it comes only from the registry, and an ambiguous registration is left ungraded."""
     rel = B.safe(repo, source['text_path']).relative_to(Path(repo).resolve()).as_posix()
     index = index or fragment_cache.shared(repo)
+    # A separately registered official representation may share its extracted
+    # text with a provisional mirror. Preserve the explicitly selected official
+    # URL/raw hash; a text-path match must not silently replace its provenance.
+    if index.exact_official(source):
+        return None
     found = {(r['instrument_id'], r['grade'], r['sha256'], r['url']) for rows in index.by_sha.values() for r in rows
              if r['text_path'] == rel and r.get('text_sha256') == source['text_sha256'] and r['grade'] in W.GRADES}
     if len(found) != 1:
