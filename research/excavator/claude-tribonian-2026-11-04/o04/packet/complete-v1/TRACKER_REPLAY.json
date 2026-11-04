@@ -1,0 +1,807 @@
+{
+  "after": {
+    "decided_by_steps_done": {
+      "1/6": 990,
+      "1/7": 12,
+      "1/8": 2,
+      "2/6": 473,
+      "2/7": 75,
+      "2/8": 6,
+      "3/6": 1136,
+      "3/7": 437,
+      "3/8": 34,
+      "4/6": 30,
+      "4/7": 70,
+      "4/8": 166,
+      "5/6": 38,
+      "5/8": 25,
+      "6/6": 784,
+      "6/7": 5,
+      "6/8": 1,
+      "7/7": 6,
+      "8/8": 1
+    },
+    "decided_orders_blocked_by": {
+      "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 127,
+      "CLAIM_CHECK_FAILED": 7,
+      "CLAIM_INCOMPLETE": 88,
+      "CLAIM_NOT_YET_CHECKED": 22,
+      "CURRENT_BASIS_UNPROVED": 393,
+      "FIRST_END_UNPROVED": 2972,
+      "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+      "NO_CLAUSE_INVENTORY": 3365,
+      "NO_OFFICIAL_SOURCE_LOCATED": 1100,
+      "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1248,
+      "NO_PROVISIONAL_STATUS": 0,
+      "ONLY_COMPILED_TRANSCRIPTION_FOUND": 1036,
+      "OPEN_SOURCE_AUDIT": 10,
+      "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+      "OPUS_MEDIA_NONE_CITED": 212,
+      "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+      "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+      "OPUS_MEDIA_REFETCH_NEEDED": 431,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 87,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3365,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27,
+      "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 2
+    },
+    "human_verified": "not counted here; see the Stage 19 tracker",
+    "input_problems": [],
+    "opus_media_not_applicable": [
+      "EO:11423",
+      "EO:11649",
+      "EO:12073",
+      "EO:12391",
+      "EO:12504"
+    ],
+    "orders_blocked_by": {
+      "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2558,
+      "CLAIM_CHECK_FAILED": 7,
+      "CLAIM_INCOMPLETE": 88,
+      "CLAIM_NOT_YET_CHECKED": 22,
+      "CURRENT_BASIS_UNPROVED": 393,
+      "FIRST_END_UNPROVED": 2972,
+      "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+      "NO_CLAUSE_INVENTORY": 3365,
+      "NO_OFFICIAL_SOURCE_LOCATED": 5965,
+      "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1248,
+      "NO_PROVISIONAL_STATUS": 10681,
+      "ONLY_COMPILED_TRANSCRIPTION_FOUND": 3689,
+      "OPEN_SOURCE_AUDIT": 10,
+      "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+      "OPUS_MEDIA_NONE_CITED": 212,
+      "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+      "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+      "OPUS_MEDIA_REFETCH_NEEDED": 431,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 285,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3365,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27,
+      "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 2
+    },
+    "orders_total": 14972,
+    "orders_with_provisional_status": 4291,
+    "original_replacement_obligations": 1875,
+    "quotation_recheck_obligations": 1875,
+    "ready_by_text_evidence_tier": {
+      "original_supported": 462,
+      "transcription_dependent": 328
+    },
+    "ready_by_tier": {
+      "complete_claim": 790
+    },
+    "ready_for_human_review": 790,
+    "rejected_working_text_confirmations": {
+      "grade_not_a_working_text_grade": 4,
+      "not_confirmed": 5856
+    },
+    "shared_unlocks": [
+      {
+        "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
+        "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "kind": "machine_job",
+        "orders_unblocked": 3689
+      },
+      {
+        "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held",
+        "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+        "kind": "agent_check",
+        "orders_unblocked": 2558
+      },
+      {
+        "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
+        "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
+        "kind": "machine_job",
+        "orders_unblocked": 431
+      },
+      {
+        "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+        "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+        "kind": "agent_check",
+        "orders_unblocked": 285
+      },
+      {
+        "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
+        "blocker": "CLAIM_NOT_YET_CHECKED",
+        "kind": "machine_job",
+        "orders_unblocked": 22
+      },
+      {
+        "action": "Retrieve shared source EO::4314",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314",
+        "kind": "one_source",
+        "orders_unblocked": 10
+      },
+      {
+        "action": "Retrieve shared source EO::6868",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868",
+        "kind": "one_source",
+        "orders_unblocked": 6
+      },
+      {
+        "action": "Retrieve shared source USC::48 U.S.C. 863)",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source EO::6964",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source EO::6910",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source CFR::26 CFR 458.324",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324",
+        "kind": "one_source",
+        "orders_unblocked": 2
+      },
+      {
+        "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+        "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS",
+        "kind": "agent_check",
+        "orders_unblocked": 1
+      }
+    ],
+    "step_done_among_decided": {
+      "clause_inventory": {
+        "applicable": 4291,
+        "done": 858
+      },
+      "counterevidence": {
+        "applicable": 4291,
+        "done": 2856
+      },
+      "ending_or_current_basis": {
+        "applicable": 4291,
+        "done": 813
+      },
+      "opus_media": {
+        "applicable": 839,
+        "done": 125
+      },
+      "original_text": {
+        "applicable": 4291,
+        "done": 2742,
+        "provisional": 362
+      },
+      "provisional_status": {
+        "applicable": 4291,
+        "done": 4291
+      },
+      "savings_residuals": {
+        "applicable": 4291,
+        "done": 846
+      },
+      "shared_sources": {
+        "applicable": 236,
+        "done": 209
+      }
+    },
+    "text_step_provisional_working_text": 1523,
+    "working_text_confirmations_counting": 1674
+  },
+  "before": {
+    "decided_by_steps_done": {
+      "1/6": 990,
+      "1/7": 12,
+      "1/8": 2,
+      "2/6": 473,
+      "2/7": 75,
+      "2/8": 6,
+      "3/6": 1142,
+      "3/7": 437,
+      "3/8": 34,
+      "4/6": 30,
+      "4/7": 70,
+      "4/8": 166,
+      "5/6": 38,
+      "5/8": 25,
+      "6/6": 778,
+      "6/7": 5,
+      "6/8": 1,
+      "7/7": 6,
+      "8/8": 1
+    },
+    "decided_orders_blocked_by": {
+      "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 127,
+      "CLAIM_CHECK_FAILED": 7,
+      "CLAIM_INCOMPLETE": 88,
+      "CLAIM_NOT_YET_CHECKED": 22,
+      "CURRENT_BASIS_UNPROVED": 393,
+      "FIRST_END_UNPROVED": 2978,
+      "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+      "NO_CLAUSE_INVENTORY": 3371,
+      "NO_OFFICIAL_SOURCE_LOCATED": 1100,
+      "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1248,
+      "NO_PROVISIONAL_STATUS": 0,
+      "ONLY_COMPILED_TRANSCRIPTION_FOUND": 1036,
+      "OPEN_SOURCE_AUDIT": 10,
+      "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+      "OPUS_MEDIA_NONE_CITED": 212,
+      "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+      "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+      "OPUS_MEDIA_REFETCH_NEEDED": 431,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 87,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3371,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27,
+      "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 2
+    },
+    "human_verified": "not counted here; see the Stage 19 tracker",
+    "input_problems": [],
+    "opus_media_not_applicable": [
+      "EO:11423",
+      "EO:11649",
+      "EO:12073",
+      "EO:12391",
+      "EO:12504"
+    ],
+    "orders_blocked_by": {
+      "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2558,
+      "CLAIM_CHECK_FAILED": 7,
+      "CLAIM_INCOMPLETE": 88,
+      "CLAIM_NOT_YET_CHECKED": 22,
+      "CURRENT_BASIS_UNPROVED": 393,
+      "FIRST_END_UNPROVED": 2978,
+      "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+      "NO_CLAUSE_INVENTORY": 3371,
+      "NO_OFFICIAL_SOURCE_LOCATED": 5965,
+      "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1248,
+      "NO_PROVISIONAL_STATUS": 10681,
+      "ONLY_COMPILED_TRANSCRIPTION_FOUND": 3689,
+      "OPEN_SOURCE_AUDIT": 10,
+      "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
+      "OPUS_MEDIA_NONE_CITED": 212,
+      "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+      "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+      "OPUS_MEDIA_REFETCH_NEEDED": 431,
+      "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 285,
+      "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 3371,
+      "SHARED_SOURCE_NOT_RETRIEVED": 27,
+      "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 2
+    },
+    "orders_total": 14972,
+    "orders_with_provisional_status": 4291,
+    "original_replacement_obligations": 1875,
+    "quotation_recheck_obligations": 1875,
+    "ready_by_text_evidence_tier": {
+      "original_supported": 460,
+      "transcription_dependent": 324
+    },
+    "ready_by_tier": {
+      "complete_claim": 784
+    },
+    "ready_for_human_review": 784,
+    "rejected_working_text_confirmations": {
+      "grade_not_a_working_text_grade": 4,
+      "not_confirmed": 5856
+    },
+    "shared_unlocks": [
+      {
+        "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
+        "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "kind": "machine_job",
+        "orders_unblocked": 3689
+      },
+      {
+        "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held",
+        "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+        "kind": "agent_check",
+        "orders_unblocked": 2558
+      },
+      {
+        "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
+        "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
+        "kind": "machine_job",
+        "orders_unblocked": 431
+      },
+      {
+        "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+        "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+        "kind": "agent_check",
+        "orders_unblocked": 285
+      },
+      {
+        "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
+        "blocker": "CLAIM_NOT_YET_CHECKED",
+        "kind": "machine_job",
+        "orders_unblocked": 22
+      },
+      {
+        "action": "Retrieve shared source EO::4314",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314",
+        "kind": "one_source",
+        "orders_unblocked": 10
+      },
+      {
+        "action": "Retrieve shared source EO::6868",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868",
+        "kind": "one_source",
+        "orders_unblocked": 6
+      },
+      {
+        "action": "Retrieve shared source USC::48 U.S.C. 863)",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:USC::48 U.S.C. 863)",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source EO::6964",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source EO::6910",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910",
+        "kind": "one_source",
+        "orders_unblocked": 3
+      },
+      {
+        "action": "Retrieve shared source CFR::26 CFR 458.324",
+        "blocker": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324",
+        "kind": "one_source",
+        "orders_unblocked": 2
+      },
+      {
+        "action": "Settle ambiguous Opus media matches (MATCHES.csv rows graded ambiguous)",
+        "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS",
+        "kind": "agent_check",
+        "orders_unblocked": 1
+      }
+    ],
+    "step_done_among_decided": {
+      "clause_inventory": {
+        "applicable": 4291,
+        "done": 852
+      },
+      "counterevidence": {
+        "applicable": 4291,
+        "done": 2856
+      },
+      "ending_or_current_basis": {
+        "applicable": 4291,
+        "done": 807
+      },
+      "opus_media": {
+        "applicable": 839,
+        "done": 125
+      },
+      "original_text": {
+        "applicable": 4291,
+        "done": 2738,
+        "provisional": 366
+      },
+      "provisional_status": {
+        "applicable": 4291,
+        "done": 4291
+      },
+      "savings_residuals": {
+        "applicable": 4291,
+        "done": 840
+      },
+      "shared_sources": {
+        "applicable": 236,
+        "done": 209
+      }
+    },
+    "text_step_provisional_working_text": 1527,
+    "working_text_confirmations_counting": 1674
+  },
+  "canonical_outputs_modified": false,
+  "selected": {
+    "EO:8304": {
+      "after": {
+        "blockers": "",
+        "claim_present": "yes",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "",
+        "instrument_id": "EO:8304",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "no",
+        "provisional_status": "no",
+        "provisional_text_grade": "",
+        "provisional_text_method": "",
+        "provisional_text_sha256": "",
+        "quotation_recheck_required": "no",
+        "ready_for_human_review": "yes",
+        "ready_tier": "complete_claim",
+        "step_clause_inventory": "done",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "done",
+        "step_opus_media": "n/a",
+        "step_original_text": "done",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "done",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 6,
+        "text_evidence_tier": "original_supported",
+        "working_text_policy_errors": ""
+      },
+      "before": {
+        "blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+        "claim_present": "no",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "",
+        "instrument_id": "EO:8304",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "no",
+        "provisional_status": "no",
+        "provisional_text_grade": "",
+        "provisional_text_method": "",
+        "provisional_text_sha256": "",
+        "quotation_recheck_required": "no",
+        "ready_for_human_review": "no",
+        "ready_tier": "",
+        "step_clause_inventory": "open",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "open",
+        "step_opus_media": "n/a",
+        "step_original_text": "done",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "open",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 3,
+        "text_evidence_tier": "original_supported",
+        "working_text_policy_errors": ""
+      }
+    },
+    "EO:8345": {
+      "after": {
+        "blockers": "",
+        "claim_present": "yes",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "",
+        "instrument_id": "EO:8345",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "yes",
+        "provisional_status": "no",
+        "provisional_text_grade": "",
+        "provisional_text_method": "",
+        "provisional_text_sha256": "",
+        "quotation_recheck_required": "yes",
+        "ready_for_human_review": "yes",
+        "ready_tier": "complete_claim",
+        "step_clause_inventory": "done",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "done",
+        "step_opus_media": "n/a",
+        "step_original_text": "done",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "done",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 6,
+        "text_evidence_tier": "transcription_dependent",
+        "working_text_policy_errors": ""
+      },
+      "before": {
+        "blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+        "claim_present": "no",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "TEXT_PROVISIONAL_WORKING_TEXT",
+        "instrument_id": "EO:8345",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "yes",
+        "provisional_status": "no",
+        "provisional_text_grade": "mirror_transcription",
+        "provisional_text_method": "machine",
+        "provisional_text_sha256": "48a8cee0874c354dbe4891ce2a2887434bda2d5cd0bedae0d34f39c16c1a074a",
+        "quotation_recheck_required": "yes",
+        "ready_for_human_review": "no",
+        "ready_tier": "",
+        "step_clause_inventory": "open",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "open",
+        "step_opus_media": "n/a",
+        "step_original_text": "provisional",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "open",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 3,
+        "text_evidence_tier": "transcription_dependent",
+        "working_text_policy_errors": ""
+      }
+    },
+    "EO:8358": {
+      "after": {
+        "blockers": "",
+        "claim_present": "yes",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "",
+        "instrument_id": "EO:8358",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "no",
+        "provisional_status": "no",
+        "provisional_text_grade": "",
+        "provisional_text_method": "",
+        "provisional_text_sha256": "",
+        "quotation_recheck_required": "no",
+        "ready_for_human_review": "yes",
+        "ready_tier": "complete_claim",
+        "step_clause_inventory": "done",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "done",
+        "step_opus_media": "n/a",
+        "step_original_text": "done",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "done",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 6,
+        "text_evidence_tier": "original_supported",
+        "working_text_policy_errors": ""
+      },
+      "before": {
+        "blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+        "claim_present": "no",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "",
+        "instrument_id": "EO:8358",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "no",
+        "provisional_status": "no",
+        "provisional_text_grade": "",
+        "provisional_text_method": "",
+        "provisional_text_sha256": "",
+        "quotation_recheck_required": "no",
+        "ready_for_human_review": "no",
+        "ready_tier": "",
+        "step_clause_inventory": "open",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "open",
+        "step_opus_media": "n/a",
+        "step_original_text": "done",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "open",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 3,
+        "text_evidence_tier": "original_supported",
+        "working_text_policy_errors": ""
+      }
+    },
+    "EO:8368": {
+      "after": {
+        "blockers": "",
+        "claim_present": "yes",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "",
+        "instrument_id": "EO:8368",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "yes",
+        "provisional_status": "no",
+        "provisional_text_grade": "",
+        "provisional_text_method": "",
+        "provisional_text_sha256": "",
+        "quotation_recheck_required": "yes",
+        "ready_for_human_review": "yes",
+        "ready_tier": "complete_claim",
+        "step_clause_inventory": "done",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "done",
+        "step_opus_media": "n/a",
+        "step_original_text": "done",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "done",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 6,
+        "text_evidence_tier": "transcription_dependent",
+        "working_text_policy_errors": ""
+      },
+      "before": {
+        "blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+        "claim_present": "no",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "TEXT_PROVISIONAL_WORKING_TEXT",
+        "instrument_id": "EO:8368",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "yes",
+        "provisional_status": "no",
+        "provisional_text_grade": "mirror_transcription",
+        "provisional_text_method": "machine",
+        "provisional_text_sha256": "07f9ccd9b53003bfd2eacd53761b2dfee49101409ae48e614d26def8c69f39ad",
+        "quotation_recheck_required": "yes",
+        "ready_for_human_review": "no",
+        "ready_tier": "",
+        "step_clause_inventory": "open",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "open",
+        "step_opus_media": "n/a",
+        "step_original_text": "provisional",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "open",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 3,
+        "text_evidence_tier": "transcription_dependent",
+        "working_text_policy_errors": ""
+      }
+    },
+    "EO:8369": {
+      "after": {
+        "blockers": "",
+        "claim_present": "yes",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "",
+        "instrument_id": "EO:8369",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "yes",
+        "provisional_status": "no",
+        "provisional_text_grade": "",
+        "provisional_text_method": "",
+        "provisional_text_sha256": "",
+        "quotation_recheck_required": "yes",
+        "ready_for_human_review": "yes",
+        "ready_tier": "complete_claim",
+        "step_clause_inventory": "done",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "done",
+        "step_opus_media": "n/a",
+        "step_original_text": "done",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "done",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 6,
+        "text_evidence_tier": "transcription_dependent",
+        "working_text_policy_errors": ""
+      },
+      "before": {
+        "blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+        "claim_present": "no",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "TEXT_PROVISIONAL_WORKING_TEXT",
+        "instrument_id": "EO:8369",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "yes",
+        "provisional_status": "no",
+        "provisional_text_grade": "mirror_transcription",
+        "provisional_text_method": "machine",
+        "provisional_text_sha256": "60311283374a60255180a23f6d3d27b85b1178ad846472e956a926c704177e3a",
+        "quotation_recheck_required": "yes",
+        "ready_for_human_review": "no",
+        "ready_tier": "",
+        "step_clause_inventory": "open",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "open",
+        "step_opus_media": "n/a",
+        "step_original_text": "provisional",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "open",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 3,
+        "text_evidence_tier": "transcription_dependent",
+        "working_text_policy_errors": ""
+      }
+    },
+    "EO:8392": {
+      "after": {
+        "blockers": "",
+        "claim_present": "yes",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "",
+        "instrument_id": "EO:8392",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "yes",
+        "provisional_status": "no",
+        "provisional_text_grade": "",
+        "provisional_text_method": "",
+        "provisional_text_sha256": "",
+        "quotation_recheck_required": "yes",
+        "ready_for_human_review": "yes",
+        "ready_tier": "complete_claim",
+        "step_clause_inventory": "done",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "done",
+        "step_opus_media": "n/a",
+        "step_original_text": "done",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "done",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 6,
+        "text_evidence_tier": "transcription_dependent",
+        "working_text_policy_errors": ""
+      },
+      "before": {
+        "blockers": "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED",
+        "claim_present": "no",
+        "claim_record_errors": "",
+        "decision_origin": "inherited_legacy_v2",
+        "exhausted_steps": "",
+        "factual_event_policy_errors": "",
+        "informational_flags": "TEXT_PROVISIONAL_WORKING_TEXT",
+        "instrument_id": "EO:8392",
+        "opus_media_applicability_note": "",
+        "original_copy_replacement_required": "yes",
+        "provisional_status": "no",
+        "provisional_text_grade": "mirror_transcription",
+        "provisional_text_method": "machine",
+        "provisional_text_sha256": "5fcb6f6ebcde03852013b7d6ab96fe8115587288fa038b40538bdbae14e0d306",
+        "quotation_recheck_required": "yes",
+        "ready_for_human_review": "no",
+        "ready_tier": "",
+        "step_clause_inventory": "open",
+        "step_counterevidence": "done",
+        "step_ending_or_current_basis": "open",
+        "step_opus_media": "n/a",
+        "step_original_text": "provisional",
+        "step_provisional_status": "done",
+        "step_savings_residuals": "open",
+        "step_shared_sources": "n/a",
+        "steps_applicable": 6,
+        "steps_done": 3,
+        "text_evidence_tier": "transcription_dependent",
+        "working_text_policy_errors": ""
+      }
+    }
+  }
+}
