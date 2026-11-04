@@ -1,0 +1,5 @@
+# Rejected early-streaming source-index candidate
+
+An earlier candidate constructed held-copy entries and checked paths while iterating each `SOURCES.jsonl`, staging the entries until the file read completed. Its last recorded source SHA256 was `51408a5723f83fc749a5f263c59914f15a5b79fc8ecf269144b62147b2b97943`; its exact source bytes were overwritten before preservation and are not claimed recoverable here. It was rejected after independent review demonstrated a changed result if a file appears when the input reader closes: the baseline checks custody after EOF and close, while the candidate had checked earlier. The deterministic close-callback case is retained in `jobs/claim-checker/test_runtime_economy.py` (`test_custody_observed_after_reader_closes`).
+
+A 100,000-record synthetic fixture previously measured a related staged implementation at 125,924 KiB peak RSS versus baseline 190,548 KiB, with 2.686/2.350 versus 4.074/3.286 seconds in two consecutive builds; those measurements do not validate its semantics and are not attributable to the last refactored SHA above. The replacement reads all compact rows before checking paths or changing the index.

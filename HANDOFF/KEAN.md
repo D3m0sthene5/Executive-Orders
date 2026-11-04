@@ -26,13 +26,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 134; `search` finds the rest)
+## Newest results (6 of 137; `search` finds the rest)
 
 - 2026-11-04 F-20261104-supported-usage-normalization **worked**: Extend existing Hamilton ingestion to supported Geddes-format JSONL and existing NEYMAN production-effort con… Lesson: Preserve final revisions sharing event IDs, verify caller intervals against observed usage timestamps, and bridge existing explicit diagnostic routes; successful synthetic integration does not establ…
 - 2026-11-04 F-20261104-sol-supported-occurrence **worked**: Retain source-reviewed occurrence intervals through ordinary partial research Lesson: Occurrence, date precision and legal effect require separate proof; partial review is not whole readiness
+- 2026-11-04 F-20261104-sol-runtime-fallback-audit **partly worked**: Audit the known compatibility fallback capture of transient job caches Lesson: Prove disposable cache contracts and retain explicit/tracked source reads before excluding fallback inputs
+- 2026-11-04 F-20261104-sol-runtime-economy-rejected **failed**: Stream source-record path/custody checks before JSONL EOF Lesson: Preserve filesystem observation order as well as static outputs; validate retained evidence files before sealing
+- 2026-11-04 F-20261104-sol-runtime-economy **worked**: Compact the existing checker source adapter without changing read-close/custody order Lesson: Stage consumed fields until EOF and release them while indexing; preserve atomic file failures and independent source checking
 - 2026-11-04 F-20261104-sol-integration **worked**: Independently review exact source and PR132 combined runtime Lesson: Integrate between waves with fresh packets and actual-head revalidation; no stale hash renewal or net savings estimate
-- 2026-11-04 F-20261104-sol-history-consumer **worked**: Carry reviewed MAITLAND histories into ordinary assignments Lesson: Use exact reviewed context and preserve bounded unknowns instead of copying legal conclusions
-- 2026-11-04 F-20261104-sol-geddes-hosted-fixture **worked**: Run hosted Geddes check on the reviewed source Lesson: Test the actual CI input closure; preserve failure and extend fixture access without skipping gates or changing runtime
-- 2026-11-04 F-20261104-sol-eo13792-research **partly worked**: Examine new held and public EO13792 report witnesses independently Lesson: Submission, draft transmission, public release, receipt and legal exhaustion are distinct; new sources need exact custody and fresh application review
 
-Register: 21 owner decisions, 13 answered questions, 134 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 21 owner decisions, 13 answered questions, 137 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
