@@ -23,7 +23,8 @@ observations. Sizes of tool results are characters / 4, an attribution estimate.
 
 usage: python profile.py PAGES_DIR [--cost-usd N --session-totals TOTALS.json] --out OUT_DIR
 """
-import argparse, collections, json, math, re
+import argparse, collections, hashlib, json, math, re, time
+from datetime import date, datetime
 from pathlib import Path
 
 W = {"input": 1.0, "read": 0.1, "write5m": 1.25, "write1h": 2.0, "output": 5.0}
@@ -36,12 +37,21 @@ def finite_count(value):
 
 def usage_counts(usage):
     """Unknown usage and unknown cache TTL stay unknown, rather than becoming free."""
+    if not isinstance(usage, dict):
+        raise ValueError("usage must be an object")
     cc = usage.get("cache_creation") or {}
+    if not isinstance(cc, dict):
+        raise ValueError("cache_creation must be an object")
     writes = usage.get("cache_creation_input_tokens")
     result = {"input": usage.get("input_tokens"), "read": usage.get("cache_read_input_tokens"),
               "write5m": cc.get("ephemeral_5m_input_tokens"), "write1h": cc.get("ephemeral_1h_input_tokens"),
               "output": usage.get("output_tokens")}
-    result = {k: v if finite_count(v) else None for k, v in result.items()}
+    for value in [*result.values(), writes]:
+        if value is not None and (type(value) is not int or value < 0):
+            raise ValueError("token counts must be nonnegative integers or null")
+    known = sum(result[k] or 0 for k in ("write5m", "write1h"))
+    if writes is not None and known > writes:
+        raise ValueError("cache TTL counts exceed aggregate cache creation")
     if writes == 0:
         result["write5m"] = result["write1h"] = 0
     elif finite_count(writes):
@@ -68,20 +78,36 @@ def valuation_scale(observed, session_totals, cost_usd):
 
 def load(pages_dir):
     events, seen = [], set()
-    for f in sorted(Path(pages_dir).glob("*")):
+    source = Path(pages_dir)
+    files = [source] if source.is_file() else sorted(p for p in source.glob("*") if p.is_file())
+    for f in files:
         s = f.read_text(errors="replace")
         i = s.find('{"ccr"')
-        if i < 0:
-            continue
-        j = s.rfind("}")
-        try:
-            page = json.loads(s[i:j + 1])["ccr"]
-        except json.JSONDecodeError:
-            continue
-        for e in page.get("data", []):
-            kind = next((k for k in e if k != "created_at"), None)
+        if i >= 0:
+            page = json.loads(s[i:s.rfind("}") + 1])["ccr"]
+            records = page.get("data", [])
+        else:
+            # The supported Claude JSONL export used by Geddes. No private-host access.
+            records = []
+            for line in s.splitlines():
+                if not line.strip():
+                    continue
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError:
+                    if f.suffix in (".jsonl", ".output"):
+                        raise ValueError("malformed supported transcript export") from None
+                    continue
+                if isinstance(record, dict) and record.get("type") in ("assistant", "user"):
+                    records.append({"created_at": record.get("timestamp", ""), record["type"]: record})
+        for e in records:
+            kind = next((k for k in ("assistant", "user") if k in e), None)
+            if kind is None:
+                continue
             body = e.get(kind) or {}
-            uid = body.get("uuid") or json.dumps(e, sort_keys=True)[:200]
+            # UUID identifies an event, but some exporters revise it with final usage.
+            # Deduplicate exact records only; call normalization reconciles revisions.
+            uid = hashlib.sha256(json.dumps(e, sort_keys=True).encode()).hexdigest()
             if uid in seen:
                 continue
             seen.add(uid)
@@ -117,6 +143,58 @@ def tool_label(name, inp):
     return name
 
 
+def production_effort(result, metadata):
+    """Bridge observed calls to the existing NEYMAN receipt; invent no intervals.
+
+    The caller explicitly records an occupied worker interval and downstream
+    membership for each agent. Every call retains its own usage_id and the shared
+    interval unions once in NEYMAN. Session totals are deliberately not exported.
+    """
+    phases = ("preparation", "acquisition", "production", "review", "correction", "coordination", "integration")
+    session = metadata.get("session_id")
+    if not isinstance(session, str) or not session or not isinstance(metadata.get("agents"), dict):
+        raise ValueError("production metadata requires stable session_id and agents")
+    events = []
+    for call in result["usage_records"]:
+        m = metadata["agents"].get(call["agent"])
+        if not isinstance(m, dict):
+            raise ValueError("explicit metadata required for every observed agent")
+        if m.get("phase") not in phases or not all(isinstance(m.get(k), str) and m[k].strip()
+                for k in ("worker_id", "role", "actual_model", "measurement_method")):
+            raise ValueError("explicit worker, role, phase, actual model and measurement method required")
+        if call["model"] and call["model"] != m["actual_model"]:
+            raise ValueError("actual model disagrees with observed provider model")
+        ids = m.get("instrument_ids")
+        if not isinstance(ids, list) or not ids or any(not isinstance(i, str) or not re.fullmatch(r"EO:[A-Za-z0-9_.:-]+", i) for i in ids) or len(set(ids)) != len(ids):
+            raise ValueError("explicit unique downstream instrument membership required")
+        stamps = [datetime.fromisoformat(m[k].replace("Z", "+00:00")) for k in ("started_utc", "finished_utc")]
+        if any(t.tzinfo is None for t in stamps) or stamps[1] < stamps[0]:
+            raise ValueError("timezone-aware ordered worker interval required")
+        for value in call["usage_observed_at"]:
+            observed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+            if observed.tzinfo is None or not stamps[0] <= observed <= stamps[1]:
+                raise ValueError("observed call lies outside caller worker interval")
+        if m.get("coverage") not in ("partial", "complete_interval"):
+            raise ValueError("explicit worker interval coverage required")
+        identity = json.dumps([session, call["agent"], call["message_id"]], separators=(",", ":"))
+        uid = "hamilton:" + hashlib.sha256(identity.encode()).hexdigest()
+        t = call["tokens"]
+        events.append({"event_id": uid, "usage_id": uid, "phase": m["phase"], "kind": "worker_elapsed",
+            "worker_id": m["worker_id"], "role": m["role"], "actual_model": m["actual_model"],
+            "instrument_ids": sorted(ids), "started_utc": m["started_utc"], "finished_utc": m["finished_utc"],
+            "measurement_method": m["measurement_method"], "coverage": m["coverage"],
+            "tokens": {"input_uncached": t["input"], "cache_read": t["read"],
+                "cache_write": call["cache_creation_tokens"], "output": t["output"],
+                "reasoning": call["reasoning_tokens_included_in_output"]},
+            "usage_scope": "call", "usage_coverage": "observed_only; possible-call denominator unknown",
+            "output_final": call["output_final"], "reasoning_included_in_output": True,
+            "allocation_rule": None, "cash_charge_usd": None})
+    return {"schema": "neyman.production-effort/1", "events": events,
+        "provenance": {"collector": "Hamilton", "session_id": session,
+            "session_totals_exported": False, "cash_billing": "unavailable",
+            "note": "Worker elapsed is caller observed occupation, not active reasoning. Shared membership is not per-order allocation."}}
+
+
 def profile(events, cost_usd=None, label="", session_totals=None, pricing=None, cash_charge_usd=None, effort=None):
     if any(v is not None and not finite_count(v) for v in (cost_usd, cash_charge_usd)):
         raise ValueError("monetary totals must be finite and nonnegative; missing totals are null")
@@ -130,22 +208,65 @@ def profile(events, cost_usd=None, label="", session_totals=None, pricing=None, 
             continue
         agent = (body.get("internal_anthropic_catchall") or {}).get("parent_tool_use_id") or "main"
         if kind == "assistant":
-            mid = msg.get("id")
+            message_id = msg.get("id")
+            if not isinstance(message_id, str) or not message_id:
+                raise ValueError("assistant usage requires stable message id")
+            mid = (agent, message_id)
             u = msg.get("usage") or {}
+            counts = usage_counts(u)
+            final = bool(msg.get("stop_reason"))
             if mid not in calls:
-                counts = usage_counts(u)
                 calls[mid] = {"ts": ts, "agent": agent, **{k: v or 0 for k, v in counts.items()},
                               "observed": counts, "output_final": False, "cache_creation_total": None,
-                              "tools": [], "trigger": list(pending[agent])}
+                              "tools": [], "trigger": list(pending[agent]), "model": msg.get("model"),
+                              "final_fields": {}, "reasoning": None, "message_id": message_id, "usage_observed_at": []}
                 pending[agent] = []
-            else:
-                for k, value in usage_counts(u).items():
-                    if value is not None:
-                        calls[mid]["observed"][k] = max(calls[mid]["observed"].get(k) or 0, value)
-                        calls[mid][k] = calls[mid]["observed"][k]
-            calls[mid]["output_final"] |= bool(msg.get("stop_reason"))
+            c = calls[mid]
+            if u:
+                c["usage_observed_at"].append(ts)
+            if c["model"] and msg.get("model") and c["model"] != msg["model"]:
+                raise ValueError("conflicting model for stable message id")
+            c["model"] = c["model"] or msg.get("model")
+            for k, value in counts.items():
+                if value is None:
+                    continue
+                if final and k in c["final_fields"] and c["final_fields"][k] != value:
+                    raise ValueError("conflicting final usage for stable message id")
+                if not final and k in c["final_fields"] and value > c["final_fields"][k]:
+                    raise ValueError("stream usage exceeds final usage")
+                if final and c["observed"].get(k) is not None and value < c["observed"][k]:
+                    raise ValueError("final usage decreases an observed counter")
+                if final:
+                    c["final_fields"][k] = value
+                if k in c["final_fields"]:
+                    c["observed"][k] = c["final_fields"][k]
+                else:
+                    c["observed"][k] = max(c["observed"].get(k) or 0, value)
+                c[k] = c["observed"][k]
+            c["output_final"] |= final and counts["output"] is not None
+            reasoning = (u.get("output_tokens_details") or {}).get("reasoning_tokens", u.get("reasoning_tokens"))
+            if reasoning is not None:
+                if type(reasoning) is not int or reasoning < 0 or c["observed"]["output"] is None or reasoning > c["output"]:
+                    raise ValueError("reasoning must be a nonnegative subset of output")
+                if final and "reasoning" in c["final_fields"] and c["final_fields"]["reasoning"] != reasoning:
+                    raise ValueError("conflicting final reasoning usage")
+                if not final and "reasoning" in c["final_fields"] and reasoning > c["final_fields"]["reasoning"]:
+                    raise ValueError("stream reasoning exceeds final reasoning usage")
+                if final:
+                    c["final_fields"]["reasoning"] = reasoning
+                c["reasoning"] = max(c["reasoning"] or 0, reasoning)
             if finite_count(u.get("cache_creation_input_tokens")):
-                calls[mid]["cache_creation_total"] = u["cache_creation_input_tokens"]
+                prior = c["cache_creation_total"]
+                value = u["cache_creation_input_tokens"]
+                if "cache_creation_total" in c["final_fields"] and (final and value != c["final_fields"]["cache_creation_total"] or not final and value > c["final_fields"]["cache_creation_total"]):
+                    raise ValueError("conflicting aggregate final cache creation usage")
+                if final and prior is not None and value < prior:
+                    raise ValueError("final cache creation decreases an observed counter")
+                if final:
+                    c["final_fields"]["cache_creation_total"] = value
+                c["cache_creation_total"] = max(prior or 0, value)
+            if c["cache_creation_total"] is not None and c["write5m"] + c["write1h"] > c["cache_creation_total"]:
+                raise ValueError("merged cache TTL counts exceed aggregate cache creation")
             for b in msg.get("content") or []:
                 content_key = (mid, json.dumps(b, sort_keys=True))
                 if content_key in seen_content:
@@ -235,8 +356,18 @@ def profile(events, cost_usd=None, label="", session_totals=None, pricing=None, 
                 for k in W}
     coverage["output"]["complete_final_usage_observed"] = bool(calls) and all(c["output_final"] and c["observed"]["output"] is not None for c in calls.values())
     rates = (pricing or {}).get("usd_per_million_tokens") or {}
+    if pricing and pricing.get("as_of"):
+        try:
+            date.fromisoformat(pricing["as_of"])
+        except (TypeError, ValueError):
+            raise ValueError("pricing as_of must be an ISO calendar date") from None
+    if (pricing or {}).get("model") and any(c["model"] and c["model"] != pricing["model"] for c in calls.values()):
+        raise ValueError("pricing model disagrees with observed provider model")
     priced_observed = None
     if pricing and pricing.get("source") and pricing.get("as_of") and all(finite_count(rates.get(k)) for k in W):
+        models = {c["model"] for c in calls.values()}
+        if len(models) != 1 or None in models or "" in models:
+            raise ValueError("one observed model required for a single price schedule")
         priced_observed = sum(observed[k] * rates[k] / 1_000_000 for k in W)
     combined = collections.Counter()
     for k, v in fresh.items():
@@ -248,6 +379,17 @@ def profile(events, cost_usd=None, label="", session_totals=None, pricing=None, 
         "label": label, "model_calls": len(calls), "cost_units": round(total),
         "usd_per_unit": scale, "unit": "estimated API token value USD for observed window" if scale is not None else "input-token equivalents",
         "tokens": observed, "coverage": coverage,
+        "usage_records": [{"scope": "call", "agent": c["agent"], "message_id": c["message_id"],
+            "model": c["model"], "observed_at": c["ts"], "tokens": dict(c["observed"]),
+            "usage_observed_at": sorted(set(c["usage_observed_at"])),
+            "cache_creation_tokens": c["cache_creation_total"] if c["cache_creation_total"] is not None else
+                (c["write5m"] + c["write1h"] if all(c["observed"][k] is not None for k in ("write5m", "write1h")) else None),
+            "reasoning_tokens_included_in_output": c["reasoning"], "output_final": c["output_final"],
+            "billing": {"cash_charge_usd": None, "basis": "unavailable at call scope"}}
+            for c in calls.values()],
+        "usage_semantics": {"provider": "anthropic", "input": "fresh uncached input; excludes cache read and creation",
+            "cache_creation": "aggregate includes TTL breakdown; never add both", "output": "includes reasoning when separately reported",
+            "scope": "observed calls only", "possible_calls": None, "possible_calls_coverage": "unknown denominator"},
         "cache_write_unclassified_tokens": unclassified_writes,
         "unpriced_or_unclassified_usage": bool(unclassified_writes or any(missing.values()) or not coverage["output"]["complete_final_usage_observed"]),
         "session_tokens": {k: (session_totals or {}).get(k) for k in W},
@@ -284,14 +426,28 @@ if __name__ == "__main__":
     ap.add_argument("--pricing", help="JSON with source, as_of and usd_per_million_tokens by category")
     ap.add_argument("--cash-charge-usd", type=float, help="actual invoice charge if observed; omitted stays unknown")
     ap.add_argument("--effort", help="aggregate JSON annotating phase costs already included in session totals")
+    ap.add_argument("--production-metadata", help="explicit session/agent interval and membership JSON for existing NEYMAN effort export")
     ap.add_argument("--label", default="")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
+    started = time.perf_counter()
     ev = load(a.pages)
     read_json = lambda p: json.loads(Path(p).read_text()) if p else None
     res = profile(ev, a.cost_usd, a.label, read_json(a.session_totals), read_json(a.pricing), a.cash_charge_usd, read_json(a.effort))
     res["events"] = len(ev)
+    source = Path(a.pages)
+    files = [source] if source.is_file() else sorted(p for p in source.glob("*") if p.is_file())
+    pins = [{"sha256": hashlib.sha256(p.read_bytes()).hexdigest(), "bytes": p.stat().st_size} for p in files]
+    res["collector"] = {"elapsed_seconds": time.perf_counter() - started,
+        "input_bytes": sum(p["bytes"] for p in pins), "input_files": len(pins), "input_pins": pins,
+        "model_calls": 0, "scope": "offline load, normalize and hash; excludes output serialization",
+        "worker_active_seconds": None}
+    exported = production_effort(res, read_json(a.production_metadata)) if a.production_metadata else None
     Path(a.out).mkdir(parents=True, exist_ok=True)
+    if exported is not None:
+        target = Path(a.out) / "PRODUCTION_EFFORT.json"
+        with target.open("x", encoding="utf-8") as f:
+            f.write(json.dumps(exported, indent=1, allow_nan=False) + "\n")
     (Path(a.out) / f"PROFILE_{a.label or 'session'}.json").write_text(json.dumps(res, indent=1) + "\n")
     print(json.dumps({k: res[k] for k in ("label", "events", "model_calls", "cost_units", "unit")}, indent=1))
     for r in res["cost_by_cause"][:12]:
