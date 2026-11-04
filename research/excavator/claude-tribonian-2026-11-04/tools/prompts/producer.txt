@@ -28,4 +28,6 @@ Pace: you have many orders; decide each on its own text, but do not re-read the 
 
 Then run in your tool's background mode, from the repository root: `python3 jobs/claim-kit/kit.py apply <packet> --write <packet>/applied-v1`, then `python3 jobs/claim-kit/kit.py batch-check <packet> <packet>/applied-v1`. Fix actionable failures in a new applied-vN (never overwrite one). If apply refuses with "changed Valla review context", stop and report it.
 
+Apply and batch-check can take 10-30 minutes on this busy machine. Never hand back while one is still running: wait for it (a Bash until-loop on its log with a long timeout, or run it in the foreground with timeout 1800000), then finish every remaining step yourself.
+
 Write <packet>/PRODUCER_REPORT.md: start and end UTC; outcome per order and why; one line per order on what took the time; batch-check counts; Geddes flags and resolutions; full-packet files you opened beyond the views; tool defects. Reply in at most 100 words: final applied directory, submitted/blocked counts, start/end UTC.
