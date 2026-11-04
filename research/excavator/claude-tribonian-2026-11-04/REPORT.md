@@ -1,6 +1,6 @@
 # Tribonian production run, 2026-11-04: final disposition
 
-Tribonian ran the ordinary claim-kit route (prepare, produce, apply, batch-check, blind review with planted controls, after-reveal review, completion) on 1,041 decided orders in 37 production batches and on 83 previously rejected claims in three correction batches. It filed **545 reviewed lifecycle claims**: 492 new dossiers and 53 corrections of earlier rejected claims. All 51 planted controls were caught. No human certification was performed, and the certified whole-lifecycle count stays **0**.
+Tribonian ran the ordinary claim-kit route (prepare, produce, apply, batch-check, blind review with planted controls, after-reveal review, completion) on 1,041 decided orders in 37 production batches and on 83 previously rejected claims in three correction batches. It filed **545 reviewed lifecycle claims** in the drained wave (492 new dossiers and 53 corrections), plus 2 more from the dispatch-checked o27 batch described below of earlier rejected claims. All 51 planted controls were caught. No human certification was performed, and the certified whole-lifecycle count stays **0**.
 
 The authoritative per-batch record is [`evidence/DISPOSITION.json`](evidence/DISPOSITION.json) (and `.csv`), regenerated from the native completion receipts by `tools/disposition.py`. Each batch folder keeps every applied, completed, refused and stale version; packets and reviews are excluded from this branch and preserved byte-for-byte on `claude/tribonian-state` (see the end of this report).
 
@@ -13,7 +13,7 @@ A "blocked" order is one the producer did not submit, with the missing source na
 | New production (37 batches) | 1,041 | 492 | 502 | 47 |
 | Corrections (c01–c03) | 83 | 53 | 29 | 1 |
 
-Low-yield batches (o13, o14, o17, o20, o22–o24, a01, a02) were dominated by producer blocks that name a missing ending or current-law source; their packets and decisions are the starting point for source acquisition, not for re-review. o25 was applied with zero submissions, because every order in it needs current-law text that is not held. o26–o30 were prepared and never started, by instruction, once the wave was being drained.
+Low-yield batches (o13, o14, o17, o20, o22–o24, a01, a02) were dominated by producer blocks that name a missing ending or current-law source; their packets and decisions are the starting point for source acquisition, not for re-review. o25 was applied with zero submissions, because every order in it needs current-law text that is not held. o26–o30 were left unstarted while the wave drained, then re-prepared for the dispatch-checked trial described below.
 
 Batch a03 had been produced (12 submitted) but missed review in the first pass. It was reviewed in the paired trial below and filed 12. Its first completion was killed by the memory limit during the actual checker run (`complete-v1`, kept); `complete-v2` published.
 
@@ -25,7 +25,15 @@ The 53 correction filings replace nothing. Each corrected claim is a new version
 
 1. **47 reviewed claims are blocked by source custody.** They are in o04 (23), o08 (5), k01, o21 and o24 (4 each), a04 and o06 (2 each), and a01, a05, f01 and c03 (1 each). They passed blind review, but a cited source was held only as a hash when completion ran. Byte retention is queued in `jobs/cotton-capture-custody/data/WANTED.jsonl`, `jobs/astra-source-retention/REQUESTS.json` and `research/readiness/FETCH_QUEUE.jsonl`. A re-completion of o04 was refused (`o04/packet/complete-v2`), because the batch's own published claims changed its Valla context. The route therefore needs a new packet. First step: when the custody runs report the bytes held, run `kit.py prepare` for exactly these ids, reapply the reviewed rows unchanged, and complete with a fresh blind review or an owner-approved reuse of the exact-version review. PR132's dispatch-check, run before assignment, would have caught this before review.
 2. **EO 10156 (c02)** fails `order_exists` because the held OCR text prints "98661". It needs a better witness of the order.
-3. **o25–o30.** o25 needs current-law sources. o26–o30 are ready to start with `bash tools/render_producer.sh oNN`, using the existing packets after `python3 tools/freshness.py oNN` reports them fresh; re-prepare first if it does not.
+3. **o25, o28–o30.** o25 needs current-law sources. o28–o30 have fresh integrated-kit packets with `dispatch-v2.json` receipts; start only the dispatchable members (`--order`), after acquiring the hash-only and current-law sources the receipts and the o26/o27 blocks name.
+
+## Next advance tried after the trial: dispatch-checked production (o26, o27)
+
+After the negative trial, the supported next step was to stop spending model work on orders that fail for missing sources. o26 to o30 were prepared again with the integrated kit; the earlier packets are kept as `packet-prekit-v1`. PR132's `kit.py dispatch-check` then cleared all 30 orders in o26 and in o27, 11 in o28, none in o29 and 2 in o30. Every block it found was a mandatory source held only as a hash. Producers were launched only for o26 and o27.
+
+The check did not predict yield. o26 submitted 1 of 30 orders and o27 submitted 8. The blocks fell into three groups. Emergency-dependent YES orders lack the yearly National Emergencies Act continuation notices. Later orders are registered only through APP mirrors, although their official Federal Register texts are held. The current texts of parent orders and statutes are not held. Review caught both planted controls. o26 filed nothing: its genuine claim had a wrong rationale sentence. o27 filed 2. Three more reviewed o27 claims failed completion as `custody_record_only`, because the check covers only sources the dossier declares as mandatory, not every source a producer cites.
+
+The next work is therefore source registration and acquisition, not more production. One fetch of the National Emergencies Act continuation notices would serve at least 14 o27 orders. A source supplement registering the official texts of later orders, starting with EO 13286, would unblock EO 12312, 12830, 12985 and 12793. The readiness screen should also treat a YES order without a held current-law source, and a cited source held only as a hash, as blocking before a producer is assigned.
 
 ## Paired review trial: do mechanical receipts eliminate reviewer work?
 
