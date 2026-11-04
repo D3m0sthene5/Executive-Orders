@@ -27,7 +27,8 @@ class ProvisionHistoryTests(unittest.TestCase):
         path = 'research/texts/' + rid.replace(':', '_') + '.txt'
         target = self.repo / path
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text('HEADER\n' + quote + '\nFOOTER', encoding='utf-8')
+        # Keep exact LF witness text so character offsets are stable on every platform.
+        target.write_bytes(('HEADER\n' + quote + '\nFOOTER').encode('utf-8'))
         return {'text_path': path, 'text_sha256': hashlib.sha256(target.read_bytes()).hexdigest(),
                 'char_start': 7, 'char_end': 7 + len(quote), 'quote': quote}
 
@@ -90,6 +91,19 @@ class ProvisionHistoryTests(unittest.TestCase):
         self.assertIn('record:T-amend', revived['dependencies'])
         self.assertFalse(revived['human_certified'])
         self.assertFalse(revived['completeness_guaranteed'])
+
+    def test_crlf_witness_requires_exact_unnormalized_span(self):
+        record = self.bundle['provisions'][0]
+        source = record['source']
+        target = self.repo / source['text_path']
+        raw = ('HEADER\r\n' + record['norm_text'] + '\r\nFOOTER').encode('utf-8')
+        target.write_bytes(raw)
+        source['text_sha256'] = hashlib.sha256(raw).hexdigest()
+        with self.assertRaisesRegex(ValueError, 'source_span_mismatch'):
+            self.query()
+        source['char_start'] = 8
+        source['char_end'] = 8 + len(record['norm_text'])
+        self.assertEqual(self.query()['text_version']['text'], record['norm_text'])
 
     def test_reinstatement_never_renews_expired_clock(self):
         self.bundle['provisions'][0]['known_sunset_end_exclusive'] = '2020-07-01'

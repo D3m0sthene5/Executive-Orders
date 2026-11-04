@@ -40,9 +40,11 @@ Fresh independent examination of EO 13792, the retained DOI report PDF and testi
 
 ## Verification and retained failures
 
-The final MAITLAND-only suite passes 575 claim-kit tests (7 sparse-fixture skips), 37 Valla tests and 52 later-events tests. Independent engineering passes 38 adversarial probes and 47 targeted unit gates, pinned to 18 exact files. Initial failed reviews remain retained: fixes cover pre-document text leakage, interval inversions, dependency membership omissions and malformed CLI input handling.
+The final MAITLAND-only suite passes 576 claim-kit tests (7 sparse-fixture skips), 37 Valla tests and 52 later-events tests. Independent engineering passes 38 adversarial probes and 47 targeted unit gates, pinned to 18 exact files. Initial failed reviews remain retained: fixes cover pre-document text leakage, interval inversions, dependency membership omissions and malformed CLI input handling.
 
 A disposable combination with PR 132's preflight implementation passes 586 claim-kit tests (7 skips), 37 Valla tests and the identical native 14-query replay. One textual conflict in `kit.py` was resolved by retaining both independent CLI handler blocks. The initial combined fixture had old tracked runtime bytes beside new tests and failed; final explicit hydration asserted every reviewed nonmerged runtime pin. Both failure and successful logs, merged CLI candidate and exact manifest are retained in `integration/`. A separate combined review passes 45 independent probes and 58 targeted unit tests (zero skips), with exact hashes for eight merged paths and all 18 primary final pins checked. This is an integration rehearsal, not a branch or production merge.
+
+The first hosted Windows Road check failed because synthetic source fixtures used platform-translating text writes with fixed LF character offsets. The source-span guard correctly refused the mismatched witness. A byte-stable UTF-8 fixture and explicit CRLF wrong-span refusal/correct-span acceptance regression repair the tests without changing runtime validation. The additive fixture review supersedes only the older test-file pin; every runtime pin remains unchanged. `integration/WINDOWS_FAILURE.json` preserves the failure; the repaired full local suite passes 576 tests (7 skips). Hosted checks on the repaired head must be inspected separately.
 
 ## Storm, costs and next use
 
