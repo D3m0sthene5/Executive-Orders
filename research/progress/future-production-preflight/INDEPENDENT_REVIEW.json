@@ -1,0 +1,54 @@
+{
+  "schema": "eo-independent-engineering-review/v1",
+  "reviewer": "dispatch_audit",
+  "model_family": "OpenAI",
+  "model": "inherited; exact identifier unavailable",
+  "input_sha256": {
+    "jobs/claim-kit/dispatch.py": "ca697ec7c5c0766f7fe980e56580be1a176e5a86208d79b431f9be6bdfe0d3ad",
+    "jobs/claim-kit/batch.py": "da56a140e923e47494c1bd9716f020123b754816e9410697640cbca42738bdf1",
+    "jobs/claim-kit/kit.py": "e0e142d8ad55b4ad6fdbd110c09dfc1a7a0ac3c9a1b3d8136d12299ccc47af97",
+    "jobs/claim-kit/test_dispatch.py": "73e9ed6445533b09eadb2ad72a3de2c8af291d4bc09f42df6db1aca92bc2a711",
+    "jobs/claim-checker/checker.py": "dacaff5a488367c51187337aac9c7660fd746a61373060651c33ab3bba61a598"
+  },
+  "checks": [
+    {
+      "name": "duplicate_member_selection_refused",
+      "passed": true
+    },
+    {
+      "name": "rehashed_packet_cannot_hide_changed_dossier",
+      "passed": true
+    },
+    {
+      "name": "symlink_receipt_escape_refused",
+      "passed": true
+    },
+    {
+      "name": "subset_does_not_bypass_whole_packet_freshness",
+      "passed": true
+    },
+    {
+      "name": "ordinary_prepare_does_not_open_network",
+      "passed": true
+    },
+    {
+      "name": "selected_member_check_read_only_and_no_approval",
+      "passed": true
+    },
+    {
+      "name": "offline_custody_never_enters_live_or_archive_fallback",
+      "passed": true
+    }
+  ],
+  "probes_passed": 7,
+  "findings": [],
+  "verdict": "approve",
+  "wall_seconds": 1.495533,
+  "model_tokens": null,
+  "limitations": [
+    "Synthetic real-native integration fixtures; no claim that present-day corpus is complete or production-ready.",
+    "Whole-corpus custody-index overhead not benchmarked.",
+    "Receipt is a point-in-time check; coordinator must rerun immediately before dispatch.",
+    "No different-model-family scientific review or legal judgment performed."
+  ]
+}

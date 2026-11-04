@@ -148,7 +148,8 @@ def main(argv=None):
         s=sub.add_parser(cmd);s.add_argument('instrument_id');s.add_argument('--agent',default='');s.add_argument('--write',type=Path)
     s=sub.add_parser('history');s.add_argument('instrument_id');s.add_argument('--full',action='store_true')
     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
-    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true')
+    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
+    s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path)
     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path);s.add_argument('--geddes-strict',action='store_true',help='exit nonzero unless every Geddes lint flag has a resolution (geddes gate)')
     s=sub.add_parser('complete');s.add_argument('manifest',type=Path);s.add_argument('--write',type=Path,required=True);s.add_argument('--publish',action='store_true')
@@ -214,6 +215,15 @@ def main(argv=None):
             result=overlay.write_bundle(repo,a.write,proposal,decision,review,evidence,
                 lifecycle_sheet=read(a.lifecycle_sheet) if a.lifecycle_sheet else None)
             print(json.dumps({'proposal_fingerprint':proposal['fingerprint'],'folder':str(a.write),'owner_acceptance':proposal['owner_acceptance'],'statuses_published':0}));return 0
+        if a.command=='dispatch-check':
+            from dispatch import check,summary
+            if a.write and a.write.exists():raise ValueError('Dispatch receipt exists; refusing overwrite')
+            if a.write and not a.write.resolve().is_relative_to(a.packet.resolve()):raise ValueError('Dispatch receipt must stay inside its packet')
+            result=check(repo,a.packet,a.order)
+            if a.write:dump(a.write,result)
+            compact=summary(result)
+            if a.write:compact['receipt']=str(a.write)
+            print(json.dumps(compact,ensure_ascii=False,indent=2));return int(not result['ok'])
         if a.command=='view':
             import batch
             print(batch.view(repo,a.packet,a.order,a.source));return 0
@@ -223,6 +233,9 @@ def main(argv=None):
             elif a.command=='apply':result=batch.apply(repo,a.packet,a.write)
             else:result=batch.check(repo,a.packet,a.applied)
             failed=(result.get('strict_claim_fail',0)>0 or result.get('counts',{}).get('rejected',0)>0)
+            if a.command=='prepare':
+                result['research_only']=a.research_only
+                failed=failed or (not result['dispatch_check']['ok'] and not a.research_only)
             actual=result.get('actual_claim_checker',{})
             if a.command=='batch-check':
                 failed=failed or actual.get('claims_all_checks_passed',0)!=result.get('claims_checked',0)

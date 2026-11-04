@@ -517,6 +517,12 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
         'round_trip_exact':True,'shared_text_blocks':len(packet['text_blocks']),'source_catalogue_entries':len(packet['sources']),
         'known_mechanical_tasks':len(shared),'bounded_preparation_seconds':round(time.monotonic()-started,4),
         'model_tokens':None,'no_legal_outcomes_inferred':True}
+    # Check custody before assigning a model, using the existing checker policy.
+    # Preserve the full packet, including blocked members, for source research.
+    from dispatch import check as dispatch_check
+    dispatch=dispatch_check(repo,dest)
+    dump(dest/'DISPATCH_CHECK.json',dispatch)
+    metrics['dispatch_check']={k:dispatch[k] for k in ('ok','dispatchable_ids','source_blocked_ids','state')}
     dump(dest/'PREPARE.json',metrics);return metrics
 
 
@@ -535,15 +541,20 @@ def rationale(v,shared):
     return v
 
 
+def validate_runtime(packet):
+    """Same frozen runtime requirements at dispatch and application."""
+    if packet.get('codec_code_sha256') != file_sha(Path(__file__)):raise ValueError('batch codec changed or missing; prepare a reviewed package')
+    if packet.get('policy_code_sha256') != policy_code_pins():raise ValueError('direct policy code changed or missing; prepare a reviewed package')
+    if packet.get('assembler_code_sha256')!=file_sha(Path(__file__).with_name('assemble.py')):raise ValueError('assembler changed; prepare a reviewed package')
+    if packet.get('preflight_code_sha256')!=file_sha(Path(__file__).with_name('evidence_preflight.py')):raise ValueError('evidence preflight changed or missing; prepare a reviewed package')
+
+
 def apply(repo,folder,write):
     started=time.monotonic();repo=Path(repo).resolve();folder=Path(folder).resolve();write=Path(write).resolve()
     if write.exists():raise ValueError('apply destination exists; refusing overwrite')
     if not write.is_relative_to(folder):raise ValueError('apply results must stay under frozen work package; no automatic publication')
     packet,dossiers=load_packet(folder,repo)
-    if packet.get('codec_code_sha256') != file_sha(Path(__file__)):raise ValueError('batch codec changed or missing; prepare a reviewed package')
-    if packet.get('policy_code_sha256') != policy_code_pins():raise ValueError('direct policy code changed or missing; prepare a reviewed package')
-    if packet['assembler_code_sha256']!=file_sha(Path(__file__).with_name('assemble.py')):raise ValueError('assembler changed; prepare a reviewed package')
-    if packet.get('preflight_code_sha256')!=file_sha(Path(__file__).with_name('evidence_preflight.py')):raise ValueError('evidence preflight changed or missing; prepare a reviewed package')
+    validate_runtime(packet)
     order_rows=rows(folder/'decisions.csv');clause_rows=rows(folder/'clauses.csv');shared=json.loads((folder/'RATIONALES.json').read_bytes())
     counts=Counter(r.get('instrument_id') for r in order_rows)
     if set(counts)!=set(dossiers) or any(n!=1 for n in counts.values()):raise ValueError('decision rows must name every packet member exactly once')
