@@ -7,6 +7,7 @@ usage: python3 moon_finish.py BATCH PACKET APPLIED [--publish]
   make_completion.py, then kit.py complete (with --publish only when asked and no control was missed).
 """
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -45,10 +46,13 @@ def main(batch, packet, applied, *flags):
         judg.append(f"{iid}={'caught' if caught else 'missed'}|{why}")
         if not caught:
             missed.append(iid)
-    pub = f"research/readiness/claims/claude-2026-11-04-tribonian-{batch}.jsonl"
+    pub = f"research/readiness/claims/claude-2026-11-04-tribonian-{batch}{os.environ.get('PUBSUFFIX', '')}.jsonl"
     keyfile = S / "moon-keys" / f"{batch}.json"
-    cmd = ["python3", "-I", str(MAKE), str(packet), str(applied), str(blind), str(after) if after.exists() else "-",
-           str(keyfile), pub, "claude-coordinator-tribonian-2026-11-04", *judg]
+    amended = packet / "reviews" / "BLIND_REVIEW_AMENDED.jsonl"
+    cmd = ["python3", "-I", str(MAKE), str(packet), str(applied), str(amended if amended.exists() else blind),
+           str(after) if after.exists() else "-", str(keyfile), pub, "claude-coordinator-tribonian-2026-11-04", *judg]
+    if amended.exists():
+        cmd += ["--planted-review", str(blind)]
     print(subprocess.run(cmd, cwd=REPO, capture_output=True, text=True).stdout.strip())
     if missed:
         print(json.dumps({"batch": batch, "missed_controls": missed, "action": "re-review required; not completed"}))

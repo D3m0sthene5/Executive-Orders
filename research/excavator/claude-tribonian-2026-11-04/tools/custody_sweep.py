@@ -12,7 +12,7 @@ REPO = Path('/home/claude/executive-orders'); R = REPO / 'research/excavator/cla
 SCR = Path('/tmp/claude-0/-home-claude/113ce3b2-4ba3-50df-9241-eb6576e0f367/scratchpad/tribonian')
 need = {}
 for b in sys.argv[1:]:
-    ds = sorted(glob.glob(str(R / b / 'packet/applied-v*')), key=lambda p: int(p.rsplit('v', 1)[1]))
+    ds = sorted(glob.glob(str(R / b / 'packet/applied-v*')), key=lambda p: [int(x) if x.isdigit() else x for x in re.split(r'(\d+)', p.rsplit('applied-v', 1)[1])])
     if not ds or not Path(ds[-1], 'actual-checker/CLAIM_CHECKS.csv').exists():
         print(b, 'no checker output'); continue
     d = Path(ds[-1]); bad = {}
