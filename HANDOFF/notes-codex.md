@@ -32,6 +32,32 @@
 - **Next:** Review draft engineering PR and combine safely with PR132 between waves. Scientific Valla replacement requires fresh complete ordinary independent whole-case review and existing owner acceptance. Native research commands are usable on this branch; no automatic project-wide legal adoption.
 - **Asks:** @Owner: none. Existing scientific authority and future-merge questions unchanged.
 
+## 2026-11-04 ET: observability recovered and integrated on isolated branch
+
+- **Done:** Four bounded workers plus independent engineering/evidence review recovered pinned baseline,58 historical worker rows,27 exact completions and306 review-matched eligible versions; repaired Hamilton supported-export normalization and explicit NEYMAN bridge; added versioned partial-cost/coverage view. Findings F-20261104-observability-baseline, F-20261104-historical-observability, F-20261104-supported-usage-normalization, F-20261104-hub-observability. Detailed report: research/progress/production-observability-20261104/REPORT.md.
+- **Validation:**26 Hamilton tests,10 hub tests, native count verifier, deterministic recovery and direct synthetic CLI→NEYMAN replay. Same OpenAI-family engineering review; no scientific/human certification or new readiness gain. Complete session usage/cash/active labor unavailable.
+- **Publication:** sol/production-observability-20261104; engineering commit2d80b033140435db8488807ecf6080f535f293c5 uses [skip actions]. Combined commit ce13b8dbce5a1e3673db755cc324459d29b77aff is draft PR136; owner-private Site version3 succeeded. Exact pins/receipts in INTEGRATION.md and PUBLICATION_RECEIPT.json. Hosted checks skipped, not passed. No production dispatch.
+- **Next:** When Opus dependency window closes, review draft PR, rebase on then-current main, reconcile append-only Kean/notes, rerun focused checks and explicit required CI, refresh any affected runner declarations/freshness. Corrected collection is explicit CLI, not automatic Geddes capture.
+- **Asks:** @Owner: none.
+- **Do not:** change protected Tribonian checkout/versions/checkpoints/reservations/quota; infer activity or vacancy from published plan/old locks; turn filings/corrections into marginal readiness, cache volume into cash or transcript gaps into active labor. Raw source caches/control identities excluded.
+
+## 2026-11-04 ET: goals-led observability assignment and isolated source publication
+
+- **Done:** Owner authorized pushing provided the paused Opus run waiting for Claude quota can resume unchanged. Added research/progress/control-center/SOL_OBSERVABILITY.md: five measurement-gap goals, historical recovery/prospective coverage, cost/outcome joins, cheap existing-tool collection, hub integration and prior lessons. This designs the next Sol workflow; it does not run it.
+- **Publication:** Dashboard source and prompt on isolated codex/checkpoint-conveyor-20261104. Code-bearing push uses [skip actions] to avoid the jobs/** push trigger; no hosted check pass inferred. Leave main and Tribonian branch untouched. Existing app/native count checks and independent review are documented in FLOW_REDESIGN.md.
+- **Recorded:** D-20261104-observability-publication and F-20261104-observability-brief. Earlier public-push approval block is resolved by the owner's explicit permission; private patch remains an earlier proposal version.
+- **Next:** Execute the goals-led brief in a fresh Sol session after checking active reservations and safe helper paths. Do not start a competing production wave or consume the paused run's Claude quota. Coordinate with separate apparatus-improvement work.
+- **Asks:** @Owner: none.
+
+## 2026-11-04 ET: checkpoint conveyor published independently of production
+
+- **Done:** Existing owner-private hub version 2 published at https://executive-orders-production-atlas.d3mosth3n3s.chatgpt.site (Site source aac08d6d). DKLA /eo and old Site origin redirect correctly. First-missing-check and overlapping views join native rows to jobs, bounded historical timing/token evidence, improvement hypotheses and missing measurement decisions. Details/count contract in research/progress/control-center/FLOW_REDESIGN.md.
+- **Evidence:** Main600ae301 has14,972 rows/784 ready/0 certified. First-missing piles6228/7892/49/18/1/784 reconcile exactly; later open checks overlap. Apollo38-worker costs exclude coordinator; Tribonian telemetry unpublished at inspected branch pin, never zero.
+- **Validation:** Reproducible verify-flow.py and syntax checks pass; independent aggregation/view review passed after Valla source-link correction; browser initial/toggle/final-gate details checked. D-20261104-control-center-ux and F-20261104-control-center-flow recorded. Total model tokens/cash/complete labor unavailable.
+- **Isolation:** Repository assets retained on local codex/checkpoint-conveyor-20261104 and in a private source-proposal patch. Automatic approval review blocked the public push; no public PR opened. Do not merge main during the pinned active production wave; no production dispatch, output generation or scientific-state change. The separately hosted display is already live and keeps native main refresh.
+- **Next:** After current production integration, publish/reconcile the approved source proposal and append-only Kean records, then regenerate the brief. Future validated cost-survey rollups may fill the visible missing joins with explicit scope/coverage; no automatic savings inference.
+- **Asks:** @Owner: none.
+
 ## 2026-11-03 ET: Bacon recovery blocked on original artifacts
 
 - **Verified:** main `cf47b719`; no tracked Bacon path, matching branch/commit/PR or release located. DKLA PR7 merged; live authenticated dashboard not retested. Recovery record: `research/progress/bacon-recovery-20261103/RECOVERY.md`.

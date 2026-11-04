@@ -1,0 +1,279 @@
+{
+  "attempts": [],
+  "base_commit": "54db2cf5948d7c0cdd91c8f66a96349224aee6a1",
+  "checkpoints": [],
+  "cohort_kind": "ordinary_production",
+  "duplicate_receipt_aliases": [],
+  "effort": {
+    "complete_session_cost": null,
+    "events": [
+      {
+        "actual_model": "synthetic-anthropic-model",
+        "allocation_rule": null,
+        "cash_charge_usd": null,
+        "coverage": "partial",
+        "event_id": "hamilton:bce35f42229370b3a9082b4ce2abc28f932c0feaa04e97ac6f7c0585f893ddf3",
+        "finished_utc": "2000-01-01T00:01:00Z",
+        "instrument_ids": [
+          "EO:SYNTHETIC1",
+          "EO:SYNTHETIC2"
+        ],
+        "kind": "worker_elapsed",
+        "measurement_method": "synthetic caller interval; verifies schema only; no measured historical labor",
+        "output_final": true,
+        "phase": "production",
+        "reasoning_included_in_output": true,
+        "role": "producer",
+        "started_utc": "2000-01-01T00:00:00Z",
+        "tokens": {
+          "cache_read": 5,
+          "cache_write": 7,
+          "input_uncached": 3,
+          "output": 11,
+          "reasoning": 4
+        },
+        "usage_coverage": "observed_only; possible-call denominator unknown",
+        "usage_id": "hamilton:bce35f42229370b3a9082b4ce2abc28f932c0feaa04e97ac6f7c0585f893ddf3",
+        "usage_scope": "call",
+        "worker_id": "synthetic-worker"
+      }
+    ],
+    "note": "Intervals unioned per worker/kind; kinds overlap and must not be added. Reasoning may be included in output.",
+    "observed_phase_seconds_by_kind": {
+      "acquisition": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      },
+      "coordination": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      },
+      "correction": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      },
+      "integration": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      },
+      "preparation": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      },
+      "production": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": 60.0
+      },
+      "review": {
+        "access_wait": null,
+        "active": null,
+        "machine": null,
+        "worker_elapsed": null
+      }
+    },
+    "observed_seconds_by_kind": {
+      "access_wait": null,
+      "active": null,
+      "machine": null,
+      "worker_elapsed": 60.0
+    },
+    "observed_token_lower_bounds": {
+      "cache_read": 5,
+      "cache_write": 7,
+      "input_uncached": 3,
+      "output": 11,
+      "reasoning": 4
+    },
+    "token_usage_records": 1
+  },
+  "implementation_pins": {
+    "diagnose.py": "aba82132ad518a3e69a7dceda83d932628b7ef114a470b1de3cf95c72adb96ca",
+    "production_receipts.py": "b43f5bfffee891afbb8ecd7b1c32a875f33a348b0f28c0b65911ae57f145f0c6",
+    "survey.py": "e16592067dfa8cfeb383d156057c231bd7abec3b9077b1afbafe4c001efedc14"
+  },
+  "input_pins": {
+    "EO-SYNTHETIC1.json": "178ca25ed4c086face12c7e88a9826dc440e4e61ed4c56dfbe7eb152750187be",
+    "EO-SYNTHETIC2.json": "1a37e0ae1be993d6e7560044b1912fada406186fe0243a5b65b0084600c642c1",
+    "IMPORT.json": "830b37fec980bad6941c1046cd3c1c65f694bf2148e1a3c8cd59b87b2919a134",
+    "normalized/PRODUCTION_EFFORT.json": "17ed4338424bfaaf16d07d17b0376c7e7accfd1ae32cf593ee56d184e9519dce",
+    "selection.json": "3f56d569c5e5c0c030b2ecf30a69cc9793c233c54a8339c81bf2b07f09c49c2d"
+  },
+  "measurement_gaps": [
+    "Completion timers measure machine invocation, not producer/reviewer effort.",
+    "No population cost or savings extrapolation from a convenience cohort.",
+    "Checkpoints and question explanations remain attributed hypotheses; no automatic legal findings.",
+    "Missing effort intervals and incomplete task attempts are not zero-cost work."
+  ],
+  "net_savings": null,
+  "observations": [
+    {
+      "attempt_ids": [
+        "synthetic:EO:SYNTHETIC1"
+      ],
+      "claim_sha256": null,
+      "diagnosis": "requires_scoped_assessment",
+      "execution_exceptions": [],
+      "gate_errors": [],
+      "human_certifications_added": 0,
+      "instrument_id": "EO:SYNTHETIC1",
+      "next_action": "Inspect exact remaining gates; no root cause inferred from an open step alone.",
+      "next_questions": [],
+      "ready_in_isolated_replay": false,
+      "research_attempts": [
+        {
+          "assessment_authority": "reported research observation; not automatic review approval",
+          "assessor": "synthetic CLI fixture",
+          "attempt_id": "synthetic:EO:SYNTHETIC1",
+          "basis": [
+            {
+              "path": "normalized/PRODUCTION_EFFORT.json",
+              "sha256": "17ed4338424bfaaf16d07d17b0376c7e7accfd1ae32cf593ee56d184e9519dce"
+            }
+          ],
+          "finished_utc": "2000-01-01T00:01:00Z",
+          "instrument_id": "EO:SYNTHETIC1",
+          "outcome": "blocked",
+          "question": "verify blocked shared effort accounting",
+          "receipt": {
+            "path": "EO-SYNTHETIC1.json",
+            "sha256": "178ca25ed4c086face12c7e88a9826dc440e4e61ed4c56dfbe7eb152750187be"
+          },
+          "schema": "neyman.research-attempt/1",
+          "started_utc": "2000-01-01T00:00:00Z"
+        }
+      ],
+      "reviewed_output": "no_reviewed_result",
+      "right_censored": false,
+      "schema": "neyman.production-observation/1",
+      "source_checkpoints": [],
+      "tracker_blockers": [],
+      "whole_case_gate_pass": false
+    },
+    {
+      "attempt_ids": [
+        "synthetic:EO:SYNTHETIC2"
+      ],
+      "claim_sha256": null,
+      "diagnosis": "requires_scoped_assessment",
+      "execution_exceptions": [],
+      "gate_errors": [],
+      "human_certifications_added": 0,
+      "instrument_id": "EO:SYNTHETIC2",
+      "next_action": "Inspect exact remaining gates; no root cause inferred from an open step alone.",
+      "next_questions": [],
+      "ready_in_isolated_replay": false,
+      "research_attempts": [
+        {
+          "assessment_authority": "reported research observation; not automatic review approval",
+          "assessor": "synthetic CLI fixture",
+          "attempt_id": "synthetic:EO:SYNTHETIC2",
+          "basis": [
+            {
+              "path": "normalized/PRODUCTION_EFFORT.json",
+              "sha256": "17ed4338424bfaaf16d07d17b0376c7e7accfd1ae32cf593ee56d184e9519dce"
+            }
+          ],
+          "finished_utc": "2000-01-01T00:01:00Z",
+          "instrument_id": "EO:SYNTHETIC2",
+          "outcome": "blocked",
+          "question": "verify blocked shared effort accounting",
+          "receipt": {
+            "path": "EO-SYNTHETIC2.json",
+            "sha256": "1a37e0ae1be993d6e7560044b1912fada406186fe0243a5b65b0084600c642c1"
+          },
+          "schema": "neyman.research-attempt/1",
+          "started_utc": "2000-01-01T00:00:00Z"
+        }
+      ],
+      "reviewed_output": "no_reviewed_result",
+      "right_censored": false,
+      "schema": "neyman.production-observation/1",
+      "source_checkpoints": [],
+      "tracker_blockers": [],
+      "whole_case_gate_pass": false
+    }
+  ],
+  "population_cost_estimate": null,
+  "repair_probes": [],
+  "research_attempts": [
+    {
+      "assessment_authority": "reported research observation; not automatic review approval",
+      "assessor": "synthetic CLI fixture",
+      "attempt_id": "synthetic:EO:SYNTHETIC1",
+      "basis": [
+        {
+          "path": "normalized/PRODUCTION_EFFORT.json",
+          "sha256": "17ed4338424bfaaf16d07d17b0376c7e7accfd1ae32cf593ee56d184e9519dce"
+        }
+      ],
+      "finished_utc": "2000-01-01T00:01:00Z",
+      "instrument_id": "EO:SYNTHETIC1",
+      "outcome": "blocked",
+      "question": "verify blocked shared effort accounting",
+      "receipt": {
+        "path": "EO-SYNTHETIC1.json",
+        "sha256": "178ca25ed4c086face12c7e88a9826dc440e4e61ed4c56dfbe7eb152750187be"
+      },
+      "schema": "neyman.research-attempt/1",
+      "started_utc": "2000-01-01T00:00:00Z"
+    },
+    {
+      "assessment_authority": "reported research observation; not automatic review approval",
+      "assessor": "synthetic CLI fixture",
+      "attempt_id": "synthetic:EO:SYNTHETIC2",
+      "basis": [
+        {
+          "path": "normalized/PRODUCTION_EFFORT.json",
+          "sha256": "17ed4338424bfaaf16d07d17b0376c7e7accfd1ae32cf593ee56d184e9519dce"
+        }
+      ],
+      "finished_utc": "2000-01-01T00:01:00Z",
+      "instrument_id": "EO:SYNTHETIC2",
+      "outcome": "blocked",
+      "question": "verify blocked shared effort accounting",
+      "receipt": {
+        "path": "EO-SYNTHETIC2.json",
+        "sha256": "1a37e0ae1be993d6e7560044b1912fada406186fe0243a5b65b0084600c642c1"
+      },
+      "schema": "neyman.research-attempt/1",
+      "started_utc": "2000-01-01T00:00:00Z"
+    }
+  ],
+  "sample_unobserved": [],
+  "schema": "neyman.production-imported/1",
+  "source_checks": [],
+  "summary": {
+    "censored_orders": 0,
+    "completion_machine_seconds_lower_bound": 0,
+    "completion_machine_seconds_total": null,
+    "completion_occupied_wall_seconds": null,
+    "diagnoses": {
+      "requires_scoped_assessment": 2
+    },
+    "failed_completion_invocations": 0,
+    "net_hours_saved": null,
+    "observed_orders": 2,
+    "population_inference_supported": false,
+    "primary_cost_bottleneck": "not_identified_with_available_effort_coverage",
+    "ready_in_isolated_replay": 0,
+    "research_attempts": 2,
+    "reviewed_partials": 0,
+    "reviewed_whole_case_proposals": 0,
+    "total_agent_hours": null,
+    "unique_completion_invocations": 0,
+    "verified_savings": false,
+    "worker_effort_coverage": "partial_observed_intervals"
+  }
+}

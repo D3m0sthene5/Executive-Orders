@@ -1,0 +1,121 @@
+{
+  "checkout_base": "54db2cf5948d7c0cdd91c8f66a96349224aee6a1",
+  "review_window": {
+    "cash_usd": null,
+    "coverage": "partial, starts at first observed UTC clock after initial instructions and coordination and includes waiting; no active labor inference",
+    "observed_end": "2026-11-04T09:49:04.323164+00:00",
+    "observed_start": "2026-11-04T09:39:58+00:00",
+    "occupied_seconds": 546.323,
+    "tokens": null,
+    "worker_active_seconds": null
+  },
+  "reviewer": {
+    "compared_different_families": false,
+    "family": "OpenAI",
+    "human_review": false,
+    "model": "gpt-6-astra",
+    "scientific_review": false
+  },
+  "schema": "eo-observability-independent-review/1",
+  "scope": "separate-context engineering/evidence review, not protected state inspection, scientific acceptance, launch or savings validation",
+  "source_main": "600ae3018f71025b3e53dc8538b8f92e6e159b76",
+  "tests": {
+    "baseline": {
+      "clean_replay": "byte-identical",
+      "eligible_historical_exact_hashes_validated": 306,
+      "first_missing": {
+        "commands": 7892,
+        "evidence": 18,
+        "gates": 1,
+        "lifecycle": 49,
+        "ready": 784,
+        "text": 6228
+      },
+      "open_anywhere": {
+        "commands": 14120,
+        "evidence": 12757,
+        "gates": 1,
+        "lifecycle": 14165,
+        "text": 6228
+      },
+      "projection_vs_native_tallies": 8,
+      "refused": [
+        "changed readiness CSV Git blob",
+        "changed eligible hash in sanitized tally"
+      ],
+      "source_hashes": 14
+    },
+    "client": {
+      "independently_refused": [
+        "backdated valid generation",
+        "impossible first text overlap",
+        "unknown source id",
+        "unsafe source path",
+        "role exceeds available campaign",
+        "cash field absent"
+      ],
+      "production_artifact": "research/progress/control-center/observability.json",
+      "unit_suite": "10 passed including real bundled data and rendered checkpoint modes"
+    },
+    "hamilton": {
+      "active_seconds": null,
+      "call_occupation_seconds": 60,
+      "cost_per_new_ready": null,
+      "downstream_orders": 2,
+      "matching_implementation_replay": "research/progress/production-observability-20261104/collection/retained-cli-final-v2/REPLAY_RECEIPT.json",
+      "observed_tokens": {
+        "cache_read": 5,
+        "cache_write": 7,
+        "fresh_input": 3,
+        "output_including_reasoning": 11,
+        "reasoning_subset": 4
+      },
+      "ready_gain": 0,
+      "shared_calls": 1,
+      "superseded_candidate_errors": [
+        "late stream beyond final retained silently",
+        "two final cache aggregates or reasoning snapshots disagree",
+        "call outside declared interval",
+        "rate table tagged for different model",
+        "invalid date, unspecified rate schedule for mixed models"
+      ],
+      "synthetic_native_cli_replayed": true,
+      "tests_passed": 26
+    },
+    "historical": {
+      "apollo": {
+        "attempt_members": 444,
+        "blocked": 184,
+        "eligible_review_hash_match_in_same_packet": 254,
+        "messages_in_rows": 2700,
+        "rejected_mechanical": 6,
+        "replay_selected_down": 0,
+        "replay_selected_up": 254,
+        "tallies": 19,
+        "worker_rows": 38
+      },
+      "clean_replay": "both outputs byte-identical",
+      "erasmus": {
+        "attempt_members": 64,
+        "blocked": 11,
+        "eligible_review_hash_match_in_same_packet": 52,
+        "messages_in_rows": 1047,
+        "rejected_mechanical": 1,
+        "replay_selected_down": 0,
+        "replay_selected_up": 52,
+        "tallies": 8,
+        "worker_rows": 20
+      },
+      "privacy": "Scanned 64 sanitized baseline outcome rows and 866 historical review/completion rows; no direct control/plant/after_reveal marker; both raw cache dirs git-ignored.",
+      "source_sha256_and_git_blobs": 149,
+      "substituted_telemetry_bytes": "refused; both outputs unchanged"
+    },
+    "rollup": {
+      "changed_input_source_pin": "refused; prior preserved",
+      "changed_numeric_aggregate": "refused; prior preserved",
+      "clean_rebuild": "byte-identical",
+      "invalid_timestamp": "refused; prior preserved",
+      "older_timestamp": "refused; prior preserved"
+    }
+  }
+}

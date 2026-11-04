@@ -1,0 +1,42 @@
+{
+ "schema": "neyman.production-effort/1",
+ "events": [
+  {
+   "event_id": "hamilton:bce35f42229370b3a9082b4ce2abc28f932c0feaa04e97ac6f7c0585f893ddf3",
+   "usage_id": "hamilton:bce35f42229370b3a9082b4ce2abc28f932c0feaa04e97ac6f7c0585f893ddf3",
+   "phase": "production",
+   "kind": "worker_elapsed",
+   "worker_id": "synthetic-worker",
+   "role": "producer",
+   "actual_model": "synthetic-anthropic-model",
+   "instrument_ids": [
+    "EO:SYNTHETIC1",
+    "EO:SYNTHETIC2"
+   ],
+   "started_utc": "2000-01-01T00:00:00Z",
+   "finished_utc": "2000-01-01T00:01:00Z",
+   "measurement_method": "synthetic caller interval; verifies schema only; no measured historical labor",
+   "coverage": "partial",
+   "tokens": {
+    "input_uncached": 3,
+    "cache_read": 5,
+    "cache_write": 7,
+    "output": 11,
+    "reasoning": 4
+   },
+   "usage_scope": "call",
+   "usage_coverage": "observed_only; possible-call denominator unknown",
+   "output_final": true,
+   "reasoning_included_in_output": true,
+   "allocation_rule": null,
+   "cash_charge_usd": null
+  }
+ ],
+ "provenance": {
+  "collector": "Hamilton",
+  "session_id": "synthetic-supported-export-session",
+  "session_totals_exported": false,
+  "cash_billing": "unavailable",
+  "note": "Worker elapsed is caller observed occupation, not active reasoning. Shared membership is not per-order allocation."
+ }
+}

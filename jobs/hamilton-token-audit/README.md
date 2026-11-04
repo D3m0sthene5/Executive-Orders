@@ -30,3 +30,63 @@ The job runs the focused regression suite and writes `COVERAGE_RECONCILIATION.js
 The source review for this repair found no published sensor-array implementation on main or the dependency branch. Hamilton remains the existing collector; no duplicate telemetry service was built and Tycho was not assumed to be that array.
 
 Tests: `python3 -I jobs/hamilton-token-audit/test_profile.py`.
+
+## Supported production usage bridge
+
+The same CLI also accepts one supported Claude JSONL transcript export (the
+`type`, `timestamp`, `message` records read by Geddes):
+
+```sh
+python3 -I jobs/hamilton-token-audit/profile.py /private/worker.output \
+  --label RUN --production-metadata /private/METADATA.json --out /isolated/new-run
+```
+
+The profile now retains sanitized `usage_records` at call scope. Exact duplicate
+events count once; a revised event with the same UUID can supply final usage.
+Stable agent/message identity reconciles stream and final snapshots. Conflicting
+final counts, decreasing final counters, missing message identities, invalid token
+counts, contradictory cache totals and model conflicts refuse normalization.
+Final completion without final output counts does not certify streamed output.
+Fresh Anthropic input, cache reads, cache creation and output are nonoverlapping;
+TTL cache-write details are a breakdown of the aggregate. Reasoning, when actually
+reported, stays a subset of output. Absence of reasoning counts stays unknown.
+
+`METADATA.json` has `session_id` and an `agents` object keyed by the existing agent
+identity (`main` for a single Geddes-format transcript). Each agent requires
+`worker_id`, `role`, `phase`, `actual_model`, unique downstream `instrument_ids`,
+timezone-aware `started_utc`/`finished_utc`, `coverage` (`partial` or
+`complete_interval`) and `measurement_method`. Phases use NEYMAN's existing
+preparation/acquisition/production/review/correction/coordination/integration
+vocabulary. Use explicit observed worker occupation; transcript gaps never supply
+active labor. Retain distinct worker exports and metadata where a log has no
+supported agent identity; do not guess roles or memberships from filenames.
+
+With this metadata, the CLI additionally writes `PRODUCTION_EFFORT.json` in the
+existing `neyman.production-effort/1` format. Stable session/agent/message usage
+IDs keep shared calls once. The caller interval repeats on call events and the
+existing consumer unions it per worker; it must not be summed across calls.
+Session totals and session cash charges stay separate and are not re-exported as
+calls. Membership describes shared use; no per-order allocation is inferred.
+The receipt is create-only, so a second export to that path refuses overwrite.
+
+Pass that file to the existing standalone `after_completion.py --effort PATH`
+or ordinary `kit.py complete --diagnostic-effort PATH` route documented in
+`jobs/neyman/AFTER_COMPLETION.md`. The ordinary diagnostic still requires its
+explicit pinned history, base, destination and unfinished-attempt receipts.
+Hamilton's `job.py` continues to run tests and reconcile historical aggregate
+profiles only: the runner has no raw transcripts or caller intervals, so it
+cannot fabricate a production receipt or dispatch collection automatically.
+
+The profile's `collector` records measured offline load/normalization/hash elapsed
+seconds and input byte counts/digests; it excludes output serialization. No model
+calls occur. The observation window and possible-call denominator remain partial
+or unknown, and neither API valuation nor cash is invented. Published worker CSV
+totals cannot reconstruct missing per-call usage or correct first-stream captures.
+All observed usage timestamps must fall inside the caller's declared interval.
+Absolute pricing additionally requires a valid ISO calendar date and one known
+observed model for the supplied single rate schedule. Mixed/unknown models refuse
+that valuation; callers can profile their separately observed model scopes.
+Keep full profiles private: existing context diagnostics can contain file paths
+and tool labels. The production receipt omits transcript text, tools and source
+paths, but caller-supplied identifiers/measurement descriptions must still be
+reviewed for public release. No publication occurs in this CLI.

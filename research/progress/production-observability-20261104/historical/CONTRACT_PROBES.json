@@ -1,0 +1,31 @@
+{
+  "checks_passed": 4,
+  "missing_message_ids": {
+    "distinct_fixture_events": 2,
+    "geddes_api_messages": 1,
+    "note": "Missing stable IDs cannot support safe per-call deduplication."
+  },
+  "missing_usage_categories": {
+    "geddes_missing_input_tokens_rendered": 0,
+    "hamilton_usage_counts": {
+      "input": null,
+      "output": 2,
+      "read": null,
+      "write1h": null,
+      "write5m": null
+    }
+  },
+  "schema": "eo-telemetry-contract-probes/v1",
+  "scope": "synthetic parser behavior; no historical usage corrected",
+  "source_ids": [
+    "jobs/geddes/telemetry.py",
+    "jobs/hamilton-token-audit/profile.py"
+  ],
+  "streamed_then_final": {
+    "geddes_output_tokens": 1,
+    "geddes_read_calls_for_one_repeated_tool_id": 2,
+    "hamilton_final_usage_marker": true,
+    "hamilton_output_tokens": 9,
+    "known_final_output_tokens": 9
+  }
+}
