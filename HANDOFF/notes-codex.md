@@ -1,3 +1,12 @@
+## 2026-11-04 ET: Publish readiness totals continuation — recovery checkpoint
+
+- **Done:** Recovered prior session; fresh separate reconciliation and independent receipt joins confirm547 effective passing Tribonian rows, zero overlap with784 baseline-ready; published main tracker still784 at a3bfac64. Saved exact pins,48 separate refusal IDs and reproduction in research/progress/tribonian-finalization-20261104/RECOVERY.md and RECOVERY.json on sol/tribonian-finalization-recovery. Previous sol/tribonian-finalization-publish is identical to main; uncommitted prior outputs not recovered.
+- **Running:** Reuse existing run41896126390 (tracker ran19:25:42→19:27:20 UTC; downstream jobs delay commit) and scheduled41902988519. No duplicate checker/tracker/research/source run launched. Neither run interrupted.
+- **Next:** Validate actual combined tracker publication and exact current claim hashes; refresh existing Capcom model/legacy rocket and dynamic control center. Session command runtime unavailable; supported GitHub bounded-job route may be needed solely for maintained Mission builder.
+- **Limits:**1331 is still a receipt-union expectation, not published. DISPOSITION545 omits published o27 pair13128/13274; retained o27 completion/reviews not located. Original replacement/quote rechecks and human-certified0 remain distinct. Same-family separate-context audits, tokens/cash/full labor unknown.
+- **Asks:** @Owner: none.
+- **Do not:** duplicate or cancel active work, renew scientific hashes, infer missing review artifacts, add batch-local gains, or label unpublished totals current.
+
 ## 2026-11-04 ET: future production dispatch safeguard, isolated from Tribonian
 
 - **Done:** PR132 (`codex/future-production-preflight`), code commit `a1910b5e92edf45bbd0fb3b11a39921686ee7a1d`, base main `600ae301`. Ordinary prepare emits a required-source custody/freshness screen; CLI blocks incomplete production assignments while retaining all members. Fresh `dispatch-check` reuses whole-packet/runtime seals and actual checker custody policy offline, with explicit subset support. `--research-only` exports blocked research without production approval. Existing checkpoint/resume and Geddes telemetry remain the routes for retries and cost reporting.
