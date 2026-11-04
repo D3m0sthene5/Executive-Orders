@@ -50,6 +50,11 @@ def load_module(name, path):
 def instant(value):
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
+kean_path = ROOT / "jobs/kean/kean.py"
+read("jobs/kean/kean.py")
+subprocess.run([sys.executable, "-I", str(kean_path), "--root", str(ROOT),
+                "search", "tribonian", "readiness"], cwd=ROOT, check=True)
+
 head = git("rev-parse", "HEAD")
 require(git("rev-parse", "--is-shallow-repository") == "false",
         "Complete first-parent history is required")
@@ -174,3 +179,32 @@ report.update({
 })
 (OUT / "RECONCILIATION.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(report, indent=2))
+
+# Use native Kean CLI in an output-only overlay. Explicit child Git context
+# reads the actual tracked index/HEAD, without changing its working tree.
+stage = OUT / "kean-publication"
+(stage / "jobs/kean/register").mkdir(parents=True, exist_ok=True)
+(stage / "HANDOFF").mkdir(parents=True, exist_ok=True)
+for name in ("asks.jsonl", "decisions.jsonl", "findings.jsonl", "legacy_reports.txt"):
+    rel = "jobs/kean/register/" + name
+    read(rel)
+    shutil.copyfile(ROOT / rel, stage / rel)
+child_env = dict(os.environ, GIT_DIR=git("rev-parse", "--absolute-git-dir"), GIT_WORK_TREE=str(ROOT))
+run_url = tracker_status["run_url"]
+subprocess.run([
+    sys.executable, "-I", str(kean_path), "--root", str(stage), "add-finding",
+    "--id", "F-20261104-tribonian-finalization-recovery", "--date", "2026-11-04",
+    "--by", "Codex",
+    "--tried", "Reconcile current Tribonian claims with the combined tracker and refresh retained Capcom history",
+    "--expected", "Publish actual marginal readiness while retaining evidence tiers, blocks and historical model inputs",
+    "--result", f"Native hashes matched {report['campaign_exact_receipt_lines']}/{len(campaign)} campaign lines; combined readiness {len(before)} to {len(ready)}; campaign newly ready {len(ids & gained)}, blocked {len(report['campaign_blocked'])}; {len(historical)} historical Mission checkpoints preserved. Mission progress {last['progress']}; human certification remains separate. Tokens and cash unavailable.",
+    "--verdict", "worked",
+    "--lesson", "Use exact current hashes and a successful combined generation; campaign filings and batch-local totals cannot replace a project-wide recount.",
+    "--source", "research/progress/tribonian-finalization-20261104/RECOVERY.md",
+    "--source", run_url,
+], cwd=ROOT, env=child_env, check=True)
+subprocess.run([sys.executable, "-I", str(kean_path), "--root", str(stage),
+                "check", "--strict"], cwd=ROOT, env=child_env, check=True)
+shutil.copyfile(stage / "jobs/kean/register/findings.jsonl", OUT / "KEAN_FINDINGS.jsonl")
+shutil.copyfile(stage / "HANDOFF/KEAN.md", OUT / "KEAN_BRIEF.md")
+shutil.rmtree(stage)
