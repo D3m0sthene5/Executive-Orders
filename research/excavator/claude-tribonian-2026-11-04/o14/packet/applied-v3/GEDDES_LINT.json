@@ -1,0 +1,120 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "research/excavator/claude-tribonian-2026-11-04/o14/packet/PACKET.json",
+  "seconds": 68.045,
+  "files_read": 39776,
+  "file_reads": 79716,
+  "packet_fingerprint": "1473d3cda764ca1590f1855a87f304adb3068bf5feb568179bc01a888a2da2e2",
+  "claims_checked": 10,
+  "defect_flags": 2,
+  "coverage_gaps": 0,
+  "claims_with_flags": 2,
+  "claims_with_coverage_gaps": 0,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:10468",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:10508",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:10512",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 4,
+      "instrument_id": "EO:10514",
+      "flags": [
+        {
+          "code": "event_precedes_order",
+          "scope_id": "EO:10514#whole",
+          "field": "operative_clauses[0].first_end.date",
+          "span": "1953-12-31",
+          "detail": "The recorded date 1953-12-31 precedes the order's own date 1954-01-19.",
+          "flag_id": "bfa53d9631763d89"
+        }
+      ],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 5,
+      "instrument_id": "EO:10518",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 6,
+      "instrument_id": "EO:10523",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 7,
+      "instrument_id": "EO:10563",
+      "flags": [
+        {
+          "code": "unaddressed_citing_instrument",
+          "scope_id": "whole",
+          "field": "claim",
+          "span": "EO:10365 (1952-06-24)",
+          "detail": "Held EO:10365 (1952-06-24) revokes EO 10266, which this order amends or modifies; the claim never mentions EO:10365 in its ends, events, reasoning, searches or gaps.",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-10365-suspension-certain-provisions-the-officer-personnel-act-1947-amended.txt",
+            "text_sha256": "f68ef959685804db2137f77318bd6a428065cf414330e40adcd6d626820edef0",
+            "char_start": 1122,
+            "char_end": 1397,
+            "quote": "This order supersedes Executive Order No. 10266 of June 30, 1951, so far as that order relates to the suspension of the operation of provisions of the Officer Personnel Act of 1947, as amended, for commissioned officers of the Marine Corps of the grades of captain and below.",
+            "instrument_id": "EO:10365",
+            "date": "1952-06-24",
+            "identity_basis": "app_publisher_listing",
+            "cited_order": "EO:10266"
+          },
+          "flag_id": "1d24de1c214222f3"
+        }
+      ],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 8,
+      "instrument_id": "EO:10569",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 9,
+      "instrument_id": "EO:10580",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 10,
+      "instrument_id": "EO:10687",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

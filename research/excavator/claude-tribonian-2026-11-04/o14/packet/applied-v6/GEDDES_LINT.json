@@ -1,0 +1,86 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "research/excavator/claude-tribonian-2026-11-04/o14/packet/PACKET.json",
+  "seconds": 25.93,
+  "files_read": 39776,
+  "file_reads": 79679,
+  "packet_fingerprint": "1473d3cda764ca1590f1855a87f304adb3068bf5feb568179bc01a888a2da2e2",
+  "claims_checked": 8,
+  "defect_flags": 1,
+  "coverage_gaps": 0,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 0,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:10468",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:10512",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:10514",
+      "flags": [
+        {
+          "code": "event_precedes_order",
+          "scope_id": "EO:10514#whole",
+          "field": "operative_clauses[0].first_end.date",
+          "span": "1953-12-31",
+          "detail": "The recorded date 1953-12-31 precedes the order's own date 1954-01-19.",
+          "flag_id": "bfa53d9631763d89"
+        }
+      ],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 4,
+      "instrument_id": "EO:10518",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 5,
+      "instrument_id": "EO:10523",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 6,
+      "instrument_id": "EO:10563",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 7,
+      "instrument_id": "EO:10569",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 8,
+      "instrument_id": "EO:10580",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
