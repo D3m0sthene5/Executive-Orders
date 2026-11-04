@@ -1,0 +1,102 @@
+{
+  "schema": "eo-maitland-fixture-path-engineering-review/v1",
+  "reviewer": "dispatch_audit",
+  "verdict": "approve",
+  "model_family": "OpenAI",
+  "model_id": "inherited exact identifier unavailable",
+  "model_tokens": null,
+  "cash_cost": null,
+  "scope": "Only portable fixture review-file path serialization; source and runtime guards unchanged.",
+  "reported_hosted_failure": {
+    "provenance": "coordinator-provided failure context; not independently browsed",
+    "platform": "Windows",
+    "job_id": "126466523538",
+    "commit_prefix": "2a1df8ae",
+    "cause": "Native Path string used backslashes, violating the existing portable research/ review-file prefix.",
+    "prior_lf_fix": "Coordinator reports the earlier source-span error is gone; this is a later independent path guard."
+  },
+  "superseded_pin": {
+    "path": "jobs/claim-kit/test_provision_history.py",
+    "intermediate_portability_sha256": "4b1402024f9972f82cd32dfa7f3ce36626baadbda24e5f1b7b58b160d5967c67",
+    "current_sha256": "ea38833b5ab62ade6874c4a4cbc15d54479abffcb6779fd556a9a45adc3991f9",
+    "scope": "Only test-file identity superseded. Existing runtime verdicts and historical execution evidence remain intact."
+  },
+  "runtime_pin_sha256": {
+    "jobs/claim-kit/provision_history.py": "c34dfe3f75a3b8f28a2ace2f0ab830130c22bef556f3550657bc160c10915cc1",
+    "jobs/claim-kit/test_provision_history_cli.py": "c674f4f5c813ab4737ecb3fe6be20ff13d50636e0bfc29b6f7f0936aa5ad5c82",
+    "jobs/claim-kit/excavate.py": "3114200aac417bdf2856b5a57996c510076c3408e6cad062b992a3dc07d4d785",
+    "jobs/claim-kit/act_overrides.py": "8dd91ce426bef4bc9a56bf56af8cf1a42f706ae6d0f8c286b910543a320895a9",
+    "jobs/claim-kit/test_reinstatement_handoff.py": "164a7cbac175279793a33a36dd519a8ac81ef20be67f7ac838f583bb2e75a9e4",
+    "jobs/claim-kit/inputs.py": "ca00af7039e94b926f4993bf74ac277b19a9d2020c12ef375deda3ee62efdbc0",
+    "jobs/claim-kit/needs.txt": "4051da38b25a3e21f9a7c64dbff815e11332c6005a6bd6c95d78aaab68193a25",
+    "jobs/claim-kit/kit.py": "ee519b5b83ce0f297cdfa858db6dafc6c647feba3ecd3093a895ba31306d402a",
+    "jobs/claim-kit/batch.py": "f5101ada9c86cf7b2d54f768d74cfc9739c4f63fa9938469fc3ac173976dece0",
+    "jobs/valla/valla.py": "364f6e798b42147c8b138e73d6db3f5fc92f8ed2b0e74b12bdc0e9b8114c29f8",
+    "jobs/valla/test_valla.py": "a7f11a5a4159ef1d243ba129c7318c54ff153bdba6615df8cd686b704bc7d090",
+    "jobs/valla/premises.json": "e0b9d0af27e8ef2d0461046d4801b9c2cb5a20529051aab8ddbfaf3af745cac3",
+    "jobs/later-events/later_events.py": "54e8e007ca06b841132334389e638ffdc384ab85aa346fd147c1e67aa68d5f5a",
+    "jobs/clause-drafts/segment.py": "0ea7afd1bfd6e5776068d32bda1b58efcc367db3055740ee64709da0caef6573",
+    "jobs/claim-kit/assemble.py": "dd0e89fa05bcf619fa795e6ee5702255c89d69e79663d5f06ac9143557e8da6f",
+    "jobs/claim-kit/test_build.py": "342b243fff4f6a03b6f893c46905e6758e2d4bbf156e774614e38a5408cb39c2",
+    "jobs/claim-kit/test_act_overrides.py": "b76efc08eb1acb6a0d6197d9d3c9274fb6c59422b4ca2750712a7a5721472d4a"
+  },
+  "prior_review_references": [
+    {
+      "path": "research/progress/maitland/engineering-review/FINAL_REVIEW.json",
+      "sha256": "074f141a77760768133ec85226885b8627ff9984f38a44b36e236c74bdb1a37e",
+      "status": "Preserved historical/intermediate receipt; only its test_provision_history.py pin is superseded by the current test-file pin."
+    },
+    {
+      "path": "research/progress/maitland/engineering-review/COMBINED_REVIEW.json",
+      "sha256": "5ab0b8277ab515bc58c3d6e338976a6a8755a589d84e8efa0f6c11893e2d873e",
+      "status": "Preserved historical/intermediate receipt; only its test_provision_history.py pin is superseded by the current test-file pin."
+    },
+    {
+      "path": "research/progress/maitland/engineering-review/FIXTURE_PORTABILITY_REVIEW.json",
+      "sha256": "a6be9afb101bce487e63fed9ea44d5805d6de8ca607f16741edf226fb6f8d76b",
+      "status": "Preserved historical/intermediate receipt; only its test_provision_history.py pin is superseded by the current test-file pin."
+    }
+  ],
+  "checks": [
+    {
+      "name": "sole_test_change_is_portable_review_file_path_serialization",
+      "passed": true
+    },
+    {
+      "name": "windows_relative_path_serializes_portably_and_old_backslash_path_refuses",
+      "passed": true
+    },
+    {
+      "name": "prior_exact_lf_fixture_and_review_byte_hashes_remain_valid",
+      "passed": true
+    },
+    {
+      "name": "all_other_prior_17_pins_unchanged",
+      "passed": true,
+      "count": 17
+    }
+  ],
+  "other_fixture_platform_inspection": {
+    "files": [
+      "jobs/claim-kit/test_provision_history.py",
+      "jobs/claim-kit/test_provision_history_cli.py",
+      "jobs/claim-kit/test_reinstatement_handoff.py"
+    ],
+    "findings": [],
+    "observations": [
+      "The review-file path was the only new protocol repository-relative path serialized from native Path in these fixtures.",
+      "Other str(Path) uses supply local CLI or import paths and correctly retain native syntax.",
+      "Held-text protocol paths are literal forward-slash strings; witness bytes use explicit UTF8 and LF.",
+      "Review and bundle serializations use explicit UTF8; hashes are computed from actual emitted bytes. Remaining default-encoding JSON mutations use ASCII JSON output."
+    ]
+  },
+  "script_sha256": "6380e914f6cff8fbc3d691724854fbabbac6a55371f4df342559fb1401d6056c",
+  "wall_seconds": 0.030537,
+  "findings": [],
+  "limits": [
+    "Linux probes simulate Windows relative-path string semantics with PureWindowsPath; no claim of executing these probes on Windows.",
+    "No broad or full suite was rerun; coordinator owns focused and hosted verification.",
+    "No runtime, production job, canonical output, source grade, blind/source-production artifact or GitHub state was changed or inspected.",
+    "The prior LF/CRLF review is retained as an intermediate review; its newline reasoning still applies, while this receipt supplies the final test-file pin."
+  ]
+}
