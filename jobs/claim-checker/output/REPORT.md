@@ -4,22 +4,22 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 919 (parse errors: 0)
-- Orders with a claim (latest claim per order): 898
-- All checks passed: 822
-- Mechanical checks passed: 912; with unverifiable items: 4; failed: 3
-- Structural gate passed: 829
+- Claims checked: 1399 (parse errors: 0)
+- Orders with a claim (latest claim per order): 1378
+- All checks passed: 1302
+- Mechanical checks passed: 1392; with unverifiable items: 4; failed: 3
+- Structural gate passed: 1309
 
 ## Source references
 
 - custody_record_only: 7
-- gpo_published_hash_match: 5243
+- gpo_published_hash_match: 7513
 - held_bytes_in_release_or_repo: 85
-- held_bytes_verified: 7625
+- held_bytes_verified: 9808
 
 ## Quotations
 
-- exact: 16349
+- exact: 22171
 - normalised: 11
 - not_found: 7
 
@@ -127,6 +127,6 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 5167
+- recorded_for_this_order: 7016
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.

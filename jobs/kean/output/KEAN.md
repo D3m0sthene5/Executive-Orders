@@ -8,9 +8,10 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (0)
+## Waiting for the owner (2)
 
-Nothing.
+- **A-20261103-1** (2026-11-03, Codex): Provide Bacon-session.bundle or the original Bacon packet directory from EO Session Report? *Original scratch files are inaccessible, no Bacon publication was located, and the frozen sample/review receipts cannot be reconstructed faithfully*
+- **A-20261104-1** (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1? *Scoped occurrence intervals are usable now. Whole-case legal intervals need a separate scientific contract and fresh legal review. This is a contract proposal, not a request to choose case answers or relax production.*
 
 ## Standing owner requirements
 
@@ -25,13 +26,13 @@ Nothing.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 111; `search` finds the rest)
+## Newest results (6 of 129; `search` finds the rest)
 
-- 2026-11-02 F-20261102-population-contract-repair **worked**: Reproduce failed refresh and reconcile claim-kit contract to already-owner-merged PR119 rows Lesson: Carry accepted adoption into the independent population contract; do not infer authorization from mutable progress CSVs
-- 2026-11-02 F-20261102-mountweazel-notes **worked**: Preserve optional source notes on blinded reviewer cards Lesson: Normalize optional presentation keys without erasing evidence or changing canonical/control payloads
-- 2026-11-02 F-20261102-lachmann-reuse **worked**: Reuse exact standalone Lachmann working-text checks in ordinary claim-kit preparation Lesson: Reuse only the current exact source-bound confirmation; a changed record or declaration needs a new packet. Text verification never approves legal judgment or original authentication.
-- 2026-11-02 F-20261102-held-actor-retained-replay **worked**: Use newly retained raw PDFs in a fresh final-runtime four-order supplement replay Lesson: Fresh exact-byte evidence access is useful preparation, never proof that an instrument applies or ends a command
-- 2026-11-02 F-20261102-held-actor-handoff **partly worked**: Replay four blocked Erasmus cases through existing exact source supplements Lesson: Use existing source-supplement interface, rehash actual raw bytes and reconcile reports to final exact receipts
-- 2026-11-02 F-20261102-final-recovery-generation **worked**: Publish and audit the combined recovered main generation Lesson: Verify published native generations and actual input maps; never renew stale packets or infer scientific approval from engineering completion
+- 2026-11-04 F-20261104-supported-usage-normalization **worked**: Extend existing Hamilton ingestion to supported Geddes-format JSONL and existing NEYMAN production-effort con… Lesson: Preserve final revisions sharing event IDs, verify caller intervals against observed usage timestamps, and bridge existing explicit diagnostic routes; successful synthetic integration does not establ…
+- 2026-11-04 F-20261104-sol-supported-occurrence **worked**: Retain source-reviewed occurrence intervals through ordinary partial research Lesson: Occurrence, date precision and legal effect require separate proof; partial review is not whole readiness
+- 2026-11-04 F-20261104-sol-integration **worked**: Independently review exact source and PR132 combined runtime Lesson: Integrate between waves with fresh packets and actual-head revalidation; no stale hash renewal or net savings estimate
+- 2026-11-04 F-20261104-sol-history-consumer **worked**: Carry reviewed MAITLAND histories into ordinary assignments Lesson: Use exact reviewed context and preserve bounded unknowns instead of copying legal conclusions
+- 2026-11-04 F-20261104-sol-geddes-hosted-fixture **worked**: Run hosted Geddes check on the reviewed source Lesson: Test the actual CI input closure; preserve failure and extend fixture access without skipping gates or changing runtime
+- 2026-11-04 F-20261104-sol-eo13792-research **partly worked**: Examine new held and public EO13792 report witnesses independently Lesson: Submission, draft transmission, public release, receipt and legal exhaustion are distinct; new sources need exact custody and fresh application review
 
-Register: 19 owner decisions, 13 answered questions, 111 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 21 owner decisions, 13 answered questions, 129 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
