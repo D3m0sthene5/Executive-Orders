@@ -1,0 +1,57 @@
+# f03 producer draft notes (start 2026-11-04T04:45:20Z; stopped on coordinator order)
+
+No decisions.csv/clauses.csv row has been filled in the original packet. No claim has been filed.
+
+## Tool and packet facts
+- The packet is stale: a new owner ruling file (research/readiness/owner_rulings/2026-11-04-delegated-answers-to-open-asks.md, written after preparation) changes prior_research, so load_packet raises "changed prior research". kit.py apply on the packet fails for that reason.
+- I created a nested re-prepared packet at f03/packet/rp1 (kit.py prepare, 36 orders, same dossier fingerprints) and three trial apply dirs, which I deleted. rp1 still exists inside the packet folder with one trial row written to rp1/decisions.csv and rp1/clauses.csv (EO:11876). Delete rp1 before or when re-preparing, or it will count as prior research.
+- Source supplement is not usable for FR texts: it needs a local file whose sha256 equals the source PDF sha256, and the FR issue PDFs are not held (only texts).
+- Assembly facts learned: end_id ACTOR_TEXT:EO:12553 assembles and passes the actual checker (the quote is the whole 12553 text, claim about 96 KB). savings_state must be none_after_bounded_search, continuing_independent or transferred_or_accrued; savings_source_id may be CLAUSES:EO:N#whole (an ORIGINAL id failed). Sheet columns: original_confirmed true (FR originals are acceptable_as_original), working_text {} for FR-original orders. apply takes about 13 s, batch-check about 50 s.
+- Citable evidence is limited to each dossier's own records (view later_events_chain.citable_evidence). 11876 style dossiers only have ACTOR_TEXT:EO:12553 (no ACT record); 11896, 12140, 12153, 12186, 12187, 12357, 12376 have ACT:EO:N>EO:12553.
+
+## EO 12553 table (jobs/fr-originals/data/full_run/texts/EO_12553.txt, 51 FR 7237)
+All 36 numbers appear in the table (number columns on PDF pages 14-15 at offsets listed by regex; the page 9-10 pre-1980 columns do not matter). Enacting text: "it is hereby ordered that the following Executive Orders, and any amendments thereto, are revoked". Number and subject columns are split by OCR; I aligned by position: 11876, 12370, 12373, 12384-12386, 12393, 12405, 12414, 12480, 12481 are emergency-board rows; 12357 is the Phasing-out-Sinai row; 12376 is the increase-Drunk-Driving-membership row; 12463 extends EURATOM period; 12440/12457 industrial competitiveness; 12442 Indian Reservation Economies; 12447 private sector survey; 12449 Central America; 12476 US-Japan; 12397 Social Security commission.
+
+## Policy I had settled on
+1. End = EO 12553 on 1986-02-25 (express revocation by number in table, effective on signing, a disclosed reading) unless the order's own text has a fixed-date sunset not removed or extended.
+2. Owner ruling C (report deadline) for boards; report date, standstill end and board "Expiration" clauses (12393, 12405, 12414, 12480, 12481: board terminates on or after its report) are functionally spent facts, not ends; no report date is held as citable evidence for any of my boards. Flag this as a judgment call for the coordinator: own-terms end could be argued to win.
+3. Unnamed instruments (ruling C): later statutes or orders that do not name the order are disclosed candidates only.
+4. No search of the held FR full-run texts (grep by number, 6652 texts) found any citing text other than those listed below; 12373 hit in EO_12195 and 12327 hit in EO_9791 are presumably false matches (not checked).
+
+## Per order
+- 11876 board RLA s.10, one whole clause: submit, end 12553. Report date not held.
+- 11896 Sinai Support Mission, 33 clauses: amended by 12150 (1979-07-23, 1(b)), 12227 (1980-07-22, 1(b),(c)), 12357 (1982-04-06, adds 2(f)-(h); (g) phase-out and terminate functions "not later than September 30, 1982" is a deadline, not shown performed). Open problem: sec 6 ("continued until such time as the Mission has become operational and the Director requests the transfer") is an own-terms contingent end with no held date; decide submit-with-disclosure or block. All other clauses end 12553. Evidence ids ACT:EO:11896>EO:12150/12227/12357 and ACT:...>EO:12553 are available.
+- 11969 delegation under Emergency Natural Gas Act of 1977, 5 clauses: amended by 12038 (1978-02-03, chain, sec 1 and 2). Statute expiry not held (disclose only as not established). End 12553.
+- 12097 merit selection of district judges: dossier inventory is a bad auto-split (12 fragments incl. "dup2"; misses 1-101..1-105, 1-301, 1-302). Needs inventory override: 1-101, 1-102, 1-103, 1-104, 1-105, 1-201, 1-301 (amends 12059 s.3(b)), 1-302(1),(2) (amend 12084). EO 12305 (1981-05-05) revokes 12084 "as amended by Executive Order 12097" (names 12097) so 1-302 ends 1981-05-05; 12305(a) revokes 12059 "as amended" without naming 12097, so 1-301 ends 12553 with 12305(a) as disclosed candidate; 1-101 to 1-201 end 12553. EO 12110 (1978-12-28) only continues the committee; not an end.
+- 12140 motor gasoline end-user allocation: dossier inventory (lead, a, a-1, a-2, c) is wrong; real sections 1-101..1-105. 1-105 first sentence (terminate "unless extended, at midnight on September 30, 1979") deleted by EO 12162 (1979-09-28), so that sentence ends 1979-09-28 by express deletion and no own sunset operated; the second sentence (Secretary may revoke) and other sections end 12553. EO 12287 (1981-01-28, held, FR text) exempts crude and refined products from EPAA price and allocation controls without naming 12140: disclosed unnamed candidate but cannot be pinned (not in dossier evidence).
+- 12153 heavy oil decontrol, whole clause: amended by 12186 (1979-12-21) and rewritten by 12189 (1980-01-16; replaces 1-101 and adds 1-102 to 1-104; note substance changed). End 12553. 12287 unnamed candidate as above.
+- 12186 amendment instruction: restated by 12189; ruling B, clause continues, end 12553; 12189 later event.
+- 12187 marginal properties: rewritten by 12209 (1980-04-16; limits to Jan-Mar 1980 months). End 12553; 12209 later event with before/after note.
+- 12254 National Advisory Community Investment Board: own text 1-105 "shall terminate on December 31, 1981, unless sooner extended". No held citing order found for 12254; my name search of the full-run texts for "Community Investment Board" was started but not read. If no extension: first end own terms 1981-12-31 inclusive (1981-12-30 exclusive reading), TERM evidence id needed from rp1/PACKET; otherwise end 12553.
+- 12256 census statistics on legal immigrants: 1-105 "shall expire when the Bureau of the Census issues 1981 population estimates", event-based own-terms end, date not held. Plan: block (date of Census issuance of 1981 estimates).
+- 12257 CETA conversion, whole clause (six sections, no sunset): end 12553; CETA repeal not held (disclose only as not established).
+- 12263 delegation of s.5 of Strategic and Critical Materials Transaction Authorization Act of 1979 to USTR (tin buffer stock): end 12553.
+- 12297 coffee agreement delegation (2 sections): end 12553.
+- 12327 Fort Allen exemption: own text 1-105 "one-year period beginning October 2, 1981, and ending October 1, 1982"; first end own terms 1982-10-01 inclusive (exclusive reading: ends when 10-01 begins); need TERM evidence id; 12553 is a later event only if citable (ACTOR_TEXT:EO:12553 is).
+- 12357 amendment adding 2(f)-(h) to 11896: end 12553; disclose (g) deadline not an end, (h) State Department residual duty after 1982-09-30.
+- 12370 board: end 12553. Held report (jobs/source-ladder/output/texts/queue_EO_12370_Report_of_Presidential_Emergency_Board_No._194_...txt): Letter of transmittal and cover dated August 19, 1982; board created July 10, 1982; the report time was extended from August 9 to August 19 with presidential approval on July 26, 1982; P.L. 97-262 (1982-09-22) made the report binding. This source is not citable evidence in the dossier, so it cannot be a later event; report it to the coordinator.
+- 12373 board (3 sections, report 30 days, standstill 30 days after report): end 12553.
+- 12376 amends 12358 s.1 to 28 members: end 12553; later event 12415 (1983-04-05) amends parent s.4(b) (chain, "parent_as_amended"); not read yet.
+- 12384, 12385, 12386 commuter boards under Rail Passenger Service Act s.510 (initial report 30 days, final offers, final report): end 12553.
+- 12390 delegation to Secretary of State (sec 1, 2 continuing; sec 3 ratification of earlier performance): end 12553; note BATCH.md warning that a later revocation does not prove first cessation of a command already performed (sec 3).
+- 12392 delegation of s.129 of P.L. 97-276 to Treasury: end 12553.
+- 12393 board s.9A, 120-day standstill, 1-104 board terminates 90 days after report: end 12553 under policy 2.
+- 12397 amends 12335 s.2(b) report date to January 15, 1983: end 12553; later event 12402 (1983-01-15, chain) amends the same section; parent 12335 text is in the dossier; report deadline is not an end.
+- 12405 board, 1-104 board terminates on report: end 12553 under policy 2.
+- 12414 board s.9A, final offers, 60-day standstill, Sec 4 board terminates on report: end 12553 under policy 2.
+- 12440 amends 12428 s.1(a) to 30 members; 12457 (1984-01-03) rewrites the same sentence to 35 (later event, chain) and sets 12428 s.4(b) sunset December 31, 1984 "unless sooner extended". EO 12534 (1985-09-30, held FR text) revokes 12428 (parent) without naming 12440 or 12457; not citable in the dossier. End 12553 unless you accept parent end; 12534 is a disclosed unnamed candidate (reason text only).
+- 12442 amends 12401 s.2(d) (final report by 1984-11-30) and s.4(b) (terminate 30 days after final report, unless sooner extended): end 12553; 12534 revoked 12401.
+- 12447 amends 12369 s.4(b) to "terminate on December 31, 1983, unless sooner extended"; extended by 12455 (1983-12-29, chain), so no own end operated; end 12553; 12534 revoked 12369.
+- 12449 amends 12433 s.2(b) report by 1984-02-01: end 12553; 12534 revoked 12433.
+- 12457 amends 12428 (membership 35; s.4(b) terminate December 31, 1984 unless sooner extended): own-terms sunset 1984-12-31 for clause (b) if no extension (no later order cites 12428 except 12534); clause (a) and lead arguably end with it; alternative end 12553. Decide after seeing TERM evidence ids. 12534 revoked 12428.
+- 12463 EURATOM period extension "to March 10, 1985": own-terms bound 1985-03-10; later orders 12506 (1985), 12554, 12587, 12629, 12670, 12706, 12753, 12791, 12840, 12903 recite or extend the period and are not revocations (not read yet; verify that none revokes 12463). 12553 lists 12463. Decide own-terms end 1985-03-10 versus 12553.
+- 12476 amends 12421 (name change, s.2(c), s.4(b) terminate October 31, 1984 unless sooner extended): clause-level own sunset 1984-10-31 if no extension (no later order cites 12421 except 12534); 12534 revoked 12421. Alternative end 12553.
+- 12480, 12481 boards s.9A, 120-day standstill, Sec 4 board terminates on report: end 12553 under policy 2. 12481 inventory has 4 clauses (sec1-4).
+
+## Still to do on resumption
+Read 12415, 12402, 12455, 12506, 12554 (and EURATOM chain), 12369/12335 own terms if needed; run the Community Investment Board name search; check clause spans of every dossier inventory against the order text (12140 and 12097 need overrides with absolute offsets in ORIGINAL text); fetch TERM evidence ids from PACKET.json for 12254, 12327, 12457, 12476, 12463; write decisions.csv and clauses.csv, apply, batch-check, Geddes lint, PRODUCER_REPORT.md.
