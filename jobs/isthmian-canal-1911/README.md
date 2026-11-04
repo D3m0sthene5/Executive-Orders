@@ -98,3 +98,25 @@ readiness tracker does not read these fragments yet; wiring it to do so is a sep
 Tests whose counts depend on the census or the readiness output run only while those files still
 match the hashes recorded in `PROVENANCE.json`. After those files change, the job reports the new
 counts instead of failing.
+
+### Pinned visual page examinations
+
+When an exact page check exists in `data/checked_pages/REVIEWS.json`, the job
+matches the PDF and WPA crosswalk digests, original OCR segment, single-page
+boundaries, sequence, EO number and date. It verifies the reviewed body,
+contents-leaf and adjacent-leaf image bytes and the normalized body text. A
+changed input refuses the check; the unreviewed path continues to use the
+existing OCR and its original flags. The exact official printing remains
+the source; confirmed locations in this small reviewed subset emit
+`location_verified: true` and `needs_page_check: false`. No human review or
+signed-original status is implied. The original machine date-check category
+is preserved independently so OCR damage remains visible.
+
+To reproduce the three visual checks, render one-based pages 9, 11 and 13
+of the exact tracked PDF with Poppler at `-scale-to 1750 -gray -png`; render
+the three body pages (128, 187, 238) and each preceding and following page
+with `-scale-to 1550 -gray -png`. Pass `-f N -l N -singlefile` for each.
+Renderer versions can produce different PNG encodings; the committed page
+bytes identify the images actually read. The body leaves carry no EO numbers:
+the existing crosswalk supplies them, and the receipt explains which date
+elements come from the contents rather than the damaged body datelines.

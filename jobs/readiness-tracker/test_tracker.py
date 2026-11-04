@@ -615,6 +615,18 @@ class TrackerTest(unittest.TestCase):
     def jsonl(self, *rows):
         return "".join(json.dumps(r) + "\n" for r in rows)
 
+    def test_agent_checked_new_fragment_without_preexisting_lead(self):
+        _, fragment, confirmation = self.confirmation_fixture(needs_page_check=True)
+        path = "jobs/hathi-gpo-orders/data/checked/FRAGMENTS.jsonl"
+        confirmation["method"] = "agent"
+        orders, _ = self.run_tracker(files={path: fragment})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        orders, _ = self.run_tracker(files={path: fragment, self.AGENT_CONFIRMED: self.jsonl(confirmation)})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "provisional")
+        confirmation["text_sha256"] = "0" * 64
+        orders, _ = self.run_tracker(files={path: fragment, self.AGENT_CONFIRMED: self.jsonl(confirmation)})
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+
     def test_valid_confirmation_makes_the_text_step_provisional_not_done(self):
         frag_path, frag, conf = self.confirmation_fixture()
         base, base_s = self.run_tracker(files={frag_path: frag})

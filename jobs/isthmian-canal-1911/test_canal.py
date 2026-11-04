@@ -453,3 +453,29 @@ class CensusSnapshot(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class CheckedPages(unittest.TestCase):
+    """Reviewed evidence must match the original segment as well as the book and image bytes."""
+
+    def test_pinned_sources_and_repair_scope(self):
+        vol = json.loads((HERE / 'data/PROVENANCE.json').read_text())['volume']
+        docs, _ = canal.build_documents(canal.load_pages(HERE / vol['text']))
+        by_seq = {d['seq']: d for d in docs}
+        ids = {}
+        for x in canal.load_csv(HERE / vol['crosswalk']):
+            if x['instrument_id']:
+                ids.setdefault(int(x['seq']), []).append(x['instrument_id'])
+        self.assertEqual(set(canal.load_page_checks(HERE, vol, by_seq, ids)), {78, 129, 171})
+        stale = {**vol, 'pdf_sha256': '0' * 64}
+        with self.assertRaisesRegex(ValueError, 'Stale'):
+            canal.load_page_checks(HERE, stale, by_seq, ids)
+        with self.assertRaisesRegex(ValueError, 'Stale'):
+            canal.load_page_checks(HERE, vol, by_seq, {**ids, 78: ['EO:666']})
+        import shutil
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = pathlib.Path(tmp) / 'data' / 'checked_pages'
+            shutil.copytree(HERE / 'data' / 'checked_pages', folder)
+            with (folder / 'p128.png').open('ab') as fp:
+                fp.write(b'changed')
+            with self.assertRaisesRegex(ValueError, 'Changed page-check'):
+                canal.load_page_checks(pathlib.Path(tmp), vol, by_seq, ids)

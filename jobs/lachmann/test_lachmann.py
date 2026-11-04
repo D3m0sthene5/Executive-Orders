@@ -28,6 +28,24 @@ class StubIndex:
         return []
 
 
+class ScopeRebuild(unittest.TestCase):
+    def test_rechecks_counted_working_texts_and_excludes_official_holds(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = pathlib.Path(tmp) / L.TRACKER_CSV
+            path.parent.mkdir(parents=True)
+            path.write_text("instrument_id,step_original_text,provisional_text_grade,blockers,claim_present,text_evidence_tier\n"
+                            "EO:1,provisional,archival_replica_scan_pending_codebook,NO_PROVISIONAL_STATUS\n"
+                            "EO:2,provisional,mirror_transcription,NO_PROVISIONAL_STATUS\n"
+                            "EO:3,provisional,mirror_transcription,ORIGINAL_FOUND_NEEDS_PAGE_CHECK\n"
+                            "EO:4,done,,\n"
+                            "EO:5,done,,,yes,transcription_dependent\n")
+            self.assertEqual(L.load_scope(tmp), {
+                "EO:1": ["ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"],
+                "EO:2": ["ONLY_COMPILED_TRANSCRIPTION_FOUND"],
+                "EO:5": ["EXISTING_CLAIM_DEPENDS_ON_WORKING_TEXT"],
+            })
+
+
 class NumberAndDate(unittest.TestCase):
     def test_number_forms(self):
         for text in ('Executive Order 5077.', 'EXECUTIVE ORDER NO. 5077', '[No. 5077]', 'Order No. 5077', 'Executive Order No 5077'):

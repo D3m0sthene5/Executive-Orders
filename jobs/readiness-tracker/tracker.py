@@ -544,9 +544,13 @@ def build(root, *, planning_closures=None):
                 blockers["original_text"].append("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK")
             # Owner ruling 2026-10-31: before any claim exists, a counting standalone confirmation of a working
             # text lets the step be provisional when only the lead blockers stand in the way. It is not an original.
+            # A reviewer can bring the first registered working text for an order.
+            # Its exact fragment and bytes already passed counting_confirmations, even
+            # when no earlier producer index had listed a lead for this identity.
             if (claim is None and i in confirmed_texts
                     and set(blockers["original_text"]) <= PROVISIONAL_CLEARABLE_BLOCKERS
-                    and set(blockers["original_text"]) & PROVISIONAL_LEAD_BLOCKERS):
+                    and (set(blockers["original_text"]) & PROVISIONAL_LEAD_BLOCKERS
+                         or confirmed_texts[i].get("method") == "agent")):
                 text_provisional = confirmed_texts[i]
                 steps["original_text"] = True  # satisfied for readiness and step counts; shown as `provisional`
                 blockers.pop("original_text", None)

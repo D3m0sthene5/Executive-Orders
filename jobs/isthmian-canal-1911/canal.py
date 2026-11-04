@@ -603,6 +603,35 @@ def affected_rows(docs: list[dict], ids_by_seq: dict) -> list[dict]:
     return rows
 
 
+def load_page_checks(job_dir, vol, by_seq, ids_by_seq):
+    """Read only exact page examinations tied to the pre-review source, text and identity."""
+    folder = job_dir / "data" / "checked_pages"
+    if not (folder / "REVIEWS.json").is_file():
+        return {}
+    checked = {}
+    for r in json.loads((folder / "REVIEWS.json").read_text(encoding="utf-8")):
+        seq, iid = r["sequence"], r["instrument_id"]
+        d = by_seq.get(seq)
+        if (not d or seq in checked or ids_by_seq.get(seq) != [iid]
+                or vol["pdf_sha256"] != r["source_sha256"]
+                or vol["crosswalk_sha256"] != r["crosswalk_sha256"]
+                or d["date"] != r["date"] or not d["needs_page_check"]
+                or d["pdf_pages"] != (r["body_pdf_page"], r["body_pdf_page"])
+                or r["ocr_body_sha256"] != sha256_bytes(("\n".join(d["lines"]).strip() + "\n").encode())
+                or r["body_file"] != file_id(iid) + ".txt"
+                or not r["date_evidence"] or not r["boundary_evidence"] or not r["examination"]):
+            raise ValueError(f"Stale or conflicting visual page check for {iid}")
+        body, contents = r["body_pdf_page"], r["contents_pdf_page"]
+        files = {f"p{n}.png" for n in [body - 1, body, body + 1, contents]}
+        if not 6 <= contents <= 13 or set(r["page_images"]) != files:
+            raise ValueError(f"Incomplete page evidence for {iid}")
+        for name, digest in {**r["page_images"], r["body_file"]: r["body_sha256"]}.items():
+            if sha256_bytes((folder / name).read_bytes()) != digest:
+                raise ValueError(f"Changed page-check evidence: {iid}: {name}")
+        checked[seq] = r
+    return checked
+
+
 def run(repo_root, job_dir, out_dir):
     repo, job_dir, out = pathlib.Path(repo_root), pathlib.Path(job_dir), pathlib.Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -646,12 +675,17 @@ def run(repo_root, job_dir, out_dir):
         if x["lord_seq"]:
             lord_by_seq[s] = x
 
+    checks = load_page_checks(job_dir, vol, by_seq, ids_by_seq)
     texts = out / "texts"
     texts.mkdir(parents=True, exist_ok=True)
     doc_rows, order_rows, fragments, leads, match_rows = [], [], [], [], []
     short = vol["short"]
     for d in docs:
         body_text = "\n".join(d["lines"]).strip() + "\n"
+        review = checks.get(d["seq"])
+        if review:
+            body_text = (job_dir / "data/checked_pages" / review["body_file"]).read_text(encoding="utf-8")
+            d["needs_page_check"], d["confidence"] = False, "high"
         body_sha = sha256_bytes(body_text.encode("utf-8"))
         ids = ids_by_seq.get(d["seq"], [])
         lord = lord_by_seq.get(d["seq"])
@@ -674,6 +708,9 @@ def run(repo_root, job_dir, out_dir):
                       + (". This printed entry holds both orders; the text is the whole entry" if len(ids) > 1 else "") + "\n"
                       f"# Text: OCR text layer of the scan ({vol['extractor']}), running heads and GPO footers removed. "
                       f"Not human-verified. Body sha256 {body_sha}\n\n")
+            if review:
+                header = (header.split("# Text:", 1)[0] + "# Text: Page-checked transcription of the official compilation. "
+                          + review["date_evidence"] + " " + review["examination"] + f" Body sha256 {body_sha}\n\n")
             (out / fname).write_text(header + body_text, encoding="utf-8", newline="\n")
             file_hashes[fname] = sha256_bytes((out / fname).read_bytes())
         doc_rows.append({
@@ -722,6 +759,12 @@ def run(repo_root, job_dir, out_dir):
                                  "text_path": fname, "text_sha256": file_hashes[fname], "body_sha256": body_sha,
                                  "source_id": f"{JOB_NAME}:{iid}:{vol['pdf_sha256'][:12]}"},
                         "sources": [{"url": vol["handle_url"], "sha256": vol["pdf_sha256"], "page_or_item": evidence}]})
+                    if review:
+                        f = fragments[-1]
+                        f["confidence_note"] = " ".join([review["date_evidence"], review["boundary_evidence"], review["examination"]])
+                        f["data"].update(location_verified=True, page_check_receipt="data/checked_pages/REVIEWS.json",
+                                         page_check_body_sha256=body_sha, pdf_page=review["body_pdf_page"],
+                                         contents_pdf_page=review["contents_pdf_page"])
                 if iid and state in ("NOT_IN_CENSUS", "census_date_blank", "YEAR_CONFLICT", "DATE_CONFLICT"):
                     leads.append({"lead": state, "instrument_id": iid, "seq": d["seq"], "date_in_volume": d["date"],
                                   "census_date_effective": de, "evidence": evidence, "text_path": fname,
@@ -831,6 +874,7 @@ def run(repo_root, job_dir, out_dir):
         "readiness_provisional_status": {k or "blank": v for k, v in count(numbered, "provisional_status").items()},
         "original_text_step_before": count(numbered, "original_text_step_before"),
         "decided_orders_original_text_step_open": [r["instrument_id"] for r in decided if r["original_text_step_before"] != "done"],
+        "visual_page_checks": sorted(r["instrument_id"] for r in checks.values()),
         "fragments": len(fragments), "texts_written": sum(len(d["_names"]) for d in docs),
         "census_leads": count(leads, "lead"),
         "affected_document_leads": len(affected),

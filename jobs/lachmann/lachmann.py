@@ -382,9 +382,22 @@ def load_scope(repo):
     scope = OrderedDict()
     for r in rows:
         blockers = [b for b in (r.get('blockers') or '').split('|') if b]
-        if r.get('step_original_text') != 'open' or OUT_OF_SCOPE_BLOCKER in blockers:
+        if OUT_OF_SCOPE_BLOCKER in blockers:
             continue
-        mine = [b for b in blockers if b in SCOPE_BLOCKERS]
+        step = r.get('step_original_text')
+        if r.get('claim_present') == 'yes' and r.get('text_evidence_tier') == 'transcription_dependent':
+            # Filed claims may pin the whole machine confirmation. Recompute it
+            # from the witnesses even though the tracker already counted the claim.
+            mine = ['EXISTING_CLAIM_DEPENDS_ON_WORKING_TEXT']
+        elif step == 'open':
+            mine = [b for b in blockers if b in SCOPE_BLOCKERS]
+        elif step == 'provisional' and r.get('provisional_text_grade') in W.GRADES:
+            # The tracker cleared the lead blocker when it counted this text. Re-examine
+            # its current witnesses on rebuild, or the next generation loses the step.
+            replica = r['provisional_text_grade'] == 'archival_replica_scan_pending_codebook'
+            mine = ['ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK' if replica else 'ONLY_COMPILED_TRANSCRIPTION_FOUND']
+        else:
+            continue
         if mine:
             scope[r['instrument_id']] = mine
     return OrderedDict(sorted(scope.items()))
@@ -860,6 +873,10 @@ def run(repo, out):
                             rec['text_path'] or '', order['number'] + order['suffix'], order['date'], rec['identity_confirmed'],
                             rec['complete_text_confirmed'], '' if rec['pages_confirmed'] is None else rec['pages_confirmed'],
                             '|'.join(rec['reasons']), order['title'][:120]])
+    # Agent readings are reviewed inputs. Emit the native override file on every rebuild.
+    agent_input = repo / 'jobs/lachmann/data/AGENT_CONFIRMATIONS.jsonl'
+    if agent_input.is_file():
+        (out / 'AGENT_CONFIRMATIONS.jsonl').write_bytes(agent_input.read_bytes())
     summary = summarize(results, skipped, missing_register, scope)
     (out / 'SUMMARY.json').write_text(json.dumps(summary, indent=2, sort_keys=True) + '\n', encoding='utf-8')
     return summary

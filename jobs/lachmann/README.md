@@ -17,6 +17,8 @@ Tracker rows (`jobs/readiness-tracker/output/READINESS_BY_ORDER.csv`) with `step
 `ORIGINAL_FOUND_NEEDS_PAGE_CHECK`. Identity references: `jobs/domesday-register/output/REGISTER.csv` and the Pinakes
 `ORDERS.csv` / `INVENTORY.csv`.
 
+Previously counted provisional texts are re-examined on every rebuild. The current fragment, hash and completeness checks still apply.
+
 ## Method
 
 Witnesses are the fragment declarations that `working_text.Index` loads (read-only import) for the order, with a grade in
@@ -60,6 +62,8 @@ compiled_transcription_lead; ties go to the longest text.
 
 `CONFIRMATIONS.jsonl` (one line per in-scope order, schema `eo-lachmann-confirmation/v1`), `RESIDUAL.csv` (orders not
 confirmed, with reasons, for agent review), `SUMMARY.json`, `tests.txt`.
+
+Store page-reviewed agent records in `data/AGENT_CONFIRMATIONS.jsonl`. The job reproduces the tracker’s native agent override file from these records. Each affirmative record must pin the reviewed text and its declared source and point to the independent review. The tracker rechecks the fragment, grade and text bytes. Keep earlier negative or superseded versions in the research receipt.
 
 ## Blinded audit sample
 
