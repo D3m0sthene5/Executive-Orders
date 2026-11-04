@@ -1,3 +1,12 @@
+## 2026-11-04 ET: offload decision follow-up to PR136
+
+- **Done:** Task-level path/prompt evidence, deduplicated remaining-work bounds and real-source/codec experiments in research/progress/offload-decision-20261104/. Four remaining-order published versions support mechanical checks, not latest claim/raw custody approval. Existing codec replay rejects a redundant new codec; Valla slim gap warrants targeted current lookup test. F-20261104-offload-decision.
+- **Recommendation:** Wire/test maintained PR135 verifier with competent cold independent arms; no measured model-token/cash/readiness gain. Preserve separate producer/blind-review receipts. Grouped prototype requires immutable snapshot and is not production adopted.
+- **Review:** Independent gpt-6-astra checked exact source hashes, corrected codec replay/eight probes,14 real reference dispositions/nine invalid-input controls and mutable-source failed-equivalence. Corrections and superseded transport pins retained; all worker usage/full labor unknown.
+- **Publication:** New isolated sol/offload-decision-20261104 based on136 head47666eca. No merges/main/protected branches/workspaces/checkpoints/reservations/quota changed. Code pushes skip Actions; skipped CI is not passed. Detailed paths/pins/revalidation in INTEGRATION.md. Existing private hub gets a concise dated decision section.
+- **Next:** Obtain an authorized source-ready current packet outside protected/reserved work, freeze competent baseline/obligations, test actual task displacement and reviewer burden. Do not count pooled ready-claim bytes as remaining backlog or model savings.
+- **Asks:** @Owner: none.
+
 ## 2026-11-04 ET: observability recovered and integrated on isolated branch
 
 - **Done:** Four bounded workers plus independent engineering/evidence review recovered pinned baseline,58 historical worker rows,27 exact completions and306 review-matched eligible versions; repaired Hamilton supported-export normalization and explicit NEYMAN bridge; added versioned partial-cost/coverage view. Findings F-20261104-observability-baseline, F-20261104-historical-observability, F-20261104-supported-usage-normalization, F-20261104-hub-observability. Detailed report: research/progress/production-observability-20261104/REPORT.md.

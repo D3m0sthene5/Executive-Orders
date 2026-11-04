@@ -34,13 +34,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 118; `search` finds the rest)
+## Newest results (6 of 119; `search` finds the rest)
 
 - 2026-11-04 F-20261104-supported-usage-normalization **worked**: Extend existing Hamilton ingestion to supported Geddes-format JSONL and existing NEYMAN production-effort con… Lesson: Preserve final revisions sharing event IDs, verify caller intervals against observed usage timestamps, and bridge existing explicit diagnostic routes; successful synthetic integration does not establ…
+- 2026-11-04 F-20261104-offload-decision **worked**: Trace ordinary model tasks and compare maintained offload primitives on real retained inputs Lesson: Existing mechanical capability is often already present; distinguish missing consumer wiring, byte representation and task displacement from token savings. Eligibility ceilings and historical ready e…
 - 2026-11-04 F-20261104-observability-integration **worked**: Integrate recovered observability, corrected supported-export collection and existing private hub with isolat… Lesson: Source publication, hosted deployment, engineering acceptance and scientific readiness are separate; preserve exact provenance, unavailable costs and protected assignments.
 - 2026-11-04 F-20261104-observability-brief **analysis**: Design a goal-driven Sol assignment to close dashboard measurement gaps using existing tools Lesson: Measurement coverage includes recoverable facts, prospective capture and explicit unavailable fields; use complete outcome-linked costs before savings claims.
 - 2026-11-04 F-20261104-observability-baseline **worked**: Recover pinned native checks and historical dispositions separately from current worker queues Lesson: Check deficits and planned memberships are not current worker location; all listed gates closed can still leave unresolved material gaps.
 - 2026-11-04 F-20261104-hub-observability **worked**: Integrate validated dated observability snapshots into existing production flow Lesson: Historical modal model and frozen cost denominators remain separate from live counts; unknown telemetry is not zero.
-- 2026-11-04 F-20261104-historical-observability **worked**: Recover Apollo and Erasmus published usage and exact native outcome/version joins at pinned main, and probe e… Lesson: Existing receipts support exact batch/version/outcome linkage, but published transcript aggregates omit coordinator coverage and cannot establish final provider usage, cash, active labor or causal co…
 
-Register: 20 owner decisions, 2 answered questions, 118 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 20 owner decisions, 2 answered questions, 119 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

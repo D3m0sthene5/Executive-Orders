@@ -1,0 +1,70 @@
+{
+  "actual_baseline": {
+    "grouped": {
+      "reads": 1,
+      "receipt": "be3fdbfe224de6f101b3f9a1d45d2430b2c9161de6bd07d9e233dc23f23b1f5a",
+      "span_calls": 2
+    },
+    "naive": {
+      "reads": 14,
+      "receipt": "be3fdbfe224de6f101b3f9a1d45d2430b2c9161de6bd07d9e233dc23f23b1f5a",
+      "span_calls": 14
+    },
+    "per_claim": {
+      "reads": 4,
+      "receipt": "be3fdbfe224de6f101b3f9a1d45d2430b2c9161de6bd07d9e233dc23f23b1f5a",
+      "span_calls": 4
+    }
+  },
+  "changing_file_within_invocation": {
+    "boundary": "Require an immutable byte snapshot. Never pool mutable/blind/reviewer inputs merely because paths match.",
+    "fresh_reads": [
+      "pass",
+      "source_hash_mismatch"
+    ],
+    "single_read": [
+      "pass",
+      "pass"
+    ]
+  },
+  "probes": {
+    "bool_int_collision": {
+      "grouped": [
+        "pass",
+        "invalid_span"
+      ],
+      "literal": [
+        "pass",
+        "invalid_span"
+      ]
+    },
+    "changed_in_new_invocation": {
+      "grouped": [
+        "source_hash_mismatch",
+        "source_hash_mismatch"
+      ],
+      "literal": [
+        "source_hash_mismatch",
+        "source_hash_mismatch"
+      ]
+    },
+    "changed_nonutf8": {
+      "grouped": [
+        "source_hash_mismatch",
+        "source_hash_mismatch"
+      ],
+      "literal": [
+        "source_hash_mismatch",
+        "source_hash_mismatch"
+      ]
+    },
+    "empty_span": {
+      "grouped": [
+        "invalid_span"
+      ],
+      "literal": [
+        "invalid_span"
+      ]
+    }
+  }
+}
