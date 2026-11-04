@@ -21,7 +21,7 @@ MONTHS.update({name.lower(): n for n, name in enumerate(calendar.month_abbr) if 
 DATE = r"(?:\d{4}-\d{2}-\d{2}|(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan\.?|Feb\.?|Mar\.?|Apr\.?|Jun\.?|Jul\.?|Aug\.?|Sep\.?|Sept\.?|Oct\.?|Nov\.?|Dec\.?)\s+\d{1,2}(?:st|nd|rd|th)?\s*,?\s*\d{4}|\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4})"
 EO_NUMBER = r"\d(?:[ \t]*\d){0,4}[A-Z]?(?:½)?"
 EO_REF = re.compile(r"\bExecutive\s+Orders?\s*(?:(?:Nos?|Numbers?)\.?\s*)?(" + EO_NUMBER + r")(?![\w-]|,\d|[ \t]+\d)", re.I)
-CHANGE = re.compile(r"\b(revok(?:e[ds]?|ing)|supersed(?:e[ds]?|ing)|amend(?:s|ed|ing)?|transfer(?:s|red|ring)?|abolish(?:es|ed|ing)?|terminat(?:e[ds]?|ing)|rescind(?:s|ed|ing)?)\b", re.I)
+CHANGE = re.compile(r"\b(revok(?:e[ds]?|ing)|supersed(?:e[ds]?|ing)|amend(?:s|ed|ing)?|transfer(?:s|red|ring)?|abolish(?:es|ed|ing)?|terminat(?:e[ds]?|ing)|rescind(?:s|ed|ing)?|reinstat(?:e[ds]?|ing))\b", re.I)
 HEADING = re.compile(r"(?m)^[ \t]*(?:(?P<section>(?:Sec(?:tion)?\.?\s+|SECTION\s+|SEC\.?\s+)(?P<sec>[0-9]+[A-Za-z]?)[ \t]*(?:[.):](?=\s|$)|(?=[ \t]*$)))|(?P<schedule>SCHEDULE(?:\s+[A-Z0-9IVX]+)?\b)|(?P<sub>\(\s*(?P<letter>[a-z])\s*\)(?!\s*[,;]))|(?P<item>(?:\(\s*(?P<number>[0-9]+|[ivx]{2,})\s*\)|(?P<decimal>[0-9]+)\s*\.(?=\s))))")
 WHITE_HOUSE = r"(?im)^[ \t]*T[ \t]*H[ \t]*E[ \t]+W[ \t]*H[ \t]*I[ \t]*T[ \t]*E[ \t]+H[ \t]*O[ \t]*U[ \t]*S[ \t]*E[ \t]*[,.;]?[ \t]*$"
 NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "twelve": 12, "thirty": 30, "sixty": 60, "ninety": 90}
@@ -129,9 +129,21 @@ def _clause_locator():
 
 
 def segmentation_code_sha256():
-    """Both parsers participate in persistent-cache invalidation."""
-    paths = (Path(__file__), Path(__file__).resolve().parents[1] / 'clause-drafts/segment.py')
+    """Every reused parser participates in persistent-cache invalidation."""
+    paths = (Path(__file__), Path(__file__).resolve().parents[1] / 'clause-drafts/segment.py',
+             Path(__file__).resolve().parents[1] / 'later-events/later_events.py')
     return hashlib.sha256(b''.join(p.read_bytes() for p in paths)).hexdigest()
+
+
+@lru_cache(maxsize=1)
+def _later_events():
+    """Reuse the existing operative-language detector; importing never runs its job."""
+    path = Path(__file__).resolve().parents[1] / 'later-events/later_events.py'
+    spec = importlib.util.spec_from_file_location('_claim_kit_later_events', path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
 
 
 @lru_cache(maxsize=32)
@@ -421,12 +433,13 @@ def _effective(text, provision, signing_date, filing_date, body_start=0, body_en
     return spans, "unknown", None, "Effective wording is ambiguous, section-specific, or has no determinable date."
 
 
-def acting_provision(target_id, actor_id, text, source, signing_date=None, filing_date=None, parent_id=None):
+def acting_provisions(target_id, actor_id, text, source, signing_date=None, filing_date=None, parent_id=None):
     """Locate an explicit target or explicitly supplied parent-as-amended lead.
 
-    None means no printed reference. A named reference without a change provision
-    remains an incomplete record with empty quote and explicit gap, never a quote
-    reconstructed from a disposition table.
+    Return every located sentence/list provision in source order. An empty list
+    means no printed reference. A named reference without a change provision
+    remains one incomplete record with empty quote and explicit gap, never a quote
+    reconstructed from a disposition table. All records remain machine leads.
     """
     body_start, body_end = _extent(actor_id, text)
     refs = [r for r in _references(text) if body_start <= r[1] < body_end]
@@ -436,7 +449,7 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
         chosen = [r for r in refs if r[0] == parent_id and re.search(r"\bas\s+amended\b", text[r[2]:r[2] + 100], re.I)]
         via = bool(chosen)
     if not chosen:
-        return None
+        return []
     sentences = [(body_start + a, body_start + b) for a, b in _sentences(text[body_start:body_end])]
     list_context = next((context for r in chosen if (context := _list_instruction(text, r, body_start, body_end))), None)
     candidates = [(list_context[0], list_context[1])] if list_context else [(a, b) for a, b in sentences if any(a <= r[1] < b for r in chosen) and _changes(text[a:b])]
@@ -458,44 +471,110 @@ def acting_provision(target_id, actor_id, text, source, signing_date=None, filin
                 if not re.search(r"(?im)^\s*(?:Sec(?:tion)?\.?\s+\d|THE WHITE HOUSE|EXECUTIVE ORDER\s+\d)", intervening):
                     end = next((y for x, y in sentences if x <= ref[1] < y), ref[2])
                     candidates.append((intro.start(), end))
-    a, b = candidates[0] if candidates else (None, None)
-    provision = text[a:b] if a is not None else ""
-    changes = _changes(provision)
-    # Prefer a change verb following the printed target. This avoids picking a
-    # historical descriptor ('amended') ahead of 'is revoked'.
-    local_ref = next((r for r in chosen if a is not None and a <= r[1] < b), None)
-    following = [m for m in changes if local_ref and m.start() + a >= local_ref[2] and not re.search(r"as\s+$", provision[max(0, m.start() - 4):m.start()], re.I)]
-    change = (changes[-1] if list_context else (following or changes)[0]) if changes else None
-    if list_context:
-        # Historical 'as amended by EO...' inside an item must not displace
-        # the governing 'are revoked:' instruction.
-        governing_end = list_context[2].rfind(":")
-        governing = list(CHANGE.finditer(list_context[2][:governing_end]))
-        if governing:
-            word = governing[-1][0].lower()
+    candidates = list(dict.fromkeys(candidates))
+    located = []
+    mechanisms = {"reinstatement": "reinstate", "amendment": "amend",
+                  "revocation": "revoke", "rescission": "revoke",
+                  "supersession": "supersede", "termination": "terminate",
+                  "abolition": "abolish"}
+    for a, b in candidates:
+        if any(m[0].lower().startswith("reinstat") for m in _changes(text[a:b])):
+            # A reinstatement can name an earlier revoker without acting on it.
+            # Reuse the established grammatical/negation/suffix binding and keep
+            # separate operations, including an amendment in the same sentence.
+            # later-events does not classify transfers. Keep the existing
+            # transfer extractor only inside a separately joined clause naming
+            # this target. Scan both clauses separately so a preceding transfer
+            # target cannot become the reinstatement's grammatical subject.
+            joins, cursor = [], a
+            if any(m[0].lower().startswith("transfer") for m in _changes(text[a:b])):
+                possible_joins = re.finditer(
+                    r";\s*|,?\s*\b(?:and|but|or)\s+(?="
+                    r"(?:the\s+)?(?:functions?\s+(?:under|of)\s+)?Executive\s+Orders?\b|"
+                    r"(?:I(?:\s+hereby)?|hereby|this\s+order(?:\s+hereby)?)\s+transfers?\b)",
+                    text[a:b], re.I)
+                for join in possible_joins:
+                    if _changes(text[cursor:a + join.start()]):
+                        joins.append(join)
+                        cursor = a + join.end()
+            if joins:
+                starts = [a] + [a + join.end() for join in joins]
+                ends = [a + join.start() for join in joins] + [b]
+                parts = list(zip(starts, ends))
+            else:
+                parts = [(a, b)]
+            for ca, cb in parts:
+                hits = _later_events().scan_sentence(text[ca:cb], actor_id)
+                located.extend((ca, cb, h) for h in hits
+                               if h["target"] == (parent_id if via else target_id)
+                               and h["mechanism"] in mechanisms)
+                if joins:
+                    changes = _changes(text[ca:cb])
+                    if changes and all(m[0].lower().startswith("transfer") for m in changes) \
+                            and any(ca <= r[1] < cb for r in chosen):
+                        located.append((ca, cb, None))
         else:
-            word = ""
-    else:
-        word = change[0].lower() if change else ""
-    verb = next((name for prefix, name in [("revok", "revoke"), ("rescind", "revoke"), ("supersed", "supersede"), ("amend", "amend"), ("transfer", "transfer"), ("abolish", "abolish"), ("terminat", "terminate")] if word.startswith(prefix)), "other")
-    negated = bool(change and re.search(r"\b(?:not|never)\b", provision[max(0, change.start() - 25):change.start()], re.I))
-    if negated:
-        verb = "other"
-    exceptions = [m[0] for m in re.finditer(r"\b(?:except\b[^.;]+|provided\s+(?:that|however)[^.;]+|insofar\s+as[^.;]+|to\s+the\s+extent[^.;]+)", provision, re.I)]
-    scope_wording = re.sub(r"^\s*(?:Sec(?:tion)?\.?\s+\d+[A-Za-z]?[.):]\s*)", "", provision, flags=re.I)
-    partial = bool(exceptions or re.search(r"\b(?:section|subsection|paragraph|item|part|schedule)\s+(?:\d|\(|[IVX]+\b)", scope_wording, re.I) or verb == "amend")
-    savings = [text[x:y] for x, y in sentences if re.search(r"\b(?:shall\s+not\s+(?:affect|impair)|without\s+(?:affecting|prejudice)|pending\s+(?:proceedings|matters|actions)|rights?\s+(?:accrued|vested)|savings?|remain\s+in\s+(?:full\s+)?force|continue\s+in\s+effect)\b", text[x:y], re.I)]
-    effective, effective_class, effective_date, date_note = _effective(text, provision, signing_date, filing_date, body_start, body_end)
-    notes = ["Machine lead only; no legal ending asserted.", date_note]
-    if not candidates:
-        notes.append("MISSING_CHANGE_PROVISION: printed reference found, but no change provision located; quote and offsets intentionally empty.")
-    if len(candidates) > 1:
-        notes.append("MULTIPLE_PROVISIONS: first located provision quoted; additional provisions require review.")
-    if via:
-        notes.append("Parent-as-amended reach is a lead only; target membership and exceptions require confirmation.")
-    if negated:
-        notes.append("NEGATED_CHANGE_WORDING: no change event inferred from the negative predicate.")
-    return {"id": "ACT:" + target_id + ">" + actor_id, "target_id": target_id, "actor_id": actor_id, "actor_source": source, "provision_label": next((h.group().strip() for h in reversed(list(HEADING.finditer(text[:a or 0]))) if h["section"]), ""), "provision_text": provision, "char_start": a, "char_end": b, "verb": verb, "scope": "partial" if partial else "whole_via_parent" if via else "whole", "names_target": not via, "reaches_target_via": parent_id + " as amended" if via else "", "signing_date": signing_date, "filing_date": filing_date, "effective_wording": effective, "effective_class": effective_class, "effective_date": effective_date, "exceptions_text": exceptions, "savings_phrases": savings, "confidence": "medium" if candidates else "low", "notes": " ".join(notes)}
+            located.append((a, b, None))
+
+    def record_for(a, b, hit=None):
+        provision = text[a:b] if a is not None else ""
+        changes = _changes(provision)
+        # Prefer a change verb following the printed target. This avoids picking a
+        # historical descriptor ('amended') ahead of 'is revoked'.
+        local_ref = next((r for r in chosen if a is not None and a <= r[1] < b), None)
+        following = [m for m in changes if local_ref and m.start() + a >= local_ref[2] and not re.search(r"as\s+$", provision[max(0, m.start() - 4):m.start()], re.I)]
+        change = (changes[-1] if list_context else (following or changes)[0]) if changes else None
+        if list_context:
+            # Historical 'as amended by EO...' inside an item must not displace
+            # the governing 'are revoked:' instruction.
+            governing_end = list_context[2].rfind(":")
+            governing = list(CHANGE.finditer(list_context[2][:governing_end]))
+            if governing:
+                word = governing[-1][0].lower()
+            else:
+                word = ""
+        else:
+            word = change[0].lower() if change else ""
+        verb = next((name for prefix, name in [("revok", "revoke"), ("rescind", "revoke"), ("supersed", "supersede"), ("amend", "amend"), ("transfer", "transfer"), ("abolish", "abolish"), ("terminat", "terminate"), ("reinstat", "reinstate")] if word.startswith(prefix)), "other")
+        if hit:
+            verb = mechanisms[hit["mechanism"]]
+        negated = bool(not hit and change and re.search(r"\b(?:not|never)\b", provision[max(0, change.start() - 25):change.start()], re.I))
+        if negated:
+            verb = "other"
+        exceptions = [m[0] for m in re.finditer(r"\b(?:except\b[^.;]+|provided\s+(?:that|however)[^.;]+|insofar\s+as[^.;]+|to\s+the\s+extent[^.;]+)", provision, re.I)]
+        scope_wording = re.sub(r"^\s*(?:Sec(?:tion)?\.?\s+\d+[A-Za-z]?[.):]\s*)", "", provision, flags=re.I)
+        partial = bool((hit and _later_events().is_partial(hit["qualifier"])) or exceptions or re.search(r"\b(?:section|subsection|paragraph|item|part|schedule)\s+(?:\d|\(|[IVX]+\b)", scope_wording, re.I) or verb == "amend")
+        savings = [text[x:y] for x, y in sentences if re.search(r"\b(?:shall\s+not\s+(?:affect|impair)|without\s+(?:affecting|prejudice)|pending\s+(?:proceedings|matters|actions)|rights?\s+(?:accrued|vested)|savings?|remain\s+in\s+(?:full\s+)?force|continue\s+in\s+effect)\b", text[x:y], re.I)]
+        effective, effective_class, effective_date, date_note = _effective(text, provision, signing_date, filing_date, body_start, body_end)
+        notes = ["Machine lead only; no legal ending or revival asserted.", date_note]
+        if verb == "reinstate":
+            notes.append("REINSTATEMENT_LEAD: historical restoration wording requires provision-level review; no date, duration, expired obligation or earlier gap is reset.")
+        if a is None:
+            notes.append("MISSING_CHANGE_PROVISION: printed reference found, but no change provision located; quote and offsets intentionally empty.")
+        if len(located) > 1:
+            notes.append("MULTIPLE_PROVISIONS: located provisions retained separately; all require review.")
+        if via:
+            notes.append("Parent-as-amended reach is a lead only; target membership and exceptions require confirmation.")
+        if negated:
+            notes.append("NEGATED_CHANGE_WORDING: no change event inferred from the negative predicate.")
+        return {"id": "ACT:" + target_id + ">" + actor_id, "target_id": target_id, "actor_id": actor_id, "actor_source": source, "provision_label": next((h.group().strip() for h in reversed(list(HEADING.finditer(text[:a or 0]))) if h["section"]), ""), "provision_text": provision, "char_start": a, "char_end": b, "verb": verb, "scope": "partial" if partial else "whole_via_parent" if via else "whole", "names_target": not via, "reaches_target_via": parent_id + " as amended" if via else "", "signing_date": signing_date, "filing_date": filing_date, "effective_wording": effective, "effective_class": effective_class, "effective_date": effective_date, "exceptions_text": exceptions, "savings_phrases": savings, "confidence": "medium" if a is not None else "low", "notes": " ".join(notes)}
+
+    records = [record_for(a, b, hit) for a, b, hit in located] if located else [record_for(None, None)]
+    if len(records) > 1:
+        for record in records:
+            record["id"] += "#" + str(record["char_start"]) + "-" + record["verb"]
+    return records
+
+
+def acting_provision(target_id, actor_id, text, source, signing_date=None, filing_date=None, parent_id=None):
+    """Compatibility view of the first lead; ordinary discovery retains all leads."""
+    records = acting_provisions(target_id, actor_id, text, source, signing_date, filing_date, parent_id)
+    if not records:
+        return None
+    first = dict(records[0])
+    if len(records) > 1:
+        first["notes"] += " COMPATIBILITY_FIRST_PROVISION: use acting_provisions for all located operations."
+    return first
 
 
 def discover_mentions(actor_id, text, source, signing_date=None, filing_date=None, with_references=False):
@@ -511,10 +590,11 @@ def discover_mentions(actor_id, text, source, signing_date=None, filing_date=Non
     refs = [r for r in _references(text) if start <= r[1] < end]
     for target in sorted({r[0] for r in refs}):
         if target != actor_id:
-            record = acting_provision(target, actor_id, text, source, signing_date, filing_date)
-            if record and record["provision_text"]:
-                result.append(record)
-            elif record and with_references:
+            records = acting_provisions(target, actor_id, text, source, signing_date, filing_date)
+            located = [record for record in records if record["provision_text"]]
+            if located:
+                result.extend(located)
+            elif records and with_references:
                 first = next(r for r in refs if r[0] == target)
                 a, b = max(start, first[1] - 200), min(end, first[2] + 200)
                 references.append({"target_id": target, "actor_id": actor_id, "ref_char_start": first[1],
@@ -533,7 +613,21 @@ def generic_reference_count(text):
 
 def chain(target_id, acting_records, generic_refs_excluded=0):
     events = []
-    records = [r for r in acting_records if r.get("target_id") == target_id and r.get("scope") != "generic" and r.get("provision_text") and r.get("verb") != "other"]
+    # The compiler already carries all exact source variants as alternatives.
+    # Retain distinct operations/spans without double-counting the primary lead.
+    records, seen = [], set()
+    for primary in acting_records:
+        for r in [primary, *primary.get("alternative_provisions", [])]:
+            if r.get("target_id") != target_id or r.get("scope") == "generic" or not r.get("provision_text") or r.get("verb") == "other":
+                continue
+            source = r.get("actor_source") or {}
+            key = (r["actor_id"], source.get("text_path"), source.get("text_sha256"),
+                   source.get("sha256"), r.get("char_start"), r.get("char_end"),
+                   r["verb"], r.get("scope"), r.get("names_target"), r.get("reaches_target_via"),
+                   r["provision_text"])
+            if key not in seen:
+                seen.add(key)
+                records.append(r)
     for r in sorted(records, key=lambda r: (r.get("signing_date") or "9999-99-99", r["actor_id"], r.get("char_start") or 0)):
         sections = [m[0] for m in re.finditer(r"\b(?:sections?|subsections?|paragraphs?|items?|parts?|schedule)\s+[\dIVX]+(?:\([a-z0-9]+\))*", r["provision_text"], re.I)]
         events.append({"id": "CHAIN:" + target_id + "#" + str(len(events) + 1), "actor_id": r["actor_id"], "signing_date": r.get("signing_date"), "verb": r["verb"], "how_named": "direct" if r["names_target"] else "parent_as_amended", "sections_touched": sections or [r["scope"]], "provision_text": r["provision_text"], "char_start": r["char_start"], "char_end": r["char_end"], "source": r["actor_source"], "confidence": r.get("confidence", "medium"), "notes": "Change wording lead; chronology does not decide legal effect."})

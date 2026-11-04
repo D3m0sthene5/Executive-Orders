@@ -147,6 +147,9 @@ def main(argv=None):
     for cmd in ('dossier','sheet'):
         s=sub.add_parser(cmd);s.add_argument('instrument_id');s.add_argument('--agent',default='');s.add_argument('--write',type=Path)
     s=sub.add_parser('history');s.add_argument('instrument_id');s.add_argument('--full',action='store_true')
+    s=sub.add_parser('history-at',help='MAITLAND: query an independently reviewed provision history; research only');s.add_argument('bundle',type=Path);s.add_argument('--provision',required=True);s.add_argument('--on',required=True);s.add_argument('--write',type=Path)
+    s=sub.add_parser('history-check',help='validate a bounded MAITLAND research bundle');s.add_argument('bundle',type=Path)
+    s=sub.add_parser('history-impact',help='use Valla to identify historical answers requiring revalidation');s.add_argument('results',type=Path);s.add_argument('--changed',type=Path,required=True);s.add_argument('--write',type=Path)
     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
     s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path)
@@ -224,6 +227,36 @@ def main(argv=None):
             compact=summary(result)
             if a.write:compact['receipt']=str(a.write)
             print(json.dumps(compact,ensure_ascii=False,indent=2));return int(not result['ok'])
+        if a.command=='history-check':
+            from provision_history import load
+            h=load(repo,a.bundle)
+            print(json.dumps({'mechanical_validation_passed':True,'provisions':len(h['provisions']),
+                'transitions':len(h['ordered']),'reviewed_record_scopes':len(h['reviews']),
+                'canonical_approval':False,'human_certified':False},indent=2));return 0
+        if a.command in ('history-at','history-impact'):
+            from provision_history import query,revalidation_report
+            if a.write:
+                if a.write.exists():raise ValueError('Historical query output exists; refusing overwrite')
+                if a.write.suffix!='.json' or not a.write.resolve().is_relative_to(repo/'research/progress'):
+                    raise ValueError('Historical research output requires a new JSON file under research/progress')
+            if a.command=='history-at':result=query(repo,a.bundle,a.provision,a.on)
+            else:
+                saved=read(a.results)
+                if isinstance(saved,dict) and saved.get('schema')=='eo-provision-history-query/v1':
+                    saved={'schema':'eo-provision-history-results/v1','queries':[saved]}
+                if (not isinstance(saved,dict) or saved.get('schema')!='eo-provision-history-results/v1'
+                        or not isinstance(saved.get('queries'),list) or len(saved['queries'])>10000
+                        or any(not isinstance(q,dict) or not isinstance(q.get('query_id'),str)
+                               or not isinstance(q.get('provision_id'),str) or not isinstance(q.get('dependencies'),dict)
+                               or any(not isinstance(k,str) or not isinstance(v,str) for k,v in q['dependencies'].items())
+                               for q in saved['queries'])):
+                    raise ValueError('Invalid bounded historical query results')
+                changed=read(a.changed)
+                if not isinstance(changed,dict) or any(not isinstance(k,str) or (v is not None and not isinstance(v,str)) for k,v in changed.items()):
+                    raise ValueError('Invalid historical dependency hash map')
+                result=revalidation_report(saved,changed)
+            if a.write:dump(a.write,result)
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
         if a.command=='view':
             import batch
             print(batch.view(repo,a.packet,a.order,a.source));return 0

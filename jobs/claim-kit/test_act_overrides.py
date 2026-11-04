@@ -116,6 +116,26 @@ class ActOverrideTests(unittest.TestCase):
         summary = json.loads((self.out / "SUMMARY.json").read_text(encoding="utf-8"))
         self.assertEqual(summary["counts"]["act_overrides_ingested"], 1)
 
+    def test_reinstate_uses_the_same_exact_span_independent_review_gate(self):
+        r = self.record()
+        r["verb"] = "reinstate"
+        self.write_ledger(r)
+        report = self.build_with(r)
+        self.assertEqual([row["status"] for row in report], ["ingested"])
+        (act,) = self.acting()
+        self.assertEqual(act["verb"], "reinstate")
+        self.assertEqual(act["provenance"], "agent_located")
+        self.assertEqual(act["provision_text"], EO6[act["char_start"]:act["char_end"]])
+        self.assertEqual(self.dossier("EO:1")["chain"]["events"][0]["verb"], "reinstate")
+
+    def test_reinstate_does_not_bypass_review_or_post_review_mutation(self):
+        r = self.record()
+        r["verb"] = "reinstate"
+        self.assert_refused(r, "changed_after_review:verb")
+        self.write_ledger(r)
+        r["review"]["independent"] = False
+        self.assert_refused(r, "review_not_independent")
+
     def test_hash_mismatches_refused(self):
         r = self.record(); r["actor_source"]["text_sha256"] = "0" * 64
         self.assert_refused(r, "actor_text_sha256_mismatch")

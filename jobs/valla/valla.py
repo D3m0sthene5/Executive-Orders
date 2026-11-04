@@ -446,7 +446,8 @@ def confirmed_findings(repo, active, ids=None):
                 dependencies_valid(repo, f['dependencies'], c, ())
                 good.append(f)
             except (ValueError, KeyError, TypeError, OSError, UnicodeError) as exc:
-                refused.append({'path': p.relative_to(repo).as_posix(), 'record_id': f.get('record_id'), 'reason': str(exc)})
+                refused.append({'path': p.relative_to(repo).as_posix(), 'record_id': f.get('record_id'),
+                                'instrument_id': f.get('instrument_id'), 'reason': str(exc)})
     return good, refused
 
 
@@ -531,6 +532,7 @@ def attach(repo, ids, exclude=()):
             'package_scan': index['package_scan'],
             'protocol_pins': index['protocol_pins'], 'premise_library_sha256': index['premise_library_sha256'],
             'claims': index['claims'], 'review_queue': index['review_queue'],
+            'refused_method_reviews': index['refused_method_reviews'],
             'whole_case_review_required': True, 'automatic_approvals': 0}
 
 

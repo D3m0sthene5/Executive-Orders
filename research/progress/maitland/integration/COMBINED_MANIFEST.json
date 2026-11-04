@@ -1,0 +1,63 @@
+{
+  "base": "600ae3018f71025b3e53dc8538b8f92e6e159b76",
+  "preflight_commit": "a1910b5e92edf45bbd0fb3b11a39921686ee7a1d",
+  "merged_paths": [
+    "AGENTS.md",
+    "jobs/claim-checker/checker.py",
+    "jobs/claim-kit/AGENT_PROTOCOL.md",
+    "jobs/claim-kit/BATCH.md",
+    "jobs/claim-kit/batch.py",
+    "jobs/claim-kit/dispatch.py",
+    "jobs/claim-kit/kit.py",
+    "jobs/claim-kit/test_dispatch.py"
+  ],
+  "conflicts": [
+    "jobs/claim-kit/kit.py"
+  ],
+  "resolution": "Kept both independent added CLI handlers in their original order; no gate or command removed.",
+  "checked_base_runtime_pins": {
+    "jobs/claim-kit/provision_history.py": "c34dfe3f75a3b8f28a2ace2f0ab830130c22bef556f3550657bc160c10915cc1",
+    "jobs/claim-kit/test_provision_history.py": "3811f1c724f7077715b37dd9688ff9adcb0929f509d24400a3bbac5b96016c74",
+    "jobs/claim-kit/test_provision_history_cli.py": "c674f4f5c813ab4737ecb3fe6be20ff13d50636e0bfc29b6f7f0936aa5ad5c82",
+    "jobs/claim-kit/excavate.py": "3114200aac417bdf2856b5a57996c510076c3408e6cad062b992a3dc07d4d785",
+    "jobs/claim-kit/act_overrides.py": "8dd91ce426bef4bc9a56bf56af8cf1a42f706ae6d0f8c286b910543a320895a9",
+    "jobs/claim-kit/test_reinstatement_handoff.py": "164a7cbac175279793a33a36dd519a8ac81ef20be67f7ac838f583bb2e75a9e4",
+    "jobs/claim-kit/inputs.py": "ca00af7039e94b926f4993bf74ac277b19a9d2020c12ef375deda3ee62efdbc0",
+    "jobs/claim-kit/needs.txt": "4051da38b25a3e21f9a7c64dbff815e11332c6005a6bd6c95d78aaab68193a25",
+    "jobs/valla/valla.py": "364f6e798b42147c8b138e73d6db3f5fc92f8ed2b0e74b12bdc0e9b8114c29f8",
+    "jobs/valla/test_valla.py": "a7f11a5a4159ef1d243ba129c7318c54ff153bdba6615df8cd686b704bc7d090",
+    "jobs/valla/premises.json": "e0b9d0af27e8ef2d0461046d4801b9c2cb5a20529051aab8ddbfaf3af745cac3",
+    "jobs/later-events/later_events.py": "54e8e007ca06b841132334389e638ffdc384ab85aa346fd147c1e67aa68d5f5a",
+    "jobs/clause-drafts/segment.py": "0ea7afd1bfd6e5776068d32bda1b58efcc367db3055740ee64709da0caef6573",
+    "jobs/claim-kit/assemble.py": "dd0e89fa05bcf619fa795e6ee5702255c89d69e79663d5f06ac9143557e8da6f",
+    "jobs/claim-kit/test_build.py": "342b243fff4f6a03b6f893c46905e6758e2d4bbf156e774614e38a5408cb39c2",
+    "jobs/claim-kit/test_act_overrides.py": "b76efc08eb1acb6a0d6197d9d3c9274fb6c59422b4ca2750712a7a5721472d4a"
+  },
+  "initial_attempt": "Initial disposable combined tree retained old tracked runtime files alongside new tests; first attempt failed. Explicit final reviewed-file hydration and all pin assertions corrected the integration fixture. No production runtime changed.",
+  "combined_runtime_hashes": {
+    "AGENTS.md": "b06de16b4c598d004eebcef9c43b7b7bb06a67e04a0ee8458e7d2faa4c1d488a",
+    "jobs/claim-checker/checker.py": "dacaff5a488367c51187337aac9c7660fd746a61373060651c33ab3bba61a598",
+    "jobs/claim-kit/AGENT_PROTOCOL.md": "58870923103ea4ce4c241c6c1d5528da17a567d937241b62acff83016d9b87bb",
+    "jobs/claim-kit/BATCH.md": "01ad1a5f9c75fadfbbd641509e1350bf912057776456a72f3ce0e253031f9492",
+    "jobs/claim-kit/batch.py": "80bc0bafca9d5cf26c524851d84e03351858f0b73b5c388ea1274c946889de9c",
+    "jobs/claim-kit/dispatch.py": "ca697ec7c5c0766f7fe980e56580be1a176e5a86208d79b431f9be6bdfe0d3ad",
+    "jobs/claim-kit/kit.py": "230a674e7b511a5f0c0f6c28d276d1529a304e71a25d1bf46ab0712ce84d2cf2",
+    "jobs/claim-kit/test_dispatch.py": "73e9ed6445533b09eadb2ad72a3de2c8af291d4bc09f42df6db1aca92bc2a711"
+  },
+  "verification": {
+    "claim_kit": {
+      "tests": 586,
+      "skips": 7,
+      "passed": true
+    },
+    "valla": {
+      "tests": 37,
+      "passed": true
+    },
+    "native_replay": {
+      "dated_queries": 14,
+      "canonical_writes": 0,
+      "passed": true
+    }
+  }
+}

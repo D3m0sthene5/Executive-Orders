@@ -35,13 +35,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 113; `search` finds the rest)
+## Newest results (6 of 114; `search` finds the rest)
 
+- 2026-11-04 F-20261104-codex-maitland **worked**: Extend existing claim-kit and later-events with reviewed provision histories and examine Valla stale refusals… Lesson: Separate documentary dates/text from legal effect; pin review membership and restored ancestry; stale Valla reviews need source examination, not hash renewal; source-ready inference and whole-case re…
 - 2026-11-04 F-20261104-codex-dispatch-preflight **worked**: Screen frozen packet freshness and required source custody before producer dispatch Lesson: Screen before spending model tokens, preserve mixed/blocked members, recheck immediately before launch, and retain all independent source/legal gates.
 - 2026-11-03 F-20261103-bacon-recovery **stopped at gate**: Recover unpublished Bacon session artifacts and publication state Lesson: A chat summary and local-only bundle are insufficient for scientific recovery; retrieve original artifacts before continuing the frozen draw
 - 2026-11-02 F-20261102-population-contract-repair **worked**: Reproduce failed refresh and reconcile claim-kit contract to already-owner-merged PR119 rows Lesson: Carry accepted adoption into the independent population contract; do not infer authorization from mutable progress CSVs
 - 2026-11-02 F-20261102-mountweazel-notes **worked**: Preserve optional source notes on blinded reviewer cards Lesson: Normalize optional presentation keys without erasing evidence or changing canonical/control payloads
 - 2026-11-02 F-20261102-lachmann-reuse **worked**: Reuse exact standalone Lachmann working-text checks in ordinary claim-kit preparation Lesson: Reuse only the current exact source-bound confirmation; a changed record or declaration needs a new packet. Text verification never approves legal judgment or original authentication.
-- 2026-11-02 F-20261102-held-actor-retained-replay **worked**: Use newly retained raw PDFs in a fresh final-runtime four-order supplement replay Lesson: Fresh exact-byte evidence access is useful preparation, never proof that an instrument applies or ends a command
 
-Register: 18 owner decisions, 2 answered questions, 113 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 18 owner decisions, 2 answered questions, 114 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
