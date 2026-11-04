@@ -1,0 +1,443 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "research/excavator/claude-tribonian-2026-11-04/f01/packet/PACKET.json",
+  "seconds": 163.679,
+  "files_read": 39776,
+  "file_reads": 80190,
+  "packet_fingerprint": "f6e07373cf4a7681a0b28b8d42bd6e63f21c0117ebe8cba6f640e009556cef75",
+  "claims_checked": 33,
+  "defect_flags": 3,
+  "coverage_gaps": 30,
+  "claims_with_flags": 3,
+  "claims_with_coverage_gaps": 10,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:9675",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:9731",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:9793",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 4,
+      "instrument_id": "EO:9855",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 5,
+      "instrument_id": "EO:9899",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 6,
+      "instrument_id": "EO:9910",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 7,
+      "instrument_id": "EO:9942",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 8,
+      "instrument_id": "EO:9949",
+      "flags": [
+        {
+          "code": "unaddressed_citing_instrument",
+          "scope_id": "whole",
+          "field": "claim",
+          "span": "EO:10804 (1959-02-12)",
+          "detail": "Held EO:10804 (1959-02-12) revokes EO 9721, which this order amends or modifies; the claim never mentions EO:10804 in its ends, events, reasoning, searches or gaps.",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-10804-delegating-the-civil-service-commission-the-authority-the-president.txt",
+            "text_sha256": "41b6c5dd182ed7ccad05cc344eca506899f5c377f74aae393d04bc880af51215",
+            "char_start": 374,
+            "char_end": 1206,
+            "quote": "SEC. 2. Executive Order No. 9721 ' of May 10, 1946; Executive Order No. 10103 of February 1, 1950; and Executive Order No. 10774 of July 25, 1958, insofar as it affects any employee covered by section 6 (a) of the International Atomic Energy Agency Participation Act of 1957 prior to the repeal of that section by the Federal Employees International Organization Service Act, are revoked except that each shall be considered to remain in effect with respect to any employee subject thereto serving with an international organization on the date of enactment of the Federal Employees International Organization Service Act who does not elect to have coverage under the latter Act pursuant to the provisions of section 6 of that Act, and for the purposes of any rights and benefits vested under each such order prior to the date of th",
+            "instrument_id": "EO:10804",
+            "date": "1959-02-12",
+            "identity_basis": "app_publisher_listing",
+            "cited_order": "EO:9721"
+          },
+          "flag_id": "4126a1851a493130"
+        }
+      ],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 9,
+      "instrument_id": "EO:9965",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 10,
+      "instrument_id": "EO:9996",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 11,
+      "instrument_id": "EO:10032",
+      "flags": [
+        {
+          "code": "attributed_order_wording_mismatch",
+          "scope_id": "whole",
+          "field": "claim.research_rationale",
+          "span": "Text: The order recites that a dispute exists between the Akron, Canton & Youngstown Railroad Company and certain other carriers designated in a list attached to the order, and certain of their employees represented by the Brotherhood of Locomotive Engineers, a labor organization.",
+          "detail": "Reasoning describes the order as 'that a dispute exists between the Akron, Canton & Youngstown Railroad Company and certain other carriers designated in a list attached to the order, and certain of their employees represented by the Brotherhood of Locomo'; 'railroad' is not in the source in the verified order body.",
+          "source": {
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10032.txt",
+            "text_sha256": "49c4d157b85005a24041379993faf400dc6ee9078f9f3d5f72f3e7fab7b2b3f6",
+            "char_start": 580,
+            "char_end": 2280,
+            "source_id": "ORIGINAL:EO:10032"
+          },
+          "flag_id": "411362fee70e726e"
+        }
+      ],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 12,
+      "instrument_id": "EO:10037",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 13,
+      "instrument_id": "EO:10038",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 14,
+      "instrument_id": "EO:10045",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 15,
+      "instrument_id": "EO:10048",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 16,
+      "instrument_id": "EO:10105",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 17,
+      "instrument_id": "EO:10109",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 18,
+      "instrument_id": "EO:10125",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 19,
+      "instrument_id": "EO:10150",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 20,
+      "instrument_id": "EO:10157",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 21,
+      "instrument_id": "EO:10286",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 22,
+      "instrument_id": "EO:10306",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 23,
+      "instrument_id": "EO:10376",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 24,
+      "instrument_id": "EO:10449",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 25,
+      "instrument_id": "EO:10570",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 26,
+      "instrument_id": "EO:10635",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 27,
+      "instrument_id": "EO:10643",
+      "flags": [
+        {
+          "code": "attributed_stock_phrase_absent",
+          "concept": "standstill",
+          "detail": "claim.research_rationale.independent_command_check: attributed standstill is absent from the verified order body",
+          "source": {
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10643.txt",
+            "text_sha256": "6f9a85c2b0466777c64241dd58cdc43834c1886aa82025500c5450e4a4495521",
+            "char_start": 638,
+            "char_end": 3264,
+            "boundary": "numbered",
+            "source_id": "ORIGINAL:EO:10643"
+          },
+          "flag_id": "9ab58ca57a771d7c"
+        }
+      ],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 28,
+      "instrument_id": "EO:10689",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 29,
+      "instrument_id": "EO:10696",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 30,
+      "instrument_id": "EO:10709",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.research_rationale",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 31,
+      "instrument_id": "EO:10811",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 32,
+      "instrument_id": "EO:10842",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 33,
+      "instrument_id": "EO:10848",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
