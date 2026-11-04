@@ -32,3 +32,7 @@ All code-bearing publication uses `[skip actions]`, covered by PR136's retained 
 The existing owner-private Site receives only the dated decision section. Its source/deployment identity is separate from the repository and native tracker pins; successful publication is recorded in the final handoff. Browser QA is unavailable in this follow-up runtime; JavaScript syntax and ten existing real-data/render/refusal tests pass. No preview server or substitute browser is started.
 
 The next complete-model-work comparison is designed in `NEXT_TEST.md`. Required current packet/access and paired behavior/usage observations are not replaced by historical transcripts, synthetic metering or hoped-for results. Scientific adoption and human certification remain under their existing authority.
+
+## Final publication
+
+Draft PR137: https://github.com/D3m0sthene5/Executive-Orders/pull/137 (stacked on136). Reviewed decision/data commit e4e6130cad0069b2e51f52b12bd7abd3abb75980. Owner-private existing hub publication succeeded from Site source1f60df5f98132bbcc15e262c143386067a1d9d31; receipt in PUBLICATION_RECEIPT.json. The final follow-up commit adds only the dated display and publication/handoff metadata.
