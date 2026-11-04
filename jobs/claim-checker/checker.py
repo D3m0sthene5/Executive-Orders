@@ -650,7 +650,7 @@ def _row(rows, step, check, field, result, status, detail=""):
                  "status": status, "detail": (detail or "")[:600]})
 
 
-def check_source(ref, field, ctx, rows):
+def check_source(ref, field, ctx, rows, *, allow_download=True):
     step = step_for_path(field)
     raw = ref.get("sha256") or ref.get("local_file_sha256")
     sha = S.sha_hex(raw)
@@ -686,9 +686,9 @@ def check_source(ref, field, ctx, rows):
             status, detail = "gpo_published_hash_match", (
                 f"GPO publishes these bytes at {g.get('url')} with this SHA-256 (PREMIS {g.get('premis_url')}, "
                 f"checked {g.get('checked_utc')}); verifiable by re-fetching")
-        elif verify_by_download(url, sha, ctx.cache_dir):
+        elif allow_download and verify_by_download(url, sha, ctx.cache_dir):
             status, detail = "held_bytes_verified", "re-downloaded from the cited URL and re-hashed on this machine; match"
-        elif verify_by_archive(sha, ctx.archive_captures.get(sha), ctx.cache_dir):
+        elif allow_download and verify_by_archive(sha, ctx.archive_captures.get(sha), ctx.cache_dir):
             cap = ctx.archive_captures[sha]
             status, detail = "held_bytes_verified", (
                 f"re-fetched from the archived capture ({cap.get('archive')} {cap.get('captured_utc', '')}) "

@@ -13,6 +13,14 @@ unset, using the existing experimental-overlay path for a reviewed proposal;
 owner acceptance remains separate. The legacy individual
 JSON commands below remain supported.
 
+Before launching a production model, require a fresh `kit.py dispatch-check
+PACKET` exit 0 (use repeated `--order EO:N` only for an explicit subset).
+`prepare` writes an initial custody/freshness screen and exits nonzero on any
+mandatory source block. Keep blocked members for acquisition/checkpoint work;
+`prepare --research-only` exports evidence but does not authorize production.
+Recheck immediately before dispatch, freeze shared inputs during the wave, and
+never renew a stale seal. See BATCH.md for receipts and existing token telemetry.
+
 1. Pull the assigned branch and read `HANDOFF/README.md`, your current assignment,
    `jobs/claim-drafts/AGENT_GUIDE.md` and `research/stage19/CLAIM_SCHEMA.md`.
    `python jobs/claim-kit/kit.py next --agent NAME --n 20` reserves disjoint work in
