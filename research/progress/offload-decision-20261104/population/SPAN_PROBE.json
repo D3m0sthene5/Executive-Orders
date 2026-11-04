@@ -1,0 +1,235 @@
+{
+  "equivalent_output_sha256": "be3fdbfe224de6f101b3f9a1d45d2430b2c9161de6bd07d9e233dc23f23b1f5a",
+  "equivalent_per_occurrence_dispositions": [
+    {
+      "full_source_dictionary_sha256": "6e9bcec09cbbca4e5ea0223f8231f8f869fde0379682df0348ee415b0e8f5660",
+      "instrument_id": "EO:10622",
+      "pointer": "$.operative_clauses[0].first_end.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "6e9bcec09cbbca4e5ea0223f8231f8f869fde0379682df0348ee415b0e8f5660",
+      "instrument_id": "EO:10622",
+      "pointer": "$.operative_clauses[1].first_end.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "6e9bcec09cbbca4e5ea0223f8231f8f869fde0379682df0348ee415b0e8f5660",
+      "instrument_id": "EO:10622",
+      "pointer": "$.operative_clauses[2].first_end.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "6e9bcec09cbbca4e5ea0223f8231f8f869fde0379682df0348ee415b0e8f5660",
+      "instrument_id": "EO:10622",
+      "pointer": "$.savings_residuals.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "6e9bcec09cbbca4e5ea0223f8231f8f869fde0379682df0348ee415b0e8f5660",
+      "instrument_id": "EO:10622",
+      "pointer": "$.whole_order_end.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "bcd73b042c4c98420bbc348561ddefbad8880cdf650da267cf9dd1135fd69b18",
+      "instrument_id": "EO:11040",
+      "pointer": "$.operative_clauses[0].first_end.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "bcd73b042c4c98420bbc348561ddefbad8880cdf650da267cf9dd1135fd69b18",
+      "instrument_id": "EO:11040",
+      "pointer": "$.savings_residuals.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "bcd73b042c4c98420bbc348561ddefbad8880cdf650da267cf9dd1135fd69b18",
+      "instrument_id": "EO:11040",
+      "pointer": "$.whole_order_end.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "726b7c845c43a8bf093fa6c49f05348ab89d7125a36e851dd5e40eba35bed77f",
+      "instrument_id": "EO:11078",
+      "pointer": "$.operative_clauses[0].first_end.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "726b7c845c43a8bf093fa6c49f05348ab89d7125a36e851dd5e40eba35bed77f",
+      "instrument_id": "EO:11078",
+      "pointer": "$.savings_residuals.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "726b7c845c43a8bf093fa6c49f05348ab89d7125a36e851dd5e40eba35bed77f",
+      "instrument_id": "EO:11078",
+      "pointer": "$.whole_order_end.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "1e4ab53263a59ea46927c47a4ad9b2abff05a0a7d5c9a2e3ecada83dd74aba1d",
+      "instrument_id": "EO:9922",
+      "pointer": "$.operative_clauses[0].first_end.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "1e4ab53263a59ea46927c47a4ad9b2abff05a0a7d5c9a2e3ecada83dd74aba1d",
+      "instrument_id": "EO:9922",
+      "pointer": "$.savings_residuals.source",
+      "status": "pass"
+    },
+    {
+      "full_source_dictionary_sha256": "1e4ab53263a59ea46927c47a4ad9b2abff05a0a7d5c9a2e3ecada83dd74aba1d",
+      "instrument_id": "EO:9922",
+      "pointer": "$.whole_order_end.source",
+      "status": "pass"
+    }
+  ],
+  "initial_prototype_rejections": [
+    "Review caught bool/integer cache-key alias approval before type validation.",
+    "Review caught empty zero-width span acceptance.",
+    "Review caught decoding non-UTF8 changed bytes before hash mismatch refusal.",
+    "All three were corrected in the isolated prototype; no native code or gates changed."
+  ],
+  "interpretation": "Local deterministic predicate experiment. Native verifier unchanged. No model/tool/source-review step removal or measured token, cash, labor or readiness saving.",
+  "invalidation_probes": [
+    {
+      "case": "changed_source_bytes",
+      "outcomes_equal": true,
+      "pass": 0,
+      "refusals": 14
+    },
+    {
+      "case": "changed_non_utf8_source_bytes",
+      "outcomes_equal": true,
+      "pass": 0,
+      "refusals": 14
+    },
+    {
+      "case": "truncated_source_bytes",
+      "outcomes_equal": true,
+      "pass": 0,
+      "refusals": 14
+    },
+    {
+      "case": "unchanged_source",
+      "outcomes_equal": true,
+      "pass": 14,
+      "refusals": 0
+    },
+    {
+      "case": "one_altered_quote_same_source_and_span",
+      "outcomes_equal": true,
+      "pass": 13,
+      "refusals": 1
+    },
+    {
+      "case": "one_out_of_range_span",
+      "outcomes_equal": true,
+      "pass": 13,
+      "refusals": 1
+    },
+    {
+      "case": "boolean_offset_after_cached_integer_span",
+      "outcomes_equal": true,
+      "pass": 1,
+      "refusals": 1
+    },
+    {
+      "case": "one_zero_width_empty_quote",
+      "outcomes_equal": true,
+      "pass": 13,
+      "refusals": 1
+    },
+    {
+      "case": "stale_input_after_successful_previous_invocation",
+      "outcomes_equal": true,
+      "pass": 0,
+      "refusals": 14
+    }
+  ],
+  "limits": [
+    "Latest canonical claim versions unverified.",
+    "Raw PDF bytes and source-grade/identity/applicability checks not performed.",
+    "Reads use the local warm filesystem; rounds share an OS cache and are not network acquisition or production workload.",
+    "Setup and full-reference disposition costs are included explicitly; common source must stay available to every independent reviewer.",
+    "Grouped predicate is a candidate internal optimization, not a replacement verifier or production cache approval.",
+    "PR135 supplies an explicit mechanical verifier boundary; its exact reviewed verify_files loops over references and is not a pooled cache. This prototype does not replace it.",
+    "The four-claim grouping here does not establish that real ordinary invocations perform these 14 reads together.",
+    "Equivalence fails when source bytes mutate between per-reference reads; only immutable pinned byte snapshots can be admitted.",
+    "Future reuse requires immutable source identity and unchanged predicate policy; this prototype caches only within an invocation."
+  ],
+  "mutable_source_counterexample": {
+    "admissible_for_grouped_reuse": false,
+    "case": "source_mutates_between_reference_reads",
+    "grouped_statuses": [
+      "pass",
+      "pass"
+    ],
+    "outcomes_equal": false,
+    "per_occurrence_statuses": [
+      "pass",
+      "source_hash_mismatch"
+    ],
+    "required_admission": "Already immutable pinned byte snapshot plus unchanged verification policy; mutable source paths are excluded."
+  },
+  "operations": {
+    "competent_per_claim": {
+      "dispositions": 14,
+      "span_checks": 4,
+      "text_hashes": 4,
+      "text_reads": 4,
+      "timing": {
+        "process_cpu_median_ns": 719535,
+        "rounds": 200,
+        "wall_median_ns": 720632,
+        "wall_p10_ns": 575887,
+        "wall_p90_ns": 1397451
+      }
+    },
+    "naive_per_occurrence": {
+      "dispositions": 14,
+      "span_checks": 14,
+      "text_hashes": 14,
+      "text_reads": 14,
+      "timing": {
+        "process_cpu_median_ns": 1464528,
+        "rounds": 200,
+        "wall_median_ns": 1466359,
+        "wall_p10_ns": 1014449,
+        "wall_p90_ns": 4231980
+      }
+    },
+    "per_document_and_exact_span": {
+      "dispositions": 14,
+      "span_checks": 2,
+      "text_hashes": 1,
+      "text_reads": 1,
+      "timing": {
+        "process_cpu_median_ns": 575434,
+        "rounds": 200,
+        "wall_median_ns": 576458,
+        "wall_p10_ns": 446214,
+        "wall_p90_ns": 1025062
+      }
+    }
+  },
+  "orders": 4,
+  "published_versions": 4,
+  "runtime": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "python": "3.12.14"
+  },
+  "schema": "eo-exact-span-grouping-probe/v1",
+  "setup": {
+    "includes": "Verify hashes of all four retained inputs, parse three claim files, select four claims and 14 target refs.",
+    "observed_process_cpu_ns": 78679504,
+    "observed_wall_ns": 79219843
+  },
+  "source_dictionaries": 4,
+  "source_pin": "600ae3018f71025b3e53dc8538b8f92e6e159b76",
+  "source_text_bytes": 33275,
+  "source_text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+  "text_documents": 1
+}
