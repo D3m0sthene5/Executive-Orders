@@ -116,6 +116,9 @@ run. Tests did not dispatch acquisition or the corpus compiler. Existing local
 activity was never treated as finished because an Actions page looked quiet.
 
 Code-bearing publication uses `[skip actions]`; a separate research-only commit
-requests read-only PR checks. No Run-jobs workflow is requested. The existing
-workflow configurations and scientific stores are unchanged. See
+requests read-only PR checks. No Run-jobs workflow is requested. The production runner workflow and scientific stores are unchanged. Hosted
+Geddes lint exposed one omitted test fixture; its read-only sparse checkout now
+includes the unchanged Stage19 validator. The retained failure and independently
+reviewed 96-test sparse replay are in integration/. Runtime/source gates are
+unchanged; new hosted results must be checked for the repaired head. See
 [isolation receipt](integration/ISOLATION.json).

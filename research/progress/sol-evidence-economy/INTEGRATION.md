@@ -9,8 +9,8 @@ the PR132 runtime; the retained rehearsal demonstrates the combination.
    quiet branch or workflow list to infer completion.
 2. Combine approved PR132, PR133 and this branch in an isolated checkout after
    the wave. Append-only Kean entries are unioned by id/revision, then regenerate
-   the brief; preserve dedicated notes and handoffs. There are no workflow edits
-   here. Any runner certificate affected by code must be re-established normally.
+   the brief; preserve dedicated notes and handoffs. The only workflow change adds the unchanged Stage19 validator to the
+   read-only Geddes lint checkout; the production runner workflow is unchanged. Any runner certificate affected by code must be re-established normally.
 3. The rehearsal applies [PR132_RUNTIME.patch](integration/PR132_RUNTIME.patch)
    from main600ae301 to PR132 bd066444 onto local candidate94d3f319. Preserve both
    `prepare --history-bundle` and `--research-only`, dispatch-check, all history,

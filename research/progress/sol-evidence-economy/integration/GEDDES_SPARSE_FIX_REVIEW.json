@@ -1,0 +1,34 @@
+{
+  "verdict": "uphold additive sparse checkout repair for the Geddes lint test job",
+  "examined_utc": "2026-11-04T09:48:42.453303+00:00",
+  "before_commit": "185ec98df37d8df30ceba0afbdef6196cafc84a1",
+  "workflow": ".github/workflows/geddes.yml",
+  "before_git_blob": "74b94629f61e35306e14d9ad79a5d0074491734c",
+  "before_sha256": "4a270264b93460a05df95e77390688cfd8f78c65a70a2ae1f2e45d7a191d4723",
+  "after_git_blob": "bba478a031068c6171ca5fbe24a02c1389aa5277",
+  "after_sha256": "45fd9552f1f1e82f5fa250abb5c543d13d2e96704303f2bb53b468e1965294b5",
+  "added_lint_checkout_path": "/research/stage19/code/claim_gate.py",
+  "exact_one_line_addition_reverses_to_original_bytes": true,
+  "workflow_scope": "Push, pull request and manual trigger definitions, permissions, production dispatch steps, benchmark job and test command are byte-identical to the prior workflow.",
+  "reviewed_source_commit": "94d3f319d81e87a2303e9fe354cd1c3f46a3f8ca",
+  "prior_review_path": "research/progress/sol-evidence-economy/engineering-review/VERDICT.json",
+  "prior_review_sha256": "a53200e6b916cdab3fe0e968ca690778548186a3fe9c70a72bdce7e4ffca7afa",
+  "prior_reviewed_files": 23,
+  "matching_SHA256_and_Git_blobs": 23,
+  "mismatched_paths": [],
+  "stage19_git_blob": "080a0e5a7978375690ba2a5aac86e7c9279f1516",
+  "hosted_failure": {
+    "job_id": "126505247632",
+    "log_path": "research/progress/sol-evidence-economy/integration/GEDDES_HOSTED_FAILURE.log",
+    "sha256": "1c238855530be83a1f75cffe2d8311f05d1f754e5a120a248e08452ecaab7c70",
+    "outcome": "96 tests, one error. Factual fixture could not read research/stage19/code/claim_gate.py."
+  },
+  "local_sparse_replay": {
+    "log_path": "research/progress/sol-evidence-economy/integration/GEDDES_SPARSE_REPLAY.log",
+    "sha256": "d7b68e1be189d16c3a58d6cccb43c927866f7c65239165c4deebfd44bd5f2eb9",
+    "command": "python3 -I -m unittest discover -s jobs/geddes -p test_*.py",
+    "observed": "Ran 96 tests in 5.722s, OK",
+    "status": "local sparse replay verified from coordinator receipt"
+  },
+  "limit": "Hosted rerun outcome is separate from the local sparse replay."
+}
