@@ -8,6 +8,18 @@
 - **Running:** Read-only PR CI may run on this metadata commit; inspect actual statuses before integration.
 - **Asks:** @Owner: none.
 
+## 2026-11-04 04:39 ET: Sol evidence economy — isolated reviewed stack, no production adoption
+
+- **Done:** Source candidate94d3f319 on PR133 c733e69; ordinary Norton factual intervals/partial research, pinned MAITLAND packet context, maintained blind-byte verifier and shared Geddes views. `research/progress/sol-evidence-economy/REPORT.md`, `INTEGRATION.md` and exact independent reviews preserve use and failures.
+- **Real research:** Fresh EO13792 source-first/exact review supports reported interim June10,2017 and final December2017 submissions. New held page9, broader held envelope, narrower public month evidence, five acquisition proposals and unchanged native source-blocked checkpoint retained. No exact final day, receipt/routing, legal first end, whole-case readiness or human certification.
+- **Use/economics:** Real EO13934 ordinary/slim views consume2 history queries, both unknown. Real23-order render0.304922→0.057337s median with exact ordinary/full parity; one-order overhead higher. Blinded26/26text checks pass but26raw unresolved, proper refusal. Synthetic actual checker/complete partial1mechanical/0full-gate, three gaps, tracker unready,0filing. Total tokens/cash/labor and net savings unknown; COSTS.json includes coordination/implementation/review/corrections/failures coverage.
+- **Review:** Source613claim-kit tests7skips,96Geddes,16Norton; independent24probes52focused plus46real comparisons. Separate PR132 bd066444 runtime rehearsal624tests8skips plus independent24probes13mixedCLI; exact resolution/pins retained, no old-review renewal. All workers actual configured OpenAI contexts; no different-family/human claim.
+- **Next:** Keep drafts unmerged during wave; combine132/133/this branch on actual final main between waves, reconcile final checker, rerun actual combined gates, rebuild dossiers and prepare fresh packets/reviews. No active branch/output/cache/lock/deployment/source/scientific store changed. Code-bearing publication skips Actions, separate research-only followup requests read-only PR checks.
+- **Hosted fixture repair:** Draft PR135 is unmerged. Initial hosted Geddes lint missed unchanged Stage19 validator in its narrow checkout. One read-only fixture path added; exact sparse96-test replay passes. Failure/additive independent review retained. Runtime pins/gates and production runner unchanged; recheck final hosted head.
+- **Recorded:** F-20261104-sol-supported-occurrence/history-consumer/blind-bytes/batch-views/eo13792-research/integration.
+- **Asks:** @Owner: A-20261104-1 preserves a concrete independently reviewed versioned legal-timing proposal; current partial research needs no new decision. Scientific adoption remains separate.
+- **Do not:** merge this assignment, assume producers finished, renew stale pins, price cached input as fresh input, claim model savings or promote factual timing to legal exhaustion. Existing Bacon selections/recovery remain untouched.
+
 ## 2026-11-04 UTC: MAITLAND provision histories; isolated storm and Valla correction handoff
 
 - **Done:** Added bounded `kit.py history-check/history-at/history-impact`, separate exact text/legal-effect scopes, typed documentary dates, stable renumbered identity, restored amendment ancestry and membership-aware Valla invalidation. Existing later-events parser now supplies ordinary reinstatement leads; Valla refused-review diagnostics reach dossier views. Kean F-20261104-codex-maitland; `research/progress/maitland/REPORT.md` and `jobs/claim-kit/PROVISION_HISTORY.md`.

@@ -16,6 +16,29 @@ MODEL = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(MODEL)
 MARKER = "norton_factual_event"
 ROLE = "reviewed_factual_event"
+INTERVAL_ROLE = "reviewed_occurrence_interval"
+
+def interval_qualification(marker):
+    i = marker.get("occurrence_interval")
+    if not isinstance(i, dict) or not (MODEL.date(i.get("start")) and MODEL.date(i.get("end")) and
+                                       i["start"] < i["end"] <= MODEL.CUTOFF):
+        return None
+    return (f"Occurrence established within [{i['start']}, {i['end']}] inclusive; "
+            "exact date and legal effect unresolved.")
+
+def interval_classification(interval, on):
+    """As of the end of an ISO civil date. No legal-state inference."""
+    if (not isinstance(interval, dict) or interval.get("occurrence") != "established" or
+            not MODEL.date(interval.get("start")) or not MODEL.date(interval.get("end")) or
+            not interval["start"] < interval["end"] <= MODEL.CUTOFF):
+        raise ValueError("invalid factual occurrence interval")
+    if not MODEL.date(on) or on > MODEL.CUTOFF:
+        raise ValueError("invalid factual observation query date")
+    if on < interval["start"]:
+        return "not_yet_occurred"
+    if on < interval["end"]:
+        return "unknown_if_already_occurred"
+    return "occurred_by_this_date"
 
 
 def _registered(repo, kind, record, keys):
@@ -83,6 +106,10 @@ def reviewed_events(repo, iid, data):
             errors += MODEL.evidence_errors(repo, question, record)
             if not _registered(repo, "evidence", record, ("id",)):
                 errors.append("factual_registry_mismatch:evidence")
+        errors += MODEL.interval_binding_errors(original_answer, evidence, app)
+        if any(r.get("schema") == MODEL.INTERVAL_SCHEMA for r in evidence):
+            if answer_review.get("record_id") != original_answer.get("id") or app_review.get("record_id") != app.get("id"):
+                errors.append("interval_review_record_id_mismatch")
         if (app.get("state") == "human_accepted" and
                 (app_review.get("reviewer_type") != "independent_human" or
                  answer_review.get("reviewer_type") != "independent_human")):
@@ -106,11 +133,14 @@ def reviewed_events(repo, iid, data):
             "answer_review_sha256": MODEL.fingerprint(answer_review),
             "application_review_sha256": MODEL.fingerprint(app_review),
         }
+        interval = record.get("schema") == MODEL.INTERVAL_SCHEMA
+        if interval:
+            metadata["occurrence_interval"] = deepcopy(record["occurrence_interval"])
         source = deepcopy(record["source"])
         source["local_path"] = source["raw_path"]
         source[MARKER] = metadata
         result.append({
-            "id": ident, "role": ROLE, "scope_id": app["scope_id"],
+            "id": ident, "role": INTERVAL_ROLE if interval else ROLE, "scope_id": app["scope_id"],
             "instrument_id": iid, "actor_id": question["entity_id"],
             "mechanism": "factual_" + record["event_kind"],
             "event_date": record["event_date"], "legal_effect": "unresolved",
@@ -118,7 +148,51 @@ def reviewed_events(repo, iid, data):
             "char_start": record["char_start"], "char_end": record["char_end"],
             "notice": "Reviewed factual event only. Select explicitly as a later event; no legal effect or ending inferred.",
         })
+        if interval:
+            result[-1]["occurrence_interval"] = deepcopy(record["occurrence_interval"])
+            result[-1]["date_qualification"] = interval_qualification(metadata)
+            result[-1]["notice"] = "Reviewed occurrence interval. Partial research source note only; never a dated legal event or ending."
     return result, []
+
+
+def observations_at(dossier, on, *, repo):
+    """Query the frozen dossier's factual observations only, revalidating current reviews and bytes.
+    As of end of civil day; the result cannot answer text-version, legal-effect or whole-order questions.
+    """
+    if not MODEL.date(on) or on > MODEL.CUTOFF:
+        raise ValueError("invalid factual observation query date")
+    evidence = dossier.get("evidence", {})
+    frozen = {eid: r for eid, r in evidence.items() if r.get("role") == INTERVAL_ROLE}
+    ids = dossier.get("factual_interval_ids", [])
+    if not isinstance(ids, list) or set(ids) != set(frozen) or len(ids) != len(frozen):
+        raise ValueError("factual_interval_membership_mismatch")
+    if not frozen:
+        return []
+    result = {}
+    for context in dossier.get("factual_obligations", []):
+        if not any(r.get("schema") == MODEL.INTERVAL_SCHEMA for r in context.get("reviewed_evidence", [])):
+            continue
+        records, errors = reviewed_events(repo, dossier["instrument_id"], context)
+        if errors:
+            raise ValueError("factual_interval_revalidation:" + ",".join(errors))
+        for r in records:
+            if r.get("role") != INTERVAL_ROLE:
+                continue
+            eid, scope = r["id"], r["scope_id"]
+            if r != frozen.get(eid) or eid in result:
+                raise ValueError("factual_interval_record_changed_or_duplicate")
+            clauses = [c for c in dossier.get("clauses", []) if c.get("scope_id") == scope]
+            original = context["application"]["clause_evidence"]
+            if len(clauses) != 1 or any(clauses[0].get(k) != original.get(k)
+                    for k in ("text", "char_start", "char_end", "source")):
+                raise ValueError("factual_interval_clause_changed")
+            result[eid] = {"id": eid, "scope_id": scope, "as_of": on, "event_kind": r["source"][MARKER]["event_kind"],
+                           "occurrence_interval": deepcopy(r["occurrence_interval"]), "event_date": None,
+                           "classification": interval_classification(r["occurrence_interval"], on),
+                           "legal_effect": "unresolved", "source": deepcopy(r["source"])}
+    if set(result) != set(frozen):
+        raise ValueError("factual_interval_review_context_missing")
+    return [result[eid] for eid in sorted(result)]
 
 
 def usage_errors(claim, dossier=None):
@@ -140,7 +214,33 @@ def usage_errors(claim, dossier=None):
                 if not isinstance(marker, dict):
                     errors.append("invalid_factual_event_marker")
                     return
-                # Only an event's source may carry a factual citation.
+                interval = "occurrence_interval" in marker
+                if interval:
+                    if not (len(path) == 3 and path[0] == "source_notes" and type(path[1]) is int and path[2] == "source"):
+                        errors.append("factual_interval_research_note_only")
+                        return
+                    note = claim["source_notes"][path[1]]
+                    gaps = claim.get("unresolved_material_gaps")
+                    if (marker.get("instrument_id") != claim.get("instrument_id") or marker.get("legal_effect") != "unresolved"
+                            or marker.get("event_date") is not None or not any(isinstance(c, dict) and
+                                c.get("scope_id") == marker.get("scope_id") for c in claim.get("operative_clauses", []))):
+                        errors.append("factual_interval_application_mismatch")
+                    matched = [c for c in claim.get("operative_clauses", []) if isinstance(c, dict) and
+                               c.get("scope_id") == marker.get("scope_id")]
+                    if (len(matched) != 1 or matched[0].get("state_at_cutoff") is not None or
+                            matched[0].get("first_end") is not None or matched[0].get("current_predicate") is not None or
+                            claim.get("whole_order_end") is not None):
+                        errors.append("factual_interval_does_not_approve_state_or_ending")
+                    qualification = interval_qualification(marker)
+                    if not qualification or note.get("date_qualification") != qualification or not isinstance(gaps, list) or not any(
+                            isinstance(g, str) and g.strip() for g in gaps):
+                        errors.append("factual_interval_requires_qualified_partial_research")
+                    if dossier is not None:
+                        record = known.get(marker.get("id"), {})
+                        if record.get("role") != INTERVAL_ROLE or record.get("source", {}).get(MARKER) != marker:
+                            errors.append("factual_event_not_dossier_evidence")
+                    return
+                # Only an exact event's source may carry a v1 factual citation.
                 allowed = (len(path) == 5 and path[0] == "operative_clauses" and
                            type(path[1]) is int and path[2] == "later_events" and
                            type(path[3]) is int and path[4] == "source")

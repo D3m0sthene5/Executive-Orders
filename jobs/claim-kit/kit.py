@@ -143,6 +143,8 @@ def main(argv=None):
     p.add_argument('--repo',type=Path,default=HERE.parents[1]);p.add_argument('--output',type=Path)
     sub=p.add_subparsers(dest='command',required=True)
     sub.add_parser('build')
+    from blind_verify import add_arguments as blind_arguments
+    blind_arguments(sub.add_parser('blind-verify',help='check explicit blinded inputs; no legal verdict'))
     s=sub.add_parser('next');s.add_argument('--agent',required=True);s.add_argument('--n',type=int,default=20);s.add_argument('--exclude',type=Path);s.add_argument('--scope',choices=('all','decided','undecided'),default='all')
     for cmd in ('dossier','sheet'):
         s=sub.add_parser(cmd);s.add_argument('instrument_id');s.add_argument('--agent',default='');s.add_argument('--write',type=Path)
@@ -150,8 +152,9 @@ def main(argv=None):
     s=sub.add_parser('history-at',help='MAITLAND: query an independently reviewed provision history; research only');s.add_argument('bundle',type=Path);s.add_argument('--provision',required=True);s.add_argument('--on',required=True);s.add_argument('--write',type=Path)
     s=sub.add_parser('history-check',help='validate a bounded MAITLAND research bundle');s.add_argument('bundle',type=Path)
     s=sub.add_parser('history-impact',help='use Valla to identify historical answers requiring revalidation');s.add_argument('results',type=Path);s.add_argument('--changed',type=Path,required=True);s.add_argument('--write',type=Path)
+    s=sub.add_parser('factual-at',help='query reviewed bounded occurrence facts, not legal state');s.add_argument('packet',type=Path);s.add_argument('--order',required=True);s.add_argument('--on',required=True)
     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
-    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
+    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--history-bundle',type=Path,action='append',default=[]);s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
     s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path)
     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path);s.add_argument('--geddes-strict',action='store_true',help='exit nonzero unless every Geddes lint flag has a resolution (geddes gate)')
@@ -162,6 +165,7 @@ def main(argv=None):
         s.add_argument('--diagnostic-'+key,action='append',default=[])
     s=sub.add_parser('publication-audit');g=s.add_mutually_exclusive_group();g.add_argument('--base',default='origin/main');g.add_argument('--merge-commit')
     s=sub.add_parser('view');s.add_argument('packet',type=Path);g=s.add_mutually_exclusive_group();g.add_argument('--order');g.add_argument('--source')
+    s=sub.add_parser('views');s.add_argument('packet',type=Path);s.add_argument('orders',nargs='+');s.add_argument('--slim',action='store_true');s.add_argument('--full-claim',action='store_true');s.add_argument('--write-dir',type=Path)
     s=sub.add_parser('overlay-prepare');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-review-sheet');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--reviewer',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-propose');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--review',type=Path,required=True);s.add_argument('--lifecycle-sheet',type=Path);s.add_argument('--write',type=Path,required=True)
@@ -173,6 +177,9 @@ def main(argv=None):
     s=sub.add_parser('release');s.add_argument('--agent',required=True);s.add_argument('instrument_ids',nargs='+')
     a=p.parse_args(argv);repo=a.repo.resolve();out=(a.output or repo/'jobs/claim-kit/output').resolve()
     try:
+        if a.command=='blind-verify':
+            from blind_verify import run
+            return run(a)
         if a.command=='publication-audit':
             from completion import publication_audit
             result=publication_audit(repo,None if a.merge_commit else a.base,a.merge_commit);print(json.dumps(result,ensure_ascii=False,indent=2));return int(not result['ok'])
@@ -257,12 +264,36 @@ def main(argv=None):
                 result=revalidation_report(saved,changed)
             if a.write:dump(a.write,result)
             print(json.dumps(result,ensure_ascii=False,indent=2));return 0
+        if a.command=='factual-at':
+            import batch
+            from factual_events import observations_at
+            packet,dossiers=batch.load_packet(a.packet.resolve(),repo)
+            if a.order not in dossiers:raise ValueError('order outside packet')
+            result={'schema':'eo-factual-observations-at/v1','instrument_id':a.order,'on':a.on,
+                    'packet_fingerprint':packet['fingerprint'],
+                    'observations':observations_at(dossiers[a.order],a.on,repo=repo),
+                    'legal_effect':'unresolved','human_certified':False,
+                    'notice':'Reviewed occurrence only; no legal state, first ending or whole-order conclusion.'}
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
+        if a.command=='views':
+            folder=a.packet.parent if a.packet.name=='PACKET.json' else a.packet
+            if a.slim:
+                sys.path.insert(0,str(HERE.parent/'geddes'))
+                import geddes
+                result=geddes.view_many(folder/'PACKET.json',a.orders,write_dir=a.write_dir,repo=repo,full_claim=a.full_claim)
+                if a.write_dir:result=[geddes.view_summary(v) for v in result]
+            else:
+                if a.full_claim:raise ValueError('--full-claim requires --slim')
+                import batch
+                result=batch.views(repo,folder,a.orders)
+                if a.write_dir:raise ValueError('--write-dir requires --slim')
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
         if a.command=='view':
             import batch
             print(batch.view(repo,a.packet,a.order,a.source));return 0
         if a.command in ('prepare','apply','batch-check'):
             import batch
-            if a.command=='prepare':result=batch.prepare(repo,out,a.write,a.instrument_ids,a.agent,replacement_proposal=a.replacement_proposal)
+            if a.command=='prepare':result=batch.prepare(repo,out,a.write,a.instrument_ids,a.agent,replacement_proposal=a.replacement_proposal,history_bundles=a.history_bundle)
             elif a.command=='apply':result=batch.apply(repo,a.packet,a.write)
             else:result=batch.check(repo,a.packet,a.applied)
             failed=(result.get('strict_claim_fail',0)>0 or result.get('counts',{}).get('rejected',0)>0)

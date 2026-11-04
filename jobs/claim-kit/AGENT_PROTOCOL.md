@@ -1,7 +1,10 @@
 # Claim kit protocol (any AI or person)
 
 MAITLAND's optional `history-check`, `history-at` and `history-impact` commands
-query exact reviewed provision transitions beside this workflow. Read
+query exact reviewed provision transitions. Ordinary `prepare --history-bundle PATH`
+freezes selected reviewed histories into the packet and validates them again at
+consumption. These are bounded research context, never claim evidence or whole-case
+approval. Read
 [PROVISION_HISTORY.md](PROVISION_HISTORY.md); textual reconstruction and operative
 effect have separate review scopes. These commands change no canonical findings.
 
@@ -52,7 +55,13 @@ never renew a stale seal. See BATCH.md for receipts and existing token telemetry
    copies sources/quotes and runs Stage 19 plus exact-span/hash checks. A failed
    sheet is reported and the batch is not emitted. `kit.py check <claims>` repeats
    the pre-gates. Run the actual claim-checker for custody, identity and date checks.
-6. A separate reviewer reads the sources, tests earlier endings, and writes an
+6. Before source interpretation, the separate reviewer runs the maintained
+   `kit.py blind-verify --card CARD --source-root ROOT --allow-source-root NARROW_SOURCE_DIR`
+   against the actual blinded input and only its supplied source directories. Repeat
+   `--card` and `--allow-source-root` explicitly as needed. See [BLIND_VERIFY.md](BLIND_VERIFY.md).
+   Preserve failures; a mechanical pass never supplies a scientific verdict. Do not
+   inspect genuine counterparts, producer conclusions or control keys to repair a
+   blind check. A separate reviewer reads the sources, tests earlier endings, and writes an
    **AI review record** under your pilot research folder (never an
    `eo-lifecycle-review/v1` human review). Commit only accepted claim lines to your
    own `research/readiness/claims/NAME-DATE.jsonl`. Use `kit.py complete` with the

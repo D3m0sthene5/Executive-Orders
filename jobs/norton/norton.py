@@ -10,7 +10,7 @@ import subprocess
 import time
 from urllib.parse import urlparse
 from model import (CUTOFF, application_errors, canonical, evidence_errors, fingerprint,
-                   question_key, review_errors, safe_path, sha, source_span)
+                   question_key, review_errors, safe_path, sha, source_span, interval_binding_errors)
 
 REGISTRY = 'research/readiness/factual'
 EVENT = re.compile(r'\b(report|submit|deliver|transmit|appoint|transfer|retain|abolish|perform|function|completion)\w*\b', re.I)
@@ -292,6 +292,8 @@ def compile_reviews(repo, data, questions):
             ev, ee=evidence.get(eid,({},['unknown_evidence']))
             errors+=ee
             if ev.get('question_key') != v.get('question_key'):errors.append('answer_evidence_wrong_question')
+        answer_evidence = [evidence[eid][0] for eid in v.get('evidence_ids', []) if eid in evidence]
+        errors += interval_binding_errors(v, answer_evidence)
         review=by_review.get(('answer',v.get('id')),[])
         if len(review)!=1:errors.append('missing_or_duplicate_answer_review')
         else:errors+=review_errors(repo,v,review[0],'answer')
@@ -311,6 +313,10 @@ def compile_reviews(repo, data, questions):
                 if v['state']=='human_accepted' and review[0].get('reviewer_type')!='independent_human':errors.append('not_human_accepted')
             if v.get('answer_id') not in answers:errors.append('reviewed_answer_missing')
             elif answers[v['answer_id']].get('question_key') != v.get('question_key'):errors.append('application_answer_wrong_question')
+            else:
+                answer = {k: val for k, val in answers[v['answer_id']].items()
+                          if k not in ('review', 'reviewer_type', 'factual_review_status')}
+                errors += interval_binding_errors(answer, [evidence[e][0] for e in answer['evidence_ids']], v)
         elif v.get('state')!='candidate':errors.append('unknown_application_state')
         if errors:rejected.append({'record':v,'errors':sorted(set(errors)),'origin':r['_origin']})
         else:apps.append(v)

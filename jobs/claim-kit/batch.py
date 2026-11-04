@@ -25,7 +25,7 @@ SCHEMA='eo-claim-kit-work-package/v1'
 ROW_FIELDS=['instrument_id','dossier_sha256','agent','outcome','approved','original_confirmed',
  'original_pages_confirmed','inventory_confirmed','research_rationale','savings_state','savings_source_id',
  'savings_reason','search_ids','conflict_resolutions','unresolved_material_gaps','earlier_end_check',
- 'scope_check','independent_command_check','savings_check','working_text','source_notes']
+ 'scope_check','independent_command_check','savings_check','working_text','source_notes','publication_kind']
 CLAUSE_FIELDS=['instrument_id','scope_id','clause_id','state','end_id','effective_date','mechanism',
  'effective_date_confirmed','current_basis_id','current_legal_basis','checked_through',
  'later_event_ids','later_events','reason','inventory_source_id','inventory_char_start',
@@ -253,6 +253,7 @@ def load_packet(folder,repo,check_sources=True):
     packet=json.loads((folder/'PACKET.json').read_bytes());fp=packet.pop('fingerprint',None)
     if packet.get('schema')!=SCHEMA or digest(canon(packet).encode())!=fp:raise ValueError('changed work package')
     if packet.get('preflight_dependency_sha256')!=preflight_dependency_pins():raise ValueError('evidence preflight dependencies changed; prepare a reviewed package')
+    if packet.get('legal_cutoff')!='2026-10-14':raise ValueError('work package legal cutoff mismatch')
     packet['fingerprint']=fp;dossiers=decode(packet)
     if check_sources:
         import working_text as W
@@ -280,6 +281,14 @@ def load_packet(folder,repo,check_sources=True):
             if evidence['base_dossier']!=dossiers.get(iid):raise ValueError('undecided evidence dossier mismatch: '+iid)
         for rel,sha in packet['held_text_file_pins'].items():
             if file_sha(safe(repo,rel))!=sha:raise ValueError('changed held source: '+rel)
+        for d in dossiers.values():
+            if d.get('factual_interval_ids') or any(e.get('role') == 'reviewed_occurrence_interval'
+                                                    for e in d.get('evidence', {}).values()):
+                import factual_events as F
+                F.observations_at(d, F.MODEL.CUTOFF, repo=repo)
+        if packet.get('reviewed_histories') is not None:
+            from history_context import verify
+            verify(repo, list(dossiers), packet['reviewed_histories'], packet['legal_cutoff'])
         if packet.get('valla_context') is not None:
             if valla_context(repo,list(dossiers),own_folders(repo,folder,dossiers,packet.get('agent')))!=packet['valla_context']:
                 raise ValueError('changed Valla review context; prepare a new version')
@@ -372,6 +381,9 @@ def render(packet,dossiers):
             'chain','current_law_leads','working_text_confirmation','machine_searches','draft_gate_errors','conflicts','draft_material_gaps',
             'missing','status_history','notice'}}
         if remaining:lines.extend(['','### Additional dossier metadata','',canon(remaining)])
+        if packet.get('reviewed_histories') is not None:
+            from history_context import for_order
+            lines.extend(['','### Reviewed provision histories (bounded research)','',canon(for_order(packet['reviewed_histories'],iid))])
         lines.extend(['','### Preflight','',canon(packet['preflight'][iid]),''])
         if packet.get('prior_research') is not None:
             from prior_research import brief
@@ -395,6 +407,18 @@ def render(packet,dossiers):
 def view(repo,folder,order=None,source=None):
     """Bounded navigation, so agents need not print a complete large packet."""
     packet,dossiers=load_packet(Path(folder).resolve(),Path(repo).resolve())
+    return _view_loaded(packet,dossiers,order,source)
+
+
+def views(repo,folder,orders):
+    """Validate one live packet once, then render each explicit member."""
+    packet,dossiers=load_packet(Path(folder).resolve(),Path(repo).resolve())
+    if not orders or len(set(orders))!=len(orders) or any(i not in dossiers for i in orders):
+        raise ValueError("explicit distinct packet members required")
+    return {iid:_view_loaded(packet,dossiers,iid,None) for iid in orders}
+
+
+def _view_loaded(packet,dossiers,order,source):
     if source:
         if source in packet['text_blocks']:
             b=packet['text_blocks'][source]
@@ -413,6 +437,9 @@ def view(repo,folder,order=None,source=None):
         for key in ('clauses','own_terms','lifecycle_obligations','actor_contexts','actor_provisions','chain','current_law_leads',
                     'working_text_confirmation','machine_searches','draft_gate_errors','conflicts','draft_material_gaps','missing','status_history','notice'):
             if key in d:lines.append(key+' '+canon(d[key]))
+        if packet.get('reviewed_histories') is not None:
+            from history_context import for_order
+            lines.append('Reviewed provision histories '+canon(for_order(packet['reviewed_histories'],order)))
         lines.append('Preflight '+canon(packet['preflight'][order]))
         if packet.get('prior_research') is not None:
             from prior_research import brief
@@ -430,7 +457,7 @@ def view(repo,folder,order=None,source=None):
         'All material evidence remains in READ.md and the lossless PACKET.json.'])
 
 
-def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=False):
+def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=False,history_bundles=None):
     started=time.monotonic();repo=Path(repo).resolve();out=Path(out).resolve();dest=Path(dest).resolve()
     if dest.exists():raise ValueError('prepare destination exists; refusing overwrite')
     if not dest.is_relative_to(repo/'research') or not 1<=len(ids)<=50 or len(set(ids))!=len(ids):raise ValueError('bounded distinct IDs and research destination required')
@@ -492,6 +519,9 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
         'ownership':routing,'preflight':flight,'families':family_groups(dossiers),'shared_tasks':list(shared.values()),**encoded}
     from prior_research import collect
     packet['prior_research'] = collect(repo, dossiers, exclude=dest)
+    if history_bundles:
+        from history_context import collect as collect_histories
+        packet['reviewed_histories']=collect_histories(repo,ids,history_bundles,packet['legal_cutoff'])
     if undecided:packet['undecided_evidence']=undecided
     if prepared_context is not None:packet['valla_context']=prepared_context
     if decode(packet)!=dossiers:raise ValueError('lossless reconstruction failed')
@@ -616,13 +646,25 @@ def _apply_rows(repo,write,packet,dossiers,order_rows,by,shared,report,claims):
                     clause.pop('clause_id',None)
                 sheet['clauses'].append(clause)
             sheet['inventory_overrides']=overrides
+            kind = r.get('publication_kind') or 'whole_case'
+            if kind not in ('partial_research', 'whole_case'):
+                raise ValueError('unknown publication_kind')
+            if kind == 'partial_research' and dossiers[iid].get('whole_order_status') is None:
+                raise ValueError('interval partial route requires a decided order; retain undecided checkpoint')
             if dossiers[iid].get('whole_order_status') is not None:
-                claim,errors=assemble(sheet,dossiers[iid],repo)
+                if kind == 'partial_research':
+                    from assemble import assemble_interval_partial
+                    claim,errors=assemble_interval_partial(sheet,dossiers[iid],repo)
+                else:
+                    claim,errors=assemble(sheet,dossiers[iid],repo)
                 if not errors:claims.append(claim)
         except (ValueError,OSError,KeyError,TypeError) as exc:errors=[type(exc).__name__+': '+str(exc)]
         if sheet:dump(write/'decisions'/(filename(iid)+'.json'),sheet)
         outcome=('rejected' if errors else 'awaiting_status_review' if dossiers[iid].get('whole_order_status') is None else 'assembled_proposal')
-        report.append({'instrument_id':iid,'outcome':outcome,
+        partial = {}
+        if claim and not errors and r.get('publication_kind') == 'partial_research':
+            partial = {'publication_kind': 'partial_research', 'expected_gate_errors': check_claim(claim, repo, dossiers[iid])}
+        report.append({'instrument_id':iid,'outcome':outcome, **partial,
             'errors':errors,'ownership':packet['ownership'][iid],'claim_sha256':canonical_sha(claim) if claim and not errors else None})
 
 

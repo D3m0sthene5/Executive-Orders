@@ -93,3 +93,18 @@ require broader revalidation than changed scoped record hashes alone. Source
 extraction may retain incidental-citation false leads outside the repaired
 reinstatement route. See the retained audit and native examples in
 `research/progress/maitland/`.
+
+## Ordinary assignments
+
+Pass one or more explicit `--history-bundle PATH` options to ordinary `kit.py
+prepare`. Only selected orders enter the work package. Its `READ.md`, `view
+--order` and `views` include the examined text, separate operative state, exact
+review dependencies and remaining questions at the legal cutoff. Live bundle,
+source, review, membership or method changes refuse consumption; prepare a new
+version. Existing packets without history context retain their existing behavior.
+History answers do not become ending evidence or satisfy whole-case review.
+
+`kit.py views PACKET EO:1 EO:2` validates a live packet once and renders explicit
+member views. `kit.py views PACKET EO:1 EO:2 --slim --write-dir NEW_DIR` uses the
+existing Geddes renderer in one process. Exact per-order outputs remain unchanged;
+this reduces repeated machine setup, with no automatic reduction in model tokens.
