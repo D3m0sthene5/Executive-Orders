@@ -1,3 +1,20 @@
+## 2026-11-04 ET: goals-led observability assignment and isolated source publication
+
+- **Done:** Owner authorized pushing provided the paused Opus run waiting for Claude quota can resume unchanged. Added research/progress/control-center/SOL_OBSERVABILITY.md: five measurement-gap goals, historical recovery/prospective coverage, cost/outcome joins, cheap existing-tool collection, hub integration and prior lessons. This designs the next Sol workflow; it does not run it.
+- **Publication:** Dashboard source and prompt on isolated codex/checkpoint-conveyor-20261104. Code-bearing push uses [skip actions] to avoid the jobs/** push trigger; no hosted check pass inferred. Leave main and Tribonian branch untouched. Existing app/native count checks and independent review are documented in FLOW_REDESIGN.md.
+- **Recorded:** D-20261104-observability-publication and F-20261104-observability-brief. Earlier public-push approval block is resolved by the owner's explicit permission; private patch remains an earlier proposal version.
+- **Next:** Execute the goals-led brief in a fresh Sol session after checking active reservations and safe helper paths. Do not start a competing production wave or consume the paused run's Claude quota. Coordinate with separate apparatus-improvement work.
+- **Asks:** @Owner: none.
+
+## 2026-11-04 ET: checkpoint conveyor published independently of production
+
+- **Done:** Existing owner-private hub version 2 published at https://executive-orders-production-atlas.d3mosth3n3s.chatgpt.site (Site source aac08d6d). DKLA /eo and old Site origin redirect correctly. First-missing-check and overlapping views join native rows to jobs, bounded historical timing/token evidence, improvement hypotheses and missing measurement decisions. Details/count contract in research/progress/control-center/FLOW_REDESIGN.md.
+- **Evidence:** Main600ae301 has14,972 rows/784 ready/0 certified. First-missing piles6228/7892/49/18/1/784 reconcile exactly; later open checks overlap. Apollo38-worker costs exclude coordinator; Tribonian telemetry unpublished at inspected branch pin, never zero.
+- **Validation:** Reproducible verify-flow.py and syntax checks pass; independent aggregation/view review passed after Valla source-link correction; browser initial/toggle/final-gate details checked. D-20261104-control-center-ux and F-20261104-control-center-flow recorded. Total model tokens/cash/complete labor unavailable.
+- **Isolation:** Repository assets retained on local codex/checkpoint-conveyor-20261104 and in a private source-proposal patch. Automatic approval review blocked the public push; no public PR opened. Do not merge main during the pinned active production wave; no production dispatch, output generation or scientific-state change. The separately hosted display is already live and keeps native main refresh.
+- **Next:** After current production integration, publish/reconcile the approved source proposal and append-only Kean records, then regenerate the brief. Future validated cost-survey rollups may fill the visible missing joins with explicit scope/coverage; no automatic savings inference.
+- **Asks:** @Owner: none.
+
 ## 2026-11-02 ET: repository production control center and Sol assignment
 
 - **Done:** Added the read-only Site assets and operator brief under `research/progress/control-center/`. The top-level README links both. The brief separates a targeted production wave from a fresh probability sample of the unfinished inventory and specifies auditable token/time coverage. Kean F-20261102-codex-control-center records the handoff.

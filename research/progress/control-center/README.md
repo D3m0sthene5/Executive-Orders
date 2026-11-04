@@ -1,6 +1,8 @@
 # Executive Orders production control center
 
-[Open the hosted control center](https://executive-orders-production-atlas.edgyglove8.chatgpt.site) (owner sign-in) · [Sol production assignment](SOL_SESSION.md) · [Canonical tracker](../../../jobs/readiness-tracker/output/TRACKER.md)
+[Open the hosted control center](https://executive-orders-production-atlas.d3mosth3n3s.chatgpt.site) (owner sign-in) · [Sol production assignment](SOL_SESSION.md) · [Sol observability goals](SOL_OBSERVABILITY.md) · [Canonical tracker](../../../jobs/readiness-tracker/output/TRACKER.md)
+
+Start with **Production flow** for the first-missing-check conveyor, an overlapping-work toggle, checkpoint job/cost detail, historical token evidence and missing measurements. See [count and cost contracts](FLOW_REDESIGN.md).
 
 Look up an executive order, inspect its remaining steps, and follow the handoff to the underlying evidence. The map uses the eight Minard stages. The job catalog carries the dated PR #124 tier assessments, including unranked processes. The Next best action view ranks shared blockers by affected orders. Each order may have several blockers.
 
@@ -16,7 +18,7 @@ Use **Overview → Find an executive order** to inspect a particular record. **B
 
 ## Source and refresh policy
 
-The bundled November 2, 2026 generation was read at repository commit `a16ad07f021b2508904c028a7bf48763091c18df`. Its order table reuses the exact Git blob of the tracker CSV. The HTML, JavaScript, styles, illustration and JSON assets match the private Site source version `c7177bfaec26f729c17243bdef46c8487d639214`.
+The bundled tracker generation finished November 2, 2026 and was read at repository commit `600ae3018f71025b3e53dc8538b8f92e6e159b76`. Its order table reuses the exact Git blob of the tracker CSV. The app assets match private Site source commit `aac08d6deb6b5eef0c023b2835f7719d0951731f` (published version 2). The job catalog and recovery examples remain dated reference material.
 
 On opening, on manual refresh, and every five minutes while visible, the page checks public GitHub main. When the head changes, it loads the tracker summary, generation receipt, per-order CSV and Stage 19 register from the same commit. It verifies the successful tracker result and reconciles per-order totals before replacing the displayed generation. A failed read leaves the last loaded data and a refresh notice. Pull requests refresh separately. The job tiers, dependency examples and recovery handoffs remain dated reference material.
 
