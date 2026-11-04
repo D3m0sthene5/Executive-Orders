@@ -47,8 +47,11 @@ def main(batch, packet, applied, *flags):
             missed.append(iid)
     pub = f"research/readiness/claims/claude-2026-11-04-tribonian-{batch}.jsonl"
     keyfile = S / "moon-keys" / f"{batch}.json"
-    cmd = ["python3", "-I", str(MAKE), str(packet), str(applied), str(blind), str(after) if after.exists() else "-",
-           str(keyfile), pub, "claude-coordinator-tribonian-2026-11-04", *judg]
+    amended = packet / "reviews" / "BLIND_REVIEW_AMENDED.jsonl"
+    cmd = ["python3", "-I", str(MAKE), str(packet), str(applied), str(amended if amended.exists() else blind),
+           str(after) if after.exists() else "-", str(keyfile), pub, "claude-coordinator-tribonian-2026-11-04", *judg]
+    if amended.exists():
+        cmd += ["--planted-review", str(blind)]
     print(subprocess.run(cmd, cwd=REPO, capture_output=True, text=True).stdout.strip())
     if missed:
         print(json.dumps({"batch": batch, "missed_controls": missed, "action": "re-review required; not completed"}))
