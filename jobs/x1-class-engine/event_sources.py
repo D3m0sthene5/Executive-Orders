@@ -11,7 +11,7 @@ from pathlib import Path, PurePosixPath
 
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 MAX_TEXT = 4_000_000
-MAX_MANIFEST = 16_000_000
+MAX_MANIFEST = 64_000_000  # app-transcriptions SOURCES.jsonl reached 18.9 MB on 2026-11-03
 MAX_RAW_REHASH = 100_000_000
 
 

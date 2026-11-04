@@ -8,19 +8,8 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (13)
+## Waiting for the owner (2)
 
-- **A-20261018-1** (2026-10-18, Claude): Send the drafted archival reference and scan requests (National Archives letters-received series and others)? *Pre-1862 orders have no other route to an original; none of the drafted requests has been sent.*
-- **A-20261019-1** (2026-10-19, Claude): Approve, trial or reject risk-tiered review (a lighter independent review for low-risk cases)? *X1's model projected it would cut the post-series remainder from 11,256 to 10,027 agent-hours; that figure is an assumption, never measured.*
-- **A-20261021-1** (2026-10-21, Claude): Admit the June 1932 run EO 5853-5879 to the census? *22 of those numbers are census gaps although the American Presidency Project gives their dates and titles; they stay outside every count until admitted.*
-- **A-20261021-2** (2026-10-21, Claude): Remove LRS-10-21-Cold-Calls-Plain.pdf (class notes) from the public repository's ProQuest folder? *It was uploaded with the scans by mistake and is publicly visible.*
-- **A-20261022-1** (2026-10-22, Claude): Add search keys as GitHub repository secrets: BRAVE_SEARCH_KEY, SERPAPI_KEY (paid) and NARA_API_KEY? *Lewis and Clark search the web with them. Bing's API was retired on 2025-08-11 and Google's Custom Search API is closed to new customers (ends 2027-01-01), so those two keys from the original request cannot be used.*
-- **A-20261028-1** (2026-10-28, Claude): Does your 2026-10-28 permission to merge every pull request stand for future pull requests? *Agents currently leave merges to you; standing permission would let finished work land without waiting.*
-- **A-20261028-2** (2026-10-28, Claude): Make the Kean check a required status check for main (GitHub Settings > Branches)? *Without it a failing Kean check is visible but does not stop a merge.*
-- **A-20261028-3** (2026-10-28, Claude): Add to ChatGPT's custom instructions: 'For the Executive-Orders project, first read HANDOFF/KEAN.md in D3m0sthene5/Executive-Orders and record results there before ending'? *Kean reaches only sessions that open the repository; this line brings ChatGPT chats that do not.*
-- **A-20261029-1** (2026-10-29, Claude): Approve a Valla change so a packet's context excludes its own and unrelated committed packages, and raise the 100-package limit? *Committing any packet now stales every packet in flight, and 76 of the 100-package hard limit are tracked; the permission layer refused the change because it relaxes an integrity check.*
-- **A-20261031-1** (2026-10-31, Claude): Keep claims EO 6471A, 7016 (blinding slip)? *Apollo REPORT.md*
-- **A-20261101-geddes-models** (2026-11-01, Codex): Provide Sonnet/Opus execution or authorize substitute models for Apollo retries? *This runtime exposes only OpenAI agents; 40 retries remain unrun.*
 - **A-20261103-1** (2026-11-03, Codex): Provide Bacon-session.bundle or the original Bacon packet directory from EO Session Report? *Original scratch files are inaccessible, no Bacon publication was located, and the frozen sample/review receipts cannot be reconstructed faithfully*
 - **A-20261104-1** (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1? *Scoped occurrence intervals are usable now. Whole-case legal intervals need a separate scientific contract and fresh legal review. This is a contract proposal, not a request to choose case answers or relax production.*
 
@@ -29,9 +18,10 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Evidence decides; agents work out legal distinctions themselves** (D-20261028-evidence-decides): Record what the evidence establishes, with the best supported date or interval, and separate an exhausted command from surviving consequences. A claim of 'happened within this interval' needs evidence that it happened; otherwise the order stays open on that question. A later general rule ends a command only if something shows it extinguished that command. Disclosure keeps a gap visible but never fills it. Do not ask the owner to choose method answers to unlock rows: apply these distinctions to the supported cases and report the exceptions.
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 
-## Owner decisions not yet carried out by the tools (1)
+## Owner decisions not yet carried out by the tools (2)
 
 - **D-20261031-jacquard** (partly wired): For X1 spent and swept classes, a pre-defined lot's provisional NO statuses may be adopted from a random sample with planted errors, zero misses allowed, 59 orders (95% upper bound 5%) or every order in small classes; flagged outliers go to individual review; adoption by owner-merged PR; statuses p… PR119 merged 888 individual NOs (4,291 total); no sampled lot passed. PR125 pins reconciled.
+- **D-20261104-delegated-answers** (partly wired): Owner told Claude on 2026-11-03 to answer all open asks reasonably. Archival requests: yes, owner sends. Risk-tiered review: paired trial only. June 1932 EO 5853-5879: admit as compiled-source-only working identities. Class-notes PDF: remove from tree. Keys: NARA and Brave yes, SerpAPI held. Standi… Class-notes PDF removal and the EO 6471A/7016 re-review are done in the Tribonian PR; census admission, Valla change, ruleset and owner-only actions are not yet done.
 - Not yet checked against the tools: D-20261021-eo-10449, D-20261021-report-deadline, D-20261021-strike-and-insert, D-20261021-unnamed-instruments, D-20261021-until-dates.
 
 <!-- kean:drift -->
@@ -45,4 +35,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-04 F-20261104-sol-geddes-hosted-fixture **worked**: Run hosted Geddes check on the reviewed source Lesson: Test the actual CI input closure; preserve failure and extend fixture access without skipping gates or changing runtime
 - 2026-11-04 F-20261104-sol-eo13792-research **partly worked**: Examine new held and public EO13792 report witnesses independently Lesson: Submission, draft transmission, public release, receipt and legal exhaustion are distinct; new sources need exact custody and fresh application review
 
-Register: 20 owner decisions, 2 answered questions, 129 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 21 owner decisions, 13 answered questions, 129 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

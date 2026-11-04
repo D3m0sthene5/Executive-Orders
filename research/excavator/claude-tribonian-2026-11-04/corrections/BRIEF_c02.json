@@ -1,0 +1,732 @@
+{
+ "batch": "c02",
+ "orders": [
+  {
+   "instrument_id": "EO:10045",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f01",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f01/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "file_sha256": "501df6553d01dc295468672792265d9f18e2154aab7991524dd9435c1dbfbdec",
+    "line": 14,
+    "record_sha256": "d5ec2d41d14f17d9b2bb6771f79ea2b8ba612d6e78fa57cb02eb13763a2e414a"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[EO:10045#whole].judgment_reason and research_rationale (report)",
+     "claim_says": "the held NMB copy 'has no board report'; April 6, 1949 is only an NMB index closing entry, 'not a date of any report'; the order was functionally spent no later than April 4, 1949",
+     "source_says": "the held NMB copy (queue_EO_10045_...40f7c1ee3a.txt) is the board's report to the President: its cover reads 'ST. LOUIS, MO. APRIL 6, 194.9 (No. 71)', its transmittal letter dated 'ST. LOUIS, Mo., April 6, 19@.' says 'We have the honor to submit herewith our report', and the report is signed 'Respectfully submitted' at St. Louis on April 6. The board made a report (of settlement, without merits recommendations) on April 6, 1949; April 4, 1949 is the date the parties reported settlement"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f01/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10061",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o12",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o12/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "ecaae1e35a98cbab049d2d591dbc55c0d64f60e55aabe2a6840f2d4cc11ab3e4",
+    "line": 5,
+    "record_sha256": "818ca51875e83a19a7f49fe674ede5860982f20805e0fa6f7f792c44446b41cc"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[*].first_end / earlier_end_check / research_rationale",
+     "claim_says": "no held text modifies or revokes Executive Order No. 9871 or this order before June 30, 1950; first end is the own-terms sunset of June 30, 1950",
+     "source_says": "the held Career Compensation Act of 1949 (63 Stat. 802; jobs/source-ladder/output/texts/queue_EO_10061_Career_Compensation_Act_of_1949_..._8558d6ea73.txt, a source queued for this very order) repeals the order's authorities: sec. 531(b)(34) repeals the Pay Readjustment Act of 1942 except sec. 12 and the travel-status part of sec. 10(1), effective Oct 1, 1949 (sec. 533(a)); sec. 531(c)(12) repeals the travel-status part of sec. 10(1) and sec. 12, effective Jan 1, 1950 (sec. 533(c)); sec. 531(a) puts the Act in effect 'in lieu thereof'. Sec. 303 transitional proviso, EO 10084's adoption of existing Pay Readjustment Act regulations (only those to be prescribed by the President) and its March 31, 1950 cut-back bear directly on whether Part D and the amended EO 9871 survived to June 30, 1950"
+    },
+    {
+     "field": "unresolved_material_gaps",
+     "claim_says": "[]",
+     "source_says": "the effect of the statutory repeal and replacement of the order's enabling sections on the amended regulation is neither analysed nor disclosed"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o12/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10083",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o12",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o12/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "ecaae1e35a98cbab049d2d591dbc55c0d64f60e55aabe2a6840f2d4cc11ab3e4",
+    "line": 7,
+    "record_sha256": "0700d45d7e504b10dd1b5b800ef91e7ad4de7b781502901127261b9f7aa8a971"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (search description)",
+     "claim_says": "The Federal Register disposition-note search, the U.S. Code citation search and the eCFR citation search each report no hit naming this order",
+     "source_says": "jobs/current-law/output/ORDERS_CURRENT_LAW.csv records usc_mentions=1 for EO:10083; MENTIONS.csv row usc:e410b86bce7b: 22 U.S.C. 288 note 'Public International Organizations Formerly Entitled To Enjoy Certain Privileges...' names 'Ex. Ord. No. 10083, Oct. 10, 1949, 14 F.R. 6161' three times as the revoking order"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o12/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10084",
+   "kind": "rejected_in_review",
+   "review_phase": "after_reveal",
+   "source_batch": "o12",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o12/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "ecaae1e35a98cbab049d2d591dbc55c0d64f60e55aabe2a6840f2d4cc11ab3e4",
+    "line": 8,
+    "record_sha256": "aaff24e6eb98c93ac3db48e4998ac6db8834a2eb9b424ad69c4edf5f467da55f"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[EO:10084#whole].judgment_reason, research_rationale and earlier_end_check (sentence 'Each amendment takes effect the day after the earlier date it extends ends, so the dates are read inclusively and leave no gap')",
+     "claim_says": "every amendment in the chain takes effect the day after the date it extends",
+     "source_says": "true only for EO 10136 (effective July 1, 1950, after June 30) and EO 10174 (effective November 1, 1950, after October 31). EO 10098 states no effective date and the claim's own later_event records it effective 1950-01-25, six days before the January 31, 1950 sunset; EO 10118 likewise 1950-03-27, before March 31, 1950; EO 10158 (effective September 1, 1950) extends section 302, whose date under EO 10136 was September 30, 1950. The stated mechanism contradicts the claim's own later-event dates and the held texts"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o12/packet/reviews/AFTER_REVEAL.jsonl"
+  },
+  {
+   "instrument_id": "EO:10098",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o12",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o12/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "ecaae1e35a98cbab049d2d591dbc55c0d64f60e55aabe2a6840f2d4cc11ab3e4",
+    "line": 10,
+    "record_sha256": "8bd0845a5b34f81cc1f09dad3dd24bab74538db4b4bac60e55f02dbf9e97671d"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[*].later_events",
+     "defect": "Post-reveal amendment by the same reviewer (2026-11-04): reviewing the genuine EO 10084 claim after reveal, the reviewer found that this claim repeats the same incorrect sentence, that each extending amendment took effect the day after the date it extended (wrong for EO 10098, 10118 and 10158), and withdrew its blind 'upheld' verdict. Recorded by the coordinator from the reviewer's report; the original BLIND_REVIEW.jsonl is unchanged."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o12/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10118",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o12",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o12/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "ecaae1e35a98cbab049d2d591dbc55c0d64f60e55aabe2a6840f2d4cc11ab3e4",
+    "line": 12,
+    "record_sha256": "71256709fb8ce493533bafe4bb402ae0ebbaefb4fc4bd4441bc8c8662b9b1cc1"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[*].later_events",
+     "defect": "Post-reveal amendment by the same reviewer (2026-11-04): reviewing the genuine EO 10084 claim after reveal, the reviewer found that this claim repeats the same incorrect sentence, that each extending amendment took effect the day after the date it extended (wrong for EO 10098, 10118 and 10158), and withdrew its blind 'upheld' verdict. Recorded by the coordinator from the reviewer's report; the original BLIND_REVIEW.jsonl is unchanged."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o12/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10125",
+   "kind": "rejected_in_review",
+   "review_phase": "after_reveal",
+   "source_batch": "f01",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f01/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "file_sha256": "501df6553d01dc295468672792265d9f18e2154aab7991524dd9435c1dbfbdec",
+    "line": 18,
+    "record_sha256": "7b850ddb5c54f98cfb15abbafecabc59bf2f69cd0d270b0af365c0253816d1d1"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[EO:10125#whole].original_source / original_operative_text (offsets 672-3814) and research_rationale inventory statement",
+     "claim_says": "one whole-order clause, the dossier span at offsets 672 to 3814, from the order's heading through its last operative sentence (the sentence barring changes in conditions)",
+     "source_says": "in the held text the order ends at character 1601 of the span ('...out of which the said dispute arose.' then 'Harry S. Truman'). The remaining ~1,540 characters of the clause text are an unrelated Department of Agriculture regulation (Part 517, fresh apple export program, F.R. Doc. 50-3600) and the heading of Title 7 Part 201 (Federal Seed Act), followed by the White House date line. The clause's quoted operative text therefore contains non-order text, and the rationale's description of where the span ends is wrong."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f01/packet/reviews/AFTER_REVEAL.jsonl"
+  },
+  {
+   "instrument_id": "EO:10156",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o12",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o12/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "ecaae1e35a98cbab049d2d591dbc55c0d64f60e55aabe2a6840f2d4cc11ab3e4",
+    "line": 15,
+    "record_sha256": "3a5e2faf071e101ff4da0c922310e24672e9f18d36fff599bc910212d2d69ac2"
+   },
+   "defects": [
+    {
+     "field": "research_rationale vs operative_clauses[EO:10156#para-3].first_end",
+     "claim_says": "rationale: 'Paragraph 3 was a one-time supersession performed when the order took effect and is terminated on August 26, 1950'; earlier_end_check: exhausted by performance on August 26, 1950",
+     "source_says": "the clause's first_end records 1958-02-15 by EO 10753, and its judgment_reason says the signing-time end is 'disclosed and not adopted'; the claim states two different end dates for the same clause"
+    },
+    {
+     "field": "research_rationale (search description)",
+     "claim_says": "the U.S. Code and eCFR citation searches report no hit",
+     "source_says": "ORDERS_CURRENT_LAW.csv records usc_mentions=2 for EO:10156; MENTIONS.csv rows usc:3aa65a4930ed and usc:639d9884e79e (43 U.S.C. 1451 note) name Ex. Ord. No. 10156 and state it 'was superseded by Ex. Ord. No. 10753, eff. Feb. 15, 1958'"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o12/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10158",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o12",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o12/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "ecaae1e35a98cbab049d2d591dbc55c0d64f60e55aabe2a6840f2d4cc11ab3e4",
+    "line": 16,
+    "record_sha256": "53231d1f18145dfa2779677d2ef0bafffe25e558896fa22b12c6db02b7638c60"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[*].later_events",
+     "defect": "Post-reveal amendment by the same reviewer (2026-11-04): reviewing the genuine EO 10084 claim after reveal, the reviewer found that this claim repeats the same incorrect sentence, that each extending amendment took effect the day after the date it extended (wrong for EO 10098, 10118 and 10158), and withdrew its blind 'upheld' verdict. Recorded by the coordinator from the reviewer's report; the original BLIND_REVIEW.jsonl is unchanged."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o12/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10295",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o13",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o13/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "de87a455da69a6f97c9060b8b77021be82014bc292f388ab40f8808ad27a817b",
+    "line": 4,
+    "record_sha256": "9c98b5befeb41f2f9c46419431375b66711c290f7eb95c38228e14bed81bd281"
+   },
+   "defects": [
+    {
+     "field": "later_source_search / earlier_end_check",
+     "claim_says": "the 1989 codification note and the 1953 Court rules 'recite the order; neither revokes, supersedes or amends it'",
+     "source_says": "the OFR 1989 Codification prints EO 10295 as a codified text (jobs/ofr-codification-1989/output/texts/EO_10295.txt; DISPOSITION_1989.csv: 'Codified at Chapter 32, p. 532', in_force_1989). That book prints only orders still having general effect on January 20, 1989. The claim cites this source as a mere recital and never addresses that the government's own compilers treated the order as in force 38 years after the claimed end."
+    },
+    {
+     "field": "operative_clauses[0].first_end (mechanism exhausted_by_performance_on_issuance, date 1951-09-28)",
+     "claim_says": "the approval was exhausted on signing; the design 'remained the Court's official seal' only as a consequence",
+     "source_says": "the order makes the design 'a part of this order' and establishes it as 'the official seal'; the only legal basis for the official-seal status shown in any held source is this order (the 1953 rules cite it as the source). The claim gives no reason why that continuing designation is not a current predicate of the order itself, and its savings text concedes it does not know whether any later instrument changed the seal. Under the 2026-10-28 ruling an endpoint needs a reason that extinguished the command; the contrary 1989 evidence is unaddressed."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o13/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10397",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o13",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o13/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "de87a455da69a6f97c9060b8b77021be82014bc292f388ab40f8808ad27a817b",
+    "line": 9,
+    "record_sha256": "46efa141295a03c3fcb5a509bdc77c8c1fa6f064d52783111e1b7110b9be546b"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[0].later_events / judgment_reason / earlier_end_check",
+     "claim_says": "later_events: []; 'No held order revokes, extends or amends it'",
+     "source_says": "held EO 10441 (signed March 31, 1953; jobs/fr-originals/output/texts/EO_10441.txt) 'continue[s] in effect until and including July 1, 1953' a subset of the same appointments, namely those of Army and Air Force officers and warrant officers missing, captured or interned, 'which under the following provisions of law would terminate after April 27, 1952, and before July 1, 1953'. It lists the same three statutory provisions, so it carries part of this order's continued appointments past April 1, 1953. Under the production route and the 2026-10-21 ruling, that further extension is a later event with its own date and quote. It does not end this order, but the claim says no such order exists."
+    },
+    {
+     "field": "later_source_search",
+     "claim_says": "number-citation, catalog and current-law searches",
+     "source_says": "EO 10441 does not cite EO 10397 by number, so the number-only searches missed a serial continuation order with a nearly identical title. The searches as recorded were not adequate for a serial continuation order."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o13/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10514",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o14",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o14/packet/applied-v6/CLAIMS.proposed.jsonl",
+    "file_sha256": "d8b58396b6acfde208701b6719ecb86392c6be7c0c2f6d17fe0220db1d77baea",
+    "line": 3,
+    "record_sha256": "ac13247ac916d586255565366b096bd30751e06890d91166735c54ca8607dfcb"
+   },
+   "defects": [
+    {
+     "field": "whole_order_end.date, operative_clauses[EO:10514#whole].first_end (date and mechanism own_terms_performed_on_stated_effective_date)",
+     "claim_says": "1953-12-31: the revocation was performed and the clause spent at the close of business on December 31, 1953; signing and filing are alternative readings",
+     "source_says": "The order was signed 'Jantiary 19, 1954' and filed 'Jan. 20, 1954; 10:29 a.m.'. Its sentence 'This order shall become effective at the close of business on December 31, 1953' gives the revocation retroactive effect: it fixes when EO 2414 is treated as ceasing. It cannot fix when EO 10514's own command was performed, because the order did not exist on that date. The claim records this order's end 19 days before its issuance, so the lifecycle ends before it begins. The earliest end the source supports for EO 10514's command is its issuance (signing 1954-01-19, or filing 1954-01-20); 1953-12-31 is the end of the revoked order, not of this one."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o14/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10563",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o14",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o14/packet/applied-v6/CLAIMS.proposed.jsonl",
+    "file_sha256": "d8b58396b6acfde208701b6719ecb86392c6be7c0c2f6d17fe0220db1d77baea",
+    "line": 6,
+    "record_sha256": "1f27f5228f6ea297096563a5adb1d23eacd5e0d63376fb2e2f8d03922f873a14"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (description of held EO 10365)",
+     "claim_says": "Held EO 10365 (signed 1952-06-24) states that it supersedes Executive Order No. 10266 of June 30, 1951, so far as that order relates to the suspension of certain provisions of the Officer Personnel Act of 1947",
+     "source_says": "EO 10365 par. 3: 'This order supersedes Executive Order No. 10266 of June 30, 1951, so far as that order relates to the suspension of the operation of provisions of the Officer Personnel Act of 1947, as amended, for commissioned officers of the Marine Corps of the grades of captain and below.' The claim drops the limit to Marine Corps captains and below. As written, the supersession would cover all of EO 10266's subject, since EO 10266 is entirely a suspension of those provisions, and EO 10563's revocation would then have had little or nothing to act on. The source shows that the Navy grades remained under EO 10266 until EO 10563 revoked them."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o14/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10792",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o15",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o15/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "9144d52b3526f10c1698366c130c2d0fdf9bf5d8f9bc554c83b16a2914f20d86",
+    "line": 3,
+    "record_sha256": "9d8133000d7c041496cd34665ea4f8ac5f917cb35dd71bd47f2b4f6659c4e913"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[EO:10792#whole].first_end.date (leave-policy direction) and whole_order_end.date",
+     "claim_says": "1958-12-26, the leave direction 'read as tied to the excused day', broader reading disclosed",
+     "source_says": "The second paragraph directs agency heads to adopt a liberal annual-leave policy for employees 'who wish to take such leave over the holiday period'. The order does not equate the holiday period with Friday, December 26, 1958 (all employees are already excused that day and Christmas is a holiday, so the direction has its effect on other days), and no held source dates the period's end. The claim itself admits 'no held text fixes' the end and describes the broader reading as running to the end of the Christmas and New Year period."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o15/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10825",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o15",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o15/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "9144d52b3526f10c1698366c130c2d0fdf9bf5d8f9bc554c83b16a2914f20d86",
+    "line": 8,
+    "record_sha256": "ffc3d15044a6f6ac7af9a27d838a906a8b5c86ca792297378c9f5393b726fd91"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[EO:10825#sec4b].first_end.date",
+     "claim_says": "1959-07-03 (close of July 3, 1959): the request 'concerns only that day'",
+     "source_says": "The held fragment of section 4 requests agency heads to arrange affairs to excuse employees on that day 'or to grant compensatory time m / reof' (in lieu thereof) without additional appropriations. Compensatory time in lieu of an excused day is by nature given on another, later day, and the order states no deadline for it. No held source shows the request ended at the close of July 3, 1959; the endpoint has no reason."
+    },
+    {
+     "field": "operative_clauses[EO:10825#sec1].first_end.date",
+     "claim_says": "1959-07-03; subsection (b) workday 'ends with it'",
+     "source_says": "Section 1(b) excuses employees from an entire workday that 'commences on July 2 or July 3, 1959' and covers portions of two calendar days including July 3; a workday commencing July 3 runs into July 4, 1959, so the excusal can operate after the close of July 3."
+    },
+    {
+     "field": "whole_order_end",
+     "claim_says": "1960-06-30, the latest clause end",
+     "source_says": "Because the compensatory-time request has no established end, the latest first end among the clauses (and so the whole-order end) is not established by the held sources."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o15/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:10856",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o15",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o15/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "9144d52b3526f10c1698366c130c2d0fdf9bf5d8f9bc554c83b16a2914f20d86",
+    "line": 12,
+    "record_sha256": "fa64d24bbd73fed370e2d109071b80f5fb209cc44d2f5b18380c954c7636c5f2"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[EO:10856#leave-a].first_end.date and [EO:10856#leave-b].first_end.date (and whole_order_end.date)",
+     "claim_says": "1959-12-24, the leave direction 'read as tied to the excused day'",
+     "source_says": "The leave sentence directs a liberal annual-leave policy for employees 'who wish to take such leave over the holiday period'. December 24, 1959 is described by the order as 'the day preceding Christmas Day'; any reading of 'the holiday period' includes at least Christmas Day, December 25, 1959, so the direction cannot have ended at the close of December 24. No held source dates the period's end."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o15/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:11332",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o16",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o16/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "38b3654174a0d37642d8a8642e47992d69e8549f2bf7ca2f223a236a93199d62",
+    "line": 15,
+    "record_sha256": "f4b1bc6cd0f79db1e0bf5cbd8c626540c6d9023a49423545cc90ce6ca79c3350"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (later-events search description)",
+     "claim_says": "A citation search of the 33,118 held order texts ... for the forms Executive Order 11332, Order No. 11332 and E.O. 11332 finds only the capture of the order itself.",
+     "source_says": "The held-text search returns two files: EO_11332.txt and jobs/fr-originals/output/texts/EO_11331.txt (which prints Executive Order 11332 at line 112 as neighbouring page text). The same rationale says so earlier ('The held-text search also returns the capture file for EO 11331'), and the member earlier_end_check says 'the order own capture and a neighbouring page capture'. The rationale contradicts itself about the search result."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o16/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:11337",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o16",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o16/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "38b3654174a0d37642d8a8642e47992d69e8549f2bf7ca2f223a236a93199d62",
+    "line": 17,
+    "record_sha256": "fa8819e4f39394689727d93993b9b35d3d23af5c3c12c558adbe51b8b378ecf9"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (identity and date)",
+     "claim_says": "'March 26, 1967 per the held text (the census register lists March 25, 1967 ...)' and, two sentences later, 'Identity: the number, subject and date in the held text agree with the census register.'",
+     "source_says": "The held text prints 'March 26,1967'. The census register, the OFR catalog and the APP text all give March 25, 1967, and the claim's own signing_date fields are 1967-03-25. The claim asserts that the dates disagree and that they agree, and its prose date (March 26) differs from its structured signing_date (1967-03-25) without saying which is adopted or why."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o16/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:11452",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f02",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f02/packet/applied-v4/CLAIMS.proposed.jsonl",
+    "file_sha256": "0d1729e9e1a80d097205cd9c56a987a92da43b5dfc6859af2f2cb143b68892a2",
+    "line": 17,
+    "record_sha256": "0594cf9364782791656f25267254f4c9c6e6cf8661d8df957b368e62a6db21d8"
+   },
+   "defects": [
+    {
+     "field": "savings_residuals.reason and research_rationale member check savings_check",
+     "claim_says": "Executive Order 11541, read in full (3,633 characters), contains no saving, exception or pending-matter wording: its terms contain no words of exception, saving, continuation or pending ... (savings_check: 'read in full and has no saving or transition wording')",
+     "source_says": "EO 11541 section 1(b) is a saving provision: 'All outstanding delegations, rules, regulations, orders, circulars, bulletins, or other forms of Executive or administrative action issued or taken by or relating to the Bureau of the Budget ... shall, until amended or revoked, remain in full force and effect as if issued or taken by or relating to the Office of Management and Budget'. It is limited to Bureau of the Budget actions and does not reach the Council for Urban Affairs, but the claim's description of the source is false."
+    },
+    {
+     "field": "research_rationale member check scope_check",
+     "claim_says": "Fourteen clauses are inventoried by correction ...",
+     "source_says": "The claim inventories fifteen clauses (lead-a, b, c, sec2, sec2-1 through sec2-8, sec3, sec3-b, sec4), and the scope_check's own enumeration (title and section 1(a); 1(b); 1(c); section 2 lead; eight numbered directions; 3(a); 3(b); section 4) also totals fifteen."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f02/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:11704",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o18",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o18/packet/applied-v1/CLAIMS.proposed.jsonl",
+    "file_sha256": "3c8b0f2b875cdefef14c030488d5c0f9b69493f8dcf2eb23cbcc2bbd1caed84a",
+    "line": 9,
+    "record_sha256": "7accb4d999bd2f169c65049525b8049dd230a536ec6dd5b92641594474f4ecfb"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (spelling sentence)",
+     "claim_says": "The register title spells the surname with Everett; the text spells it Everette.",
+     "source_says": "The surname is MacIntyre in both the register title ('Further exempting A. Everett MacIntyre ...', CATALOG_INDEX.csv and FRAGMENTS.jsonl) and the held text ('A. Everette MacIntyre'). The variant Everett/Everette is the given name, not the surname."
+    },
+    {
+     "field": "research_rationale (held-text number search sentence)",
+     "claim_says": "the only held texts that cite it are its own Federal Register printing, and, for EO 11704, EO 11568 and EO 11642 which concern the same person",
+     "source_says": "The held-text number search for EO:11704 (cruden.py) finds only its own Federal Register printing. EO 11568 (1970) and EO 11642 (1972) predate EO 11704 and do not cite it; they only name the same person. The sentence presents them as citing texts."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o18/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:11767",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "a06",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/a06/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "123e749d44de1f18dbe7dcab48099136d035b1adf3bb222b3ae1e0de1e5ba3e1",
+    "line": 4,
+    "record_sha256": "19f1d45dc30c8497adc13fe02287245b170ae37d41d972235837491c17e01835"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[EO:11767#whole].judgment_reason",
+     "claim_says": "Section 3 of EO 13377 ... states: \"Sec. 2. Revocation of Order. Executive Order 13508 is hereby revoked.\"",
+     "source_says": "EO 13377 (70 FR 20263) sec. 3 reads \"Sec. 3. Revocation. Executive Order 11767 of February 19, 1974, is revoked.\"; the quoted sentence (sec. 2, EO 13508) does not appear in EO 13377 and concerns a different order"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/a06/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12187",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f03",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f03/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "51b2030cf90a1d680544e2688f6f1c3e470055edf78226ee43d0c9a578f9a5b6",
+    "line": 7,
+    "record_sha256": "5e2c76ac53eb89de7bc20697cdc10b6ffb1f6168fecc49f25f33891ce11bba9a"
+   },
+   "defects": [
+    {
+     "claim_says": "clause continues, amended, until EO 12553 on 1986-02-25; 'No earlier express end was found'",
+     "field": "operative_clauses[EO:12187#whole].first_end / judgment_reason",
+     "source_says": "EO 12209 restates 1-101 to apply only 'with respect to the months of January, February and March 1980'; the own-terms end of that fixed period is not examined"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f03/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12202",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "a04",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/a04/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "file_sha256": "a8119834c456cc4b987e3dc6dfe830fff6d1ba1503cfea0b216eb24548fcfd64",
+    "line": 11,
+    "record_sha256": "64095879df840fa9bf4f2c1698a98cafb5834f21674974afbd5fe96ac0e524be"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses (inventory) / EO:12202#whole original_source span and judgment_reason",
+     "claim_says": "single clause chars 700-7081 'covers the whole held text, including the sunset in Section 1-402'",
+     "source_says": "held text continues at chars 7081-7547 with '1-4. General Provisions. 1-401. The functions of the President under the Federal Advisory Committee Act ... 1-402. The Committee shall terminate on September 30,1980.'; neither is in any clause"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/a04/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12225",
+   "kind": "rejected_in_review",
+   "review_phase": "after_reveal",
+   "source_batch": "o20",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o20/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "7e03632300ed75480a4ab8ec8dc6171c2b4d0c028c176ce6eb9a249ffcf69d44",
+    "line": 3,
+    "record_sha256": "753dd1be2b9f80ee09481a2a1659c4180438041f5733cc20463b7716b4e27e26"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (summary sentence and member check earlier_end_check)",
+     "claim_says": "No later held text cites this order other than Executive Order No. 12201 itself ... the only instrument held that cites this order by number is Executive Order No. 12201, which it amends",
+     "source_says": "EO 12201 (45 FR 17123, signed March 14, 1980) was issued before EO 12225 (July 3, 1980) and does not cite it; the citation runs from EO 12225 to EO 12201. The cruden number search for EO:12225 over held order texts returns one match, EO 12225's own Federal Register text, so no other held text cites EO 12225."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o20/packet/reviews/AFTER_REVEAL.jsonl"
+  },
+  {
+   "instrument_id": "EO:12275",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "a04",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/a04/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "file_sha256": "a8119834c456cc4b987e3dc6dfe830fff6d1ba1503cfea0b216eb24548fcfd64",
+    "line": 13,
+    "record_sha256": "2808f8198d71dabde491724978f830f064b6db295d618488e97702654bb04185"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses (inventory) / EO:12275#whole span; research_rationale and scope_check",
+     "claim_says": "one clause chars 691-2469 covering the held original text; order consists of Sections 1-101 to 1-104",
+     "source_says": "held text chars 2469-3182 contain 1-105 (definition of design) and 1-106 (Council shall encourage exchange of information and recommend changes in agency standards), omitted from every clause"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/a04/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12370",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f03",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f03/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "51b2030cf90a1d680544e2688f6f1c3e470055edf78226ee43d0c9a578f9a5b6",
+    "line": 13,
+    "record_sha256": "0f8ea0d8b8689b876b82f410c3c9a05f680a22b25f3e0d6f573cccbcfd18db3c"
+   },
+   "defects": [
+    {
+     "claim_says": "[] ('The actual report date is not recorded as a later event because no report text is among this packet's citable evidence')",
+     "field": "operative_clauses[EO:12370#sec2].later_events and [sec3].later_events",
+     "source_says": "Held PEB 194 report (jobs/source-ladder/output/texts/queue_EO_12370_Report_of_Presidential_Emergency_Board_No._194_..._6dbdcaaa92.txt): transmittal 'August 19, 1982'; 'On July 26, 1982, President Reagan approved the extension of time' from August 9 to August 19, 1982"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f03/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12376",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f03",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f03/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "51b2030cf90a1d680544e2688f6f1c3e470055edf78226ee43d0c9a578f9a5b6",
+    "line": 15,
+    "record_sha256": "4969bcf6d432d8739812a3e432e823deabbc830a5f9ce78f49a6ee57819d0722"
+   },
+   "defects": [
+    {
+     "claim_says": "Whether the Commission ceased to exist before 1986 is not established from held sources",
+     "field": "operative_clauses[EO:12376#whole].judgment_reason",
+     "source_says": "EO 12415 (held): Section 4(b) of EO 12358 amended to read 'The Commission shall terminate on December 31,1983.'; no held extension"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f03/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12393",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f03",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f03/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "51b2030cf90a1d680544e2688f6f1c3e470055edf78226ee43d0c9a578f9a5b6",
+    "line": 21,
+    "record_sha256": "be2436c780b0e276a79938c6457156276d6eb80843263d086a9953b9f3ae1806"
+   },
+   "defects": [
+    {
+     "claim_says": "when it [the standstill] ran out depends on the unrecorded report date",
+     "field": "operative_clauses[EO:12393#whole].judgment_reason",
+     "source_says": "1-103: 'from the date of the creation of the Emergency Board, and for 120 days thereafter, no change ... shall be made'; creation effective November 16, 1982"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f03/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12397",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f03",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f03/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "51b2030cf90a1d680544e2688f6f1c3e470055edf78226ee43d0c9a578f9a5b6",
+    "line": 22,
+    "record_sha256": "b476027430d7e0ec6ccf5341c83a489b1950048cc89963480be68203824b6633"
+   },
+   "defects": [
+    {
+     "claim_says": "found citations of this number outside its own printings only in an emergency-board report held under jobs/source-ladder",
+     "field": "research_rationale (number-citation lookup sentence and earlier_end_check)",
+     "source_says": "The hit is jobs/source-ladder/output/texts/queue_EO_12335_Date_the_National_Commission_on_Social_Security_Reform_..._05ec610361.txt, the SSA page 'REPORT OF THE NATIONAL COMMISSION ON SOCIAL SECURITY REFORM', January 1983, listing 'Executive Orders 12397 and 12402 Modifying the Reporting Date'"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f03/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12447",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f03",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f03/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "51b2030cf90a1d680544e2688f6f1c3e470055edf78226ee43d0c9a578f9a5b6",
+    "line": 27,
+    "record_sha256": "ec18f46f5ecb20926986feb8bc7a523dd57164597f7fb59363121d022f718f37"
+   },
+   "defects": [
+    {
+     "claim_says": "1986-02-25, EO 12553; earlier_end_check examines only the December 31, 1983 date",
+     "field": "operative_clauses[EO:12447#whole].first_end and whole_order_end",
+     "source_says": "EO 12455 makes the clause read 'The Committee shall terminate on January 31,1984, unless sooner extended.'; no held extension; EO 12534 sec. 3 lists EO 12369 among orders whose committees 'have terminated'"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f03/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12480",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f03",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f03/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "51b2030cf90a1d680544e2688f6f1c3e470055edf78226ee43d0c9a578f9a5b6",
+    "line": 31,
+    "record_sha256": "9fe46f6e6009a8f874d229817fb4028627e7994e9ef08151cd116f6fa5b86921"
+   },
+   "defects": [
+    {
+     "claim_says": "when it ran out depends on the unrecorded report date",
+     "field": "operative_clauses[EO:12480#sec3].judgment_reason",
+     "source_says": "Sec. 3: 'from the date of the creation of the board, and for 120 days thereafter, no change ...'; Sec. 1: established effective June 20, 1984"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f03/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12481",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "f03",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/f03/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "51b2030cf90a1d680544e2688f6f1c3e470055edf78226ee43d0c9a578f9a5b6",
+    "line": 32,
+    "record_sha256": "caf29ac0934bb6913be85eb5b8b9e88edbbbc73f013d379854659cc158cc324a"
+   },
+   "defects": [
+    {
+     "claim_says": "when it ran out depends on the unrecorded report date",
+     "field": "operative_clauses[EO:12481#sec3].judgment_reason",
+     "source_says": "Sec. 3: 'from the date of the creation of the board, and for 120 days thereafter, no change ...'; Sec. 1: established effective June 20, 1984"
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/f03/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12554",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "o20",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/o20/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "file_sha256": "7e03632300ed75480a4ab8ec8dc6171c2b4d0c028c176ce6eb9a249ffcf69d44",
+    "line": 6,
+    "record_sha256": "fb9bfea4f86a9af0ec81a0ad5f123c402726f25d56af334fe9ad1b8a93387ae5"
+   },
+   "defects": [
+    {
+     "field": "operative_clauses[0].judgment_reason and research_rationale.earlier_end_check",
+     "claim_says": "Only the orders from Executive Order No. 12629 onward state that they supersede their immediate predecessor ... the later extension orders ... supersede only their immediate predecessors from Executive Order No. 12629 onward",
+     "source_says": "The held text of EO 12670 (54 FR 10267, jobs/fr-originals/data/full_run/texts/EO_12670.txt, cited by the claim as a later event), and also the APP copy, contain no supersession sentence. EO 12629, 12706, 12753, 12791, 12840 and 12903 each supersede their predecessor; EO 12670 does not supersede EO 12629."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/o20/packet/reviews/BLIND_REVIEW.jsonl"
+  },
+  {
+   "instrument_id": "EO:12584",
+   "kind": "rejected_in_review",
+   "review_phase": "blind",
+   "source_batch": "a05",
+   "prior_claim": {
+    "path": "research/excavator/claude-tribonian-2026-11-04/a05/packet/applied-v5/CLAIMS.proposed.jsonl",
+    "file_sha256": "c0105910c6ea28b668893d521aa3fb0329aca87b64ad3d7636380467569cb7be",
+    "line": 1,
+    "record_sha256": "afcc45f1cf4e9f0193375ccf3e5ba06f87b8d6acd8f2ee41791b413c26659395"
+   },
+   "defects": [
+    {
+     "field": "research_rationale (earlier_end_check)",
+     "claim_says": "no held source dates the actual report, so the owner ruling of 2026-10-21 on report deadlines applies and no own-terms end is claimed",
+     "source_says": "A held Public Papers text (jobs/source-ladder/output/texts/queue_EO_12575_Date_the_President_s_Special_Review_Board_Tower_Commission_submitted_its_report_to_th_1875c02b67.txt, PPP-1987-book1 PDF pages 197-201) prints 'Remarks on Receiving the Final Report of the President's Special Review Board on the National Security Council, February 26, 1987'. Executive Order 12575 section 4 reads 'The Board shall terminate 30 days after submitting its report to the President.' The report is therefore dated in a held source, and the parent's own terms point to an end about 1987-03-28, earlier than the revocation date the claim gives."
+    },
+    {
+     "field": "whole_order_end / operative_clauses[0].first_end",
+     "claim_says": "1987-09-30, EO:12610, express_revocation_of_parent_order_as_amended",
+     "source_says": "The extended report date in section 2(b) served only a Board whose own term, keyed to its report, ran out about 30 days after 1987-02-26. The claim did not test that earlier own-terms end of the parent, so it has not shown that the revocation by Executive Order 12610 was the first end."
+    },
+    {
+     "field": "research_rationale (earlier_end_check)",
+     "claim_says": "Executive Order 12610 is the only held instrument that names the parent",
+     "source_says": "Executive Order 12581 of January 28, 1987 (held at jobs/fr-originals/output/texts/EO_12581.txt) amends 'Section 2(b) of Executive Order No. 12575'. The held Public Papers text also names the Board's report."
+    }
+   ],
+   "review_file": "research/excavator/claude-tribonian-2026-11-04/a05/packet/reviews/BLIND_REVIEW.jsonl"
+  }
+ ]
+}
