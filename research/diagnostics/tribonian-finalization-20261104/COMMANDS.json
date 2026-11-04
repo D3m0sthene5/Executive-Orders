@@ -1,0 +1,307 @@
+{
+  "schema": "tribonian-finalization-command-and-machine-intervals/v1",
+  "commands": [
+    {
+      "run": 41909867842,
+      "env": {
+        "JOBS": "readiness-tracker",
+        "TRIGGER": "bounded readiness finalization"
+      },
+      "sequence": [
+        "git fetch origin main",
+        "python .github/scripts/materialize_job_inputs.py",
+        "git fetch origin main",
+        "bash .github/scripts/run_jobs.sh",
+        "bash .github/scripts/commit_results.sh"
+      ],
+      "note": "Reuse guard checked main before and after materialization; only native tracker and its tests executed"
+    },
+    {
+      "run": 41911343998,
+      "env": {
+        "JOBS": "capcom-finalization"
+      },
+      "sequence": [
+        "python .github/scripts/materialize_job_inputs.py",
+        "bash .github/scripts/run_jobs.sh",
+        "bash .github/scripts/commit_results.sh"
+      ],
+      "inside_adapter": [
+        "Native Stage19 claim_sha across current campaign files",
+        "Maintained build_mission_log.py with output-only redirection and frozen model files",
+        "python3 -I jobs/kean/kean.py --root REPO_ROOT search tribonian readiness",
+        "Native Kean add-finding and check --strict in output-only register overlay"
+      ],
+      "note": "No checker, research, acquisition or substantive review rerun"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 126854251863,
+      "run_id": 41909867842,
+      "workflow_name": "Tribonian bounded readiness publication",
+      "head_branch": "sol/tribonian-finalization-recovery",
+      "run_url": "https://api.github.com/repos/D3m0sthene5/Executive-Orders/actions/runs/41909867842",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVNApPM8AAAAdiRpFVw",
+      "head_sha": "72cd28d46bdbc9d6a160b4b315e8e4b7a5adf682",
+      "url": "https://api.github.com/repos/D3m0sthene5/Executive-Orders/actions/jobs/126854251863",
+      "html_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41909867842/job/126854251863",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-04T20:47:03Z",
+      "started_at": "2026-11-04T20:47:05Z",
+      "completed_at": "2026-11-04T20:52:32Z",
+      "name": "recount",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-04T20:47:05Z",
+          "completed_at": "2026-11-04T20:47:06Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-04T20:47:06Z",
+          "completed_at": "2026-11-04T20:47:16Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-04T20:47:16Z",
+          "completed_at": "2026-11-04T20:47:16Z"
+        },
+        {
+          "name": "Reuse a generation published by the active run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-04T20:47:16Z",
+          "completed_at": "2026-11-04T20:47:16Z"
+        },
+        {
+          "name": "Materialize the native tracker's committed inputs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-04T20:47:16Z",
+          "completed_at": "2026-11-04T20:50:43Z"
+        },
+        {
+          "name": "Recheck publication before starting the tracker",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-04T20:50:43Z",
+          "completed_at": "2026-11-04T20:50:43Z"
+        },
+        {
+          "name": "Run only the existing tracker and its tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-04T20:50:43Z",
+          "completed_at": "2026-11-04T20:52:05Z"
+        },
+        {
+          "name": "Publish through the existing guarded result committer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-04T20:52:05Z",
+          "completed_at": "2026-11-04T20:52:30Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-04T20:52:30Z",
+          "completed_at": "2026-11-04T20:52:30Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-04T20:52:30Z",
+          "completed_at": "2026-11-04T20:52:30Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-04T20:52:30Z",
+          "completed_at": "2026-11-04T20:52:30Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/D3m0sthene5/Executive-Orders/check-runs/126854251863",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000001580,
+      "runner_name": "GitHub Actions 1000001580",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 126859398086,
+      "run_id": 41911343998,
+      "workflow_name": "Run jobs",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/D3m0sthene5/Executive-Orders/actions/runs/41911343998",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVNApPM8AAAAdiWjLxg",
+      "head_sha": "5289ac5aad4b9e96ef156095081f5572669c5d84",
+      "url": "https://api.github.com/repos/D3m0sthene5/Executive-Orders/actions/jobs/126859398086",
+      "html_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41911343998/job/126859398086",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-04T20:56:30Z",
+      "started_at": "2026-11-04T20:56:32Z",
+      "completed_at": "2026-11-04T21:00:50Z",
+      "name": "run",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-04T20:56:33Z",
+          "completed_at": "2026-11-04T20:56:34Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-04T20:56:34Z",
+          "completed_at": "2026-11-04T20:56:42Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-04T20:56:42Z",
+          "completed_at": "2026-11-04T20:56:42Z"
+        },
+        {
+          "name": "Choose which jobs to run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-04T20:56:42Z",
+          "completed_at": "2026-11-04T20:56:42Z"
+        },
+        {
+          "name": "Materialize claim-kit test fixtures",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5,
+          "started_at": "2026-11-04T20:56:42Z",
+          "completed_at": "2026-11-04T20:56:42Z"
+        },
+        {
+          "name": "Offline claim-kit runtime tests",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-11-04T20:56:42Z",
+          "completed_at": "2026-11-04T20:56:42Z"
+        },
+        {
+          "name": "Restore each job's bounded download cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-04T20:56:42Z",
+          "completed_at": "2026-11-04T20:57:09Z"
+        },
+        {
+          "name": "Materialize selected job inputs and prior outputs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-04T20:57:09Z",
+          "completed_at": "2026-11-04T21:00:17Z"
+        },
+        {
+          "name": "Run the jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-04T21:00:17Z",
+          "completed_at": "2026-11-04T21:00:27Z"
+        },
+        {
+          "name": "Keep oversized files as a download",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-04T21:00:27Z",
+          "completed_at": "2026-11-04T21:00:29Z"
+        },
+        {
+          "name": "Commit results to the branch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-04T21:00:29Z",
+          "completed_at": "2026-11-04T21:00:33Z"
+        },
+        {
+          "name": "Post Restore each job's bounded download cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-04T21:00:33Z",
+          "completed_at": "2026-11-04T21:00:47Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-04T21:00:47Z",
+          "completed_at": "2026-11-04T21:00:47Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-04T21:00:47Z",
+          "completed_at": "2026-11-04T21:00:47Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-11-04T21:00:47Z",
+          "completed_at": "2026-11-04T21:00:47Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/D3m0sthene5/Executive-Orders/check-runs/126859398086",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000001593,
+      "runner_name": "GitHub Actions 1000001593",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ],
+  "tokens": null,
+  "cash": null,
+  "active_labor": null
+}
