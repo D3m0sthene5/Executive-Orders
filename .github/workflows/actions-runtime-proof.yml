@@ -1,0 +1,62 @@
+name: Hosted matched production sparse checkout proof
+on:
+  push:
+    branches: [sol/actions-runtime-proof-20261104]
+    paths: ['.github/workflows/actions-runtime-proof.yml']
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GIT_LFS_SKIP_SMUDGE: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/*/
+            /.github/**
+            /HANDOFF/**
+            /jobs/**
+            !/jobs/*/output/**
+      - name: Compare Git operations on the same hosted runner and selected files
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, statistics, sys, time
+          from pathlib import Path
+          sys.path.insert(0, '.github/scripts')
+          import materialize_job_inputs as m
+          names = 'example-hello astra-source-retention cotton-capture-custody claim-checker valla norton claim-kit geddes hamilton-token-audit kean x1-class-engine'.split()
+          start = time.monotonic()
+          prep = m.materialize(names)
+          warm = time.monotonic() - start
+          entries, per_job, by_job = m.input_closure(names)
+          original = sorted(set().union(*by_job.values()))
+          compact = m.compact_patterns(original)
+          base = ['/*','!/*/','/.github/**','/HANDOFF/**','/jobs/**','!/jobs/*/output/**']
+          expected = m.git('ls-files','-t','-z')
+          rows = []
+          for arm, rules in [('compact',compact),('original',original),('original',original),('compact',compact)]:
+              start = time.monotonic()
+              m.git('sparse-checkout','set','--no-cone','--stdin',input=('\n'.join(base + rules)+'\n').encode())
+              setup = time.monotonic() - start
+              start = time.monotonic()
+              m.git('sparse-checkout','add','--stdin',input=b'/jobs/kean/**\n')
+              elapsed = time.monotonic() - start
+              assert m.git('ls-files','-t','-z') == expected, 'selected working tree changed!'
+              row = dict(arm=arm, rules=len(rules), set_s=round(setup,3), add_s=round(elapsed,3))
+              rows.append(row)
+              print('EO_RULE_ROW', json.dumps(row), flush=True)
+          result = dict(names=names, rows=rows, bootstrap_materialization_s=round(warm,3), selected_bytes=prep['materialized_bytes'], index_sha256=hashlib.sha256(expected).hexdigest(), receipts_sha256=prep['input_objects_sha256'])
+          print('EO_RULE_PROOF',json.dumps(result),flush=True)
+          with Path(os.environ['GITHUB_STEP_SUMMARY']).open('a') as f:
+              f.write('Same hosted runner, warmed object store, identical selected files.\n\n|Rules|Count|Set seconds|Add seconds|\n|---|---:|---:|---:|\n')
+              for row in rows:
+                  f.write('|{arm}|{rules}|{set_s}|{add_s}|\n'.format(**row))
+          PY
