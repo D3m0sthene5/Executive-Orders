@@ -48,6 +48,10 @@ def plant(claim):
 def main(batch, applied):
     claims = [json.loads(l) for l in open(Path(applied) / "CLAIMS.proposed.jsonl", encoding="utf-8") if l.strip()]
     eligible = [c for c in claims if c.get("whole_order_status") == "no" and isinstance(c.get("whole_order_end"), dict)]
+    if not eligible:
+        # An all-YES batch: plant on a claim whose terminated clauses carry first_end dates (same defect class).
+        eligible = [c for c in claims if any(isinstance(cl.get("first_end"), dict) and cl["first_end"].get("date")
+                                             for cl in c.get("operative_clauses", []))]
     n = max(1, round(len(claims) / 15)) if claims else 0
     rng = random.Random(hashlib.sha256(("tribonian-controls:" + batch).encode()).hexdigest())
     picks = rng.sample(sorted(eligible, key=lambda c: c["instrument_id"]), min(n, len(eligible)))
