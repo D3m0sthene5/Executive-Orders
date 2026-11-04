@@ -78,6 +78,7 @@ P = {
 SOURCE_KEYS = ("original_representation", "original_source", "source")
 SOURCE_LIST_KEYS = ("sources", "source_refs")
 QUOTE_KEY = re.compile(r"(^|_)(quote|quotes|quoted|quotation|quotations|verbatim|excerpt|excerpts)($|_)")
+VERBATIM_EVIDENCE_KEYS = {"matched_date"}
 LEGAL_DATE_KEYS = {"date", "effective_date", "checked_through", "signing_date", "signed_on", "effective_on",
                    "end_date", "start_date", "expiration_date", "terminated_on", "publication_date"}
 ACTIVITY_DATE_KEYS = {"checked_on", "reviewed_on", "recorded_on", "retrieved_on", "accessed_on",
@@ -859,6 +860,12 @@ def check_dates(claim, ctx, rows):
                      "research activity date (may be after the legal cutoff)")
             continue
         if key not in LEGAL_DATE_KEYS and not key.endswith("_date"):
+            continue
+        if key in VERBATIM_EVIDENCE_KEYS and ".record.evidence." in f".{path}":
+            # A reused working-text confirmation embeds its source record, whose evidence holds the date
+            # exactly as printed in the text (e.g. "February 11, 1939"). It is a quotation, not a claimed date.
+            _row(rows, step, "date_valid", path, "skip", "verbatim_evidence_text",
+                 "date as printed in the matched text; not a claimed legal date")
             continue
         if not exact_date(val):
             _row(rows, step, "date_valid", path, "fail", "not_exact_iso_date", f"{val!r} is not an exact YYYY-MM-DD date")

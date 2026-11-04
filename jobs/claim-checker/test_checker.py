@@ -447,6 +447,17 @@ class CheckerTests(unittest.TestCase):
         self.assertIn(("operative_clauses[0].first_end.source.retrieved_utc", "valid_activity_date"), st)
         self.assertIn(("whole_order_end.date", "not_exact_iso_date"), st)
 
+    def test_verbatim_matched_date_in_embedded_record(self):
+        c = good_claim()
+        c["working_text"] = {"confirmations": [{"prior_confirmation": {"record": {"evidence": {
+            "matched_date": "February 11, 1939"}}}}]}
+        c["whole_order_end"]["matched_date"] = "February 11, 1939"
+        rows, _, _ = C.check_claim(c, self.ctx)
+        st = {(r["field"], r["status"]) for r in rows_for(rows, "date_valid")}
+        self.assertIn(("working_text.confirmations[0].prior_confirmation.record.evidence.matched_date",
+                       "verbatim_evidence_text"), st)
+        self.assertIn(("whole_order_end.matched_date", "not_exact_iso_date"), st)
+
     @unittest.skipUnless(HAVE_PYPDF, "pypdf not installed")
     def test_pdf_quote(self):
         pdf = (self.repo / "research/stage21/original_sources/EO_90004.pdf").read_bytes()
