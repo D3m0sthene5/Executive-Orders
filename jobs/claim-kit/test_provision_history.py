@@ -63,7 +63,7 @@ class ProvisionHistoryTests(unittest.TestCase):
                                 'review_scope': r.get('affected_provision_id', rid), 'verdict': 'upheld',
                                 'reviewer': 'independent-reviewer', 'independent': True})
         self.review_path.write_text(json.dumps({'schema': H.REVIEW_SCHEMA, 'reviews': reviews}), encoding='utf-8')
-        self.bundle['review_file'] = {'path': str(self.review_path.relative_to(self.repo)),
+        self.bundle['review_file'] = {'path': self.review_path.relative_to(self.repo).as_posix(),
                                      'sha256': hashlib.sha256(self.review_path.read_bytes()).hexdigest()}
         self.bundle_path.write_text(json.dumps(self.bundle), encoding='utf-8')
 
