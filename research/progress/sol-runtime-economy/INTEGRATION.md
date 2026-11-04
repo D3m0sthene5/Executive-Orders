@@ -97,3 +97,7 @@ same-run transient files. First establish the exact disposable-cache contract
 and test genuine tracked/explicit cache inputs before proposing exclusions.
 No `.gitignore`, provider inventory, scientific gate, review count, claim,
 canonical readiness output, schedule, main branch or live site was changed.
+
+## Main advanced during publication
+
+Draft PR140 was published at engineering head `d9c183f0ad2326cd400f0782002fcce9b23846f5`. An existing production run then advanced main to `a3bfac64b3e1c43400a8ed8c744419eb17f6e2e6`. A complete local name-only tree comparison found 2,459 changed paths, all under job output directories, with zero overlap with Session B. Matched measurements deliberately retain `2c85459` and its exact source inventory. Preserve the newer generated outputs when integrating and run fresh source/dispatch checks; do not copy the old generation over them. `evidence/MAIN_ADVANCE.json` records this read-only check. No workflow run was present on the published engineering head when inspected.

@@ -8,3 +8,5 @@
 - **Running:** No production/acquisition/generation job dispatched. Publication uses `[skip actions]` to avoid automatic job generation; hosted checks are unrun, not passing.
 - **Asks:** @Owner: none.
 - **Do not:** Merge under this assignment, renew old reviews, change main/another branch, alter Session A policy, published claims/statuses/certification, source bytes, frozen packets or active resume state. Model tokens, cash and active labor remain unknown.
+
+- **Published:** Draft [PR140](https://github.com/D3m0sthene5/Executive-Orders/pull/140); no merge. Existing production advanced main to `a3bfac64` during publication: 2,459 output-only paths, zero overlap with this branch. Preserve that newer generation; matched measurements remain at the original base.
