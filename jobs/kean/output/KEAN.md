@@ -26,7 +26,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 134; `search` finds the rest)
+## Newest results (6 of 135; `search` finds the rest)
 
 - 2026-11-04 F-20261104-supported-usage-normalization **worked**: Extend existing Hamilton ingestion to supported Geddes-format JSONL and existing NEYMAN production-effort con… Lesson: Preserve final revisions sharing event IDs, verify caller intervals against observed usage timestamps, and bridge existing explicit diagnostic routes; successful synthetic integration does not establ…
 - 2026-11-04 F-20261104-sol-supported-occurrence **worked**: Retain source-reviewed occurrence intervals through ordinary partial research Lesson: Occurrence, date precision and legal effect require separate proof; partial review is not whole readiness
@@ -35,4 +35,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-04 F-20261104-sol-geddes-hosted-fixture **worked**: Run hosted Geddes check on the reviewed source Lesson: Test the actual CI input closure; preserve failure and extend fixture access without skipping gates or changing runtime
 - 2026-11-04 F-20261104-sol-eo13792-research **partly worked**: Examine new held and public EO13792 report witnesses independently Lesson: Submission, draft transmission, public release, receipt and legal exhaustion are distinct; new sources need exact custody and fresh application review
 
-Register: 21 owner decisions, 13 answered questions, 134 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 21 owner decisions, 13 answered questions, 135 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
