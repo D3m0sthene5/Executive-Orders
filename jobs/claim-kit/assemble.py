@@ -153,7 +153,10 @@ def _child(repo, name):
     return path
 
 
-def _source_errors(source, quote, repo, label):
+def _source_errors(source, quote, repo, label, *, source_reader=None):
+    # The optional reader is for explicit blinded byte verification: the caller
+    # can provide already confined/pinned bytes without changing exact checks.
+    read_source = source_reader if source_reader is not None else lambda name: _child(repo, name).read_bytes()
     errors = []
     if not isinstance(source, dict):
         return [label + ":missing_source"]
@@ -165,7 +168,7 @@ def _source_errors(source, quote, repo, label):
     if not isinstance(source.get("text_sha256"), str) or not SHA.fullmatch(source["text_sha256"]):
         errors.append(label + ":text_sha256")
     try:
-        raw = _child(repo, source.get("text_path")).read_bytes()
+        raw = read_source(source.get("text_path"))
         # Decode without newline conversion: offsets refer to exact stored text.
         text = raw.decode("utf-8")
         if hashlib.sha256(raw).hexdigest() != source.get("text_sha256"):
@@ -183,7 +186,7 @@ def _source_errors(source, quote, repo, label):
     for key in ("local_path", "local_file", "download_path"):
         if source.get(key):
             try:
-                if hashlib.sha256(_child(repo, source[key]).read_bytes()).hexdigest() != original_sha:
+                if hashlib.sha256(read_source(source[key])).hexdigest() != original_sha:
                     errors.append(label + ":original_hash_mismatch")
             except (OSError, ValueError, TypeError):
                 errors.append(label + ":original_unavailable_or_unsafe")
@@ -372,7 +375,7 @@ def _check_claim(claim, repo, dossier=None):
     return list(dict.fromkeys(errors))
 
 
-def _assemble(sheet, dossier, repo):
+def _assemble(sheet, dossier, repo, interval_partial=False):
     """Return (claim, []) or (None, explicit_errors); never mutate inputs."""
     if not isinstance(sheet, dict) or not isinstance(dossier, dict):
         return None, ["sheet_or_dossier_not_object"]
@@ -399,7 +402,11 @@ def _assemble(sheet, dossier, repo):
         errors.append("agent_required")
     if _placeholder(sheet) or _placeholder(dossier.get("clauses", [])):
         errors.append("placeholder")
-    if sheet.get("unresolved_material_gaps") != []:
+    if interval_partial:
+        gaps = sheet.get("unresolved_material_gaps")
+        if not isinstance(gaps, list) or not gaps or not all(_nonempty(g) for g in gaps):
+            errors.append("explicit_interval_research_gaps_required")
+    elif sheet.get("unresolved_material_gaps") != []:
         errors.append("unresolved_material_gaps")
     resolutions = sheet.get("conflict_resolutions")
     if not isinstance(resolutions, dict):
@@ -466,6 +473,7 @@ def _assemble(sheet, dossier, repo):
         claim["working_text"] = deepcopy(sheet["working_text"])
     # Qualified candidates and source context need pins without inventing an
     # exact legal event date. Only producer-selected existing evidence is copied.
+    partial_scopes = set()
     notes = sheet.get("source_notes", [])
     if not isinstance(notes, list):
         errors.append("source_notes_list_required")
@@ -478,10 +486,17 @@ def _assemble(sheet, dossier, repo):
                 continue
             ident = note["id"]
             if isinstance(ident, str) and ident.startswith("FACT:"):
-                errors.append("source_note_factual_event_requires_existing_reviewed_event_route")
-                continue
+                record = evidence.get(ident, {})
+                if record.get("role") != F.INTERVAL_ROLE or not interval_partial:
+                    errors.append("source_note_factual_event_requires_existing_reviewed_event_route")
+                    continue
+                partial_scopes.add(record["scope_id"])
+                if note["date_qualification"] != record.get("date_qualification"):
+                    errors.append("factual_interval_requires_exact_qualification")
             claim["source_notes"].append({"source": _reference(ident, evidence, errors),
                 "reason": note["reason"], "date_qualification": note["date_qualification"]})
+    if interval_partial and not partial_scopes:
+        errors.append("reviewed_interval_source_note_required")
     clauses = sheet.get("clauses")
     expected = corrected if corrected is not None else dossier.get("clauses")
     if not isinstance(clauses, list) or not clauses:
@@ -528,6 +543,10 @@ def _assemble(sheet, dossier, repo):
                 "original_source": _reference(ident, evidence, errors),
                 "state_at_cutoff": decision.get("state"), "later_events": [],
                 "judgment_reason": decision.get("reason")}
+        if interval_partial and scope in partial_scopes and (decision.get("state") is not None or
+                any(decision.get(k) for k in ("end_id", "effective_date", "effective_date_confirmed",
+                                               "current_basis_id", "current_legal_basis", "checked_through"))):
+            errors.append("factual_interval_does_not_approve_state_or_ending")
         if not _nonempty(decision.get("reason")):
             errors.append(f"clause_{index}_reason_required")
         if decision.get("state") in ("terminated", "never_activated"):
@@ -572,7 +591,7 @@ def _assemble(sheet, dossier, repo):
         if any(not isinstance(ident, str) or ident not in seen for ident in ids):
             errors.append(f"clause_{index}_later_event_confirmation_required")
         claim["operative_clauses"].append(item)
-    if claim["whole_order_status"] == "no":
+    if claim["whole_order_status"] == "no" and not interval_partial:
         ends = [c.get("first_end") for c in claim["operative_clauses"]]
         dated = [e for e in ends if isinstance(e, dict) and isinstance(e.get("date"), str)]
         if dated:
@@ -610,7 +629,19 @@ def _assemble(sheet, dossier, repo):
         elif isinstance(claim["working_text"].get("confirmations"), list):
             claim["working_text"]["confirmations"] = [c for c in claim["working_text"]["confirmations"]
                 if isinstance(c, dict) and W.key(c) in used]
-    errors.extend(check_claim(claim, repo, dossier))
+    checks = check_claim(claim, repo, dossier)
+    if interval_partial:
+        gate_errors = _gate(repo).validate_claim(claim, expected_status=dossier.get("whole_order_status"))
+        expected = {"unresolved_material_gaps"} | {f"clause_{i}_state" for i,c in
+                    enumerate(claim["operative_clauses"]) if c.get("scope_id") in partial_scopes}
+        if claim["whole_order_status"] == "no":
+            expected.add("whole_order_end_evidence")
+        if set(gate_errors) != expected:
+            errors.append("interval_partial_has_unexpected_gate_errors:" + ",".join(sorted(gate_errors)))
+        # Only the explicitly scoped, known completeness deficits can pass into a partial proposal.
+        # Keep check_claim unchanged; native completion independently checks the exact error list.
+        checks = [e for e in checks if e not in expected]
+    errors.extend(checks)
     errors = list(dict.fromkeys(errors))
     return (None, errors) if errors else (claim, [])
 
@@ -627,5 +658,13 @@ def assemble(sheet, dossier, repo):
     """Public fail-closed assembler; errors never produce a claim to commit."""
     try:
         return _assemble(sheet, dossier, repo)
+    except (TypeError, ValueError, KeyError, AttributeError, RecursionError) as exc:
+        return None, ["malformed_sheet_or_dossier:" + type(exc).__name__]
+
+
+def assemble_interval_partial(sheet, dossier, repo):
+    """Produce a partial proposal only. Its independent full-gate results must remain nonempty."""
+    try:
+        return _assemble(sheet, dossier, repo, interval_partial=True)
     except (TypeError, ValueError, KeyError, AttributeError, RecursionError) as exc:
         return None, ["malformed_sheet_or_dossier:" + type(exc).__name__]
