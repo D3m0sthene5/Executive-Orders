@@ -1,0 +1,1298 @@
+{
+ "generated_from": "AGENT_USAGE.csv via Hamilton profile.py (jobs/hamilton-token-audit)",
+ "token_categories_note": "fresh_input, cache_read, cache_write and output are separate, nonoverlapping categories and are never summed together. Null means no value observed.",
+ "totals_by_phase": {
+  "coordination": {
+   "agents": 1,
+   "calls": 200,
+   "fresh_input": 434,
+   "cache_read": 54219198,
+   "cache_write_5m": 0,
+   "cache_write_1h": 489663,
+   "cache_write_unclassified": 0,
+   "output": 115927
+  },
+  "correction": {
+   "agents": 3,
+   "calls": 469,
+   "fresh_input": 944,
+   "cache_read": 93144449,
+   "cache_write_5m": 2946588,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 429750
+  },
+  "integration": {
+   "agents": 3,
+   "calls": 124,
+   "fresh_input": 256,
+   "cache_read": 13420234,
+   "cache_write_5m": 948987,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 70582
+  },
+  "production": {
+   "agents": 35,
+   "calls": 3751,
+   "fresh_input": 7684,
+   "cache_read": 758360931,
+   "cache_write_5m": 28505549,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 3993906
+  },
+  "review": {
+   "agents": 36,
+   "calls": 2173,
+   "fresh_input": 4440,
+   "cache_read": 384725042,
+   "cache_write_5m": 10804078,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 2785481
+  }
+ },
+ "totals_by_model": {
+  "claude-opus-5-5": {
+   "agents": 38,
+   "calls": 2460,
+   "fresh_input": 5054,
+   "cache_read": 449077488,
+   "cache_write_5m": 11504279,
+   "cache_write_1h": 489663,
+   "cache_write_unclassified": 0,
+   "output": 2937777
+  },
+  "claude-sonnet-5-5": {
+   "agents": 40,
+   "calls": 4257,
+   "fresh_input": 8704,
+   "cache_read": 854792366,
+   "cache_write_5m": 31700923,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 4457869
+  }
+ },
+ "production_batches": [
+  {
+   "batches": [
+    "a01",
+    "o17",
+    "o22"
+   ],
+   "filed_claims_by_batch": {
+    "a01": 3,
+    "o17": 6,
+    "o22": 7
+   },
+   "filed_claims_total": 16,
+   "includes": [
+    {
+     "agent_id": "a7b8b4a11a3b56874",
+     "role": "producer"
+    },
+    {
+     "agent_id": "af795603f1e917277",
+     "role": "producer"
+    },
+    {
+     "agent_id": "ae8c5c51240b4635f",
+     "role": "producer"
+    },
+    {
+     "agent_id": "ae38aaa88fe1fed8b",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 1060,
+    "cache_read": 105499625,
+    "cache_write_5m": 3446299,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 513531
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 66.25,
+    "cache_read": 6593726.5625,
+    "cache_write_5m": 215393.6875,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 32095.6875
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": [
+    "batches share a reviewer agent; tokens are not separable, so the ratio is for the group"
+   ]
+  },
+  {
+   "batches": [
+    "a02"
+   ],
+   "filed_claims_by_batch": {
+    "a02": 1
+   },
+   "filed_claims_total": 1,
+   "includes": [
+    {
+     "agent_id": "a3e82e412b3816027",
+     "role": "producer"
+    },
+    {
+     "agent_id": "aa9717a72c9c2f154",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 356,
+    "cache_read": 34233856,
+    "cache_write_5m": 916062,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 194691
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 356.0,
+    "cache_read": 34233856.0,
+    "cache_write_5m": 916062.0,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 194691.0
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "a03"
+   ],
+   "filed_claims_by_batch": {
+    "a03": 12
+   },
+   "filed_claims_total": 12,
+   "includes": [
+    {
+     "agent_id": "ae9ecde3e68d59dce",
+     "role": "producer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 298,
+    "cache_read": 32650805,
+    "cache_write_5m": 725540,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 164690
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 24.833333333333332,
+    "cache_read": 2720900.4166666665,
+    "cache_write_5m": 60461.666666666664,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 13724.166666666666
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": [
+    "no reviewer agent found in the log for this batch"
+   ]
+  },
+  {
+   "batches": [
+    "a04"
+   ],
+   "filed_claims_by_batch": {
+    "a04": 19
+   },
+   "filed_claims_total": 19,
+   "includes": [
+    {
+     "agent_id": "ae31495276890770e",
+     "role": "producer"
+    },
+    {
+     "agent_id": "adee89d411b3a87a5",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 426,
+    "cache_read": 41608321,
+    "cache_write_5m": 1680424,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 269037
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 22.42105263157895,
+    "cache_read": 2189911.6315789474,
+    "cache_write_5m": 88443.36842105263,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 14159.842105263158
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "a05"
+   ],
+   "filed_claims_by_batch": {
+    "a05": 14
+   },
+   "filed_claims_total": 14,
+   "includes": [
+    {
+     "agent_id": "a252876ee65e1a8bf",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a607461dd33a8d121",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 482,
+    "cache_read": 45043229,
+    "cache_write_5m": 676912,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 323877
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 34.42857142857143,
+    "cache_read": 3217373.5,
+    "cache_write_5m": 48350.857142857145,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 23134.071428571428
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "a06"
+   ],
+   "filed_claims_by_batch": {
+    "a06": 5
+   },
+   "filed_claims_total": 5,
+   "includes": [
+    {
+     "agent_id": "a4ea33aadc5f806ae",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a4ecf9e9acefac69e",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 404,
+    "cache_read": 43591374,
+    "cache_write_5m": 817537,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 145134
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 80.8,
+    "cache_read": 8718274.8,
+    "cache_write_5m": 163507.4,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 29026.8
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "f01"
+   ],
+   "filed_claims_by_batch": {
+    "f01": 30
+   },
+   "filed_claims_total": 30,
+   "includes": [
+    {
+     "agent_id": "aac040a2af2845b4a",
+     "role": "producer"
+    },
+    {
+     "agent_id": "aacceb94e86a66dd3",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 540,
+    "cache_read": 54370982,
+    "cache_write_5m": 1923795,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 293297
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 18.0,
+    "cache_read": 1812366.0666666667,
+    "cache_write_5m": 64126.5,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 9776.566666666668
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "f02"
+   ],
+   "filed_claims_by_batch": {
+    "f02": 23
+   },
+   "filed_claims_total": 23,
+   "includes": [
+    {
+     "agent_id": "a3c1b1dfe62383eb9",
+     "role": "producer"
+    },
+    {
+     "agent_id": "adaf4936af9334940",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 462,
+    "cache_read": 44437209,
+    "cache_write_5m": 1639481,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 208840
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 20.08695652173913,
+    "cache_read": 1932052.5652173914,
+    "cache_write_5m": 71281.78260869565,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 9080.0
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "f03"
+   ],
+   "filed_claims_by_batch": {
+    "f03": 24
+   },
+   "filed_claims_total": 24,
+   "includes": [
+    {
+     "agent_id": "a0d4f9dfdda97c243",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a790f981a3aaf99c3",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 398,
+    "cache_read": 39789067,
+    "cache_write_5m": 1727218,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 338879
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 16.583333333333332,
+    "cache_read": 1657877.7916666667,
+    "cache_write_5m": 71967.41666666667,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 14119.958333333334
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "k01"
+   ],
+   "filed_claims_by_batch": {
+    "k01": 7
+   },
+   "filed_claims_total": 7,
+   "includes": [
+    {
+     "agent_id": "ac899a67858cec156",
+     "role": "producer"
+    },
+    {
+     "agent_id": "af6aa82d5ff780587",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 346,
+    "cache_read": 35237576,
+    "cache_write_5m": 1342022,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 214266
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 49.42857142857143,
+    "cache_read": 5033939.428571428,
+    "cache_write_5m": 191717.42857142858,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 30609.428571428572
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o01"
+   ],
+   "filed_claims_by_batch": {
+    "o01": 25
+   },
+   "filed_claims_total": 25,
+   "includes": [
+    {
+     "agent_id": "ac7897398f615ef6b",
+     "role": "producer"
+    },
+    {
+     "agent_id": "ae0c2ddf980c274a8",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 332,
+    "cache_read": 30274503,
+    "cache_write_5m": 1626996,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 261563
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 13.28,
+    "cache_read": 1210980.12,
+    "cache_write_5m": 65079.84,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 10462.52
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o02"
+   ],
+   "filed_claims_by_batch": {
+    "o02": 22
+   },
+   "filed_claims_total": 22,
+   "includes": [
+    {
+     "agent_id": "af837ef1d376cf194",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a105aa790b6ed8ab9",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 310,
+    "cache_read": 26430701,
+    "cache_write_5m": 1058918,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 152415
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 14.090909090909092,
+    "cache_read": 1201395.5,
+    "cache_write_5m": 48132.63636363636,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 6927.954545454545
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o03"
+   ],
+   "filed_claims_by_batch": {
+    "o03": 28
+   },
+   "filed_claims_total": 28,
+   "includes": [
+    {
+     "agent_id": "a843d74df43e3b57b",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a045ec917e1d98dfc",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 326,
+    "cache_read": 29136247,
+    "cache_write_5m": 684743,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 210486
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 11.642857142857142,
+    "cache_read": 1040580.25,
+    "cache_write_5m": 24455.10714285714,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 7517.357142857143
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o04"
+   ],
+   "filed_claims_by_batch": {
+    "o04": 6
+   },
+   "filed_claims_total": 6,
+   "includes": [
+    {
+     "agent_id": "a250a3ce754b26c26",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a2a8fd8c8502789ac",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 276,
+    "cache_read": 21555472,
+    "cache_write_5m": 988031,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 104481
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 46.0,
+    "cache_read": 3592578.6666666665,
+    "cache_write_5m": 164671.83333333334,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 17413.5
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o05"
+   ],
+   "filed_claims_by_batch": {
+    "o05": 30
+   },
+   "filed_claims_total": 30,
+   "includes": [
+    {
+     "agent_id": "afc3b462ab2401eeb",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a5b1975d6c6a893ed",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 232,
+    "cache_read": 17292820,
+    "cache_write_5m": 1097743,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 121655
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 7.733333333333333,
+    "cache_read": 576427.3333333334,
+    "cache_write_5m": 36591.433333333334,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 4055.1666666666665
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o06"
+   ],
+   "filed_claims_by_batch": {
+    "o06": 25
+   },
+   "filed_claims_total": 25,
+   "includes": [
+    {
+     "agent_id": "a203a1346a565be3c",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a2b53ee0a20d7f9d0",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 254,
+    "cache_read": 20203304,
+    "cache_write_5m": 966049,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 133991
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 10.16,
+    "cache_read": 808132.16,
+    "cache_write_5m": 38641.96,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 5359.64
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o07"
+   ],
+   "filed_claims_by_batch": {
+    "o07": 17
+   },
+   "filed_claims_total": 17,
+   "includes": [
+    {
+     "agent_id": "aa63c2bcd126be794",
+     "role": "producer"
+    },
+    {
+     "agent_id": "abc960c116348b5c5",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 296,
+    "cache_read": 26899340,
+    "cache_write_5m": 1175473,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 179961
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 17.41176470588235,
+    "cache_read": 1582314.1176470588,
+    "cache_write_5m": 69145.4705882353,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 10585.941176470587
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o08"
+   ],
+   "filed_claims_by_batch": {
+    "o08": 20
+   },
+   "filed_claims_total": 20,
+   "includes": [
+    {
+     "agent_id": "a56e1845789f99785",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a578c467780ab7406",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 258,
+    "cache_read": 21056002,
+    "cache_write_5m": 1629613,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 97197
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 12.9,
+    "cache_read": 1052800.1,
+    "cache_write_5m": 81480.65,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 4859.85
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o09"
+   ],
+   "filed_claims_by_batch": {
+    "o09": 23
+   },
+   "filed_claims_total": 23,
+   "includes": [
+    {
+     "agent_id": "a7ce718bed614d6cc",
+     "role": "producer"
+    },
+    {
+     "agent_id": "ad7664974e1fbdb9a",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 244,
+    "cache_read": 19290948,
+    "cache_write_5m": 732323,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 115828
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 10.608695652173912,
+    "cache_read": 838736.8695652174,
+    "cache_write_5m": 31840.130434782608,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 5036.0
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o10"
+   ],
+   "filed_claims_by_batch": {
+    "o10": 13
+   },
+   "filed_claims_total": 13,
+   "includes": [
+    {
+     "agent_id": "a1bd20a00be04faf2",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a50cfb030d1c36207",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 354,
+    "cache_read": 32170186,
+    "cache_write_5m": 879124,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 191487
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 27.23076923076923,
+    "cache_read": 2474629.6923076925,
+    "cache_write_5m": 67624.92307692308,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 14729.76923076923
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o11"
+   ],
+   "filed_claims_by_batch": {
+    "o11": 14
+   },
+   "filed_claims_total": 14,
+   "includes": [
+    {
+     "agent_id": "ae4284796ce76ca8e",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a978d0304ccc8ef55",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 264,
+    "cache_read": 24604275,
+    "cache_write_5m": 829142,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 140896
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 18.857142857142858,
+    "cache_read": 1757448.2142857143,
+    "cache_write_5m": 59224.42857142857,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 10064.0
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o12"
+   ],
+   "filed_claims_by_batch": {
+    "o12": 10
+   },
+   "filed_claims_total": 10,
+   "includes": [
+    {
+     "agent_id": "a36ab3ba63144a7f1",
+     "role": "producer"
+    },
+    {
+     "agent_id": "afca53bcdd60bb171",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 364,
+    "cache_read": 37471622,
+    "cache_write_5m": 785228,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 346307
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 36.4,
+    "cache_read": 3747162.2,
+    "cache_write_5m": 78522.8,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 34630.7
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o13"
+   ],
+   "filed_claims_by_batch": {
+    "o13": 8
+   },
+   "filed_claims_total": 8,
+   "includes": [
+    {
+     "agent_id": "a491d7cfacfa87712",
+     "role": "producer"
+    },
+    {
+     "agent_id": "af5f20b32e110a983",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 312,
+    "cache_read": 30027183,
+    "cache_write_5m": 568691,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 261649
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 39.0,
+    "cache_read": 3753397.875,
+    "cache_write_5m": 71086.375,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 32706.125
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o14",
+    "o19",
+    "o21"
+   ],
+   "filed_claims_by_batch": {
+    "o14": 6,
+    "o19": 21,
+    "o21": 12
+   },
+   "filed_claims_total": 39,
+   "includes": [
+    {
+     "agent_id": "a6000b48177c298f3",
+     "role": "producer"
+    },
+    {
+     "agent_id": "abdcb425e218e640e",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a24b0b806585be3cd",
+     "role": "producer"
+    },
+    {
+     "agent_id": "ac1d608ccfe65d2c3",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 954,
+    "cache_read": 97926869,
+    "cache_write_5m": 4205198,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 608624
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 24.46153846153846,
+    "cache_read": 2510945.358974359,
+    "cache_write_5m": 107825.58974358975,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 15605.74358974359
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": [
+    "batches share a reviewer agent; tokens are not separable, so the ratio is for the group"
+   ]
+  },
+  {
+   "batches": [
+    "o15"
+   ],
+   "filed_claims_by_batch": {
+    "o15": 19
+   },
+   "filed_claims_total": 19,
+   "includes": [
+    {
+     "agent_id": "a69f242266f511d52",
+     "role": "producer"
+    },
+    {
+     "agent_id": "ab983642d721dc2a7",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 344,
+    "cache_read": 35907177,
+    "cache_write_5m": 1052061,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 244129
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 18.105263157894736,
+    "cache_read": 1889851.4210526317,
+    "cache_write_5m": 55371.63157894737,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 12848.894736842105
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o16"
+   ],
+   "filed_claims_by_batch": {
+    "o16": 17
+   },
+   "filed_claims_total": 17,
+   "includes": [
+    {
+     "agent_id": "a758f2cc1e69de42c",
+     "role": "producer"
+    },
+    {
+     "agent_id": "ac94278aee2d17f5f",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 230,
+    "cache_read": 20558599,
+    "cache_write_5m": 462777,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 141643
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 13.529411764705882,
+    "cache_read": 1209329.3529411764,
+    "cache_write_5m": 27222.176470588234,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 8331.941176470587
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o18"
+   ],
+   "filed_claims_by_batch": {
+    "o18": 13
+   },
+   "filed_claims_total": 13,
+   "includes": [
+    {
+     "agent_id": "ab7b1cf32688ed9bb",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a2fc9425c7ecea5f9",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 266,
+    "cache_read": 21111304,
+    "cache_write_5m": 537806,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 145195
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 20.46153846153846,
+    "cache_read": 1623946.4615384615,
+    "cache_write_5m": 41369.692307692305,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 11168.846153846154
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": []
+  },
+  {
+   "batches": [
+    "o20",
+    "o23",
+    "o24"
+   ],
+   "filed_claims_by_batch": {
+    "o20": 7,
+    "o23": 2,
+    "o24": 3
+   },
+   "filed_claims_total": 12,
+   "includes": [
+    {
+     "agent_id": "a5e9d948fc337148c",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a82966484373d4255",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a063188c0fd5024f1",
+     "role": "producer"
+    },
+    {
+     "agent_id": "a10552cee22baf93a",
+     "role": "reviewer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 502,
+    "cache_read": 41328750,
+    "cache_write_5m": 2052081,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 246889
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": 41.833333333333336,
+    "cache_read": 3444062.5,
+    "cache_write_5m": 171006.75,
+    "cache_write_1h": 0.0,
+    "cache_write_unclassified": 0.0,
+    "output": 20574.083333333332
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": [
+    "batches share a reviewer agent; tokens are not separable, so the ratio is for the group"
+   ]
+  },
+  {
+   "batches": [
+    "o25"
+   ],
+   "filed_claims_by_batch": {
+    "o25": 0
+   },
+   "filed_claims_total": 0,
+   "includes": [
+    {
+     "agent_id": "a203ff4c771d1106e",
+     "role": "producer"
+    }
+   ],
+   "tokens_by_category": {
+    "fresh_input": 72,
+    "cache_read": 4705237,
+    "cache_write_5m": 360373,
+    "cache_write_1h": 0,
+    "cache_write_unclassified": 0,
+    "output": 19495
+   },
+   "observed_tokens_per_filed_claim": {
+    "fresh_input": null,
+    "cache_read": null,
+    "cache_write_5m": null,
+    "cache_write_1h": null,
+    "cache_write_unclassified": null,
+    "output": null
+   },
+   "ratio_label": "observed_tokens_per_filed_claim",
+   "notes": [
+    "zero filed claims; ratio undefined, left null",
+    "no reviewer agent found in the log for this batch"
+   ]
+  }
+ ],
+ "excluded_from_production_batch_ratios": [
+  {
+   "agent_id": "a66e5a9bda458ef20",
+   "role": "reviewer",
+   "batch": "rereview-n01",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "a79d5a65e78950362",
+   "role": "integration_worker",
+   "batch": "",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "ab98de28898a016d8",
+   "role": "correction_producer",
+   "batch": "c01",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "a468743fe24ea2cb3",
+   "role": "correction_producer",
+   "batch": "c02",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "af309b47d2be0701d",
+   "role": "correction_producer",
+   "batch": "c03",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "a95997ff28abc8e7f",
+   "role": "adapter_worker",
+   "batch": "",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "a0ab8841edc53ca1f",
+   "role": "telemetry_worker",
+   "batch": "",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "ab596afbf8c3f5a69",
+   "role": "reviewer",
+   "batch": "lind-a03-A",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "abbb27e023031d71e",
+   "role": "reviewer",
+   "batch": "lind-a03-B",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "ae823b1b9e7033875",
+   "role": "reviewer",
+   "batch": "lind-c01-A",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "a8ffdfbcc320cd3ec",
+   "role": "reviewer",
+   "batch": "lind-c01-B",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "a5acb0cdb59607d1a",
+   "role": "reviewer",
+   "batch": "lind-c03-A",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "aaaf8416ec6888481",
+   "role": "reviewer",
+   "batch": "lind-c03-B",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "afd7bbbbe774eb25f",
+   "role": "reviewer",
+   "batch": "lind-c02-A",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "a8cffac60402573c3",
+   "role": "reviewer",
+   "batch": "lind-c02-B",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  },
+  {
+   "agent_id": "coordinator",
+   "role": "coordinator",
+   "batch": "",
+   "reason": "not a production-batch producer/reviewer (re-review, correction, integration, adapter, telemetry, coordinator, or unknown)"
+  }
+ ],
+ "notes": [
+  "Coordinator transcript spans earlier work (coverage partial).",
+  "Output tokens may be a streaming lower bound where Hamilton reports calls without final output counts.",
+  "Batches o25-o30 and unfilled claims files count as 0 filed claims; ratios for them are null.",
+  "Filed-claim counts are lines in the claims files present at run time; the completion chain was interrupted by a full disk, so later batches may file more claims and these ratios then fall.",
+  "Re-review, correction, integration, adapter, telemetry and coordinator agents are excluded from batch ratios; see excluded_from_production_batch_ratios.",
+  "Blind review and after-reveal share one reviewer transcript and are included together."
+ ]
+}
