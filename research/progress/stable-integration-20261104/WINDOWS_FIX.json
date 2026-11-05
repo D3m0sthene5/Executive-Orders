@@ -1,0 +1,49 @@
+{
+  "schema": "eo-windows-fixture-repair/v1",
+  "recorded_utc": "2026-11-05T00:31:44.965205+00:00",
+  "author": "/root/final_engineering_review",
+  "base_commit": "ff1f31e13f370e2d910ee433b831bac6fd01d2df",
+  "problem": "Two pre-existing Lachmann Audit fixtures hashed LF Python strings before saving text with platform-dependent newline translation. Windows saved CRLF bytes, so the unchanged audit_sample exact-byte gate rejected every fixture.",
+  "change": "Both fixture declarations now hash the actual saved text bytes. The first test explicitly saves CRLF and asserts CRLF presence on every platform, preserving an executable regression for Windows translation. Runtime, scientific gates and source records remain unchanged.",
+  "source_sha256": {
+    "jobs/lachmann/test_lachmann.py": "8d305bffa9ab4a8c100212fa0726b7f6550f250aa6d61074f8f3808be245470b",
+    "jobs/lachmann/lachmann.py": "2be3dff2a1420845031ec69a4c9a1400cb5c0860bbf746a229e23c60fb435a32"
+  },
+  "baseline_test_source_sha256": "93c49ec0ce24dc8c84c4fef0f63d84275b969054e25781fcfec138b66da49ea1",
+  "tests": [
+    {
+      "name": "Original Audit fixtures with forced CRLF text writes",
+      "result": "expected_failure_reproduced",
+      "tests": 2,
+      "errors": 2,
+      "detail": "Both fail: only 0 eligible confirmed orders; 16 needed.",
+      "retained_log": "test_audit_sample_blinds_and_plants (test_lachmann.Audit.test_audit_sample_blinds_and_plants) ... ERROR\ntest_only_route_and_exclude_from (test_lachmann.Audit.test_only_route_and_exclude_from) ... ERROR\n\n======================================================================\nERROR: test_audit_sample_blinds_and_plants (test_lachmann.Audit.test_audit_sample_blinds_and_plants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/a3411b70bba5/stable/jobs/lachmann/test_lachmann.py\", line 258, in test_audit_sample_blinds_and_plants\n    res = L.audit_sample(10, 'seed-x', conf, out, key, root)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/a3411b70bba5/stable/jobs/lachmann/lachmann.py\", line 987, in audit_sample\n    raise ValueError(f'only {len(pool)} eligible confirmed orders; {need} needed')\nValueError: only 0 eligible confirmed orders; 16 needed\n\n======================================================================\nERROR: test_only_route_and_exclude_from (test_lachmann.Audit.test_only_route_and_exclude_from)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/a3411b70bba5/stable/jobs/lachmann/test_lachmann.py\", line 290, in test_only_route_and_exclude_from\n    res = L.audit_sample(10, 's1', conf, root / 'p1', key1, root, only_route='source_heading')\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/a3411b70bba5/stable/jobs/lachmann/lachmann.py\", line 987, in audit_sample\n    raise ValueError(f'only {len(pool)} eligible confirmed orders; {need} needed')\nValueError: only 0 eligible confirmed orders; 16 needed\n\n----------------------------------------------------------------------\nRan 2 tests in 0.021s\n\nFAILED (errors=2)\nConfirmed both original fixtures fail under explicit Windows CRLF translation.\n"
+    },
+    {
+      "name": "Repaired full Lachmann suite",
+      "result": "pass",
+      "tests": 52,
+      "seconds": 0.207,
+      "retained_log": "....................................................\n----------------------------------------------------------------------\nRan 52 tests in 0.207s\n\nOK\n"
+    },
+    {
+      "name": "Repaired Audit fixtures with forced CRLF text writes",
+      "result": "pass",
+      "tests": 2,
+      "retained_log": "test_audit_sample_blinds_and_plants (test_lachmann.Audit.test_audit_sample_blinds_and_plants) ... ok\ntest_only_route_and_exclude_from (test_lachmann.Audit.test_only_route_and_exclude_from) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.031s\n\nOK\nBoth fixtures pass with forced Windows CRLF translation; source hashes use saved bytes.\n"
+    },
+    {
+      "name": "git diff --check",
+      "result": "pass"
+    },
+    {
+      "name": "Runtime SHA256 equals HEAD runtime bytes",
+      "result": "pass"
+    }
+  ],
+  "qualifications": [
+    "Linux local tests plus forced CRLF simulation are not an actual Windows hosted receipt. Root must rerun Road on the final published head.",
+    "This agent previously reviewed runtime independently but authored this test-only portability repair; root retains final review/integration.",
+    "No scientific or human approval, readiness gain or cost saving is established."
+  ]
+}
