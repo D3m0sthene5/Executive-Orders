@@ -103,6 +103,51 @@ class BlindVerifyTests(unittest.TestCase):
             with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'source_changed_during_read'):
                 self.read_with_final_stat_change(field)
 
+    def read_with_descriptor_stat_change(self, position=None, field=None):
+        original_path = B._path
+        original_fstat = B.os.fstat
+        events, descriptors = [], []
+        fields = ('st_dev', 'st_ino', 'st_mode', 'st_nlink', 'st_uid', 'st_gid',
+                  'st_size', 'st_mtime_ns', 'st_ctime_ns')
+
+        def observed_path(*args):
+            path = original_path(*args)
+            events.append('path')
+            if len(events) > 1:
+                self.assertEqual(events, ['path', 'fd', 'fd', 'path'])
+                # Final path validation must happen while the descriptor is open.
+                original_fstat(descriptors[0])
+            return path
+
+        def observed_fstat(fd):
+            saved = original_fstat(fd)
+            descriptors.append(fd)
+            events.append('fd')
+            values = {key: getattr(saved, key) for key in fields}
+            # Stable within fstat, deliberately different from path stat.
+            values['st_ctime_ns'] += 1_000_000_000
+            if len(descriptors) == position:
+                values[field] += 1
+            return SimpleNamespace(**values)
+
+        with patch.object(B, '_path', side_effect=observed_path), \
+                patch.object(B.os, 'fstat', side_effect=observed_fstat):
+            raw = B._read(self.root, 'held/text.txt', (self.root / 'held',))
+        return raw, events
+
+    def test_same_api_stability_accepts_windows_ctime_difference(self):
+        raw, events = self.read_with_descriptor_stat_change()
+        self.assertEqual(raw, (self.root / 'held/text.txt').read_bytes())
+        self.assertEqual(events, ['path', 'fd', 'fd', 'path', 'fd'])
+
+    def test_each_descriptor_metadata_mutation_still_refused(self):
+        for position in (1, 2, 3):
+            for field in ('st_dev', 'st_ino', 'st_mode', 'st_nlink', 'st_uid', 'st_gid',
+                          'st_size', 'st_mtime_ns', 'st_ctime_ns'):
+                with self.subTest(position=position, field=field), \
+                        self.assertRaisesRegex(ValueError, 'source_changed_during_read'):
+                    self.read_with_descriptor_stat_change(position, field)
+
     def test_existing_assembler_exact_routine_is_used(self):
         with patch.object(B.A, '_source_errors', wraps=B.A._source_errors) as reuse:
             self.assertTrue(self.verify()['ok'])
