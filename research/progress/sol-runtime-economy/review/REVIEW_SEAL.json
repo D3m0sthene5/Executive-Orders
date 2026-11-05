@@ -1,0 +1,40 @@
+{
+  "schema": "independent-engineering-review-v1",
+  "sealed_at": "2026-11-04T19:09:41.430779+00:00",
+  "baseline": "2c85459cf38b08dc1eea6d7c84a74268fa45c28e",
+  "implementation_sha256": {
+    "jobs/claim-checker/sources.py": "7bb63fdb6f154ee67a568bc690a3d3c081f3d6d39137ec7bb55b7d551695679b",
+    "jobs/claim-checker/test_runtime_economy.py": "d38cef189fa6ccd2d2d7d451a7c82d55d92f2745e35ce6d5c7666778e327594f"
+  },
+  "review_artifact_sha256": {
+    "research/progress/sol-runtime-economy/review/REVIEW.md": "ee215a69f9ce475739d78de929d54c14abfa171b5bf97a864b66c55aa7b92849",
+    "research/progress/sol-runtime-economy/review/adversarial_probe.py": "e59cc1d636cadccb3fcc91d0140e4da0d925c00894a2bf84cef63942ac251d99",
+    "research/progress/sol-runtime-economy/review/ADVERSARIAL_RESULTS.json": "46bc0cfcda9b6512a3a58ecd5f9b09fb9b1ef63d716e973deba183b37d5e7ea5",
+    "research/progress/sol-runtime-economy/review/REJECTED_HELDCOPY_RESULTS.json": "347b9510fd00b4817c4e74e465f66c50d84c89a51bb9895524358504ec6eec0a",
+    "research/progress/sol-runtime-economy/review/REVIEW_SEAL_SUPERSEDED.json": "a4f83b746dec96155752b42bce921effeb6d66ccd56b432d334a3f9068e87e48"
+  },
+  "verdict": "no outstanding engineering blocker at exact reviewed bytes",
+  "independent_checks": 29,
+  "implementation_regression_tests": 6,
+  "reviewer": {
+    "configured_model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "context": "independent OpenAI-family context",
+    "tokens": null,
+    "cash": null,
+    "elapsed_active_labor": null
+  },
+  "limits": [
+    "No legal/source judgment, different-family/human approval, adoption or publication authority.",
+    "Memory remains O(consumed fields for one manifest plus accumulated index); no OOM guarantee.",
+    "No production saving inferred; native replays and full suite owned by coordinator."
+  ],
+  "coordination": "Coordinator confirmed implementation hashes before seal; native checker replay/full-suite reported separately and not independently rerun here.",
+  "revision": 2,
+  "supersedes": {
+    "path": "research/progress/sol-runtime-economy/review/REVIEW_SEAL_SUPERSEDED.json",
+    "sha256": "a4f83b746dec96155752b42bce921effeb6d66ccd56b432d334a3f9068e87e48",
+    "reason": "Corrects false raw-retention claim for an empty rejected-results artifact; no implementation changes."
+  },
+  "historical_rejection_evidence": "Attributed observation only; rejected source bytes and raw replay are unavailable. Final-source differential results remain retained."
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "session-b-cost-coverage-v1",
+  "model_tokens": {
+    "fresh_input": null,
+    "cache_read": null,
+    "cache_write": null,
+    "output": null
+  },
+  "cash": null,
+  "coordinator_exact_serving_model": "not exposed; requested Sol High is not asserted as runtime identity",
+  "workers": [
+    {
+      "task": "runner_audit",
+      "configured_model": "gpt-6.1-terra",
+      "reasoning": "high",
+      "tokens": null,
+      "cash": null,
+      "active_labor_seconds": null
+    },
+    {
+      "task": "runtime_trace_and_implementation",
+      "configured_model": "gpt-6.1-terra",
+      "reasoning": "high",
+      "tokens": null,
+      "cash": null,
+      "active_labor_seconds": null
+    },
+    {
+      "task": "independent_engineering_review",
+      "configured_model": "gpt-6.1-sol",
+      "reasoning": "high",
+      "tokens": null,
+      "cash": null,
+      "active_labor_seconds": null
+    }
+  ],
+  "family": "all OpenAI; no different-family/human/legal review claimed",
+  "measurement": {
+    "native_uncapped": "evidence/NATIVE_RESULTS.json",
+    "native_256_mib_address_space": "evidence/CAPPED_256_RESULTS.json",
+    "refusals": "evidence/NATIVE_REFUSALS.json",
+    "ordinary_batch_route": "evidence/ORDINARY_BATCH_ROUTE.json",
+    "index_only": "CHECKER_PROFILE.md"
+  },
+  "coverage_notes": [
+    "Read characters are process rchar, not network or physical disk bytes.",
+    "RSS is Linux per-process high-water KiB; RLIMIT_AS bounds virtual address space, not RSS.",
+    "Preparation/coordination/review/correction/model usage totals unavailable; do not treat missing as zero.",
+    "Native wall-time intervals sometimes overlapped other validation; no active model labor or net campaign saving inferred.",
+    "Initial cone checkout materialized approximately1.5GB before pruning compiled outputs; Git object pool about166MB when noted. Transfer and total setup time unmeasured.",
+    "Synthetic fixture is produced by a script and temporary; no whole source corpus copied and no LFS hydration.",
+    "Native comparison and phase wrappers add instrumentation/import overhead, not separately benchmarked.",
+    "Both ordinary versions still build1index per checkerprocess; no repeated-work count reduction or model-token effect claimed."
+  ]
+}

@@ -7,7 +7,7 @@ Core claims proved here:
   4. every flagged fixture is rejected by the production claim gate, while the de-flagged copy passes it;
   5. scoring gives catch rate per defect type, false-alarm bounds and Wilson intervals, and refuses an edited key.
 """
-import contextlib, copy, hashlib, io, json, shutil, sys, tempfile, unittest
+import contextlib, copy, hashlib, io, json, shutil, subprocess, sys, tempfile, unittest
 from unittest import mock
 sys.dont_write_bytecode = True
 from pathlib import Path
@@ -454,11 +454,6 @@ class CheckTests(Base):
         hits = mw.scan_file(p, [json.dumps(m["run_url"]).encode()], set(), item_id_data=view)
         self.assertTrue(any(h.startswith("planted text ") for h in hits), hits)
 
-    def test_real_repository_has_no_seeded_item(self):
-        res = mw.check(REPO, HERE_FIXTURES)
-        self.assertTrue(res["ok"], res["problems"][:5])
-        self.assertGreater(res["files_scanned"], 100)
-
     def test_cli_exit_code_and_status_file(self):
         repo = self.make_repo(self.tmp / "fx")
         argv = ["--repo", str(repo), "check", "--fixtures-dir", str(self.tmp / "none")]
@@ -713,6 +708,18 @@ class StatsTests(unittest.TestCase):
         self.assertAlmostEqual(mw.clopper_pearson(0, 15)[1], 0.218, places=3)
         self.assertEqual(mw.rate(2, 4)["indicative_only"], True)
         self.assertEqual(mw.rate(0, 0)["rate"], None)
+
+
+class WholeRepositoryTests(unittest.TestCase):
+    def test_real_repository_has_no_seeded_item(self):
+        result = subprocess.run([sys.executable, "-I", str(mw.HERE / "mountweazel.py"),
+                                 "--repo", str(REPO), "check", "--fixtures-dir", str(HERE_FIXTURES)],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        report = json.loads(result.stdout)
+        self.assertTrue(report["ok"], report["problems"][:5])
+        self.assertGreater(report["files_scanned"], 100)
+        print(result.stdout, end="", flush=True)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,64 @@
+{
+  "schema": "eo-mission-local-validation/v1",
+  "recorded_utc": "2026-11-04T20:55:43.112930+00:00",
+  "base_commit": "a3bfac64b3e1c43400a8ed8c744419eb17f6e2e6",
+  "checks": [
+    {
+      "command": "python3 -I -m unittest discover -s jobs/daily-digest -p 'test_*.py' -v",
+      "passed": 19,
+      "failed": 0,
+      "seconds": 2.778
+    },
+    {
+      "command": "node --test research/progress/control-center/mission.test.js research/progress/control-center/observability-core.test.js",
+      "passed": 24,
+      "failed": 0,
+      "seconds": 2.741936035
+    },
+    {
+      "command": "node --check research/progress/control-center/app.js",
+      "exit_code": 0
+    },
+    {
+      "command": "node --check research/progress/control-center/mission.js",
+      "exit_code": 0
+    },
+    {
+      "check": "YAML BaseLoader parses refresh-readiness, mission-tests, road-tests workflows with on and jobs mappings",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "check": "Final completion trigger YAML/guards and native queued-event provenance probe",
+      "result": "Independent reviewer approved exact workflow; existing runner fixture with an old event SHA and newer checkout produced STATUS.commit_run == RUNNER_INPUTS.base_commit == actual newer HEAD, using newer input bytes.",
+      "workflow_sha256": "d3cae7171e78545d200e1e64dc52ce5721023cf324380198affc584327fb88dd"
+    }
+  ],
+  "browser_visual_acceptance": {
+    "result": "not_completed",
+    "reason": "Connected browser policy rejected navigation to the self-contained synthetic data: preview. No alternate browser or policy workaround used."
+  },
+  "production_jobs_dispatched": 0,
+  "new_ready_dossiers_claimed": 0,
+  "human_certifications_claimed": 0,
+  "usage": {
+    "coordinator": "GPT-6 Astra Pro",
+    "implementation_workers": [
+      "gpt-6.1-sol/high",
+      "gpt-6.1-sol/high"
+    ],
+    "independent_engineering_reviewer": "gpt-6-astra/high",
+    "full_session_tokens": null,
+    "cash": null,
+    "measured_token_savings": null
+  },
+  "limits": [
+    "Engineering fixtures do not establish legal accuracy or production readiness.",
+    "Hosted CI and Site deployment are separate from this local validation receipt.",
+    "Initial review failures are retained and resolved in INDEPENDENT_REVIEW.json.",
+    "Unchanged broad picker/freshness suites lacked sparse fixtures; results are retained in the review, not counted as passes."
+  ]
+}

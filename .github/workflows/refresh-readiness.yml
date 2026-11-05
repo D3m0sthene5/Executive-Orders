@@ -1,0 +1,91 @@
+name: Refresh published progress
+
+# Canonical filings need a current public readout. Reuse the existing reporting
+# jobs and transactional publisher without starting acquisition or compilers.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/readiness/**'
+      - 'research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv'
+      - 'research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv'
+      - 'jobs/daily-digest/mission.py'
+      - 'research/progress/remaining-work/build_mission_log.py'
+      - 'research/progress/remaining-work/MISSION_WEIGHTS.csv'
+      - 'research/progress/remaining-work/APOLLO11_MILESTONES.csv'
+      - '.github/workflows/refresh-readiness.yml'
+  workflow_dispatch:
+  # GITHUB_TOKEN result commits do not start push workflows. A main runner can
+  # publish independent successes even if another selected job failed, so use
+  # completion rather than requiring an overall success conclusion.
+  workflow_run:
+    workflows: ['Run jobs']
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: write
+
+env:
+  GIT_LFS_SKIP_SMUDGE: '1'
+  JOBS: 'claim-checker readiness-tracker daily-digest'
+
+jobs:
+  refresh:
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    # Apply after the trusted-main guard. Keep the running generation and newest
+    # pending one; each recount includes all earlier filings in current main.
+    # This group cannot cancel or replace another production workflow.
+    concurrency:
+      group: readiness-publication-main
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Always consume trusted current main, never upstream artifacts or a
+          # workflow_run head checkout. Queued triggers include newer filings.
+          ref: refs/heads/main
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/*/
+            /.github/**
+            /HANDOFF/**
+            /jobs/**
+            !/jobs/*/output/**
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Materialize existing reporting inputs
+        run: python .github/scripts/materialize_job_inputs.py
+      - name: Validate claims, recount readiness, and build the mission feed
+        env:
+          TRIGGER: '${{ github.event_name }} by ${{ github.actor }}; automatic progress publication'
+        # The event SHA can predate the latest-main checkout after a queue wait.
+        # Bind native STATUS and RUNNER_INPUTS to the same actual input commit.
+        run: |
+          progress_input_commit="$(git rev-parse HEAD)"
+          env GITHUB_SHA="$progress_input_commit" bash .github/scripts/run_jobs.sh
+      - name: Retain oversized outputs and publication diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: progress-publication-${{ github.run_id }}
+          path: oversized/
+          if-no-files-found: ignore
+          retention-days: 90
+      - name: Publish successful generations with the existing freshness guard
+        if: always()
+        env:
+          EVENT: ${{ github.event_name }}
+          BRANCH: main
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash .github/scripts/commit_results.sh

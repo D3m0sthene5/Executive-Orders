@@ -1,0 +1,21 @@
+diff --git a/jobs/claim-kit/kit.py b/jobs/claim-kit/kit.py
+--- a/jobs/claim-kit/kit.py
++++ b/jobs/claim-kit/kit.py
+@@ -297,6 +297,17 @@
+             elif a.command=='apply':result=batch.apply(repo,a.packet,a.write)
+             else:result=batch.check(repo,a.packet,a.applied)
+             failed=(result.get('strict_claim_fail',0)>0 or result.get('counts',{}).get('rejected',0)>0)
++            if a.command=='apply':
++                from dispatch import check_selected, selected_summary
++                proposed=a.write/'CLAIMS.proposed.jsonl'
++                selected=[json.loads(line) for line in proposed.read_text(encoding='utf-8').splitlines() if line.strip()]
++                if selected:
++                    source_check=check_selected(repo,a.packet,selected)
++                    dump(a.write/'SELECTED_SOURCE_CHECK.json',source_check)
++                    result['selected_source_check']=selected_summary(source_check)
++                    failed=failed or not source_check['ok']
++                else:
++                    result['selected_source_check']={'state':'no_proposed_claims','scientific_approval':False}
+             if a.command=='prepare':
+                 result['research_only']=a.research_only
+                 failed=failed or (not result['dispatch_check']['ok'] and not a.research_only)

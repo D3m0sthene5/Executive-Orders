@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+import subprocess
 import sys
+import tempfile
 import unittest
 from unittest import mock
 
@@ -14,6 +16,40 @@ sys.path.insert(0, str(HERE))
 spec = importlib.util.spec_from_file_location("materialize_job_inputs", HERE / "materialize_job_inputs.py")
 materializer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(materializer)
+
+
+class CompactPatternTests(unittest.TestCase):
+    def test_git_worktree_matches_before_and_after_compaction(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            def git(*args, data=None):
+                return subprocess.run(["git", *args], cwd=root, input=data,
+                                      capture_output=True, check=True).stdout
+            git("init", "-q")
+            names = ("jobs/a/file", "jobs/a/sub/file", "jobs/abc/file", "jobs/b/file",
+                     "jobs/b/file[1]", "jobs/x", "extra/file", "extra/skip", "other/file")
+            for name in names:
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(name.encode())
+            git("add", ".")
+            git("-c", "user.email=test@example.com", "-c", "user.name=test", "commit", "-qm", "fixture")
+            rules = {"/jobs/a/**", "/jobs/a/sub/**", "/jobs/a/file", "/jobs/a/sub/file",
+                     "/jobs/abc/file", materializer.literal_pattern("jobs/b/file[1]"), "/extra/file"}
+            bootstrap = b"/*\n!/*/\n/jobs/**\n!/jobs/*/**\n"
+
+            def snapshot(rules):
+                git("sparse-checkout", "set", "--no-cone", "--stdin", data=bootstrap)
+                git("sparse-checkout", "add", "--stdin", data=("\n".join(rules) + "\n").encode())
+                return ({name: (root / name).read_bytes() for name in names if (root / name).is_file()},
+                        git("ls-files", "-t", "-z"))
+
+            for extra in (set(), {"/jobs/**"}, {"/**"}):
+                with self.subTest(extra=extra):
+                    original = rules | extra
+                    compact = materializer.compact_patterns(original)
+                    self.assertLess(len(compact), len(original))
+                    self.assertEqual(snapshot(sorted(original)), snapshot(compact))
 
 
 class MaterializeInputsTests(unittest.TestCase):

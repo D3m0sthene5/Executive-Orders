@@ -1,0 +1,108 @@
+{
+  "schema": "eo-independent-engineering-review/v1",
+  "reviewed_utc": "2026-11-05T00:21:37.744830+00:00",
+  "reviewer": "/root/final_engineering_review",
+  "model": {
+    "family": "OpenAI",
+    "exact_variant": "unavailable",
+    "tokens": null,
+    "cash_cost": null,
+    "exclusive_active_seconds": null
+  },
+  "independence": "Separate agent context; read-only source/test review before writing this artifact. Same-family engineering review, not independent scientific or human certification.",
+  "recommendation": "approve_engineering_integration_subject_to_successful_final_head_hosted_checks",
+  "main_baseline": "ea1e52f5a675b45646d9d4f466d652b5259038eb",
+  "reviewed_head": "1588083c107ddff1afc24719218fde24ebeaf04f",
+  "reviewed_source_state": "Includes uncommitted root/worker patches identified by exact SHA256 below; later changes require separate review.",
+  "source_sha256": {
+    "jobs/claim-kit/kit.py": "13afc84a600f77a5d9c8b81b46c47c5ca71e2b2ea9aa1003d87da18ebf83c0f6",
+    "jobs/claim-kit/dispatch.py": "19167f9d8ec0dcea98ad0c383d8366d9b9e1261c12092cfaf6e6e221489027c4",
+    "jobs/claim-kit/current_evidence.py": "d6e261ce66f2eed25fdb23a933848e825f5b0a741c1d4fd7a96be9f724927281",
+    "jobs/claim-kit/source_supplement.py": "fb3244621849dfe2b2b8b555ef382e35bcce47e5292bbd167e1c21d8253be5e5",
+    "jobs/claim-kit/BATCH.md": "15d6c3424fadb225f09137442cce6e439ee83ba61297e1ffdbd76ec6710d2e43",
+    "jobs/claim-kit/test_apply_selected_sources.py": "8c9a47813d60e83222e5c4d4edbd216561f337631625a11ba3dcbf2b851b0e5b",
+    "jobs/claim-checker/sources.py": "7bb63fdb6f154ee67a568bc690a3d3c081f3d6d39137ec7bb55b7d551695679b",
+    "jobs/claim-checker/test_runtime_economy.py": "d38cef189fa6ccd2d2d7d451a7c82d55d92f2745e35ce6d5c7666778e327594f",
+    "jobs/lachmann/lachmann.py": "2be3dff2a1420845031ec69a4c9a1400cb5c0860bbf746a229e23c60fb435a32",
+    "jobs/lachmann/test_repeat.py": "396bd0e422e1d1f07620e654d49f3a5074f9e09c371c621a89ff8812b0f038e7",
+    "jobs/lachmann/test_scheduling.py": "7b77e422bede4424830021834d24eb594df33b06eb63b18f2f07f83576b9fe63",
+    "jobs/lachmann/README.md": "552671be30f073d8e4549bf4bd5341bc98d30ea9401385ac63c764ca5b916f15",
+    "jobs/lachmann/after.txt": "878b1a64bae469f7bed14dae551a1aa0d97988c62bac83a514d1ce92b60b1392",
+    "jobs/lachmann/triggers.txt": "d665465eee0631840db1083da5795a522466b945a3fd0fd145b7e8441538ae48",
+    "jobs/lachmann/needs.txt": "1d15bacbf81e02072d9cae3bcc23e8f728b1e9853b51cd46b6e55567ada70d12",
+    ".github/scripts/test_roads.py": "d5616bccedc8da16c2c7e1f81a4e564a763773abcb19ea9e77354e6677ee27ab",
+    ".github/workflows/refresh-readiness.yml": "d3cae7171e78545d200e1e64dc52ce5721023cf324380198affc584327fb88dd",
+    "jobs/daily-digest/mission.py": "c9ac1232b27eb5a94072dc11ea036bbe77652b2281132bab50a69f430e1aa7e3"
+  },
+  "observations": [
+    "Checker projection stages exactly the eight consumed source fields, reads/closes the entire manifest before custody-path observation or index mutation, and retains failure/duplicate ordering.",
+    "Current-law extraction honors declared text hashes; matching text paths cannot silently bypass stale declaration pins. Selected official provenance is preserved.",
+    "Ordinary apply CLI invokes the actual offline selected-source guard on exact assembled claims, returns failure on selected source gaps, retains proposed rows, and writes a separate immutable-directory receipt.",
+    "Empty apply proposals remain an explicit unresolved/no-proposed-claims outcome. Existing packet and receipt bytes are preserved.",
+    "Lachmann reassesses provisional machine rows from current witnesses rather than copying previous approvals. Page requirements still derive from current matching fragments.",
+    "Native repeat tests preserve stable machine confirmations and fail changed text bytes or removed fragment declarations. Separate agent rejection retains precedence.",
+    "Scheduler tests exercise actual producer-consumer expansion/order, reject acquisition fanout on direct Lachmann selection, and retain output-only bot-update suppression.",
+    "Lachmann native regression dependency research/stage19/code is declared in needs.txt. Road runner change only adds lachmann to its existing offline per-job test loop; hosted Road already materializes stage19/code.",
+    "No scientific claim, status, census, human-certification record, job output or historical review seal/certificate was changed relative to baseline within inspected integration diff."
+  ],
+  "independently_executed_tests": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s jobs/claim-kit -p 'test_apply_selected_sources.py' -v",
+      "passed": 3,
+      "failed": 0,
+      "observed_test_seconds": 4.59,
+      "log_scratch": "/tmp/final-engineering-apply.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s jobs/claim-kit -p 'test_readiness_economy*.py'",
+      "passed": 26,
+      "failed": 0,
+      "observed_test_seconds": 12.393,
+      "log_scratch": "/tmp/final-engineering-economy-final.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s jobs/lachmann -p 'test_*.py'",
+      "passed": 52,
+      "failed": 0,
+      "observed_test_seconds": 0.173,
+      "log_scratch": "/tmp/final-engineering-lachmann-final.log"
+    },
+    {
+      "command": "git diff --check",
+      "passed": true
+    },
+    {
+      "command": "git diff --name-only baseline with scientific/output path classification",
+      "protected_changed_paths": []
+    }
+  ],
+  "initial_failures_retained": [
+    {
+      "scope": "Focused evidence-boundary suite before sparse fixture materialization",
+      "tests_run": 26,
+      "setup_errors": 9,
+      "cause": "research/stage19/code/claim_gate.py absent from local sparse checkout",
+      "resolution": "Root materialized the existing dependency; independent final 26-test run passes."
+    },
+    {
+      "scope": "Checker suite before sparse fixture materialization",
+      "tests_run": 76,
+      "errors": 3,
+      "skipped": 33,
+      "cause": "research/stage19/code/claim_gate.py absent from local sparse checkout",
+      "resolution": "Root materialized dependency and separately reports final 76-test suite success; reviewer did not repeat entire checker suite."
+    }
+  ],
+  "coordinator_reported_checks_not_claimed_independent": [
+    "Root reports claim-kit 656 tests pass with 5 skips, checker76 tests pass, and independent A/B probe harnesses pass; see root validation receipts."
+  ],
+  "limitations": [
+    "This review approves engineering integration only. No new legal answer, text authentication, readiness gain, independent source examination or human certification is established.",
+    "Direct batch.apply library callers remain responsible for calling dispatch.check_selected before launching review, as BATCH.md now explains; the CLI hook cannot intercept external launchers.",
+    "Selected-source diagnostic success does not establish legal applicability, full source sufficiency, review approval or completion; existing independent review and native completion remain required.",
+    "Fresh production packets/dispatch checks are required after affected code changes. Historical seals and receipt hashes must not be renewed by inference.",
+    "Existing pending PR141 and PR146 research is outside this source integration recommendation and needs current final handoffs/reviews before adoption.",
+    "Final published-head hosted checks, live reporting activation and Site deployment acceptance remain coordinator responsibilities; local tests are not those receipts.",
+    "No complete-work token/time saving or whole-campaign performance claim follows from these checks."
+  ]
+}

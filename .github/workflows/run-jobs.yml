@@ -26,6 +26,10 @@ on:
       job:
         description: "Job folder name(s) under jobs/, separated by spaces (for example: claim-checker readiness-tracker)"
         required: true
+      diagnostic:
+        description: "Run named jobs only and retain receipts without publishing results"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -51,6 +55,7 @@ jobs:
       # unaudited versions whose dynamic reads are not closed by declarations.
       - uses: actions/checkout@v4
         with:
+          persist-credentials: ${{ !inputs.diagnostic }}
           fetch-depth: 0
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -72,6 +77,7 @@ jobs:
           EVENT: ${{ github.event_name }}
           SCHEDULE: ${{ github.event.schedule }}
           INPUT_JOB: ${{ github.event.inputs.job }}
+          DIAGNOSTIC: ${{ github.event.inputs.diagnostic }}
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
@@ -100,8 +106,17 @@ jobs:
           PY
 
       - name: Restore each job's bounded download cache
-        if: steps.pick.outputs.jobs != ''
+        if: steps.pick.outputs.jobs != '' && !inputs.diagnostic
         uses: actions/cache@v4
+        with:
+          path: .job-cache
+          key: job-downloads-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            job-downloads-v1-${{ github.ref_name }}-
+
+      - name: Read download cache for diagnostic jobs
+        if: steps.pick.outputs.jobs != '' && inputs.diagnostic
+        uses: actions/cache/restore@v4
         with:
           path: .job-cache
           key: job-downloads-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
@@ -134,7 +149,7 @@ jobs:
         run: bash .github/scripts/run_jobs.sh
 
       - name: Keep oversized files as a download
-        if: always() && steps.pick.outputs.jobs != ''
+        if: always() && steps.pick.outputs.jobs != '' && !inputs.diagnostic
         uses: actions/upload-artifact@v4
         with:
           name: oversized-outputs-${{ github.run_id }}
@@ -142,11 +157,42 @@ jobs:
           if-no-files-found: ignore
           retention-days: 90
 
+      - name: Keep diagnostic receipts
+        if: always() && steps.pick.outputs.jobs != '' && inputs.diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostic-receipts-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            oversized/runner-freshness/ATTEMPTS.json
+            oversized/runner-freshness/CHECKOUT_INPUTS.json
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Commit results to the branch
-        if: always() && steps.pick.outputs.jobs != ''
+        id: publish
+        if: always() && steps.pick.outputs.jobs != '' && !inputs.diagnostic
         env:
           JOBS: ${{ steps.pick.outputs.jobs }}
           EVENT: ${{ github.event_name }}
           BRANCH: ${{ github.ref_name }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: bash .github/scripts/commit_results.sh
+        run: |
+          test -s oversized/runner-freshness/ATTEMPTS.json || { echo "::error::Missing current execution receipts"; exit 1; }
+          bash .github/scripts/commit_results.sh
+
+      - name: Summarize selected jobs and publication
+        continue-on-error: true
+        if: always()
+        env:
+          JOBS: ${{ steps.pick.outputs.jobs }}
+          DIAGNOSTIC: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic }}
+          DIRECT_JOBS: ${{ steps.pick.outputs.direct }}
+          PICK_OUTCOME: ${{ steps.pick.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+          PUBLICATION: ${{ steps.publish.outputs.publication }}
+        run: |
+          if [[ -f .github/scripts/job_summary.py ]]; then
+            python .github/scripts/job_summary.py
+          else
+            echo "Job summary unavailable: repository scripts were not checked out." >> "$GITHUB_STEP_SUMMARY"
+          fi
