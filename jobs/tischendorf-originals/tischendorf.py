@@ -515,7 +515,11 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
     (out / "texts").mkdir(exist_ok=True)
     started = now()
     budget_s = float(os.environ.get("JOB_TIME_BUDGET_MIN", "200")) * 60
-    max_requests = int(os.environ.get("JOB_MAX_REQUESTS", "1500"))
+    max_requests = int(os.environ.get("JOB_MAX_REQUESTS", "2400"))
+    # Each network route gets its own share, so one route cannot starve the other.
+    route_cap = {"fr_by_date": int(os.environ.get("JOB_MAX_REQUESTS_FR", "900")),
+                 "ia_fulltext": int(os.environ.get("JOB_MAX_REQUESTS_IA", "1500"))}
+    route_used = Counter()
 
     readiness, register, texts, sources, official = load_inputs(root)
     df, n_docs = fp.document_frequency(texts)
@@ -528,7 +532,12 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
         cache = Path(os.environ.get("JOB_CACHE_DIR", REPO / ".job-cache" / JOB))
         pool = FetchPool(cache, workers=4, per_host=2, user_agent="EO-Road-System/1.0 (tischendorf-originals)",
                          min_interval=0.5, max_bytes=100_000_000)
-    budget_ok = lambda: pool.requests < max_requests and now() - started < budget_s  # noqa: E731
+    current = {"route": None}
+
+    def budget_ok():
+        r = current["route"]
+        return (pool.requests < max_requests and now() - started < budget_s
+                and (r is None or route_used[r] < route_cap.get(r, max_requests)))
     issues, archive = IssueTexts(pool), Archive(pool)
     prior, prior_from = load_prior_state(root)
     state = {}
@@ -547,6 +556,10 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
         F = fp.Fingerprint(texts[iid], df, n_docs)
         t["_text"] = texts[iid]
         res, complete = None, True
+        current["route"], before = t["route"], pool.requests
+        if t["route"] != "corroborate" and not budget_ok():
+            counts[f"deferred_{t['route']}"] += 1
+            continue
         if t["route"] == "corroborate":
             res = corroborate(t, F, root)
         elif t["route"] == "fr_by_date":
@@ -567,6 +580,7 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
                     (st["result"]["verdict"] == "strong", st["result"]["score"])):
             st["result"] = res
         st["complete"] = complete
+        route_used[t["route"]] += pool.requests - before
         counts[f"attempted_{t['route']}"] += 1
 
     # Write fragments: strong verdicts count only if the planted controls passed this run.
@@ -606,6 +620,7 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
         "job": JOB, "targets": len(targets), "targets_by_route": Counter(t["route"] for t in targets),
         "strong": strong, "leads": len(leads) - strong, "by_route_and_verdict": {f"{a}|{b}": c for (a, b), c in sorted(by_route.items())},
         "controls": controls, "strong_rules": STRONG_RULES, "requests": pool.requests,
+        "requests_by_route": dict(route_used), "request_caps": {"total": max_requests, **route_cap},
         "bytes_downloaded": getattr(pool, "bytes_downloaded", None), "seconds": round(now() - started),
         "prior_state_from": prior_from, "run_counts": counts,
         "counted_by_tracker": False,
