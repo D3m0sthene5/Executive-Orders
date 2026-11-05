@@ -24,6 +24,8 @@ ECFR_FULL = "https://www.ecfr.gov/api/versioner/v1/full/{date}/title-{title}.xml
 GOVINFO_BULK = "https://www.govinfo.gov/bulkdata/ECFR/title-{title}/ECFR-title{title}.xml"
 USC_ZIP = "https://uscode.house.gov/download/releasepoints/us/pl/{congress}/{law}/xml_usc{code}@{rp}.zip"
 USC_VIEW = "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title{t}-section{s}&num=0&edition=prelim"
+RATE_TRIES = 7
+RATE_PAUSE = 10.0
 MAX_PART_TEXT = 6_000_000
 MAX_NOTICE = 8_000_000
 MAX_BULK = 400_000_000
@@ -217,7 +219,9 @@ def extract_cfr(stream, wanted):
 # ------------------------------------------------------------------- pools --
 def retry(fn, tries=3, pause=2.0):
     last = None
-    for i in range(tries):
+    i = -1
+    while i + 1 < tries:
+        i += 1
         try:
             try:
                 return fn()
@@ -228,6 +232,10 @@ def retry(fn, tries=3, pause=2.0):
         except FetchError as e:
             last = e
             msg = str(e)
+            if msg.startswith("HTTP 429") and i < RATE_TRIES - 1:
+                tries = max(tries, RATE_TRIES)
+                time.sleep(RATE_PAUSE * (2 ** min(i, 4)))
+                continue
             if "robots" in msg or msg.startswith("HTTP 4") or "exceeds bound" in msg or "offline" in msg:
                 break
             time.sleep(pause * (i + 1))
@@ -248,7 +256,7 @@ def reason_of(e):
 
 
 class Run:
-    def __init__(self, out, cache, workers, transport=None, interval=0.5, previous=None, usc_rp="119-121"):
+    def __init__(self, out, cache, workers, transport=None, interval=1.0, previous=None, usc_rp="119-121"):
         self.out, self.workers, self.usc_rp = Path(out), workers, usc_rp
         self.fresh_cache = Path(cache) / ("api-" + dt.date.today().isoformat())
         mk = lambda sub, mb: FetchPool(Path(cache) / sub, workers=workers, per_host=min(workers, 4), transport=transport,
@@ -259,6 +267,8 @@ class Run:
                              max_bytes=MAX_NOTICE, min_interval=interval, timeout=120,
                              user_agent="EO-Road-System/1.0 (Theophilus; owner-run research)")
         self.small, self.big = mk("small", MAX_NOTICE), mk("big", MAX_BULK)
+        self.small.per_host = min(self.small.per_host, 2)
+        self.small.workers = min(self.small.workers, 2)
         self.sources, self.failures = [], []
         self.previous = previous or {}
         (self.out / "texts").mkdir(parents=True, exist_ok=True)
@@ -466,7 +476,7 @@ def write_outputs(run, orders, notice_stats, usc_plan, cfr_plan, bad):
     return summary
 
 
-def run_job(repo, out, cache, workers, transport=None, interval=0.5, previous_path=None):
+def run_job(repo, out, cache, workers, transport=None, interval=1.0, previous_path=None):
     repo, out = Path(repo), Path(out)
     jobs = repo / "jobs"
     register = load_register(jobs / "domesday-register/output/REGISTER.csv")

@@ -65,6 +65,20 @@ class Parse(unittest.TestCase):
 
 
 class Net(unittest.TestCase):
+    def test_retry_backs_off_on_429(self):
+        T.time.sleep = lambda *_: None
+        n = []
+
+        def f():
+            n.append(1)
+            if len(n) < 4:
+                raise T.FetchError("HTTP 429")
+            return "ok"
+        self.assertEqual(T.retry(f), "ok")
+        self.assertEqual(len(n), 4)
+        with self.assertRaises(T.FetchError):
+            T.retry(lambda: (_ for _ in ()).throw(T.FetchError("HTTP 404")))
+
     def test_retry_converts_socket_errors(self):
         def boom():
             raise TimeoutError("handshake timed out")
