@@ -4,6 +4,8 @@
 
 **Coordinate by model tier (owner, 2026-10-29):** unless a task is small, the strongest available model coordinates and keeps legal judgment, control adjudication and integration; it delegates bounded, disjoint tasks with exact inputs and deliverables to cheaper models, and deterministic work to scripts or jobs. Skip delegation when briefing and checking a worker would cost about as much as the task. Review, blinding and different-family rules are unchanged; record each worker's model, tokens and time. Full rule: [`research/readiness/owner_rulings/2026-10-29-tiered-delegation.md`](research/readiness/owner_rulings/2026-10-29-tiered-delegation.md).
 
+**Spend tokens where Bentham says (owner, 2026-11-05):** before any agent wave, read `jobs/bentham/output/PLAN.md` (rebuilt daily from measured yields, costs and the orders each action unlocks) and run ranked actions in rank order within the owner's budget. After each batch run `python3 -I jobs/bentham/bentham.py gate --action ID --batches FILE` and stop on STOP. When the wave ends, run `bentham.py usage --wave NAME --phase LABEL` and commit the sanitized output so the next plan is measured on it. See `jobs/bentham/README.md`.
+
 Before doing project work in any session, read `HANDOFF/README.md` and the latest relevant notes in `HANDOFF/`, beginning with the newest entries. Check the current GitHub `main` state; do not rely on an older conversational summary.
 
 **Standing rule from the project owner (2026-10-17):** Read `HANDOFF/README.md` in the Executive-Orders repo at the start of every session, and leave your notes in `HANDOFF/notes-astra.md` before you stop. Run scripts that are too big for your container as jobs under `jobs/`.
