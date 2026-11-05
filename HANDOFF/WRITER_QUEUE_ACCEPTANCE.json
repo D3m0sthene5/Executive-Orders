@@ -1,10 +1,512 @@
 {
-  "schema": "eo-writer-queue-candidate/v1",
-  "source_commit": "a54456af7fb3c3939989b3f1c1748cf5501b69fa",
-  "prior_candidate": "915019200058dc2f09cca89c90fd6d74ba01d398",
-  "prior_native_fixture_failure": "Real cache helper omitted; corrected by copying actualjobs/_lib. Protected workflows and runtime unchanged.",
-  "validation": "pending_actual_hosted_tests",
-  "old_writer_run": 41958411273,
-  "old_writer_completed": true,
-  "scientific_adoption": false
+  "schema": "eo-writer-queue-acceptance/v1",
+  "state": "verified",
+  "verified_utc": "2026-11-05T04:37:43.084Z",
+  "scope": "Completed-work main integration, conflict resolution, supported job wiring and native production/reporting publication.",
+  "source": {
+    "pr149_merge": "81ebb186f8cba72ef4fcf4866cd34ef32a59c463",
+    "pr150_merge": "dfb8fc430649b56d736caa33f650d5060c46a34b",
+    "accepted_queue_head": "330b0f12854b92eeeb5de058548d29c83c807535",
+    "accepted_queue_tree": "3c2533fcd5abd15d2f62223da6d2982639f726da",
+    "final_output_commit": "cd7a7e373150744badfb22250d280e1a1bab5559"
+  },
+  "checks": {
+    "premerge_platform_suites": 29,
+    "premerge_tests_each": 1202,
+    "postmerge_platform_suites": 29,
+    "postmerge_tests_each": 1202,
+    "all_expected_checks": [
+      {
+        "name": "bounded-offline-pilot",
+        "id": 127026759759,
+        "conclusion": "success",
+        "details_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41960838008/job/127026759759"
+      },
+      {
+        "name": "test (ubuntu-latest)",
+        "id": 127026613294,
+        "conclusion": "success",
+        "details_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41960838004/job/127026613294"
+      },
+      {
+        "name": "test (windows-latest)",
+        "id": 127026612937,
+        "conclusion": "success",
+        "details_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41960838004/job/127026612937"
+      },
+      {
+        "name": "GitGuardian Security Checks",
+        "id": 127026591323,
+        "conclusion": "success",
+        "details_url": "https://dashboard.gitguardian.com"
+      },
+      {
+        "name": "test",
+        "id": 127026555020,
+        "conclusion": "success",
+        "details_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41960838072/job/127026555020"
+      },
+      {
+        "name": "check",
+        "id": 127026554889,
+        "conclusion": "success",
+        "details_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41960837954/job/127026554889"
+      },
+      {
+        "name": "audit",
+        "id": 127026554565,
+        "conclusion": "success",
+        "details_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41960838012/job/127026554565"
+      }
+    ],
+    "native_valla_run": 41960838008,
+    "native_valla_steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Verify custody replay temporary filesystem",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Run pip install -r jobs/claim-checker/requirements.txt",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Fetch the frozen pilot comparison code",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Unit and consumer tests",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Mountweazel tests and whole-repository isolation",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Real bounded pilot and actual consumers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Native lifecycle-assurance replay",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Native three-source custody replay",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Native five-source bounded custody replay",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Retained ordinary claim-kit rehearsal and Cruden comparison",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Compile complete Valla package inventory",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 29
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 30
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 31
+      }
+    ],
+    "independent_review": "HANDOFF/WRITER_QUEUE_INDEPENDENT_REVIEW.json"
+  },
+  "native_recovery": {
+    "schema": "eo-queued-production-recovery/v1",
+    "verified_utc": "2026-11-05T04:13:11.815Z",
+    "trigger_commit": "dfb8fc430649b56d736caa33f650d5060c46a34b",
+    "actual_input_commit": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+    "output_commit": "860ddfca0bff6a4366b5402f91b42f924d2f7292",
+    "run_id": 41963111698,
+    "publisher": {
+      "name": "Commit results to the branch",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-05T04:12:12Z",
+      "completed_at": "2026-11-05T04:12:24Z"
+    },
+    "preceding_report_publication": {
+      "name": "Publish successful generations with the existing freshness guard",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-05T04:04:41Z",
+      "completed_at": "2026-11-05T04:04:52Z"
+    },
+    "queued_recovery_checkout": {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-05T04:04:58Z",
+      "completed_at": "2026-11-05T04:05:07Z"
+    },
+    "checks": {
+      "publisher_succeeded": true,
+      "reporter_finished_before_recovery_checkout": true,
+      "trigger_and_actual_input_are_distinct": true,
+      "all_four_saved_native_statuses_bound_to_actual_input": true
+    },
+    "jobs": {
+      "example-hello": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+        "exit_code": 0,
+        "finished_utc": "2026-11-05T04:08:31Z",
+        "job": "example-hello",
+        "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111698",
+        "started_utc": "2026-11-05T04:08:25Z",
+        "trigger": "push by D3m0sthene5"
+      },
+      "claim-kit": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+        "exit_code": 0,
+        "finished_utc": "2026-11-05T04:11:43Z",
+        "job": "claim-kit",
+        "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111698",
+        "started_utc": "2026-11-05T04:08:31Z",
+        "trigger": "push by D3m0sthene5"
+      },
+      "kean": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+        "exit_code": 0,
+        "finished_utc": "2026-11-05T04:11:52Z",
+        "job": "kean",
+        "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111698",
+        "started_utc": "2026-11-05T04:11:45Z",
+        "trigger": "push by D3m0sthene5"
+      },
+      "lachmann": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+        "exit_code": 0,
+        "finished_utc": "2026-11-05T04:12:10Z",
+        "job": "lachmann",
+        "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111698",
+        "started_utc": "2026-11-05T04:11:52Z",
+        "trigger": "push by D3m0sthene5"
+      }
+    }
+  },
+  "final_reporting": {
+    "schema": "eo-queued-writer-final-reporting-acceptance/v1",
+    "verified_utc": "2026-11-05T04:35:57.668Z",
+    "output_commit": "cd7a7e373150744badfb22250d280e1a1bab5559",
+    "input_commit": "860ddfca0bff6a4366b5402f91b42f924d2f7292",
+    "reporting_run": 41966416230,
+    "readiness_tree": "366db2d03d0be7e5baa69108fe1e12dfbe32c540",
+    "assertions": {
+      "refresh_ready": true,
+      "tracker_generations_equal": true,
+      "checker_generation_equal": true,
+      "native_success": true,
+      "native_input_commit": true,
+      "actual_reporting_run": true,
+      "canonical_tree": true,
+      "counts": true,
+      "no_input_problems": true,
+      "claim_versions": true,
+      "human": true,
+      "baseline_ready_retained": true
+    },
+    "latest": {
+      "date": "2026-11-05",
+      "commit": "860ddfca0b",
+      "committed_at": "2026-11-05T04:34:32Z",
+      "ready_for_human_review": 1331,
+      "provisional_statuses": 4291,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 19008,
+      "steps_open": 79740,
+      "step_share": 0.19249,
+      "progress": 0.1573,
+      "met_hours": 17.209,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    "human_review": {
+      "published_whole_lifecycle_certifications": 0,
+      "source": "research/stage19/output/PROGRESS.json",
+      "interpretation": "Separate human-review register; Capcom's legacy human_certified=0 is never an inferred certification count."
+    },
+    "model": {
+      "version": "capcom-frozen-weights-v1",
+      "denominator_version": "current-census-plus-frozen-gap-v1",
+      "weights_sha256": "e99374525b43765bf65238573b5f75d7e53e7796defb05c069333cb5d92f5e4a",
+      "census_gap": 1314,
+      "orders_goal": 16286,
+      "first_step_hours": 109.40416666666667,
+      "history_compatible": true,
+      "interpretation": "Existing frozen model minutes weight done/open tracker steps. The goal is current census plus the frozen 1,314-order modeled gap; the retained APP total is a different measure."
+    },
+    "checker_generation": {
+      "blocked_by": [],
+      "branch": "main",
+      "commit_run": "860ddfca0bff6a4366b5402f91b42f924d2f7292",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T04:33:50Z",
+      "job": "claim-checker",
+      "machine": "Linux-7.0.0-1016-aws-x86_64-with-glibc2.43, Python 3.12.16",
+      "max_output_file_bytes": 99614720,
+      "oversized_files_moved_to_run_download": [],
+      "result": "succeeded",
+      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41966416230",
+      "started_utc": "2026-11-05T04:16:27Z",
+      "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
+    },
+    "tracker_generation": {
+      "blocked_by": [],
+      "branch": "main",
+      "commit_run": "860ddfca0bff6a4366b5402f91b42f924d2f7292",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T04:34:32Z",
+      "job": "readiness-tracker",
+      "machine": "Linux-7.0.0-1016-aws-x86_64-with-glibc2.43, Python 3.12.16",
+      "max_output_file_bytes": 99614720,
+      "oversized_files_moved_to_run_download": [],
+      "result": "succeeded",
+      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41966416230",
+      "started_utc": "2026-11-05T04:33:50Z",
+      "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
+    },
+    "digest_generation": {
+      "blocked_by": [],
+      "branch": "main",
+      "commit_run": "860ddfca0bff6a4366b5402f91b42f924d2f7292",
+      "exit_code": 0,
+      "finished_utc": "2026-11-05T04:34:43Z",
+      "job": "daily-digest",
+      "machine": "Linux-7.0.0-1016-aws-x86_64-with-glibc2.43, Python 3.12.16",
+      "max_output_file_bytes": 99614720,
+      "oversized_files_moved_to_run_download": [],
+      "result": "succeeded",
+      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41966416230",
+      "started_utc": "2026-11-05T04:34:32Z",
+      "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
+    },
+    "source_files": {
+      "jobs/daily-digest/output/MISSION_REFRESH.json": {
+        "git_blob": "559fe37e6ecdb80557afd3cd2210e7887f7290be",
+        "commit": "cd7a7e373150744badfb22250d280e1a1bab5559"
+      },
+      "jobs/daily-digest/output/MISSION.json": {
+        "git_blob": "aed14d10bddff11256090f25b7e1bcd692f10eac",
+        "commit": "cd7a7e373150744badfb22250d280e1a1bab5559"
+      },
+      "jobs/daily-digest/output/STATUS.json": {
+        "git_blob": "6d23a7cde32d23743e53457ce304b32e8351e09f",
+        "commit": "cd7a7e373150744badfb22250d280e1a1bab5559"
+      },
+      "jobs/readiness-tracker/output/STATUS.json": {
+        "git_blob": "2d9847570388cf3a26771a7e49f386aa4cbf1ec5",
+        "commit": "cd7a7e373150744badfb22250d280e1a1bab5559"
+      },
+      "jobs/readiness-tracker/output/SUMMARY.json": {
+        "git_blob": "ae228888e23193737f38c61d752529a79511ebad",
+        "commit": "cd7a7e373150744badfb22250d280e1a1bab5559"
+      },
+      "jobs/claim-checker/output/STATUS.json": {
+        "git_blob": "9a27ce142f73aa940fb3e4634e4782a119453506",
+        "commit": "cd7a7e373150744badfb22250d280e1a1bab5559"
+      },
+      "research/stage19/output/PROGRESS.json": {
+        "git_blob": "081c3bb23cf13426c40e1d8a4ae285c4c52635ce",
+        "commit": "cd7a7e373150744badfb22250d280e1a1bab5559"
+      }
+    }
+  },
+  "drafts": [
+    {
+      "pr": 141,
+      "sha": "7c7e4d5338c4b11199b6f235639ec9b6c348f38e",
+      "tree": "4285ae91f696b908ea29f7ef82b48845a88bf14f",
+      "base": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+      "branch": "sol/babbage-complete-effort",
+      "paths": 26,
+      "doc_resolution": {
+        "path": "jobs/claim-kit/BATCH.md",
+        "git_blob": "f41d95164898bd98b168bee9659085eca79ef9bb",
+        "entire_original_draft_prefix_preserved": true,
+        "exact_pr150_append_only": true
+      },
+      "draft": true,
+      "mergeable_at_last_check": true,
+      "scientific_adoption": false,
+      "whole_draft_final_research_acceptance": "pending"
+    },
+    {
+      "pr": 146,
+      "sha": "e531ed5a886fc9b24ab6fd39422dbe83c9a730d6",
+      "tree": "2a899692484b52744e5c46f520dd4b4ed7d2f316",
+      "base": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+      "branch": "astra/unfinished-docket-source-trial",
+      "paths": 195,
+      "doc_resolution": {
+        "path": "jobs/lachmann/README.md",
+        "git_blob": "d80efb8bd6261f34a230ca58f2e2d7b33b606601",
+        "entire_original_draft_prefix_preserved": true,
+        "exact_pr150_append_only": true
+      },
+      "draft": true,
+      "mergeable_at_last_check": true,
+      "scientific_adoption": false,
+      "whole_draft_final_research_acceptance": "pending"
+    }
+  ],
+  "wiring": {
+    "runnable_jobs": 70,
+    "acyclic": true,
+    "manual_scheduling_roots": 22,
+    "retained_nonrunnable_providers": 3,
+    "classification": "research/progress/stable-integration-20261104/JOB_WIRING.md",
+    "further_concrete_orphan_established": false
+  },
+  "scientific_boundary": {
+    "cutoff": "2026-10-14",
+    "canonical_claims_or_census_changed_by_integration": false,
+    "old_seals_renewed": false,
+    "ready_dossiers": 1331,
+    "working_identities": 14972,
+    "human_certification": 0,
+    "compiler_dossiers": 4291,
+    "compiler_dossiers_are_lead_only": true,
+    "working_text_confirmations": 1764,
+    "confirmation_count_is_not_new_ready_dossiers": true,
+    "unverified_source_grades_preserved": true
+  },
+  "retained_failures": [
+    {
+      "run": 41955554793,
+      "computation": "all six jobs succeeded",
+      "publication": "refused concurrent stale outputs",
+      "replaced_by_recovery_run": 41963111698
+    },
+    {
+      "run": 41958411273,
+      "computation": "reporting ready",
+      "publication": "refused after coordinator updated consumed HANDOFF note",
+      "cause": "Operational metadata is also an input; main was subsequently frozen through migration and final reporting."
+    },
+    {
+      "head": "915019200058dc2f09cca89c90fd6d74ba01d398",
+      "check": 127023667483,
+      "problem": "Native test fixture omitted actual jobs/_lib cache helper; corrected without production runtime changes.",
+      "fixed_head": "330b0f12854b92eeeb5de058548d29c83c807535"
+    }
+  ],
+  "limits": [
+    "Only the two ordinary automatic publishing workflows share this branch writer queue; direct source edits and other explicit writers can still legitimately stale captured inputs.",
+    "GitHub queue:max retains up to100pending; overflow can cancel additional entries. Production runs serialize by branch; read-only diagnostics remain separate and pinned.",
+    "Reporting completion events can queue another full reporting trio. No duplicate-trio elimination or project-wide model-token/time saving is claimed.",
+    "Historical WPA lead-list paths remain explicit compiler warnings; no catalogue bytes or scientific source conclusion was invented to remove them.",
+    "PR141 andPR146 retain unfinished research and do not inherit scientific approval from this engineering integration.",
+    "Fresh production packets are needed after runtime/compiler changes; original replacement and quotation recheck obligations remain."
+  ],
+  "worker_accounting": {
+    "coordinator": "Codex",
+    "bounded_workers": [
+      "workflow_audit",
+      "pr_integration_audit",
+      "final_engineering_review"
+    ],
+    "families": "same OpenAI family; not different-family scientific certification",
+    "exact_deployment_variants": null,
+    "model_tokens": null,
+    "cash": null,
+    "whole_session_active_labor": null
+  },
+  "site": {
+    "url": "https://executive-orders-production-atlas.d3mosth3n3s.chatgpt.site",
+    "version": 5,
+    "deployment_id": "appgdep_6aebcec1803081919bb60cbc49bd170c",
+    "deployment_result": "succeeded",
+    "audience": "existing owner-private unchanged",
+    "visual_browser_qa": "not claimed"
+  },
+  "operating_note": "This final register-only metadata commit may start the normal Kean job and a subsequent reporting refresh. It introduces no new compiler/runtime code or scientific filing."
 }

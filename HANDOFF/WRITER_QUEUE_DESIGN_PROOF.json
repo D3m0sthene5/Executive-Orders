@@ -1,0 +1,89 @@
+{
+  "schema": "eo-output-writer-queue-fix/v1",
+  "base_commit": "95f52ca815c6844786c10a0a824e26719120d9b2",
+  "observed_failure": {
+    "ordinary_run_id": 41955554793,
+    "ordinary_head": "81ebb186f8cba72ef4fcf4866cd34ef32a59c463",
+    "ordinary_run_status": "failure",
+    "ordinary_job_id": 127009494185,
+    "native_run_step": "success",
+    "publication_step": "failure",
+    "concurrent_progress_run_id": 41955554786,
+    "concurrent_progress_status": "success",
+    "progress_publication_commit": "c7ebe6a46c730ee8b0cdd3f592f1de7852b019a0",
+    "reason": "Concurrent reporting published new checker/tracker/digest outputs before ordinary production publication. Existing freshness checks refused the stale combined production publication; no scientific data was overwritten.",
+    "evidence": "Coordinator retained full failure log; this worker independently retrieved both run metadata and ordinary step conclusions."
+  },
+  "implementation_files": [
+    {
+      "path": ".github/workflows/run-jobs.yml",
+      "git_blob": "94901ae5b9b20f0f6d216053ba43287a7aedcfdd"
+    },
+    {
+      "path": ".github/workflows/refresh-readiness.yml",
+      "git_blob": "24443a693d7d7360611ed4f3fd5715f7c7fe47d1"
+    },
+    {
+      "path": ".github/scripts/test_writer_queue.py",
+      "git_blob": "bc3a476134276b9e5cdc205db8c762ecc6ef14b9"
+    },
+    {
+      "path": ".github/scripts/test_roads.py",
+      "git_blob": "68631b872431918dd9992aaf0145b03cd2bf5c00"
+    }
+  ],
+  "design": {
+    "lock_location": "jobs.<job_id>.concurrency, acquired before checkout",
+    "ordinary_group_expression": "github.event_name == 'workflow_dispatch' && inputs.diagnostic && format('read-only-job-diagnostic-{0}-{1}', github.run_id, github.run_attempt) || format('repository-output-writer-{0}', github.ref)",
+    "main_group": "repository-output-writer-refs/heads/main",
+    "queue": "max",
+    "cancel_in_progress": false,
+    "max_pending": 100,
+    "overflow": "Additional arrivals beyond the documented queue capacity are canceled.",
+    "ordinary_checkout": "Current github.ref after acquiring branch writer queue",
+    "original_selection": "BEFORE=github.event.before and AFTER=github.sha retained unchanged for event selection",
+    "native_provenance": "GITHUB_SHA is overridden only for native execution with git rev-parse HEAD; manifests and STATUS bind actual checkout",
+    "diagnostics": "Unique run/attempt group, event SHA checkout, no publication or persisted checkout credentials",
+    "refresh": "Existing trusted-main job guard retained; same main writer queue; latest-main checkout after lock; fixed checker/tracker/digest selection",
+    "freshness": "No publisher, input scope, source gate, packet, claim, review or status changes",
+    "existing_triggers": "All push, schedule, manual and workflow_run triggers retained",
+    "duplication": "A mixed code push and subsequent Run jobs completion can still request two reporting trios. They now serialize rather than invalidate production; no polling framework or broader job fanout is added."
+  },
+  "official_basis": {
+    "concurrency": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
+    "syntax": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax",
+    "context_availability": "https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#context-availability",
+    "verified_rule": "queue:max supports up to100pending jobs/workflows. It must not combine with cancel-in-progress:true.",
+    "contexts_used": "github and inputs in job concurrency; github and inputs in checkout.with; no runner expression in job env"
+  },
+  "validation": {
+    "local_execution": "Not performed: execution unavailable for this assignment.",
+    "ci_required": [
+      "GitHub accepts queue:max and expression schema on exact candidate",
+      "Existing Linux/Windows Road executes three new stdlib tests",
+      "Actual post-merge writers do not overlap; second checkout occurs after predecessor publication",
+      "Actual latest-checkout native input commit matches STATUS and RUNNER_INPUTS",
+      "Previously refused independent outputs republished through legitimate bounded recovery selection"
+    ],
+    "new_tests": [
+      "Source contracts preserve common queue, noncancellation, diagnostic isolation and original event selection",
+      "Native Git fixture: original alpha-only event selection executes latest alpha input while later beta remains unselected; actual native status and manifest bind current HEAD",
+      "Native diagnostic fixture: original event checkout and receipts remain pinned; Ubuntu runs actual shell SHA staging and Windows uses unchanged native Python entrypoint"
+    ],
+    "not_claimed": [
+      "platform schema acceptance before GitHub runs",
+      "actual queue execution before hosted evidence",
+      "corpus-wide scientific review or new readiness",
+      "zero duplication or an unbounded queue"
+    ]
+  },
+  "cutover": {
+    "precondition": "Existing workflows compiled with old no/shared-single groups must complete before main migration; do not cancel them.",
+    "known_old_progress_run": 41958411273,
+    "known_old_progress_state_at_inspection": "in_progress",
+    "main_source_bound_to_base": true,
+    "post_merge": "Workflow/scripts-only changes select the smoke test; coordinator owns any separately justified native recovery documentation/selection."
+  },
+  "model_tokens": null,
+  "cash": null
+}
