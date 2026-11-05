@@ -51,6 +51,8 @@ class QueuedCheckout(unittest.TestCase):
         self.git("config", "core.autocrlf", "false")
         shutil.copytree(ROOT / ".github/scripts", self.repo / ".github/scripts",
                         ignore=shutil.ignore_patterns("__pycache__"))
+        shutil.copytree(ROOT / "jobs/_lib", self.repo / "jobs/_lib",
+                        ignore=shutil.ignore_patterns("__pycache__"))
         (self.repo / ".github/workflows").mkdir()
         shutil.copyfile(RUN, self.repo / ".github/workflows/run-jobs.yml")
         self.job("alpha", "baseline")
