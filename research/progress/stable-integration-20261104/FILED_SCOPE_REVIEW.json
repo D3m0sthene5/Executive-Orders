@@ -1,0 +1,27 @@
+{
+  "schema": "eo-independent-engineering-review/v1",
+  "verdict": "pass",
+  "reviewer": "Independent OpenAI-family context; detailed model variant unavailable",
+  "source_sha256": {
+    "jobs/lachmann/lachmann.py": "54f4c52da0ebbfdeb20655825b65f28eedfc21c27b7d576cc9e736ec8a255813",
+    "jobs/lachmann/test_repeat.py": "288138dc8035efedce3012c54b27a82f9f17b94f3a22feeafbc0a7fe9c35dbff"
+  },
+  "checks": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s jobs/lachmann -p 'test_*.py' -v",
+      "passed": 54,
+      "seconds": 0.22
+    },
+    "Independent baseline HEAD load_scope reproduces ready filed claim -> omitted scope -> overwritten empty confirmation -> tracker no",
+    "Independent fixed filed-claim probe removes source declaration: zero confirmed, tracker no",
+    "Independent fixed filed-claim probe supplies explicit agent rejection: machine rerun does not overwrite agent file and tracker remains no",
+    "git diff --check clean"
+  ],
+  "assessment": "Scope selection only. Every newly scoped filed transcription-dependent order still runs collect_witnesses and assess; unchanged witnesses regenerate exact confirmation bytes without carrying approval. Changed bytes or removed declarations fail; explicit agent rejection retains precedence. No scientific gate, authentication grade or review waiver changed.",
+  "limits": [
+    "Synthetic checker receipt intentionally isolates tracker/confirmation liveness; not full actual checker/source or legal validation.",
+    "No real corpus readiness recount performed."
+  ],
+  "tokens": null,
+  "human_or_different_family_certification": false
+}

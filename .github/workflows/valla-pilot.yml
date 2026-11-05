@@ -28,6 +28,41 @@ jobs:
             .github
             jobs
             research
+      - name: Verify custody replay temporary filesystem
+        run: |
+          # Configure this step and later steps using runner-provided variables.
+          printf 'TMPDIR=%s\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
+          export TMPDIR="$RUNNER_TEMP"
+          python3 - <<'PY'
+          import os
+          import tempfile
+          from pathlib import Path
+
+          checkout = Path(os.environ['GITHUB_WORKSPACE']).resolve()
+          configured = Path(os.environ['TMPDIR']).resolve()
+          selected = Path(tempfile.gettempdir()).resolve()
+          if selected != configured:
+              raise SystemExit('Custody replay refused: Python did not select the configured runner temporary directory.')
+          if checkout.stat().st_dev != selected.stat().st_dev:
+              raise SystemExit('Custody replay refused: checkout and temporary directory are on different filesystems; exact rename/restore requires one filesystem.')
+          with tempfile.TemporaryDirectory(prefix='.valla-rename-preflight-', dir=checkout) as local, tempfile.TemporaryDirectory(prefix='valla-filesystem-preflight-') as temporary:
+              if Path(temporary).stat().st_dev != checkout.stat().st_dev:
+                  raise SystemExit('Custody replay refused: temporary allocation is outside the checkout filesystem.')
+              source = Path(local) / 'probe.bin'
+              relocated = Path(temporary) / 'probe.bin'
+              payload = b'Valla custody rename/restore preflight\x00\xff\n'
+              source.write_bytes(payload)
+              try:
+                  source.rename(relocated)
+                  if relocated.read_bytes() != payload:
+                      raise SystemExit('Custody replay refused: relocated probe bytes changed.')
+                  relocated.rename(source)
+                  if source.read_bytes() != payload:
+                      raise SystemExit('Custody replay refused: restored probe bytes changed.')
+              except OSError as exc:
+                  raise SystemExit('Custody replay refused: exact checkout-to-temp rename/restore failed: ' + str(exc)) from exc
+          print('Custody replay temporary filesystem and exact rename/restore verified:', selected)
+          PY
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
