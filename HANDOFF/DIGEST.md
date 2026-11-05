@@ -27,7 +27,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 Comparison snapshot: 2026-11-04; intervening runs may be absent.
 - gessner-cards: human_certified: unavailable → 0; not_researched: unavailable → 10681; one_step_from_ready: unavailable → 43; orders: unavailable → 14972
-- kean: findings: 143 → 145
+- kean: decisions: 22 → 23; findings: 143 → 146
 
 ## Top shared unlocks
 
@@ -69,4 +69,4 @@ Comparison snapshot: 2026-11-04; intervening runs may be absent.
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42101328971)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42111181347)
