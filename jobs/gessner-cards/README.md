@@ -41,6 +41,8 @@ reports it (0).
 
 ## Running
 
-Runs daily (`DAILY`) and after `readiness-tracker` and `domesday-register` when they run together
-(`after.txt`). Tests in `test_build_cards.py` run first; the page is not built if they fail. Locally:
+Runs inside every published tracker refresh (`.github/workflows/refresh-readiness.yml`, right after
+`readiness-tracker`), daily (`DAILY`), and after `readiness-tracker` and `domesday-register` when they run together
+(`after.txt`). The live page at https://dannykind.wiki/eo/gesner reads `output/CARDS.html` from `main`, so it
+follows each refresh without anyone republishing it. Tests in `test_build_cards.py` run first; the page is not built if they fail. Locally:
 `OUTPUT_DIR=/tmp/cards python3 -I jobs/gessner-cards/build_cards.py`.
