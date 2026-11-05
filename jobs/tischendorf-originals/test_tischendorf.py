@@ -165,5 +165,29 @@ class RouteTests(unittest.TestCase):
         self.assertTrue(lead["data"]["needs_page_check"])
 
 
+class ParallelTests(unittest.TestCase):
+    def test_issue_downloaded_and_parsed_once_across_threads(self):
+        import os
+        import threading
+        from collections import Counter
+        os.environ["TISCHENDORF_INLINE_PDF"] = "1"
+        calls = Counter()
+
+        class Pool:
+            requests = 0
+
+            def fetch(self, url):
+                calls[url] += 1
+                raise RuntimeError("HTTP 404")
+
+        used, lock = Counter(), threading.Lock()
+        issues = t.IssueTexts(t.CountingPool(Pool(), used, lock, "fr_by_date"))
+        threads = [threading.Thread(target=issues.get, args=(dt.date(1937, 1, 5),)) for _ in range(8)]
+        [th.start() for th in threads]
+        [th.join() for th in threads]
+        self.assertEqual(sum(calls.values()), 1)
+        self.assertEqual(used["fr_by_date"], 1)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -81,6 +81,10 @@ an authentication; human certification stays a separate count.
 ## Running
 
 Daily (`DAILY`); after `readiness-tracker`, `fr-originals` and `ofr-compilations` when they run together. Tests in
-`test_tischendorf.py` run first. Budget per run: `JOB_MAX_REQUESTS` (default 1,500) and `JOB_TIME_BUDGET_MIN`
-(default 200). Polite fetching through `jobs/_lib/fetch_pool.py` (HTTPS only, robots.txt obeyed, per-host
+`test_tischendorf.py` run first. Offline work (controls, corroboration, carried results) takes about ten seconds;
+network orders then run on `JOB_WORKERS` threads (default 8), with PDF text extraction in separate processes, so
+waiting on one site overlaps work on others. Budget per run: `JOB_MAX_REQUESTS` (default 2,400 in all, of which
+`JOB_MAX_REQUESTS_FR` 900 and `JOB_MAX_REQUESTS_IA` 1,500) and `JOB_TIME_BUDGET_MIN` (default 200). The first run,
+before these changes, took 62 minutes because it fetched one Federal Register issue at a time and spent its whole
+request budget there. Polite fetching through `jobs/_lib/fetch_pool.py` (HTTPS only, robots.txt obeyed, per-host
 throttling, every download hashed).

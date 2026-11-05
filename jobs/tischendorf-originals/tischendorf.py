@@ -20,6 +20,7 @@ until the job is registered there (a separate owner decision). No status, identi
 """
 from __future__ import annotations
 
+import concurrent.futures
 import csv
 import datetime as dt
 import io
@@ -27,6 +28,7 @@ import json
 import os
 import re
 import sys
+import threading
 import time
 import urllib.parse
 import xml.etree.ElementTree as ET
@@ -171,6 +173,50 @@ def verdict(score, marker, date_ok, distinctive, government, controls_ok=True, n
     return None
 
 
+# --------------------------------------------------------------------------------------------- shared
+
+def keep_better(st, res):
+    if res and (not st.get("result") or (res["verdict"] == "strong", res["score"]) >
+                (st["result"]["verdict"] == "strong", st["result"]["score"])):
+        st["result"] = res
+
+
+class CountingPool:
+    """Counts each route's requests so one route cannot spend another's share."""
+
+    def __init__(self, pool, counter, lock, route):
+        self.pool, self.counter, self.lock, self.route = pool, counter, lock, route
+
+    def fetch(self, url):
+        with self.lock:
+            self.counter[self.route] += 1
+        return self.pool.fetch(url)
+
+    @property
+    def requests(self):
+        return self.pool.requests
+
+
+_PDF_POOL = None
+
+
+def parse_pdf(raw):
+    """PDF text extraction is CPU-bound; run it in worker processes so threads waiting on downloads overlap it."""
+    global _PDF_POOL
+    if os.environ.get("TISCHENDORF_INLINE_PDF") == "1":
+        return pdf_pages(raw)
+    if _PDF_POOL is None:
+        _PDF_POOL = concurrent.futures.ProcessPoolExecutor(max_workers=max(1, (os.cpu_count() or 2)))
+    return _PDF_POOL.submit(pdf_pages, raw).result()
+
+
+def shutdown_pdf_workers():
+    global _PDF_POOL
+    if _PDF_POOL is not None:
+        _PDF_POOL.shutdown()
+        _PDF_POOL = None
+
+
 # --------------------------------------------------------------------------------------------- route A
 
 def body_of(saved_text):
@@ -202,27 +248,33 @@ def corroborate(target, F, root=REPO):
 # --------------------------------------------------------------------------------------------- route B
 
 class IssueTexts:
-    """Federal Register daily issues, parsed once each; a small LRU since many orders share issues."""
+    """Federal Register daily issues, parsed once each and shared between worker threads."""
 
-    def __init__(self, pool, keep=40):
+    def __init__(self, pool, keep=60):
         self.pool, self.keep, self.cache = pool, keep, OrderedDict()
+        self.lock, self.day_locks = threading.Lock(), {}
 
     def get(self, day):
         key = day.isoformat()
-        if key in self.cache:
-            self.cache.move_to_end(key)
-            return self.cache[key]
-        url = f"https://www.govinfo.gov/content/pkg/FR-{key}/pdf/FR-{key}.pdf"
-        try:
-            got = self.pool.fetch(url)
-        except Exception as exc:  # noqa: BLE001 - a missing issue (404) or a block is recorded, never fatal
-            val = {"url": url, "error": str(exc)[:200]}
-        else:
-            val = {"url": url, "sha256": got["sha256"], "pages": pdf_pages(got["body"])}
-        self.cache[key] = val
-        while len(self.cache) > self.keep:
-            self.cache.popitem(last=False)
-        return val
+        with self.lock:
+            day_lock = self.day_locks.setdefault(key, threading.Lock())
+        with day_lock:  # two orders waiting on the same issue download and parse it once
+            with self.lock:
+                if key in self.cache:
+                    self.cache.move_to_end(key)
+                    return self.cache[key]
+            url = f"https://www.govinfo.gov/content/pkg/FR-{key}/pdf/FR-{key}.pdf"
+            try:
+                got = self.pool.fetch(url)
+            except Exception as exc:  # noqa: BLE001 - a missing issue (404) or a block is recorded, never fatal
+                val = {"url": url, "error": str(exc)[:200]}
+            else:
+                val = {"url": url, "sha256": got["sha256"], "pages": parse_pdf(got["body"])}
+            with self.lock:
+                self.cache[key] = val
+                while len(self.cache) > self.keep:
+                    self.cache.popitem(last=False)
+            return val
 
 
 def pdf_pages(raw):
@@ -282,6 +334,11 @@ def fr_by_date(target, F, issues, tried):
 class Archive:
     def __init__(self, pool, max_xml_bytes=90_000_000):
         self.pool, self.meta, self.pages, self.max_xml = pool, {}, OrderedDict(), max_xml_bytes
+        self.lock, self.item_locks = threading.Lock(), {}
+
+    def _item_lock(self, item):
+        with self.lock:
+            return self.item_locks.setdefault(item, threading.Lock())
 
     def search(self, phrase):
         url = IA_FTS.format(q=urllib.parse.quote(f'"{phrase}"'))
@@ -300,10 +357,11 @@ class Archive:
         return list(dict.fromkeys(out))
 
     def metadata(self, item):
-        if item not in self.meta:
-            got = self.pool.fetch(f"https://archive.org/metadata/{urllib.parse.quote(item)}")
-            self.meta[item] = json.loads(got["body"].decode("utf-8", "replace"))
-        return self.meta[item]
+        with self._item_lock("meta:" + item):
+            if item not in self.meta:
+                got = self.pool.fetch(f"https://archive.org/metadata/{urllib.parse.quote(item)}")
+                self.meta[item] = json.loads(got["body"].decode("utf-8", "replace"))
+            return self.meta[item]
 
     def classify(self, item):
         m = self.metadata(item)
@@ -321,17 +379,20 @@ class Archive:
 
     def page_texts(self, info):
         item = info["item"]
-        if item in self.pages:
-            self.pages.move_to_end(item)
-            return self.pages[item]
-        url = f"https://archive.org/download/{urllib.parse.quote(item)}/{urllib.parse.quote(info['xml'])}"
-        got = self.pool.fetch(url)
-        texts = djvu_pages(got["body"])
-        self.pages[item] = {"url": url, "sha256": got["sha256"], "pages": texts,
-                            "shingles": [fp.shingles(t) for t in texts]}
-        while len(self.pages) > 12:
-            self.pages.popitem(last=False)
-        return self.pages[item]
+        with self._item_lock("pages:" + item):
+            with self.lock:
+                if item in self.pages:
+                    self.pages.move_to_end(item)
+                    return self.pages[item]
+            url = f"https://archive.org/download/{urllib.parse.quote(item)}/{urllib.parse.quote(info['xml'])}"
+            got = self.pool.fetch(url)
+            texts = djvu_pages(got["body"])
+            vol = {"url": url, "sha256": got["sha256"], "pages": texts, "shingles": [fp.shingles(t) for t in texts]}
+            with self.lock:
+                self.pages[item] = vol
+                while len(self.pages) > 16:
+                    self.pages.popitem(last=False)
+            return vol
 
 
 def djvu_pages(raw):
@@ -519,7 +580,7 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
     # Each network route gets its own share, so one route cannot starve the other.
     route_cap = {"fr_by_date": int(os.environ.get("JOB_MAX_REQUESTS_FR", "900")),
                  "ia_fulltext": int(os.environ.get("JOB_MAX_REQUESTS_IA", "1500"))}
-    route_used = Counter()
+    workers = int(os.environ.get("JOB_WORKERS", "8"))
 
     readiness, register, texts, sources, official = load_inputs(root)
     df, n_docs = fp.document_frequency(texts)
@@ -530,22 +591,24 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
     if pool is None:
         from fetch_pool import FetchPool
         cache = Path(os.environ.get("JOB_CACHE_DIR", REPO / ".job-cache" / JOB))
-        pool = FetchPool(cache, workers=4, per_host=2, user_agent="EO-Road-System/1.0 (tischendorf-originals)",
+        # FetchPool throttles each host (robots crawl-delay, at most 2 requests in flight per host), so more
+        # workers overlap waiting on different orders without hammering any one site.
+        pool = FetchPool(cache, workers=workers, per_host=2, user_agent="EO-Road-System/1.0 (tischendorf-originals)",
                          min_interval=0.5, max_bytes=100_000_000)
-    current = {"route": None}
+    lock = threading.Lock()
+    route_used = Counter()
 
-    def budget_ok():
-        r = current["route"]
-        return (pool.requests < max_requests and now() - started < budget_s
-                and (r is None or route_used[r] < route_cap.get(r, max_requests)))
-    issues, archive = IssueTexts(pool), Archive(pool)
+    def budget_for(route):
+        return lambda: (pool.requests < max_requests and now() - started < budget_s
+                        and route_used[route] < route_cap.get(route, max_requests))
+
+    issues = IssueTexts(CountingPool(pool, route_used, lock, "fr_by_date"))
+    archive = Archive(CountingPool(pool, route_used, lock, "ia_fulltext"))
     prior, prior_from = load_prior_state(root)
-    state = {}
-    counts = Counter()
-    for k, t in enumerate(targets):
-        if k % 50 == 0:
-            print(f"[{round(now() - started)}s] {k}/{len(targets)} targets, {pool.requests} requests, {dict(counts)}",
-                  flush=True)
+    state, counts, network = {}, Counter(), []
+
+    # Offline work first (carried results, corroboration), in order; network work is collected.
+    for t in targets:
         iid = t["instrument_id"]
         st = prior.get(iid) or {"tried": {"issues": [], "phrases": [], "items": []}, "result": None, "complete": False}
         st["route"] = t["route"]
@@ -555,33 +618,46 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
             continue
         F = fp.Fingerprint(texts[iid], df, n_docs)
         t["_text"] = texts[iid]
-        res, complete = None, True
-        current["route"], before = t["route"], pool.requests
-        if t["route"] != "corroborate" and not budget_ok():
-            counts[f"deferred_{t['route']}"] += 1
-            continue
         if t["route"] == "corroborate":
-            res = corroborate(t, F, root)
-        elif t["route"] == "fr_by_date":
-            if budget_ok():
-                res, complete = fr_by_date(t, F, issues, st["tried"]["issues"])
-            else:
-                complete = False
+            keep_better(st, corroborate(t, F, root))
+            st["complete"] = True
+            counts["attempted_corroborate"] += 1
+        elif t["route"] == "ia_fulltext" and not F.distinctive:
+            st["note"] = "transcription too generic to verify by text"
+            counts["ia_not_distinctive"] += 1
+        elif not (t["route"] == "fr_by_date" and st.get("complete")):
+            network.append((t, F))
+    print(f"[{round(now() - started)}s] offline work done; {len(network)} orders need the network", flush=True)
+
+    # Federal Register orders by date, so neighbouring orders share issues still held in memory.
+    network.sort(key=lambda x: (x[0]["route"] != "fr_by_date", x[0]["date"] if x[0]["route"] == "fr_by_date" else ""))
+    done = [0]
+
+    def work(item):
+        t, F = item
+        st = state[t["instrument_id"]]
+        ok = budget_for(t["route"])
+        if not ok():
+            with lock:
+                counts[f"deferred_{t['route']}"] += 1
+            return
+        if t["route"] == "fr_by_date":
+            res, complete = fr_by_date(t, F, issues, st["tried"]["issues"])
         else:
-            if not F.distinctive:
-                st["note"] = "transcription too generic to verify by text"
-                counts["ia_not_distinctive"] += 1
-                continue
-            if budget_ok():
-                res, complete = ia_fulltext(t, F, archive, st["tried"], budget_ok)
-            else:
-                complete = False
-        if res and (not st.get("result") or (res["verdict"] == "strong", res["score"]) >
-                    (st["result"]["verdict"] == "strong", st["result"]["score"])):
-            st["result"] = res
-        st["complete"] = complete
-        route_used[t["route"]] += pool.requests - before
-        counts[f"attempted_{t['route']}"] += 1
+            res, complete = ia_fulltext(t, F, archive, st["tried"], ok)
+        with lock:
+            keep_better(st, res)
+            st["complete"] = complete
+            counts[f"attempted_{t['route']}"] += 1
+            done[0] += 1
+            if done[0] % 50 == 0:
+                print(f"[{round(now() - started)}s] {done[0]}/{len(network)} network orders, {pool.requests} requests, "
+                      f"{dict(route_used)}", flush=True)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, workers)) as ex:
+        for _ in ex.map(work, network):
+            pass
+    shutdown_pdf_workers()
 
     # Write fragments: strong verdicts count only if the planted controls passed this run.
     frags, leads = [], []
@@ -621,6 +697,7 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
         "strong": strong, "leads": len(leads) - strong, "by_route_and_verdict": {f"{a}|{b}": c for (a, b), c in sorted(by_route.items())},
         "controls": controls, "strong_rules": STRONG_RULES, "requests": pool.requests,
         "requests_by_route": dict(route_used), "request_caps": {"total": max_requests, **route_cap},
+        "workers": workers,
         "bytes_downloaded": getattr(pool, "bytes_downloaded", None), "seconds": round(now() - started),
         "prior_state_from": prior_from, "run_counts": counts,
         "counted_by_tracker": False,
