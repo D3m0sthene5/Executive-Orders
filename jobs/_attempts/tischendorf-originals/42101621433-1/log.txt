@@ -1,0 +1,101 @@
+test_boilerplate_and_other_orders_score_low (test_tischendorf.FingerprintTests.test_boilerplate_and_other_orders_score_low) ... ok
+test_phrases_are_rare_runs (test_tischendorf.FingerprintTests.test_phrases_are_rare_runs) ... ok
+test_same_order_scores_high_despite_ocr_noise (test_tischendorf.FingerprintTests.test_same_order_scores_high_despite_ocr_noise) ... ok
+test_issue_downloaded_and_parsed_once_across_threads (test_tischendorf.ParallelTests.test_issue_downloaded_and_parsed_once_across_threads) ... ok
+test_fr_by_date_stops_on_transient_error (test_tischendorf.RouteTests.test_fr_by_date_stops_on_transient_error) ... ok
+test_fr_by_date_uses_issue_pages (test_tischendorf.RouteTests.test_fr_by_date_uses_issue_pages) ... ok
+test_fragment_schema (test_tischendorf.RouteTests.test_fragment_schema) ... ok
+test_ia_fulltext_finds_compilation_page (test_tischendorf.RouteTests.test_ia_fulltext_finds_compilation_page) ... ok
+test_ia_restricted_and_non_government_are_not_strong (test_tischendorf.RouteTests.test_ia_restricted_and_non_government_are_not_strong) ... ok
+test_dates (test_tischendorf.VerdictTests.test_dates) ... ok
+test_header_stripped (test_tischendorf.VerdictTests.test_header_stripped) ... ok
+test_rules (test_tischendorf.VerdictTests.test_rules) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.022s
+
+OK
+3667 targets; controls: {"positives": 60, "positives_confirmed": 56, "negatives": 120, "negatives_accepted": 0, "accepted_negatives": [], "passed": true}
+[12s] offline work done; 3137 orders need the network
+invalid pdf header: b'<!DOC'
+EOF marker not found
+invalid pdf header: b'<!DOC'
+EOF marker not found
+invalid pdf header: b'<!DOC'
+EOF marker not found
+invalid pdf header: b'<!DOC'
+EOF marker not found
+[185s] 50/3137 network orders, 436 requests, {'fr_by_date': 30, 'ia_fulltext': 321}
+invalid pdf header: b'<!DOC'
+EOF marker not found
+invalid pdf header: b'<!DOC'
+EOF marker not found
+invalid pdf header: b'<!DOC'
+EOF marker not found
+invalid pdf header: b'<!DOC'
+EOF marker not found
+[360s] 100/3137 network orders, 886 requests, {'fr_by_date': 49, 'ia_fulltext': 655}
+invalid pdf header: b'<!DOC'
+EOF marker not found
+[500s] 150/3137 network orders, 1153 requests, {'fr_by_date': 50, 'ia_fulltext': 895}
+[652s] 200/3137 network orders, 1438 requests, {'fr_by_date': 50, 'ia_fulltext': 1141}
+[859s] 250/3137 network orders, 1911 requests, {'fr_by_date': 50, 'ia_fulltext': 1511}
+[1244s] 300/3137 network orders, 2578 requests, {'fr_by_date': 50, 'ia_fulltext': 2029}
+[1402s] 350/3137 network orders, 2928 requests, {'fr_by_date': 50, 'ia_fulltext': 2321}
+[1583s] 400/3137 network orders, 3434 requests, {'fr_by_date': 50, 'ia_fulltext': 2711}
+[1757s] 450/3137 network orders, 3917 requests, {'fr_by_date': 50, 'ia_fulltext': 3094}
+[2030s] 500/3137 network orders, 4474 requests, {'fr_by_date': 50, 'ia_fulltext': 3529}
+[2253s] 550/3137 network orders, 4944 requests, {'fr_by_date': 50, 'ia_fulltext': 3902}
+[2436s] 600/3137 network orders, 5199 requests, {'fr_by_date': 50, 'ia_fulltext': 4130}
+[2569s] 650/3137 network orders, 5511 requests, {'fr_by_date': 50, 'ia_fulltext': 4399}
+[2727s] 700/3137 network orders, 5923 requests, {'fr_by_date': 50, 'ia_fulltext': 4734}
+[2999s] 750/3137 network orders, 6560 requests, {'fr_by_date': 50, 'ia_fulltext': 5242}
+[3167s] 800/3137 network orders, 6924 requests, {'fr_by_date': 50, 'ia_fulltext': 5555}
+[3351s] 850/3137 network orders, 7298 requests, {'fr_by_date': 50, 'ia_fulltext': 5869}
+[3690s] 900/3137 network orders, 7995 requests, {'fr_by_date': 50, 'ia_fulltext': 6412}
+[4590s] 950/3137 network orders, 8596 requests, {'fr_by_date': 50, 'ia_fulltext': 6877}
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/tischendorf-originals/job.py", line 15, in <module>
+    tischendorf.main()
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/tischendorf-originals/tischendorf.py", line 658, in main
+    for _ in ex.map(work, network):
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/tischendorf-originals/tischendorf.py", line 647, in work
+    res, complete = ia_fulltext(t, F, archive, st["tried"], ok)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/tischendorf-originals/tischendorf.py", line 461, in ia_fulltext
+    w = best_window(vol["pages"], F, target["number"], target["date"], vol.get("shingles"))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/tischendorf-originals/tischendorf.py", line 423, in best_window
+    numbers_printed = any(marker_in(pages, str(n), range(max(0, i - 2), min(len(pages), i + span + 2)))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/tischendorf-originals/tischendorf.py", line 423, in <genexpr>
+    numbers_printed = any(marker_in(pages, str(n), range(max(0, i - 2), min(len(pages), i + span + 2)))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/tischendorf-originals/tischendorf.py", line 157, in marker_in
+    marker, _ = fr_pages.find_marker(page_texts, number, pages)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/fr_pages.py", line 248, in find_marker
+    pats = dict(marker_patterns(number))
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/fr_pages.py", line 81, in marker_patterns
+    d = digits_pattern(number)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/fr_pages.py", line 66, in digits_pattern
+    base = re.match(r"\d+", number).group(0)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'group'
