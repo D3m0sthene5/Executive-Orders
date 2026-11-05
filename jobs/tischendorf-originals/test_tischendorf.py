@@ -63,6 +63,13 @@ class VerdictTests(unittest.TestCase):
         self.assertEqual(days[0], dt.date(1937, 1, 4))  # Sunday skipped
         self.assertNotIn(dt.date(1937, 1, 3), days)
 
+    def test_low_numbers_do_not_crash(self):
+        self.assertEqual(t._nearby_numbers("1"), [2, 3])
+        self.assertIsNone(t.marker_in(["EXECUTIVE ORDER 1"], "-1", [0]))
+        w = t.best_window(["EXECUTIVE ORDER No. 1 " + ORDER], fp.Fingerprint(BOILER + ORDER, *fp.document_frequency(corpus())),
+                          "1", "1862-02-14")
+        self.assertIsNotNone(w)
+
     def test_header_stripped(self):
         self.assertEqual(t.body_of("Instrument: EO:5\nSource: x\n\nEXECUTIVE ORDER 5"), "EXECUTIVE ORDER 5")
         self.assertEqual(t.body_of("EXECUTIVE ORDER 5\n\nmore"), "EXECUTIVE ORDER 5\n\nmore")

@@ -158,7 +158,7 @@ def date_on(text, iso):
 
 
 def marker_in(page_texts, number, pages):
-    if not number:
+    if not number or not re.match(r"\d", str(number)):
         return None
     pages = list(pages)
     marker, _ = fr_pages.find_marker(page_texts, number, pages)
@@ -438,7 +438,7 @@ def _nearby_numbers(number):
     if not m:
         return []
     n = int(m.group(1))
-    return [n - 2, n - 1, n + 1, n + 2]
+    return [k for k in (n - 2, n - 1, n + 1, n + 2) if k > 0]
 
 
 def ia_fulltext(target, F, archive, tried, budget_ok):
@@ -639,6 +639,7 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
     # Federal Register orders by date, so neighbouring orders share issues still held in memory.
     network.sort(key=lambda x: (x[0]["route"] != "fr_by_date", x[0]["date"] if x[0]["route"] == "fr_by_date" else ""))
     done = [0]
+    errors = []
 
     def work(item):
         t, F = item
@@ -648,10 +649,17 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
             with lock:
                 counts[f"deferred_{t['route']}"] += 1
             return
-        if t["route"] == "fr_by_date":
-            res, complete = fr_by_date(t, F, issues, st["tried"]["issues"])
-        else:
-            res, complete = ia_fulltext(t, F, archive, st["tried"], ok)
+        try:
+            if t["route"] == "fr_by_date":
+                res, complete = fr_by_date(t, F, issues, st["tried"]["issues"])
+            else:
+                res, complete = ia_fulltext(t, F, archive, st["tried"], ok)
+        except Exception as exc:  # noqa: BLE001 - one bad order or page must never cost the whole run's results
+            with lock:
+                counts[f"error_{t['route']}"] += 1
+                errors.append({"instrument_id": t["instrument_id"], "route": t["route"],
+                               "error": f"{type(exc).__name__}: {exc}"[:300]})
+            return
         with lock:
             keep_better(st, res)
             st["complete"] = complete
@@ -687,6 +695,9 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
                       "score": res["score"], "marker": res.get("marker") or "", "page_or_item": res["page_or_item"],
                       "url": res["url"], "source_kind": res["source_kind"]})
 
+    with open(out / "ERRORS.jsonl", "w", encoding="utf-8") as f:
+        for e in errors:
+            f.write(json.dumps(e) + "\n")
     with open(out / "FRAGMENTS.jsonl", "w", encoding="utf-8") as f:
         for fr in frags:
             f.write(json.dumps(fr, ensure_ascii=False, sort_keys=True) + "\n")
@@ -706,7 +717,7 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
         "replacement_strong": sum(1 for t in targets if t["replacement"] and (state[t["instrument_id"]].get("result") or {}).get("verdict") == "strong"),
         "strong": strong, "leads": len(leads) - strong, "by_route_and_verdict": {f"{a}|{b}": c for (a, b), c in sorted(by_route.items())},
         "controls": controls, "strong_rules": STRONG_RULES, "requests": pool.requests,
-        "requests_by_route": dict(route_used), "request_caps": {"total": max_requests, **route_cap},
+        "requests_by_route": dict(route_used), "order_errors": len(errors), "request_caps": {"total": max_requests, **route_cap},
         "workers": workers,
         "bytes_downloaded": getattr(pool, "bytes_downloaded", None), "seconds": round(now() - started),
         "prior_state_from": prior_from, "run_counts": counts,
