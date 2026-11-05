@@ -1,0 +1,58 @@
+{
+ "schema": "icecore-usage-summary/v1",
+ "source": "jobs/bentham/sessions.py --since 2026-11-05T21:10:00Z, this coordinator and its six worker sessions only (other sessions on the machine excluded by phase map)",
+ "price_table": "Anthropic API list prices as in jobs/bentham/measure.py PRICE_TABLE; API-equivalent, not an invoice",
+ "by_phase_batch": {
+  "coordination/all": {
+   "agents": 1,
+   "calls": 126,
+   "fresh_input": 260,
+   "cache_read": 26455014,
+   "cache_write": 1102659,
+   "output": 94153,
+   "usd": 22.474,
+   "active_seconds": 1836.126
+  },
+  "production/no": {
+   "agents": 1,
+   "calls": 76,
+   "fresh_input": 152,
+   "cache_read": 11586519,
+   "cache_write": 215180,
+   "output": 71956,
+   "usd": 5.363,
+   "active_seconds": 940.784
+  },
+  "production/yes": {
+   "agents": 1,
+   "calls": 208,
+   "fresh_input": 418,
+   "cache_read": 39007070,
+   "cache_write": 523062,
+   "output": 197064,
+   "usd": 16.621,
+   "active_seconds": 2563.518
+  },
+  "review/no": {
+   "agents": 2,
+   "calls": 27,
+   "fresh_input": 58,
+   "cache_read": 1550668,
+   "cache_write": 91233,
+   "output": 14935,
+   "usd": 1.719,
+   "active_seconds": 297.22900000000004
+  },
+  "review/yes": {
+   "agents": 2,
+   "calls": 115,
+   "fresh_input": 234,
+   "cache_read": 17553588,
+   "cache_write": 414681,
+   "output": 68076,
+   "usd": 13.072,
+   "active_seconds": 1237.626
+  }
+ },
+ "total_usd": 59.249
+}

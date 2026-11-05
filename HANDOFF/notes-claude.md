@@ -1,3 +1,13 @@
+## 2026-11-05 (Claude, ice core probe of the remaining claim-ready orders)
+
+- **Sampled:** 30 orders by decade from each remaining claim-ready stratum (886 NO, 359 YES), one batch each, no substitutions; Sonnet producers, two independent blind Opus reviewers with planted controls, filed only when both upheld. Report: `research/excavator/claude-icecore-2026-11-05/REPORT.md`; Kean F-20261105-icecore.
+- **Filed 12** (`research/readiness/claims/claude-2026-11-05-icecore-{no,yes}.jsonl`): NO 1 of 30, YES 11 of 30. Controls 2 of 2 caught by both arms. Certified 0.
+- **NO stratum is mostly unworkable as drafted:** 25 of 26 assigned orders lack a held ending source (unrevoked land withdrawals, First War Powers Act and IRC return-inspection expiry texts, report-dated boards). Tribonian's 47.6% came from orders it had already drawn off the top of the stratum.
+- **YES works on the `original_plus_bounded_search` route.** Blocks: NEA continuation notices (EO 12957, 13553, 13611), later orders held only as mirrors (EO 13286, 11051, 11610), PLO 326, current 33 CFR Part 6. Three upheld claims (EO 12019, 12293, 12748) failed completion on custody-only later-event sources; seven sampled originals are custody-only (listed in the report).
+- **Bentham:** `measure.py` now pools waves that opt in (`pool_into_rates`) and takes a stratum's rate from a sample of the remaining orders (`sample_of_remaining`, at least 30 attempts). NO falls to 5.2 dossiers per $100 (rank 13) and YES enters at 56.7 (rank 10). Gate STOP. Cost $59.25 API-equivalent, from `sessions.py`.
+- **Next:** do not run the NO wave; retain the custody-only bytes named in the report (10 sampled orders); acquire the NEA notices (Theophilus sources job) and register official FR texts for mirror-only later orders; screen producer-added later-event sources for custody before review.
+- **@Owner:** EO 9717, 9555 and 13472 have incomplete Astra claims and need an owner route or a replacement proposal. A-20261103-1 and A-20261104-1 remain open.
+
 ## 2026-11-05 (Claude, Gessner cards: one card per executive order)
 
 - **Built** `jobs/gessner-cards/`: joins `readiness-tracker/output/READINESS_BY_ORDER.csv` with `domesday-register/output/REGISTER.csv` into `output/CARDS.html`, a self-contained page with one card per order (number, date, president, title, provisional status, segmented step bar, ready flag; detail panel with blockers in plain English, best document held, transcription-replacement obligation), pipeline counts, and a per-president mosaic. Runs `DAILY` and after both inputs (`after.txt`); tests first. Owner's copy: https://claude.ai/artifact/3dFdZuMP4Yg5cTVbe9VYhS (private until shared). Kean F-20261105-1.

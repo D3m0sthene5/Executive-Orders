@@ -28,13 +28,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 146; `search` finds the rest)
+## Newest results (6 of 147; `search` finds the rest)
 
 - 2026-11-05 F-20261105-stable-main-publication **worked**: Integrate completed EO work and remove production/reporting publication races Lesson: Successful computation is not publication. Queue automatic writers before checkout, bind receipts to actual inputs, and keep shared inputs stable.
+- 2026-11-05 F-20261105-icecore **stopped at gate**: Ice core probe: 30 orders drawn by decade from each remaining claim-ready stratum (886 NO, 359 YES), run as o… Lesson: A finished wave's yield describes the orders it drew, not the ones left: Tribonian skimmed the NO stratum, so its 47.6% overstated the remaining NO yield about fourteenfold (47.6% against 3.3%). Meas…
 - 2026-11-05 F-20261105-2 **worked**: Bentham (jobs/bentham): joined Hamilton, wave dispositions, Polya, the tracker's shared unlocks and Llull's m… Lesson: A tool that needs a person to feed it is not wired in: Hamilton, Llull, Neyman and Polya each worked but none ran before a wave because each needed manual input and no protocol step required it
 - 2026-11-05 F-20261105-1 **worked**: Gessner cards: a daily job joining READINESS_BY_ORDER.csv and the Domesday REGISTER.csv into one self-contain… Lesson: Derive display-only fields from committed outputs in a job, never in a chat; a disagreement between a date rule and a recorded name is a data-quality lead, not a correction
 - 2026-11-04 F-20261104-tribonian-finalization-recovery **worked**: Reconcile current Tribonian claims with the combined tracker and refresh retained Capcom history Lesson: Use exact current hashes and a successful combined generation; campaign filings and batch-local totals cannot replace a project-wide recount.
 - 2026-11-04 F-20261104-supported-usage-normalization **worked**: Extend existing Hamilton ingestion to supported Geddes-format JSONL and existing NEYMAN production-effort con… Lesson: Preserve final revisions sharing event IDs, verify caller intervals against observed usage timestamps, and bridge existing explicit diagnostic routes; successful synthetic integration does not establ…
-- 2026-11-04 F-20261104-stable-integration **worked**: Integrate completed PR139 PR140 PR144 and repair ordinary evidence and Lachmann wiring Lesson: Conflict-free files are insufficient: verify callers, repeat behavior, current evidence and actual job order before enabling production consumers
 
-Register: 23 owner decisions, 13 answered questions, 146 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 23 owner decisions, 13 answered questions, 147 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
