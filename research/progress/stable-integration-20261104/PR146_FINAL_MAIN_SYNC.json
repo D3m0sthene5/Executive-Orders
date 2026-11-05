@@ -1,15 +1,22 @@
 {
-  "schema": "eo-draft-main-reconciliation/v1",
+  "schema": "eo-draft-main-reconciliation/v2",
   "pr": 146,
-  "previous_draft_head": "2671f264879b0ba1dc1cba31587099dade8e5e03",
-  "main_merge": "81ebb186f8cba72ef4fcf4866cd34ef32a59c463",
-  "main_tree": "8c0a4cde00caefc35694ec85b15eb72713234d7b",
-  "tested_source_head": "3a308f25ce439be7e4c5837157d3288d028bb5db",
-  "draft_specific_paths_preserved": 194,
-  "method": "Normal two-parent merge retaining exact branch-owned Git blobs on final accepted main tree; all unrelated final-main files inherited unchanged.",
+  "previous_draft_head": "aa5b7a6577a9a8f7c5832dd01558e801326a9b27",
+  "main_merge": "dfb8fc430649b56d736caa33f650d5060c46a34b",
+  "main_reporting_commit": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+  "main_tree": "46da2f2c61523ef1ab40809821d01391b2893bb2",
+  "draft_specific_paths": 194,
+  "method": "Normal two-parent merge preserving every branch-owned source/evidence blob on accepted current-main source and reporting tree. Resolve shared operator documentation by retaining the entire draft file and appending exactly PR150's queue paragraphs.",
+  "documentation_resolution": {
+    "path": "jobs/lachmann/README.md",
+    "git_blob": "d80efb8bd6261f34a230ca58f2e2d7b33b606601",
+    "entire_original_draft_prefix_preserved": true,
+    "exact_pr150_append_only": true
+  },
+  "source_runtime_changes": "none beyond inheriting accepted main; original draft-specific code remains exact retained Git blobs",
   "draft_preserved": true,
   "scientific_adoption": false,
   "full_draft_research_acceptance": "pending_author_completion",
   "prior_resolution": "research/progress/stable-integration-20261104/PR146_RESOLUTION.json",
-  "validation": "Earlier bounded branch-specific tests retained in resolution records. New source-reader files inherited byte-for-byte from final accepted main. No new final whole-draft execution claimed."
+  "new_tests_executed_on_whole_draft": false
 }
