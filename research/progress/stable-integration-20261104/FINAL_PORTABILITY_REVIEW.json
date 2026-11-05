@@ -1,9 +1,9 @@
 {
   "schema": "eo-independent-portability-review/v1",
-  "reviewed_at_utc": "2026-11-05T00:55:41.146815+00:00",
-  "verdict": "pass",
+  "reviewed_at_utc": "2026-11-05T01:00:30.053372+00:00",
+  "verdict": "revised_runtime_setup_local_checks_pass_hosted_workflow_acceptance_pending",
   "source_sha256": {
-    ".github/workflows/valla-pilot.yml": "b897c5989b047fee81f9d129c588a0be4e347f7980799812dd8664906dff96fa",
+    ".github/workflows/valla-pilot.yml": "d42712480124c1342b589c5e48d78f8336a944d211d73fd554648a979a99e78f",
     "jobs/lachmann/test_lachmann.py": "8d305bffa9ab4a8c100212fa0726b7f6550f250aa6d61074f8f3808be245470b",
     "jobs/lachmann/test_repeat.py": "f6170b30c5d44e3118a58f8a0067a0691b5debbe3aa8048040b4ea37045d9986",
     "jobs/lachmann/lachmann.py": "54f4c52da0ebbfdeb20655825b65f28eedfc21c27b7d576cc9e736ec8a255813"
@@ -30,22 +30,41 @@
     {
       "case": "actual_workflow_preflight_same_filesystem",
       "passed": true,
-      "stdout": "Custody replay temporary filesystem verified: /workspace/scratch/a3411b70bba5/independent-valla-fs-h5johfdp"
+      "stdout": "Custody replay temporary filesystem verified: /workspace/scratch/a3411b70bba5/independent-valla-fs-h5johfdp",
+      "qualification": "Historical local shell preflight only; did not validate GitHub workflow-expression placement and does not approve rejected workflow."
     },
     {
       "case": "actual_workflow_preflight_invalid_TMPDIR_refuses",
-      "passed": true
+      "passed": true,
+      "qualification": "Historical local shell preflight only; did not validate GitHub workflow-expression placement and does not approve rejected workflow."
     },
     {
       "case": "actual_workflow_preflight_real_different_filesystem_refuses",
       "passed": true,
-      "stderr": "Custody replay refused: checkout and temporary directory are on different filesystems; exact rename/restore requires one filesystem."
+      "stderr": "Custody replay refused: checkout and temporary directory are on different filesystems; exact rename/restore requires one filesystem.",
+      "qualification": "Historical local shell preflight only; did not validate GitHub workflow-expression placement and does not approve rejected workflow."
     },
     {
       "case": "final_actual_workflow_preflight_tiny_checkout_temp_checkout_rename_bytes_restored_and_synthetic_directories_cleaned",
       "passed": true,
       "workflow_sha256": "b897c5989b047fee81f9d129c588a0be4e347f7980799812dd8664906dff96fa",
-      "stdout": "Custody replay temporary filesystem and exact rename/restore verified: /workspace/scratch/a3411b70bba5/independent-valla-final-_1yhxfkq"
+      "stdout": "Custody replay temporary filesystem and exact rename/restore verified: /workspace/scratch/a3411b70bba5/independent-valla-final-_1yhxfkq",
+      "qualification": "Historical local shell preflight only; did not validate GitHub workflow-expression placement and does not approve rejected workflow."
+    },
+    {
+      "case": "whole_final_shell_block_current_step_export_actual_binary_rename_restore_cleanup_and_GITHUB_ENV_append",
+      "passed": true,
+      "stdout": "Custody replay temporary filesystem and exact rename/restore verified: /workspace/scratch/a3411b70bba5/independent full shell p8zsi7qh/runner temp space",
+      "runner_temp_path_contains_spaces": true
+    },
+    {
+      "case": "simulated_next_step_ingests_GITHUB_ENV_and_Python_uses_persisted_TMPDIR",
+      "passed": true,
+      "stdout": "subsequent step consumes persisted TMPDIR"
+    },
+    {
+      "case": "whole_final_shell_invalid_RUNNER_TEMP_refuses_early",
+      "passed": true
     }
   ],
   "unchanged_vs_HEAD_sha256": {
@@ -64,5 +83,24 @@
   "model_tokens": null,
   "human_certification": false,
   "superseded_workflow_sha256": "e7909f1d32983ffc787f19ff2ad047114e4863805d54c25145eaf71d719e77f7",
-  "runtime_and_test_pins_rechecked_unchanged": true
+  "runtime_and_test_pins_rechecked_unchanged": true,
+  "prior_workflow_acceptance_corrected": {
+    "workflow_sha256": "b897c5989b047fee81f9d129c588a0be4e347f7980799812dd8664906dff96fa",
+    "hosted_run": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41945051773",
+    "head_sha": "d99ff5003f3eafab892d58e82e711bcc6dbaf7e2",
+    "conclusion": "failure",
+    "jobs_started": 0,
+    "reason": "runner context unavailable in jobs.<job_id>.env; root-reported parser error agrees with official context table",
+    "review_error": "Prior local shell-only success did not establish whole-workflow validity; prior whole-workflow pass inference is withdrawn."
+  },
+  "official_sources": [
+    {
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#context-availability",
+      "finding": "jobs.<job_id>.env excludes runner; step run supports runner-specific execution."
+    },
+    {
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable",
+      "finding": "GITHUB_ENV persists values for subsequent steps; explicit export also supplies current step."
+    }
+  ]
 }

@@ -17,13 +17,14 @@
   },
   "change": {
     "only_implementation_path": ".github/workflows/valla-pilot.yml",
-    "job_env_TMPDIR": "${{ runner.temp }}",
     "preflight_index": 1,
     "preflight_before_python_setup_and_expensive_steps": true,
     "before_sha256": "5fa6d8f2ce018ac1be4e1fd6f28212d5aafa6520d3fee1bd9dac2dfbc82ba3b3",
-    "after_sha256": "b897c5989b047fee81f9d129c588a0be4e347f7980799812dd8664906dff96fa",
+    "after_sha256": "d42712480124c1342b589c5e48d78f8336a944d211d73fd554648a979a99e78f",
     "actual_checkout_to_temp_rename_probe": true,
-    "probe_cleanup_before_isolation_scan": true
+    "probe_cleanup_before_isolation_scan": true,
+    "TMPDIR_route": "preflight printf to GITHUB_ENV for later steps, plus export from RUNNER_TEMP for current step",
+    "python_rename_guard_unchanged_sha256": "f1b68ea2f349faabcaec2947896735ad259e2db5f5c6ec538aa632a15f816215"
   },
   "source_scripts_and_gates_unchanged_sha256": {
     "research/progress/proquest-custody-2026-10-29/validate.py": "d50e14867b3a370d8bf8216e32c060837eefe00210895bb74e13ea897b87c2d1",
@@ -36,7 +37,8 @@
     "Local filesystem reports same st_dev for default /tmp and checkout, so actual hosted EXDEV is retained from job logs; mismatch refusal is injected locally.",
     "Synthetic relocation/restoration checks actual bytes and exception cleanup; no preserved scientific PDF or canonical output is moved.",
     "Full worker/model tokens, cash and total integration elapsed are unavailable.",
-    "The final preflight tests the real rename operation because equal device metadata alone may not expose bind-mount boundaries. Both injected first-rename and restore failures clean their synthetic files; actual hosted placement is still pending final-tree CI."
+    "The final preflight tests the real rename operation because equal device metadata alone may not expose bind-mount boundaries. Both injected first-rename and restore failures clean their synthetic files; actual hosted placement is still pending final-tree CI.",
+    "Earlier YAML parsing/local runtime checks missed GitHub context restrictions and did not establish platform acceptance. Rejected job-env expression is retained above; current context review and runner-envfile simulation still require an accepted GitHub workflow run."
   ],
   "model_tokens": null,
   "cash": null,
@@ -77,7 +79,9 @@
       "all_bytes_restored": true
     }
   ],
-  "checks": [
+  "strengthened_preflight_validation_utc": "2026-11-05T00:54:32.150241+00:00",
+  "strengthened_preflight_observed_seconds": 0.9448252649890492,
+  "prior_rename_probe_checks": [
     {
       "case": "actual checkout-to-configured-temp rename/restore",
       "exit_code": 0,
@@ -115,6 +119,316 @@
       "synthetic_directories_cleaned": true
     }
   ],
-  "strengthened_preflight_validation_utc": "2026-11-05T00:54:32.150241+00:00",
-  "strengthened_preflight_observed_seconds": 0.9448252649890492
+  "checks": [
+    {
+      "case": "actual complete preflight shell exports RUNNER_TEMP and writes GITHUB_ENV",
+      "exit_code": 0,
+      "stdout": "Custody replay temporary filesystem and exact rename/restore verified: /workspace/scratch/a3411b70bba5/valla runner temp flzf75mi\n",
+      "stderr": "",
+      "configured_path_contains_spaces": true,
+      "initial_TMPDIR_deliberately_differs": true,
+      "synthetic_directories_cleaned": true
+    },
+    {
+      "case": "subsequent-step environment-file ingestion simulation",
+      "exit_code": 0,
+      "stdout": "{\"TMPDIR\": \"/workspace/scratch/a3411b70bba5/valla runner temp flzf75mi\", \"selected\": \"/workspace/scratch/a3411b70bba5/valla runner temp flzf75mi\"}\n",
+      "stderr": "",
+      "simulation_not_hosted_runner": true
+    },
+    {
+      "case": "unchanged guard refuses injected EXDEV and cleans synthetic dirs",
+      "exit_code": 1,
+      "stderr": "Custody replay refused: exact checkout-to-temp rename/restore failed: [Errno 18] injected equal-device rename boundary\n",
+      "synthetic_directories_cleaned": true
+    }
+  ],
+  "workflow_validation_failure": {
+    "run_id": 41945051773,
+    "url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41945051773",
+    "head_sha": "d99ff5003f3eafab892d58e82e711bcc6dbaf7e2",
+    "conclusion": "failure",
+    "stage": "workflow validation before Valla job execution",
+    "reason": "runner context is unavailable at jobs.<job_id>.env",
+    "reason_source": "Coordinator-observed GitHub workflow error; run metadata independently retrieved; official context table independently checked",
+    "correction": "removed runner expression from job env; runner-provided shell variables used in run step"
+  },
+  "workflow_context_review": {
+    "reference": "https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#context-availability",
+    "environment_file_reference": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable",
+    "reviewed_workflows": [
+      {
+        "path": ".github/workflows/mission-tests.yml",
+        "sha256": "8914a13a45ff7dfc03ba602b7d429de1792f56df59d6e14c4cd154245f55b19b",
+        "expressions": [
+          {
+            "location": "concurrency.group",
+            "context_table_key": "concurrency",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          }
+        ]
+      },
+      {
+        "path": ".github/workflows/refresh-readiness.yml",
+        "sha256": "d3cae7171e78545d200e1e64dc52ce5721023cf324380198affc584327fb88dd",
+        "expressions": [
+          {
+            "location": "jobs.refresh.if",
+            "context_table_key": "jobs.if",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.refresh.steps.3.env.TRIGGER",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.refresh.steps.3.env.TRIGGER",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.refresh.steps.4.if",
+            "context_table_key": "jobs.steps.if",
+            "used_contexts": [],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.refresh.steps.4.with.name",
+            "context_table_key": "jobs.steps.with",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.refresh.steps.5.if",
+            "context_table_key": "jobs.steps.if",
+            "used_contexts": [],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.refresh.steps.5.env.EVENT",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.refresh.steps.5.env.RUN_URL",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.refresh.steps.5.env.RUN_URL",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.refresh.steps.5.env.RUN_URL",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          }
+        ]
+      },
+      {
+        "path": ".github/workflows/road-tests.yml",
+        "sha256": "d6cd9a129d044550490e40a08cef506f2533a293ed38735132d8c523866e5924",
+        "expressions": [
+          {
+            "location": "concurrency.group",
+            "context_table_key": "concurrency",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.test.runs-on",
+            "context_table_key": "jobs.runs-on",
+            "used_contexts": [
+              "matrix"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.test.steps.2.env.TEMP",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.test.steps.2.env.TMP",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          }
+        ]
+      },
+      {
+        "path": ".github/workflows/valla-pilot.yml",
+        "sha256": "d42712480124c1342b589c5e48d78f8336a944d211d73fd554648a979a99e78f",
+        "expressions": [
+          {
+            "location": "concurrency.group",
+            "context_table_key": "concurrency",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "concurrency.group",
+            "context_table_key": "concurrency",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "concurrency.cancel-in-progress",
+            "context_table_key": "concurrency",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.7.run",
+            "context_table_key": "jobs.steps.run",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.7.run",
+            "context_table_key": "jobs.steps.run",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.7.run",
+            "context_table_key": "jobs.steps.run",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.8.run",
+            "context_table_key": "jobs.steps.run",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.9.env.REPLAY_OUTPUT",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.10.env.REPLAY_OUTPUT",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.11.env.VALIDATION_OUTPUT",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.12.env.OUTPUT_DIR",
+            "context_table_key": "jobs.steps.env",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.13.if",
+            "context_table_key": "jobs.steps.if",
+            "used_contexts": [],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.13.with.name",
+            "context_table_key": "jobs.steps.with",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.13.with.name",
+            "context_table_key": "jobs.steps.with",
+            "used_contexts": [
+              "github"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.13.with.path",
+            "context_table_key": "jobs.steps.with",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          },
+          {
+            "location": "jobs.bounded-offline-pilot.steps.13.with.path",
+            "context_table_key": "jobs.steps.with",
+            "used_contexts": [
+              "runner"
+            ],
+            "unexpected_contexts": []
+          }
+        ]
+      }
+    ],
+    "former_job_env_runner_context_rejected_by_review": true,
+    "method": "Context roots at actual YAML locations checked against official table; this is not GitHub platform validation",
+    "platform_acceptance": "pending actual new GitHub run",
+    "local_review_harness_correction": "Initial root-name regex also matched nested github member names; corrected to count only unqualified expression roots, with github.event.workflow_run control checked."
+  },
+  "runner_envfile_validation_utc": "2026-11-05T01:02:06.960760+00:00",
+  "runner_envfile_observed_seconds": 12.350576971992268
 }

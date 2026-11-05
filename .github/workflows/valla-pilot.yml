@@ -19,9 +19,6 @@ jobs:
       GIT_LFS_SKIP_SMUDGE: '1'
       PYTHONDONTWRITEBYTECODE: '1'
       CLAIM_CHECKER_VERIFY_DOWNLOADS: '0'
-      # Custody baselines temporarily rename held files out of the checkout.
-      # Use runner.temp and verify placement; the host's /tmp may differ.
-      TMPDIR: ${{ runner.temp }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,6 +30,9 @@ jobs:
             research
       - name: Verify custody replay temporary filesystem
         run: |
+          # Configure this step and later steps using runner-provided variables.
+          printf 'TMPDIR=%s\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
+          export TMPDIR="$RUNNER_TEMP"
           python3 - <<'PY'
           import os
           import tempfile
