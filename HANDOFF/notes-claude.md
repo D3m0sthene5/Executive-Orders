@@ -1,3 +1,10 @@
+## 2026-11-05 (Claude, Gessner cards: one card per executive order)
+
+- **Built** `jobs/gessner-cards/`: joins `readiness-tracker/output/READINESS_BY_ORDER.csv` with `domesday-register/output/REGISTER.csv` into `output/CARDS.html`, a self-contained page with one card per order (number, date, president, title, provisional status, segmented step bar, ready flag; detail panel with blockers in plain English, best document held, transcription-replacement obligation), pipeline counts, and a per-president mosaic. Runs `DAILY` and after both inputs (`after.txt`); tests first. Owner's copy: https://claude.ai/artifact/3dFdZuMP4Yg5cTVbe9VYhS (private until shared). Kean F-20261105-1.
+- **Totals match the tracker run of 2026-11-05 12:04 UTC exactly:** 1,331 ready of 14,972; 4,291 with status; 43 one step from ready; 0 certified. No count is changed or re-measured.
+- **Register data-quality leads:** the register names no president for 5,045 orders; the page derives 4,933 from dates (marked as derived). The date rule disagrees with the register on 2 of 9,889 checkable rows: EO 8969 (1946-12-11, credited to Franklin D. Roosevelt) and EO 10276 (1961-07-31, credited to Harry S. Truman). Not corrected here.
+- **Next:** the owner's artifact copy is static; republishing it from `output/CARDS.html` after a tracker run refreshes it. Branch `claude/gessner-cards`.
+
 ## 2026-11-04 (Claude, Tribonian wave, PR 131-137 integration, Lind trial)
 
 - **Filed 547 reviewed lifecycle claims** (`research/readiness/claims/claude-2026-11-04-tribonian-*.jsonl`): 492 new dossiers and 53 corrections from the drained wave, plus 2 from dispatch-checked o27. All 53 planted controls were caught; certified count 0. Report and per-batch disposition: `research/excavator/claude-tribonian-2026-11-04/REPORT.md`, `evidence/DISPOSITION.json`. Packets and reviews are on branch `claude/tribonian-state`.
