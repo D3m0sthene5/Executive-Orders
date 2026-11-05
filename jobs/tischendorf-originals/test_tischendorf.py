@@ -196,5 +196,29 @@ class ParallelTests(unittest.TestCase):
         self.assertEqual(used["fr_by_date"], 1)
 
 
+class EveryOrderNumberTests(unittest.TestCase):
+    """Run the page-matching code once for every order number in the census, so an edge case such as order 1,
+    a lettered order or a half-numbered order fails here in seconds instead of crashing a full run."""
+
+    def test_census_numbers(self):
+        import csv
+        import os
+        reg = os.path.join(os.environ.get("REPO_ROOT", str(t.REPO)), "jobs/domesday-register/output/REGISTER.csv")
+        if not os.path.isfile(reg):
+            self.skipTest("register not present in this checkout")
+        texts = corpus()
+        F = fp.Fingerprint(texts["EO:1000"], *fp.document_frequency(texts))
+        with open(reg, newline="", encoding="utf-8") as fh:
+            rows = list(csv.DictReader(fh))
+        seen = 0
+        for r in rows:
+            num = t.order_number(r["instrument_id"], r)
+            pages = [f"EXECUTIVE ORDER {num}\n" + ORDER, "[No. %s]" % num, ""]
+            t.best_window(pages, F, num, r.get("date", ""))
+            t.marker_in(pages, num, range(len(pages)))
+            seen += 1
+        self.assertGreater(seen, 14000)
+
+
 if __name__ == "__main__":
     unittest.main()
