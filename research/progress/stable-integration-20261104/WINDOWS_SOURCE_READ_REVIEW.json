@@ -1,0 +1,65 @@
+{
+  "schema": "eo-independent-windows-source-read-review/v1",
+  "reviewed_head": "1335e6ff0231b1b1c47326b64d148ab88153ceb7",
+  "reviewer": "Independent OpenAI-family context; detailed model variant unavailable",
+  "verdict": "Exact published implementation approved; targeted actual Windows claim-kit suite passed",
+  "source_git_blobs": {
+    "jobs/claim-kit/blind_verify.py": "cd1c52f4adf44aa3ead907882928224d8b1644d8",
+    "jobs/claim-kit/test_blind_verify.py": "62e3ed4f2ba4182e59b3bad23d05c9852ffadbcf"
+  },
+  "baseline": {
+    "head": "2caac8ba1a048e6853c983795824c96ac2bbbb17",
+    "runtime_blob": "def06ffdb2a549ebfca4f099e3c2736670a3ac19"
+  },
+  "independent_checks": [
+    "Fetched both exact published files and confirmed their Git blob identities.",
+    "Compared old/new runtime text; every byte outside _read is identical.",
+    "path_before captured after validated path; descriptor remains open through before/read/after/revalidated path_after/final fstat.",
+    "Nine-field dev/ino/mode/nlink/uid/gid/size/mtime_ns/ctime_ns stamps compare path_before vs path_after and descriptor before vs after vs final.",
+    "Cross-API bindings compare all eight compatible fields; only cross-API ctime omitted. No new birthtime property or assumption required.",
+    "Original regular-file check, no-follow descriptor anchoring, safe-path validation and actual source/hash/span/repeated-byte verification retained.",
+    "New event-order regression checks descriptor remains open during final path validation and constant cross-API ctime difference is accepted.",
+    "New descriptor mutation test explicitly enumerates 3 observation positions x 9 protected fields; existing final-path test enumerates nine protected fields. Static review does not claim these ran."
+  ],
+  "primary_sources": [
+    {
+      "url": "https://github.com/python/cpython/blob/v3.12.7/Modules/posixmodule.c#L2135",
+      "blob": "2277caee58f505b12748fd1adde73e730f498354",
+      "finding": "win32_xstat copies birthtime to ctime; FSTAT selects _Py_fstat_noraise and os_fstat_impl returns that structure."
+    },
+    {
+      "url": "https://github.com/python/cpython/blob/v3.12.7/Python/fileutils.c#L1117",
+      "blob": "c7521751cd26d14ce41b9ea0f93b95e27221f8a7",
+      "finding": "Descriptor helper obtains ChangeTime; _Py_fstat_noraise returns it without path compatibility rewrite."
+    },
+    {
+      "url": "https://github.com/python/cpython/issues/157671",
+      "finding": "Official CPython tracker documents same Windows mismatch; maintainer recommends consistent fstat plus mtime and holding descriptor open."
+    }
+  ],
+  "limitations": [
+    "Execution environment unavailable during this review; no local test execution is claimed.",
+    "Earlier access-time proof was a distinct deterministic defect; actual Windows diagnostic established cross-API ctime difference.",
+    "This is targeted Windows acceptance at the diagnostic head; final integrated-head hosted checks and Valla replays remain separate."
+  ],
+  "tokens": null,
+  "scientific_or_human_certification": false,
+  "hosted_acceptance": {
+    "run_id": 41952239653,
+    "job_id": 126998662848,
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41952239653",
+    "head": "1335e6ff0231b1b1c47326b64d148ab88153ceb7",
+    "conclusion": "success",
+    "observed_platform": "Microsoft Windows Server 2025, CPython 3.12.10",
+    "suite_tests": 657,
+    "suite_seconds": 129.197,
+    "skipped": 6,
+    "blind_verify_tests_observed": 29,
+    "explicit_new_tests_passed": [
+      "test_same_api_stability_accepts_windows_ctime_difference",
+      "test_each_descriptor_metadata_mutation_still_refused"
+    ],
+    "local_execution_claimed": false
+  },
+  "supersedes_pending_review_blob": "847aa6b5d7eb36d419b1109aa635ad006bfb91b5"
+}
