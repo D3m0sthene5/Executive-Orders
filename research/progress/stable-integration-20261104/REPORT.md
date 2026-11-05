@@ -26,3 +26,7 @@ Root coordinated three bounded workers for contract audit/caller implementation,
 ## Final local acceptance
 
 Full offline Road passed1144 test executions across27 suite runs; the52 Lachmann tests passed separately and are included in the revised hosted loop. Native checker replay passed2/2 claims in both arms, with all four outputs byte-identical and input pins unchanged. RSS181728→170116KiB; observed wall17.74→22.34s under concurrent validation, so no speedup is claimed. Native four-order held-source supplement verification succeeded and preserved the genuine remaining source blockers; zero new ready dossiers. Exact receipts, current input hashes and full local logs are retained in VALIDATION_LOGS.tar.gz; summary in VALIDATION.json.
+
+## Hosted portability correction
+
+The first actual Windows Road run on469ae5c exposed two pre-existing Audit fixtures hashing an LF string before platform newline translation. The test-only repair pins actual saved bytes and forces CRLF in one existing fixture on every platform. Both old failures were reproduced;52 tests now pass locally, including the two forced-CRLF fixtures. Runtime and source gates are unchanged; WINDOWS_FIX.json retains exact hashes and logs. Fresh final-head hosted checks are requested and must be inspected.
