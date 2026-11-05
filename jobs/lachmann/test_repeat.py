@@ -78,8 +78,9 @@ class RepeatProduction(unittest.TestCase):
         from test_tracker import COMPLETE_NO_CLAIM
         import claim_gate
         iid = ORDER['instrument_id']
+        held_text = self.text.read_bytes().decode('utf-8')
         ref = dict(json.loads(self.fragment.read_text())['data'], instrument_id=iid,
-                   char_start=0, char_end=len(GOOD), quote=GOOD, page_or_item='fixture')
+                   char_start=0, char_end=len(held_text), quote=held_text, page_or_item='fixture')
         prior = tracker.W.matching_confirmation(ref, self.root)
         self.assertIsNotNone(prior)
 
@@ -91,7 +92,7 @@ class RepeatProduction(unittest.TestCase):
 
         claim = sources(copy.deepcopy(COMPLETE_NO_CLAIM))
         claim['instrument_id'] = iid
-        claim['operative_clauses'][0]['original_operative_text'] = GOOD
+        claim['operative_clauses'][0]['original_operative_text'] = held_text
         claim['working_text'] = tracker.W.blank([ref], prior)
         self.assertEqual(claim_gate.validate_claim(claim, expected_status='no'), [])
         path = self.root / 'research/readiness/claims/filed.jsonl'
@@ -104,7 +105,7 @@ class RepeatProduction(unittest.TestCase):
             'steps_checker_passed': {step: True for step in tracker.STEP_NAMES}}}}), encoding='utf-8')
         row = tracker.build(str(self.root))[0][0]
         write_csv(self.root / L.TRACKER_CSV, [row])
-        self.assertEqual(row['ready_for_human_review'], 'yes')
+        self.assertEqual(row['ready_for_human_review'], 'yes', row)
         self.assertEqual(row['step_original_text'], 'done')
         self.assertEqual(row['text_evidence_tier'], 'transcription_dependent')
         self.assertEqual(row['provisional_text_method'], '')

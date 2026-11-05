@@ -1,0 +1,68 @@
+{
+  "schema": "eo-independent-portability-review/v1",
+  "reviewed_at_utc": "2026-11-05T00:55:41.146815+00:00",
+  "verdict": "pass",
+  "source_sha256": {
+    ".github/workflows/valla-pilot.yml": "b897c5989b047fee81f9d129c588a0be4e347f7980799812dd8664906dff96fa",
+    "jobs/lachmann/test_lachmann.py": "8d305bffa9ab4a8c100212fa0726b7f6550f250aa6d61074f8f3808be245470b",
+    "jobs/lachmann/test_repeat.py": "f6170b30c5d44e3118a58f8a0067a0691b5debbe3aa8048040b4ea37045d9986",
+    "jobs/lachmann/lachmann.py": "54f4c52da0ebbfdeb20655825b65f28eedfc21c27b7d576cc9e736ec8a255813"
+  },
+  "checks": [
+    {
+      "case": "normal",
+      "tests": 54,
+      "passed": true,
+      "seconds": 0.281128
+    },
+    {
+      "case": "forced_CRLF",
+      "tests": 54,
+      "passed": true,
+      "seconds": 0.181299
+    },
+    {
+      "case": "CRLF_filed_claim_exact_saved_quote_span_hash",
+      "passed": true,
+      "char_end": 335,
+      "text_sha256": "2db9c7172398b2fa4d0a4cbbe843dd54e78423e7b83d11d938d41f2ce30117ca"
+    },
+    {
+      "case": "actual_workflow_preflight_same_filesystem",
+      "passed": true,
+      "stdout": "Custody replay temporary filesystem verified: /workspace/scratch/a3411b70bba5/independent-valla-fs-h5johfdp"
+    },
+    {
+      "case": "actual_workflow_preflight_invalid_TMPDIR_refuses",
+      "passed": true
+    },
+    {
+      "case": "actual_workflow_preflight_real_different_filesystem_refuses",
+      "passed": true,
+      "stderr": "Custody replay refused: checkout and temporary directory are on different filesystems; exact rename/restore requires one filesystem."
+    },
+    {
+      "case": "final_actual_workflow_preflight_tiny_checkout_temp_checkout_rename_bytes_restored_and_synthetic_directories_cleaned",
+      "passed": true,
+      "workflow_sha256": "b897c5989b047fee81f9d129c588a0be4e347f7980799812dd8664906dff96fa",
+      "stdout": "Custody replay temporary filesystem and exact rename/restore verified: /workspace/scratch/a3411b70bba5/independent-valla-final-_1yhxfkq"
+    }
+  ],
+  "unchanged_vs_HEAD_sha256": {
+    "research/progress/proquest-custody-2026-10-29/validate.py": "d50e14867b3a370d8bf8216e32c060837eefe00210895bb74e13ea897b87c2d1",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay.py": "89c2e30bcdf9712cd6c48ef84ddce49c053583306baf16394c6395adc4834196",
+    "research/progress/lifecycle-assurance/replay.py": "58d47dd631a577509349de6b478178a4363c440f1fec880707bfc053fc8b3566",
+    "research/progress/final-integration-2026-10-29/validate_native.py": "88a6084caed43643c776a146a27ea4a7908e2caf05c6e52aab1075fba705197b",
+    "research/stage19/code/claim_gate.py": "709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875",
+    "jobs/claim-checker/checker.py": "2e8348066db343557791428e7d084707949ef10dde18063210a9c57d17c8fd6b",
+    "jobs/lachmann/needs.txt": "1d15bacbf81e02072d9cae3bcc23e8f728b1e9853b51cd46b6e55567ada70d12"
+  },
+  "limitations": [
+    "Actual hosted final-tree Valla and Windows checks remain necessary.",
+    "CRLF native fixture uses synthetic current checker receipt to isolate confirmation liveness; no scientific/source-check approval."
+  ],
+  "model_tokens": null,
+  "human_certification": false,
+  "superseded_workflow_sha256": "e7909f1d32983ffc787f19ff2ad047114e4863805d54c25145eaf71d719e77f7",
+  "runtime_and_test_pins_rechecked_unchanged": true
+}

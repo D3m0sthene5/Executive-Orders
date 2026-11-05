@@ -1,0 +1,120 @@
+{
+  "generated_utc": "2026-11-05T00:52:28.779529+00:00",
+  "started_utc": "2026-11-05T00:52:28.439988+00:00",
+  "observed_validation_seconds": 0.3395498259924352,
+  "hosted_failure": {
+    "job_id": 126965295783,
+    "url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41942097690/job/126965295783",
+    "checkout_merge_commit": "f854810c836ccc59eab1774345f172e76ddfe0fa",
+    "failure": "OSError EXDEV at validate.py66 moving held PDF into default /tmp; no scientific gate failure",
+    "excerpt": [
+      "2026-11-05T00:47:19.8538707Z   File \"/home/runner/work/Executive-Orders/Executive-Orders/research/progress/proquest-custody-2026-10-29/validate.py\", line 66, in main",
+      "2026-11-05T00:47:19.8548093Z OSError: [Errno 18] Invalid cross-device link: '/home/runner/work/Executive-Orders/Executive-Orders/ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf' -> '/tmp/proquest-baseline-ujqr4lrg/0'",
+      "2026-11-05T00:47:19.8761270Z ##[error]Process completed with exit code 1."
+    ],
+    "full_log_sha256": "9b79327f6b181ff3dc5caa917a900977167fd029d857a928bf57346951838bce",
+    "run_id": 41942097690
+  },
+  "change": {
+    "only_implementation_path": ".github/workflows/valla-pilot.yml",
+    "job_env_TMPDIR": "${{ runner.temp }}",
+    "preflight_index": 1,
+    "preflight_before_python_setup_and_expensive_steps": true,
+    "before_sha256": "5fa6d8f2ce018ac1be4e1fd6f28212d5aafa6520d3fee1bd9dac2dfbc82ba3b3",
+    "after_sha256": "b897c5989b047fee81f9d129c588a0be4e347f7980799812dd8664906dff96fa",
+    "actual_checkout_to_temp_rename_probe": true,
+    "probe_cleanup_before_isolation_scan": true
+  },
+  "source_scripts_and_gates_unchanged_sha256": {
+    "research/progress/proquest-custody-2026-10-29/validate.py": "d50e14867b3a370d8bf8216e32c060837eefe00210895bb74e13ea897b87c2d1",
+    "research/progress/proquest-custody-2026-10-29/follow-on/replay.py": "89c2e30bcdf9712cd6c48ef84ddce49c053583306baf16394c6395adc4834196",
+    "research/stage19/code/claim_gate.py": "709c7af8973037cb25cc22e2777a6201afe8863f899d5c2651ebd6959c693875",
+    "jobs/claim-checker/checker.py": "2e8348066db343557791428e7d084707949ef10dde18063210a9c57d17c8fd6b"
+  },
+  "limitations": [
+    "Hosted final-tree rerun has not run; local checks do not prove runner.temp placement on the next hosted runner.",
+    "Local filesystem reports same st_dev for default /tmp and checkout, so actual hosted EXDEV is retained from job logs; mismatch refusal is injected locally.",
+    "Synthetic relocation/restoration checks actual bytes and exception cleanup; no preserved scientific PDF or canonical output is moved.",
+    "Full worker/model tokens, cash and total integration elapsed are unavailable.",
+    "The final preflight tests the real rename operation because equal device metadata alone may not expose bind-mount boundaries. Both injected first-rename and restore failures clean their synthetic files; actual hosted placement is still pending final-tree CI."
+  ],
+  "model_tokens": null,
+  "cash": null,
+  "previous_environment_only_checks": [
+    {
+      "case": "actual same-device preflight",
+      "exit_code": 0,
+      "stdout": "Custody replay temporary filesystem verified: /workspace/scratch/a3411b70bba5/valla-runtime-temp-owsx9txt\n",
+      "stderr": "",
+      "checkout_st_dev": 27,
+      "temporary_root_st_dev": 27
+    },
+    {
+      "case": "injected different-device metadata refuses early",
+      "exit_code": 1,
+      "stderr": "Custody replay refused: checkout and temporary directory are on different filesystems; exact rename/restore requires one filesystem.\n",
+      "injected": true
+    },
+    {
+      "case": "Python temporary-directory fallback refuses early",
+      "exit_code": 1,
+      "stderr": "Custody replay refused: Python did not select the configured runner temporary directory.\n"
+    },
+    {
+      "case": "synthetic actual-byte rename/restore",
+      "injected_baseline_exception": false,
+      "files": 3,
+      "bytes_per_file": 1048610,
+      "sha256": "285252bcd149bd5b60b6012d37e729a53d006e095cbb10625f4b666fbd6d37f1",
+      "all_bytes_restored": true
+    },
+    {
+      "case": "synthetic actual-byte rename/restore",
+      "injected_baseline_exception": true,
+      "files": 3,
+      "bytes_per_file": 1048610,
+      "sha256": "285252bcd149bd5b60b6012d37e729a53d006e095cbb10625f4b666fbd6d37f1",
+      "all_bytes_restored": true
+    }
+  ],
+  "checks": [
+    {
+      "case": "actual checkout-to-configured-temp rename/restore",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "Custody replay temporary filesystem and exact rename/restore verified: /workspace/scratch/a3411b70bba5/valla-runtime-temp-kx9azcw2\n",
+      "stderr": "",
+      "synthetic_directories_cleaned": true
+    },
+    {
+      "case": "equal-device metadata with injected EXDEV rename refusal",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "stdout": "",
+      "stderr": "Custody replay refused: exact checkout-to-temp rename/restore failed: [Errno 18] injected equal-device bind-mount boundary\n",
+      "synthetic_directories_cleaned": true
+    },
+    {
+      "case": "injected failure restoring synthetic bytes",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "stdout": "",
+      "stderr": "Custody replay refused: exact checkout-to-temp rename/restore failed: [Errno 18] injected restore boundary\n",
+      "synthetic_directories_cleaned": true
+    },
+    {
+      "case": "metadata mismatch",
+      "exit_code": 1,
+      "stderr": "Custody replay refused: checkout and temporary directory are on different filesystems; exact rename/restore requires one filesystem.\n",
+      "synthetic_directories_cleaned": true
+    },
+    {
+      "case": "Python temporary-directory fallback",
+      "exit_code": 1,
+      "stderr": "Custody replay refused: Python did not select the configured runner temporary directory.\n",
+      "synthetic_directories_cleaned": true
+    }
+  ],
+  "strengthened_preflight_validation_utc": "2026-11-05T00:54:32.150241+00:00",
+  "strengthened_preflight_observed_seconds": 0.9448252649890492
+}
