@@ -1,6 +1,6 @@
 # Daily research digest
 
-New York date: 2026-11-04. Generated mechanically; all findings remain provisional.
+New York date: 2026-11-05. Generated mechanically; all findings remain provisional.
 
 ## Tracker headline
 
@@ -25,24 +25,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 ## Changes since the previous day
 
-Comparison snapshot: 2026-10-28; intervening runs may be absent.
-- astra-source-retention: attempted: 18 → 7; download_bytes: 17475798 → 0; extractions_completed: 18 → 7; http_requests: 7 → 0
-- cassiodorus: legal_conclusions: unavailable → 0; pages_kept_total: unavailable → 10; statuses_changed: unavailable → 0
-- census-candidates: items_with_LOC_XML_transcript: 10 → 0; research_note_records: unavailable → 0; source_bound_AI_research_proposals: unavailable → 0
-- claim-checker: claim_lines_found: 510 → 1466; claims_all_checks_passed: 410 → 1369; claims_checked: 510 → 1466; claims_gate_passed: 420 → 1376
-- claim-drafts: decided_orders_with_draft: 3403 → 4291; orders_with_draft: 3403 → 4291
-- cotton-capture-custody: archive_successors: unavailable → 0; failed: 2 → 1; not_web_sources: 575 → 1095; published: 526 → 756
-- fr-pages: bytes_committed_this_run: 15402202 → 0; bytes_downloaded: 612727745 → 0; carried_forward: 0 → 30; requests: 23 → 0
-- jacquard: full_review_max: unavailable → 80; sample_size: unavailable → 59
-- kean: decisions: 11 → 22; findings: 44 → 143; open_owner_questions: 10 → 2
-- lachmann: assessed: unavailable → 7738; complete_text_confirmed: unavailable → 3370; confirmed: unavailable → 1764; identity_confirmed: unavailable → 3716
-- lambertini: counterevidence_records: 672 → 1248; decided_orders_with_draft: 3403 → 4291; packet_targets: 835 → 840; packets: 109 → 114
-- namier: legal_conclusions: unavailable → 0; network_requests: unavailable → 0; orders_with_held_text: unavailable → 14913; statuses_changed: unavailable → 0
-- pinakes-htr: either_passes_screen: unavailable → 89; errors: unavailable → 0; orders: unavailable → 310; pages: unavailable → 555
-- readiness-tracker: orders_with_provisional_status: 3403 → 4291; original_replacement_obligations: 103 → 1886; quotation_recheck_obligations: 103 → 1886; ready_for_human_review: 395 → 1331
-- shepard-citations: land_targets: 3516 → 3547; land_targets_with_any_edge: 1048 → 1054; land_targets_with_ending_candidate: 616 → 617
-- valla: active_claims: 421 → 1445; shared_rationale_references: 525 → 783; textual_leads: 11 → 24
-- x1-class-engine: modern_families_5_plus: 195 → 193
+Comparison snapshot: 2026-11-04; intervening runs may be absent.
+- kean: findings: 143 → 144
 
 ## Top shared unlocks
 
@@ -84,4 +68,4 @@ Comparison snapshot: 2026-10-28; intervening runs may be absent.
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41966416230)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41969506032)
