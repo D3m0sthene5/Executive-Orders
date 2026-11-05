@@ -22,3 +22,7 @@ Separate-context engineering review is retained in `INDEPENDENT_REVIEW.json`. Sa
 ## Costs and limits
 
 Root coordinated three bounded workers for contract audit/caller implementation, scheduler audit/repair, and final independent engineering examination. Actual detailed model variants, model tokens, cash and full active labor are unavailable. Deterministic checks use ordinary scripts. Broad new research and scientific adoption are outside this integration. Existing intentionally manual acquisition roots and one-off diagnostics are not automatically scheduled merely to make a graph look connected.
+
+## Final local acceptance
+
+Full offline Road passed1144 test executions across27 suite runs; the52 Lachmann tests passed separately and are included in the revised hosted loop. Native checker replay passed2/2 claims in both arms, with all four outputs byte-identical and input pins unchanged. RSS181728→170116KiB; observed wall17.74→22.34s under concurrent validation, so no speedup is claimed. Native four-order held-source supplement verification succeeded and preserved the genuine remaining source blockers; zero new ready dossiers. Exact receipts, current input hashes and full local logs are retained in VALIDATION_LOGS.tar.gz; summary in VALIDATION.json.

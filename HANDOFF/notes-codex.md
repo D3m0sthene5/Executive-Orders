@@ -2,6 +2,7 @@
 
 - **Done:** Integrated PR139/140/144 with append-only findings retained; added reviewed apply-time selected-source refusal; repaired/revalidated repeated Lachmann confirmations before scheduling its actual witness producers. Road includes Lachmann. Exact independent review and acceptance records: research/progress/stable-integration-20261104/. Kean F-20261104-stable-integration.
 - **Validation:** Combined claim-kit656 (5skip), checker76, Lachmann52, Mission11Python/24Node, A/B adversarial probes pass. Full Road/native/hosted publication receipts recorded separately; pending is not passing.
+- **Hosted:** Final metadata head requests existing PR checks; inspect actual checks before landing. Full offline Road and native current-input replays pass; receipts are retained in VALIDATION_LOGS.tar.gz.
 - **Next:** Fresh packets after compiler/runtime version changes. Preserve PR141/146 unfinished work and legal/source holds; do not renew historical seals.
 - **Asks:** @Owner: none.
 
