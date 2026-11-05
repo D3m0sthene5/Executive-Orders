@@ -58,7 +58,8 @@ def cost_of(measured, action):
     c = (measured.get("costs") or {}).get(action.get("cost_key") or "")
     if not c or not isinstance(c.get("usd"), (int, float)):
         return None, f"no measured cost for {action.get('cost_key')!r}"
-    return float(c["usd"]) * float(action.get("orders") or 0), f"{action['orders']} x {c['usd']:.2f} USD ({c.get('per')})"
+    units = action.get("cost_units") if action.get("cost_units") is not None else action.get("orders") or 0
+    return float(c["usd"]) * float(units), f"{units} x {c['usd']:.2f} USD ({c.get('per')})"
 
 
 def score(measured, action, half_life=HALF_LIFE_DAYS):
@@ -68,7 +69,12 @@ def score(measured, action, half_life=HALF_LIFE_DAYS):
     now = 0.0
     if action.get("orders"):
         r = rate_of(measured, action.get("rate_key"))
-        if r is None:
+        if r is not None and (r.get("den") or 0) < PROBE_ORDERS:
+            out["notes"].append(f"yield {action.get('rate_key')!r} rests on {r.get('num')}/{r.get('den')} attempts, "
+                                f"fewer than {PROBE_ORDERS}: too thin to rank")
+            r = None
+            out["unranked"] = True
+        elif r is None:
             out["notes"].append(f"no measured yield for {action.get('rate_key')!r}: unranked")
             out["unranked"] = True
         else:
@@ -153,7 +159,7 @@ def plan(args):
 
 
 def fmt_usd(v):
-    return "free" if v == 0 else f"${v:,.0f}"
+    return "free" if v == 0 else (f"${v:,.2f}" if v < 10 else f"${v:,.0f}")
 
 
 def report(r):
