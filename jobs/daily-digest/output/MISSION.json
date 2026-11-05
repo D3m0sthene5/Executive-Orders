@@ -1,0 +1,392 @@
+{
+  "schema": "eo-mission/v1",
+  "generated_utc": "2026-11-05T04:04:36Z",
+  "repository_input_commit": "dfb8fc430649b56d736caa33f650d5060c46a34b",
+  "tracker_generation": {
+    "blocked_by": [],
+    "branch": "main",
+    "commit_run": "dfb8fc430649b56d736caa33f650d5060c46a34b",
+    "exit_code": 0,
+    "finished_utc": "2026-11-05T04:04:27Z",
+    "job": "readiness-tracker",
+    "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+    "max_output_file_bytes": 99614720,
+    "oversized_files_moved_to_run_download": [],
+    "result": "succeeded",
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111666",
+    "started_utc": "2026-11-05T04:03:35Z",
+    "trigger": "push by D3m0sthene5; automatic progress publication"
+  },
+  "checker_generation": {
+    "blocked_by": [],
+    "branch": "main",
+    "commit_run": "dfb8fc430649b56d736caa33f650d5060c46a34b",
+    "exit_code": 0,
+    "finished_utc": "2026-11-05T04:03:35Z",
+    "job": "claim-checker",
+    "machine": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.43, Python 3.12.15",
+    "max_output_file_bytes": 99614720,
+    "oversized_files_moved_to_run_download": [],
+    "result": "succeeded",
+    "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111666",
+    "started_utc": "2026-11-05T03:43:46Z",
+    "trigger": "push by D3m0sthene5; automatic progress publication"
+  },
+  "sources": {
+    "tracker_status": {
+      "path": "jobs/readiness-tracker/output/STATUS.json",
+      "sha256": "252d00610b1b7f4f1e66a2123bc0514dd1c4d47226554e4b3d8e2b6bcd076d33"
+    },
+    "tracker_manifest": {
+      "path": "jobs/readiness-tracker/output/RUNNER_INPUTS.json",
+      "sha256": "e8884c38355e69c0328110bba28d3e10cc528449f22c508869b93af1dc53730d"
+    },
+    "checker_status": {
+      "path": "jobs/claim-checker/output/STATUS.json",
+      "sha256": "3fa6730f8e71078391755adb06e2f01330d5d287f0930a9582604eb8c818d2ed"
+    },
+    "checker_manifest": {
+      "path": "jobs/claim-checker/output/RUNNER_INPUTS.json",
+      "sha256": "141027169cc06f6dc933ad5f2e186b85f2f1a19b12a7c93d2bd5c13941343861"
+    },
+    "tracker_summary": {
+      "path": "jobs/readiness-tracker/output/SUMMARY.json",
+      "sha256": "e888675e490bf273e3aa215435477b9f35db35ea4a32925ec2a70fa38fca68a3"
+    },
+    "tracker": {
+      "path": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv",
+      "sha256": "df320eaa1ea576247708aeb93c9dff5b308445ce1e2573c84664c2dbc2aacfa6"
+    },
+    "universe": {
+      "path": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+      "sha256": "b931c9eb45ef8750c1e39ea7dd4a7c83d3a53dd049a464764a9fb29da5abcf8f"
+    },
+    "weights": {
+      "path": "research/progress/remaining-work/MISSION_WEIGHTS.csv",
+      "sha256": "e99374525b43765bf65238573b5f75d7e53e7796defb05c069333cb5d92f5e4a"
+    },
+    "milestones": {
+      "path": "research/progress/remaining-work/APOLLO11_MILESTONES.csv",
+      "sha256": "b24eaf87b6e5fcec3a74ad26f2a1bf03ef59817ca7ba912b1626464136c7277e"
+    },
+    "remaining_work": {
+      "path": "research/progress/remaining-work/REMAINING_WORK.json",
+      "sha256": "e198d71e2a7ea36878cfd906e040ef5486f279c6b4455a9434a536d27716598c"
+    },
+    "historical_baseline": {
+      "path": "research/progress/remaining-work/snapshots/2026-10-30/MISSION_LOG.csv",
+      "sha256": "e581a83fd3a7101a9d9a6d83764fe1a764d47550c7f36872e687a55fa563887d"
+    },
+    "human_review": {
+      "path": "research/stage19/output/PROGRESS.json",
+      "sha256": "4906af60cc579de465365871e91db39db3d71df58ce808a7c8e6174ea83cf6d9"
+    }
+  },
+  "readiness_inputs": {
+    "path": "research/readiness",
+    "git_tree": "366db2d03d0be7e5baa69108fe1e12dfbe32c540"
+  },
+  "model": {
+    "version": "capcom-frozen-weights-v1",
+    "denominator_version": "current-census-plus-frozen-gap-v1",
+    "weights_sha256": "e99374525b43765bf65238573b5f75d7e53e7796defb05c069333cb5d92f5e4a",
+    "census_gap": 1314,
+    "orders_goal": 16286,
+    "first_step_hours": 109.40416666666667,
+    "history_compatible": true,
+    "interpretation": "Existing frozen model minutes weight done/open tracker steps. The goal is current census plus the frozen 1,314-order modeled gap; the retained APP total is a different measure."
+  },
+  "freshness": {
+    "state": "generation_reported",
+    "claim_receipts": "claim_versions_match",
+    "interpretation": "Validated published generation and exact current claim-receipt coverage; this is not verification of every scientific source or legal conclusion."
+  },
+  "latest": {
+    "date": "2026-11-05",
+    "commit": "dfb8fc4306",
+    "committed_at": "2026-11-05T04:04:27Z",
+    "ready_for_human_review": 1331,
+    "provisional_statuses": 4291,
+    "orders_in_census": 14972,
+    "orders_goal": 16286,
+    "steps_done": 19008,
+    "steps_open": 79740,
+    "step_share": 0.19249,
+    "progress": 0.1573,
+    "met_hours": 17.209,
+    "phase": "Translunar coast",
+    "human_certified": 0
+  },
+  "history": [
+    {
+      "date": "2026-10-17",
+      "commit": "522a50efda",
+      "committed_at": "2026-10-17T19:45:22-04:00",
+      "ready_for_human_review": 0,
+      "provisional_statuses": 3359,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 3972,
+      "steps_open": 96138,
+      "step_share": 0.03968,
+      "progress": 0.02424,
+      "met_hours": 2.652,
+      "phase": "Earth orbit",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-10-18",
+      "commit": "95dad1c43f",
+      "committed_at": "2026-10-18T02:19:43-04:00",
+      "ready_for_human_review": 130,
+      "provisional_statuses": 3359,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 13470,
+      "steps_open": 86640,
+      "step_share": 0.13455,
+      "progress": 0.0977,
+      "met_hours": 10.689,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-10-19",
+      "commit": "3c7bf0e3c5",
+      "committed_at": "2026-10-19T16:14:36-04:00",
+      "ready_for_human_review": 135,
+      "provisional_statuses": 3359,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 13538,
+      "steps_open": 86572,
+      "step_share": 0.13523,
+      "progress": 0.09801,
+      "met_hours": 10.722,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-10-20",
+      "commit": "ed19a06039",
+      "committed_at": "2026-10-20T04:15:23Z",
+      "ready_for_human_review": 138,
+      "provisional_statuses": 3359,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 13554,
+      "steps_open": 86556,
+      "step_share": 0.13539,
+      "progress": 0.09813,
+      "met_hours": 10.736,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-10-21",
+      "commit": "59bb314143",
+      "committed_at": "2026-10-20T20:29:00-04:00",
+      "ready_for_human_review": 278,
+      "provisional_statuses": 3359,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 14007,
+      "steps_open": 86103,
+      "step_share": 0.13992,
+      "progress": 0.10403,
+      "met_hours": 11.381,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-10-22",
+      "commit": "46a29e15d6",
+      "committed_at": "2026-10-22T20:51:58Z",
+      "ready_for_human_review": 280,
+      "provisional_statuses": 3403,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 14127,
+      "steps_open": 85983,
+      "step_share": 0.14111,
+      "progress": 0.10492,
+      "met_hours": 11.478,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-10-24",
+      "commit": "76d2568577",
+      "committed_at": "2026-10-24T05:19:35Z",
+      "ready_for_human_review": 285,
+      "provisional_statuses": 3403,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 14126,
+      "steps_open": 85979,
+      "step_share": 0.14111,
+      "progress": 0.10491,
+      "met_hours": 11.478,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-10-28",
+      "commit": "b4c2f061c9",
+      "committed_at": "2026-10-28T23:52:26Z",
+      "ready_for_human_review": 310,
+      "provisional_statuses": 3403,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 14237,
+      "steps_open": 85868,
+      "step_share": 0.14222,
+      "progress": 0.10613,
+      "met_hours": 11.611,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-10-29",
+      "commit": "bb7aa004b1",
+      "committed_at": "2026-10-28T23:19:50-04:00",
+      "ready_for_human_review": 395,
+      "provisional_statuses": 3403,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 14662,
+      "steps_open": 85443,
+      "step_share": 0.14647,
+      "progress": 0.1107,
+      "met_hours": 12.111,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-10-30",
+      "commit": "35b9a7585d",
+      "committed_at": "2026-10-30T02:19:55Z",
+      "ready_for_human_review": 498,
+      "provisional_statuses": 3403,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 15165,
+      "steps_open": 84940,
+      "step_share": 0.15149,
+      "progress": 0.11615,
+      "met_hours": 12.707,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-11-02",
+      "commit": "86aa5b8a3a",
+      "committed_at": "2026-11-02T13:34:17-05:00",
+      "ready_for_human_review": 784,
+      "provisional_statuses": 4291,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 17175,
+      "steps_open": 81381,
+      "step_share": 0.17427,
+      "progress": 0.13597,
+      "met_hours": 14.876,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-11-04",
+      "commit": "5289ac5aad",
+      "committed_at": "2026-11-04T15:56:25-05:00",
+      "ready_for_human_review": 1331,
+      "provisional_statuses": 4291,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 19008,
+      "steps_open": 79740,
+      "step_share": 0.19249,
+      "progress": 0.1573,
+      "met_hours": 17.209,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    },
+    {
+      "date": "2026-11-05",
+      "commit": "dfb8fc4306",
+      "committed_at": "2026-11-05T04:04:27Z",
+      "ready_for_human_review": 1331,
+      "provisional_statuses": 4291,
+      "orders_in_census": 14972,
+      "orders_goal": 16286,
+      "steps_done": 19008,
+      "steps_open": 79740,
+      "step_share": 0.19249,
+      "progress": 0.1573,
+      "met_hours": 17.209,
+      "phase": "Translunar coast",
+      "human_certified": 0
+    }
+  ],
+  "milestones": [
+    {
+      "key": "launch",
+      "event": "Liftoff from Kennedy Space Center",
+      "met": "000:00:00",
+      "utc": "1969-07-16T13:32:00Z",
+      "phase_after": "Earth orbit",
+      "source": "NASA Kennedy Space Center Apollo 11 page (MET 0 = 13:32 UTC 16 July 1969)",
+      "hours": 0.0
+    },
+    {
+      "key": "tli",
+      "event": "Translunar injection: the burn that leaves Earth orbit for the Moon",
+      "met": "002:44:26",
+      "utc": "1969-07-16T16:16:26Z",
+      "phase_after": "Translunar coast",
+      "source": "NASA Kennedy Space Center Apollo 11 page",
+      "hours": 2.7405555555555554
+    },
+    {
+      "key": "loi",
+      "event": "Lunar orbit insertion",
+      "met": "075:50:00",
+      "utc": "1969-07-19T17:22:00Z",
+      "phase_after": "Lunar orbit",
+      "source": "NASA Kennedy Space Center Apollo 11 page",
+      "hours": 75.83333333333333
+    },
+    {
+      "key": "landing",
+      "event": "Eagle lands at Tranquility Base",
+      "met": "102:45:39",
+      "utc": "1969-07-20T20:17:39Z",
+      "phase_after": "On the surface",
+      "source": "NASA Kennedy Space Center Apollo 11 page",
+      "hours": 102.76083333333334
+    },
+    {
+      "key": "first_step",
+      "event": "Armstrong's first step",
+      "met": "109:24:15",
+      "utc": "1969-07-21T02:56:15Z",
+      "phase_after": "First step",
+      "source": "NASA Kennedy Space Center Apollo 11 page (10:56:15 p.m. EDT 20 July; MET computed from liftoff)",
+      "hours": 109.40416666666667
+    }
+  ],
+  "latest_provenance": {
+    "time_field": "tracker finished_utc",
+    "commit_field": "tracker commit_run (input commit)",
+    "history_time_field": "tracker-output first-parent commit time"
+  },
+  "human_review": {
+    "published_whole_lifecycle_certifications": 0,
+    "source": "research/stage19/output/PROGRESS.json",
+    "interpretation": "Separate human-review register; Capcom's legacy human_certified=0 is never an inferred certification count."
+  },
+  "limits": [
+    "Modeled work completion is not ready dossiers divided by identities, measured labor, or scientific approval.",
+    "Provisional text steps retain the existing Capcom treatment and never become original-supported evidence.",
+    "Failures preserve the prior successful output; its generation date remains authoritative."
+  ]
+}

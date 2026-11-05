@@ -289,3 +289,9 @@ versioned producer/reviewer work; `research/excavator` and `research/production`
 retain the other checkpoints, reconciliation and frozen-selection artifacts.
 These declarations avoid treating an unmaterialized research session as an empty
 history. They do not materialize the ProQuest corpus or fetch primary sources.
+
+## Queued production and evidence versions
+
+Ordinary mutating runs now share the branch writer queue with progress reporting. After waiting, they check out the current branch and bind native receipts to that actual input commit; the event's changed-file selection still determines which jobs were requested. Inspect STATUS.json and RUNNER_INPUTS.json for the executed generation rather than inferring it from the triggering push SHA. Read-only diagnostics retain their pinned event checkout.
+
+A queue does not authorize carrying an old packet or review seal across changed compiler/runtime inputs. Prepare a fresh packet when its contract or version witness changes, and preserve source/quotation refusals. Reporting and compiler publications keep the existing freshness guard; a genuinely changed input still requires a current run.

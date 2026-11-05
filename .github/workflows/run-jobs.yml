@@ -39,14 +39,18 @@ permissions:
 env:
   GIT_LFS_SKIP_SMUDGE: "1"
 
-# No concurrency group: GitHub keeps only one waiting run per group and cancels
-# the rest, which skipped jobs when several merges landed at once. Runs that
-# finish together are reconciled in commit_results.sh instead.
+# Mutating runs and main progress reporting share a branch writer queue.
+# queue:max retains up to 100 pending runs rather than replacing a pending
+# production selection. Read-only diagnostics keep their exact event checkout.
 
 jobs:
   run:
     runs-on: ubuntu-latest
     timeout-minutes: 350
+    concurrency:
+      group: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic && format('read-only-job-diagnostic-{0}-{1}', github.run_id, github.run_attempt) || format('repository-output-writer-{0}', github.ref) }}
+      queue: max
+      cancel-in-progress: false
     steps:
       # Keep job code/data in this non-cone bootstrap. In particular, a cone
       # checkout of jobs/ includes every nested output generation before the
@@ -56,6 +60,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: ${{ !inputs.diagnostic }}
+          # The writer lock is held before checkout. Execute current branch
+          # inputs; diagnostics remain pinned to their original event commit.
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic && github.sha || github.ref }}
           fetch-depth: 0
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -146,7 +153,11 @@ jobs:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           NARA_API_KEY: ${{ secrets.NARA_API_KEY }}
           GOVINFO_API_KEY: ${{ secrets.GOVINFO_API_KEY }}
-        run: bash .github/scripts/run_jobs.sh
+        # Selection above keeps the original event BEFORE/AFTER. Native
+        # receipts bind to the actual checkout acquired after the writer lock.
+        run: |
+          execution_input_commit="$(git rev-parse HEAD)"
+          env GITHUB_SHA="$execution_input_commit" bash .github/scripts/run_jobs.sh
 
       - name: Keep oversized files as a download
         if: always() && steps.pick.outputs.jobs != '' && !inputs.diagnostic

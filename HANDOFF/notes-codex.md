@@ -1,3 +1,20 @@
+## 2026-11-04 ET: post-merge production publication race under repair
+
+- **Found:** Runjobs41955554793 executed all six selected jobs successfully, then correctly refused stale publication because concurrent reporting41955554786 had already advanced checker/tracker/digest outputs. No scientific output was overwritten. Independent full-source integration/CI and the first source-bound ready reporting generation1331/14972 remain verified.
+- **Repair in progress:** Coordinate production/reporting writers without pending production cancellation and bind queued native receipts to the actual post-queue checkout. Preserve freshness checks. Do not label the overall orchestration finished until this native publication path is repaired and exercised.
+- **Evidence:** Actual run41955554793 log; HANDOFF/FINAL_STABLE_INTEGRATION.json records the failed publication separately from successful computation and reporting.
+- **Asks:** @Owner: none.
+
+## 2026-11-04 ET: stable main integration and automatic reporting verified
+
+- **Done:** PR149 merged as81ebb186, preserving completed PR139/140/144/147/148 histories. Main tree exactly matches fully accepted source candidate3a308f25. Selected-source checks run in ordinary apply; Lachmann safely revalidates provisional and filed transcription-dependent confirmations before scheduled consumers. Audited70 runnable jobs form an acyclic graph; manual tools and retained nonrunnable source providers are documented in research/progress/stable-integration-20261104/JOB_WIRING.md.
+- **Acceptance:** Full Road passed1199 executions across28 suites per platform, both before and after merge. Mission, Kean, publication/security checks and every complete native Valla stage passed. Exact independent approval: HANDOFF/FINAL_STABLE_INTEGRATION_REVIEW.json. Historical failed probes, real Windows ctime diagnosis and guarded reader fix remain retained in research/progress/stable-integration-20261104/WINDOWS_SOURCE_READ_*.
+- **Published:** Dedicated main reporting run41955554786 succeeded. MISSION_REFRESH is ready, exact checker/tracker receipts and canonical readiness tree join at outputc7ebe6a4.1331 ready /14972 identities /4291 provisional statuses; separate human certifications0. Frozen model15.73%, T+17.209h. This is unchanged scientific progress, not a claimed integration gain. Receipt proof: HANDOFF/FINAL_STABLE_REPORTING_ACCEPTANCE.json; full dispositions: HANDOFF/FINAL_STABLE_INTEGRATION.json. Existing owner-private control-center assets are deployed as version5, audience unchanged.
+- **Preserved drafts:** PR14133f63e0 and PR146aa5b7a6 are normally merged from accepted main and mergeable. Their unfinished research, exact source pins, provenance and original histories remain; no scientific adoption or final whole-draft acceptance is implied.
+- **Running:** Normal main production41955554793 remains active at this checkpoint and was not canceled. It is distinct from completed full-project reporting; completion requests another bounded reporting trio. Inspect its actual result if continuing. Do not manually Runjobs the reporting trio (that expands consumers); use dedicated Refresh published progress for a bounded retry.
+- **Next:** Prepare fresh production packets after runtime/compiler changes. Preserve original-source replacement obligations, legal/source holds and old review seals; do not renew them to make a run pass. No model-token, whole-workflow speedup or new dossier gain is claimed.
+- **Asks:** @Owner: none.
+
 ## 2026-11-04 ET: stable production integration
 
 - **Done:** Integrated PR139/140/144 with append-only findings retained; added reviewed apply-time selected-source refusal; repaired/revalidated repeated Lachmann confirmations before scheduling its actual witness producers. Road includes Lachmann. Exact independent review and acceptance records: research/progress/stable-integration-20261104/. Kean F-20261104-stable-integration.

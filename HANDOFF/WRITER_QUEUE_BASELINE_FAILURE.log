@@ -1,0 +1,1303 @@
+﻿2026-11-05T02:29:37.2689265Z Current runner version: '2.338.2'
+2026-11-05T02:29:37.2716037Z ##[group]Runner Image Provisioner
+2026-11-05T02:29:37.2717009Z Hosted Compute Agent
+2026-11-05T02:29:37.2717638Z Version: 20261028.624
+2026-11-05T02:29:37.2718311Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-05T02:29:37.2719062Z Build Date: 2026-10-28T21:51:42Z
+2026-11-05T02:29:37.2719751Z Worker ID: {6b16c8a1-7e03-45f5-bd83-97bd0235d047}
+2026-11-05T02:29:37.2720511Z Region: eastus
+2026-11-05T02:29:37.2721082Z Cloud: Azure
+2026-11-05T02:29:37.2721593Z ##[endgroup]
+2026-11-05T02:29:37.2723451Z ##[group]Operating System
+2026-11-05T02:29:37.2724413Z Ubuntu
+2026-11-05T02:29:37.2725107Z 26.04.1
+2026-11-05T02:29:37.2725666Z LTS
+2026-11-05T02:29:37.2726207Z ##[endgroup]
+2026-11-05T02:29:37.2726833Z ##[group]Runner Image
+2026-11-05T02:29:37.2727437Z Image: ubuntu-26.04
+2026-11-05T02:29:37.2728068Z Version: 20261101.186.1
+2026-11-05T02:29:37.2729398Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-05T02:29:37.2731046Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+2026-11-05T02:29:37.2732015Z ##[endgroup]
+2026-11-05T02:29:37.2733254Z ##[group]GITHUB_TOKEN Permissions
+2026-11-05T02:29:37.2735704Z Contents: write
+2026-11-05T02:29:37.2736422Z Metadata: read
+2026-11-05T02:29:37.2736982Z ##[endgroup]
+2026-11-05T02:29:37.2739434Z Secret source: Actions
+2026-11-05T02:29:37.2740469Z Cache mode: write
+2026-11-05T02:29:37.2741553Z Prepare workflow directory
+2026-11-05T02:29:37.3140252Z Prepare all required actions
+2026-11-05T02:29:37.3189119Z Getting action download info
+2026-11-05T02:29:37.5405735Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-05T02:29:37.6534579Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-05T02:29:37.7247267Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-11-05T02:29:37.7968165Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-05T02:29:37.9982326Z Complete job name: run
+2026-11-05T02:29:38.1033547Z ##[group]Run actions/checkout@v4
+2026-11-05T02:29:38.1034666Z with:
+2026-11-05T02:29:38.1035128Z   persist-credentials: true
+2026-11-05T02:29:38.1035631Z   fetch-depth: 0
+2026-11-05T02:29:38.1036060Z   filter: blob:none
+2026-11-05T02:29:38.1036530Z   sparse-checkout-cone-mode: false
+2026-11-05T02:29:38.1037259Z   sparse-checkout: /*
+!/*/
+/.github/**
+/HANDOFF/**
+/jobs/**
+!/jobs/*/output/**
+
+2026-11-05T02:29:38.1038039Z   repository: D3m0sthene5/Executive-Orders
+2026-11-05T02:29:38.1042047Z   token: ***
+2026-11-05T02:29:38.1042474Z   ssh-strict: true
+2026-11-05T02:29:38.1042903Z   ssh-user: git
+2026-11-05T02:29:38.1043316Z   clean: true
+2026-11-05T02:29:38.1043725Z   fetch-tags: false
+2026-11-05T02:29:38.1044355Z   show-progress: true
+2026-11-05T02:29:38.1044805Z   lfs: false
+2026-11-05T02:29:38.1045232Z   submodules: false
+2026-11-05T02:29:38.1045682Z   set-safe-directory: true
+2026-11-05T02:29:38.1046186Z   allow-unsafe-pr-checkout: false
+2026-11-05T02:29:38.1046960Z env:
+2026-11-05T02:29:38.1047413Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:29:38.1047876Z ##[endgroup]
+2026-11-05T02:29:38.4022717Z Syncing repository: D3m0sthene5/Executive-Orders
+2026-11-05T02:29:38.4025541Z ##[group]Getting Git version info
+2026-11-05T02:29:38.4026834Z Working directory is '/home/runner/work/Executive-Orders/Executive-Orders'
+2026-11-05T02:29:38.4028903Z [command]/usr/bin/git version
+2026-11-05T02:29:38.4058349Z git version 2.56.0
+2026-11-05T02:29:38.4081326Z ##[endgroup]
+2026-11-05T02:29:38.4098916Z Temporarily overriding HOME='/home/runner/work/_temp/667fbbce-4537-4128-89a1-145b86e3c5ed' before making global git config changes
+2026-11-05T02:29:38.4101359Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-05T02:29:38.4105491Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Executive-Orders/Executive-Orders
+2026-11-05T02:29:38.4184830Z Deleting the contents of '/home/runner/work/Executive-Orders/Executive-Orders'
+2026-11-05T02:29:38.4193702Z ##[group]Initializing the repository
+2026-11-05T02:29:38.4203850Z [command]/usr/bin/git init /home/runner/work/Executive-Orders/Executive-Orders
+2026-11-05T02:29:38.4331070Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-05T02:29:38.4333392Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-05T02:29:38.4335398Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-05T02:29:38.4336820Z hint: call:
+2026-11-05T02:29:38.4337888Z hint:
+2026-11-05T02:29:38.4338889Z hint: 	git config --global init.defaultBranch <name>
+2026-11-05T02:29:38.4339547Z hint:
+2026-11-05T02:29:38.4340246Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-05T02:29:38.4341219Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-05T02:29:38.4342034Z hint:
+2026-11-05T02:29:38.4342540Z hint: 	git branch -m <name>
+2026-11-05T02:29:38.4343017Z hint:
+2026-11-05T02:29:38.4343653Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-05T02:29:38.4345944Z Initialized empty Git repository in /home/runner/work/Executive-Orders/Executive-Orders/.git/
+2026-11-05T02:29:38.4358682Z [command]/usr/bin/git remote add origin https://github.com/D3m0sthene5/Executive-Orders
+2026-11-05T02:29:38.4412646Z ##[endgroup]
+2026-11-05T02:29:38.4414544Z ##[group]Disabling automatic garbage collection
+2026-11-05T02:29:38.4420311Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-05T02:29:38.4462965Z ##[endgroup]
+2026-11-05T02:29:38.4464325Z ##[group]Setting up auth
+2026-11-05T02:29:38.4471078Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-05T02:29:38.4507410Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-05T02:29:38.5044764Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-05T02:29:38.5079918Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-05T02:29:38.5360034Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-05T02:29:38.5397564Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-05T02:29:38.5679083Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-05T02:29:38.5732548Z ##[endgroup]
+2026-11-05T02:29:38.5734343Z ##[group]Fetching the repository
+2026-11-05T02:29:38.5744683Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules --filter=blob:none origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-11-05T02:29:39.6761245Z From https://github.com/D3m0sthene5/Executive-Orders
+2026-11-05T02:29:39.6766020Z  * [new branch]        app-executive-orders    -> origin/app-executive-orders
+2026-11-05T02:29:39.6769010Z  * [new branch]        app-executive-orders-5gjo5p -> origin/app-executive-orders-5gjo5p
+2026-11-05T02:29:39.6772472Z  * [new branch]        archive-all-research-progress-20261017 -> origin/archive-all-research-progress-20261017
+2026-11-05T02:29:39.6776641Z  * [new branch]        astra/apollo-audit-20261020-1407utc -> origin/astra/apollo-audit-20261020-1407utc
+2026-11-05T02:29:39.6780936Z  * [new branch]        astra/automatic-mission-refresh-20261104 -> origin/astra/automatic-mission-refresh-20261104
+2026-11-05T02:29:39.6785776Z  * [new branch]        astra/campaign-acceleration-20261024 -> origin/astra/campaign-acceleration-20261024
+2026-11-05T02:29:39.6789972Z  * [new branch]        astra/cumulative-research-20261024 -> origin/astra/cumulative-research-20261024
+2026-11-05T02:29:39.6793660Z  * [new branch]        astra/dashboard-refresh-20261028 -> origin/astra/dashboard-refresh-20261028
+2026-11-05T02:29:39.6796904Z  * [new branch]        astra/deterministic-production-20261024 -> origin/astra/deterministic-production-20261024
+2026-11-05T02:29:39.6800302Z  * [new branch]        astra/early-census-library-hookup-20261017 -> origin/astra/early-census-library-hookup-20261017
+2026-11-05T02:29:39.6804591Z  * [new branch]        astra/leverage-campaign-20261022 -> origin/astra/leverage-campaign-20261022
+2026-11-05T02:29:39.6807767Z  * [new branch]        astra/lightweight-01-cotton-20261029 -> origin/astra/lightweight-01-cotton-20261029
+2026-11-05T02:29:39.6811199Z  * [new branch]        astra/lightweight-02-proquest-20261029 -> origin/astra/lightweight-02-proquest-20261029
+2026-11-05T02:29:39.6814583Z  * [new branch]        astra/lightweight-03-x1-20261029 -> origin/astra/lightweight-03-x1-20261029
+2026-11-05T02:29:39.6817708Z  * [new branch]        astra/lightweight-04-lewis-20261029 -> origin/astra/lightweight-04-lewis-20261029
+2026-11-05T02:29:39.6820822Z  * [new branch]        astra/lightweight-05-land-20261029 -> origin/astra/lightweight-05-land-20261029
+2026-11-05T02:29:39.6823963Z  * [new branch]        astra/lightweight-06-neyman-20261029 -> origin/astra/lightweight-06-neyman-20261029
+2026-11-05T02:29:39.6827176Z  * [new branch]        astra/portfolio-repair-20261020 -> origin/astra/portfolio-repair-20261020
+2026-11-05T02:29:39.6830534Z  * [new branch]        astra/production-2026-10-17 -> origin/astra/production-2026-10-17
+2026-11-05T02:29:39.6833563Z  * [new branch]        astra/production-families-2026-10-18 -> origin/astra/production-families-2026-10-18
+2026-11-05T02:29:39.6837613Z  * [new branch]        astra/project-tier-audit-2026-10-29 -> origin/astra/project-tier-audit-2026-10-29
+2026-11-05T02:29:39.6841124Z  * [new branch]        astra/road-1-family-rules -> origin/astra/road-1-family-rules
+2026-11-05T02:29:39.6843751Z  * [new branch]        astra/road-2-case-bundles -> origin/astra/road-2-case-bundles
+2026-11-05T02:29:39.6846702Z  * [new branch]        astra/road-3-runner-speed -> origin/astra/road-3-runner-speed
+2026-11-05T02:29:39.6850663Z  * [new branch]        astra/rocket-dashboard-2026-10-29 -> origin/astra/rocket-dashboard-2026-10-29
+2026-11-05T02:29:39.6853350Z  * [new branch]        astra/side-2026-10-18   -> origin/astra/side-2026-10-18
+2026-11-05T02:29:39.6856582Z  * [new branch]        astra/source-first-production-20261023 -> origin/astra/source-first-production-20261023
+2026-11-05T02:29:39.6861806Z  * [new branch]        astra/unfinished-docket-source-trial -> origin/astra/unfinished-docket-source-trial
+2026-11-05T02:29:39.6868449Z  * [new branch]        census-completeness     -> origin/census-completeness
+2026-11-05T02:29:39.6872422Z  * [new branch]        claude/apollo-audit-20261031 -> origin/claude/apollo-audit-20261031
+2026-11-05T02:29:39.6876662Z  * [new branch]        claude/apollo-moon      -> origin/claude/apollo-moon
+2026-11-05T02:29:39.6880530Z  * [new branch]        claude/app-ingest-2959a8 -> origin/claude/app-ingest-2959a8
+2026-11-05T02:29:39.6884705Z  * [new branch]        claude/astra-brief-f2a36a -> origin/claude/astra-brief-f2a36a
+2026-11-05T02:29:39.6888924Z  * [new branch]        claude/checker-crossjob-text -> origin/claude/checker-crossjob-text
+2026-11-05T02:29:39.6892622Z  * [new branch]        claude/cotton-b1        -> origin/claude/cotton-b1
+2026-11-05T02:29:39.6895982Z  * [new branch]        claude/cotton-custody   -> origin/claude/cotton-custody
+2026-11-05T02:29:39.6898423Z  * [new branch]        claude/cs-waiver-rule   -> origin/claude/cs-waiver-rule
+2026-11-05T02:29:39.6901178Z  * [new branch]        claude/dazzling-gates-4xkkzo -> origin/claude/dazzling-gates-4xkkzo
+2026-11-05T02:29:39.6904766Z  * [new branch]        claude/dossier-identity -> origin/claude/dossier-identity
+2026-11-05T02:29:39.6907720Z  * [new branch]        claude/eloquent-pascal-tb4qpc -> origin/claude/eloquent-pascal-tb4qpc
+2026-11-05T02:29:39.6910384Z  * [new branch]        claude/fr-pages-extracts -> origin/claude/fr-pages-extracts
+2026-11-05T02:29:39.6912985Z  * [new branch]        claude/geddes-axe       -> origin/claude/geddes-axe
+2026-11-05T02:29:39.6915818Z  * [new branch]        claude/geddes-resubmit  -> origin/claude/geddes-resubmit
+2026-11-05T02:29:39.6919896Z  * [new branch]        claude/great-ptolemy-9r6zah -> origin/claude/great-ptolemy-9r6zah
+2026-11-05T02:29:39.6924369Z  * [new branch]        claude/integration-20261104 -> origin/claude/integration-20261104
+2026-11-05T02:29:39.6928173Z  * [new branch]        claude/jacquard-loom    -> origin/claude/jacquard-loom
+2026-11-05T02:29:39.6931685Z  * [new branch]        claude/junto-1727       -> origin/claude/junto-1727
+2026-11-05T02:29:39.6934415Z  * [new branch]        claude/justinian-1      -> origin/claude/justinian-1
+2026-11-05T02:29:39.6937003Z  * [new branch]        claude/justinian-adoption-1 -> origin/claude/justinian-adoption-1
+2026-11-05T02:29:39.6940641Z  * [new branch]        claude/kean-evidence-decides -> origin/claude/kean-evidence-decides
+2026-11-05T02:29:39.6943508Z  * [new branch]        claude/kean-need-to-share -> origin/claude/kean-need-to-share
+2026-11-05T02:29:39.6946273Z  * [new branch]        claude/kean-status-ask  -> origin/claude/kean-status-ask
+2026-11-05T02:29:39.6949115Z  * [new branch]        claude/lachmann-collation -> origin/claude/lachmann-collation
+2026-11-05T02:29:39.6952925Z  * [new branch]        claude/land-probe       -> origin/claude/land-probe
+2026-11-05T02:29:39.6956549Z  * [new branch]        claude/mansfield-1      -> origin/claude/mansfield-1
+2026-11-05T02:29:39.6960291Z  * [new branch]        claude/minard-workflow-map -> origin/claude/minard-workflow-map
+2026-11-05T02:29:39.6964522Z  * [new branch]        claude/modest-cray-m5124u -> origin/claude/modest-cray-m5124u
+2026-11-05T02:29:39.6968441Z  * [new branch]        claude/namier-prosopography -> origin/claude/namier-prosopography
+2026-11-05T02:29:39.6972139Z  * [new branch]        claude/nra-pilots-filing -> origin/claude/nra-pilots-filing
+2026-11-05T02:29:39.6975005Z  * [new branch]        claude/poggio-backfill  -> origin/claude/poggio-backfill
+2026-11-05T02:29:39.6977593Z  * [new branch]        claude/production-b1    -> origin/claude/production-b1
+2026-11-05T02:29:39.6980739Z  * [new branch]        claude/production-b1a   -> origin/claude/production-b1a
+2026-11-05T02:29:39.6983093Z  * [new branch]        claude/production-b1bc  -> origin/claude/production-b1bc
+2026-11-05T02:29:39.6985643Z  * [new branch]        claude/proquest-wording -> origin/claude/proquest-wording
+2026-11-05T02:29:39.6988008Z  * [new branch]        claude/registered-grade -> origin/claude/registered-grade
+2026-11-05T02:29:39.6990696Z  * [new branch]        claude/schechter-nira-sweep -> origin/claude/schechter-nira-sweep
+2026-11-05T02:29:39.6993599Z  * [new branch]        claude/schechter-retention -> origin/claude/schechter-retention
+2026-11-05T02:29:39.6996516Z  * [new branch]        claude/shared-statutes  -> origin/claude/shared-statutes
+2026-11-05T02:29:39.6998902Z  * [new branch]        claude/shepard-fr-pages -> origin/claude/shepard-fr-pages
+2026-11-05T02:29:39.7001303Z  * [new branch]        claude/spent-probe      -> origin/claude/spent-probe
+2026-11-05T02:29:39.7003814Z  * [new branch]        claude/status-proposals-b1 -> origin/claude/status-proposals-b1
+2026-11-05T02:29:39.7006735Z  * [new branch]        claude/tiered-delegation-rule -> origin/claude/tiered-delegation-rule
+2026-11-05T02:29:39.7009372Z  * [new branch]        claude/tribonian-2026-11-04 -> origin/claude/tribonian-2026-11-04
+2026-11-05T02:29:39.7011777Z  * [new branch]        claude/tribonian-state  -> origin/claude/tribonian-state
+2026-11-05T02:29:39.7014189Z  * [new branch]        claude/x1-class-engine  -> origin/claude/x1-class-engine
+2026-11-05T02:29:39.7016859Z  * [new branch]        codex/apollo-job-tiers-2026-11-02 -> origin/codex/apollo-job-tiers-2026-11-02
+2026-11-05T02:29:39.7020138Z  * [new branch]        codex/apollo-workflow-map-20261030 -> origin/codex/apollo-workflow-map-20261030
+2026-11-05T02:29:39.7023009Z  * [new branch]        codex/bacon-recovery-20261103 -> origin/codex/bacon-recovery-20261103
+2026-11-05T02:29:39.7026101Z  * [new branch]        codex/checkpoint-conveyor-20261104 -> origin/codex/checkpoint-conveyor-20261104
+2026-11-05T02:29:39.7029157Z  * [new branch]        codex/continuous-research-20261024 -> origin/codex/continuous-research-20261024
+2026-11-05T02:29:39.7032477Z  * [new branch]        codex/continuous-retention-final-20261025 -> origin/codex/continuous-retention-final-20261025
+2026-11-05T02:29:39.7036063Z  * [new branch]        codex/continuous-sources-20261025 -> origin/codex/continuous-sources-20261025
+2026-11-05T02:29:39.7039057Z  * [new branch]        codex/corpus-excavator-20261018 -> origin/codex/corpus-excavator-20261018
+2026-11-05T02:29:39.7042082Z  * [new branch]        codex/counterexample-first-20261026 -> origin/codex/counterexample-first-20261026
+2026-11-05T02:29:39.7045222Z  * [new branch]        codex/cruden-recovery-reviewed -> origin/codex/cruden-recovery-reviewed
+2026-11-05T02:29:39.7048058Z  * [new branch]        codex/diagnostic-report-20261020 -> origin/codex/diagnostic-report-20261020
+2026-11-05T02:29:39.7050676Z  * [new branch]        codex/eo-resume-2026-11-02 -> origin/codex/eo-resume-2026-11-02
+2026-11-05T02:29:39.7053291Z  * [new branch]        codex/eo-workflow-swarm-20261021 -> origin/codex/eo-workflow-swarm-20261021
+2026-11-05T02:29:39.7056348Z  * [new branch]        codex/final-integration-20261029 -> origin/codex/final-integration-20261029
+2026-11-05T02:29:39.7059269Z  * [new branch]        codex/future-production-preflight -> origin/codex/future-production-preflight
+2026-11-05T02:29:39.7061926Z  * [new branch]        codex/gap-census-20261018 -> origin/codex/gap-census-20261018
+2026-11-05T02:29:39.7064685Z  * [new branch]        codex/hathi-gpo-orders-20261018 -> origin/codex/hathi-gpo-orders-20261018
+2026-11-05T02:29:39.7067960Z  * [new branch]        codex/hidden-workflow-friction-20261029 -> origin/codex/hidden-workflow-friction-20261029
+2026-11-05T02:29:39.7070896Z  * [new branch]        codex/integrate-eo-20261029 -> origin/codex/integrate-eo-20261029
+2026-11-05T02:29:39.7073474Z  * [new branch]        codex/lachmann-reuse-reviewed -> origin/codex/lachmann-reuse-reviewed
+2026-11-05T02:29:39.7076472Z  * [new branch]        codex/maitland-reviewed-histories -> origin/codex/maitland-reviewed-histories
+2026-11-05T02:29:39.7079192Z  * [new branch]        codex/minard-control-center -> origin/codex/minard-control-center
+2026-11-05T02:29:39.7081876Z  * [new branch]        codex/mountweazel-layout-20261029 -> origin/codex/mountweazel-layout-20261029
+2026-11-05T02:29:39.7085089Z  * [new branch]        codex/mountweazel-source-notes-layout -> origin/codex/mountweazel-source-notes-layout
+2026-11-05T02:29:39.7088538Z  * [new branch]        codex/neyman-production-diagnostics-20261025 -> origin/codex/neyman-production-diagnostics-20261025
+2026-11-05T02:29:39.7091927Z  * [new branch]        codex/nmb-record-series-20261025 -> origin/codex/nmb-record-series-20261025
+2026-11-05T02:29:39.7094891Z  * [new branch]        codex/norton-reuse-test-20261025 -> origin/codex/norton-reuse-test-20261025
+2026-11-05T02:29:39.7097657Z  * [new branch]        codex/pre-1937-sources-20261018 -> origin/codex/pre-1937-sources-20261018
+2026-11-05T02:29:39.7100543Z  * [new branch]        codex/production-cost-trace-20261026 -> origin/codex/production-cost-trace-20261026
+2026-11-05T02:29:39.7103646Z  * [new branch]        codex/production-line-audit-20261029 -> origin/codex/production-line-audit-20261029
+2026-11-05T02:29:39.7107023Z  * [new branch]        codex/proquest-custody-census-20261029 -> origin/codex/proquest-custody-census-20261029
+2026-11-05T02:29:39.7110431Z  * [new branch]        codex/proquest-custody-verification-20261029 -> origin/codex/proquest-custody-verification-20261029
+2026-11-05T02:29:39.7113699Z  * [new branch]        codex/r1-r4-final-integration -> origin/codex/r1-r4-final-integration
+2026-11-05T02:29:39.7116611Z  * [new branch]        codex/repair-integration-20261020 -> origin/codex/repair-integration-20261020
+2026-11-05T02:29:39.7119426Z  * [new branch]        codex/shared-research-production -> origin/codex/shared-research-production
+2026-11-05T02:29:39.7122584Z  * [new branch]        codex/sinclair-cross-family-review-20261022 -> origin/codex/sinclair-cross-family-review-20261022
+2026-11-05T02:29:39.7126020Z  * [new branch]        codex/sol-evidence-economy-20261104 -> origin/codex/sol-evidence-economy-20261104
+2026-11-05T02:29:39.7129009Z  * [new branch]        codex/source-boundary-audit-20261026 -> origin/codex/source-boundary-audit-20261026
+2026-11-05T02:29:39.7131869Z  * [new branch]        codex/source-handoffs-recovered -> origin/codex/source-handoffs-recovered
+2026-11-05T02:29:39.7134546Z  * [new branch]        codex/stall-probe-20261020 -> origin/codex/stall-probe-20261020
+2026-11-05T02:29:39.7137394Z  * [new branch]        codex/valla-current-validation-20261020 -> origin/codex/valla-current-validation-20261020
+2026-11-05T02:29:39.7140363Z  * [new branch]        codex/wikisource-texts-20261018 -> origin/codex/wikisource-texts-20261018
+2026-11-05T02:29:39.7143028Z  * [new branch]        corps-of-discovery-lewis-clark -> origin/corps-of-discovery-lewis-clark
+2026-11-05T02:29:39.7145496Z  * [new branch]        csc-annual-reports      -> origin/csc-annual-reports
+2026-11-05T02:29:39.7147538Z  * [new branch]        early-orders-hunt       -> origin/early-orders-hunt
+2026-11-05T02:29:39.7149678Z  * [new branch]        fix/tracker-empty-clauses -> origin/fix/tracker-empty-clauses
+2026-11-05T02:29:39.7151962Z  * [new branch]        indian-reservations-1912 -> origin/indian-reservations-1912
+2026-11-05T02:29:39.7154140Z  * [new branch]        integrate-tools         -> origin/integrate-tools
+2026-11-05T02:29:39.7156151Z  * [new branch]        isthmian-canal-1911     -> origin/isthmian-canal-1911
+2026-11-05T02:29:39.7158154Z  * [new branch]        job/claim-checker       -> origin/job/claim-checker
+2026-11-05T02:29:39.7160261Z  * [new branch]        job/claim-drafts        -> origin/job/claim-drafts
+2026-11-05T02:29:39.7162237Z  * [new branch]        job/clause-drafts       -> origin/job/clause-drafts
+2026-11-05T02:29:39.7164397Z  * [new branch]        job/current-law         -> origin/job/current-law
+2026-11-05T02:29:39.7166391Z  * [new branch]        job/later-events        -> origin/job/later-events
+2026-11-05T02:29:39.7168397Z  * [new branch]        job/opus-media-match    -> origin/job/opus-media-match
+2026-11-05T02:29:39.7170417Z  * [new branch]        job/source-ladder       -> origin/job/source-ladder
+2026-11-05T02:29:39.7172700Z  * [new branch]        lifecycle-assurance-2026-10-29 -> origin/lifecycle-assurance-2026-10-29
+2026-11-05T02:29:39.7175052Z  * [new branch]        main                    -> origin/main
+2026-11-05T02:29:39.7176920Z  * [new branch]        numbered-early-orders   -> origin/numbered-early-orders
+2026-11-05T02:29:39.7178959Z  * [new branch]        official-fixity         -> origin/official-fixity
+2026-11-05T02:29:39.7180951Z  * [new branch]        ofr-codification-1989   -> origin/ofr-codification-1989
+2026-11-05T02:29:39.7182969Z  * [new branch]        ofr-compilations        -> origin/ofr-compilations
+2026-11-05T02:29:39.7185079Z  * [new branch]        opus/packet-friction    -> origin/opus/packet-friction
+2026-11-05T02:29:39.7187076Z  * [new branch]        parallel-runs           -> origin/parallel-runs
+2026-11-05T02:29:39.7189443Z  * [new branch]        proquest-download-handoff-20261019 -> origin/proquest-download-handoff-20261019
+2026-11-05T02:29:39.7192142Z  * [new branch]        proquest-pdf-upload-20261021 -> origin/proquest-pdf-upload-20261021
+2026-11-05T02:29:39.7194461Z  * [new branch]        readiness-tracker       -> origin/readiness-tracker
+2026-11-05T02:29:39.7196499Z  * [new branch]        richardson-volumes      -> origin/richardson-volumes
+2026-11-05T02:29:39.7198832Z  * [new branch]        shared-runner-and-handoff -> origin/shared-runner-and-handoff
+2026-11-05T02:29:39.7200922Z  * [new branch]        sol-claim-kit           -> origin/sol-claim-kit
+2026-11-05T02:29:39.7203045Z  * [new branch]        sol/actions-runtime-20261104 -> origin/sol/actions-runtime-20261104
+2026-11-05T02:29:39.7205892Z  * [new branch]        sol/actions-runtime-proof-20261104 -> origin/sol/actions-runtime-proof-20261104
+2026-11-05T02:29:39.7208507Z  * [new branch]        sol/babbage-complete-effort -> origin/sol/babbage-complete-effort
+2026-11-05T02:29:39.7210974Z  * [new branch]        sol/corpus-evidence-retrieval -> origin/sol/corpus-evidence-retrieval
+2026-11-05T02:29:39.7213202Z  * [new branch]        sol/neyman-20261020     -> origin/sol/neyman-20261020
+2026-11-05T02:29:39.7215370Z  * [new branch]        sol/norton-20261020     -> origin/sol/norton-20261020
+2026-11-05T02:29:39.7217514Z  * [new branch]        sol/norton-20261020-verified -> origin/sol/norton-20261020-verified
+2026-11-05T02:29:39.7219936Z  * [new branch]        sol/offload-decision-20261104 -> origin/sol/offload-decision-20261104
+2026-11-05T02:29:39.7222700Z  * [new branch]        sol/production-observability-20261104 -> origin/sol/production-observability-20261104
+2026-11-05T02:29:39.7225717Z  * [new branch]        sol/r1-materializer-followthrough -> origin/sol/r1-materializer-followthrough
+2026-11-05T02:29:39.7228164Z  * [new branch]        sol/r2-preflight-repair -> origin/sol/r2-preflight-repair
+2026-11-05T02:29:39.7230274Z  * [new branch]        sol/r3-ranger-roundtrip -> origin/sol/r3-ranger-roundtrip
+2026-11-05T02:29:39.7232495Z  * [new branch]        sol/r4-production-diagnosis -> origin/sol/r4-production-diagnosis
+2026-11-05T02:29:39.7235009Z  * [new branch]        sol/readiness-economy-20261104 -> origin/sol/readiness-economy-20261104
+2026-11-05T02:29:39.7237271Z  * [new branch]        sol/runner-friction     -> origin/sol/runner-friction
+2026-11-05T02:29:39.7239454Z  * [new branch]        sol/runtime-economy-20261104 -> origin/sol/runtime-economy-20261104
+2026-11-05T02:29:39.7242517Z  * [new branch]        sol/source-read-windows-diagnostic-20261104 -> origin/sol/source-read-windows-diagnostic-20261104
+2026-11-05T02:29:39.7246350Z  * [new branch]        sol/stable-filed-confirmation-followup-20261104 -> origin/sol/stable-filed-confirmation-followup-20261104
+2026-11-05T02:29:39.7249496Z  * [new branch]        sol/stable-integration-20261104 -> origin/sol/stable-integration-20261104
+2026-11-05T02:29:39.7252009Z  * [new branch]        sol/stable-main-final-20261104 -> origin/sol/stable-main-final-20261104
+2026-11-05T02:29:39.7254530Z  * [new branch]        sol/status-review-batch-1 -> origin/sol/status-review-batch-1
+2026-11-05T02:29:39.7257069Z  * [new branch]        sol/tribonian-finalization-publish -> origin/sol/tribonian-finalization-publish
+2026-11-05T02:29:39.7259898Z  * [new branch]        sol/tribonian-finalization-recovery -> origin/sol/tribonian-finalization-recovery
+2026-11-05T02:29:39.7262676Z  * [new branch]        sol/tribonian-publication-record -> origin/sol/tribonian-publication-record
+2026-11-05T02:29:39.7265078Z  * [new branch]        sol/valla-20261020      -> origin/sol/valla-20261020
+2026-11-05T02:29:39.7267384Z  * [new branch]        stage17-unified-evidence-20261017 -> origin/stage17-unified-evidence-20261017
+2026-11-05T02:29:39.7269636Z  * [new branch]        unblock-claims          -> origin/unblock-claims
+2026-11-05T02:29:39.7271474Z  * [new branch]        wire-new-sources        -> origin/wire-new-sources
+2026-11-05T02:29:39.7273264Z  * [new branch]        wpa-lists               -> origin/wpa-lists
+2026-11-05T02:29:39.7276837Z [command]/usr/bin/git branch --list --remote origin/main
+2026-11-05T02:29:39.7278236Z   origin/main
+2026-11-05T02:29:39.7280842Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-11-05T02:29:39.7282323Z 81ebb186f8cba72ef4fcf4866cd34ef32a59c463
+2026-11-05T02:29:39.7285749Z ##[endgroup]
+2026-11-05T02:29:39.7287491Z ##[group]Determining the checkout info
+2026-11-05T02:29:39.7289587Z ##[endgroup]
+2026-11-05T02:29:39.7291314Z ##[group]Setting up sparse checkout
+2026-11-05T02:29:39.7292772Z [command]/usr/bin/git config core.sparseCheckout true
+2026-11-05T02:29:39.7296074Z [command]/usr/bin/git rev-parse --git-path info/sparse-checkout
+2026-11-05T02:29:39.7297627Z .git/info/sparse-checkout
+2026-11-05T02:29:39.7300686Z ##[endgroup]
+2026-11-05T02:29:39.7302372Z ##[group]Checking out the ref
+2026-11-05T02:29:39.7304244Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-05T02:29:44.0517995Z Updating files:   0% (1/8051)
+2026-11-05T02:29:44.1958631Z Updating files:   1% (81/8051)
+2026-11-05T02:29:44.2003398Z Updating files:   2% (162/8051)
+2026-11-05T02:29:44.2191309Z Updating files:   3% (242/8051)
+2026-11-05T02:29:44.2527205Z Updating files:   4% (323/8051)
+2026-11-05T02:29:44.2776765Z Updating files:   5% (403/8051)
+2026-11-05T02:29:44.2975957Z Updating files:   6% (484/8051)
+2026-11-05T02:29:44.3069613Z Updating files:   7% (564/8051)
+2026-11-05T02:29:44.3140225Z Updating files:   8% (645/8051)
+2026-11-05T02:29:44.3224340Z Updating files:   9% (725/8051)
+2026-11-05T02:29:44.3696555Z Updating files:  10% (806/8051)
+2026-11-05T02:29:44.3770211Z Updating files:  11% (886/8051)
+2026-11-05T02:29:44.3848098Z Updating files:  12% (967/8051)
+2026-11-05T02:29:44.3938012Z Updating files:  13% (1047/8051)
+2026-11-05T02:29:44.4031296Z Updating files:  14% (1128/8051)
+2026-11-05T02:29:44.4118845Z Updating files:  15% (1208/8051)
+2026-11-05T02:29:44.4215158Z Updating files:  16% (1289/8051)
+2026-11-05T02:29:44.4316012Z Updating files:  17% (1369/8051)
+2026-11-05T02:29:44.4400290Z Updating files:  18% (1450/8051)
+2026-11-05T02:29:44.4509388Z Updating files:  19% (1530/8051)
+2026-11-05T02:29:44.4595367Z Updating files:  20% (1611/8051)
+2026-11-05T02:29:44.4681747Z Updating files:  21% (1691/8051)
+2026-11-05T02:29:44.4762085Z Updating files:  22% (1772/8051)
+2026-11-05T02:29:44.4834000Z Updating files:  23% (1852/8051)
+2026-11-05T02:29:44.4906856Z Updating files:  24% (1933/8051)
+2026-11-05T02:29:44.4972549Z Updating files:  25% (2013/8051)
+2026-11-05T02:29:44.5033197Z Updating files:  26% (2094/8051)
+2026-11-05T02:29:44.5095152Z Updating files:  27% (2174/8051)
+2026-11-05T02:29:44.5162765Z Updating files:  28% (2255/8051)
+2026-11-05T02:29:44.5237927Z Updating files:  29% (2335/8051)
+2026-11-05T02:29:44.5300776Z Updating files:  30% (2416/8051)
+2026-11-05T02:29:44.5362544Z Updating files:  31% (2496/8051)
+2026-11-05T02:29:44.5425372Z Updating files:  32% (2577/8051)
+2026-11-05T02:29:44.5483452Z Updating files:  33% (2657/8051)
+2026-11-05T02:29:44.5551272Z Updating files:  34% (2738/8051)
+2026-11-05T02:29:44.5645612Z Updating files:  35% (2818/8051)
+2026-11-05T02:29:44.5706046Z Updating files:  36% (2899/8051)
+2026-11-05T02:29:44.5771660Z Updating files:  37% (2979/8051)
+2026-11-05T02:29:44.5833386Z Updating files:  38% (3060/8051)
+2026-11-05T02:29:44.5897827Z Updating files:  39% (3140/8051)
+2026-11-05T02:29:44.5964025Z Updating files:  40% (3221/8051)
+2026-11-05T02:29:44.6030504Z Updating files:  41% (3301/8051)
+2026-11-05T02:29:44.6124492Z Updating files:  42% (3382/8051)
+2026-11-05T02:29:44.6227340Z Updating files:  43% (3462/8051)
+2026-11-05T02:29:44.6328778Z Updating files:  44% (3543/8051)
+2026-11-05T02:29:44.6426765Z Updating files:  45% (3623/8051)
+2026-11-05T02:29:44.6535943Z Updating files:  46% (3704/8051)
+2026-11-05T02:29:44.6647731Z Updating files:  47% (3784/8051)
+2026-11-05T02:29:44.6755551Z Updating files:  48% (3865/8051)
+2026-11-05T02:29:44.6855172Z Updating files:  49% (3945/8051)
+2026-11-05T02:29:44.6964561Z Updating files:  50% (4026/8051)
+2026-11-05T02:29:44.7069686Z Updating files:  51% (4107/8051)
+2026-11-05T02:29:44.7158710Z Updating files:  52% (4187/8051)
+2026-11-05T02:29:44.7226000Z Updating files:  53% (4268/8051)
+2026-11-05T02:29:44.7296047Z Updating files:  54% (4348/8051)
+2026-11-05T02:29:44.7369767Z Updating files:  55% (4429/8051)
+2026-11-05T02:29:44.7447943Z Updating files:  56% (4509/8051)
+2026-11-05T02:29:44.7552273Z Updating files:  57% (4590/8051)
+2026-11-05T02:29:44.7630688Z Updating files:  58% (4670/8051)
+2026-11-05T02:29:44.7757447Z Updating files:  59% (4751/8051)
+2026-11-05T02:29:44.7838782Z Updating files:  60% (4831/8051)
+2026-11-05T02:29:44.7995983Z Updating files:  61% (4912/8051)
+2026-11-05T02:29:44.8094866Z Updating files:  62% (4992/8051)
+2026-11-05T02:29:44.8095493Z Updating files:  62% (5072/8051)
+2026-11-05T02:29:44.8147592Z Updating files:  63% (5073/8051)
+2026-11-05T02:29:44.8228759Z Updating files:  64% (5153/8051)
+2026-11-05T02:29:44.8325027Z Updating files:  65% (5234/8051)
+2026-11-05T02:29:44.8409672Z Updating files:  66% (5314/8051)
+2026-11-05T02:29:44.8475186Z Updating files:  67% (5395/8051)
+2026-11-05T02:29:44.8541126Z Updating files:  68% (5475/8051)
+2026-11-05T02:29:44.8606289Z Updating files:  69% (5556/8051)
+2026-11-05T02:29:44.8684773Z Updating files:  70% (5636/8051)
+2026-11-05T02:29:44.8757994Z Updating files:  71% (5717/8051)
+2026-11-05T02:29:44.8826236Z Updating files:  72% (5797/8051)
+2026-11-05T02:29:44.8901936Z Updating files:  73% (5878/8051)
+2026-11-05T02:29:44.8980080Z Updating files:  74% (5958/8051)
+2026-11-05T02:29:44.9053554Z Updating files:  75% (6039/8051)
+2026-11-05T02:29:44.9140297Z Updating files:  76% (6119/8051)
+2026-11-05T02:29:44.9224703Z Updating files:  77% (6200/8051)
+2026-11-05T02:29:44.9296696Z Updating files:  78% (6280/8051)
+2026-11-05T02:29:44.9376543Z Updating files:  79% (6361/8051)
+2026-11-05T02:29:44.9452987Z Updating files:  80% (6441/8051)
+2026-11-05T02:29:44.9537106Z Updating files:  81% (6522/8051)
+2026-11-05T02:29:44.9622165Z Updating files:  82% (6602/8051)
+2026-11-05T02:29:44.9707045Z Updating files:  83% (6683/8051)
+2026-11-05T02:29:44.9789912Z Updating files:  84% (6763/8051)
+2026-11-05T02:29:44.9870111Z Updating files:  85% (6844/8051)
+2026-11-05T02:29:44.9958351Z Updating files:  86% (6924/8051)
+2026-11-05T02:29:45.0064296Z Updating files:  87% (7005/8051)
+2026-11-05T02:29:45.0169745Z Updating files:  88% (7085/8051)
+2026-11-05T02:29:45.0301078Z Updating files:  89% (7166/8051)
+2026-11-05T02:29:45.0447819Z Updating files:  90% (7246/8051)
+2026-11-05T02:29:45.0588778Z Updating files:  91% (7327/8051)
+2026-11-05T02:29:45.0701980Z Updating files:  92% (7407/8051)
+2026-11-05T02:29:45.0807455Z Updating files:  93% (7488/8051)
+2026-11-05T02:29:45.0994618Z Updating files:  94% (7568/8051)
+2026-11-05T02:29:45.1080263Z Updating files:  95% (7649/8051)
+2026-11-05T02:29:45.1164514Z Updating files:  96% (7729/8051)
+2026-11-05T02:29:45.1440238Z Updating files:  97% (7810/8051)
+2026-11-05T02:29:45.1783678Z Updating files:  98% (7890/8051)
+2026-11-05T02:29:45.1953031Z Updating files:  99% (7971/8051)
+2026-11-05T02:29:45.1953458Z Updating files: 100% (8051/8051)
+2026-11-05T02:29:45.1953833Z Updating files: 100% (8051/8051), done.
+2026-11-05T02:29:45.2881926Z Switched to a new branch 'main'
+2026-11-05T02:29:45.2888181Z branch 'main' set up to track 'origin/main'.
+2026-11-05T02:29:45.5124664Z ##[endgroup]
+2026-11-05T02:29:45.5177436Z [command]/usr/bin/git log -1 --format=%H
+2026-11-05T02:29:45.5205502Z 81ebb186f8cba72ef4fcf4866cd34ef32a59c463
+2026-11-05T02:29:45.5492453Z ##[group]Run actions/setup-python@v5
+2026-11-05T02:29:45.5492762Z with:
+2026-11-05T02:29:45.5492976Z   python-version: 3.12
+2026-11-05T02:29:45.5493201Z   check-latest: false
+2026-11-05T02:29:45.5495822Z   token: ***
+2026-11-05T02:29:45.5496043Z   update-environment: true
+2026-11-05T02:29:45.5496293Z   allow-prereleases: false
+2026-11-05T02:29:45.5496583Z   freethreaded: false
+2026-11-05T02:29:45.5496792Z env:
+2026-11-05T02:29:45.5496976Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:29:45.5497192Z ##[endgroup]
+2026-11-05T02:29:45.6949145Z ##[group]Installed versions
+2026-11-05T02:29:45.7065063Z (node:2479) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T02:29:45.7066485Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T02:29:45.7067319Z Successfully set up CPython (3.12.16)
+2026-11-05T02:29:45.7068719Z ##[endgroup]
+2026-11-05T02:29:45.7286432Z ##[group]Run python .github/scripts/pick_jobs.py
+2026-11-05T02:29:45.7286900Z [36;1mpython .github/scripts/pick_jobs.py[0m
+2026-11-05T02:29:45.7381910Z shell: /usr/bin/bash -e {0}
+2026-11-05T02:29:45.7382372Z env:
+2026-11-05T02:29:45.7382744Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:29:45.7383417Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:29:45.7384655Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-05T02:29:45.7385193Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:29:45.7385608Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:29:45.7386009Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:29:45.7386407Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-05T02:29:45.7386735Z   EVENT: push
+2026-11-05T02:29:45.7386930Z   SCHEDULE: 
+2026-11-05T02:29:45.7387117Z   INPUT_JOB: 
+2026-11-05T02:29:45.7387315Z   DIAGNOSTIC: 
+2026-11-05T02:29:45.7387605Z   BEFORE: ea1e52f5a675b45646d9d4f466d652b5259038eb
+2026-11-05T02:29:45.7387941Z   AFTER: 81ebb186f8cba72ef4fcf4866cd34ef32a59c463
+2026-11-05T02:29:45.7388243Z   DEFAULT_BRANCH: main
+2026-11-05T02:29:45.7388456Z ##[endgroup]
+2026-11-05T02:29:45.8337271Z Jobs to run: example-hello, claim-checker, claim-kit, daily-digest, kean, lachmann
+2026-11-05T02:29:45.8532904Z ##[group]Run actions/cache@v4
+2026-11-05T02:29:45.8533181Z with:
+2026-11-05T02:29:45.8533379Z   path: .job-cache
+2026-11-05T02:29:45.8533616Z   key: job-downloads-v1-main-41955554793-1
+2026-11-05T02:29:45.8533920Z   restore-keys: job-downloads-v1-main-
+
+2026-11-05T02:29:45.8534470Z   enableCrossOsArchive: false
+2026-11-05T02:29:45.8534725Z   fail-on-cache-miss: false
+2026-11-05T02:29:45.8534957Z   lookup-only: false
+2026-11-05T02:29:45.8535166Z   save-always: false
+2026-11-05T02:29:45.8535363Z env:
+2026-11-05T02:29:45.8535553Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:29:45.8535853Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:29:45.8536314Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-05T02:29:45.8536768Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:29:45.8537156Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:29:45.8537598Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:29:45.8538002Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-05T02:29:45.8538333Z ##[endgroup]
+2026-11-05T02:29:45.9639124Z (node:2493) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T02:29:45.9640091Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T02:29:46.0454596Z Cache hit for restore-key: job-downloads-v1-main-41924111773-1
+2026-11-05T02:29:46.0576193Z (node:2493) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-05T02:29:47.1086362Z Received 230686720 of 2105455934 (11.0%), 218.7 MBs/sec
+2026-11-05T02:29:48.1070553Z Received 507510784 of 2105455934 (24.1%), 241.4 MBs/sec
+2026-11-05T02:29:49.1095202Z Received 771751936 of 2105455934 (36.7%), 244.7 MBs/sec
+2026-11-05T02:29:50.1164264Z Received 1052770304 of 2105455934 (50.0%), 250.1 MBs/sec
+2026-11-05T02:29:51.1164572Z Received 1317011456 of 2105455934 (62.6%), 250.4 MBs/sec
+2026-11-05T02:29:52.1235877Z Received 1564475392 of 2105455934 (74.3%), 248.0 MBs/sec
+2026-11-05T02:29:53.1265991Z Received 1837105152 of 2105455934 (87.3%), 249.4 MBs/sec
+2026-11-05T02:29:54.1066036Z Received 2105455934 of 2105455934 (100.0%), 250.8 MBs/sec
+2026-11-05T02:29:54.1068379Z Cache Size: ~2008 MB (2105455934 B)
+2026-11-05T02:29:54.1187929Z [command]/usr/bin/tar -xf /home/runner/work/_temp/97f30734-b677-474e-94f7-238bccddf935/cache.tzst -P -C /home/runner/work/Executive-Orders/Executive-Orders --use-compress-program unzstd
+2026-11-05T02:30:03.3837575Z Cache restored successfully
+2026-11-05T02:30:03.4797465Z Cache restored from key: job-downloads-v1-main-41924111773-1
+2026-11-05T02:30:03.5977898Z ##[group]Run python .github/scripts/materialize_job_inputs.py
+2026-11-05T02:30:03.5978494Z [36;1mpython .github/scripts/materialize_job_inputs.py[0m
+2026-11-05T02:30:03.6031819Z shell: /usr/bin/bash -e {0}
+2026-11-05T02:30:03.6032106Z env:
+2026-11-05T02:30:03.6032330Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:30:03.6032684Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:30:03.6033177Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-05T02:30:03.6033647Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:30:03.6034319Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:30:03.6034788Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:30:03.6035236Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-05T02:30:03.6035726Z   JOBS: example-hello claim-checker claim-kit daily-digest kean lachmann
+2026-11-05T02:30:03.6036139Z ##[endgroup]
+2026-11-05T02:33:08.8014651Z Selected input materialization: {"base_commit": "81ebb186f8cba72ef4fcf4866cd34ef32a59c463", "compatibility_fallback_jobs": {"claim-checker": "unaudited_job", "claim-kit": "unaudited_job", "daily-digest": "unaudited_job", "kean": "unaudited_job", "lachmann": "unaudited_job"}, "input_objects_sha256": "536a621681e7b17fdbdd1342f07a3f3ab163bc091033e930f94a2e79594e99f7", "jobs": ["example-hello", "claim-checker", "claim-kit", "daily-digest", "kean", "lachmann"], "materialized_bytes": 9577284790, "path_count": 104093, "per_job": {"claim-checker": {"inputs_sha256": "e7734cd62bb312b63022e2de829f90bfee1a975d0c8ef343620e30c80eb7e831", "path_count": 104070, "sparse_pattern_count": 73612}, "claim-kit": {"inputs_sha256": "cd60a24ad218e8db4f38f0c871f5a5b5110e11b651f2659d1aafb726cd2d82d2", "path_count": 103140, "sparse_pattern_count": 66282}, "daily-digest": {"inputs_sha256": "e070aaddeea2e7f231297cf14ec33a0c63dfaf3ebb22df471223fe512f014d46", "path_count": 86194, "sparse_pattern_count": 142}, "example-hello": {"inputs_sha256": "17f22112b07b061a9b0817e9a90498635bcf36cb45f1c9e9f473a24dc97df4de", "path_count": 55, "sparse_pattern_count": 5}, "kean": {"inputs_sha256": "62bea16fb3dc23238f787fb9a24dd0573f83daa9420e122dfe6becbc88d62b2c", "path_count": 84958, "sparse_pattern_count": 306}, "lachmann": {"inputs_sha256": "9a229ee7254547c0de081f2d9f69a14b315e1f21f262b383804bd10aa382c103", "path_count": 84647, "sparse_pattern_count": 6672}}, "schema": 1, "sparse_pattern_count": 28, "uncompacted_sparse_pattern_count": 83812}
+2026-11-05T02:33:08.8543634Z ##[group]Run bash .github/scripts/run_jobs.sh
+2026-11-05T02:33:08.8544021Z [36;1mbash .github/scripts/run_jobs.sh[0m
+2026-11-05T02:33:08.8693861Z shell: /usr/bin/bash -e {0}
+2026-11-05T02:33:08.8694316Z env:
+2026-11-05T02:33:08.8694562Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:33:08.8694948Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:33:08.8695501Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-05T02:33:08.8696041Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:33:08.8696512Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:33:08.8696987Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:33:08.8697467Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-05T02:33:08.8698020Z   JOBS: example-hello claim-checker claim-kit daily-digest kean lachmann
+2026-11-05T02:33:08.8698476Z   DOWNSTREAM_ONLY: 
+2026-11-05T02:33:08.8698792Z   TRIGGER: push by D3m0sthene5
+2026-11-05T02:33:08.8699081Z   GOOGLE_CSE_KEY: 
+2026-11-05T02:33:08.8699320Z   GOOGLE_CSE_CX: 
+2026-11-05T02:33:08.8699573Z   BING_SEARCH_KEY: 
+2026-11-05T02:33:08.8699817Z   BRAVE_SEARCH_KEY: 
+2026-11-05T02:33:08.8700070Z   SERPAPI_KEY: 
+2026-11-05T02:33:08.8700508Z   NARA_API_KEY: 
+2026-11-05T02:33:08.8700744Z   GOVINFO_API_KEY: 
+2026-11-05T02:33:08.8700995Z ##[endgroup]
+2026-11-05T02:33:08.9468521Z ##[group]Job example-hello
+2026-11-05T02:33:09.3799113Z {
+2026-11-05T02:33:09.3799694Z   "python": "3.12.16",
+2026-11-05T02:33:09.3800244Z   "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43",
+2026-11-05T02:33:09.3800774Z   "cpus": 4,
+2026-11-05T02:33:09.3801097Z   "free_disk_gb": 77.4,
+2026-11-05T02:33:09.3801459Z   "stage19_files_visible": [
+2026-11-05T02:33:09.3801828Z     "CLAIM_SCHEMA.md",
+2026-11-05T02:33:09.3802177Z     "FUNNEL.md",
+2026-11-05T02:33:09.3802506Z     "LOC_LIVE_TRIAL.json",
+2026-11-05T02:33:09.3802846Z     "README.md",
+2026-11-05T02:33:09.3803173Z     "code",
+2026-11-05T02:33:09.3803462Z     "output",
+2026-11-05T02:33:09.3803760Z     "ranger_output"
+2026-11-05T02:33:09.3804284Z   ]
+2026-11-05T02:33:09.3804564Z }
+2026-11-05T02:33:14.4465340Z {"bytes_evicted": 0, "bytes_retained": 0, "cap_bytes": 1073741824}
+2026-11-05T02:33:14.4609497Z ##[endgroup]
+2026-11-05T02:33:14.4610069Z ##[group]Job claim-checker
+2026-11-05T02:33:17.8351546Z 
+2026-11-05T02:33:17.8352262Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-05T02:33:17.8352877Z [notice] To update, run: pip install --upgrade pip
+2026-11-05T02:33:18.3898173Z test_archived_web_capture_is_refetched_and_rehashed (test_checker.CheckerTests.test_archived_web_capture_is_refetched_and_rehashed) ... ok
+2026-11-05T02:33:18.4011436Z test_bad_claim_is_caught (test_checker.CheckerTests.test_bad_claim_is_caught) ... ok
+2026-11-05T02:33:18.4106152Z test_csv_size_guard (test_checker.CheckerTests.test_csv_size_guard) ... ok
+2026-11-05T02:33:18.4201287Z test_dates (test_checker.CheckerTests.test_dates) ... ok
+2026-11-05T02:33:18.4297155Z test_fetch_with_class_based_ladder (test_checker.CheckerTests.test_fetch_with_class_based_ladder) ... ok
+2026-11-05T02:33:18.4393450Z test_good_claim_passes_everything (test_checker.CheckerTests.test_good_claim_passes_everything) ... ok
+2026-11-05T02:33:18.4644629Z test_gpo_published_hash_counts_as_held (test_checker.CheckerTests.test_gpo_published_hash_counts_as_held) ... ok
+2026-11-05T02:33:18.4802259Z test_hash_spelling_and_archival_alias_cannot_hide_transcription (test_checker.CheckerTests.test_hash_spelling_and_archival_alias_cannot_hide_transcription) ... ok
+2026-11-05T02:33:18.4920112Z test_local_bytes_differ_from_record (test_checker.CheckerTests.test_local_bytes_differ_from_record) ... ok
+2026-11-05T02:33:18.5120904Z test_main_end_to_end_with_limit_and_fetch (test_checker.CheckerTests.test_main_end_to_end_with_limit_and_fetch) ... ok
+2026-11-05T02:33:18.5237722Z test_main_with_no_claims (test_checker.CheckerTests.test_main_with_no_claims) ... ok
+2026-11-05T02:33:18.5239650Z test_malformed_values_do_not_stop_the_run (test_checker.CheckerTests.test_malformed_values_do_not_stop_the_run)
+2026-11-05T02:33:18.5415937Z A list-valued scope_id makes claim_gate raise; that claim is reported and the run goes on. ... ok
+2026-11-05T02:33:18.5606375Z test_nested_source_lists_require_transcription_disclosure (test_checker.CheckerTests.test_nested_source_lists_require_transcription_disclosure) ... ok
+2026-11-05T02:33:18.5703253Z test_opus_hash_only_and_committed_index (test_checker.CheckerTests.test_opus_hash_only_and_committed_index) ... ok
+2026-11-05T02:33:18.5803650Z test_opus_text_pack (test_checker.CheckerTests.test_opus_text_pack) ... ok
+2026-11-05T02:33:18.5900289Z test_overlay_proposal_key_is_typed_metadata_not_a_second_order (test_checker.CheckerTests.test_overlay_proposal_key_is_typed_metadata_not_a_second_order) ... ok
+2026-11-05T02:33:18.5988396Z test_partial_claim_steps (test_checker.CheckerTests.test_partial_claim_steps) ... ok
+2026-11-05T02:33:18.6082990Z test_pdf_quote (test_checker.CheckerTests.test_pdf_quote) ... ok
+2026-11-05T02:33:18.6181457Z test_quote_inside_a_sources_list_item (test_checker.CheckerTests.test_quote_inside_a_sources_list_item) ... ok
+2026-11-05T02:33:18.6306844Z test_source_of_another_order (test_checker.CheckerTests.test_source_of_another_order) ... ok
+2026-11-05T02:33:18.6386243Z test_source_text_path_may_point_into_another_jobs_output (test_checker.CheckerTests.test_source_text_path_may_point_into_another_jobs_output) ... ok
+2026-11-05T02:33:18.6480870Z test_too_short_quotation (test_checker.CheckerTests.test_too_short_quotation) ... ok
+2026-11-05T02:33:18.6595911Z test_transcription_hash_cannot_be_laundered_through_text_path_alias (test_checker.CheckerTests.test_transcription_hash_cannot_be_laundered_through_text_path_alias) ... ok
+2026-11-05T02:33:18.6709442Z test_unknown_instrument_and_year_only_signing (test_checker.CheckerTests.test_unknown_instrument_and_year_only_signing) ... ok
+2026-11-05T02:33:18.6823030Z test_unlabeled_transcription_cannot_use_old_checker_success (test_checker.CheckerTests.test_unlabeled_transcription_cannot_use_old_checker_success) ... ok
+2026-11-05T02:33:18.6918832Z test_verbatim_matched_date_in_embedded_record (test_checker.CheckerTests.test_verbatim_matched_date_in_embedded_record) ... ok
+2026-11-05T02:33:18.7009206Z test_verify_by_download_uses_cache_and_budget (test_checker.CheckerTests.test_verify_by_download_uses_cache_and_budget) ... ok
+2026-11-05T02:33:18.7157870Z test_working_text_does_not_waive_custody_only_or_missing_ending (test_checker.CheckerTests.test_working_text_does_not_waive_custody_only_or_missing_ending) ... ok
+2026-11-05T02:33:18.7281578Z test_working_text_passes_separate_policy_without_original_upgrade (test_checker.CheckerTests.test_working_text_passes_separate_policy_without_original_upgrade) ... ok
+2026-11-05T02:33:18.7283740Z test_cited_orders (test_checker.PureFunctionTests.test_cited_orders) ... ok
+2026-11-05T02:33:18.7289421Z test_find_quote (test_checker.PureFunctionTests.test_find_quote) ... ok
+2026-11-05T02:33:18.7296764Z test_html_and_lfs (test_checker.PureFunctionTests.test_html_and_lfs) ... ok
+2026-11-05T02:33:18.7298048Z test_norm_url_and_sha (test_checker.PureFunctionTests.test_norm_url_and_sha) ... ok
+2026-11-05T02:33:18.7299462Z test_prepared_text_is_reused (test_checker.PureFunctionTests.test_prepared_text_is_reused) ... ok
+2026-11-05T02:33:18.7388901Z test_replica_bytes_are_indexed_without_original_authentication (test_checker.ReplicaFragmentTests.test_replica_bytes_are_indexed_without_original_authentication) ... ok
+2026-11-05T02:33:18.7482912Z test_replica_missing_bytes_remain_record_only_and_wrong_hash_fails (test_checker.ReplicaFragmentTests.test_replica_missing_bytes_remain_record_only_and_wrong_hash_fails) ... ok
+2026-11-05T02:33:18.7568503Z test_replica_path_escape_is_refused (test_checker.ReplicaFragmentTests.test_replica_path_escape_is_refused) ... ok
+2026-11-05T02:33:18.7708152Z test_committed_volume_behind_an_lfs_pointer_is_held (test_checker.SourceBookTests.test_committed_volume_behind_an_lfs_pointer_is_held) ... ok
+2026-11-05T02:33:18.7895786Z test_volume_bytes_on_this_machine_are_rehashed (test_checker.SourceBookTests.test_volume_bytes_on_this_machine_are_rehashed) ... ok
+2026-11-05T02:33:18.8053577Z test_volume_missing_from_the_checkout_is_not_held (test_checker.SourceBookTests.test_volume_missing_from_the_checkout_is_not_held) ... ok
+2026-11-05T02:33:18.8182886Z test_volume_pointer_to_other_bytes_is_not_held (test_checker.SourceBookTests.test_volume_pointer_to_other_bytes_is_not_held) ... ok
+2026-11-05T02:33:18.8476267Z test_association_hash_normalization_matches_source_adapter (test_proquest_inputs.ProQuestInputsTests.test_association_hash_normalization_matches_source_adapter) ... ok
+2026-11-05T02:33:18.9311800Z test_automatic_effective_selection_extends_beyond_three (test_proquest_inputs.ProQuestInputsTests.test_automatic_effective_selection_extends_beyond_three) ... ok
+2026-11-05T02:33:19.0237869Z test_batch_deferral_and_resume_do_not_reverify_prefix (test_proquest_inputs.ProQuestInputsTests.test_batch_deferral_and_resume_do_not_reverify_prefix) ... ok
+2026-11-05T02:33:19.0438544Z test_budget_refused (test_proquest_inputs.ProQuestInputsTests.test_budget_refused) ... ok
+2026-11-05T02:33:19.0730921Z test_byte_budget_deferred_and_resumed (test_proquest_inputs.ProQuestInputsTests.test_byte_budget_deferred_and_resumed) ... ok
+2026-11-05T02:33:19.0957512Z test_changed_selection_refuses_resume_before_writes (test_proquest_inputs.ProQuestInputsTests.test_changed_selection_refuses_resume_before_writes) ... ok
+2026-11-05T02:33:19.1107575Z test_confirmations_are_not_source_references (test_proquest_inputs.ProQuestInputsTests.test_confirmations_are_not_source_references) ... ok
+2026-11-05T02:33:19.1257936Z test_conflicting_path_hash_association_refused (test_proquest_inputs.ProQuestInputsTests.test_conflicting_path_hash_association_refused) ... ok
+2026-11-05T02:33:19.1408750Z test_cross_identity_reference_refused (test_proquest_inputs.ProQuestInputsTests.test_cross_identity_reference_refused) ... ok
+2026-11-05T02:33:19.1559642Z test_evidence_grade_and_association_required (test_proquest_inputs.ProQuestInputsTests.test_evidence_grade_and_association_required) ... ok
+2026-11-05T02:33:19.1730620Z test_existing_wrong_bytes_never_overwritten (test_proquest_inputs.ProQuestInputsTests.test_existing_wrong_bytes_never_overwritten) ... ok
+2026-11-05T02:33:19.2027456Z test_explicit_selection_preserves_three_case_compatibility (test_proquest_inputs.ProQuestInputsTests.test_explicit_selection_preserves_three_case_compatibility) ... ok
+2026-11-05T02:33:19.2256984Z test_growing_corpus_does_not_exhaust_per_file_bound (test_proquest_inputs.ProQuestInputsTests.test_growing_corpus_does_not_exhaust_per_file_bound) ... ok
+2026-11-05T02:33:19.2396242Z test_invocation_bounds_cannot_be_raised (test_proquest_inputs.ProQuestInputsTests.test_invocation_bounds_cannot_be_raised) ... ok
+2026-11-05T02:33:19.2548441Z test_last_filename_and_physical_line_are_effective (test_proquest_inputs.ProQuestInputsTests.test_last_filename_and_physical_line_are_effective) ... ok
+2026-11-05T02:33:19.2717793Z test_lfs_pointer_never_counts_as_bytes (test_proquest_inputs.ProQuestInputsTests.test_lfs_pointer_never_counts_as_bytes) ... ok
+2026-11-05T02:33:19.2906042Z test_local_matching_hash_must_match_pinned_blob (test_proquest_inputs.ProQuestInputsTests.test_local_matching_hash_must_match_pinned_blob) ... ok
+2026-11-05T02:33:19.3059592Z test_malformed_association_identity_does_not_crash_job (test_proquest_inputs.ProQuestInputsTests.test_malformed_association_identity_does_not_crash_job) ... ok
+2026-11-05T02:33:19.3211281Z test_malformed_claim_file_fails_before_restoration (test_proquest_inputs.ProQuestInputsTests.test_malformed_claim_file_fails_before_restoration) ... ok
+2026-11-05T02:33:19.3434799Z test_missing_pinned_object_is_reported_without_writing (test_proquest_inputs.ProQuestInputsTests.test_missing_pinned_object_is_reported_without_writing) ... ok
+2026-11-05T02:33:19.3580765Z test_oversized_claim_file_fails_before_restoration (test_proquest_inputs.ProQuestInputsTests.test_oversized_claim_file_fails_before_restoration) ... ok
+2026-11-05T02:33:19.3731144Z test_path_escape_refused_before_git (test_proquest_inputs.ProQuestInputsTests.test_path_escape_refused_before_git) ... ok
+2026-11-05T02:33:19.4010781Z test_restores_exact_cited_blob (test_proquest_inputs.ProQuestInputsTests.test_restores_exact_cited_blob) ... ok
+2026-11-05T02:33:19.4235636Z test_shared_pdf_deduplicated_with_every_claim_reference (test_proquest_inputs.ProQuestInputsTests.test_shared_pdf_deduplicated_with_every_claim_reference) ... ok
+2026-11-05T02:33:19.4385300Z test_symlink_refused (test_proquest_inputs.ProQuestInputsTests.test_symlink_refused) ... ok
+2026-11-05T02:33:19.4676343Z test_tracked_lfs_pointer_is_not_materialized_as_pdf (test_proquest_inputs.ProQuestInputsTests.test_tracked_lfs_pointer_is_not_materialized_as_pdf) ... ok
+2026-11-05T02:33:19.4829051Z test_uncited_scan_not_materialized (test_proquest_inputs.ProQuestInputsTests.test_uncited_scan_not_materialized) ... ok
+2026-11-05T02:33:19.5000098Z test_untracked_path_refused (test_proquest_inputs.ProQuestInputsTests.test_untracked_path_refused) ... ok
+2026-11-05T02:33:19.5220598Z test_wrong_git_hash_refused (test_proquest_inputs.ProQuestInputsTests.test_wrong_git_hash_refused) ... ok
+2026-11-05T02:33:19.5222051Z 
+2026-11-05T02:33:19.5222377Z ----------------------------------------------------------------------
+2026-11-05T02:33:19.5223046Z Ran 70 tests in 1.145s
+2026-11-05T02:33:19.5223277Z 
+2026-11-05T02:33:19.5223427Z OK
+2026-11-05T02:33:19.5224324Z   fetch https://example.gov/x.pdf: fetched_and_matches_claim
+2026-11-05T02:33:19.5226783Z Loading inputs from /tmp/claim-checker-test-c2fgwx8k ...
+2026-11-05T02:33:19.5227403Z   universe: 5 orders; provisional statuses: 2
+2026-11-05T02:33:19.5228626Z   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
+2026-11-05T02:33:19.5230841Z   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
+2026-11-05T02:33:19.5232492Z   missing research/stage20/output/STATUTE_FETCH_INDEX.csv
+2026-11-05T02:33:19.5233285Z   missing research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
+2026-11-05T02:33:19.5234017Z   missing research/stage18/SOURCE_MANIFEST.json
+2026-11-05T02:33:19.5235741Z   Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
+2026-11-05T02:33:19.5236834Z   no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
+2026-11-05T02:33:19.5237280Z   pypdf: 6.20.1
+2026-11-05T02:33:19.5237889Z   could not read claim research/readiness/claims/a.jsonl:2: JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2026-11-05T02:33:19.5238694Z   fetch https://www.govinfo.gov/x/EO_90001.pdf: fetched_different_bytes
+2026-11-05T02:33:19.5239008Z 
+2026-11-05T02:33:19.5239180Z Checked 2 claim(s) from 2 file(s) (limited to 3 of 4 lines).
+2026-11-05T02:33:19.5239584Z   All checks passed: 1; mechanical fail: 1; gate passed: 2
+2026-11-05T02:33:19.5240049Z   Source references: {'held_but_different_hash': 3, 'held_bytes_verified': 11}
+2026-11-05T02:33:19.5240483Z   Source identity: {'recorded_for_this_order': 3}
+2026-11-05T02:33:19.5240939Z   Quotations: {'exact': 3, 'normalised': 1, 'other_copy_exact': 1, 'other_copy_normalised': 1}
+2026-11-05T02:33:19.5241407Z   Fetch attempts: {'fetched_different_bytes': 1}
+2026-11-05T02:33:19.5241939Z   Outputs in /tmp/claim-checker-test-c2fgwx8k/out (0.0s). These are mechanical checks, not legal findings.
+2026-11-05T02:33:19.5242528Z Loading inputs from /tmp/claim-checker-test-fq9cjr4k ...
+2026-11-05T02:33:19.5242896Z   universe: 5 orders; provisional statuses: 2
+2026-11-05T02:33:19.5243854Z   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
+2026-11-05T02:33:19.5246330Z   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
+2026-11-05T02:33:19.5247737Z   missing research/stage20/output/STATUTE_FETCH_INDEX.csv
+2026-11-05T02:33:19.5248167Z   missing research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
+2026-11-05T02:33:19.5248576Z   missing research/stage18/SOURCE_MANIFEST.json
+2026-11-05T02:33:19.5249408Z   Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
+2026-11-05T02:33:19.5250354Z   no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
+2026-11-05T02:33:19.5250795Z   pypdf: 6.20.1
+2026-11-05T02:33:19.5250928Z 
+2026-11-05T02:33:19.5251037Z Checked 0 claim(s) from 0 file(s).
+2026-11-05T02:33:19.5251413Z   No claim files yet in research/readiness/claims/ - nothing to check.
+2026-11-05T02:33:19.5251843Z   All checks passed: 0; mechanical fail: 0; gate passed: 0
+2026-11-05T02:33:19.5252356Z   Source references: none
+2026-11-05T02:33:19.5252601Z   Source identity: none
+2026-11-05T02:33:19.5252825Z   Quotations: none
+2026-11-05T02:33:19.5253287Z   Outputs in /tmp/claim-checker-test-fq9cjr4k/out0 (0.0s). These are mechanical checks, not legal findings.
+2026-11-05T02:33:19.5253868Z   note: JOB_LIMIT='x' is not a whole number; checking every claim
+2026-11-05T02:33:19.5254620Z Loading inputs from /tmp/claim-checker-test-uhj5_f0t ...
+2026-11-05T02:33:19.5254991Z   universe: 5 orders; provisional statuses: 2
+2026-11-05T02:33:19.5255724Z   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
+2026-11-05T02:33:19.5256978Z   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
+2026-11-05T02:33:19.5257859Z   missing research/stage20/output/STATUTE_FETCH_INDEX.csv
+2026-11-05T02:33:19.5258286Z   missing research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
+2026-11-05T02:33:19.5258688Z   missing research/stage18/SOURCE_MANIFEST.json
+2026-11-05T02:33:19.5259513Z   Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
+2026-11-05T02:33:19.5260454Z   no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
+2026-11-05T02:33:19.5260882Z   pypdf: 6.20.1
+2026-11-05T02:33:19.5261347Z   could not read claim research/readiness/claims/a.jsonl:2: line is not valid UTF-8 (invalid start byte at byte 0)
+2026-11-05T02:33:19.5262142Z   CHECKER ERROR on claim research/readiness/claims/b.jsonl:1: RuntimeError: simulated checker bug (reported; run continues)
+2026-11-05T02:33:19.5262605Z 
+2026-11-05T02:33:19.5262711Z Checked 3 claim(s) from 2 file(s).
+2026-11-05T02:33:19.5263036Z   All checks passed: 1; mechanical fail: 1; gate passed: 1
+2026-11-05T02:33:19.5263398Z   Source references: {'held_bytes_verified': 14}
+2026-11-05T02:33:19.5263729Z   Source identity: {'recorded_for_this_order': 6}
+2026-11-05T02:33:19.5264245Z   Quotations: {'exact': 4, 'normalised': 2}
+2026-11-05T02:33:19.5264919Z   Checker errors: 1 claim(s) could not be fully checked; see REPORT.md
+2026-11-05T02:33:19.5265641Z   Outputs in /tmp/claim-checker-test-uhj5_f0t/out-bad (0.0s). These are mechanical checks, not legal findings.
+2026-11-05T02:33:40.1397857Z {"proquest_materialization": [{"instrument_id": "EO:254", "path": "ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1b.jsonl:1", "claim_sha256": "3d81c6988fe003c30d3196237715c90232924b948764e3cedc036e6beeddeef4", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "operative_clauses[0].original_source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "original_representation", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "savings_residuals.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "whole_order_end.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}]}, {"instrument_id": "EO:1547", "path": "ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1", "claim_sha256": "998d4816c1d95f60df4db5c83098267a1a0a5ce20bbd33d9aa3237a993b9043b", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "operative_clauses[0].original_source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "original_representation", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "savings_residuals.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "whole_order_end.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}]}, {"instrument_id": "EO:2171", "path": "ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1a.jsonl:1", "claim_sha256": "fc217aa201fa91c65f39bdc0e785a0c58edb99a886b76459928206ee3b7d6158", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "operative_clauses[0].original_source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "original_representation", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "savings_residuals.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "whole_order_end.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}]}, {"instrument_id": "EO:4354", "path": "ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1c.jsonl:1", "claim_sha256": "b8d5d882bde8c035d04597de8dcb3828094b81b296aac6402ab31620fd695484", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "operative_clauses[0].original_source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "original_representation", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "savings_residuals.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "whole_order_end.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}]}, {"instrument_id": "EO:4782", "path": "ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "state": "restored_exact_blob", "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:2", "claim_sha256": "8d6af6e4c281700bd8edf48a99e1bb8728f933a80bb604acab2d78185c2815fc", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "operative_clauses[0].original_source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "original_representation", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "savings_residuals.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "whole_order_end.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}]}], "errors": [], "artifacts_attempted": 5, "bytes_read": 271942, "selection_sha256": "505f37ab5b9a83f218fb5dd8189d060ebb05a0a2938fba2bca9138b19f34a261", "next_cursor": null, "deferred": []}
+2026-11-05T02:33:40.1418143Z Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
+2026-11-05T02:33:40.1418599Z   universe: 14972 orders; provisional statuses: 4291
+2026-11-05T02:33:40.1424898Z   held source copies indexed: 94618 (jobs/app-executive-orders/output/SOURCES.jsonl 792, jobs/app-transcriptions/output/SOURCES.jsonl 9902, jobs/astra-source-retention/output/SOURCES.jsonl 314, jobs/cassiodorus/output/SOURCES.jsonl 10, jobs/clark-discovery/output/SOURCES.jsonl 463, jobs/clause-drafts/output/SOURCES.jsonl 9761, jobs/cotton-capture-custody/output/SOURCES.jsonl 756, jobs/current-law/output/SOURCES.jsonl 110, jobs/family-rule-sources/output/SOURCES.jsonl 2, jobs/family-rule-tail/output/SOURCES.jsonl 1, jobs/fr-originals/output/SOURCES.jsonl 6497, jobs/fr-pages/output/SOURCES.jsonl 30, jobs/hathi-gpo-orders/output/SOURCES.jsonl 1531, jobs/indian-reservations-1912/data/PROVENANCE.json 1, jobs/indian-reservations-1912/output/FRAGMENTS.jsonl 55, jobs/isthmian-canal-1911/data/PROVENANCE.json 1, jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl 105, jobs/later-events/output/SOURCES.jsonl 17528, jobs/lewis-originals/output/SOURCES.jsonl 410, jobs/numbered-early-orders/output/SOURCES.jsonl 197, jobs/ofr-codification-1989/data/PROVENANCE.json 1, jobs/ofr-compilations/data/PROVENANCE.json 1, jobs/ofr-compilations/output/FRAGMENTS.jsonl 500, jobs/opus-media-match/output/SOURCES.jsonl 496, jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl 2750, jobs/richardson-volumes/data/PROVENANCE.json 3, jobs/richardson-volumes/output/FRAGMENTS.jsonl 68, jobs/shepard-citations/output/SOURCES.jsonl 24, jobs/source-ladder/output/SOURCES.jsonl 632, jobs/wikisource-texts/output/SOURCES.jsonl 1639, opus_media_member_map 496, opus_stage11_fetch_meta 9203, opus_stage11_manifest 27237, pinakes_replica_fragments 2750, stage18_source_manifest 25, stage20_statute_fetch_index 7, stage21_acquisition_log 160, stage21_custody 160)
+2026-11-05T02:33:40.1431373Z   jobs/app-executive-orders/output/SOURCES.jsonl: 792 source records (0 with saved bytes on this machine)
+2026-11-05T02:33:40.1432086Z   jobs/app-transcriptions/output/SOURCES.jsonl: 9902 source records (0 with saved bytes on this machine)
+2026-11-05T02:34:17.8945805Z [Rattle Watch] claim-checker: 60s elapsed (last successful run 18m), last output 38s ago, CPU 59.2s in the last 60s, network 0.9 MB in the last 60s
+2026-11-05T02:35:17.9007454Z [Rattle Watch] claim-checker: 2m elapsed (last successful run 18m), last output 2m ago, CPU 60.0s in the last 60s, network 0.4 MB in the last 60s
+2026-11-05T02:36:17.9070441Z [Rattle Watch] claim-checker: 3m elapsed (last successful run 18m), last output 3m ago, CPU 60.0s in the last 60s, network 0.3 MB in the last 60s
+2026-11-05T02:37:17.9132366Z [Rattle Watch] claim-checker: 4m elapsed (last successful run 18m), last output 4m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:38:17.9195898Z [Rattle Watch] claim-checker: 5m elapsed (last successful run 18m), last output 5m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:39:17.9258637Z [Rattle Watch] claim-checker: 6m elapsed (last successful run 18m), last output 6m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:40:17.9321468Z [Rattle Watch] claim-checker: 7m elapsed (last successful run 18m), last output 7m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:41:17.9385287Z [Rattle Watch] claim-checker: 8m elapsed (last successful run 18m), last output 8m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:42:17.9447158Z [Rattle Watch] claim-checker: 9m elapsed (last successful run 18m), last output 9m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:43:17.9511029Z [Rattle Watch] claim-checker: 10m elapsed (last successful run 18m), last output 10m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:44:17.9572710Z [Rattle Watch] claim-checker: 11m elapsed (last successful run 18m), last output 11m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:45:17.9636041Z [Rattle Watch] claim-checker: 12m elapsed (last successful run 18m), last output 12m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:46:17.9698603Z [Rattle Watch] claim-checker: 13m elapsed (last successful run 18m), last output 13m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:47:17.9762127Z [Rattle Watch] claim-checker: 14m elapsed (last successful run 18m), last output 14m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:48:17.9824225Z [Rattle Watch] claim-checker: 15m elapsed (last successful run 18m), last output 15m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:49:17.9886661Z [Rattle Watch] claim-checker: 16m elapsed (last successful run 18m), last output 16m ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:50:11.7487070Z   jobs/astra-source-retention/output/SOURCES.jsonl: 314 source records (314 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 0 records without a usable sha256, 7 unusable text_path/cache_path values
+2026-11-05T02:50:11.7488821Z   jobs/cassiodorus/output/SOURCES.jsonl: 10 source records (10 with saved bytes on this machine)
+2026-11-05T02:50:11.7490265Z   jobs/clark-discovery/output/SOURCES.jsonl: 463 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 92 records without a usable sha256, 0 unusable text_path/cache_path values
+2026-11-05T02:50:11.7491564Z   jobs/clause-drafts/output/SOURCES.jsonl: 9761 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7492430Z   jobs/cotton-capture-custody/output/SOURCES.jsonl: 756 source records (756 with saved bytes on this machine)
+2026-11-05T02:50:11.7493271Z   jobs/current-law/output/SOURCES.jsonl: 110 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7494408Z   jobs/family-rule-sources/output/SOURCES.jsonl: 2 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7495279Z   jobs/family-rule-tail/output/SOURCES.jsonl: 1 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7496857Z   jobs/fr-originals/output/SOURCES.jsonl: 6497 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7497948Z   jobs/fr-pages/output/SOURCES.jsonl: 30 source records (28 with saved bytes on this machine)
+2026-11-05T02:50:11.7498995Z   jobs/hathi-gpo-orders/output/SOURCES.jsonl: 1531 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7500075Z   jobs/later-events/output/SOURCES.jsonl: 17528 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7501473Z   jobs/lewis-originals/output/SOURCES.jsonl: 410 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 408 records without a usable sha256, 0 unusable text_path/cache_path values
+2026-11-05T02:50:11.7502815Z   jobs/numbered-early-orders/output/SOURCES.jsonl: 197 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7503786Z   jobs/opus-media-match/output/SOURCES.jsonl: 496 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7505022Z   jobs/shepard-citations/output/SOURCES.jsonl: 24 source records (24 with saved bytes on this machine)
+2026-11-05T02:50:11.7505974Z   jobs/source-ladder/output/SOURCES.jsonl: 632 source records (0 with saved bytes on this machine)
+2026-11-05T02:50:11.7506926Z   jobs/wikisource-texts/output/SOURCES.jsonl: 1639 source records (1639 with saved bytes on this machine)
+2026-11-05T02:50:11.7508103Z   jobs/indian-reservations-1912: 1 committed volume(s) and 55 per-order text(s) indexed
+2026-11-05T02:50:11.7508947Z   jobs/isthmian-canal-1911: 1 committed volume(s) and 105 per-order text(s) indexed
+2026-11-05T02:50:11.7509778Z   jobs/ofr-codification-1989: 1 committed volume(s) and 0 per-order text(s) indexed
+2026-11-05T02:50:11.7510582Z   jobs/ofr-compilations: 1 committed volume(s) and 500 per-order text(s) indexed
+2026-11-05T02:50:11.7511380Z   jobs/richardson-volumes: 3 committed volume(s) and 68 per-order text(s) indexed
+2026-11-05T02:50:11.7512598Z   Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
+2026-11-05T02:50:11.7513842Z   no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
+2026-11-05T02:50:11.7516726Z   pypdf: 6.20.1
+2026-11-05T02:50:11.7516970Z 
+2026-11-05T02:50:11.7517133Z Checked 1466 claim(s) from 141 file(s).
+2026-11-05T02:50:11.7517696Z   All checks passed: 1369; mechanical fail: 3; gate passed: 1376
+2026-11-05T02:50:11.7518863Z   Source references: {'custody_record_only': 7, 'gpo_published_hash_match': 7865, 'held_bytes_in_release_or_repo': 85, 'held_bytes_verified': 10472}
+2026-11-05T02:50:11.7519937Z   Source identity: {'recorded_for_this_order': 7467}
+2026-11-05T02:50:11.7520532Z   Quotations: {'exact': 23571, 'normalised': 11, 'not_found': 7}
+2026-11-05T02:50:11.7521730Z   Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/output (1009.4s). These are mechanical checks, not legal findings.
+2026-11-05T02:50:13.0630340Z {"bytes_evicted": 0, "bytes_retained": 90685764, "cap_bytes": 1073741824}
+2026-11-05T02:50:13.0802046Z ##[endgroup]
+2026-11-05T02:50:13.0802599Z ##[group]Job claim-kit
+2026-11-05T02:50:13.1480211Z warning: The following paths are not up to date and were left despite sparse patterns:
+2026-11-05T02:50:13.1481132Z 	ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf
+2026-11-05T02:50:13.1481592Z 	ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf
+2026-11-05T02:50:13.1482022Z 	ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf
+2026-11-05T02:50:13.1482441Z 	ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf
+2026-11-05T02:50:13.1482839Z 	ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf
+2026-11-05T02:50:13.1483097Z 
+2026-11-05T02:50:13.1483382Z After fixing the above paths, you may want to run `git sparse-checkout reapply`.
+2026-11-05T02:51:14.6539773Z [Rattle Watch] claim-kit: 60s elapsed (last successful run 13m), last output 60s ago, CPU 59.4s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:51:45.9918928Z ............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................s.......
+2026-11-05T02:51:45.9922142Z ----------------------------------------------------------------------
+2026-11-05T02:51:45.9922977Z Ran 660 tests in 90.959s
+2026-11-05T02:51:45.9923372Z 
+2026-11-05T02:51:45.9923555Z OK (skipped=1)
+2026-11-05T02:51:45.9925242Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 1, "generic_references_excluded": 1, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:51:45.9927760Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 2, "generic_references_excluded": 0, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:51:45.9930547Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 3, "distinct_held_text_artifacts": 3, "dossiers": 3, "families": 5, "generic_references_excluded": 0, "held_texts_scanned": 3, "known_pairs": 3, "located_actor_pairs": 3, "orders_with_held_text": 3, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:51:45.9933034Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 1, "dossiers": 3, "families": 1, "generic_references_excluded": 0, "held_texts_scanned": 1, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:51:45.9935552Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 3, "distinct_held_text_artifacts": 3, "dossiers": 3, "families": 5, "generic_references_excluded": 0, "held_texts_scanned": 3, "known_pairs": 2, "located_actor_pairs": 2, "orders_with_held_text": 3, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:51:45.9937707Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 2, "generic_references_excluded": 0, "held_texts_scanned": 2, "known_pairs": 1, "located_actor_pairs": 0, "orders_with_held_text": 2, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:52:14.6601627Z [Rattle Watch] claim-kit: 2m elapsed (last successful run 13m), last output 29s ago, CPU 60.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:53:14.6663279Z [Rattle Watch] claim-kit: 3m elapsed (last successful run 13m), last output 89s ago, CPU 59.0s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:53:20.9616757Z claim-kit: scanned 250/41564 held representations
+2026-11-05T02:53:21.5569768Z claim-kit: scanned 500/41564 held representations
+2026-11-05T02:53:22.1691927Z claim-kit: scanned 750/41564 held representations
+2026-11-05T02:53:22.6786191Z claim-kit: scanned 1000/41564 held representations
+2026-11-05T02:53:23.1205842Z claim-kit: scanned 1250/41564 held representations
+2026-11-05T02:53:23.4821877Z claim-kit: scanned 1500/41564 held representations
+2026-11-05T02:53:23.8338627Z claim-kit: scanned 1750/41564 held representations
+2026-11-05T02:53:24.1838080Z claim-kit: scanned 2000/41564 held representations
+2026-11-05T02:53:24.5694918Z claim-kit: scanned 2250/41564 held representations
+2026-11-05T02:53:24.9665243Z claim-kit: scanned 2500/41564 held representations
+2026-11-05T02:53:25.3733743Z claim-kit: scanned 2750/41564 held representations
+2026-11-05T02:53:25.8309785Z claim-kit: scanned 3000/41564 held representations
+2026-11-05T02:53:26.3103135Z claim-kit: scanned 3250/41564 held representations
+2026-11-05T02:53:26.8882335Z claim-kit: scanned 3500/41564 held representations
+2026-11-05T02:53:27.6352617Z claim-kit: scanned 3750/41564 held representations
+2026-11-05T02:53:28.4037459Z claim-kit: scanned 4000/41564 held representations
+2026-11-05T02:53:29.1068861Z claim-kit: scanned 4250/41564 held representations
+2026-11-05T02:53:29.6982387Z claim-kit: scanned 4500/41564 held representations
+2026-11-05T02:53:30.3898237Z claim-kit: scanned 4750/41564 held representations
+2026-11-05T02:53:31.1450482Z claim-kit: scanned 5000/41564 held representations
+2026-11-05T02:53:31.9227321Z claim-kit: scanned 5250/41564 held representations
+2026-11-05T02:53:32.5829341Z claim-kit: scanned 5500/41564 held representations
+2026-11-05T02:53:33.1226832Z claim-kit: scanned 5750/41564 held representations
+2026-11-05T02:53:33.7335454Z claim-kit: scanned 6000/41564 held representations
+2026-11-05T02:53:34.8215346Z claim-kit: scanned 6250/41564 held representations
+2026-11-05T02:53:35.3803645Z claim-kit: scanned 6500/41564 held representations
+2026-11-05T02:53:35.9562766Z claim-kit: scanned 6750/41564 held representations
+2026-11-05T02:53:36.5613296Z claim-kit: scanned 7000/41564 held representations
+2026-11-05T02:53:37.0487169Z claim-kit: scanned 7250/41564 held representations
+2026-11-05T02:53:37.4458381Z claim-kit: scanned 7500/41564 held representations
+2026-11-05T02:53:37.8018056Z claim-kit: scanned 7750/41564 held representations
+2026-11-05T02:53:38.1513865Z claim-kit: scanned 8000/41564 held representations
+2026-11-05T02:53:38.4941081Z claim-kit: scanned 8250/41564 held representations
+2026-11-05T02:53:38.8619998Z claim-kit: scanned 8500/41564 held representations
+2026-11-05T02:53:39.2456021Z claim-kit: scanned 8750/41564 held representations
+2026-11-05T02:53:39.6385330Z claim-kit: scanned 9000/41564 held representations
+2026-11-05T02:53:40.0888029Z claim-kit: scanned 9250/41564 held representations
+2026-11-05T02:53:40.5346558Z claim-kit: scanned 9500/41564 held representations
+2026-11-05T02:53:41.0933721Z claim-kit: scanned 9750/41564 held representations
+2026-11-05T02:53:41.8339050Z claim-kit: scanned 10000/41564 held representations
+2026-11-05T02:53:42.5877626Z claim-kit: scanned 10250/41564 held representations
+2026-11-05T02:53:43.2797706Z claim-kit: scanned 10500/41564 held representations
+2026-11-05T02:53:43.8412090Z claim-kit: scanned 10750/41564 held representations
+2026-11-05T02:53:44.5236115Z claim-kit: scanned 11000/41564 held representations
+2026-11-05T02:53:45.2578476Z claim-kit: scanned 11250/41564 held representations
+2026-11-05T02:53:46.0050206Z claim-kit: scanned 11500/41564 held representations
+2026-11-05T02:53:46.6494376Z claim-kit: scanned 11750/41564 held representations
+2026-11-05T02:53:47.1567326Z claim-kit: scanned 12000/41564 held representations
+2026-11-05T02:53:47.7266198Z claim-kit: scanned 12250/41564 held representations
+2026-11-05T02:53:48.2216306Z claim-kit: scanned 12500/41564 held representations
+2026-11-05T02:53:48.4540862Z claim-kit: scanned 12750/41564 held representations
+2026-11-05T02:53:48.6659184Z claim-kit: scanned 13000/41564 held representations
+2026-11-05T02:53:49.2565348Z claim-kit: scanned 13250/41564 held representations
+2026-11-05T02:53:50.0766191Z claim-kit: scanned 13500/41564 held representations
+2026-11-05T02:53:50.8915610Z claim-kit: scanned 13750/41564 held representations
+2026-11-05T02:53:51.5336200Z claim-kit: scanned 14000/41564 held representations
+2026-11-05T02:53:51.7172088Z claim-kit: scanned 14250/41564 held representations
+2026-11-05T02:53:51.9189637Z claim-kit: scanned 14500/41564 held representations
+2026-11-05T02:53:52.2546419Z claim-kit: scanned 14750/41564 held representations
+2026-11-05T02:53:52.4773529Z claim-kit: scanned 15000/41564 held representations
+2026-11-05T02:53:52.6829807Z claim-kit: scanned 15250/41564 held representations
+2026-11-05T02:53:52.9166556Z claim-kit: scanned 15500/41564 held representations
+2026-11-05T02:53:53.1027709Z claim-kit: scanned 15750/41564 held representations
+2026-11-05T02:53:53.2708596Z claim-kit: scanned 16000/41564 held representations
+2026-11-05T02:53:53.4562159Z claim-kit: scanned 16250/41564 held representations
+2026-11-05T02:53:53.6457690Z claim-kit: scanned 16500/41564 held representations
+2026-11-05T02:53:53.8429983Z claim-kit: scanned 16750/41564 held representations
+2026-11-05T02:53:54.0324744Z claim-kit: scanned 17000/41564 held representations
+2026-11-05T02:53:54.2204660Z claim-kit: scanned 17250/41564 held representations
+2026-11-05T02:53:54.4268925Z claim-kit: scanned 17500/41564 held representations
+2026-11-05T02:53:54.6365931Z claim-kit: scanned 17750/41564 held representations
+2026-11-05T02:53:54.8297033Z claim-kit: scanned 18000/41564 held representations
+2026-11-05T02:53:55.0254534Z claim-kit: scanned 18250/41564 held representations
+2026-11-05T02:53:55.2439043Z claim-kit: scanned 18500/41564 held representations
+2026-11-05T02:53:55.5551167Z claim-kit: scanned 18750/41564 held representations
+2026-11-05T02:53:55.7964872Z claim-kit: scanned 19000/41564 held representations
+2026-11-05T02:53:56.0612873Z claim-kit: scanned 19250/41564 held representations
+2026-11-05T02:53:56.3376231Z claim-kit: scanned 19500/41564 held representations
+2026-11-05T02:53:56.6223814Z claim-kit: scanned 19750/41564 held representations
+2026-11-05T02:53:56.8903234Z claim-kit: scanned 20000/41564 held representations
+2026-11-05T02:53:57.1342421Z claim-kit: scanned 20250/41564 held representations
+2026-11-05T02:53:57.3815597Z claim-kit: scanned 20500/41564 held representations
+2026-11-05T02:53:57.6888351Z claim-kit: scanned 20750/41564 held representations
+2026-11-05T02:53:57.9535278Z claim-kit: scanned 21000/41564 held representations
+2026-11-05T02:53:58.2223152Z claim-kit: scanned 21250/41564 held representations
+2026-11-05T02:53:58.5307274Z claim-kit: scanned 21500/41564 held representations
+2026-11-05T02:53:58.8486609Z claim-kit: scanned 21750/41564 held representations
+2026-11-05T02:53:59.1806182Z claim-kit: scanned 22000/41564 held representations
+2026-11-05T02:53:59.5814642Z claim-kit: scanned 22250/41564 held representations
+2026-11-05T02:53:59.9963387Z claim-kit: scanned 22500/41564 held representations
+2026-11-05T02:54:00.5060907Z claim-kit: scanned 22750/41564 held representations
+2026-11-05T02:54:00.8864416Z claim-kit: scanned 23000/41564 held representations
+2026-11-05T02:54:01.0907732Z claim-kit: scanned 23250/41564 held representations
+2026-11-05T02:54:01.2949738Z claim-kit: scanned 23500/41564 held representations
+2026-11-05T02:54:01.4930639Z claim-kit: scanned 23750/41564 held representations
+2026-11-05T02:54:01.6950102Z claim-kit: scanned 24000/41564 held representations
+2026-11-05T02:54:01.8949299Z claim-kit: scanned 24250/41564 held representations
+2026-11-05T02:54:02.1034425Z claim-kit: scanned 24500/41564 held representations
+2026-11-05T02:54:02.2951979Z claim-kit: scanned 24750/41564 held representations
+2026-11-05T02:54:02.4921371Z claim-kit: scanned 25000/41564 held representations
+2026-11-05T02:54:02.6937465Z claim-kit: scanned 25250/41564 held representations
+2026-11-05T02:54:02.9043794Z claim-kit: scanned 25500/41564 held representations
+2026-11-05T02:54:03.1121982Z claim-kit: scanned 25750/41564 held representations
+2026-11-05T02:54:03.3072597Z claim-kit: scanned 26000/41564 held representations
+2026-11-05T02:54:03.5127826Z claim-kit: scanned 26250/41564 held representations
+2026-11-05T02:54:03.7439587Z claim-kit: scanned 26500/41564 held representations
+2026-11-05T02:54:03.9508695Z claim-kit: scanned 26750/41564 held representations
+2026-11-05T02:54:04.1508537Z claim-kit: scanned 27000/41564 held representations
+2026-11-05T02:54:04.4101448Z claim-kit: scanned 27250/41564 held representations
+2026-11-05T02:54:04.6129171Z claim-kit: scanned 27500/41564 held representations
+2026-11-05T02:54:04.8541439Z claim-kit: scanned 27750/41564 held representations
+2026-11-05T02:54:05.1020030Z claim-kit: scanned 28000/41564 held representations
+2026-11-05T02:54:05.3412961Z claim-kit: scanned 28250/41564 held representations
+2026-11-05T02:54:05.5683769Z claim-kit: scanned 28500/41564 held representations
+2026-11-05T02:54:05.7742482Z claim-kit: scanned 28750/41564 held representations
+2026-11-05T02:54:05.9324672Z claim-kit: scanned 29000/41564 held representations
+2026-11-05T02:54:06.0931022Z claim-kit: scanned 29250/41564 held representations
+2026-11-05T02:54:06.2815215Z claim-kit: scanned 29500/41564 held representations
+2026-11-05T02:54:06.5058082Z claim-kit: scanned 29750/41564 held representations
+2026-11-05T02:54:06.7374330Z claim-kit: scanned 30000/41564 held representations
+2026-11-05T02:54:06.9849923Z claim-kit: scanned 30250/41564 held representations
+2026-11-05T02:54:07.2293148Z claim-kit: scanned 30500/41564 held representations
+2026-11-05T02:54:07.4577420Z claim-kit: scanned 30750/41564 held representations
+2026-11-05T02:54:07.6893080Z claim-kit: scanned 31000/41564 held representations
+2026-11-05T02:54:08.2066816Z claim-kit: scanned 31250/41564 held representations
+2026-11-05T02:54:08.7682920Z claim-kit: scanned 31500/41564 held representations
+2026-11-05T02:54:09.2888689Z claim-kit: scanned 31750/41564 held representations
+2026-11-05T02:54:09.8000547Z claim-kit: scanned 32000/41564 held representations
+2026-11-05T02:54:10.2906147Z claim-kit: scanned 32250/41564 held representations
+2026-11-05T02:54:10.8742356Z claim-kit: scanned 32500/41564 held representations
+2026-11-05T02:54:11.4923751Z claim-kit: scanned 32750/41564 held representations
+2026-11-05T02:54:12.2298755Z claim-kit: scanned 33000/41564 held representations
+2026-11-05T02:54:13.0198846Z claim-kit: scanned 33250/41564 held representations
+2026-11-05T02:54:13.9456133Z claim-kit: scanned 33500/41564 held representations
+2026-11-05T02:54:14.6716963Z claim-kit: scanned 33750/41564 held representations
+2026-11-05T02:54:14.6725760Z [Rattle Watch] claim-kit: 4m elapsed (last successful run 13m), last output -0s ago, CPU 54.2s in the last 60s, network 0.3 MB in the last 60s
+2026-11-05T02:54:15.2011558Z claim-kit: scanned 34000/41564 held representations
+2026-11-05T02:54:15.7996533Z claim-kit: scanned 34250/41564 held representations
+2026-11-05T02:54:16.3194387Z claim-kit: scanned 34500/41564 held representations
+2026-11-05T02:54:16.7999250Z claim-kit: scanned 34750/41564 held representations
+2026-11-05T02:54:17.4555643Z claim-kit: scanned 35000/41564 held representations
+2026-11-05T02:54:18.4218674Z claim-kit: scanned 35250/41564 held representations
+2026-11-05T02:54:20.7609095Z claim-kit: scanned 35500/41564 held representations
+2026-11-05T02:54:22.7269372Z claim-kit: scanned 35750/41564 held representations
+2026-11-05T02:54:24.8298287Z claim-kit: scanned 36000/41564 held representations
+2026-11-05T02:54:25.1110936Z claim-kit: scanned 36250/41564 held representations
+2026-11-05T02:54:25.4274853Z claim-kit: scanned 36500/41564 held representations
+2026-11-05T02:54:25.7028748Z claim-kit: scanned 36750/41564 held representations
+2026-11-05T02:54:25.8959884Z claim-kit: scanned 37000/41564 held representations
+2026-11-05T02:54:26.0993735Z claim-kit: scanned 37250/41564 held representations
+2026-11-05T02:54:26.3010992Z claim-kit: scanned 37500/41564 held representations
+2026-11-05T02:54:26.4960362Z claim-kit: scanned 37750/41564 held representations
+2026-11-05T02:54:26.6887729Z claim-kit: scanned 38000/41564 held representations
+2026-11-05T02:54:26.9038641Z claim-kit: scanned 38250/41564 held representations
+2026-11-05T02:54:27.0978769Z claim-kit: scanned 38500/41564 held representations
+2026-11-05T02:54:27.2983559Z claim-kit: scanned 38750/41564 held representations
+2026-11-05T02:54:27.5047560Z claim-kit: scanned 39000/41564 held representations
+2026-11-05T02:54:27.7062639Z claim-kit: scanned 39250/41564 held representations
+2026-11-05T02:54:27.9048588Z claim-kit: scanned 39500/41564 held representations
+2026-11-05T02:54:28.1064546Z claim-kit: scanned 39750/41564 held representations
+2026-11-05T02:54:28.3588219Z claim-kit: scanned 40000/41564 held representations
+2026-11-05T02:54:28.6007781Z claim-kit: scanned 40250/41564 held representations
+2026-11-05T02:54:28.8181583Z claim-kit: scanned 40500/41564 held representations
+2026-11-05T02:54:29.0860037Z claim-kit: scanned 40750/41564 held representations
+2026-11-05T02:54:29.3588465Z claim-kit: scanned 41000/41564 held representations
+2026-11-05T02:54:29.6183489Z claim-kit: scanned 41250/41564 held representations
+2026-11-05T02:54:29.9172087Z claim-kit: scanned 41500/41564 held representations
+2026-11-05T02:54:31.7794846Z claim-kit: located 2000/23382 known provision pairs
+2026-11-05T02:54:31.7932718Z claim-kit: located 4000/23382 known provision pairs
+2026-11-05T02:54:31.8077702Z claim-kit: located 6000/23382 known provision pairs
+2026-11-05T02:54:31.8197679Z claim-kit: located 8000/23382 known provision pairs
+2026-11-05T02:54:31.8329054Z claim-kit: located 10000/23382 known provision pairs
+2026-11-05T02:54:31.8428584Z claim-kit: located 12000/23382 known provision pairs
+2026-11-05T02:54:31.8553894Z claim-kit: located 14000/23382 known provision pairs
+2026-11-05T02:54:31.8665601Z claim-kit: located 16000/23382 known provision pairs
+2026-11-05T02:54:31.8766100Z claim-kit: located 18000/23382 known provision pairs
+2026-11-05T02:54:31.8881418Z claim-kit: located 20000/23382 known provision pairs
+2026-11-05T02:54:31.8978938Z claim-kit: located 22000/23382 known provision pairs
+2026-11-05T02:55:14.6814809Z [Rattle Watch] claim-kit: 5m elapsed (last successful run 13m), last output 43s ago, CPU 58.9s in the last 60s, network 0.2 MB in the last 60s
+2026-11-05T02:55:18.8170100Z {"act_overrides_ingested": 219, "act_overrides_refused": 4, "assembled_claims": 0, "decided_orders": 4291, "declared_text_representations": 143529, "distinct_held_text_artifacts": 41564, "dossiers": 4291, "families": 5136, "generic_references_excluded": 221, "held_texts_scanned": 41564, "known_pairs": 22382, "located_actor_pairs": 10867, "orders_with_held_text": 14884, "printed_reference_only_pairs": 622, "status_leads": 10681, "texts_refused_as_order_text": 280, "universe_orders": 14972}
+2026-11-05T02:55:21.6574545Z {"bytes_evicted": 0, "bytes_retained": 1073739944, "cap_bytes": 1073741824}
+2026-11-05T02:55:22.7054478Z ##[endgroup]
+2026-11-05T02:55:22.7055203Z ##[group]Job daily-digest
+2026-11-05T02:55:22.7875569Z warning: The following paths are not up to date and were left despite sparse patterns:
+2026-11-05T02:55:22.7876974Z 	ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf
+2026-11-05T02:55:22.7877584Z 	ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf
+2026-11-05T02:55:22.7878084Z 	ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf
+2026-11-05T02:55:22.7878553Z 	ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf
+2026-11-05T02:55:22.7879012Z 	ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf
+2026-11-05T02:55:22.7879318Z 
+2026-11-05T02:55:22.7879656Z After fixing the above paths, you may want to run `git sparse-checkout reapply`.
+2026-11-05T02:55:27.7440980Z test_ai_approval_and_status_flags_never_create_human_certification (test_dashboard.DashboardTests.test_ai_approval_and_status_flags_never_create_human_certification) ... ok
+2026-11-05T02:55:27.7512158Z test_duplicate_and_replacement_lines_are_not_distinct_orders (test_dashboard.DashboardTests.test_duplicate_and_replacement_lines_are_not_distinct_orders) ... ok
+2026-11-05T02:55:27.7582736Z test_matching_receipt_can_contain_a_failed_check (test_dashboard.DashboardTests.test_matching_receipt_can_contain_a_failed_check) ... ok
+2026-11-05T02:55:27.7642770Z test_missing_claim_directory_and_receipts_remain_unknown (test_dashboard.DashboardTests.test_missing_claim_directory_and_receipts_remain_unknown) ... ok
+2026-11-05T02:55:27.7711651Z test_new_claims_leave_published_readiness_unchanged_and_flag_staleness (test_dashboard.DashboardTests.test_new_claims_leave_published_readiness_unchanged_and_flag_staleness) ... ok
+2026-11-05T02:55:27.7773052Z test_render_without_an_installed_timezone_database (test_dashboard.DashboardTests.test_render_without_an_installed_timezone_database) ... ok
+2026-11-05T02:55:27.7840199Z test_same_filename_changed_content_is_detected (test_dashboard.DashboardTests.test_same_filename_changed_content_is_detected) ... ok
+2026-11-05T02:55:27.8321950Z test_bad_manifest_and_stale_claims_rejected (test_mission.MissionTests.test_bad_manifest_and_stale_claims_rejected) ... ok
+2026-11-05T02:55:27.8808663Z test_dirty_canonical_inputs_cannot_be_stamped_as_committed (test_mission.MissionTests.test_dirty_canonical_inputs_cannot_be_stamped_as_committed) ... ok
+2026-11-05T02:55:27.9284943Z test_first_refusal_is_explicitly_empty (test_mission.MissionTests.test_first_refusal_is_explicitly_empty) ... ok
+2026-11-05T02:55:27.9589501Z test_mixed_checker_rejected_even_with_same_counts_and_dates (test_mission.MissionTests.test_mixed_checker_rejected_even_with_same_counts_and_dates) ... ok
+2026-11-05T02:55:28.0329840Z test_new_committed_canonical_input_refuses_old_successful_generation (test_mission.MissionTests.test_new_committed_canonical_input_refuses_old_successful_generation) ... ok
+2026-11-05T02:55:28.0909589Z test_new_tracker_cannot_promote_checker_from_an_old_rule_tree (test_mission.MissionTests.test_new_tracker_cannot_promote_checker_from_an_old_rule_tree) ... ok
+2026-11-05T02:55:28.1657777Z test_pending_retains_exact_bytes_then_valid_transition_replaces_them (test_mission.MissionTests.test_pending_retains_exact_bytes_then_valid_transition_replaces_them) ... ok
+2026-11-05T02:55:28.1919956Z test_provisional_text_preserves_existing_arithmetic (test_mission.MissionTests.test_provisional_text_preserves_existing_arithmetic) ... ok
+2026-11-05T02:55:28.2455173Z test_same_run_uncommitted_generation_uses_existing_model (test_mission.MissionTests.test_same_run_uncommitted_generation_uses_existing_model) ... ok
+2026-11-05T02:55:28.3152413Z test_summary_disagreement_and_unknown_step_rejected (test_mission.MissionTests.test_summary_disagreement_and_unknown_step_rejected) ... ok
+2026-11-05T02:55:28.3873435Z test_weights_and_retained_history_are_frozen (test_mission.MissionTests.test_weights_and_retained_history_are_frozen) ... ok
+2026-11-05T02:55:28.3874226Z 
+2026-11-05T02:55:28.3874481Z ----------------------------------------------------------------------
+2026-11-05T02:55:28.3874887Z Ran 18 tests in 0.654s
+2026-11-05T02:55:28.3875045Z 
+2026-11-05T02:55:28.3875127Z OK
+2026-11-05T02:55:29.9071938Z Mission refresh: pending Mission refresh refused: tracker predates the available checker generation
+2026-11-05T02:55:32.6590290Z {"bytes_evicted": 0, "bytes_retained": 0, "cap_bytes": 1073741824}
+2026-11-05T02:55:32.6721762Z ##[endgroup]
+2026-11-05T02:55:32.6722560Z ##[group]Job kean
+2026-11-05T02:55:32.7522773Z warning: The following paths are not up to date and were left despite sparse patterns:
+2026-11-05T02:55:32.7523994Z 	ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf
+2026-11-05T02:55:32.7524905Z 	ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf
+2026-11-05T02:55:32.7525542Z 	ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf
+2026-11-05T02:55:32.7526138Z 	ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf
+2026-11-05T02:55:32.7526739Z 	ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf
+2026-11-05T02:55:32.7527171Z 
+2026-11-05T02:55:32.7527763Z After fixing the above paths, you may want to run `git sparse-checkout reapply`.
+2026-11-05T02:55:37.3456008Z /home/runner/work/Executive-Orders/Executive-Orders/jobs/kean/test_kean.py:129: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp488ywv4c/HANDOFF/KEAN.md' mode='r' encoding='utf-8'>
+2026-11-05T02:55:37.3457815Z   brief = open(os.path.join(self.root, kean.BRIEF), encoding="utf-8").read()
+2026-11-05T02:55:37.3458710Z ResourceWarning: Enable tracemalloc to get the object allocation traceback
+2026-11-05T02:55:37.3460253Z /home/runner/work/Executive-Orders/Executive-Orders/jobs/kean/test_kean.py:132: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp488ywv4c/HANDOFF/KEAN.md' mode='r' encoding='utf-8'>
+2026-11-05T02:55:37.3461801Z   brief = open(os.path.join(self.root, kean.BRIEF), encoding="utf-8").read()
+2026-11-05T02:55:37.3462664Z ResourceWarning: Enable tracemalloc to get the object allocation traceback
+2026-11-05T02:55:37.3464839Z /home/runner/work/Executive-Orders/Executive-Orders/jobs/kean/test_kean.py:135: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp488ywv4c/jobs/kean/register/asks.jsonl' mode='r' encoding='utf-8'>
+2026-11-05T02:55:37.3466593Z   rows = [json.loads(l) for l in open(os.path.join(self.root, kean.REGISTER, "asks.jsonl"), encoding="utf-8")]
+2026-11-05T02:55:37.3467567Z ResourceWarning: Enable tracemalloc to get the object allocation traceback
+2026-11-05T02:55:37.3469031Z .../home/runner/work/Executive-Orders/Executive-Orders/jobs/kean/test_kean.py:115: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp_aittovq/HANDOFF/KEAN.md' mode='r' encoding='utf-8'>
+2026-11-05T02:55:37.3470550Z   brief = open(os.path.join(self.root, kean.BRIEF), encoding="utf-8").read()
+2026-11-05T02:55:37.3471373Z ResourceWarning: Enable tracemalloc to get the object allocation traceback
+2026-11-05T02:55:37.3472836Z ...../home/runner/work/Executive-Orders/Executive-Orders/jobs/kean/test_kean.py:176: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpir_f7vyd/HANDOFF/KEAN.md' mode='r' encoding='utf-8'>
+2026-11-05T02:55:37.3474638Z   brief = open(os.path.join(self.root, kean.BRIEF), encoding="utf-8").read()
+2026-11-05T02:55:37.3475480Z ResourceWarning: Enable tracemalloc to get the object allocation traceback
+2026-11-05T02:55:37.3476367Z .....
+2026-11-05T02:55:37.3476773Z ----------------------------------------------------------------------
+2026-11-05T02:55:37.3477324Z Ran 13 tests in 0.402s
+2026-11-05T02:55:37.3477563Z 
+2026-11-05T02:55:37.3477687Z OK
+2026-11-05T02:55:37.3477848Z 
+2026-11-05T02:55:37.3478063Z Kean: 0 errors, 0 warnings, 2 open owner questions
+2026-11-05T02:55:41.7201515Z {"bytes_evicted": 0, "bytes_retained": 0, "cap_bytes": 1073741824}
+2026-11-05T02:55:41.7306186Z ##[endgroup]
+2026-11-05T02:55:41.7306839Z ##[group]Job lachmann
+2026-11-05T02:55:41.8089089Z warning: The following paths are not up to date and were left despite sparse patterns:
+2026-11-05T02:55:41.8090222Z 	ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf
+2026-11-05T02:55:41.8090777Z 	ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf
+2026-11-05T02:55:41.8091307Z 	ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf
+2026-11-05T02:55:41.8091812Z 	ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf
+2026-11-05T02:55:41.8092318Z 	ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf
+2026-11-05T02:55:41.8092654Z 
+2026-11-05T02:55:41.8093019Z After fixing the above paths, you may want to run `git sparse-checkout reapply`.
+2026-11-05T02:55:46.2452182Z lachmann: running offline tests
+2026-11-05T02:55:46.6158304Z OK
+2026-11-05T02:56:06.5629878Z lachmann: 1764 of 7738 in-scope orders confirmed in 19.9s
+2026-11-05T02:56:11.2493298Z {"bytes_evicted": 0, "bytes_retained": 0, "cap_bytes": 1073741824}
+2026-11-05T02:56:11.2612355Z ##[endgroup]
+2026-11-05T02:56:11.2799227Z ##[group]Run actions/upload-artifact@v4
+2026-11-05T02:56:11.2799549Z with:
+2026-11-05T02:56:11.2799774Z   name: oversized-outputs-41955554793
+2026-11-05T02:56:11.2800048Z   path: oversized/
+2026-11-05T02:56:11.2800277Z   if-no-files-found: ignore
+2026-11-05T02:56:11.2800520Z   retention-days: 90
+2026-11-05T02:56:11.2800742Z   compression-level: 6
+2026-11-05T02:56:11.2800962Z   overwrite: false
+2026-11-05T02:56:11.2801184Z   include-hidden-files: false
+2026-11-05T02:56:11.2801438Z env:
+2026-11-05T02:56:11.2801666Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:56:11.2801977Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:11.2802427Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-05T02:56:11.2802876Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:11.2803276Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:11.2803711Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:11.2804387Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-05T02:56:11.2804728Z ##[endgroup]
+2026-11-05T02:56:11.4567004Z (node:4301) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T02:56:11.4567771Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T02:56:11.4701252Z With the provided path, there will be 8 files uploaded
+2026-11-05T02:56:11.4702093Z Artifact name is valid!
+2026-11-05T02:56:11.4702525Z Root directory input is valid!
+2026-11-05T02:56:11.6930988Z Beginning upload of artifact content to blob storage
+2026-11-05T02:56:12.2223163Z (node:4301) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-05T02:56:12.5289260Z Uploaded bytes 6856889
+2026-11-05T02:56:12.5536525Z Finished uploading artifact content to blob storage!
+2026-11-05T02:56:12.5537330Z SHA256 digest of uploaded artifact zip is d52b1311fd3fdf537684c1d78cd57dc141b9c40a8053ded6f169ded67b912111
+2026-11-05T02:56:12.5539237Z Finalizing artifact upload
+2026-11-05T02:56:12.9567193Z Artifact oversized-outputs-41955554793.zip successfully finalized. Artifact ID 13383519507
+2026-11-05T02:56:12.9568576Z Artifact oversized-outputs-41955554793 has been successfully uploaded! Final size is 6856889 bytes. Artifact ID is 13383519507
+2026-11-05T02:56:12.9574938Z Artifact download URL: https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41955554793/artifacts/13383519507
+2026-11-05T02:56:12.9768447Z ##[group]Run test -s oversized/runner-freshness/ATTEMPTS.json || { echo "::error::Missing current execution receipts"; exit 1; }
+2026-11-05T02:56:12.9769378Z [36;1mtest -s oversized/runner-freshness/ATTEMPTS.json || { echo "::error::Missing current execution receipts"; exit 1; }[0m
+2026-11-05T02:56:12.9769991Z [36;1mbash .github/scripts/commit_results.sh[0m
+2026-11-05T02:56:12.9829879Z shell: /usr/bin/bash -e {0}
+2026-11-05T02:56:12.9830150Z env:
+2026-11-05T02:56:12.9830361Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:56:12.9830690Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:12.9831159Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-05T02:56:12.9831607Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:12.9832028Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:12.9832452Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:12.9832892Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-05T02:56:12.9833342Z   JOBS: example-hello claim-checker claim-kit daily-digest kean lachmann
+2026-11-05T02:56:12.9833729Z   EVENT: push
+2026-11-05T02:56:12.9833934Z   BRANCH: main
+2026-11-05T02:56:12.9834539Z   RUN_URL: https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41955554793
+2026-11-05T02:56:12.9834978Z ##[endgroup]
+2026-11-05T02:56:24.6220106Z ##[error]Runner results rejected as stale. Rerun these jobs on the current branch; retained outputs were not published.
+2026-11-05T02:56:24.6229079Z {
+2026-11-05T02:56:24.6229310Z   "schema": 1,
+2026-11-05T02:56:24.6229559Z   "result": "rejected",
+2026-11-05T02:56:24.6229899Z   "branch_commit": "c7ebe6a46c730ee8b0cdd3f592f1de7852b019a0",
+2026-11-05T02:56:24.6230266Z   "jobs": [
+2026-11-05T02:56:24.6230474Z     "example-hello",
+2026-11-05T02:56:24.6230709Z     "claim-checker",
+2026-11-05T02:56:24.6230943Z     "claim-kit",
+2026-11-05T02:56:24.6231151Z     "daily-digest",
+2026-11-05T02:56:24.6231374Z     "kean",
+2026-11-05T02:56:24.6231563Z     "lachmann"
+2026-11-05T02:56:24.6231757Z   ],
+2026-11-05T02:56:24.6231950Z   "problems": [
+2026-11-05T02:56:24.6232151Z     {
+2026-11-05T02:56:24.6232351Z       "job": "claim-checker",
+2026-11-05T02:56:24.6232638Z       "reason": "concurrent_output_advanced",
+2026-11-05T02:56:24.6233118Z       "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+2026-11-05T02:56:24.6233567Z     },
+2026-11-05T02:56:24.6233796Z     {
+2026-11-05T02:56:24.6233996Z       "job": "daily-digest",
+2026-11-05T02:56:24.6234591Z       "reason": "concurrent_output_advanced",
+2026-11-05T02:56:24.6235059Z       "detail": "The branch's output changed after this run's checkout. Rerun on the current branch."
+2026-11-05T02:56:24.6235559Z     },
+2026-11-05T02:56:24.6235739Z     {
+2026-11-05T02:56:24.6235937Z       "job": "claim-checker",
+2026-11-05T02:56:24.6236206Z       "reason": "inputs_changed",
+2026-11-05T02:56:24.6236694Z       "captured_inputs_sha256": "9553b6dc8312a8b26d1b5e969022707df1002bda6c67bb6bdf5bfbd32f2b94f9",
+2026-11-05T02:56:24.6237383Z       "branch_inputs_sha256": "f5eb0c487bd7b3ca2ae77cda5d4f4e22844aaddedfca2a580349aa431a2349f7",
+2026-11-05T02:56:24.6237932Z       "changed_path_count": 11,
+2026-11-05T02:56:24.6238196Z       "changed_paths": [
+2026-11-05T02:56:24.6238440Z         {
+2026-11-05T02:56:24.6238711Z           "path": "jobs/daily-digest/output/DASHBOARD.json",
+2026-11-05T02:56:24.6239120Z           "captured": "100644:aff4c407e36957b29161e649a3dacb46702b5256",
+2026-11-05T02:56:24.6239550Z           "branch": "100644:5d7587055308c2e532cdb89560fa999007ece44d"
+2026-11-05T02:56:24.6239913Z         },
+2026-11-05T02:56:24.6240100Z         {
+2026-11-05T02:56:24.6240350Z           "path": "jobs/daily-digest/output/DASHBOARD.md",
+2026-11-05T02:56:24.6240771Z           "captured": "100644:a9fba7b19d3c41d48f65c2af4b402f989aa8e6a1",
+2026-11-05T02:56:24.6241577Z           "branch": "100644:975210524b8957aa00d4acd097357ed621f7e8c0"
+2026-11-05T02:56:24.6242106Z         },
+2026-11-05T02:56:24.6242300Z         {
+2026-11-05T02:56:24.6242537Z           "path": "jobs/daily-digest/output/DIGEST.md",
+2026-11-05T02:56:24.6242959Z           "captured": "100644:8c0d5b342509e0c18f4e476555ef6c83b57ca6a2",
+2026-11-05T02:56:24.6243371Z           "branch": "100644:65a0f9e8737bad92bf94ecc9f4dbf100fcbdd264"
+2026-11-05T02:56:24.6243698Z         },
+2026-11-05T02:56:24.6243879Z         {
+2026-11-05T02:56:24.6244402Z           "path": "jobs/daily-digest/output/MISSION_REFRESH.json",
+2026-11-05T02:56:24.6244759Z           "captured": null,
+2026-11-05T02:56:24.6245075Z           "branch": "100644:3b94b254beefd6fc510e5dacf6bb3a3b48621c87"
+2026-11-05T02:56:24.6245402Z         },
+2026-11-05T02:56:24.6245589Z         {
+2026-11-05T02:56:24.6245852Z           "path": "jobs/daily-digest/output/RUNNER_INPUTS.json",
+2026-11-05T02:56:24.6246286Z           "captured": "100644:a1b2b8df71e47b26162c7696e0f77bead6365be7",
+2026-11-05T02:56:24.6246712Z           "branch": "100644:df2b81a75750527ef08bbd327398ef492731e23b"
+2026-11-05T02:56:24.6247034Z         },
+2026-11-05T02:56:24.6247222Z         {
+2026-11-05T02:56:24.6247469Z           "path": "jobs/daily-digest/output/SNAPSHOT.json",
+2026-11-05T02:56:24.6247878Z           "captured": "100644:3e9593b67efaf59a97407e212422835bcdfd35e9",
+2026-11-05T02:56:24.6248286Z           "branch": "100644:ed5c1391c3dcb7113d8dc9be49d878f1d6668b64"
+2026-11-05T02:56:24.6248610Z         },
+2026-11-05T02:56:24.6248796Z         {
+2026-11-05T02:56:24.6249032Z           "path": "jobs/daily-digest/output/STATUS.json",
+2026-11-05T02:56:24.6249418Z           "captured": "100644:ec1dc03b12bb3f408365f3a4810d74b3be15c084",
+2026-11-05T02:56:24.6249828Z           "branch": "100644:0d9399deb7f7cfe2bb29237ab547599d35e01d81"
+2026-11-05T02:56:24.6250150Z         },
+2026-11-05T02:56:24.6250329Z         {
+2026-11-05T02:56:24.6250554Z           "path": "jobs/daily-digest/output/log.txt",
+2026-11-05T02:56:24.6250936Z           "captured": "100644:15e8eae28045bbab2d764a19111e7f42834aaab5",
+2026-11-05T02:56:24.6251346Z           "branch": "100644:fa3878042b99b6a998b2e28bd09ffe5728145e96"
+2026-11-05T02:56:24.6251664Z         },
+2026-11-05T02:56:24.6251850Z         {
+2026-11-05T02:56:24.6252110Z           "path": "jobs/readiness-tracker/output/RUNNER_INPUTS.json",
+2026-11-05T02:56:24.6252519Z           "captured": "100644:25fdd42f2416034ca372a7896367cc13d9bb032f",
+2026-11-05T02:56:24.6252934Z           "branch": "100644:9d501a02b0b7afa3f6573b43ff2fc41b4ba45bbc"
+2026-11-05T02:56:24.6253262Z         },
+2026-11-05T02:56:24.6253441Z         {
+2026-11-05T02:56:24.6253700Z           "path": "jobs/readiness-tracker/output/STATUS.json",
+2026-11-05T02:56:24.6254302Z           "captured": "100644:649e08f55c947b67cba477da03bb925722064f20",
+2026-11-05T02:56:24.6254728Z           "branch": "100644:89b14da7ba9a1a7f301495d5ef01030be337b5c9"
+2026-11-05T02:56:24.6255047Z         },
+2026-11-05T02:56:24.6255231Z         {
+2026-11-05T02:56:24.6255483Z           "path": "jobs/readiness-tracker/output/log.txt",
+2026-11-05T02:56:24.6255889Z           "captured": "100644:b7a7e6db1e84350aa13ba50cf71dab022d4a9365",
+2026-11-05T02:56:24.6256304Z           "branch": "100644:03476d47be01a897a319f32e7ff7c149b571abce"
+2026-11-05T02:56:24.6256618Z         }
+2026-11-05T02:56:24.6256797Z       ]
+2026-11-05T02:56:24.6256982Z     },
+2026-11-05T02:56:24.6257163Z     {
+2026-11-05T02:56:24.6257358Z       "job": "claim-kit",
+2026-11-05T02:56:24.6257612Z       "reason": "inputs_changed",
+2026-11-05T02:56:24.6258063Z       "captured_inputs_sha256": "2a36ee42084049171c7ddc51f1c060c09e32574a6dec4fcf6f5d54adb3d62b33",
+2026-11-05T02:56:24.6258728Z       "branch_inputs_sha256": "e4abfdbd9a719a51202d8f03cc2f9291e8fb01855812f98f3ff58be672eacfb7",
+2026-11-05T02:56:24.6259200Z       "changed_path_count": 11,
+2026-11-05T02:56:24.6259458Z       "changed_paths": [
+2026-11-05T02:56:24.6259691Z         {
+2026-11-05T02:56:24.6260097Z           "path": "jobs/daily-digest/output/DASHBOARD.json",
+2026-11-05T02:56:24.6260645Z           "captured": "100644:aff4c407e36957b29161e649a3dacb46702b5256",
+2026-11-05T02:56:24.6261069Z           "branch": "100644:5d7587055308c2e532cdb89560fa999007ece44d"
+2026-11-05T02:56:24.6261393Z         },
+2026-11-05T02:56:24.6261578Z         {
+2026-11-05T02:56:24.6261819Z           "path": "jobs/daily-digest/output/DASHBOARD.md",
+2026-11-05T02:56:24.6262252Z           "captured": "100644:a9fba7b19d3c41d48f65c2af4b402f989aa8e6a1",
+2026-11-05T02:56:24.6262670Z           "branch": "100644:975210524b8957aa00d4acd097357ed621f7e8c0"
+2026-11-05T02:56:24.6262991Z         },
+2026-11-05T02:56:24.6263203Z         {
+2026-11-05T02:56:24.6263434Z           "path": "jobs/daily-digest/output/DIGEST.md",
+2026-11-05T02:56:24.6263815Z           "captured": "100644:8c0d5b342509e0c18f4e476555ef6c83b57ca6a2",
+2026-11-05T02:56:24.6264515Z           "branch": "100644:65a0f9e8737bad92bf94ecc9f4dbf100fcbdd264"
+2026-11-05T02:56:24.6264890Z         },
+2026-11-05T02:56:24.6265089Z         {
+2026-11-05T02:56:24.6265361Z           "path": "jobs/daily-digest/output/MISSION_REFRESH.json",
+2026-11-05T02:56:24.6265728Z           "captured": null,
+2026-11-05T02:56:24.6266057Z           "branch": "100644:3b94b254beefd6fc510e5dacf6bb3a3b48621c87"
+2026-11-05T02:56:24.6266421Z         },
+2026-11-05T02:56:24.6266611Z         {
+2026-11-05T02:56:24.6266908Z           "path": "jobs/daily-digest/output/RUNNER_INPUTS.json",
+2026-11-05T02:56:24.6267333Z           "captured": "100644:a1b2b8df71e47b26162c7696e0f77bead6365be7",
+2026-11-05T02:56:24.6267748Z           "branch": "100644:df2b81a75750527ef08bbd327398ef492731e23b"
+2026-11-05T02:56:24.6268083Z         },
+2026-11-05T02:56:24.6268268Z         {
+2026-11-05T02:56:24.6268522Z           "path": "jobs/daily-digest/output/SNAPSHOT.json",
+2026-11-05T02:56:24.6268918Z           "captured": "100644:3e9593b67efaf59a97407e212422835bcdfd35e9",
+2026-11-05T02:56:24.6269327Z           "branch": "100644:ed5c1391c3dcb7113d8dc9be49d878f1d6668b64"
+2026-11-05T02:56:24.6269664Z         },
+2026-11-05T02:56:24.6269842Z         {
+2026-11-05T02:56:24.6270088Z           "path": "jobs/daily-digest/output/STATUS.json",
+2026-11-05T02:56:24.6270476Z           "captured": "100644:ec1dc03b12bb3f408365f3a4810d74b3be15c084",
+2026-11-05T02:56:24.6270888Z           "branch": "100644:0d9399deb7f7cfe2bb29237ab547599d35e01d81"
+2026-11-05T02:56:24.6271295Z         },
+2026-11-05T02:56:24.6271514Z         {
+2026-11-05T02:56:24.6271746Z           "path": "jobs/daily-digest/output/log.txt",
+2026-11-05T02:56:24.6272129Z           "captured": "100644:15e8eae28045bbab2d764a19111e7f42834aaab5",
+2026-11-05T02:56:24.6272578Z           "branch": "100644:fa3878042b99b6a998b2e28bd09ffe5728145e96"
+2026-11-05T02:56:24.6272902Z         },
+2026-11-05T02:56:24.6273091Z         {
+2026-11-05T02:56:24.6273360Z           "path": "jobs/readiness-tracker/output/RUNNER_INPUTS.json",
+2026-11-05T02:56:24.6273777Z           "captured": "100644:25fdd42f2416034ca372a7896367cc13d9bb032f",
+2026-11-05T02:56:24.6274489Z           "branch": "100644:9d501a02b0b7afa3f6573b43ff2fc41b4ba45bbc"
+2026-11-05T02:56:24.6274825Z         },
+2026-11-05T02:56:24.6275007Z         {
+2026-11-05T02:56:24.6275265Z           "path": "jobs/readiness-tracker/output/STATUS.json",
+2026-11-05T02:56:24.6275675Z           "captured": "100644:649e08f55c947b67cba477da03bb925722064f20",
+2026-11-05T02:56:24.6276087Z           "branch": "100644:89b14da7ba9a1a7f301495d5ef01030be337b5c9"
+2026-11-05T02:56:24.6276431Z         },
+2026-11-05T02:56:24.6276612Z         {
+2026-11-05T02:56:24.6276862Z           "path": "jobs/readiness-tracker/output/log.txt",
+2026-11-05T02:56:24.6277259Z           "captured": "100644:b7a7e6db1e84350aa13ba50cf71dab022d4a9365",
+2026-11-05T02:56:24.6277677Z           "branch": "100644:03476d47be01a897a319f32e7ff7c149b571abce"
+2026-11-05T02:56:24.6277997Z         }
+2026-11-05T02:56:24.6278181Z       ]
+2026-11-05T02:56:24.6278371Z     },
+2026-11-05T02:56:24.6278555Z     {
+2026-11-05T02:56:24.6278928Z       "job": "daily-digest",
+2026-11-05T02:56:24.6279200Z       "reason": "inputs_changed",
+2026-11-05T02:56:24.6279789Z       "captured_inputs_sha256": "43e1566883856a247a52e0fad2e7dd62c851dd420f3aaab7ed9baff0cf6a2e29",
+2026-11-05T02:56:24.6280464Z       "branch_inputs_sha256": "09b31d07dbb3e5802c6d22d2716c7b67100c3773edc9a1df366609baaf19676b",
+2026-11-05T02:56:24.6280935Z       "changed_path_count": 3,
+2026-11-05T02:56:24.6281197Z       "changed_paths": [
+2026-11-05T02:56:24.6281426Z         {
+2026-11-05T02:56:24.6281706Z           "path": "jobs/readiness-tracker/output/RUNNER_INPUTS.json",
+2026-11-05T02:56:24.6282148Z           "captured": "100644:25fdd42f2416034ca372a7896367cc13d9bb032f",
+2026-11-05T02:56:24.6282592Z           "branch": "100644:9d501a02b0b7afa3f6573b43ff2fc41b4ba45bbc"
+2026-11-05T02:56:24.6282919Z         },
+2026-11-05T02:56:24.6283105Z         {
+2026-11-05T02:56:24.6283360Z           "path": "jobs/readiness-tracker/output/STATUS.json",
+2026-11-05T02:56:24.6283766Z           "captured": "100644:649e08f55c947b67cba477da03bb925722064f20",
+2026-11-05T02:56:24.6284455Z           "branch": "100644:89b14da7ba9a1a7f301495d5ef01030be337b5c9"
+2026-11-05T02:56:24.6284789Z         },
+2026-11-05T02:56:24.6284976Z         {
+2026-11-05T02:56:24.6285217Z           "path": "jobs/readiness-tracker/output/log.txt",
+2026-11-05T02:56:24.6285613Z           "captured": "100644:b7a7e6db1e84350aa13ba50cf71dab022d4a9365",
+2026-11-05T02:56:24.6286027Z           "branch": "100644:03476d47be01a897a319f32e7ff7c149b571abce"
+2026-11-05T02:56:24.6286347Z         }
+2026-11-05T02:56:24.6286534Z       ]
+2026-11-05T02:56:24.6286715Z     }
+2026-11-05T02:56:24.6286921Z   ],
+2026-11-05T02:56:24.6287130Z   "input_generations": {
+2026-11-05T02:56:24.6287374Z     "example-hello": {},
+2026-11-05T02:56:24.6287606Z     "claim-checker": {
+2026-11-05T02:56:24.6287862Z       "example-hello": "same_run_candidate",
+2026-11-05T02:56:24.6288164Z       "claim-kit": "captured_base",
+2026-11-05T02:56:24.6288451Z       "daily-digest": "unmatched",
+2026-11-05T02:56:24.6288727Z       "kean": "captured_base",
+2026-11-05T02:56:24.6288992Z       "lachmann": "captured_base"
+2026-11-05T02:56:24.6289252Z     },
+2026-11-05T02:56:24.6289441Z     "claim-kit": {
+2026-11-05T02:56:24.6289683Z       "example-hello": "same_run_candidate",
+2026-11-05T02:56:24.6289993Z       "claim-checker": "same_run_candidate",
+2026-11-05T02:56:24.6290286Z       "daily-digest": "unmatched",
+2026-11-05T02:56:24.6290562Z       "kean": "captured_base",
+2026-11-05T02:56:24.6290817Z       "lachmann": "captured_base"
+2026-11-05T02:56:24.6291061Z     },
+2026-11-05T02:56:24.6291267Z     "daily-digest": {
+2026-11-05T02:56:24.6291517Z       "example-hello": "same_run_candidate",
+2026-11-05T02:56:24.6291818Z       "claim-checker": "same_run_candidate",
+2026-11-05T02:56:24.6292122Z       "claim-kit": "same_run_candidate",
+2026-11-05T02:56:24.6292399Z       "kean": "captured_base",
+2026-11-05T02:56:24.6292657Z       "lachmann": "captured_base"
+2026-11-05T02:56:24.6292929Z     },
+2026-11-05T02:56:24.6293118Z     "kean": {},
+2026-11-05T02:56:24.6293325Z     "lachmann": {}
+2026-11-05T02:56:24.6293531Z   },
+2026-11-05T02:56:24.6293883Z   "action": "Rerun these jobs on the current branch; retained outputs were not published."
+2026-11-05T02:56:24.6294445Z }
+2026-11-05T02:56:24.6323824Z ##[error]Process completed with exit code 3.
+2026-11-05T02:56:24.6405963Z ##[group]Run if [[ -f .github/scripts/job_summary.py ]]; then
+2026-11-05T02:56:24.6406469Z [36;1mif [[ -f .github/scripts/job_summary.py ]]; then[0m
+2026-11-05T02:56:24.6406856Z [36;1m  python .github/scripts/job_summary.py[0m
+2026-11-05T02:56:24.6407160Z [36;1melse[0m
+2026-11-05T02:56:24.6407606Z [36;1m  echo "Job summary unavailable: repository scripts were not checked out." >> "$GITHUB_STEP_SUMMARY"[0m
+2026-11-05T02:56:24.6408103Z [36;1mfi[0m
+2026-11-05T02:56:24.6457450Z shell: /usr/bin/bash -e {0}
+2026-11-05T02:56:24.6457729Z env:
+2026-11-05T02:56:24.6457936Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:56:24.6458266Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:24.6458924Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-05T02:56:24.6459377Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:24.6459793Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:24.6460249Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-05T02:56:24.6460671Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-05T02:56:24.6461132Z   JOBS: example-hello claim-checker claim-kit daily-digest kean lachmann
+2026-11-05T02:56:24.6461518Z   DIAGNOSTIC: false
+2026-11-05T02:56:24.6461871Z   DIRECT_JOBS: example-hello claim-checker claim-kit daily-digest kean lachmann
+2026-11-05T02:56:24.6462284Z   PICK_OUTCOME: success
+2026-11-05T02:56:24.6462522Z   PUBLISH_OUTCOME: failure
+2026-11-05T02:56:24.6462762Z   PUBLICATION: 
+2026-11-05T02:56:24.6462970Z ##[endgroup]
+2026-11-05T02:56:24.6999535Z Post job cleanup.
+2026-11-05T02:56:24.7923906Z [command]/usr/bin/git version
+2026-11-05T02:56:24.7974005Z git version 2.56.0
+2026-11-05T02:56:24.8015838Z Temporarily overriding HOME='/home/runner/work/_temp/58e1258d-3651-4724-9409-4c550fdda18b' before making global git config changes
+2026-11-05T02:56:24.8017157Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-05T02:56:24.8022428Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Executive-Orders/Executive-Orders
+2026-11-05T02:56:24.8068380Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-05T02:56:24.8114893Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-05T02:56:24.8701811Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-05T02:56:24.8748103Z http.https://github.com/.extraheader
+2026-11-05T02:56:24.8765715Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-05T02:56:24.8847196Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-05T02:56:24.9348772Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-05T02:56:24.9389961Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-05T02:56:24.9993254Z Cleaning up orphan processes
+2026-11-05T02:56:25.0584775Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
