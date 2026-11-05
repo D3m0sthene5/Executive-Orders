@@ -27,13 +27,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 143; `search` finds the rest)
+## Newest results (6 of 144; `search` finds the rest)
 
+- 2026-11-05 F-20261105-stable-main-publication **worked**: Integrate completed EO work and remove production/reporting publication races Lesson: Successful computation is not publication. Queue automatic writers before checkout, bind receipts to actual inputs, and keep shared inputs stable.
 - 2026-11-04 F-20261104-tribonian-finalization-recovery **worked**: Reconcile current Tribonian claims with the combined tracker and refresh retained Capcom history Lesson: Use exact current hashes and a successful combined generation; campaign filings and batch-local totals cannot replace a project-wide recount.
 - 2026-11-04 F-20261104-supported-usage-normalization **worked**: Extend existing Hamilton ingestion to supported Geddes-format JSONL and existing NEYMAN production-effort con… Lesson: Preserve final revisions sharing event IDs, verify caller intervals against observed usage timestamps, and bridge existing explicit diagnostic routes; successful synthetic integration does not establ…
 - 2026-11-04 F-20261104-stable-integration **worked**: Integrate completed PR139 PR140 PR144 and repair ordinary evidence and Lachmann wiring Lesson: Conflict-free files are insufficient: verify callers, repeat behavior, current evidence and actual job order before enabling production consumers
 - 2026-11-04 F-20261104-sol-supported-occurrence **worked**: Retain source-reviewed occurrence intervals through ordinary partial research Lesson: Occurrence, date precision and legal effect require separate proof; partial review is not whole readiness
 - 2026-11-04 F-20261104-sol-runtime-fallback-audit **partly worked**: Audit the known compatibility fallback capture of transient job caches Lesson: Prove disposable cache contracts and retain explicit/tracked source reads before excluding fallback inputs
-- 2026-11-04 F-20261104-sol-runtime-economy-rejected **failed**: Stream source-record path/custody checks before JSONL EOF Lesson: Preserve filesystem observation order as well as static outputs; validate retained evidence files before sealing
 
-Register: 22 owner decisions, 13 answered questions, 143 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 22 owner decisions, 13 answered questions, 144 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
