@@ -1,0 +1,108 @@
+name: Source-read Windows diagnostic
+on:
+  push:
+    branches: [sol/source-read-windows-diagnostic-20261104]
+    paths: [.github/workflows/source-read-windows-diagnostic.yml]
+permissions:
+  contents: read
+env:
+  GIT_LFS_SKIP_SMUDGE: '1'
+  PYTHONDONTWRITEBYTECODE: '1'
+jobs:
+  diagnose:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/
+            /jobs/
+            !/jobs/*/output/
+            /research/stage19/code/
+            /research/plans/claim_kit_contract/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run full offline claim-kit suite with original-reader diagnostics
+        shell: bash
+        env:
+          TEMP: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
+          TMPDIR: ${{ runner.temp }}
+        run: |
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          folder = Path('jobs/claim-kit').resolve()
+          sys.path.insert(0, str(folder))
+          import test_blind_verify as T
+          import json
+          import os
+          import socket
+          import tempfile
+          import unittest
+          original_read = T.B._read
+          temporary_root = Path(tempfile.gettempdir()).resolve()
+          stat_fields = ('st_dev', 'st_ino', 'st_mode', 'st_nlink', 'st_uid',
+                         'st_gid', 'st_size', 'st_atime_ns', 'st_mtime_ns', 'st_ctime_ns')
+          def snapshot(value):
+              if value is None:
+                  return None
+              return {'fields': {name: getattr(value, name, None) for name in stat_fields},
+                      'tuple10': list(value)}
+          def diagnosed_read(root, name, allowed):
+              try:
+                  return original_read(root, name, allowed)
+              except Exception as exc:
+                  try:
+                      fixture_root = Path(root).resolve()
+                      synthetic = (name == 'card.json' and fixture_root.name.startswith('tmp')
+                                   and fixture_root.is_relative_to(temporary_root))
+                  except (OSError, RuntimeError, TypeError, ValueError):
+                      synthetic = False
+                  if synthetic:
+                      reader_locals = None
+                      reader_line = None
+                      trace = exc.__traceback__
+                      calls = []
+                      while trace is not None:
+                          frame = trace.tb_frame
+                          calls.append({'file': Path(frame.f_code.co_filename).name,
+                                        'function': frame.f_code.co_name, 'line': trace.tb_lineno})
+                          if frame.f_code is original_read.__code__:
+                              reader_locals = frame.f_locals
+                              reader_line = trace.tb_lineno
+                          trace = trace.tb_next
+                      payload = {'diagnostic': 'SOURCE_READ_WINDOWS_DIAGNOSTIC',
+                                 'exception_class': type(exc).__name__, 'exception': str(exc),
+                                 'reader_line': reader_line, 'call_stack': calls}
+                      if reader_locals is not None:
+                          raw = reader_locals.get('raw')
+                          payload.update(before=snapshot(reader_locals.get('before')),
+                                         after=snapshot(reader_locals.get('after')),
+                                         raw_length=len(raw) if isinstance(raw, (bytes, bytearray)) else None,
+                                         open_flags=reader_locals.get('flags'),
+                                         windows_binary_flag=getattr(os, 'O_BINARY', None))
+                      try:
+                          final_stat = os.stat(fixture_root / 'card.json', follow_symlinks=False)
+                          payload['final_path_stat'] = snapshot(final_stat)
+                      except (OSError, RuntimeError, TypeError, ValueError) as stat_exc:
+                          payload['final_path_stat_error'] = {'class': type(stat_exc).__name__,
+                                                            'message': str(stat_exc)}
+                      print(json.dumps(payload, sort_keys=True), flush=True)
+                  raise
+          T.B._read = diagnosed_read
+          socket.create_connection = lambda *a, **k: (_ for _ in ()).throw(AssertionError('network forbidden in tests'))
+          class NoNetworkSocket(socket.socket):
+              def connect(self, *a, **k):
+                  raise AssertionError('network forbidden in tests')
+          socket.socket = NoNetworkSocket
+          suite = unittest.defaultTestLoader.discover(str(folder), pattern='test_*.py')
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          sys.exit(not result.wasSuccessful())
+          PY
