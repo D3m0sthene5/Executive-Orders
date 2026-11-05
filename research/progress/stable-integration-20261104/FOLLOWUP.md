@@ -1,0 +1,5 @@
+A repeat rebuild could remove a confirmation pinned by an already-filed transcription-dependent dossier: the tracker marks its original-text step done and leaves provisional_text_method empty. This followup freshly reassesses those filed members through the unchanged source, page and hash checks.
+
+The native regression begins ready, repeats the actual text job and tracker, preserves exact confirmation bytes and stays ready; changed source bytes reopen the case. The baseline fails both added tests. All54 Lachmann tests and a separate independent examination pass. Exact source pins, baseline failure, passing logs and the synthetic-receipt scope are retained in FILED_SCOPE_FIX.json and FILED_SCOPE_REVIEW.json. No scientific approval or readiness gain is claimed.
+
+This is stacked on PR147. Land both before enabling the new production schedule; do not run the intermediate scope. Hosted Road checks are requested on the final followup head. The unchanged PR147 Valla pilot continues separately.

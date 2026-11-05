@@ -381,8 +381,9 @@ def load_scope(repo):
 
     A successful pass clears the lead blocker and makes the next tracker row
     provisional. Keep those machine-derived rows in scope so a repeat does not
-    erase its own successful confirmations. They pass through the complete
-    current-witness assessment again; no old confirmation is copied forward.
+    erase its own successful confirmations. Filed transcription-dependent
+    claims may pin those same records even when their text step reads done.
+    Both pass through current-witness assessment; no old approval is copied.
     """
     rows = read_csv(Path(repo) / TRACKER_CSV)
     scope = OrderedDict()
@@ -391,7 +392,10 @@ def load_scope(repo):
         if OUT_OF_SCOPE_BLOCKER in blockers:
             continue
         mine = [b for b in blockers if b in SCOPE_BLOCKERS]
-        if r.get('step_original_text') == 'open' and mine:
+        if (r.get('claim_present') == 'yes'
+                and r.get('text_evidence_tier') == 'transcription_dependent'):
+            scope[r['instrument_id']] = mine
+        elif r.get('step_original_text') == 'open' and mine:
             scope[r['instrument_id']] = mine
         elif (r.get('step_original_text') == 'provisional'
               and r.get('provisional_text_method') == 'machine'):
