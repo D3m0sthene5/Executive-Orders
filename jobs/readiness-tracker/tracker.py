@@ -453,10 +453,19 @@ def build(root, *, planning_closures=None):
     custody = {r["instrument_id"]: r for r in read_csv(root, "custody")}
 
     statute_ok = {(r["source_key"], r["instrument_id"]) for r in read_csv(root, "statute") if r["acquired_pdf_bytes"] == "yes"}
+
+    def authority_key(a):
+        # The Stage 20 queue spells one authority two ways ('USC::48 U.S.C. 863' and 'USC::48 U.S.C. 863)'); the
+        # ladder merges them and records the clean spelling, so an unbalanced trailing parenthesis is dropped here.
+        a = (a or "").strip()
+        while a.endswith(")") and a.count(")") > a.count("("):
+            a = a[:-1].rstrip()
+        return a
+    ladder_found_keys = {authority_key(a) for a in jobs["ladder_found"]}
     shared_missing = collections.defaultdict(list)  # order -> authorities not yet retrieved
     for r in read_csv(root, "shared"):
         retrieved = (r["source_already_retrieved"] == "yes" or (r["authority"], r["cited_in"]) in statute_ok
-                     or r["authority"] in jobs["ladder_found"])
+                     or authority_key(r["authority"]) in ladder_found_keys)
         if not retrieved:
             shared_missing[r["cited_in"]].append(r["authority"])
     shared_cited = {r["cited_in"] for r in read_csv(root, "shared")}
