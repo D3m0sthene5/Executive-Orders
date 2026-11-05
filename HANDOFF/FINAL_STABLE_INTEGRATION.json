@@ -310,10 +310,13 @@
   },
   "ordinary_main_production": {
     "run_id": 41955554793,
-    "state": "in_progress",
-    "observed_utc": "2026-11-05T02:56:40.269Z",
-    "not_cancelled": true,
-    "interpretation": "Normal production execution, separate from the completed exact-source integration and full-project reporting acceptance. Its completion requests another bounded reporting refresh."
+    "state": "completed",
+    "conclusion": "failure",
+    "execution": "all_six_jobs_succeeded",
+    "publication": "refused_stale_concurrent_reporting",
+    "observed_utc": "2026-11-05T03:01:23.297Z",
+    "scientific_outputs_overwritten": false,
+    "repair": "In progress: serialize trusted production writers and reporting without canceling queued production or weakening freshness."
   },
   "verified_utc": "2026-11-05T02:56:40.269Z",
   "main_road": {
@@ -322,5 +325,6 @@
     "windows": "success"
   },
   "independent_review": "HANDOFF/FINAL_STABLE_INTEGRATION_REVIEW.json",
-  "durability_note": "Final receipts are stored outside research/ to avoid invalidating expensive broad research-input snapshots already running. Source reports remain historical evidence."
+  "durability_note": "Final receipts are stored outside research/ to avoid invalidating expensive broad research-input snapshots already running. Source reports remain historical evidence.",
+  "final_orchestration_acceptance": "pending_postmerge_race_repair"
 }

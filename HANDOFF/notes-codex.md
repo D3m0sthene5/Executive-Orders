@@ -1,3 +1,10 @@
+## 2026-11-04 ET: post-merge production publication race under repair
+
+- **Found:** Runjobs41955554793 executed all six selected jobs successfully, then correctly refused stale publication because concurrent reporting41955554786 had already advanced checker/tracker/digest outputs. No scientific output was overwritten. Independent full-source integration/CI and the first source-bound ready reporting generation1331/14972 remain verified.
+- **Repair in progress:** Coordinate production/reporting writers without pending production cancellation and bind queued native receipts to the actual post-queue checkout. Preserve freshness checks. Do not label the overall orchestration finished until this native publication path is repaired and exercised.
+- **Evidence:** Actual run41955554793 log; HANDOFF/FINAL_STABLE_INTEGRATION.json records the failed publication separately from successful computation and reporting.
+- **Asks:** @Owner: none.
+
 ## 2026-11-04 ET: stable main integration and automatic reporting verified
 
 - **Done:** PR149 merged as81ebb186, preserving completed PR139/140/144/147/148 histories. Main tree exactly matches fully accepted source candidate3a308f25. Selected-source checks run in ordinary apply; Lachmann safely revalidates provisional and filed transcription-dependent confirmations before scheduled consumers. Audited70 runnable jobs form an acyclic graph; manual tools and retained nonrunnable source providers are documented in research/progress/stable-integration-20261104/JOB_WIRING.md.
