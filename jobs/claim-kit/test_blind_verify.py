@@ -3,10 +3,12 @@ from copy import deepcopy
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -39,6 +41,8 @@ class BlindVerifyTests(unittest.TestCase):
         return B.verify_files([self.file], self.root, ['held'])
 
     def only_source(self, report):
+        self.assertEqual(len(report['cards']), 1, report)
+        self.assertEqual(len(report['cards'][0]['sources']), 1, report)
         return report['cards'][0]['sources'][0]
 
     def card_only_reader(self):
@@ -55,6 +59,94 @@ class BlindVerifyTests(unittest.TestCase):
         self.assertTrue(first['cards'][0]['text_checks_passed'])
         self.assertEqual(first, B.verify_files([self.file], self.root, ['held']))
         self.assertEqual(len(self.only_source(first)['files']), 2)
+
+    def read_with_final_stat_change(self, field):
+        original = B._path
+        calls = []
+
+        def observed_path(*args):
+            path = original(*args)  # Preserve actual confinement/symlink checks.
+            calls.append(path)
+            if len(calls) != 2:
+                return path
+            saved = path.stat()
+            values = list(saved)
+            nanoseconds = {k: getattr(saved, k) for k in ('st_atime_ns', 'st_mtime_ns', 'st_ctime_ns')}
+            position = {'st_mode': 0, 'st_ino': 1, 'st_dev': 2, 'st_nlink': 3,
+                        'st_uid': 4, 'st_gid': 5, 'st_size': 6, 'st_atime': 7,
+                        'st_mtime_ns': 8, 'st_ctime_ns': 9}[field]
+            values[position] += 1
+            if field.endswith('_ns'):
+                nanoseconds[field] += 1_000_000_000
+            elif field == 'st_atime':
+                nanoseconds['st_atime_ns'] += 1_000_000_000
+            changed = os.stat_result(values, nanoseconds)
+            if field == 'st_atime':
+                stable = ('st_dev', 'st_ino', 'st_mode', 'st_nlink', 'st_uid', 'st_gid',
+                          'st_size', 'st_mtime_ns', 'st_ctime_ns')
+                self.assertEqual(tuple(getattr(saved, k) for k in stable),
+                                 tuple(getattr(changed, k) for k in stable))
+                self.assertNotEqual(saved.st_atime, changed.st_atime)
+            return SimpleNamespace(stat=lambda: changed)
+
+        with patch.object(B, '_path', side_effect=observed_path):
+            return B._read(self.root, 'held/text.txt', (self.root / 'held',))
+
+    def test_source_read_accepts_only_access_metadata_drift(self):
+        expected = (self.root / 'held/text.txt').read_bytes()
+        self.assertEqual(B._read(self.root, 'held/text.txt', (self.root / 'held',)), expected)
+        self.assertEqual(self.read_with_final_stat_change('st_atime'), expected)
+
+    def test_source_read_refuses_each_stable_metadata_change(self):
+        for field in ('st_dev', 'st_ino', 'st_mode', 'st_nlink', 'st_uid', 'st_gid',
+                      'st_size', 'st_mtime_ns', 'st_ctime_ns'):
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'source_changed_during_read'):
+                self.read_with_final_stat_change(field)
+
+    def read_with_descriptor_stat_change(self, position=None, field=None):
+        original_path = B._path
+        original_fstat = B.os.fstat
+        events, descriptors = [], []
+        fields = ('st_dev', 'st_ino', 'st_mode', 'st_nlink', 'st_uid', 'st_gid',
+                  'st_size', 'st_mtime_ns', 'st_ctime_ns')
+
+        def observed_path(*args):
+            path = original_path(*args)
+            events.append('path')
+            if len(events) > 1:
+                self.assertEqual(events, ['path', 'fd', 'fd', 'path'])
+                # Final path validation must happen while the descriptor is open.
+                original_fstat(descriptors[0])
+            return path
+
+        def observed_fstat(fd):
+            saved = original_fstat(fd)
+            descriptors.append(fd)
+            events.append('fd')
+            values = {key: getattr(saved, key) for key in fields}
+            # Stable within fstat, deliberately different from path stat.
+            values['st_ctime_ns'] += 1_000_000_000
+            if len(descriptors) == position:
+                values[field] += 1
+            return SimpleNamespace(**values)
+
+        with patch.object(B, '_path', side_effect=observed_path), \
+                patch.object(B.os, 'fstat', side_effect=observed_fstat):
+            raw = B._read(self.root, 'held/text.txt', (self.root / 'held',))
+        return raw, events
+
+    def test_same_api_stability_accepts_windows_ctime_difference(self):
+        raw, events = self.read_with_descriptor_stat_change()
+        self.assertEqual(raw, (self.root / 'held/text.txt').read_bytes())
+        self.assertEqual(events, ['path', 'fd', 'fd', 'path', 'fd'])
+
+    def test_each_descriptor_metadata_mutation_still_refused(self):
+        for position in (1, 2, 3):
+            for field in ('st_dev', 'st_ino', 'st_mode', 'st_nlink', 'st_uid', 'st_gid',
+                          'st_size', 'st_mtime_ns', 'st_ctime_ns'):
+                with self.subTest(position=position, field=field), \
+                        self.assertRaisesRegex(ValueError, 'source_changed_during_read'):
+                    self.read_with_descriptor_stat_change(position, field)
 
     def test_existing_assembler_exact_routine_is_used(self):
         with patch.object(B.A, '_source_errors', wraps=B.A._source_errors) as reuse:
@@ -191,7 +283,13 @@ class BlindVerifyTests(unittest.TestCase):
         self.assertFalse(self.verify()['ok'])
         witness['source']['raw_path'] = 'held/raw.pdf'
         witness['source']['char_start'] = 0
-        self.assertIn('conflicting_record_span', self.verify()['cards'][0]['sources'][1]['errors'])
+        report = self.verify()
+        self.assertFalse(report['ok'], report)
+        self.assertEqual(len(report['cards']), 1, report)
+        sources = {source['locus']: source for source in report['cards'][0]['sources']}
+        bound = '$.source.norton_factual_event.occurrence_interval.start_basis.witness.source'
+        self.assertEqual(set(sources), {'$.source', bound}, report)
+        self.assertIn('conflicting_record_span', sources[bound]['errors'], report)
 
     def test_lfs_pointer_is_not_retained_source_bytes_even_with_matching_pin(self):
         pointer = b'version https://git-lfs.github.com/spec/v1\noid sha256:' + b'0' * 64 + b'\nsize 20\n'

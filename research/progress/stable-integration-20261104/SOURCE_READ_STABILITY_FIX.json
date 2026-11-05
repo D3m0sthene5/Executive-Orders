@@ -1,0 +1,201 @@
+{
+  "schema": "eo-source-read-stability-repair/v1",
+  "recorded_utc": "2026-11-05T01:18:16.048396+00:00",
+  "author": "/root/final_engineering_review",
+  "base_commit": "ff1f31e13f370e2d910ee433b831bac6fd01d2df",
+  "source_sha256": {
+    "jobs/claim-kit/blind_verify.py": "a2e2f0ed8e7cea3eb02e8a2a9f2fa8c4de886072215149e61422d0f6f2c7283a",
+    "jobs/claim-kit/test_blind_verify.py": "995fb86b288af6cbc6313c2ea9e9f991cfd5e36411893f4e324d0db90dc5590a"
+  },
+  "baseline_source_sha256": {
+    "jobs/claim-kit/blind_verify.py": "e666b1a5094898a9f02dcbf9720f4ee8ea6a65a29c2f7912d3c1445e185aa74f",
+    "jobs/claim-kit/test_blind_verify.py": "84fb008c15b35a95d9602ff5722c134c8892ea96bd8d6360c1f2031daf726f34"
+  },
+  "demonstrated_bug": "The descriptor before/after comparison excluded access time, while final full path stat equality included it. Read-access time drift alone caused source_changed_during_read for unchanged bytes.",
+  "fix": "Use the same expanded stable metadata stamp for descriptor-before, descriptor-after and final revalidated path: device, inode, mode, link count, uid, gid, size, mtime_ns, ctime_ns. Only access time is excluded.",
+  "before_after_matrix": {
+    "source_sha256": "a2e2f0ed8e7cea3eb02e8a2a9f2fa8c4de886072215149e61422d0f6f2c7283a",
+    "results": [
+      {
+        "mutation": "unchanged",
+        "before": "exact_bytes_returned",
+        "after": "exact_bytes_returned"
+      },
+      {
+        "mutation": "st_atime",
+        "before": "source_changed_during_read",
+        "after": "exact_bytes_returned"
+      },
+      {
+        "mutation": "st_dev",
+        "before": "source_changed_during_read",
+        "after": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_ino",
+        "before": "source_changed_during_read",
+        "after": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_size",
+        "before": "source_changed_during_read",
+        "after": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_mtime_ns",
+        "before": "source_changed_during_read",
+        "after": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_ctime_ns",
+        "before": "source_changed_during_read",
+        "after": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_mode",
+        "before": "source_changed_during_read",
+        "after": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_nlink",
+        "before": "source_changed_during_read",
+        "after": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_uid",
+        "before": "source_changed_during_read",
+        "after": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_gid",
+        "before": "source_changed_during_read",
+        "after": "source_changed_during_read"
+      }
+    ]
+  },
+  "tests": [
+    {
+      "name": "27 verifier tests including new final-path metadata boundary tests before runtime change",
+      "result": "one expected access-only false-refusal error; all other tests pass",
+      "log": ".......................E...\n======================================================================\nERROR: test_source_read_accepts_only_access_metadata_drift (test_blind_verify.BlindVerifyTests.test_source_read_accepts_only_access_metadata_drift)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/a3411b70bba5/stable/jobs/claim-kit/test_blind_verify.py\", line 96, in test_source_read_accepts_only_access_metadata_drift\n    self.assertEqual(self.read_with_final_stat_change('st_atime'), expected)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/a3411b70bba5/stable/jobs/claim-kit/test_blind_verify.py\", line 91, in read_with_final_stat_change\n    return B._read(self.root, 'held/text.txt', (self.root / 'held',))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/a3411b70bba5/stable/jobs/claim-kit/blind_verify.py\", line 117, in _read\n    raise ValueError('source_changed_during_read')\nValueError: source_changed_during_read\n\n----------------------------------------------------------------------\nRan 27 tests in 0.505s\n\nFAILED (errors=1)\n"
+    },
+    {
+      "name": "Same27 verifier tests after runtime change",
+      "result": "pass",
+      "observed_test_seconds": 0.506,
+      "log": "...........................\n----------------------------------------------------------------------\nRan 27 tests in 0.506s\n\nOK\n"
+    },
+    {
+      "name": "Native descriptor read with confined path then individually varied final stat observation",
+      "result": "unchanged/access-only return exact bytes; each of nine other fields refuses; full original/fixed matrix retained"
+    },
+    {
+      "name": "git diff --check",
+      "result": "pass"
+    },
+    {
+      "name": "Final verifier suite after source-helper report diagnostics",
+      "result": "pass",
+      "tests": 27,
+      "observed_test_seconds": 0.372,
+      "log": "...........................\n----------------------------------------------------------------------\nRan 27 tests in 0.372s\n\nOK\n"
+    }
+  ],
+  "preserved_boundaries": [
+    "Same explicit source roots, traversal/symlink/regular-file refusals and descriptor anchoring.",
+    "Same exact raw/text hashing, UTF-8/span checking and subsequent repeated-byte verification.",
+    "No retries or automatic acceptance after a refusal.",
+    "Final mode/link/ownership comparisons retained; descriptor before/after comparison is stronger for those fields.",
+    "Norton test retains exact nested-locus/conflicting-record-span assertions and reports complete card refusal rather than raising an uninformative indexing error."
+  ],
+  "reproduction": {
+    "script": "research/progress/stable-integration-20261104/SOURCE_READ_STABILITY_PROBE.py",
+    "sha256": "002169e92b3fc6ba1b36371fc0d4a1aa075d7714a3636e08e14c814d9a6468f7",
+    "baseline_pinned": true,
+    "default_baseline": "d52f611496de659c1c046bc717a724c00a2b651d",
+    "explicit_baseline_supported": true
+  },
+  "qualifications": [
+    "A separate deterministic metadata bug is fixed. It remains UNPROVEN that access-time drift caused historical Windows job126978085161; that intermediate report was lost by old test indexing.",
+    "Synthetic stat observation variation proves comparator semantics, not filesystem failure frequency or measured campaign savings.",
+    "This agent implemented the runtime repair; separate reviewer and actual final-head Windows/Linux runs are required for integration.",
+    "No new scientific/legal finding, source authentication, readiness or human certification is established."
+  ],
+  "previous_diagnostic_test_sha256": "33d73b6282efd912c00b86cbfc22346646abbc7561e745c90e6f5a5f60d4e05e",
+  "final_diagnostic_amendment": "only_source now requires exactly one card and one source before indexing, retaining the entire refusal report on assertion failure. It does not retry, mask or accept any refusal.",
+  "published_source_equivalent": {
+    "historical_local_commit": "ff1f31e13f370e2d910ee433b831bac6fd01d2df",
+    "published_commit": "d52f611496de659c1c046bc717a724c00a2b651d",
+    "scope": "jobs/claim-kit/blind_verify.py only; no whole-tree equivalence asserted",
+    "source_sha256": "e666b1a5094898a9f02dcbf9720f4ee8ea6a65a29c2f7912d3c1445e185aa74f",
+    "verification": "Compared exact Git blob bytes; helpers now default to the published commit and assert its source SHA256. Historical runs retain their original recorded context."
+  },
+  "published_baseline_reproduction": {
+    "run_utc": "2026-11-05T01:21:31.664751+00:00",
+    "command": "python3 research/progress/stable-integration-20261104/SOURCE_READ_STABILITY_PROBE.py --baseline d52f611496de659c1c046bc717a724c00a2b651d",
+    "result": "pass",
+    "report": {
+      "baseline_commit": "d52f611496de659c1c046bc717a724c00a2b651d",
+      "baseline_source_sha256": "e666b1a5094898a9f02dcbf9720f4ee8ea6a65a29c2f7912d3c1445e185aa74f",
+      "current_source_sha256": "a2e2f0ed8e7cea3eb02e8a2a9f2fa8c4de886072215149e61422d0f6f2c7283a",
+      "results": [
+        {
+          "mutation": "unchanged",
+          "before": "exact_bytes_returned",
+          "after": "exact_bytes_returned"
+        },
+        {
+          "mutation": "st_atime",
+          "before": "source_changed_during_read",
+          "after": "exact_bytes_returned"
+        },
+        {
+          "mutation": "st_dev",
+          "before": "source_changed_during_read",
+          "after": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_ino",
+          "before": "source_changed_during_read",
+          "after": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_size",
+          "before": "source_changed_during_read",
+          "after": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_mtime_ns",
+          "before": "source_changed_during_read",
+          "after": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_ctime_ns",
+          "before": "source_changed_during_read",
+          "after": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_mode",
+          "before": "source_changed_during_read",
+          "after": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_nlink",
+          "before": "source_changed_during_read",
+          "after": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_uid",
+          "before": "source_changed_during_read",
+          "after": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_gid",
+          "before": "source_changed_during_read",
+          "after": "source_changed_during_read"
+        }
+      ]
+    },
+    "script_sha256": "002169e92b3fc6ba1b36371fc0d4a1aa075d7714a3636e08e14c814d9a6468f7"
+  }
+}

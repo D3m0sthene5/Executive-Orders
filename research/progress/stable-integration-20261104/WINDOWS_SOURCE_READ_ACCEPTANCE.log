@@ -1,0 +1,1008 @@
+﻿2026-11-05T02:00:06.1982239Z Current runner version: '2.338.2'
+2026-11-05T02:00:06.2018450Z ##[group]Runner Image Provisioner
+2026-11-05T02:00:06.2019793Z Hosted Compute Agent
+2026-11-05T02:00:06.2020792Z Version: 20261021.618
+2026-11-05T02:00:06.2022321Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-11-05T02:00:06.2023592Z Build Date: 2026-10-21T00:45:21Z
+2026-11-05T02:00:06.2024856Z Worker ID: {3848fd05-08ad-41b6-b91d-2cb38bc3227c}
+2026-11-05T02:00:06.2026087Z Region: eastus
+2026-11-05T02:00:06.2027122Z Cloud: Azure
+2026-11-05T02:00:06.2028005Z ##[endgroup]
+2026-11-05T02:00:06.2030290Z ##[group]Operating System
+2026-11-05T02:00:06.2031387Z Microsoft Windows Server 2025
+2026-11-05T02:00:06.2032359Z 10.0.26100
+2026-11-05T02:00:06.2033230Z Datacenter
+2026-11-05T02:00:06.2034101Z ##[endgroup]
+2026-11-05T02:00:06.2034992Z ##[group]Runner Image
+2026-11-05T02:00:06.2035958Z Image: windows-2025-vs2026
+2026-11-05T02:00:06.2036921Z Version: 20261030.294.1
+2026-11-05T02:00:06.2039591Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261030.294/images/windows/Windows2025-VS2026-Readme.md
+2026-11-05T02:00:06.2042971Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261030.294
+2026-11-05T02:00:06.2044740Z ##[endgroup]
+2026-11-05T02:00:06.2046566Z ##[group]GITHUB_TOKEN Permissions
+2026-11-05T02:00:06.2049145Z Contents: read
+2026-11-05T02:00:06.2050036Z Metadata: read
+2026-11-05T02:00:06.2050945Z ##[endgroup]
+2026-11-05T02:00:06.2053832Z Secret source: Actions
+2026-11-05T02:00:06.2055215Z Cache mode: write
+2026-11-05T02:00:06.2056402Z Prepare workflow directory
+2026-11-05T02:00:06.2469771Z Prepare all required actions
+2026-11-05T02:00:06.2520744Z Getting action download info
+2026-11-05T02:00:06.3952573Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-05T02:00:06.5378953Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-05T02:00:06.8201289Z Complete job name: diagnose
+2026-11-05T02:00:07.0376751Z ##[group]Run actions/checkout@v4
+2026-11-05T02:00:07.0377796Z with:
+2026-11-05T02:00:07.0378186Z   lfs: false
+2026-11-05T02:00:07.0378578Z   fetch-depth: 1
+2026-11-05T02:00:07.0378986Z   filter: blob:none
+2026-11-05T02:00:07.0379435Z   sparse-checkout-cone-mode: false
+2026-11-05T02:00:07.0380354Z   sparse-checkout: /.github/
+/jobs/
+!/jobs/*/output/
+/research/stage19/code/
+/research/plans/claim_kit_contract/
+
+2026-11-05T02:00:07.0381327Z   repository: D3m0sthene5/Executive-Orders
+2026-11-05T02:00:07.0385671Z   token: ***
+2026-11-05T02:00:07.0386098Z   ssh-strict: true
+2026-11-05T02:00:07.0386499Z   ssh-user: git
+2026-11-05T02:00:07.0386918Z   persist-credentials: true
+2026-11-05T02:00:07.0387371Z   clean: true
+2026-11-05T02:00:07.0387757Z   fetch-tags: false
+2026-11-05T02:00:07.0388176Z   show-progress: true
+2026-11-05T02:00:07.0388599Z   submodules: false
+2026-11-05T02:00:07.0389013Z   set-safe-directory: true
+2026-11-05T02:00:07.0389542Z   allow-unsafe-pr-checkout: false
+2026-11-05T02:00:07.0390308Z env:
+2026-11-05T02:00:07.0390700Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:00:07.0391176Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-05T02:00:07.0391637Z ##[endgroup]
+2026-11-05T02:00:07.1923058Z Syncing repository: D3m0sthene5/Executive-Orders
+2026-11-05T02:00:07.1926940Z ##[group]Getting Git version info
+2026-11-05T02:00:07.1928701Z Working directory is 'D:\a\Executive-Orders\Executive-Orders'
+2026-11-05T02:00:07.3105682Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-11-05T02:00:07.6583179Z git version 2.56.0.windows.4
+2026-11-05T02:00:07.6641350Z ##[endgroup]
+2026-11-05T02:00:07.6666381Z Temporarily overriding HOME='D:\a\_temp\00f8b9d9-b4f0-412b-81de-78fadf15172b' before making global git config changes
+2026-11-05T02:00:07.6668877Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-05T02:00:07.6679574Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Executive-Orders\Executive-Orders
+2026-11-05T02:00:07.7313208Z Deleting the contents of 'D:\a\Executive-Orders\Executive-Orders'
+2026-11-05T02:00:07.7320111Z ##[group]Initializing the repository
+2026-11-05T02:00:07.7330675Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\Executive-Orders\Executive-Orders
+2026-11-05T02:00:07.8364156Z Initialized empty Git repository in D:/a/Executive-Orders/Executive-Orders/.git/
+2026-11-05T02:00:07.8414328Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/D3m0sthene5/Executive-Orders
+2026-11-05T02:00:07.9087172Z ##[endgroup]
+2026-11-05T02:00:07.9088447Z ##[group]Disabling automatic garbage collection
+2026-11-05T02:00:07.9096476Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-11-05T02:00:07.9518799Z ##[endgroup]
+2026-11-05T02:00:07.9520783Z ##[group]Setting up auth
+2026-11-05T02:00:07.9531881Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-11-05T02:00:07.9956684Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-11-05T02:00:09.4926806Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-05T02:00:09.5360067Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-11-05T02:00:10.1451844Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-05T02:00:10.1869904Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-11-05T02:00:10.7663895Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-11-05T02:00:10.8115279Z ##[endgroup]
+2026-11-05T02:00:10.8116001Z ##[group]Fetching the repository
+2026-11-05T02:00:10.8135947Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +1335e6ff0231b1b1c47326b64d148ab88153ceb7:refs/remotes/origin/sol/source-read-windows-diagnostic-20261104
+2026-11-05T02:00:11.8930761Z From https://github.com/D3m0sthene5/Executive-Orders
+2026-11-05T02:00:11.8931897Z  * [new ref]         1335e6ff0231b1b1c47326b64d148ab88153ceb7 -> origin/sol/source-read-windows-diagnostic-20261104
+2026-11-05T02:00:11.8973944Z ##[endgroup]
+2026-11-05T02:00:11.8974583Z ##[group]Determining the checkout info
+2026-11-05T02:00:11.8977415Z ##[endgroup]
+2026-11-05T02:00:11.8979249Z ##[group]Setting up sparse checkout
+2026-11-05T02:00:11.8988309Z [command]"C:\Program Files\Git\bin\git.exe" config core.sparseCheckout true
+2026-11-05T02:00:11.9433047Z [command]"C:\Program Files\Git\bin\git.exe" rev-parse --git-path info/sparse-checkout
+2026-11-05T02:00:11.9866744Z .git/info/sparse-checkout
+2026-11-05T02:00:11.9912985Z ##[endgroup]
+2026-11-05T02:00:11.9914042Z ##[group]Checking out the ref
+2026-11-05T02:00:11.9923002Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B sol/source-read-windows-diagnostic-20261104 refs/remotes/origin/sol/source-read-windows-diagnostic-20261104
+2026-11-05T02:00:20.5332078Z Updating files:   0% (1/8001)
+2026-11-05T02:00:20.6680928Z Updating files:   0% (48/8001)
+2026-11-05T02:00:20.6912191Z Updating files:   1% (81/8001)
+2026-11-05T02:00:20.7324916Z Updating files:   2% (161/8001)
+2026-11-05T02:00:20.7998441Z Updating files:   3% (241/8001)
+2026-11-05T02:00:20.8804315Z Updating files:   4% (321/8001)
+2026-11-05T02:00:20.9250125Z Updating files:   5% (401/8001)
+2026-11-05T02:00:20.9507628Z Updating files:   6% (481/8001)
+2026-11-05T02:00:20.9753215Z Updating files:   7% (561/8001)
+2026-11-05T02:00:21.0015478Z Updating files:   8% (641/8001)
+2026-11-05T02:00:21.0235463Z Updating files:   9% (721/8001)
+2026-11-05T02:00:21.1009240Z Updating files:  10% (801/8001)
+2026-11-05T02:00:21.1250658Z Updating files:  11% (881/8001)
+2026-11-05T02:00:21.1493408Z Updating files:  12% (961/8001)
+2026-11-05T02:00:21.1730554Z Updating files:  13% (1041/8001)
+2026-11-05T02:00:21.1980533Z Updating files:  14% (1121/8001)
+2026-11-05T02:00:21.2210198Z Updating files:  15% (1201/8001)
+2026-11-05T02:00:21.2453654Z Updating files:  16% (1281/8001)
+2026-11-05T02:00:21.2691771Z Updating files:  17% (1361/8001)
+2026-11-05T02:00:21.2950143Z Updating files:  18% (1441/8001)
+2026-11-05T02:00:21.3214307Z Updating files:  19% (1521/8001)
+2026-11-05T02:00:21.3468750Z Updating files:  20% (1601/8001)
+2026-11-05T02:00:21.3700552Z Updating files:  21% (1681/8001)
+2026-11-05T02:00:21.3920371Z Updating files:  22% (1761/8001)
+2026-11-05T02:00:21.4142024Z Updating files:  23% (1841/8001)
+2026-11-05T02:00:21.4363201Z Updating files:  24% (1921/8001)
+2026-11-05T02:00:21.4570642Z Updating files:  25% (2001/8001)
+2026-11-05T02:00:21.4771546Z Updating files:  26% (2081/8001)
+2026-11-05T02:00:21.4987909Z Updating files:  27% (2161/8001)
+2026-11-05T02:00:21.5193427Z Updating files:  28% (2241/8001)
+2026-11-05T02:00:21.5308007Z Updating files:  29% (2321/8001)
+2026-11-05T02:00:21.5399338Z Updating files:  29% (2365/8001)
+2026-11-05T02:00:21.5612431Z Updating files:  30% (2401/8001)
+2026-11-05T02:00:21.5818306Z Updating files:  31% (2481/8001)
+2026-11-05T02:00:21.6016087Z Updating files:  32% (2561/8001)
+2026-11-05T02:00:21.6237895Z Updating files:  33% (2641/8001)
+2026-11-05T02:00:21.6476906Z Updating files:  34% (2721/8001)
+2026-11-05T02:00:21.6692292Z Updating files:  35% (2801/8001)
+2026-11-05T02:00:21.6923006Z Updating files:  36% (2881/8001)
+2026-11-05T02:00:21.7139407Z Updating files:  37% (2961/8001)
+2026-11-05T02:00:21.7357918Z Updating files:  38% (3041/8001)
+2026-11-05T02:00:21.7575149Z Updating files:  39% (3121/8001)
+2026-11-05T02:00:21.7794600Z Updating files:  40% (3201/8001)
+2026-11-05T02:00:21.8010700Z Updating files:  41% (3281/8001)
+2026-11-05T02:00:21.8223138Z Updating files:  42% (3361/8001)
+2026-11-05T02:00:21.8445176Z Updating files:  43% (3441/8001)
+2026-11-05T02:00:21.8666786Z Updating files:  44% (3521/8001)
+2026-11-05T02:00:21.8884337Z Updating files:  45% (3601/8001)
+2026-11-05T02:00:21.9352167Z Updating files:  46% (3681/8001)
+2026-11-05T02:00:21.9581972Z Updating files:  47% (3761/8001)
+2026-11-05T02:00:21.9793254Z Updating files:  48% (3841/8001)
+2026-11-05T02:00:22.0018365Z Updating files:  49% (3921/8001)
+2026-11-05T02:00:22.0236474Z Updating files:  50% (4001/8001)
+2026-11-05T02:00:22.0460994Z Updating files:  51% (4081/8001)
+2026-11-05T02:00:22.0687774Z Updating files:  52% (4161/8001)
+2026-11-05T02:00:22.0903257Z Updating files:  53% (4241/8001)
+2026-11-05T02:00:22.1130479Z Updating files:  54% (4321/8001)
+2026-11-05T02:00:22.1360990Z Updating files:  55% (4401/8001)
+2026-11-05T02:00:22.1615838Z Updating files:  56% (4481/8001)
+2026-11-05T02:00:22.1901560Z Updating files:  57% (4561/8001)
+2026-11-05T02:00:22.2205785Z Updating files:  58% (4641/8001)
+2026-11-05T02:00:22.2450860Z Updating files:  59% (4721/8001)
+2026-11-05T02:00:22.2688720Z Updating files:  60% (4801/8001)
+2026-11-05T02:00:22.2945635Z Updating files:  61% (4881/8001)
+2026-11-05T02:00:22.3204283Z Updating files:  62% (4961/8001)
+2026-11-05T02:00:22.3429613Z Updating files:  63% (5041/8001)
+2026-11-05T02:00:22.3710227Z Updating files:  64% (5121/8001)
+2026-11-05T02:00:22.3969883Z Updating files:  65% (5201/8001)
+2026-11-05T02:00:22.4205327Z Updating files:  66% (5281/8001)
+2026-11-05T02:00:22.4428190Z Updating files:  67% (5361/8001)
+2026-11-05T02:00:22.4650659Z Updating files:  68% (5441/8001)
+2026-11-05T02:00:22.4865555Z Updating files:  69% (5521/8001)
+2026-11-05T02:00:22.5102838Z Updating files:  70% (5601/8001)
+2026-11-05T02:00:22.5319581Z Updating files:  71% (5681/8001)
+2026-11-05T02:00:22.5327560Z Updating files:  71% (5758/8001)
+2026-11-05T02:00:22.5553233Z Updating files:  72% (5761/8001)
+2026-11-05T02:00:22.5776073Z Updating files:  73% (5841/8001)
+2026-11-05T02:00:22.6011480Z Updating files:  74% (5921/8001)
+2026-11-05T02:00:22.6240520Z Updating files:  75% (6001/8001)
+2026-11-05T02:00:22.6478853Z Updating files:  76% (6081/8001)
+2026-11-05T02:00:22.6709715Z Updating files:  77% (6161/8001)
+2026-11-05T02:00:22.6935811Z Updating files:  78% (6241/8001)
+2026-11-05T02:00:22.7201360Z Updating files:  79% (6321/8001)
+2026-11-05T02:00:22.7454330Z Updating files:  80% (6401/8001)
+2026-11-05T02:00:22.7727670Z Updating files:  81% (6481/8001)
+2026-11-05T02:00:22.7959622Z Updating files:  82% (6561/8001)
+2026-11-05T02:00:22.8197009Z Updating files:  83% (6641/8001)
+2026-11-05T02:00:22.8443117Z Updating files:  84% (6721/8001)
+2026-11-05T02:00:22.8681241Z Updating files:  85% (6801/8001)
+2026-11-05T02:00:22.8927960Z Updating files:  86% (6881/8001)
+2026-11-05T02:00:22.9173716Z Updating files:  87% (6961/8001)
+2026-11-05T02:00:22.9424280Z Updating files:  88% (7041/8001)
+2026-11-05T02:00:22.9678454Z Updating files:  89% (7121/8001)
+2026-11-05T02:00:22.9926662Z Updating files:  90% (7201/8001)
+2026-11-05T02:00:23.0178816Z Updating files:  91% (7281/8001)
+2026-11-05T02:00:23.0405105Z Updating files:  92% (7361/8001)
+2026-11-05T02:00:23.0691263Z Updating files:  93% (7441/8001)
+2026-11-05T02:00:23.1016242Z Updating files:  94% (7521/8001)
+2026-11-05T02:00:23.1241378Z Updating files:  95% (7601/8001)
+2026-11-05T02:00:23.1480172Z Updating files:  96% (7681/8001)
+2026-11-05T02:00:23.2197448Z Updating files:  97% (7761/8001)
+2026-11-05T02:00:23.2834940Z Updating files:  98% (7841/8001)
+2026-11-05T02:00:23.3262522Z Updating files:  99% (7921/8001)
+2026-11-05T02:00:23.3263027Z Updating files: 100% (8001/8001)
+2026-11-05T02:00:23.3263369Z Updating files: 100% (8001/8001), done.
+2026-11-05T02:00:23.4519209Z Switched to a new branch 'sol/source-read-windows-diagnostic-20261104'
+2026-11-05T02:00:23.4542347Z branch 'sol/source-read-windows-diagnostic-20261104' set up to track 'origin/sol/source-read-windows-diagnostic-20261104'.
+2026-11-05T02:00:23.4667047Z ##[endgroup]
+2026-11-05T02:00:23.5149178Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-11-05T02:00:23.5517328Z 1335e6ff0231b1b1c47326b64d148ab88153ceb7
+2026-11-05T02:00:23.6073269Z ##[group]Run actions/setup-python@v5
+2026-11-05T02:00:23.6073614Z with:
+2026-11-05T02:00:23.6073808Z   python-version: 3.12
+2026-11-05T02:00:23.6074031Z   check-latest: false
+2026-11-05T02:00:23.6076539Z   token: ***
+2026-11-05T02:00:23.6076737Z   update-environment: true
+2026-11-05T02:00:23.6076969Z   allow-prereleases: false
+2026-11-05T02:00:23.6077177Z   freethreaded: false
+2026-11-05T02:00:23.6077361Z env:
+2026-11-05T02:00:23.6077527Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:00:23.6077741Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-05T02:00:23.6077973Z ##[endgroup]
+2026-11-05T02:00:23.7757947Z ##[group]Installed versions
+2026-11-05T02:00:23.7987681Z (node:8452) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T02:00:23.7988942Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T02:00:23.7989665Z Successfully set up CPython (3.12.10)
+2026-11-05T02:00:23.7990577Z ##[endgroup]
+2026-11-05T02:00:23.8319000Z ##[group]Run python - <<'PY'
+2026-11-05T02:00:23.8319444Z [36;1mpython - <<'PY'[0m
+2026-11-05T02:00:23.8319684Z [36;1mimport sys[0m
+2026-11-05T02:00:23.8319893Z [36;1mfrom pathlib import Path[0m
+2026-11-05T02:00:23.8320189Z [36;1mfolder = Path('jobs/claim-kit').resolve()[0m
+2026-11-05T02:00:23.8320501Z [36;1msys.path.insert(0, str(folder))[0m
+2026-11-05T02:00:23.8320766Z [36;1mimport hashlib[0m
+2026-11-05T02:00:23.8320972Z [36;1mimport json[0m
+2026-11-05T02:00:23.8321623Z [36;1mprint(json.dumps({'source_pins': {name: hashlib.sha256((folder / name).read_bytes()).hexdigest() for name in ('blind_verify.py', 'test_blind_verify.py')}}), flush=True)[0m
+2026-11-05T02:00:23.8322560Z [36;1mimport test_blind_verify as T[0m
+2026-11-05T02:00:23.8322802Z [36;1mimport json[0m
+2026-11-05T02:00:23.8322984Z [36;1mimport os[0m
+2026-11-05T02:00:23.8323162Z [36;1mimport socket[0m
+2026-11-05T02:00:23.8323359Z [36;1mimport tempfile[0m
+2026-11-05T02:00:23.8323611Z [36;1mimport unittest[0m
+2026-11-05T02:00:23.8323819Z [36;1moriginal_read = T.B._read[0m
+2026-11-05T02:00:23.8324131Z [36;1mtemporary_root = Path(tempfile.gettempdir()).resolve()[0m
+2026-11-05T02:00:23.8324555Z [36;1mstat_fields = ('st_dev', 'st_ino', 'st_mode', 'st_nlink', 'st_uid',[0m
+2026-11-05T02:00:23.8324992Z [36;1m               'st_gid', 'st_size', 'st_atime_ns', 'st_mtime_ns', 'st_ctime_ns')[0m
+2026-11-05T02:00:23.8325344Z [36;1mdef snapshot(value):[0m
+2026-11-05T02:00:23.8325564Z [36;1m    if value is None:[0m
+2026-11-05T02:00:23.8325790Z [36;1m        return None[0m
+2026-11-05T02:00:23.8326144Z [36;1m    return {'fields': {name: getattr(value, name, None) for name in stat_fields},[0m
+2026-11-05T02:00:23.8326545Z [36;1m            'tuple10': list(value)}[0m
+2026-11-05T02:00:23.8326831Z [36;1mdef diagnosed_read(root, name, allowed):[0m
+2026-11-05T02:00:23.8327110Z [36;1m    try:[0m
+2026-11-05T02:00:23.8327347Z [36;1m        return original_read(root, name, allowed)[0m
+2026-11-05T02:00:23.8327644Z [36;1m    except Exception as exc:[0m
+2026-11-05T02:00:23.8327960Z [36;1m        try:[0m
+2026-11-05T02:00:23.8328212Z [36;1m            fixture_root = Path(root).resolve()[0m
+2026-11-05T02:00:23.8328621Z [36;1m            synthetic = (name == 'card.json' and fixture_root.name.startswith('tmp')[0m
+2026-11-05T02:00:23.8329086Z [36;1m                         and fixture_root.is_relative_to(temporary_root))[0m
+2026-11-05T02:00:23.8329497Z [36;1m        except (OSError, RuntimeError, TypeError, ValueError):[0m
+2026-11-05T02:00:23.8329838Z [36;1m            synthetic = False[0m
+2026-11-05T02:00:23.8330078Z [36;1m        if synthetic:[0m
+2026-11-05T02:00:23.8330305Z [36;1m            reader_locals = None[0m
+2026-11-05T02:00:23.8330557Z [36;1m            reader_line = None[0m
+2026-11-05T02:00:23.8330806Z [36;1m            trace = exc.__traceback__[0m
+2026-11-05T02:00:23.8331062Z [36;1m            calls = [][0m
+2026-11-05T02:00:23.8331306Z [36;1m            while trace is not None:[0m
+2026-11-05T02:00:23.8331580Z [36;1m                frame = trace.tb_frame[0m
+2026-11-05T02:00:23.8331930Z [36;1m                calls.append({'file': Path(frame.f_code.co_filename).name,[0m
+2026-11-05T02:00:23.8332394Z [36;1m                              'function': frame.f_code.co_name, 'line': trace.tb_lineno})[0m
+2026-11-05T02:00:23.8332818Z [36;1m                if frame.f_code is original_read.__code__:[0m
+2026-11-05T02:00:23.8333149Z [36;1m                    reader_locals = frame.f_locals[0m
+2026-11-05T02:00:23.8333455Z [36;1m                    reader_line = trace.tb_lineno[0m
+2026-11-05T02:00:23.8333739Z [36;1m                trace = trace.tb_next[0m
+2026-11-05T02:00:23.8334081Z [36;1m            payload = {'diagnostic': 'SOURCE_READ_WINDOWS_DIAGNOSTIC',[0m
+2026-11-05T02:00:23.8334536Z [36;1m                       'exception_class': type(exc).__name__, 'exception': str(exc),[0m
+2026-11-05T02:00:23.8337056Z [36;1m                       'reader_line': reader_line, 'call_stack': calls}[0m
+2026-11-05T02:00:23.8337507Z [36;1m            if reader_locals is not None:[0m
+2026-11-05T02:00:23.8338155Z [36;1m                raw = reader_locals.get('raw')[0m
+2026-11-05T02:00:23.8338693Z [36;1m                payload.update(path_before=snapshot(reader_locals.get('path_before')),[0m
+2026-11-05T02:00:23.8339228Z [36;1m                               path_after=snapshot(reader_locals.get('path_after')),[0m
+2026-11-05T02:00:23.8339712Z [36;1m                               descriptor_final=snapshot(reader_locals.get('final')),[0m
+2026-11-05T02:00:23.8340854Z [36;1m                               before=snapshot(reader_locals.get('before')),[0m
+2026-11-05T02:00:23.8341256Z [36;1m                               after=snapshot(reader_locals.get('after')),[0m
+2026-11-05T02:00:23.8341720Z [36;1m                               raw_length=len(raw) if isinstance(raw, (bytes, bytearray)) else None,[0m
+2026-11-05T02:00:23.8342183Z [36;1m                               open_flags=reader_locals.get('flags'),[0m
+2026-11-05T02:00:23.8342574Z [36;1m                               windows_binary_flag=getattr(os, 'O_BINARY', None))[0m
+2026-11-05T02:00:23.8342906Z [36;1m            try:[0m
+2026-11-05T02:00:23.8343242Z [36;1m                final_stat = os.stat(fixture_root / 'card.json', follow_symlinks=False)[0m
+2026-11-05T02:00:23.8343694Z [36;1m                payload['final_path_stat'] = snapshot(final_stat)[0m
+2026-11-05T02:00:23.8344133Z [36;1m            except (OSError, RuntimeError, TypeError, ValueError) as stat_exc:[0m
+2026-11-05T02:00:23.8344641Z [36;1m                payload['final_path_stat_error'] = {'class': type(stat_exc).__name__,[0m
+2026-11-05T02:00:23.8345063Z [36;1m                                                  'message': str(stat_exc)}[0m
+2026-11-05T02:00:23.8345445Z [36;1m            print(json.dumps(payload, sort_keys=True), flush=True)[0m
+2026-11-05T02:00:23.8345767Z [36;1m        raise[0m
+2026-11-05T02:00:23.8345977Z [36;1mT.B._read = diagnosed_read[0m
+2026-11-05T02:00:23.8346443Z [36;1msocket.create_connection = lambda *a, **k: (_ for _ in ()).throw(AssertionError('network forbidden in tests'))[0m
+2026-11-05T02:00:23.8346953Z [36;1mclass NoNetworkSocket(socket.socket):[0m
+2026-11-05T02:00:23.8347229Z [36;1m    def connect(self, *a, **k):[0m
+2026-11-05T02:00:23.8347538Z [36;1m        raise AssertionError('network forbidden in tests')[0m
+2026-11-05T02:00:23.8347861Z [36;1msocket.socket = NoNetworkSocket[0m
+2026-11-05T02:00:23.8348266Z [36;1msuite = unittest.defaultTestLoader.discover(str(folder), pattern='test_*.py')[0m
+2026-11-05T02:00:23.8348761Z [36;1mresult = unittest.TextTestRunner(verbosity=2).run(suite)[0m
+2026-11-05T02:00:23.8349113Z [36;1msys.exit(not result.wasSuccessful())[0m
+2026-11-05T02:00:23.8349365Z [36;1mPY[0m
+2026-11-05T02:00:23.8382112Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-11-05T02:00:23.8382521Z env:
+2026-11-05T02:00:23.8382712Z   GIT_LFS_SKIP_SMUDGE: 1
+2026-11-05T02:00:23.8382938Z   PYTHONDONTWRITEBYTECODE: 1
+2026-11-05T02:00:23.8383252Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-11-05T02:00:23.8383716Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.10\x64/lib/pkgconfig
+2026-11-05T02:00:23.8384167Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-11-05T02:00:23.8384572Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-11-05T02:00:23.8385004Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.10\x64
+2026-11-05T02:00:23.8385332Z   TEMP: D:\a\_temp
+2026-11-05T02:00:23.8385510Z   TMP: D:\a\_temp
+2026-11-05T02:00:23.8385683Z   TMPDIR: D:\a\_temp
+2026-11-05T02:00:23.8385870Z ##[endgroup]
+2026-11-05T02:00:25.1567768Z {"source_pins": {"blind_verify.py": "a431646cd94da3b511dff9c00b871e6f2b03da94c104bdb110846301e87e86c1", "test_blind_verify.py": "a794076d92805bf3222619a25caff0740c1a456a8b53bf58535b325b6b1cd38e"}}
+2026-11-05T02:00:26.2977051Z test_duplicate_pair_refuses_every_line (test_act_overrides.ActOverrideTests.test_duplicate_pair_refuses_every_line) ... ok
+2026-11-05T02:00:26.3480901Z test_fixture_pair_is_unlocated_without_override (test_act_overrides.ActOverrideTests.test_fixture_pair_is_unlocated_without_override) ... ok
+2026-11-05T02:00:26.5098147Z test_hash_mismatches_refused (test_act_overrides.ActOverrideTests.test_hash_mismatches_refused) ... ok
+2026-11-05T02:00:26.5624890Z test_malformed_line_refused_not_crashing (test_act_overrides.ActOverrideTests.test_malformed_line_refused_not_crashing) ... ok
+2026-11-05T02:00:26.7216188Z test_not_located_example_and_bad_dates_refused (test_act_overrides.ActOverrideTests.test_not_located_example_and_bad_dates_refused) ... ok
+2026-11-05T02:00:26.9153440Z test_null_hashes_and_unknown_fields_refused (test_act_overrides.ActOverrideTests.test_null_hashes_and_unknown_fields_refused) ... ok
+2026-11-05T02:00:27.0020306Z test_pairs_the_scanner_located_or_cannot_hold_are_refused (test_act_overrides.ActOverrideTests.test_pairs_the_scanner_located_or_cannot_hold_are_refused) ... ok
+2026-11-05T02:00:27.2094479Z test_planted_and_seeded_refused (test_act_overrides.ActOverrideTests.test_planted_and_seeded_refused) ... ok
+2026-11-05T02:00:27.2960772Z test_reinstate_does_not_bypass_review_or_post_review_mutation (test_act_overrides.ActOverrideTests.test_reinstate_does_not_bypass_review_or_post_review_mutation) ... ok
+2026-11-05T02:00:27.3493512Z test_reinstate_uses_the_same_exact_span_independent_review_gate (test_act_overrides.ActOverrideTests.test_reinstate_uses_the_same_exact_span_independent_review_gate) ... ok
+2026-11-05T02:00:27.4658091Z test_review_ledger_cannot_sit_in_the_override_directory (test_act_overrides.ActOverrideTests.test_review_ledger_cannot_sit_in_the_override_directory) ... ok
+2026-11-05T02:00:27.7739338Z test_review_must_match_reviewer_ledger (test_act_overrides.ActOverrideTests.test_review_must_match_reviewer_ledger) ... ok
+2026-11-05T02:00:27.9285058Z test_span_text_that_is_not_the_held_slice_refused (test_act_overrides.ActOverrideTests.test_span_text_that_is_not_the_held_slice_refused) ... ok
+2026-11-05T02:00:28.0125408Z test_stale_report_removed_when_overrides_emptied (test_act_overrides.ActOverrideTests.test_stale_report_removed_when_overrides_emptied) ... ok
+2026-11-05T02:00:28.2377219Z test_unreviewed_refused (test_act_overrides.ActOverrideTests.test_unreviewed_refused) ... ok
+2026-11-05T02:00:28.2907465Z test_valid_record_ingested_with_provenance (test_act_overrides.ActOverrideTests.test_valid_record_ingested_with_provenance) ... ok
+2026-11-05T02:00:28.2910713Z test_lettered_number_matches_its_written_forms (test_act_overrides.NamesNumberTests.test_lettered_number_matches_its_written_forms) ... ok
+2026-11-05T02:00:28.2912689Z test_lettered_number_rejects_other_numbers_and_letters (test_act_overrides.NamesNumberTests.test_lettered_number_rejects_other_numbers_and_letters) ... ok
+2026-11-05T02:00:28.2914561Z test_plain_number_unchanged_but_not_lettered (test_act_overrides.NamesNumberTests.test_plain_number_unchanged_but_not_lettered) ... ok
+2026-11-05T02:00:29.8977308Z test_apply_checks_assembled_sources_and_rechecks_changed_raw_bytes (test_apply_selected_sources.ApplySelectedSourceTests.test_apply_checks_assembled_sources_and_rechecks_changed_raw_bytes) ... ok
+2026-11-05T02:00:30.8987681Z test_apply_refuses_newly_selected_optional_actor_and_preserves_proposal (test_apply_selected_sources.ApplySelectedSourceTests.test_apply_refuses_newly_selected_optional_actor_and_preserves_proposal) ... ok
+2026-11-05T02:00:31.4329491Z test_apply_without_proposals_records_empty_state_and_keeps_unresolved_members (test_apply_selected_sources.ApplySelectedSourceTests.test_apply_without_proposals_records_empty_state_and_keeps_unresolved_members) ... ok
+2026-11-05T02:00:31.4361905Z test_all_four_contract_examples_round_trip (test_assemble.AssemblyTests.test_all_four_contract_examples_round_trip) ... ok
+2026-11-05T02:00:31.4440022Z test_blank_sheet_has_no_legal_decisions_or_approval (test_assemble.AssemblyTests.test_blank_sheet_has_no_legal_decisions_or_approval) ... ok
+2026-11-05T02:00:31.4624347Z test_claim_original_text_is_bound_to_exact_source_quote (test_assemble.AssemblyTests.test_claim_original_text_is_bound_to_exact_source_quote) ... ok
+2026-11-05T02:00:31.4833743Z test_complete_claim_passes_real_gate_and_strict_check (test_assemble.AssemblyTests.test_complete_claim_passes_real_gate_and_strict_check) ... ok
+2026-11-05T02:00:31.5017259Z test_conflict_search_guard (test_assemble.AssemblyTests.test_conflict_search_guard) ... ok
+2026-11-05T02:00:31.5202975Z test_edited_claim_cannot_substitute_source (test_assemble.AssemblyTests.test_edited_claim_cannot_substitute_source) ... ok
+2026-11-05T02:00:31.5308932Z test_effective_date_requires_explicit_producer_confirmation (test_assemble.AssemblyTests.test_effective_date_requires_explicit_producer_confirmation) ... ok
+2026-11-05T02:00:31.5474450Z test_empty_or_placeholder_inventory (test_assemble.AssemblyTests.test_empty_or_placeholder_inventory) ... ok
+2026-11-05T02:00:31.5496209Z test_encoded_evidence_id_unicode_roundtrip_requires_marker (test_assemble.AssemblyTests.test_encoded_evidence_id_unicode_roundtrip_requires_marker) ... ok
+2026-11-05T02:00:31.5599792Z test_exact_quote_rejects_case_changes_even_rehashed (test_assemble.AssemblyTests.test_exact_quote_rejects_case_changes_even_rehashed) ... ok
+2026-11-05T02:00:31.5800870Z test_existing_exact_official_representation_is_not_tainted_by_shared_pdf_hash (test_assemble.AssemblyTests.test_existing_exact_official_representation_is_not_tainted_by_shared_pdf_hash) ... ok
+2026-11-05T02:00:31.5901029Z test_flat_machine_search_record_is_supported (test_assemble.AssemblyTests.test_flat_machine_search_record_is_supported) ... ok
+2026-11-05T02:00:31.6003073Z test_inputs_are_immutable (test_assemble.AssemblyTests.test_inputs_are_immutable) ... ok
+2026-11-05T02:00:31.6105851Z test_inventory_correction_cannot_reuse_old_clause_pointer (test_assemble.AssemblyTests.test_inventory_correction_cannot_reuse_old_clause_pointer) ... ok
+2026-11-05T02:00:31.6443300Z test_inventory_correction_claim_metadata_cannot_be_edited_or_removed (test_assemble.AssemblyTests.test_inventory_correction_claim_metadata_cannot_be_edited_or_removed) ... ok
+2026-11-05T02:00:31.7117840Z test_inventory_correction_rejects_hostile_or_malformed_spans (test_assemble.AssemblyTests.test_inventory_correction_rejects_hostile_or_malformed_spans) ... ok
+2026-11-05T02:00:31.7340580Z test_inventory_correction_rejects_overlap_and_duplicate_scopes (test_assemble.AssemblyTests.test_inventory_correction_rejects_overlap_and_duplicate_scopes) ... ok
+2026-11-05T02:00:31.7490429Z test_inventory_correction_requires_complete_explicit_clause_decisions (test_assemble.AssemblyTests.test_inventory_correction_requires_complete_explicit_clause_decisions) ... ok
+2026-11-05T02:00:31.7691475Z test_inventory_correction_roundtrip_removes_metadata_and_bad_headings (test_assemble.AssemblyTests.test_inventory_correction_roundtrip_removes_metadata_and_bad_headings) ... ok
+2026-11-05T02:00:31.7882575Z test_later_event_needs_individual_date_confirmation (test_assemble.AssemblyTests.test_later_event_needs_individual_date_confirmation) ... ok
+2026-11-05T02:00:32.1037385Z test_malformed_json_shapes_fail_closed (test_assemble.AssemblyTests.test_malformed_json_shapes_fail_closed) ... ok
+2026-11-05T02:00:32.1145091Z test_never_activated_is_explicit_judgment (test_assemble.AssemblyTests.test_never_activated_is_explicit_judgment) ... ok
+2026-11-05T02:00:32.1232360Z test_no_free_sources (test_assemble.AssemblyTests.test_no_free_sources) ... ok
+2026-11-05T02:00:32.1340872Z test_no_silent_missing_clause (test_assemble.AssemblyTests.test_no_silent_missing_clause) ... ok
+2026-11-05T02:00:32.1449566Z test_offline_archival_source_uses_local_scan_hash (test_assemble.AssemblyTests.test_offline_archival_source_uses_local_scan_hash) ... ok
+2026-11-05T02:00:32.1562267Z test_original_lead_cannot_pass (test_assemble.AssemblyTests.test_original_lead_cannot_pass) ... ok
+2026-11-05T02:00:32.1666014Z test_path_escape_fails (test_assemble.AssemblyTests.test_path_escape_fails) ... ok
+2026-11-05T02:00:32.1775189Z test_report_deadline_cannot_supply_end (test_assemble.AssemblyTests.test_report_deadline_cannot_supply_end) ... ok
+2026-11-05T02:00:32.1880550Z test_richardson_cannot_pass_even_if_marked_acceptable (test_assemble.AssemblyTests.test_richardson_cannot_pass_even_if_marked_acceptable) ... ok
+2026-11-05T02:00:32.2541261Z test_source_evidence_ids_are_canonical_encoded_and_lookup_strictly (test_assemble.AssemblyTests.test_source_evidence_ids_are_canonical_encoded_and_lookup_strictly) ... ok
+2026-11-05T02:00:32.2641499Z test_source_original_hash_changed (test_assemble.AssemblyTests.test_source_original_hash_changed) ... ok
+2026-11-05T02:00:32.2747029Z test_source_text_changed (test_assemble.AssemblyTests.test_source_text_changed) ... ok
+2026-11-05T02:00:32.2855569Z test_stale_dossier_self_hash (test_assemble.AssemblyTests.test_stale_dossier_self_hash) ... ok
+2026-11-05T02:00:32.2957503Z test_stale_sheet (test_assemble.AssemblyTests.test_stale_sheet) ... ok
+2026-11-05T02:00:32.3052869Z test_status_never_inferred_or_changed (test_assemble.AssemblyTests.test_status_never_inferred_or_changed) ... ok
+2026-11-05T02:00:32.3242458Z test_unknown_search_and_unresolved_gap (test_assemble.AssemblyTests.test_unknown_search_and_unresolved_gap) ... ok
+2026-11-05T02:00:32.3347604Z test_warning_search_is_not_sufficient_alone (test_assemble.AssemblyTests.test_warning_search_is_not_sufficient_alone) ... ok
+2026-11-05T02:00:32.3605068Z test_weak_original_requires_separate_page_confirmation (test_assemble.AssemblyTests.test_weak_original_requires_separate_page_confirmation) ... ok
+2026-11-05T02:00:32.3771198Z test_working_text_cannot_launder_grade_via_identical_text_path_alias (test_assemble.AssemblyTests.test_working_text_cannot_launder_grade_via_identical_text_path_alias) ... ok
+2026-11-05T02:00:32.4018015Z test_working_text_is_provisional_labeled_and_keeps_replacement_obligation (test_assemble.AssemblyTests.test_working_text_is_provisional_labeled_and_keeps_replacement_obligation) ... ok
+2026-11-05T02:00:32.4159464Z test_working_text_mixed_ending_cannot_hide_undeclared_derivative (test_assemble.AssemblyTests.test_working_text_mixed_ending_cannot_hide_undeclared_derivative) ... ok
+2026-11-05T02:00:32.4409070Z test_working_text_new_official_copy_requires_a_new_sheet (test_assemble.AssemblyTests.test_working_text_new_official_copy_requires_a_new_sheet) ... ok
+2026-11-05T02:00:32.4684856Z test_working_text_official_arrival_reopens_claim_until_rechecked (test_assemble.AssemblyTests.test_working_text_official_arrival_reopens_claim_until_rechecked) ... ok
+2026-11-05T02:00:32.4931789Z test_working_text_page_warning_is_not_waived (test_assemble.AssemblyTests.test_working_text_page_warning_is_not_waived) ... ok
+2026-11-05T02:00:32.5577400Z test_working_text_rejects_hash_quote_edits_and_unlabeled_claim (test_assemble.AssemblyTests.test_working_text_rejects_hash_quote_edits_and_unlabeled_claim) ... ok
+2026-11-05T02:00:32.5842431Z test_working_text_rejects_known_incomplete_and_shortened_original (test_assemble.AssemblyTests.test_working_text_rejects_known_incomplete_and_shortened_original) ... ok
+2026-11-05T02:00:32.6191483Z test_working_text_rejects_missing_bytes_wrong_order_and_wrong_grade (test_assemble.AssemblyTests.test_working_text_rejects_missing_bytes_wrong_order_and_wrong_grade) ... ok
+2026-11-05T02:00:32.6333022Z test_working_text_requires_declared_text_hash_not_self_asserted_claim_hash (test_assemble.AssemblyTests.test_working_text_requires_declared_text_hash_not_self_asserted_claim_hash) ... ok
+2026-11-05T02:00:32.6687985Z test_working_text_requires_identity_completeness_and_note (test_assemble.AssemblyTests.test_working_text_requires_identity_completeness_and_note) ... ok
+2026-11-05T02:00:32.6852842Z test_yes_requires_current_basis_and_cutoff (test_assemble.AssemblyTests.test_yes_requires_current_basis_and_cutoff) ... ok
+2026-11-05T02:00:32.7314047Z test_actual_shared_provision_groups_but_exception_changes_do_not (test_batch.BatchTests.test_actual_shared_provision_groups_but_exception_changes_do_not) ... ok
+2026-11-05T02:00:33.4588562Z test_batch_codec_pin_is_enforced_even_for_rehashed_packet (test_batch.BatchTests.test_batch_codec_pin_is_enforced_even_for_rehashed_packet) ... ok
+2026-11-05T02:00:33.9610981Z test_bounded_navigation_preserves_exact_source_text (test_batch.BatchTests.test_bounded_navigation_preserves_exact_source_text) ... ok
+2026-11-05T02:00:34.4833084Z test_changed_source_or_packet_rejected (test_batch.BatchTests.test_changed_source_or_packet_rejected) ... ok
+2026-11-05T02:00:35.0658364Z test_confirmation_cache_rechecks_record_text_and_path_without_provider_edit (test_batch.BatchTests.test_confirmation_cache_rechecks_record_text_and_path_without_provider_edit) ... ok
+2026-11-05T02:00:35.5794584Z test_confirmed_working_text_changed_pinned_record_stales_packet (test_batch.BatchTests.test_confirmed_working_text_changed_pinned_record_stales_packet) ... ok
+2026-11-05T02:00:36.1478601Z test_confirmed_working_text_is_frozen_and_negative_agent_review_stales_packet (test_batch.BatchTests.test_confirmed_working_text_is_frozen_and_negative_agent_review_stales_packet) ... ok
+2026-11-05T02:00:36.7072938Z test_every_direct_policy_dependency_change_requires_new_packet (test_batch.BatchTests.test_every_direct_policy_dependency_change_requires_new_packet) ... ok
+2026-11-05T02:00:36.7533205Z test_existing_owner_and_other_reservations_are_preserved (test_batch.BatchTests.test_existing_owner_and_other_reservations_are_preserved) ... ok
+2026-11-05T02:00:37.2941710Z test_explicit_rows_use_real_assembler_and_keep_blocked_case (test_batch.BatchTests.test_explicit_rows_use_real_assembler_and_keep_blocked_case) ... ok
+2026-11-05T02:00:37.8148834Z test_fragment_cache_dependency_pins_refuse_old_packet_policy (test_batch.BatchTests.test_fragment_cache_dependency_pins_refuse_old_packet_policy) ... ok
+2026-11-05T02:00:38.3701003Z test_inventory_correction_rows_are_reconstructed_by_existing_assembler (test_batch.BatchTests.test_inventory_correction_rows_are_reconstructed_by_existing_assembler) ... ok
+2026-11-05T02:00:38.8769831Z test_lossless_roundtrip_shares_sources_and_full_text (test_batch.BatchTests.test_lossless_roundtrip_shares_sources_and_full_text) ... ok
+2026-11-05T02:00:39.3961494Z test_missing_member_cannot_disappear (test_batch.BatchTests.test_missing_member_cannot_disappear) ... ok
+2026-11-05T02:00:39.9365028Z test_missing_target_specific_review_is_actionable_failure (test_batch.BatchTests.test_missing_target_specific_review_is_actionable_failure) ... ok
+2026-11-05T02:00:40.4448762Z test_nonredundant_legal_fields_are_retained_in_readable_view (test_batch.BatchTests.test_nonredundant_legal_fields_are_retained_in_readable_view) ... ok
+2026-11-05T02:00:40.4880358Z test_own_term_bucket_is_not_shared_legal_family (test_batch.BatchTests.test_own_term_bucket_is_not_shared_legal_family) ... ok
+2026-11-05T02:00:41.1074607Z test_reused_confirmation_does_not_approve_producer_or_allow_lost_provenance (test_batch.BatchTests.test_reused_confirmation_does_not_approve_producer_or_allow_lost_provenance) ... ok
+2026-11-05T02:00:41.6971550Z test_reused_confirmation_flows_through_native_apply_without_legal_approval (test_batch.BatchTests.test_reused_confirmation_flows_through_native_apply_without_legal_approval) ... ok
+2026-11-05T02:00:42.8628551Z test_reused_confirmations_share_verified_provider_index_across_batches (test_batch.BatchTests.test_reused_confirmations_share_verified_provider_index_across_batches) ... ok
+2026-11-05T02:00:43.4357871Z test_shared_policy_index_is_scoped_and_never_replaces_an_explicit_index (test_batch.BatchTests.test_shared_policy_index_is_scoped_and_never_replaces_an_explicit_index) ... ok
+2026-11-05T02:00:43.4472938Z test_supplement_parent_is_own_work_only_for_the_same_agent (test_batch.BatchTests.test_supplement_parent_is_own_work_only_for_the_same_agent) ... ok
+2026-11-05T02:00:44.1242884Z test_valla_context_attaches_without_approval_and_refuses_stale_claim (test_batch.BatchTests.test_valla_context_attaches_without_approval_and_refuses_stale_claim) ... ok
+2026-11-05T02:00:44.9533555Z test_valla_context_ignores_own_and_unrelated_packages_but_not_relevant_ones (test_batch.BatchTests.test_valla_context_ignores_own_and_unrelated_packages_but_not_relevant_ones) ... ok
+2026-11-05T02:00:44.9897269Z test_actual_norton_nested_bound_witness_shape (test_blind_verify.BlindVerifyTests.test_actual_norton_nested_bound_witness_shape) ... ok
+2026-11-05T02:00:45.0014756Z test_all_raw_aliases_checked (test_blind_verify.BlindVerifyTests.test_all_raw_aliases_checked) ... ok
+2026-11-05T02:00:45.0087549Z test_archival_hash_alias (test_blind_verify.BlindVerifyTests.test_archival_hash_alias) ... ok
+2026-11-05T02:00:45.0118036Z test_bad_unicode_card_is_machine_refusal (test_blind_verify.BlindVerifyTests.test_bad_unicode_card_is_machine_refusal) ... ok
+2026-11-05T02:00:45.3248352Z test_cli_stdout_is_machine_report_and_exit_codes (test_blind_verify.BlindVerifyTests.test_cli_stdout_is_machine_report_and_exit_codes) ... ok
+2026-11-05T02:00:45.3347362Z test_directories_and_malformed_utf8_refused (test_blind_verify.BlindVerifyTests.test_directories_and_malformed_utf8_refused) ... ok
+2026-11-05T02:00:45.3741129Z test_each_descriptor_metadata_mutation_still_refused (test_blind_verify.BlindVerifyTests.test_each_descriptor_metadata_mutation_still_refused) ... ok
+2026-11-05T02:00:45.3839171Z test_empty_no_sources_and_malformed_card_fail (test_blind_verify.BlindVerifyTests.test_empty_no_sources_and_malformed_card_fail) ... ok
+2026-11-05T02:00:45.3909765Z test_existing_assembler_exact_routine_is_used (test_blind_verify.BlindVerifyTests.test_existing_assembler_exact_routine_is_used) ... ok
+2026-11-05T02:00:45.4032188Z test_fingerprint_field_is_retained_in_canonical_card_hash (test_blind_verify.BlindVerifyTests.test_fingerprint_field_is_retained_in_canonical_card_hash) ... ok
+2026-11-05T02:00:45.4232512Z test_frozen_card_pin_catches_changed_interval_before_source_reads (test_blind_verify.BlindVerifyTests.test_frozen_card_pin_catches_changed_interval_before_source_reads) ... ok
+2026-11-05T02:00:45.4321402Z test_json_duplicate_nonfinite_and_invalid_utf8_refused (test_blind_verify.BlindVerifyTests.test_json_duplicate_nonfinite_and_invalid_utf8_refused) ... ok
+2026-11-05T02:00:45.4449129Z test_lfs_pointer_is_not_retained_source_bytes_even_with_matching_pin (test_blind_verify.BlindVerifyTests.test_lfs_pointer_is_not_retained_source_bytes_even_with_matching_pin) ... ok
+2026-11-05T02:00:45.4519330Z test_missing_offsets_not_reconstructed_from_matching_quote (test_blind_verify.BlindVerifyTests.test_missing_offsets_not_reconstructed_from_matching_quote) ... ok
+2026-11-05T02:00:45.4715264Z test_multiple_cards_jsonl_and_repeat_files (test_blind_verify.BlindVerifyTests.test_multiple_cards_jsonl_and_repeat_files) ... ok
+2026-11-05T02:00:45.5511420Z test_mutations_fail_closed (test_blind_verify.BlindVerifyTests.test_mutations_fail_closed) ... ok
+2026-11-05T02:00:45.5633461Z test_native_card_exact_crlf_unicode_pass_and_determinism (test_blind_verify.BlindVerifyTests.test_native_card_exact_crlf_unicode_pass_and_determinism) ... ok
+2026-11-05T02:00:45.5835094Z test_nested_interval_bound_and_source_refs_checked (test_blind_verify.BlindVerifyTests.test_nested_interval_bound_and_source_refs_checked) ... ok
+2026-11-05T02:00:45.5907313Z test_no_canonical_lookup_or_key_reads (test_blind_verify.BlindVerifyTests.test_no_canonical_lookup_or_key_reads) ... ok
+2026-11-05T02:00:45.6032350Z test_no_newline_translation_or_byte_offset_substitution (test_blind_verify.BlindVerifyTests.test_no_newline_translation_or_byte_offset_substitution) ... ok
+2026-11-05T02:00:45.6176894Z test_raw_path_alias_and_conflicting_alias_bytes (test_blind_verify.BlindVerifyTests.test_raw_path_alias_and_conflicting_alias_bytes) ... ok
+2026-11-05T02:00:45.6298328Z test_raw_required_for_claims_and_unresolved_for_text_records (test_blind_verify.BlindVerifyTests.test_raw_required_for_claims_and_unresolved_for_text_records) ... ok
+2026-11-05T02:00:45.6479515Z test_rejects_all_unsafe_paths_before_any_source_read (test_blind_verify.BlindVerifyTests.test_rejects_all_unsafe_paths_before_any_source_read) ... ok
+2026-11-05T02:00:45.6508384Z test_same_api_stability_accepts_windows_ctime_difference (test_blind_verify.BlindVerifyTests.test_same_api_stability_accepts_windows_ctime_difference) ... ok
+2026-11-05T02:00:45.6578690Z test_source_changes_during_reused_check_refused (test_blind_verify.BlindVerifyTests.test_source_changes_during_reused_check_refused) ... ok
+2026-11-05T02:00:45.6612020Z test_source_read_accepts_only_access_metadata_drift (test_blind_verify.BlindVerifyTests.test_source_read_accepts_only_access_metadata_drift) ... ok
+2026-11-05T02:00:45.6739404Z test_source_read_refuses_each_stable_metadata_change (test_blind_verify.BlindVerifyTests.test_source_read_refuses_each_stable_metadata_change) ... ok
+2026-11-05T02:00:45.6807892Z test_symlink_escapes_and_inroot_symlinks_refused (test_blind_verify.BlindVerifyTests.test_symlink_escapes_and_inroot_symlinks_refused) ... ok
+2026-11-05T02:00:45.6860456Z test_symlink_loops_return_json_refusal (test_blind_verify.BlindVerifyTests.test_symlink_loops_return_json_refusal) ... ok
+2026-11-05T02:00:45.7741508Z test_blank_sheets_never_assemble_and_each_failure_reported (test_build.BuildIntegrationTests.test_blank_sheets_never_assemble_and_each_failure_reported) ... ok
+2026-11-05T02:00:45.8340639Z test_cli_reports_all_malformed_sheets_and_no_partial_batch (test_build.BuildIntegrationTests.test_cli_reports_all_malformed_sheets_and_no_partial_batch) ... ok
+2026-11-05T02:00:45.9353659Z test_cli_sheet_assemble_check_and_failed_batch (test_build.BuildIntegrationTests.test_cli_sheet_assemble_check_and_failed_batch) ... ok
+2026-11-05T02:00:46.0302525Z test_committed_decision_assembly_roundtrip_real_stage19 (test_build.BuildIntegrationTests.test_committed_decision_assembly_roundtrip_real_stage19) ... ok
+2026-11-05T02:00:46.1125040Z test_corpus_build_never_mutates_status_sources_or_claim_data (test_build.BuildIntegrationTests.test_corpus_build_never_mutates_status_sources_or_claim_data) ... ok
+2026-11-05T02:00:46.1571070Z test_crlf_source_preserves_raw_hash_and_character_offsets (test_build.BuildIntegrationTests.test_crlf_source_preserves_raw_hash_and_character_offsets) ... ok
+2026-11-05T02:00:46.2428683Z test_malformed_committed_sheets_each_get_reported_without_crashing_build (test_build.BuildIntegrationTests.test_malformed_committed_sheets_each_get_reported_without_crashing_build) ... ok
+2026-11-05T02:00:46.2895608Z test_new_source_automatically_plugs_in_and_exact_offsets_round_trip (test_build.BuildIntegrationTests.test_new_source_automatically_plugs_in_and_exact_offsets_round_trip) ... ok
+2026-11-05T02:00:46.3038468Z test_output_cannot_overwrite_protected_inputs_or_other_source_jobs (test_build.BuildIntegrationTests.test_output_cannot_overwrite_protected_inputs_or_other_source_jobs) ... ok
+2026-11-05T02:00:46.4038926Z test_refuses_missing_page_check_and_negative_agent_override (test_build.BuildIntegrationTests.test_refuses_missing_page_check_and_negative_agent_override) ... ok
+2026-11-05T02:00:46.4778728Z test_removed_provisional_status_cannot_reuse_stale_dossier (test_build.BuildIntegrationTests.test_removed_provisional_status_cannot_reuse_stale_dossier) ... ok
+2026-11-05T02:00:46.5666937Z test_reruns_deterministic_semantic_outputs_with_incremental_cache (test_build.BuildIntegrationTests.test_reruns_deterministic_semantic_outputs_with_incremental_cache) ... ok
+2026-11-05T02:00:46.6171728Z test_reservations_disjoint_and_respect_existing_claims (test_build.BuildIntegrationTests.test_reservations_disjoint_and_respect_existing_claims) ... ok
+2026-11-05T02:00:46.6789272Z test_reuses_only_current_confirmed_selected_working_text (test_build.BuildIntegrationTests.test_reuses_only_current_confirmed_selected_working_text) ... ok
+2026-11-05T02:00:46.7240762Z test_whole_population_including_yes_no_undecided_and_missing (test_build.BuildIntegrationTests.test_whole_population_including_yes_no_undecided_and_missing) ... ok
+2026-11-05T02:00:46.7760411Z test_citation_without_change_provision_is_a_known_actor (test_build.PrintedReferenceTests.test_citation_without_change_provision_is_a_known_actor) ... ok
+2026-11-05T02:00:46.7863335Z test_name_match_lead_reason (test_build.PrintedReferenceTests.test_name_match_lead_reason) ... ok
+2026-11-05T02:00:46.8445132Z test_printed_reference_outranks_a_name_match_for_the_same_pair (test_build.PrintedReferenceTests.test_printed_reference_outranks_a_name_match_for_the_same_pair) ... ok
+2026-11-05T02:00:47.5066313Z test_cached_packet_dossier_is_not_mutated_by_member_checks (test_completion.CompletionTests.test_cached_packet_dossier_is_not_mutated_by_member_checks) ... ok
+2026-11-05T02:00:48.0965439Z test_changed_file_does_not_silently_select_a_new_version (test_completion.CompletionTests.test_changed_file_does_not_silently_select_a_new_version) ... ok
+2026-11-05T02:00:48.6898225Z test_changed_receipt_during_checker_cannot_publish (test_completion.CompletionTests.test_changed_receipt_during_checker_cannot_publish) ... ok
+2026-11-05T02:00:49.2819668Z test_checker_failure_preserves_proposal_and_exception (test_completion.CompletionTests.test_checker_failure_preserves_proposal_and_exception) ... ok
+2026-11-05T02:00:49.9025764Z test_complete_claim_cannot_use_partial_scope_without_explicit_gaps (test_completion.CompletionTests.test_complete_claim_cannot_use_partial_scope_without_explicit_gaps) ... ok
+2026-11-05T02:00:50.4284389Z test_conflicting_selected_versions_are_refused (test_completion.CompletionTests.test_conflicting_selected_versions_are_refused) ... ok
+2026-11-05T02:00:51.0275787Z test_control_adjudication_not_reason_keywords_and_after_reveal_exact (test_completion.CompletionTests.test_control_adjudication_not_reason_keywords_and_after_reveal_exact) ... ok
+2026-11-05T02:00:51.6276311Z test_control_false_stops_batch_even_with_upheld_after_reveal (test_completion.CompletionTests.test_control_false_stops_batch_even_with_upheld_after_reveal) ... ok
+2026-11-05T02:00:52.1878574Z test_control_review_of_an_unrelated_task_does_not_count (test_completion.CompletionTests.test_control_review_of_an_unrelated_task_does_not_count) ... ok
+2026-11-05T02:00:52.7642637Z test_control_review_scope_must_match_the_seeded_member (test_completion.CompletionTests.test_control_review_scope_must_match_the_seeded_member) ... ok
+2026-11-05T02:00:53.4126038Z test_cross_family_requirement_and_reviewer_identity (test_completion.CompletionTests.test_cross_family_requirement_and_reviewer_identity) ... ok
+2026-11-05T02:00:54.2743369Z test_dead_holder_is_not_removed_while_another_waiter_breaks_it (test_completion.CompletionTests.test_dead_holder_is_not_removed_while_another_waiter_breaks_it) ... ok
+2026-11-05T02:00:55.1731343Z test_dead_holder_on_this_host_is_removed_and_receipted (test_completion.CompletionTests.test_dead_holder_on_this_host_is_removed_and_receipted) ... ok
+2026-11-05T02:00:55.8386503Z test_disjoint_claims_file_during_run_publishes_and_is_receipted (test_completion.CompletionTests.test_disjoint_claims_file_during_run_publishes_and_is_receipted) ... ok
+2026-11-05T02:00:56.4456503Z test_exact_hold_blocks_but_a_different_held_version_does_not (test_completion.CompletionTests.test_exact_hold_blocks_but_a_different_held_version_does_not) ... ok
+2026-11-05T02:00:57.0571415Z test_exact_producer_bytes_and_all_consumed_receipts_preserved (test_completion.CompletionTests.test_exact_producer_bytes_and_all_consumed_receipts_preserved) ... ok
+2026-11-05T02:00:57.6938107Z test_failed_packet_verification_is_not_repeated_for_every_member (test_completion.CompletionTests.test_failed_packet_verification_is_not_repeated_for_every_member) ... ok
+2026-11-05T02:00:58.3403768Z test_held_source_changed_after_selection_blocks_publication (test_completion.CompletionTests.test_held_source_changed_after_selection_blocks_publication) ... ok
+2026-11-05T02:00:59.0007176Z test_lock_holds_during_checks_records_holder_and_is_released_after_conflicting_target (test_completion.CompletionTests.test_lock_holds_during_checks_records_holder_and_is_released_after_conflicting_target) ... ok
+2026-11-05T02:00:59.6811386Z test_lock_is_released_after_success (test_completion.CompletionTests.test_lock_is_released_after_success) ... ok
+2026-11-05T02:00:59.7821384Z test_lock_lives_in_git_common_dir_when_available (test_completion.CompletionTests.test_lock_lives_in_git_common_dir_when_available) ... ok
+2026-11-05T02:01:00.4411254Z test_missing_adjudication_and_missing_after_reveal_fail_closed (test_completion.CompletionTests.test_missing_adjudication_and_missing_after_reveal_fail_closed) ... ok
+2026-11-05T02:01:01.1273062Z test_new_canonical_claim_for_selected_id_or_hold_during_replay_stops_filing (test_completion.CompletionTests.test_new_canonical_claim_for_selected_id_or_hold_during_replay_stops_filing) ... ok
+2026-11-05T02:01:01.9993370Z test_new_claims_file_for_selected_id_or_unparseable_blocks_publication (test_completion.CompletionTests.test_new_claims_file_for_selected_id_or_unparseable_blocks_publication) ... ok
+2026-11-05T02:01:02.5704607Z test_no_controls_and_family_whitespace_do_not_bypass_guard (test_completion.CompletionTests.test_no_controls_and_family_whitespace_do_not_bypass_guard) ... ok
+2026-11-05T02:01:03.2417355Z test_one_packet_load_for_many_members_plus_one_recheck (test_completion.CompletionTests.test_one_packet_load_for_many_members_plus_one_recheck) ... ok
+2026-11-05T02:01:03.8541243Z test_partial_cannot_supply_ready_credit_through_exhaustion (test_completion.CompletionTests.test_partial_cannot_supply_ready_credit_through_exhaustion) ... ok
+2026-11-05T02:01:04.4493037Z test_partial_keeps_full_gate_errors_and_does_not_repair_claim (test_completion.CompletionTests.test_partial_keeps_full_gate_errors_and_does_not_repair_claim) ... ok
+2026-11-05T02:01:05.0525857Z test_partial_requires_actual_checker_errors_equal_exact_review (test_completion.CompletionTests.test_partial_requires_actual_checker_errors_equal_exact_review) ... ok
+2026-11-05T02:01:05.6395988Z test_planted_exact_claim_never_filed (test_completion.CompletionTests.test_planted_exact_claim_never_filed) ... ok
+2026-11-05T02:01:06.3951172Z test_preexisting_claims_file_modified_or_deleted_blocks_publication (test_completion.CompletionTests.test_preexisting_claims_file_modified_or_deleted_blocks_publication) ... ok
+2026-11-05T02:01:07.3443361Z test_publication_lock_held_by_another_fails_closed_and_is_never_removed (test_completion.CompletionTests.test_publication_lock_held_by_another_fails_closed_and_is_never_removed) ... ok
+2026-11-05T02:01:07.9424467Z test_seed_pointer_cannot_copy_an_enclosing_private_key (test_completion.CompletionTests.test_seed_pointer_cannot_copy_an_enclosing_private_key) ... ok
+2026-11-05T02:01:08.5267073Z test_stale_exact_review_is_exception_and_no_publication (test_completion.CompletionTests.test_stale_exact_review_is_exception_and_no_publication) ... ok
+2026-11-05T02:01:09.7814985Z test_two_sequential_completions_for_disjoint_ids_both_publish (test_completion.CompletionTests.test_two_sequential_completions_for_disjoint_ids_both_publish) ... ok
+2026-11-05T02:01:10.5781121Z test_competing_publications_from_separate_clones_are_reported (test_completion.PublicationAuditTests.test_competing_publications_from_separate_clones_are_reported) ... ok
+2026-11-05T02:01:12.7895104Z test_disjoint_publications_pass_and_other_changes_fail (test_completion.PublicationAuditTests.test_disjoint_publications_pass_and_other_changes_fail) ... ok
+2026-11-05T02:01:13.3067436Z test_new_reviewed_version_appended_to_existing_file_passes (test_completion.PublicationAuditTests.test_new_reviewed_version_appended_to_existing_file_passes) ... ok
+2026-11-05T02:01:14.4230251Z test_race_where_one_publication_landed_first_is_reported_both_ways (test_completion.PublicationAuditTests.test_race_where_one_publication_landed_first_is_reported_both_ways) ... ok
+2026-11-05T02:01:15.0278068Z test_reordering_old_versions_cannot_change_the_effective_claim (test_completion.PublicationAuditTests.test_reordering_old_versions_cannot_change_the_effective_claim) ... ok
+2026-11-05T02:01:15.7711355Z test_diagnostic_derivatives_do_not_change_prior_context (test_completion_diagnosis.DiagnosticCompletionTests.test_diagnostic_derivatives_do_not_change_prior_context) ... ok
+2026-11-05T02:01:16.4062731Z test_incomplete_diagnostic_options_are_separate_refusal (test_completion_diagnosis.DiagnosticCompletionTests.test_incomplete_diagnostic_options_are_separate_refusal) ... ok
+2026-11-05T02:01:17.1423709Z test_missing_history_refuses_diagnosis_preserves_scientific_completion (test_completion_diagnosis.DiagnosticCompletionTests.test_missing_history_refuses_diagnosis_preserves_scientific_completion) ... ok
+2026-11-05T02:01:17.9038203Z test_native_cli_appends_current_retains_failures_and_blocked_member (test_completion_diagnosis.DiagnosticCompletionTests.test_native_cli_appends_current_retains_failures_and_blocked_member) ... ok
+2026-11-05T02:01:18.6309749Z test_omitted_unfinished_attempt_refuses_without_affecting_completion (test_completion_diagnosis.DiagnosticCompletionTests.test_omitted_unfinished_attempt_refuses_without_affecting_completion) ... ok
+2026-11-05T02:01:19.2018168Z test_overlay_fixture_preserves_native_completion_module (test_completion_diagnosis.DiagnosticCompletionTests.test_overlay_fixture_preserves_native_completion_module) ... ok
+2026-11-05T02:01:19.8360550Z test_apply_preserves_research_without_emitting_unset_status_claim (test_continuous_route.ContinuousRouteTests.test_apply_preserves_research_without_emitting_unset_status_claim) ... ok
+2026-11-05T02:01:20.4822848Z test_changed_frozen_input_and_wrong_reservation_are_rejected (test_continuous_route.ContinuousRouteTests.test_changed_frozen_input_and_wrong_reservation_are_rejected) ... ok
+2026-11-05T02:01:20.5962015Z test_next_can_reserve_unadopted_full_research_and_detect_stale_inputs (test_continuous_route.ContinuousRouteTests.test_next_can_reserve_unadopted_full_research_and_detect_stale_inputs) ... ok
+2026-11-05T02:01:21.3054379Z test_ordinary_undecided_preparation_has_full_dossier_and_no_approval (test_continuous_route.ContinuousRouteTests.test_ordinary_undecided_preparation_has_full_dossier_and_no_approval) ... ok
+2026-11-05T02:01:21.9544193Z test_overlay_policy_change_requires_new_packet (test_continuous_route.ContinuousRouteTests.test_overlay_policy_change_requires_new_packet) ... ok
+2026-11-05T02:01:22.2335815Z test_reviewed_overlay_carries_research_and_rejects_wrong_version (test_continuous_route.ContinuousRouteTests.test_reviewed_overlay_carries_research_and_rejects_wrong_version) ... ok
+2026-11-05T02:01:22.9709081Z test_undecided_reuses_exact_confirmation_and_refuses_later_negative_review (test_continuous_route.ContinuousRouteTests.test_undecided_reuses_exact_confirmation_and_refuses_later_negative_review) ... ok
+2026-11-05T02:01:23.0566137Z test_authority_change_invalidates_proposal (test_status_overlay.OverlayTests.test_authority_change_invalidates_proposal) ... ok
+2026-11-05T02:01:23.1816105Z test_blank_decision_and_review_cannot_promote (test_status_overlay.OverlayTests.test_blank_decision_and_review_cannot_promote) ... ok
+2026-11-05T02:01:23.3562928Z test_bundle_is_new_version_and_protected_destinations_are_rejected (test_status_overlay.OverlayTests.test_bundle_is_new_version_and_protected_destinations_are_rejected) ... ok
+2026-11-05T02:01:23.4415546Z test_census_change_invalidates_frozen_snapshot (test_status_overlay.OverlayTests.test_census_change_invalidates_frozen_snapshot) ... ok
+2026-11-05T02:01:23.5498486Z test_changed_compiler_code_is_rejected (test_status_overlay.OverlayTests.test_changed_compiler_code_is_rejected) ... ok
+2026-11-05T02:01:23.6533476Z test_changed_consumed_manifest_requires_new_evidence_and_review (test_status_overlay.OverlayTests.test_changed_consumed_manifest_requires_new_evidence_and_review) ... ok
+2026-11-05T02:01:23.7633288Z test_changed_lifecycle_obligations_invalidates_frozen_snapshot (test_status_overlay.OverlayTests.test_changed_lifecycle_obligations_invalidates_frozen_snapshot) ... ok
+2026-11-05T02:01:23.8895306Z test_changed_unconsumed_manifest_does_not_change_frozen_status_proposal (test_status_overlay.OverlayTests.test_changed_unconsumed_manifest_does_not_change_frozen_status_proposal) ... ok
+2026-11-05T02:01:24.0159194Z test_decision_edits_reuse_frozen_evidence_without_corpus_build_or_shard_scan (test_status_overlay.OverlayTests.test_decision_edits_reuse_frozen_evidence_without_corpus_build_or_shard_scan) ... ok
+2026-11-05T02:01:24.2377360Z test_explicit_legal_checks_and_empty_status_gaps_are_required (test_status_overlay.OverlayTests.test_explicit_legal_checks_and_empty_status_gaps_are_required) ... ok
+2026-11-05T02:01:24.3387487Z test_extra_unlisted_shard_is_rejected (test_status_overlay.OverlayTests.test_extra_unlisted_shard_is_rejected) ... ok
+2026-11-05T02:01:24.5891703Z test_full_overlay_dossier_runs_existing_assembler (test_status_overlay.OverlayTests.test_full_overlay_dossier_runs_existing_assembler) ... ok
+2026-11-05T02:01:24.6930214Z test_held_actor_context_can_support_manual_review_of_ocr_missed_provision (test_status_overlay.OverlayTests.test_held_actor_context_can_support_manual_review_of_ocr_missed_provision) ... ok
+2026-11-05T02:01:24.8014818Z test_historical_snapshot_cannot_hide_under_current_evidence_id (test_status_overlay.OverlayTests.test_historical_snapshot_cannot_hide_under_current_evidence_id) ... ok
+2026-11-05T02:01:25.0611036Z test_large_actor_context_pointer_is_qualified_and_pinned_for_isolated_bundle (test_status_overlay.OverlayTests.test_large_actor_context_pointer_is_qualified_and_pinned_for_isolated_bundle) ... ok
+2026-11-05T02:01:25.1873257Z test_missing_and_rejected_reviews_fail (test_status_overlay.OverlayTests.test_missing_and_rejected_reviews_fail) ... ok
+2026-11-05T02:01:25.3066080Z test_missing_or_extra_shards_are_rejected (test_status_overlay.OverlayTests.test_missing_or_extra_shards_are_rejected) ... ok
+2026-11-05T02:01:25.4076808Z test_noncontiguous_listed_shard_is_rejected (test_status_overlay.OverlayTests.test_noncontiguous_listed_shard_is_rejected) ... ok
+2026-11-05T02:01:25.5227731Z test_old_compiler_format_is_rejected (test_status_overlay.OverlayTests.test_old_compiler_format_is_rejected) ... ok
+2026-11-05T02:01:25.8313756Z test_overlay_cli_assemble_check_stays_isolated_and_preserves_labels (test_status_overlay.OverlayTests.test_overlay_cli_assemble_check_stays_isolated_and_preserves_labels) ... ok
+2026-11-05T02:01:25.9553541Z test_owner_acceptance_cannot_be_forged_in_experimental_dossier (test_status_overlay.OverlayTests.test_owner_acceptance_cannot_be_forged_in_experimental_dossier) ... ok
+2026-11-05T02:01:26.0543972Z test_receipt_reuse_does_not_accept_new_failure_or_missing_consumed_shard (test_status_overlay.OverlayTests.test_receipt_reuse_does_not_accept_new_failure_or_missing_consumed_shard) ... ok
+2026-11-05T02:01:26.1562024Z test_report_deadline_cannot_establish_status (test_status_overlay.OverlayTests.test_report_deadline_cannot_establish_status) ... ok
+2026-11-05T02:01:26.2578300Z test_resealed_evidence_cannot_fabricate_a_quote (test_status_overlay.OverlayTests.test_resealed_evidence_cannot_fabricate_a_quote) ... ok
+2026-11-05T02:01:26.3612636Z test_review_must_pin_original_and_every_selected_basis (test_status_overlay.OverlayTests.test_review_must_pin_original_and_every_selected_basis) ... ok
+2026-11-05T02:01:26.4866929Z test_review_pins_evidence_and_history (test_status_overlay.OverlayTests.test_review_pins_evidence_and_history) ... ok
+2026-11-05T02:01:26.5897873Z test_review_pins_exact_producer_decision (test_status_overlay.OverlayTests.test_review_pins_exact_producer_decision) ... ok
+2026-11-05T02:01:26.7392466Z test_reviewed_proposal_has_no_authority_and_experimental_full_dossier (test_status_overlay.OverlayTests.test_reviewed_proposal_has_no_authority_and_experimental_full_dossier) ... ok
+2026-11-05T02:01:26.8886007Z test_runner_receipt_only_change_reuses_same_frozen_records (test_status_overlay.OverlayTests.test_runner_receipt_only_change_reuses_same_frozen_records) ... ok
+2026-11-05T02:01:27.0014119Z test_same_reviewer_is_not_independent (test_status_overlay.OverlayTests.test_same_reviewer_is_not_independent) ... ok
+2026-11-05T02:01:27.1085533Z test_shard_tampering_is_rejected_before_freeze (test_status_overlay.OverlayTests.test_shard_tampering_is_rejected_before_freeze) ... ok
+2026-11-05T02:01:27.2294366Z test_snapshot_only_status_cannot_be_proposed (test_status_overlay.OverlayTests.test_snapshot_only_status_cannot_be_proposed) ... ok
+2026-11-05T02:01:27.3298438Z test_stale_history_is_rejected (test_status_overlay.OverlayTests.test_stale_history_is_rejected) ... ok
+2026-11-05T02:01:27.4199043Z test_stale_source_bytes_are_rejected (test_status_overlay.OverlayTests.test_stale_source_bytes_are_rejected) ... ok
+2026-11-05T02:01:27.5459061Z test_wrong_identity_is_rejected_at_each_boundary (test_status_overlay.OverlayTests.test_wrong_identity_is_rejected_at_each_boundary) ... ok
+2026-11-05T02:01:27.6467844Z test_yes_snapshot_cannot_replace_current_predicate (test_status_overlay.OverlayTests.test_yes_snapshot_cannot_replace_current_predicate) ... ok
+2026-11-05T02:01:29.1905871Z test_mixed_packet_cli_nonzero_explicit_subset_and_immutable_receipts (test_dispatch.DispatchTests.test_mixed_packet_cli_nonzero_explicit_subset_and_immutable_receipts) ... ok
+2026-11-05T02:01:29.7388794Z test_new_relevant_ruling_requires_new_packet (test_dispatch.DispatchTests.test_new_relevant_ruling_requires_new_packet) ... ok
+2026-11-05T02:01:30.7566042Z test_offline_even_if_download_budget_initialized_and_no_repository_writes (test_dispatch.DispatchTests.test_offline_even_if_download_budget_initialized_and_no_repository_writes) ... ok
+2026-11-05T02:01:31.7562984Z test_optional_actor_custody_gap_does_not_choose_or_block_legal_theory (test_dispatch.DispatchTests.test_optional_actor_custody_gap_does_not_choose_or_block_legal_theory) ... ok
+2026-11-05T02:01:32.7489986Z test_prepare_cli_blocks_production_but_allows_explicit_source_research (test_dispatch.DispatchTests.test_prepare_cli_blocks_production_but_allows_explicit_source_research) ... ok
+2026-11-05T02:01:33.2988822Z test_prepare_wires_source_check_and_deduplicates_shared_references (test_dispatch.DispatchTests.test_prepare_wires_source_check_and_deduplicates_shared_references) ... ok
+2026-11-05T02:01:34.3014919Z test_provisional_working_text_remains_researchable_without_authentication (test_dispatch.DispatchTests.test_provisional_working_text_remains_researchable_without_authentication) ... ok
+2026-11-05T02:01:35.3119371Z test_raw_corruption_refuses_but_text_unchanged (test_dispatch.DispatchTests.test_raw_corruption_refuses_but_text_unchanged) ... ok
+2026-11-05T02:01:36.8205869Z test_record_only_blocks_then_exact_retained_bytes_reopen_without_reprepare (test_dispatch.DispatchTests.test_record_only_blocks_then_exact_retained_bytes_reopen_without_reprepare) ... ok
+2026-11-05T02:01:37.3779506Z test_runtime_change_refused_even_with_valid_packet_seal (test_dispatch.DispatchTests.test_runtime_change_refused_even_with_valid_packet_seal) ... ok
+2026-11-05T02:01:37.9428718Z test_text_and_packet_tampering_refused (test_dispatch.DispatchTests.test_text_and_packet_tampering_refused) ... ok
+2026-11-05T02:01:37.9445412Z test_custody_only_pointer_and_mismatched_quote_do_not_look_ready (test_evidence_preflight.EvidencePreflightTests.test_custody_only_pointer_and_mismatched_quote_do_not_look_ready) ... ok
+2026-11-05T02:01:37.9487474Z test_discovery_reproductions_numbered_identity_and_unnumbered_command (test_evidence_preflight.EvidencePreflightTests.test_discovery_reproductions_numbered_identity_and_unnumbered_command) ... ok
+2026-11-05T02:01:37.9504075Z test_explicit_wrong_order_is_flagged (test_evidence_preflight.EvidencePreflightTests.test_explicit_wrong_order_is_flagged) ... ok
+2026-11-05T02:01:37.9534992Z test_header_only_actor_quote_including_section_label_is_not_operating_text (test_evidence_preflight.EvidencePreflightTests.test_header_only_actor_quote_including_section_label_is_not_operating_text) ... ok
+2026-11-05T02:01:37.9633760Z test_heading_references_amendments_and_multi_order_sources_are_distinct (test_evidence_preflight.EvidencePreflightTests.test_heading_references_amendments_and_multi_order_sources_are_distinct) ... ok
+2026-11-05T02:01:37.9654976Z test_intervening_numbered_document_does_not_license_legacy_command_scan (test_evidence_preflight.EvidencePreflightTests.test_intervening_numbered_document_does_not_license_legacy_command_scan) ... ok
+2026-11-05T02:01:37.9670106Z test_machine_recital_label_cannot_prove_absence_of_a_duty (test_evidence_preflight.EvidencePreflightTests.test_machine_recital_label_cannot_prove_absence_of_a_duty) ... ok
+2026-11-05T02:01:37.9697890Z test_missing_bytes_and_wrong_hash_are_distinct_failures (test_evidence_preflight.EvidencePreflightTests.test_missing_bytes_and_wrong_hash_are_distinct_failures) ... ok
+2026-11-05T02:01:37.9722474Z test_neighboring_old_order_inventory_requires_boundary_review (test_evidence_preflight.EvidencePreflightTests.test_neighboring_old_order_inventory_requires_boundary_review) ... ok
+2026-11-05T02:01:37.9736623Z test_numbered_neighbor_sections_do_not_create_false_inventory_gaps (test_evidence_preflight.EvidencePreflightTests.test_numbered_neighbor_sections_do_not_create_false_inventory_gaps) ... ok
+2026-11-05T02:01:37.9793486Z test_partial_and_disjoint_ranges_cannot_hide_a_command_tail (test_evidence_preflight.EvidencePreflightTests.test_partial_and_disjoint_ranges_cannot_hide_a_command_tail) ... ok
+2026-11-05T02:01:37.9809642Z test_post_signature_schedule_and_neighbor_commands_are_not_body_gaps (test_evidence_preflight.EvidencePreflightTests.test_post_signature_schedule_and_neighbor_commands_are_not_body_gaps) ... ok
+2026-11-05T02:01:37.9841488Z test_quoted_amendment_payload_is_a_qualified_lead_across_paragraph_layouts (test_evidence_preflight.EvidencePreflightTests.test_quoted_amendment_payload_is_a_qualified_lead_across_paragraph_layouts) ... ok
+2026-11-05T02:01:37.9869550Z test_recitals_formulas_and_titles_do_not_warn_as_omitted_commands (test_evidence_preflight.EvidencePreflightTests.test_recitals_formulas_and_titles_do_not_warn_as_omitted_commands) ... ok
+2026-11-05T02:01:37.9896305Z test_report_relative_sunset_remains_a_substantive_event_question (test_evidence_preflight.EvidencePreflightTests.test_report_relative_sunset_remains_a_substantive_event_question) ... ok
+2026-11-05T02:01:37.9931908Z test_same_source_alternate_exposes_truncation_without_selecting_it (test_evidence_preflight.EvidencePreflightTests.test_same_source_alternate_exposes_truncation_without_selecting_it) ... ok
+2026-11-05T02:01:37.9939392Z test_spaced_section_number_keeps_operative_first_subsection (test_evidence_preflight.EvidencePreflightTests.test_spaced_section_number_keeps_operative_first_subsection) ... ok
+2026-11-05T02:01:37.9955824Z test_uncovered_numbered_section_is_flagged (test_evidence_preflight.EvidencePreflightTests.test_uncovered_numbered_section_is_flagged) ... ok
+2026-11-05T02:01:37.9967065Z test_unsafe_source_is_not_read (test_evidence_preflight.EvidencePreflightTests.test_unsafe_source_is_not_read) ... ok
+2026-11-05T02:01:37.9985703Z test_valid_single_order_is_unaffected_and_no_authentication_is_claimed (test_evidence_preflight.EvidencePreflightTests.test_valid_single_order_is_unaffected_and_no_authentication_is_claimed) ... ok
+2026-11-05T02:01:37.9987962Z setUpClass (test_evidence_preflight_real.RealEvidencePreflightTests) ... skipped 'R2 frozen research cohort not hydrated'
+2026-11-05T02:01:37.9999532Z test_all_own_term_classes (test_excavate.ExcavatorTests.test_all_own_term_classes) ... ok
+2026-11-05T02:01:38.0009107Z test_authority_only_preamble_and_ocr_signature_regression (test_excavate.ExcavatorTests.test_authority_only_preamble_and_ocr_signature_regression) ... ok
+2026-11-05T02:01:38.0013977Z test_chain_sort_and_filter (test_excavate.ExcavatorTests.test_chain_sort_and_filter) ... ok
+2026-11-05T02:01:38.0018108Z test_change_list_instruction_reaches_later_items (test_excavate.ExcavatorTests.test_change_list_instruction_reaches_later_items) ... ok
+2026-11-05T02:01:38.0048052Z test_contract_examples_parse_and_roundtrip (test_excavate.ExcavatorTests.test_contract_examples_parse_and_roundtrip) ... ok
+2026-11-05T02:01:38.0066911Z test_dated_plural_order_references_keep_exact_ids_and_spans (test_excavate.ExcavatorTests.test_dated_plural_order_references_keep_exact_ids_and_spans) ... ok
+2026-11-05T02:01:38.0068907Z test_deadline_never_becomes_end (test_excavate.ExcavatorTests.test_deadline_never_becomes_end) ... ok
+2026-11-05T02:01:38.0073467Z test_discovery_plural_generic_and_suffixes (test_excavate.ExcavatorTests.test_discovery_plural_generic_and_suffixes) ... ok
+2026-11-05T02:01:38.0086576Z test_effective_dates (test_excavate.ExcavatorTests.test_effective_dates) ... ok
+2026-11-05T02:01:38.0090688Z test_fixed_term_requires_stated_start (test_excavate.ExcavatorTests.test_fixed_term_requires_stated_start) ... ok
+2026-11-05T02:01:38.0094006Z test_hierarchy_lead_schedules_and_amendment (test_excavate.ExcavatorTests.test_hierarchy_lead_schedules_and_amendment) ... ok
+2026-11-05T02:01:38.0096707Z test_lowercase_crossrefs_and_comma_parenthetical_are_not_headings (test_excavate.ExcavatorTests.test_lowercase_crossrefs_and_comma_parenthetical_are_not_headings) ... ok
+2026-11-05T02:01:38.0100601Z test_month_end_ambiguity_and_determinism (test_excavate.ExcavatorTests.test_month_end_ambiguity_and_determinism) ... ok
+2026-11-05T02:01:38.0109100Z test_multiline_revocation_list_and_historical_amenders (test_excavate.ExcavatorTests.test_multiline_revocation_list_and_historical_amenders) ... ok
+2026-11-05T02:01:38.0115709Z test_neighbor_blocks_cannot_supply_own_terms_actor_or_effective_date (test_excavate.ExcavatorTests.test_neighbor_blocks_cannot_supply_own_terms_actor_or_effective_date) ... ok
+2026-11-05T02:01:38.0120093Z test_no_fabricated_missing_provision (test_excavate.ExcavatorTests.test_no_fabricated_missing_provision) ... ok
+2026-11-05T02:01:38.0122897Z test_parent_exceptions_are_partial (test_excavate.ExcavatorTests.test_parent_exceptions_are_partial) ... ok
+2026-11-05T02:01:38.0124860Z test_pdf_page_markers_override_first_page_for_later_clauses (test_excavate.ExcavatorTests.test_pdf_page_markers_override_first_page_for_later_clauses) ... ok
+2026-11-05T02:01:38.0126834Z test_plural_dates_are_not_ids_and_unrelated_numbers_stay_out (test_excavate.ExcavatorTests.test_plural_dates_are_not_ids_and_unrelated_numbers_stay_out) ... ok
+2026-11-05T02:01:38.0131060Z test_real_eo12649_skips_preceding_footer_and_following_memorandum (test_excavate.ExcavatorTests.test_real_eo12649_skips_preceding_footer_and_following_memorandum) ... skipped 'Real FR EO12649 text not hydrated'
+2026-11-05T02:01:38.0134806Z test_real_hydrated_actor_list_regressions (test_excavate.ExcavatorTests.test_real_hydrated_actor_list_regressions) ... skipped 'Real FR acting source text is not hydrated in this checkout'
+2026-11-05T02:01:38.0138792Z test_real_hydrated_segmentation_regressions (test_excavate.ExcavatorTests.test_real_hydrated_segmentation_regressions) ... skipped 'Real FR source text is not hydrated in this checkout'
+2026-11-05T02:01:38.0140821Z test_savings (test_excavate.ExcavatorTests.test_savings) ... ok
+2026-11-05T02:01:38.0145170Z test_signature_before_schedule_and_neighboring_order (test_excavate.ExcavatorTests.test_signature_before_schedule_and_neighboring_order) ... ok
+2026-11-05T02:01:38.0149901Z test_single_sentence_unicode_exact (test_excavate.ExcavatorTests.test_single_sentence_unicode_exact) ... ok
+2026-11-05T02:01:38.0156092Z test_stated_date_of_order_term_uses_source_signing_date_only (test_excavate.ExcavatorTests.test_stated_date_of_order_term_uses_source_signing_date_only) ... ok
+2026-11-05T02:01:38.0157665Z test_unknown_pdf_page_stays_unknown (test_excavate.ExcavatorTests.test_unknown_pdf_page_stays_unknown) ... ok
+2026-11-05T02:01:38.0161412Z test_variable_and_other_section_dates (test_excavate.ExcavatorTests.test_variable_and_other_section_dates) ... ok
+2026-11-05T02:01:38.0165389Z test_whole_parent_and_section_only (test_excavate.ExcavatorTests.test_whole_parent_and_section_only) ... ok
+2026-11-05T02:01:38.0984867Z test_actual_checker_blocks_factual_role_bypass_and_changed_review (test_factual_events.FactualEventTests.test_actual_checker_blocks_factual_role_bypass_and_changed_review) ... ok
+2026-11-05T02:01:38.1068447Z test_answer_review_does_not_substitute_for_application_review (test_factual_events.FactualEventTests.test_answer_review_does_not_substitute_for_application_review) ... ok
+2026-11-05T02:01:38.1317976Z test_as_of_observations_reopen_on_changed_review_and_are_not_operative_states (test_factual_events.FactualEventTests.test_as_of_observations_reopen_on_changed_review_and_are_not_operative_states) ... ok
+2026-11-05T02:01:38.1370225Z test_candidate_application_never_becomes_evidence (test_factual_events.FactualEventTests.test_candidate_application_never_becomes_evidence) ... ok
+2026-11-05T02:01:38.1774117Z test_citation_cannot_be_repurposed_or_delabeled (test_factual_events.FactualEventTests.test_citation_cannot_be_repurposed_or_delabeled) ... ok
+2026-11-05T02:01:38.1888180Z test_custody_only_and_changed_bytes_fail (test_factual_events.FactualEventTests.test_custody_only_and_changed_bytes_fail) ... ok
+2026-11-05T02:01:38.2284146Z test_explicit_fact_passes_actual_assembler_and_recheck (test_factual_events.FactualEventTests.test_explicit_fact_passes_actual_assembler_and_recheck) ... ok
+2026-11-05T02:01:38.2823441Z test_fact_cannot_supply_ending_current_basis_savings_or_original (test_factual_events.FactualEventTests.test_fact_cannot_supply_ending_current_basis_savings_or_original) ... ok
+2026-11-05T02:01:38.3009777Z test_interval_machine_does_not_infer_occurrence_or_unknown_day (test_factual_events.FactualEventTests.test_interval_machine_does_not_infer_occurrence_or_unknown_day) ... ok
+2026-11-05T02:01:38.4052000Z test_interval_partial_does_not_hide_other_defects_or_adopt_ending (test_factual_events.FactualEventTests.test_interval_partial_does_not_hide_other_defects_or_adopt_ending) ... ok
+2026-11-05T02:01:38.4246136Z test_interval_review_binds_changed_witness_bounds_and_application (test_factual_events.FactualEventTests.test_interval_review_binds_changed_witness_bounds_and_application) ... ok
+2026-11-05T02:01:38.4412374Z test_malformed_question_cannot_cross_consumer_boundary (test_factual_events.FactualEventTests.test_malformed_question_cannot_cross_consumer_boundary) ... ok
+2026-11-05T02:01:38.4895164Z test_manually_edited_partial_cannot_receive_exact_endpoint_or_scoped_state (test_factual_events.FactualEventTests.test_manually_edited_partial_cannot_receive_exact_endpoint_or_scoped_state) ... ok
+2026-11-05T02:01:38.5100229Z test_pinned_fragment_consumer_packages_fact_without_legal_inference (test_factual_events.FactualEventTests.test_pinned_fragment_consumer_packages_fact_without_legal_inference) ... ok
+2026-11-05T02:01:38.5759858Z test_reviewed_interval_only_enters_partial_note_with_actual_gate_errors (test_factual_events.FactualEventTests.test_reviewed_interval_only_enters_partial_note_with_actual_gate_errors) ... ok
+2026-11-05T02:01:38.5948487Z test_reviewed_malformed_answer_still_fails_compile_requirements (test_factual_events.FactualEventTests.test_reviewed_malformed_answer_still_fails_compile_requirements) ... ok
+2026-11-05T02:01:38.6393519Z test_same_scope_cannot_reuse_application_review_for_changed_clause (test_factual_events.FactualEventTests.test_same_scope_cannot_reuse_application_review_for_changed_clause) ... ok
+2026-11-05T02:01:38.6555432Z test_self_review_changed_registry_and_duplicate_records_fail (test_factual_events.FactualEventTests.test_self_review_changed_registry_and_duplicate_records_fail) ... ok
+2026-11-05T02:01:38.6743526Z test_separate_bound_source_needs_current_raw_text_span_and_primary_provenance (test_factual_events.FactualEventTests.test_separate_bound_source_needs_current_raw_text_span_and_primary_provenance) ... ok
+2026-11-05T02:01:38.7810718Z test_tracker_revalidates_facts_with_unchanged_claim_and_checker_receipt (test_factual_events.FactualEventTests.test_tracker_revalidates_facts_with_unchanged_claim_and_checker_receipt) ... ok
+2026-11-05T02:01:38.8151104Z test_unchanged_claim_fails_when_raw_source_or_review_changes (test_factual_events.FactualEventTests.test_unchanged_claim_fails_when_raw_source_or_review_changes) ... ok
+2026-11-05T02:01:38.8357324Z test_wrong_entity_event_kind_quote_hash_and_order_fail (test_factual_events.FactualEventTests.test_wrong_entity_event_kind_quote_hash_and_order_fail) ... ok
+2026-11-05T02:01:39.3776304Z test_many_matches_legacy_and_validates_selection (test_history_context.BatchHistoryTests.test_many_matches_legacy_and_validates_selection) ... ok
+2026-11-05T02:01:39.9777981Z test_ordinary_prepare_view_and_live_refusal (test_history_context.BatchHistoryTests.test_ordinary_prepare_view_and_live_refusal) ... ok
+2026-11-05T02:01:39.9857258Z test_bounded_explicit_safe_selection (test_history_context.HistoryContextTests.test_bounded_explicit_safe_selection) ... ok
+2026-11-05T02:01:40.0004774Z test_changed_source_bundle_review_or_adapter_refused (test_history_context.HistoryContextTests.test_changed_source_bundle_review_or_adapter_refused) ... ok
+2026-11-05T02:01:40.0097604Z test_scopes_unknowns_and_no_unrelated_order (test_history_context.HistoryContextTests.test_scopes_unknowns_and_no_unrelated_order) ... ok
+2026-11-05T02:01:40.0248125Z test_all_text_variants_are_lazy_and_hashed (test_inputs.CorpusTests.test_all_text_variants_are_lazy_and_hashed) ... ok
+2026-11-05T02:01:40.0307176Z test_catalog_filing_date_is_never_publication_date (test_inputs.CorpusTests.test_catalog_filing_date_is_never_publication_date) ... ok
+2026-11-05T02:01:40.0335303Z test_census_required_and_not_inferred_from_sources (test_inputs.CorpusTests.test_census_required_and_not_inferred_from_sources) ... ok
+2026-11-05T02:01:40.0386231Z test_current_law_and_machine_search_scope_are_leads (test_inputs.CorpusTests.test_current_law_and_machine_search_scope_are_leads) ... ok
+2026-11-05T02:01:40.0460389Z test_derivatives_and_explicit_false_never_become_originals (test_inputs.CorpusTests.test_derivatives_and_explicit_false_never_become_originals) ... ok
+2026-11-05T02:01:40.0556585Z test_downstream_relabel_yields_to_the_registered_working_text_grade (test_inputs.CorpusTests.test_downstream_relabel_yields_to_the_registered_working_text_grade) ... ok
+2026-11-05T02:01:40.0669773Z test_draft_original_and_clause_pointers_can_locate_held_texts (test_inputs.CorpusTests.test_draft_original_and_clause_pointers_can_locate_held_texts) ... ok
+2026-11-05T02:01:40.0702597Z test_empty_census_and_duplicate_identity_fail (test_inputs.CorpusTests.test_empty_census_and_duplicate_identity_fail) ... ok
+2026-11-05T02:01:40.0740834Z test_fallback_only_explicit_provisional_status (test_inputs.CorpusTests.test_fallback_only_explicit_provisional_status) ... ok
+2026-11-05T02:01:40.0783026Z test_family_proof_counterexamples_do_not_become_originals_of_target (test_inputs.CorpusTests.test_family_proof_counterexamples_do_not_become_originals_of_target) ... ok
+2026-11-05T02:01:40.0835919Z test_fr_original_low_locator_inherits_through_nested_wrapper (test_inputs.CorpusTests.test_fr_original_low_locator_inherits_through_nested_wrapper) ... ok
+2026-11-05T02:01:40.0889364Z test_fr_original_needs_page_check_preserves_locator_warning (test_inputs.CorpusTests.test_fr_original_needs_page_check_preserves_locator_warning) ... ok
+2026-11-05T02:01:40.0940058Z test_law_and_actor_text_are_not_attributed_to_the_affected_order (test_inputs.CorpusTests.test_law_and_actor_text_are_not_attributed_to_the_affected_order) ... ok
+2026-11-05T02:01:40.0991539Z test_malformed_records_do_not_hide_following_good_records (test_inputs.CorpusTests.test_malformed_records_do_not_hide_following_good_records) ... ok
+2026-11-05T02:01:40.1008391Z test_non_executive_order_actors_are_kept_as_leads (test_inputs.CorpusTests.test_non_executive_order_actors_are_kept_as_leads) ... ok
+2026-11-05T02:01:40.1067154Z test_pairs_from_fragments_drafts_edges_and_parent_only_exact_ids (test_inputs.CorpusTests.test_pairs_from_fragments_drafts_edges_and_parent_only_exact_ids) ... ok
+2026-11-05T02:01:40.1185358Z test_provenance_can_register_external_fragment_pack (test_inputs.CorpusTests.test_provenance_can_register_external_fragment_pack) ... ok
+2026-11-05T02:01:40.1236084Z test_provenance_nested_declares_new_producer_without_registry (test_inputs.CorpusTests.test_provenance_nested_declares_new_producer_without_registry) ... ok
+2026-11-05T02:01:40.1283801Z test_provenance_source_object_can_carry_the_text_pointer (test_inputs.CorpusTests.test_provenance_source_object_can_carry_the_text_pointer) ... ok
+2026-11-05T02:01:40.1347669Z test_provisional_replica_keeps_exact_grade_with_page_debt (test_inputs.CorpusTests.test_provisional_replica_keeps_exact_grade_with_page_debt) ... ok
+2026-11-05T02:01:40.1439755Z test_rebuilding_own_terms_does_not_destroy_independently_pinned_facts (test_inputs.CorpusTests.test_rebuilding_own_terms_does_not_destroy_independently_pinned_facts) ... ok
+2026-11-05T02:01:40.1508597Z test_safe_cross_directory_links_and_repo_relative_paths (test_inputs.CorpusTests.test_safe_cross_directory_links_and_repo_relative_paths) ... ok
+2026-11-05T02:01:40.1585871Z test_shared_facts_stay_out_of_originals_events_and_predicates (test_inputs.CorpusTests.test_shared_facts_stay_out_of_originals_events_and_predicates) ... ok
+2026-11-05T02:01:40.1642973Z test_shared_volume_and_excluded_identity_not_assigned_wholesale (test_inputs.CorpusTests.test_shared_volume_and_excluded_identity_not_assigned_wholesale) ... ok
+2026-11-05T02:01:40.1708736Z test_sources_and_clause_offset_declarations_preserve_attribution (test_inputs.CorpusTests.test_sources_and_clause_offset_declarations_preserve_attribution) ... ok
+2026-11-05T02:01:40.1801827Z test_status_history_is_consumed_without_status_or_original_promotion (test_inputs.CorpusTests.test_status_history_is_consumed_without_status_or_original_promotion) ... ok
+2026-11-05T02:01:40.1846749Z test_statuses_come_only_from_authoritative_csv (test_inputs.CorpusTests.test_statuses_come_only_from_authoritative_csv) ... ok
+2026-11-05T02:01:40.1916966Z test_unavailable_lfs_bad_hash_and_missing_provenance_are_warnings (test_inputs.CorpusTests.test_unavailable_lfs_bad_hash_and_missing_provenance_are_warnings) ... ok
+2026-11-05T02:01:40.1930767Z test_ungraded_wrapper_keeps_named_transcription_grade_for_working_text (test_inputs.CorpusTests.test_ungraded_wrapper_keeps_named_transcription_grade_for_working_text) ... ok
+2026-11-05T02:01:40.1983765Z test_unsafe_paths_and_symlink_escapes_rejected (test_inputs.CorpusTests.test_unsafe_paths_and_symlink_escapes_rejected) ... ok
+2026-11-05T02:01:40.2201754Z test_crlf_source_requires_exact_decoded_bytes_not_universal_newlines (test_lachmann_reuse.ReuseTests.test_crlf_source_requires_exact_decoded_bytes_not_universal_newlines) ... ok
+2026-11-05T02:01:40.2561358Z test_each_confirmation_gate_refuses_reuse (test_lachmann_reuse.ReuseTests.test_each_confirmation_gate_refuses_reuse) ... ok
+2026-11-05T02:01:40.2810652Z test_exact_match_and_current_record (test_lachmann_reuse.ReuseTests.test_exact_match_and_current_record) ... ok
+2026-11-05T02:01:40.3282464Z test_fragment_completeness_and_new_page_requirement_stale_prior (test_lachmann_reuse.ReuseTests.test_fragment_completeness_and_new_page_requirement_stale_prior) ... ok
+2026-11-05T02:01:40.3726509Z test_negative_or_invalid_agent_overrides_and_last_record_semantics (test_lachmann_reuse.ReuseTests.test_negative_or_invalid_agent_overrides_and_last_record_semantics) ... ok
+2026-11-05T02:01:40.4027868Z test_no_pages_needed_only_when_both_record_and_fragments_agree (test_lachmann_reuse.ReuseTests.test_no_pages_needed_only_when_both_record_and_fragments_agree) ... ok
+2026-11-05T02:01:40.4277300Z test_only_matching_source_inherits_and_policy_rechecks_without_dossier (test_lachmann_reuse.ReuseTests.test_only_matching_source_inherits_and_policy_rechecks_without_dossier) ... ok
+2026-11-05T02:01:40.4330809Z test_refusals_for_pages_grade_identity_and_bytes (test_lachmann_reuse.ReuseTests.test_refusals_for_pages_grade_identity_and_bytes) ... ok
+2026-11-05T02:01:40.4411025Z test_four_real_source_boundary_regressions (test_legacy_extent.LegacyExtentTests.test_four_real_source_boundary_regressions) ... ok
+2026-11-05T02:01:40.4414628Z test_internal_subdivision_reference_cannot_discard_opening_entitlement (test_legacy_extent.LegacyExtentTests.test_internal_subdivision_reference_cannot_discard_opening_entitlement) ... ok
+2026-11-05T02:01:40.4417779Z test_native_dossier_retains_legacy_warning (test_legacy_extent.LegacyExtentTests.test_native_dossier_retains_legacy_warning) ... ok
+2026-11-05T02:01:40.4423891Z test_neighbor_signature_cannot_end_target_and_terms_stay_in_target (test_legacy_extent.LegacyExtentTests.test_neighbor_signature_cannot_end_target_and_terms_stay_in_target) ... ok
+2026-11-05T02:01:40.4429104Z test_numbered_intervening_document_refuses_trailing_binding (test_legacy_extent.LegacyExtentTests.test_numbered_intervening_document_refuses_trailing_binding) ... ok
+2026-11-05T02:01:40.4431207Z test_cannot_hide_failure_or_mix_identities (test_lifecycle_obligations.LifecycleTests.test_cannot_hide_failure_or_mix_identities) ... ok
+2026-11-05T02:01:40.4432797Z test_changed_evidence_reopens_even_with_stale_embedded_fingerprint (test_lifecycle_obligations.LifecycleTests.test_changed_evidence_reopens_even_with_stale_embedded_fingerprint) ... ok
+2026-11-05T02:01:40.4434568Z test_completed_wording_needs_verification (test_lifecycle_obligations.LifecycleTests.test_completed_wording_needs_verification) ... ok
+2026-11-05T02:01:40.4435963Z test_deadline_and_performance_are_not_an_end (test_lifecycle_obligations.LifecycleTests.test_deadline_and_performance_are_not_an_end) ... ok
+2026-11-05T02:01:40.4437807Z test_receipt_reopens_before_dossier_rebuild_but_retry_time_does_not (test_lifecycle_obligations.LifecycleTests.test_receipt_reopens_before_dossier_rebuild_but_retry_time_does_not) ... ok
+2026-11-05T02:01:40.4439374Z test_recurring_sunset_and_renewal_distinct (test_lifecycle_obligations.LifecycleTests.test_recurring_sunset_and_renewal_distinct) ... ok
+2026-11-05T02:01:40.4441665Z test_same_failed_receipt_time_utc_does_not_reopen_but_material_changes_do (test_lifecycle_obligations.LifecycleTests.test_same_failed_receipt_time_utc_does_not_reopen_but_material_changes_do) ... ok
+2026-11-05T02:01:40.4443960Z test_source_block_defers_until_relevant_inputs_change (test_lifecycle_obligations.LifecycleTests.test_source_block_defers_until_relevant_inputs_change) ... ok
+2026-11-05T02:01:40.5062177Z test_land_probe_orders_get_their_own_text_or_none (test_original_identity.BuildSelectionTests.test_land_probe_orders_get_their_own_text_or_none) ... ok
+2026-11-05T02:01:40.5101754Z test_fr_lead_must_print_or_name_the_order (test_original_identity.RankAndConflictTests.test_fr_lead_must_print_or_name_the_order) ... ok
+2026-11-05T02:01:40.5104187Z test_only_contradictions_are_tested_outside_fr_leads (test_original_identity.RankAndConflictTests.test_only_contradictions_are_tested_outside_fr_leads) ... ok
+2026-11-05T02:01:40.5106487Z test_registered_working_text_outranks_leads_whatever_the_path (test_original_identity.RankAndConflictTests.test_registered_working_text_outranks_leads_whatever_the_path) ... ok
+2026-11-05T02:01:40.5108911Z test_statute_public_law_and_code_printings_are_refused_at_every_tier (test_original_identity.RankAndConflictTests.test_statute_public_law_and_code_printings_are_refused_at_every_tier) ... ok
+2026-11-05T02:01:40.5110857Z test_text_headed_as_statute_is_refused (test_original_identity.RankAndConflictTests.test_text_headed_as_statute_is_refused) ... ok
+2026-11-05T02:01:40.5112919Z test_text_that_prints_no_order_is_refused (test_original_identity.RankAndConflictTests.test_text_that_prints_no_order_is_refused) ... ok
+2026-11-05T02:01:41.2961981Z test_authority_change_during_checker_requires_new_nonoverlay_version (test_overlay_completion.OverlayCompletionTests.test_authority_change_during_checker_requires_new_nonoverlay_version) ... ok
+2026-11-05T02:01:42.0513364Z test_changed_archived_base_cannot_substitute_another_dossier (test_overlay_completion.OverlayCompletionTests.test_changed_archived_base_cannot_substitute_another_dossier) ... ok
+2026-11-05T02:01:42.7579730Z test_changed_claim_keeps_exact_review_failure (test_overlay_completion.OverlayCompletionTests.test_changed_claim_keeps_exact_review_failure) ... ok
+2026-11-05T02:01:43.5926627Z test_complete_publishes_only_isolated_proposal_with_adoption_requirement (test_overlay_completion.OverlayCompletionTests.test_complete_publishes_only_isolated_proposal_with_adoption_requirement) ... ok
+2026-11-05T02:01:44.3167136Z test_declared_overlay_cannot_drop_its_working_status_label (test_overlay_completion.OverlayCompletionTests.test_declared_overlay_cannot_drop_its_working_status_label) ... ok
+2026-11-05T02:01:45.0284991Z test_exact_lifecycle_review_remains_separate_from_status_review (test_overlay_completion.OverlayCompletionTests.test_exact_lifecycle_review_remains_separate_from_status_review) ... ok
+2026-11-05T02:01:45.8031884Z test_forged_owner_or_wrong_target_overlay_metadata_is_not_bypassed (test_overlay_completion.OverlayCompletionTests.test_forged_owner_or_wrong_target_overlay_metadata_is_not_bypassed) ... ok
+2026-11-05T02:01:46.5598681Z test_legacy_overlay_needs_no_ordinary_packet_and_retains_exact_bytes (test_overlay_completion.OverlayCompletionTests.test_legacy_overlay_needs_no_ordinary_packet_and_retains_exact_bytes) ... ok
+2026-11-05T02:01:47.2803875Z test_missing_status_review_is_not_lifecycle_approval (test_overlay_completion.OverlayCompletionTests.test_missing_status_review_is_not_lifecycle_approval) ... ok
+2026-11-05T02:01:48.0398744Z test_optional_old_packet_is_only_exact_base_provenance (test_overlay_completion.OverlayCompletionTests.test_optional_old_packet_is_only_exact_base_provenance) ... ok
+2026-11-05T02:01:48.7911801Z test_publish_true_cannot_file_overlay_canonically (test_overlay_completion.OverlayCompletionTests.test_publish_true_cannot_file_overlay_canonically) ... ok
+2026-11-05T02:01:49.5223958Z test_source_change_rejects_both_legacy_and_continuous_routes (test_overlay_completion.OverlayCompletionTests.test_source_change_rejects_both_legacy_and_continuous_routes) ... ok
+2026-11-05T02:01:50.2353838Z test_stale_status_review_decision_is_rejected (test_overlay_completion.OverlayCompletionTests.test_stale_status_review_decision_is_rejected) ... ok
+2026-11-05T02:01:50.9489010Z test_unadopted_overlay_cannot_select_for_canonical_filing (test_overlay_completion.OverlayCompletionTests.test_unadopted_overlay_cannot_select_for_canonical_filing) ... ok
+2026-11-05T02:01:51.6261375Z test_unknown_identity_is_not_created_by_overlay_selection (test_overlay_completion.OverlayCompletionTests.test_unknown_identity_is_not_created_by_overlay_selection) ... ok
+2026-11-05T02:01:51.7051731Z test_authority_change_invalidates_proposal (test_status_overlay.OverlayTests.test_authority_change_invalidates_proposal) ... ok
+2026-11-05T02:01:51.8287378Z test_blank_decision_and_review_cannot_promote (test_status_overlay.OverlayTests.test_blank_decision_and_review_cannot_promote) ... ok
+2026-11-05T02:01:51.9985671Z test_bundle_is_new_version_and_protected_destinations_are_rejected (test_status_overlay.OverlayTests.test_bundle_is_new_version_and_protected_destinations_are_rejected) ... ok
+2026-11-05T02:01:52.0795340Z test_census_change_invalidates_frozen_snapshot (test_status_overlay.OverlayTests.test_census_change_invalidates_frozen_snapshot) ... ok
+2026-11-05T02:01:52.1865956Z test_changed_compiler_code_is_rejected (test_status_overlay.OverlayTests.test_changed_compiler_code_is_rejected) ... ok
+2026-11-05T02:01:52.2759313Z test_changed_consumed_manifest_requires_new_evidence_and_review (test_status_overlay.OverlayTests.test_changed_consumed_manifest_requires_new_evidence_and_review) ... ok
+2026-11-05T02:01:52.3831106Z test_changed_lifecycle_obligations_invalidates_frozen_snapshot (test_status_overlay.OverlayTests.test_changed_lifecycle_obligations_invalidates_frozen_snapshot) ... ok
+2026-11-05T02:01:52.5061746Z test_changed_unconsumed_manifest_does_not_change_frozen_status_proposal (test_status_overlay.OverlayTests.test_changed_unconsumed_manifest_does_not_change_frozen_status_proposal) ... ok
+2026-11-05T02:01:52.6309097Z test_decision_edits_reuse_frozen_evidence_without_corpus_build_or_shard_scan (test_status_overlay.OverlayTests.test_decision_edits_reuse_frozen_evidence_without_corpus_build_or_shard_scan) ... ok
+2026-11-05T02:01:52.8477840Z test_explicit_legal_checks_and_empty_status_gaps_are_required (test_status_overlay.OverlayTests.test_explicit_legal_checks_and_empty_status_gaps_are_required) ... ok
+2026-11-05T02:01:52.9550624Z test_extra_unlisted_shard_is_rejected (test_status_overlay.OverlayTests.test_extra_unlisted_shard_is_rejected) ... ok
+2026-11-05T02:01:53.1705199Z test_full_overlay_dossier_runs_existing_assembler (test_status_overlay.OverlayTests.test_full_overlay_dossier_runs_existing_assembler) ... ok
+2026-11-05T02:01:53.2864630Z test_held_actor_context_can_support_manual_review_of_ocr_missed_provision (test_status_overlay.OverlayTests.test_held_actor_context_can_support_manual_review_of_ocr_missed_provision) ... ok
+2026-11-05T02:01:53.3883810Z test_historical_snapshot_cannot_hide_under_current_evidence_id (test_status_overlay.OverlayTests.test_historical_snapshot_cannot_hide_under_current_evidence_id) ... ok
+2026-11-05T02:01:53.6441545Z test_large_actor_context_pointer_is_qualified_and_pinned_for_isolated_bundle (test_status_overlay.OverlayTests.test_large_actor_context_pointer_is_qualified_and_pinned_for_isolated_bundle) ... ok
+2026-11-05T02:01:53.7671039Z test_missing_and_rejected_reviews_fail (test_status_overlay.OverlayTests.test_missing_and_rejected_reviews_fail) ... ok
+2026-11-05T02:01:53.8702071Z test_missing_or_extra_shards_are_rejected (test_status_overlay.OverlayTests.test_missing_or_extra_shards_are_rejected) ... ok
+2026-11-05T02:01:53.9694517Z test_noncontiguous_listed_shard_is_rejected (test_status_overlay.OverlayTests.test_noncontiguous_listed_shard_is_rejected) ... ok
+2026-11-05T02:01:54.0614120Z test_old_compiler_format_is_rejected (test_status_overlay.OverlayTests.test_old_compiler_format_is_rejected) ... ok
+2026-11-05T02:01:54.3594582Z test_overlay_cli_assemble_check_stays_isolated_and_preserves_labels (test_status_overlay.OverlayTests.test_overlay_cli_assemble_check_stays_isolated_and_preserves_labels) ... ok
+2026-11-05T02:01:54.4849337Z test_owner_acceptance_cannot_be_forged_in_experimental_dossier (test_status_overlay.OverlayTests.test_owner_acceptance_cannot_be_forged_in_experimental_dossier) ... ok
+2026-11-05T02:01:54.6061563Z test_receipt_reuse_does_not_accept_new_failure_or_missing_consumed_shard (test_status_overlay.OverlayTests.test_receipt_reuse_does_not_accept_new_failure_or_missing_consumed_shard) ... ok
+2026-11-05T02:01:54.7075884Z test_report_deadline_cannot_establish_status (test_status_overlay.OverlayTests.test_report_deadline_cannot_establish_status) ... ok
+2026-11-05T02:01:54.8107492Z test_resealed_evidence_cannot_fabricate_a_quote (test_status_overlay.OverlayTests.test_resealed_evidence_cannot_fabricate_a_quote) ... ok
+2026-11-05T02:01:54.9161738Z test_review_must_pin_original_and_every_selected_basis (test_status_overlay.OverlayTests.test_review_must_pin_original_and_every_selected_basis) ... ok
+2026-11-05T02:01:55.0394701Z test_review_pins_evidence_and_history (test_status_overlay.OverlayTests.test_review_pins_evidence_and_history) ... ok
+2026-11-05T02:01:55.1452231Z test_review_pins_exact_producer_decision (test_status_overlay.OverlayTests.test_review_pins_exact_producer_decision) ... ok
+2026-11-05T02:01:55.2768610Z test_reviewed_proposal_has_no_authority_and_experimental_full_dossier (test_status_overlay.OverlayTests.test_reviewed_proposal_has_no_authority_and_experimental_full_dossier) ... ok
+2026-11-05T02:01:55.4267455Z test_runner_receipt_only_change_reuses_same_frozen_records (test_status_overlay.OverlayTests.test_runner_receipt_only_change_reuses_same_frozen_records) ... ok
+2026-11-05T02:01:55.5300090Z test_same_reviewer_is_not_independent (test_status_overlay.OverlayTests.test_same_reviewer_is_not_independent) ... ok
+2026-11-05T02:01:55.6306358Z test_shard_tampering_is_rejected_before_freeze (test_status_overlay.OverlayTests.test_shard_tampering_is_rejected_before_freeze) ... ok
+2026-11-05T02:01:55.7511597Z test_snapshot_only_status_cannot_be_proposed (test_status_overlay.OverlayTests.test_snapshot_only_status_cannot_be_proposed) ... ok
+2026-11-05T02:01:55.8518529Z test_stale_history_is_rejected (test_status_overlay.OverlayTests.test_stale_history_is_rejected) ... ok
+2026-11-05T02:01:55.9454163Z test_stale_source_bytes_are_rejected (test_status_overlay.OverlayTests.test_stale_source_bytes_are_rejected) ... ok
+2026-11-05T02:01:56.0827293Z test_wrong_identity_is_rejected_at_each_boundary (test_status_overlay.OverlayTests.test_wrong_identity_is_rejected_at_each_boundary) ... ok
+2026-11-05T02:01:56.1839798Z test_yes_snapshot_cannot_replace_current_predicate (test_status_overlay.OverlayTests.test_yes_snapshot_cannot_replace_current_predicate) ... ok
+2026-11-05T02:01:56.1890405Z test_dossier_content_and_index_fingerprints_must_match (test_population.DerivedCoverageTests.test_dossier_content_and_index_fingerprints_must_match) ... ok
+2026-11-05T02:01:56.1934113Z test_duplicate_and_wrong_status_drafts_fail (test_population.DerivedCoverageTests.test_duplicate_and_wrong_status_drafts_fail) ... ok
+2026-11-05T02:01:56.1982495Z test_exact_current_coverage_passes (test_population.DerivedCoverageTests.test_exact_current_coverage_passes) ... ok
+2026-11-05T02:01:56.2043128Z test_missing_or_wrong_identity_dossier_fails (test_population.DerivedCoverageTests.test_missing_or_wrong_identity_dossier_fails) ... ok
+2026-11-05T02:01:56.2078232Z test_missing_shard_fails_even_when_summary_is_current (test_population.DerivedCoverageTests.test_missing_shard_fails_even_when_summary_is_current) ... ok
+2026-11-05T02:01:56.2120987Z test_real_rolling_writer_shard_names_are_included (test_population.DerivedCoverageTests.test_real_rolling_writer_shard_names_are_included) ... ok
+2026-11-05T02:01:56.2155513Z test_stale_dossier_summary_is_reported_separately (test_population.DerivedCoverageTests.test_stale_dossier_summary_is_reported_separately) ... ok
+2026-11-05T02:01:56.2190043Z test_stale_draft_membership_fails_despite_correct_summary_count (test_population.DerivedCoverageTests.test_stale_draft_membership_fails_despite_correct_summary_count) ... ok
+2026-11-05T02:01:56.2238177Z test_unindexed_obsolete_dossier_fails (test_population.DerivedCoverageTests.test_unindexed_obsolete_dossier_fails) ... ok
+2026-11-05T02:01:56.2282331Z test_absent_accepted_delta_is_rejected (test_population.PopulationInputTests.test_absent_accepted_delta_is_rejected) ... ok
+2026-11-05T02:01:56.2312367Z test_arbitrary_csv_append_cannot_authorize_itself (test_population.PopulationInputTests.test_arbitrary_csv_append_cannot_authorize_itself) ... ok
+2026-11-05T02:01:56.2341594Z test_changed_historical_rows_are_rejected (test_population.PopulationInputTests.test_changed_historical_rows_are_rejected) ... ok
+2026-11-05T02:01:56.2406926Z test_current_or_adoption_row_mutation_is_rejected (test_population.PopulationInputTests.test_current_or_adoption_row_mutation_is_rejected) ... ok
+2026-11-05T02:01:56.2441387Z test_duplicate_or_swapped_census_identity_is_rejected (test_population.PopulationInputTests.test_duplicate_or_swapped_census_identity_is_rejected) ... ok
+2026-11-05T02:01:56.2483435Z test_duplicate_same_status_is_rejected (test_population.PopulationInputTests.test_duplicate_same_status_is_rejected) ... ok
+2026-11-05T02:01:56.2535152Z test_frozen_fixture_and_explicitly_authorized_addition (test_population.PopulationInputTests.test_frozen_fixture_and_explicitly_authorized_addition) ... ok
+2026-11-05T02:01:56.2589970Z test_missing_or_changed_acceptance_evidence_is_rejected (test_population.PopulationInputTests.test_missing_or_changed_acceptance_evidence_is_rejected) ... ok
+2026-11-05T02:01:56.2633252Z test_status_outside_census_is_rejected (test_population.PopulationInputTests.test_status_outside_census_is_rejected) ... ok
+2026-11-05T02:01:56.8383140Z test_locator_change_refuses_load_apply_and_completion (test_preflight_dependencies.PreflightDependencyTests.test_locator_change_refuses_load_apply_and_completion) ... ok
+2026-11-05T02:01:57.4508201Z test_old_one_entry_receipt_refuses_load_apply_and_completion (test_preflight_dependencies.PreflightDependencyTests.test_old_one_entry_receipt_refuses_load_apply_and_completion) ... ok
+2026-11-05T02:01:58.1238325Z test_ordinary_packet_pins_actual_modules_and_completes (test_preflight_dependencies.PreflightDependencyTests.test_ordinary_packet_pins_actual_modules_and_completes) ... ok
+2026-11-05T02:01:58.7187445Z test_segment_change_refuses_load_apply_and_completion (test_preflight_dependencies.PreflightDependencyTests.test_segment_change_refuses_load_apply_and_completion) ... ok
+2026-11-05T02:01:59.3393127Z test_unknown_dependency_receipt_refuses_load_apply_and_completion (test_preflight_dependencies.PreflightDependencyTests.test_unknown_dependency_receipt_refuses_load_apply_and_completion) ... ok
+2026-11-05T02:01:59.3463106Z test_blinded_control_directory_walk_matches_reveal_scoping (test_prior_research.PriorResearchBindingTests.test_blinded_control_directory_walk_matches_reveal_scoping) ... ok
+2026-11-05T02:01:59.3596773Z test_completion_folder_other_files_still_bind (test_prior_research.PriorResearchBindingTests.test_completion_folder_other_files_still_bind) ... ok
+2026-11-05T02:01:59.3719830Z test_completion_union_copy_is_not_bound_but_same_name_elsewhere_is (test_prior_research.PriorResearchBindingTests.test_completion_union_copy_is_not_bound_but_same_name_elsewhere_is) ... ok
+2026-11-05T02:01:59.3805820Z test_discovery_order_matches_sorted_rglob (test_prior_research.PriorResearchBindingTests.test_discovery_order_matches_sorted_rglob) ... ok
+2026-11-05T02:01:59.3894070Z test_excluded_folder_is_ignored_even_when_nested (test_prior_research.PriorResearchBindingTests.test_excluded_folder_is_ignored_even_when_nested) ... ok
+2026-11-05T02:01:59.4128507Z test_matcher_equals_substring_predicate (test_prior_research.PriorResearchBindingTests.test_matcher_equals_substring_predicate) ... ok
+2026-11-05T02:01:59.4188774Z test_owner_rulings_are_still_pinned (test_prior_research.PriorResearchBindingTests.test_owner_rulings_are_still_pinned) ... ok
+2026-11-05T02:01:59.4343242Z test_relevant_additions_removals_and_corrections_change_context (test_prior_research.PriorResearchBindingTests.test_relevant_additions_removals_and_corrections_change_context) ... ok
+2026-11-05T02:01:59.4423495Z test_unrelated_completion_does_not_invalidate_but_target_edit_does (test_prior_research.PriorResearchBindingTests.test_unrelated_completion_does_not_invalidate_but_target_edit_does) ... ok
+2026-11-05T02:01:59.4466781Z test_unrelated_file_without_target_id_leaves_context_identical (test_prior_research.PriorResearchBindingTests.test_unrelated_file_without_target_id_leaves_context_identical) ... ok
+2026-11-05T02:01:59.4546398Z test_11782_noncanonical_selected_review_and_prior_rejection_survive (test_prior_research.PriorResearchTests.test_11782_noncanonical_selected_review_and_prior_rejection_survive) ... ok
+2026-11-05T02:01:59.4588052Z test_conflicting_versions_remain_unresolved_and_scope_is_not_assumed (test_prior_research.PriorResearchTests.test_conflicting_versions_remain_unresolved_and_scope_is_not_assumed) ... ok
+2026-11-05T02:01:59.4628366Z test_current_valid_partial_review_retains_qualified_scope_and_only_existing_gaps (test_prior_research.PriorResearchTests.test_current_valid_partial_review_retains_qualified_scope_and_only_existing_gaps) ... ok
+2026-11-05T02:01:59.9762340Z test_default_packet_and_resume_fingerprints_reject_changed_prior_work (test_prior_research.PriorResearchTests.test_default_packet_and_resume_fingerprints_reject_changed_prior_work) ... ok
+2026-11-05T02:01:59.9865697Z test_existing_source_block_checkpoint_and_default_cli_resume_without_feedback (test_prior_research.PriorResearchTests.test_existing_source_block_checkpoint_and_default_cli_resume_without_feedback) ... ok
+2026-11-05T02:01:59.9930164Z test_frozen_planted_control_excluded_but_real_blind_candidate_retained (test_prior_research.PriorResearchTests.test_frozen_planted_control_excluded_but_real_blind_candidate_retained) ... ok
+2026-11-05T02:01:59.9985934Z test_jsonl_file_pin_computed_once_and_edits_still_invalidate (test_prior_research.PriorResearchTests.test_jsonl_file_pin_computed_once_and_edits_still_invalidate) ... ok
+2026-11-05T02:02:00.0027267Z test_no_prior_history_and_unfinished_other_producer_checkpoint (test_prior_research.PriorResearchTests.test_no_prior_history_and_unfinished_other_producer_checkpoint) ... ok
+2026-11-05T02:02:00.0097950Z test_stale_review_and_changed_source_cannot_be_reused (test_prior_research.PriorResearchTests.test_stale_review_and_changed_source_cannot_be_reused) ... ok
+2026-11-05T02:02:00.0195578Z test_ambiguous_substitution_and_wrong_expected_text_refused (test_provision_history.ProvisionHistoryTests.test_ambiguous_substitution_and_wrong_expected_text_refused) ... ok
+2026-11-05T02:02:00.0250628Z test_amendment_after_expiry_does_not_reestablish (test_provision_history.ProvisionHistoryTests.test_amendment_after_expiry_does_not_reestablish) ... ok
+2026-11-05T02:02:00.0440482Z test_amendments_and_reinstatement_restore_exact_version_with_gap (test_provision_history.ProvisionHistoryTests.test_amendments_and_reinstatement_restore_exact_version_with_gap) ... ok
+2026-11-05T02:02:00.0520187Z test_auxiliary_source_and_raw_byte_pins_are_checked (test_provision_history.ProvisionHistoryTests.test_auxiliary_source_and_raw_byte_pins_are_checked) ... ok
+2026-11-05T02:02:00.0705387Z test_changed_cutoff_with_identical_review_ledger_invalidates_queries (test_provision_history.ProvisionHistoryTests.test_changed_cutoff_with_identical_review_ledger_invalidates_queries) ... ok
+2026-11-05T02:02:00.0775942Z test_changed_review_file_or_record_refused (test_provision_history.ProvisionHistoryTests.test_changed_review_file_or_record_refused) ... ok
+2026-11-05T02:02:00.0865498Z test_conflicting_same_day_refused_but_reviewed_sequence_allowed (test_provision_history.ProvisionHistoryTests.test_conflicting_same_day_refused_but_reviewed_sequence_allowed) ... ok
+2026-11-05T02:02:00.0925232Z test_crlf_witness_requires_exact_unnormalized_span (test_provision_history.ProvisionHistoryTests.test_crlf_witness_requires_exact_unnormalized_span) ... ok
+2026-11-05T02:02:00.0967017Z test_cutoff_blocks_future_state_extrapolation (test_provision_history.ProvisionHistoryTests.test_cutoff_blocks_future_state_extrapolation) ... ok
+2026-11-05T02:02:00.1050454Z test_duplicate_unknown_operation_and_nonprior_version_refused (test_provision_history.ProvisionHistoryTests.test_duplicate_unknown_operation_and_nonprior_version_refused) ... ok
+2026-11-05T02:02:00.1123813Z test_expired_revival_followed_by_later_event_never_creates_episode (test_provision_history.ProvisionHistoryTests.test_expired_revival_followed_by_later_event_never_creates_episode) ... ok
+2026-11-05T02:02:00.1169717Z test_independent_review_and_scopes_cannot_be_forged (test_provision_history.ProvisionHistoryTests.test_independent_review_and_scopes_cannot_be_forged) ... ok
+2026-11-05T02:02:00.1210998Z test_initial_pre_document_text_is_held_evidence_not_dated_text (test_provision_history.ProvisionHistoryTests.test_initial_pre_document_text_is_held_evidence_not_dated_text) ... ok
+2026-11-05T02:02:00.1269274Z test_initial_retrospective_effect_is_not_public_availability (test_provision_history.ProvisionHistoryTests.test_initial_retrospective_effect_is_not_public_availability) ... ok
+2026-11-05T02:02:00.1320770Z test_inverted_reviewed_initial_sunset_refused (test_provision_history.ProvisionHistoryTests.test_inverted_reviewed_initial_sunset_refused) ... ok
+2026-11-05T02:02:00.1373175Z test_legal_effect_review_alone_does_not_approve_text (test_provision_history.ProvisionHistoryTests.test_legal_effect_review_alone_does_not_approve_text) ... ok
+2026-11-05T02:02:00.1425675Z test_legal_effect_review_requires_explicit_timing (test_provision_history.ProvisionHistoryTests.test_legal_effect_review_requires_explicit_timing) ... ok
+2026-11-05T02:02:00.1505366Z test_missing_initial_coverage_and_scope_are_local (test_provision_history.ProvisionHistoryTests.test_missing_initial_coverage_and_scope_are_local) ... ok
+2026-11-05T02:02:00.1556462Z test_missing_text_review_marks_textual_coverage_incomplete (test_provision_history.ProvisionHistoryTests.test_missing_text_review_marks_textual_coverage_incomplete) ... ok
+2026-11-05T02:02:00.1759881Z test_new_unreviewed_transition_changes_only_its_provision_membership (test_provision_history.ProvisionHistoryTests.test_new_unreviewed_transition_changes_only_its_provision_membership) ... ok
+2026-11-05T02:02:00.1822684Z test_reinstatement_never_renews_expired_clock (test_provision_history.ProvisionHistoryTests.test_reinstatement_never_renews_expired_clock) ... ok
+2026-11-05T02:02:00.1886933Z test_renumber_transfer_preserve_identity_and_text (test_provision_history.ProvisionHistoryTests.test_renumber_transfer_preserve_identity_and_text) ... ok
+2026-11-05T02:02:00.1939705Z test_retroactive_supersession_discloses_later_signature (test_provision_history.ProvisionHistoryTests.test_retroactive_supersession_discloses_later_signature) ... ok
+2026-11-05T02:02:00.2184420Z test_revalidation_is_exact_and_restored_version_keeps_ancestry (test_provision_history.ProvisionHistoryTests.test_revalidation_is_exact_and_restored_version_keeps_ancestry) ... ok
+2026-11-05T02:02:00.2238777Z test_reviewed_transition_before_establishment_refused (test_provision_history.ProvisionHistoryTests.test_reviewed_transition_before_establishment_refused) ... ok
+2026-11-05T02:02:00.2289822Z test_source_span_and_source_byte_tampering_refused (test_provision_history.ProvisionHistoryTests.test_source_span_and_source_byte_tampering_refused) ... ok
+2026-11-05T02:02:00.2342334Z test_text_review_never_supplies_legal_effect_or_effective_date (test_provision_history.ProvisionHistoryTests.test_text_review_never_supplies_legal_effect_or_effective_date) ... ok
+2026-11-05T02:02:00.2420156Z test_typed_text_date_is_validated_and_event_date_is_not_documentary (test_provision_history.ProvisionHistoryTests.test_typed_text_date_is_validated_and_event_date_is_not_documentary) ... ok
+2026-11-05T02:02:00.2483093Z test_unknown_document_date_does_not_date_text_by_normative_start (test_provision_history.ProvisionHistoryTests.test_unknown_document_date_does_not_date_text_by_normative_start) ... ok
+2026-11-05T02:02:00.2535989Z test_unreviewed_expiry_cannot_determine_reinstatement_effect (test_provision_history.ProvisionHistoryTests.test_unreviewed_expiry_cannot_determine_reinstatement_effect) ... ok
+2026-11-05T02:02:00.2634528Z test_bundle_validation_is_not_scientific_approval (test_provision_history_cli.ProvisionHistoryCliTests.test_bundle_validation_is_not_scientific_approval) ... ok
+2026-11-05T02:02:00.2762060Z test_canonical_and_non_json_destinations_refused (test_provision_history_cli.ProvisionHistoryCliTests.test_canonical_and_non_json_destinations_refused) ... ok
+2026-11-05T02:02:00.2852113Z test_changed_source_refuses_answer_without_writing (test_provision_history_cli.ProvisionHistoryCliTests.test_changed_source_refuses_answer_without_writing) ... ok
+2026-11-05T02:02:00.3260574Z test_impact_refuses_missing_or_malformed_json_shapes (test_provision_history_cli.ProvisionHistoryCliTests.test_impact_refuses_missing_or_malformed_json_shapes) ... ok
+2026-11-05T02:02:00.3425066Z test_query_writes_only_new_progress_json (test_provision_history_cli.ProvisionHistoryCliTests.test_query_writes_only_new_progress_json) ... ok
+2026-11-05T02:02:00.3684642Z test_single_answer_revalidation_uses_existing_valla_closure (test_provision_history_cli.ProvisionHistoryCliTests.test_single_answer_revalidation_uses_existing_valla_closure) ... ok
+2026-11-05T02:02:01.3504957Z test_explicit_wrong_instrument_marker_is_a_known_original_defect (test_readiness_economy_dispatch.ReadinessEconomyTests.test_explicit_wrong_instrument_marker_is_a_known_original_defect) ... ok
+2026-11-05T02:02:03.3718597Z test_newly_selected_optional_actor_blocks_before_review (test_readiness_economy_dispatch.ReadinessEconomyTests.test_newly_selected_optional_actor_blocks_before_review) ... ok
+2026-11-05T02:02:04.8997907Z test_ready_comparator_passes_and_rechecks_changed_raw_bytes (test_readiness_economy_dispatch.ReadinessEconomyTests.test_ready_comparator_passes_and_rechecks_changed_raw_bytes) ... ok
+2026-11-05T02:02:06.4126639Z test_selected_guard_offline_readonly_and_cli_receipt_immutable (test_readiness_economy_dispatch.ReadinessEconomyTests.test_selected_guard_offline_readonly_and_cli_receipt_immutable) ... ok
+2026-11-05T02:02:07.4575324Z test_selected_source_substitution_cannot_reuse_another_evidence_id (test_readiness_economy_dispatch.ReadinessEconomyTests.test_selected_source_substitution_cannot_reuse_another_evidence_id) ... ok
+2026-11-05T02:02:08.4568897Z test_shared_missing_actor_is_one_task_with_two_applicabilities (test_readiness_economy_dispatch.ReadinessEconomyTests.test_shared_missing_actor_is_one_task_with_two_applicabilities) ... ok
+2026-11-05T02:02:09.0547091Z test_stale_packet_source_and_runtime_are_refused (test_readiness_economy_dispatch.ReadinessEconomyTests.test_stale_packet_source_and_runtime_are_refused) ... ok
+2026-11-05T02:02:11.0129957Z test_wrong_instrument_substitution_and_changed_claim_versions (test_readiness_economy_dispatch.ReadinessEconomyTests.test_wrong_instrument_substitution_and_changed_claim_versions) ... ok
+2026-11-05T02:02:11.9976370Z test_yes_without_current_source_remains_an_open_research_question (test_readiness_economy_dispatch.ReadinessEconomyTests.test_yes_without_current_source_remains_an_open_research_question) ... ok
+2026-11-05T02:02:12.0008970Z test_changed_text_with_same_quote_cannot_renew_declaration (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_changed_text_with_same_quote_cannot_renew_declaration) ... ok
+2026-11-05T02:02:12.0038955Z test_direct_exact_pin_does_not_depend_on_stale_alternative (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_direct_exact_pin_does_not_depend_on_stale_alternative) ... ok
+2026-11-05T02:02:12.0067999Z test_exact_manifest_pin_delivers_quote_with_provenance (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_exact_manifest_pin_delivers_quote_with_provenance) ... ok
+2026-11-05T02:02:12.0100084Z test_legacy_declaration_without_extract_pin_keeps_existing_behavior (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_legacy_declaration_without_extract_pin_keeps_existing_behavior) ... ok
+2026-11-05T02:02:12.0137397Z test_legacy_duplicate_does_not_erase_matching_stale_pin (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_legacy_duplicate_does_not_erase_matching_stale_pin) ... ok
+2026-11-05T02:02:12.0202791Z test_malformed_declared_pin_remains_uncitable (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_malformed_declared_pin_remains_uncitable) ... ok
+2026-11-05T02:02:12.0239409Z test_original_cache_can_deliver_independently_of_stale_extract (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_original_cache_can_deliver_independently_of_stale_extract) ... ok
+2026-11-05T02:02:12.0268076Z test_other_path_manifest_does_not_block_unpinned_direct_witness (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_other_path_manifest_does_not_block_unpinned_direct_witness) ... ok
+2026-11-05T02:02:12.0302450Z test_repo_relative_direct_alias_keeps_matching_declaration_pin (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_repo_relative_direct_alias_keeps_matching_declaration_pin) ... ok
+2026-11-05T02:02:12.0336098Z test_unpinned_direct_item_path_cannot_bypass_stale_declaration (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_unpinned_direct_item_path_cannot_bypass_stale_declaration) ... ok
+2026-11-05T02:02:12.0368686Z test_unpinned_direct_source_path_cannot_bypass_stale_declaration (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_unpinned_direct_source_path_cannot_bypass_stale_declaration) ... ok
+2026-11-05T02:02:12.0397215Z test_unpinned_direct_source_with_exact_manifest_pin_delivers_text (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_unpinned_direct_source_with_exact_manifest_pin_delivers_text) ... ok
+2026-11-05T02:02:12.0425375Z test_wrong_original_identity_does_not_deliver_text (test_readiness_economy_sources.CurrentDeclarationPinsTests.test_wrong_original_identity_does_not_deliver_text) ... ok
+2026-11-05T02:02:12.0489431Z test_changed_official_extract_cannot_keep_exact_official_exemption (test_readiness_economy_sources.OfficialSupplementIdentityTests.test_changed_official_extract_cannot_keep_exact_official_exemption) ... ok
+2026-11-05T02:02:12.0553169Z test_exact_official_selection_is_not_rewritten_to_shared_mirror (test_readiness_economy_sources.OfficialSupplementIdentityTests.test_exact_official_selection_is_not_rewritten_to_shared_mirror) ... ok
+2026-11-05T02:02:12.0598890Z test_existing_provisional_only_route_preserves_registered_grade (test_readiness_economy_sources.OfficialSupplementIdentityTests.test_existing_provisional_only_route_preserves_registered_grade) ... ok
+2026-11-05T02:02:12.0656777Z test_unregistered_source_does_not_acquire_official_identity (test_readiness_economy_sources.OfficialSupplementIdentityTests.test_unregistered_source_does_not_acquire_official_identity) ... ok
+2026-11-05T02:02:12.2562632Z test_existing_dossier_alternatives_and_chain_keep_both_operations (test_reinstatement_handoff.ReinstatementBuildTransportTests.test_existing_dossier_alternatives_and_chain_keep_both_operations) ... ok
+2026-11-05T02:02:12.2589166Z test_bare_join_preserves_transfer_target_list_suffixes (test_reinstatement_handoff.ReinstatementExtractionTests.test_bare_join_preserves_transfer_target_list_suffixes) ... ok
+2026-11-05T02:02:12.2596735Z test_chain_expands_existing_alternatives_once (test_reinstatement_handoff.ReinstatementExtractionTests.test_chain_expands_existing_alternatives_once) ... ok
+2026-11-05T02:02:12.3218739Z test_held_eo14189_four_distinct_operations_and_unchanged_target_terms (test_reinstatement_handoff.ReinstatementExtractionTests.test_held_eo14189_four_distinct_operations_and_unchanged_target_terms) ... ok
+2026-11-05T02:02:12.3223959Z test_historical_revoker_is_not_reinstated (test_reinstatement_handoff.ReinstatementExtractionTests.test_historical_revoker_is_not_reinstated) ... ok
+2026-11-05T02:02:12.3233289Z test_later_reinstatement_does_not_restart_an_original_fixed_term (test_reinstatement_handoff.ReinstatementExtractionTests.test_later_reinstatement_does_not_restart_an_original_fixed_term) ... ok
+2026-11-05T02:02:12.3237723Z test_mixed_same_target_keeps_both_reinstatement_and_transfer (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_same_target_keeps_both_reinstatement_and_transfer) ... ok
+2026-11-05T02:02:12.3246861Z test_mixed_transfer_join_keeps_reinstated_target_list (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_transfer_join_keeps_reinstated_target_list) ... ok
+2026-11-05T02:02:12.3280436Z test_mixed_transfer_remains_target_scoped_without_cross_binding (test_reinstatement_handoff.ReinstatementExtractionTests.test_mixed_transfer_remains_target_scoped_without_cross_binding) ... ok
+2026-11-05T02:02:12.3290656Z test_negation_historical_descriptor_and_generic_do_not_create_events (test_reinstatement_handoff.ReinstatementExtractionTests.test_negation_historical_descriptor_and_generic_do_not_create_events) ... ok
+2026-11-05T02:02:12.3297349Z test_plural_suffix_partial_and_exception_are_preserved (test_reinstatement_handoff.ReinstatementExtractionTests.test_plural_suffix_partial_and_exception_are_preserved) ... ok
+2026-11-05T02:02:12.3303406Z test_same_actor_retains_reinstatement_and_separate_amendment (test_reinstatement_handoff.ReinstatementExtractionTests.test_same_actor_retains_reinstatement_and_separate_amendment) ... ok
+2026-11-05T02:02:12.3309891Z test_same_sentence_different_targets_do_not_cross_bind (test_reinstatement_handoff.ReinstatementExtractionTests.test_same_sentence_different_targets_do_not_cross_bind) ... ok
+2026-11-05T02:02:12.3316296Z test_historical_fixture_and_current_accepted_population (test_review_regressions.CommittedBaselineReviewTests.test_historical_fixture_and_current_accepted_population) ... skipped 'Full committed baseline metadata is absent from this synthetic checkout'
+2026-11-05T02:02:12.3345780Z test_exact_legal_text_slice_is_normalized_without_currency_upgrade (test_review_regressions.CurrentLawEvidenceReviewTests.test_exact_legal_text_slice_is_normalized_without_currency_upgrade) ... ok
+2026-11-05T02:02:12.3364948Z test_missing_and_unsafe_pointers_remain_explicit_gaps (test_review_regressions.CurrentLawEvidenceReviewTests.test_missing_and_unsafe_pointers_remain_explicit_gaps) ... ok
+2026-11-05T02:02:12.3382429Z test_serialized_note_never_becomes_legal_quote (test_review_regressions.CurrentLawEvidenceReviewTests.test_serialized_note_never_becomes_legal_quote) ... ok
+2026-11-05T02:02:12.3411745Z test_wrong_hash_and_ambiguous_snippet_are_not_evidence (test_review_regressions.CurrentLawEvidenceReviewTests.test_wrong_hash_and_ambiguous_snippet_are_not_evidence) ... ok
+2026-11-05T02:02:12.3611746Z test_nonselected_generic_reference_is_counted (test_review_regressions.WholeHeadReviewTests.test_nonselected_generic_reference_is_counted) ... ok
+2026-11-05T02:02:12.3823842Z test_nonselected_text_own_terms_are_not_lost (test_review_regressions.WholeHeadReviewTests.test_nonselected_text_own_terms_are_not_lost) ... ok
+2026-11-05T02:02:12.4084322Z test_one_contract_act_record_per_target_actor (test_review_regressions.WholeHeadReviewTests.test_one_contract_act_record_per_target_actor) ... ok
+2026-11-05T02:02:12.4274438Z test_page_label_aliases_are_preserved_without_repeating_extraction (test_review_regressions.WholeHeadReviewTests.test_page_label_aliases_are_preserved_without_repeating_extraction) ... ok
+2026-11-05T02:02:12.4517665Z test_parent_route_never_reaches_a_future_amender (test_review_regressions.WholeHeadReviewTests.test_parent_route_never_reaches_a_future_amender) ... ok
+2026-11-05T02:02:12.4717736Z test_unlocated_known_provision_keeps_held_actor_context (test_review_regressions.WholeHeadReviewTests.test_unlocated_known_provision_keeps_held_actor_context) ... ok
+2026-11-05T02:02:12.4772312Z test_every_unicode_record_retained_and_bounded (test_shards.ShardTests.test_every_unicode_record_retained_and_bounded) ... ok
+2026-11-05T02:02:13.5587171Z test_absent_mechanism_not_inferred (test_source_supplement.SourceSupplementTests.test_absent_mechanism_not_inferred) ... ok
+2026-11-05T02:02:14.6090001Z test_changed_raw_source_refused (test_source_supplement.SourceSupplementTests.test_changed_raw_source_refused) ... ok
+2026-11-05T02:02:15.6503605Z test_each_lineage_pin_enforced_by_native_load (test_source_supplement.SourceSupplementTests.test_each_lineage_pin_enforced_by_native_load) ... ok
+2026-11-05T02:02:16.7359611Z test_existing_human_review_requires_note_url_in_checked_sources (test_source_supplement.SourceSupplementTests.test_existing_human_review_requires_note_url_in_checked_sources) ... ok
+2026-11-05T02:02:17.2714822Z test_foreign_target_alias_and_duplicate_refused (test_source_supplement.SourceSupplementTests.test_foreign_target_alias_and_duplicate_refused) ... ok
+2026-11-05T02:02:18.3478503Z test_inherited_fields_unchanged (test_source_supplement.SourceSupplementTests.test_inherited_fields_unchanged) ... ok
+2026-11-05T02:02:18.9056745Z test_invalid_hashes_spans_and_injected_grade (test_source_supplement.SourceSupplementTests.test_invalid_hashes_spans_and_injected_grade) ... ok
+2026-11-05T02:02:20.0076531Z test_native_csv_apply_and_strict_gate (test_source_supplement.SourceSupplementTests.test_native_csv_apply_and_strict_gate) ... ok
+2026-11-05T02:02:21.1235137Z test_old_csv_without_new_columns_retains_act_fallback (test_source_supplement.SourceSupplementTests.test_old_csv_without_new_columns_retains_act_fallback) ... ok
+2026-11-05T02:02:22.2213772Z test_prepare_and_verify_build_the_fragment_index_once (test_source_supplement.SourceSupplementTests.test_prepare_and_verify_build_the_fragment_index_once) ... ok
+2026-11-05T02:02:22.8334769Z test_registered_working_text_excerpt_keeps_its_registered_grade_and_hash (test_source_supplement.SourceSupplementTests.test_registered_working_text_excerpt_keeps_its_registered_grade_and_hash) ... ok
+2026-11-05T02:02:23.9636268Z test_source_notes_native_csv_keep_qualified_source_without_event_date (test_source_supplement.SourceSupplementTests.test_source_notes_native_csv_keep_qualified_source_without_event_date) ... ok
+2026-11-05T02:02:25.0476642Z test_source_notes_reject_free_source_missing_id_and_fact_route (test_source_supplement.SourceSupplementTests.test_source_notes_reject_free_source_missing_id_and_fact_route) ... ok
+2026-11-05T02:02:26.1198997Z test_stripped_lineage_cannot_bypass_native_validation (test_source_supplement.SourceSupplementTests.test_stripped_lineage_cannot_bypass_native_validation) ... ok
+2026-11-05T02:02:26.6678185Z test_symlink_escape_refused (test_source_supplement.SourceSupplementTests.test_symlink_escape_refused) ... ok
+2026-11-05T02:02:27.7488442Z test_tampered_inherited_dossier_with_recomputed_fingerprint_refused (test_source_supplement.SourceSupplementTests.test_tampered_inherited_dossier_with_recomputed_fingerprint_refused) ... ok
+2026-11-05T02:02:28.2901868Z test_undecided_and_chained_parent_refused (test_source_supplement.SourceSupplementTests.test_undecided_and_chained_parent_refused) ... ok
+2026-11-05T02:02:28.3171304Z test_changed_and_missing_source_are_explicit_reconciliation (test_status_continuity.StatusContinuityTests.test_changed_and_missing_source_are_explicit_reconciliation) ... ok
+2026-11-05T02:02:28.3290120Z test_changed_evidence_and_current_ruling_are_not_silently_reused (test_status_continuity.StatusContinuityTests.test_changed_evidence_and_current_ruling_are_not_silently_reused) ... ok
+2026-11-05T02:02:28.3484248Z test_changed_missing_or_wrong_instrument_hold_review_stays_unresolved (test_status_continuity.StatusContinuityTests.test_changed_missing_or_wrong_instrument_hold_review_stays_unresolved) ... ok
+2026-11-05T02:02:28.3593539Z test_exact_producer_and_scoped_corrections_reach_brief (test_status_continuity.StatusContinuityTests.test_exact_producer_and_scoped_corrections_reach_brief) ... ok
+2026-11-05T02:02:28.3699582Z test_existing_clause_questions_keep_scope_and_pointer_without_new_legal_gaps (test_status_continuity.StatusContinuityTests.test_existing_clause_questions_keep_scope_and_pointer_without_new_legal_gaps) ... ok
+2026-11-05T02:02:28.3816802Z test_history_must_reproduce_its_own_pin_even_when_evidence_is_resealed (test_status_continuity.StatusContinuityTests.test_history_must_reproduce_its_own_pin_even_when_evidence_is_resealed) ... ok
+2026-11-05T02:02:28.3904048Z test_missing_review_is_not_inferred_from_adopted_row_or_producer_approval (test_status_continuity.StatusContinuityTests.test_missing_review_is_not_inferred_from_adopted_row_or_producer_approval) ... ok
+2026-11-05T02:02:28.4032555Z test_parent_ending_hold_preserves_pinned_history_without_approval (test_status_continuity.StatusContinuityTests.test_parent_ending_hold_preserves_pinned_history_without_approval) ... ok
+2026-11-05T02:02:28.4142235Z test_required_manifest_evidence_hash_cannot_be_absent (test_status_continuity.StatusContinuityTests.test_required_manifest_evidence_hash_cannot_be_absent) ... ok
+2026-11-05T02:02:28.4272727Z test_resealed_wrong_instrument_base_dossier_cannot_bind (test_status_continuity.StatusContinuityTests.test_resealed_wrong_instrument_base_dossier_cannot_bind) ... ok
+2026-11-05T02:02:28.4436542Z test_saved_collector_context_does_not_discover_itself_as_status_research (test_status_continuity.StatusContinuityTests.test_saved_collector_context_does_not_discover_itself_as_status_research) ... ok
+2026-11-05T02:02:28.4643891Z test_stale_producer_review_keeps_rejected_version_visible (test_status_continuity.StatusContinuityTests.test_stale_producer_review_keeps_rejected_version_visible) ... ok
+2026-11-05T02:02:28.4747052Z test_unadopted_proposal_still_carries_research_without_adoption (test_status_continuity.StatusContinuityTests.test_unadopted_proposal_still_carries_research_without_adoption) ... ok
+2026-11-05T02:02:28.4906113Z test_windows_paths_bind_posix_manifest_and_reject_missing_evidence_hash (test_status_continuity.StatusContinuityTests.test_windows_paths_bind_posix_manifest_and_reject_missing_evidence_hash) ... ok
+2026-11-05T02:02:28.5024401Z test_wrong_evidence_manifest_member_requires_reconciliation (test_status_continuity.StatusContinuityTests.test_wrong_evidence_manifest_member_requires_reconciliation) ... ok
+2026-11-05T02:02:28.5119014Z test_wrong_instrument_never_binds_cross_family_review (test_status_continuity.StatusContinuityTests.test_wrong_instrument_never_binds_cross_family_review) ... ok
+2026-11-05T02:02:28.6170277Z test_authority_table_change_is_refused_like_single (test_status_overlay.ManyOrderTests.test_authority_table_change_is_refused_like_single) ... ok
+2026-11-05T02:02:28.7285361Z test_each_shard_is_streamed_once_for_the_whole_set (test_status_overlay.ManyOrderTests.test_each_shard_is_streamed_once_for_the_whole_set) ... ok
+2026-11-05T02:02:28.9724599Z test_many_is_byte_identical_to_single_for_each_order (test_status_overlay.ManyOrderTests.test_many_is_byte_identical_to_single_for_each_order) ... ok
+2026-11-05T02:02:29.0781979Z test_shard_changed_after_the_manifest_is_still_detected (test_status_overlay.ManyOrderTests.test_shard_changed_after_the_manifest_is_still_detected) ... ok
+2026-11-05T02:02:29.2205884Z test_shared_scan_is_recorded_once_and_not_double_counted (test_status_overlay.ManyOrderTests.test_shared_scan_is_recorded_once_and_not_double_counted) ... ok
+2026-11-05T02:02:29.3123370Z test_unknown_or_duplicate_ids_are_refused (test_status_overlay.ManyOrderTests.test_unknown_or_duplicate_ids_are_refused) ... ok
+2026-11-05T02:02:29.6744057Z test_validate_many_raises_exactly_when_single_validation_does (test_status_overlay.ManyOrderTests.test_validate_many_raises_exactly_when_single_validation_does) ... ok
+2026-11-05T02:02:29.8109777Z test_validate_many_reads_shared_tables_once (test_status_overlay.ManyOrderTests.test_validate_many_reads_shared_tables_once) ... ok
+2026-11-05T02:02:29.8909774Z test_authority_change_invalidates_proposal (test_status_overlay.OverlayTests.test_authority_change_invalidates_proposal) ... ok
+2026-11-05T02:02:30.0143994Z test_blank_decision_and_review_cannot_promote (test_status_overlay.OverlayTests.test_blank_decision_and_review_cannot_promote) ... ok
+2026-11-05T02:02:30.1907700Z test_bundle_is_new_version_and_protected_destinations_are_rejected (test_status_overlay.OverlayTests.test_bundle_is_new_version_and_protected_destinations_are_rejected) ... ok
+2026-11-05T02:02:30.2699898Z test_census_change_invalidates_frozen_snapshot (test_status_overlay.OverlayTests.test_census_change_invalidates_frozen_snapshot) ... ok
+2026-11-05T02:02:30.3742696Z test_changed_compiler_code_is_rejected (test_status_overlay.OverlayTests.test_changed_compiler_code_is_rejected) ... ok
+2026-11-05T02:02:30.4624904Z test_changed_consumed_manifest_requires_new_evidence_and_review (test_status_overlay.OverlayTests.test_changed_consumed_manifest_requires_new_evidence_and_review) ... ok
+2026-11-05T02:02:30.5679735Z test_changed_lifecycle_obligations_invalidates_frozen_snapshot (test_status_overlay.OverlayTests.test_changed_lifecycle_obligations_invalidates_frozen_snapshot) ... ok
+2026-11-05T02:02:30.6891305Z test_changed_unconsumed_manifest_does_not_change_frozen_status_proposal (test_status_overlay.OverlayTests.test_changed_unconsumed_manifest_does_not_change_frozen_status_proposal) ... ok
+2026-11-05T02:02:30.8135157Z test_decision_edits_reuse_frozen_evidence_without_corpus_build_or_shard_scan (test_status_overlay.OverlayTests.test_decision_edits_reuse_frozen_evidence_without_corpus_build_or_shard_scan) ... ok
+2026-11-05T02:02:31.0218162Z test_explicit_legal_checks_and_empty_status_gaps_are_required (test_status_overlay.OverlayTests.test_explicit_legal_checks_and_empty_status_gaps_are_required) ... ok
+2026-11-05T02:02:31.1242931Z test_extra_unlisted_shard_is_rejected (test_status_overlay.OverlayTests.test_extra_unlisted_shard_is_rejected) ... ok
+2026-11-05T02:02:31.3442367Z test_full_overlay_dossier_runs_existing_assembler (test_status_overlay.OverlayTests.test_full_overlay_dossier_runs_existing_assembler) ... ok
+2026-11-05T02:02:31.4471618Z test_held_actor_context_can_support_manual_review_of_ocr_missed_provision (test_status_overlay.OverlayTests.test_held_actor_context_can_support_manual_review_of_ocr_missed_provision) ... ok
+2026-11-05T02:02:31.5621330Z test_historical_snapshot_cannot_hide_under_current_evidence_id (test_status_overlay.OverlayTests.test_historical_snapshot_cannot_hide_under_current_evidence_id) ... ok
+2026-11-05T02:02:31.8224372Z test_large_actor_context_pointer_is_qualified_and_pinned_for_isolated_bundle (test_status_overlay.OverlayTests.test_large_actor_context_pointer_is_qualified_and_pinned_for_isolated_bundle) ... ok
+2026-11-05T02:02:31.9436542Z test_missing_and_rejected_reviews_fail (test_status_overlay.OverlayTests.test_missing_and_rejected_reviews_fail) ... ok
+2026-11-05T02:02:32.0396767Z test_missing_or_extra_shards_are_rejected (test_status_overlay.OverlayTests.test_missing_or_extra_shards_are_rejected) ... ok
+2026-11-05T02:02:32.1382337Z test_noncontiguous_listed_shard_is_rejected (test_status_overlay.OverlayTests.test_noncontiguous_listed_shard_is_rejected) ... ok
+2026-11-05T02:02:32.2310905Z test_old_compiler_format_is_rejected (test_status_overlay.OverlayTests.test_old_compiler_format_is_rejected) ... ok
+2026-11-05T02:02:32.5281509Z test_overlay_cli_assemble_check_stays_isolated_and_preserves_labels (test_status_overlay.OverlayTests.test_overlay_cli_assemble_check_stays_isolated_and_preserves_labels) ... ok
+2026-11-05T02:02:32.6597116Z test_owner_acceptance_cannot_be_forged_in_experimental_dossier (test_status_overlay.OverlayTests.test_owner_acceptance_cannot_be_forged_in_experimental_dossier) ... ok
+2026-11-05T02:02:32.7607441Z test_receipt_reuse_does_not_accept_new_failure_or_missing_consumed_shard (test_status_overlay.OverlayTests.test_receipt_reuse_does_not_accept_new_failure_or_missing_consumed_shard) ... ok
+2026-11-05T02:02:32.8612920Z test_report_deadline_cannot_establish_status (test_status_overlay.OverlayTests.test_report_deadline_cannot_establish_status) ... ok
+2026-11-05T02:02:32.9766718Z test_resealed_evidence_cannot_fabricate_a_quote (test_status_overlay.OverlayTests.test_resealed_evidence_cannot_fabricate_a_quote) ... ok
+2026-11-05T02:02:33.0766404Z test_review_must_pin_original_and_every_selected_basis (test_status_overlay.OverlayTests.test_review_must_pin_original_and_every_selected_basis) ... ok
+2026-11-05T02:02:33.1976548Z test_review_pins_evidence_and_history (test_status_overlay.OverlayTests.test_review_pins_evidence_and_history) ... ok
+2026-11-05T02:02:33.3007328Z test_review_pins_exact_producer_decision (test_status_overlay.OverlayTests.test_review_pins_exact_producer_decision) ... ok
+2026-11-05T02:02:33.4316334Z test_reviewed_proposal_has_no_authority_and_experimental_full_dossier (test_status_overlay.OverlayTests.test_reviewed_proposal_has_no_authority_and_experimental_full_dossier) ... ok
+2026-11-05T02:02:33.5750185Z test_runner_receipt_only_change_reuses_same_frozen_records (test_status_overlay.OverlayTests.test_runner_receipt_only_change_reuses_same_frozen_records) ... ok
+2026-11-05T02:02:33.6746692Z test_same_reviewer_is_not_independent (test_status_overlay.OverlayTests.test_same_reviewer_is_not_independent) ... ok
+2026-11-05T02:02:33.7739891Z test_shard_tampering_is_rejected_before_freeze (test_status_overlay.OverlayTests.test_shard_tampering_is_rejected_before_freeze) ... ok
+2026-11-05T02:02:33.8980517Z test_snapshot_only_status_cannot_be_proposed (test_status_overlay.OverlayTests.test_snapshot_only_status_cannot_be_proposed) ... ok
+2026-11-05T02:02:33.9975094Z test_stale_history_is_rejected (test_status_overlay.OverlayTests.test_stale_history_is_rejected) ... ok
+2026-11-05T02:02:34.0885946Z test_stale_source_bytes_are_rejected (test_status_overlay.OverlayTests.test_stale_source_bytes_are_rejected) ... ok
+2026-11-05T02:02:34.2090979Z test_wrong_identity_is_rejected_at_each_boundary (test_status_overlay.OverlayTests.test_wrong_identity_is_rejected_at_each_boundary) ... ok
+2026-11-05T02:02:34.3112007Z test_yes_snapshot_cannot_replace_current_predicate (test_status_overlay.OverlayTests.test_yes_snapshot_cannot_replace_current_predicate) ... ok
+2026-11-05T02:02:34.3818314Z test_added_provider_file_changes_result (test_working_text_index.IndexCacheTests.test_added_provider_file_changes_result) ... ok
+2026-11-05T02:02:34.4389540Z test_cached_uncached_and_legacy_identical (test_working_text_index.IndexCacheTests.test_cached_uncached_and_legacy_identical) ... ok
+2026-11-05T02:02:34.5991305Z test_corrupt_or_mismatched_cache_rebuilds (test_working_text_index.IndexCacheTests.test_corrupt_or_mismatched_cache_rebuilds) ... ok
+2026-11-05T02:02:34.6353602Z test_deleted_provider_file_changes_result (test_working_text_index.IndexCacheTests.test_deleted_provider_file_changes_result) ... ok
+2026-11-05T02:02:34.6587281Z test_env_disables_cache (test_working_text_index.IndexCacheTests.test_env_disables_cache) ... ok
+2026-11-05T02:02:34.7005165Z test_forged_row_in_matching_envelope_is_not_trusted_when_shape_is_wrong (test_working_text_index.IndexCacheTests.test_forged_row_in_matching_envelope_is_not_trusted_when_shape_is_wrong) ... ok
+2026-11-05T02:02:34.7358355Z test_hit_is_a_genuine_working_text_index (test_working_text_index.IndexCacheTests.test_hit_is_a_genuine_working_text_index) ... ok
+2026-11-05T02:02:34.7482336Z test_inventory_key_covers_every_provider_file (test_working_text_index.IndexCacheTests.test_inventory_key_covers_every_provider_file) ... ok
+2026-11-05T02:02:34.8035406Z test_mutated_cached_payload_is_rejected_and_rebuilt (test_working_text_index.IndexCacheTests.test_mutated_cached_payload_is_rejected_and_rebuilt) ... ok
+2026-11-05T02:02:34.8456307Z test_mutated_payload_digest_is_bound_to_cache_format (test_working_text_index.IndexCacheTests.test_mutated_payload_digest_is_bound_to_cache_format) ... ok
+2026-11-05T02:02:34.9597704Z test_old_entries_are_pruned (test_working_text_index.IndexCacheTests.test_old_entries_are_pruned) ... ok
+2026-11-05T02:02:34.9806229Z test_reconstruction_mismatch_is_never_stored (test_working_text_index.IndexCacheTests.test_reconstruction_mismatch_is_never_stored) ... ok
+2026-11-05T02:02:35.0229332Z test_same_size_edit_changes_result (test_working_text_index.IndexCacheTests.test_same_size_edit_changes_result) ... ok
+2026-11-05T02:02:35.0864464Z test_text_file_appearing_and_disappearing_is_honored_on_hit (test_working_text_index.IndexCacheTests.test_text_file_appearing_and_disappearing_is_honored_on_hit) ... ok
+2026-11-05T02:02:35.1161163Z test_unwritable_cache_dir_is_silent (test_working_text_index.IndexCacheTests.test_unwritable_cache_dir_is_silent) ... ok
+2026-11-05T02:02:35.1166277Z test_real_repo_identical (test_working_text_index.RealRepoTest.test_real_repo_identical) ... skipped 'real repository comparison is opt-in'
+2026-11-05T02:02:35.1539357Z test_shared_builds_once_per_inventory (test_working_text_index.SharedIndexTests.test_shared_builds_once_per_inventory) ... ok
+2026-11-05T02:02:35.2519992Z test_shared_rebuilds_when_inventory_or_text_files_change (test_working_text_index.SharedIndexTests.test_shared_rebuilds_when_inventory_or_text_files_change) ... ok
+2026-11-05T02:02:35.2751807Z test_shared_revalidates_existing_symlink_retarget (test_working_text_index.SharedIndexTests.test_shared_revalidates_existing_symlink_retarget) ... ok
+2026-11-05T02:02:35.2958713Z test_shared_revalidates_normal_directory_replaced_by_symlink (test_working_text_index.SharedIndexTests.test_shared_revalidates_normal_directory_replaced_by_symlink) ... ok
+2026-11-05T02:02:35.3164162Z test_shared_revalidates_normal_file_replaced_by_symlink (test_working_text_index.SharedIndexTests.test_shared_revalidates_normal_file_replaced_by_symlink) ... ok
+2026-11-05T02:02:35.3376130Z test_shared_revalidates_symlink_change_from_missing_to_existing (test_working_text_index.SharedIndexTests.test_shared_revalidates_symlink_change_from_missing_to_existing) ... ok
+2026-11-05T02:02:35.3609886Z test_shared_with_cache_disabled_is_fresh (test_working_text_index.SharedIndexTests.test_shared_with_cache_disabled_is_fresh) ... ok
+2026-11-05T02:02:35.3611204Z 
+2026-11-05T02:02:35.3611617Z ----------------------------------------------------------------------
+2026-11-05T02:02:35.3612731Z Ran 657 tests in 129.197s
+2026-11-05T02:02:35.3612998Z 
+2026-11-05T02:02:35.3613158Z OK (skipped=6)
+2026-11-05T02:02:35.3615092Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 1, "generic_references_excluded": 1, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:02:35.3618731Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 2, "generic_references_excluded": 0, "held_texts_scanned": 2, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:02:35.3623288Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 3, "distinct_held_text_artifacts": 3, "dossiers": 3, "families": 5, "generic_references_excluded": 0, "held_texts_scanned": 3, "known_pairs": 3, "located_actor_pairs": 3, "orders_with_held_text": 3, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:02:35.3626575Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 1, "dossiers": 3, "families": 1, "generic_references_excluded": 0, "held_texts_scanned": 1, "known_pairs": 0, "located_actor_pairs": 0, "orders_with_held_text": 1, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:02:35.3630118Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 3, "distinct_held_text_artifacts": 3, "dossiers": 3, "families": 5, "generic_references_excluded": 0, "held_texts_scanned": 3, "known_pairs": 2, "located_actor_pairs": 2, "orders_with_held_text": 3, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:02:35.3633277Z {"assembled_claims": 0, "decided_orders": 3, "declared_text_representations": 2, "distinct_held_text_artifacts": 2, "dossiers": 3, "families": 2, "generic_references_excluded": 0, "held_texts_scanned": 2, "known_pairs": 1, "located_actor_pairs": 0, "orders_with_held_text": 2, "status_leads": 0, "universe_orders": 3}
+2026-11-05T02:02:35.4298295Z Post job cleanup.
+2026-11-05T02:02:35.5830940Z (node:4304) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-05T02:02:35.5832214Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-05T02:02:35.6180906Z Post job cleanup.
+2026-11-05T02:02:35.8284968Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-11-05T02:02:35.8650770Z git version 2.56.0.windows.4
+2026-11-05T02:02:35.8730260Z Temporarily overriding HOME='D:\a\_temp\ddc52fb5-3d4c-472f-91af-29bccb11ea0d' before making global git config changes
+2026-11-05T02:02:35.8731773Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-05T02:02:35.8741532Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Executive-Orders\Executive-Orders
+2026-11-05T02:02:35.9177155Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-11-05T02:02:35.9709305Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-11-05T02:02:36.6379374Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-05T02:02:36.6740133Z http.https://github.com/.extraheader
+2026-11-05T02:02:36.6791353Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-11-05T02:02:36.7200388Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-11-05T02:02:37.3460044Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-05T02:02:37.3879553Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-11-05T02:02:38.0849025Z Cleaning up orphan processes
+2026-11-05T02:02:38.0983087Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

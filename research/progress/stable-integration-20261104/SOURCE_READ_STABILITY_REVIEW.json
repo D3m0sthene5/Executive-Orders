@@ -1,0 +1,176 @@
+{
+  "schema": "eo-independent-source-read-stability-review/v1",
+  "reviewed_at_utc": "2026-11-05T01:20:57.438150+00:00",
+  "verdict": "pass",
+  "source_sha256": {
+    "jobs/claim-kit/blind_verify.py": "a2e2f0ed8e7cea3eb02e8a2a9f2fa8c4de886072215149e61422d0f6f2c7283a",
+    "jobs/claim-kit/test_blind_verify.py": "995fb86b288af6cbc6313c2ea9e9f991cfd5e36411893f4e324d0db90dc5590a"
+  },
+  "tests": {
+    "suite": "test_blind_verify.py",
+    "passed": 27,
+    "independent_metadata_matrix": [
+      {
+        "stage": "fd_before",
+        "field": "st_atime",
+        "outcome": "exact_bytes_returned"
+      },
+      {
+        "stage": "fd_before",
+        "field": "st_dev",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_before",
+        "field": "st_ino",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_before",
+        "field": "st_mode",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_before",
+        "field": "st_nlink",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_before",
+        "field": "st_uid",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_before",
+        "field": "st_gid",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_before",
+        "field": "st_size",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_before",
+        "field": "st_mtime_ns",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_before",
+        "field": "st_ctime_ns",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_atime",
+        "outcome": "exact_bytes_returned"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_dev",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_ino",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_mode",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_nlink",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_uid",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_gid",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_size",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_mtime_ns",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "fd_after",
+        "field": "st_ctime_ns",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_atime",
+        "outcome": "exact_bytes_returned"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_dev",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_ino",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_mode",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_nlink",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_uid",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_gid",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_size",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_mtime_ns",
+        "outcome": "source_changed_during_read"
+      },
+      {
+        "stage": "final_path",
+        "field": "st_ctime_ns",
+        "outcome": "source_changed_during_read"
+      }
+    ],
+    "final_diagnostic_suite_rerun_passed": 27,
+    "metadata_matrix_runtime_pin_rechecked_unchanged": true
+  },
+  "review": "Consistent nine-field metadata stamp across descriptor-before, descriptor-after and revalidated final path. Access-only changes return exact payload bytes. Every other single-field change is rejected at each observation. Existing confinement, symlink refusal, descriptor anchoring, regular-file checks and exact source/hash/span/repeated-byte checks remain.",
+  "qualifications": [
+    "Deterministic semantic repair; not established cause of historical Windows empty-cards failure.",
+    "Local tests and matrix are not hosted Windows acceptance or scientific/source/legal certification."
+  ],
+  "tokens": null,
+  "human_certification": false,
+  "superseded_test_sha256": "33d73b6282efd912c00b86cbfc22346646abbc7561e745c90e6f5a5f60d4e05e",
+  "final_diagnostic_assertion_review": "only_source now strictly asserts exactly one card and exactly one source, retaining full report on either mismatch; no retry, refusal suppression or success inference added."
+}
