@@ -35,6 +35,8 @@ sys.path.insert(0, str(HERE))
 # No measured time preference exists for this project; 60 days is a working value. The plan is recomputed at
 # 30 and 180 days and any action whose rank moves across the budget line is flagged.
 HALF_LIFE_DAYS = 60
+# Orders in a probe of an unmeasured stratum: the gate's minimum before it judges a wave.
+PROBE_ORDERS = 30
 SENSITIVITY_HALF_LIVES = (30, 180)
 ALLOWANCE = HERE / "data" / "ALLOWANCE.json"
 
@@ -81,6 +83,9 @@ def score(measured, action, half_life=HALF_LIFE_DAYS):
             continue
         fec += float(u.get("orders") or 0) * float(r["value"]) * discount(u.get("delay_days"), half_life)
     cost, basis = cost_of(measured, action)
+    unit = (measured.get("costs") or {}).get(action.get("cost_key") or "") or {}
+    if isinstance(unit.get("usd"), (int, float)):
+        out["probe_cost_usd"] = round(float(unit["usd"]) * min(PROBE_ORDERS, int(action.get("orders") or 0)), 2)
     if cost is None:
         out["notes"].append(basis + ": unranked")
         out["unranked"] = True
@@ -169,8 +174,13 @@ def report(r):
         lines.append(f"| {i} | {s['id']}{mark} | {s['kind']} | {s['orders']} | {s['expected_now']} | {s['fecundity']} | "
                      f"{fmt_usd(s['cost_usd'])} | {per} | {fmt_usd(s['cumulative_usd'])} |")
     if r["unranked"]:
-        lines += ["", "Unranked (a yield or cost is not measured; Bentham will not guess):", ""]
-        lines += [f"- {s['id']}: {'; '.join(s['notes'])}" for s in r["unranked"]]
+        lines += ["", "Unranked (a yield or cost is not measured; Bentham will not guess). For a production stratum the "
+                  f"next step is a {PROBE_ORDERS}-order probe, run under the gate, that measures its yield:", ""]
+        for s in r["unranked"]:
+            probe = ""
+            if s.get("kind") == "production" and s.get("probe_cost_usd") is not None:
+                probe = f" Probe: {PROBE_ORDERS} orders, about {fmt_usd(s['probe_cost_usd'])}."
+            lines.append(f"- {s['id']} ({s['orders']} orders): {'; '.join(s['notes'])}.{probe}")
     if r["sensitivity"]:
         lines += ["", "Budget line moves with the delay discount:", ""]
         lines += [f"- at {f['half_life_days']} days: enters {f['enters'] or 'none'}, leaves {f['leaves'] or 'none'}"
