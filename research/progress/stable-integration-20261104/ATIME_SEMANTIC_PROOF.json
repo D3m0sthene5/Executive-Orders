@@ -1,0 +1,191 @@
+{
+  "schema": "eo-read-metadata-semantic-proof/v1",
+  "recorded_utc": "2026-11-05T01:15:38.830198+00:00",
+  "author": "/root/final_engineering_review",
+  "scope": "Read-only deterministic semantic experiment; modified candidates executed in separate in-memory module dictionaries. Repository runtime remains unchanged.",
+  "finding": "Final full stat equality may reject read-access time changes even though the preceding descriptor stamp intentionally excludes access time. Exact same payload bytes and every source identity/size/modification/change field can remain unchanged.",
+  "experiment": "Intercept only the final validated path stat result with a genuine os.stat_result; preserve every other field and raw file payload. Mutate each field separately; retain exact ns timestamp attributes. Validate real path confinement before injecting only the final stat observation.",
+  "results": {
+    "source_sha256": "e666b1a5094898a9f02dcbf9720f4ee8ea6a65a29c2f7912d3c1445e185aa74f",
+    "results": [
+      {
+        "mutation": "unchanged",
+        "current": "exact_bytes_returned",
+        "minimal_stamp": "exact_bytes_returned",
+        "expanded_stamp": "exact_bytes_returned"
+      },
+      {
+        "mutation": "st_atime",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "exact_bytes_returned",
+        "expanded_stamp": "exact_bytes_returned"
+      },
+      {
+        "mutation": "st_dev",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "source_changed_during_read",
+        "expanded_stamp": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_ino",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "source_changed_during_read",
+        "expanded_stamp": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_size",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "source_changed_during_read",
+        "expanded_stamp": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_mtime_ns",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "source_changed_during_read",
+        "expanded_stamp": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_ctime_ns",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "source_changed_during_read",
+        "expanded_stamp": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_mode",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "exact_bytes_returned",
+        "expanded_stamp": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_nlink",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "exact_bytes_returned",
+        "expanded_stamp": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_uid",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "exact_bytes_returned",
+        "expanded_stamp": "source_changed_during_read"
+      },
+      {
+        "mutation": "st_gid",
+        "current": "source_changed_during_read",
+        "minimal_stamp": "exact_bytes_returned",
+        "expanded_stamp": "source_changed_during_read"
+      }
+    ]
+  },
+  "minimal_candidate": "stamp(before) != stamp(after) or stamp(_path(root, name, allowed).stat()) != stamp(after)",
+  "minimal_candidate_risk": "Existing five-field stamp drops final mode/nlink/uid/gid comparisons. Those mutations normally update ctime, but coarser or synthetic filesystems could preserve timestamp values. Do not assume they are equivalent without specifying the contract.",
+  "recommended_candidate": {
+    "stamp_fields": [
+      "st_dev",
+      "st_ino",
+      "st_mode",
+      "st_nlink",
+      "st_uid",
+      "st_gid",
+      "st_size",
+      "st_mtime_ns",
+      "st_ctime_ns"
+    ],
+    "comparison": "Apply that same stamp to descriptor before, descriptor after and final revalidated path stat. Exclude st_atime only.",
+    "result": "Exact/atime-only observations return exact bytes; every other individually mutated field still refuses."
+  },
+  "preserved_boundaries": [
+    "No path confinement, symlink refusal, regular-file gate, exact payload hash/span or repeated-byte check is removed.",
+    "Final path stat still checks all meaningful source identity/mode/link/ownership/size/modification fields; descriptor comparison becomes at least as strict for mode/link/ownership."
+  ],
+  "proof_sha256": "0625ad15da3d53ee72e0d0b2e2c995b598f16ea3b6b54ff75aa5ac53b4fd81e3",
+  "qualifications": [
+    "This deterministic access-only false refusal is a distinct demonstrated bug; it is not proof of what caused job126978085161. The historical intermediate report remains unavailable.",
+    "Synthetic independently varied metadata establishes comparison semantics, not an empirical cross-platform filesystem frequency.",
+    "No runtime edit or published-head claim has been made by this experiment. Root decides adoption and final independent review/hosted validation."
+  ],
+  "published_source_equivalent": {
+    "historical_local_commit": "ff1f31e13f370e2d910ee433b831bac6fd01d2df",
+    "published_commit": "d52f611496de659c1c046bc717a724c00a2b651d",
+    "scope": "jobs/claim-kit/blind_verify.py only; no whole-tree equivalence asserted",
+    "source_sha256": "e666b1a5094898a9f02dcbf9720f4ee8ea6a65a29c2f7912d3c1445e185aa74f",
+    "verification": "Compared exact Git blob bytes; helpers now default to the published commit and assert its source SHA256. Historical runs retain their original recorded context."
+  },
+  "published_baseline_reproduction": {
+    "run_utc": "2026-11-05T01:21:31.663373+00:00",
+    "command": "python3 research/progress/stable-integration-20261104/ATIME_SEMANTIC_PROBE.py --baseline d52f611496de659c1c046bc717a724c00a2b651d",
+    "result": "pass",
+    "report": {
+      "baseline_commit": "d52f611496de659c1c046bc717a724c00a2b651d",
+      "baseline_source_sha256": "e666b1a5094898a9f02dcbf9720f4ee8ea6a65a29c2f7912d3c1445e185aa74f",
+      "results": [
+        {
+          "mutation": "unchanged",
+          "current": "exact_bytes_returned",
+          "minimal_stamp": "exact_bytes_returned",
+          "expanded_stamp": "exact_bytes_returned"
+        },
+        {
+          "mutation": "st_atime",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "exact_bytes_returned",
+          "expanded_stamp": "exact_bytes_returned"
+        },
+        {
+          "mutation": "st_dev",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "source_changed_during_read",
+          "expanded_stamp": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_ino",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "source_changed_during_read",
+          "expanded_stamp": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_size",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "source_changed_during_read",
+          "expanded_stamp": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_mtime_ns",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "source_changed_during_read",
+          "expanded_stamp": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_ctime_ns",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "source_changed_during_read",
+          "expanded_stamp": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_mode",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "exact_bytes_returned",
+          "expanded_stamp": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_nlink",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "exact_bytes_returned",
+          "expanded_stamp": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_uid",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "exact_bytes_returned",
+          "expanded_stamp": "source_changed_during_read"
+        },
+        {
+          "mutation": "st_gid",
+          "current": "source_changed_during_read",
+          "minimal_stamp": "exact_bytes_returned",
+          "expanded_stamp": "source_changed_during_read"
+        }
+      ]
+    },
+    "script_sha256": "0625ad15da3d53ee72e0d0b2e2c995b598f16ea3b6b54ff75aa5ac53b4fd81e3"
+  }
+}

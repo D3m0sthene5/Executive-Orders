@@ -90,6 +90,7 @@ def _path(root, name, allowed):
 
 def _read(root, name, allowed):
     path = _path(root, name, allowed)
+    path_before = path.stat()
     flags = os.O_RDONLY | getattr(os, 'O_BINARY', 0) | getattr(os, 'O_NOFOLLOW', 0)
     if os.open in os.supports_dir_fd and hasattr(os, 'O_NOFOLLOW'):
         # Anchor every component to a descriptor: a concurrent parent symlink
@@ -112,9 +113,19 @@ def _read(root, name, allowed):
             raise ValueError('source_not_regular_file')
         raw = stream.read()
         after = os.fstat(stream.fileno())
-    stamp = lambda s: (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
-    if stamp(before) != stamp(after) or _path(root, name, allowed).stat() != after:
-        raise ValueError('source_changed_during_read')
+        # Windows path/descriptor ctime can have different meanings. Keep the
+        # descriptor open and compare ctime within each API's observation stream.
+        path_after = _path(root, name, allowed).stat()
+        final = os.fstat(stream.fileno())
+        stamp = lambda s: (s.st_dev, s.st_ino, s.st_mode, s.st_nlink, s.st_uid, s.st_gid,
+                           s.st_size, s.st_mtime_ns, s.st_ctime_ns)
+        cross_matches = lambda by_path, by_descriptor: stamp(by_path)[:-1] == stamp(by_descriptor)[:-1]
+        if (stamp(path_before) != stamp(path_after)
+                or stamp(before) != stamp(after)
+                or stamp(after) != stamp(final)
+                or not cross_matches(path_before, before)
+                or not cross_matches(path_after, final)):
+            raise ValueError('source_changed_during_read')
     return raw
 
 
