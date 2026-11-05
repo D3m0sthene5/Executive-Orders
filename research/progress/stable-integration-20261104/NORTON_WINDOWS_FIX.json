@@ -1,0 +1,50 @@
+{
+  "schema": "eo-norton-windows-diagnostic/v1",
+  "recorded_utc": "2026-11-05T01:13:16.378651+00:00",
+  "author": "/root/final_engineering_review",
+  "hosted_failure": {
+    "job_id": 126978085161,
+    "tested_merge_sha": "6769473ec55e1284edd7b4e96b551110ca4bcec8",
+    "test": "BlindVerifyTests.test_actual_norton_nested_bound_witness_shape",
+    "exception": "IndexError: list index out of range",
+    "traceback_line": "self.assertIn('conflicting_record_span', self.verify()['cards'][0]['sources'][1]['errors'])",
+    "caret_analysis": "Caret points to column67 cards[0], not column81 sources[1]. The returned report therefore had zero cards; this does not establish missing nested source enumeration."
+  },
+  "established": "verify_files creates no card if explicit card reading or parsing fails, recording card_unavailable_or_malformed in inputs. Exact runtime/test at hosted merge matches inspected local source. Native successful reports always enumerate both expected source loci and refuse the deliberately conflicting nested span.",
+  "unresolved": "The historical Windows report was lost by immediate indexing; its precise card-level refusal cause cannot be reconstructed. A metadata-change refusal during rapid fixture rewrites is possible, but unproven. No deterministic Windows newline, hashseed or reference-order defect was reproduced.",
+  "change": "Test-only strict diagnostics: retain final report; require overall refusal, exactly one card, exactly the original and nested NORTON source loci, and conflicting_record_span at the nested locus. No retry, ignored refusal, gate relaxation or runtime change.",
+  "recommendation": "Rerun the same-head Windows failed job when appropriate; if a new head is published with this diagnostic test, inspect complete assertion report if card-level refusal recurs. Do not claim the underlying transient failure is repaired.",
+  "source_sha256": {
+    "jobs/claim-kit/blind_verify.py": "e666b1a5094898a9f02dcbf9720f4ee8ea6a65a29c2f7912d3c1445e185aa74f",
+    "jobs/claim-kit/test_blind_verify.py": "52bd683ee5da821baf9ea927b744b603dc08611df984182bcda8c19ce4dc0244"
+  },
+  "baseline_test_sha256": "84fb008c15b35a95d9602ff5722c134c8892ea96bd8d6360c1f2031daf726f34",
+  "tests": [
+    {
+      "name": "Original Norton test: five hashseed subprocesses, forced CRLF and150 native repetitions",
+      "result": "all pass",
+      "log": "hashseed 0 exit 0 OK\nhashseed 1 exit 0 OK\nhashseed 17 exit 0 OK\nhashseed 128 exit 0 OK\nhashseed random exit 0 OK\nforcedCRLF pass\n150 repeated native tests pass\n"
+    },
+    {
+      "name": "Full explicit-card verifier suite after strict diagnostic change",
+      "result": "pass",
+      "tests": 25,
+      "seconds": 0.341,
+      "log": ".........................\n----------------------------------------------------------------------\nRan 25 tests in 0.341s\n\nOK\n"
+    },
+    {
+      "name": "Simulated card-level source_changed_during_read on fourth verification",
+      "result": "Original raises IndexError; diagnostic raises assertion containing actual card_unavailable_or_malformed report; both reject rather than pass",
+      "log": "original IndexError list index out of range\ndiagnostic AssertionError 0 != 1 : {'schema': 'eo-blind-byte-verification/v1', 'scope': 'mechanical_bytes_only', 'ok': False, 'errors': [], 'inputs': [{'input_index': 0, 'errors': ['card_unavailable_or_malformed']}], 'cards': []}\nBoth original and diagnostic tests reject the same card-level refusal; new test retains its actual report.\n"
+    },
+    {
+      "name": "Runtime SHA equals HEAD, git diff --check",
+      "result": "pass"
+    }
+  ],
+  "qualifications": [
+    "A simulated metadata refusal demonstrates the diagnostic boundary, not proof that this caused the historical Windows failure.",
+    "Linux and forced-CRLF probes are not actual hosted Windows acceptance.",
+    "The actual verifier retains its conservative source-change/path/byte/span checks. No scientific or human review approval is established."
+  ]
+}

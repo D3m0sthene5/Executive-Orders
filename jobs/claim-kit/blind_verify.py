@@ -112,8 +112,11 @@ def _read(root, name, allowed):
             raise ValueError('source_not_regular_file')
         raw = stream.read()
         after = os.fstat(stream.fileno())
-    stamp = lambda s: (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
-    if stamp(before) != stamp(after) or _path(root, name, allowed).stat() != after:
+    # Reading may update access time without changing the source. Preserve all
+    # other identity, ownership, mode, link and content-version observations.
+    stamp = lambda s: (s.st_dev, s.st_ino, s.st_mode, s.st_nlink, s.st_uid, s.st_gid,
+                       s.st_size, s.st_mtime_ns, s.st_ctime_ns)
+    if stamp(before) != stamp(after) or stamp(_path(root, name, allowed).stat()) != stamp(after):
         raise ValueError('source_changed_during_read')
     return raw
 
