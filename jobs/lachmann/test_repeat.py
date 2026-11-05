@@ -1,4 +1,5 @@
 """Native Lachmann -> tracker repetition, including invalidated evidence."""
+import copy
 import csv
 import hashlib
 import json
@@ -70,6 +71,64 @@ class RepeatProduction(unittest.TestCase):
         row = self.recount()
         self.assertEqual(row['step_original_text'], 'provisional')
         self.assertEqual(row['provisional_text_method'], 'machine')
+
+    def file_dependent_claim(self):
+        # A synthetic current checker receipt isolates tracker/confirmation
+        # liveness; this fixture does not assert a legal or source-check result.
+        from test_tracker import COMPLETE_NO_CLAIM
+        import claim_gate
+        iid = ORDER['instrument_id']
+        ref = dict(json.loads(self.fragment.read_text())['data'], instrument_id=iid,
+                   char_start=0, char_end=len(GOOD), quote=GOOD, page_or_item='fixture')
+        prior = tracker.W.matching_confirmation(ref, self.root)
+        self.assertIsNotNone(prior)
+
+        def sources(value):
+            if isinstance(value, dict):
+                return {k: (copy.deepcopy(ref) if k in ('original_representation', 'original_source', 'source')
+                            else sources(v)) for k, v in value.items()}
+            return [sources(v) for v in value] if isinstance(value, list) else value
+
+        claim = sources(copy.deepcopy(COMPLETE_NO_CLAIM))
+        claim['instrument_id'] = iid
+        claim['operative_clauses'][0]['original_operative_text'] = GOOD
+        claim['working_text'] = tracker.W.blank([ref], prior)
+        self.assertEqual(claim_gate.validate_claim(claim, expected_status='no'), [])
+        path = self.root / 'research/readiness/claims/filed.jsonl'
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(claim) + '\n', encoding='utf-8')
+        receipt = self.root / tracker.J['checker']
+        receipt.parent.mkdir(parents=True, exist_ok=True)
+        receipt.write_text(json.dumps({'by_instrument': {iid: {
+            'claim_sha256': claim_gate.claim_sha(claim),
+            'steps_checker_passed': {step: True for step in tracker.STEP_NAMES}}}}), encoding='utf-8')
+        row = tracker.build(str(self.root))[0][0]
+        write_csv(self.root / L.TRACKER_CSV, [row])
+        self.assertEqual(row['ready_for_human_review'], 'yes')
+        self.assertEqual(row['step_original_text'], 'done')
+        self.assertEqual(row['text_evidence_tier'], 'transcription_dependent')
+        self.assertEqual(row['provisional_text_method'], '')
+
+    def test_repeat_revalidates_confirmation_pinned_by_filed_claim(self):
+        self.first_pass()
+        self.file_dependent_claim()
+        before = (self.output / 'CONFIRMATIONS.jsonl').read_bytes()
+        self.assertEqual(L.run(self.root, self.output)['confirmed'], 1)
+        self.assertEqual((self.output / 'CONFIRMATIONS.jsonl').read_bytes(), before)
+        row = tracker.build(str(self.root))[0][0]
+        self.assertEqual(row['ready_for_human_review'], 'yes')
+        self.assertEqual(row['working_text_policy_errors'], '')
+
+    def test_filed_claim_confirmation_is_not_carried_after_changed_bytes(self):
+        self.first_pass()
+        self.file_dependent_claim()
+        self.text.write_text('Changed after filing', encoding='utf-8')
+        result = L.run(self.root, self.output)
+        self.assertEqual(result['assessed'], 1)
+        self.assertEqual(result['confirmed'], 0)
+        row = tracker.build(str(self.root))[0][0]
+        self.assertEqual(row['ready_for_human_review'], 'no')
+        self.assertIn('working_text:prior_confirmation_stale', row['working_text_policy_errors'])
 
     def test_second_pass_revalidates_previously_provisional_text(self):
         self.first_pass()

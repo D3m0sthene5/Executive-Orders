@@ -1,0 +1,46 @@
+{
+  "schema": "eo-filed-confirmation-repeat-repair/v1",
+  "recorded_utc": "2026-11-05T00:46:09.656946+00:00",
+  "author": "/root/final_engineering_review",
+  "base_commit": "ff1f31e13f370e2d910ee433b831bac6fd01d2df",
+  "counterexample": "Tracker counts an accepted filed transcription-dependent claim with step_original_text=done and provisional_text_method empty. The previous load_scope omits that row, run() rewrites CONFIRMATIONS.jsonl without its pinned confirmation, and the next tracker rejects the unchanged claim as working_text:prior_confirmation_stale.",
+  "change": "Extend the existing scope only for tracker rows with claim_present=yes and text_evidence_tier=transcription_dependent. Existing ORIGINAL_FOUND_NEEDS_PAGE_CHECK exclusion stays first. Reassess current witnesses through the unchanged assessor and source hash/page gates; never copy prior approvals.",
+  "source_sha256": {
+    "jobs/lachmann/lachmann.py": "54f4c52da0ebbfdeb20655825b65f28eedfc21c27b7d576cc9e736ec8a255813",
+    "jobs/lachmann/test_repeat.py": "288138dc8035efedce3012c54b27a82f9f17b94f3a22feeafbc0a7fe9c35dbff"
+  },
+  "baseline_source_sha256": {
+    "jobs/lachmann/lachmann.py": "2be3dff2a1420845031ec69a4c9a1400cb5c0860bbf746a229e23c60fb435a32",
+    "jobs/lachmann/test_repeat.py": "396bd0e422e1d1f07620e654d49f3a5074f9e09c371c621a89ff8812b0f038e7"
+  },
+  "tests": [
+    {
+      "name": "Native tracker/Lachmann counterexample before repair",
+      "result": "confirmed ready\u2192not-ready solely from omitted unchanged confirmation",
+      "log": "before {\"claim_present\": \"yes\", \"text_evidence_tier\": \"transcription_dependent\", \"step_original_text\": \"done\", \"provisional_text_method\": \"\", \"ready_for_human_review\": \"yes\", \"working_text_policy_errors\": \"\"}\nscope {}\nrun {\"in_scope\": 0, \"assessed\": 0, \"confirmed\": 0}\nafter {\"ready_for_human_review\": \"no\", \"step_original_text\": \"open\", \"working_text_policy_errors\": \"working_text:prior_confirmation_stale\"}\n"
+    },
+    {
+      "name": "Two new native filed-claim regressions under original HEAD load_scope",
+      "result": "two expected failures; no setup errors",
+      "log": "test_repeat_revalidates_confirmation_pinned_by_filed_claim (test_repeat.RepeatProduction.test_repeat_revalidates_confirmation_pinned_by_filed_claim) ... FAIL\ntest_filed_claim_confirmation_is_not_carried_after_changed_bytes (test_repeat.RepeatProduction.test_filed_claim_confirmation_is_not_carried_after_changed_bytes) ... FAIL\n\n======================================================================\nFAIL: test_repeat_revalidates_confirmation_pinned_by_filed_claim (test_repeat.RepeatProduction.test_repeat_revalidates_confirmation_pinned_by_filed_claim)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/a3411b70bba5/stable/jobs/lachmann/test_repeat.py\", line 116, in test_repeat_revalidates_confirmation_pinned_by_filed_claim\n    self.assertEqual(L.run(self.root, self.output)['confirmed'], 1)\nAssertionError: 0 != 1\n\n======================================================================\nFAIL: test_filed_claim_confirmation_is_not_carried_after_changed_bytes (test_repeat.RepeatProduction.test_filed_claim_confirmation_is_not_carried_after_changed_bytes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/a3411b70bba5/stable/jobs/lachmann/test_repeat.py\", line 127, in test_filed_claim_confirmation_is_not_carried_after_changed_bytes\n    self.assertEqual(result['assessed'], 1)\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 2 tests in 0.065s\n\nFAILED (failures=2)\nBoth native filed-claim regressions fail against original scope and pass under repaired scope.\n"
+    },
+    {
+      "name": "Repaired full Lachmann suite including CRLF audit fixtures",
+      "result": "pass",
+      "tests": 54,
+      "observed_test_seconds": 0.239,
+      "log": "......................................................\n----------------------------------------------------------------------\nRan 54 tests in 0.239s\n\nOK\n"
+    },
+    {
+      "name": "git diff --check",
+      "result": "pass"
+    }
+  ],
+  "qualifications": [
+    "The native fixture uses a synthetic current checker receipt to isolate tracker/confirmation liveness, as existing tracker tests do. It establishes no legal truth or independent source-check result.",
+    "A second native regression changes held text bytes after filing and requires fresh assessment to fail; readiness remains blocked and prior confirmation becomes stale.",
+    "This narrow repair borrows no PR146 source-heading, archival acceptance, census/status or other scientific changes.",
+    "This agent discovered/reviewed the boundary then implemented the patch; root retains independent final review and hosted checks.",
+    "Actual hosted Windows/Linux acceptance remains pending the followup published head. No scientific/human approval or measured cost saving is established."
+  ]
+}
