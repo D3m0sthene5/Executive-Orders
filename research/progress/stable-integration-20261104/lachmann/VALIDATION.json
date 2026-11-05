@@ -1,0 +1,59 @@
+{
+  "started_utc": "2026-11-05T00:22:05.593538+00:00",
+  "finished_utc": "2026-11-05T00:22:10.724506+00:00",
+  "retention_phase_observed_seconds": 5.130983316004858,
+  "full_worker_elapsed_seconds": null,
+  "model": "inherited OpenAI GPT-6 family; exact deployment/tier not exposed to worker",
+  "tokens": null,
+  "cash": null,
+  "baseline_commit": "ea1e52f5a675b45646d9d4f466d652b5259038eb",
+  "baseline_lachmann_sha256": "1cc6ccb1a3fd8c44114b00e4743e598352a05d609d1349dcc8b7048c6743f621",
+  "source_sha256": {
+    "jobs/lachmann/lachmann.py": "2be3dff2a1420845031ec69a4c9a1400cb5c0860bbf746a229e23c60fb435a32",
+    "jobs/lachmann/README.md": "552671be30f073d8e4549bf4bd5341bc98d30ea9401385ac63c764ca5b916f15",
+    "jobs/lachmann/needs.txt": "1d15bacbf81e02072d9cae3bcc23e8f728b1e9853b51cd46b6e55567ada70d12",
+    "jobs/lachmann/after.txt": "878b1a64bae469f7bed14dae551a1aa0d97988c62bac83a514d1ce92b60b1392",
+    "jobs/lachmann/triggers.txt": "d665465eee0631840db1083da5795a522466b945a3fd0fd145b7e8441538ae48",
+    "jobs/lachmann/test_repeat.py": "396bd0e422e1d1f07620e654d49f3a5074f9e09c371c621a89ff8812b0f038e7",
+    "jobs/lachmann/test_scheduling.py": "7b77e422bede4424830021834d24eb594df33b06eb63b18f2f07f83576b9fe63"
+  },
+  "commands": [
+    {
+      "command": "isolated baseline ea1e52f Lachmann with current native repeat tests",
+      "exit_code": 1,
+      "observed_machine_seconds": 0.2937975109962281,
+      "log": "BASELINE_REPEAT.log",
+      "expected_failure": true
+    },
+    {
+      "command": "python3 -B -m unittest discover -s jobs/lachmann -p test_*.py -v",
+      "exit_code": 0,
+      "observed_machine_seconds": 0.5782885680091567,
+      "log": "REPAIRED_LACHMANN.log"
+    },
+    {
+      "command": "python3 -B .github/scripts/test_pick_jobs.py",
+      "exit_code": 0,
+      "observed_machine_seconds": 2.495339735993184,
+      "log": "PICKER.log"
+    },
+    {
+      "command": "native job.py on synthetic one-order source fixture, pass 1",
+      "exit_code": 0,
+      "observed_machine_seconds": 0.9189148980076425,
+      "log": "NATIVE_WRAPPER_PASS_1.log"
+    },
+    {
+      "command": "native job.py on synthetic one-order source fixture, pass 2",
+      "exit_code": 0,
+      "observed_machine_seconds": 0.5937176090083085,
+      "log": "NATIVE_WRAPPER_PASS_2.log"
+    }
+  ],
+  "boundaries": [
+    "synthetic native source/tracker fixture; no corpus-wide or legal validation",
+    "no canonical scientific output, source grade, status, readiness or certification changes",
+    "separate-context OpenAI-family engineering review, not human or cross-family scientific review",
+    "prior fixture setup failures and initial nonrunnable Hathi edge corrected; see IMPLEMENTATION.md"
+  ]
+}

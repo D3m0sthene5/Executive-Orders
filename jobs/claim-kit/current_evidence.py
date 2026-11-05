@@ -59,14 +59,20 @@ def enrich_current(repo, leads):
             result.append(item)
             continue
         declarations_for_source = declarations.get((source.get("url"), source.get("sha256")), [])
-        candidates = [(source.get("text_path") or item.get("text_path"), False)]
+        declared_pins = {}
         for declaration in declarations_for_source:
-            candidates.append((declaration.get("text_path"), False))
+            declared_path = _safe(root, base, declaration.get("text_path"))
+            if declared_path and declaration.get("text_sha256") is not None:
+                declared_pins.setdefault(declared_path, []).append(declaration["text_sha256"])
+        candidates = [(source.get("text_path") or item.get("text_path"), False, None)]
+        for declaration in declarations_for_source:
+            candidates.append((declaration.get("text_path"), False, declaration.get("text_sha256")))
             # A cache path is an original artifact, not an attributed text
             # extract. Accept only a matching original-byte hash below.
-            candidates.append((declaration.get("cache_path"), True))
+            candidates.append((declaration.get("cache_path"), True, None))
         found = False
-        for name, original_cache in candidates:
+        declaration_gap = None
+        for name, original_cache, declared_text_sha in candidates:
             path = _safe(root, base, name)
             if not path or path.suffix.lower() not in {".txt", ".xml", ".html", ".htm"} or not path.is_file():
                 continue
@@ -76,6 +82,29 @@ def enrich_current(repo, leads):
                 if original_cache and digest != source["sha256"]:
                     continue
                 if source.get("text_sha256") and source["text_sha256"].lower() != digest:
+                    continue
+                # An unpinned direct pointer (or legacy fallback) to the same
+                # declared extraction is not an independent witness. Honor the
+                # supplied pins for that path instead of bypassing them merely
+                # because the lead also names the path. Explicitly source-pinned
+                # direct text and exact original caches remain separate routes.
+                same_path_pins = declared_pins.get(path, [])
+                if (not original_cache and declared_text_sha is None and
+                        not source.get("text_sha256") and same_path_pins and
+                        not any(isinstance(pin, str) and SHA.fullmatch(pin) and pin.lower() == digest
+                                for pin in same_path_pins)):
+                    declaration_gap = ("Held current-law extract does not match its declared text_sha256: "
+                                       + path.relative_to(root).as_posix()
+                                       + "; repair the retained bytes or declaration before citing this extract.")
+                    continue
+                # The declaration's original URL/hash selects this extract,
+                # but its own text pin must still match the held bytes. An
+                # unchanged snippet cannot renew a stale source declaration.
+                if declared_text_sha is not None and (not isinstance(declared_text_sha, str) or
+                        not SHA.fullmatch(declared_text_sha) or declared_text_sha.lower() != digest):
+                    declaration_gap = ("Held current-law extract does not match its declared text_sha256: "
+                                       + path.relative_to(root).as_posix()
+                                       + "; repair the retained bytes or declaration before citing this extract.")
                     continue
                 text = raw.decode("utf-8")
             except (OSError, ValueError, UnicodeError):
@@ -100,7 +129,8 @@ def enrich_current(repo, leads):
             found = True
             break
         if not found:
-            item["evidence_gap"] = ("No uniquely located attributed legal-text slice is held for this current-law pointer; "
-                                    "serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.")
+            item["evidence_gap"] = declaration_gap or (
+                "No uniquely located attributed legal-text slice is held for this current-law pointer; "
+                "serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.")
         result.append(item)
     return result

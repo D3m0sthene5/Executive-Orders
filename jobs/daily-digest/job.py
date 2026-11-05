@@ -60,7 +60,7 @@ def build(root,day,old):
 
 def main():
     root=Path(os.environ['REPO_ROOT']);out=Path(os.environ['OUTPUT_DIR'])
-    tests=subprocess.run([__import__('sys').executable,'-m','unittest','-v','test_dashboard'],cwd=Path(__file__).resolve().parent)
+    tests=subprocess.run([__import__('sys').executable,'-m','unittest','-v','test_dashboard','test_mission'],cwd=Path(__file__).resolve().parent)
     if tests.returncode:
         raise SystemExit('Dashboard tests failed; digest not published.')
     from zoneinfo import ZoneInfo
@@ -70,6 +70,9 @@ def main():
     (out/'DIGEST.md').write_text(text,encoding='utf-8',newline='\n')
     (out/'SNAPSHOT.json').write_text(json.dumps(snapshot,sort_keys=True,indent=2)+'\n',encoding='utf-8',newline='\n')
     import dashboard
-    dashboard.write(root,out)
+    report=dashboard.write(root,out)
+    import mission
+    receipt=mission.refresh(root,out,report,os.environ.get('JOB_PRIOR_OUTPUT_DIR'))
+    print('Mission refresh:', receipt['state'], receipt.get('reason') or '')
 if __name__=='__main__':main()
 

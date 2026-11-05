@@ -1,0 +1,55 @@
+name: Mission dashboard offline checks
+on:
+  pull_request:
+    paths:
+      - 'research/progress/control-center/**'
+      - 'research/progress/remaining-work/build_mission_log.py'
+      - 'research/progress/remaining-work/build_remaining_work.py'
+      - 'research/progress/remaining-work/MISSION_WEIGHTS.csv'
+      - 'research/progress/remaining-work/APOLLO11_MILESTONES.csv'
+      - 'jobs/daily-digest/**'
+      - '.github/workflows/refresh-readiness.yml'
+      - '.github/workflows/mission-tests.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/progress/control-center/**'
+      - 'research/progress/remaining-work/build_mission_log.py'
+      - 'jobs/daily-digest/mission.py'
+      - '.github/workflows/mission-tests.yml'
+permissions:
+  contents: read
+concurrency:
+  group: mission-tests-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/
+            /jobs/daily-digest/
+            !/jobs/daily-digest/output/
+            /research/progress/control-center/
+            /research/progress/remaining-work/build_mission_log.py
+            /research/progress/remaining-work/build_remaining_work.py
+            /research/progress/remaining-work/MISSION_WEIGHTS.csv
+            /research/progress/remaining-work/APOLLO11_MILESTONES.csv
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Mission generation and refusal regressions
+        run: python -I -m unittest discover -s jobs/daily-digest -p test_mission.py -v
+      - name: Dashboard data and rendering regressions
+        run: node --test research/progress/control-center/mission.test.js research/progress/control-center/observability-core.test.js
+      - name: JavaScript syntax
+        run: |
+          node --check research/progress/control-center/app.js
+          node --check research/progress/control-center/mission.js

@@ -38,15 +38,24 @@ def valla_signature(ref='HEAD'):
     return digest(tree(ref, valla_implementation_scope()))
 
 
-def valla_certified():
+def valla_reader_scope():
+    return {'roots': ['jobs/valla', 'jobs/_lib'], 'patterns': [], 'exclude': 'jobs/valla/output'}
+
+
+def certified_valla_scope(key, declared):
     try:
-        certificate = json.loads(Path(__file__).with_name('materialization_certificates.json').read_text('utf-8'))['valla']
-        return (not any(v.startswith('120000:') for v in tree('HEAD', valla_implementation_scope()).values())
+        certificate = json.loads(Path(__file__).with_name('materialization_certificates.json').read_text('utf-8'))[key]
+        committed = tree('HEAD', declared)
+        return (not any(v.startswith('120000:') for v in committed.values())
                 and isinstance(certificate, str) and re.fullmatch('[0-9a-f]{64}', certificate)
-                and valla_signature() == certificate
-                and digest(working(valla_implementation_scope())) == certificate)
+                and digest(committed) == certificate
+                and digest(working(declared)) == certificate)
     except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError):
         return False
+
+
+def valla_certified():
+    return certified_valla_scope('valla', valla_implementation_scope())
 
 
 def git(*args, input=None):
@@ -199,6 +208,7 @@ def scope(name):
     # This job explicitly enumerates the corpus, rather than just after.txt.
     if name == "daily-digest":
         patterns += ["jobs/*/output/SUMMARY.json", "jobs/*/output/STATUS.json", "HANDOFF/notes-*.md"]
+    fallback_inventory = False
     referenced_files = []
     dynamic_complete = True
     implementation_certified = False
@@ -211,6 +221,10 @@ def scope(name):
                                                      'exclude': f'jobs/{name}/output'}):
             dynamic_complete = False
         if not dynamic_complete or not implementation_certified:
+            # Runner tooling can change while the audited Valla executable stays
+            # identical. A changed reader may access new paths: keep every input.
+            fallback_inventory = (dynamic_complete and '*' not in patterns
+                                  and certified_valla_scope('valla_fallback_reader', valla_reader_scope()))
             patterns += ['*']
     for value in roots + patterns:
         p = PurePosixPath(value)
@@ -218,6 +232,8 @@ def scope(name):
             raise ValueError(f"Unsafe input declaration: {value!r}")
     result = {"roots": sorted(set(p.rstrip("/") for p in roots)),
               "patterns": sorted(set(patterns)), "exclude": f"jobs/{name}/output"}
+    if fallback_inventory:
+        result['fallback_inventory'] = True
     if name == 'valla':
         result.update(referenced_files=referenced_files, dynamic_complete=dynamic_complete,
                       implementation_certified=implementation_certified)
@@ -368,6 +384,14 @@ def working(declared=None):
                 *(_pathspec(p) for p in prefixes)]
         changed = git(*args)
         changed_paths.update(p.decode("utf-8") for p in changed.split(b"\0") if p)
+    if declared and declared.get('fallback_inventory'):
+        # Only the added whole-tree wildcard found these untracked files.
+        # A tracked file, explicit input or linked review still binds its bytes.
+        explicit = {**declared, 'patterns': [p for p in declared['patterns'] if p != '*']}
+        scratch_roots = ('.job-cache', 'jobs/_attempts', 'oversized/runner-freshness')
+        changed_paths = {p for p in changed_paths
+                         if p in entries or not any(under(p, root) for root in scratch_roots)
+                         or select({p: ''}, explicit)}
     paths = sorted(changed_paths | set(forced))
     if declared is not None:
         paths = [p for p in paths if select({p: ""}, declared)]
@@ -500,6 +524,8 @@ def check(ref, names, report):
                                  'changed_paths': [{'path': p, 'captured': before.get(p), 'working': after.get(p)}
                                                    for p in sorted(before.keys() | after.keys())
                                                    if before.get(p) != after.get(p)]})
+            if m['scope'].get('fallback_inventory') and not certified_valla_scope('valla_fallback_reader', valla_reader_scope()):
+                problems.append({'job': name, 'reason': 'fallback_reader_changed_during_run'})
             if m['scope'].get('implementation_certified') and not valla_certified():
                 problems.append({'job': name, 'reason': 'certified_implementation_changed_during_run'})
         expected, actual = m["inputs"], select(projected, m["scope"])

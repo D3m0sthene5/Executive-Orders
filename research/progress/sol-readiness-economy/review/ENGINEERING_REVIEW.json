@@ -1,0 +1,66 @@
+{
+  "schema": "sol-readiness-economy-engineering-review/v1",
+  "reviewer": "separate inherited OpenAI agent context; exact model tier unavailable",
+  "reviewed_utc": "2026-11-04T19:06:38.300789+00:00",
+  "verdict": "uphold bounded engineering implementation after correction",
+  "initial_findings": [
+    {
+      "id": "ER1",
+      "severity": "blocking",
+      "finding": "Unpinned direct text pointers bypassed supplied stale declaration hash",
+      "evidence": "INITIAL_CURRENT_BYPASS.json",
+      "state": "fixed; source/item direct-pointer independent probes now refuse"
+    }
+  ],
+  "code_pins": {
+    "jobs/claim-kit/dispatch.py": "19167f9d8ec0dcea98ad0c383d8366d9b9e1261c12092cfaf6e6e221489027c4",
+    "jobs/claim-kit/current_evidence.py": "d6e261ce66f2eed25fdb23a933848e825f5b0a741c1d4fd7a96be9f724927281",
+    "jobs/claim-kit/source_supplement.py": "fb3244621849dfe2b2b8b555ef382e35bcce47e5292bbd167e1c21d8253be5e5",
+    "jobs/claim-kit/test_readiness_economy_dispatch.py": "c2706f5b223ba8dd31be37d135b3d58d50e1d4f7586af4d0c299729f2e576d37",
+    "jobs/claim-kit/test_readiness_economy_sources.py": "9946ecb760b771ff10da70f658732b17d69fc3c93e421b9ca06fae15d3518e12"
+  },
+  "validation": {
+    "independent_adversarial_probes": 11,
+    "new_source_and_dispatch_tests": 26,
+    "existing_supplement_tests": 17,
+    "existing_dispatch_tests": 11,
+    "all_pass": true
+  },
+  "review_boundaries": [
+    "check_selected is source usability only, not structural/legal validation or source-grade adoption",
+    "New automatic CLI caller glue is deliberately unapplied pending owner integration across Session B surfaces",
+    "No source-first legal claim review, human review, different-family review or new readiness certification",
+    "Current-law schema retains legacy declarations without a supplied hash; rejecting all such legacy declarations was not authorized",
+    "Full-corpus source-index cost, model savings, source retention readiness and cash remain unknown"
+  ],
+  "usage": {
+    "tokens": null,
+    "cash": null,
+    "complete_active_labor": null,
+    "observed_suite_seconds": [
+      1.124,
+      2.945,
+      3.877
+    ],
+    "independent_probe_seconds": 0.3228404500114266
+  },
+  "scientific_approval": false,
+  "hardening": {
+    "exact_input_hash": "canonical exact JSON input includes fingerprint even if malformed input spoofs dossier schema",
+    "independent_regression_pass": true
+  },
+  "native_retained_input_review": {
+    "artifact": "NATIVE_AUDIT.json",
+    "final_packet": "sources/native-v4/supplemented/PACKET.json",
+    "packet_sha256": "2d901a437069109b0563c0d9699e9bf8751790b17e9f27192b82c7cf10740af1",
+    "members": 4,
+    "excerpts": 8,
+    "unique_raw_sources": 1,
+    "official_selected_sources_usable": 4,
+    "inherited_mirror_selected_sources_blocked": 4,
+    "recovery_tasks_for_mirror": 1,
+    "whole_dispatch_ready_gain_claimed": 0,
+    "all_input_pins_and_lineage_rechecked": true,
+    "source_arms_repeated_on_current_code": true
+  }
+}

@@ -1,0 +1,402 @@
+{
+  "generated_utc": "2026-11-05T00:23:42.875618+00:00",
+  "source_head": "1588083c107ddff1afc24719218fde24ebeaf04f",
+  "runnable_jobs": 70,
+  "ordered_jobs": 70,
+  "acyclic": true,
+  "manual_or_oneoff_roots": [
+    {
+      "job": "app-footnote-leads",
+      "classification": "manual_source_root",
+      "basis": "jobs/app-footnote-leads/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "app-transcriptions",
+      "classification": "manual_source_root",
+      "basis": "jobs/app-transcriptions/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [
+        "lachmann",
+        "namier"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "current-law",
+      "classification": "manual_source_root",
+      "basis": "jobs/current-law/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [
+        "claim-drafts",
+        "family-rules",
+        "norton",
+        "polya",
+        "readiness-tracker"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "fr-originals",
+      "classification": "manual_source_root",
+      "basis": "jobs/fr-originals/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [
+        "claim-checker",
+        "claim-drafts",
+        "clark-discovery",
+        "clause-drafts",
+        "later-events",
+        "namier",
+        "official-fixity",
+        "readiness-tracker",
+        "shepard-citations"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "indian-reservations-1912",
+      "classification": "manual_source_root",
+      "basis": "jobs/indian-reservations-1912/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [
+        "census-completeness",
+        "claim-checker",
+        "claim-drafts",
+        "namier",
+        "readiness-tracker"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "isthmian-canal-1911",
+      "classification": "manual_source_root",
+      "basis": "jobs/isthmian-canal-1911/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [
+        "claim-checker",
+        "claim-drafts",
+        "namier",
+        "readiness-tracker"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "numbered-early-orders",
+      "classification": "manual_source_root",
+      "basis": "jobs/numbered-early-orders/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [
+        "clark-discovery",
+        "lachmann",
+        "namier",
+        "shepard-citations"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "ofr-compilations",
+      "classification": "manual_source_root",
+      "basis": "jobs/ofr-compilations/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [
+        "claim-checker",
+        "claim-drafts",
+        "clark-discovery",
+        "namier",
+        "readiness-tracker",
+        "shepard-citations"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "opus-media-match",
+      "classification": "manual_source_root",
+      "basis": "jobs/opus-media-match/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [
+        "claim-drafts",
+        "official-fixity",
+        "readiness-tracker"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "richardson-volumes",
+      "classification": "manual_source_root",
+      "basis": "jobs/richardson-volumes/README.md",
+      "reason": "Source producer/converter; own-folder push or operator selection is a valid root. Fixed historical inputs do not require daily replay.",
+      "declared_downstream_consumers": [
+        "census-completeness",
+        "claim-checker",
+        "claim-drafts",
+        "clark-discovery",
+        "lachmann",
+        "namier",
+        "readiness-tracker",
+        "shepard-citations"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "astra-source-retention",
+      "classification": "bounded_acquisition_root",
+      "basis": "jobs/astra-source-retention/README.md",
+      "reason": "Exact bounded acquisition; broad recurrence would change its intended scope.",
+      "declared_downstream_consumers": [
+        "x1-class-engine"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "family-rule-sources",
+      "classification": "bounded_acquisition_root",
+      "basis": "jobs/family-rule-sources/job.py",
+      "reason": "Exact bounded acquisition; broad recurrence would change its intended scope.",
+      "declared_downstream_consumers": [
+        "family-rules"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "family-rule-tail",
+      "classification": "bounded_acquisition_root",
+      "basis": "jobs/family-rule-tail/job.py",
+      "reason": "Exact bounded acquisition; broad recurrence would change its intended scope.",
+      "declared_downstream_consumers": [
+        "family-rules"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "poggio-archive-backfill",
+      "classification": "bounded_acquisition_root",
+      "basis": "jobs/poggio-archive-backfill/README.md",
+      "reason": "Exact bounded acquisition; broad recurrence would change its intended scope.",
+      "declared_downstream_consumers": [],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "capcom-finalization",
+      "classification": "one_off_diagnostic",
+      "basis": "jobs/capcom-finalization/README.md",
+      "reason": "Frozen reconciliation/experiment; repeating it continuously does not advance ordinary research.",
+      "declared_downstream_consumers": [],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "early-ranger-year-reconcile",
+      "classification": "one_off_diagnostic",
+      "basis": "jobs/early-ranger-year-reconcile/job.py",
+      "reason": "Frozen reconciliation/experiment; repeating it continuously does not advance ordinary research.",
+      "declared_downstream_consumers": [],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "leverage-campaign-check",
+      "classification": "one_off_diagnostic",
+      "basis": "jobs/leverage-campaign-check/README.md",
+      "reason": "Frozen reconciliation/experiment; repeating it continuously does not advance ordinary research.",
+      "declared_downstream_consumers": [],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "library-survey",
+      "classification": "one_off_diagnostic",
+      "basis": "jobs/library-survey/README.md",
+      "reason": "Frozen reconciliation/experiment; repeating it continuously does not advance ordinary research.",
+      "declared_downstream_consumers": [],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "geddes",
+      "classification": "explicit_operator_protocol",
+      "basis": "jobs/geddes/README.md",
+      "reason": "Explicit packet/sample/ledger/experiment context is the meaningful interface.",
+      "declared_downstream_consumers": [],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "jacquard",
+      "classification": "explicit_operator_protocol",
+      "basis": "jobs/jacquard/README.md",
+      "reason": "Explicit packet/sample/ledger/experiment context is the meaningful interface.",
+      "declared_downstream_consumers": [],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "junto",
+      "classification": "explicit_operator_protocol",
+      "basis": "jobs/junto/README.md",
+      "reason": "Explicit packet/sample/ledger/experiment context is the meaningful interface.",
+      "declared_downstream_consumers": [
+        "daily-digest",
+        "portfolio-repair-check"
+      ],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    },
+    {
+      "job": "example-hello",
+      "classification": "runner_smoke",
+      "basis": "jobs/example-hello/job.py",
+      "reason": "Picker explicitly selects this job after runner changes.",
+      "declared_downstream_consumers": [],
+      "incoming_scheduled_dependencies": [],
+      "own_folder_push_route": true,
+      "unconnected_consumer_defect_established": false
+    }
+  ],
+  "nonrunnable_predecessor_references": [
+    {
+      "consumer": "clark-discovery",
+      "predecessor": "app-executive-orders",
+      "directory_exists": true,
+      "runnable": false
+    },
+    {
+      "consumer": "clark-discovery",
+      "predecessor": "wikisource-texts",
+      "directory_exists": true,
+      "runnable": false
+    },
+    {
+      "consumer": "clark-discovery",
+      "predecessor": "hathi-gpo-orders",
+      "directory_exists": true,
+      "runnable": false
+    },
+    {
+      "consumer": "namier",
+      "predecessor": "app-executive-orders",
+      "directory_exists": true,
+      "runnable": false
+    },
+    {
+      "consumer": "namier",
+      "predecessor": "hathi-gpo-orders",
+      "directory_exists": true,
+      "runnable": false
+    },
+    {
+      "consumer": "namier",
+      "predecessor": "wikisource-texts",
+      "directory_exists": true,
+      "runnable": false
+    },
+    {
+      "consumer": "shepard-citations",
+      "predecessor": "app-executive-orders",
+      "directory_exists": true,
+      "runnable": false
+    },
+    {
+      "consumer": "shepard-citations",
+      "predecessor": "wikisource-texts",
+      "directory_exists": true,
+      "runnable": false
+    },
+    {
+      "consumer": "shepard-citations",
+      "predecessor": "hathi-gpo-orders",
+      "directory_exists": true,
+      "runnable": false
+    }
+  ],
+  "retained_providers": [
+    {
+      "provider": "app-executive-orders",
+      "runnable": false,
+      "entrypoints": [],
+      "basis": "jobs/app-executive-orders/README.txt",
+      "interpretation": "Retained/imported source provider. Existing after references do not launch nonexistent jobs."
+    },
+    {
+      "provider": "wikisource-texts",
+      "runnable": false,
+      "entrypoints": [],
+      "basis": "jobs/wikisource-texts/README.txt",
+      "interpretation": "Retained/imported source provider. Existing after references do not launch nonexistent jobs."
+    },
+    {
+      "provider": "hathi-gpo-orders",
+      "runnable": false,
+      "entrypoints": [],
+      "basis": "jobs/hathi-gpo-orders/README.md",
+      "interpretation": "Retained/imported source provider. Existing after references do not launch nonexistent jobs."
+    }
+  ],
+  "repaired_disconnected_consumer": {
+    "job": "lachmann",
+    "evidence": "lachmann/IMPLEMENTATION.md",
+    "state": "safe repeat and five producer edges implemented; scoped native fixture validated"
+  },
+  "limits": [
+    "Static runner/manifest inspection plus scoped native tests; not execution/certification of every job.",
+    "Reference/order declarations show a route, not that all historical evidence or output is current.",
+    "Explicit CLIs and one-off jobs intentionally remain available; no broad automatic work added."
+  ],
+  "generic_or_direct_consumer_examples": [
+    {
+      "producer": "app-footnote-leads",
+      "consumer": "claim-kit",
+      "route": "jobs/claim-kit/inputs.py:530 discovers jobs/*/output/EDGES.csv; editorial lead flags remain separate from legal endings"
+    },
+    {
+      "tool": "geddes",
+      "consumer": "claim-kit batch-check",
+      "route": "jobs/claim-kit/kit.py:123 geddes_advisory invoked at batch-check"
+    },
+    {
+      "provider": "wikisource-texts",
+      "documented_scope": "README.txt explicitly local invocation only, no scheduled job.py"
+    },
+    {
+      "provider": "hathi-gpo-orders",
+      "documented_scope": "README.md omits automatic job.py because generic output clearing would destroy accumulated corpus"
+    }
+  ]
+}

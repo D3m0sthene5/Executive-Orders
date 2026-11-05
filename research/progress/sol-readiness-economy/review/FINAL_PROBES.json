@@ -1,0 +1,91 @@
+{
+  "schema": "sol-readiness-independent-engineering/v1",
+  "results": [
+    {
+      "case": "unchanged exact assembled claim",
+      "ok": true,
+      "blockers": []
+    },
+    {
+      "case": "spoof dossier schema cannot exclude fingerprint from exact input hash",
+      "hashes_differ": true,
+      "no_structural_approval": true
+    },
+    {
+      "case": "same evidence id altered quote",
+      "ok": false,
+      "blockers": [
+        {
+          "kind": "selected_source_not_dossier_evidence",
+          "field": "operative_clauses[0].first_end.source",
+          "evidence_id": "ACT:EO:1>EO:5"
+        },
+        {
+          "kind": "selected_span_not_verified",
+          "field": "operative_clauses[0].first_end.source",
+          "evidence_id": "ACT:EO:1>EO:5"
+        }
+      ]
+    },
+    {
+      "case": "malformed encoded evidence id",
+      "ok": false,
+      "blockers": [
+        {
+          "kind": "selected_source_not_dossier_evidence",
+          "field": "operative_clauses[0].first_end.source",
+          "evidence_id": null
+        }
+      ]
+    },
+    {
+      "case": "malformed selected source list",
+      "ok": false,
+      "blockers": [
+        {
+          "kind": "selected_source_list_malformed",
+          "field": "source_refs"
+        }
+      ]
+    },
+    {
+      "case": "exact additional selected source list",
+      "ok": true,
+      "blockers": []
+    },
+    {
+      "case": "stale claim dossier marker",
+      "ok": false,
+      "blockers": [
+        {
+          "kind": "selected_claim_stale_dossier"
+        }
+      ]
+    },
+    {
+      "case": "duplicate exact claims",
+      "refused": true
+    },
+    {
+      "case": "unpinned direct source cannot bypass stale declaration",
+      "refused": true
+    },
+    {
+      "case": "unpinned direct item cannot bypass stale declaration",
+      "refused": true
+    },
+    {
+      "case": "independently pinned direct text survives stale alternative",
+      "accepted": true
+    }
+  ],
+  "code_pins": {
+    "dispatch.py": "19167f9d8ec0dcea98ad0c383d8366d9b9e1261c12092cfaf6e6e221489027c4",
+    "current_evidence.py": "d6e261ce66f2eed25fdb23a933848e825f5b0a741c1d4fd7a96be9f724927281",
+    "source_supplement.py": "fb3244621849dfe2b2b8b555ef382e35bcce47e5292bbd167e1c21d8253be5e5"
+  },
+  "wall_seconds": 0.3228404500114266,
+  "model_tokens": null,
+  "scientific_approval": false,
+  "same_family_review": true
+}

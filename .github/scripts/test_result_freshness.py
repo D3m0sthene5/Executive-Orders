@@ -12,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 SCRIPTS = Path(__file__).resolve().parent
 BASH = shutil.which("bash") or str(Path(os.environ.get("ProgramFiles", "/")) / "Git/bin/bash.exe")
@@ -195,6 +196,71 @@ class FreshnessTests(unittest.TestCase):
         self.assertIn("inputs/new/deep/item.txt", result)
         self.assertEqual(result["inputs/change.txt"].split(":", 1)[1],
                          self.cmd("git", "hash-object", "inputs/change.txt").stdout.strip())
+
+    def pin_fixture_reader(self):
+        reader_pin = freshness.digest(freshness.tree('HEAD', freshness.valla_reader_scope()))
+        self.put('.github/scripts/materialization_certificates.json',
+                 json.dumps({'valla_fallback_reader': reader_pin}) + '\n')
+        self.commit(self.repo, 'audit fixture reader')
+        location = patch.object(freshness, '__file__', str(self.repo / '.github/scripts/result_freshness.py'))
+        location.start()
+        self.addCleanup(location.stop)
+
+    def test_audited_reader_excludes_only_runner_scratch_discovered_by_fallback(self):
+        self.put('jobs/valla/job.py', '# fixture uncertified implementation\n')
+        self.put('jobs/valla/output/result.txt', 'baseline\n')
+        receipt = 'jobs/_attempts/source/prior/STATUS.json'
+        self.put(receipt, 'tracked failure\n')
+        self.commit(self.repo, 'track a prior failed attempt')
+        self.pin_fixture_reader()
+        self.cmd('git', 'push', 'origin', 'main')
+        self.cmd('git', 'pull', '--ff-only', cwd=self.writer)
+        for path in ('.job-cache/claim-checker/text/temp.json', 'jobs/_attempts/source/new/log.txt',
+                     'oversized/runner-freshness/ATTEMPTS.json'):
+            self.put(path, 'runner scratch\n')
+        manifest = self.capture('valla')
+        self.assertTrue(manifest['scope']['fallback_inventory'])
+        self.assertEqual(manifest['inputs'], freshness.tree('HEAD', manifest['scope']))
+        self.assertEqual(self.check(['valla'])[0], 0)
+        self.put('jobs/valla/job.py', 'open(".job-cache/input").read()\n')
+        code, report = self.check(['valla'])
+        self.assertNotEqual(code, 0)
+        self.assertIn('fallback_reader_changed_during_run', {p['reason'] for p in report['problems']})
+        self.cmd('git', 'restore', 'jobs/valla/job.py')
+        self.advance(receipt, 'different tracked failure\n')
+        self.assertNotEqual(self.check(['valla'])[0], 0)
+
+    def test_fallback_binds_explicit_runner_paths_and_other_untracked_evidence(self):
+        pointer = '.job-cache/valla/review.json'
+        self.put('research/readiness/method_reviews/test.jsonl',
+                 json.dumps({'review_ref': {'path': pointer}}) + '\n')
+        self.put('jobs/valla/inputs.txt', 'jobs/_attempts/source/*/details.txt\n')
+        self.commit(self.repo, 'declare input and reviewed pointer')
+        self.pin_fixture_reader()
+        paths = [pointer, 'jobs/_attempts/source/new/details.txt', 'research/fresh-witness.pdf']
+        for path in paths:
+            self.put(path, 'actual evidence bytes\n')
+        declared = freshness.scope('valla')
+        self.assertTrue(declared['fallback_inventory'])
+        inputs = freshness.working(declared)
+        for path in paths:
+            self.assertEqual(inputs[path].split(':')[1], self.cmd('git', 'hash-object', path).stdout.strip())
+
+    def test_changed_reader_keeps_untracked_cache_in_fallback(self):
+        self.put('jobs/valla/job.py', '# audited reader\n')
+        self.commit(self.repo, 'version the reader')
+        self.pin_fixture_reader()
+        cache = '.job-cache/input/version.txt'
+        self.put(cache, 'untracked evidence\n')
+        self.put('jobs/valla/job.py', f'open({cache!r}).read()\n')
+        for state in ('worktree', 'commit'):
+            with self.subTest(state=state):
+                if state == 'commit':
+                    self.cmd('git', 'add', 'jobs/valla/job.py')
+                    self.cmd('git', 'commit', '-qm', 'new reader')
+                declared = freshness.scope('valla')
+                self.assertFalse(declared.get('fallback_inventory'))
+                self.assertIn(cache, freshness.working(declared))
 
     def test_scoped_working_set_rejects_stage_conflicts(self):
         self.put("inputs/conflict.txt", "base\n")

@@ -264,9 +264,12 @@ class Audit(unittest.TestCase):
                 text = f'Executive Order {1000 + k}. March {k % 28 + 1}, 1929\n' + ' '.join(f'term{k}x{j}' for j in range(40)) + \
                        f'\nHERBERT HOOVER\nThe White House,\nMarch {k % 28 + 1}, 1929.\n'
                 p = root / f'jobs/p1/output/t{k}.txt'
-                p.write_text(text, encoding='utf-8')
+                # Exercise Windows line endings on every platform; pin the
+                # saved bytes rather than the pre-translation Python string.
+                p.write_text(text, encoding='utf-8', newline='\r\n')
+                self.assertIn(b'\r\n', p.read_bytes())
                 lines.append(json.dumps({'instrument_id': iid, 'confirmed': True, 'grade': 'mirror_transcription', 'text_path': f'jobs/p1/output/t{k}.txt',
-                                         'text_sha256': hashlib.sha256(text.encode()).hexdigest()}))
+                                         'text_sha256': hashlib.sha256(p.read_bytes()).hexdigest()}))
                 regrows.append(f'{iid},{1000 + k},,1929-03-{k % 28 + 1:02d},Title {k}')
             (root / 'jobs/domesday-register/output/REGISTER.csv').write_text('\n'.join(regrows) + '\n')
             conf = root / 'c.jsonl'
@@ -296,10 +299,11 @@ class Audit(unittest.TestCase):
             for k in range(1, 61):
                 iid = f'EO:{1000 + k}'
                 text = ' '.join(f'term{k}x{j}' for j in range(40)) + f'\nHERBERT HOOVER\nThe White House,\nMarch {k % 28 + 1}, 1929.\n'
-                (root / f'jobs/p1/output/t{k}.txt').write_text(text, encoding='utf-8')
+                p = root / f'jobs/p1/output/t{k}.txt'
+                p.write_text(text, encoding='utf-8')
                 route = 'source_heading' if k <= 40 else 'a_number_and_date'
                 lines.append(json.dumps({'instrument_id': iid, 'confirmed': True, 'grade': 'mirror_transcription', 'text_path': f'jobs/p1/output/t{k}.txt',
-                                         'text_sha256': hashlib.sha256(text.encode()).hexdigest(), 'evidence': {'identity_route': route}}))
+                                         'text_sha256': hashlib.sha256(p.read_bytes()).hexdigest(), 'evidence': {'identity_route': route}}))
                 regrows.append(f'{iid},{1000 + k},,1929-03-{k % 28 + 1:02d},Title {k}')
             (root / 'jobs/domesday-register/output/REGISTER.csv').write_text('\n'.join(regrows) + '\n')
             conf = root / 'c.jsonl'

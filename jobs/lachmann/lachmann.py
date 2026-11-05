@@ -377,7 +377,14 @@ def read_csv(path):
 
 
 def load_scope(repo):
-    """Tracker rows with the original-text step open for a compiled-transcription or replica-only blocker."""
+    """Freshly reassess open leads, provisional texts and dependent filed claims.
+
+    A successful pass clears lead blockers and makes the next tracker row
+    provisional. Keep those members in scope so repetition does not erase its
+    own confirmations. Rebuild dependent filed-claim confirmations from current
+    witnesses as well. No prior approval is copied forward; the current source
+    checks and separate exact agent-review overrides remain authoritative.
+    """
     rows = read_csv(Path(repo) / TRACKER_CSV)
     scope = OrderedDict()
     for r in rows:
