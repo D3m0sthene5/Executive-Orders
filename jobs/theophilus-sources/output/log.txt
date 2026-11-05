@@ -1,0 +1,73 @@
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:46: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp2ed75ehj/repo/jobs/domesday-register/output/REGISTER.csv' mode='r' encoding='utf-8'>
+  return {r["instrument_id"] for r in csv.DictReader(open(path, encoding="utf-8", newline=""))}
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:75: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp2ed75ehj/repo/jobs/readiness-tracker/output/READINESS_BY_ORDER.csv' mode='r' encoding='utf-8'>
+  for r in csv.DictReader(open(readiness_csv, encoding="utf-8", newline="")):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp2ed75ehj/repo/jobs/current-law/output/ORDERS_CURRENT_LAW.csv' mode='r' encoding='utf-8'>
+  for r in csv.DictReader(open(current_csv, encoding="utf-8", newline="")):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+eligible YES orders 1; usc sections 2; cfr targets 2; unparsed citations 1
+notices 2 1
+{
+ "job": "theophilus-sources",
+ "generated_utc": "2026-11-05T21:45:41Z",
+ "notices": {
+  "listed": 2,
+  "fetched": 1
+ },
+ "orders_named_in_notices": 2,
+ "eligible_yes_orders": 1,
+ "usc_sections_planned": 2,
+ "cfr_targets_planned": 2,
+ "sections_fetched": {
+  "usc": 1,
+  "cfr": 2
+ },
+ "yes_orders_covered_by_sections": 1,
+ "failures_total": 3,
+ "failures_by_reason": {
+  "http_404": 1,
+  "section_not_found_in_title_xml": 1,
+  "usc_citation_not_a_single_section": 1
+ },
+ "usc_release_point": "119-121",
+ "limits": "No legal finding. Notices before 1994 are not in the Federal Register API and are left for a later route."
+}
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/test_job.py:141: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp2ed75ehj/out/SOURCES.jsonl' mode='r' encoding='UTF-8'>
+  recs = [json.loads(l) for l in open(out / "SOURCES.jsonl")]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.112s
+
+OK
+eligible YES orders 364; usc sections 259; cfr targets 609; unparsed citations 31
+notices 673 284
+{
+ "job": "theophilus-sources",
+ "generated_utc": "2026-11-05T21:59:15Z",
+ "notices": {
+  "listed": 673,
+  "fetched": 284
+ },
+ "orders_named_in_notices": 134,
+ "eligible_yes_orders": 364,
+ "usc_sections_planned": 259,
+ "cfr_targets_planned": 609,
+ "sections_fetched": {
+  "usc": 252,
+  "cfr": 574
+ },
+ "yes_orders_covered_by_sections": 314,
+ "failures_total": 462,
+ "failures_by_reason": {
+  "cfr_citation_form_not_parsed": 2,
+  "http_429": 389,
+  "section_not_found_in_title_xml": 7,
+  "target_not_in_title_xml": 35,
+  "usc_citation_not_a_single_section": 29
+ },
+ "usc_release_point": "119-121",
+ "limits": "No legal finding. Notices before 1994 are not in the Federal Register API and are left for a later route."
+}
