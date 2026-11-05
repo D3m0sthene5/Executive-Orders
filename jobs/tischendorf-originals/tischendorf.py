@@ -112,10 +112,15 @@ def load_inputs(root=REPO):
 
 
 def targets_from(readiness, register, texts, official):
-    """Orders whose original-text step is open and for which a transcription is held."""
+    """Orders that need an official printing and for which a transcription is held.
+
+    Two groups: orders whose original-text step is still open, and orders whose text step is satisfied only by a
+    transcription (the tracker's original_copy_replacement_required), including dossiers already ready for human
+    review. For the second group a find replaces the transcription and its quotation recheck obligation."""
     out = []
     for iid, r in readiness.items():
-        if r.get("step_original_text") != "open" or iid not in texts:
+        replacement = r.get("original_copy_replacement_required") == "yes"
+        if iid not in texts or not (r.get("step_original_text") == "open" or replacement):
             continue
         reg = register.get(iid, {})
         num = order_number(iid, reg)
@@ -129,10 +134,12 @@ def targets_from(readiness, register, texts, official):
             route = "ia_fulltext"
         out.append({"instrument_id": iid, "number": num, "date": date.isoformat() if date else (reg.get("date") or ""),
                     "title": reg.get("title", ""), "route": route, "flagged_finds": flagged,
-                    "blockers": r.get("blockers", ""), "has_status": bool(r.get("provisional_status"))})
-    # Cheapest route first; within a route, orders that already have a provisional status (nearest to a dossier).
+                    "blockers": r.get("blockers", ""), "has_status": bool(r.get("provisional_status")),
+                    "ready": r.get("ready_for_human_review") == "yes", "replacement": replacement})
+    # Cheapest route first; within a route, ready dossiers resting on a transcription first, then orders with a
+    # provisional status (nearest to a dossier).
     return sorted(out, key=lambda t: ({"corroborate": 0, "fr_by_date": 1, "ia_fulltext": 2}[t["route"]],
-                                      not t["has_status"], t["instrument_id"]))
+                                      not t["ready"], not t["has_status"], t["instrument_id"]))
 
 
 # --------------------------------------------------------------------------------------------- checks
@@ -694,6 +701,9 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
     strong = sum(1 for r in leads if r["verdict"] == "strong")
     summary = {
         "job": JOB, "targets": len(targets), "targets_by_route": Counter(t["route"] for t in targets),
+        "replacement_targets": sum(t["replacement"] for t in targets),
+        "replacement_targets_ready": sum(t["replacement"] and t["ready"] for t in targets),
+        "replacement_strong": sum(1 for t in targets if t["replacement"] and (state[t["instrument_id"]].get("result") or {}).get("verdict") == "strong"),
         "strong": strong, "leads": len(leads) - strong, "by_route_and_verdict": {f"{a}|{b}": c for (a, b), c in sorted(by_route.items())},
         "controls": controls, "strong_rules": STRONG_RULES, "requests": pool.requests,
         "requests_by_route": dict(route_used), "request_caps": {"total": max_requests, **route_cap},
