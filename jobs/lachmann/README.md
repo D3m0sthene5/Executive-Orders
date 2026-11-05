@@ -94,3 +94,9 @@ consumer. Vendored fragment/text edits and working-text interpretation changes
 also select it on the normal sweep. These edges never select upstream jobs just
 to run Lachmann; it uses the previous tracker scope and creates no new research
 or source-authentication approval.
+
+## Coordinating production publication
+
+The shared branch writer queue holds ordinary rebuilds and progress reporting apart from checkout through publication. A queued rebuild uses current branch witnesses and records its actual input commit. Its original event still selects the requested jobs; selecting Lachmann itself continues to avoid upstream acquisition fanout.
+
+Producer connections and fresh reassessment do not make a confirmation unconditional. Source changes, failed page checks and independent negative review still reopen or refuse the relevant text. Provisional and filed transcription-dependent confirmations are freshly reassessed on repeat runs. Let the downstream reporting generation finish before interpreting its tracker totals.

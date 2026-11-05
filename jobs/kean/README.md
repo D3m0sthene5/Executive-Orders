@@ -85,3 +85,9 @@ instructions) points the session here. The pull-request check reports failures; 
 owner marks it as a required check in the repository's branch settings.
 
 Standard library only. Kean changes no claim, provisional status, count, codebook entry or census row.
+
+## Queued jobs and operational handoffs
+
+Mutating runner jobs and main progress reporting share the branch writer queue, so a reporting publication cannot invalidate a computation running beside it. Pending production selections are retained up to GitHub's explicit queue limit; read-only diagnostics use independent groups. Current branch inputs are checked out after waiting and are named in native receipts.
+
+Record a failed publication separately from a successful computation: a freshness refusal is not permission to overwrite newer results or renew evidence seals. Final operational receipt files can live under HANDOFF when they are not scientific research inputs. Avoid changing files consumed by an active production run merely to record its progress; register results and regenerate the brief together when that result requires a new finding.
