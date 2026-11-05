@@ -1,0 +1,504 @@
+<meta charset="utf-8">
+<title>Executive Order Cards</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Spectral:wght@500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: a register header (count, pipeline, one-cell-per-order mosaic by president), a sticky filter bar,
+   then a catalogue drawer of order cards; a detail panel slides in from the right. */
+:root {
+  --paper: #eef1f4;
+  --card: #ffffff;
+  --ink: #15233b;
+  --muted: #5a6779;
+  --line: #d5dbe3;
+  --accent: #1f4f8f;
+  --accent-soft: #e2eaf5;
+  --done: #2f7d52;
+  --prov: #b07818;
+  --open: #d9dee6;
+  --ready-bg: #e5f2ea;
+  --m-none: #d6dbe2;
+  --m-start: #b9c9df;
+  --m-mid: #6f93c4;
+  --m-near: #c99a3d;
+  --m-ready: #2f7d52;
+  --shadow: 0 1px 2px rgba(21,35,59,.06), 0 6px 18px rgba(21,35,59,.06);
+  --f-display: "Spectral", Georgia, "Times New Roman", serif;
+  --f-body: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e141d; --card: #161f2c; --ink: #e3e9f2; --muted: #9aa7b8; --line: #283447;
+    --accent: #8db4ea; --accent-soft: #1d2c42; --done: #5cbf86; --prov: #e0ad4c; --open: #2c3748;
+    --ready-bg: #183326; --m-none: #2a3443; --m-start: #3b5272; --m-mid: #5d86bd; --m-near: #d9a647;
+    --m-ready: #4fb57b; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e141d; --card: #161f2c; --ink: #e3e9f2; --muted: #9aa7b8; --line: #283447;
+  --accent: #8db4ea; --accent-soft: #1d2c42; --done: #5cbf86; --prov: #e0ad4c; --open: #2c3748;
+  --ready-bg: #183326; --m-none: #2a3443; --m-start: #3b5272; --m-mid: #5d86bd; --m-near: #d9a647;
+  --m-ready: #4fb57b; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { padding-block: 28px 8px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+h1 { font-family: var(--f-display); font-weight: 600; font-size: clamp(28px, 4.2vw, 44px); line-height: 1.08; margin: 6px 0 10px; text-wrap: balance; }
+h1 .big { color: var(--done); font-variant-numeric: tabular-nums; }
+.lede { max-width: 68ch; color: var(--muted); margin: 0; }
+.lede a { color: var(--accent); }
+.mono { font-family: var(--f-mono); }
+
+.summary { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 20px; margin-top: 22px; }
+@media (max-width: 860px) { .summary { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; min-width: 0; }
+.panel h2 { font-family: var(--f-display); font-size: 19px; font-weight: 600; margin: 0 0 12px; }
+.funnel { display: grid; gap: 12px; }
+.frow { display: grid; gap: 4px; }
+.frow .lab { display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; }
+.frow .lab b { font-variant-numeric: tabular-nums; font-family: var(--f-mono); font-weight: 600; }
+.bar { height: 12px; background: var(--open); border-radius: 3px; overflow: hidden; }
+.bar > span { display: block; height: 100%; border-radius: 3px; }
+.fnote { font-size: 12.5px; color: var(--muted); margin: 2px 0 0; }
+.steps-mini { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; }
+.steps-mini h3 { font-size: 13px; font-weight: 600; margin: 0 0 8px; }
+.sm-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px; font-size: 12.5px; margin: 5px 0; }
+.sm-row .bar { height: 7px; grid-column: 1 / -1; }
+.sm-row b { text-align: right; font-family: var(--f-mono); font-weight: 500; font-variant-numeric: tabular-nums; color: var(--muted); }
+
+.mosaic-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; margin-bottom: 10px; }
+.mosaic-head h2 { margin: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.mosaic-box { position: relative; max-height: 600px; overflow-y: auto; overscroll-behavior: contain; }
+canvas#mosaic { display: block; width: 100%; cursor: pointer; }
+.tip { position: fixed; z-index: 30; pointer-events: none; background: var(--ink); color: var(--paper); font-size: 12px; padding: 6px 9px; border-radius: 6px; max-width: 280px; box-shadow: var(--shadow); }
+.tip b { font-family: var(--f-mono); }
+
+.filters { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--line); margin-top: 22px; }
+.filters .wrap { padding-block: 12px; display: grid; gap: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: 13px; border: 1px solid var(--line); background: var(--card); color: var(--ink); padding: 5px 11px; border-radius: 999px; cursor: pointer; }
+.chip b { font-family: var(--f-mono); font-weight: 500; font-size: 12px; color: var(--muted); margin-left: 4px; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.chip[aria-pressed="true"] b { color: inherit; opacity: .8; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.controls input, .controls select { font: inherit; font-size: 13.5px; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 7px; padding: 6px 9px; min-width: 0; max-width: 100%; }
+.controls input[type=search] { flex: 1 1 220px; }
+.controls select { flex: 0 1 auto; }
+.controls .reset { font: inherit; font-size: 13px; background: none; border: none; color: var(--accent); cursor: pointer; padding: 6px 4px; }
+.count { font-size: 13px; color: var(--muted); }
+.count b { font-family: var(--f-mono); color: var(--ink); font-weight: 600; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+main { padding-block: 18px 60px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: 12px; }
+.card { all: unset; box-sizing: border-box; display: grid; grid-template-rows: auto auto 1fr auto auto; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 14px 12px; cursor: pointer; min-width: 0; transition: border-color .15s, box-shadow .15s; }
+.card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.card.is-ready { background: linear-gradient(var(--ready-bg), var(--card) 70%); border-color: color-mix(in srgb, var(--done) 45%, var(--line)); }
+.c-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.eo { font-family: var(--f-mono); font-weight: 600; font-size: 16px; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eo small { font-size: 11px; color: var(--muted); font-weight: 500; margin-right: 3px; letter-spacing: .04em; }
+.pill { font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; border: 1px solid transparent; }
+.pill.yes { color: var(--accent); background: var(--accent-soft); }
+.pill.no { color: var(--muted); background: transparent; border-color: var(--line); }
+.pill.none { color: var(--muted); background: transparent; border: 1px dashed var(--line); font-weight: 500; }
+.c-meta { font-size: 12.5px; color: var(--muted); }
+.c-title { margin: 0; font-size: 14px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.c-title.empty { color: var(--muted); font-style: italic; }
+.track { display: flex; gap: 3px; }
+.seg { flex: 1; height: 8px; border-radius: 2px; background: var(--open); }
+.seg.d { background: var(--done); }
+.seg.p { background: repeating-linear-gradient(135deg, var(--prov) 0 3px, color-mix(in srgb, var(--prov) 55%, var(--card)) 3px 6px); }
+.c-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+.c-foot b { font-family: var(--f-mono); font-weight: 600; color: var(--ink); }
+.stamp { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--done); border: 1.5px solid var(--done); border-radius: 4px; padding: 1px 6px; white-space: nowrap; }
+.near { font-size: 11.5px; font-weight: 600; color: var(--prov); white-space: nowrap; }
+.more { display: flex; justify-content: center; margin-top: 18px; }
+.more button { font: inherit; font-size: 14px; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 8px 16px; cursor: pointer; }
+.empty-state { padding: 40px 0; text-align: center; color: var(--muted); }
+
+.scrim { position: fixed; inset: 0; background: rgba(10,16,26,.35); z-index: 40; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 41; width: min(460px, 100%); background: var(--card); border-left: 1px solid var(--line); box-shadow: var(--shadow); overflow-y: auto; padding: calc(20px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) calc(28px + env(safe-area-inset-bottom, 0px)) 20px; }
+.drawer .close { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); font: inherit; font-size: 22px; line-height: 1; background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px 8px; }
+.drawer h2 { font-family: var(--f-mono); font-size: 22px; margin: 0 0 4px; }
+.drawer .dtitle { font-family: var(--f-display); font-size: 19px; line-height: 1.3; margin: 0 0 14px; padding-right: 24px; overflow-wrap: anywhere; }
+.drawer h3 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 20px 0 8px; }
+dl.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; margin: 0; font-size: 13.5px; }
+dl.facts dt { color: var(--muted); }
+dl.facts dd { margin: 0; overflow-wrap: anywhere; }
+.slist { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.slist li { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 8px; align-items: start; font-size: 13.5px; }
+.slist .dot { width: 12px; height: 12px; border-radius: 3px; margin-top: 4px; background: var(--open); }
+.slist .dot.d { background: var(--done); }
+.slist .dot.p { background: var(--prov); }
+.slist .st { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.blist { margin: 0; padding-left: 18px; font-size: 13.5px; display: grid; gap: 6px; }
+.blist code, .idline { font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; }
+.callout { margin-top: 14px; font-size: 13px; background: var(--paper); border-radius: 8px; padding: 10px 12px; }
+footer { font-size: 12.5px; color: var(--muted); padding-block: 0 40px; }
+footer a { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="top wrap">
+  <div class="eyebrow">The Afterlife of Executive Orders · order-level tracker</div>
+  <h1><span class="big" id="hReady">—</span> of <span id="hTotal">—</span> executive orders have a dossier ready for human review</h1>
+  <p class="lede" id="lede">Each card is one executive order in the project's working census, showing how many of the readiness steps it needs the machines have finished.</p>
+
+  <div class="summary">
+    <section class="panel" aria-labelledby="pTitle">
+      <h2 id="pTitle">Where the orders stand</h2>
+      <div class="funnel" id="funnel"></div>
+      <div class="steps-mini" id="stepsMini"></div>
+    </section>
+    <section class="panel" aria-labelledby="mTitle">
+      <div class="mosaic-head">
+        <h2 id="mTitle">Every order, one square each</h2>
+        <div class="legend" id="legend"></div>
+      </div>
+      <p class="fnote" style="margin:0 0 10px">Grouped by president in date order. Filters below dim the squares they exclude. Tap a square to open that order.</p>
+      <div class="mosaic-box"><canvas id="mosaic" aria-label="Mosaic of all executive orders colored by readiness" role="img"></canvas></div>
+    </section>
+  </div>
+</header>
+
+<div class="filters">
+  <div class="wrap">
+    <div class="chips" id="chips" role="group" aria-label="Stage"></div>
+    <div class="controls">
+      <input type="search" id="q" placeholder="Search number or title, e.g. 6102 or gold" aria-label="Search orders">
+      <select id="fStatus" aria-label="Provisional status"></select>
+      <select id="fPres" aria-label="President"></select>
+      <select id="fBlock" aria-label="Blocked by"></select>
+      <select id="fTier" aria-label="Text evidence"></select>
+      <select id="fSort" aria-label="Sort"></select>
+      <button class="reset" id="reset" type="button">Clear filters</button>
+      <span class="count" id="count"></span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+  <div class="empty-state" id="empty" hidden>No orders match these filters.</div>
+  <div class="more" id="moreBox"><button type="button" id="more">Show more</button></div>
+  <div id="sentinel" style="height:1px"></div>
+</main>
+
+<footer class="wrap" id="foot"></footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-modal="true" role="dialog" aria-labelledby="dNo">
+  <button class="close" id="dClose" type="button" aria-label="Close">×</button>
+  <div id="dBody"></div>
+</aside>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const DATA = /*__DATA__*/null;
+(function () {
+  const M = DATA.meta, P = DATA.pres, CODES = DATA.codes;
+  const fmt = n => n.toLocaleString("en-US");
+  const STEP = {
+    provisional_status: ["Status", "Has a provisional YES/NO status"],
+    original_text: ["Text", "Original, or an explicitly reviewed provisional working text, saved"],
+    clause_inventory: ["Clauses", "Complete inventory of the order's operative clauses"],
+    ending_or_current_basis: ["Ending", "When and how it ended (NO), or what keeps it operating now (YES)"],
+    savings_residuals: ["Savings", "Savings clauses and surviving effects closed"],
+    counterevidence: ["Later sources", "Search for later contrary sources recorded, with no open conflicts"],
+    shared_sources: ["Shared sources", "Every shared legal source it cites has been retrieved"],
+    opus_media: ["Opus images", "Opus evidence images matched to this order (Opus cases only)"],
+  };
+  const BLOCK = {
+    NO_PROVISIONAL_STATUS: "No provisional YES/NO status yet, so the order has not been researched.",
+    NO_OFFICIAL_SOURCE_LOCATED: "No official original has been located.",
+    ONLY_COMPILED_TRANSCRIPTION_FOUND: "Only a compiled transcription (Richardson or the American Presidency Project) was found; it is a lead to the original, not the original.",
+    ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK: "A ProQuest replica scan is on file; a person must compare its pages with the order before it can serve as working text.",
+    ORIGINAL_FOUND_NEEDS_PAGE_CHECK: "An official original was found at medium or low confidence; its page location needs checking.",
+    NO_CLAUSE_INVENTORY: "The order's operative clauses have not been inventoried.",
+    FIRST_END_UNPROVED: "When and how the order first ended is not yet proved.",
+    CURRENT_BASIS_UNPROVED: "What keeps the order operating today is not yet proved.",
+    SAVINGS_RESIDUALS_NOT_CLOSED: "Savings clauses and surviving effects are not yet closed.",
+    LATER_SOURCE_SEARCH_NOT_RECORDED: "No search for later contrary sources is recorded.",
+    NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE: "The order has no Office of the Federal Register catalog entry, so the machine search for later sources could not cover it.",
+    MACHINE_SEARCH_FOUND_CONTRARY_LEAD: "A machine search found a later source that may contradict the status.",
+    QUARANTINED_RELATIONSHIP_CONFLICT: "A conflicting relationship with another instrument is quarantined pending review.",
+    SHARED_SOURCE_NOT_RETRIEVED: "A shared legal source the order cites has not been retrieved.",
+    OPUS_MEDIA_REFETCH_NEEDED: "Opus downloaded PDFs for this order but left them out of its release; they must be fetched again.",
+    OPUS_MEDIA_NONE_CITED: "Opus cited no evidence images for this order.",
+    OPUS_MEDIA_PARTLY_RESOLVED: "Some of Opus's evidence images are matched and some are not.",
+    OPUS_MEDIA_ORIGINAL_NOT_KEPT: "Originals Opus cited were not kept in its companion release.",
+    OPUS_MEDIA_MATCH_AMBIGUOUS: "An Opus image match is ambiguous.",
+    CLAIM_INCOMPLETE: "The filed claim does not yet cover this step.",
+    CLAIM_CHECK_FAILED: "The filed claim failed the claim-checker on this step.",
+    CLAIM_NOT_YET_CHECKED: "The current version of the filed claim has not been checked yet.",
+    OPEN_SOURCE_AUDIT: "An open source audit holds this order's claim.",
+    WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED: "The working text still needs review or disclosure.",
+  };
+  const BLOCK_SHORT = {
+    NO_PROVISIONAL_STATUS: "No status yet", NO_OFFICIAL_SOURCE_LOCATED: "No official original located",
+    ONLY_COMPILED_TRANSCRIPTION_FOUND: "Only a compiled transcription", ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK: "ProQuest scan needs page check",
+    ORIGINAL_FOUND_NEEDS_PAGE_CHECK: "Original needs page check", NO_CLAUSE_INVENTORY: "No clause inventory",
+    FIRST_END_UNPROVED: "Ending not proved", CURRENT_BASIS_UNPROVED: "Current basis not proved",
+    SAVINGS_RESIDUALS_NOT_CLOSED: "Savings not closed", NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE: "No OFR catalog entry",
+    MACHINE_SEARCH_FOUND_CONTRARY_LEAD: "Contrary later lead", QUARANTINED_RELATIONSHIP_CONFLICT: "Quarantined conflict",
+    SHARED_SOURCE_NOT_RETRIEVED: "Shared source missing", CLAIM_INCOMPLETE: "Claim incomplete", CLAIM_CHECK_FAILED: "Claim check failed",
+    OPEN_SOURCE_AUDIT: "Open source audit",
+  };
+  const HELD = {
+    official_original_counted: "Official original", transcription_only: "Transcription only",
+    archival_replica_scan: "ProQuest replica scan", official_found_page_check_pending: "Official original, page check pending",
+    nothing: "Nothing held", "not in register": "Not in the register",
+  };
+  const TIER = { original_supported: "Original-supported", transcription_dependent: "Transcription-dependent", missing: "No text step yet" };
+  const PRES_HOW = ["", "derived from the order's date", "uncertain: dated on a transition day", "unknown: no date recorded"];
+
+  // Expand rows.
+  const R = DATA.rows.map((r, idx) => {
+    const steps = r[7];
+    let app = 0, done = 0, open = 0;
+    for (const c of steps) { if (c === "-") continue; app++; if (c === "o") open++; else done++; }
+    const blockers = r[11] ? r[11].split("|").map(s => { const k = s.indexOf(":"); return k < 0 ? [CODES[+s], ""] : [CODES[+s.slice(0, k)], s.slice(k + 1)]; }) : [];
+    const ready = r[8] === 1, st = r[6];
+    const stage = ready ? "ready" : st ? (open === 1 ? "near" : "progress") : "none";
+    return { idx, no: r[0], date: r[1], title: r[2], pres: r[3], presHow: r[4], era: DATA.eras[r[5]], st, steps, ready,
+      tier: DATA.tiers[r[9]], held: DATA.held[r[10]], blockers, repl: r[12] === 1, origin: DATA.origins[r[13]], id: r[14],
+      app, done, open, stage, hay: (r[0] + " " + r[2]).toLowerCase() };
+  });
+
+  // Header figures (tallied from the tracker rows, never re-measured).
+  const total = R.length, nReady = R.filter(o => o.ready).length, nStatus = R.filter(o => o.st).length;
+  const nNear = R.filter(o => o.stage === "near").length, nNone = total - nStatus;
+  document.getElementById("hReady").textContent = fmt(nReady);
+  document.getElementById("hTotal").textContent = fmt(total);
+  const run = M.tracker_finished_utc ? new Date(M.tracker_finished_utc) : null;
+  const runTxt = run ? run.toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short", timeZone: "America/New_York" }) + " ET" : "an unknown time";
+  document.getElementById("lede").innerHTML =
+    `Each card is one executive order in the project's working census of ${fmt(total)} identities, with the readiness steps it needs and how many the machines have finished. ` +
+    `Ready means every step is backed by a saved source or a claim that passed the Stage 19 gate and the claim-checker. Human certification is a separate, later count and stands at ${fmt(M.human_certified)}. ` +
+    `Figures come from the readiness tracker run of ${runTxt}` + (M.tracker_run_url ? ` (<a href="${M.tracker_run_url}" target="_blank" rel="noopener">run log</a>).` : ".");
+
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const funnel = [
+    ["All orders in the working census", total, "--m-start", ""],
+    ["Have a provisional YES/NO status", nStatus, "--m-mid", `${fmt(nNone)} have not been researched yet.`],
+    ["Dossier ready for human review", nReady, "--m-ready", `${fmt(nNear)} more are one step away.`],
+    ["Certified by an independent human reviewer", M.human_certified, "--m-ready", "Machine review never adds to this count."],
+  ];
+  document.getElementById("funnel").innerHTML = funnel.map(([l, n, c, note]) =>
+    `<div class="frow"><div class="lab"><span>${l}</span><b>${fmt(n)}</b></div>` +
+    `<div class="bar"><span style="width:${(100 * n / total).toFixed(2)}%;background:var(${c})"></span></div>` +
+    (note ? `<p class="fnote">${note}</p>` : "") + `</div>`).join("");
+
+  const withSt = R.filter(o => o.st);
+  document.getElementById("stepsMini").innerHTML = `<h3>Steps finished among the ${fmt(withSt.length)} orders with a status</h3>` +
+    DATA.steps.map((s, k) => {
+      const app = withSt.filter(o => o.steps[k] !== "-"), d = app.filter(o => o.steps[k] !== "o").length;
+      if (!app.length) return "";
+      return `<div class="sm-row"><span>${STEP[s][1]}</span><b>${fmt(d)}/${fmt(app.length)}</b><div class="bar"><span style="width:${(100 * d / app.length).toFixed(1)}%;background:var(--done)"></span></div></div>`;
+    }).join("");
+
+  const MCOL = { none: "--m-none", progress: "--m-start", mid: "--m-mid", near: "--m-near", ready: "--m-ready" };
+  const mStage = o => o.stage === "progress" && o.done * 2 >= o.app ? "mid" : o.stage;
+  document.getElementById("legend").innerHTML = [["none", "Not researched"], ["progress", "Under half done"], ["mid", "Half or more done"], ["near", "One step away"], ["ready", "Ready"]]
+    .map(([k, l]) => `<span><i style="background:var(${MCOL[k]})"></i>${l}</span>`).join("");
+
+  // Stage chips and selects.
+  const state = { stage: "all", q: "", status: "any", pres: "any", block: "any", tier: "any", sort: "num" };
+  const chipDefs = [["all", "All", total], ["ready", "Ready for review", nReady], ["near", "One step away", nNear],
+    ["progress", "In progress", nStatus - nReady - nNear], ["none", "Not researched", nNone]];
+  const chips = document.getElementById("chips");
+  chips.innerHTML = chipDefs.map(([k, l, n]) => `<button type="button" class="chip" data-k="${k}" aria-pressed="${k === "all"}">${l}<b>${fmt(n)}</b></button>`).join("");
+  chips.addEventListener("click", e => { const b = e.target.closest(".chip"); if (!b) return; state.stage = b.dataset.k; syncChips(); apply(); });
+  const syncChips = () => chips.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === state.stage));
+
+  const opt = (v, l) => `<option value="${v}">${l}</option>`;
+  const presOrder = P.map((name, i) => {
+    const ds = R.filter(o => o.pres === i && o.date).map(o => o.date).sort();
+    return { i, name, first: name === "President not recorded" ? "9999" : (ds[0] || "9998"), n: R.filter(o => o.pres === i).length };
+  }).sort((a, b) => a.first.localeCompare(b.first));
+  const sel = (id, html) => { document.getElementById(id).innerHTML = html; };
+  sel("fStatus", opt("any", "Any status") + opt("2", "YES: still in effect") + opt("1", "NO: ended") + opt("0", "No status yet"));
+  sel("fPres", opt("any", "Any president") + presOrder.map(p => opt(p.i, `${p.name} (${fmt(p.n)})`)).join(""));
+  const bCount = {};
+  R.forEach(o => new Set(o.blockers.map(b => b[0])).forEach(c => bCount[c] = (bCount[c] || 0) + 1));
+  sel("fBlock", opt("any", "Any blocker") + Object.entries(bCount).sort((a, b) => b[1] - a[1])
+    .map(([c, n]) => opt(c, `${BLOCK_SHORT[c] || c.replace(/_/g, " ").toLowerCase()} (${fmt(n)})`)).join(""));
+  sel("fTier", opt("any", "Any text evidence") + DATA.tiers.map(t => opt(t, TIER[t] || t)).join(""));
+  sel("fSort", opt("num", "Sort: order number") + opt("date", "Sort: date") + opt("left", "Sort: fewest steps left") + opt("done", "Sort: most steps done"));
+
+  const bind = (id, key, ev = "change") => document.getElementById(id).addEventListener(ev, e => { state[key] = e.target.value; apply(); });
+  bind("fStatus", "status"); bind("fPres", "pres"); bind("fBlock", "block"); bind("fTier", "tier"); bind("fSort", "sort");
+  let qT; document.getElementById("q").addEventListener("input", e => { clearTimeout(qT); qT = setTimeout(() => { state.q = e.target.value.trim().toLowerCase(); apply(); }, 120); });
+  document.getElementById("reset").addEventListener("click", () => {
+    Object.assign(state, { stage: "all", q: "", status: "any", pres: "any", block: "any", tier: "any", sort: "num" });
+    ["fStatus", "fPres", "fBlock", "fTier"].forEach(id => document.getElementById(id).value = "any");
+    document.getElementById("fSort").value = "num"; document.getElementById("q").value = ""; syncChips(); apply();
+  });
+
+  const match = o =>
+    (state.stage === "all" || o.stage === state.stage) &&
+    (state.status === "any" || o.st === +state.status) &&
+    (state.pres === "any" || o.pres === +state.pres) &&
+    (state.tier === "any" || o.tier === state.tier) &&
+    (state.block === "any" || o.blockers.some(b => b[0] === state.block)) &&
+    (!state.q || o.hay.includes(state.q));
+  const presRank = {}; presOrder.forEach((p, k) => presRank[p.i] = k);
+  const SORTS = {
+    num: (a, b) => a.idx - b.idx,
+    date: (a, b) => (a.date || "9999").localeCompare(b.date || "9999") || a.idx - b.idx,
+    left: (a, b) => (b.ready - a.ready) || (a.open - b.open) || a.idx - b.idx,
+    done: (a, b) => (b.done - a.done) || a.idx - b.idx,
+  };
+
+  // Cards.
+  const grid = document.getElementById("grid"), CHUNK = 120;
+  let list = [], shown = 0, matchSet = new Uint8Array(total);
+  const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const pill = st => st === 2 ? `<span class="pill yes">YES · in effect</span>` : st === 1 ? `<span class="pill no">NO · ended</span>` : `<span class="pill none">No status yet</span>`;
+  const presName = o => o.presHow >= 2 ? "President uncertain" : P[o.pres];
+  const card = o => {
+    const segs = [...o.steps].map((c, k) => c === "-" ? "" : `<span class="seg ${c === "o" ? "" : c}" title="${STEP[DATA.steps[k]][0]}: ${c === "d" ? "done" : c === "p" ? "provisional working text" : "open"}"></span>`).join("");
+    const tag = o.ready ? `<span class="stamp">Ready for review</span>` : o.stage === "near" ? `<span class="near">One step away</span>` : "";
+    return `<button type="button" class="card${o.ready ? " is-ready" : ""}" data-i="${o.idx}">` +
+      `<div class="c-top"><span class="eo"><small>EO</small>${esc(o.no)}</span>${pill(o.st)}</div>` +
+      `<div class="c-meta">${o.date || "Undated"} · ${esc(presName(o))}</div>` +
+      `<p class="c-title${o.title ? "" : " empty"}">${o.title ? esc(o.title) : "No title recorded"}</p>` +
+      `<div class="track" aria-label="${o.done} of ${o.app} steps done">${segs}</div>` +
+      `<div class="c-foot"><span><b>${o.done}</b> of ${o.app} steps</span>${tag}</div></button>`;
+  };
+  const renderMore = () => {
+    const next = list.slice(shown, shown + CHUNK);
+    grid.insertAdjacentHTML("beforeend", next.map(card).join(""));
+    shown += next.length;
+    document.getElementById("moreBox").hidden = shown >= list.length;
+    document.getElementById("more").textContent = `Show ${fmt(Math.min(CHUNK, list.length - shown))} more of ${fmt(list.length - shown)}`;
+  };
+  function apply() {
+    list = R.filter(match).sort(SORTS[state.sort]);
+    matchSet = new Uint8Array(total); list.forEach(o => matchSet[o.idx] = 1);
+    grid.innerHTML = ""; shown = 0; renderMore();
+    document.getElementById("empty").hidden = list.length > 0;
+    document.getElementById("count").innerHTML = `Showing <b>${fmt(list.length)}</b> of ${fmt(total)}`;
+    drawMosaic();
+  }
+  document.getElementById("more").addEventListener("click", renderMore);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(es => { if (es[0].isIntersecting && shown < list.length && shown > 0) renderMore(); }, { rootMargin: "600px" })
+      .observe(document.getElementById("sentinel"));
+  }
+  grid.addEventListener("click", e => { const c = e.target.closest(".card"); if (c) openDrawer(R[+c.dataset.i]); });
+
+  // Mosaic: one square per order, grouped by president.
+  const cv = document.getElementById("mosaic"), ctx = cv.getContext("2d");
+  const CELL = 5, GAP = 1, PITCH = CELL + GAP, LABEL = 20;
+  let layout = [];
+  const groups = presOrder.map(p => ({ p, items: R.filter(o => o.pres === p.i).sort(SORTS.date) })).filter(g => g.items.length);
+  function drawMosaic() {
+    const w = cv.parentElement.clientWidth; if (!w) return;
+    const cols = Math.max(20, Math.floor((w + GAP) / PITCH));
+    let y = 0; layout = [];
+    const plan = groups.map(g => { const top = y; const rows = Math.ceil(g.items.length / cols); y += LABEL + rows * PITCH + 8; return { g, top }; });
+    const dpr = window.devicePixelRatio || 1;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(y * dpr); cv.style.height = y + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, y);
+    const colors = {}; Object.keys(MCOL).forEach(k => colors[k] = css(MCOL[k]));
+    const filtered = list.length !== total;
+    ctx.font = `600 11.5px ${css("--f-body")}`; ctx.textBaseline = "alphabetic";
+    plan.forEach(({ g, top }) => {
+      const ready = g.items.filter(o => o.ready).length;
+      ctx.fillStyle = css("--ink"); ctx.globalAlpha = 1;
+      const name = g.p.name; ctx.fillText(name, 0, top + 13);
+      const nw = ctx.measureText(name).width;
+      ctx.fillStyle = css("--muted"); ctx.font = `500 11px ${css("--f-mono")}`;
+      ctx.fillText(`  ${fmt(ready)}/${fmt(g.items.length)} ready`, nw, top + 13);
+      ctx.font = `600 11.5px ${css("--f-body")}`;
+      g.items.forEach((o, k) => {
+        const x = (k % cols) * PITCH, yy = top + LABEL + Math.floor(k / cols) * PITCH;
+        ctx.globalAlpha = filtered && !matchSet[o.idx] ? 0.16 : 1;
+        ctx.fillStyle = colors[mStage(o)]; ctx.fillRect(x, yy, CELL, CELL);
+        layout.push([x, yy, o.idx]);
+      });
+    });
+    ctx.globalAlpha = 1;
+    cv._cols = cols; cv._plan = plan;
+  }
+  const hit = e => {
+    const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const cols = cv._cols; if (!cols) return null;
+    for (const { g, top } of cv._plan) {
+      const y0 = top + LABEL, rows = Math.ceil(g.items.length / cols);
+      if (y >= y0 && y < y0 + rows * PITCH) {
+        const c = Math.floor(x / PITCH), rr = Math.floor((y - y0) / PITCH), k = rr * cols + c;
+        return c < cols && k < g.items.length ? g.items[k] : null;
+      }
+    }
+    return null;
+  };
+  const tip = document.getElementById("tip");
+  cv.addEventListener("mousemove", e => {
+    const o = hit(e); if (!o) { tip.hidden = true; return; }
+    tip.innerHTML = `<b>EO ${esc(o.no)}</b> · ${o.date || "undated"}<br>${esc((o.title || "No title recorded").slice(0, 110))}<br>${o.ready ? "Ready for human review" : o.st ? `${o.done} of ${o.app} steps done` : "Not researched"}`;
+    tip.hidden = false;
+    const tx = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 10);
+    tip.style.left = Math.max(8, tx) + "px"; tip.style.top = (e.clientY + 14) + "px";
+  });
+  cv.addEventListener("mouseleave", () => tip.hidden = true);
+  cv.addEventListener("click", e => { const o = hit(e); if (o) openDrawer(o); });
+  let rT; new ResizeObserver(() => { clearTimeout(rT); rT = setTimeout(drawMosaic, 80); }).observe(cv.parentElement);
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", drawMosaic);
+  new MutationObserver(drawMosaic).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // Detail drawer.
+  const drawer = document.getElementById("drawer"), scrim = document.getElementById("scrim");
+  let lastFocus = null;
+  function openDrawer(o) {
+    lastFocus = document.activeElement;
+    const stepLis = DATA.steps.map((s, k) => {
+      const c = o.steps[k]; if (c === "-") return "";
+      const lab = c === "d" ? "Done" : c === "p" ? "Provisional text" : "Open";
+      return `<li><span class="dot ${c === "o" ? "" : c}"></span><span>${STEP[s][1]}</span><span class="st">${lab}</span></li>`;
+    }).join("");
+    const bl = o.blockers.map(([c, d]) => `<li>${BLOCK[c] || c}${d ? ` <code>${esc(d)}</code>` : ""}</li>`).join("");
+    const presNote = o.presHow ? ` <span class="idline">(${PRES_HOW[o.presHow]})</span>` : "";
+    document.getElementById("dBody").innerHTML =
+      `<div class="eyebrow">Executive order</div><h2 id="dNo">EO ${esc(o.no)}</h2>` +
+      `<p class="dtitle">${o.title ? esc(o.title) : "No title recorded"}</p>` +
+      `<dl class="facts"><dt>Date</dt><dd>${o.date || "Undated"}</dd>` +
+      `<dt>President</dt><dd>${esc(o.presHow >= 2 ? "Uncertain" : P[o.pres])}${presNote}</dd>` +
+      `<dt>Era</dt><dd>${esc(o.era)}</dd>` +
+      `<dt>Provisional status</dt><dd>${o.st === 2 ? "YES: still has legal effect" : o.st === 1 ? "NO: has ceased" : "None yet"}${o.origin ? ` <span class="idline">(${esc(o.origin)})</span>` : ""}</dd>` +
+      `<dt>Best document held</dt><dd>${HELD[o.held] || esc(o.held)}</dd>` +
+      `<dt>Text evidence</dt><dd>${TIER[o.tier] || esc(o.tier)}</dd>` +
+      `<dt>Readiness</dt><dd>${o.ready ? "<b>Ready for human review</b>" : `${o.done} of ${o.app} steps done`}</dd></dl>` +
+      `<h3>Steps</h3><ul class="slist">${stepLis}</ul>` +
+      (bl ? `<h3>What is holding it back</h3><ul class="blist">${bl}</ul>` : "") +
+      (o.repl ? `<div class="callout">This dossier rests on a transcription. An official original still has to replace it and every quotation has to be rechecked against that original; that work remains after readiness.</div>` : "") +
+      (o.ready ? `<div class="callout">Ready means the machine steps are finished. It is not human certification.</div>` : "") +
+      `<h3>Identifier</h3><div class="idline">${esc(o.id)}</div>`;
+    drawer.hidden = false; scrim.hidden = false; drawer.scrollTop = 0;
+    document.getElementById("dClose").focus();
+  }
+  const closeDrawer = () => { drawer.hidden = true; scrim.hidden = true; tip.hidden = true; if (lastFocus) lastFocus.focus(); };
+  document.getElementById("dClose").addEventListener("click", closeDrawer);
+  scrim.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !drawer.hidden) closeDrawer(); });
+
+  document.getElementById("foot").innerHTML =
+    `Built by <span class="mono">jobs/gessner-cards</span> from <span class="mono">readiness-tracker/READINESS_BY_ORDER.csv</span> ` +
+    `(run ${runTxt}${M.tracker_commit ? `, commit <span class="mono">${M.tracker_commit.slice(0, 8)}</span>` : ""}) and ` +
+    `<span class="mono">domesday-register/REGISTER.csv</span> (generated ${M.register_generated_utc ? M.register_generated_utc.slice(0, 10) : "unknown"}). ` +
+    `Where the register names no president, the name is derived from the order's date and marked as such in the detail panel. ` +
+    `Candidates not yet admitted to the census are not shown.`;
+
+  apply();
+})();
+</script>

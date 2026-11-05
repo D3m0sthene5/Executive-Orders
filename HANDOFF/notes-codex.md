@@ -1,3 +1,11 @@
+## 2026-11-05 UTC: Machiavelli continuation;8supported research proposals, native0
+
+- **Done:** Same20frozenBcases now have fresh source-backed proposals and independent OpenAI-family examination.8supported in stated lifecycle scope;12partial with material whole-case gaps.18NO status recommendations and2NULL/HOLD remain.0adopted statuses/claims/newready/certifications. No case ownership expansion.
+- **Evidence:** `research/excavator/machiavelli-modern-undecided-20261105/continuation-20261105/REPORT.md`, exact CASE_DISPOSITIONS, reviews, VALIDATION.final and continuation publication receipt.63newPDFs+1heldimport+12HTML retained.5largePDFs/719PNGpaths require hash-checked offline restoration from committed parts/bundles. Compact genuine first-eight review controller packet separately saved; private blinded payloads excluded from public artifacts.
+- **Next:** Establish actual fixedCampaignAcoordination; obtain fresh required different-family review and owner-merged authoritative status adoption; then fresh native preparation, reviewed evidence admission, producer reconfirmation, exact new lifecycle review/application/check/completion and combined recount. Norton is optional, not a universal admission gate. No new wet-paper prerequisite.
+- **Limits:** Research began before new Bentham policy. Retrospective gate refuses unranked research action; usage finds no Claude transcripts, so token/cash measurements remain unknown. Future production follows current ranked plan and required gates. No cost/speed saving claimed. No production continues in background after checkpoint.
+- **Kean:** F-20261105-machiavelli-continuation and F-20261105-machiavelli-continuation-custody. @Owner: none. Existing adoption authority and fixed boundary gates persist. Draft PR151 remains unmerged.
+
 ## 2026-11-05 13:23 ET: Machiavelli modern B checkpoint, PR151; mission incomplete
 
 - **Done:** Froze 2,960 A exclusions and 3,908 raw B IDs with zero intersection. Preserved 17 protected B members and all nine prior locks. Twenty own-agent cases received native research packets. Eighteen same-family reviewed NO recommendations have native experimental bundles; EO10582/13881 remain status-unresolved. All 20 lifecycles remain HOLD. New adopted statuses, canonical lifecycle filings, ready dossiers and certifications: **0**.
