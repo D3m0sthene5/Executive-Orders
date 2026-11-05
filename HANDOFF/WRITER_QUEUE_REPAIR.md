@@ -1,0 +1,11 @@
+# Production writer queue repair
+
+Observed integration failure: main Runjobs41955554793 computed all six selected jobs successfully but refused stale publication after concurrent Refresh41955554786 advanced checker/tracker/digest. The first reporting generation is independently source-bound and ready (1331/14972); no stale result overwrote it. Failure log is retained adjacent.
+
+Ordinary mutating jobs and trusted main reporting now acquire the same branch writer queue before checkout through publication. GitHub's queue:max retains up to100pending runs, cancel-in-progress:false. An ordinary queued run loads current branch source and binds native GITHUB_SHA to actual checkout HEAD; original BEFORE/AFTER still select its requested jobs. Read-only diagnostics retain isolated groups and pinned event SHA, with credentials disabled. Source guards, native freshness, legal/source policy and scientific records are unchanged.
+
+Primary platform contract: https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency (queue property and multiple-pending example). Finite100entrycapacity and non-guaranteed dispatch order remain platform limits. Read-only tests remain independent. Existing running old workflow versions do not acquire the lock retroactively; switch main only after the old reporting run41958411273 finishes.
+
+Tests use real Git histories to distinguish queued current checkout from original event selection, and verify native status/input-manifest commit binding on both ordinary and diagnostic routes. Hosted tests are required; no local execution is claimed because the local process service is unavailable. Runjobs and Refresh must actually accept the new queue syntax and publish on main before final orchestration acceptance.
+
+Updated operator notes in claim-kit/Lachmann/Kean deliberately select those previously unpublished deterministic producers for ordinary main recovery. The reporter already checked all1466 claims; no need to select the expensive checker again merely to recover those three outputs. Follow-up reporting still runs through the existing bounded trio. No scientific claim or review seal is promoted or renewed.
