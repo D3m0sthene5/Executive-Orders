@@ -82,7 +82,11 @@ J = {
     # They count under the same rule as fr-originals: only a find the job did not flag needs_page_check.
     "official_compilation_fragments": ["jobs/ofr-compilations/output/FRAGMENTS.jsonl",
                                        "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl",
-                                       "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl"],
+                                       "jobs/indian-reservations-1912/output/FRAGMENTS.jsonl",
+                                       # Tischendorf: official printings located by the order's own number plus a
+                                       # text-fingerprint match with the held transcription, gated by planted
+                                       # controls each run. Same rule: only finds not flagged needs_page_check.
+                                       "jobs/tischendorf-originals/output/FRAGMENTS.jsonl"],
     # Richardson's Messages and Papers: a printed compilation transcribed from records and newspapers, not the
     # signed or officially printed original. A lead only; it never counts as the original text.
     # The American Presidency Project (app-executive-orders) is the same class: an editorial web transcription
