@@ -1,0 +1,12 @@
+## 2026-11-04 ET: Session B reviewed source-index memory repair
+
+- **Done:** Isolated `sol/runtime-economy-20261104` from `2c85459cf38b08dc1eea6d7c84a74268fa45c28e`. Existing checker source loader stages eight consumed fields until EOF, then releases rows while indexing. Exact engineering seal and runnable evidence: `research/progress/sol-runtime-economy/REPORT.md` and `INTEGRATION.md`.
+- **Measured:** 20 actual manifests, 87,855 indexed copies, two retained Tribonian claims: all four checker files byte-identical, about 6.2% lower peak RSS. Ordinary fresh-packet CLI batch-check has two strict/actual passes. Archived producer rows remain unresolved; no submitted apply, new review or filing is inferred. Timing overlaps; no general speedup/model-token saving claimed.
+- **Validation:** 76 checker tests; broader claim-kit suite 624 counted tests with seven skip entries, including one class. Independent engineering differential checks 29. 256 MiB capped replays and native refusal parity pass. Initial sparse metadata failure and rejected early-streaming custody timing defect retained; corrected review seal revision 2 is authoritative.
+- **Kean:** `F-20261104-sol-runtime-economy`, `F-20261104-sol-runtime-economy-rejected`, `F-20261104-sol-runtime-fallback-audit`. Exact appended lines are `research/progress/sol-runtime-economy/KEAN_FINDINGS.jsonl`; union with Session A and regenerate the brief.
+- **Next:** Final integrator checks combined source/test pins, runs focused independent/native checks and fresh dispatch screens, then intentionally runs skipped hosted checks. No CLI glue or declaration change is required. Runner cache audit remains open; no ignore/exclusion implemented.
+- **Running:** No production/acquisition/generation job dispatched. Publication uses `[skip actions]` to avoid automatic job generation; hosted checks are unrun, not passing.
+- **Asks:** @Owner: none.
+- **Do not:** Merge under this assignment, renew old reviews, change main/another branch, alter Session A policy, published claims/statuses/certification, source bytes, frozen packets or active resume state. Model tokens, cash and active labor remain unknown.
+
+- **Published:** Draft [PR140](https://github.com/D3m0sthene5/Executive-Orders/pull/140); no merge. Existing production advanced main to `a3bfac64` during publication: 2,459 output-only paths, zero overlap with this branch. Preserve that newer generation; matched measurements remain at the original base.

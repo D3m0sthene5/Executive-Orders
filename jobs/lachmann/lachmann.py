@@ -377,16 +377,29 @@ def read_csv(path):
 
 
 def load_scope(repo):
-    """Tracker rows with the original-text step open for a compiled-transcription or replica-only blocker."""
+    """Open working-text leads plus machine-confirmed texts needing revalidation.
+
+    A successful pass clears the lead blocker and makes the next tracker row
+    provisional. Keep those machine-derived rows in scope so a repeat does not
+    erase its own successful confirmations. Filed transcription-dependent
+    claims may pin those same records even when their text step reads done.
+    Both pass through current-witness assessment; no old approval is copied.
+    """
     rows = read_csv(Path(repo) / TRACKER_CSV)
     scope = OrderedDict()
     for r in rows:
         blockers = [b for b in (r.get('blockers') or '').split('|') if b]
-        if r.get('step_original_text') != 'open' or OUT_OF_SCOPE_BLOCKER in blockers:
+        if OUT_OF_SCOPE_BLOCKER in blockers:
             continue
         mine = [b for b in blockers if b in SCOPE_BLOCKERS]
-        if mine:
+        if (r.get('claim_present') == 'yes'
+                and r.get('text_evidence_tier') == 'transcription_dependent'):
             scope[r['instrument_id']] = mine
+        elif r.get('step_original_text') == 'open' and mine:
+            scope[r['instrument_id']] = mine
+        elif (r.get('step_original_text') == 'provisional'
+              and r.get('provisional_text_method') == 'machine'):
+            scope[r['instrument_id']] = []
     return OrderedDict(sorted(scope.items()))
 
 

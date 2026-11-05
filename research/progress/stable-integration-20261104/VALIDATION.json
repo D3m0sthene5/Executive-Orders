@@ -1,0 +1,132 @@
+{
+  "schema": "eo-stable-integration-validation/v1",
+  "base_main": "ea1e52f5a675b45646d9d4f466d652b5259038eb",
+  "engineering_commit": "bf7f4d5bf48d4451821852ec9c2245846050d1d8",
+  "road": {
+    "exit": 0,
+    "suite_runs": 27,
+    "test_executions": 1144,
+    "per_suite": [
+      13,
+      5,
+      19,
+      27,
+      69,
+      54,
+      3,
+      6,
+      3,
+      4,
+      2,
+      2,
+      3,
+      35,
+      37,
+      39,
+      2,
+      656,
+      53,
+      40,
+      7,
+      25,
+      23,
+      10,
+      1,
+      3,
+      3
+    ],
+    "lachmann_separately_tested": 52,
+    "note": "Road runner started before Lachmann loop edit;52 Lachmann tests passed separately. Hosted final head includes it."
+  },
+  "checker": {
+    "tests": 76,
+    "exit": 0,
+    "native_runs": [
+      {
+        "arm": "baseline",
+        "returncode": 0,
+        "seconds": 17.740717590990243,
+        "rchar": 79140292,
+        "peak_rss_kib": 181728,
+        "phases": {
+          "load_job_sources": {
+            "calls": 1,
+            "seconds": 10.815595395994023
+          },
+          "build_index": {
+            "calls": 1,
+            "seconds": 12.43152524100151
+          }
+        },
+        "source_sha256": "444faa08777b2e83ec3ce7ba5d56d25390e4c9c42381ac722d5d7b9c1063a319",
+        "claims_checked": 2,
+        "claims_all_checks_passed": 2,
+        "claims_mechanical_fail": 0,
+        "claims_mechanical_unverified": 0
+      },
+      {
+        "arm": "repaired",
+        "returncode": 0,
+        "seconds": 22.342422361005447,
+        "rchar": 79156392,
+        "peak_rss_kib": 170116,
+        "phases": {
+          "load_job_sources": {
+            "calls": 1,
+            "seconds": 15.269242771013523
+          },
+          "build_index": {
+            "calls": 1,
+            "seconds": 16.347359499995946
+          }
+        },
+        "source_sha256": "7bb63fdb6f154ee67a568bc690a3d3c081f3d6d39137ec7bb55b7d551695679b",
+        "claims_checked": 2,
+        "claims_all_checks_passed": 2,
+        "claims_mechanical_fail": 0,
+        "claims_mechanical_unverified": 0
+      }
+    ],
+    "byte_comparisons": {
+      "1-repaired": {
+        "CLAIM_CHECKS.csv": true,
+        "PER_CLAIM.json": true,
+        "REPORT.md": true,
+        "SUMMARY.json": true
+      }
+    },
+    "input_pins_unchanged": true
+  },
+  "source_delivery": {
+    "schema": "eo-readiness-economy-held-source-demo/v1",
+    "targets": [
+      "EO:12312",
+      "EO:12830",
+      "EO:12985",
+      "EO:12793"
+    ],
+    "unique_raw_sources": 1,
+    "wall_seconds": 58.53895812599512,
+    "network_requests": 0,
+    "new_ready_dossiers_claimed": 0,
+    "human_certification": false,
+    "legal_approval": false,
+    "packet_sha256": "eb57217ad9283165d5038ac9a70e2b7e3294f3ae446a2348482d62700868bd80",
+    "declarations_sha256": "a13ee57d4564974689667fd3b0383994de0d1388e68b7af3caf463b8e9bdfc1a",
+    "native_supplement_verify": {
+      "exact_lineage_and_source_bytes": true,
+      "legal_approval": false,
+      "orders": 4
+    }
+  },
+  "mission": {
+    "python_tests": 11,
+    "node_tests": 24,
+    "syntax": "pass"
+  },
+  "kean": "zero errors, zero warnings",
+  "hosted": "pending final metadata head",
+  "science_changed": false,
+  "model_tokens": null,
+  "cash": null
+}

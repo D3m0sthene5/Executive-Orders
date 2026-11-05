@@ -1,0 +1,88 @@
+{
+  "schema": "eo-readiness-economy-costs/v1",
+  "recorded_utc": "2026-11-04T19:08:23.091836+00:00",
+  "models": {
+    "coordinator": "OpenAI inherited; exact runtime tier unexposed",
+    "workers": 4,
+    "worker_family": "OpenAI inherited; separate contexts",
+    "external_provider_model_calls": 0,
+    "different_family_scientific_review": false
+  },
+  "usage": {
+    "fresh_input": null,
+    "cache_read": null,
+    "cache_write": null,
+    "output": null,
+    "cash": null,
+    "full_coordination_seconds": null,
+    "active_labor_seconds": null,
+    "worker_occupation_seconds": null
+  },
+  "machine_observations": {
+    "claim-checker-final.json": {
+      "tests": 70,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "wall_seconds": 2.361308146006195,
+      "cpu_user_seconds": 0.6205309999999999,
+      "cpu_system_seconds": 0.446677,
+      "peak_rss_kib_process": 33376,
+      "success": true,
+      "network_forbidden": true
+    },
+    "claim-kit-final.json": {
+      "tests": 650,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 8,
+      "skip_reasons": [
+        "R2 frozen research cohort not hydrated",
+        "Real FR EO12649 text not hydrated",
+        "Real FR acting source text is not hydrated in this checkout",
+        "Real FR source text is not hydrated in this checkout",
+        "Actual frozen FR text files not hydrated",
+        "held EO14189 text not materialized",
+        "Full committed baseline metadata is absent from this synthetic checkout",
+        "real repository comparison is opt-in"
+      ],
+      "wall_seconds": 48.9768027550017,
+      "cpu_user_seconds": 30.066388,
+      "cpu_system_seconds": 15.39547,
+      "peak_rss_kib_process": 46964,
+      "success": true,
+      "network_forbidden": true
+    },
+    "claim-kit-first.json": {
+      "tests": 644,
+      "failures": 0,
+      "errors": 145,
+      "skipped": 8,
+      "wall_seconds": 18.79736606699589,
+      "success": false
+    },
+    "claim-kit-second.json": {
+      "tests": 644,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 8,
+      "wall_seconds": 40.88744057599979,
+      "peak_rss_kib_process": 46916,
+      "success": true
+    },
+    "native-v1-seconds": 3.9285855580092175,
+    "native-v4-seconds": 4.613704991992563
+  },
+  "coverage": "All preparation, failed dependency/test attempts, independent review, corrected bypass and native retries retained; complete model usage/occupation not observable. Machine timings are not model savings.",
+  "failure_categories": [
+    "Git HTTPS transport unavailable; connector sparse recovery used",
+    "large recursive tree/blob fetch transport failures",
+    "recovery-added terminal newline caught and repaired before source demonstration",
+    "initial full suite missing sparse dependencies:145 errors/0 assertions failed",
+    "independently found direct-pointer stale-hash bypass fixed",
+    "native-v2/v3 stale prior-research diagnostics refused"
+  ],
+  "model_token_saving": null,
+  "new_ready_dossiers_claimed": 0
+}

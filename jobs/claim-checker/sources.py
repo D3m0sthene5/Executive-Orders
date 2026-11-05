@@ -165,9 +165,8 @@ def _read_csv(path):
         return list(csv.DictReader(fh))
 
 
-def _read_jsonl(path, problems=None):
-    """JSON objects, one per line. Lines that are not JSON objects are skipped and counted."""
-    rows = []
+def _iter_jsonl(path, problems=None):
+    """Yield JSON objects, counting malformed and non-object lines on complete read."""
     bad = 0
     with open(path, encoding="utf-8", errors="replace") as fh:
         for line in fh:
@@ -179,12 +178,16 @@ def _read_jsonl(path, problems=None):
                     bad += 1
                     continue
                 if isinstance(obj, dict):
-                    rows.append(obj)
+                    yield obj
                 else:
                     bad += 1
     if problems is not None:
         problems.append(bad)
-    return rows
+
+
+def _read_jsonl(path, problems=None):
+    """JSON objects, one per line. Lines that are not JSON objects are skipped and counted."""
+    return list(_iter_jsonl(path, problems))
 
 
 def _str(value):
@@ -249,13 +252,20 @@ def load_job_sources(index, repo, cache_roots=(), exclude_jobs=()):
         for r in cache_roots:
             roots += [pathlib.Path(r), pathlib.Path(r) / f"{job}-cache"]
         n, skipped, bad_paths, local_found = 0, 0, 0, 0
+        # Read the whole file before inspecting custody paths or mutating the
+        # index, as before. Keep only fields this adapter consumes and release
+        # each compact row as soon as it is processed.
+        fields = ("sha256", "text_path", "cache_path", "instrument_ids", "url",
+                  "bytes", "page_or_item", "route")
         try:
             bad_lines = []
-            records = _read_jsonl(path, bad_lines)
+            records = collections.deque(tuple(rec.get(k) for k in fields)
+                                        for rec in _iter_jsonl(path, bad_lines))
         except OSError as exc:
             index.notes.append(f"jobs/{job}/output/SOURCES.jsonl: unreadable ({type(exc).__name__}); skipped")
             continue
-        for rec in records:
+        while records:
+            rec = dict(zip(fields, records.popleft()))
             try:
                 sha = sha_hex(rec.get("sha256"))
                 if not sha:
