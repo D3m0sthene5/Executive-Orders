@@ -576,11 +576,11 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
     (out / "texts").mkdir(exist_ok=True)
     started = now()
     budget_s = float(os.environ.get("JOB_TIME_BUDGET_MIN", "200")) * 60
-    max_requests = int(os.environ.get("JOB_MAX_REQUESTS", "2400"))
+    max_requests = int(os.environ.get("JOB_MAX_REQUESTS", "9000"))
     # Each network route gets its own share, so one route cannot starve the other.
-    route_cap = {"fr_by_date": int(os.environ.get("JOB_MAX_REQUESTS_FR", "900")),
-                 "ia_fulltext": int(os.environ.get("JOB_MAX_REQUESTS_IA", "1500"))}
-    workers = int(os.environ.get("JOB_WORKERS", "8"))
+    route_cap = {"fr_by_date": int(os.environ.get("JOB_MAX_REQUESTS_FR", "1500")),
+                 "ia_fulltext": int(os.environ.get("JOB_MAX_REQUESTS_IA", "7500"))}
+    workers = int(os.environ.get("JOB_WORKERS", "24"))
 
     readiness, register, texts, sources, official = load_inputs(root)
     df, n_docs = fp.document_frequency(texts)
@@ -591,10 +591,10 @@ def main(out=None, pool=None, root=REPO, now=time.monotonic):
     if pool is None:
         from fetch_pool import FetchPool
         cache = Path(os.environ.get("JOB_CACHE_DIR", REPO / ".job-cache" / JOB))
-        # FetchPool throttles each host (robots crawl-delay, at most 2 requests in flight per host), so more
-        # workers overlap waiting on different orders without hammering any one site.
-        pool = FetchPool(cache, workers=workers, per_host=2, user_agent="EO-Road-System/1.0 (tischendorf-originals)",
-                         min_interval=0.5, max_bytes=100_000_000)
+        # Owner, 2026-11-05: go as fast as is reasonable. FetchPool's ceiling of 6 requests in flight per host and
+        # 0.1 s between starts; robots.txt and any crawl-delay it sets are still obeyed.
+        pool = FetchPool(cache, workers=workers, per_host=6, user_agent="EO-Road-System/1.0 (tischendorf-originals)",
+                         min_interval=0.1, max_bytes=100_000_000)
     lock = threading.Lock()
     route_used = Counter()
 
