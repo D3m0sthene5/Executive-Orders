@@ -17,7 +17,7 @@ Orders with a provisional YES/NO status: 4,291. The other 10,681 have not been r
 Ready by text evidence: {'original_supported': 804, 'transcription_dependent': 527}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 1,886; quotation rechecks: 1,886. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 1,357. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5856}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 1,357. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5970}.
 
 ## Steps finished (orders with a provisional status)
 
@@ -34,8 +34,8 @@ Comparison snapshot: 2026-10-28; intervening runs may be absent.
 - cotton-capture-custody: archive_successors: unavailable → 0; failed: 2 → 1; not_web_sources: 575 → 1095; published: 526 → 756
 - fr-pages: bytes_committed_this_run: 15402202 → 0; bytes_downloaded: 612727745 → 0; carried_forward: 0 → 30; requests: 23 → 0
 - jacquard: full_review_max: unavailable → 80; sample_size: unavailable → 59
-- kean: decisions: 11 → 21; findings: 44 → 136; open_owner_questions: 10 → 2
-- lachmann: assessed: unavailable → 7534; complete_text_confirmed: unavailable → 3278; confirmed: unavailable → 1674; identity_confirmed: unavailable → 3517
+- kean: decisions: 11 → 22; findings: 44 → 143; open_owner_questions: 10 → 2
+- lachmann: assessed: unavailable → 7738; complete_text_confirmed: unavailable → 3370; confirmed: unavailable → 1764; identity_confirmed: unavailable → 3716
 - lambertini: counterevidence_records: 672 → 1248; decided_orders_with_draft: 3403 → 4291; packet_targets: 835 → 840; packets: 109 → 114
 - namier: legal_conclusions: unavailable → 0; network_requests: unavailable → 0; orders_with_held_text: unavailable → 14913; statuses_changed: unavailable → 0
 - pinakes-htr: either_passes_screen: unavailable → 89; errors: unavailable → 0; orders: unavailable → 310; pages: unavailable → 555
@@ -84,4 +84,4 @@ Comparison snapshot: 2026-10-28; intervening runs may be absent.
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111666)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41966416230)
