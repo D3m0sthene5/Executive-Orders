@@ -1,3 +1,4 @@
+# Phase 2: actual same-API ctime repair; full-suite acceptance, no result rewriting.
 name: Source-read Windows diagnostic
 on:
   push:
@@ -40,6 +41,9 @@ jobs:
           from pathlib import Path
           folder = Path('jobs/claim-kit').resolve()
           sys.path.insert(0, str(folder))
+          import hashlib
+          import json
+          print(json.dumps({'source_pins': {name: hashlib.sha256((folder / name).read_bytes()).hexdigest() for name in ('blind_verify.py', 'test_blind_verify.py')}}), flush=True)
           import test_blind_verify as T
           import json
           import os
@@ -83,7 +87,10 @@ jobs:
                                  'reader_line': reader_line, 'call_stack': calls}
                       if reader_locals is not None:
                           raw = reader_locals.get('raw')
-                          payload.update(before=snapshot(reader_locals.get('before')),
+                          payload.update(path_before=snapshot(reader_locals.get('path_before')),
+                                         path_after=snapshot(reader_locals.get('path_after')),
+                                         descriptor_final=snapshot(reader_locals.get('final')),
+                                         before=snapshot(reader_locals.get('before')),
                                          after=snapshot(reader_locals.get('after')),
                                          raw_length=len(raw) if isinstance(raw, (bytes, bytearray)) else None,
                                          open_flags=reader_locals.get('flags'),
