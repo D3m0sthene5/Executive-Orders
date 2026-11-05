@@ -58,8 +58,8 @@ welcome by-product, never the objective, so never skip or swap an order because 
 
 - Never change a provisional status, the codebook, the census or the certified count (0).
 - Four coordinators share this checkout and branch (`claude/herschel-survey`). Commit only your own paths
-  (`git add <paths>`, never `-A`), `git pull --rebase origin claude/herschel-survey` before each
-  `git push origin claude/herschel-survey`, and never delete another process's git lock. Never push to main.
+  (`git add <paths>`, never `-A`) and never delete another process's git lock. **Do not push**: GitHub is refusing
+  new branches from this session right now, and the integrator pushes once that clears. Never touch main.
 - Disk is limited (about 12 GB free). Keep prepared packets in `research/herschel/<H>/packets/` (already excluded from
   git) and delete them at the end, after committing the small evidence files.
 - Do not touch jobs code, other coordinators' folders, or `CLAIM_KIT_LOCK.json` beyond reservations the kit makes.
