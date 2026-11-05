@@ -127,6 +127,16 @@ fill the `inventory_source_id`, absolute `inventory_char_start` / `end`, and
 member remains in AUDIT.json and counts. Failed submissions are retained rather
 than disappearing from the batch. Each apply uses a new result directory.
 
+Ordinary `kit.py apply` checks the exact sources selected in its proposed claims
+before review assignment and writes `SELECTED_SOURCE_CHECK.json` in that result
+directory. Missing custody, changed bytes, unbound evidence or invalid spans
+make the command fail while preserving the proposals and source-recovery tasks.
+Repair the evidence and rerun into a new result directory. No proposals produce
+an explicit `no_proposed_claims` response. This offline check grants no legal or
+review approval; keep its receipt outside blind reviewer prompts by default.
+Direct `batch.apply` callers must run `dispatch.check_selected` themselves before
+assigning review; the CLI hook does not intercept external model launchers.
+
 `batch-check` repeats exact dossier/claim checks and invokes the actual
 claim-checker against the proposed lines, using held evidence with network
 verification disabled. It prints compact counts and actionable assembly errors;

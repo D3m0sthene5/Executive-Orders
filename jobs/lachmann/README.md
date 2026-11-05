@@ -17,6 +17,12 @@ Tracker rows (`jobs/readiness-tracker/output/READINESS_BY_ORDER.csv`) with `step
 `ORIGINAL_FOUND_NEEDS_PAGE_CHECK`. Identity references: `jobs/domesday-register/output/REGISTER.csv` and the Pinakes
 `ORDERS.csv` / `INVENTORY.csv`.
 
+Rows already marked provisional by a machine confirmation are reassessed from
+the current declarations and held text on every pass. The previous approval is
+never copied forward. This preserves successful confirmations across repeated
+Lachmann → tracker runs while changed or missing witnesses fail normally.
+Agent confirmations remain in their separate file and retain tracker precedence.
+
 ## Method
 
 Witnesses are the fragment declarations that `working_text.Index` loads (read-only import) for the order, with a grade in
@@ -81,3 +87,10 @@ words a reviewer must not see, so every packet passes the leak check that the co
 ## Run
 
 `OUTPUT_DIR=... REPO_ROOT=... python3 jobs/lachmann/job.py` (runs the tests first). Standard library only, about 15 seconds.
+
+The ordinary scheduler includes Lachmann after selected APP conversion, CSC,
+numbered-early, Pinakes and Richardson producers, before their tracker
+consumer. Vendored fragment/text edits and working-text interpretation changes
+also select it on the normal sweep. These edges never select upstream jobs just
+to run Lachmann; it uses the previous tracker scope and creates no new research
+or source-authentication approval.

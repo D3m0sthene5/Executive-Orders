@@ -4,14 +4,15 @@ Capcom was the one voice in Mission Control that told the crew where they stood.
 This builder does the same for the executive-order project, from the readiness
 tracker's own history on main, so the record is longitudinal by construction.
 
-The goal ("one small step") is every order the American Presidency Project counts
-(16,239) with a complete dossier ready for human review. Distance covered is the
-effort-weighted share of all readiness steps that are done:
+The goal ("one small step") is complete dossiers ready for human review for the
+project census plus the frozen positive census gaps by president. That modeled
+goal is currently 16,286, distinct from the retained APP total of 16,239. Distance
+covered is the effort-weighted share of all readiness steps that are done:
 
     progress = sum(w_k * done_k) / sum(w_k * (done_k + open_k))
 
-over the step kinds k the tracker counts, plus the census-gap orders (APP count
-minus project orders), each of which owes an "admit" step and the six core steps.
+over the step kinds k the tracker counts, plus the frozen 1,314 census-gap orders,
+each of which owes an "admit" step and the six core steps.
 w_k is the average model minutes per open step of kind k, frozen once in
 MISSION_WEIGHTS.csv so that later changes to the effort model do not move past
 positions. Progress is mapped onto Apollo 11's mission clock from launch to
@@ -56,11 +57,11 @@ def weights():
                 n, m, name = acc[k]
                 w.writerow([k, name, round(m / n, 3) if n else 0,
                             "EFFORT_BY_TIER.csv average over open steps, frozen on first build"])
-    return {int(r["step_order"]): float(r["minutes_per_step"]) for r in csv.DictReader(open(WEIGHTS, encoding="utf-8"))}
+    return {int(r["step_order"]): float(r["minutes_per_step"]) for r in csv.DictReader(io.StringIO(WEIGHTS.read_text(encoding="utf-8")))}
 
 
 def first_step_hours():
-    for r in csv.DictReader(open(MILESTONES, encoding="utf-8")):
+    for r in csv.DictReader(io.StringIO(MILESTONES.read_text(encoding="utf-8"))):
         if r["key"] == "first_step":
             h, m, s = (int(x) for x in r["met"].split(":"))
             return h + m / 60 + s / 3600
@@ -75,15 +76,18 @@ def phase(met, milestones):
     return name
 
 
-def main():
-    w = weights()
-    end = first_step_hours()
+def milestones():
     ms = []
-    for r in csv.DictReader(open(MILESTONES, encoding="utf-8")):
+    for r in csv.DictReader(io.StringIO(MILESTONES.read_text(encoding="utf-8"))):
         h, m, s = (int(x) for x in r["met"].split(":"))
         ms.append({**r, "hours": h + m / 60 + s / 3600})
-    gap = json.load(open(HERE / "REMAINING_WORK.json", encoding="utf-8"))["not_yet_in_project"]
-    log = git("log", "--first-parent", "--format=%H %cI", REF, "--", TRACKER_PATH).decode().split("\n")
+    return ms
+
+
+def history(ref=None):
+    w, end, ms = weights(), first_step_hours(), milestones()
+    gap = json.loads((HERE / "REMAINING_WORK.json").read_text(encoding="utf-8"))["not_yet_in_project"]
+    log = git("log", "--first-parent", "--format=%H %cI", ref or REF, "--", TRACKER_PATH).decode().split("\n")
     per_day = {}
     for line in reversed([l for l in log if l.strip()]):   # oldest first; later commits overwrite
         sha, when = line.split(" ", 1)
@@ -93,31 +97,40 @@ def main():
     for day in sorted(per_day):
         sha, when = per_day[day]
         tracker = list(csv.DictReader(io.StringIO(git("show", f"{sha}:{TRACKER_PATH}").decode("utf-8-sig"))))
-        done, open_ = collections.Counter(), collections.Counter()
-        for r in tracker:
-            for s in brw.STEPS[1:]:
-                v = r.get("step_" + s)
-                if v == "done":
-                    done[s] += 1
-                elif v == "open":
-                    open_[s] += 1
-        open_["admit"] += gap
-        for s in brw.CORE:
-            open_[s] += gap
-        wd = sum(w[KIND_OF[s]] * n for s, n in done.items())
-        wo = sum(w[KIND_OF[s]] * n for s, n in open_.items())
-        progress = wd / (wd + wo)
-        met = progress * end
-        rows.append({
-            "date": day, "commit": sha[:10], "committed_at": when,
-            "ready_for_human_review": sum(r["ready_for_human_review"] == "yes" for r in tracker),
-            "provisional_statuses": sum(r["provisional_status"] in ("yes", "no") for r in tracker),
-            "orders_in_census": len(tracker), "orders_goal": len(tracker) + gap,
-            "steps_done": sum(done.values()), "steps_open": sum(open_.values()),
-            "step_share": round(sum(done.values()) / (sum(done.values()) + sum(open_.values())), 5),
-            "progress": round(progress, 5), "met_hours": round(met, 3),
-            "phase": phase(met, ms), "human_certified": 0,
-        })
+        rows.append(snapshot(tracker, w, gap, end, ms, day, sha, when))
+    return rows
+
+
+def snapshot(tracker, w, gap, end, ms, day, sha, when):
+    done, open_ = collections.Counter(), collections.Counter()
+    for r in tracker:
+        for s in brw.STEPS[1:]:
+            v = r.get("step_" + s)
+            if v == "done":
+                done[s] += 1
+            elif v == "open":
+                open_[s] += 1
+    open_["admit"] += gap
+    for s in brw.CORE:
+        open_[s] += gap
+    wd = sum(w[KIND_OF[s]] * n for s, n in done.items())
+    wo = sum(w[KIND_OF[s]] * n for s, n in open_.items())
+    progress = wd / (wd + wo)
+    met = progress * end
+    return {
+        "date": day, "commit": sha[:10], "committed_at": when,
+        "ready_for_human_review": sum(r["ready_for_human_review"] == "yes" for r in tracker),
+        "provisional_statuses": sum(r["provisional_status"] in ("yes", "no") for r in tracker),
+        "orders_in_census": len(tracker), "orders_goal": len(tracker) + gap,
+        "steps_done": sum(done.values()), "steps_open": sum(open_.values()),
+        "step_share": round(sum(done.values()) / (sum(done.values()) + sum(open_.values())), 5),
+        "progress": round(progress, 5), "met_hours": round(met, 3),
+        "phase": phase(met, ms), "human_certified": 0,
+    }
+
+
+def main():
+    rows = history()
     with open(HERE / "MISSION_LOG.csv", "w", newline="", encoding="utf-8") as f:
         wr = csv.DictWriter(f, fieldnames=list(rows[0]))
         wr.writeheader(); wr.writerows(rows)

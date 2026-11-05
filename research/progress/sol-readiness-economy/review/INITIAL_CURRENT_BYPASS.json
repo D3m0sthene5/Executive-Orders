@@ -1,0 +1,54 @@
+{
+  "finding": "Supplied stale extract declaration bypassed by unpinned direct pointer",
+  "current_evidence_sha256": "963683911e88f76b16e71d1534507fe9f6dfd2a3fd9eb0a82207224543ea7a81",
+  "cases": {
+    "manifest_only": {
+      "returned_text": false,
+      "gap": "Held current-law extract does not match its declared text_sha256: jobs/current-law/output/legal.txt; repair the retained bytes or declaration before citing this extract.",
+      "result": {
+        "source": {
+          "url": "https://example.gov/legal",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "snippet": "substantive quoted source",
+        "evidence_gap": "Held current-law extract does not match its declared text_sha256: jobs/current-law/output/legal.txt; repair the retained bytes or declaration before citing this extract."
+      }
+    },
+    "unpinned_direct_source": {
+      "returned_text": true,
+      "gap": null,
+      "result": {
+        "source": {
+          "url": "https://example.gov/legal",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "text_path": "jobs/current-law/output/legal.txt",
+          "text_sha256": "5431cb8929e8213e2dd7bc0614f4426b1dc91ff66b8973306b14494f69e2b63d"
+        },
+        "snippet": "substantive quoted source",
+        "text": "substantive quoted source",
+        "char_start": 2,
+        "char_end": 27,
+        "evidence_role": "current_law_wording_lead"
+      }
+    },
+    "unpinned_direct_item": {
+      "returned_text": true,
+      "gap": null,
+      "result": {
+        "source": {
+          "url": "https://example.gov/legal",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "text_path": "jobs/current-law/output/legal.txt",
+          "text_sha256": "5431cb8929e8213e2dd7bc0614f4426b1dc91ff66b8973306b14494f69e2b63d"
+        },
+        "text_path": "legal.txt",
+        "snippet": "substantive quoted source",
+        "text": "substantive quoted source",
+        "char_start": 2,
+        "char_end": 27,
+        "evidence_role": "current_law_wording_lead"
+      }
+    }
+  },
+  "scientific_approval": false
+}

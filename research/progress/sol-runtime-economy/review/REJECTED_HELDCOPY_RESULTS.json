@@ -1,0 +1,27 @@
+{
+  "schema": "attributed-engineering-observation-v1",
+  "artifact_kind": "retrospective_attributed_observation_not_exact_replay_results",
+  "recorded_at": "2026-11-04T19:09:41.430280+00:00",
+  "attributed_to": "independent-review agent, configured gpt-6.1-sol high, in this session",
+  "candidate_source_sha256_observed": "51408a5723f83fc749a5f263c59914f15a5b79fc8ecf269144b62147b2b97943",
+  "baseline": "2c85459cf38b08dc1eea6d7c84a74268fa45c28e",
+  "observation": "Reviewer reported that the initial HeldCopy-staging candidate differed from baseline when cache bytes were created or removed during SOURCES.jsonl close. It resolved cache paths before close; baseline resolved them after close.",
+  "reported_cases": [
+    {
+      "interleaving": "create cache bytes during source close",
+      "reported_baseline_custody": "job_cache",
+      "reported_candidate_custody": "record_only"
+    },
+    {
+      "interleaving": "remove cache bytes during source close",
+      "reported_baseline_custody": "record_only",
+      "reported_candidate_custody": "job_cache"
+    }
+  ],
+  "original_candidate_bytes_retained": false,
+  "original_raw_probe_results_retained": false,
+  "correction": "The prior REVIEW.md and seal described this path as retained historical results, but it was an empty zero-byte file. This JSON records the attributed observation only. It does not reconstruct original candidate or replay bytes.",
+  "previous_empty_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "superseded_review_seal_sha256": "a4f83b746dec96155752b42bce921effeb6d66ccd56b432d334a3f9068e87e48",
+  "final_replay_evidence": "ADVERSARIAL_RESULTS.json independently records parity at final source7bb63fdb6f154ee67a568bc690a3d3c081f3d6d39137ec7bb55b7d551695679b, including both close interleavings."
+}

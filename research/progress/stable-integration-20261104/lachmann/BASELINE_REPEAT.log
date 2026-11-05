@@ -1,0 +1,25 @@
+test_repeat_preserves_agent_rejection_precedence (test_repeat.RepeatProduction.test_repeat_preserves_agent_rejection_precedence) ... ok
+test_second_pass_refuses_changed_bytes_instead_of_carrying_approval (test_repeat.RepeatProduction.test_second_pass_refuses_changed_bytes_instead_of_carrying_approval) ... FAIL
+test_second_pass_refuses_removed_declaration (test_repeat.RepeatProduction.test_second_pass_refuses_removed_declaration) ... ok
+test_second_pass_revalidates_previously_provisional_text (test_repeat.RepeatProduction.test_second_pass_revalidates_previously_provisional_text) ... FAIL
+
+======================================================================
+FAIL: test_second_pass_refuses_changed_bytes_instead_of_carrying_approval (test_repeat.RepeatProduction.test_second_pass_refuses_changed_bytes_instead_of_carrying_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lachmann-baseline-c905nilt/repo/jobs/lachmann/test_repeat.py", line 85, in test_second_pass_refuses_changed_bytes_instead_of_carrying_approval
+    self.assertEqual(result['assessed'], 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_second_pass_revalidates_previously_provisional_text (test_repeat.RepeatProduction.test_second_pass_revalidates_previously_provisional_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/lachmann-baseline-c905nilt/repo/jobs/lachmann/test_repeat.py", line 77, in test_second_pass_revalidates_previously_provisional_text
+    self.assertEqual(L.run(self.root, self.output)['confirmed'], 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.059s
+
+FAILED (failures=2)
