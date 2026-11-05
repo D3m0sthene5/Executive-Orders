@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/83e12152e716/build_native_status_proposals.py", line 25, in <module>
+    destination=p/'overlay-v1'/name;result=status_overlay.write_bundle(repo,destination,proposal,decision,review,evidence,lifecycle_sheet=sheet)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/83e12152e716/Executive-Orders/jobs/claim-kit/status_overlay.py", line 814, in write_bundle
+    destination = _destination(repo, destination)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/83e12152e716/Executive-Orders/jobs/claim-kit/status_overlay.py", line 806, in _destination
+    raise ValueError("research_overlay_destination_requires_overlay_directory")
+ValueError: research_overlay_destination_requires_overlay_directory

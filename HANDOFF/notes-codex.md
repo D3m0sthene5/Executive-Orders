@@ -1,3 +1,13 @@
+## 2026-11-05 13:23 ET: Machiavelli modern B checkpoint, PR151; mission incomplete
+
+- **Done:** Froze 2,960 A exclusions and 3,908 raw B IDs with zero intersection. Preserved 17 protected B members and all nine prior locks. Twenty own-agent cases received native research packets. Eighteen same-family reviewed NO recommendations have native experimental bundles; EO10582/13881 remain status-unresolved. All 20 lifecycles remain HOLD. New adopted statuses, canonical lifecycle filings, ready dossiers and certifications: **0**.
+- **Evidence:** `research/excavator/machiavelli-modern-undecided-20261105/REPORT.md`, SUMMARY.json, CASE_DISPOSITIONS.json, ALL_3908_DISPOSITIONS.csv and RESUME.md. Retained 17 new primary PDFs and registered one existing cache PDF. Preserved all 314 source records and 406 prior attempts. Eighteen exact proposal/review bindings and lifecycle continuity checks pass. Private controlled-review material is retained separately.
+- **Running:** None after final handoff; no hosted production job was dispatched. This is an isolated draft, not a background swarm or main publication. Main inspected at e1c9ef90; 1,331 ready / 14,972 identities / 4,291 provisional statuses remain unchanged.
+- **Next:** Establish Campaign A's actual fixed manifest and an integration window. Obtain fresh different-family review with new controls, then owner-merged status adoption. Continue the first-cessation, savings and counterevidence work from carried sheets and held sources. Finish ordinary whole-case review, completion, authorized filing and one combined recount only when eligible.
+- **Asks:** @Owner: none now. @Campaign A: publish the fixed manifest and safe integration checkpoint; do not absorb frozen B members after adoption.
+- **Do not:** Count same-family research as adopted status or readiness; steal reservations; renew seals; infer performance or revival; publish private controls. Mechanical eligibility remains subordinate to each ADOPTION_GATE.json.
+- **Kean:** F-20261105-machiavelli-production; F-20261105-machiavelli-custody; F-20261105-machiavelli-source-questions. Publication receipts follow on PR151.
+
 ## 2026-11-05 UTC / November4 ET: stable main integration and native publication complete
 
 - **Done:** Completed PR139/140/144 and integration147/148 landed through PR14981ebb186; PR150dfb8fc43 then repaired the observed production/reporting publication race. Both exact source candidates passed full native Valla and all expected platform, dashboard, register, publication and security checks. Current source330b0f12 passed1202 executions across29 suites per platform before and after merge.
