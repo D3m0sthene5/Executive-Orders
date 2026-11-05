@@ -1,0 +1,36 @@
+{
+ "schema": "theophilus-correction-brief/v1",
+ "batch": "p01",
+ "orders": [
+  {
+   "instrument_id": "EO:9789",
+   "kind": "filed_claim_correction",
+   "filed_claim": {
+    "path": "research/readiness/claims/claude-2026-10-18-codif-b2.jsonl",
+    "line": 15
+   },
+   "copy": "research/excavator/claude-theophilus-2026-11-05/p01/packet-s1/PRIOR_FILED_CLAIMS.jsonl line 1",
+   "open_step": "counterevidence: OPEN_SOURCE_AUDIT on the exact filed version",
+   "defects": [
+    "Source-audit hold (research/readiness/SOURCE_AUDIT_HOLDS.jsonl, review research/excavator/2026-10-18/review/INDEPENDENT_AI_REVIEW.md, section 'EO 9789: actual source and claim'): the filed claim gives 1947-01-07 (EO 9818 supersession) as every clause's first end without clause-specific reasoning. The auditor asks for separate treatment of: para. 2 (present vesting/transfer of functions), paras. 3 and 5 (actual transfers; para. 5 also reimbursement), para. 7 (amends EO 9142 and authorizes litigation appearances), para. 8 (protects past acts against jurisdictional challenge), para. 9 (commencement October 14, 1946). Executed transfers and amendments may have been performed (exhausted) earlier than the supersession; continuing commands may run to supersession. Apply the 2026-10-28 evidence-not-convenience ruling: give an exact first end where a held source supports it, a disclosed gap in unresolved_material_gaps where it does not.",
+    "Savings: give a clause-specific account of accrued property and results, civil-service protection, reimbursement, the EO 9142 litigation amendment and the no-challenge protection, against what EO 9818 paragraphs 1, 2, 5, 6, 7 and 9 actually say.",
+    "The auditor confirmed both FR issues (1946-10-15 sha 2b7b024d..., 1947-01-09 sha dd7eb50e...) by hash; the held OCR reads EO 9818 para. 9's '9789' as '928.9' (an OCR error; the page image names 9789). January 7, 1947 is EO 9818's signing date; it has no explicit effective-date clause. Quote only exact held bytes.",
+    "Every quotation must remain exact; keep the identity, inventory (ten scopes) and searches unless a held source shows an error."
+   ]
+  },
+  {
+   "instrument_id": "EO:12743",
+   "kind": "filed_claim_correction",
+   "filed_claim": {
+    "path": "research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl",
+    "line": 2
+   },
+   "copy": "research/excavator/claude-theophilus-2026-11-05/p01/packet-s1/PRIOR_FILED_CLAIMS.jsonl line 2",
+   "open_step": "clause_inventory: CLAIM_CHECK_FAILED (actual checker pass_with_unverified)",
+   "defects": [
+    "The only unverified check is source_held custody_record_only on operative_clauses[0].later_events[0].source: the later event (EO 13286 sec. 35 amendment, effective 2003-03-01 by sec. 92) is cited to an American Presidency Project transcription whose bytes are not held. The official Federal Register text of EO 13286 (68 FR 10619, FR-2003-03-05/03-5343.pdf) is now held as bytes and is in this packet as source-supplement excerpts SUPPLEMENT:EO13286-FR-sec35 and SUPPLEMENT:EO13286-FR-sec92. Re-cite the later event to those excerpts (mechanism unchanged: a partial amendment, not an end) and recheck every quotation against them.",
+    "Keep everything else in the filed claim unless a held source shows it is wrong; recheck it all the same."
+   ]
+  }
+ ]
+}

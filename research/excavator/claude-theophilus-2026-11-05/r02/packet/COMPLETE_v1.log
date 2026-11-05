@@ -1,0 +1,53 @@
+NOTE: complete-v1 is the published r02 completion (claims file sha256 75403ccf... matches PUBLICATION.json). Its bulky receipts (checker/, tracker-*, TRACKER_CLAIMS.jsonl, receipts/) were deleted in error by the coordinator during disk cleanup, which assumed a dry run; TALLY, EXCEPTIONS and PUBLICATION survive and COMPLETE_v1.log holds the full completion output.
+{
+  "schema": "eo-claim-kit-completion/v1",
+  "attempted": 16,
+  "counts": {
+    "eligible": 14,
+    "blocked": 2
+  },
+  "submitted": 14,
+  "controls": [
+    {
+      "instrument_id": "EO:8994",
+      "planted_claim_sha256": "2835889c5849de5f18151d815660ab9b7b90f831e3c5d8812eda0d76e02f88c6",
+      "caught": true,
+      "scoring": "strict"
+    }
+  ],
+  "plants_placed": 1,
+  "plants_caught": 1,
+  "eligible": [
+    "EO:8391",
+    "EO:8401",
+    "EO:8408",
+    "EO:8409",
+    "EO:8410",
+    "EO:8412",
+    "EO:8538",
+    "EO:8907",
+    "EO:8945",
+    "EO:8948",
+    "EO:8994",
+    "EO:9010",
+    "EO:13983",
+    "EO:14337"
+  ],
+  "claims_published": 14,
+  "source_review_upheld": 14,
+  "eligible_per_attempt": 0.875,
+  "independent_human_certifications": 0,
+  "exceptions": 0,
+  "concurrent_disjoint_claim_files": [],
+  "packet_loads": {
+    "research/excavator/claude-theophilus-2026-11-05/r02/packet": 2
+  },
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-05T21:49:17.122930+00:00",
+  "finished_utc": "2026-11-05T21:50:46.252210+00:00",
+  "wall_seconds": 89.12929941199945,
+  "model_tokens": null,
+  "model_cost": null,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied."
+}
+

@@ -1,3 +1,13 @@
+## 2026-11-05 (Claude, Theophilus wave: Bentham ranks 8 and 11)
+
+- **Filed 41 reviewed claims** (`research/readiness/claims/claude-2026-11-05-theophilus-{r01,r02,r03}.jsonl`) from the 48 custody-stranded 2026-11-04 claims, plus 1 owner-reviewable replacement proposal (EO 12743, `research/excavator/claude-theophilus-2026-11-05/p01/REPLACEMENT_PROPOSAL.jsonl`). Each filing passed the actual checker and two fresh Opus blind arms; 4 of 4 controls caught by both arms. Certified 0. Kean F-20261105-theophilus.
+- **Method:** the actual checker ran offline on the 48 exact reviewed lines (from `claude/tribonian-state`) before any model: 32 clean, 12 hidden `too_short_to_verify` quotes, 4 OCR or text-registration failures. The clean 32 were reapplied unchanged (dossier fingerprints equal) and reviewed fresh; the other 16 went to a Sonnet correction producer.
+- **Not filed:** EO 13900, 13965 (both arms: "section 5(d)" not in the held texts); EO 14012 (sec. 6 revocation exhausted on issuance); EO 8341, 8613, 8639 (OCR order-number tokens in the only ending source); EO 10570 and (rank 11) EO 10494 (the recheck text is not registered for the FR hash, a checker or fr-originals fix); EO 9789 (EO 9818 OCR garbles; audit still open).
+- **Rank 11:** 2 of 43 were closable from held bytes. The other 41 are recorded in `BLOCKED_RANK11.json` with first steps. Next: one bounded retention run over the 15 hash-only ladder finds in `RETENTION_CANDIDATES.json` (statutes, reorganization plans, PEB reports), then a correction batch for those orders.
+- **Gate:** CONTINUE, then PILOT. $73.46 API-equivalent (`sessions.py`; coordination $40.16). Workers ran as headless `claude -p` sessions (`tools/launch.sh`).
+- **@Owner:** adopt or reject the EO 12743 replacement proposal (its canonical filename would be shadowed by `claude-lambertini-iv01-2026-10-20.jsonl`). A-20261103-1 and A-20261104-1 remain open.
+- **Error:** disk cleanup deleted r02 `complete-v1`'s bulky receipts. TALLY, EXCEPTIONS, PUBLICATION and the log survive, and the claims file's hash matches.
+
 ## 2026-11-05 (Claude, ice core probe of the remaining claim-ready orders)
 
 - **Sampled:** 30 orders by decade from each remaining claim-ready stratum (886 NO, 359 YES), one batch each, no substitutions; Sonnet producers, two independent blind Opus reviewers with planted controls, filed only when both upheld. Report: `research/excavator/claude-icecore-2026-11-05/REPORT.md`; Kean F-20261105-icecore.

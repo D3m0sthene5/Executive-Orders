@@ -1,0 +1,290 @@
+{
+ "schema": "eo-claim-kit-completion/v1",
+ "agent": "claude",
+ "producer_model_family": "Anthropic",
+ "independence_requirement": "same_family_separate_context",
+ "publication": {
+  "mode": "own_claims",
+  "path": "research/readiness/claims/claude-2026-11-05-theophilus-r03.jsonl"
+ },
+ "members": [
+  {
+   "instrument_id": "EO:8341",
+   "outcome": "blocked",
+   "reason": "[\"Source gap (custody and checker mechanics): the dossier holds one registered text for this order, the machine-extracted Federal Register text layer (jobs/fr-originals/data/full_run/texts/EO_8341.txt), whose whole-page span also carries garbled neighbouring-order numbers from the same page (for example the text layer reads 'Executive Order No. 83231'), which the actual claim checker's order_exists test rejects when that span is quoted as the first-end source; the narrower clause or override spans that avoid the token carry no actor, so the assembler cannot attach them as a first end (clause_0_first_end gate error). No held text of this order without those tokens and with an actor-bearing record exists, so the claim cannot reach all_checks_passed. The legal reading (one-time command performed on its own stated date, no later instrument held) is unchanged and remains in the prior reviewed claim.\"]"
+  },
+  {
+   "instrument_id": "EO:8613",
+   "outcome": "blocked",
+   "reason": "[\"Source gap (custody and checker mechanics): the dossier holds one registered text for this order, the machine-extracted Federal Register text layer (jobs/fr-originals/data/full_run/texts/EO_8613.txt), whose whole-page span also carries garbled neighbouring-order numbers from the same page (for example the text layer reads 'Executive Order No. 85721'), which the actual claim checker's order_exists test rejects when that span is quoted as the first-end source; the narrower clause or override spans that avoid the token carry no actor, so the assembler cannot attach them as a first end (clause_0_first_end gate error). No held text of this order without those tokens and with an actor-bearing record exists, so the claim cannot reach all_checks_passed. The legal reading (one-time command performed on its own stated date, no later instrument held) is unchanged and remains in the prior reviewed claim.\"]"
+  },
+  {
+   "instrument_id": "EO:8639",
+   "outcome": "blocked",
+   "reason": "[\"Source gap (custody and checker mechanics): the dossier holds one registered text for this order, the machine-extracted Federal Register text layer (jobs/fr-originals/data/full_run/texts/EO_8639.txt), whose whole-page span also carries garbled neighbouring-order numbers from the same page (for example the text layer reads 'Executive Order No. 74581'), which the actual claim checker's order_exists test rejects when that span is quoted as the first-end source; the narrower clause or override spans that avoid the token carry no actor, so the assembler cannot attach them as a first end (clause_0_first_end gate error). No held text of this order without those tokens and with an actor-bearing record exists, so the claim cannot reach all_checks_passed. The legal reading (one-time command performed on its own stated date, no later instrument held) is unchanged and remains in the prior reviewed claim.\"]"
+  },
+  {
+   "instrument_id": "EO:10570",
+   "outcome": "blocked",
+   "reason": "[\"Source custody gap, not a legal gap: the dossier's only registered original text for EO 10570 is jobs/fr-originals/data/full_run/texts/EO_10570.recheck.txt (pdfplumber reading-order text of the 19 FR 6687 page in the FR-1954-10-19 issue, PDF sha256 a8edb23032c98ee2a1c98f1851ce996b701eda1109ec256e3d56e3c3e1ef9d06). The claim kit must quote it as the original representation, but the actual claim checker can match quotations for that sha256 only against the OCR copies (jobs/clause-drafts text and jobs/fr-originals EO_10570.txt) whose words, spacing and line order differ, so original_representation.quote and the clause quote fail quote_verbatim (not_found; first 0 of 344 and 5 of 252 words found in order) and the claim cannot reach all_checks_passed. No registered text of the same page that the checker can match is held; a registered text identical to the checker-held OCR copy (or a checker-held copy of the recheck text) is the missing source. The legal analysis (revocation by EO 12553 on 1986-02-25 for the report-deadline order, with the report deadline and section 10 standstill recorded as spent facts under the 2026-10-21 owner ruling) is unchanged and remains available in the prior reviewed claim.\"]"
+  },
+  {
+   "instrument_id": "EO:12323",
+   "outcome": "submit",
+   "claim_sha256": "511e3049c309ff5b8bcb10b2cfedeeac6ce0d92c257afd65c17a88cbe919f9a7",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 1
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 10
+   }
+  },
+  {
+   "instrument_id": "EO:12546",
+   "outcome": "submit",
+   "claim_sha256": "7099892ed8733c152d74323b8d7b4cfff07dcfb6804fa3e380d3f9f86e9f4ba6",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 2
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 12
+   }
+  },
+  {
+   "instrument_id": "EO:12771",
+   "outcome": "submit",
+   "claim_sha256": "d64a46510b1a48e934535d9a418d473c19178d7479b60ce927c58157de97ef82",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 3
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 5
+   }
+  },
+  {
+   "instrument_id": "EO:12864",
+   "outcome": "submit",
+   "claim_sha256": "f075232904040176ec77d1e865776e9113209c3b50e68dd1b6097056dce5276a",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 4
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 11
+   }
+  },
+  {
+   "instrument_id": "EO:12914",
+   "outcome": "submit",
+   "claim_sha256": "6a61c0911c4b8f47e5e87a7e762533bbbd85a92bf411271c60bb563131dba0c4",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 5
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 9
+   }
+  },
+  {
+   "instrument_id": "EO:12922",
+   "outcome": "submit",
+   "claim_sha256": "947aa89d2cf86d00461d689b438956c6abb3239e850a55853f60b37f2ca016b7",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 6
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 8
+   }
+  },
+  {
+   "instrument_id": "EO:12944",
+   "outcome": "submit",
+   "claim_sha256": "4c24929351c8d4bfda4279ec0bef6f416adc6492caca1eb12d0fdf377e16b54b",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 7
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 2
+   }
+  },
+  {
+   "instrument_id": "EO:14012",
+   "outcome": "blocked",
+   "reason": "Second independent blind reviewer (arm B) did not uphold this exact version: [{\"field\": \"operative_clauses[EO:14012#sec6].judgment_reason\", \"claim_says\": \"had no fixed end in its own held text and no earlier revocation, supersession or exhausting act is shown for it\", \"source_says\": \"Sec. 6 opens with a present-tense, self-executing act: 'The Presidential Memorandum of May 23, 2019 (Enforcing the Legal Responsibilities of Sponsors of Aliens), is revoked.' That command was performed and exhausted on issuance, 2021-02-02. The same packet's 14013 claim treats such sentences as performed on issuance.\"}, {\"field\": \"savings_residuals\", \"claim_says\": \"generic statement that actions taken under EO 14012 stood until rescinded; no surviving effect identified\", \"source_says\": \"The revocation of the 2019 memorandum is a surviving consequence that EO 14148 sec. 2 (which revokes EO 14012 without reviving instruments it revoked) does not undo. Owner ruling 2026-10-28 point 1 requires separating the exhausted command from the surviving consequence; the claim does neither.\"}]"
+  },
+  {
+   "instrument_id": "EO:14013",
+   "outcome": "submit",
+   "claim_sha256": "512461bca5573391770cd8bf6f61eb79fee507def5ce8110f1fe7a0de61b16dc",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 9
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 3
+   }
+  },
+  {
+   "instrument_id": "EO:14052",
+   "outcome": "submit",
+   "claim_sha256": "deecfc9e908052a37152943e7efb9729e60f447f07163a327e1c57cc9bb67b63",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 10
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 4
+   }
+  },
+  {
+   "instrument_id": "EO:14075",
+   "outcome": "submit",
+   "claim_sha256": "a61096f4854d5688f901f5ed175dc325a4f54be5596c9713ef2c869213c54cfa",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 11
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 6
+   }
+  },
+  {
+   "instrument_id": "EO:14082",
+   "outcome": "submit",
+   "claim_sha256": "161d2c8abe7189e5ee22c711b76b1a9fa3e10b5a9e383b16497a5b248d67808b",
+   "claim": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/applied-v3/CLAIMS.proposed.jsonl",
+    "sha256": "08696c6cc2b52871e63aeea131d2195e7d7e7149d9fcda453114bf10cf43d65f",
+    "line": 12
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/PACKET.json",
+    "sha256": "96dd92a150c5673e82ee896a584d224f3de1818ff00d8d3d5e67d122c8fada18"
+   },
+   "after_reveal_review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/AFTER_REVEAL_A.jsonl",
+    "sha256": "72d403ee2d617ee312f65144a4c02f31e12b19b3a894981fb1f5e2f4667b63aa",
+    "line": 1
+   }
+  }
+ ],
+ "controls": [
+  {
+   "instrument_id": "EO:14082",
+   "planted_claim_sha256": "c8d2593e86dbe87dc029dbb8a47c3b8994e0335c852676e20a8cb4c10ebc0be9",
+   "seed": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/completion/SEED_RECEIPT_EO_14082.json",
+    "sha256": "ff3c1e39ae70be51f67bde910f7fd6bce7f902041c585650fdf398b4afe61339"
+   },
+   "review": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "eb37832760863d50413742177a4bdb54fc1650aa7648319f927faa633958b7d4",
+    "line": 1
+   },
+   "adjudication": {
+    "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/completion/CONTROL_ADJUDICATION_EO_14082.json",
+    "sha256": "746b67ba8b627cf54499f5ec5fa92def40c936bdfdb0009a4adffb92902075ac"
+   }
+  }
+ ],
+ "receipts": [
+  {
+   "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/BLIND_REVIEW_B.jsonl",
+   "sha256": "b2df108241450795c1479c60602cce389eba8465f30715b9c6e713dc8434e1dc"
+  },
+  {
+   "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/reviews/AFTER_REVEAL_B.jsonl",
+   "sha256": "8fb8ac5757bd91226d2cf723b7fbcb4f8dea6766e08e6e1ef94d7cf329b38a4a"
+  },
+  {
+   "path": "research/excavator/claude-theophilus-2026-11-05/r03/packet/REAPPLY.json",
+   "sha256": "bd01e5f3fd81393f9caab920c0d36d6720b6e25c413d85f114b6e0584ffa7c9d"
+  }
+ ]
+}
