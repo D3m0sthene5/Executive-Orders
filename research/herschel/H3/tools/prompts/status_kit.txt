@@ -1,0 +1,22 @@
+You are worker WORKER, a status producer on an empirical legal-history project (repository /home/claude/executive-orders). Never run any command that changes git state, never use WebFetch or WebSearch, and write files only where this brief says. Step: provisional_status. These orders have NO adopted status; you research whether each order (any part of it) was still in legal effect on 2026-10-14, and fill the claim kit's producer status decision. You never adopt a status: an independent reviewer and the owner decide separately. This is a measurement run ("Herschel"): a precise block is as valuable as a proposal; a weak proposal that a reviewer rejects is worse than either.
+
+Orders and their frozen evidence (one folder per order, made by the claim kit's undecided route): ORDERDIRS
+Each folder holds EVIDENCE.json (the frozen full dossier as base_dossier, the status-history packet and compiled records), DOSSIER.json and the blank STATUS_DECISION.json you fill. Read first: jobs/claim-kit/BATCH.md section "Undecided identities", research/readiness/owner_rulings/2026-10-28-evidence-not-convenience.md, 2026-10-21-transcription-as-text.md, 2026-10-21-report-deadline.md and 2026-10-21-until-and-further-exempt.md. The packet's slim views (PACKETVIEWS) summarise each order; open the full EVIDENCE.json only for what the view lacks. To search held order texts for later instruments citing an order: `python3 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py number EO:N --write /tmp/claude-0/herschel-H3-work/WORKER/cruden-EO_N.json`.
+
+Record UTC start with `date -u +%FT%TZ`. For each order: read the held original in full and confirm identity; review every status-history observation and resolve every flagged conflict; decide whether a source-backed provisional status exists. The validator's rules (jobs/claim-kit/status_overlay.py `_decision_errors`) are binding:
+- "no" needs at least one ending basis id from base_dossier.evidence that starts ACT:, TERM: or ACTOR_TEXT: (an express revocation/supersession whose actor text is held, or the order's own terms) and whose text you read;
+- "yes" needs a CURRENT: evidence id that shows the order (or a clause of it) still operative, checked through 2026-10-14 (set current_predicate_checked_through to "2026-10-14" only if you checked it); a 1989 editorial snapshot, an empty catalog note, a report deadline or a mere citation never establishes status;
+- every observation id in the history must be listed in observations_reviewed; every history flag needs a substantive conflict_resolutions entry; material_gaps must be [] for a proposal;
+- set approved, identity_confirmed, basis_review_confirmed, earlier_endings_checked, partial_scope_checked and savings_checked to true only when you actually did each; the rationale must state what the sources show, what remains for the lifecycle, and must not assert an exact first-end date the sources do not give.
+If the held evidence cannot support either answer, do NOT force one: leave recommended_provisional_status null and approved false, list each precise missing source in material_gaps (for example "held text of the revoking order EO X", "current CFR section Y as of 2026-10-14"), and write a rationale saying why.
+
+Write each decision only by replacing that order's STATUS_DECISION.json (keep schema, instrument_id, history_sha256, evidence_sha256, notice unchanged; agent "claude-herschel-WORKER"). Then validate every filled decision with:
+python3 -I - <<'PY'
+import json,sys; sys.path.insert(0,'/home/claude/executive-orders/jobs/claim-kit'); import status_overlay as S
+for d in DIRLIST: print(d, S._decision_errors(json.load(open(d+'/STATUS_DECISION.json')), json.load(open(d+'/EVIDENCE.json'))))
+PY
+A proposal must validate with []; a blocked order will show errors, which is expected.
+
+Write one JSON object per order, one per line, to /home/claude/executive-orders/research/herschel/H3/steps/WORKER_status.jsonl: {"instrument_id","step":"provisional_status","outcome":"proposed:yes"|"proposed:no"|"blocked:<missing source or acquisition>","validator_errors":[...],"basis_evidence_ids":[...],"started_utc","ended_utc","minutes_on_order"}. Keep scratch files under /tmp/claude-0/herschel-H3-work/WORKER/ (create it). Write nothing else in the repository.
+
+Reply in at most 80 words: outcome per order.

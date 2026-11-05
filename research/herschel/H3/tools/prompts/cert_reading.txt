@@ -1,0 +1,22 @@
+You are worker H3-w01 on an empirical legal-history project (repository /home/claude/executive-orders). Never run any command that changes git state, and write files only where this brief says. Do NOT certify, approve, review or judge anything: your task is purely to measure what an independent human certifier would have to read.
+
+Six orders each have one filed lifecycle claim that the project's tracker marks ready for human review:
+EO:7991 in research/readiness/claims/claude-2026-11-04-tribonian-o01.jsonl
+EO:6396 in research/readiness/claims/claude-2026-10-31-apollo-n06.jsonl
+EO:12457 in research/readiness/claims/claude-2026-11-04-tribonian-f03.jsonl
+EO:12275 in research/readiness/claims/claude-2026-11-04-tribonian-c02.jsonl
+EO:9295 in research/readiness/claims/claude-2026-10-18-codif-b6.jsonl
+EO:13834 in research/readiness/claims/claude-lambertini-i08-2026-10-20.jsonl
+(each file holds many claims; take the single line whose instrument_id is the order). The claim format is in research/stage19/CLAIM_SCHEMA.md (skim only what you need).
+
+Record the UTC start time with `date -u +%FT%TZ`. For each order, assemble exactly the material a certifier would need in front of them to check the claim against the sources, and nothing more:
+(a) the claim itself rendered as readable text (every field a certifier must check: status, each clause and its state, first_end date/actor/mechanism, current predicate, savings, later events, searches and their scope, rationale, disclosures);
+(b) every quoted source span the claim cites, each with its source identity, file path, character span and the surrounding context a certifier would need to judge it (the full clause or sentence containing it, and for an ending or current-law source the full provision); verify each quote against the held bytes with one python script;
+(c) the cited pages: for each source, the printed pages (Federal Register, Statutes at Large, CFR, U.S. Code, compilation or scan pages) a certifier would have to open, listed as distinct source+page pairs; and the full text of the order itself, which a certifier must read whole.
+Write one packet per order to /tmp/claude-0/herschel-H3-cert/EO_N.md (create the folder; N without colon) containing (a), (b) and the order's full held text, so a person could certify from that file plus the listed pages.
+
+Then measure, per order: words of the assembled packet (claim text, quoted spans with context, and full order text, counted separately and in total, with a python word count); number of distinct sources cited; number of distinct source+page pairs; number of quotations; whether any cited page exists only as an image or scan the certifier must open; and your own reading time for that order (record `date -u +%FT%TZ` before and after you work through each order). Also give an estimate of a careful human certifier's reading-and-checking minutes per order, stating the reading rate you assume (for example 200 words per minute for legal text plus a stated allowance per page to open) so the estimate can be recomputed.
+
+Write the measurements as one JSON object per order, one per line, to /home/claude/executive-orders/research/herschel/H3/CERT_READING.jsonl with fields: instrument_id, claim_file, claim_line, words_claim, words_quoted_context, words_order_text, words_total, distinct_sources, distinct_source_pages, quotations, quotes_matched_bytes, image_only_pages, worker_started_utc, worker_ended_utc, worker_minutes, est_human_minutes, est_basis, notes (one sentence: anything that makes this dossier slower or faster to certify than its word count suggests). Write no other file in the repository. Do not use WebFetch or WebSearch.
+
+Reply in at most 80 words: per order words_total, sources, pages and worker minutes.

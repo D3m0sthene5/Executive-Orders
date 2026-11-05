@@ -1,0 +1,63 @@
+NOTE 2026-11-05T23:24Z: H3 start (assigned start time). 2026-11-05T23:25:54Z protocol read. Integrator message: cap raised from 120 to 250 USD API-equivalent; reach every order and step; standards unchanged.
+PREPARE n1 2026-11-05T23:28:19Z -> 2026-11-05T23:30:13Z
+PREPARE y1 2026-11-05T23:30:34Z -> 2026-11-05T23:30:57Z
+H3-w01 opus launched 2026-11-05T23:31:43Z concurrent=1
+H3-w02 sonnet launched 2026-11-05T23:31:45Z concurrent=2
+H3-w03 sonnet launched 2026-11-05T23:31:47Z concurrent=3
+PREPARE y2 2026-11-05T23:30:57Z -> 2026-11-05T23:31:48Z
+H3-w04 sonnet launched 2026-11-05T23:31:49Z concurrent=4
+PREPARE u1 2026-11-05T23:31:48Z -> 2026-11-05T23:31:55Z
+H3-w03 d472f30a-8504-43b5-b1fc-59e232b068d9 cost 0.2405698 turns 11 is_error False
+H3-w03 done 2026-11-05T23:33:12Z
+H3-w04 5f416e6c-4ab7-4282-91ca-ee8a174f7167 cost 0.2169581 turns 14 is_error False
+H3-w04 done 2026-11-05T23:33:32Z
+PREPARE u2 2026-11-05T23:31:56Z -> 2026-11-05T23:33:47Z
+PREPARE u3 2026-11-05T23:33:48Z -> 2026-11-05T23:33:57Z
+H3-w02 139d60cf-865d-4c50-a6e9-a84f88a556a5 cost 0.2815032 turns 11 is_error False
+H3-w02 done 2026-11-05T23:34:00Z
+PREPARE u4 2026-11-05T23:33:57Z -> 2026-11-05T23:34:04Z
+H3-w05 sonnet launched 2026-11-05T23:35:38Z concurrent=2
+H3-w06 sonnet launched 2026-11-05T23:35:39Z concurrent=3
+H3-w01 ce9e9b60-6bd6-4e94-a930-83ce4320c357 cost 1.7247599999999996 turns 27 is_error False
+H3-w01 done 2026-11-05T23:36:44Z
+NOTE 2026-11-05T23:36:53Z: kit prepare/overlay-prepare refuse 17 undecided pre-1937 orders: 'no dated history located' (jobs/status-history INDEX has no history for them; only EO 6055 and the six 1990on orders have one). Undecided route closed at the freeze for those 17: provisional_status (kit route) blocked; lifecycle steps blocked behind it (ordinary prepare refuses undecided members without a freeze). Decision: measure the status step anyway with research-only status proposals (s1-s3, same decision fields, own folder, paired blind review) so its cost is measured; label them outside the kit route. u5 = EO 6055 prepared alone.
+H3-w05 d99a90a5-800b-446a-b1c9-ff8f7658a0e2 cost 0.37508900000000006 turns 15 is_error False
+H3-w05 done 2026-11-05T23:39:16Z
+PREPARE u5 2026-11-05T23:36:53Z -> 2026-11-05T23:39:16Z
+H3-w07 sonnet launched 2026-11-05T23:40:20Z concurrent=2
+H3-w08 sonnet launched 2026-11-05T23:40:21Z concurrent=3
+H3-w09 sonnet launched 2026-11-05T23:40:22Z concurrent=4
+H3-w10 sonnet launched 2026-11-05T23:40:23Z concurrent=5
+H3-w06 250cc1d1-3553-4baa-9611-b3256cbae5fc cost 0.43506589999999995 turns 17 is_error False
+H3-w06 done 2026-11-05T23:40:36Z
+NOTE 2026-11-05T23:42:26Z: EO 6983 original_text failed in H3-w03 (no djvu renderer). Installed djvulibre-bin (apt) and relaunched the step for that order as H3-w11 (counted separately).
+H3-w11 sonnet launched 2026-11-05T23:42:26Z concurrent=5
+NOTE 2026-11-05T23:43:08Z: DEFECT in my render.py: it replaced the token BATCH with the batch name, so the H3-w05 (n1) and H3-w06 (y2) producer prompts pointed to jobs/claim-kit/n1.md / y2.md instead of jobs/claim-kit/BATCH.md. w06 reported it and read BATCH.md/AGENT_PROTOCOL.md instead. Both workers blocked every order on missing sources (appointment records for one-person waivers; EO 474 text not naming EO 430; NEA continuation notices), which the defect does not touch; not rerun. Fixed for later prompts.
+H3-w11 70887759-f53c-40de-84b4-407f5b30d5c0 cost 0.1401153 turns 9 is_error False
+H3-w11 done 2026-11-05T23:43:09Z
+H3-w10 4c21810e-b8a7-40e3-90e0-bd456f4d6f7d cost 0.22161079999999997 turns 13 is_error False
+H3-w10 done 2026-11-05T23:43:44Z
+H3-w07 0fb17d81-9b95-4ac5-bab6-64bb4b6e4251 cost 0.6895411000000004 turns 25 is_error False
+H3-w07 done 2026-11-05T23:44:49Z
+H3-w08 a9507df7-f17a-4ddc-800b-4ebe39ba38f9 cost 0.3197249 turns 17 is_error False
+H3-w08 done 2026-11-05T23:45:35Z
+H3-w09 358d0b55-cefd-43fc-ad60-3f68b06b0551 cost 0.37638889999999997 turns 16 is_error False
+H3-w09 done 2026-11-05T23:45:56Z
+NOTE 2026-11-05T23:47:22Z: status step done for all 24 undecided orders: 23 blocked, 1 research-only recommendation (EO 5728 'no' by own 10-year term; approved false with material gaps because no kit dossier exists). Review batch s2: that proposal, with the standard planted control (every end date moved back three years) placed on it, as in Theophilus p01; two blind Opus arms; key in scratch.
+H3-w12 opus launched 2026-11-05T23:47:39Z concurrent=1
+H3-w13 opus launched 2026-11-05T23:47:41Z concurrent=2
+H3-w12 44bedc7f-792c-44b8-817c-996fafbbeae0 cost 0.30946519999999994 turns 6 is_error False
+H3-w12 done 2026-11-05T23:50:13Z
+H3-w13 b01bc516-1dc2-4372-ad1d-aef75b3f7b12 cost 0.3237956 turns 6 is_error False
+H3-w13 done 2026-11-05T23:50:34Z
+H3-w12-reveal opus resume 44bedc7f-792c-44b8-817c-996fafbbeae0 launched 2026-11-05T23:50:50Z concurrent=1
+H3-w13-reveal opus resume b01bc516-1dc2-4372-ad1d-aef75b3f7b12 launched 2026-11-05T23:50:51Z concurrent=2
+NOTE 2026-11-05T23:50:52Z: s2 blind: planted control EO:5728 rejected by both arms for the date defect (caught). Reveal sent to both arms (resume).
+H3-w12-reveal 44bedc7f-792c-44b8-817c-996fafbbeae0 cost 0.4297736 turns 3 is_error False
+H3-w12-reveal done 2026-11-05T23:51:42Z
+H3-w13-reveal b01bc516-1dc2-4372-ad1d-aef75b3f7b12 cost 0.435327 turns 3 is_error False
+H3-w13-reveal done 2026-11-05T23:51:43Z
+NOTE 2026-11-05T23:54:20Z: s2 after reveal: genuine EO:5728 proposal upheld by arm B, rejected by arm A (until ruling: inclusive/exclusive reading of the 1941-12-31 bound not stated); not upheld under the both-uphold rule. Coordinator note: the defect does not change the status (either reading ends before 2026-10-14) but the rule is applied as written. Gate after s2: PILOT (1 attempt), recorded; no production depends on it.
+NOTE: all 39 assigned orders reached; every open step attempted or recorded as blocked. No claim produced, so no claim review batch, no claims file. replace_original is not an open step for any H3 order; held official copies found for 7 transcription/replica orders are recorded under original_text (replace_original_possible) in steps/*.jsonl.
+NOTE: usage/rate limits: none observed in any worker .err or result (grep rate/usage limit/overloaded/429/529). Machine load average reached ~27 on 2 CPUs while four coordinators ran; worker wall times stayed 0.6-5.5 min.
+NOTE: Kean register and HANDOFF notes not written by H3 (shared files; four coordinators in one checkout); results are in this folder for the integrator.
