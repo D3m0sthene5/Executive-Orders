@@ -125,31 +125,83 @@ def load():
     return orders, assigned, workers, outcomes, usage, limits
 
 
-def worker_cost(t, usage_rows):
-    """API-equivalent USD and tokens source for one worker: its own recorded figure, else telemetry rows."""
-    for k in ("usd", "cost_usd", "total_cost_usd"):
-        if isinstance(t.get(k), (int, float)):
-            return float(t[k]), "trace"
-    name, sid = t.get("worker") or "", t.get("session_id") or ""
-    sids = set(t.get("session_ids") or ([sid] if sid else []))
-    rows = [r for r in usage_rows if (r.get("phase") == name or r.get("batch") == name
-                                      or (sids and any(r.get("session_id", "").startswith(s) for s in sids if s)))]
-    if rows:
-        return sum(row_usd(r) for r in rows), "telemetry"
-    return None, "unpriced"
+COORDINATOR_IDS = set()   # filled from telemetry/PHASE_MAP.json: the coordinators' own agent ids
+
+
+def is_coordination(r):
+    return r.get("phase") == "coordination" or r.get("agent_id") in COORDINATOR_IDS
+
+
+def match_workers(workers, usage):
+    """Price every worker. Order of preference: a cost the trace records; a telemetry row whose phase or batch names
+    the worker or whose session the trace names; the unused telemetry row of the same coordinator whose phase is the
+    worker's step and whose start is nearest the worker's start (within 15 minutes). Workers still unmatched share
+    equally whatever telemetry of their step and coordinator stayed unmatched."""
+    used = set()
+    costs = {}
+    for i, t in enumerate(workers):
+        for k in ("usd", "cost_usd", "total_cost_usd"):
+            if isinstance(t.get(k), (int, float)):
+                costs[i] = (float(t[k]), "trace")
+                break
+    for i, t in enumerate(workers):
+        if i in costs:
+            continue
+        rows = usage.get(t["_h"], [])
+        name = t.get("worker") or ""
+        sids = set(t.get("session_ids") or ([t["session_id"]] if t.get("session_id") else []))
+        hit = [j for j, r in enumerate(rows) if not is_coordination(r) and (
+            r.get("phase") == name or r.get("batch") == name or r.get("agent_id") == name
+            or any(s and (r.get("session_id") or "").startswith(s) for s in sids))]
+        if hit:
+            costs[i] = (sum(row_usd(rows[j]) for j in hit), "telemetry")
+            used.update((t["_h"], j) for j in hit)
+    for i, t in sorted(((i, t) for i, t in enumerate(workers) if i not in costs),
+                       key=lambda it: str(it[1].get("started_utc"))):
+        rows = usage.get(t["_h"], [])
+        st = ts(t.get("started_utc"))
+        best, gap = None, 900.0
+        for j, r in enumerate(rows):
+            if (t["_h"], j) in used or is_coordination(r) or r.get("phase") != t.get("step"):
+                continue
+            rs = ts(r.get("started_utc"))
+            if st and rs and abs((rs - st).total_seconds()) < gap:
+                best, gap = j, abs((rs - st).total_seconds())
+        if best is not None:
+            costs[i] = (row_usd(rows[best]), "telemetry-time")
+            used.add((t["_h"], best))
+    pools = collections.defaultdict(float)
+    for h, rows in usage.items():
+        for j, r in enumerate(rows):
+            if (h, j) not in used and not is_coordination(r):
+                pools[(h, r.get("phase"))] += row_usd(r)
+    waiting = collections.defaultdict(list)
+    for i, t in enumerate(workers):
+        if i not in costs:
+            waiting[(t["_h"], t.get("step"))].append(i)
+    leftover = 0.0
+    for key, v in pools.items():
+        if waiting.get(key):
+            for i in waiting[key]:
+                costs[i] = (v / len(waiting[key]), "telemetry-pool")
+        else:
+            leftover += v
+    return costs, leftover
 
 
 def coordinator_costs(usage):
+    """Coordinator cost per coordinator: its own telemetry if it wrote any, else the integrator's measurement."""
     out = {}
-    side = read_csv(HERE / "telemetry/COORDINATORS.csv")
-    for r in side:
-        out.setdefault(r.get("phase", ""), 0.0)
-        out[r.get("phase", "")] += row_usd(r)
     for h, rows in usage.items():
-        if h not in out:
-            c = [r for r in rows if r.get("role") == "coordinator" or "coord" in (r.get("phase") or "")]
-            if c:
-                out[h] = sum(row_usd(r) for r in c)
+        c = [r for r in rows if is_coordination(r)]
+        if c:
+            out[h] = sum(row_usd(r) for r in c)
+    for r in read_csv(HERE / "telemetry/COORDINATORS.csv"):
+        h = r.get("phase", "")
+        if h.startswith("H") and h not in out:
+            out[h] = out.get(h + "*", 0.0) + row_usd(r)
+        elif not h.startswith("H"):
+            out[h] = out.get(h, 0.0) + row_usd(r)
     return out
 
 
@@ -157,9 +209,10 @@ def build_measured(orders, assigned, workers, outcomes, usage):
     per = collections.defaultdict(lambda: {"steps": collections.defaultdict(lambda: {"usd": 0.0, "seconds": 0.0,
                                                                                      "outcome": ""}),
                                            "worker_usd": 0.0})
+    costs, leftover = match_workers(workers, usage)
     unpriced = 0
-    for t in workers:
-        usd, src = worker_cost(t, usage.get(t["_h"], []))
+    for i, t in enumerate(workers):
+        usd, _src = costs.get(i, (None, "unpriced"))
         if usd is None:
             unpriced += 1
             usd = 0.0
@@ -201,11 +254,16 @@ def build_measured(orders, assigned, workers, outcomes, usage):
                      "steps": {s: dict(v) for s, v in steps.items()}, "worker_usd": wu, "overhead_usd": overhead,
                      "usd": wu + overhead, "seconds": sum(v["seconds"] for v in steps.values()),
                      "all_steps_good": all_good})
+    coord["unattributed_worker_telemetry"] = leftover
     return rows, coord, unpriced
 
 
 def stratum_status(h):
     return h.split(".", 1)[0]
+
+
+OPEN_ALIASES = {"lifecycle_claim": ["clause_inventory", "ending_or_current_basis", "savings_residuals",
+                                     "counterevidence"]}
 
 
 def eligible_for(step):
@@ -219,7 +277,7 @@ def eligible_for(step):
                 or not any(norm_outcome(r["steps"].get(s, {}).get("outcome")) == "not_reached" for s in r["open_steps"])
         if step in r["steps"]:
             return norm_outcome(r["steps"][step].get("outcome")) != "not_reached"
-        return step not in r["open_steps"]
+        return not set(OPEN_ALIASES.get(step, [step])) & set(r["open_steps"])
     return ok
 
 
@@ -298,6 +356,9 @@ def main(argv=None):
     if args.root:
         HERE = Path(args.root).resolve()
         FRAME, OUT = HERE / "frame", HERE / "ATLAS"
+    pm = HERE / "telemetry/PHASE_MAP.json"
+    if pm.is_file():
+        COORDINATOR_IDS.update(k for k, v in json.loads(pm.read_text()).items() if v.startswith("H"))
     orders, assigned, workers, outcomes, usage, limits = load()
     rows, coord, unpriced = build_measured(orders, assigned, workers, outcomes, usage)
     deep_strata = {o["stratum"] for o in orders.values() if o["stratum"] != "ready"}
@@ -383,8 +444,14 @@ def main(argv=None):
         wall[str(k)] = {"days": round(wh / k / 24 * (infl or 1), 1), "slowdown_measured": None if infl is None
                         else round(infl, 2), "basis": "measured" if near else "extrapolated, no workers at this level"}
     cert = []
-    for p in glob.glob(str(HERE / "H*/CERTIFICATION_READING*")):
-        if p.endswith(".json"):
+    for p in glob.glob(str(HERE / "H*/CERT*READING*")):
+        if p.endswith(".jsonl"):
+            for line in Path(p).read_text(encoding="utf-8").splitlines():
+                try:
+                    cert.append(json.loads(line))
+                except ValueError:
+                    pass
+        elif p.endswith(".json"):
             try:
                 d = json.loads(Path(p).read_text())
                 cert += d if isinstance(d, list) else d.get("orders", [])
@@ -392,8 +459,9 @@ def main(argv=None):
                 pass
         elif p.endswith(".csv"):
             cert += read_csv(p)
-    mins = [float(c.get("minutes") or c.get("reading_minutes") or 0) for c in cert
-            if (c.get("minutes") or c.get("reading_minutes"))]
+    def mfield(c):
+        return c.get("est_human_minutes") or c.get("minutes") or c.get("reading_minutes")
+    mins = [float(mfield(c)) for c in cert if mfield(c)]
     allowance = None
     ap_ = REPO / "jobs/bentham/data/ALLOWANCE.json"
     if ap_.is_file():
