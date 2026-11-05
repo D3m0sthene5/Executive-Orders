@@ -64,6 +64,16 @@ class Parse(unittest.TestCase):
         self.assertEqual(list(T.extract_cfr(io.BytesIO(CFR_XML), {("591", "591.999")})), [])
 
 
+class Net(unittest.TestCase):
+    def test_retry_converts_socket_errors(self):
+        def boom():
+            raise TimeoutError("handshake timed out")
+        T.time.sleep = lambda *_: None
+        with self.assertRaises(T.FetchError) as cm:
+            T.retry(boom, tries=2)
+        self.assertEqual(T.reason_of(cm.exception), "network_error")
+
+
 def write_csv(path, rows):
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:

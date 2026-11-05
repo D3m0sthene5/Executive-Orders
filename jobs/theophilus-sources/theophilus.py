@@ -5,7 +5,7 @@ Every request goes through jobs/_lib/fetch_pool.FetchPool (HTTPS only, robots.tx
 obeyed, throttled, hashed). Standard library only.
 """
 from __future__ import annotations
-import csv, datetime as dt, hashlib, html, io, json, os, re, sys, time, urllib.parse, zipfile
+import csv, datetime as dt, hashlib, html, http.client, io, json, os, re, sys, time, urllib.parse, zipfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -219,7 +219,12 @@ def retry(fn, tries=3, pause=2.0):
     last = None
     for i in range(tries):
         try:
-            return fn()
+            try:
+                return fn()
+            except FetchError:
+                raise
+            except (OSError, http.client.HTTPException, ValueError) as e:  # timeouts, resets, TLS, bad URLs
+                raise FetchError("network: " + type(e).__name__ + ": " + str(e)) from e
         except FetchError as e:
             last = e
             msg = str(e)
@@ -237,6 +242,8 @@ def reason_of(e):
         return "http_" + m[5:8]
     if "exceeds bound" in m:
         return "download_exceeds_bound"
+    if m.startswith("network:"):
+        return "network_error"
     return "fetch_error"
 
 
@@ -353,7 +360,7 @@ class Run:
     def ecfr_date(self, title_no):
         today = dt.date.today().isoformat()
         try:
-            d = json.loads(self.api.fetch(ECFR_TITLES)["body"].decode())
+            d = json.loads(retry(lambda: self.api.fetch(ECFR_TITLES))["body"].decode())
         except (FetchError, ValueError):
             return today, "titles_unavailable"
         for t in d.get("titles") or []:
