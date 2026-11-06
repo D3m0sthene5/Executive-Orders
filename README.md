@@ -6,6 +6,8 @@
 
 **Current dashboard:** [Research progress and recent work](research/progress/README.md) · [Generated counts, receipt freshness, and source generations](jobs/daily-digest/output/DASHBOARD.md).
 
+**Two denominators:** the *numbered series* (the 14,972-order census; every readiness proportion is of this series) and the *unnumbered series* (class `catalogued_unnumbered`, owner ruling R10), reported as a lower-bound count of identities with a 95% interval for its total in [`jobs/domesday-register/output/UNNUMBERED_SUMMARY.json`](jobs/domesday-register/output/UNNUMBERED_SUMMARY.json); the two are never added together.
+
 **Working progress measure:** the [readiness tracker](jobs/readiness-tracker/output/TRACKER.md) counts orders that are ready for human review (every machine research step done or searched to the end) and lists the single actions that unblock the most orders. Human verification is counted separately.
 
 **Research archive entry point:** [MIGRATION_STATUS.md](MIGRATION_STATUS.md) records the verified publication state and recovery steps. See [PROGRESS.md](PROGRESS.md) and the [moving progress tracker](research/progress/README.md) for research status, remaining effort, and planning windows; the [artifact index](research/ARTIFACT_INDEX.json) for provenance and SHA-256; and the [release guide](research/releases/README.md) for restoration.

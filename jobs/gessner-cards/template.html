@@ -150,7 +150,7 @@ footer a { color: var(--accent); }
 
 <header class="top wrap">
   <div class="eyebrow">The Afterlife of Executive Orders · order-level tracker</div>
-  <h1><span class="big" id="hReady">—</span> of <span id="hTotal">—</span> executive orders have a dossier ready for human review</h1>
+  <h1><span class="big" id="hReady">—</span> of <span id="hTotal">—</span> numbered executive orders have a dossier ready for human review</h1>
   <p class="lede" id="lede">Each card is one executive order in the project's working census, showing how many of the readiness steps it needs the machines have finished.</p>
 
   <div class="summary">
@@ -284,6 +284,11 @@ const DATA = /*__DATA__*/null;
   document.getElementById("lede").innerHTML =
     `Each card is one executive order in the project's working census of ${fmt(total)} identities, with the readiness steps it needs and how many the machines have finished. ` +
     `Ready means every step is backed by a saved source or a claim that passed the Stage 19 gate and the claim-checker. Human certification is a separate, later count and stands at ${fmt(M.human_certified)}. ` +
+    (M.unnumbered_series_observed == null
+      ? `The unnumbered series (a second denominator) is not measured yet. `
+      : `A second denominator, the unnumbered series, has ${fmt(M.unnumbered_series_observed)} identities observed (a lower bound` +
+        (M.unnumbered_series_estimate_95 ? `; estimated total ${fmt(Math.round(M.unnumbered_series_estimate_95[0]))} to ${fmt(Math.round(M.unnumbered_series_estimate_95[1]))}, 95% interval` : ``) +
+        `); it has no cards or readiness count here. `) +
     `Figures come from the readiness tracker run of ${runTxt}` + (M.tracker_run_url ? ` (<a href="${M.tracker_run_url}" target="_blank" rel="noopener">run log</a>).` : ".");
 
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
