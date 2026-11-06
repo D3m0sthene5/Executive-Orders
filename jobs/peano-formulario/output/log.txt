@@ -1,0 +1,88 @@
+test_carry_forward_without_refetch (test_formulario.Build.test_carry_forward_without_refetch) ... ok
+test_end_to_end (test_formulario.Build.test_end_to_end) ... EOF marker not found
+EOF marker not found
+ok
+test_binding_requires_the_counterparty_number (test_formulario.Kernel.test_binding_requires_the_counterparty_number) ... ok
+test_html_text (test_formulario.Kernel.test_html_text) ... ok
+test_locate_alnum_tier_and_hyphenation (test_formulario.Kernel.test_locate_alnum_tier_and_hyphenation) ... ok
+test_locate_refuses_short_or_absent (test_formulario.Kernel.test_locate_refuses_short_or_absent) ... ok
+test_locate_tolerates_case_quotes_dashes_whitespace (test_formulario.Kernel.test_locate_tolerates_case_quotes_dashes_whitespace) ... ok
+test_ofr_page_rendered_one_record_per_order (test_formulario.Kernel.test_ofr_page_rendered_one_record_per_order) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.205s
+
+OK
+{
+ "lemmas": 5,
+ "by_status": {
+  "proved": 3,
+  "sorry": 2
+ },
+ "by_kind_status": {
+  "class:proved": 1,
+  "instance:sorry": 2,
+  "instance:proved": 2
+ },
+ "sorry_reasons": {
+  "no_text_layer": 1,
+  "quote_does_not_name_counterparty": 1
+ },
+ "orders_with_proved_end_lemma": 2,
+ "retained_sources": 2,
+ "tactic": {
+  "skipped": "offline"
+ }
+}
+{
+ "lemmas": 23899,
+ "by_status": {
+  "proved": 22727,
+  "sorry": 1172
+ },
+ "by_kind_status": {
+  "class:proved": 30,
+  "class:sorry": 11,
+  "instance:sorry": 1161,
+  "instance:proved": 22697
+ },
+ "sorry_reasons": {
+  "source_text_not_retained": 573,
+  "quote_not_found_in_retained_text": 431,
+  "record_for_EO": 57,
+  "quote_not_in_record_in_current_snapshot (the API's notes may have changed since later-events read them)": 39,
+  "target_not_identified_in_census": 37,
+  "counterparty_has_no_number_to_check": 23,
+  "quote_does_not_name_counterparty": 8,
+  "fetch_failed": 2,
+  "targets_not_named_near_quote": 2
+ },
+ "orders_with_proved_end_lemma": 3097,
+ "retained_sources": 32,
+ "tactic": {
+  "tried": 12,
+  "proved_by_tactic": 1,
+  "paid_used": 1,
+  "engines_ready": [
+   "duckduckgo_html",
+   "duckduckgo_lite",
+   "bing_rss",
+   "mojeek_html",
+   "brave_html",
+   "marginalia",
+   "yandex_html",
+   "brave_api",
+   "loc_newspapers",
+   "loc_books",
+   "loc_manuscripts",
+   "internet_archive",
+   "google_books",
+   "hathitrust_catalog",
+   "federal_register_api",
+   "wikisource_search",
+   "wikipedia_search",
+   "presidency_project",
+   "govinfo_search_page"
+  ]
+ }
+}
