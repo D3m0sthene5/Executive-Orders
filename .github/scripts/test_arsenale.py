@@ -183,7 +183,7 @@ class StationFixture(unittest.TestCase):
         self.origin = self.root / "origin.git"
         self.author = self.root / "author"
         self.sh(["git", "init", "--bare", "-b", "main", str(self.origin)], self.root)
-        self.sh(["git", "clone", str(self.origin), str(self.author)], self.root)
+        self.sh(["git", "-c", "core.autocrlf=false", "clone", str(self.origin), str(self.author)], self.root)
         self.configure(self.author)
         shutil.copytree(SCRIPTS, self.author / ".github/scripts", ignore=shutil.ignore_patterns("__pycache__"))
         shutil.copytree(ROOT / "jobs/_lib", self.author / "jobs/_lib", ignore=shutil.ignore_patterns("__pycache__"))
@@ -233,9 +233,11 @@ class StationFixture(unittest.TestCase):
         self.sh(["git", "push", "-q", "origin", "HEAD:main"], repo)
         return self.sh(["git", "rev-parse", "HEAD"], repo).stdout.strip()
 
+    # Clone with autocrlf off (as the freshness fixture does): a Windows runner's
+    # global autocrlf=true would rewrite working files and change their hashes.
     def clone(self, name, commit):
         path = self.root / name
-        self.sh(["git", "clone", "-q", str(self.origin), str(path)], self.root)
+        self.sh(["git", "-c", "core.autocrlf=false", "clone", "-q", str(self.origin), str(path)], self.root)
         self.configure(path)
         self.sh(["git", "checkout", "-q", "--detach", commit], path)
         return path
@@ -274,7 +276,7 @@ class StationFixture(unittest.TestCase):
 
     def publish(self, order, artifacts, hook=None, event="workflow_dispatch"):
         publisher = self.root / "publisher"
-        self.sh(["git", "clone", "-q", str(self.origin), str(publisher)], self.root)
+        self.sh(["git", "-c", "core.autocrlf=false", "clone", "-q", str(self.origin), str(publisher)], self.root)
         self.configure(publisher)
         if hook:
             target = publisher / ".git/hooks/pre-push"
