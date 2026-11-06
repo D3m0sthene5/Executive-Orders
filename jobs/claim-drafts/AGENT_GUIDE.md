@@ -34,9 +34,18 @@ and leave the list empty (see the hard rules in section 5).
 
 Work through `_draft.needs_judgment`, then `_draft.gate.errors_now`.
 
-- **`whole_order_status`**: copied from the provisional ledger. Never change it.
-  If the evidence contradicts it, leave the claim incomplete, say so in
-  `unresolved_material_gaps`, and write a note in `HANDOFF/`.
+- **`whole_order_status`**: copied from the provisional ledger. If the evidence
+  establishes the other status, you may **contest** it (owner ruling R5,
+  2026-11-06): set the status the evidence supports, explain the disagreement
+  in `research_rationale` with its sources, and file the claim as usual. The
+  gate does not fail it; the tracker lists it in
+  `jobs/readiness-tracker/output/CONTESTED.csv` with blocker `STATUS_CONTESTED`,
+  and the order stays not ready. The provisional ledger changes only when the
+  owner merges a pull request that resolves the contest, so open one marked
+  COUNT-CHANGING that names the claim's sha256 and record a Kean ask. If the
+  evidence is only doubtful, keep the ledger's status and record the doubt in
+  `unresolved_material_gaps`. (The claim-kit route still refuses a contest;
+  use this draft route.)
 - **`original_representation`**: if filled, open the cited pages and confirm they
   are this order's complete official text; correct `page_or_item` if needed. If
   empty, pick from `_draft.proposals.original_representation`. A candidate with

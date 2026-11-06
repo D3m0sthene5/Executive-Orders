@@ -497,6 +497,7 @@ def build(root, *, planning_closures=None):
     problems += more + job_problems
 
     orders = []
+    contested_rows = []  # R5: claims whose status disagrees with the provisional ledger
     machine_searched = set()
     working_index = W.Index(root)
     confirmed_texts, confirmation_rejections = counting_confirmations(root, jobs, working_index)
@@ -681,6 +682,31 @@ def build(root, *, planning_closures=None):
             blockers['original_text'].append('WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED')
         if factual_errors:
             blockers['counterevidence'].append('FACTUAL_EVENT_REVALIDATION_REQUIRED')
+        # Owner ruling R5 (2026-11-06): a claim may contest the ledger's status. That is a blocker, not a
+        # gate failure; the ledger is unchanged until an owner-merged pull request resolves it.
+        contested = claim is not None and claim_gate.status_contested(claim, status)
+        if contested:
+            # The ending step is judged against the ledger's status, so a contesting claim does not fill it.
+            ready = False
+            steps["ending_or_current_basis"] = False
+            blockers["ending_or_current_basis"] = ["STATUS_CONTESTED"]
+            contested_rows.append({"instrument_id": i, "ledger_status": status,
+                                   "claimed_status": claim.get("whole_order_status"),
+                                   "claim_sha256": claim_gate.claim_sha(claim)})
+        # Schema v2 (R2): an end bounded only by a later formal disposition (date_kind not_later_than,
+        # first_cause unresolved) records what the evidence shows but does not establish the first end.
+        v2 = claim is not None and claim.get("schema") == getattr(claim_gate, "SCHEMA_V2", None)
+        whole_end = claim.get("whole_order_end") if claim is not None and isinstance(claim.get("whole_order_end"), dict) else {}
+        end_kind = whole_end.get("date_kind", "exact" if whole_end else "") if v2 else ("exact" if whole_end else "")
+        bounded = v2 and (end_kind == "not_later_than" or any(
+            isinstance(c, dict) and isinstance(c.get("first_end"), dict) and c["first_end"].get("date_kind") == "not_later_than"
+            for c in claim.get("operative_clauses") or []))
+        if bounded and not gate_errors:
+            ready = False
+            steps["ending_or_current_basis"] = False
+            blockers["ending_or_current_basis"].append("FIRST_END_UNRESOLVED")
+        later_formal = (claim_gate.derived(claim)["formal_revocation_after_earlier_cessation"]
+                        if v2 and hasattr(claim_gate, "derived") else None)
         if i in holds:
             ready = False
             steps['counterevidence'] = False
@@ -711,11 +737,16 @@ def build(root, *, planning_closures=None):
             "factual_event_policy_errors": "|".join(factual_errors),
             "claim_record_errors": "|".join(claim_level),
             "opus_media_applicability_note": opus_media_note,
+            "claim_schema": claim.get("schema", "") if claim is not None else "",
+            "status_contested": "yes" if contested else "no",
+            "whole_end_date_kind": end_kind,
+            "formal_revocation_after_earlier_cessation": {True: "yes", False: "no"}.get(later_formal, ""),
             "blockers": "|".join(b for s in STEP_NAMES for b in blockers.get(s, [])),
             **{f"step_{s}": (("provisional" if s == "original_text" and text_provisional else "done")
                              if steps[s] else "open") if s in steps else "n/a" for s in STEP_NAMES},
         })
     build.job_outputs_used = jobs["used"]
+    build.contested = contested_rows
     build.confirmation_rejections = confirmation_rejections
     build.confirmations_counting = len(confirmed_texts)
     build.machine_search = {i: machine_search_record(i, jobs["search"]) for i in sorted(machine_searched)}
@@ -809,6 +840,11 @@ def summarise(orders, problems):
         "orders_total": total,
         "orders_with_provisional_status": len(decided),
         "ready_for_human_review": len(ready),
+        # R5 and schema v2 (Justinian 2026-11-06): contests and bounded ends, reported, never counted as ready.
+        "status_contested": sum(1 for o in orders if o.get("status_contested") == "yes"),
+        "claims_by_schema": dict(collections.Counter(o["claim_schema"] for o in orders if o.get("claim_schema"))),
+        "whole_end_date_kind": dict(collections.Counter(o["whole_end_date_kind"] for o in orders if o.get("whole_end_date_kind"))),
+        "formal_revocation_after_earlier_cessation": sum(1 for o in orders if o.get("formal_revocation_after_earlier_cessation") == "yes"),
         "ready_by_tier": dict(collections.Counter(o["ready_tier"] for o in ready)),
         "ready_by_text_evidence_tier": dict(collections.Counter(o.get("text_evidence_tier", "unknown") for o in ready)),
         "original_replacement_obligations": sum(o.get("original_copy_replacement_required") == "yes" for o in orders),
@@ -858,6 +894,11 @@ def write_outputs(out, orders, summary, inputs):
         w = csv.DictWriter(fh, fieldnames=list(orders[0]))
         w.writeheader()
         w.writerows(orders)
+    # R5: every claim that contests the provisional ledger (instrument, ledger status, claimed status, claim sha).
+    with open(os.path.join(out, "CONTESTED.csv"), "w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=["instrument_id", "ledger_status", "claimed_status", "claim_sha256"])
+        w.writeheader()
+        w.writerows(getattr(build, "contested", []))
     with open(os.path.join(out, "SHARED_UNLOCKS.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=["orders_unblocked", "kind", "action", "blocker"])
         w.writeheader()
