@@ -2,7 +2,7 @@
 
 Named for John Selden (1584-1654), who went back to the records for the actual texts of statutes and precedents.
 This is the work of the night of 2026-11-05/06, in lane `research/selden/` and `jobs/selden-*`. No status, census,
-codebook or certified count changed. Five lifecycle claims were filed through the ordinary claim-kit route
+codebook or certified count changed. Eight lifecycle claims were filed through the ordinary claim-kit route
 (`research/readiness/claims/claude-2026-11-06-selden-*.jsonl`); they enter the ready count only when the owner merges.
 Certified: 0.
 
@@ -45,7 +45,43 @@ Of the 1,015 named non-EO instruments the project did not hold, 818 are now held
 statutes, 13 others). The 1,386 executive orders that act on other orders without an official text of their own
 belong to the order-originals lane and are ranked for it in `ACTING_EO_TEXTS_NEEDED.csv`.
 
-**The 30-order proof** PROOF_SUMMARY
+**The 30-order proof: 8 of 30 orders filed, 3 of them because of Selden texts.** Thirty orders were drawn at random
+(seed 1584) from the 1,531 decided, unclaimed orders among the 1,814 later-law-only orders. They went through the ordinary claim kit,
+with Selden's texts bound into the packets as exact excerpts (`SOURCE_SUPPLEMENT.json`). Each batch was then reviewed
+by two independent blind Opus reviewers, with one planted control per batch: every end date moved back three years.
+A claim files only if both reviewers upheld its exact hash.
+
+| | Orders |
+|---|---:|
+| Filed (both reviewers upheld) | 8 |
+| Rejected on review or at completion | 3 |
+| Blocked by the producer, with the reason recorded | 16 |
+| Refused at screening (the order's own text lacks custody) | 3 |
+
+All five planted controls (one per reviewed batch) were caught by both reviewers. Four genuine controls were then upheld after reveal by both; for the fifth (EO 8116) one reviewer found a separate defect. No planted
+claim filed. Per-order outcomes are in `proof/OUTCOMES.csv`.
+
+- **Selden made the difference for 3 orders.** EO 7951 and 8480 end by Public Land Orders whose official Federal
+  Register pages Selden fetched and verified against GPO's published SHA-256 (PLO 3277, 571, 686 and 835).
+  EO 13934 needed the amendment, revocation and reinstatement chain (EO 13978, 14029 and 14189). Selden's Federal
+  Register search found and kept those texts, and the claim binds them whole. A fourth, EO 8116 (ended by PLO 2292, also held by Selden), failed review on a
+  different point: it says Proclamation 2416 is not held, but the project holds it (it renames the refuge), so the
+  renaming is missing as a later event. That fix is one sentence and one event; it was not attempted tonight.
+- **The other five filed orders (EO 9260, 10367, 10451, 10991 and 11196) needed no Selden text.** Their ending sources
+  were already held. The proof population counts orders whose remaining step is later law, and that step was sometimes
+  already met by texts the project held.
+- **Review earned its cost.** Both blind reviewers rejected two producer claims on reasoning, not dates.
+  - EO 8480's first version called the order's own authority (30 Stat. 11) a neighbouring artifact. It also read PLO
+    571's date from OCR as March 6, 1949; the page image prints March 9.
+  - EO 8116's first version claimed patents were residual effects of the reservation, which PLO 2292 does not say.
+
+  Both were corrected and reviewed again blind (batch b4r). EO 9644 was rejected on the merits: EO 9691 ended its
+  section 2 basis in early 1946, earlier than claimed. EO 8080 failed completion mechanically: a quotation was not
+  found in the recheck text.
+
+At this yield, about 1 order in 4 files (8 of 30), and Selden's texts decided 1 in 10 (3 of 30). Projected to the 1,531
+decided orders, that is about 150 orders where a Selden text is what files the claim. Thirty is a small sample: the
+95% interval runs from about 30 to 400.
 
 ## How the sentences are located
 
@@ -90,7 +126,24 @@ executive orders lead (EO 12692, 12319, 11490, 11846) and belong to the original
 - presidential notices before 1994;
 - the 1972 Okinawa reversion treaty.
 
-The proof's blocks show what the claims need beyond texts. PROOF_BLOCKS
+The proof's blocks show what the claims need beyond texts. Of the 16 blocked orders and 3 screen refusals, none is blocked for want of a non-order instrument's text that
+Selden could fetch. EO 10685 lacks an accepted-grade text of the ending order EO 10827, which belongs to the originals
+lane. The rest need something no acting-instrument text supplies:
+
+| What the claim still needs | Orders |
+|---|---|
+| A held current source showing the order still operates on 2026-10-14, of an accepted grade (current CFR or USC note held only as a lead, or a conflict with the provisional status) | EO 10457, 11851, 12021 |
+| A fact date: a report submitted, a conference concluded, a parent commission's end, persons appointed | EO 12091, 12545, 13205, 6028 |
+| The end of a national emergency or a body created by statute, from a statute that does not name the order | EO 11270, 11599, 12304 |
+| No instrument names the order as revoked or superseded; an amendment is not an end | EO 8734, 9709, 10907 |
+| Custody: the order's own page image or text is not held (originals lane) | EO 11146, 12055, 13876, 14349 |
+| An ending source held, but not at an accepted grade | EO 10685 |
+| A mechanical source-binding defect: the dossier's hash for EO 9557 points to EO 9556's text | EO 9557 |
+
+The statute rows show where an owner ruling is needed, not more downloads. Selden holds PL 92-255 and PL 94-412, but
+under the evidence ruling a statute that does not name an order does not end it. A ruling on when a statute that
+abolishes a body, or ends an emergency, ends an order resting on it would decide EO 11270, 11599 and 12304. The same
+pattern recurs across the 1,814. This is ask A-20261106-1.
 
 ## Problems and their cost
 
@@ -117,7 +170,7 @@ The proof's blocks show what the claims need beyond texts. PROOF_BLOCKS
 ## Registration and counts
 
 `jobs/claim-kit/inputs.py` discovers every `jobs/*/output/FRAGMENTS*.jsonl` and `SOURCES.jsonl`. Merging this branch
-therefore registers these sources with the claim kit and, through it, the readiness tracker. Together with the five
+therefore registers these sources with the claim kit and, through it, the readiness tracker. Together with the eight
 filed claims, that can change counts, so it waits for the owner's merge.
 
 `jobs/claim-kit/source_supplement.py` adds held excerpts only to decided dossiers (Kean
