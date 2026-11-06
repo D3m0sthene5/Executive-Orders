@@ -12,6 +12,13 @@ Use the custom API/GitHub Actions automation below **only if** native GitHub par
 
 **Status (2026-10-17):** asynchronous shared-repository handoffs are already usable. Repository instructions are in `AGENTS.md`, `.github/copilot-instructions.md`, `CLAUDE.md` and `HANDOFF/README.md`. Direct automatic agent invocations are **not configured** by these files; a separate GitHub App integration, credential and workflow may be required for each service.
 
+## Standing structure (owner ruling R11, 2026-11-06)
+
+The Claude/Astra/Codex split is retired as a standing structure (Kean D-20261106-dorotheus-r11). Claude
+sessions in named lanes are the production path: one coordinating session merges, and the others work on their
+own branches and pull requests. Astra and Codex are engaged only for a specific different-family review, named
+by a Kean decision; nothing is routed to them by default. The paragraph below records the state that led to this.
+
 ## Current division of labor (as it is, 2026-11-06)
 
 Since 2026-11-05 every pull request merged into `main` (#152-#166) came from a Claude session; the coordinator
