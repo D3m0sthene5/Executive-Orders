@@ -50,8 +50,11 @@ def main():
     finally:
         sqlite_path.unlink(missing_ok=True)
     stage15=rows(STAGE15);lord=rows(LORD)
+    # Owner ruling R9 (2026-11-06): ignore census rows admitted after the frozen Stage 17 reference (14,972).
+    stage15=[r for r in stage15 if r.get("bibliographic_class")!="admitted_numbered_2026_11_06"]
     if len(stage15)!=14972 or len(lord)!=1023:raise ValueError("Historical inputs changed")
-    stage15_ids={r["id"]:r for r in stage15}
+    # R9: the census now spells EO:7933A; the frozen Stage 17 SQLite still has EO:7933a.
+    stage15_ids={{"EO:7933A":"EO:7933a"}.get(r["id"],r["id"]):r for r in stage15}
     latest={id_:getyear(y) for id_,y in data}
     if set(stage15_ids)!=set(latest):raise ValueError("Stage15/17 proxy identity mismatch")
     older={id_:getyear(r["date_effective"]) for id_,r in stage15_ids.items()}

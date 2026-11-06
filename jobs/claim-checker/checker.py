@@ -320,7 +320,10 @@ def load_universe(repo):
 
 def load_statuses(repo):
     p = repo / P["decided"]
-    return {r["instrument_id"]: r["provisional_substantive_status"] for r in read_csv(p)} if p.is_file() else {}
+    # Owner ruling R9: the ledger keeps the historical spelling EO:7933a; the census now says EO:7933A.
+    aliases = {"EO:7933a": "EO:7933A"}
+    return ({aliases.get(r["instrument_id"], r["instrument_id"]): r["provisional_substantive_status"] for r in read_csv(p)}
+            if p.is_file() else {})
 
 
 def load_signing(repo):

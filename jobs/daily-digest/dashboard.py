@@ -34,6 +34,20 @@ PATHS = {
 }
 
 
+UNNUMBERED_PATH = "jobs/domesday-register/output/UNNUMBERED_SUMMARY.json"
+
+
+def unnumbered_series(root):
+    """Second denominator (owner ruling R10), optional: absent until domesday-register has run with the class."""
+    try:
+        u = json.loads((root / UNNUMBERED_PATH).read_text(encoding="utf-8"))
+        est = u.get("unnumbered_series_estimate_95")
+        return {"observed": u["unnumbered_series_observed"] if isinstance(u.get("unnumbered_series_observed"), int) else None,
+                "estimate_95": est if isinstance(est, list) and len(est) == 2 else None, "source": UNNUMBERED_PATH}
+    except (OSError, ValueError, KeyError, AttributeError):
+        return {"observed": None, "estimate_95": None, "source": UNNUMBERED_PATH}
+
+
 def claim_sha(claim):
     return hashlib.sha256(json.dumps(claim, sort_keys=True, ensure_ascii=False,
                                     separators=(",", ":")).encode("utf-8")).hexdigest()
@@ -196,7 +210,8 @@ def build(root, generated_utc=None):
         "schema": "eo-current-dashboard/v1",
         "generated_utc": generated_utc or dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "legal_cutoff": LEGAL_CUTOFF, "repository_input_commit": input_commit(root),
-        "working_identities": universe, "provisional_status": statuses,
+        "working_identities": universe, "numbered_series_orders": universe,
+        "unnumbered_series": unnumbered_series(root), "provisional_status": statuses,
         "readiness": {"published_ready_for_human_review": tracker.get("ready_for_human_review"),
                       "by_tier": tracker.get("ready_by_tier", {}),
                       "by_text_evidence_tier": tracker.get("ready_by_text_evidence_tier", {}),
@@ -234,6 +249,15 @@ def number(value):
     return f"{value:,}" if isinstance(value, int) and not isinstance(value, bool) else "unavailable"
 
 
+def unnumbered_row(u):
+    if u["observed"] is None:
+        return "| Unnumbered series (catalogued_unnumbered), observed | unavailable | Second denominator; not measured until the domesday-register has run |"
+    est = (f"; estimated total {u['estimate_95'][0]:,.0f} to {u['estimate_95'][1]:,.0f} (95% interval)"
+           if u["estimate_95"] else "")
+    return (f"| Unnumbered series (catalogued_unnumbered), observed | {number(u['observed'])} | Lower bound{est}; "
+            "a separate denominator with no readiness count |")
+
+
 def md_text(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
 
@@ -269,7 +293,8 @@ def render_markdown(report):
     else:
         lines += ["Readiness below is the latest published tracker generation. Exact claim-receipt coverage is reported separately; matching versions alone does not verify every source or policy input.", ""]
     lines += ["## Research progress", "", "| Measure | Count | Meaning |", "|---|---:|---|",
-              f"| Working identities | {number(report['working_identities'])} | Bibliographic inventory; historical census remains incomplete |",
+              f"| Numbered series: working identities | {number(report['working_identities'])} | Bibliographic inventory; historical census remains incomplete. Every proportion below is of this series |",
+              unnumbered_row(report["unnumbered_series"]),
               f"| **Ready for human review, published** | **{number(r['published_ready_for_human_review'])}** | Every applicable tracker step passed or was documented exhausted; independent human verification is separate |",
               f"| Ready with original-supported text | {number(tier.get('original_supported'))} | Tracker's text-evidence tier |",
               f"| Ready dependent on provisional transcriptions | {number(tier.get('transcription_dependent'))} | Explicit working-text limitations remain |",

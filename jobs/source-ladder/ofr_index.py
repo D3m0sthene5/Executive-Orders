@@ -50,7 +50,7 @@ def normalize_number(raw, title=""):
 
 
 def resolve_id(number, universe_ids=None):
-    """Map an index number to the project's id (the universe spells 7933a in lower case)."""
+    """Map an index number to the project's id (the census spells it 7933A since owner ruling R9; a legacy lower-case universe still resolves)."""
     eo = "EO:" + number
     if not universe_ids or eo in universe_ids:
         return eo

@@ -1,55 +1,63 @@
 {
   "schema": "eo-current-dashboard/v1",
-  "generated_utc": "2026-11-06T09:18:04Z",
+  "generated_utc": "2026-11-06T15:46:19Z",
   "legal_cutoff": "2026-10-14",
-  "repository_input_commit": "e348b5eac2588d819ce9cfa3e1dec75b8afe4508",
-  "working_identities": 14972,
+  "repository_input_commit": "ce0d5f8a6361c3a6935fa6cddde55672358bd19b",
+  "working_identities": 14998,
+  "numbered_series_orders": 14998,
+  "unnumbered_series": {
+    "observed": null,
+    "estimate_95": null,
+    "source": "jobs/domesday-register/output/UNNUMBERED_SUMMARY.json"
+  },
   "provisional_status": {
-    "rows": 4291,
-    "unique_orders": 4291,
+    "rows": 4298,
+    "unique_orders": 4297,
     "yes": 405,
-    "no": 3886,
+    "no": 3892,
     "duplicate_order_ids": [],
-    "problems": [],
-    "without_provisional_status": 10681,
+    "problems": [
+      "Status identity outside working universe: EO:7933a"
+    ],
+    "without_provisional_status": 10701,
     "human_certified_flags_in_status_register": 0
   },
   "readiness": {
-    "published_ready_for_human_review": 1368,
+    "published_ready_for_human_review": 1208,
     "by_tier": {
-      "complete_claim": 1368
+      "complete_claim": 1208
     },
     "by_text_evidence_tier": {
-      "original_supported": 812,
-      "transcription_dependent": 556
+      "original_supported": 657,
+      "transcription_dependent": 551
     },
     "original_replacement_obligations": 1146,
     "quotation_recheck_obligations": 1146,
     "step_done_among_decided": {
       "provisional_status": {
-        "done": 4291,
-        "applicable": 4291
+        "done": 4298,
+        "applicable": 4298
       },
       "original_text": {
-        "done": 3262,
-        "applicable": 4291,
+        "done": 3268,
+        "applicable": 4298,
         "provisional": 60
       },
       "clause_inventory": {
-        "done": 1433,
-        "applicable": 4291
+        "done": 1447,
+        "applicable": 4298
       },
       "ending_or_current_basis": {
-        "done": 1390,
-        "applicable": 4291
+        "done": 1228,
+        "applicable": 4298
       },
       "savings_residuals": {
-        "done": 1420,
-        "applicable": 4291
+        "done": 1434,
+        "applicable": 4298
       },
       "counterevidence": {
-        "done": 2861,
-        "applicable": 4291
+        "done": 2869,
+        "applicable": 4298
       },
       "shared_sources": {
         "done": 212,
@@ -57,21 +65,22 @@
       },
       "opus_media": {
         "done": 125,
-        "applicable": 830
+        "applicable": 825
       }
     },
     "decided_orders_blocked_by": {
-      "NO_CLAUSE_INVENTORY": 2786,
-      "SAVINGS_RESIDUALS_NOT_CLOSED": 2786,
+      "NO_CLAUSE_INVENTORY": 2779,
+      "SAVINGS_RESIDUALS_NOT_CLOSED": 2779,
       "FIRST_END_UNPROVED": 2408,
-      "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1245,
-      "ONLY_COMPILED_TRANSCRIPTION_FOUND": 819,
-      "NO_OFFICIAL_SOURCE_LOCATED": 765,
+      "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1244,
+      "ONLY_COMPILED_TRANSCRIPTION_FOUND": 820,
+      "NO_OFFICIAL_SOURCE_LOCATED": 766,
       "OPUS_MEDIA_REFETCH_NEEDED": 431,
-      "CURRENT_BASIS_UNPROVED": 378,
+      "CURRENT_BASIS_UNPROVED": 371,
       "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 204,
-      "OPUS_MEDIA_NONE_CITED": 203,
-      "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 137,
+      "OPUS_MEDIA_NONE_CITED": 198,
+      "FIRST_END_UNRESOLVED": 184,
+      "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 141,
       "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 126,
       "CLAIM_INCOMPLETE": 88,
       "OPUS_MEDIA_PARTLY_RESOLVED": 52,
@@ -80,11 +89,16 @@
       "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 30,
       "SHARED_SOURCE_NOT_RETRIEVED": 24,
       "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
-      "OPEN_SOURCE_AUDIT": 10,
+      "OPEN_SOURCE_AUDIT": 6,
       "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
       "NO_PROVISIONAL_STATUS": 0
     },
-    "input_problems": []
+    "input_problems": [
+      "STALE_SOURCE_AUDIT_HOLD:EO:10622: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
+      "STALE_SOURCE_AUDIT_HOLD:EO:11040: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
+      "STALE_SOURCE_AUDIT_HOLD:EO:11078: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
+      "STALE_SOURCE_AUDIT_HOLD:EO:9922: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json"
+    ]
   },
   "filed_claims": {
     "available": true,
@@ -240,30 +254,33 @@
       "research/readiness/claims/codex-counterexample-20261026-whole.jsonl": "915d682e4bfe81e7e244e73f125f8402b83181f4ef8a88a9e7981acd7e7ea015",
       "research/readiness/claims/codex-production-cost-trace-20261026-b1.jsonl": "8e40c3b4bb2171d765cbd34b54c18d8554bc7fa4e33f4295daf5da137a892886",
       "research/readiness/claims/codex-production-cost-trace-20261026-b2.jsonl": "9aaad3572e5efe390dd568b5d3444b22aa77c7acebbf798daa677aec26ab8236",
-      "research/readiness/claims/codex-swarm-2026-10-21.jsonl": "308a4657e4c70d4f31a6352be0811a5e49836062420abdad5519748a5278c8b5"
+      "research/readiness/claims/codex-swarm-2026-10-21.jsonl": "308a4657e4c70d4f31a6352be0811a5e49836062420abdad5519748a5278c8b5",
+      "research/readiness/claims/dorotheus-2026-11-06-sample.jsonl": "c4f4e33ab94a38b1ce7006ca3c9225e2a56e033b92d9dad946c63f61ce2a8e01",
+      "research/readiness/claims/dorotheus-2026-11-06-yesprobe.jsonl": "95042ac85bf07ac0a8d1c8706880d2ee7a218e3967f23cd77832d7cf43fdfeac",
+      "research/readiness/claims/justinian-2026-11-06-r3-retag.jsonl": "aceb6ac54454b40c83545ca42961a4537ec5cc53d9afd0bf85e1f103da5b864a"
     },
-    "nonblank_lines": 1526,
-    "valid_claim_lines": 1526,
-    "unique_orders": 1505,
-    "superseded_or_repeated_lines": 21,
+    "nonblank_lines": 1724,
+    "valid_claim_lines": 1724,
+    "unique_orders": 1519,
+    "superseded_or_repeated_lines": 205,
     "parse_problems": []
   },
   "checker": {
-    "claims_checked": 1526,
-    "orders_with_claim": 1505,
-    "claims_gate_passed": 1436,
-    "claims_all_checks_passed": 1407,
-    "claims_mechanical_fail": 31,
+    "claims_checked": 1724,
+    "orders_with_claim": 1519,
+    "claims_gate_passed": 1634,
+    "claims_all_checks_passed": 1597,
+    "claims_mechanical_fail": 39,
     "claims_mechanical_unverified": 2
   },
   "freshness": {
-    "state": "generation_reported",
+    "state": "stale",
     "claim_receipts": {
       "current_claim_files_absent_from_checker_summary": [],
       "checker_summary_files_no_longer_present": [],
-      "exact_current_claim_lines": 1526,
+      "exact_current_claim_lines": 1724,
       "unmatched_current_claim_lines": 0,
-      "effective_orders_with_matching_receipt": 1505,
+      "effective_orders_with_matching_receipt": 1519,
       "unmatched_effective_orders": 0,
       "state": "claim_versions_match",
       "unmatched_claim_keys": [],
@@ -272,34 +289,39 @@
     "tracker_generation": {
       "blocked_by": [],
       "branch": "main",
-      "commit_run": "e348b5eac2588d819ce9cfa3e1dec75b8afe4508",
+      "commit_run": "ce0d5f8a6361c3a6935fa6cddde55672358bd19b",
       "exit_code": 0,
-      "finished_utc": "2026-11-06T09:17:56Z",
+      "finished_utc": "2026-11-06T15:46:08Z",
+      "generation_id": "42240575189-1:78278e3dc22c34fca89cdf4498892a27821f459f47fbaed95b32c9988a2e8f38",
       "job": "readiness-tracker",
       "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
       "max_output_file_bytes": 99614720,
       "oversized_files_moved_to_run_download": [],
       "result": "succeeded",
-      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42190984454",
-      "started_utc": "2026-11-06T09:17:05Z",
+      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42240575189",
+      "started_utc": "2026-11-06T15:44:59Z",
       "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
     },
     "checker_generation": {
       "blocked_by": [],
       "branch": "main",
-      "commit_run": "e348b5eac2588d819ce9cfa3e1dec75b8afe4508",
+      "commit_run": "ce0d5f8a6361c3a6935fa6cddde55672358bd19b",
       "exit_code": 0,
-      "finished_utc": "2026-11-06T09:17:05Z",
+      "finished_utc": "2026-11-06T15:44:59Z",
+      "generation_id": "42240575189-1:3bcc19a44537a836f19e8f2176bb154b4884869eb062f680d130cd4fb63424d8",
       "job": "claim-checker",
       "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
       "max_output_file_bytes": 99614720,
       "oversized_files_moved_to_run_download": [],
       "result": "succeeded",
-      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42190984454",
-      "started_utc": "2026-11-06T09:02:02Z",
+      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42240575189",
+      "started_utc": "2026-11-06T15:17:15Z",
       "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
     },
-    "discrepancies": [],
+    "discrepancies": [
+      "Status identity outside working universe: EO:7933a",
+      "Tracker provisional-status count differs from the current status register"
+    ],
     "interpretation": "Claim-version matching does not establish freshness of every source, policy, or tracker input."
   },
   "human_review": {
@@ -326,38 +348,38 @@
   "sources": {
     "universe": {
       "path": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
-      "sha256": "b931c9eb45ef8750c1e39ea7dd4a7c83d3a53dd049a464764a9fb29da5abcf8f",
-      "bytes": 2357636
+      "sha256": "facfb05ba95598d00c518e3dae68aca2e3f73d8c13b9ab2f54b263f52e980b4c",
+      "bytes": 2362009
     },
     "statuses": {
       "path": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
-      "sha256": "d2594085e587da8ae929d7c03a576c8f24fb17e57054bf411e935879fe2318d8",
-      "bytes": 1127333
+      "sha256": "da1af0e016cfdc1788f5fe5d5867318bd7adbb225dd9d8eeec39a30206f15bb4",
+      "bytes": 1130271
     },
     "tracker": {
       "path": "jobs/readiness-tracker/output/SUMMARY.json",
-      "sha256": "fb8ad22a577191da38c32cc820c7b708bf57db0a4607e9ad3b33c31d42129da6",
-      "bytes": 10205
+      "sha256": "72d2df94f92a365fdec2b4fa825199b641f604008d901764210bd11d936e7e71",
+      "bytes": 11373
     },
     "tracker_status": {
       "path": "jobs/readiness-tracker/output/STATUS.json",
-      "sha256": "b9b808e39b76dcb00c5a11b42e35924e5d25f860fbe44295d2a76621666d704d",
-      "bytes": 585
+      "sha256": "95b33e24afea8619e9b383a13d579a3290b1e39d9027c488a1f883de7333a66b",
+      "bytes": 686
     },
     "checker": {
       "path": "jobs/claim-checker/output/SUMMARY.json",
-      "sha256": "977ea5509180f13dcde3e254cd1dcfe840127e849b63c48ddbdc553a57023098",
-      "bytes": 11374
+      "sha256": "bde827bd2b0557ec48bcfda95a3beff39c251c67eeb66910bb8955d90a457cb4",
+      "bytes": 11503
     },
     "checker_receipts": {
       "path": "jobs/claim-checker/output/PER_CLAIM.json",
-      "sha256": "9f11200422380e3ba52d7681a8f51e49958cb329aec21500a2b7bf96fbbab711",
-      "bytes": 3808511
+      "sha256": "3615df0ce215dd951b5ddeb5e00e1693a6474783fe9ce904855a2b4e829a412c",
+      "bytes": 4185913
     },
     "checker_status": {
       "path": "jobs/claim-checker/output/STATUS.json",
-      "sha256": "3fd87bec88b0689640144f86dd0e8f53ae75ce400025d0324497bd16161b9b9d",
-      "bytes": 581
+      "sha256": "d795299eb155fc839ae7e6c5ed833153b63d5c0875d30a0d3558d4fb77c0f625",
+      "bytes": 682
     },
     "human_review": {
       "path": "research/stage19/output/PROGRESS.json",
@@ -389,31 +411,33 @@
     "tracker": {
       "blocked_by": [],
       "branch": "main",
-      "commit_run": "e348b5eac2588d819ce9cfa3e1dec75b8afe4508",
+      "commit_run": "ce0d5f8a6361c3a6935fa6cddde55672358bd19b",
       "exit_code": 0,
-      "finished_utc": "2026-11-06T09:17:56Z",
+      "finished_utc": "2026-11-06T15:46:08Z",
+      "generation_id": "42240575189-1:78278e3dc22c34fca89cdf4498892a27821f459f47fbaed95b32c9988a2e8f38",
       "job": "readiness-tracker",
       "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
       "max_output_file_bytes": 99614720,
       "oversized_files_moved_to_run_download": [],
       "result": "succeeded",
-      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42190984454",
-      "started_utc": "2026-11-06T09:17:05Z",
+      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42240575189",
+      "started_utc": "2026-11-06T15:44:59Z",
       "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
     },
     "checker": {
       "blocked_by": [],
       "branch": "main",
-      "commit_run": "e348b5eac2588d819ce9cfa3e1dec75b8afe4508",
+      "commit_run": "ce0d5f8a6361c3a6935fa6cddde55672358bd19b",
       "exit_code": 0,
-      "finished_utc": "2026-11-06T09:17:05Z",
+      "finished_utc": "2026-11-06T15:44:59Z",
+      "generation_id": "42240575189-1:3bcc19a44537a836f19e8f2176bb154b4884869eb062f680d130cd4fb63424d8",
       "job": "claim-checker",
       "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
       "max_output_file_bytes": 99614720,
       "oversized_files_moved_to_run_download": [],
       "result": "succeeded",
-      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42190984454",
-      "started_utc": "2026-11-06T09:02:02Z",
+      "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42240575189",
+      "started_utc": "2026-11-06T15:17:15Z",
       "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
     },
     "pinakes": {

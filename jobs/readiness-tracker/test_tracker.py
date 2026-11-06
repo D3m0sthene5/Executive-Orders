@@ -121,6 +121,35 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders["EO:4"]["blockers"], "NO_PROVISIONAL_STATUS|NO_OFFICIAL_SOURCE_LOCATED")
         self.assertEqual(s["decided_orders_blocked_by"]["FIRST_END_UNPROVED"], 2)
 
+    def test_two_denominators_numbered_unchanged_unnumbered_read_from_domesday(self):
+        orders, s = self.run_tracker()
+        before = {k: s[k] for k in ("orders_total", "ready_for_human_review", "orders_with_provisional_status")}
+        # Absent domesday output: fields exist and say so; the numbered count is the existing universe.
+        f = tracker.unnumbered_fields(str(self.root), s["orders_total"])
+        self.assertEqual(f, {"numbered_series_orders": 4, "unnumbered_series_observed": None,
+                             "unnumbered_series_estimate_95": None})
+        out = self.root / "_out"
+        tracker.write_outputs(str(out), list(orders.values()), {**s, **f}, {})
+        md = (out / "TRACKER.md").read_text(encoding="utf-8")
+        self.assertIn("**Numbered series: ready for human review 0 of 4 orders (0.0%)**", md)
+        self.assertIn("not measured yet", md)
+        # Present: observed count and the interval are carried; the proportion is still on the numbered universe.
+        self.write(tracker.UNNUMBERED_SUMMARY, json.dumps({"unnumbered_series_observed": 2334,
+                                                           "unnumbered_series_estimate_95": [4101, 5095]}))
+        f = tracker.unnumbered_fields(str(self.root), s["orders_total"])
+        self.assertEqual((f["numbered_series_orders"], f["unnumbered_series_observed"], f["unnumbered_series_estimate_95"]),
+                         (4, 2334, [4101, 5095]))
+        tracker.write_outputs(str(out), list(orders.values()), {**s, **f}, {})
+        md = (out / "TRACKER.md").read_text(encoding="utf-8")
+        self.assertIn("2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval)", md)
+        self.assertIn("0 of 4 orders", md)
+        summary = json.loads((out / "SUMMARY.json").read_text(encoding="utf-8"))
+        self.assertEqual(summary["numbered_series_orders"], summary["orders_total"])
+        self.assertEqual({k: s[k] for k in before}, before)
+        # A malformed file is ignored, never a crash or a changed count.
+        self.write(tracker.UNNUMBERED_SUMMARY, "not json")
+        self.assertIsNone(tracker.unnumbered_fields(str(self.root), 4)["unnumbered_series_observed"])
+
     def test_shared_sources_group_into_one_unlock_and_retrieved_statutes_count(self):
         orders, s = self.run_tracker()
         unlock = {u["blocker"]: u["orders_unblocked"] for u in s["shared_unlocks"]}

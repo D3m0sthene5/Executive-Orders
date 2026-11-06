@@ -60,7 +60,7 @@ NUMBER_SLACK = 20            # a cited number may run a little ahead of the date
 # --- mentions harvest ------------------------------------------------------------------------------
 
 def canon_set(ids):
-    """Census ids in canonical form ('EO:7933a' -> 'EO:7933A'), for membership tests."""
+    """Census ids in canonical form (legacy 'EO:7933a' -> 'EO:7933A'; the census itself spells it 7933A since R9), for membership tests."""
     out = set()
     for i in ids:
         p = ident.parse_eo_id(i)

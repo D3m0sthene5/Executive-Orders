@@ -1,0 +1,164 @@
+{
+ "wave": "dorotheus",
+ "generated_from": "Claude Code session transcripts via Hamilton profile.py (jobs/hamilton-token-audit); per-call usage_records, sanitized by jobs/bentham/sessions.py",
+ "phase_source": "--phase-map",
+ "filters": {
+  "session_id_prefix": null,
+  "since": "2026-11-06T10:00:00+00:00"
+ },
+ "token_categories_note": "fresh_input, cache_read, cache_write and output are separate, nonoverlapping categories and are never summed together. Null means no value observed.",
+ "totals": {
+  "agents": 49,
+  "calls": 1682,
+  "fresh_input": 3351,
+  "cache_read": 238139152,
+  "cache_write_5m": 0,
+  "cache_write_1h": 4752759,
+  "cache_write_unclassified": 0,
+  "output": 1223792
+ },
+ "totals_by_phase": {
+  "coordination": {
+   "agents": 1,
+   "calls": 194,
+   "fresh_input": 388,
+   "cache_read": 45290707,
+   "cache_write_5m": 0,
+   "cache_write_1h": 361056,
+   "cache_write_unclassified": 0,
+   "output": 156611
+  },
+  "production": {
+   "agents": 26,
+   "calls": 861,
+   "fresh_input": 1722,
+   "cache_read": 92058655,
+   "cache_write_5m": 0,
+   "cache_write_1h": 2612259,
+   "cache_write_unclassified": 0,
+   "output": 682940
+  },
+  "review": {
+   "agents": 19,
+   "calls": 450,
+   "fresh_input": 900,
+   "cache_read": 35633689,
+   "cache_write_5m": 0,
+   "cache_write_1h": 1445500,
+   "cache_write_unclassified": 0,
+   "output": 244562
+  },
+  "unlabeled": {
+   "agents": 3,
+   "calls": 177,
+   "fresh_input": 341,
+   "cache_read": 65156101,
+   "cache_write_5m": 0,
+   "cache_write_1h": 333944,
+   "cache_write_unclassified": 0,
+   "output": 139679
+  }
+ },
+ "totals_by_model_family": {
+  "opus": {
+   "agents": 2,
+   "calls": 272,
+   "fresh_input": 531,
+   "cache_read": 100732038,
+   "cache_write_5m": 0,
+   "cache_write_1h": 465235,
+   "cache_write_unclassified": 0,
+   "output": 212301
+  },
+  "sonnet": {
+   "agents": 47,
+   "calls": 1410,
+   "fresh_input": 2820,
+   "cache_read": 137407114,
+   "cache_write_5m": 0,
+   "cache_write_1h": 4287524,
+   "cache_write_unclassified": 0,
+   "output": 1011491
+  }
+ },
+ "totals_by_model": {
+  "claude-opus-5-5": {
+   "agents": 2,
+   "calls": 272,
+   "fresh_input": 531,
+   "cache_read": 100732038,
+   "cache_write_5m": 0,
+   "cache_write_1h": 465235,
+   "cache_write_unclassified": 0,
+   "output": 212301
+  },
+  "claude-sonnet-5-5": {
+   "agents": 47,
+   "calls": 1410,
+   "fresh_input": 2820,
+   "cache_read": 137407114,
+   "cache_write_5m": 0,
+   "cache_write_1h": 4287524,
+   "cache_write_unclassified": 0,
+   "output": 1011491
+  }
+ },
+ "totals_by_phase_and_family": {
+  "coordination|opus": {
+   "agents": 1,
+   "calls": 194,
+   "fresh_input": 388,
+   "cache_read": 45290707,
+   "cache_write_5m": 0,
+   "cache_write_1h": 361056,
+   "cache_write_unclassified": 0,
+   "output": 156611
+  },
+  "production|sonnet": {
+   "agents": 26,
+   "calls": 861,
+   "fresh_input": 1722,
+   "cache_read": 92058655,
+   "cache_write_5m": 0,
+   "cache_write_1h": 2612259,
+   "cache_write_unclassified": 0,
+   "output": 682940
+  },
+  "review|sonnet": {
+   "agents": 19,
+   "calls": 450,
+   "fresh_input": 900,
+   "cache_read": 35633689,
+   "cache_write_5m": 0,
+   "cache_write_1h": 1445500,
+   "cache_write_unclassified": 0,
+   "output": 244562
+  },
+  "unlabeled|opus": {
+   "agents": 1,
+   "calls": 78,
+   "fresh_input": 143,
+   "cache_read": 55441331,
+   "cache_write_5m": 0,
+   "cache_write_1h": 104179,
+   "cache_write_unclassified": 0,
+   "output": 55690
+  },
+  "unlabeled|sonnet": {
+   "agents": 2,
+   "calls": 99,
+   "fresh_input": 198,
+   "cache_read": 9714770,
+   "cache_write_5m": 0,
+   "cache_write_1h": 229765,
+   "cache_write_unclassified": 0,
+   "output": 83989
+  }
+ },
+ "notes": [
+  "Agents counted per grouping can overlap across groupings when one agent used several models.",
+  "Main (coordinator) transcripts are partial: they can span work earlier than the labelled phase.",
+  "Output tokens may be a lower bound where a call never recorded a final count.",
+  "Tokens are what transcripts recorded; they are not an invoice."
+ ]
+}

@@ -190,7 +190,9 @@ def compute_rates(repo: Path, rows: list[dict], status: dict[str, str], pooled_s
         for era in ("fr", "prefr"):
             sel = [r for r in prod if status.get(r["id"]) == st and era_of(r["id"]) == era]
             alt = None
-            for w in remaining_samples:
+            # Dorotheus 2026-11-06: the newest random sample of the remaining stratum describes today's pool best.
+            newest_first = sorted(remaining_samples, key=lambda w: (re.findall(r"\d{4}-\d{2}-\d{2}", w) or [""])[-1], reverse=True)
+            for w in newest_first:
                 smp = [r for r in sel if r["wave"] == w]
                 if len(smp) >= MIN_SAMPLE:
                     alt = count(sel)

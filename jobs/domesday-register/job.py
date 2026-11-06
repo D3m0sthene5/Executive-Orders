@@ -6,7 +6,7 @@ import subprocess
 import sys
 
 here = pathlib.Path(__file__).parent
-tests = subprocess.run([sys.executable, "-m", "unittest", "-v", "test_register"], cwd=here)
+tests = subprocess.run([sys.executable, "-m", "unittest", "-v", "test_register", "test_unnumbered"], cwd=here)
 if tests.returncode:
     sys.exit("Tests failed; register not built.")
 

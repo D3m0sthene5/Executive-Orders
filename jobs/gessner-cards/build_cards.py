@@ -21,6 +21,7 @@ OUT = pathlib.Path(os.environ.get("OUTPUT_DIR", HERE / "output"))
 
 REGISTER = REPO / "jobs/domesday-register/output/REGISTER.csv"
 REGISTER_SUMMARY = REPO / "jobs/domesday-register/output/SUMMARY.json"
+UNNUMBERED_SUMMARY = REPO / "jobs/domesday-register/output/UNNUMBERED_SUMMARY.json"
 READINESS = REPO / "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
 TRACKER_STATUS = REPO / "jobs/readiness-tracker/output/STATUS.json"
 
@@ -144,7 +145,7 @@ def build(register_rows, readiness_rows, meta):
     with_status = sum(1 for r in rows if r[6])
     one_step = sum(1 for r in rows if not r[8] and r[6] and sum(c == "o" for c in r[7]) == 1)
     summary = {
-        "orders": len(rows), "ready_for_human_review": ready, "with_provisional_status": with_status,
+        "orders": len(rows), "numbered_series_orders": len(rows), "ready_for_human_review": ready, "with_provisional_status": with_status,
         "not_researched": len(rows) - with_status, "one_step_from_ready": one_step,
         "human_certified": 0,
         "presidents_from_register": len(rows) - derived - sum(1 for r in rows if r[4] in (2, 3)),
@@ -163,6 +164,19 @@ def build(register_rows, readiness_rows, meta):
     return data, summary
 
 
+def unnumbered_meta(path=UNNUMBERED_SUMMARY):
+    """Second denominator (owner ruling R10), shown beside the numbered-series count; None when not yet measured."""
+    try:
+        u = json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
+        obs, est = u["unnumbered_series_observed"], u.get("unnumbered_series_estimate_95")
+        if not isinstance(obs, int):
+            raise ValueError
+        return {"unnumbered_series_observed": obs,
+                "unnumbered_series_estimate_95": est if isinstance(est, list) and len(est) == 2 else None}
+    except (OSError, ValueError, KeyError, AttributeError):
+        return {"unnumbered_series_observed": None, "unnumbered_series_estimate_95": None}
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     with open(REGISTER, newline="", encoding="utf-8") as f:
@@ -175,6 +189,7 @@ def main():
         "tracker_finished_utc": status.get("finished_utc"), "tracker_result": status.get("result"),
         "tracker_run_url": status.get("run_url"), "tracker_commit": status.get("commit_run"),
         "register_generated_utc": reg_summary.get("generated_utc"),
+        **unnumbered_meta(),
     }
     data, summary = build(register_rows, readiness_rows, meta)
     if summary["readiness_rows_missing_from_register"]:
