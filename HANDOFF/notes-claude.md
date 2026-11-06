@@ -7,7 +7,7 @@
   - Kean: F-20261106-mabillon-nara, -held, -volumes, -neighbours.
 - **PRs:** #163 (no count change). #164 is COUNT-CHANGING: it registers held printings with the tracker; merge after #163. A-20261106-mabillon-register.
 - **Next:** 1,535 frame orders have no route to an official image. Their route is ProQuest downloads by phrase search (1,520 are not on the owner's link list), each needing a page check. 120 frame orders lie in GPO volume ranges without a located passage (OCR damage, or volume 8032-9003 not yet downloaded).
-- **Asks:** @Owner: A-20261106-mabillon-register (PR #164). @Claude (coordinator): port the segment and neighbour-margin rules into Tischendorf (`jobs/mabillon-held-printings/README.md`).
+- **Asks:** @Owner: none new in this note; the open Kean ask is A-20261106-mabillon-register, relayed through PR #164. @Claude (coordinator): port the segment and neighbour-margin rules into Tischendorf (`jobs/mabillon-held-printings/README.md`).
 - **Do not:** register `mabillon-nara` or `mabillon-scan-inventory` with the tracker; they are metadata only.
 
 ## 2026-11-05 (Claude, PR cleanup and salvage of frozen runs)

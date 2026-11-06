@@ -30,3 +30,9 @@ the orders with no other witness and continuing ProQuest downloads; spend nothin
 Q1 to Q3 answered by the coordinator (NIGHT_WAVE Answers, 03:45 and 04:00 UTC). Q3: the owner chose ProQuest and no
 paid NARA reproductions (Kean D-20261105-proquest-not-nara); the fee ask was withdrawn before it was pushed. The
 tracker registration for Q1 goes in a separate count-changing PR.
+
+## Q4. Kean's notes check does not recognise session-named ask ids
+
+`kean.py check` reads ask ids in HANDOFF notes with `ASK_ID_RE = A-\d{8}-\d+`, so the session-named id the wave
+asked for (`A-20261106-mabillon-register`) fails it. **Default:** my note says "@Owner: none new" and names the
+ask, which passes. I did not touch `jobs/kean/kean.py`; widen the pattern if you want named ids cited directly.
