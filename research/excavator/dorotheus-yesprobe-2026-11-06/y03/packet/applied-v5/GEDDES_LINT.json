@@ -1,0 +1,147 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/user/Executive-Orders/research/excavator/dorotheus-yesprobe-2026-11-06/y03/packet/PACKET.json",
+  "seconds": 16.176,
+  "files_read": 44903,
+  "file_reads": 89953,
+  "packet_fingerprint": "cefb6c19f06f11866f2a82dbf03e1eefa26146e30fd0de4455413f5bdec2f545",
+  "claims_checked": 3,
+  "defect_flags": 13,
+  "coverage_gaps": 2,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:11600",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:11961",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:12046",
+      "flags": [
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.operative_clauses[6].judgment_reason",
+          "detail": "reasoning cites 49 FR 13471; pinned original cites [('43', '13349')]",
+          "source_id": "ORIGINAL:EO:12046",
+          "flag_id": "ca8e19373896342b"
+        },
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.operative_clauses[8].judgment_reason",
+          "detail": "reasoning cites 49 FR 13471; pinned original cites [('43', '13349')]",
+          "source_id": "ORIGINAL:EO:12046",
+          "flag_id": "ca8e19373896342b"
+        },
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.operative_clauses[12].judgment_reason",
+          "detail": "reasoning cites 49 FR 13471; pinned original cites [('43', '13349')]",
+          "source_id": "ORIGINAL:EO:12046",
+          "flag_id": "ca8e19373896342b"
+        },
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.operative_clauses[13].judgment_reason",
+          "detail": "reasoning cites 49 FR 13471; pinned original cites [('43', '13349')]",
+          "source_id": "ORIGINAL:EO:12046",
+          "flag_id": "ca8e19373896342b"
+        },
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.operative_clauses[14].judgment_reason",
+          "detail": "reasoning cites 49 FR 13471; pinned original cites [('43', '13349')]",
+          "source_id": "ORIGINAL:EO:12046",
+          "flag_id": "ca8e19373896342b"
+        },
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.operative_clauses[15].judgment_reason",
+          "detail": "reasoning cites 49 FR 13471; pinned original cites [('43', '13349')]",
+          "source_id": "ORIGINAL:EO:12046",
+          "flag_id": "ca8e19373896342b"
+        },
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.operative_clauses[17].judgment_reason",
+          "detail": "reasoning cites 49 FR 13471; pinned original cites [('43', '13349')]",
+          "source_id": "ORIGINAL:EO:12046",
+          "flag_id": "ca8e19373896342b"
+        },
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.operative_clauses[20].judgment_reason",
+          "detail": "reasoning cites 49 FR 13471; pinned original cites [('43', '13349')]",
+          "source_id": "ORIGINAL:EO:12046",
+          "flag_id": "ca8e19373896342b"
+        },
+        {
+          "code": "fr_citation_mismatch",
+          "field": "claim.operative_clauses[21].judgment_reason",
+          "detail": "reasoning cites 49 FR 13471; pinned original cites [('43', '13349')]",
+          "source_id": "ORIGINAL:EO:12046",
+          "flag_id": "ca8e19373896342b"
+        },
+        {
+          "code": "later_instrument_named_without_event_source",
+          "scope_id": "EO:12046#s2-1",
+          "actor": "EO:12472",
+          "reasoning_sentence": "Not among the sections revoked by EO 12472, and no other held instrument revokes it.",
+          "detail": "Reasoning describes EO:12472 as a later actor but this clause has no source-backed later_events entry for it.",
+          "flag_id": "f521c001b239c604"
+        },
+        {
+          "code": "later_instrument_named_without_event_source",
+          "scope_id": "EO:12046#s4-101",
+          "actor": "EO:12472",
+          "reasoning_sentence": "EO 12472 revoked 4-102 and 4-103 (the implementing directions to OSTP and the NSC) but not 4-101, and no held instrument revokes 4-101",
+          "detail": "Reasoning describes EO:12472 as a later actor but this clause has no source-backed later_events entry for it.",
+          "flag_id": "206e880d4d077179"
+        },
+        {
+          "code": "later_instrument_named_without_event_source",
+          "scope_id": "EO:12046#s4-301",
+          "actor": "EO:12472",
+          "reasoning_sentence": "EO 12472 revoked 4-302 (NSC assistance) but not 4-301, and no held instrument revokes 4-301; a standing allocation with no date or condition.",
+          "detail": "Reasoning describes EO:12472 as a later actor but this clause has no source-backed later_events entry for it.",
+          "flag_id": "9f4402b2219906aa"
+        },
+        {
+          "code": "event_precedes_order",
+          "scope_id": "EO:12046#s1-1",
+          "field": "operative_clauses[0].first_end.date",
+          "span": "1978-03-26",
+          "detail": "The recorded date 1978-03-26 precedes the order's own date 1978-03-27.",
+          "flag_id": "dbeff9933df017a3"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
