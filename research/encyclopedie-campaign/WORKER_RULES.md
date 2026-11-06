@@ -27,7 +27,9 @@ and git pathspecs. Prefix such commands with `MSYS_NO_PATHCONV=1`.
 ## Line endings (this bites)
 
 The checkout and the file tools on this PC can write CRLF. Before every `git add`, convert your files to LF:
-`py -I -c "import sys;[open(p,'wb').write(open(p,'rb').read().replace(b'\r\n',b'\n')) for p in sys.argv[1:]]" FILES`.
+`py -I C:/Users/danie/eo-wt/enc-diderot/research/encyclopedie-campaign/tools/lf.py FILES` (it reads each file fully
+before writing it back. The one-liner first given here opened the file for writing before reading it and emptied
+files; fixed 2026-11-06 23:40 UTC. If you ran it, check your files' sizes.)
 After staging, `git diff --cached --numstat` must show only the lines you meant to change. Never stage files you did not
 write (the checkout shows thousands of spurious "modified" files; ignore them, add paths explicitly, never `git add -A`).
 
