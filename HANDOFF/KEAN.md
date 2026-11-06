@@ -30,13 +30,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 151; `search` finds the rest)
+## Newest results (6 of 156; `search` finds the rest)
 
 - 2026-11-05 F-20261105-tischendorf-2 **partly worked**: Tischendorf first live run: one network request at a time with a single shared request budget Lesson: For any network job: follow jobs/README.md's parallel-workers rule from the start, give each route its own budget, and smoke-test each route on a handful of orders before a full run
 - 2026-11-05 F-20261105-tischendorf-1 **partly worked**: Tischendorf (jobs/tischendorf-originals): prove official printings for transcription-only orders by comparing… Lesson: A held transcription is evidence for locating its own original: comparing wording turns a number-only location into a measured match
 - 2026-11-05 F-20261105-theophilus **worked**: Theophilus wave (Bentham ranks 8 and 11): recover 48 custody-stranded reviewed claims by fresh prepare plus u… Lesson: Run the actual checker on the exact reviewed lines before buying review: it sorts recoverable claims from mechanically blocked ones for free. One-step-away is a source-acquisition queue, not a produc…
 - 2026-11-05 F-20261105-stable-main-publication **worked**: Integrate completed EO work and remove production/reporting publication races Lesson: Successful computation is not publication. Queue automatic writers before checkout, bind receipts to actual inputs, and keep shared inputs stable.
-- 2026-11-05 F-20261105-icecore **stopped at gate**: Ice core probe: 30 orders drawn by decade from each remaining claim-ready stratum (886 NO, 359 YES), run as o… Lesson: A finished wave's yield describes the orders it drew, not the ones left: Tribonian skimmed the NO stratum, so its 47.6% overstated the remaining NO yield about fourteenfold (47.6% against 3.3%). Meas…
-- 2026-11-05 F-20261105-herschel-survey **analysis**: Herschel: free census of all 96,598 open order-steps, two independent probability samples (153 + 85 orders) r… Lesson: Do not run a full agent wave on current holdings: fix zero-agent blockers first (byte retention, overlay write rule, machine later-source searches, pre-1937 disposition source), then re-run Bentham.…
+- 2026-11-05 F-20261105-machiavelli-source-questions **worked**: Examine actual report submission and judicial/collective-bargaining source questions Lesson: Distinguish submission from receipt, source-export time from event time, and a court judgment from the mandate making it effective. New source evidence requires scoped legal application and fresh rel…
+- 2026-11-05 F-20261105-machiavelli-production **partly worked**: Run a disjoint modern undecided EO research and production swarm Lesson: Freeze exact case ownership and distinguish research/status-source approval from first-cessation history and owner adoption; carry cumulative analysis across the gate.
 
-Register: 23 owner decisions, 13 answered questions, 151 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 23 owner decisions, 13 answered questions, 156 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
