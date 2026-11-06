@@ -300,6 +300,26 @@ class FreshnessTests(unittest.TestCase):
         manifest = json.loads((output / freshness.MANIFEST).read_text())
         self.assertIn("jobs/source/MAX_OUTPUT_FILE_BYTES", manifest["inputs"])
 
+    def test_generation_id_reaches_job_and_status_and_refusal_is_blocked(self):
+        # Justinian 2026-11-06 (A3): one id per execution, shared by the job's own outputs and STATUS.json;
+        # a job that writes BLOCKED.json and exits non-zero is recorded as blocked with its reason.
+        self.put("jobs/source/job.py", "import os\nfrom pathlib import Path\n"
+                 "Path(os.environ['OUTPUT_DIR'], 'gen.txt').write_text(os.environ['JOB_GENERATION_ID'])\n")
+        self.put("jobs/other/job.py", "import json, os\nfrom pathlib import Path\n"
+                 "Path(os.environ['OUTPUT_DIR'], 'BLOCKED.json').write_text(json.dumps({'reason': 'mismatch'}))\n"
+                 "raise SystemExit(3)\n")
+        result = self.shell("run_jobs.sh", "source other")
+        self.assertNotEqual(result.returncode, 0)
+        output = self.repo / "jobs/source/output"
+        status = json.loads((output / "STATUS.json").read_text())
+        manifest = json.loads((output / freshness.MANIFEST).read_text())
+        self.assertEqual((output / "gen.txt").read_text(), status["generation_id"])
+        self.assertTrue(status["generation_id"].endswith(":" + manifest["inputs_sha256"]))
+        records = json.loads((self.repo / "oversized/runner-freshness/ATTEMPTS.json").read_text())
+        refused = json.loads((self.repo / records[1]["attempt_path"] / "STATUS.json").read_text())
+        self.assertEqual(refused["result"], "blocked")
+        self.assertEqual(refused["blocked_reason"], "mismatch")
+
     def test_unsafe_output_cap_fails_before_generation_and_preserves_previous_output(self):
         self.put("jobs/source/MAX_OUTPUT_FILE_BYTES", "104857600\n")
         result = self.shell("run_jobs.sh", "source consumer")
