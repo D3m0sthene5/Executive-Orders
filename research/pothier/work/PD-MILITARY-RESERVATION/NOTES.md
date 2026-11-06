@@ -83,3 +83,13 @@ Web (read, not held):
 About three hours of agent time: one hour reading members and type rules, one hour on sources (held and web), one
 hour building and testing branches (eight `try` iterations). The generator script used to write the JSON lived in
 `/tmp` and is not part of the deliverable.
+
+## Version 2 under the coordinator rulings (2026-11-05)
+
+Applied `research/pothier/COORDINATOR_RULINGS.md`: B21 bound moved to 1999-12-31 (P5; the held Panama Canal Act has no
+words ending the reservations earlier); B20 split into B20 (`no`, interval to 1947-03-26, for places not retained) and
+B20r (`open`, 16 members at places listed in Annexes A and B of the 1947 Military Bases Agreement, read on the web at
+the UNTS vol. 43 copy) after re-reading TM secs. 5 and 10(a)-(b), 22 U.S.C. 1392 (58 Stat. 626), Treaty art. I and the
+agreement; B10 split into B10 (revocations, `spent_on_issue`, P1) and B10m (amendments, `merged_into_parent_on_issue`
+with the P2 disclosure); B11 kind `spent_on_issue`; S-ORDER is now `member_text` (P6); B01 split into B01a-c naming
+PD-ADMIN, PD-CS-RULES and PD-WAR-EMERGENCY. New counts: 143 `no`, 0 `yes`, 173 `open`. About 45 minutes.

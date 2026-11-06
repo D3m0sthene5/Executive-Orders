@@ -2,7 +2,7 @@
  "schema": "pothier-family-doctrine/v1",
  "doctrine_id": "PD-MILITARY-RESERVATION",
  "family": "Military and naval reservations (X1 type military_naval_reservation)",
- "version": 1,
+ "version": 2,
  "members": {
   "field": "x1_type",
   "in": [
@@ -14,7 +14,7 @@
    "id": "M1",
    "kind": "own_terms",
    "effect": "ends",
-   "description": "An order whose only command revokes, vacates, amends or restores is performed when it issues; it is spent on issue as a command, and its effect is evidence about the order it acts on.",
+   "description": "An order whose only command revokes, vacates, restores or relinquishes is performed when it issues and is spent on issue (coordinator ruling P1); an order whose only command amends another merges into the parent on issue and its text lives or ends with the parent (ruling P2).",
    "effective_date_rule": "order date",
    "source_ids": [
     "S-ORDER"
@@ -68,8 +68,8 @@
    "id": "M4",
    "kind": "class_event",
    "effect": "ends",
-   "description": "Philippine independence: surrender of all U.S. reservations by Proclamation 2695 on July 4, 1946 under sec. 10(a) of the 1934 Act, and of all remaining rights except base use by agreement under the Treaty of General Relations on October 22, 1946.",
-   "effective_date_rule": "interval from the order date to 1946-10-22",
+   "description": "Philippine independence, through instruments whose words reach reservations: sec. 10(a) of the 1934 Act ('including all military and other reservations', except naval reservations and fueling stations), Proclamation 2695 of July 4, 1946, Article I of the Treaty of General Relations (in force October 22, 1946; excepting bases retained by agreement), and the 1947 Military Bases Agreement, which fixed the retained bases in Annexes A and B. Members at retained bases need the instrument that relinquished the base.",
+   "effective_date_rule": "interval from the order date to 1947-03-26 for places not retained; none for retained bases",
    "source_ids": [
     "S-TM",
     "S-P2695",
@@ -82,11 +82,11 @@
    "id": "M5",
    "kind": "class_event",
    "effect": "ends",
-   "description": "End of the Canal Zone: the Panama Canal Treaty of 1977 entered into force on October 1, 1979, Panama reassumed plenary jurisdiction, and later U.S. use of military areas rested on the Treaty and its Article IV implementing agreement; the Treaty terminated December 31, 1999.",
-   "effective_date_rule": "interval from the order date to 1979-10-01",
+   "description": "End of the Canal Zone and of U.S. rights there: the Panama Canal Treaty of 1977 entered into force on October 1, 1979; defense sites stayed in U.S. use under the Agreement in Implementation of Article IV until the Treaty terminated at noon on December 31, 1999.",
+   "effective_date_rule": "interval from the order date to 1999-12-31",
    "source_ids": [
-    "S-PCA",
-    "S-PCT"
+    "S-PCT",
+    "S-PCA"
    ]
   },
   {
@@ -122,14 +122,10 @@
  "sources": [
   {
    "id": "S-ORDER",
-   "citation": "The member order's own held text (primary_text_path)",
+   "member_text": true,
+   "citation": "The member order's own held text",
    "title": "Member order text",
-   "url": "",
-   "held": true,
-   "held_path": "jobs/pothier/output/MEMBERS.jsonl",
-   "sha256": "",
-   "pin": "",
-   "establishes": "What the member order itself commands: a revocation, a restoration or relinquishment, an amendment, or a reservation; the machine reads it through the regex conditions of each branch."
+   "establishes": "What the member order itself commands: a revocation, a restoration or relinquishment, an amendment, or a reservation; the machine reads it through the regex conditions of each branch, and the engine records the member's own text path, sha256 and grade on every lead."
   },
   {
    "id": "S-TM",
@@ -162,7 +158,7 @@
    "held_path": "",
    "sha256": "",
    "pin": "except the use of such bases, necessary appurtenances to such bases",
-   "establishes": "Article I (read on the web, not held) withdraws and surrenders all U.S. rights of possession, supervision, jurisdiction, control or sovereignty over the Philippine Islands, except the use of such bases as the United States may by agreement with the Republic deem necessary to retain; the treaty entered into force on October 22, 1946, so any base withheld under the 1944 joint resolution or kept 'in its present status' under section 10(b) was thereafter used under agreement, not under the reserving executive order."
+   "establishes": "Article I (read on the web, not held) withdraws and surrenders all U.S. rights of possession, supervision, jurisdiction, control or sovereignty over the Philippine Islands, except the use of such bases as the United States may by agreement with the Republic deem necessary to retain; the treaty entered into force on October 22, 1946."
   },
   {
    "id": "S-JR1944",
@@ -243,14 +239,14 @@
   },
   {
    "id": "S-MBA1947",
-   "citation": "Agreement between the United States and the Republic of the Philippines concerning Military Bases, signed Mar. 14, 1947, 43 U.N.T.S. (No. 673) (Statutes at Large citation unverified)",
+   "citation": "Agreement between the United States and the Republic of the Philippines concerning Military Bases, signed Mar. 14, 1947, arts. I, XVII, XXIX and Annexes A and B, 43 U.N.T.S. No. 673; in force Mar. 26, 1947 (Statutes at Large citation not verified)",
    "title": "Military Bases Agreement 1947",
    "url": "https://treaties.un.org/doc/Publication/UNTS/Volume%2043/volume-43-I-673-English.pdf",
    "held": false,
    "held_path": "",
    "sha256": "",
-   "pin": "",
-   "establishes": "Not read in full. Needed only if the owner wants to test the doctrine's position that U.S. use of retained Philippine bases after 1946 rested on this agreement rather than on the reserving executive orders."
+   "pin": "the right to retain the use of the bases in the Philippines listed in Annex A",
+   "establishes": "Read on the web in the UNTS copy, not held. The Republic of the Philippines, 'in the exercise of its title and sovereignty', grants the United States the right to retain the use of the bases listed in Annex A (art. I(1)) and to use the Annex B bases when military necessity requires; the agreement came into force on March 26, 1947 for 99 years (art. XXIX). Annex A lists Clark Field Air Base and Fort Stotsenberg (Pampanga), Mariveles Military Reservation (Bataan), Camp John Hay Leave and Recreation Center (Baguio), the Army Communications System 'with the deletion of all stations in the Port of Manila Area', U.S. Armed Forces Cemetery No. 2 (San Francisco del Monte, Rizal), Angeles General Depot (Pampanga), Leyte-Samar Naval Base, Subic Bay Northwest Shore Naval Base with 'the existing Naval reservation at Olongapo and the existing Baguio Naval Reservation', Tawi Tawi Naval Anchorage, Canacao-Sangley Point Navy Base (Cavite), Bagobantay Transmitter Area and Manila-area radio sites, and four Loran stations in Palawan and Zambales; Annex B lists Mactan Island, Florida Blanca, the Aircraft Service Warning Net, Camp Wallace (La Union), Puerto Princesa (Palawan), Tawi Tawi Naval Base and Aparri. Exchange of Notes V reserves the adjustment of U.S. rights and titles to real property for later settlement."
   },
   {
    "id": "S-EO2143",
@@ -530,18 +526,18 @@
  ],
  "procedure": [
   {
-   "branch_id": "B01",
-   "description": "Members that are not land reservations at all (Saturday working hours, Civil Service Rules schedules, Marine Corps duties, seizure of German ships, closing of naval harbors, construction of 'military camps', Coast Guard prisoners). X1 typed them here because they mention navy yards or the War or Navy Department.",
+   "branch_id": "B01a",
+   "description": "Members that are not land reservations: Saturday working hours, the duties of the Marine Corps, or the use of naval prisons for Coast Guard prisoners: hours, organization and regulations orders. X1 typed them here because they mention navy yards or the War or Navy Department.",
    "when": [
     {
-     "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     "any_regex": "Four-hour work ?day|Duties of the United States Marine Corps|imprisonment of Coast Guard prisoners"
     }
    ],
    "lead": {
     "status_lead": "open",
     "lead_kind": "out_of_family",
     "basis_kind": "NONE",
-    "basis": "The order is not a military or naval land reservation; this doctrine has no mechanism for it. It belongs with the civil-service, pay or war families.",
+    "basis": "The order is not a military or naval land reservation and none of this doctrine's mechanisms reaches it; it belongs to PD-ADMIN, whose mechanisms should decide it.",
     "date_rule": {
      "kind": "none"
     },
@@ -549,7 +545,54 @@
     "source_ids": []
    },
    "gaps": [
-    "Route to the family whose mechanisms fit (PD-CS-RULES, PD-ADMIN or PD-WAR-EMERGENCY). Several Saturday-hours orders were revoked by later Saturday-hours orders in this same list (EO 1962 and EO 4026 revoke 'all Executive or other orders in conflict herewith', except EO 777); whether each earlier order conflicts is a reading question, not a pattern."
+    "Route to PD-ADMIN.",
+    "Several Saturday-hours orders were revoked in part by later Saturday-hours orders in this list (EO 1962 and EO 4026 revoke 'all Executive or other orders in conflict herewith', except EO 777); whether each earlier order conflicts is a reading question for the receiving family."
+   ]
+  },
+  {
+   "branch_id": "B01b",
+   "description": "Members that are not land reservations: amendments of Schedule A of the Civil Service Rules. X1 typed them here because they mention navy yards or the War or Navy Department.",
+   "when": [
+    {
+     "any_regex": "Civil ?Service Rules"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "out_of_family",
+    "basis_kind": "NONE",
+    "basis": "The order is not a military or naval land reservation and none of this doctrine's mechanisms reaches it; it belongs to PD-CS-RULES, whose mechanisms should decide it.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Route to PD-CS-RULES."
+   ]
+  },
+  {
+   "branch_id": "B01c",
+   "description": "Members that are not land reservations: the 1917 seizure of German vessels, the closing of naval harbors to foreign vessels, or the 1917 construction of 'military camps'. X1 typed them here because they mention navy yards or the War or Navy Department.",
+   "when": [
+    {
+     "any_regex": "Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\""
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "out_of_family",
+    "basis_kind": "NONE",
+    "basis": "The order is not a military or naval land reservation and none of this doctrine's mechanisms reaches it; it belongs to PD-WAR-EMERGENCY, whose mechanisms should decide it.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Route to PD-WAR-EMERGENCY."
    ]
   },
   {
@@ -1394,27 +1437,27 @@
   },
   {
    "branch_id": "B10",
-   "description": "Orders whose only command revokes, vacates, rescinds or amends an earlier order (for example a corrected land description), with no new reservation of their own.",
+   "description": "Orders whose only command revokes, vacates or rescinds an earlier order in whole or in part (sometimes placing the freed lands under the Interior Department), with no new reservation of their own.",
    "when": [
     {
      "summary_regex": "^\\W*(\\* ?)?(E\\. ?0\\.|B\\. ?0\\.|Executive Order|E\\. ?Os?\\.?)"
     },
     {
-     "summary_regex": "(revoked|amended)"
+     "summary_regex": "revoked"
     },
     {
      "not": {
-      "summary_regex": "(revoked|amended)[^;]{0,60}(and|;)[^;]{0,80}(reserved|(placed|restored|returned) ?(under|to) (the )?(control ?(of )?)?(the )?(War|Navy)|transferred to the (War|Navy|Treasury|Agriculture)|continued)|enlarg|fix(ed)? the boundaries"
+      "summary_regex": "amended"
+     }
+    },
+    {
+     "not": {
+      "summary_regex": "(revoked|amended)[^;]{0,60}(and|;)[^;]{0,80}(reserved|(placed|restored|returned) ?(under|to) (the )?(control ?(of )?)?(the )?(War|Navy)|transferred to the (War|Navy|Treasury|Agriculture)|continued)|(amended|modified)[^;]{0,60}enlarg|fix(ed)? the boundaries"
      }
     },
     {
      "not": {
       "text_regex": "placed under the control of the (War Department|Secretary of War|Navy Department|Secretary of the Navy)|continued in reservation"
-     }
-    },
-    {
-     "not": {
-      "summary_regex": "(reserv\\w+|enlarg\\w+|establish\\w+) [^;]{0,80}; ?E\\. ?0"
      }
     },
     {
@@ -1425,9 +1468,9 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "spent_on_issue_revocation_or_amendment",
+    "lead_kind": "spent_on_issue",
     "basis_kind": "TERM",
-    "basis": "By its own terms the order only revokes or amends another order; that single act was performed when the order issued. Its effect is evidence for the lifecycle of the order it acts on, not a continuing command of its own.",
+    "basis": "By its own terms the order only revokes another order (in whole or in part); that single act was performed when the order issued. Its effect is evidence for the lifecycle of the order it acts on, not a continuing command of its own (coordinator ruling P1).",
     "date_rule": {
      "kind": "order_date"
     },
@@ -1440,6 +1483,52 @@
    },
    "gaps": [
     "The branch reads the WPA 1944 summary; the held text should be checked for a second operative clause (a new reservation or a reserved right) that the summary omits."
+   ]
+  },
+  {
+   "branch_id": "B10m",
+   "description": "Orders whose only command amends an earlier order, usually by substituting a corrected land description, adding an omitted right of way, or reducing the lands it covered.",
+   "when": [
+    {
+     "summary_regex": "^\\W*(\\* ?)?(E\\. ?0\\.|B\\. ?0\\.|Executive Order|E\\. ?Os?\\.?)"
+    },
+    {
+     "summary_regex": "amended"
+    },
+    {
+     "not": {
+      "summary_regex": "(revoked|amended)[^;]{0,60}(and|;)[^;]{0,80}(reserved|(placed|restored|returned) ?(under|to) (the )?(control ?(of )?)?(the )?(War|Navy)|transferred to the (War|Navy|Treasury|Agriculture)|continued)|(amended|modified)[^;]{0,60}enlarg|fix(ed)? the boundaries"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "placed under the control of the (War Department|Secretary of War|Navy Department|Secretary of the Navy)|continued in reservation"
+     }
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "By its own terms the order only amends another order. Under the owner's strike-and-insert ruling the amended clause continues, amended, as part of the parent order, and the amending order has no command of its own after issue (coordinator ruling P2). Its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S-ORDER"
+    ]
+   },
+   "gaps": [
+    "Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it. If the owner treats an amending order as living as long as the amended text lives, this lead becomes open pending the parent.",
+    "The branch reads the WPA 1944 summary; EO 5240 also revokes EO 5174, a second act of the same spent kind."
    ]
   },
   {
@@ -1477,9 +1566,9 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "spent_on_issue_relinquishment",
+    "lead_kind": "spent_on_issue",
     "basis_kind": "TERM",
-    "basis": "By its own terms the order performs one act: it takes the named lands out of a military or naval reservation (restoring them, relinquishing them to a territorial or Philippine government, or placing them under the Interior Department for disposal under the Act of July 5, 1884). The act was complete when the order issued; later disposal of the lands proceeds under the statute and the land laws, not under a continuing command of the order.",
+    "basis": "By its own terms the order performs one act: it takes the named lands out of a military or naval reservation (restoring them, relinquishing them to a territorial or Philippine government, or placing them under the Interior Department for disposal under the Act of July 5, 1884). The act was complete when the order issued; later disposal of the lands proceeds under the statute and the land laws, not under a continuing command of the order (coordinator ruling P1).",
     "date_rule": {
      "kind": "order_date"
     },
@@ -1557,8 +1646,57 @@
    ]
   },
   {
+   "branch_id": "B20r",
+   "description": "Philippine reservations at places the United States kept as bases after 1946: the member's title, summary or text names a place listed in Annex A or Annex B of the 1947 Military Bases Agreement (Stotsenburg or Clark, Angeles and Pampanga, Mariveles, Camp John Hay and Baguio, Subic Bay, Olongapo and Zambales, Sangley Point, Canacao and Cavite, Leyte and Samar, Tawi Tawi, Mactan and Cebu, Camp Wallace and La Union, Palawan, Aparri, Florida Blanca, San Francisco del Monte).",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "(^|\\W)(Philippine|P\\. ?I\\b|P\\. ?L\\b|Luzon|Mindanao|Manila|Jolo|Zamboanga|Moro Prov|Sulu|Leyte|Samar|Cebu|Iloilo|Panay|Bataan|Bata\\[a\\]n|Cavite|Corregidor|Subic|Olongapo|Baguio|Benguet|Albay|Sorsogon|Guimar|Laguna|Rizal|Isabela|Cotabato|Lanao|Romblon|Cuyo|Biliran|Bongao|Siassi|Basilan|Polloc|Parang|Malabang|Mariveles|Cacraray|Limbones|Momungan|Monungan|Cauayan)"
+      },
+      {
+       "title_regex": "(^|\\W)(Philippine|P\\. ?I\\b|P\\. ?L\\b|Luzon|Mindanao|Manila|Jolo|Zamboanga|Moro Prov|Sulu|Leyte|Samar|Cebu|Iloilo|Panay|Bataan|Bata\\[a\\]n|Cavite|Corregidor|Subic|Olongapo|Baguio|Benguet|Albay|Sorsogon|Guimar|Laguna|Rizal|Isabela|Cotabato|Lanao|Romblon|Cuyo|Biliran|Bongao|Siassi|Basilan|Polloc|Parang|Malabang|Mariveles|Cacraray|Limbones|Momungan|Monungan|Cauayan)"
+      }
+     ]
+    },
+    {
+     "not": {
+      "summary_regex": "C\\. ?Z\\.|Canal Zone|Balboa|Col[oó]n Naval|Coco Solo|Fort Amador|Fort Randolph|France Field|Quarry Heights|Corozal|Fort Clayton|Fort Sherman|Paitilla|Cerro Tigre|Corundu|Republic of Panama"
+     }
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    },
+    {
+     "any_regex": "Stotsenb|Clark Field|Angeles|Pampanga|Mariveles|John Hay|Baguio|Subic|Subig|Olongapo|Zambales|Sangley|Songley|Canacao|Cavite|Leyte|Samar|Tawi|Mactan|Cebu|Camp Wallace|La Union|Palawan|Aparri|Florida ?Blanca|San Francisco del Monte|Limbones"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "retained_base_after_1946",
+    "basis_kind": "NONE",
+    "basis": "Article I of the Treaty of General Relations excepts from the U.S. surrender 'the use of such bases, necessary appurtenances to such bases, and the rights incident thereto, as the United States of America, by agreement with the Republic of the Philippines, may deem necessary to retain', and the 1947 Military Bases Agreement retained the use of bases at this member's place. The surrender therefore does not by its words reach this reservation's land, and the instrument that later relinquished the base is not held (coordinator ruling P5).",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-TGR",
+     "S-MBA1947"
+    ]
+   },
+   "gaps": [
+    "Acquire the instrument that relinquished each base (amendments and exchanges of notes under the 1947 agreement, later agreements on its term, and the turnover records of Clark, Camp John Hay, Subic Bay and Sangley Point); its date would be the bound, before the cutoff.",
+    "The place screen is broad on purpose (it reads the held text too, and names whole provinces such as Cavite, Leyte and Cebu); a member whose land lay outside the retained base belongs on B20 and needs a reading of the Annex boundaries."
+   ]
+  },
+  {
    "branch_id": "B20",
-   "description": "Philippine reservations: orders that reserve, enlarge, redefine or transfer military or naval reservations in the Philippine Islands (any order of this family located there that the earlier branches did not decide).",
+   "description": "Philippine reservations at places the 1947 Military Bases Agreement did not retain: orders that reserve, enlarge, redefine or transfer military or naval reservations in the Philippine Islands, or relinquish lands subject to a continuing clause, that the earlier branches did not decide.",
    "when": [
     {
      "any_of": [
@@ -1583,14 +1721,14 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_philippine_independence",
+    "lead_kind": "ended_by_express_class_instrument",
     "basis_kind": "ACT",
-    "basis": "Section 10(a) of the Philippine Independence Act (48 Stat. 463) required the surrender on July 4, 1946 of all U.S. possession, control and sovereignty over the Islands 'including all military and other reservations', and Proclamation 2695 made that surrender; naval reservations, and bases withheld under the 1944 joint resolution, passed under Article I of the Treaty of General Relations (in force October 22, 1946), which surrendered all remaining U.S. rights except the use of bases by agreement. After that date no U.S. reservation of Philippine land by executive order could operate; any later U.S. use of a base rested on the 1947 Military Bases Agreement.",
+    "basis": "Words that reach the reservation: section 10(a) of the Philippine Independence Act directs the surrender of 'all right of possession, supervision, jurisdiction, control, or sovereignty' over the Islands, 'including all military and other reservations of the Government of the United States in the Philippines (except such naval reservations and fueling stations as are reserved under section 5)'; Proclamation 2695 of July 4, 1946, 'subject to the reservations provided for in the applicable statutes', states that the United States 'hereby withdraws and surrenders all rights of possession, supervision, jurisdiction, control, or sovereignty now existing and exercised' over the territory; Article I of the Treaty of General Relations (in force October 22, 1946) withdraws and surrenders all such rights 'except the use of such bases ... as the United States of America, by agreement with the Republic of the Philippines, may deem necessary to retain'; and the agreement so made, the Military Bases Agreement in force March 26, 1947, retains only 'the use of the bases in the Philippines listed in Annex A' (and Annex B on necessity), which do not include this member's place. Member test: the reservation lies in the Philippine Islands and its place is not among the Annex A or B bases. The surrender reached Army reservations on July 4, 1946; naval reservations, left 'in its present status' by section 10(b), and any base withheld under the joint resolution of June 29, 1944, were surrendered no later than the agreement's entry into force.",
     "date_rule": {
      "kind": "interval",
      "from": "order_date",
-     "to": "1946-10-22",
-     "basis": "ended no later than the Treaty of General Relations' entry into force; July 4, 1946 for reservations surrendered by Proclamation 2695; earlier if a later order revoked or restored the lands"
+     "to": "1947-03-26",
+     "basis": "July 4, 1946 for Army reservations surrendered by Proclamation 2695; no later than March 26, 1947, when the Military Bases Agreement fixed the bases retained under Article I of the Treaty of General Relations; earlier if a later order revoked or restored the lands"
     },
     "mechanism_ids": [
      "M4"
@@ -1598,18 +1736,20 @@
     "source_ids": [
      "S-TM",
      "S-P2695",
-     "S-TGR"
+     "S-TGR",
+     "S-MBA1947"
     ]
    },
    "gaps": [
-    "The Treaty of General Relations (61 Stat. 1174) is read on the web only; acquire it.",
-    "If the owner treats U.S. use of a retained base under the 1947 Military Bases Agreement as a continuation of the reserving order, the upper bound moves to that base's turnover (all before the cutoff); the doctrine takes the agreement as a new basis, as the Jacquard L6 lot card does.",
-    "The place screen reads the title, the WPA summary and the held text; a scan that runs into a neighbouring Philippine order can pull in a member located elsewhere."
+    "The Treaty of General Relations (61 Stat. 1174) and the Military Bases Agreement (43 U.N.T.S. No. 673) are read on the web only; acquire them.",
+    "Section 5 of the 1934 Act kept lands designated for 'Military and other reservations' out of the 1935 grant to the Commonwealth, and Note V of the 1947 agreement reserved 'adjustment of U.S. rights and titles to real property' for later settlement. The surrender reaches the possession, control and jurisdiction that the reservation commands; any U.S. title that outlasted it is a property question disclosed here, not a continuation of the reservation.",
+    "The joint resolution of June 29, 1944 (58 Stat. 626) is read on the web only; which bases, if any, the President withheld under it before July 4, 1946 is not established in the sources held.",
+    "For Manila members: a proclamation of July 3, 1946, printed just before Proclamation 2695 (its closing part, on the held 60 Stat. 1352 page, describes Manila properties and directs negotiation for title to any not vested in the United States; its number and opening page are not verified), dealt with certain Manila properties for U.S. use; any such use rests on that new instrument, not on the member."
    ]
   },
   {
    "branch_id": "B21",
-   "description": "Canal Zone reservations: orders that set apart, enlarge, redefine or transfer military or naval reservations or radio stations in the Canal Zone or on lands granted by Panama under the 1903 treaty.",
+   "description": "Canal Zone reservations: orders that set apart, enlarge, redefine or transfer military or naval reservations or radio stations in the Canal Zone or on adjacent lands whose use the 1903 Convention granted.",
    "when": [
     {
      "any_of": [
@@ -1629,26 +1769,26 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_with_canal_zone",
+    "lead_kind": "ended_by_express_class_instrument",
     "basis_kind": "ACT",
-    "basis": "The President set these reservations apart within the Canal Zone, or on adjacent lands whose use the 1903 Isthmian Canal Convention granted. When the Panama Canal Treaty of 1977 entered into force on October 1, 1979, it terminated and superseded the 1903 Convention (art. I(1)(a)) and Panama reassumed plenary jurisdiction over the former Zone (art. XI), and the Panama Canal Act of 1979 (sec. 3(b)(1)) thereafter treats 'Canal Zone' as the areas in the Republic of Panama made available to the United States under the Treaty. Any later U.S. military use rested on the Treaty and its Article IV implementing agreement, and the Treaty terminated at noon on December 31, 1999.",
+    "basis": "The President set these reservations apart within the Canal Zone, or on adjacent lands whose use the 1903 Isthmian Canal Convention granted. The Panama Canal Treaty of 1977 entered into force on October 1, 1979, terminated and superseded the 1903 Convention (art. I(1)(a)), and returned plenary jurisdiction over the former Zone to Panama (art. XI); but U.S. military forces kept using defense sites under the Agreement in Implementation of Article IV, a new instrument that excepts that property from the transfer (coordinator ruling P5). The Treaty, and with it every U.S. right to use areas in the former Zone, terminated at noon, Panama time, December 31, 1999 (art. II: 'This Treaty shall terminate at noon, Panama time, December 31, 1999'). The Panama Canal Act of 1979 (held) treats 'Canal Zone' thereafter as the areas in the Republic of Panama made available under the Treaty (sec. 3(b)(1)) but contains no words ending these reservations earlier.",
     "date_rule": {
      "kind": "interval",
      "from": "order_date",
-     "to": "1979-10-01",
-     "basis": "ended no later than the Panama Canal Treaty's entry into force; earlier if a later order superseded or rescinded it"
+     "to": "1999-12-31",
+     "basis": "termination of the Panama Canal Treaty of 1977 at noon on 1999-12-31 (art. II); earlier if a later order superseded or rescinded the member"
     },
     "mechanism_ids": [
      "M5"
     ],
     "source_ids": [
-     "S-PCA",
-     "S-PCT"
+     "S-PCT",
+     "S-PCA"
     ]
    },
    "gaps": [
-    "The Panama Canal Treaty (UNTS 1280, No. 21086) is read on the web only; acquire it.",
-    "If the owner treats U.S. use of a defense site under the Article IV agreement as a continuation of the reserving order, the upper bound moves to 1999-12-31 (Treaty termination), still before the cutoff."
+    "The Panama Canal Treaty (1280 U.N.T.S. No. 21086) and the Agreement in Implementation of Article IV are not held; the Treaty was read on the web only. Acquire both.",
+    "A member whose land passed to Panama on October 1, 1979 (outside the defense sites) ended then; identifying those needs the Article IV agreement's annexes."
    ]
   },
   {
@@ -1820,6 +1960,10 @@
  ],
  "undecidable": [
   {
+   "reason": "Philippine reservations at places the 1947 Military Bases Agreement retained as bases: the instrument that relinquished each base is not held.",
+   "detected_by": "B20r"
+  },
+  {
    "reason": "Continental, Alaska, Hawaii and Puerto Rico reservations still standing on their own terms: no class-wide mechanism ends them and no machine-applicable current predicate is held.",
    "detected_by": "B30, B31, B32, B33"
   },
@@ -1828,8 +1972,8 @@
    "detected_by": "B12"
   },
   {
-   "reason": "Members that are not land reservations (misclassified by X1).",
-   "detected_by": "B01"
+   "reason": "Members that are not land reservations (misclassified by X1); they belong to PD-ADMIN, PD-CS-RULES or PD-WAR-EMERGENCY.",
+   "detected_by": "B01a, B01b, B01c"
   }
  ],
  "prepared": {

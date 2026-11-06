@@ -55,3 +55,23 @@ termination of the 1977 Panama Canal Treaty at noon on 1999-12-31 is the latest 
 
 A doctrine cites the member's own order text as source kind `member_text` (`"member_text": true`, no `held_path`):
 the engine records the member's own held text path, sha256 and grade on every lead.
+
+## P7. Abolition by name of the member's only subject
+
+A later instrument that abolishes by name the one thing a member created or governed (a port of entry, an office,
+an agency: "the port of entry at X is abolished", "the Y Administration is abolished", "any agencies established
+hereunder shall cease to exist") reaches the member through its subject, though it does not cite the member's
+number. When that subject is the member's only operative content, the lead is `no`, basis `ACT`, dated by the
+abolishing instrument, kind `ended_by_express_abolition_of_its_subject`. If the member also does anything else,
+the lead stays `open`.
+
+## P8. Delegations of a statutory power that ceased, and periods a statute continued
+
+When a member's only content is a delegation of powers a statute conferred, and the statute's own words say those
+provisions cease ("the provisions of this Act shall cease to be in effect"), the delegation has nothing left to
+exercise: `no`, basis `ACT`, kind `ended_with_delegated_statutory_power`, dated by the statute's terms (an interval
+where readings differ). This differs from a repeal of the authority to make new orders (FLPMA sec. 704(a)), after
+which existing orders keep effect of their own. The converse also holds: when a statute's words expressly continue a
+described class of periods that includes the member's own period (Indian Reorganization Act sec. 2, "existing periods
+of trust ... are hereby extended and continued"), the member's own stated end is no longer a sound `TERM` end, and
+the lead is `open` until the continuing statute's reach and end are settled for that member.

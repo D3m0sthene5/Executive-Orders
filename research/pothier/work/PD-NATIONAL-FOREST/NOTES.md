@@ -5,14 +5,14 @@
 - `research/pothier/work/AUTHOR_BRIEF.md`, `research/pothier/DOCTRINE_SCHEMA.md`, `jobs/pothier/pothier.py`
   (condition and date-rule semantics), `research/readiness/owner_rulings/2026-11-05-empty-status-history.md`.
 - `research/readiness/type-rules/TR-NATIONAL-FOREST.json` (mechanism `boundary_change_merged`, outlier list; exemplar
-  EO 1260, which this doctrine decides on B06).
+  EO 1260, which this doctrine decides on B08).
 - `research/excavator/jacquard-2026-10-31/LOT_RULES.md` (question framing: does the order's own command still operate;
   accrued effects do not count). The Jacquard lot files have no forest lot.
 - `jobs/x1-class-engine/data/EVENTS.json`: the only relevant event is X1-E5-FLPMA-1976, already classed there as
   `not_an_end_authority_repeal`, which agrees with this doctrine.
 - Member records: `research/pothier/work/PD-NATIONAL-FOREST/MEMBERS.csv` and the 708 `national_forest_boundary` records
   in `jobs/pothier/output/MEMBERS.jsonl`. I read all 708 titles and the operative text of about 120 members: every B02
-  revoking order, all B03 and B05 members, the questionable B04 and B06 members, and samples from each open branch.
+  revoking order, all own-date and amendment members, the questionable revocation and exclusion members, and samples from each open branch.
 - Held FLPMA text: `jobs/astra-source-retention/output/pages/3949c2ad…/08af9986…/selected-pages.txt` (secs. 701-704,
   90 Stat. 2786-2792).
 - Web, read only and not held: the 30 Stat. 11 PDF (pages 34-36) and 36 Stat. 847 PDF on govinfo; the 90 Stat. 2949
@@ -33,17 +33,17 @@
   2026.
 - **Treating all boundary modifications, including additions and transfers, as amendments spent on issue.** This is
   defensible under the owner's rule and the type rule's "merged" framing. The persistence reading is also defensible,
-  so I left those members open and framed the choice as an owner question.
+  so I left those members open. The coordinator settled this under `research/pothier/COORDINATOR_RULINGS.md`: additions and transfers are operative acts on land whose designation persists, so they stay open (B15).
 - **Consolidation-based endings** (for example EO 3317 merging the Sopris into the Holy Cross, which would end EO 1069
   under the persistence reading). I did not encode them, because they depend on the unresolved owner question and
-  need forest-name matching that the held fields do not support reliably.
+  need forest-name matching that the held fields do not support reliably, and ruling P3 requires the later instrument's words to reach the member.
 - **Coordinator lead "NFMA sec. 11".** The provision is in the 1974 Act's sec. 11(a) as redesignated, but NFMA amended
   it by its sec. 9 (90 Stat. 2957). The JSON cites sec. 9.
 - **Coordinator lead "Chronologic Record 1891-2012".** I could not locate it. I used the 1997 edition (1891-1996);
   a 1985 edition is at Biodiversity Heritage Library item 252736.
 - **Identity scan** for "[No. NNNN]" tags that disagree with the member number. Most hits were OCR noise. The real
   mismatches are EO 4613 (the scan is EO 4614) and EO 3537 (a postal reinstatement), both routed to B01. EO 4675's
-  scan carries the tag "[No. 4676]" but its text matches EO 4675's title and date, so I kept it on B04.
+  scan carries the tag "[No. 4676]" but its text matches EO 4675's title and date, so I kept it on B06.
 
 ## Method
 
@@ -55,7 +55,24 @@ inside EO 4712's neighbour text) were only mentions in neighbouring orders or na
 and EO 3098 revokes EO 2964 only in part; and EO 1883 partly revokes EO 1324½ (Alaska medicinal springs), not EO
 1324.
 
+## Coordinator rulings applied (2026-11-05)
+
+I applied the coordinator's message and rulings P1-P6, then re-ran `try` (708 members; decides 244; 1 contradiction,
+the partial EO 5048 edge on EO 4889).
+
+- **P1 (`spent_on_issue`).** Revocations (B06) and exclusions (B08) are dated at the effective date. The 60 members
+  whose own terms schedule the opening have one branch each (B05), dated at the last scheduled step. I read every
+  schedule clause and computed the day counts by hand; amended schedules are EO 2449 via EO 2470 and EO 3010 via
+  EO 3039. EO 4363's purpose-restricted restoration moved to open (B09).
+- **P2 (`merged_into_parent_on_issue`).** This covers the pure amendments and extensions (B07, 8 members) and EOs 4278
+  and 1626 (B04), each dated at its own signing, with the parent's end recorded in the gaps. EOs 2004 and 2069 amend
+  a proclamation to revoke a withdrawal and restore the land, so they are on P1 (B05), not P2.
+- **Other rulings.** B15 (186) stays open and states what would decide it. The other-reservation members are split into
+  B12-B14 with the overlapping family named. The member text is cited as S-MEMBER-TEXT (P6).
+- **Date notes.** The order dates of EOs 2055, 3738, 3739 and 4966 were read from their signature lines. EO 3191's
+  printed opening dates precede its signing, so its order date is used.
+
 ## Effort
 
-About three hours of wall time in one session, with a large token spend: many full-text reads and about 25 iterations
+About three hours of wall time for the first version and about one more hour to apply the coordinator rulings, with a large token spend: many full-text reads and about 25 iterations
 of `pothier.py try`. Model: Claude Opus 5.5.

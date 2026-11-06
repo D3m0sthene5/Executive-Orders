@@ -2,7 +2,7 @@
   "schema": "pothier-family-doctrine/v1",
   "doctrine_id": "PD-CLASS-EVENTS",
   "family": "Orders ended by a class-wide event: NIRA Title I orders (X1 type nra_code_approval), Canal Zone orders (canal_zone) and Philippine orders (philippines)",
-  "version": 1,
+  "version": 3,
   "members": {
     "field": "x1_type",
     "in": [
@@ -16,7 +16,7 @@
       "id": "M1",
       "kind": "statute",
       "effect": "ends",
-      "description": "NIRA section 2(c), as amended by section 1 of S.J. Res. 113 (June 14, 1935): Title I 'shall cease to be in effect and any agencies established hereunder shall cease to exist' on April 1, 1936. It ends by its terms every agency established under Title I and the Title under which every Title I order operated.",
+      "description": "NIRA section 2(c), as amended by section 1 of S.J. Res. 113 (June 14, 1935): Title I 'shall cease to be in effect and any agencies established hereunder shall cease to exist' on April 1, 1936. A lapse of authority does not by itself end an order (ruling P3). The statute's words do end two kinds of member: an order whose only content is a delegation of Title I powers, which has nothing left to exercise once the Title's provisions cease (ruling P8), and an order whose only subject is an agency established under Title I (ruling P7). Every other Title I order is reached through EO 7076 (M2).",
       "effective_date_rule": "Fixed: April 1, 1936 at the latest; an earlier end (own terms, a later order, the June 14, 1935 repeal of code provisions) controls when shown.",
       "source_ids": [
         "S1",
@@ -27,7 +27,7 @@
       "id": "M2",
       "kind": "later_instrument",
       "effect": "ends",
-      "description": "EO 7076 (June 15, 1935) amended 'all existing Executive Orders heretofore issued under' Title I 'so as to continue them in effect and to extend their operation ... until April 1, 1936', subject to earlier limitation or cancellation and expressly without any code-approval or code-enforcement power. It writes an outer end date into every Title I order issued before June 15, 1935.",
+      "description": "EO 7076 (June 15, 1935), an express class instrument (ruling P3): it ordered 'that all existing Executive Orders heretofore issued under and by virtue of the authority vested in me by Title I of the National Industrial Recovery Act be, and they are, hereby amended so as to continue them in effect and to extend their operation, and also to extend the authority and activities of any agency created thereunder until April 1, 1936', subject to earlier limitation or cancellation and without any code-approval or code-enforcement power. A member issued under Title I before June 15, 1935 is placed in that class by its own authority clause and date.",
       "effective_date_rule": "Interval: from the order's date to April 1, 1936.",
       "source_ids": [
         "S4"
@@ -36,9 +36,9 @@
     {
       "id": "M3",
       "kind": "statute",
-      "effect": "ends",
-      "description": "S.J. Res. 113 section 2 (June 14, 1935) repealed every Title I provision 'delegating power to the President to approve or prescribe codes of fair competition and providing for the enforcement of such codes'. Code-dependent commands ended that day; this falls inside the M1/M2 interval and is not used as a separate date by this doctrine.",
-      "effective_date_rule": "Fixed: June 14, 1935, for code-dependent commands only.",
+      "effect": "lead_only",
+      "description": "S.J. Res. 113 section 2 (June 14, 1935) repealed every Title I provision 'delegating power to the President to approve or prescribe codes of fair competition and providing for the enforcement of such codes'. This is a repeal of authority: under ruling P3 it is a disclosed earlier candidate end for code-dependent commands, not an end, and no branch dates a lead by it.",
+      "effective_date_rule": "None (disclosed candidate, June 14, 1935).",
       "source_ids": [
         "S3"
       ]
@@ -58,7 +58,7 @@
       "id": "M5",
       "kind": "later_instrument",
       "effect": "ends",
-      "description": "EO 7075 section 1 (June 15, 1935): 'The National Industrial Recovery Board created by Executive Order No. 6859 ... is hereby terminated'.",
+      "description": "EO 7075 section 1 (June 15, 1935): 'The National Industrial Recovery Board created by Executive Order No. 6859 ... is hereby terminated'. It abolishes by name the only subject of EO 6859 and EO 6993 (ruling P7).",
       "effective_date_rule": "Fixed: June 15, 1935.",
       "source_ids": [
         "S7"
@@ -68,8 +68,8 @@
       "id": "M6",
       "kind": "later_instrument",
       "effect": "ends",
-      "description": "EO 6771 (June 30, 1934) ordered the National Recovery Review Board discontinued 'prior to July 1, 1934' and that it 'shall cease to exist on that date'.",
-      "effective_date_rule": "Interval: from the order's date to July 1, 1934.",
+      "description": "EO 6771 (June 30, 1934) ordered the National Recovery Review Board, which it identifies as established 'by Executive Order of March 7, 1934', discontinued 'prior to July 1, 1934' and that it 'shall cease to exist on that date' (ruling P7 for EO 6632; EO 6771's own only command ends on the same date).",
+      "effective_date_rule": "Fixed: July 1, 1934.",
       "source_ids": [
         "S8"
       ]
@@ -78,8 +78,8 @@
       "id": "M7",
       "kind": "later_instrument",
       "effect": "ends",
-      "description": "EO 7252 (December 21, 1935, effective January 1, 1936) terminated 'The National Recovery Administration and the office of Administrator thereof'.",
-      "effective_date_rule": "Fixed: January 1, 1936.",
+      "description": "EO 7252 (December 21, 1935, effective January 1, 1936): section 1 terminated 'The National Recovery Administration and the office of Administrator thereof'; section 2 transferred 'The Division of Review, the Division of Business Cooperation, and the Advisory Council, as constituted by Executive Order No. 7075 of June 15, 1935' to Commerce and directed the Secretary 'to terminate the functions and duties of the said agencies not later than April 1, 1936'.",
+      "effective_date_rule": "Interval: January 1, 1936 (office of Administrator) to April 1, 1936 (divisions).",
       "source_ids": [
         "S9",
         "S10"
@@ -89,16 +89,18 @@
       "id": "M8",
       "kind": "own_terms",
       "effect": "ends",
-      "description": "Single act performed on issue: an appointment or designation of named persons, a dismissal of a complaint, or an order that only amends or revokes another order. The command is exhausted when the order issues; the appointee's tenure, the dismissal's result and the amended text are consequences or evidence for another order's lifecycle.",
+      "description": "Single act on issue (own terms). An order whose only operative content revokes another order, or dismisses a complaint, does one thing when it issues and is spent (ruling P1). An order whose only operative content amends other orders merges into the parents on issue (ruling P2): its text continues as part of the parent until the parent ends; the parent's lifecycle carries it. An order whose operative content is one act for one named person follows PD-CS-ONE-PERSON instead (ruling P4).",
       "effective_date_rule": "Order date.",
-      "source_ids": []
+      "source_ids": [
+        "S0"
+      ]
     },
     {
       "id": "M9",
       "kind": "own_terms",
       "effect": "ends",
-      "description": "EO 7076's own operative period: it continued Title I orders and agencies 'until April 1, 1936'.",
-      "effective_date_rule": "Fixed: April 1, 1936.",
+      "description": "EO 7076's only operative content amends the existing Title I orders; under ruling P2 it merges into them on issue (June 15, 1935), and its extension to April 1, 1936 lives and ends with them.",
+      "effective_date_rule": "Order date (June 15, 1935); the amended orders ended by April 1, 1936.",
       "source_ids": [
         "S4"
       ]
@@ -107,19 +109,24 @@
       "id": "M10",
       "kind": "later_instrument",
       "effect": "ends",
-      "description": "Express revocation or rescission by a later held order naming the member: EO 7234 (November 25, 1935) revoking EO 2040 and EO 3761; EO 6064 (March 3, 1933) rescinding EO 5143; EO 6344 (October 20, 1933) revoking EO 6223.",
+      "description": "Express revocation, rescission, repeal or supersession by a later held order that names the member by number or by its date and subject: EO 7234 (November 25, 1935) revoked EO 2040 and EO 3761; EO 6064 (March 3, 1933) rescinded EO 5143; EO 6344 (October 20, 1933) superseded and revoked EO 6223; EO 6575 (January 24, 1934) revoked EO 6237; EO 4006 (May 7, 1924) rescinded EO 3985; EO 2907 (July 9, 1918) superseded EO 2867; EO 393 (January 12, 1906) repealed 'Executive Order of November 15, 1905, as to appointments to positions in the service of the Isthmian Canal Commission upon the Isthmus of Panama' (EO 370). An express class revocation also reaches its members (ruling P3): EO 3027 (January 25, 1919), 'All Executive Orders heretofore issued for the establishment of Defensive Sea Areas are hereby revoked', reaches EO 2692, 'Establishing Defensive Sea Areas for Terminal Ports of the Panama Canal'.",
       "effective_date_rule": "Fixed: the acting order's date, read from its held text.",
       "source_ids": [
         "S11",
         "S12",
-        "S13"
+        "S13",
+        "S21",
+        "S22",
+        "S23",
+        "S24",
+        "S25"
       ]
     },
     {
       "id": "M11",
       "kind": "class_event",
       "effect": "ends",
-      "description": "End of the Canal Zone. The Panama Canal Treaty of 1977 entered into force October 1, 1979: it terminated the 1903 Convention (art. I(1)), the Canal Zone Government ceased to operate in Panama (art. III(10)) and Panama reassumed plenary jurisdiction over the former Zone (art. XI(1)). The Panama Canal Act of 1979 continued Zone laws and regulations only 'for the purpose of the exercise by the United States of law enforcement and judicial jurisdiction during the transition period' (sec. 2101) and re-read 'Canal Zone' in surviving laws and regulations as the treaty areas made available to the United States (sec. 3(b)). The Treaty terminated at noon, December 31, 1999 (art. II(2)), the 'Canal Transfer Date' of 22 U.S.C. 3602(d), after which no area answering to 'Canal Zone' remained.",
+      "description": "End of the Canal Zone (ruling P5). The Panama Canal Treaty of 1977 entered into force October 1, 1979: it terminated the 1903 Convention (art. I(1)), the Canal Zone Government ceased to operate in Panama (art. III(10)) and Panama reassumed plenary jurisdiction over the former Zone (art. XI(1)). The Panama Canal Act of 1979 did not end Zone rules: it continued them 'for the purpose of the exercise by the United States of law enforcement and judicial jurisdiction during the transition period' (sec. 2101) and re-read 'Canal Zone' as the areas made available to the United States under the Treaty 'and related agreements' (sec. 3(b)). The end therefore rests on the Treaty: 'This Treaty shall terminate at noon, Panama time, December 31, 1999' (art. II(2)); 22 U.S.C. 3602(d) calls that day the Canal Transfer Date. Under ruling P5 that termination is the latest bound for Canal Zone orders. The Treaty and 22 U.S.C. 3602(d) are not yet held.",
       "effective_date_rule": "Interval: from the order's date to December 31, 1999 (outer bound); civil government functions ended October 1, 1979 and transition-period court and police jurisdiction 30 months later, but this doctrine does not date members inside the interval.",
       "source_ids": [
         "S14",
@@ -133,15 +140,33 @@
       "id": "M12",
       "kind": "class_event",
       "effect": "ends",
-      "description": "Philippine independence. Section 10(a) of the Philippine Independence Act directed the President to 'withdraw and surrender all right of possession, supervision, jurisdiction, control, or sovereignty' over the Islands on July 4 after the ten-year Commonwealth period; Proclamation 2695 (July 4, 1946) did so. An order whose operative content is United States supervision of the Islands' government (the Governor General's reporting, the High Commissioner's functions for the Commonwealth) has no object after that date.",
-      "effective_date_rule": "Interval: from the order's date to July 4, 1946 (earlier ends, such as the Commonwealth's inauguration on November 15, 1935, may control and are not dated here).",
+      "description": "Philippine independence (ruling P5). Section 10(a) of the Philippine Independence Act (48 Stat. 456, 463) directed the President to 'withdraw and surrender all right of possession, supervision, jurisdiction, control, or sovereignty then existing and exercised by the United States in and over the territory and people of the Philippine Islands, including all military and other reservations ... (except such naval reservations and fueling stations as are reserved under section 5)'; Proclamation 2695 (July 4, 1946, 60 Stat. 1352, 1353), acting 'subject to the reservations provided for in the applicable statutes', declared that 'The United States of America hereby withdraws and surrenders all rights of possession, supervision, jurisdiction, control, or sovereignty now existing and exercised by the United States of America in and over the territory and people of the Philippines'. Those words describe a class, every right of U.S. supervision, jurisdiction or control over the Islands, that an order directing U.S. supervision of the Islands' government falls in. The excepted reservations are not reached by M12. Section 7 of the Act, which governs the Commonwealth period and the High Commissioner, opens 'Until the final and complete withdrawal of American sovereignty'.",
+      "effective_date_rule": "Interval: from the order's date to July 4, 1946.",
       "source_ids": [
         "S19",
         "S20"
       ]
+    },
+    {
+      "id": "M13",
+      "kind": "statute",
+      "effect": "ends",
+      "description": "Delegation of a statutory power that ceased (ruling P8). When a member's only content delegates powers that Title I conferred, NIRA sec. 2(c) as amended ('This title shall cease to be in effect ... on April 1, 1936') leaves the delegation nothing to exercise after that date.",
+      "effective_date_rule": "Fixed: April 1, 1936.",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
     }
   ],
   "sources": [
+    {
+      "id": "S0",
+      "member_text": true,
+      "citation": "The member's own order text",
+      "title": "member text",
+      "establishes": "The member's own operative words (a single dismissal, an amendment, a revocation, a stated period); the engine records the member's held text path, sha256 and grade on every lead (coordinator ruling P6)."
+    },
     {
       "id": "S1",
       "citation": "National Industrial Recovery Act, ch. 90, tit. I, sec. 2(c), 48 Stat. 195, 196 (June 16, 1933)",
@@ -173,7 +198,7 @@
       "held_path": "jobs/astra-source-retention/output/pages/98e35c567ea86208eadc55548eb7a5ea5f1edd92d8116c9e4c4847da1bab0305/d19d25fe35e98a1ade9b1fd03ed8751743502c5d1005a61ca97974657cf08386/selected-pages.txt",
       "sha256": "0e3a91dad60f57ec5703e3689a4a55dc5ca798db96ec0f1f7bb75b76306e3b60",
       "pin": "All the provisions of Title I of such Act delegating power",
-      "establishes": "Code approval and code enforcement provisions were repealed on June 14, 1935; section 4(a) agreement authority and the rest of Title I were not repealed."
+      "establishes": "Code approval and code enforcement provisions were repealed on June 14, 1935. Under ruling P3 a repeal of authority is a disclosed earlier candidate end for code-dependent commands, not an end; section 4(a) agreement authority and the rest of Title I were not repealed."
     },
     {
       "id": "S4",
@@ -294,7 +319,7 @@
       "held_path": "jobs/source-ladder/output/texts/queue_EO_9293_Panama_Canal_Treaty_1977_and_Panama_Canal_Act_of_1979_Pub._L._96-70_93_Stat._452_instr_8d101fb40b.txt",
       "sha256": "2128a6390e37a43b60c721f18c5cd3bfb281b65e4e21d3cf0d95feca3680e10f",
       "pin": "enters into force shall continue in force for the purpose of the exercise",
-      "establishes": "The Canal Zone Code and other laws, regulations and administrative authority applicable in the Zone continued after the Treaty only for law enforcement and judicial jurisdiction during the transition period. PDF sha256 c9dded5d4c07d72b663e87f17109a22d939ca169bce2c01ccbec5f904373fb3e (EVENT_SOURCES_STATE.json)."
+      "establishes": "The Canal Zone Code and other laws, regulations and administrative authority applicable in the Zone 'shall continue in force for the purpose of the exercise by the United States of law enforcement and judicial jurisdiction during the transition period'. This continues Zone rules for a limited purpose; it does not end them. PDF sha256 c9dded5d4c07d72b663e87f17109a22d939ca169bce2c01ccbec5f904373fb3e."
     },
     {
       "id": "S15",
@@ -305,7 +330,7 @@
       "held_path": "jobs/source-ladder/output/texts/queue_EO_9293_Panama_Canal_Treaty_1977_and_Panama_Canal_Act_of_1979_Pub._L._96-70_93_Stat._452_instr_8d101fb40b.txt",
       "sha256": "2128a6390e37a43b60c721f18c5cd3bfb281b65e4e21d3cf0d95feca3680e10f",
       "pin": "(1) \"Canal Zone\" shall be deemed to refer to the areas and",
-      "establishes": "After the effective date, 'Canal Zone' in surviving laws and regulations means the areas made available to the United States under the Treaty, so a surviving Zone rule could reach no further than those areas and no longer than the Treaty."
+      "establishes": "Subject to subsection (c), for transactions, occurrences or status after the effective date, '\"Canal Zone\" shall be deemed to refer to the areas and installations in the Republic of Panama made available to the United States pursuant to the Panama Canal Treaty of 1977 and related agreements'. This continues surviving Zone rules within the treaty areas; it does not end them."
     },
     {
       "id": "S16",
@@ -349,7 +374,7 @@
       "held_path": "jobs/astra-source-retention/output/pages/2900efa1f3ecea81c6d760bd99e6102ae951bd8eed35a7fa461c258e537ebb8e/4d52c0464a453c382faaf4cc7bd953308f9ef9b369f59e1a69e0e50093fbcdf1/selected-pages.txt",
       "sha256": "636fc71799d9391051b56054be9bb9ce42ab58d46fa0e458d36c9fc465386f70",
       "pin": "withdraw and surrender all right of possession, supervision, juris-",
-      "establishes": "The President was directed to withdraw and surrender all U.S. supervision, jurisdiction, control and sovereignty over the Islands on the July 4 after the ten-year Commonwealth period (sec. 10(a), printed at 48 Stat. 463, PDF page 8 of the held copy); sec. 7(4), at 48 Stat. 461, created the High Commissioner to the Commonwealth government. PDF sha256 2900efa1f3ecea81c6d760bd99e6102ae951bd8eed35a7fa461c258e537ebb8e."
+      "establishes": "Sec. 10(a), printed at 48 Stat. 463: on the July 4 after the ten-year Commonwealth period the President shall 'withdraw and surrender all right of possession, supervision, jurisdiction, control, or sovereignty then existing and exercised by the United States in and over the territory and people of the Philippine Islands, including all military and other reservations of the Government of the United States in the Philippines (except such naval reservations and fueling stations as are reserved under section 5)'. Sec. 7 (at 48 Stat. 461) opens 'Until the final and complete withdrawal of American sovereignty' and sec. 7(4) creates the High Commissioner. PDF sha256 2900efa1f3ecea81c6d760bd99e6102ae951bd8eed35a7fa461c258e537ebb8e."
     },
     {
       "id": "S20",
@@ -360,7 +385,73 @@
       "held_path": "jobs/astra-source-retention/output/pages/c493d8ef1e3055a50ab3dc4e404b2eaf359537fe78638e57dbd8424bee8a0447/adb2b31e2516fd67174bfb53b7aa579a8236a1c6d0d27e4d768438fc2a4577c5/selected-pages.txt",
       "sha256": "5fdd773800d1210fe04c363d9d4839adc86794bf0b3cded9ba17065b8e1127c1",
       "pin": "The United States of America hereby withdraws and surrenders",
-      "establishes": "On July 4, 1946 the United States withdrew and surrendered all rights of possession, supervision, jurisdiction, control and sovereignty over the Philippines (printed at 60 Stat. 1352-1353). PDF sha256 c493d8ef1e3055a50ab3dc4e404b2eaf359537fe78638e57dbd8424bee8a0447."
+      "establishes": "Acting 'in accord with and subject to the reservations provided for in the applicable statutes', the President declared on July 4, 1946 that 'The United States of America hereby withdraws and surrenders all rights of possession, supervision, jurisdiction, control, or sovereignty now existing and exercised by the United States of America in and over the territory and people of the Philippines' (60 Stat. 1352-1353). PDF sha256 c493d8ef1e3055a50ab3dc4e404b2eaf359537fe78638e57dbd8424bee8a0447."
+    },
+    {
+      "id": "S21",
+      "citation": "Executive Order 6575, January 24, 1934 (Revocation of Executive Order No. 6237)",
+      "title": "EO 6575 (revoking EO 6237)",
+      "url": "https://www.presidency.ucsb.edu/documents/executive-order-6575-revocation-executive-order-no-6237-july-28-1933",
+      "held": true,
+      "held_path": "jobs/app-executive-orders/output/texts/executive-order-6575-revocation-executive-order-no-6237-july-28-1933.txt",
+      "sha256": "c12de9460785ace79a8a419f5a2242294933c20b39391bf98349600da2e0e8b9",
+      "pin": "be, and it is hereby, revoked.",
+      "establishes": "EO 6237 of July 28, 1933 was revoked by number on January 24, 1934. APP mirror; a Hathi copy (jobs/hathi-gpo-orders/output/texts/EO_6575.txt) agrees."
+    },
+    {
+      "id": "S22",
+      "citation": "Executive Order 4006, May 7, 1924 (rescinding EO 3985 and designating a special judge)",
+      "title": "EO 4006",
+      "url": "",
+      "held": true,
+      "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4006.txt",
+      "sha256": "ed86bf798e942f6ddef30c31e9b1e49d36740c81293344c472ac21c7fae6bd72",
+      "pin": "is hereby rescinded",
+      "establishes": "'The Executive Order No. 3985, dated April 3, 1924, designating Major Lucius Meriwether Smith to be Special Judge for the Canal zone ... is hereby rescinded'. ProQuest scan text (archival_replica_scan_pending_codebook)."
+    },
+    {
+      "id": "S23",
+      "citation": "Executive Order 2907, July 9, 1918 (Governor of the Panama Canal; Espionage Act powers)",
+      "title": "EO 2907",
+      "url": "https://en.wikisource.org/wiki/Executive_Order_2907",
+      "held": true,
+      "held_path": "jobs/wikisource-texts/output/texts/EO_2907.txt",
+      "sha256": "90b6094345b37ca5087aa5f9b1bc50922a2c04ae49a7be260ebd1885755a923b",
+      "pin": "This order supersedes Executive Order Number 2867 dated May 28, 1918.",
+      "establishes": "EO 2907 replaces EO 2867 by number on July 9, 1918, restating its grant of powers. Wikisource transcription."
+    },
+    {
+      "id": "S24",
+      "citation": "Executive Order 393, January 12, 1906 (repealing the order of November 15, 1905 on Isthmian appointments)",
+      "title": "EO 393",
+      "url": "",
+      "held": true,
+      "held_path": "jobs/isthmian-canal-1911/output/texts/EO_393.txt",
+      "sha256": "ce7758a25a50186474bd709182d8697e88a8699173aaa7b567f9272278fbbe4a",
+      "pin": "is hereby repealed.",
+      "establishes": "'Executive Order of November 15, 1905, as to appointments to positions in the service of the Isthmian Canal Commission upon the Isthmus of Panama, is hereby repealed.' OCR of the 1911 GPO compilation (graded official in this project); a Wikisource copy (jobs/wikisource-texts/output/texts/EO_393.txt) agrees."
+    },
+    {
+      "id": "S25",
+      "citation": "Executive Order 3027, January 25, 1919 (revoking defensive sea area orders)",
+      "title": "EO 3027",
+      "url": "https://en.wikisource.org/wiki/Executive_Order_3027",
+      "held": true,
+      "held_path": "jobs/wikisource-texts/output/texts/EO_3027.txt",
+      "sha256": "0bc00bca349787ff93381179f75fc48bd9fdc7a61b0ce3b5ba2be161dda0433e",
+      "pin": "All Executive Orders heretofore issued for the establishment of Defensive Sea Areas are hereby revoked.",
+      "establishes": "An express class revocation of every order establishing defensive sea areas, dated January 25, 1919. Wikisource transcription only."
+    },
+    {
+      "id": "S26",
+      "citation": "Executive Order 7084, June 24, 1935 (continuing the Textile Labor Relations Board until July 1, 1935)",
+      "title": "EO 7084",
+      "url": "https://www.presidency.ucsb.edu/documents/executive-order-7084-continuing-the-textile-labor-relations-board-until-july-1-1935",
+      "held": true,
+      "held_path": "jobs/app-executive-orders/output/texts/executive-order-7084-continuing-the-textile-labor-relations-board-until-july-1-1935.txt",
+      "sha256": "197db25ff83730f72476153f5208e22138fa59d8bb6731230baf97a74d434792",
+      "pin": "continued by Executive Order No. 7076",
+      "establishes": "Names EO 6858, treats it as continued by EO 7076, and continues its Board only until July 1, 1935. APP mirror."
     }
   ],
   "procedure": [
@@ -482,6 +573,203 @@
       ]
     },
     {
+      "branch_id": "R4",
+      "description": "EO:6237: ended by EO 6575 (1934-01-24).",
+      "when": [
+        {
+          "field": "instrument_id",
+          "in": [
+            "EO:6237"
+          ]
+        },
+        {
+          "mechanism_in": [
+            "revocation"
+          ],
+          "count_gte": 1
+        }
+      ],
+      "lead": {
+        "status_lead": "no",
+        "lead_kind": "revoked_by_later_order",
+        "basis_kind": "ACT",
+        "basis": "EO 6575: 'It is hereby ordered that Executive Order No. 6237, of July 28, 1933, allocating funds for the purchase of lands necessary for the completion of the Great Smoky Mountains National Park, be, and it is hereby, revoked.'",
+        "date_rule": {
+          "kind": "fixed",
+          "date": "1934-01-24",
+          "basis": "date of EO 6575 in its held text"
+        },
+        "mechanism_ids": [
+          "M10"
+        ],
+        "source_ids": [
+          "S21"
+        ]
+      },
+      "gaps": [
+        "EO 6575 is held as APP and Hathi transcriptions.",
+        "Money moved before revocation is an accrued consequence."
+      ]
+    },
+    {
+      "branch_id": "R5",
+      "description": "EO:3985: ended by EO 4006 (1924-05-07).",
+      "when": [
+        {
+          "field": "instrument_id",
+          "in": [
+            "EO:3985"
+          ]
+        },
+        {
+          "mechanism_in": [
+            "rescission"
+          ],
+          "count_gte": 1
+        }
+      ],
+      "lead": {
+        "status_lead": "no",
+        "lead_kind": "revoked_by_later_order",
+        "basis_kind": "ACT",
+        "basis": "EO 4006: 'The Executive Order No. 3985, dated April 3, 1924, designating Major Lucius Meriwether Smith to be Special Judge for the Canal zone ... is hereby rescinded'. An express rescission by number ends the order whatever family governs the designation.",
+        "date_rule": {
+          "kind": "fixed",
+          "date": "1924-05-07",
+          "basis": "date of EO 4006 in its held text"
+        },
+        "mechanism_ids": [
+          "M10"
+        ],
+        "source_ids": [
+          "S22"
+        ]
+      },
+      "gaps": [
+        "EO 4006 is held only as a ProQuest scan text."
+      ]
+    },
+    {
+      "branch_id": "R6",
+      "description": "EO:2867: ended by EO 2907 (1918-07-09).",
+      "when": [
+        {
+          "field": "instrument_id",
+          "in": [
+            "EO:2867"
+          ]
+        },
+        {
+          "mechanism_in": [
+            "supersession"
+          ],
+          "count_gte": 1
+        }
+      ],
+      "lead": {
+        "status_lead": "no",
+        "lead_kind": "superseded_by_named_order",
+        "basis_kind": "ACT",
+        "basis": "EO 2907 restates the grant of Espionage Act powers to the Governor of the Panama Canal and states: 'This order supersedes Executive Order Number 2867 dated May 28, 1918.' A supersession by number replaces the member.",
+        "date_rule": {
+          "kind": "fixed",
+          "date": "1918-07-09",
+          "basis": "date of EO 2907 in its held text"
+        },
+        "mechanism_ids": [
+          "M10"
+        ],
+        "source_ids": [
+          "S23"
+        ]
+      },
+      "gaps": [
+        "EO 2907 is held as a Wikisource transcription; EO 2867 is held as a ProQuest scan text, complete and signed 'THE WHITE HOUSE, 28 May, 1918. [No. 2867.]'.",
+        "If the owner does not accept a supersession without the word 'revoked' as an end, the lead is open."
+      ]
+    },
+    {
+      "branch_id": "R7",
+      "description": "EO:370: ended by EO 393 (1906-01-12).",
+      "when": [
+        {
+          "field": "instrument_id",
+          "in": [
+            "EO:370"
+          ]
+        },
+        {
+          "mechanism_in": [
+            "revocation"
+          ],
+          "count_gte": 1
+        }
+      ],
+      "lead": {
+        "status_lead": "no",
+        "lead_kind": "revoked_by_later_order",
+        "basis_kind": "ACT",
+        "basis": "EO 393: 'Executive Order of November 15, 1905, as to appointments to positions in the service of the Isthmian Canal Commission upon the Isthmus of Panama, is hereby repealed.' EO 370 is that order (dated November 15, 1905; 'authorizing temporary appointments on the Isthmus').",
+        "date_rule": {
+          "kind": "fixed",
+          "date": "1906-01-12",
+          "basis": "date of EO 393 in its held text"
+        },
+        "mechanism_ids": [
+          "M10"
+        ],
+        "source_ids": [
+          "S24"
+        ]
+      },
+      "gaps": [
+        "EO 393 is held as OCR of the 1911 GPO compilation and as a Wikisource transcription.",
+        "Identity rests on the order's date and subject, not its number."
+      ]
+    },
+    {
+      "branch_id": "R8",
+      "description": "EO 2692 (defensive sea areas for the terminal ports of the Panama Canal): revoked as a class by EO 3027 (1919-01-25).",
+      "when": [
+        {
+          "field": "instrument_id",
+          "in": [
+            "EO:2692"
+          ]
+        },
+        {
+          "mechanism_in": [
+            "revocation"
+          ],
+          "count_gte": 1
+        },
+        {
+          "any_regex": "Defensive Sea Areas"
+        }
+      ],
+      "lead": {
+        "status_lead": "no",
+        "lead_kind": "ended_by_express_class_instrument",
+        "basis_kind": "ACT",
+        "basis": "EO 3027: 'All Executive Orders heretofore issued for the establishment of Defensive Sea Areas are hereby revoked.' Member test: the member's own title and text, 'Establishing Defensive Sea Areas for Terminal Ports of the Panama Canal', dated August 27, 1917, place it in that class (ruling P3).",
+        "date_rule": {
+          "kind": "fixed",
+          "date": "1919-01-25",
+          "basis": "date of EO 3027 in its held text"
+        },
+        "mechanism_ids": [
+          "M10"
+        ],
+        "source_ids": [
+          "S25",
+          "S0"
+        ]
+      },
+      "gaps": [
+        "EO 3027 is held only as a Wikisource transcription."
+      ]
+    },
+    {
       "branch_id": "N1",
       "description": "NIRA section 3(e) complaint dismissals: a one-time determination on an import complaint.",
       "when": [
@@ -500,7 +788,7 @@
       ],
       "lead": {
         "status_lead": "no",
-        "lead_kind": "spent_on_issue_determination",
+        "lead_kind": "spent_on_issue",
         "basis_kind": "TERM",
         "basis": "The order dismisses a single complaint under NIRA section 3(e); the determination is performed when the order issues and commands nothing afterwards. Title I's end (April 1, 1936) is a later event.",
         "date_rule": {
@@ -509,7 +797,9 @@
         "mechanism_ids": [
           "M8"
         ],
-        "source_ids": []
+        "source_ids": [
+          "S0"
+        ]
       },
       "gaps": [
         "A few dismissals also recite findings about the President's Reemployment Agreement or other programs; the reviewer should confirm no second operative clause."
@@ -517,14 +807,13 @@
     },
     {
       "branch_id": "N2",
-      "description": "Orders constituting or staffing the National Industrial Recovery Board (EO 6859, 6993, 7025), terminated by EO 7075.",
+      "description": "EO 6859 (created the National Industrial Recovery Board) and EO 6993 (reconstituted it): the Board was terminated by name by EO 7075.",
       "when": [
         {
           "field": "instrument_id",
           "in": [
             "EO:6859",
-            "EO:6993",
-            "EO:7025"
+            "EO:6993"
           ]
         },
         {
@@ -533,62 +822,62 @@
       ],
       "lead": {
         "status_lead": "no",
-        "lead_kind": "body_terminated_by_later_order",
+        "lead_kind": "ended_by_express_abolition_of_its_subject",
         "basis_kind": "ACT",
-        "basis": "Each order's operative content creates, reconstitutes or fills the National Industrial Recovery Board; EO 7075 section 1 terminated that Board on June 15, 1935.",
+        "basis": "The member's only subject is the National Industrial Recovery Board (EO 6859 creates and staffs it; EO 6993 'reconstitute[s] the National Industrial Recovery Board created by Executive Order no. 6859' and sets its membership). EO 7075 section 1: 'The National Industrial Recovery Board created by Executive Order No. 6859 of September 27, 1934, is hereby terminated' (ruling P7). The appointments of named members are consequences that ended with the Board (ruling P4).",
         "date_rule": {
           "kind": "fixed",
           "date": "1935-06-15",
           "basis": "EO 7075 section 1"
         },
         "mechanism_ids": [
-          "M5",
-          "M2"
+          "M5"
         ],
         "source_ids": [
           "S7",
-          "S4"
+          "S0"
         ]
       },
       "gaps": [
-        "EO 6859 section 3 also lets the Board exercise powers conferred on the Administrator; those powers were re-conferred on the new Administrator by EO 7075 section 2, a new grant, not a continuation of EO 6859."
+        "EO 7075 is held only as an APP mirror transcription, abridged ('. . .' in secs. 2 and 5).",
+        "EO 6859 section 3 lets the Board exercise powers conferred on the Administrator; EO 7075 section 2 re-conferred them on the new Administrator, a new grant."
       ]
     },
     {
       "branch_id": "N3",
-      "description": "Orders creating or funding the National Recovery Review Board (EO 6632, 6637), abolished by EO 6771.",
+      "description": "EO 6632 (created the National Recovery Review Board) and EO 6771 (abolished it): the Board ceased to exist on July 1, 1934.",
       "when": [
         {
           "field": "instrument_id",
           "in": [
             "EO:6632",
-            "EO:6637"
+            "EO:6771"
           ]
         },
         {
-          "text_regex": "National Recovery Review Board|order dated March 7, 1934"
+          "text_regex": "National Recovery Review Board"
         }
       ],
       "lead": {
         "status_lead": "no",
-        "lead_kind": "body_terminated_by_later_order",
+        "lead_kind": "ended_by_express_abolition_of_its_subject",
         "basis_kind": "ACT",
-        "basis": "The order's operative content creates or funds the National Recovery Review Board; EO 6771 ordered that Board to cease to exist on July 1, 1934.",
+        "basis": "EO 6771 identifies the Board as established 'by Executive Order of March 7, 1934' (EO 6632) and orders 'that the said Board shall cease to exist on that date', after its discontinuance 'prior to July 1, 1934' (ruling P7 for EO 6632). EO 6771's own only command is that abolition, performed on July 1, 1934.",
         "date_rule": {
-          "kind": "interval",
-          "from": "order_date",
-          "to": "1934-07-01",
+          "kind": "fixed",
+          "date": "1934-07-01",
           "basis": "EO 6771"
         },
         "mechanism_ids": [
           "M6"
         ],
         "source_ids": [
-          "S8"
+          "S8",
+          "S0"
         ]
       },
       "gaps": [
-        "Unspent money allotted by EO 6637 is an accrued consequence; its return was not traced."
+        "EO 6771 is held as APP and Hathi transcriptions, not an authenticated original."
       ]
     },
     {
@@ -607,37 +896,38 @@
       ],
       "lead": {
         "status_lead": "no",
-        "lead_kind": "own_stated_period",
+        "lead_kind": "merged_into_parent_on_issue",
         "basis_kind": "TERM",
-        "basis": "The order's only command extends other Title I orders and agencies 'until April 1, 1936'; its own operation ends on that date, which is also the date Title I ceased (NIRA sec. 2(c) as amended).",
+        "basis": "EO 7076's only operative content amends 'all existing Executive Orders heretofore issued under' Title I 'so as to continue them in effect ... until April 1, 1936'. Under ruling P2 it merged into those orders on issue: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it. Every parent ended by April 1, 1936 (branch N6 and NIRA sec. 2(c) as amended).",
         "date_rule": {
-          "kind": "fixed",
-          "date": "1936-04-01",
-          "basis": "own terms; NIRA sec. 2(c) as amended"
+          "kind": "order_date"
         },
         "mechanism_ids": [
           "M9",
+          "M2",
           "M1"
         ],
         "source_ids": [
+          "S0",
           "S4",
           "S1",
           "S2"
         ]
       },
       "gaps": [
-        "Held only as mirror transcriptions; both say the orders' period was limited to 'June 26, 1935', probably a transcription of 'June 16, 1935'. The discrepancy does not affect the April 1, 1936 end."
+        "Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+        "Held only as mirror transcriptions; both say the orders' period was limited to 'June 26, 1935', probably a transcription of 'June 16, 1935'; immaterial.",
+        "If the owner treats EO 7076's extension of agency authority as a command of its own, its end is April 1, 1936 by its own words."
       ]
     },
     {
       "branch_id": "N5",
-      "description": "Post-June 14, 1935 Title I administration: EO 7075 (office of Administrator, Divisions of Review and Business Cooperation) and EO 7159 (Acting Administrator).",
+      "description": "EO 7075 (June 15, 1935): created the office of Administrator of the NRA and the Divisions of Review and of Business Cooperation under Title I as amended.",
       "when": [
         {
           "field": "instrument_id",
           "in": [
-            "EO:7075",
-            "EO:7159"
+            "EO:7075"
           ]
         },
         {
@@ -646,14 +936,14 @@
       ],
       "lead": {
         "status_lead": "no",
-        "lead_kind": "agency_ceased_by_statute_and_order",
+        "lead_kind": "ended_by_express_abolition_of_its_subject",
         "basis_kind": "ACT",
-        "basis": "EO 7252 terminated the NRA and the office of Administrator effective January 1, 1936 and required the transferred divisions' functions to end by April 1, 1936; NIRA sec. 2(c) as amended made every agency established under Title I cease to exist on April 1, 1936. The appointments and the termination of the old Board in EO 7075 are single acts performed on issue.",
+        "basis": "EO 7075's operative content is the NRA's administration under Title I as amended: it terminates the old Board (spent on issue), creates the office of Administrator, the Division of Review, the Division of Business Cooperation and the Advisory Council, and appoints their heads (consequences, ruling P4). EO 7252 section 1 terminated 'The National Recovery Administration and the office of Administrator thereof' from January 1, 1936; section 2 names the member, transferring 'The Division of Review, the Division of Business Cooperation, and the Advisory Council, as constituted by Executive Order No. 7075 of June 15, 1935' and directing the Secretary of Commerce 'to terminate the functions and duties of the said agencies not later than April 1, 1936'; NIRA sec. 2(c) as amended provides that 'any agencies established hereunder shall cease to exist' on April 1, 1936 (ruling P7).",
         "date_rule": {
           "kind": "interval",
-          "from": "order_date",
+          "from": "1936-01-01",
           "to": "1936-04-01",
-          "basis": "EO 7252; NIRA sec. 2(c) as amended"
+          "basis": "EO 7252 secs. 1, 2 and 6; NIRA sec. 2(c) as amended"
         },
         "mechanism_ids": [
           "M7",
@@ -668,7 +958,109 @@
         ]
       },
       "gaps": [
-        "The Division of Review's work was later carried on by a committee under the Emergency Relief Appropriation Act of 1935 (EO 7323), a new basis; the doctrine treats it as independent and does not trace it."
+        "The held EO 7075 text is an abridged APP transcription ('. . .' in secs. 2 and 5; no sec. 6), so 'only operative content' was checked on an incomplete text.",
+        "The Division of Review's work was taken up by a committee under the Emergency Relief Appropriation Act of 1935 (EO 7323), a new basis."
+      ]
+    },
+    {
+      "branch_id": "N5b",
+      "description": "EO 7192: a delegation to the Federal Trade Commission of Title I powers as amended (ruling P8).",
+      "when": [
+        {
+          "field": "instrument_id",
+          "in": [
+            "EO:7192"
+          ]
+        },
+        {
+          "text_regex": "I hereby delegate to the Federal Trade Commission"
+        }
+      ],
+      "lead": {
+        "status_lead": "no",
+        "lead_kind": "ended_with_delegated_statutory_power",
+        "basis_kind": "ACT",
+        "basis": "The member's only content delegates to the Federal Trade Commission 'all authority vested in me by said Act and Resolution' under 'section 2(a) and section 2(b) of Title I', which its own text says were 'extended until April 1, 1936'. NIRA sec. 2(c) as amended: 'This title shall cease to be in effect ... on April 1, 1936'. The delegation had nothing left to exercise after that date (ruling P8).",
+        "date_rule": {
+          "kind": "fixed",
+          "date": "1936-04-01",
+          "basis": "NIRA sec. 2(c) as amended by S.J. Res. 113 sec. 1"
+        },
+        "mechanism_ids": [
+          "M13"
+        ],
+        "source_ids": [
+          "S0",
+          "S1",
+          "S2"
+        ]
+      },
+      "gaps": [
+        "EO 7192 is held only as an APP mirror transcription."
+      ]
+    },
+    {
+      "branch_id": "O1a",
+      "description": "NRA-typed fund allotments (money allocated or allotted from an appropriation), including EO 6637's allotment to the National Recovery Review Board.",
+      "when": [
+        {
+          "field": "x1_type",
+          "in": [
+            "nra_code_approval"
+          ]
+        },
+        {
+          "summary_regex": "Sum of \\$[\\d,.]+ ?allocated|di ?rected to (allot|make available) ?\\$"
+        }
+      ],
+      "lead": {
+        "status_lead": "open",
+        "lead_kind": "other_family_pd_admin",
+        "basis_kind": "NONE",
+        "basis": "Fund allotment; follows PD-ADMIN (fund_allotment rule). The allotment rests on an appropriation act or Title II, which EO 7076 does not reach.",
+        "date_rule": {
+          "kind": "none"
+        },
+        "mechanism_ids": [],
+        "source_ids": []
+      },
+      "gaps": [
+        "Apply PD-ADMIN's fund-allotment rule."
+      ]
+    },
+    {
+      "branch_id": "O1b",
+      "description": "NRA-typed orders whose operative content is the appointment of named persons (EO 6298, 6537, 6538, 6731-A, 7025, 7159; EO 6836, an amendment whose only content appoints Donald R. Richberg).",
+      "when": [
+        {
+          "field": "instrument_id",
+          "in": [
+            "EO:6298",
+            "EO:6537",
+            "EO:6538",
+            "EO:6731A",
+            "EO:7025",
+            "EO:7159",
+            "EO:6836"
+          ]
+        },
+        {
+          "text_regex": "appoint"
+        }
+      ],
+      "lead": {
+        "status_lead": "open",
+        "lead_kind": "one_person_follows_pd_cs_one_person",
+        "basis_kind": "NONE",
+        "basis": "One-person order; follows PD-CS-ONE-PERSON (coordinator ruling P4). The appointment is spent when the person takes office and the tenure is a surviving consequence. Disclosed bounds, not applied: EO 7076 limited every Title I order issued before June 15, 1935 to April 1, 1936; the codes under which EO 6298, 6537, 6538 and 6731-A appointments were made lost their enforcement provisions on June 14, 1935 (S.J. Res. 113 sec. 2); EO 7252 terminated the office EO 7159 filled from January 1, 1936; EO 6836 fixes Richberg's leave 'until October 1, 1934' and under ruling P2 would merge into EO 6770 (open).",
+        "date_rule": {
+          "kind": "none"
+        },
+        "mechanism_ids": [],
+        "source_ids": []
+      },
+      "gaps": [
+        "Needs PD-CS-ONE-PERSON's appointment rule; the bounds above (S4, S3, S9, S10) are disclosed, not applied."
       ]
     },
     {
@@ -694,15 +1086,15 @@
         },
         {
           "not": {
-            "text_regex": "title II\\b|titles I and II|section 20[0-9]|Public,? No\\.? 5\\b|March 31, 1933|Deficiency Act|Agricultural Adjustment|Federal Emergency Relief|Emergency Appropriation Act|Emergency Relief Appropriation|Public Resolution (No\\.? )?44|joint resolution approved June 19, 1934|Reconstruction Finance|Federal Trade Commission Act|act to create a Federal Trade Commission|Code of the District of Columbia|Commodity Credit Corporation|banking corporation|Export-Import Bank|Bituminous Coal Conservation"
+            "text_regex": "(authority|powers?)( and discretion)?( thereby)? (vested in|conferred (up)?on) me.{0,350}?(title II\\b|titles I and II|section 20[0-9]|Public,? No\\.? 5\\b|March 31, 1933|Deficiency Act|Agricultural Adjustment|Federal Emergency Relief|Emergency Appropriation Act|Emergency Relief Appropriation|Public Resolution (No\\.? )?44|joint resolution approved June 19, 1934|Reconstruction Finance|Federal Trade Commission|Code of the District of Columbia|Bituminous Coal Conservation)|aforesaid legislation|statutes aforesaid|said Acts of Congress|an agency, to wit:? a (banking )?corporation|hereby allocated|section 2[0-2][0-9] of the National Industrial Recovery Act|directed to (allot|make available)"
           }
         }
       ],
       "lead": {
         "status_lead": "no",
-        "lead_kind": "title_i_order_limited_to_april_1_1936",
+        "lead_kind": "ended_by_express_class_instrument",
         "basis_kind": "ACT",
-        "basis": "The order was issued under Title I of NIRA before June 15, 1935 and cites no other statute. EO 7076 amended every such order to continue it only 'until April 1, 1936', and NIRA sec. 2(c) as amended ended Title I and its agencies on that date. Code-dependent commands ended earlier, on June 14, 1935 (S.J. Res. 113 sec. 2); dismissals, denials, appointments and amendments were exhausted on issue. Schechter and Panama Refining are validity notes, not ends.",
+        "basis": "EO 7076 ordered 'that all existing Executive Orders heretofore issued under and by virtue of the authority vested in me by Title I of the National Industrial Recovery Act be, and they are, hereby amended so as to continue them in effect and to extend their operation ... until April 1, 1936'. Member test: the member's own text names a Title I power (Title I, a code of fair competition, section 9(c) or its petroleum words, the President's Reemployment Agreement, section 2(b) or 10(a)); it is dated before June 15, 1935; its authority clause (the words following 'authority vested in me') cites no other statute, and it allocates no funds and charters no corporation. Mentions of other statutes outside the authority clause (a recital or a descriptive clause) do not exclude a member. It is therefore an existing order issued under Title I, and EO 7076 fixed April 1, 1936 as the last day of its operation. Earlier candidate ends are disclosed, not applied: the June 14, 1935 repeal of the code provisions (S.J. Res. 113 sec. 2) for code-dependent commands, and exhaustion on issue for denials and dismissals. Schechter and Panama Refining are validity notes, not ends.",
         "date_rule": {
           "kind": "interval",
           "from": "order_date",
@@ -724,13 +1116,13 @@
       },
       "gaps": [
         "EO 7076 is held only as a mirror transcription.",
-        "Orders that cite Title I 'and otherwise' may rest in part on unnamed general authority; EO 7076 still reaches them because they were issued under Title I, but a reviewer should confirm that no clause stands on another statute.",
-        "The machine test for 'no other statute' is a text pattern; a statute cited in words the pattern misses would make the member an outlier."
+        "Orders citing Title I 'and otherwise' may rest partly on unnamed general authority; EO 7076 reaches them because they were issued under Title I.",
+        "The authority-clause test is a text pattern: it reads the 350 characters after 'authority vested in me'."
       ]
     },
     {
       "branch_id": "N7",
-      "description": "NRA-typed orders whose text is an amendment of another order issued under Title I (EO 6612-A amending EO 6580; EO 6836 amending EO 6770).",
+      "description": "NRA-typed orders whose text is only an amendment of another Title I order and does not act for one named person (EO 6612-A amending EO 6580).",
       "when": [
         {
           "field": "x1_type",
@@ -749,23 +1141,31 @@
           "not": {
             "text_regex": "titles I and II|title II\\b|hereby established"
           }
+        },
+        {
+          "not": {
+            "text_regex": "I hereby appoint"
+          }
         }
       ],
       "lead": {
         "status_lead": "no",
-        "lead_kind": "spent_on_issue_amendment",
+        "lead_kind": "merged_into_parent_on_issue",
         "basis_kind": "TERM",
-        "basis": "The order's only command amends another order; it is spent on issue, and the text it inserted is evidence for the amended order's lifecycle (owner rule in the author brief).",
+        "basis": "The member's own text shows that amending another Title I order is its only operative content. Its text merged into the parent on issue: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it (coordinator ruling P2).",
         "date_rule": {
           "kind": "order_date"
         },
         "mechanism_ids": [
           "M8"
         ],
-        "source_ids": []
+        "source_ids": [
+          "S0"
+        ]
       },
       "gaps": [
-        "The inserted text (for example EO 6836's appointment of Donald R. Richberg as Director of the Industrial Emergency Committee) lives or dies with the amended order, whose end is decided elsewhere (EO 6770 is open under O1; EO 6580 is on N6)."
+        "Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it. Parent: EO 6580 (branch N6, ended by 1936-04-01).",
+        "If the owner treats an amending order as living as long as the amended text lives, the lead becomes open pending the parent (ruling P2)."
       ]
     },
     {
@@ -800,26 +1200,67 @@
         }
       ],
       "lead": {
+        "status_lead": "open",
+        "lead_kind": "one_person_follows_pd_cs_one_person",
+        "basis_kind": "NONE",
+        "basis": "One-person order; follows PD-CS-ONE-PERSON (coordinator ruling P4). The appointment is spent when the person takes office and the person's tenure is a surviving consequence; PD-CS-ONE-PERSON's members are selected by other X1 types, so its rule does not yet reach these orders.",
+        "date_rule": {
+          "kind": "none"
+        },
+        "mechanism_ids": [],
+        "source_ids": []
+      },
+      "gaps": [
+        "Needs PD-CS-ONE-PERSON's rule for appointments.",
+        "Stated ends disclosed, not applied: EO 4087 designates James W. Blackburn special judge 'until Jan. 1, 1926', EO 4567 'until Jan. 1, 1928', EO 4767 'until Jan. 1, 1929' (WPA summaries).",
+        "Tenures not traced; the Isthmian Canal Commission's discontinuance under the Panama Canal Act of August 24, 1912 (37 Stat. 560) is not held.",
+        "EO 1320 and EO 577½ name persons who appear in later orders."
+      ]
+    },
+    {
+      "branch_id": "C2a",
+      "description": "Canal Zone orders that only revoke another order.",
+      "when": [
+        {
+          "field": "x1_type",
+          "in": [
+            "canal_zone"
+          ]
+        },
+        {
+          "title_regex": "^revoking order"
+        },
+        {
+          "not": {
+            "title_regex": "civil ?[- ]?service|schedule"
+          }
+        },
+        {
+          "text_regex": "is hereby revoked"
+        }
+      ],
+      "lead": {
         "status_lead": "no",
-        "lead_kind": "spent_on_issue_appointment",
+        "lead_kind": "spent_on_issue",
         "basis_kind": "TERM",
-        "basis": "The order appoints or designates named persons to a Canal Zone office; the appointment is a single act performed when the order issues. A stated term ('until January 1, 1927') or a salary fixed for the appointee limits the appointee's tenure, which is a consequence of the act and ended long before the cutoff in any event.",
+        "basis": "The member's own text shows that revoking another order is its only operative content; the command is exhausted on issue, and its consequence belongs to the revoked order's lifecycle (coordinator ruling P1).",
         "date_rule": {
           "kind": "order_date"
         },
         "mechanism_ids": [
           "M8"
         ],
-        "source_ids": []
+        "source_ids": [
+          "S0"
+        ]
       },
       "gaps": [
-        "Compensation fixed for an appointee runs with the tenure; the end of each tenure (and the discontinuance of the Isthmian Canal Commission under the Panama Canal Act of August 24, 1912, 37 Stat. 560, not held) is not traced.",
-        "Some designation texts are ProQuest scans graded archival_replica_scan_pending_codebook; identity must be confirmed by a reader."
+        "The revoked order's own end is recorded in its lifecycle, not here."
       ]
     },
     {
-      "branch_id": "C2",
-      "description": "Canal Zone orders that only amend or revoke another order (amending a compensation order, revoking a transfer order, correcting a typographical error).",
+      "branch_id": "C2b",
+      "description": "Canal Zone orders that only amend another order and do not act for one named person (the consulting engineers' allowance wording; a typographical correction).",
       "when": [
         {
           "field": "x1_type",
@@ -830,7 +1271,7 @@
         {
           "any_of": [
             {
-              "title_regex": "^(amending|revoking) order"
+              "title_regex": "^amending order"
             },
             {
               "summary_regex": "amended to correct typographical"
@@ -839,30 +1280,41 @@
         },
         {
           "not": {
-            "title_regex": "civil[- ]service|schedule"
+            "title_regex": "civil ?[- ]?service|schedule"
           }
         },
         {
           "not": {
             "text_regex": "revoked, and it is ordered"
           }
+        },
+        {
+          "not": {
+            "field": "instrument_id",
+            "in": [
+              "EO:595"
+            ]
+          }
         }
       ],
       "lead": {
         "status_lead": "no",
-        "lead_kind": "spent_on_issue_amendment",
+        "lead_kind": "merged_into_parent_on_issue",
         "basis_kind": "TERM",
-        "basis": "The order's only command amends or revokes another order; it is spent on issue, and the change it made is evidence for the other order's lifecycle (owner rule in the author brief).",
+        "basis": "The member's own text shows that amending another order is its only operative content. Its text merged into the parent on issue: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it (coordinator ruling P2).",
         "date_rule": {
           "kind": "order_date"
         },
         "mechanism_ids": [
           "M8"
         ],
-        "source_ids": []
+        "source_ids": [
+          "S0"
+        ]
       },
       "gaps": [
-        "The amended orders' own ends are decided elsewhere."
+        "Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it. Parents: EO 348-C (open, O2b) for EO 373-A and EO 412; EO 2692 (branch R8, revoked 1919-01-25 by EO 3027) for EO 2737.",
+        "If the owner treats an amending order as living as long as the amended text lives, these leads become open pending the parent (ruling P2)."
       ]
     },
     {
@@ -898,12 +1350,12 @@
         "status_lead": "no",
         "lead_kind": "zone_ceased_class_event",
         "basis_kind": "ACT",
-        "basis": "The order's operative content governs the Canal Zone only. The Panama Canal Treaty (in force October 1, 1979) ended the Canal Zone Government and returned plenary jurisdiction to Panama; the Panama Canal Act of 1979 kept Zone laws and regulations in force only for transition-period law enforcement and courts (sec. 2101) and re-read 'Canal Zone' as the treaty areas (sec. 3(b)); the Treaty terminated at noon December 31, 1999, after which no area answering to 'Canal Zone' remained. The order had no object after that date at the latest.",
+        "basis": "The member's operative content governs the Canal Zone only. Its end rests on ruling P5 and the Panama Canal Treaty: 'This Treaty shall terminate at noon, Panama time, December 31, 1999' (art. II(2)), after which no area answering to 'Canal Zone' remained; 22 U.S.C. 3602(d) names that day the Canal Transfer Date. The Panama Canal Act of 1979 did not end Zone rules: it continued them for transition-period law enforcement and courts (sec. 2101) and re-read 'Canal Zone' as the treaty areas (sec. 3(b)), so it only confines them within the Treaty's life. The lead is the interval (order date, 1999-12-31].",
         "date_rule": {
           "kind": "interval",
           "from": "order_date",
           "to": "1999-12-31",
-          "basis": "Panama Canal Treaty art. II(2); 22 U.S.C. 3602(d)"
+          "basis": "Panama Canal Treaty art. II(2), the latest bound for Canal Zone orders (ruling P5); 22 U.S.C. 3602(d)"
         },
         "mechanism_ids": [
           "M11"
@@ -917,8 +1369,9 @@
         ]
       },
       "gaps": [
-        "The Treaty and 22 U.S.C. 3602(d) are read on the web only and must be acquired.",
-        "Earlier ends (supersession by later Zone orders, the Canal Zone Code at 76A Stat. 1, the 1979 Act's amendment of 50 U.S.C. 191 in sec. 3302(a)) are not dated."
+        "The Panama Canal Treaty of 1977 and 22 U.S.C. 3602(d) are not yet held; both were read on the web only and are listed in FETCH_PROPOSED.jsonl. Acquire them before adopting these leads.",
+        "Disclosed earlier candidates, not dated: October 1, 1979 for Zone civil government (Treaty art. III(10)); the end of the 30-month transition period for courts and police; supersession by later Zone orders; the Canal Zone Code (76A Stat. 1).",
+        "EO 2907 delegates Espionage Act title II sec. 1 powers that depend on a declared national emergency (a war-emergency predicate with its own lifecycle, PD-WAR-EMERGENCY), and Panama Canal Act sec. 3302(a) struck the second paragraph of 50 U.S.C. 191 and the words ', the Canal Zone,'; both are earlier candidate ends."
       ]
     },
     {
@@ -937,14 +1390,14 @@
       ],
       "lead": {
         "status_lead": "no",
-        "lead_kind": "sovereignty_surrendered_class_event",
+        "lead_kind": "ended_by_express_class_instrument",
         "basis_kind": "ACT",
-        "basis": "The order's operative content is U.S. supervision of the Islands' government. Section 10(a) of the Philippine Independence Act and Proclamation 2695 withdrew and surrendered all U.S. supervision, jurisdiction and control over the Islands on July 4, 1946; the order had no object after that date at the latest.",
+        "basis": "The member's operative content is U.S. supervision of the Islands' government (EO 2456 places 'all matters pertaining to the Government of the Philippine Islands' under the War Department and directs the Governor General's reports there; EO 7447 delegates to the High Commissioner the Commonwealth's extradition business). Section 10(a) of the Philippine Independence Act directed the President to 'withdraw and surrender all right of possession, supervision, jurisdiction, control, or sovereignty then existing and exercised by the United States in and over the territory and people of the Philippine Islands', and Proclamation 2695 declared on July 4, 1946: 'The United States of America hereby withdraws and surrenders all rights of possession, supervision, jurisdiction, control, or sovereignty now existing and exercised by the United States of America in and over the territory and people of the Philippines'. Those words describe the class the member's content falls in; the reservations the statute and proclamation except are not the member's subject. For EO 7447, section 7 of the Act, under which the High Commissioner served, applies only 'Until the final and complete withdrawal of American sovereignty'. The date the instrument fixes is July 4, 1946 (ruling P5).",
         "date_rule": {
           "kind": "interval",
           "from": "order_date",
           "to": "1946-07-04",
-          "basis": "Proclamation 2695; 48 Stat. 456 sec. 10(a)"
+          "basis": "Proclamation 2695; 48 Stat. 456, sec. 10(a), at 463"
         },
         "mechanism_ids": [
           "M12"
@@ -961,8 +1414,36 @@
       ]
     },
     {
+      "branch_id": "O1c",
+      "description": "EO 6858 (Textile Labor Relations Board), issued under Title I and Public Resolution 44.",
+      "when": [
+        {
+          "field": "instrument_id",
+          "in": [
+            "EO:6858"
+          ]
+        }
+      ],
+      "lead": {
+        "status_lead": "open",
+        "lead_kind": "two_statutes_later_extension_untraced",
+        "basis_kind": "NONE",
+        "basis": "The member's authority clause cites Title I and 'joint resolution approved June 19, 1934 (Public Resolution 44)', so EO 7076's Title I class does not alone account for it. EO 7084 (June 24, 1935) names it: 'The Textile Labor Relations Board created under Executive Order No. 6858 of September 26, 1934, and continued by Executive Order No. 7076 of June 15, 1935, is hereby further continued in existence until July 1, 1935'. That limit is disclosed; later extensions of the Board are not traced.",
+        "date_rule": {
+          "kind": "none"
+        },
+        "mechanism_ids": [],
+        "source_ids": [
+          "S26"
+        ]
+      },
+      "gaps": [
+        "Trace later orders continuing the Textile Labor Relations Board after July 1, 1935 and Public Resolution 44's own period (48 Stat. 1183, not held)."
+      ]
+    },
+    {
       "branch_id": "O1",
-      "description": "NRA-typed orders that rest on another statute or authority (Title II public works, appropriation acts, Public Resolution 44, corporation charters, the Emergency Relief Appropriation Act), or post-June 14, 1935 orders not reached by EO 7076.",
+      "description": "NRA-typed orders that rest on another statute or authority (Title II public works, Public Resolution 44, corporation charters, the Emergency Relief Appropriation Act, the National Emergency Council's several statutes), or post-June 14, 1935 orders not reached by EO 7076 (EO 7120, 7192, 7252), or with no held text.",
       "when": [
         {
           "field": "x1_type",
@@ -983,12 +1464,90 @@
         "source_ids": []
       },
       "gaps": [
-        "Each needs its own statute's lifecycle (Title II and its extensions; the Emergency Relief Appropriation Act of 1935; Public Resolution 44, 48 Stat. 1183; the Commodity Credit Corporation and Export-Import Bank statutes) or the PD-ADMIN fund-allotment and organization rules."
+        "Each needs its own statute's lifecycle (Title II and its extensions; the Emergency Relief Appropriation Act of 1935; the Commodity Credit Corporation and Export-Import Bank statutes) or the PD-ADMIN organization rules.",
+        "EO 6651 has a second operative clause allocating $100,000 'from the appropriation of $3,300,000,000 authorized by section 220 of the National Industrial Recovery Act and made by the Fourth Deficiency Act', a Title II appropriation, so it is not only a Title I order."
+      ]
+    },
+    {
+      "branch_id": "O2a",
+      "description": "Canal Zone-typed amendments of the general Civil Service Rules or schedules, and civil-service classification orders.",
+      "when": [
+        {
+          "field": "x1_type",
+          "in": [
+            "canal_zone"
+          ]
+        },
+        {
+          "any_of": [
+            {
+              "title_regex": "civil ?[- ]?service|schedule [AB]|classificat|temporary appointments on the Isthmus"
+            },
+            {
+              "summary_regex": "Civil ?Service (Rules?|Act)|Schedule [AB]"
+            }
+          ]
+        }
+      ],
+      "lead": {
+        "status_lead": "open",
+        "lead_kind": "other_family_pd_cs_rules",
+        "basis_kind": "NONE",
+        "basis": "Civil Service Rules order; follows PD-CS-RULES. The order amends or applies the general Civil Service Rules, which operate beyond the Zone, so the end of the Canal Zone does not reach it by its terms.",
+        "date_rule": {
+          "kind": "none"
+        },
+        "mechanism_ids": [],
+        "source_ids": []
+      },
+      "gaps": [
+        "Apply PD-CS-RULES."
+      ]
+    },
+    {
+      "branch_id": "O2b",
+      "description": "Canal Zone-typed orders fixing pay or allowances of named persons (Isthmian Canal Commission members, the Board of Consulting Engineers, EO 595's dwelling and expenses for Lt. Col. Goethals).",
+      "when": [
+        {
+          "field": "x1_type",
+          "in": [
+            "canal_zone"
+          ]
+        },
+        {
+          "any_of": [
+            {
+              "title_regex": "(fixing|prescribing) (the )?(salary|salaries|compensation)|salaries and allowances|consulting engineers"
+            },
+            {
+              "field": "instrument_id",
+              "in": [
+                "EO:595"
+              ]
+            }
+          ]
+        }
+      ],
+      "lead": {
+        "status_lead": "open",
+        "lead_kind": "one_person_follows_pd_cs_one_person",
+        "basis_kind": "NONE",
+        "basis": "Pay for named persons; follows PD-CS-ONE-PERSON (coordinator ruling P4) for the named-person entitlements, and needs the Panama Canal Act of 1912 (37 Stat. 560) for the Commission's discontinuance.",
+        "date_rule": {
+          "kind": "none"
+        },
+        "mechanism_ids": [],
+        "source_ids": []
+      },
+      "gaps": [
+        "37 Stat. 560 not held; tenures not traced.",
+        "EO 418: EO 474 (June 30, 1906) says 'All orders in conflict herewith are revoked'; a Wikisource editorial note lists EO 418 as revoked. Implied displacement under P3, disclosed only.",
+        "EO 595 only amends EO 577½ to give Goethals a furnished dwelling and expenses; under ruling P2 it would merge into EO 577½ (open, C1)."
       ]
     },
     {
       "branch_id": "O2",
-      "description": "Canal Zone orders not decided: content reaching outside the Zone, Panama Railroad corporate matters, continuing individual rights, general civil-service rules, truncated or unidentified texts.",
+      "description": "Canal Zone orders not decided: content reaching outside the Zone, Panama Railroad corporate matters, continuing individual rights, Commission organization, scanned texts, texts longer than the 12,000-character window, or orders whose subject is not Zone government alone.",
       "when": [
         {
           "field": "x1_type",
@@ -1001,7 +1560,7 @@
         "status_lead": "open",
         "lead_kind": "zone_outlier_or_text_incomplete",
         "basis_kind": "NONE",
-        "basis": "The class event ends Zone-only government, but these orders reach outside the Zone (Panama City and Colon harbors, Washington offices, general U.S. civil-service rules), rest on Panama Railroad corporate arrangements, create continuing individual rights (injury compensation, estates, deposits), or their held text is cut off, scanned unreadably or another order's.",
+        "basis": "The class event ends Zone-only government, but these orders reach outside the Zone (Panama City and Colon harbors, Washington offices), rest on Panama Railroad arrangements, create continuing individual rights (injury compensation, estates, deposits), concern the Isthmian Canal Commission's organization, or cannot be tested by the machine: their held text is a ProQuest scan (not graded for C3), runs past the 12,000-character window the engine reads, or contains words C3 excludes.",
         "date_rule": {
           "kind": "none"
         },
@@ -1009,18 +1568,48 @@
         "source_ids": []
       },
       "gaps": [
-        "Full official texts for truncated orders (Panama Canal Record or the 1911 GPO compilation); later-law sources for each outlier (Hull-Alfaro Treaty of 1936 for Panama and Colon sanitation; 37 Stat. 560 for the Isthmian Canal Commission's discontinuance; Civil Service Rules history for schedule amendments)."
+        "Per-member reasons are listed in the .md, section (d).",
+        "Later-law sources: Hull-Alfaro Treaty of 1936 for Panama and Colon sanitation; 37 Stat. 560 for the Isthmian Canal Commission; EO 474's 'All orders in conflict herewith are revoked' for EO 418 is implied displacement (P3), disclosed only."
+      ]
+    },
+    {
+      "branch_id": "Z9a",
+      "description": "Philippine-typed Alien Property Custodian orders (Trading with the Enemy Act).",
+      "when": [
+        {
+          "field": "x1_type",
+          "in": [
+            "philippines"
+          ]
+        },
+        {
+          "any_regex": "Alien Property Custodian|Trading with the Enemy"
+        }
+      ],
+      "lead": {
+        "status_lead": "open",
+        "lead_kind": "other_family_pd_war_emergency",
+        "basis_kind": "NONE",
+        "basis": "Alien Property Custodian order; follows PD-WAR-EMERGENCY. Its text has no Philippine subject, so Philippine independence does not reach it.",
+        "date_rule": {
+          "kind": "none"
+        },
+        "mechanism_ids": [],
+        "source_ids": []
+      },
+      "gaps": [
+        "Apply PD-WAR-EMERGENCY's alien-property rule."
       ]
     },
     {
       "branch_id": "Z9",
-      "description": "Catch-all: Philippine-typed orders with no Philippine subject and anything else.",
+      "description": "Catch-all: Philippine-typed general orders with no Philippine subject (foreign-built ship registry, federal law officers) and anything else.",
       "when": [],
       "lead": {
         "status_lead": "open",
-        "lead_kind": "mistyped_or_undecided",
+        "lead_kind": "other_family_pd_admin",
         "basis_kind": "NONE",
-        "basis": "The order's own text does not concern U.S. government of the Philippine Islands (for example Alien Property Custodian delegations, foreign-built ship registry, a general order on federal law officers), so Philippine independence is not shown to reach it.",
+        "basis": "General administrative order with no Philippine subject; follows PD-ADMIN (EO 2877 governs all federal law officers and excepts the Philippines; EO 2448 suspends navigation-law requirements for foreign-built ships). Philippine independence does not reach it.",
         "date_rule": {
           "kind": "none"
         },
@@ -1028,30 +1617,38 @@
         "source_ids": []
       },
       "gaps": [
-        "Route to the family that fits the order's real subject (PD-WAR-EMERGENCY for Alien Property Custodian orders; PD-ADMIN for general organization orders)."
+        "Apply PD-ADMIN (or PD-CUSTOMS-CONSULAR for the ship-registry order)."
       ]
     }
   ],
   "undecidable": [
     {
-      "reason": "NRA-typed orders resting on statutes other than NIRA Title I (Title II, appropriation acts, Public Resolution 44, corporation charters, Emergency Relief Appropriation Act) or on no named Title I power",
+      "reason": "One-person appointment and pay orders; follow PD-CS-ONE-PERSON (ruling P4)",
+      "detected_by": "C1, O1b, O2b"
+    },
+    {
+      "reason": "NRA fund allotments; follow PD-ADMIN",
+      "detected_by": "O1a"
+    },
+    {
+      "reason": "EO 6858: issued under Title I and Public Resolution 44; EO 7084's July 1, 1935 limit disclosed, later extensions untraced",
+      "detected_by": "O1c"
+    },
+    {
+      "reason": "NRA-typed orders resting on statutes other than NIRA Title I, post-June 14, 1935 orders not reached by an instrument (EO 7120, 7252), or with no held text",
       "detected_by": "O1"
     },
     {
-      "reason": "Post-June 14, 1935 Title I orders whose function outlived April 1, 1936 or that rest only on the Title's expiry (EO 7120, 7192, 7252)",
-      "detected_by": "O1"
+      "reason": "Canal Zone civil-service rule orders; follow PD-CS-RULES",
+      "detected_by": "O2a"
     },
     {
-      "reason": "NRA orders with no held text (EO 6786-A, 7010-P)",
-      "detected_by": "O1"
-    },
-    {
-      "reason": "Canal Zone orders reaching outside the Zone, resting on Panama Railroad corporate matters, creating continuing individual rights, amending general civil-service rules, or held only in truncated, scanned or mismatched text",
+      "reason": "Canal Zone orders reaching outside the Zone, resting on Panama Railroad matters, creating continuing rights, or not machine-testable (scan grade, length beyond the window, excluded words)",
       "detected_by": "O2"
     },
     {
-      "reason": "Philippine-typed orders with no Philippine subject",
-      "detected_by": "Z9"
+      "reason": "Philippine-typed orders with no Philippine subject; follow PD-WAR-EMERGENCY or PD-ADMIN",
+      "detected_by": "Z9a, Z9"
     }
   ]
 }

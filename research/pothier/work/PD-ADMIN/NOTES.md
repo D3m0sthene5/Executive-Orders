@@ -50,6 +50,17 @@
 - EO 5471, 6352, 7209 (typed closing_mourning) amend Schedule A of the Civil Service Rules; decided here as amend-only.
 - EO 267's WPA summary says "until Feb. 2, 1904" for an order of July 30, 1904; the text is illegible.
 
+## Version 2 (same day, under COORDINATOR_RULINGS.md P1-P6)
+
+Applied the coordinator's message: B04 tax orders made `open` (1976 rewrite of sec. 6103 kept as a disclosed earlier
+candidate end, P3; no member's own text states an end period, checked against TR-TAX-RETURN-INSPECTION); B07 ANCSA
+leads re-based on the quoted class words with kind `ended_by_express_class_instrument`, fixed 1971-12-18; B01 kind
+`spent_on_issue`, B02 kind `merged_into_parent_on_issue` with the P2 disclosure; encampment leave intervals now run
+from the last named leave day to December 31 with the inference stated; misfiled members split into O01 sub-branches
+naming their family; member texts cited as `member_text` (P6). New counts: 179 decided (`no`), 622 open, 0
+contradicted. The version 1 generator in the shared `/tmp/pd/` was overwritten by another session; version 2 was
+produced by editing the JSON with `/tmp/pd-admin/revise.py`.
+
 ## Effort
 
 About three hours of agent time: roughly one hour reading member texts, one hour on sources and the web, one hour

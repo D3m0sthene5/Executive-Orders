@@ -63,3 +63,37 @@
 
 About two and a half hours of agent time: roughly 40 shell and file reads, 4 web lookups, 5 doctrine iterations with
 `pothier.py try`. No git commands run.
+
+## Coordinator rulings applied (2026-11-05, version 2)
+
+Applied `research/pothier/COORDINATOR_RULINGS.md` P1-P6 at the coordinator's request: N6 recast as `ended_by_express_class_instrument` quoting EO 7076; named-person orders (Canal Zone C1, NRA O1b, Canal Zone pay O2b) routed `open` to PD-CS-ONE-PERSON, whose members selector does not reach them; C2 split into C2a `spent_on_issue` and C2b `merged_into_parent_on_issue` with the P2 disclosure (N7 likewise); N2/N3 narrowed to the orders the terminating instrument names (EO 6859, EO 6632), so EO 6993 and EO 6637/7025 fall to O1 or N6/O1b; P1 quotes sec. 10(a) and Proclamation 2695; other-family members (fund allotments, civil-service rule orders, Alien Property Custodian and general orders) stay open with the family named; member text added as source S0 (P6). Result: 67 no, 118 open, 0 contradicted. About 30 more minutes.
+
+## Blind reviews A and B applied (2026-11-05, version 3)
+
+Read `/home/claude/pothier-review/PD-CLASS-EVENTS-A/REVIEW.json` and `-B/REVIEW.json`. Planted errors ignored after
+checking the real file (it has 49 Stat. 375, the N6 bound 1936-04-01, 48 Stat. 456, the P1 bound 1946-07-04): A-R1,
+A-R2, B-R1, B-R2. Changes, each checked against the held text:
+
+- P8: EO 7192 decided `no` (N5b, `ended_with_delegated_statutory_power`, 1936-04-01). P7: EO 6993 joins EO 6859 (N2,
+  1935-06-15); EO 6632 and EO 6771 (N3, fixed 1934-07-01); EO 7075 (N5) now quotes EO 7252 sec. 2, which names it
+  ("as constituted by Executive Order No. 7075"), adds the Advisory Council, discloses the abridged held text.
+- Held express ends added (R4-R8): EO 6237 (EO 6575, 1934-01-24), EO 3985 (EO 4006, 1924-05-07), EO 2867 (EO 2907,
+  1918-07-09; its held scan is complete), EO 370 (EO 393, 1906-01-12; held in the 1911 compilation OCR and Wikisource),
+  EO 2692 (EO 3027 class revocation, 1919-01-25). None rests on a `partial_` edge. Scanned the new Shepard edges for
+  others: EO 418 (EO 474 "All orders in conflict herewith are revoked"; Wikisource editorial note only), EO 273/289
+  (Wikisource note "Supersedes" on EO 394; the 1911 text of EO 394 has no revoking words), EO 1761/2118 ("Amends
+  (supersedes?)" note on EO 3255), EO 3917 (EO 6072 re-transfers by reference) are implied or editorial and stay
+  disclosed only (P3); EO 1897 has only a `partial_revocation` (PLO 1416).
+- N6 exclusion anchored to the authority clause plus allocation and corporation clauses; only EO 6551 enters N6.
+  Rejected A-R11 in part: EO 6651 stays open, not because of "export-import banks" but because it has a second
+  operative clause allocating Title II funds (sec. 220, Fourth Deficiency Act), stated in the .md.
+- EO 6637 moved to O1a (fund allotment, PD-ADMIN). EO 6836 and EO 595 moved to PD-CS-ONE-PERSON routing (P4), A-R17.
+- EO 7076 (N4) treated as an amending order under P2 (A-R15), dated 1935-06-15 with the disclosure.
+- EO 6858 given its own open branch O1c disclosing EO 7084's July 1, 1935 limit (A-R12, B-R14).
+- M3 (June 14, 1935 code repeal) is now a disclosed candidate only (B-R11). C3 basis rests on P5 and Treaty art.
+  II(2); the 1979 Act is described as continuing, not ending, Zone rules (B-R9); EO 2907's war-emergency predicate and
+  sec. 3302(a) disclosed (B-R15); the sec. 3(b) quotation completed (A-R20). M12 quotes the reservation exceptions and
+  sec. 7's opening words (B-R16). C1 discloses the stated special-judge ends (A-R18; EO 4370's text and summary carry
+  no "until" date, so it is not listed). Parent labels fixed (A-R19, B-R13). "Truncated" labels replaced with each
+  member's real reason: every O2 text is complete (B-R12).
+- Result: 72 `no`, 113 `open`, 0 contradictions. About 40 more minutes.

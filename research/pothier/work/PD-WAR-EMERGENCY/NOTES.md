@@ -47,3 +47,13 @@
 ## Effort
 
 About 3 hours of agent time: roughly 45 member texts read closely, 10 web fetches of primary sources and finding aids, and 5 `try` iterations. The final run gave 263 members, 55 decided and 0 contradicted.
+
+## Coordinator rulings applied (2026-11-05, second pass)
+
+Applied `research/pothier/COORDINATOR_RULINGS.md` (P1-P6) and the coordinator's four decisions:
+- B13, B14 and B15 now use lead kind `ended_with_delegated_statutory_power`, require delegation (or Overman reassignment) to be the member's only operative content, and quote the statute's ceasing words. This moved three members out to the new open branch B13X: EO 3247 (a suspension), EO 2825-A (takings and compensation) and EO 3063 (a contract-transfer directive). EO 3059 and 3086-A moved into B15.
+- B03 is split into P1 `spent_on_issue` (4 members), P2 `merged_into_parent_on_issue` with the disclosure (9 members) and B03C (EO 3176 taking title, 1 member).
+- B09 is now open, because EO 3154's end is conditional on an unrecorded transfer. B12 was dropped. B11 is now an open named-person branch under P4: it holds EO 2907-A, 2997 and 3024-C from the EO 3320 group plus EO 3024-A and 3057.
+- B01 now names the family each member belongs to.
+- Added source S0 (`member_text`).
+- Result: 263 members, 43 decided, 220 open, 0 contradicted.

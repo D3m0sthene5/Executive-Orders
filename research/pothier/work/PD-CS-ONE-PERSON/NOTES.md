@@ -64,3 +64,13 @@ Nothing from the user's memory store bore on this task.
 
 About 3 hours of agent work in one session: roughly 1 hour reading prior work and sources, 1.5 hours reading member
 texts and verifying the 56 per-member facts, 0.5 hour building, testing and writing. No paid fetches.
+
+## Coordinator rulings applied (2026-11-05)
+
+Applied `research/pothier/COORDINATOR_RULINGS.md` and the coordinator's message: EO 6179-A `spent_on_issue` (P1), EO 6142 and
+EO 7472 `merged_into_parent_on_issue` (P2), S10 as `member_text` (P6); EO 209 no longer ends any member (special rules
+outlived it, EO 250 of 1904), so the eight pre-1903 rule instruments are `open` for PD-CS-RULES (B04); B11/B13 lead kind
+`hand_checked_dated_fact`, anchored by the exact Appendix A sentences; B99 states three evidence routes; re-typed members
+name their family. Searched held CSC reports for age limits (Rule V sec. 5; FY1918 p. 111 postal limits) and the web for a
+digitized Manual of Examinations (HathiTrust 000522353 is the Philippine manual, not it); no exact URL, so no fetch line.
+New `try`: 1,015 members; 90 `no`; 925 `open`; 0 contradicted.

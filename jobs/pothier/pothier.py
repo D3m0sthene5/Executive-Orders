@@ -175,7 +175,7 @@ def validate(d):
             errs.append(f"{bid}: gaps must be a list")
         dr = lead.get("date_rule") or {"kind": "none"}
         if dr.get("kind") not in {"none", "fixed", "order_date", "order_date_plus_years", "edge_date",
-                                  "interval", "order_year_plus_years"}:
+                                  "interval", "order_year_plus_years", "order_date_plus_days"}:
             errs.append(f"{bid}: unknown date_rule kind {dr.get('kind')}")
         if dr.get("kind") == "order_date_plus_years" and not (dr.get("regex") or dr.get("years")):
             errs.append(f"{bid}: order_date_plus_years needs regex or years")
@@ -309,6 +309,11 @@ def apply_date_rule(rule, m, ctx):
             return {"kind": kind, "date": None, "unresolved": "period not parsed"}
         base = date[:4] if kind == "order_year_plus_years" else date
         return {"kind": kind, "date": _add_years(base, int(years)), "years": int(years)}
+    if kind == "order_date_plus_days":
+        if len(date) < 10 or not isinstance(rule.get("days"), int):
+            return {"kind": kind, "date": None, "unresolved": "order date not a full date or days missing"}
+        d = dt.date.fromisoformat(date[:10]) + dt.timedelta(days=rule["days"])
+        return {"kind": kind, "date": d.isoformat(), "days": rule["days"]}
     if kind == "edge_date":
         es = ctx.get("edges") or []
         ds = sorted(e.get("date_candidate") for e in es if e.get("date_candidate"))

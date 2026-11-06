@@ -130,6 +130,10 @@ class Engine(unittest.TestCase):
         r = pothier.decide(member("EO:8", "for a period of twenty-five years"), d)
         self.assertEqual(r["date"]["date"], "1935-06-25")
 
+    def test_order_date_plus_days(self):
+        r = pothier.apply_date_rule({"kind": "order_date_plus_days", "days": 154}, member("EO:9", date="1929-12-31"), {})
+        self.assertEqual(r["date"], "1930-06-03")
+
     def test_committed_doctrines_validate(self):
         for p in sorted(pothier.DOCTRINES.glob("*.json")):
             with open(p) as f:

@@ -36,10 +36,12 @@ HISTORY_INDEX = "jobs/status-history/output/INDEX.json"
 WPA = "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
 TYPES = "jobs/x1-class-engine/output/TYPES.csv"
 LATER_EDGES = "jobs/later-events/output/EDGES.csv"
+SHEPARD_EDGES = "jobs/shepard-citations/output/EDGES.csv"
 NAMIER_LINKS = "jobs/namier/output/NAME_LINKS.jsonl"
 NAMIER_EDGES = "jobs/namier/output/EDGES.csv"
 CURRENT_LAW = "jobs/current-law/output/ORDERS_CURRENT_LAW.csv"
 TEXT_CHARS = 12000
+PARTIAL_QUALIFIER = re.compile(r"\bpart\b|in so far|insofar|so far as|^as to |^sections? |with respect to|following-described|^paragraphs? ", re.I)
 GRADE_RANK = {"official": 0, "archival_replica": 1, "transcription": 2}
 
 # --- literal feature patterns (compacted text: WPA OCR joins and splits words) ---------------------
@@ -166,7 +168,17 @@ def build():
     fragments = eo_identity.load_fragments(str(REPO))
     dates = eo_identity.load_dates(str(REPO), fragments)
     edges_on = {}
-    for e in read_csv(LATER_EDGES):
+    shepard = read_csv(SHEPARD_EDGES) if (REPO / SHEPARD_EDGES).exists() else []
+    for e in shepard:
+        # Shepard rows marked "in part" act on part of the order only: keep them apart from whole-order mechanisms.
+        if (e.get("qualifier") or "").strip().lower() == "in part" and e.get("mechanism"):
+            e["mechanism"] = "partial_" + e["mechanism"]
+    later = read_csv(LATER_EDGES)
+    for e in later:
+        # A later-events qualifier that confines the act to part of the order (tracts, sections, a country) marks it partial.
+        if e.get("mechanism") and PARTIAL_QUALIFIER.search(e.get("qualifier") or ""):
+            e["mechanism"] = "partial_" + e["mechanism"]
+    for e in later + shepard:
         if e.get("target_id") in idset:
             edges_on.setdefault(e["target_id"], []).append(
                 {k: e.get(k, "") for k in ("edge_id", "acting_id", "mechanism", "qualifier", "date_candidate",

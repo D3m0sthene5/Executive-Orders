@@ -2,7 +2,7 @@
  "schema": "pothier-family-doctrine/v1",
  "doctrine_id": "PD-CS-RULES",
  "family": "Amendments of the Civil Service Rules and related class orders (X1 type cs_rules_amendment), 1872-1936",
- "version": 1,
+ "version": 3,
  "members": {
   "field": "x1_type",
   "in": [
@@ -14,24 +14,28 @@
    "id": "M1",
    "kind": "own_terms",
    "effect": "ends",
-   "description": "An order whose only operative content amends the text of the Civil Service Rules, a schedule, or another order or presidential regulation performs its act when issued; under the owner rule it is spent on issue as a command, and the text it inserted lives on only as part of the amended instrument.",
-   "effective_date_rule": "order date",
-   "source_ids": []
+   "description": "An order whose own operative text only amends the Civil Service Rules, a schedule, another order or a presidential regulation has no command of its own after issue: its text merges into the parent and lives or ends with the parent (coordinator ruling P2). Later orders that amend the text it inserted are events of the parent.",
+   "effective_date_rule": "the amending order's own date",
+   "source_ids": [
+    "S0"
+   ]
   },
   {
    "id": "M2",
    "kind": "own_terms",
    "effect": "ends",
-   "description": "An order whose only operative content revokes or rescinds another order is spent on issue.",
-   "effective_date_rule": "order date",
-   "source_ids": []
+   "description": "An order whose only operative content revokes or rescinds another order is spent on issue (ruling P1).",
+   "effective_date_rule": "the order's own date",
+   "source_ids": [
+    "S0"
+   ]
   },
   {
    "id": "M3",
    "kind": "later_instrument",
    "effect": "ends",
-   "description": "General revision of 1896 (EO 89) revoked all other civil service rules, ending rule sets prescribed or extended before it.",
-   "effective_date_rule": "no later than 1896-05-06 (approval date of EO 89); the member may have ended earlier",
+   "description": "EO 89 (May 6, 1896) 'makes and promulgates the following rules and revokes all others': an express revocation of a described class, every civil service rule the President had made, which reaches each rule set, extension and rule-making order made before that day.",
+   "effective_date_rule": "1896-05-06, approval date of EO 89 (the member may have ended earlier)",
    "source_ids": [
     "S1"
    ]
@@ -40,8 +44,8 @@
    "id": "M4",
    "kind": "later_instrument",
    "effect": "ends",
-   "description": "General revision of 1903 (EO 209) replaced the rules of May 6, 1896 and their amendments.",
-   "effective_date_rule": "1903-04-15 (stated effective date of EO 209)",
+   "description": "EO 209 promulgates its rules 'in lieu of those promulgated May 6, 1896, and the amendments thereof': an express description of the instrument it displaces, the rules of May 6, 1896 (EO 89).",
+   "effective_date_rule": "1903-04-15, EO 209's stated effective date",
    "source_ids": [
     "S2"
    ]
@@ -49,41 +53,52 @@
   {
    "id": "M5",
    "kind": "later_instrument",
-   "effect": "ends",
-   "description": "EO 7915 restated the numbered Civil Service Rules in full and EO 8043 restated Schedules A and B in full, both effective 1939-02-01, so no text of the 1903 rules or of any 1903-1938 amendment remained operative as such after that date.",
-   "effective_date_rule": "1939-02-01 (effective dates stated in EO 7915 and EO 8043)",
+   "effect": "lead_only",
+   "description": "EO 7915 and EO 8043 restated the whole text of the rules and of Schedules A and B effective 1939-02-01, and EO 9830 (1947) and EO 10577 (1955) restated them again. A whole-text restatement 'to read as follows' that does not name an order does not end it (ruling P3); the 1939 restatement is recorded as a disclosed earlier candidate end for EO 209.",
+   "effective_date_rule": "candidate only: 1939-02-01",
    "source_ids": [
     "S3",
-    "S4"
+    "S4",
+    "S5",
+    "S6"
    ]
   },
   {
    "id": "M6",
    "kind": "later_instrument",
    "effect": "ends",
-   "description": "A named later order revoked, rescinded or superseded the member.",
-   "effective_date_rule": "date of the revoking order",
+   "description": "A later order that names the member, by number or by its date, revoked, rescinded or superseded it as a whole.",
+   "effective_date_rule": "date of the naming order",
    "source_ids": [
     "S7",
     "S8",
-    "S9"
+    "S9",
+    "S12",
+    "S13",
+    "S14"
    ]
   },
   {
    "id": "M7",
    "kind": "continuity_only",
    "effect": "continuity_only",
-   "description": "Later restatements (EO 9830 effective 1947-05-01; EO 10577 effective 1955-01-23; OPM regulations in 5 CFR parts 1-10 and 213) carry the Civil Service Rules and excepted-position schedules to the present; where a present provision matches an old one in substance, it rests on these later instruments.",
+   "description": "The present Civil Service Rules (5 CFR parts 1-10, from EO 10577 as amended) and excepted-position schedules (5 CFR part 213, OPM regulations) carry forward the subject matter of the old rules under later instruments; they neither end nor show in force any 1872-1936 member.",
    "effective_date_rule": "not an ending; no date",
    "source_ids": [
-    "S5",
     "S6",
-    "S10",
-    "S11"
+    "S10"
    ]
   }
  ],
  "sources": [
+  {
+   "id": "S0",
+   "member_text": true,
+   "citation": "the member's own order text (path, sha256 and grade recorded on each lead)",
+   "title": "Member text",
+   "held": true,
+   "establishes": "what the member does: that it only amends, only revokes, or prescribes rules"
+  },
   {
    "id": "S1",
    "citation": "Executive Order 89 (Civil Service Rules), approved May 6, 1896; printed in Richardson, A Compilation of the Messages and Papers of the Presidents, vol. IX, pp. 701-711 (GPO 1898)",
@@ -115,7 +130,7 @@
    "held_path": "jobs/fr-originals/output/texts/EO_7915.txt",
    "sha256": "28d52b2696b5b5580720b2243d45d204d7819df6cb1bfba81fd1cbfba8398913",
    "pin": "the Civil Service Rules are hereby amended, effective February 1, 1939, to read as follows",
-   "establishes": "The whole text of the numbered Civil Service Rules was replaced on February 1, 1939; Rule II sec. 3(a) kept Schedules A and B ('Schedules A and B of the civil service rules are continued as a part of the said rules as amended by this order'). Pins quoted with OCR line breaks collapsed."
+   "establishes": "EO 7915 restated the whole text of the numbered Civil Service Rules with effect from February 1, 1939, and continued Schedules A and B for the time being; it names and revokes no earlier order. Pins quoted with OCR line breaks collapsed."
   },
   {
    "id": "S4",
@@ -125,8 +140,8 @@
    "held": true,
    "held_path": "jobs/fr-originals/output/texts/EO_8043.txt",
    "sha256": "2c28d785421e182f05bb1f95c4372e8d9b557c83ccbf47b2eed8c03ef9087edf",
-   "pin": "Schedules A and B of the Civil Service Rules are hereby amended to read as follows",
-   "establishes": "The whole text of Schedules A and B was replaced on February 1, 1939 ('This order shall be effective February 1, 1939.', printed immediately before '[No. 8043]')."
+   "pin": "of the Civil Service Rules are hereby amended to read as follows",
+   "establishes": "EO 8043 restated the whole text of Schedules A and B with effect from February 1, 1939 ('This order shall be effective February 1, 1939.', printed immediately before '[No. 8043]'); it names and revokes no earlier order. The OCR reads 'Sched- ules A and B of the Civil Service Rules are hereby amended to read as follows' (soft hyphen), so the pin starts after the break; pins are quoted with whitespace collapsed."
   },
   {
    "id": "S5",
@@ -137,7 +152,7 @@
    "held_path": "jobs/fr-originals/output/texts/EO_9830.txt",
    "sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
    "pin": "No. 7915 of June 24, 1938.",
-   "establishes": "Effective May 1, 1947 the rules were again restated in full (Part II, 'The Civil Service Rules are herebV amended to read as follows' in the OCR) with Schedules A and B set out in sec. 6.4, and Part III revoked EO 7915 by name."
+   "establishes": "Effective May 1, 1947 the rules were again restated in full, and Part III revoked EO 7915 by name; the revocation list names no order of 1872-1936 in this family and does not name EO 209."
   },
   {
    "id": "S6",
@@ -163,9 +178,9 @@
   },
   {
    "id": "S8",
-   "citation": "Executive Order 3014, November 30, 1918; printed in the 36th Report of the U.S. Civil Service Commission (FY1919), p. 104 (CSC report slice)",
+   "citation": "Executive Order 3014, November 30, 1918; printed in the Civil Service Commission's annual report for FY1919, p. 104 (Serial Set package SERIALSET-07742_00_00-002-0416-0000, PDF page 140; held as a report slice)",
    "title": "Rescission of the order of October 28, 1918 (EO 2985)",
-   "url": "https://www.govinfo.gov/app/collection/serialset",
+   "url": "https://www.govinfo.gov/content/pkg/SERIALSET-07742_00_00-002-0416-0000/pdf/SERIALSET-07742_00_00-002-0416-0000.pdf",
    "held": true,
    "held_path": "jobs/csc-annual-reports/output/texts/EO_3014.txt",
    "sha256": "012481a62c53cdd383b3465018a389c48f147124686984b646969fc6d6a4613c",
@@ -192,16 +207,40 @@
    "held_path": "jobs/theophilus-sources/output/texts/cfr-t5-213.3102.txt",
    "sha256": "6d76e9a83589b93796a7e826428036436296ba25f69d68f2346418cfad140e77",
    "pin": "(5 U.S.C. 3301, 3307, 8337(h); 5 U.S.C. 3301, 3302; E.O. 12364, 47 FR 22931)",
-   "establishes": "Present Schedule A exceptions rest on OPM regulations republished in 1982 under statute and EO 12364, not on any 1872-1936 order; an exception surviving in substance today is continuity under later instruments."
+   "establishes": "Present Schedule A, entire executive civil service, rests on OPM's republication of 1982 under statute and EO 12364; it is the current form of the excepted-position lists, not a record of any 1872-1936 order."
   },
   {
-   "id": "S11",
-   "citation": "Bear Lake & River Water Works & Irrigation Co. v. Garland, 164 U.S. 1, 12 (1896)",
-   "title": "Re-enacted provisions construed as a continuation of the old",
-   "url": "https://www.govinfo.gov/content/pkg/USREPORTS-164/text/USREPORTS-164.txt",
-   "held": false,
-   "pin": "should be construed as a continuation of the old with the modification contained in the new act",
-   "establishes": "Caveat only: provisions re-enacted in a replacing instrument may be read as continued; relevant to whether EO 209 text carried into the 1939 restatement survived, not to the amending orders, which are spent on issue."
+   "id": "S12",
+   "citation": "Executive Order 3054, March 2, 1919, Rescinding the Executive Order of April 2, 1917 (Wikisource transcription)",
+   "title": "Rescission of EO 2570",
+   "url": "https://en.wikisource.org/w/index.php?title=Executive_Order_3054&oldid=3891992",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_3054.txt",
+   "sha256": "799ebc114fdcc6c4498bee9db51d1db04ed10579901d6fa1fcf5586b33a82aa2",
+   "pin": "The Executive Order of April 2, 1917, requiring the assent of the head of a department or office to an employee's examination or certification under the civil-service rules, is hereby rescinded.",
+   "establishes": "EO 2570 (April 2, 1917) was rescinded as a whole on March 2, 1919 ('The White House, 2 March, 1919')."
+  },
+  {
+   "id": "S13",
+   "citation": "Executive Order 5007, December 8, 1928; printed in the Civil Service Commission's annual report for FY1929, p. 79 (Serial Set package SERIALSET-09300_00_00-002-0207-0000, PDF page 83; held as a report slice)",
+   "title": "Revocation of EO 3471",
+   "url": "https://www.govinfo.gov/content/pkg/SERIALSET-09300_00_00-002-0207-0000/pdf/SERIALSET-09300_00_00-002-0207-0000.pdf",
+   "held": true,
+   "held_path": "jobs/csc-annual-reports/output/texts/EO_5007.txt",
+   "sha256": "657d1fbe8b59407a43ad5a1840f87ddb9d67bfdac221eae9ad32246221d75860",
+   "pin": "Executive Order No. 3471, issued May 21, 1921",
+   "establishes": "EO 3471 was revoked by number on December 8, 1928 ('... is hereby revoked')."
+  },
+  {
+   "id": "S14",
+   "citation": "Executive Order 1514, April 8, 1912 (Wikisource transcription)",
+   "title": "Supersession of the orders of January 31, 1902 (EO 163) and November 26, 1909 (EO 1142)",
+   "url": "https://en.wikisource.org/wiki/Executive_Order_1514",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_1514.txt",
+   "sha256": "2f1fa74cecd7c4cdf970a3c1f39be908e91844c8094832930ad8feda4480aec0",
+   "pin": "This order supersedes the Executive orders of January 31, 1902, January 25, 1906, and November 26, 1909, regarding the same general matter.",
+   "establishes": "The orders of January 31, 1902 (EO 163) and November 26, 1909 (EO 1142) were superseded by date on April 8, 1912."
   }
  ],
  "procedure": [
@@ -218,13 +257,13 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "replaced_by_general_revision",
+    "lead_kind": "ended_by_express_class_instrument",
     "basis_kind": "ACT",
-    "basis": "EO 209 (March 20, 1903) promulgated new rules 'in lieu of those promulgated May 6, 1896, and the amendments thereof', effective April 15, 1903.",
+    "basis": "EO 209 promulgated its rules 'in lieu of those promulgated May 6, 1896, and the amendments thereof'; EO 89 is the rules approved May 6, 1896, so the words name it by its date. EO 209: 'Approved, to take effect on and after April 15, 1903.'",
     "date_rule": {
      "kind": "fixed",
      "date": "1903-04-15",
-     "basis": "EO 209: 'Approved, to take effect on and after April 15, 1903.'"
+     "basis": "EO 209's stated effective date"
     },
     "mechanism_ids": [
      "M4"
@@ -249,14 +288,12 @@
     }
    ],
    "lead": {
-    "status_lead": "no",
-    "lead_kind": "replaced_by_general_restatement",
-    "basis_kind": "ACT",
-    "basis": "EO 7915 amended the Civil Service Rules 'to read as follows', effective February 1, 1939, keeping the schedules only until EO 8043 amended Schedules A and B 'to read as follows', also effective February 1, 1939; no text of the 1903 instrument remained operative as its own after that date.",
+    "status_lead": "open",
+    "lead_kind": "whole_text_restatement_only",
+    "basis_kind": "NONE",
+    "basis": "No held instrument names EO 209 or expressly revokes a described class that includes it. EO 7915 and EO 8043 restated the whole text of the rules and schedules 'to read as follows' with effect from February 1, 1939, but a whole-text restatement that does not name the order does not end it (ruling P3).",
     "date_rule": {
-     "kind": "fixed",
-     "date": "1939-02-01",
-     "basis": "EO 7915 and EO 8043 stated effective dates"
+     "kind": "none"
     },
     "mechanism_ids": [
      "M5",
@@ -265,11 +302,13 @@
     "source_ids": [
      "S3",
      "S4",
-     "S11"
+     "S5",
+     "S6"
     ]
    },
    "gaps": [
-    "provisions of 1903 that EO 7915 or EO 8043 repeated word for word could be read as continued rather than ended (Bear Lake v. Garland, 164 U.S. 1, 12); the continuation would rest on EO 7915/8043 and later restatements, and EO 9830 revoked EO 7915 by name; the owner should confirm that re-enactment in a full restatement ends the earlier instrument for the census"
+    "disclosed earlier candidate end: 1939-02-01 (EO 7915, 3 FR 1519, rules; EO 8043, 4 FR 493, Schedules A and B); later restatements EO 9830 (effective 1947-05-01; revokes EO 7915 by name, not EO 209) and EO 10577 (effective 1955-01-23)",
+    "deciding needs an instrument that names EO 209 or the 1903 rules, or an owner decision that a full restatement of the same rules ends the earlier text; none is known to exist"
    ]
   },
   {
@@ -349,7 +388,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "superseded_by_named_order",
+    "lead_kind": "revoked_by_named_order",
     "basis_kind": "ACT",
     "basis": "EO 5459 (October 4, 1930): 'This order supersedes Executive Order No. 3807 of March 15, 1923.'",
     "date_rule": {
@@ -369,35 +408,142 @@
    ]
   },
   {
-   "branch_id": "B06",
-   "description": "No date or no readable summary: cannot be placed in a period.",
+   "branch_id": "B05b",
+   "description": "EO 2570 (April 2, 1917, assent of the department head to examination or certification), rescinded by EO 3054.",
    "when": [
     {
-     "any_of": [
-      {
-       "field": "date",
-       "empty": true
-      },
-      {
-       "field": "wpa_summary",
-       "empty": true
-      }
+     "field": "instrument_id",
+     "in": [
+      "EO:2570"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_named_order",
+    "basis_kind": "ACT",
+    "basis": "EO 3054 (March 2, 1919): 'The Executive Order of April 2, 1917, requiring the assent of the head of a department or office to an employee's examination or certification under the civil-service rules, is hereby rescinded.' EO 2570 is the order of April 2, 1917 on that subject.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1919-03-02",
+     "basis": "date of EO 3054"
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": [
+     "S12"
+    ]
+   },
+   "gaps": [
+    "EO 3054 is held as a Wikisource transcription; EO 2570 is a war-period order whose subject family is PD-WAR-EMERGENCY, which this named rescission decides in any family"
+   ]
+  },
+  {
+   "branch_id": "B05c",
+   "description": "EO 3471 (May 21, 1921, extension of temporary war-activity appointments), revoked by EO 5007.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3471"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_named_order",
+    "basis_kind": "ACT",
+    "basis": "EO 5007 (December 8, 1928): 'Executive Order No. 3471, issued May 21, 1921, authorizing the Civil Service Commission to extend ... the employments ... is hereby revoked.'",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1928-12-08",
+     "basis": "date of EO 5007"
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": [
+     "S13"
+    ]
+   },
+   "gaps": [
+    "EO 5007 is held as a Civil Service Commission report slice; the persons retained under EO 3471 were covered into the classified service by EO 5007 itself, a consequence of EO 5007, not of EO 3471"
+   ]
+  },
+  {
+   "branch_id": "B05d",
+   "description": "EO 163 (January 31, 1902) and EO 1142 (November 26, 1909) on communications to Congress, superseded by EO 1514.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:163",
+      "EO:1142"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_named_order",
+    "basis_kind": "ACT",
+    "basis": "EO 1514 (April 8, 1912): 'This order supersedes the Executive orders of January 31, 1902, January 25, 1906, and November 26, 1909, regarding the same general matter.' EO 163 is the order of January 31, 1902 and EO 1142 the order of November 26, 1909.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1912-04-08",
+     "basis": "date of EO 1514"
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": [
+     "S14"
+    ]
+   },
+   "gaps": [
+    "EO 1514 is held as a Wikisource transcription; EO 1514 itself, a continuing directive, is open on B99"
+   ]
+  },
+  {
+   "branch_id": "B06p",
+   "description": "One-person orders typed into this family: one act for one or two named persons (appointment without examination, classification with a position, re-certification, rating of one candidate's papers, retention, designation).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:188",
+      "EO:268",
+      "EO:3050",
+      "EO:3051",
+      "EO:3330",
+      "EO:3425",
+      "EO:3762",
+      "EO:3789",
+      "EO:4238",
+      "EO:4259",
+      "EO:4432",
+      "EO:505",
+      "EO:6029",
+      "EO:691",
+      "EO:6162"
      ]
     }
    ],
    "lead": {
     "status_lead": "open",
-    "lead_kind": "undated_or_unidentified",
+    "lead_kind": "other_family_one_person",
     "basis_kind": "NONE",
-    "basis": "The member has no date or no summary; its text is an unread scan, so what it does is unknown.",
+    "basis": "The order's operative content is one act for a named person, so it belongs to the one-person civil service family PD-CS-ONE-PERSON (ruling P4), whose evidence-of-use and life-of-person rules decide it.",
     "date_rule": {
      "kind": "none"
     },
     "mechanism_ids": [],
-    "source_ids": []
+    "source_ids": [
+     "S0"
+    ]
    },
    "gaps": [
-    "read the scan (ProQuest page) and retype the member"
+    "apply PD-CS-ONE-PERSON; EO 3050 (Robert L. Stancill, February 1919) and EO 3051 (Bert M. Williams, 1919) are readable one-person appointment waivers in ProQuest scans; EO 3425 amends EO 3398 only to accord a classified status to Henry F. Brown; EO 691 names two persons"
    ]
   },
   {
@@ -430,7 +576,7 @@
     ]
    },
    "gaps": [
-    "for each special rule: its own terms (many except only 'the successor to the present incumbent' and were exhausted on one appointment), and any later revocation; Civil Service Commission reports FY1897-FY1905"
+    "for each special rule: its own terms and any later revocation (Civil Service Commission reports FY1897-FY1905). EO 97 and EO 98 except only 'the successor to the present incumbent' and were probably exhausted by one appointment (no record of it is held). EO 191 lets the engineer of the new Government Printing Office building retain his force 'during the continuance of the work at the War College and Washington Barracks', and 'The authority herein granted shall lapse upon the completion of said work': an own-terms (TERM) end that needs only the completion date of that work"
    ]
   },
   {
@@ -455,7 +601,7 @@
     ]
    },
    "gaps": [
-    "evidence that the positions were later excepted, abolished or reorganized, or a doctrine for covering-in orders (owner decision)"
+    "per-position evidence: for the positions named (State Department messengers and watchmen, departmental firemen, pension agency employees), a later order or statute that names them and excepts them, abolishes them or reorganizes their office; or the Civil Service Commission annual report that records their removal from the classified service"
    ]
   },
   {
@@ -475,13 +621,26 @@
        "summary_regex": "regulations governing classification"
       }
      ]
+    },
+    {
+     "any_of": [
+      {
+       "text_regex": "\\brules?\\b|regulations"
+      },
+      {
+       "field": "instrument_id",
+       "in": [
+        "EO:15"
+       ]
+      }
+     ]
     }
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "revoked_by_general_revision",
+    "lead_kind": "ended_by_express_class_instrument",
     "basis_kind": "ACT",
-    "basis": "EO 89 (May 6, 1896) promulgated the codified rules 'and revokes all others'; any rule set, extension or classification regulation still standing then ended no later than that day.",
+    "basis": "EO 89 (May 6, 1896) 'makes and promulgates the following rules and revokes all others'. The words expressly revoke a described class, every other civil service rule; the member is in that class because its own text shows it prescribes, extends or approves civil service rules under R.S. 1753, the power EO 89 recites.",
     "date_rule": {
      "kind": "interval",
      "from": "order_date",
@@ -492,11 +651,13 @@
      "M3"
     ],
     "source_ids": [
-     "S1"
+     "S1",
+     "S0"
     ]
    },
    "gaps": [
-    "EO 15 and EO 17 texts are unread scans and this branch relies on their WPA summaries and the Richardson notice for EO 17",
+    "member test: the member is dated before May 6, 1896 and its own text (or, for a scan, its WPA summary) shows it prescribes, extends, approves or amends civil service rules the President made under R.S. 1753 and the 1883 Act, the authority EO 89 itself recites",
+    "EO 15's text is an unread scan and its class membership rests on its WPA summary ('Regulations governing classification of the Civil Service, prescribed Apr. 16, 1872, amended'); EO 17's scan is readable only in its closing lines ('extended to the several Federal offices at the city and in the customs district of B[o]ston')",
     "EO 89 is held as Richardson's printed compilation, not the signed original"
    ]
   },
@@ -518,16 +679,18 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "spent_revocation",
+    "lead_kind": "spent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order's only operative content revokes another order; it is spent on issue as a command, and its effect is evidence for the revoked order's lifecycle.",
+    "basis": "The member's own text only revokes or rescinds another order ('hereby revoked' / 'hereby rescinded'); it is spent on issue as a command, and its effect is evidence for the revoked order's lifecycle (ruling P1).",
     "date_rule": {
      "kind": "order_date"
     },
     "mechanism_ids": [
      "M2"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S0"
+    ]
    },
    "gaps": []
   },
@@ -553,9 +716,9 @@
    ],
    "lead": {
     "status_lead": "open",
-    "lead_kind": "waiver_not_amendment",
+    "lead_kind": "other_family_waiver",
     "basis_kind": "NONE",
-    "basis": "The order waives or suspends a rule for a person, group or occasion rather than changing the rule's text; it does not merge into the rules, so the replacement of the rules' text does not by itself end it.",
+    "basis": "The order waives or suspends a rule for a person, group or occasion rather than changing the rule's text. Waivers for named persons belong to PD-CS-ONE-PERSON; class and occasion waivers (EO 713 carriage drivers, EO 1275 furloughed Lighthouse Service employees, EO 7366 initial Social Security Board appointments) have no family doctrine yet.",
     "date_rule": {
      "kind": "none"
     },
@@ -563,12 +726,12 @@
     "source_ids": []
    },
    "gaps": [
-    "route to the one-person waiver doctrine (PD-CS-ONE-PERSON) or a class-waiver rule; own terms and use"
+    "apply PD-CS-ONE-PERSON to named-person waivers; for class waivers, the order's own terms (occasion, period, positions) and evidence of use"
    ]
   },
   {
    "branch_id": "B12",
-   "description": "Amendments of the pre-1896 rule sets (General, Departmental, Customs, Postal, Indian, Internal Revenue, GPO rules and their special rules).",
+   "description": "Pure amendments of the pre-1896 rule sets (General, Departmental, Customs, Postal, Indian, Internal Revenue, GPO rules and their special departmental rules).",
    "when": [
     {
      "field": "date",
@@ -586,33 +749,44 @@
      }
     },
     {
-     "text_regex": "amend|strik(e|es|ing) out|struck|insert|addition of|adding|to read as follows|hereby revoked|is revoked|eliminat|transfer(red)? .{0,40}(from|to) (subdivision|paragraph)|renumber"
+     "text_regex": "\\b(is|are|be|been) (hereby |further )?amended|hereby,? amended|hereby amend|amend(ed)? (clause|rule|section|paragraph|subdivision|schedule)\\b|strik(e|es|ing) out|struck out|by (the )?add(ing|ition)|by inserting|\\binsert(ing)? (after|before|at|in)\\b|to read as follows|(is|are) (hereby )?revoked|by (the )?eliminat|by striking|renumber|is changed to read|as amended (the|it|this|clause|section|paragraph)|be (inserted|stricken|struck|added|substituted)|stricken (out|from)|substitut(e|ed|ing) (therefor|therein|in lieu)|(is|are) hereby (rescinded|repealed)|in lieu thereof"
+    },
+    {
+     "not": {
+      "text_regex": "present (incumbents?|occupants?)|with (its|their|his|her) (present )?(incumbents?|occupants?)|effect of (this|the above|the foregoing) (order|amendment)|now holding|now in the service under the provisions|shall be continued in office|it is further ordered|already employed|hereby given a (classified|competitive)|according a classified status|incumbents of (the |such |these )?positions|gives the occupants|shall not be construed to require"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "not the full order text|the following is the rule as rewritten"
+     }
     }
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "spent_amendment",
+    "lead_kind": "merged_into_parent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order only amends the text of the civil service rules then in force; it is spent on issue as a command. The text it inserted ended no later than May 6, 1896, when EO 89 'revokes all others'.",
+    "basis": "The member's own text only amends the text of the civil service rules then in force; its text merged into those rules on issue and the amending order has no command of its own after that day (ruling P2). The parent rules were expressly revoked by EO 89 ('revokes all others') on May 6, 1896.",
     "date_rule": {
      "kind": "order_date"
     },
     "mechanism_ids": [
-     "M1",
-     "M3"
+     "M1"
     ],
     "source_ids": [
+     "S0",
      "S1"
     ]
    },
    "gaps": [
-    "the branch reads the WPA 1944 summary for what the order does and checks the held order text only for amending language; a compiled transcription can run into a neighbouring order",
-    "the machine does not confirm that the order contains nothing besides the amendment"
+    "its text continues as part of the parent until the parent ends; the parent's lifecycle carries it",
+    "only-content test: the WPA summary shows nothing but an amendment (no waiver, special rule, promulgation, prescription, construction or extension); the member's operative text uses amending words in an operative form ('is hereby amended', 'strike out', 'by adding', 'to read as follows'; title words such as 'Amending' do not count); and the text has none of the markers of a further provision (present or continued incumbents or occupants, persons now holding, serving or employed, 'it is further ordered', 'the effect of this amendment', status given to persons, a saving for incumbents). A pattern scan of all B12-B15 texts with this marker list was the measure of the test; an unmarked further provision in other words would still escape it",
+    "a compiled transcription can run into a neighbouring order"
    ]
   },
   {
    "branch_id": "B12b",
-   "description": "Other orders before May 6, 1896 that the WPA summary describes as amending the civil service rules, whose held text does not confirm a pure amendment (empty text, replacement rule, or extra provisions).",
+   "description": "Other orders before May 6, 1896 whose own text shows they made or replaced a civil service rule but are not pure amendments (for example, a rule promulgated 'to cancel and be in lieu of' an earlier rule).",
    "when": [
     {
      "field": "date",
@@ -633,13 +807,16 @@
      "not": {
       "text_regex": "third para-? ?graph of sec|para-? ?graph of section 6 of the act|direct(ed)? .{0,60}to amend (their (several )?classi-? ?fications|the classi-? ?fication)"
      }
+    },
+    {
+     "text_regex": "\\brules?\\b.{0,100}(promulgat|in lieu|amend)|(promulgat|amend).{0,100}\\brules?\\b"
     }
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "revoked_by_general_revision",
+    "lead_kind": "ended_by_express_class_instrument",
     "basis_kind": "ACT",
-    "basis": "Whatever the order did to the civil service rules then in force, EO 89 (May 6, 1896) promulgated the codified rules 'and revokes all others', so any rule text or rule the order made ended no later than that day.",
+    "basis": "The member's own text shows it promulgated or amended a civil service rule; EO 89 (May 6, 1896) 'makes and promulgates the following rules and revokes all others', an express revocation of every other civil service rule.",
     "date_rule": {
      "kind": "interval",
      "from": "order_date",
@@ -650,17 +827,18 @@
      "M3"
     ],
     "source_ids": [
-     "S1"
+     "S1",
+     "S0"
     ]
    },
    "gaps": [
-    "the held text does not confirm what the order did; the branch relies on the WPA summary that it acted on the civil service rules",
+    "member test: the member is dated before May 6, 1896 and its own text (or, for a scan, its WPA summary) shows it prescribes, extends, approves or amends civil service rules the President made under R.S. 1753 and the 1883 Act, the authority EO 89 itself recites",
     "EO 89 is held as Richardson's printed compilation"
    ]
   },
   {
    "branch_id": "B13",
-   "description": "Amendments of the 1896 rules (May 6, 1896 to April 14, 1903).",
+   "description": "Pure amendments of the 1896 rules (May 6, 1896 to March 19, 1903, before EO 209 was signed).",
    "when": [
     {
      "field": "date",
@@ -668,7 +846,7 @@
     },
     {
      "field": "date",
-     "lt": "1903-04-15"
+     "lt": "1903-03-20"
     },
     {
      "summary_regex": "^\\W*\\[?civil ?service\\s*r"
@@ -682,38 +860,98 @@
      }
     },
     {
-     "text_regex": "amend|strik(e|es|ing) out|struck|insert|addition of|adding|to read as follows|hereby revoked|is revoked|eliminat|transfer(red)? .{0,40}(from|to) (subdivision|paragraph)|renumber"
+     "text_regex": "\\b(is|are|be|been) (hereby |further )?amended|hereby,? amended|hereby amend|amend(ed)? (clause|rule|section|paragraph|subdivision|schedule)\\b|strik(e|es|ing) out|struck out|by (the )?add(ing|ition)|by inserting|\\binsert(ing)? (after|before|at|in)\\b|to read as follows|(is|are) (hereby )?revoked|by (the )?eliminat|by striking|renumber|is changed to read|as amended (the|it|this|clause|section|paragraph)|be (inserted|stricken|struck|added|substituted)|stricken (out|from)|substitut(e|ed|ing) (therefor|therein|in lieu)|(is|are) hereby (rescinded|repealed)|in lieu thereof"
+    },
+    {
+     "not": {
+      "text_regex": "present (incumbents?|occupants?)|with (its|their|his|her) (present )?(incumbents?|occupants?)|effect of (this|the above|the foregoing) (order|amendment)|now holding|now in the service under the provisions|shall be continued in office|it is further ordered|already employed|hereby given a (classified|competitive)|according a classified status|incumbents of (the |such |these )?positions|gives the occupants|shall not be construed to require"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "not the full order text|the following is the rule as rewritten"
+     }
     }
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "spent_amendment",
+    "lead_kind": "merged_into_parent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order only amends the text of the 1896 Civil Service Rules (EO 89); it is spent on issue as a command. The text it inserted ended no later than April 15, 1903, when EO 209 took effect 'in lieu of those promulgated May 6, 1896, and the amendments thereof'.",
+    "basis": "The member's own text only amends the 1896 Civil Service Rules (EO 89); its text merged into EO 89 on issue and the amending order has no command of its own after that day (ruling P2). The parent EO 89 ended on April 15, 1903, when EO 209 took effect 'in lieu of those promulgated May 6, 1896, and the amendments thereof'.",
     "date_rule": {
      "kind": "order_date"
     },
     "mechanism_ids": [
-     "M1",
-     "M4"
+     "M1"
     ],
     "source_ids": [
+     "S0",
      "S2"
     ]
    },
    "gaps": [
-    "the branch reads the WPA 1944 summary for what the order does and checks the held order text only for amending language; a compiled transcription can run into a neighbouring order",
-    "the machine does not confirm that the order contains nothing besides the amendment",
+    "its text continues as part of the parent until the parent ends; the parent's lifecycle carries it",
+    "only-content test: the WPA summary shows nothing but an amendment (no waiver, special rule, promulgation, prescription, construction or extension); the member's operative text uses amending words in an operative form ('is hereby amended', 'strike out', 'by adding', 'to read as follows'; title words such as 'Amending' do not count); and the text has none of the markers of a further provision (present or continued incumbents or occupants, persons now holding, serving or employed, 'it is further ordered', 'the effect of this amendment', status given to persons, a saving for incumbents). A pattern scan of all B12-B15 texts with this marker list was the measure of the test; an unmarked further provision in other words would still escape it",
+    "a compiled transcription can run into a neighbouring order",
     "EO 209 held only as a mirror transcription"
    ]
   },
   {
+   "branch_id": "B14a",
+   "description": "EO 253: pure amendment of Schedule A whose held text is signed on a different day from the census date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:253"
+     ]
+    },
+    {
+     "text_regex": "\\b(is|are|be|been) (hereby |further )?amended|hereby,? amended|hereby amend|amend(ed)? (clause|rule|section|paragraph|subdivision|schedule)\\b|strik(e|es|ing) out|struck out|by (the )?add(ing|ition)|by inserting|\\binsert(ing)? (after|before|at|in)\\b|to read as follows|(is|are) (hereby )?revoked|by (the )?eliminat|by striking|renumber|is changed to read|as amended (the|it|this|clause|section|paragraph)|be (inserted|stricken|struck|added|substituted)|stricken (out|from)|substitut(e|ed|ing) (therefor|therein|in lieu)|(is|are) hereby (rescinded|repealed)|in lieu thereof"
+    },
+    {
+     "not": {
+      "text_regex": "present (incumbents?|occupants?)|with (its|their|his|her) (present )?(incumbents?|occupants?)|effect of (this|the above|the foregoing) (order|amendment)|now holding|now in the service under the provisions|shall be continued in office|it is further ordered|already employed|hereby given a (classified|competitive)|according a classified status|incumbents of (the |such |these )?positions|gives the occupants|shall not be construed to require"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "not the full order text|the following is the rule as rewritten"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The member's own text only amends a numbered Civil Service Rule or Schedule A or B of the 1903 rules (EO 209); its text merged into EO 209 on issue and the amending order has no command of its own after that day (ruling P2). The parent's lead (EO 209) is open.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1904-01-27",
+     "basis": "signature date in the held text"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S0"
+    ]
+   },
+   "gaps": [
+    "its text continues as part of the parent until the parent ends; the parent's lifecycle carries it",
+    "only-content test: the WPA summary shows nothing but an amendment (no waiver, special rule, promulgation, prescription, construction or extension); the member's operative text uses amending words in an operative form ('is hereby amended', 'strike out', 'by adding', 'to read as follows'; title words such as 'Amending' do not count); and the text has none of the markers of a further provision (present or continued incumbents or occupants, persons now holding, serving or employed, 'it is further ordered', 'the effect of this amendment', status given to persons, a saving for incumbents). A pattern scan of all B12-B15 texts with this marker list was the measure of the test; an unmarked further provision in other words would still escape it",
+    "a compiled transcription can run into a neighbouring order",
+    "disclosed earlier candidate end for the parent EO 209: EO 7915 and EO 8043 restated the whole text of the rules and of Schedules A and B effective 1939-02-01; under ruling P3 a restatement that does not name EO 209 does not end it, so EO 209's own lead is open",
+    "the held text is signed 'White House, January 27, 1904'; the census and WPA date is 1904-02-17; the lead uses the signed date"
+   ]
+  },
+  {
    "branch_id": "B14",
-   "description": "Amendments of the 1903 rules or of Schedules A and B (April 15, 1903 to 1938).",
+   "description": "Pure amendments of the 1903 rules or of Schedules A and B (April 15, 1903 to June 23, 1938).",
    "when": [
     {
      "field": "date",
-     "gte": "1903-03-20"
+     "gte": "1903-04-15"
     },
     {
      "field": "date",
@@ -731,36 +969,93 @@
      }
     },
     {
-     "text_regex": "amend|strik(e|es|ing) out|struck|insert|addition of|adding|to read as follows|hereby revoked|is revoked|eliminat|transfer(red)? .{0,40}(from|to) (subdivision|paragraph)|renumber"
+     "text_regex": "\\b(is|are|be|been) (hereby |further )?amended|hereby,? amended|hereby amend|amend(ed)? (clause|rule|section|paragraph|subdivision|schedule)\\b|strik(e|es|ing) out|struck out|by (the )?add(ing|ition)|by inserting|\\binsert(ing)? (after|before|at|in)\\b|to read as follows|(is|are) (hereby )?revoked|by (the )?eliminat|by striking|renumber|is changed to read|as amended (the|it|this|clause|section|paragraph)|be (inserted|stricken|struck|added|substituted)|stricken (out|from)|substitut(e|ed|ing) (therefor|therein|in lieu)|(is|are) hereby (rescinded|repealed)|in lieu thereof"
+    },
+    {
+     "not": {
+      "text_regex": "present (incumbents?|occupants?)|with (its|their|his|her) (present )?(incumbents?|occupants?)|effect of (this|the above|the foregoing) (order|amendment)|now holding|now in the service under the provisions|shall be continued in office|it is further ordered|already employed|hereby given a (classified|competitive)|according a classified status|incumbents of (the |such |these )?positions|gives the occupants|shall not be construed to require"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "not the full order text|the following is the rule as rewritten"
+     }
     }
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "spent_amendment",
+    "lead_kind": "merged_into_parent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order only amends the text of a numbered Civil Service Rule or of Schedule A or B of the 1903 rules (EO 209); it is spent on issue as a command. The text it inserted ended no later than February 1, 1939, when EO 7915 (rules) and EO 8043 (Schedules A and B) restated that text in full; any same-substance provision today rests on later instruments (EO 9830, EO 10577, 5 CFR).",
+    "basis": "The member's own text only amends a numbered Civil Service Rule or Schedule A or B of the 1903 rules (EO 209); its text merged into EO 209 on issue and the amending order has no command of its own after that day (ruling P2). The parent's lead (EO 209) is open.",
     "date_rule": {
      "kind": "order_date"
     },
     "mechanism_ids": [
-     "M1",
-     "M5",
-     "M7"
+     "M1"
     ],
     "source_ids": [
-     "S3",
-     "S4",
-     "S10"
+     "S0"
     ]
    },
    "gaps": [
-    "the branch reads the WPA 1944 summary for what the order does and checks the held order text only for amending language; a compiled transcription can run into a neighbouring order",
-    "the machine does not confirm that the order contains nothing besides the amendment"
+    "its text continues as part of the parent until the parent ends; the parent's lifecycle carries it",
+    "only-content test: the WPA summary shows nothing but an amendment (no waiver, special rule, promulgation, prescription, construction or extension); the member's operative text uses amending words in an operative form ('is hereby amended', 'strike out', 'by adding', 'to read as follows'; title words such as 'Amending' do not count); and the text has none of the markers of a further provision (present or continued incumbents or occupants, persons now holding, serving or employed, 'it is further ordered', 'the effect of this amendment', status given to persons, a saving for incumbents). A pattern scan of all B12-B15 texts with this marker list was the measure of the test; an unmarked further provision in other words would still escape it",
+    "a compiled transcription can run into a neighbouring order",
+    "disclosed earlier candidate end for the parent EO 209: EO 7915 and EO 8043 restated the whole text of the rules and of Schedules A and B effective 1939-02-01; under ruling P3 a restatement that does not name EO 209 does not end it, so EO 209's own lead is open",
+    "thirteen decided members carry a year-only census date (on B14: EO 508, 689, 933, 1127, 1128, 1247, 1408, 1829, 2700, 2701, 3908A and 4507; on B15: EO 3170), so their lead date is a year; several held texts give the day (EO 689: September 23, 1907; EO 933: September 3, 1908)"
+   ]
+  },
+  {
+   "branch_id": "B14s",
+   "description": "EO 5657 and EO 5662: pure amendments of Schedule A whose WPA summaries are run together with neighbouring entries (EO 5758-5759; 'July .'), decided on their official texts.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5657",
+      "EO:5662"
+     ]
+    },
+    {
+     "text_regex": "\\b(is|are|be|been) (hereby |further )?amended|hereby,? amended|hereby amend|amend(ed)? (clause|rule|section|paragraph|subdivision|schedule)\\b|strik(e|es|ing) out|struck out|by (the )?add(ing|ition)|by inserting|\\binsert(ing)? (after|before|at|in)\\b|to read as follows|(is|are) (hereby )?revoked|by (the )?eliminat|by striking|renumber|is changed to read|as amended (the|it|this|clause|section|paragraph)|be (inserted|stricken|struck|added|substituted)|stricken (out|from)|substitut(e|ed|ing) (therefor|therein|in lieu)|(is|are) hereby (rescinded|repealed)|in lieu thereof"
+    },
+    {
+     "not": {
+      "text_regex": "present (incumbents?|occupants?)|with (its|their|his|her) (present )?(incumbents?|occupants?)|effect of (this|the above|the foregoing) (order|amendment)|now holding|now in the service under the provisions|shall be continued in office|it is further ordered|already employed|hereby given a (classified|competitive)|according a classified status|incumbents of (the |such |these )?positions|gives the occupants|shall not be construed to require"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "not the full order text|the following is the rule as rewritten"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The member's own text only amends a numbered Civil Service Rule or Schedule A or B of the 1903 rules (EO 209); its text merged into EO 209 on issue and the amending order has no command of its own after that day (ruling P2). The parent's lead (EO 209) is open.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S0"
+    ]
+   },
+   "gaps": [
+    "its text continues as part of the parent until the parent ends; the parent's lifecycle carries it",
+    "only-content test: the WPA summary shows nothing but an amendment (no waiver, special rule, promulgation, prescription, construction or extension); the member's operative text uses amending words in an operative form ('is hereby amended', 'strike out', 'by adding', 'to read as follows'; title words such as 'Amending' do not count); and the text has none of the markers of a further provision (present or continued incumbents or occupants, persons now holding, serving or employed, 'it is further ordered', 'the effect of this amendment', status given to persons, a saving for incumbents). A pattern scan of all B12-B15 texts with this marker list was the measure of the test; an unmarked further provision in other words would still escape it",
+    "a compiled transcription can run into a neighbouring order",
+    "disclosed earlier candidate end for the parent EO 209: EO 7915 and EO 8043 restated the whole text of the rules and of Schedules A and B effective 1939-02-01; under ruling P3 a restatement that does not name EO 209 does not end it, so EO 209's own lead is open",
+    "the WPA summary of EO 5657 runs into the entries for EO 5758 and 5759; the branch relies on the official compilation text instead"
    ]
   },
   {
    "branch_id": "B15",
-   "description": "Pure amendments of another executive order or of presidential personnel regulations (labor regulations, postmaster regulations, Diplomatic Service regulations).",
+   "description": "Pure amendments of another executive order or of presidential personnel regulations (labor, postmaster and Diplomatic Service regulations).",
    "when": [
     {
      "summary_regex": "^\\W*(\\[?regulations|rules governing|e\\.\\s*[0o]s?\\.|e\\.\\s*os\\.)"
@@ -774,25 +1069,88 @@
      }
     },
     {
-     "text_regex": "amend|strik(e|es|ing) out|struck|insert|addition of|adding|to read as follows|hereby revoked|is revoked|eliminat|transfer(red)? .{0,40}(from|to) (subdivision|paragraph)|renumber"
+     "text_regex": "\\b(is|are|be|been) (hereby |further )?amended|hereby,? amended|hereby amend|amend(ed)? (clause|rule|section|paragraph|subdivision|schedule)\\b|strik(e|es|ing) out|struck out|by (the )?add(ing|ition)|by inserting|\\binsert(ing)? (after|before|at|in)\\b|to read as follows|(is|are) (hereby )?revoked|by (the )?eliminat|by striking|renumber|is changed to read|as amended (the|it|this|clause|section|paragraph)|be (inserted|stricken|struck|added|substituted)|stricken (out|from)|substitut(e|ed|ing) (therefor|therein|in lieu)|(is|are) hereby (rescinded|repealed)|in lieu thereof"
+    },
+    {
+     "not": {
+      "text_regex": "present (incumbents?|occupants?)|with (its|their|his|her) (present )?(incumbents?|occupants?)|effect of (this|the above|the foregoing) (order|amendment)|now holding|now in the service under the provisions|shall be continued in office|it is further ordered|already employed|hereby given a (classified|competitive)|according a classified status|incumbents of (the |such |these )?positions|gives the occupants|shall not be construed to require"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "not the full order text|the following is the rule as rewritten"
+     }
     }
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "spent_amendment",
+    "lead_kind": "merged_into_parent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order's only operative content amends another executive order or a set of regulations the President prescribed; it is spent on issue as a command, and its effect is evidence for the amended instrument's lifecycle.",
+    "basis": "The member's own text only amends another executive order or a set of regulations the President prescribed; its text merged into that parent on issue and the amending order has no command of its own after that day (ruling P2).",
     "date_rule": {
      "kind": "order_date"
     },
     "mechanism_ids": [
      "M1"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S0"
+    ]
    },
    "gaps": [
-    "the branch reads the WPA 1944 summary for what the order does and checks the held order text only for amending language; a compiled transcription can run into a neighbouring order",
-    "the machine does not confirm that the order contains nothing besides the amendment"
+    "its text continues as part of the parent until the parent ends; the parent's lifecycle carries it",
+    "only-content test: the WPA summary shows nothing but an amendment (no waiver, special rule, promulgation, prescription, construction or extension); the member's operative text uses amending words in an operative form ('is hereby amended', 'strike out', 'by adding', 'to read as follows'; title words such as 'Amending' do not count); and the text has none of the markers of a further provision (present or continued incumbents or occupants, persons now holding, serving or employed, 'it is further ordered', 'the effect of this amendment', status given to persons, a saving for incumbents). A pattern scan of all B12-B15 texts with this marker list was the measure of the test; an unmarked further provision in other words would still escape it",
+    "a compiled transcription can run into a neighbouring order",
+    "each parent's lifecycle is decided under the parent's own family; the labor and postmaster regulations are open here (B17)"
+   ]
+  },
+  {
+   "branch_id": "B15x",
+   "description": "Amendments whose own text adds a further operative provision (incumbents included, continued or saved; persons now employed; 'it is further ordered'; status given to persons; a stated effect).",
+   "when": [
+    {
+     "any_of": [
+      {
+       "all_of": [
+        {
+         "summary_regex": "^\\W*\\[?civil ?service\\s*r"
+        },
+        {
+         "summary_regex": "(amended|amending|amend|clarified|revoked|deleted|deleting|struck|added|adding|eliminat|renumber)"
+        }
+       ]
+      },
+      {
+       "all_of": [
+        {
+         "summary_regex": "^\\W*(\\[?regulations|rules governing|e\\.\\s*[0o]s?\\.|e\\.\\s*os\\.)"
+        },
+        {
+         "summary_regex": "amended"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "text_regex": "present (incumbents?|occupants?)|with (its|their|his|her) (present )?(incumbents?|occupants?)|effect of (this|the above|the foregoing) (order|amendment)|now holding|now in the service under the provisions|shall be continued in office|it is further ordered|already employed|hereby given a (classified|competitive)|according a classified status|incumbents of (the |such |these )?positions|gives the occupants|shall not be construed to require"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "amendment_with_further_provision",
+    "basis_kind": "NONE",
+    "basis": "Amending is not the member's only operative content: its text also gives status to persons, directs how incumbents are treated, or states a further effect, so ruling P2 does not apply to the order as a whole.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": [
+     "S0"
+    ]
+   },
+   "gaps": [
+    "decide the further provision on its own terms: a status grant to named persons follows PD-CS-ONE-PERSON; an incumbents provision is performed when the incumbents are classified, compete or are separated, which needs the Commission's record; EO 4948's effect was also deferred to April 1, 1929 by EO 4982 (1928-10-22)"
    ]
   },
   {
@@ -819,7 +1177,7 @@
     "status_lead": "open",
     "lead_kind": "class_order_coverage",
     "basis_kind": "NONE",
-    "basis": "The order places a group of positions (sometimes with their incumbents) in or out of the classified service, or excepts them, without amending the rules' text; its effect is a continuing state that the 1939 and later restatements did not end by their terms (EO 7915 Rule II sec. 1 saves status granted by such orders).",
+    "basis": "The order places a group of positions (often with their incumbents) in or out of the classified service, or excepts them, without amending the rules' text. Its effect is a continuing state of coverage; no held instrument names it, the later restatements do not end it (ruling P3), and EO 7915 Rule II sec. 1 saved status granted 'by executive orders covering groups of employees with their positions into the competitive classified service', which is a savings clause, not an end.",
     "date_rule": {
      "kind": "none"
     },
@@ -829,12 +1187,13 @@
     ]
    },
    "gaps": [
-    "later exception, abolition, reorganization or revocation of the positions concerned; owner decision on covering-in orders"
+    "per-position evidence that would decide a member: (1) a later executive order or statute that names this order or the positions it covers and excepts them, abolishes them, or transfers them to a statutory personnel system; (2) a Civil Service Commission annual report or Federal Register notice recording the removal of the positions from Schedule A/B or from the classified service; (3) abolition of the office or bureau holding the positions by a statute or reorganization plan with a stated date; (4) for orders placing positions outside the classified service (EO 1394, 6772, 6784), the end of the commission or office concerned",
+    "the branch also catches a few loosely matched orders of other kinds (EO 633, 91, 984, 178, 416), open either way"
    ]
   },
   {
    "branch_id": "B17",
-   "description": "Other presidential personnel regulations prescribed (labor, postmaster, efficiency rating, reduction in force, furlough, diplomatic service).",
+   "description": "Separate presidential regulation sets prescribed, extended or approved (labor, postmaster, efficiency rating, furlough).",
    "when": [
     {
      "summary_regex": "regulations? .{0,120}(pre ?scribed|extended|approved)|rules .{0,60}pre ?scribed"
@@ -843,26 +1202,40 @@
      "not": {
       "summary_regex": "construed"
      }
+    },
+    {
+     "not": {
+      "all_of": [
+       {
+        "summary_regex": "^\\W*\\[?civil ?service\\s*r"
+       },
+       {
+        "summary_regex": "(amended|amending|amend|clarified|revoked|deleted|deleting|struck|added|adding|eliminat|renumber)"
+       }
+      ]
+     }
     }
    ],
    "lead": {
     "status_lead": "open",
     "lead_kind": "separate_regulation_set",
     "basis_kind": "NONE",
-    "basis": "The order prescribes a separate body of regulations, not part of the Civil Service Rules; the rules' restatements do not reach it by their terms.",
+    "basis": "The order prescribes a separate body of regulations, not part of the Civil Service Rules; such regulation-issuing orders belong with the administrative family PD-ADMIN (type regulations_issuance), and no held instrument names them.",
     "date_rule": {
      "kind": "none"
     },
     "mechanism_ids": [],
-    "source_ids": []
+    "source_ids": [
+     "S0"
+    ]
    },
    "gaps": [
-    "the later order that replaced each regulation set (e.g., successive postmaster regulations of 1917, 1926, 1929, 1936; labor regulations) and its revocation clause"
+    "the later order that names and replaces each regulation set (postmaster regulations of 1917, 1926, 1929 and 1936; labor regulations of 1904-1909) and its revocation clause"
    ]
   },
   {
    "branch_id": "B18",
-   "description": "Summary describes an amendment of the rules, a schedule or another order, but either the summary shows further provisions (prescribed, construed) or the held text does not show amending language (wrong, empty or unreadable text).",
+   "description": "Summary describes an amendment or construction of the rules, a schedule or another order, but the member's operative text does not confirm that amending is its only content (no operative amending words, a partial text, a neighbouring order, or further provisions in the summary), or the amendment falls between EO 209's signing (1903-03-20) and its effective date (1903-04-15), when the parent is uncertain.",
    "when": [
     {
      "any_of": [
@@ -898,6 +1271,9 @@
          "summary_regex": "construed|meaning of"
         }
        ]
+      },
+      {
+       "text_regex": "not the full order text|the following is the rule as rewritten"
       }
      ]
     }
@@ -906,7 +1282,7 @@
     "status_lead": "open",
     "lead_kind": "amendment_text_unconfirmed",
     "basis_kind": "NONE",
-    "basis": "The WPA summary calls the order an amendment, but the held text does not confirm it (the text is empty, an unread scan, a restated regulation without amending words, or a neighbouring order).",
+    "basis": "The WPA summary calls the order an amendment or a construction of the rules, but the member's own held text does not confirm that amending is its only operative content (the text is empty, an unread scan, a restated regulation without amending words, a neighbouring order, or the summary shows further provisions).",
     "date_rule": {
      "kind": "none"
     },
@@ -916,80 +1292,73 @@
     "source_ids": []
    },
    "gaps": [
-    "a correct text of the order (Civil Service Commission annual report for the year cited in the WPA entry, or the State Department/National Archives copy); once confirmed, the member falls into B12-B15"
+    "a correct text of the order (Civil Service Commission annual report for the year cited in the WPA entry, or the National Archives copy); once confirmed as a pure amendment, the member falls into B12-B15"
    ]
   },
   {
    "branch_id": "B19",
-   "description": "EO 5514: departments in the District of Columbia closed on December 24, 1930 (a closing order typed into this family).",
+   "description": "Office-closing orders typed into this family (EO 5514, EO 5977).",
    "when": [
     {
      "field": "instrument_id",
      "in": [
-      "EO:5514"
+      "EO:5514",
+      "EO:5977"
      ]
-    },
-    {
-     "text_regex": "closed on Wednesday, December 24, 1930"
     }
    ],
    "lead": {
-    "status_lead": "no",
-    "lead_kind": "own_terms_single_day",
-    "basis_kind": "TERM",
-    "basis": "The order closed the departments and excused employees on one stated day, December 24, 1930, and 'is not to be deemed as establishing a precedent'.",
+    "status_lead": "open",
+    "lead_kind": "other_family_closing",
+    "basis_kind": "NONE",
+    "basis": "The order closes government offices on stated days; it belongs to the administrative family PD-ADMIN (type closing_mourning), where its own terms decide it.",
     "date_rule": {
-     "kind": "fixed",
-     "date": "1930-12-24",
-     "basis": "the day stated in the order"
+     "kind": "none"
     },
     "mechanism_ids": [],
-    "source_ids": []
+    "source_ids": [
+     "S0"
+    ]
    },
    "gaps": [
-    "order text is an American Presidency Project transcription; the member belongs to the closing family (TR-CLOSING-MOURNING)"
+    "own-terms candidate for PD-ADMIN: EO 5514 names Wednesday, December 24, 1930; EO 5977 names December 24 and 31, 1932"
    ]
   },
   {
-   "branch_id": "B20",
-   "description": "EO 5977: departments in the District of Columbia closed on December 24 and 31, 1932 (a closing order typed into this family).",
+   "branch_id": "B97",
+   "description": "War and emergency orders typed into this family (WPA family hint emergency_war).",
    "when": [
     {
-     "field": "instrument_id",
+     "field": "wpa_family_hint",
      "in": [
-      "EO:5977"
+      "emergency_war"
      ]
-    },
-    {
-     "text_regex": "December 24, 1932 , and Saturday, December 31 , 1932"
     }
    ],
    "lead": {
-    "status_lead": "no",
-    "lead_kind": "own_terms_single_day",
-    "basis_kind": "TERM",
-    "basis": "The order closed the departments and excused employees on two stated days, the later being December 31, 1932.",
+    "status_lead": "open",
+    "lead_kind": "other_family_war_emergency",
+    "basis_kind": "NONE",
+    "basis": "The order is a war or emergency personnel or transfer measure, which belongs to PD-WAR-EMERGENCY; no mechanism of this doctrine applies.",
     "date_rule": {
-     "kind": "fixed",
-     "date": "1932-12-31",
-     "basis": "the later day stated in the order"
+     "kind": "none"
     },
     "mechanism_ids": [],
     "source_ids": []
    },
    "gaps": [
-    "the member belongs to the closing family (TR-CLOSING-MOURNING)"
+    "retype to the war-emergency family and apply PD-WAR-EMERGENCY"
    ]
   },
   {
    "branch_id": "B99",
-   "description": "Catch-all: other orders typed into this family (directives, transfers of functions, closings, one-person orders).",
+   "description": "Catch-all: administrative orders typed into this family (directives on employee conduct, transfers of functions or records, organization, seals, Saturday half-holidays, the Boxer indemnity).",
    "when": [],
    "lead": {
     "status_lead": "open",
-    "lead_kind": "outside_family_mechanism",
+    "lead_kind": "other_family_admin",
     "basis_kind": "NONE",
-    "basis": "The order is not an amendment of the Civil Service Rules or a class order; no mechanism of this doctrine applies.",
+    "basis": "The order is not an amendment of the Civil Service Rules or a class order; it belongs with the administrative family PD-ADMIN (organization, regulations, closings) or, for a foreign-relations measure such as EO 999, with its own subject family.",
     "date_rule": {
      "kind": "none"
     },
@@ -1003,32 +1372,28 @@
  ],
  "undecidable": [
   {
-   "reason": "special rules of 1897-1902 promulgated as freestanding rules; EO 250 shows special rules were treated as outliving the 1903 revision, so EO 209 does not end them by its terms",
+   "reason": "EO 209: only whole-text restatements followed it; none names it (ruling P3)",
+   "detected_by": "B02"
+  },
+  {
+   "reason": "special rules of 1897-1902: EO 250 shows special rules outlived the 1903 revision",
    "detected_by": "B07"
   },
   {
-   "reason": "classification and covering-in orders (section 6 classifications, positions classified, covered in, placed outside the classified service or excepted by standalone order): continuing effect, saved by later rules, no ending instrument shown",
+   "reason": "classification and covering-in orders: continuing coverage, saved by later rules; per-position evidence needed",
    "detected_by": "B08, B16"
   },
   {
-   "reason": "waivers and suspensions of a rule for a person, group or occasion: not merged into the rules' text; belong to the waiver doctrines",
-   "detected_by": "B11"
+   "reason": "amendments whose own text adds a further operative provision, or whose text does not confirm the amendment",
+   "detected_by": "B15x, B18"
   },
   {
-   "reason": "separate presidential regulation sets (labor, postmaster, efficiency rating, reduction in force, furlough, diplomatic service): the rules' restatements do not reach them; successor regulations not yet traced",
+   "reason": "separate regulation sets (PD-ADMIN regulations_issuance)",
    "detected_by": "B17"
   },
   {
-   "reason": "summary says amendment but the held text is empty, a scan, the wrong order, a restatement without amending words, or shows further provisions",
-   "detected_by": "B18"
-  },
-  {
-   "reason": "no date or no summary, unread scan",
-   "detected_by": "B06"
-  },
-  {
-   "reason": "orders of other types typed into this family (directives, transfers of functions or records, one-person orders, Boxer indemnity, seals)",
-   "detected_by": "B99"
+   "reason": "members of other families: one-person orders (PD-CS-ONE-PERSON), waivers, closings and other administrative orders (PD-ADMIN), war measures (PD-WAR-EMERGENCY)",
+   "detected_by": "B06p, B11, B19, B97, B99"
   }
  ]
 }

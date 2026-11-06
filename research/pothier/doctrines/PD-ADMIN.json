@@ -2,7 +2,7 @@
  "schema": "pothier-family-doctrine/v1",
  "doctrine_id": "PD-ADMIN",
  "family": "Administrative orders: organization, regulations, pay and allowances, fund allotments, territories, property transfers, own-terms expiry, tax return inspection, closings",
- "version": 1,
+ "version": 2,
  "members": {
   "field": "x1_type",
   "in": [
@@ -22,9 +22,11 @@
    "id": "M-SPENT",
    "kind": "own_terms",
    "effect": "ends",
-   "description": "An order whose whole operative content revokes, cancels, amends or modifies another order is spent as a command when issued; what it did becomes part of the other order's lifecycle (owner rule in the Pothier author brief).",
+   "description": "P1: an order whose only operative content revokes, rescinds or cancels another order does one thing and does it on issue; its consequence belongs to the other order's lifecycle. P2: an order whose only operative content amends or modifies another order merges into the parent on issue; its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
    "effective_date_rule": "The order's date.",
-   "source_ids": []
+   "source_ids": [
+    "S-MEMBER"
+   ]
   },
   {
    "id": "M-REVOKED",
@@ -59,9 +61,9 @@
   {
    "id": "M-TAX76",
    "kind": "statute",
-   "effect": "ends",
-   "description": "Section 1202 of the Tax Reform Act of 1976 rewrote 26 U.S.C. 6103 from January 1, 1977: no federal officer may disclose any return or return information except as Title 26 authorizes, and the new section has no inspection upon order of the President. Every order opening returns to inspection by its own force could no longer operate after that date.",
-   "effective_date_rule": "Ended within the interval from the order's date to 1977-01-01; most ended much earlier with the investigation or body named, a date the project does not hold.",
+   "effect": "lead_only",
+   "description": "Section 1202 of the Tax Reform Act of 1976 rewrote 26 U.S.C. 6103 from January 1, 1977: no federal officer may disclose a return except as Title 26 authorizes, and the new section has no inspection upon order of the President. The statute names no executive order and describes no class of orders, so under COORDINATOR_RULINGS P3 (D-20261021-unnamed-instruments, option C) it does not end the members; 1977-01-01 is a disclosed earlier candidate end only.",
+   "effective_date_rule": "None for the lead; 1977-01-01 is recorded in the gaps as a candidate end.",
    "source_ids": [
     "S-TRA76-A",
     "S-TRA76-G",
@@ -75,6 +77,7 @@
    "description": "The order states its own end: a period ('for and during six months ... and for no longer time'), a date to which something is deferred or continued, a named day or days, or a fiscal year or other stated period for which rates apply.",
    "effective_date_rule": "The stated last day; where the order lets an earlier event end it (a proviso or 'unless otherwise directed'), the interval from the order's date to that stated day.",
    "source_ids": [
+    "S-MEMBER",
     "S-EO1120",
     "S-EO516",
     "S-EO7090",
@@ -85,14 +88,21 @@
    "id": "M-ANCSA",
    "kind": "statute",
    "effect": "ends",
-   "description": "ANCSA section 19(a) revoked every reserve set aside by Executive order for Native use or for the administration of Native affairs in Alaska, except Annette Island, subject to valid existing rights of non-Natives.",
-   "effective_date_rule": "Ended within the interval from the order's date to 1971-12-18 (enactment); some ended earlier by partial or whole revocation.",
+   "description": "ANCSA sec. 19(a) expressly revokes a described class: \"the various reserves set aside by legislation or by Executive or Secretarial Order for Native use or for administration of Native affairs, including those created under the Act of May 31, 1938 ... are hereby revoked subject to any valid existing rights of non-Natives\". A member is in the class when its own text reserves land for Native use or for the Bureau of Education and Natives (COORDINATOR_RULINGS P3, express class instrument).",
+   "effective_date_rule": "The Act's date, 1971-12-18.",
    "source_ids": [
     "S-ANCSA"
    ]
   }
  ],
  "sources": [
+  {
+   "id": "S-MEMBER",
+   "member_text": true,
+   "citation": "The member order's own held text",
+   "title": "Member text (COORDINATOR_RULINGS P6)",
+   "establishes": "The member's operative clause and any stated period, date or condition; the engine records its path, sha256 and grade on every lead."
+  },
   {
    "id": "S-TRA76-A",
    "citation": "Tax Reform Act of 1976, Pub. L. 94-455, sec. 1202(a), 90 Stat. 1520, 1667-1668 (Oct. 4, 1976), enacting 26 U.S.C. 6103(a)",
@@ -135,7 +145,7 @@
    "held_path": "",
    "sha256": "",
    "pin": "",
-   "establishes": "Revokes, subject to valid existing rights of non-Natives, \"the various reserves set aside by legislation or by Executive or Secretarial Order for Native use or for administration of Native affairs\", except the Annette Island Reserve.",
+   "establishes": "Sec. 19(a) (43 U.S.C. 1618(a)): \"the various reserves set aside by legislation or by Executive or Secretarial Order for Native use or for administration of Native affairs, including those created under the Act of May 31, 1938 ... are hereby revoked subject to any valid existing rights of non-Natives\"; the section does not apply to the Annette Island Reserve.",
    "note": "Read on the web (Cornell LII text of 43 U.S.C. 1618(a), source credit Pub. L. 92-203, sec. 19, 85 Stat. 710); not yet held."
   },
   {
@@ -458,16 +468,18 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "spent_on_issue_revocation",
+    "lead_kind": "spent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order's only operative content revokes, rescinds or cancels another order; that command was performed when the order issued. Its effect is evidence for the revoked order's lifecycle.",
+    "basis": "The order's only operative content revokes, rescinds or cancels another order; it did that one thing on issue (P1). Its consequence, the other order's end, belongs to that order's lifecycle. Date: the order's own date (EO 6668 and 6669 state a cancellation effective March 28, 1934, before their own date of April 6, 1934; the command was performed on issue).",
     "date_rule": {
      "kind": "order_date"
     },
     "mechanism_ids": [
      "M-SPENT"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -475,7 +487,7 @@
   },
   {
    "branch_id": "B02",
-   "description": "Amend-only orders: the whole operative text amends, modifies or restates another order or regulation (member list fixed after reading each held text).",
+   "description": "Amend-only orders: the member's own text shows that amending, modifying or restating another order or regulation is its only operative content (list fixed after reading each held text).",
    "when": [
     {
      "field": "instrument_id",
@@ -565,20 +577,23 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "spent_on_issue_amendment",
+    "lead_kind": "merged_into_parent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order's only operative content amends or modifies another order; under the owner rule it is spent as a command on issue and its substance lives on, if at all, as part of the amended order, whose own lifecycle decides that question.",
+    "basis": "The order's only operative content amends, modifies or restates another order or regulation; under P2 (D-20261021-strike-and-insert) it merges into the parent on issue: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
     "date_rule": {
      "kind": "order_date"
     },
     "mechanism_ids": [
      "M-SPENT"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
-    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "The amended order's status is a separate question and is not decided here."
+    "Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "If the owner treats an amending order as living as long as the amended text lives, these leads become open pending the parent (P2 adoption choice).",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
    ]
   },
   {
@@ -594,7 +609,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 5376 revoked EO 1440 in terms.",
     "date_rule": {
@@ -626,7 +641,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 6005-A revoked EO 3360 in terms.",
     "date_rule": {
@@ -658,7 +673,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 6612 revoked EO 3870 in terms.",
     "date_rule": {
@@ -690,7 +705,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 6562 superseded EO 3962 in terms.",
     "date_rule": {
@@ -723,7 +738,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 5952 revoked EO 4580 and its amendment EO 5337 in terms.",
     "date_rule": {
@@ -756,7 +771,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 5605 revoked EO 5014 effective July 1, 1931.",
     "date_rule": {
@@ -788,7 +803,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 6913 superseded EO 5502 in terms.",
     "date_rule": {
@@ -820,7 +835,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 6776 canceled EO 6096 (Veterans Regulation No. 8) as of its own date.",
     "date_rule": {
@@ -853,7 +868,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 8714 revoked EO 6202-B in terms.",
     "date_rule": {
@@ -885,7 +900,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 6550 revoked and rescinded EO 6548 in terms.",
     "date_rule": {
@@ -918,7 +933,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 9461 abolished the Executive Committee on Commercial Policy, naming EO 6656 and EO 7260 as the orders that continued it; those orders have no object after the abolition.",
     "date_rule": {
@@ -950,7 +965,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 6724 rescinded EO 6684 in terms.",
     "date_rule": {
@@ -982,7 +997,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 6777 abolished the Committee on National Land Problems that EO 6693 created.",
     "date_rule": {
@@ -1014,7 +1029,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 7005 revoked EO 6832 in terms.",
     "date_rule": {
@@ -1046,7 +1061,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 6858 section 9 abolished the Board of Inquiry that EO 6840 created.",
     "date_rule": {
@@ -1078,7 +1093,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 7044 revoked EO 7004 in terms.",
     "date_rule": {
@@ -1110,7 +1125,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 1706 revoked EO 1648 in terms, three months after issue; whether the office had been discontinued meanwhile is not recorded.",
     "date_rule": {
@@ -1142,7 +1157,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 3583 revoked EO 3251 in terms.",
     "date_rule": {
@@ -1174,7 +1189,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 4158 revoked EO 4147 in terms, thirteen days after issue.",
     "date_rule": {
@@ -1206,7 +1221,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 3261 cancelled EO 3166 in terms.",
     "date_rule": {
@@ -1238,7 +1253,7 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_later_order",
+    "lead_kind": "ended_by_named_later_instrument",
     "basis_kind": "ACT",
     "basis": "EO 4021 revoked the order creating the Southwestern Alaska Fisheries Reservation in terms, reciting that the Act of June 6, 1924 made it unnecessary.",
     "date_rule": {
@@ -1259,7 +1274,7 @@
   },
   {
    "branch_id": "B04",
-   "description": "Tax-return inspection orders: the order opens returns (or a class of returns) to inspection by its own force under a Revenue Act or Tariff Act provision.",
+   "description": "Tax-return inspection orders: the order opens returns to inspection by its own force; none of the held texts states an end date, period or Congress after which inspection stops.",
    "when": [
     {
      "field": "x1_type",
@@ -1277,15 +1292,12 @@
     }
    ],
    "lead": {
-    "status_lead": "no",
-    "lead_kind": "ended_by_statute_tax_reform_1976",
-    "basis_kind": "ACT",
-    "basis": "From January 1, 1977, the rewritten 26 U.S.C. 6103 forbids every federal officer to disclose any return or return information except as Title 26 authorizes, and it contains no inspection upon order of the President; an order opening returns to inspection could not operate after that date. Most members ended earlier with the committee, investigation or Congress they name.",
+    "status_lead": "open",
+    "lead_kind": "tax_inspection_end_not_in_own_terms",
+    "basis_kind": "NONE",
+    "basis": "The order opens returns to a named committee, official or class of officers (or generally under Treasury rules) and states no period or end. Its own terms tie it to the named body, whose end is not in the text; the 1976 rewrite of 26 U.S.C. 6103 does not name the order or describe a class of orders (P3), so it is only a candidate end.",
     "date_rule": {
-     "kind": "interval",
-     "from": "order_date",
-     "to": "1977-01-01",
-     "basis": "Tax Reform Act of 1976 sec. 1202(i)"
+     "kind": "none"
     },
     "mechanism_ids": [
      "M-TAX76"
@@ -1297,9 +1309,10 @@
     ]
    },
    "gaps": [
-    "The earlier end (the named committee's or investigation's end, or a superseding inspection order) is not held; the interval is therefore wide.",
-    "New section 6103(b)(1) defines 'return' as one filed under Title 26; the application to returns filed under the pre-1939 Revenue Acts rests on the statute's general prohibition and on the absence of any surviving presidential-order authority, not on an express provision about old returns.",
-    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+    "Disclosed earlier candidate end: 1977-01-01, when Tax Reform Act of 1976 sec. 1202 (90 Stat. 1667, 1672, 1688; held) made returns confidential except as Title 26 authorizes and left no inspection upon order of the President; under P3 it does not end the member because it does not name it or an expressly described class that includes it.",
+    "For grants to a congressional committee (EO 6241, 6603A, 6712, 6742, 7039, 7097, 7115, 7158, 7322, 7350, 7411, 7483, 3595): the end of the committee's authority under its resolution (Senate or House resolution named in the text) from the Journal or Congressional Record; a House resolution's authority ending with its Congress would need a held source (House rules or precedents).",
+    "For general orders under Treasury rules and standing orders for State officers (EO 1999, 2882A, 2934A, 3212, 3624, 3971A, 4078, 4416, 4940, 5321, 5647, 5824, 5970, 2130): a later order that supersedes them by number or by express class.",
+    "TR-TAX-RETURN-INSPECTION was checked: no member's own text limits inspection to a stated period or date."
    ]
   },
   {
@@ -1333,6 +1346,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1372,6 +1386,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1411,6 +1426,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1450,6 +1466,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1489,6 +1506,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1528,6 +1546,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1567,6 +1586,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1606,6 +1626,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1645,6 +1666,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1684,6 +1706,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120",
      "S-EO516"
     ]
@@ -1724,6 +1747,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1765,6 +1789,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO1120"
     ]
    },
@@ -1800,7 +1825,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
@@ -1834,7 +1861,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
@@ -1868,7 +1897,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
@@ -1902,7 +1933,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
@@ -1937,7 +1970,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
@@ -1972,7 +2007,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
@@ -2007,7 +2044,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
@@ -2042,7 +2081,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
@@ -2077,7 +2118,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
@@ -2112,6 +2155,7 @@
      "M-OWNDATE"
     ],
     "source_ids": [
+     "S-MEMBER",
      "S-EO7090",
      "S-EO7121"
     ]
@@ -2142,14 +2186,13 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_statute_ancsa",
+    "lead_kind": "ended_by_express_class_instrument",
     "basis_kind": "ACT",
-    "basis": "ANCSA section 19(a) revoked every reserve set aside by Executive order for Native use or for the administration of Native affairs in Alaska except Annette Island; this order's reserve is one (the order reserves the land for the use of the Bureau of Education and Natives, or for the natives of a village).",
+    "basis": "ANCSA sec. 19(a) provides that \"the various reserves set aside by legislation or by Executive or Secretarial Order for Native use or for administration of Native affairs, including those created under the Act of May 31, 1938 ... are hereby revoked subject to any valid existing rights of non-Natives\" (Annette Island excepted). Member test: the order's own text reserves the land for the use of the Bureau of Education and the natives of Alaska of indigenous race (EO 1896, 1987, 2508, 2525, 2757) or for the natives residing at the village of Klukwan (EO 3673), so each is a reserve set aside by Executive order for Native use or for administration of Native affairs.",
     "date_rule": {
-     "kind": "interval",
-     "from": "order_date",
-     "to": "1971-12-18",
-     "basis": "ANCSA enacted December 18, 1971"
+     "kind": "fixed",
+     "date": "1971-12-18",
+     "basis": "date of the Alaska Native Claims Settlement Act"
     },
     "mechanism_ids": [
      "M-ANCSA"
@@ -2159,7 +2202,8 @@
     ]
    },
    "gaps": [
-    "EO 5207 (1929) revoked part of the Norton Bay reserve (EO 2508 as amended by EO 2525); other partial earlier revocations are not searched.",
+    "Parts of some reserves ended earlier (EO 5207 of 1929 revoked part of the Norton Bay reserve of EO 2508 as amended by EO 2525); the fixed date is the end of what remained.",
+    "Valid existing rights of non-Natives survive as accrued effects.",
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
    ]
   },
@@ -2190,7 +2234,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2223,7 +2269,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2256,7 +2304,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2289,7 +2339,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2322,7 +2374,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2355,7 +2409,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2388,7 +2444,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2421,7 +2479,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2454,7 +2514,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2478,17 +2540,19 @@
     "status_lead": "no",
     "lead_kind": "own_terms_named_period",
     "basis_kind": "TERM",
-    "basis": "The order grants leave for stated days of a 1915 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "basis": "The order grants leave with pay to veterans 'who desire to attend' the 1915 encampment, 'that they may have the opportunity to attend', for stated days ending 1915-10-03 plus the days 'necessary for the journey ... and return'; the leave is tied to that encampment by its own words. It ended no earlier than 1915-10-03 and, by inference, no later than December 31, 1915: a rail journey within the United States took days, not months. The upper bound is an inference, not a date the text states.",
     "date_rule": {
      "kind": "interval",
-     "from": "order_date",
+     "from": "1915-10-03",
      "to": "1915-12-31",
-     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+     "basis": "from the last named leave day; the year-end upper bound is an inference about travel time"
     },
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
@@ -2513,17 +2577,19 @@
     "status_lead": "no",
     "lead_kind": "own_terms_named_period",
     "basis_kind": "TERM",
-    "basis": "The order grants leave for stated days of a 1916 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "basis": "The order grants leave with pay to veterans 'who desire to attend' the 1916 encampment, 'that they may have the opportunity to attend', for stated days ending 1916-09-03 plus the days 'necessary for the journey ... and return'; the leave is tied to that encampment by its own words. It ended no earlier than 1916-09-03 and, by inference, no later than December 31, 1916: a rail journey within the United States took days, not months. The upper bound is an inference, not a date the text states.",
     "date_rule": {
      "kind": "interval",
-     "from": "order_date",
+     "from": "1916-09-03",
      "to": "1916-12-31",
-     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+     "basis": "from the last named leave day; the year-end upper bound is an inference about travel time"
     },
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
@@ -2548,17 +2614,19 @@
     "status_lead": "no",
     "lead_kind": "own_terms_named_period",
     "basis_kind": "TERM",
-    "basis": "The order grants leave for stated days of a 1917 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "basis": "The order grants leave with pay to veterans 'who desire to attend' the 1917 encampment, 'that they may have the opportunity to attend', for stated days ending 1917-08-27 plus the days 'necessary for the journey ... and return'; the leave is tied to that encampment by its own words. It ended no earlier than 1917-08-27 and, by inference, no later than December 31, 1917: a rail journey within the United States took days, not months. The upper bound is an inference, not a date the text states.",
     "date_rule": {
      "kind": "interval",
-     "from": "order_date",
+     "from": "1917-08-27",
      "to": "1917-12-31",
-     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+     "basis": "from the last named leave day; the year-end upper bound is an inference about travel time"
     },
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
@@ -2583,17 +2651,19 @@
     "status_lead": "no",
     "lead_kind": "own_terms_named_period",
     "basis_kind": "TERM",
-    "basis": "The order grants leave for stated days of a 1918 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "basis": "The order grants leave with pay to veterans 'who desire to attend' the 1918 encampment, 'that they may have the opportunity to attend', for stated days ending 1918-09-05 plus the days 'necessary for the journey ... and return'; the leave is tied to that encampment by its own words. It ended no earlier than 1918-09-05 and, by inference, no later than December 31, 1918: a rail journey within the United States took days, not months. The upper bound is an inference, not a date the text states.",
     "date_rule": {
      "kind": "interval",
-     "from": "order_date",
+     "from": "1918-09-05",
      "to": "1918-12-31",
-     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+     "basis": "from the last named leave day; the year-end upper bound is an inference about travel time"
     },
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
@@ -2618,17 +2688,19 @@
     "status_lead": "no",
     "lead_kind": "own_terms_named_period",
     "basis_kind": "TERM",
-    "basis": "The order grants leave for stated days of a 1918 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "basis": "The order grants leave with pay to veterans 'who desire to attend' the 1918 encampment, 'that they may have the opportunity to attend', for stated days ending 1918-08-24 plus the days 'necessary for the journey ... and return'; the leave is tied to that encampment by its own words. It ended no earlier than 1918-08-24 and, by inference, no later than December 31, 1918: a rail journey within the United States took days, not months. The upper bound is an inference, not a date the text states.",
     "date_rule": {
      "kind": "interval",
-     "from": "order_date",
+     "from": "1918-08-24",
      "to": "1918-12-31",
-     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+     "basis": "from the last named leave day; the year-end upper bound is an inference about travel time"
     },
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
@@ -2653,17 +2725,19 @@
     "status_lead": "no",
     "lead_kind": "own_terms_named_period",
     "basis_kind": "TERM",
-    "basis": "The order grants leave for stated days of a 1919 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "basis": "The order grants leave with pay to veterans 'who desire to attend' the 1919 encampment, 'that they may have the opportunity to attend', for stated days ending 1919-09-14 plus the days 'necessary for the journey ... and return'; the leave is tied to that encampment by its own words. It ended no earlier than 1919-09-14 and, by inference, no later than December 31, 1919: a rail journey within the United States took days, not months. The upper bound is an inference, not a date the text states.",
     "date_rule": {
      "kind": "interval",
-     "from": "order_date",
+     "from": "1919-09-14",
      "to": "1919-12-31",
-     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+     "basis": "from the last named leave day; the year-end upper bound is an inference about travel time"
     },
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
@@ -2697,7 +2771,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2730,7 +2806,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2763,7 +2841,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2796,7 +2876,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2829,7 +2911,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2862,7 +2946,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2895,7 +2981,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2928,7 +3016,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2961,7 +3051,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -2994,7 +3086,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3027,7 +3121,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3060,7 +3156,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3093,7 +3191,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3126,7 +3226,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3159,7 +3261,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3192,7 +3296,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3225,7 +3331,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3258,7 +3366,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3291,7 +3401,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3328,7 +3440,9 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
@@ -3362,38 +3476,165 @@
     "mechanism_ids": [
      "M-OWNDATE"
     ],
-    "source_ids": []
+    "source_ids": [
+     "S-MEMBER"
+    ]
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
    ]
   },
   {
-   "branch_id": "O01",
-   "description": "Members whose held text or X1 type does not match the family (another order's text, an unreadable scan, or a different kind of order).",
+   "branch_id": "O01-INDIAN",
+   "description": "Misfiled or mismatched member: Indian trust-period extensions or Indian treaty provisions; belongs to PD-INDIAN.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1302",
+      "EO:3878",
+      "EO:4075",
+      "EO:4571"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misfiled_family_named",
+    "basis_kind": "NONE",
+    "basis": "Indian trust-period extensions or Indian treaty provisions; belongs to PD-INDIAN.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Reassign to the named family or acquire a legible text of the order."
+   ]
+  },
+  {
+   "branch_id": "O01-MILRES",
+   "description": "Misfiled or mismatched member: Withdrawal of lands on Oahu for military purposes; belongs to PD-MILITARY-RESERVATION.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3885"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misfiled_family_named",
+    "basis_kind": "NONE",
+    "basis": "Withdrawal of lands on Oahu for military purposes; belongs to PD-MILITARY-RESERVATION.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Reassign to the named family or acquire a legible text of the order."
+   ]
+  },
+  {
+   "branch_id": "O01-WAR",
+   "description": "Misfiled or mismatched member: United States Grain Corporation capital-stock orders (World War I food administration); belongs to PD-WAR-EMERGENCY.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3292",
+      "EO:3319"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misfiled_family_named",
+    "basis_kind": "NONE",
+    "basis": "United States Grain Corporation capital-stock orders (World War I food administration); belongs to PD-WAR-EMERGENCY.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Reassign to the named family or acquire a legible text of the order."
+   ]
+  },
+  {
+   "branch_id": "O01-ORG",
+   "description": "Misfiled or mismatched member: Organization orders typed as fund allotments (transfer of the Patent Office; Coast Guard officers attached to the War Department; delegation of Emergency Conservation Work powers); they belong with this family's organization orders (O09) and are open for the same reason.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4175",
+      "EO:6169",
+      "EO:6126"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misfiled_family_named",
+    "basis_kind": "NONE",
+    "basis": "Organization orders typed as fund allotments (transfer of the Patent Office; Coast Guard officers attached to the War Department; delegation of Emergency Conservation Work powers); they belong with this family's organization orders (O09) and are open for the same reason.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Reassign to the named family or acquire a legible text of the order."
+   ]
+  },
+  {
+   "branch_id": "O01-CIVILWAR",
+   "description": "Misfiled or mismatched member: Civil War orders (Louisiana provisional court, 1862; Virginia, 1865) typed as pay orders; no Pothier family covers them, and their held later-event edges point to unrelated later orders.",
    "when": [
     {
      "field": "instrument_id",
      "in": [
       "EO:1",
-      "EO:4",
+      "EO:4"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misfiled_family_named",
+    "basis_kind": "NONE",
+    "basis": "Civil War orders (Louisiana provisional court, 1862; Virginia, 1865) typed as pay orders; no Pothier family covers them, and their held later-event edges point to unrelated later orders.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Reassign to the named family or acquire a legible text of the order."
+   ]
+  },
+  {
+   "branch_id": "O01-TEXT",
+   "description": "Misfiled or mismatched member: The held text is another order's, a description of the order, or an unreadable scan (for example EO 1183's text is EO 1182 1/2; EO 319's is an Interior Department description); the family is this one by subject, but no doctrine can apply before a legible text of the order is held.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
       "EO:13",
       "EO:25",
       "EO:27-1",
       "EO:112",
       "EO:113",
-      "EO:3885",
       "EO:3885C",
       "EO:1183",
-      "EO:1302",
-      "EO:3292",
-      "EO:3319",
-      "EO:3878",
-      "EO:4075",
-      "EO:4571",
-      "EO:4175",
-      "EO:6169",
-      "EO:6126",
       "EO:319",
       "EO:310",
       "EO:311",
@@ -3409,9 +3650,9 @@
    ],
    "lead": {
     "status_lead": "open",
-    "lead_kind": "misclassified_or_text_mismatch",
+    "lead_kind": "misfiled_family_named",
     "basis_kind": "NONE",
-    "basis": "The held text is another order's, unreadable, or of a kind outside this family; the member needs reassignment or a better text before any doctrine applies.",
+    "basis": "The held text is another order's, a description of the order, or an unreadable scan (for example EO 1183's text is EO 1182 1/2; EO 319's is an Interior Department description); the family is this one by subject, but no doctrine can apply before a legible text of the order is held.",
     "date_rule": {
      "kind": "none"
     },
@@ -3419,7 +3660,7 @@
     "source_ids": []
    },
    "gaps": [
-    "Reassign by text (for example EO 3878, 4075, 4571 are Indian trust-period extensions; EO 3885 is a military land withdrawal; EO 1 and EO 4 are Civil War orders) or acquire a legible text."
+    "Reassign to the named family or acquire a legible text of the order."
    ]
   },
   {
@@ -3601,7 +3842,8 @@
     "source_ids": []
    },
    "gaps": [
-    "Career Compensation Act of 1949 (63 Stat. 802) and Pay Readjustment Act of 1942 (56 Stat. 359) texts, checked for terms reaching presidential pay orders; the end of each named commission."
+    "Career Compensation Act of 1949 (63 Stat. 802) and Pay Readjustment Act of 1942 (56 Stat. 359) texts, checked for terms reaching presidential pay orders; the end of each named commission.",
+    "Orders whose only content is compensation or a designation for one named person follow PD-CS-ONE-PERSON (COORDINATOR_RULINGS P4); they are left open here."
    ]
   },
   {
@@ -3678,8 +3920,12 @@
  ],
  "undecidable": [
   {
-   "reason": "Held text is another order's, unreadable, or outside the family's kinds",
-   "detected_by": "O01"
+   "reason": "Tax-return inspection order with no end in its own terms; the 1976 rewrite of section 6103 is only a disclosed candidate end (P3)",
+   "detected_by": "B04, O03T"
+  },
+  {
+   "reason": "Misfiled member (family named) or held text that is not a legible copy of the order",
+   "detected_by": "O01-INDIAN, O01-MILRES, O01-WAR, O01-ORG, O01-CIVILWAR, O01-TEXT"
   },
   {
    "reason": "Closing or mourning order with no fixed calendar day in the text, or a standing holiday rule",

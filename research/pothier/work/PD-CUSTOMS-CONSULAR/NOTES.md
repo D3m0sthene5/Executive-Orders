@@ -81,3 +81,90 @@
 
 About 2.5 hours of agent time. Roughly 60 tool calls; about 90 member texts were read beyond the snippet pass; 6 web
 fetches and 3 web searches were made.
+
+## Coordinator rulings applied (2026-11-05)
+
+Applied `research/pothier/COORDINATOR_RULINGS.md` P1-P6 and the coordinator's five decisions.
+
+- **P1 (spent on issue).** Pure port abolitions (B18) and pure revocations, EO 5577 and 6737 (B19), now carry
+  `spent_on_issue`.
+- **P2 (merged into the parent).** Amendments of executive orders (B20, 13 members) and of presidential regulations
+  (B21, 39 members) now carry `merged_into_parent_on_issue` with the parent-lifecycle disclosure. EO 5126 and 5127
+  moved into B21; EO 5642's 1931 cancellation is recorded as their parent's later history.
+- **Indefinite suspensions.** EO 4299 and 5317 are not pure revocations and are now open (O0).
+- **P3 (unnamed later instruments).** O5 stays open, with EO 496 and EO 7968 disclosed as earlier candidate ends.
+- **P4 (named persons).** Only the retirements with a stated date stay `no`; EO 4279-A, 4285 and 7358 are now open
+  (O6p).
+- **Other families.** O7 is split by owning family: O7a (PD-ADMIN) and O7b (PD-WAR-EMERGENCY).
+- **P6 (member text).** The member's own text is source S0 (`member_text`).
+
+New counts: 32 yes, 114 no, 117 open (decides 146).
+
+## Blind-review revision (2026-11-05)
+
+I read both reviews in `/home/claude/pothier-review/PD-CUSTOMS-CONSULAR-{A,B}/REVIEW.json`. Four findings matched the
+planted errors and were not acted on: "19 CFR 101.4", B03 fixed on 1927-01-27, EO 5435 written as "5345", and B09
+fixed on 1931-06-08. My file never carried these; I grepped it to confirm.
+
+### Changes made
+
+**Lead and branch changes**
+- **EO 5577.** Moved from B19 to O1 `open`, because it also includes five places within San Francisco's port limits
+  (both reviewers; coordinator).
+- **EO 2022.** Moved from B21 to O5 `open`. Its fee waiver runs "until further notice", and the Secretary of State may
+  end it (reviewer B; coordinator).
+- **EO 538.** Moved from B21 to O8 `open`, because the held text is the State Department's description of the change,
+  not the order (reviewer A; coordinator).
+- **Search for similar cases.** I scanned every B19-B21 text for standing commands ("until further", "authorized",
+  "temporar", "during the war"). The only hits (EO 2461, 3354, 423) fall inside the amended paragraph text, so they
+  stay as they were.
+
+**Dates and lead kinds**
+- **B03-B07.** Lead kind changed to `ended_by_express_abolition_of_its_subject` under P7. Each date is now fixed on the
+  abolishing order's effective date, the thirtieth day after signing.
+- **B08.** Now fixed on 1927-09-18.
+- **B18 split into B18a-k.** Each abolition is now dated by its stated effective date: on issue for 6 orders,
+  `order_date_plus_days` 30 for 23 orders, and a fixed named day for 9 orders. EO 4730's member date is year-only, so
+  it is fixed from its text. I removed the statement "up to about two months"; the longest gap is about one month.
+- **B16.** The end is now 1922-06-03.
+
+**Citations and sources**
+- **S8.** Now cites 1 FR 1737 (Oct. 1, 1936); I confirmed this on govinfo.
+- **S16.** TR-CANAL-ZONE is replaced by `research/pothier/doctrines/PD-CS-ONE-PERSON.md` (the rule P4 applies), pinned
+  to "with a stated end date end on their own terms" at sha256 9ee3365b.... That file is being revised by its author,
+  so its hash may need refreshing.
+- **S23.** Now cites P1-P8, at sha256 9624df16....
+
+**Statements in the doctrine**
+- **EO 7358.** Described as a two-person order that stays open.
+- **O3.** Deleted the unsourced clause about Reorganization Plan No. 1 of 1965 (both reviewers). EO 4284 is now
+  described under O3, and the stray O1 gaps are removed.
+- **EO 5642.** The doctrine now lists Articles I, II and XXV and sections 465-473, and says that it reaches at least
+  EO 5126, 5127 and parts of EO 3354, 3902 and 1926. The list is not exhaustive.
+- **Undecidable list.** It now covers O0, O1-O6, O6p, O7a, O7b and O8.
+- **O7a/O7b.** Each now carries the gap "not decided by any doctrine unless the coordinator reassigns them". EO 6778
+  is noted as a P8 candidate for its own family.
+- **Section (b).** It now says every `no` lead rests on held sources, and that the `yes` leads also rest on S2, which
+  is not held.
+
+**Contradictions and edges**
+- **Two contradiction flags disclosed and explained:** EO 610 (edge SH-bdbb6b2087da) and EO 7062 (edges
+  SH-3647e071d203, SH-117996891a66, SH-99fb1b72ba35). Both are later amendments of the parent under P2.
+- **New Shepard edges checked.**
+  - Number collisions, not used: EO 1161 (PLO 5757), EO 1926 (PLO 1178, partial), EO 2462 (EO 9804, partial), EO 422
+    (EO 9951).
+  - Edges that confirm existing branches: EO 4210 is superseded by EO 5435 (B10); EO 4187 and 4744 are superseded by EO
+    5644 (B09).
+  - No new held whole-order revocation names an open member by number.
+
+### Findings rejected or kept with a reason
+
+- **Reviewer B, R15: use the bare P2 disclosure without the parenthetical.** Not adopted. The coordinator's instruction
+  for this family gives the sentence with the parenthetical "(the regulations or order amended)", and I kept that
+  wording.
+- **Reviewer B, R9: decide EO 4279-A and 4285 as spent on issue.** Not adopted. Coordinator decision 4 and P4 keep
+  undated one-person retirements open. S16 now quotes the PD-CS-ONE-PERSON rule that supports this.
+- **Reviewer B, R11: label B18 as the author's extension of P1.** Superseded by the coordinator's adjudication, which
+  applies P1 to B18. The doctrine says so.
+
+New counts: 32 yes, 111 no, 120 open (decides 143); contradicted 2.
