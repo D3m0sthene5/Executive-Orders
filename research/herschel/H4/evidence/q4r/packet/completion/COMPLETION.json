@@ -1,0 +1,61 @@
+{
+ "schema": "eo-claim-kit-completion/v1",
+ "agent": "claude",
+ "producer_model_family": "Anthropic",
+ "independence_requirement": "same_family_separate_context",
+ "publication": {
+  "mode": "replacement_proposal",
+  "path": "research/herschel/H4/proposals/q4r-REPLACEMENT_PROPOSAL.jsonl"
+ },
+ "members": [
+  {
+   "instrument_id": "EO:12720",
+   "outcome": "submit",
+   "claim_sha256": "2a6d5e3c8be8236b9d0df9e129baa1734ad2880bce8ee5762875364acb6aa401",
+   "claim": {
+    "path": "research/herschel/H4/packets/q4r/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "sha256": "687a832fe6c0844c8763505853562db4219a7fe4e03e9f28dce12e094f93e3a5",
+    "line": 1
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/herschel/H4/packets/q4r/packet/PACKET.json",
+    "sha256": "4f191e826733a20ae962b4aafea181f1588f817cb5d272eb99747e9e99261157"
+   },
+   "after_reveal_review": {
+    "path": "research/herschel/H4/packets/q4r/packet/reviews/AFTER_REVEAL_A.jsonl",
+    "sha256": "9dc4cf562adb6c3e5e49e712a6f12def13f5695324c7c86f88b55b8109ef97e7",
+    "line": 1
+   }
+  }
+ ],
+ "controls": [
+  {
+   "instrument_id": "EO:12720",
+   "planted_claim_sha256": "fed8fb1c3d7632444efe6680b7d0762f353721c52fc78e2355be1ddf826ca11f",
+   "seed": {
+    "path": "research/herschel/H4/packets/q4r/packet/completion/SEED_RECEIPT_EO_12720.json",
+    "sha256": "6a32dd9b34293633ba3ac3da2d6cb900cef6ac82a29f2166776da1d359cdd4fd"
+   },
+   "review": {
+    "path": "research/herschel/H4/packets/q4r/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "642ba9faa500b94f835cb2545fa2b56cf5998d835621cf773de458034a52ab57",
+    "line": 1
+   },
+   "adjudication": {
+    "path": "research/herschel/H4/packets/q4r/packet/completion/CONTROL_ADJUDICATION_EO_12720.json",
+    "sha256": "7cdb3a82df4e472559fae52eefb10856048a4bb07ed19348674dbf3ac5150db7"
+   }
+  }
+ ],
+ "receipts": [
+  {
+   "path": "research/herschel/H4/packets/q4r/packet/reviews/BLIND_REVIEW_B.jsonl",
+   "sha256": "5143eb5e7a713a1e6fe584c545b0eb0bf2e194e759a5f57dd9dda3df0e0753d2"
+  },
+  {
+   "path": "research/herschel/H4/packets/q4r/packet/reviews/AFTER_REVEAL_B.jsonl",
+   "sha256": "7f1e4be1ff6083238b175ee7ebe726d0a18b06242b69685f0a3d01215df4e949"
+  }
+ ]
+}

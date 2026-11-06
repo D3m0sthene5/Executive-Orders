@@ -1,0 +1,156 @@
+{
+ "provisional_status": {
+  "workers": 6,
+  "orders": 18,
+  "resume_messages": 3,
+  "usd": 4.37,
+  "tokens": {
+   "fresh_input": 186,
+   "cache_read": 6668093,
+   "cache_write": 379819,
+   "output": 62921
+  },
+  "transcript_wall_seconds": 2682,
+  "outcome_counts": {
+   "blocked": 14,
+   "done": 4
+  },
+  "usd_per_order": 0.243,
+  "tokens_per_order": {
+   "fresh_input": 10,
+   "cache_read": 370450,
+   "cache_write": 21101,
+   "output": 3496
+  }
+ },
+ "original_text": {
+  "workers": 8,
+  "orders": 24,
+  "resume_messages": 0,
+  "usd": 2.8,
+  "tokens": {
+   "fresh_input": 156,
+   "cache_read": 4020604,
+   "cache_write": 252135,
+   "output": 43454
+  },
+  "transcript_wall_seconds": 778,
+  "outcome_counts": {
+   "blocked": 22,
+   "done": 2
+  },
+  "usd_per_order": 0.117,
+  "tokens_per_order": {
+   "fresh_input": 6,
+   "cache_read": 167525,
+   "cache_write": 10506,
+   "output": 1811
+  }
+ },
+ "lifecycle_decided": {
+  "workers": 5,
+  "orders": 10,
+  "resume_messages": 0,
+  "usd": 6.31,
+  "tokens": {
+   "fresh_input": 262,
+   "cache_read": 11847494,
+   "cache_write": 432275,
+   "output": 75905
+  },
+  "transcript_wall_seconds": 1882,
+  "outcome_counts": {
+   "done": 3,
+   "blocked": 7
+  },
+  "usd_per_order": 0.631,
+  "tokens_per_order": {
+   "fresh_input": 26,
+   "cache_read": 1184749,
+   "cache_write": 43228,
+   "output": 7590
+  }
+ },
+ "review_status": {
+  "workers": 4,
+  "orders": 8,
+  "resume_messages": 10,
+  "usd": 7.82,
+  "tokens": {
+   "fresh_input": 218,
+   "cache_read": 8506093,
+   "cache_write": 315485,
+   "output": 63742
+  },
+  "transcript_wall_seconds": 3751,
+  "outcome_counts": {
+   "upheld": 8
+  },
+  "usd_per_order": 0.978,
+  "tokens_per_order": {
+   "fresh_input": 27,
+   "cache_read": 1063262,
+   "cache_write": 39436,
+   "output": 7968
+  }
+ },
+ "review_lifecycle": {
+  "workers": 6,
+  "orders": 6,
+  "resume_messages": 6,
+  "usd": 5.99,
+  "tokens": {
+   "fresh_input": 198,
+   "cache_read": 5602163,
+   "cache_write": 292887,
+   "output": 54216
+  },
+  "transcript_wall_seconds": 1537,
+  "outcome_counts": {
+   "upheld": 6
+  },
+  "usd_per_order": 0.998,
+  "tokens_per_order": {
+   "fresh_input": 33,
+   "cache_read": 933694,
+   "cache_write": 48814,
+   "output": 9036
+  }
+ },
+ "lifecycle_undecided_overlay": {
+  "workers": 1,
+  "orders": 2,
+  "resume_messages": 0,
+  "usd": 0.9,
+  "tokens": {
+   "fresh_input": 40,
+   "cache_read": 1453569,
+   "cache_write": 69911,
+   "output": 13378
+  },
+  "transcript_wall_seconds": 161,
+  "outcome_counts": {
+   "blocked": 2
+  },
+  "usd_per_order": 0.45,
+  "tokens_per_order": {
+   "fresh_input": 20,
+   "cache_read": 726784,
+   "cache_write": 34956,
+   "output": 6689
+  }
+ },
+ "coordinator": {
+  "usd": 24.71,
+  "tokens": {
+   "fresh_input": 322,
+   "output": 110905,
+   "cache_read": 34675524,
+   "cache_write": 736076
+  },
+  "orders_assigned": 48,
+  "usd_per_assigned_order": 0.515
+ },
+ "total_usd": 52.9,
+ "_note": "Priced with jobs/bentham/measure.py usd() (API list prices; 1h cache writes at the cache_write rate). A worker cost includes its resumes (after-reveal, corrections), which share its session transcript. orders = orders assigned per worker (a status review pair counts each order twice). review_lifecycle: 6 workers, 3 one-claim batches. Coordinator snapshot taken before the final commit step."
+}
