@@ -18,7 +18,8 @@ Files (append-only JSON lines; the latest `rev` of an id is current):
 
 Commands (run from the repo root, `python3 -I jobs/kean/kean.py <command>`):
   search TERM...        find earlier work on a subject before starting new work
-  brief                 regenerate HANDOFF/KEAN.md
+  brief                 regenerate HANDOFF/KEAN.md, HANDOFF/KEAN_ASKS.md and HANDOFF/NEWEST.md
+  newest                print the newest entry (first "## " block) of each HANDOFF/notes-*.md
   check [--strict]      validate the register and the coverage rules; --strict exits 1 on errors
   add-ask / answer      record a question for the owner / record the owner's answer
   add-decision / wire   record an owner decision / record which files implement it
@@ -38,13 +39,16 @@ import sys
 
 REGISTER = "jobs/kean/register"
 BRIEF = "HANDOFF/KEAN.md"
+ASKS_PAGE = "HANDOFF/KEAN_ASKS.md"   # full text of the open asks (owner ruling R6, 2026-11-06)
+NEWEST_PAGE = "HANDOFF/NEWEST.md"   # the newest entry of every HANDOFF/notes-*.md (Justinian B1)
+NEWEST_ENTRY_MAX_BYTES = 3500       # keeps NEWEST.md well under 50 KB; longer entries point at their file
 FILES = {"decisions": "decisions.jsonl", "asks": "asks.jsonl", "findings": "findings.jsonl"}
 LEGACY = "legacy_reports.txt"
 # Agent notes entries dated on or after this day must cite a Kean ask id when they ask the owner something.
 KEAN_START = "2026-10-28"
 # The brief is read at the start of every session, so it stays small: the newest findings only, the rest by search.
 BRIEF_FINDINGS = 6
-BRIEF_MAX_BYTES = 8192
+BRIEF_MAX_BYTES = 16384  # owner ruling R6 (D-20261106-justinian-r6), was 8192
 DRIFT_BEGIN, DRIFT_END = "<!-- kean:drift -->", "<!-- /kean:drift -->"
 RULINGS_DIR = "research/readiness/owner_rulings/"
 REPORT_RE = re.compile(r"^research/(excavator|production)/[^/]+/REPORT\.md$")
@@ -238,6 +242,11 @@ def check(repo):
         errors.append(f"{BRIEF} is out of date (python3 -I jobs/kean/kean.py brief)")
     if len(fresh.encode("utf-8")) > BRIEF_MAX_BYTES:
         errors.append(f"{BRIEF} is {len(fresh.encode('utf-8'))} bytes, over the {BRIEF_MAX_BYTES}-byte limit; shorten entries")
+    if repo.read(ASKS_PAGE) != render_asks(repo, reg):
+        errors.append(f"{ASKS_PAGE} is out of date (python3 -I jobs/kean/kean.py brief)")
+    # Notes change in every session; a stale NEWEST.md is reported, not failed.
+    if repo.read(NEWEST_PAGE) != render_newest(repo):
+        warnings.append(f"{NEWEST_PAGE} is out of date (python3 -I jobs/kean/kean.py brief)")
     # Drift is reported, not failed: it is what the brief exists to show.
     for d in current(reg["decisions"]):
         for h in stale_text_hits(repo, d):
@@ -280,9 +289,9 @@ def render_brief(repo, reg=None):
     w("")
     w(f"## Waiting for the owner ({len(open_asks)})")
     w("")
-    for a in open_asks:
-        w(f"- **{a['id']}** ({a['date']}, {a['asked_by']}): {_one(a['question'], 220)} *{_one(a['why'], 240)}*")
-    if not open_asks:
+    if open_asks:
+        w(", ".join(f"**{a['id']}**" for a in open_asks) + f". Full questions: `{ASKS_PAGE}`.")
+    else:
         w("Nothing.")
     w("")
     pinned = [d for d in decisions if d.get("pinned")]
@@ -322,10 +331,65 @@ def render_brief(repo, reg=None):
     return "\n".join(L) + "\n"
 
 
+def render_asks(repo, reg=None):
+    """HANDOFF/KEAN_ASKS.md: every open ask in full (owner ruling R6); generated, never edited by hand."""
+    if reg is None:
+        reg = {k: load(repo, k) for k in FILES}
+    asks = current(reg["asks"])
+    open_asks = sorted((a for a in asks if a["status"] == "open"), key=lambda a: (a["date"], a["id"]))
+    L = ["# Questions waiting for the owner", "",
+         "Generated from `jobs/kean/register/asks.jsonl` by `python3 -I jobs/kean/kean.py brief`; do not edit by hand.",
+         "Answer with `kean.py answer --id ID --answer TEXT`.", ""]
+    for a in open_asks:
+        L += [f"## {a['id']} ({a['date']}, {a['asked_by']})", "", str(a["question"]).strip(), "",
+              f"*Why:* {str(a['why']).strip()}", ""]
+        if a.get("sources"):
+            L += ["Sources: " + ", ".join(f"`{x}`" for x in a["sources"]), ""]
+    if not open_asks:
+        L += ["Nothing is waiting.", ""]
+    return "\n".join(L)
+
+
+def newest_entries(repo):
+    """The first "## " block of each HANDOFF/notes-*.md, the same rule as awk '/^## /{n++} n==1'."""
+    on_disk = {"HANDOFF/" + n for n in (os.listdir(repo.path("HANDOFF")) if os.path.isdir(repo.path("HANDOFF")) else [])}
+    notes = sorted(p for p in repo.tracked() | on_disk if re.fullmatch(r"HANDOFF/notes-[^/]+\.md", p))
+    out = []
+    for path in notes:
+        text = repo.read(path) or ""
+        block, inside = [], False
+        for line in text.splitlines():
+            if line.startswith("## "):
+                if inside:
+                    break
+                inside = True
+            if inside:
+                block.append(line)
+        entry = "\n".join(block).strip()
+        raw = entry.encode("utf-8")
+        if len(raw) > NEWEST_ENTRY_MAX_BYTES:
+            entry = raw[:NEWEST_ENTRY_MAX_BYTES].decode("utf-8", "ignore").rstrip() + f"\n\n… (truncated; read `{path}`)"
+        out.append((path, entry or "(no dated entry)"))
+    return out
+
+
+def render_newest(repo):
+    L = ["# Newest handoff entries", "",
+         "Generated by `python3 -I jobs/kean/kean.py brief` (also `kean.py newest`); do not edit by hand. The first",
+         "`## ` entry of each `HANDOFF/notes-*.md`; older entries are history (`kean.py search` finds them).", ""]
+    for path, entry in newest_entries(repo):
+        L += [f"# `{path}`", "", entry, ""]
+    return "\n".join(L)
+
+
 def write_brief(repo):
     text = render_brief(repo)
     with open(repo.path(BRIEF), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(text)
+    with open(repo.path(ASKS_PAGE), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(render_asks(repo))
+    with open(repo.path(NEWEST_PAGE), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(render_newest(repo))
     return text
 
 
@@ -368,6 +432,7 @@ def main(argv=None):
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("search"); s.add_argument("terms", nargs="+"); s.add_argument("--limit", type=int, default=8)
     sub.add_parser("brief")
+    sub.add_parser("newest")
     c = sub.add_parser("check"); c.add_argument("--strict", action="store_true")
     a = sub.add_parser("add-ask")
     for f in ("question", "why", "asked-by"):
@@ -408,7 +473,10 @@ def main(argv=None):
         return 0
     if args.cmd == "brief":
         write_brief(repo)
-        print(f"wrote {BRIEF}")
+        print(f"wrote {BRIEF}, {ASKS_PAGE} and {NEWEST_PAGE}")
+        return 0
+    if args.cmd == "newest":
+        sys.stdout.write(render_newest(repo))
         return 0
     if args.cmd == "check":
         errors, warnings = check(repo)
