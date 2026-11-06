@@ -167,13 +167,13 @@ class Run:
 
     def emit(self, it, text, src, cite_src, how, conf, notes):
         """Locate each target's sentence in the held page text and write fragments and rows."""
-        lo, hi, own = S.own_span(text, it["actor"])
+        ranges, own = S.own_ranges(text, it["actor"])
         for t, info in sorted(it["targets"].items()):
             # Only the instrument's own text counts: the page may also print neighbouring documents.
-            hits = S.find_citations(text, t, info["date"] or None, within=(lo, hi))
+            hits = S.find_citations(text, t, info["date"] or None, within=ranges)
             if not hits and info["date"]:
                 hits = [dict(h, flags_extra=["date_only_citation"]) for h in
-                        S.find_citations(text, t, info["date"], allow_date_only=True, within=(lo, hi))]
+                        S.find_citations(text, t, info["date"], allow_date_only=True, within=ranges)]
             if not own:
                 hits = [dict(h, mechanism_class="mention", flags_extra=(h.get("flags_extra") or []) +
                              ["instrument_heading_not_found_neighbouring_text_possible"]) for h in hits]
@@ -305,6 +305,7 @@ def controls(rows_by_text, repo):
 
 
 def main(repo: Path, out: Path, cache: Path, transport=None, premis=None, env=os.environ, extract_procs=2):
+    jd = Path(env.get("SELDEN_JOB_DIR") or HERE)  # tests point this at an empty folder
     out.mkdir(parents=True, exist_ok=True)
     items = wanted(repo)
     held = fr_pages_held(repo)
@@ -314,7 +315,7 @@ def main(repo: Path, out: Path, cache: Path, transport=None, premis=None, env=os
               max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 130), premis=premis, extract_procs=extract_procs)
     prior_dir = Path(env.get("JOB_PRIOR_OUTPUT_DIR") or (HERE / "output"))
     # Earlier outputs to carry forward: the previous output, then runner-shard outputs in data/shards/<k>/.
-    priors = [prior_dir] + sorted(p for p in (HERE / "data" / "shards").glob("*") if p.is_dir())
+    priors = [prior_dir] + sorted(p for p in (jd / "data" / "shards").glob("*") if p.is_dir())
     prior = {}
     for d in priors:
         for r in S.read_jsonl(d / "SOURCES.jsonl"):
@@ -376,7 +377,7 @@ def main(repo: Path, out: Path, cache: Path, transport=None, premis=None, env=os
             return it, f"{type(e).__name__}: {e}"[:300]
     n = 0
     shard = env["SELDEN_SHARD"] if "SELDEN_SHARD" in env else (
-        (HERE / "SHARD").read_text().strip() if (HERE / "SHARD").is_file() else "")
+        (jd / "SHARD").read_text().strip() if (jd / "SHARD").is_file() else "")
     if shard:
         k, nsh = map(int, shard.split("/"))
         todo = todo[k::nsh]

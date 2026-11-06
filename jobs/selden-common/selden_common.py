@@ -143,7 +143,16 @@ def own_span(text: str, acting_id: str):
     documents: from its heading ('Public Land Order 936', 'EXECUTIVE ORDER 8861', 'Executive Order 13879 of ...')
     to the next Federal Register filing line or billing code (source-ladder's patterns). found is False, and the
     whole text is returned, when no heading is printed."""
-    digits = None
+    head = _head_pattern(acting_id)
+    if head is None:
+        return 0, len(text), False
+    spans = own_spans(text, head)
+    if not spans:
+        return 0, len(text), False
+    return spans[0][0], spans[0][1], True
+
+
+def _head_pattern(acting_id):
     if acting_id.startswith("PLO:"):
         num = acting_id.split(":", 1)[1]
         head = re.compile(_spaced("Public") + r"\s+" + _spaced("Land") + r"\s+" + _spaced("Order") + r"\s*(?:N\s?o\.?\s*)?"
@@ -153,12 +162,27 @@ def own_span(text: str, acting_id: str):
         head = re.compile(r"(?:\[\s*N\s?o\.?\s*\d+\s?[\]1lI|)]\s*)?" + _spaced("Executive") + r"\s+" + _spaced("Order")
                           + r"\s*(?:N\s?o\.?\s*)?" + r"\s?".join(num) + r"(?![\d])", re.I)
     else:
-        return 0, len(text), False
-    m = head.search(text)
-    if not m:
-        return 0, len(text), False
-    f = FILING.search(text, m.end())
-    return m.start(), (f.end() + 60 if f else len(text)), True
+        return None
+    return head
+
+
+def own_spans(text, head):
+    """Every stretch from a heading match to the next filing line: a contents entry or a cross-reference that
+    repeats the heading must not hide the instrument's own text that follows it."""
+    out = []
+    for m in head.finditer(text):
+        f = FILING.search(text, m.end())
+        out.append((m.start(), f.end() + 60 if f else len(text)))
+    return out
+
+
+def own_ranges(text, acting_id):
+    """All own-text ranges of the acting instrument in a page text (see own_span), or [(0, len)] when no heading."""
+    lo, hi, found = own_span(text, acting_id)
+    if not found:
+        return [(0, len(text))], False
+    head = _head_pattern(acting_id)
+    return own_spans(text, head), True
 
 
 def find_citations(text: str, target: str, target_date: str | None = None, allow_date_only: bool = False,
@@ -200,7 +224,8 @@ def find_citations(text: str, target: str, target_date: str | None = None, allow
             if n == num:
                 hits.append((s, e, None, "number"))
     if within:
-        hits = [h for h in hits if within[0] <= h[0] < within[1]]
+        ranges = within if isinstance(within, list) else [within]
+        hits = [h for h in hits if any(a <= h[0] < b for a, b in ranges)]
     # OCR junk right after the number ('EXECUTIVE ORDER 994*' for 9947) makes the number unreliable.
     hits = [h for h in hits if not re.match(r"[*^~#]", text[h[1]:h[1] + 1])]
     out, seen = [], set()
