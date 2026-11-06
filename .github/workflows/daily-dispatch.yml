@@ -8,9 +8,10 @@
 # itself and changes no job, count or output.
 name: Daily jobs (Angelus)
 
+# RETIRED 2026-11-06 (Justinian B4, PR #172): every three-hourly sweep now runs each DAILY job whose newest
+# committed receipt is older than 20 hours (.github/scripts/pick_jobs.py). The schedule is removed; the file is
+# kept, manual-only, because Kean finding F-20261106-daily-cron-silent cites it.
 on:
-  schedule:
-    - cron: "41 10 * * *" # 10:41 UTC, away from the top of the hour when GitHub drops scheduled events
   workflow_dispatch:
 
 permissions:
