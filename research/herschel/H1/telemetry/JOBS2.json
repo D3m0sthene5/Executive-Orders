@@ -1,0 +1,333 @@
+[
+ {
+  "name": "H1-w11",
+  "kind": "worker",
+  "step": "ending_or_current_basis",
+  "model": "sonnet",
+  "body": "step_ending.txt",
+  "out": "ENDING.jsonl",
+  "batch": "b2",
+  "orders": [
+   "EO:4821",
+   "EO:3200",
+   "EO:2385",
+   "EO:4480",
+   "EO:3885C",
+   "EO:4675",
+   "EO:892",
+   "EO:838"
+  ],
+  "deps": [],
+  "oom_rerun": true
+ },
+ {
+  "name": "H1-w35",
+  "kind": "worker",
+  "step": "savings_residuals",
+  "model": "sonnet",
+  "body": "step_savings.txt",
+  "out": "SAVINGS.jsonl",
+  "batch": "b2",
+  "orders": [
+   "EO:4821",
+   "EO:3200",
+   "EO:2385",
+   "EO:4480",
+   "EO:3885C",
+   "EO:4675",
+   "EO:892",
+   "EO:838"
+  ],
+  "deps": [
+   "H1-w11"
+  ],
+  "supersedes": "H1-w12"
+ },
+ {
+  "name": "H1-w36",
+  "kind": "worker",
+  "step": "counterevidence",
+  "model": "sonnet",
+  "body": "step_counterevidence.txt",
+  "out": "COUNTER.jsonl",
+  "batch": "b2",
+  "orders": [
+   "EO:4821",
+   "EO:3200",
+   "EO:2385",
+   "EO:4480",
+   "EO:3885C",
+   "EO:4675",
+   "EO:892",
+   "EO:838"
+  ],
+  "deps": [
+   "H1-w35"
+  ],
+  "supersedes": "H1-w13"
+ },
+ {
+  "name": "H1-w21",
+  "kind": "worker",
+  "step": "provisional_status",
+  "model": "sonnet",
+  "body": "step_provisional_status.txt",
+  "out": "STATUS.jsonl",
+  "batch": "b4",
+  "orders": [
+   "EO:881",
+   "EO:1658",
+   "EO:1011",
+   "EO:653",
+   "EO:628",
+   "EO:6987",
+   "EO:5630",
+   "EO:7421"
+  ],
+  "deps": [],
+  "oom_rerun": true
+ },
+ {
+  "name": "H1-w37",
+  "kind": "worker",
+  "step": "ending_or_current_basis",
+  "model": "sonnet",
+  "body": "step_ending.txt",
+  "out": "ENDING.jsonl",
+  "batch": "b4",
+  "orders": [
+   "EO:881",
+   "EO:1658",
+   "EO:1011",
+   "EO:653",
+   "EO:628",
+   "EO:6987",
+   "EO:5630",
+   "EO:7421"
+  ],
+  "deps": [
+   "H1-w21"
+  ],
+  "supersedes": "H1-w23"
+ },
+ {
+  "name": "H1-w38",
+  "kind": "worker",
+  "step": "savings_residuals",
+  "model": "sonnet",
+  "body": "step_savings.txt",
+  "out": "SAVINGS.jsonl",
+  "batch": "b4",
+  "orders": [
+   "EO:881",
+   "EO:1658",
+   "EO:1011",
+   "EO:653",
+   "EO:628",
+   "EO:6987",
+   "EO:5630",
+   "EO:7421"
+  ],
+  "deps": [
+   "H1-w37"
+  ],
+  "supersedes": "H1-w24"
+ },
+ {
+  "name": "H1-w39",
+  "kind": "worker",
+  "step": "counterevidence",
+  "model": "sonnet",
+  "body": "step_counterevidence.txt",
+  "out": "COUNTER.jsonl",
+  "batch": "b4",
+  "orders": [
+   "EO:881",
+   "EO:1658",
+   "EO:1011",
+   "EO:653",
+   "EO:628",
+   "EO:6987",
+   "EO:5630",
+   "EO:7421"
+  ],
+  "deps": [
+   "H1-w38"
+  ],
+  "supersedes": "H1-w25"
+ },
+ {
+  "name": "prep-b2",
+  "kind": "cmd",
+  "deps": [
+   "H1-w36"
+  ],
+  "cmd": "python3 -I research/herschel/H1/tools/review_prep.py prep b2"
+ },
+ {
+  "name": "H1-w40",
+  "alias": "rev-b2-A",
+  "supersedes": "H1-w29",
+  "kind": "worker",
+  "step": "review",
+  "model": "opus",
+  "batch": "b2",
+  "orders": [
+   "EO:4821",
+   "EO:3200",
+   "EO:2385",
+   "EO:4480",
+   "EO:3885C",
+   "EO:4675",
+   "EO:892",
+   "EO:838"
+  ],
+  "deps": [
+   "prep-b2"
+  ],
+  "prompt": "/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H1/prompts/rev-b2-A.txt"
+ },
+ {
+  "name": "H1-w41",
+  "alias": "rev-b2-B",
+  "supersedes": "H1-w30",
+  "kind": "worker",
+  "step": "review",
+  "model": "opus",
+  "batch": "b2",
+  "orders": [
+   "EO:4821",
+   "EO:3200",
+   "EO:2385",
+   "EO:4480",
+   "EO:3885C",
+   "EO:4675",
+   "EO:892",
+   "EO:838"
+  ],
+  "deps": [
+   "prep-b2"
+  ],
+  "prompt": "/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H1/prompts/rev-b2-B.txt"
+ },
+ {
+  "name": "check-b2",
+  "kind": "cmd",
+  "deps": [
+   "H1-w40",
+   "H1-w41"
+  ],
+  "cmd": "python3 -I research/herschel/H1/tools/review_prep.py check b2"
+ },
+ {
+  "name": "H1-w40-reveal",
+  "kind": "resume",
+  "step": "review",
+  "model": "opus",
+  "batch": "b2",
+  "of": "H1-w40",
+  "deps": [
+   "check-b2"
+  ],
+  "prompt": "/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H1/prompts/reveal-b2-A.txt"
+ },
+ {
+  "name": "H1-w41-reveal",
+  "kind": "resume",
+  "step": "review",
+  "model": "opus",
+  "batch": "b2",
+  "of": "H1-w41",
+  "deps": [
+   "check-b2"
+  ],
+  "prompt": "/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H1/prompts/reveal-b2-B.txt"
+ },
+ {
+  "name": "prep-b4",
+  "kind": "cmd",
+  "deps": [
+   "H1-w39"
+  ],
+  "cmd": "python3 -I research/herschel/H1/tools/review_prep.py prep b4"
+ },
+ {
+  "name": "H1-w42",
+  "alias": "rev-b4-A",
+  "supersedes": "H1-w33",
+  "kind": "worker",
+  "step": "review",
+  "model": "opus",
+  "batch": "b4",
+  "orders": [
+   "EO:881",
+   "EO:1658",
+   "EO:1011",
+   "EO:653",
+   "EO:628",
+   "EO:6987",
+   "EO:5630",
+   "EO:7421"
+  ],
+  "deps": [
+   "prep-b4"
+  ],
+  "prompt": "/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H1/prompts/rev-b4-A.txt"
+ },
+ {
+  "name": "H1-w43",
+  "alias": "rev-b4-B",
+  "supersedes": "H1-w34",
+  "kind": "worker",
+  "step": "review",
+  "model": "opus",
+  "batch": "b4",
+  "orders": [
+   "EO:881",
+   "EO:1658",
+   "EO:1011",
+   "EO:653",
+   "EO:628",
+   "EO:6987",
+   "EO:5630",
+   "EO:7421"
+  ],
+  "deps": [
+   "prep-b4"
+  ],
+  "prompt": "/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H1/prompts/rev-b4-B.txt"
+ },
+ {
+  "name": "check-b4",
+  "kind": "cmd",
+  "deps": [
+   "H1-w42",
+   "H1-w43"
+  ],
+  "cmd": "python3 -I research/herschel/H1/tools/review_prep.py check b4"
+ },
+ {
+  "name": "H1-w42-reveal",
+  "kind": "resume",
+  "step": "review",
+  "model": "opus",
+  "batch": "b4",
+  "of": "H1-w42",
+  "deps": [
+   "check-b4"
+  ],
+  "prompt": "/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H1/prompts/reveal-b4-A.txt"
+ },
+ {
+  "name": "H1-w43-reveal",
+  "kind": "resume",
+  "step": "review",
+  "model": "opus",
+  "batch": "b4",
+  "of": "H1-w43",
+  "deps": [
+   "check-b4"
+  ],
+  "prompt": "/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H1/prompts/reveal-b4-B.txt"
+ }
+]
