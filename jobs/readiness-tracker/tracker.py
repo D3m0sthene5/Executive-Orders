@@ -42,6 +42,9 @@ STEP_NAMES = [s for s, _ in STEPS]
 # An adopted status is a prerequisite, never a failed search that can be waived.
 EXHAUSTIBLE_STEPS = frozenset(STEP_NAMES) - {"provisional_status"}
 
+# Historical id -> current census id (owner ruling R9; same map as jobs/claim-kit/population_contract.json id_aliases).
+ID_ALIASES = {"EO:7933a": "EO:7933A"}
+
 # Which step each claim_gate error belongs to.
 GATE_ERROR_STEP = [
     ("original_representation", "original_text"),
@@ -456,10 +459,13 @@ def build(root, *, planning_closures=None):
     jobs, job_problems = load_job_outputs(root)
 
     universe = [r["id"] for r in read_csv(root, "universe") if r["included_in_bibliography"] == "1"]
-    decided = {r["instrument_id"]: r for r in read_csv(root, "decided")}
-    causal = {r["instrument_id"]: r for r in read_csv(root, "causal")}
-    crosswalk = {r["instrument_id"]: r for r in read_csv(root, "crosswalk")}
-    custody = {r["instrument_id"]: r for r in read_csv(root, "custody")}
+    # Owner ruling R9 (2026-11-06): the census renamed EO:7933a to EO:7933A; the hash-pinned ledger and
+    # older tables keep the historical spelling, so their keys are read through ID_ALIASES.
+    canon = lambda i: ID_ALIASES.get(i, i)
+    decided = {canon(r["instrument_id"]): r for r in read_csv(root, "decided")}
+    causal = {canon(r["instrument_id"]): r for r in read_csv(root, "causal")}
+    crosswalk = {canon(r["instrument_id"]): r for r in read_csv(root, "crosswalk")}
+    custody = {canon(r["instrument_id"]): r for r in read_csv(root, "custody")}
 
     statute_ok = {(r["source_key"], r["instrument_id"]) for r in read_csv(root, "statute") if r["acquired_pdf_bytes"] == "yes"}
 

@@ -157,7 +157,7 @@ _LOWER_INDEX = {}
 
 
 def lookup_eo(eo_index, number):
-    """Index entry for an order number, ignoring case ('7933A' finds 'EO:7933a')."""
+    """Index entry for an order number, ignoring case ('7933A' finds 'EO:7933A'; a legacy lower-case key still matches)."""
     if not eo_index:
         return None
     hit = eo_index.get(eo_key(number))

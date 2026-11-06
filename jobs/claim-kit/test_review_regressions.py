@@ -158,7 +158,8 @@ class CommittedBaselineReviewTests(unittest.TestCase):
         # owner-adopted inputs. The independent contract checks exact rows,
         # census membership, duplicates, ruling/review pins and accepted deltas.
         self.assertEqual(checked["historical_decided"], 3359)
-        self.assertEqual(checked["universe"], 14972)
+        # 14,972 original identities + 26 admitted under owner ruling R9 (2026-11-06)
+        self.assertEqual(checked["universe"], 14972 + 26)
         self.assertEqual(checked["decided"],
                          checked["historical_decided"] + checked["authorized_additions"])
         # Existing outputs may be stale precisely because this pre-build test

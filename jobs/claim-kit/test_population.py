@@ -61,6 +61,19 @@ class PopulationInputTests(unittest.TestCase):
         self.assertEqual(result["authorized_additions"], 1)
         self.assertEqual(result["statuses"], {"EO:1": "yes", "EO:2": "no"})
 
+    def test_admissions_and_alias_keep_original_pin(self):
+        """Owner ruling R9: census = original pin + pinned admissions, with a renamed id mapped back."""
+        adm = csv_bytes([{"id": "EO:9"}])
+        self.write("adm.csv", adm)
+        self.write("census.csv", csv_bytes([{"id": "EO:1"}, {"id": "EO:2"}, {"id": "EO:3A"}, {"id": "EO:9"}]))
+        self.contract["census"]["identity_sha256"] = P.canonical_sha(["EO:1", "EO:2", "EO:3a"])
+        self.contract["census"]["admissions"] = {"path": "adm.csv", "sha256": P.sha(adm), "count": 1}
+        self.contract["census"]["id_aliases"] = {"EO:3a": "EO:3A"}
+        self.assertEqual(P.validate_inputs(self.repo, self.contract)["universe"], 4)
+        self.write("census.csv", csv_bytes([{"id": "EO:1"}, {"id": "EO:2"}, {"id": "EO:3A"}, {"id": "EO:8"}, {"id": "EO:9"}]))
+        with self.assertRaises(ValueError):
+            P.validate_inputs(self.repo, self.contract)
+
     def test_arbitrary_csv_append_cannot_authorize_itself(self):
         self.write("statuses.csv", csv_bytes(self.base + self.extra))
         with self.assertRaisesRegex(ValueError, "independently pinned"):

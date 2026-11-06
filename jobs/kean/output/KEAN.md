@@ -40,7 +40,7 @@ Nothing.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 180; `search` finds the rest)
+## Newest results (6 of 182; `search` finds the rest)
 
 - 2026-11-06 F-20261106-mabillon-volumes **worked**: Locate every order inside the committed OCR page dumps of the Commons GPO volumes 5800-8027, which hathi-gpo-… Lesson: A job's committed intermediate data (page dumps, OCR) can serve orders outside its original target list; look before refetching
 - 2026-11-06 F-20261106-mabillon-neighbours **analysis**: Apply Tischendorf's fingerprint rule unchanged to whole printed pages of GPO volumes, with neighbour negatives Lesson: A text fingerprint needs neighbour negatives and a uniqueness margin wherever pages hold several orders; Tischendorf's page-reading routes may carry the same risk
@@ -49,4 +49,4 @@ Nothing.
 - 2026-11-06 F-20261106-justinian-wpa **analysis**: E1: re-parse the Lord 1944 WPA numbered list at its page boundaries for the 46 missing integers. Lesson: Distinguish what a finding aid's parse misses from what the census misses; a missing scan page is not an OCR error.
 - 2026-11-06 F-20261106-justinian-schema-v2 **worked**: C1/C2: claim schema v2 (date_kind, codebook first_cause, mechanism enum, formal_disposition, derived formal_r… Lesson: Prove a gate change count-neutral by running the tracker with old and new code on the same data before asking for a merge.
 
-Register: 45 owner decisions, 26 answered questions, 180 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 45 owner decisions, 26 answered questions, 182 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

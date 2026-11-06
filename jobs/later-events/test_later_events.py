@@ -630,5 +630,36 @@ class Fetching(unittest.TestCase):
             le.fetch_catalog(Fake(), log=lambda *a: None)
 
 
+class CatalogDateCorrections(unittest.TestCase):
+    """Owner ruling R9: EO 8969 and EO 10276 carry wrong API dates; a committed table corrects them."""
+
+    def rec(self, num, signing, pub):
+        return {"executive_order_number": num, "signing_date": signing, "publication_date": pub,
+                "title": "T %s" % num, "document_number": "x", "_page": 0}
+
+    def test_committed_table_fixes_both_orders(self):
+        index, rows = le.build_index([self.rec(8969, "1946-12-11", None), self.rec(10276, "1961-07-31", "1961-08-02")])
+        by = {r["id"]: r for r in rows}
+        self.assertEqual(by["EO:8969"]["signing_date"], "1941-12-11")
+        self.assertEqual(by["EO:10276"]["signing_date"], "1951-07-31")
+        self.assertEqual(by["EO:10276"]["record"]["publication_date"], "1951-08-02")
+
+    def test_upstream_fix_and_other_orders_pass_through(self):
+        recs = [self.rec(8969, "1941-12-11", None), self.rec(8970, "1946-12-11", None)]
+        index, rows = le.build_index(recs)
+        by = {r["id"]: r for r in rows}
+        self.assertEqual(by["EO:8969"]["signing_date"], "1941-12-11")
+        self.assertEqual(by["EO:8970"]["signing_date"], "1946-12-11")
+
+    def test_input_record_not_mutated(self):
+        r = self.rec(10276, "1961-07-31", "1961-08-02")
+        le.build_index([r])
+        self.assertEqual(r["signing_date"], "1961-07-31")
+
+    def test_table_rows_have_evidence(self):
+        for row in le.load_date_corrections().items():
+            self.assertTrue(row[1][0] != row[1][1])
+
+
 if __name__ == "__main__":
     unittest.main()
