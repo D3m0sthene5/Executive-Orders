@@ -357,10 +357,14 @@ def main(out=None, root=REPO):
         header = (f"Instrument: {iid}\nSource: {d.get('url')}\nSHA-256 of the source file: {d.get('sha256')}\n"
                   f"Location: {d.get('page_or_item')}\nGovernment-printed passage saved by hathi-gpo-orders "
                   f"({GOV_ROUTES[h['route']]}); machine OCR, may contain recognition errors and neighbouring text.\n\n")
-        (out / tp).write_text(header + text, encoding="utf-8")
+        body = header + text
+        (out / tp).write_bytes(body.encode("utf-8"))
         data = {"url": d.get("url"), "sha256": d.get("sha256"), "page_or_item": d.get("page_or_item"),
                 "source_id": f"{JOB}:{iid}:{(d.get('sha256') or '')[:12]}", "text_path": tp,
-                "text_sha256": hashlib.sha256(text.encode()).hexdigest(),
+                # the file as written (header + passage): consumers verify text_path against this hash
+                "text_sha256": hashlib.sha256(body.encode("utf-8")).hexdigest(),
+                # the government-printed passage alone, as hathi-gpo-orders holds it
+                "passage_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
                 "signing_date": reg.get("date", ""), "title": reg.get("title", ""), "route": f"held/{h['route']}",
                 "location_confidence": "high" if strong else "medium", "location_verified": False,
                 "needs_page_check": not strong,
@@ -379,7 +383,7 @@ def main(out=None, root=REPO):
                         "page_or_item": d.get("page_or_item"), "grade": "machine_read_government_printed_copy",
                         "representation_type": "machine_read_government_printed_copy",
                         "acceptable_as_original": False, "needs_page_check": not strong, "route": h["route"],
-                        "held_by": "hathi-gpo-orders", "exact_source_text_sha256": data["text_sha256"]})
+                        "held_by": "hathi-gpo-orders", "exact_source_text_sha256": data["passage_sha256"]})
 
     with open(out / "FRAGMENTS.jsonl", "w", encoding="utf-8") as f:
         for x in frags:
