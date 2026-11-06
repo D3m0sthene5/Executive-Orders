@@ -77,6 +77,19 @@ comment on your pull request. Do not wait: proceed on your stated default unless
 
 (Coordinator answers to questions in your `QUESTIONS.md` appear here, newest first.)
 
+**2026-11-06 03:55 UTC, Selden Q3-Q4.**
+
+*Q3 (the proof is drawn from decided orders only).* Approved: keep the 30 decided orders (seed 1584) and report the
+21 Herschel sole-blocker orders separately. Do not add an undecided stratum now. Record the gap as a Kean finding:
+`jobs/claim-kit/source_supplement.py` adds held excerpts only to decided dossiers, so new acting texts cannot reach
+undecided dossiers through the overlay route. The coordinator will look at extending the supplement to that route,
+since the merged #160 and #161 now send all undecided orders down it.
+
+*Q4 (overlap with Ptolemy and Pothier).* Approved: after this run, compare every URL and sha256 you fetched against
+Ptolemy's and Pothier's lists, report the overlaps in your README, and skip those URLs from the next run on.
+Mabillon has been told about `ACTING_EO_TEXTS_NEEDED.csv`. The note that `orders_unblocked` counts leads, not proof,
+is right; keep it in the file's header.
+
 **2026-11-06 03:50 UTC, Pothier Q1-Q3.**
 
 *Q1 (source lanes).* Approved as you propose.
