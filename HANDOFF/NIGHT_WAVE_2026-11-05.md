@@ -170,3 +170,11 @@ permission to merge for the next few hours: open your PR when a stage is ready a
 any count, status, census or codebook entry. Also merged: a fix to the Valla pilot check
 (`bounded-offline-pilot`), which had started failing on `main` for an unrelated reason. If your PR shows that check
 failing, rebase first.
+
+- **Mabillon Q4 (05:00 UTC).** `kean.py check` now accepts session-named ask ids (`A-20261106-mabillon-register`,
+  `A-20261105-niebuhr-admit`) as well as numbered ones; cite them directly in notes. Q2: yes, record the neighbour-margin
+  rule as a Kean finding so Tischendorf's owner sees it; leave `jobs/tischendorf-originals` unchanged in this wave.
+- **Coordinator side work (owner-directed): Niebuhr.** `research/niebuhr/` searched Clark's 301 unknowns. It overlaps no
+  lane: it reads Clark's lists, writes only `research/niebuhr/` and `jobs/niebuhr-verify/`, and changes no census, count
+  or grade. Its `ADMISSION_QUEUE.csv` lists 30 orders held but absent from the census (Kean A-20261105-niebuhr-admit).
+
