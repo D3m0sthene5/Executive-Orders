@@ -29,13 +29,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 159; `search` finds the rest)
+## Newest results (6 of 160; `search` finds the rest)
 
 - 2026-11-06 F-20261106-selden-supplement-decided-only **analysis**: Route newly held later-instrument texts (Selden) into claim-kit packets with jobs/claim-kit/source_supplement… Lesson: Extending source_supplement (or an equivalent excerpt step) to the overlay route is needed before held acting texts can serve the 10,681 undecided orders; the coordinator has taken it up.
+- 2026-11-06 F-20261106-selden-fr-api-400 **failed**: selden-fr-citers first full runs (lane run and two runner shards) searched 13,138 orders through the Federal… Lesson: Same lesson as F-20261105-tischendorf-2, which this session read and did not apply: smoke-test every live route on a handful of real items before a full run, and make a job fail when most of its requ…
 - 2026-11-06 F-20261106-selden-census **analysis**: Selden census (research/selden/census.py): every (target, acting instrument) lead in later-events, shepard-ci… Lesson: Before acquiring 'later law', classify what the blocked orders actually need: here a bounded search for unnamed later instruments and current-status sources serves far more orders than fetching named…
 - 2026-11-05 F-20261105-tischendorf-2 **partly worked**: Tischendorf first live run: one network request at a time with a single shared request budget Lesson: For any network job: follow jobs/README.md's parallel-workers rule from the start, give each route its own budget, and smoke-test each route on a handful of orders before a full run
 - 2026-11-05 F-20261105-tischendorf-1 **partly worked**: Tischendorf (jobs/tischendorf-originals): prove official printings for transcription-only orders by comparing… Lesson: A held transcription is evidence for locating its own original: comparing wording turns a number-only location into a measured match
 - 2026-11-05 F-20261105-theophilus **worked**: Theophilus wave (Bentham ranks 8 and 11): recover 48 custody-stranded reviewed claims by fresh prepare plus u… Lesson: Run the actual checker on the exact reviewed lines before buying review: it sorts recoverable claims from mechanically blocked ones for free. One-step-away is a source-acquisition queue, not a produc…
-- 2026-11-05 F-20261105-stable-main-publication **worked**: Integrate completed EO work and remove production/reporting publication races Lesson: Successful computation is not publication. Queue automatic writers before checkout, bind receipts to actual inputs, and keep shared inputs stable.
 
-Register: 26 owner decisions, 15 answered questions, 159 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 26 owner decisions, 15 answered questions, 160 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
