@@ -58,7 +58,7 @@ class FreshnessTests(unittest.TestCase):
         self.cmd("git", "init", "--bare", str(self.remote), cwd=self.root)
         self.cmd("git", "-c", "core.autocrlf=false", "clone", str(self.remote), str(self.repo), cwd=self.root)
         self.config(self.repo)
-        for name in ("run_jobs.sh", "run_jobs.py", "commit_results.sh", "result_freshness.py"):
+        for name in ("run_jobs.sh", "run_jobs.py", "commit_results.sh", "result_freshness.py", "arsenale.py"):
             self.put(".github/scripts/" + name, (SCRIPTS / name).read_text(encoding="utf-8"))
         self.put("jobs/_lib/cache_cap.py", "# Fixture has no download cache.\n")
         self.put(".github/workflows/run-jobs.yml", "# fixture runner\n")
