@@ -42,6 +42,9 @@ STEP_NAMES = [s for s, _ in STEPS]
 # An adopted status is a prerequisite, never a failed search that can be waived.
 EXHAUSTIBLE_STEPS = frozenset(STEP_NAMES) - {"provisional_status"}
 
+# Historical id -> current census id (owner ruling R9; same map as jobs/claim-kit/population_contract.json id_aliases).
+ID_ALIASES = {"EO:7933a": "EO:7933A"}
+
 # Which step each claim_gate error belongs to.
 GATE_ERROR_STEP = [
     ("original_representation", "original_text"),
@@ -456,10 +459,13 @@ def build(root, *, planning_closures=None):
     jobs, job_problems = load_job_outputs(root)
 
     universe = [r["id"] for r in read_csv(root, "universe") if r["included_in_bibliography"] == "1"]
-    decided = {r["instrument_id"]: r for r in read_csv(root, "decided")}
-    causal = {r["instrument_id"]: r for r in read_csv(root, "causal")}
-    crosswalk = {r["instrument_id"]: r for r in read_csv(root, "crosswalk")}
-    custody = {r["instrument_id"]: r for r in read_csv(root, "custody")}
+    # Owner ruling R9 (2026-11-06): the census renamed EO:7933a to EO:7933A; the hash-pinned ledger and
+    # older tables keep the historical spelling, so their keys are read through ID_ALIASES.
+    canon = lambda i: ID_ALIASES.get(i, i)
+    decided = {canon(r["instrument_id"]): r for r in read_csv(root, "decided")}
+    causal = {canon(r["instrument_id"]): r for r in read_csv(root, "causal")}
+    crosswalk = {canon(r["instrument_id"]): r for r in read_csv(root, "crosswalk")}
+    custody = {canon(r["instrument_id"]): r for r in read_csv(root, "custody")}
 
     statute_ok = {(r["source_key"], r["instrument_id"]) for r in read_csv(root, "statute") if r["acquired_pdf_bytes"] == "yes"}
 
@@ -870,8 +876,20 @@ def pct(n, d):
     return f"{100 * n / d:.1f}%" if d else "n/a"
 
 
+def generation_id():
+    """Justinian 2026-11-06: the runner's id for this execution (run token + input manifest sha256).
+
+    SUMMARY.json, TRACKER.md, READINESS_BY_ORDER.csv and the runner's STATUS.json carry the same
+    value, so a reader (daily-digest) can refuse files that come from different executions. A run
+    outside the runner is labelled local and never matches a published STATUS.json.
+    """
+    return os.environ.get("JOB_GENERATION_ID") or "local-unpublished"
+
+
 def write_outputs(out, orders, summary, inputs):
     os.makedirs(out, exist_ok=True)
+    generation = generation_id()
+    orders = [{**row, "generation_id": generation} for row in orders]
     # Claim-shaped later_source_search for each order the machines' searches completed;
     # agents copy it into the order's claim (claim-drafts and case-bundles can merge it).
     with open(os.path.join(out, "MACHINE_LATER_SEARCH.jsonl"), "w", encoding="utf-8", newline="\n") as fh:
@@ -891,7 +909,7 @@ def write_outputs(out, orders, summary, inputs):
         w = csv.DictWriter(fh, fieldnames=["orders_unblocked", "kind", "action", "blocker"])
         w.writeheader()
         w.writerows(summary["shared_unlocks"])
-    summary = {**summary, "inputs": inputs}
+    summary = {**summary, "generation_id": generation, "inputs": inputs}
     with open(os.path.join(out, "SUMMARY.json"), "w", encoding="utf-8") as fh:
         json.dump(summary, fh, indent=2)
         fh.write("\n")
@@ -901,6 +919,8 @@ def write_outputs(out, orders, summary, inputs):
         "# Readiness tracker",
         "",
         f"**Ready for human review: {s['ready_for_human_review']:,} of {total:,} orders ({pct(s['ready_for_human_review'], total)})**",
+        "",
+        f"Generation: `{generation}` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).",
         "",
         "An order is ready when the machines have finished every step it needs: each step is backed by a saved",
         "source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in",

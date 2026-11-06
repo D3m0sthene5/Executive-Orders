@@ -300,6 +300,26 @@ class FreshnessTests(unittest.TestCase):
         manifest = json.loads((output / freshness.MANIFEST).read_text())
         self.assertIn("jobs/source/MAX_OUTPUT_FILE_BYTES", manifest["inputs"])
 
+    def test_generation_id_reaches_job_and_status_and_refusal_is_blocked(self):
+        # Justinian 2026-11-06 (A3): one id per execution, shared by the job's own outputs and STATUS.json;
+        # a job that writes BLOCKED.json and exits non-zero is recorded as blocked with its reason.
+        self.put("jobs/source/job.py", "import os\nfrom pathlib import Path\n"
+                 "Path(os.environ['OUTPUT_DIR'], 'gen.txt').write_text(os.environ['JOB_GENERATION_ID'])\n")
+        self.put("jobs/other/job.py", "import json, os\nfrom pathlib import Path\n"
+                 "Path(os.environ['OUTPUT_DIR'], 'BLOCKED.json').write_text(json.dumps({'reason': 'mismatch'}))\n"
+                 "raise SystemExit(3)\n")
+        result = self.shell("run_jobs.sh", "source other")
+        self.assertNotEqual(result.returncode, 0)
+        output = self.repo / "jobs/source/output"
+        status = json.loads((output / "STATUS.json").read_text())
+        manifest = json.loads((output / freshness.MANIFEST).read_text())
+        self.assertEqual((output / "gen.txt").read_text(), status["generation_id"])
+        self.assertTrue(status["generation_id"].endswith(":" + manifest["inputs_sha256"]))
+        records = json.loads((self.repo / "oversized/runner-freshness/ATTEMPTS.json").read_text())
+        refused = json.loads((self.repo / records[1]["attempt_path"] / "STATUS.json").read_text())
+        self.assertEqual(refused["result"], "blocked")
+        self.assertEqual(refused["blocked_reason"], "mismatch")
+
     def test_unsafe_output_cap_fails_before_generation_and_preserves_previous_output(self):
         self.put("jobs/source/MAX_OUTPUT_FILE_BYTES", "104857600\n")
         result = self.shell("run_jobs.sh", "source consumer")
@@ -381,6 +401,48 @@ class FreshnessTests(unittest.TestCase):
                 code, report = self.check()
                 self.assertEqual(code, 3)
                 self.assertTrue(any(p["reason"] == "inputs_changed" for p in report["problems"]))
+
+    def test_library_scope_follows_imports(self):
+        # Justinian 2026-11-06: an unimported shared module or a runner unit test
+        # no longer discards results; an imported (or transitively imported) one does.
+        self.put("jobs/_lib/used.py", "import deeper\n")
+        self.put("jobs/_lib/deeper.py", "X = 1\n")
+        self.put("jobs/_lib/unused.py", "Y = 1\n")
+        self.put("jobs/_lib/search_engines.json", "{}\n")
+        self.put(".github/scripts/test_fixture_only.py", "# runner test\n")
+        self.put("jobs/source/helper.py", "from used import *\n")
+        self.commit(self.repo, "library modules")
+        self.cmd("git", "push", "origin", "main")
+        self.cmd("git", "pull", "--ff-only", cwd=self.writer)
+        roots = freshness.scope("source")["roots"]
+        self.assertIn("jobs/_lib/used.py", roots)
+        self.assertIn("jobs/_lib/deeper.py", roots)
+        self.assertIn("jobs/_lib/cache_cap.py", roots)
+        self.assertIn("jobs/_lib/search_engines.json", roots)
+        self.assertNotIn("jobs/_lib/unused.py", roots)
+        self.assertNotIn(".github/scripts/test_fixture_only.py", roots)
+        self.assertIn(".github/scripts/result_freshness.py", roots)
+        for path, stale in (("jobs/_lib/unused.py", False), (".github/scripts/test_fixture_only.py", False),
+                            ("jobs/_lib/deeper.py", True), ("jobs/_lib/search_engines.json", True)):
+            with self.subTest(path=path):
+                self.capture()
+                self.advance(path, "# updated " + path + "\n")
+                code, report = self.check()
+                self.assertEqual(code, 3 if stale else 0, report)
+                self.cmd("git", "pull", "--ff-only")
+
+    def test_unparsable_job_keeps_whole_library(self):
+        self.put("jobs/source/broken.py", "def (:\n")
+        self.commit(self.repo, "broken helper")
+        self.assertIn("jobs/_lib", freshness.scope("source")["roots"])
+
+    def test_valla_keeps_whole_library_and_runner(self):
+        roots = freshness.scope("valla")["roots"]
+        self.assertIn("jobs/_lib", roots)
+        self.assertIn(".github/scripts", roots)
+
+    def test_digest_ignores_handoff_notes(self):
+        self.assertNotIn("HANDOFF/notes-*.md", freshness.scope("daily-digest")["patterns"])
 
     def test_new_file_in_declared_missing_directory_rejected(self):
         self.put("jobs/source/needs.txt", "inputs\nnot-yet-present\n")
@@ -554,8 +616,9 @@ class FreshnessTests(unittest.TestCase):
         declared = freshness.scope("daily-digest")
         entries = {"jobs/other/output/SUMMARY.json": "a", "jobs/other/output/STATUS.json": "b",
                    "jobs/other/output/unrelated.txt": "c", "HANDOFF/notes-astra.md": "d"}
+        # Justinian 2026-11-06: open asks come from the Kean register, not HANDOFF notes.
         self.assertEqual(set(freshness.select(entries, declared)),
-                         {"jobs/other/output/SUMMARY.json", "jobs/other/output/STATUS.json", "HANDOFF/notes-astra.md"})
+                         {"jobs/other/output/SUMMARY.json", "jobs/other/output/STATUS.json"})
 
     def test_input_race_after_first_check_rechecked_on_push_rejection(self):
         self.capture()

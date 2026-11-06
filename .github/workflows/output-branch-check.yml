@@ -1,0 +1,28 @@
+name: Job outputs come from the merge target
+# Justinian 2026-11-06 (A4): fail a pull request that carries jobs/*/output/STATUS.json generated on a
+# branch other than the one it merges into. See .github/scripts/output_branch_check.py and HANDOFF/README.md.
+on:
+  pull_request:
+    paths: ['jobs/*/output/STATUS.json']
+permissions:
+  contents: read
+concurrency:
+  group: output-branch-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refuse outputs generated outside the target branch
+        run: python -I .github/scripts/output_branch_check.py --base "origin/${{ github.base_ref }}" --head "${{ github.event.pull_request.head.sha }}" --target "${{ github.base_ref }}"
