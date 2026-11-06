@@ -198,10 +198,13 @@ def run(job_dir, out, cache, prior=None, fetch_archive=None, pool=None, budget=N
         import cassiodorus
         import app_mirror as M
         fetch = fetch_archive or cassiodorus.fetch_bytes
-        throttles = {"cc": M.Throttle(1.0), "wayback": M.Throttle(2.0)}
+        throttles = {"cc": M.Throttle(1.5), "wayback": M.Throttle(2.0)}
         failures = 0
+        # Common Crawl answers bursts with HTTP 503. The first run stopped after 25 failures in a row having kept 720
+        # pages, so back off (30 s, doubling to 8 min) and carry on; stop only after 12 failed back-offs in a row.
+        backoff = 30
         for req in archive[:archive_limit]:
-            if not budget.open() or failures >= 25:
+            if not budget.open() or failures >= 12:
                 break
             cap = req.get("capture") or {}
             row = {"url": cap.get("url") or req.get("url"), "capture": {
@@ -210,10 +213,13 @@ def run(job_dir, out, cache, prior=None, fetch_archive=None, pool=None, budget=N
                 "warc_length": cap.get("warc_length"), "wayback_url": cap.get("wayback_url")}}
             try:
                 body, how = fetch({"kind": "mirror", "row": row}, cache, throttles)
-                failures = 0
+                failures, backoff = 0, 30
             except Exception as exc:  # noqa: BLE001 (every failure is recorded)
                 failures += 1
                 record(req, "fetch_failed", f"{type(exc).__name__}: {exc}")
+                if fetch_archive is None and "503" in str(exc):
+                    time.sleep(backoff)
+                    backoff = min(backoff * 2, 480)
                 continue
             keep_if_exact(req, body, f"American Presidency Project page; {how}; captured {cap.get('captured_utc', '')}")
 
