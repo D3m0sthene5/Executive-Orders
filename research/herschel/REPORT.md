@@ -61,16 +61,31 @@ the merits).
 | Official printing or page image of the order | 5,313 | 1,234 | source jobs (Tischendorf, NARA, GPO, ProQuest page checks) |
 | Agency execution records (appointments, land status, board reports) | 3,944 | 802 | archival acquisition |
 | Later law, notice or instrument for the ending | 3,011 | 1,814 | source jobs (current-law, NEA notices in PR #155) |
-| Source held only as a hash; its bytes were never retained | 2,867 | 852 | `astra-source-retention` on GitHub Actions, no tokens |
-| No dated status history (claim kit refuses the order) | 5,918 of 10,681 undecided, census count | | a pre-1937 disposition source, or an owner rule |
-| No machine later-source search for undecided dossiers | 865 | 738 | a claim-kit tool fix |
-| Claim-kit write rule blocks overlay assembly outside two folders | 545 | 545 | a one-line tool fix |
+| Source held only as a hash; its bytes were never retained | 2,867 | 852 | `jobs/ptolemy-custody` keeps them on GitHub Actions, no tokens |
+| No dated status history (claim kit refuses the order) | 5,918 of 10,681 undecided, census count | | an owner rule (ask A-20261105-1) |
+| No machine later-source search for undecided dossiers | 865 | 738 | `jobs/claim-drafts` now drafts undecided orders |
+
+Two of these have a single cause in the census, not only in the sample. **Machine later-source searches:** the claim
+kit's undecided route takes each order's searches from its draft, and `jobs/claim-drafts` drafted only decided orders,
+so all 10,681 undecided orders reached overlay assembly with none. The job now drafts undecided orders too; a local
+draft of EO 11460, 3865 and 10773 carries the U.S. Code, eCFR and Federal Register catalog searches (the catalog with
+its pre-1937 coverage warning). **Hash-only sources:** 11,285 cited sources have a recorded hash and text but no kept
+bytes; `jobs/ptolemy-custody` re-reads 8,386 APP pages from their archive captures and re-downloads 2,899 stable files,
+keeping each only if it hashes exactly as recorded.
+
+Coordinators H4 and H5 also recorded 545 projected orders as blocked by the claim kit's rule that status overlays are
+written only under `jobs/claim-kit/output/overlays` or `research/excavator`. That rule stopped the survey only because
+the survey confined its coordinators to `research/herschel`; an ordinary wave writes under `research/excavator`, so
+those orders have no tool blocker of their own and are counted in the other rows.
 
 The status-history gap is a census count, not a sample estimate: `jobs/status-history` compiles dated histories from
 the 1989 Office of the Federal Register disposition tables, which do not reach most pre-1937 orders. Of the 5,918
-orders without one, 5,449 are from 1907 to 1936 and 427 are older; only 191 have any held later-event edge. A
-compiled pre-1937 disposition source would be needed, or an owner ruling that lets the kit start an order whose
-bounded search found no later event.
+orders without one, 5,449 are from 1907 to 1936 and 427 are older; only 191 have any held later-event edge. The WPA
+Historical Records Survey list of orders 1 to 8030 (1944), already held in `jobs/x1-class-engine/data/`, does not
+fill it: its entries name an earlier order as amended or revoked 212 times, reaching only 111 of the 5,918. Most
+pre-1937 orders were never expressly revoked, so a dated history for them would have to rest on the order's own
+terms and a bounded search that found no later event. Whether the claim kit may start an order on that basis is an
+evidence rule for the owner (ask A-20261105-1).
 
 ## Cost once an order is unblocked
 
