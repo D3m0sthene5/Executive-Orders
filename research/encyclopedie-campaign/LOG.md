@@ -102,13 +102,19 @@ file over 5 MiB. Per push: at most 25 MiB of new blobs, checked with
 
 | PR | Branch | What | Counts |
 |---|---|---|---|
-| #188 | enc/attempt-trim | Runner keeps failed-attempt receipts small (urgent: about 740 MB/day) | neutral |
+| #188 | enc/attempt-trim | Runner keeps failed-attempt receipts small (urgent: about 740 MB/day) | neutral; **merged by owner 2026-11-06 23:33 UTC** (`299d161209`) |
 | #189 | enc/leases-wire | Kean leases; dispatch-check honours them | neutral |
 | #190 | enc/drivers | Hollerith driver scripts and billing facts | neutral |
 | #191 | enc/cost | Necker dollar costs | neutral |
 | #192 | enc/zenodo | Bodley Zenodo design | neutral |
 | #193 | enc/observable | Playfair Observable trial | neutral |
 | #195 | enc/certifier | Nihil obstat certifier page | neutral |
+| #196 | enc/naude | Naudé free-source survey | neutral |
+| #200 | enc/prior-art-lp | Bayle: Lowande-Poznansky | neutral |
+| #201 | enc/thesis-measure | Thesis measure report | neutral (report only) |
+| #202 | enc/prior-art | Bayle: Thrower | neutral |
+| #203 | enc/ocr | Ventris OCR pilot | neutral |
+| #204 | enc/storage | Pergamon store | neutral |
 
 ## Workers
 
@@ -122,6 +128,14 @@ file over 5 MiB. Per push: at most 25 MiB of new blobs, checked with
 | Bodley | Sonnet | Zenodo | 248,393 | 16.5 min |
 | Playfair | Sonnet | Observable | 163,244 | 21.5 min |
 | Nihil obstat | Sonnet | certifier | 337,261 | 22.5 min |
+| Naudé | Sonnet | free sources | 262,697 | 32.7 min |
+| Ventris | Sonnet | OCR pilot | 371,095 | 56.4 min |
+| Septuagint | Sonnet | rebuild + Codex arm | 317,801 | 59.7 min |
+| Thesis measure | Opus | thesis report | 424,267 | 37.8 min |
+| Prior-art check | Opus | independent check | 258,745 | 16.3 min |
+| Bayle-LP fixes | Sonnet | corrections | 387,211 total | +5.0 min |
+| Bayle-Thrower fixes | Sonnet | corrections | 455,992 total | +10.5 min |
+| Codex arm (y01-y05) | gpt-6-sol, medium | blind review | 6.03M input (5.82M cached), 39,439 output | 20.2 min |
 
 ## Events
 
