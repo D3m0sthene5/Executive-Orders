@@ -1,11 +1,13 @@
 {
  "deferred_queries": {
   "bing_rss": 99,
+  "brave_api": 95,
   "brave_html": 99,
-  "duckduckgo_html": 99,
-  "duckduckgo_lite": 99,
   "google_books": 99,
   "hathitrust_catalog": 99,
+  "loc_books": 98,
+  "loc_manuscripts": 98,
+  "loc_newspapers": 98,
   "mojeek_html": 99,
   "wikipedia_search": 99,
   "wikisource_search": 99,
@@ -14,19 +16,19 @@
  "engines": {
   "bing_api": "needs_key",
   "bing_rss": "blocked_by_robots_txt",
-  "brave_api": "needs_key",
+  "brave_api": "blocked_by_robots_txt",
   "brave_html": "blocked_by_robots_txt",
-  "duckduckgo_html": "http_403",
-  "duckduckgo_lite": "http_403",
+  "duckduckgo_html": "error",
+  "duckduckgo_lite": "error",
   "federal_register_api": "ok",
   "google_books": "http_429",
   "google_cse": "needs_key",
   "govinfo_search_page": "ok",
   "hathitrust_catalog": "blocked_by_robots_txt",
   "internet_archive": "ok",
-  "loc_books": "error",
-  "loc_manuscripts": "error",
-  "loc_newspapers": "error",
+  "loc_books": "http_429",
+  "loc_manuscripts": "http_429",
+  "loc_newspapers": "http_429",
   "marginalia": "error",
   "mojeek_html": "blocked_by_robots_txt",
   "nara_catalog": "needs_key",
@@ -37,5 +39,5 @@
   "yandex_html": "blocked_by_robots_txt"
  },
  "retry_policy": "Blocked/rate-limited engines are retried next run; no exhaustion implied.",
- "updated_utc": "2026-11-02T07:36:10Z"
+ "updated_utc": "2026-11-06T06:11:49Z"
 }
