@@ -1,6 +1,6 @@
 # Latest 19th-century census proxy crosswalk
 
-Stage15 (611) vs Stage17 (617) included 1862–1906 date projections; **18** year-coordinate differences across whole bibliography.
+Stage15 (617) vs Stage17 (617) included 1862–1906 date projections; **5** year-coordinate differences across whole bibliography.
 Uncounted Lord OCR markers are candidate bibliography, not proven EO documents.
 
 ## Latest Stage17 zero-proxy years with unverified Lord references
