@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-06 02:22 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-06 04:24 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 Readiness below is the latest published tracker generation. Exact claim-receipt coverage is reported separately; matching versions alone does not verify every source or policy input.
 
@@ -62,12 +62,12 @@ File acquisition and machine text do not establish legal conclusions or independ
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `596071207771f231440a580fbbe5ed73f7ea152f`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `450e3140ce1996f8aff2069dd23fe2541e549459`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
 | Readiness | 2026-11-05 17:21 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
-| Claim checker | 2026-11-06 02:22 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
+| Claim checker | 2026-11-06 04:23 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
 | ProQuest ingestion | 2026-10-28 14:49 EDT | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
 | Web-source custody | 2026-11-04 13:34 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
 

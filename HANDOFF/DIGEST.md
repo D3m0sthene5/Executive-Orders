@@ -30,7 +30,7 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - claim-drafts: orders_with_any_conflict: 434 → 707; orders_with_draft: 4291 → 14919; undecided_orders_with_draft: 0 → 10628
 - gessner-cards: one_step_from_ready: 43 → 40; ready_for_human_review: 1331 → 1309
 - gratian-niebuhr-leads: date_leads: unavailable → 63; date_leads_in_census: unavailable → 33; network_requests: unavailable → 0; resolved_references: unavailable → 10
-- kean: decisions: 23 → 27; findings: 146 → 164; open_owner_questions: 2 → 4
+- kean: decisions: 23 → 27; findings: 146 → 167; open_owner_questions: 2 → 4
 - later-events: catalog_records_post_cutoff_ignored: 0 → 3; catalog_records_used: 6938 → 6941; catalog_records_with_notes: 5063 → 5064; decided_no_with_full_revocation_candidate: 909 → 942
 - mabillon-held-printings: frame_lead: unavailable → 108; frame_orders: unavailable → 5943; frame_strong: unavailable → 762; frame_targets: unavailable → 870
 - mabillon-nara: bad_lines: unavailable → 0; bytes_downloaded: unavailable → 1615506980; chunk_errors: unavailable → 0; chunks_read: unavailable → 1410
@@ -51,34 +51,15 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - orders_unblocked: 6; kind: one_source; action: Retrieve shared source EO::6868; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6868
 - orders_unblocked: 3; kind: one_source; action: Retrieve shared source EO::6964; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6964
 
-## Open asks from the newest handoff entries
+## Open asks for the owner (Kean register)
 
-- notes-astra.md: - **Asks:** @Owner: none.
-- notes-boundary-review.md: No open ask recorded in newest entry.
-- notes-ce-review-pair1.md: No open ask recorded in newest entry.
-- notes-ce-review-pair2.md: No open ask recorded in newest entry.
-- notes-ce-review-pair3.md: - **Asks:** none.
-- notes-claude.md: - **Asks:** @Owner: none new in this note; the open Kean ask is A-20261106-mabillon-register, relayed through PR #164. @Claude (coordinator): port the segment and neighbour-margin rules into Tischendorf (`jobs/mabillon-held-printings/README.md`).
-- notes-codex.md: - **Asks:** @Owner: none.
-- notes-corpus-evidence-retrieval.md: - **Asks:** @Owner: none.
-- notes-inventory-a.md: No open ask recorded in newest entry.
-- notes-inventory-b.md: No open ask recorded in newest entry.
-- notes-lifecycle-assurance.md: - **Asks:** @Owner: none.
-- notes-nmb-series-independent-review.md: No open ask recorded in newest entry.
-- notes-production-batch1.md: No open ask recorded in newest entry.
-- notes-production-review1.md: No open ask recorded in newest entry.
-- notes-r1-materializer-followthrough.md: - **Asks:** @Owner: none. @Root: leave PR112 unmerged and preserve exact scientific holds and evidence qualifications.
-- notes-r2-preflight-repair.md: - **Asks:** @Owner: none. @Root: integrate the dependency receipt and exact-version review proposals through existing routes; register R2 findings.
-- notes-r3-ranger-roundtrip.md: - **Asks:** @Owner: none.
-- notes-r4-production-diagnosis.md: No open ask recorded in newest entry.
-- notes-shared-research-production.md: - **Asks:** @Owner: none.
-- notes-sol-readiness-economy.md: - **Asks:** @Owner: none. @Integrator: leave draft unmerged until combined A+B review and checks.
-- notes-sol-runtime-economy.md: - **Asks:** @Owner: none.
-- notes-sol.md: - **Asks:** None while validation is running.
-- notes-source-first-control-preparer.md: No open ask recorded in newest entry.
+- A-20261103-1 (2026-11-03, Codex): Provide Bacon-session.bundle or the original Bacon packet directory from EO Session Report?
+- A-20261104-1 (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1?
+- A-20261105-niebuhr-admit (2026-11-05, claude): May the 30 orders in research/niebuhr/ADMISSION_QUEUE.csv (APP text held, 26 with the official OFR compilation text and page) be admitted to the census after a person checks each against its official page? Who does that check?
+- A-20261106-mabillon-register (2026-11-06, claude (Mabillon)): Register jobs/mabillon-held-printings in tracker.py (PR #164), so 1,771 orders count their held official printing?
 
 ## Published output status
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42177793512)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42190953293)
