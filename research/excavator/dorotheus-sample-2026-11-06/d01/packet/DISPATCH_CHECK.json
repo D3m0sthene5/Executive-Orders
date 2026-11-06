@@ -1,0 +1,735 @@
+{
+  "checked_ids": [
+    "EO:26",
+    "EO:309",
+    "EO:314",
+    "EO:342",
+    "EO:719"
+  ],
+  "code_pins": {
+    "checker.py": "2e8348066db343557791428e7d084707949ef10dde18063210a9c57d17c8fd6b",
+    "dispatch.py": "19167f9d8ec0dcea98ad0c383d8366d9b9e1261c12092cfaf6e6e221489027c4",
+    "sources.py": "7bb63fdb6f154ee67a568bc690a3d3c081f3d6d39137ec7bb55b7d551695679b"
+  },
+  "dispatchable_ids": [
+    "EO:26",
+    "EO:309",
+    "EO:314",
+    "EO:342",
+    "EO:719"
+  ],
+  "legal_requirement_coverage": "unknown",
+  "members": [
+    {
+      "blockers": [],
+      "instrument_id": "EO:26",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "Official-source page location requires a separate page/image check before original confirmation.",
+          "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
+          "target provision not located: EO:11285"
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:26#whole",
+          "ORIGINAL:EO:26"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "held_lead_not_official_original",
+            "instrument_id": "EO:26",
+            "kind": "official_original",
+            "reason": "Held representation is a lead",
+            "shared_key": "EO:26",
+            "task_id": "TASK:0bcbaec40f343993c86e1bb5"
+          },
+          {
+            "availability": "held_text_images_not_confirmed",
+            "instrument_id": "EO:26",
+            "kind": "official_page_image",
+            "reason": "Explicit original page/image confirmation still required",
+            "shared_key": "5434f92d449327b91c448d4dc98ebf88cbbfe2e209e134c3f63caa94c095ad9b",
+            "task_id": "TASK:648fa7861d6d5dbe7d6624d8"
+          },
+          {
+            "availability": "held_not_loaded",
+            "instrument_id": "EO:26",
+            "kind": "locate_held_provision",
+            "reason": "target provision not located: EO:11285",
+            "shared_key": "EO:11285",
+            "task_id": "TASK:36932e872ead54d25d0c104c"
+          }
+        ],
+        "unusable_declared_source_ids": []
+      },
+      "research_tasks": [
+        {
+          "availability": "held_lead_not_official_original",
+          "instrument_id": "EO:26",
+          "kind": "official_original",
+          "reason": "Held representation is a lead",
+          "shared_key": "EO:26",
+          "task_id": "TASK:0bcbaec40f343993c86e1bb5"
+        },
+        {
+          "availability": "held_text_images_not_confirmed",
+          "instrument_id": "EO:26",
+          "kind": "official_page_image",
+          "reason": "Explicit original page/image confirmation still required",
+          "shared_key": "5434f92d449327b91c448d4dc98ebf88cbbfe2e209e134c3f63caa94c095ad9b",
+          "task_id": "TASK:648fa7861d6d5dbe7d6624d8"
+        },
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:26",
+          "kind": "locate_held_provision",
+          "reason": "target provision not located: EO:11285",
+          "shared_key": "EO:11285",
+          "task_id": "TASK:36932e872ead54d25d0c104c"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1966-06-11/pdf/FR-1966-06-11.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1966-06-11/premis.xml, checked 2026-10-18T00:55:28Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACTOR_TEXT:EO:11285",
+          "required": false,
+          "source": {
+            "page_or_item": "31 FR 8211, PDF pages 5-10",
+            "sha256": "f72e09aafc00cfbd8c50591f0b3af12e4a105a5523dc42413d721bc17c027ab1",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_11285.txt",
+            "text_sha256": "31827394bf4d51edf7b02187021664cb2940d6908a5133af8d0fef667b4f6b87",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1966-06-11/pdf/FR-1966-06-11.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:26#whole",
+          "required": true,
+          "source": {
+            "page_or_item": "ProQuest 1887-EO-26",
+            "sha256": "5434f92d449327b91c448d4dc98ebf88cbbfe2e209e134c3f63caa94c095ad9b",
+            "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_26.txt",
+            "text_sha256": "1e61ef106c689fe549afced7d09825359621d8a0990d18be6239385f8a5a99cb",
+            "url": "https://congressional.proquest.com/congressional/docview/t67.d72.1887-eo-26"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:26",
+          "required": true,
+          "source": {
+            "page_or_item": "ProQuest 1887-EO-26",
+            "sha256": "5434f92d449327b91c448d4dc98ebf88cbbfe2e209e134c3f63caa94c095ad9b",
+            "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_26.txt",
+            "text_sha256": "1e61ef106c689fe549afced7d09825359621d8a0990d18be6239385f8a5a99cb",
+            "url": "https://congressional.proquest.com/congressional/docview/t67.d72.1887-eo-26"
+          }
+        }
+      ],
+      "state": "dispatchable_for_research"
+    },
+    {
+      "blockers": [],
+      "instrument_id": "EO:309",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "Official-source page location requires a separate page/image check before original confirmation.",
+          "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:309#whole",
+          "ORIGINAL:EO:309"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "held_lead_not_official_original",
+            "instrument_id": "EO:309",
+            "kind": "official_original",
+            "reason": "Held representation is a lead",
+            "shared_key": "EO:309",
+            "task_id": "TASK:e0a7c660a18e01c0fccec981"
+          },
+          {
+            "availability": "held_text_images_not_confirmed",
+            "instrument_id": "EO:309",
+            "kind": "official_page_image",
+            "reason": "Explicit original page/image confirmation still required",
+            "shared_key": "9b49afa570d72c6522a04a83ef6e52735347446493b533c3291fd884f270c870",
+            "task_id": "TASK:c3bc6038ca9ed6397d00cbdf"
+          }
+        ],
+        "unusable_declared_source_ids": []
+      },
+      "research_tasks": [
+        {
+          "availability": "held_lead_not_official_original",
+          "instrument_id": "EO:309",
+          "kind": "official_original",
+          "reason": "Held representation is a lead",
+          "shared_key": "EO:309",
+          "task_id": "TASK:e0a7c660a18e01c0fccec981"
+        },
+        {
+          "availability": "held_text_images_not_confirmed",
+          "instrument_id": "EO:309",
+          "kind": "official_page_image",
+          "reason": "Explicit original page/image confirmation still required",
+          "shared_key": "9b49afa570d72c6522a04a83ef6e52735347446493b533c3291fd884f270c870",
+          "task_id": "TASK:c3bc6038ca9ed6397d00cbdf"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:309#whole",
+          "required": true,
+          "source": {
+            "archival_id": "wikisource:en:revision/1841612",
+            "page_or_item": "Executive Order 309; Wikisource revision 1841612",
+            "sha256": "9b49afa570d72c6522a04a83ef6e52735347446493b533c3291fd884f270c870",
+            "text_path": "jobs/wikisource-texts/output/texts/EO_309.txt",
+            "text_sha256": "e8f067fa8624a85e435866dd126c2adbd45104f2396b1055f031e304276c740d",
+            "url": "https://en.wikisource.org/wiki/Executive_Order_309"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:309",
+          "required": true,
+          "source": {
+            "archival_id": "wikisource:en:revision/1841612",
+            "page_or_item": "Executive Order 309; Wikisource revision 1841612",
+            "sha256": "9b49afa570d72c6522a04a83ef6e52735347446493b533c3291fd884f270c870",
+            "text_path": "jobs/wikisource-texts/output/texts/EO_309.txt",
+            "text_sha256": "e8f067fa8624a85e435866dd126c2adbd45104f2396b1055f031e304276c740d",
+            "url": "https://en.wikisource.org/wiki/Executive_Order_309"
+          }
+        }
+      ],
+      "state": "dispatchable_for_research"
+    },
+    {
+      "blockers": [],
+      "instrument_id": "EO:314",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "Large actor context must be read at actor-texts/EO_9830.json before deciding scope/savings.",
+          "Official-source page location requires a separate page/image check before original confirmation.",
+          "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
+          "target provision not located: EO:1065",
+          "target provision not located: EO:9830"
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:314#whole",
+          "ORIGINAL:EO:314"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "held_lead_not_official_original",
+            "instrument_id": "EO:314",
+            "kind": "official_original",
+            "reason": "Held representation is a lead",
+            "shared_key": "EO:314",
+            "task_id": "TASK:c83e32fe02f5da95c19ca837"
+          },
+          {
+            "availability": "held_text_images_not_confirmed",
+            "instrument_id": "EO:314",
+            "kind": "official_page_image",
+            "reason": "Explicit original page/image confirmation still required",
+            "shared_key": "8ed3975c19ed782e8792c4c218d0035d8de5470dc10cce197a1c4ae51b7f156e",
+            "task_id": "TASK:0a64463261631ef139e59b09"
+          },
+          {
+            "availability": "held_not_loaded",
+            "instrument_id": "EO:314",
+            "kind": "load_actor_overflow",
+            "reason": "Read full overflow before scope/savings decision",
+            "shared_key": "EO:9830",
+            "task_id": "TASK:55083671c28924b6a6474bda"
+          },
+          {
+            "availability": "held_not_loaded",
+            "instrument_id": "EO:314",
+            "kind": "locate_held_provision",
+            "reason": "target provision not located: EO:1065",
+            "shared_key": "EO:1065",
+            "task_id": "TASK:9cd2ffcfa2972d64820ba9f9"
+          },
+          {
+            "availability": "held_not_loaded",
+            "instrument_id": "EO:314",
+            "kind": "locate_held_provision",
+            "reason": "target provision not located: EO:9830",
+            "shared_key": "EO:9830",
+            "task_id": "TASK:5834506f3b22608fbc68e3b0"
+          }
+        ],
+        "unusable_declared_source_ids": [
+          "ACTOR_TEXT:EO:1065"
+        ]
+      },
+      "research_tasks": [
+        {
+          "availability": "held_lead_not_official_original",
+          "instrument_id": "EO:314",
+          "kind": "official_original",
+          "reason": "Held representation is a lead",
+          "shared_key": "EO:314",
+          "task_id": "TASK:c83e32fe02f5da95c19ca837"
+        },
+        {
+          "availability": "held_text_images_not_confirmed",
+          "instrument_id": "EO:314",
+          "kind": "official_page_image",
+          "reason": "Explicit original page/image confirmation still required",
+          "shared_key": "8ed3975c19ed782e8792c4c218d0035d8de5470dc10cce197a1c4ae51b7f156e",
+          "task_id": "TASK:0a64463261631ef139e59b09"
+        },
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:314",
+          "kind": "load_actor_overflow",
+          "reason": "Read full overflow before scope/savings decision",
+          "shared_key": "EO:9830",
+          "task_id": "TASK:55083671c28924b6a6474bda"
+        },
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:314",
+          "kind": "locate_held_provision",
+          "reason": "target provision not located: EO:1065",
+          "shared_key": "EO:1065",
+          "task_id": "TASK:9cd2ffcfa2972d64820ba9f9"
+        },
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:314",
+          "kind": "locate_held_provision",
+          "reason": "target provision not located: EO:9830",
+          "shared_key": "EO:9830",
+          "task_id": "TASK:5834506f3b22608fbc68e3b0"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "no saved copy with sha256 bd550b2617a1... and no saved copy of https://archive.org/details/reportofcommissi1909uni/page/n825",
+              "field": "source",
+              "result": "fail",
+              "status": "not_held",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACTOR_TEXT:EO:1065",
+          "required": false,
+          "source": {
+            "page_or_item": "Annual reports of the Department of agriculture. Report of the secretary ... reports of chiefs … (Washington : Office of Printers to House of Reps., 1909), Internet Archive reportofcommissi1909uni, scan leaves 826-826",
+            "sha256": "bd550b2617a1188b2cac48cedebd2d8b3c1910f1b164b2d1ce2598d2e6744221",
+            "text_path": "jobs/tischendorf-originals/output/texts/EO_1065.txt",
+            "text_sha256": "c39e188505664e932db19b17e178c4b639c35c63fa3c0d0327df1c75eb5d70a0",
+            "url": "https://archive.org/details/reportofcommissi1909uni/page/n825"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:314#whole",
+          "required": true,
+          "source": {
+            "page_or_item": "ProQuest 1905-EO-314",
+            "sha256": "8ed3975c19ed782e8792c4c218d0035d8de5470dc10cce197a1c4ae51b7f156e",
+            "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_314.txt",
+            "text_sha256": "88e3b509165bc065326a4eee22f712320a695010d1906a96a0b26f8c42eb3bce",
+            "url": "https://congressional.proquest.com/congressional/docview/t67.d72.1905-eo-314"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:314",
+          "required": true,
+          "source": {
+            "page_or_item": "ProQuest 1905-EO-314",
+            "sha256": "8ed3975c19ed782e8792c4c218d0035d8de5470dc10cce197a1c4ae51b7f156e",
+            "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_314.txt",
+            "text_sha256": "88e3b509165bc065326a4eee22f712320a695010d1906a96a0b26f8c42eb3bce",
+            "url": "https://congressional.proquest.com/congressional/docview/t67.d72.1905-eo-314"
+          }
+        }
+      ],
+      "state": "dispatchable_for_research"
+    },
+    {
+      "blockers": [],
+      "instrument_id": "EO:342",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "Official-source page location requires a separate page/image check before original confirmation.",
+          "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:342#whole",
+          "ORIGINAL:EO:342"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "held_lead_not_official_original",
+            "instrument_id": "EO:342",
+            "kind": "official_original",
+            "reason": "Held representation is a lead",
+            "shared_key": "EO:342",
+            "task_id": "TASK:751712ee81bc13025dd57860"
+          },
+          {
+            "availability": "held_text_images_not_confirmed",
+            "instrument_id": "EO:342",
+            "kind": "official_page_image",
+            "reason": "Explicit original page/image confirmation still required",
+            "shared_key": "42d2a352fa0bf5b7086273251ecc89b5eff60611fa5df6706819a839c4c519de",
+            "task_id": "TASK:7dcffa83407a52c68ad31fce"
+          }
+        ],
+        "unusable_declared_source_ids": []
+      },
+      "research_tasks": [
+        {
+          "availability": "held_lead_not_official_original",
+          "instrument_id": "EO:342",
+          "kind": "official_original",
+          "reason": "Held representation is a lead",
+          "shared_key": "EO:342",
+          "task_id": "TASK:751712ee81bc13025dd57860"
+        },
+        {
+          "availability": "held_text_images_not_confirmed",
+          "instrument_id": "EO:342",
+          "kind": "official_page_image",
+          "reason": "Explicit original page/image confirmation still required",
+          "shared_key": "42d2a352fa0bf5b7086273251ecc89b5eff60611fa5df6706819a839c4c519de",
+          "task_id": "TASK:7dcffa83407a52c68ad31fce"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:342#whole",
+          "required": true,
+          "source": {
+            "archival_id": "wikisource:en:revision/1850307",
+            "page_or_item": "Executive Order 342; Wikisource revision 1850307",
+            "sha256": "42d2a352fa0bf5b7086273251ecc89b5eff60611fa5df6706819a839c4c519de",
+            "text_path": "jobs/wikisource-texts/output/texts/EO_342.txt",
+            "text_sha256": "2879dd9152770f787cf8d5b1f67f852a037f41404ed557863ca749775ede5993",
+            "url": "https://en.wikisource.org/wiki/Executive_Order_342"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:342",
+          "required": true,
+          "source": {
+            "archival_id": "wikisource:en:revision/1850307",
+            "page_or_item": "Executive Order 342; Wikisource revision 1850307",
+            "sha256": "42d2a352fa0bf5b7086273251ecc89b5eff60611fa5df6706819a839c4c519de",
+            "text_path": "jobs/wikisource-texts/output/texts/EO_342.txt",
+            "text_sha256": "2879dd9152770f787cf8d5b1f67f852a037f41404ed557863ca749775ede5993",
+            "url": "https://en.wikisource.org/wiki/Executive_Order_342"
+          }
+        }
+      ],
+      "state": "dispatchable_for_research"
+    },
+    {
+      "blockers": [],
+      "instrument_id": "EO:719",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "Official-source page location requires a separate page/image check before original confirmation.",
+          "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:719#whole",
+          "ORIGINAL:EO:719"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "held_lead_not_official_original",
+            "instrument_id": "EO:719",
+            "kind": "official_original",
+            "reason": "Held representation is a lead",
+            "shared_key": "EO:719",
+            "task_id": "TASK:7c7077580247794cf3b5c96e"
+          },
+          {
+            "availability": "held_text_images_not_confirmed",
+            "instrument_id": "EO:719",
+            "kind": "official_page_image",
+            "reason": "Explicit original page/image confirmation still required",
+            "shared_key": "9302a93372ef528783f049b8dfe58ce88cbb415ac3bfaaec9239cf9241121d8c",
+            "task_id": "TASK:19ec9efdee0ecd48bfd9bcbd"
+          }
+        ],
+        "unusable_declared_source_ids": []
+      },
+      "research_tasks": [
+        {
+          "availability": "held_lead_not_official_original",
+          "instrument_id": "EO:719",
+          "kind": "official_original",
+          "reason": "Held representation is a lead",
+          "shared_key": "EO:719",
+          "task_id": "TASK:7c7077580247794cf3b5c96e"
+        },
+        {
+          "availability": "held_text_images_not_confirmed",
+          "instrument_id": "EO:719",
+          "kind": "official_page_image",
+          "reason": "Explicit original page/image confirmation still required",
+          "shared_key": "9302a93372ef528783f049b8dfe58ce88cbb415ac3bfaaec9239cf9241121d8c",
+          "task_id": "TASK:19ec9efdee0ecd48bfd9bcbd"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:719#whole",
+          "required": true,
+          "source": {
+            "archival_id": "wikisource:en:revision/1880523",
+            "page_or_item": "Executive Order 719; Wikisource revision 1880523",
+            "sha256": "9302a93372ef528783f049b8dfe58ce88cbb415ac3bfaaec9239cf9241121d8c",
+            "text_path": "jobs/wikisource-texts/output/texts/EO_719.txt",
+            "text_sha256": "784bbf5d46219c46ef274357ac903063f7833a54d5436a206a69616829c701bc",
+            "url": "https://en.wikisource.org/wiki/Executive_Order_719"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; saved bytes re-hashed on this machine and match",
+              "field": "source",
+              "result": "pass",
+              "status": "held_bytes_verified",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:719",
+          "required": true,
+          "source": {
+            "archival_id": "wikisource:en:revision/1880523",
+            "page_or_item": "Executive Order 719; Wikisource revision 1880523",
+            "sha256": "9302a93372ef528783f049b8dfe58ce88cbb415ac3bfaaec9239cf9241121d8c",
+            "text_path": "jobs/wikisource-texts/output/texts/EO_719.txt",
+            "text_sha256": "784bbf5d46219c46ef274357ac903063f7833a54d5436a206a69616829c701bc",
+            "url": "https://en.wikisource.org/wiki/Executive_Order_719"
+          }
+        }
+      ],
+      "state": "dispatchable_for_research"
+    }
+  ],
+  "model_tokens": null,
+  "network_requests": 0,
+  "notice": "Re-run immediately before assignment. A receipt is not a lasting dispatch permit. Optional source gaps remain research tasks; all selected claim sources still require the actual checker and independent review.",
+  "ok": true,
+  "packet_fingerprint": "6324577c6d3c98bbf93ee4fd6f58fc0de0b22117f6b70069c785610fc60aad3b",
+  "packet_members": [
+    "EO:26",
+    "EO:309",
+    "EO:314",
+    "EO:342",
+    "EO:719"
+  ],
+  "packet_sha256": "a1306cc0458b8adf3f587594ebf8568ce0e80fb945c299bc7b962e86a29090cd",
+  "schema": "eo-claim-kit-dispatch-check/v1",
+  "scientific_approval": false,
+  "source_blocked_ids": [],
+  "source_index_notes": [
+    "jobs/app-executive-orders/output/SOURCES.jsonl: 792 source records (0 with saved bytes on this machine)",
+    "jobs/app-transcriptions/output/SOURCES.jsonl: 9902 source records (0 with saved bytes on this machine)",
+    "jobs/astra-source-retention/output/SOURCES.jsonl: 314 source records (314 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 0 records without a usable sha256, 7 unusable text_path/cache_path values",
+    "jobs/cassiodorus/output/SOURCES.jsonl: 10 source records (10 with saved bytes on this machine)",
+    "jobs/clark-discovery/output/SOURCES.jsonl: 445 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 92 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/clause-drafts/output/SOURCES.jsonl: 9761 source records (0 with saved bytes on this machine)",
+    "jobs/cotton-capture-custody/output/SOURCES.jsonl: 756 source records (756 with saved bytes on this machine)",
+    "jobs/current-law/output/SOURCES.jsonl: 110 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-sources/output/SOURCES.jsonl: 2 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-tail/output/SOURCES.jsonl: 1 source records (0 with saved bytes on this machine)",
+    "jobs/fr-originals/output/SOURCES.jsonl: 6497 source records (0 with saved bytes on this machine)",
+    "jobs/fr-pages/output/SOURCES.jsonl: 30 source records (28 with saved bytes on this machine)",
+    "jobs/hathi-gpo-orders/output/SOURCES.jsonl: 1531 source records (0 with saved bytes on this machine)",
+    "jobs/later-events/output/SOURCES.jsonl: 16566 source records (0 with saved bytes on this machine)",
+    "jobs/lewis-originals/output/SOURCES.jsonl: 439 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 285 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/mabillon-held-printings/output/SOURCES.jsonl: 2015 source records (0 with saved bytes on this machine)",
+    "jobs/numbered-early-orders/output/SOURCES.jsonl: 197 source records (0 with saved bytes on this machine)",
+    "jobs/opus-media-match/output/SOURCES.jsonl: 496 source records (0 with saved bytes on this machine)",
+    "jobs/ptolemy-custody/output/SOURCES.jsonl: 1390 source records (1390 with saved bytes on this machine)",
+    "jobs/shepard-citations/output/SOURCES.jsonl: 24 source records (24 with saved bytes on this machine)",
+    "jobs/source-ladder/output/SOURCES.jsonl: 632 source records (0 with saved bytes on this machine)",
+    "jobs/theophilus-sources/output/SOURCES.jsonl: 1499 source records (1499 with saved bytes on this machine)",
+    "jobs/wikisource-texts/output/SOURCES.jsonl: 1639 source records (1639 with saved bytes on this machine)",
+    "jobs/indian-reservations-1912: 1 committed volume(s) and 55 per-order text(s) indexed",
+    "jobs/isthmian-canal-1911: 1 committed volume(s) and 105 per-order text(s) indexed",
+    "jobs/ofr-codification-1989: 1 committed volume(s) and 0 per-order text(s) indexed",
+    "jobs/ofr-compilations: 1 committed volume(s) and 500 per-order text(s) indexed",
+    "jobs/richardson-volumes: 3 committed volume(s) and 68 per-order text(s) indexed",
+    "Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)",
+    "no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip"
+  ],
+  "source_recovery_tasks": [
+    {
+      "affected_references": [
+        {
+          "evidence_id": "ACTOR_TEXT:EO:1065",
+          "field": null,
+          "instrument_id": "EO:314",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "not_held"
+      ],
+      "expected_sha256": "bd550b2617a1188b2cac48cedebd2d8b3c1910f1b164b2d1ce2598d2e6744221",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:314"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://archive.org/details/reportofcommissi1909uni/page/n825"
+        ],
+        "wanted_id": "dispatch-68910032df3b5251173f45b8"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "page_or_item": "Annual reports of the Department of agriculture. Report of the secretary ... reports of chiefs … (Washington : Office of Printers to House of Reps., 1909), Internet Archive reportofcommissi1909uni, scan leaves 826-826",
+          "sha256": "bd550b2617a1188b2cac48cedebd2d8b3c1910f1b164b2d1ce2598d2e6744221",
+          "text_path": "jobs/tischendorf-originals/output/texts/EO_1065.txt",
+          "text_sha256": "c39e188505664e932db19b17e178c4b639c35c63fa3c0d0327df1c75eb5d70a0",
+          "url": "https://archive.org/details/reportofcommissi1909uni/page/n825"
+        }
+      ],
+      "task_id": "SOURCE:68910032df3b5251173f45b8"
+    }
+  ],
+  "state": "dispatchable_for_research",
+  "unique_custody_checks": 7,
+  "unique_required_text_checks": 5,
+  "wall_seconds": 7.284825
+}

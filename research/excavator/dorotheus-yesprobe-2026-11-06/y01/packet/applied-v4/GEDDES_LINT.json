@@ -1,0 +1,66 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/user/Executive-Orders/research/excavator/dorotheus-yesprobe-2026-11-06/y01/packet/PACKET.json",
+  "seconds": 20.681,
+  "files_read": 44902,
+  "file_reads": 89896,
+  "packet_fingerprint": "d1cb4cebd7e77b39376acde7296440a225550c060be3c1ae31de25a5941f7948",
+  "claims_checked": 3,
+  "defect_flags": 0,
+  "coverage_gaps": 2,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:10057",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "literal_name_corpus_scope",
+          "inventory_commit": "0c20708ecc04ca9014313194054e0bf07e26efb6",
+          "inventory_kind": "tracked_jobs_texts",
+          "inventory_sha256": "66508ab73869b4e85b6ba52bcb0a58853872805f3146aeeb92c9cb46731b141c",
+          "tracked_files": 44896,
+          "verified_files": 44896,
+          "missing_files": 0,
+          "changed_files": [],
+          "full_discovered_corpus_covered": true,
+          "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+        },
+        {
+          "code": "literal_name_search_performed",
+          "field": "claim.research_rationale.member_checks.earlier_end_check",
+          "names": [
+            "eo 10057 searched held texts eo 10087 eo 10088 which only shares a page the 1989 ofr snapshot and the code"
+          ],
+          "after_date": null,
+          "counterexamples": 0,
+          "negative_established": false,
+          "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:10104",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:10153",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

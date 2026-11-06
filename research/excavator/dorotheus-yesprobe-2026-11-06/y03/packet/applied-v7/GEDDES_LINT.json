@@ -1,0 +1,60 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/user/Executive-Orders/research/excavator/dorotheus-yesprobe-2026-11-06/y03/packet/PACKET.json",
+  "seconds": 17.278,
+  "files_read": 44903,
+  "file_reads": 89953,
+  "packet_fingerprint": "cefb6c19f06f11866f2a82dbf03e1eefa26146e30fd0de4455413f5bdec2f545",
+  "claims_checked": 3,
+  "defect_flags": 1,
+  "coverage_gaps": 2,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:11600",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:11961",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:12046",
+      "flags": [
+        {
+          "code": "event_precedes_order",
+          "scope_id": "EO:12046#s1-1",
+          "field": "operative_clauses[0].first_end.date",
+          "span": "1978-03-26",
+          "detail": "The recorded date 1978-03-26 precedes the order's own date 1978-03-27.",
+          "flag_id": "dbeff9933df017a3"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

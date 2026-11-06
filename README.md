@@ -6,6 +6,8 @@
 
 **Current dashboard:** [Research progress and recent work](research/progress/README.md) · [Generated counts, receipt freshness, and source generations](jobs/daily-digest/output/DASHBOARD.md).
 
+**Population estimate (provisional, AI-reviewed, uncertified, n=120):** [`research/dorotheus/SAMPLE_ESTIMATE.md`](research/dorotheus/SAMPLE_ESTIMATE.md), the weighted share of orders with operative force on 2026-10-14 from the Stage 15 stratified sample, with its interval, nonresponse and sensitivity.
+
 **The one authoritative generated number:** `ready_for_human_review` in [`jobs/readiness-tracker/output/SUMMARY.json`](jobs/readiness-tracker/output/SUMMARY.json), read together with its `generation_id` (the runner's run id and input-manifest sha256, also in that job's `STATUS.json`); any other figure is derived from it or is a different tier.
 
 **Working progress measure:** the [readiness tracker](jobs/readiness-tracker/output/TRACKER.md) counts orders that are ready for human review (every machine research step done or searched to the end) and lists the single actions that unblock the most orders. Human verification is counted separately.

@@ -19,8 +19,10 @@ other. A stratum with no respondents contributes its weight through the collapse
 Intervals: Wald (normal) and Korn-Graubard (Clopper-Pearson on the effective sample size n_eff = p(1-p)/V, with
 degrees of freedom = respondents - strata), which behaves better near 0 and 1 and for small n.
 
-Sensitivity: (a) MAR within stratum (above); (b) every nonrespondent y = 0 (all nonresponse NO); (c) for the
-formal-validity column, the same two.
+Sensitivity: (a) MAR within stratum (above); (b) every nonrespondent y = 0 (all nonresponse NO); (c) every
+nonrespondent y = 1 (the worst case for a NO-heavy sample); (d) the producers' best-supported assessment of every
+assigned order, filed or not, with "unknown" as missing; (e) for the formal-validity column, (a) and (b).
+At p = 0 or 1 the stratified variance is 0; the interval then uses the respondents as the effective sample size.
 
 A response is a filed, independently AI-reviewed claim (outcome filed or ready_existing). Everything is
 provisional, AI-reviewed and uncertified (human-certified count: 0).
@@ -96,7 +98,12 @@ def estimate(strata, values, mode):
     N = sum(s["N"] for s in strata.values())
     obs = {}
     for h, ys in values.items():
-        ys = [(0 if y is None else y) for y in ys] if mode == "nonresponse_zero" else [y for y in ys if y is not None]
+        if mode == "nonresponse_zero":
+            ys = [(0 if y is None else y) for y in ys]
+        elif mode == "nonresponse_one":
+            ys = [(1 if y is None else y) for y in ys]
+        else:
+            ys = [y for y in ys if y is not None]
         obs[h] = ys
     # collapse partners for strata without a usable variance or mean
     def partner(h):
@@ -146,7 +153,15 @@ def estimate(strata, values, mode):
         kg = (beta_ppf(0.025, x, n_star - x + 1) if x > 0 else 0.0,
               beta_ppf(0.975, x + 1, n_star - x) if x < n_star else 1.0)
     else:
-        n_eff, kg = None, wald
+        # p at 0 or 1 (or no variance): no design effect is estimable; use the respondents as the effective
+        # sample size, so the Clopper-Pearson bound reflects how many orders were actually observed.
+        n_eff = float(respondents)
+        if n_eff > 0:
+            x = p * n_eff
+            kg = (beta_ppf(0.025, x, n_eff - x + 1) if x > 0 else 0.0,
+                  beta_ppf(0.975, x + 1, n_eff - x) if x < n_eff else 1.0)
+        else:
+            kg = (0.0, 1.0)
     return {"mode": mode, "share": p, "se": se, "wald_95": wald, "korn_graubard_95": kg, "n_effective": n_eff,
             "df": df, "respondents": respondents, "population": N, "estimated_count": p * N,
             "count_95_korn_graubard": [kg[0] * N, kg[1] * N], "strata": used, "notes": notes}
@@ -156,7 +171,7 @@ def main(sample_path, disposition_path, out_path):
     sample = list(csv.DictReader(open(sample_path, encoding="utf-8")))
     disp = {r["id"]: r for r in csv.DictReader(open(disposition_path, encoding="utf-8"))
             if r.get("wave", "sample") in ("", "sample")}
-    strata, op, fv, rows = {}, defaultdict(list), defaultdict(list), []
+    strata, op, fv, assess, rows = {}, defaultdict(list), defaultdict(list), defaultdict(list), []
     for s in sample:
         h = f"{s['era']} | {s['source_class']}"
         strata[h] = {"N": int(s["stratum_N"]), "n": int(s["stratum_sample_n"]), "era": s["era"]}
@@ -167,13 +182,17 @@ def main(sample_path, disposition_path, out_path):
         f = d.get("formal_validity_at_cutoff", "")
         yf = (1 if f == "unrevoked" else 0 if f == "revoked" else None) if responded else None
         op[h].append(y)
+        a = d.get("operative_force_at_cutoff", "")
+        assess[h].append(1 if a == "yes" else 0 if a == "no" else None)
         fv[h].append(yf)
         rows.append({"id": s["id"], "stratum": h, "outcome": d.get("outcome", "missing"), "y_operative": y,
                      "y_formal_validity": yf, "first_cause": d.get("first_cause", ""),
                      "formal_revocation_after_earlier_cessation": d.get("formal_revocation_after_earlier_cessation", "")})
     result = {
         "schema": "dorotheus-sample-estimate/v1", "label": "provisional, AI-reviewed, uncertified, n=120",
-        "operative_force": {m: estimate(strata, op, m) for m in ("mar", "nonresponse_zero")},
+        "operative_force": {m: estimate(strata, op, m) for m in ("mar", "nonresponse_zero", "nonresponse_one")},
+        # Sensitivity: the producers' assessment of every assigned order, filed or not (unknown = missing).
+        "operative_force_producer_assessment": estimate(strata, assess, "mar"),
         "formal_validity_unrevoked": {m: estimate(strata, fv, m) for m in ("mar", "nonresponse_zero")},
         "nonresponse_by_stratum": {h: {"n": len(v), "respondents": sum(1 for y in v if y is not None)} for h, v in op.items()},
         "outcomes": dict(sorted(defaultdict(int, {k: sum(1 for r in rows if r["outcome"] == k) for k in {r["outcome"] for r in rows}}).items())),
