@@ -38,6 +38,8 @@ REPO = HERE.parents[1]
 sys.path.insert(0, str(REPO / "jobs/_lib"))
 sys.path.insert(0, str(REPO / "jobs/cassiodorus"))
 sys.path.insert(0, str(REPO / "jobs/app-executive-orders"))
+import byte_budget  # noqa: E402
+import pergamon_store as PS  # noqa: E402
 
 ARCHIVE_FETCHES_PER_RUN = 6000      # Common Crawl ranges at one a second: under two hours
 LIVE_FETCHES_PER_RUN = 3000
@@ -98,7 +100,10 @@ def content_type(name):
 
 
 def carry_forward(prior, out):
-    """Copy the previous generation's kept files (re-hashed) and records into this run's output."""
+    """Copy the previous generation's kept files (re-hashed) and records into this run's output.
+
+    Bytes held in the Pergamon store (a SOURCES record with a `pergamon` locator and no file here) are carried as
+    records only: the manifest is trusted for carrying, and every reader re-hashes the bytes it fetches."""
     prior, out = Path(prior), Path(out)
     (out / "raw").mkdir(parents=True, exist_ok=True)
     kept = {}
@@ -114,6 +119,12 @@ def carry_forward(prior, out):
         if p.is_file():
             kept[p.name.split(".")[0]] = p.name
     sources = {r["sha256"]: r for r in read_jsonl(prior / "SOURCES.jsonl") if r.get("sha256") in kept}
+    for r in read_jsonl(prior / "SOURCES.jsonl"):
+        pg = r.get("pergamon")
+        if isinstance(pg, dict) and pg.get("sha256") == r.get("sha256") and pg.get("locator") \
+                and r.get("sha256") not in kept:
+            kept[r["sha256"]] = r["sha256"] + PS.norm_ext(pg.get("ext"))
+            sources[r["sha256"]] = r
     ledger = {r["sha256"]: r for r in read_jsonl(prior / "LEDGER.jsonl") if r.get("sha256")}
     return kept, sources, ledger
 
@@ -121,11 +132,15 @@ def carry_forward(prior, out):
 class Budget:
     def __init__(self, started, wall=WALL_SECONDS, max_bytes=BYTES_PER_RUN):
         self.started, self.wall, self.max_bytes = started, wall, max_bytes
-        self.bytes, self.lock = 0, threading.Lock()
+        self.bytes, self.lock, self.stopped = 0, threading.Lock(), False
+
+    def stop(self):
+        with self.lock:
+            self.stopped = True
 
     def open(self):
         with self.lock:
-            return self.bytes < self.max_bytes and time.monotonic() - self.started < self.wall
+            return not self.stopped and self.bytes < self.max_bytes and time.monotonic() - self.started < self.wall
 
     def add(self, n):
         with self.lock:
@@ -133,9 +148,15 @@ class Budget:
 
 
 def run(job_dir, out, cache, prior=None, fetch_archive=None, pool=None, budget=None,
-        archive_limit=ARCHIVE_FETCHES_PER_RUN, live_limit=LIVE_FETCHES_PER_RUN):
+        archive_limit=ARCHIVE_FETCHES_PER_RUN, live_limit=LIVE_FETCHES_PER_RUN, store=None):
+    """`store` is a Pergamon store. By default it comes from PERGAMON_BACKEND: "git" (the default) keeps the old
+    behaviour of writing output/raw/<sha256>.<ext>; any other backend keeps the bytes outside git and writes the
+    store locator into SOURCES.jsonl (`pergamon`), with `cache_path` null."""
     job_dir, out, cache = Path(job_dir), Path(out), Path(cache)
     out.mkdir(parents=True, exist_ok=True)
+    store = store or PS.Store.from_env(git_root=out / "raw", git_base=out)
+    external = store.backend_name != "git"
+    store_state = {"stored": 0, "bytes": 0, "failures_in_a_row": 0, "failed": 0}
     started = now()
     kept, sources, ledger = carry_forward(prior or out, out)
     requests = read_jsonl(job_dir / "REQUESTS.jsonl")
@@ -153,23 +174,45 @@ def run(job_dir, out, cache, prior=None, fetch_archive=None, pool=None, budget=N
 
     def record(req, result, note="", body=None, how=""):
         sha = req["sha256"]
+        name = file_name(req, body) if body is not None else None
+        pg = None
+        if external and body is not None:
+            try:  # upload before taking the lock: it is slow and runs in several threads
+                pg = store.put(body, Path(name).suffix, {"route": req["route"]})
+                pg.pop("meta", None)
+            except PS.PergamonError as exc:
+                with lock:
+                    store_state["failed"] += 1
+                    store_state["failures_in_a_row"] += 1
+                    if store_state["failures_in_a_row"] >= 5:
+                        budget.stop()   # the store is down: stop fetching what cannot be kept
+                note = f"store refused the bytes: {type(exc).__name__}: {exc}"
+                result, body = "store_failed", None
         with lock:
             prev = ledger.get(sha, {})
+            # a store failure says nothing about the source, so it does not use up one of its three attempts
+            attempts = int(prev.get("attempts", 0)) + (0 if result == "store_failed" else 1)
             ledger[sha] = {"sha256": sha, "url": req.get("url", ""), "route": req["route"], "result": result,
-                           "attempts": int(prev.get("attempts", 0)) + 1, "last_utc": now(), "note": note[:300]}
+                           "attempts": attempts, "last_utc": now(), "note": note[:300]}
             if body is not None:
-                name = file_name(req, body)
-                tmp = out / "raw" / (name + ".tmp")
-                tmp.write_bytes(body)
-                os.replace(tmp, out / "raw" / name)
+                if pg is not None:
+                    store_state["stored"] += 1
+                    store_state["bytes"] += len(body)
+                    store_state["failures_in_a_row"] = 0
+                else:
+                    tmp = out / "raw" / (name + ".tmp")
+                    tmp.write_bytes(body)
+                    os.replace(tmp, out / "raw" / name)
                 kept[sha] = name
                 sources[sha] = {
                     "source_id": "ptolemy-" + sha[:12], "instrument_ids": req.get("instrument_ids", []),
                     "url": req.get("url", ""), "sha256": sha, "bytes": len(body), "content_type": content_type(name),
                     "retrieved_utc": started, "route": "job:ptolemy-custody:" + req["route"],
-                    "page_or_item": how, "cache_path": "raw/" + name,
+                    "page_or_item": how, "cache_path": None if pg is not None else "raw/" + name,
                     "notes": "Bytes kept so the checker can re-hash them; they hash exactly as first recorded. "
                              "Custody only: no grade, identity or finding."}
+                if pg is not None:
+                    sources[sha]["pergamon"] = pg
 
     def keep_if_exact(req, body, how):
         got = sha256(body)
@@ -266,8 +309,19 @@ def run(job_dir, out, cache, prior=None, fetch_archive=None, pool=None, budget=N
         "limits": {"archive_fetches_per_run": archive_limit, "live_fetches_per_run": live_limit,
                    "bytes_per_run": budget.max_bytes, "max_file_bytes": MAX_FILE_BYTES, "wall_seconds": budget.wall,
                    "max_attempts": MAX_ATTEMPTS},
+        "store": {"backend": store.backend_name, "stored_this_run": store_state["stored"],
+                  "stored_bytes_this_run": store_state["bytes"], "store_failures_this_run": store_state["failed"]},
         "statuses_changed": 0, "legal_conclusions": 0,
         "notice": "Custody only: kept bytes hash exactly as first recorded; nothing here grades or authenticates a source."}
     (out / "SUMMARY.json").write_text(json.dumps(summary, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({k: summary[k] for k in ("kept_total", "still_due", "outcomes_all_runs")}), flush=True)
+    # Byte budget (campaign rule: output/ at most 20 MiB, no file over 5 MiB). Recorded always; enforced once the
+    # bytes live outside git. The legacy "git" backend still carries the already committed raw/ files, and raw/ is
+    # left out of the enforced total while earlier generations' git-committed files are still carried in it.
+    report = byte_budget.output_report(out, 20 * byte_budget.MIB, 5 * byte_budget.MIB,
+                                       exclude=("raw",) if external else ())
+    report["legacy_raw_bytes"] = byte_budget.measure_dir(out / "raw")[0]
+    byte_budget.write_budget_json(out / "BUDGET.json", report)
+    if external and not report["ok"]:
+        raise RuntimeError("ptolemy: output over its byte budget: " + "; ".join(report["problems"]))
     return summary
