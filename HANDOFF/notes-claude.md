@@ -1,3 +1,35 @@
+## 2026-11-06 16:30 ET (Claude, Formulario: a checked lemma library of lifecycle facts and the documents that prove them)
+
+- **Done:** new job `jobs/peano-formulario/`, named for Peano's *Formulario mathematico*, the ancestor of Lean's
+  mathlib.
+  - **The library.** Lifecycle facts become small named lemmas with proof terms. The kernel marks a lemma
+    `proved` only when its exact words are found in retained bytes, or in a re-fetchable official copy whose hash
+    is recorded; the words must sit in the right record and name the other instrument. Everything else is `sorry`,
+    with a reason.
+  - **Local build:** 23,899 lemmas, 22,728 proved; 3,097 orders have a proved end lemma.
+    - 22,697 of the proved lemmas are later-events edges. The seven Federal Register API pages behind about 15,900
+      disposition notes are now retained, so those notes are checkable offline.
+    - 31 of 41 axioms are proved, and all are general theorems: war and emergency terminations, Philippine
+      independence, reorganization plans, FLPMA, Youngstown, Schechter and others.
+  - **Size:** 27 MB retained (files up to 3 MB); lemma shards 3.4 MB.
+  - **Use:** `formulario.py exact EO:N --goal end` answers the "what closes this?" question;
+    `formulario.py supplement <id>` prints a claim-kit source-excerpt entry. Its `SOURCES.jsonl` makes every
+    retained document checkable by claim-checker with no code change.
+  - **Axiom sweep:** 8 sonnet researchers and 1 opus critic; 857,679 subagent tokens; 610 s; 127 tool uses.
+    - 59 candidates proposed; the critic dropped 18 and recoded or annotated 13.
+    - 15 missing instruments kept as open goals in `catalog/WANTED.jsonl`.
+    - 27 bulk sources catalogued.
+  - Kean F-20261106-formulario.
+- **Asks:** Kean A-20261106-formulario-brave. `BRAVE_SEARCH_KEY` works, but `jobs/_lib/fetch_pool.py` refuses
+  Brave's API host under robots.txt. The free engines were throttled or robots-blocked, so the search tactic
+  proved none of the 10 `sorry` axioms.
+- **Not done:**
+  - Adapters for the Selden, current-law, Theophilus and Shepard edges.
+  - `bentham.py usage` failed on the workflow transcripts ("malformed supported transcript export"), so this
+    wave's usage is recorded here and in Kean only.
+- **Do not:** read a `proved` lemma as a legal finding. Whether a class lemma reaches a particular order is
+  legal judgment; `exact` lists class lemmas only as candidates.
+
 ## 2026-11-06 15:00 ET (Claude, Dagron: daily acquisition manifests for outside collections; NYU Film 709 first)
 
 - **Done:** new job `jobs/dagron-collection-manifest/`. It runs daily, and after the tracker, Domesday and Lewis.
