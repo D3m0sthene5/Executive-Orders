@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-06 08:24 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-06 09:28 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 **Readiness generation is behind the current records.** The published ready count below is retained with its generation date. New or changed claims require matching checker receipts and a tracker refresh before they can advance readiness.
 
@@ -19,8 +19,8 @@ Generated 2026-11-06 08:24 EST. Legal cutoff: **2026-10-14** (America/New_York).
 | Superseded or repeated claim lines | 205 | Difference between valid lines and unique orders |
 | Human-certified whole histories, published register | 0 | Separate Stage19 human-review record; never inferred from AI passes |
 
-Tracker generation: **2026-11-06 08:24 EST**; input commit `dc8705becb9af07c141d857839ff377ac3be83b6`.
-[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42222117996).
+Tracker generation: **2026-11-06 09:28 EST**; input commit `3d4b43af63eaefcb16b1b30c901700d8e1ecc5f3`.
+[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42230618454).
 
 ## Receipt coverage and freshness
 
@@ -47,7 +47,7 @@ Input differences requiring a refresh or correction:
 | Operative clause inventory | 1,447 / 4,298 |
 | Ending or current legal basis | 1,228 / 4,298 |
 | Surviving effects | 1,434 / 4,298 |
-| Counterevidence review | 2,873 / 4,298 |
+| Counterevidence review | 2,869 / 4,298 |
 | Shared cited sources | 212 / 236 |
 | Opus evidence images | 125 / 825 |
 
@@ -68,12 +68,12 @@ File acquisition and machine text do not establish legal conclusions or independ
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `dc8705becb9af07c141d857839ff377ac3be83b6`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `3d4b43af63eaefcb16b1b30c901700d8e1ecc5f3`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
-| Readiness | 2026-11-06 08:24 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
-| Claim checker | 2026-11-06 08:23 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
+| Readiness | 2026-11-06 09:28 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
+| Claim checker | 2026-11-06 09:27 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
 | ProQuest ingestion | 2026-10-28 14:49 EDT | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
 | Web-source custody | 2026-11-04 13:34 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
 

@@ -10,7 +10,7 @@ New York date: 2026-11-06. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42222117996-1:b20beaa63e2c04330ecaadaffcf43d24b9b7fe36662f14bc2e73c3f5ba03461d` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42230618454-1:e9cc03c4b6a97bf36b05401dd6e3770691d3b21fdfb36d7814f498e2022ab7e0` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -40,6 +40,7 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - ptolemy-custody: kept_this_run_bytes: unavailable → 929459485; kept_total: unavailable → 1390; legal_conclusions: unavailable → 0; orders_with_a_kept_source: unavailable → 1231
 - readiness-tracker: formal_revocation_after_earlier_cessation: unavailable → 0; numbered_series_orders: unavailable → 14998; orders_total: 14972 → 14998; orders_with_provisional_status: 4291 → 4298
 - shepard-citations: land_targets: 3547 → 3549
+- source-ladder: attempts_logged: 23 → 70; bytes_downloaded: 822061830 → 640005978; distinct_new_source_hashes: 23 → 36; embedded_cite_items: 16 → 10
 - status-history: printed_snapshot_undecided_identities: 2240 → 2235; undecided_with_history: 4773 → 4763; undecided_with_own_observation: 4596 → 4591
 - theophilus-sources: cfr_targets_planned: unavailable → 609; eligible_yes_orders: unavailable → 364; failures_total: unavailable → 73; orders_named_in_notices: unavailable → 162
 - tischendorf-originals: bytes_downloaded: unavailable → 27441440056; leads: unavailable → 492; order_errors: unavailable → 0; replacement_strong: unavailable → 25
@@ -63,4 +64,4 @@ No open ask is recorded in the Kean register.
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42222117996)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42230618454)

@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42222117996-1:b20beaa63e2c04330ecaadaffcf43d24b9b7fe36662f14bc2e73c3f5ba03461d` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42230618454-1:e9cc03c4b6a97bf36b05401dd6e3770691d3b21fdfb36d7814f498e2022ab7e0` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -26,7 +26,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Complete inventory of the order's operative clauses | 1,447 | 4,298 | 33.7% |
 | When and how it ended (NO), or what keeps it operating now (YES) | 1,228 | 4,298 | 28.6% |
 | Savings clauses and surviving effects closed | 1,434 | 4,298 | 33.4% |
-| Search for later contrary sources recorded, no open conflicts | 2,873 | 4,298 | 66.8% |
+| Search for later contrary sources recorded, no open conflicts | 2,869 | 4,298 | 66.8% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 825 | 15.2% |
 
@@ -62,7 +62,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `CURRENT_BASIS_UNPROVED` | 371 | 371 |
 | `OPUS_MEDIA_NONE_CITED` | 198 | 198 |
 | `FIRST_END_UNRESOLVED` | 184 | 184 |
-| `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 137 | 137 |
+| `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 141 | 141 |
 | `CLAIM_INCOMPLETE` | 88 | 88 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
@@ -102,7 +102,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
 - lachmann working-text confirmations (provisional text step only, never an original): 7,738
 - opus-media-match status: 1,155
-- source-ladder: 632
+- source-ladder: 673
 - claim-checker: 1,519
 - machine later-source search: 6,938
 
