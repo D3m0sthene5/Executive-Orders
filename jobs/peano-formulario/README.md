@@ -131,6 +131,6 @@ records; the kernel and the index are shared.
 
 - **Sources from other jobs:** Selden, current-law, Theophilus and Shepard edges. Their formats differ; each needs
   a small adapter like `build_later_events`.
-- **Brave:** the project's `BRAVE_SEARCH_KEY` works (Lewis sent one query on 2026-11-06). But the shared fetch
-  pool refuses `api.search.brave.com` under its robots.txt rule, so Brave stays unused until the owner decides
-  whether keyed, contracted APIs are exempt from that rule (Kean A-20261106-formulario-brave).
+- **Brave:** on GitHub's runner, `brave_api` is ready (the project's `BRAVE_SEARCH_KEY` is set). The first run
+  sent one paid Brave query, within the caps, and that search proved one more axiom. In this container and in
+  Lewis's earlier run, Brave was refused under robots.txt; the shared library defers a refused engine for the run.
