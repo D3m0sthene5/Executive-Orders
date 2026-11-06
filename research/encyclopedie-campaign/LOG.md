@@ -84,15 +84,39 @@ file over 5 MiB. Per push: at most 25 MiB of new blobs, checked with
 
 ## Rules learned
 
+- The first CRLF one-liner in WORKER_RULES.md opened each file for writing before reading it and emptied files; two
+  streams lost and rebuilt their files. Replaced by `tools/lf.py` (reads first, refuses to empty) at 23:40 UTC.
+- My first lease tip went to the wrong agent id; resent to Youngstown.
+
 - A push that changes an existing job's folder starts that job on the branch. The lease-wiring push started claim-kit
   (run 42306096793); it was cancelled within a minute, before committing. Rule added to `WORKER_RULES.md`.
 - The tracker's `formal_revocation_after_earlier_cessation` column is blank for all 14,998 orders: the project does not
   yet compute its own thesis measure (matters for the prior-art baseline).
 
+## Pull requests (all left open for the owner)
+
+| PR | Branch | What | Counts |
+|---|---|---|---|
+| #188 | enc/attempt-trim | Runner keeps failed-attempt receipts small (urgent: about 740 MB/day) | neutral |
+| #189 | enc/leases-wire | Kean leases; dispatch-check honours them | neutral |
+| #190 | enc/drivers | Hollerith driver scripts and billing facts | neutral |
+| #191 | enc/cost | Necker dollar costs | neutral |
+| #192 | enc/zenodo | Bodley Zenodo design | neutral |
+| #193 | enc/observable | Playfair Observable trial | neutral |
+| #195 | enc/certifier | Nihil obstat certifier page | neutral |
+
 ## Workers
 
 | Worker | Model | Task | Tokens | Time |
 |---|---|---|---:|---:|
+| Pergamon | Sonnet | storage | 246,158 | 16.7 min |
+| Hollerith | Sonnet | drivers, billing | 368,590 | 16.8 min |
+| Necker | Sonnet | cost | 281,245 | 19.6 min |
+| Bayle-LP | Sonnet | Lowande-Poznansky | 330,144 | 20.4 min |
+| Bayle-Thrower | Sonnet | Thrower | 345,345 | 21.9 min |
+| Bodley | Sonnet | Zenodo | 248,393 | 16.5 min |
+| Playfair | Sonnet | Observable | 163,244 | 21.5 min |
+| Nihil obstat | Sonnet | certifier | 337,261 | 22.5 min |
 
 ## Events
 
@@ -106,3 +130,10 @@ file over 5 MiB. Per push: at most 25 MiB of new blobs, checked with
   the Caselaw Access Project bulk data.
 - 22:50 UTC. Leases wired into `kit.py dispatch-check` (branch `enc/leases-wire`, 3 gate tests). Ptolemy pause run
   verified. GitHub size 9,732,031 KB.
+- 23:30 UTC. Owner's second answers recorded (D-20261106-encyclopedie-storage, -keys, -ocr-reference,
+  -thesis-measure; A-20261106-1 provisional answer recorded, ask kept open; A-20261106-2 lives only on the unmerged
+  survey branch, so its answer is in the decision). Thesis-measure stream (Opus) launched.
+- 00:00 UTC Nov 7. `jobs/_attempts` found to be the next grower (failed runs commit whole outputs); PR #188.
+  Migration of 3,695 Ptolemy and Selden raw files (3.2 GB, 3,691 unique) to the Release store started: three uploaders
+  on disjoint folders under `C:/Users/danie/eo-pergamon-stage/`, about 25 s per file. Fresh Opus check of prior-art
+  launched. PRs #188-#193 and #195 opened.
