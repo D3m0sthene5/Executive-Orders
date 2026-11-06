@@ -36,6 +36,17 @@ shorten entries or the cap will need raising.
 
 *Default:* leave the one consolidated ask; the per-family asks are recorded and withdrawn as merged.
 
+## Q5. For Gratian: the lead format (information, no decision needed)
+
+`jobs/pothier/output/LEADS.jsonl` (schema `pothier-status-lead/v1`), one line per member and doctrine: `instrument_id`,
+`doctrine_id`, `doctrine_sha256`, `branch_id`, `status_lead` (`no`/`yes`/`open`), `lead_kind`, `basis_kind`
+(`TERM`/`ACT`/`CURRENT`/`NONE`, matching the claim kit's `TERM:`/`ACT:`/`CURRENT:` evidence prefixes), `basis`,
+`date` (rule and value or interval), `sources` (citation, held, path, URL), `gaps`, `contradictions`, `history_basis`
+(the 2026-11-05 empty-history ruling), `decides`. A lead is never a status; a consumer should show it to a producer as
+a starting point and never write it into a status field.
+
+*Default:* Pothier does not touch claim-kit or the tracker; Gratian decides whether and how to surface leads.
+
 ## Answers
 
 (empty)

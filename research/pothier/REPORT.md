@@ -122,7 +122,8 @@ and 567 cite at least one source not yet held; each lead says so in its gaps.
 - **Cost.** About 15 million subagent tokens as the harness reported them (authors 4.8M, reviews 6.0M, revisions 2.1M
   plus five unreported, pilots 1.9M), about 4 hours of wall time, all Opus (`work/USAGE.csv`). `jobs/bentham/sessions.py`
   could not read the subagent transcripts in this session (none are stored locally), so no API-equivalent dollar
-  figure is given.
+  figure is given. No Bentham action id covers this owner-directed work, so `bentham.py gate` had nothing to gate;
+  the coordinator ruled the reviews and pilots tool-building review, where an economic STOP is not binding.
 
 ## Limits
 

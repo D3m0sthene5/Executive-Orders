@@ -15,18 +15,26 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
-MAX_URLS = 120
+MAX_URLS = 140
 MAX_BYTES = 40_000_000
 
 
+PER_ORDER_RE = re.compile(r"\bPLO\b|Public Land Order")
+
+
 def proposals(root=REPO):
-    seen, out = set(), []
+    """Class-wide sources only. Per-order acting instruments (Public Land Orders) belong to Selden and are listed in
+    research/pothier/FOR_SELDEN.csv; URLs Ptolemy already keeps (work/PTOLEMY_SKIP.txt) are skipped."""
+    skip_file = root / "research/pothier/work/PTOLEMY_SKIP.txt"
+    seen = set(skip_file.read_text().split()) if skip_file.exists() else set()
+    out = []
     for p in sorted((root / "research/pothier/work").glob("*/FETCH_PROPOSED.jsonl")):
         doctrine = p.parent.name
         for line in p.read_text(encoding="utf-8").splitlines():
@@ -36,6 +44,9 @@ def proposals(root=REPO):
             try:
                 r = json.loads(line)
             except ValueError:
+                continue
+            text = " ".join([r.get("citation", ""), r.get("note", "")] + list(r.get("urls") or []))
+            if PER_ORDER_RE.search(text):
                 continue
             for url in r.get("urls") or []:
                 if isinstance(url, str) and url.startswith("https://") and url not in seen:
