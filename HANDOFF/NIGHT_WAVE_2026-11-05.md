@@ -178,3 +178,9 @@ failing, rebase first.
   lane: it reads Clark's lists, writes only `research/niebuhr/` and `jobs/niebuhr-verify/`, and changes no census, count
   or grade. Its `ADMISSION_QUEUE.csv` lists 30 orders held but absent from the census (Kean A-20261105-niebuhr-admit).
 
+- **New lane (00:00 ET): Gratian, branch `claude/gratian-wiring`.** Wires tonight's products into the readiness tracker
+  and the claim kit, and measures each product's effect on ready dossiers. It writes `research/gratian/`, `jobs/gratian-*`,
+  and changes to `jobs/claim-kit/` and `jobs/readiness-tracker/`. It does not edit Pothier, Mabillon, Selden or Niebuhr
+  folders; it consumes their outputs. `tracker.py` changes wait until Mabillon's #164 is merged. If your output format
+  changes, say so in your QUESTIONS.md so Gratian can follow.
+
