@@ -35,6 +35,30 @@ class Locate(unittest.TestCase):
         self.assertEqual(S.find_citations("Executive Order 138790 was cited.", "EO:13879"), [])
         self.assertTrue(S.find_citations("Executive Orders 13879 and 138790 were cited.", "EO:13879"))
 
+    def test_v2_lists_and_ocr(self):
+        self.assertTrue(S.find_citations("Amendment of E xecutive O rder No. 8572 of October 21, 1940", "EO:8572"))
+        lst = "Executive Orders Numbered 8744 9230 9712 9830 are revoked."
+        self.assertTrue(S.find_citations(lst, "EO:9712"))
+        self.assertEqual(S.find_citations(lst, "EO:9713"), [])
+        cut = "Executive Order No. 12360, establishing" + " x" * 500
+        self.assertEqual(S.find_citations(cut, "EO:1236"), [])
+        table = "No. Subject\n10919 Creating an emergency board\n1056 THE PRESIDENT\n"
+        self.assertTrue(S.find_citations(table, "EO:10919"))
+        self.assertEqual(S.find_citations(table, "EO:1056"), [])
+
+    def test_v2_false_forms_rejected(self):
+        self.assertEqual(S.find_citations("Executive Order 1 2552, see the Weekly Compilation", "EO:2552"), [])
+        self.assertEqual(S.find_citations("Executive Order No. 6980-C approved March 1, 1935", "EO:6980"), [])
+        self.assertEqual(S.find_citations("Executive Order 9395B, supra.", "EO:9395"), [])
+        self.assertEqual(S.find_citations("Executive Order 13488 of January 16, 2009 Granting", "EO:2009"), [])
+        self.assertTrue(S.find_citations("Executive Orders Nos. 4109, 4262, and 4430 of December 8, 1924", "EO:4430"))
+
+    def test_closing_tag_and_year_after_date(self):
+        b = S.best_hit(S.find_citations("is hereby revoked.\n[EXECUTIVE ORDER 9346]\nThe White House", "EO:9346"))
+        self.assertTrue(b["heading_or_closing_tag"])
+        self.assertFalse(S.acting_on_target(b))
+        self.assertEqual(S.find_citations("Executive Order 13593 of December 13, 2011\n2011 Amendments", "EO:2011"), [])
+
     def test_amender_named_is_not_target_acted_on(self):
         hits = S.find_citations(AMENDED_BY, "EO:12400")
         self.assertTrue(hits)

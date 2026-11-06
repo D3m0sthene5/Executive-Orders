@@ -78,7 +78,7 @@ class Acting(unittest.TestCase):
     def test_end_to_end(self):
         premis = lambda pkg: {"gpo_sha256": acting.S.sha256(ISSUE), "result": "match", "premis_url": "u"}
         s = acting.main(self.repo, self.out, Path(self.tmp.name) / "cache", transport=transport, premis=premis,
-                        env={"JOB_WORKERS": "2"}, extract_procs=0)
+                        env={"JOB_WORKERS": "2", "JOB_PRIOR_OUTPUT_DIR": str(Path(self.tmp.name) / "none")}, extract_procs=0)
         self.assertEqual(s["issues_gpo_premis_match"], 1)
         self.assertEqual(s["pairs_acting_on_target"], 1)
         frag = [json.loads(l) for l in (self.out / "FRAGMENTS.jsonl").read_text().splitlines()][0]["data"][0]

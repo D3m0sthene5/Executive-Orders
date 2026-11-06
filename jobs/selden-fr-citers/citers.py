@@ -301,8 +301,7 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
     done_before = set(prior_state.get("searched") or [])
     # Carry earlier runs' results forward (their texts are re-copied so the output stays self-contained).
     carried = 0
-    for f in S.read_jsonl(prior_dir / "FRAGMENTS.jsonl"):
-        run.fragments.append(f)
+    prior_frags = S.read_jsonl(prior_dir / "FRAGMENTS.jsonl")
     for r in S.read_jsonl(prior_dir / "SOURCES.jsonl"):
         p = prior_dir / r.get("cache_path", "")
         if r.get("cache_path") and p.is_file() and S.sha256(p.read_bytes()) == r["sha256"]:
@@ -311,6 +310,23 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
             run.sources[r["source_id"][7:]] = r
             run.committed += r.get("bytes") or 0
             carried += 1
+    relocated = 0
+    for f in prior_frags:
+        row = f["data"][0]
+        if row.get("located_by") != S.LOCATOR_VERSION and row.get("text_path") and (out / row["text_path"]).is_file():
+            # A new locator version re-reads the kept text: no request.
+            text = plain((out / row["text_path"]).read_bytes())
+            b = S.best_hit(S.find_citations(text, f["instrument_id"]))
+            if not b:
+                continue
+            src = {"source_id": row["source_id"], "url": row["source_url"], "sha256": row["source_sha256"],
+                   "page_or_item": row.get("page_or_item"), "text_path": row["text_path"]}
+            keep = {k: row[k] for k in ("fr_document_type", "publication_date") if k in row}
+            f = S.fragment(f["instrument_id"], row["acting_id"], row["acting_label"], b, src, "selden-fr-citers",
+                           row["date_candidate"], row["date_basis"], row["evidence_type"],
+                           flags=[x for x in row.get("flags", []) if x == "agency_document_not_presidential"], extra=keep)
+            relocated += 1
+        run.fragments.append(f)
     for name in ("SEARCHES.jsonl",):
         run.searches += S.read_jsonl(prior_dir / name)
     if (prior_dir / "CITATIONS.csv").is_file():
@@ -355,7 +371,7 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
         "targets_total": len(targets), "targets_searched_total": len(done_before), "targets_searched_this_run": n,
         "requests": run.pool.requests, "bytes_downloaded": run.pool.bytes_downloaded,
         "documents_examined_this_run": len(run.doc_text), "sources_kept": len(run.sources),
-        "sources_carried": carried, "committed_text_bytes": run.committed,
+        "sources_carried": carried, "fragments_relocated_with_new_locator": relocated, "committed_text_bytes": run.committed,
         "citations": len(run.citations), "citations_acting_on_target": len(acting_rows),
         "orders_with_a_citing_document": len({r["target_id"] for r in run.citations}),
         "orders_with_an_acting_citation": len({r["target_id"] for r in acting_rows}),

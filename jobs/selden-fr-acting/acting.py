@@ -154,11 +154,16 @@ class Run:
 
     def emit(self, it, text, src, cite_src, how, conf, notes):
         """Locate each target's sentence in the held page text and write fragments and rows."""
+        lo, hi, own = S.own_span(text, it["actor"])
         for t, info in sorted(it["targets"].items()):
-            hits = S.find_citations(text, t, info["date"] or None)
+            # Only the instrument's own text counts: the page may also print neighbouring documents.
+            hits = S.find_citations(text, t, info["date"] or None, within=(lo, hi))
             if not hits and info["date"]:
                 hits = [dict(h, flags_extra=["date_only_citation"]) for h in
-                        S.find_citations(text, t, info["date"], allow_date_only=True)]
+                        S.find_citations(text, t, info["date"], allow_date_only=True, within=(lo, hi))]
+            if not own:
+                hits = [dict(h, mechanism_class="mention", flags_extra=(h.get("flags_extra") or []) +
+                             ["instrument_heading_not_found_neighbouring_text_possible"]) for h in hits]
             b = S.best_hit(hits)
             row = {"actor": it["actor"], "fr": f"{it['vol']} FR {it['page']}", "target_id": t,
                    "lead_mechanisms": "|".join(info["mechanisms"]), "route": how, "location_confidence": conf,
@@ -281,9 +286,39 @@ def main(repo: Path, out: Path, cache: Path, transport=None, premis=None, env=os
     run = Run(out, cache, workers=int(env.get("JOB_WORKERS") or 4), transport=transport,
               max_requests=int(env.get("JOB_MAX_REQUESTS") or 3000),
               max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 130), premis=premis, extract_procs=extract_procs)
-    todo, offline_n = [], 0
+    prior_dir = Path(env.get("JOB_PRIOR_OUTPUT_DIR") or (HERE / "output"))
+    prior = {}
+    for r in S.read_jsonl(prior_dir / "SOURCES.jsonl"):
+        if r.get("source_id", "").startswith("fr-issue:") and r.get("fr_volume"):
+            prior.setdefault((int(r["fr_volume"]), int(r["fr_page"])), {})["issue"] = r
+        elif r.get("source_id", "").startswith("fr-extract:"):
+            m = re.search(r"(\d+) FR (\d+)", r.get("page_or_item") or "")
+            if m:
+                prior.setdefault((int(m.group(1)), int(m.group(2))), {})["extract"] = r
+    todo, offline_n, carried_n = [], 0, 0
     for it in items:
-        if (it["vol"], it["page"]) in held:
+        pk = (it["vol"], it["page"])
+        pr = prior.get(pk) or {}
+        tp = prior_dir / (pr.get("issue", {}).get("text_path") or "-")
+        if pr.get("issue") and tp.is_file():
+            # Carried forward from the previous run with no request; the locator re-reads the kept page text.
+            text = tp.read_text(encoding="utf-8")
+            (out / "texts" / tp.name).write_text(text, encoding="utf-8")
+            src = pr["issue"]
+            cite = src
+            ex = pr.get("extract")
+            if ex and (prior_dir / ex["cache_path"]).is_file() and S.sha256((prior_dir / ex["cache_path"]).read_bytes()) == ex["sha256"]:
+                (out / ex["cache_path"]).write_bytes((prior_dir / ex["cache_path"]).read_bytes())
+                run.committed += ex["bytes"]
+                cite = ex
+            run.sources.append(src)
+            if cite is not src:
+                run.sources.append(cite)
+            run.emit(it, text, src, cite, "carried forward from the previous run", src.get("location_confidence") or "",
+                     src.get("location_notes") or [])
+            carried_n += 1
+            continue
+        if pk in held:
             rec, text = held[(it["vol"], it["page"])]
             run.offline(it, rec, text)
             offline_n += 1
@@ -346,7 +381,7 @@ def main(repo: Path, out: Path, cache: Path, transport=None, premis=None, env=os
         "job": "selden-fr-acting", "generated_utc": S.now_utc(), "wanted_pages": len(items),
         "wanted_orders": len({t for i in items for t in i["targets"]}),
         "wanted_by_type": dict(sorted(defaultdict(int, {}).items())),
-        "pages_read_offline_from_fr_pages": offline_n, "pages_attempted": n, "pages_held": len(issues) + offline_n,
+        "pages_read_offline_from_fr_pages": offline_n, "pages_carried_forward": carried_n, "pages_attempted": n, "pages_held": len(issues) + offline_n,
         "issues_gpo_premis_match": sum(1 for s in issues if s.get("gpo_premis_match")),
         "issues_gpo_premis_other": dict(defaultdict(int)),
         "pairs": len(run.rows), "pairs_located": sum(1 for r in run.rows if r["located"]),

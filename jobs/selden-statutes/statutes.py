@@ -122,7 +122,9 @@ def wanted(repo: Path):
 
 class Run:
     def __init__(self, out, cache, workers=4, transport=None, max_requests=6000, max_minutes=240,
-                 commit_bytes=60_000_000, max_pdf_commit=400_000):
+                 commit_bytes=60_000_000, max_pdf_commit=400_000, prior_dir=None):
+        self.prior_dir = Path(prior_dir) if prior_dir else Path("/nonexistent")
+        self.prior = {r.get("link_url"): r for r in S.read_jsonl(self.prior_dir / "SOURCES.jsonl")}
         self.out = out
         self.pool = FetchPool(cache / "statute", workers=workers, per_host=min(4, workers), transport=transport,
                               max_bytes=80_000_000, timeout=120, user_agent=UA, min_interval=0.25,
@@ -146,7 +148,34 @@ class Run:
             return urllib.parse.urldefrag(urllib.parse.urljoin(url, headers["location"]))[0], url
         raise FetchError(f"link service HTTP {status}")
 
+    def carried(self, it):
+        kind, a, b = it["key"]
+        url = LINK_PAGE.format(vol=a, page=b) if kind == "page" else LINK_LAW.format(congress=a, law=b)
+        r = self.prior.get(url)
+        if not r or not (self.prior_dir / r["text_path"]).is_file():
+            return None
+        raw = (self.prior_dir / r["cache_path"]).read_bytes() if r.get("cache_path") and \
+            (self.prior_dir / r["cache_path"]).is_file() else None
+        if r.get("cache_path") and (raw is None or S.sha256(raw) != r["sha256"]):
+            return None
+        return r, (self.prior_dir / r["text_path"]).read_text(encoding="utf-8"), raw
+
     def one(self, it):
+        c = self.carried(it)
+        if c:
+            # Carried forward from the previous run with no request (granule PDFs are stable files).
+            r, text, raw = c
+            (self.out / r["text_path"]).write_text(text, encoding="utf-8")
+            if raw is not None:
+                (self.out / r["cache_path"]).write_bytes(raw)
+                with self.lock:
+                    self.committed += len(raw)
+            name = r["granule"]
+            targets = sorted(set(it["acting_targets"]) | set(it["basis_targets"]))
+            ids = [r["instrument_ids"][0]] + [t for t in targets if t != r["instrument_ids"][0]]
+            self.finish(it, dict(r, instrument_ids=ids, carried_forward=True), text, name, r["page_number_printed"],
+                        r["url"])
+            return
         target_url, link_url = self.link(it)
         m = GRANULE.search(target_url)
         if not m:
@@ -191,6 +220,11 @@ class Run:
             "GPO's 2024 digitization. A statute that an order cites is not thereby shown to end or carry it.",
             cache_path=cache_path, extra={"link_url": link_url, "granule": name, "package": m.group(1),
                                           "page_number_printed": identity, "pdf_pages": len(pages)})
+        self.finish(it, src, text, name, identity, target_url)
+
+    def finish(self, it, src, text, name, identity, target_url):
+        kind, a, b = it["key"]
+        actor = src["instrument_ids"][0]
         with self.lock:
             self.sources.append(src)
         for t, mechs in sorted(it["acting_targets"].items()):
@@ -223,7 +257,8 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
     todo = items[:limit] if limit else items
     run = Run(out, cache, workers=int(env.get("JOB_WORKERS") or 4), transport=transport,
               max_requests=int(env.get("JOB_MAX_REQUESTS") or 6000),
-              max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 60))
+              max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 60),
+              prior_dir=env.get("JOB_PRIOR_OUTPUT_DIR") or (HERE / "output"))
 
     def safe(it):
         if not run.budget():

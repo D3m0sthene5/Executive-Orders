@@ -61,7 +61,7 @@ class Statutes(unittest.TestCase):
 
     def test_end_to_end(self):
         s = statutes.main(self.repo, self.out, Path(self.tmp.name) / "cache", transport=transport,
-                          env={"JOB_WORKERS": "2"})
+                          env={"JOB_WORKERS": "2", "JOB_PRIOR_OUTPUT_DIR": str(Path(self.tmp.name) / "none")})
         self.assertEqual(s["held"], 1)
         self.assertEqual(s["page_number_printed"], 1)
         self.assertEqual(s["orders_with_held_basis_statute"], 1)
@@ -79,6 +79,12 @@ class Statutes(unittest.TestCase):
         text = (self.out / frag["text_path"]).read_text()
         lo, hi = map(int, frag["quote_span"].split("-"))
         self.assertEqual(text[lo:hi], frag["quote"])
+        # A second run carries every statute forward with no request.
+        out2 = Path(self.tmp.name) / "out2"
+        s2 = statutes.main(self.repo, out2, Path(self.tmp.name) / "cache2", transport=lambda *a: 1 / 0,
+                           env={"JOB_WORKERS": "2", "JOB_PRIOR_OUTPUT_DIR": str(self.out)})
+        self.assertEqual(s2["held"], 1)
+        self.assertEqual(s2["requests"], 0)
 
 
 if __name__ == "__main__":
