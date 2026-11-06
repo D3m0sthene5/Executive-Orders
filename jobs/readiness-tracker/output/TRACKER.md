@@ -11,7 +11,7 @@ Orders with a provisional YES/NO status: 4,291. The other 10,681 have not been r
 Ready by text evidence: {'original_supported': 804, 'transcription_dependent': 527}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 1,886; quotation rechecks: 1,886. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 1,357. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5856}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 1,357. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5970}.
 
 ## Steps finished (orders with a provisional status)
 
@@ -94,7 +94,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - wikisource-texts (lead only, never counted as the original): 1,639
 - csc-annual-reports (lead only, never counted as the original): 798
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
-- lachmann working-text confirmations (provisional text step only, never an original): 7,534
+- lachmann working-text confirmations (provisional text step only, never an original): 7,738
 - opus-media-match status: 1,155
 - source-ladder: 632
 - claim-checker: 1,445

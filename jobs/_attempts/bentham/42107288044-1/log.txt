@@ -1,0 +1,51 @@
+test_bad_inputs (test_gate.GateTests.test_bad_inputs) ... ok
+test_beta_cdf_known_values (test_gate.GateTests.test_beta_cdf_known_values) ... ok
+test_cli_json_and_csv (test_gate.GateTests.test_cli_json_and_csv) ... ok
+test_collapse_stops (test_gate.GateTests.test_collapse_stops) ... ok
+test_controls_miss_stops_even_when_yield_high (test_gate.GateTests.test_controls_miss_stops_even_when_yield_high) ... ok
+test_exact_vs_monte_carlo (test_gate.GateTests.test_exact_vs_monte_carlo) ... ok
+test_mc_deterministic (test_gate.GateTests.test_mc_deterministic) ... ok
+test_near_prior_continues (test_gate.GateTests.test_near_prior_continues) ... ok
+test_pilot_below_min_attempts (test_gate.GateTests.test_pilot_below_min_attempts) ... ok
+test_posterior_hand_check (test_gate.GateTests.test_posterior_hand_check) ... ok
+test_tribonian_replay (test_gate.GateTests.test_tribonian_replay) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.240s
+
+OK
+
+Tribonian replay (prior 0.47, strength 20, $1/attempt, next-best 0.30 dossiers/USD, stop<0.2)
+  o01: filed 25/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o02: filed 22/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o03: filed 28/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o04: filed  6/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o05: filed 30/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o06: filed 25/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o07: filed 17/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o08: filed 20/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o09: filed 23/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o10: filed 13/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o11: filed 14/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o12: filed 10/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=0.99
+  o13: filed  8/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=0.79
+  o14: filed  6/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=0.43
+  o15: filed 19/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=0.99
+  o16: filed 17/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o17: filed  6/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=0.98
+  o18: filed 13/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=0.85
+  o19: filed 21/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o20: filed  7/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=1.00
+  o21: filed 12/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=0.85
+  o22: filed  7/30  cumulative CONTINUE p=1.00   last-2-batches CONTINUE p=0.85
+  o23: filed  2/30  cumulative CONTINUE p=1.00   last-2-batches STOP     p=0.07
+  o24: filed  3/30  cumulative CONTINUE p=1.00   last-2-batches STOP     p=0.01
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/bentham/job.py", line 16, in <module>
+    bentham.main(["plan"])
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/bentham/bentham.py", line 247, in main
+    return {"plan": plan, "gate": gate, "usage": usage, "calibrate": calibrate}[a.cmd](a)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/bentham/bentham.py", line 118, in plan
+    import candidates as C
+ModuleNotFoundError: No module named 'candidates'
