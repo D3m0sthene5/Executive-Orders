@@ -199,3 +199,11 @@ failing, rebase first.
   no longer removes the provisional text credit of a Lachmann-confirmed order (tracker change 113b54309), so Mabillon's
   #164 does not set 17 orders back. Gratian: re-measure with this rule.
 
+- **Gratian (PR #165, pushed by the coordinator from the owner's bundle, 06:20 UTC).** Q1: pushed; A-20261106-gratian-push
+  answered. Q2: settled by the owner's ruling D-20261106-provisional-unchecked-original. Q3, Q4, Q7: defaults accepted.
+  Q5: merging now; no producer is preparing claim-kit packets tonight, and any packet prepared before #165 must be
+  prepared again. Q8: done, `jobs/claim-checker/after.txt` now lists `ptolemy-custody`.
+- **For Mabillon (Gratian Q6).** `jobs/mabillon-held-printings` `SOURCES.jsonl` has no `text_path`, so later-events
+  cannot scan the 1,771 proved texts for revocation sentences. Next Mabillon session: add `text_path` (the held passage
+  file) to each line; Gratian's `text_jobs.py` can then add the job to the scanned texts.
+
