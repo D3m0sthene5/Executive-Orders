@@ -4,7 +4,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
-from thrower_lib import chi2_sf, chi2_test, classify_edge, iid_from_thrower, norm_id, wilson
+from thrower_lib import chi2_sf, chi2_test, classify_edge, iid_from_thrower, is_savings, norm_id, wilson, year_of
 
 # chi-square survival values from standard tables
 assert abs(chi2_sf(3.841, 1) - 0.05) < 1e-3
@@ -23,4 +23,12 @@ assert classify_edge("rescission", "Section 3") == "revoke_part"
 assert classify_edge("supersession", "") == "supersede_full"
 assert classify_edge("termination", "") == "other_end"
 assert classify_edge("amendment", "") == "other"
+assert is_savings("To the extent not heretofore rendered inapplicable, the following are hereby revoked: (1) Executive Order No")
+assert is_savings("except that, to the extent consistent with this order")
+assert is_savings("to the extent that they are inconsistent with this order")
+assert not is_savings("Sections 501 and 503") and not is_savings("in part") and not is_savings("with respect to Haiti")
+assert year_of("1947-02-24") == 1947 and year_of(float("nan")) is None and year_of(None) is None
+# the event-year column must keep a missing year as None (a float NaN compares False both ways)
+ser = pd.Series([year_of(x) for x in ["1947-02-24", None, "2001-01-01"]], dtype=object)
+assert ser.iloc[1] is None and ser.iloc[0] == 1947
 print("ok")

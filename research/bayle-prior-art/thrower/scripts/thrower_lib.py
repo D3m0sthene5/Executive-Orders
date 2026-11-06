@@ -58,6 +58,15 @@ OTHER_END_MECH = {"termination", "abolition", "authority_repeal", "nullification
                   "ceased_to_function", "repeal", "voiding"}
 
 
+SAVINGS_RE = re.compile(r"^(to the extent|except\b|in ?so far as not|so far as not)|not heretofore", re.I)
+
+
+def is_savings(qualifier):
+    """A savings-clause qualifier ('to the extent not heretofore rendered inapplicable', 'except that ...') limits what
+    the revocation leaves standing; it does not name a part of the order that was revoked."""
+    return bool(SAVINGS_RE.search((qualifier or "").strip()))
+
+
 def classify_edge(mechanism, qualifier):
     """Project edge class: full / partial revocation, whole / partial supersession, other end, other."""
     q = (qualifier or "").strip()
@@ -76,7 +85,8 @@ def load_edges(cache):
     e["acting"] = e["acting_id"].map(norm_id)
     e["qualifier"] = e["qualifier"].fillna("")
     e["klass"] = [classify_edge(m, q) for m, q in zip(e["mechanism"], e["qualifier"])]
-    e["event_year"] = e["date_candidate"].map(year_of)
+    # object column of int / None: a float column would turn a missing year into NaN, which compares False both ways
+    e["event_year"] = pd.Series([year_of(x) for x in e["date_candidate"]], index=e.index, dtype=object)
     e["source_group"] = e["evidence_type"].map(
         lambda t: "ofr_note" if str(t).startswith("ofr_note") else ("order_text" if str(t).startswith("order_text") else "other"))
     return e

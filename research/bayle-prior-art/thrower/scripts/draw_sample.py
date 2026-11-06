@@ -24,7 +24,19 @@ def main():
     rng = random.Random(SEED)
     picks = []
     used = set()
-    for kind, n in QUOTA:
+    frozen = os.path.join(out, "SAMPLE15_frozen_draw.csv")
+    if os.path.exists(frozen):
+        # The 15 cases were drawn (seed above) from the first pipeline version and hand-read; the draw is kept frozen so
+        # the reading stays valid when the pipeline changes. Delete the file to redraw from the current DISAGREEMENTS.csv.
+        F = pd.read_csv(frozen, dtype=str)
+        picks = list(zip(F["kind"], F["eo"]))
+        S = pd.DataFrame(picks, columns=["kind_at_draw", "eo"])
+        S["kinds_now"] = [";".join(sorted(set(D.loc[D["eo"] == e, "kind"]))) or "(none)" for e in S["eo"]]
+        S.to_csv(os.path.join(out, "SAMPLE15_draw.csv"), index=False, lineterminator="\n")
+        QUOTA_USED = []
+    else:
+        QUOTA_USED = QUOTA
+    for kind, n in QUOTA_USED:
         pool = sorted(set(D.loc[D["kind"] == kind, "eo"]) - used)
         if kind == "project_revoked_thrower_silent":
             # one each of: 1989 table only, OFR note (no 1989 row), held official text only
@@ -39,8 +51,9 @@ def main():
         for e in chosen:
             picks.append((kind, e))
             used.add(e)
-    S = pd.DataFrame(picks, columns=["kind", "eo"])
-    S.to_csv(os.path.join(out, "SAMPLE15_draw.csv"), index=False, lineterminator="\n")
+    if not os.path.exists(frozen):
+        S = pd.DataFrame(picks, columns=["kind", "eo"])
+        S.to_csv(os.path.join(out, "SAMPLE15_draw.csv"), index=False, lineterminator="\n")
     if not dump:
         print(S)
         return

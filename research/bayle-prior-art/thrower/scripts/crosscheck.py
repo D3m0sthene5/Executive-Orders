@@ -6,13 +6,14 @@ usage: py -I crosscheck.py ARCHIVE_DIR PROJECT_CACHE_DIR OUT_DIR
 """
 import json
 import os
+import re
 import sys
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
-from thrower_lib import (WINDOW_LAST_YEAR, load_c89, load_edges, load_peano, load_sh_events, norm_id, read_csv,
-                         read_thrower, year_of)
+from thrower_lib import (WINDOW_LAST_YEAR, is_savings, load_c89, load_edges, load_peano, load_sh_events, norm_id,
+                         read_csv, read_thrower, year_of)
 
 EDGES_PATH = "jobs/later-events/output/EDGES.csv"
 C89_PATH = "jobs/ofr-codification-1989/output/DISPOSITION_1989.csv"
@@ -40,12 +41,20 @@ def build_events(t, e, c89, cat):
     ed = e[e["target"].isin(tset) & (e["acting"] != e["target"]) & e["klass"].isin(REV | SUP | {"other_end"})]
     self_edges = int(((e["acting"] == e["target"]) & e["target"].isin(tset)).sum())
     # later-events' own rule: a whole-order end needs that no other evidence for the same acting order and target says "partial"
-    pairs_part = {(a, b) for a, b, k in zip(ed["target"], ed["acting"], ed["klass"]) if k == "revoke_part"}
+    # A savings clause ("to the extent not heretofore rendered inapplicable", "except that ...") does not name a part that
+    # was revoked, so it does not trigger the downgrade: the order is revoked whole, with saved effects.
+    pairs_part = {(a, b, "revoke") for a, b, k, q in zip(ed["target"], ed["acting"], ed["klass"], ed["qualifier"])
+                  if k == "revoke_part" and not is_savings(q)}
+    pairs_part |= {(a, b, "supersede") for a, b, k, q in zip(ed["target"], ed["acting"], ed["klass"], ed["qualifier"])
+                   if k == "supersede_part" and not is_savings(q)}
     downgraded = 0
+    downgraded_sup = 0
     for r in ed.itertuples(index=False):
         klass, qual = r.klass, r.qualifier
-        if klass == "revoke_full" and (r.target, r.acting) in pairs_part:
+        if klass == "revoke_full" and (r.target, r.acting, "revoke") in pairs_part:
             klass, qual, downgraded = "revoke_part", "conflict: other evidence for this pair says partial", downgraded + 1
+        elif klass == "supersede_full" and (r.target, r.acting, "supersede") in pairs_part:
+            klass, qual, downgraded_sup = "supersede_part", "conflict: other evidence for this pair says partial", downgraded_sup + 1
         ev[r.target].append(Ev("LE", klass, r.acting, r.event_year, f"{EDGES_PATH}#{r.edge_id}", r.evidence_type,
                                r.mechanism, qual, r.date_candidate if isinstance(r.date_candidate, str) else ""))
     n89 = 0
@@ -67,12 +76,14 @@ def build_events(t, e, c89, cat):
         ev[r.target].append(Ev("C89", k, "|".join(acts) or "none", year_of(dates[0]) if dates else None,
                                f"{C89_PATH}#seq={r.seq}", "c89_table", cat_, "", dates[0] if dates else ""))
         n89 += 1
-    return ev, {"self_edges_dropped": self_edges, "c89_rows_joined_to_thrower": n89, "whole_edges_downgraded_to_partial_by_conflict": downgraded}
+    return ev, {"self_edges_dropped": self_edges, "c89_rows_joined_to_thrower": n89, "whole_edges_downgraded_to_partial_by_conflict": downgraded,
+                "whole_supersession_edges_downgraded_to_partial_by_conflict": downgraded_sup}
 
 
 def split_window(evs):
-    inw = [x for x in evs if x.year is None or x.year <= WINDOW_LAST_YEAR]
-    post = [x for x in evs if x.year is not None and x.year > WINDOW_LAST_YEAR]
+    undated = lambda x: x.year is None or pd.isna(x.year)  # noqa: E731
+    inw = [x for x in evs if undated(x) or x.year <= WINDOW_LAST_YEAR]
+    post = [x for x in evs if not undated(x) and x.year > WINDOW_LAST_YEAR]
     return inw, post
 
 
@@ -104,6 +115,71 @@ def pref(evs, extra=""):
     return ";".join(refs) if refs else (extra or f"{EDGES_PATH} (none for this order);{C89_PATH} (none for this order)")
 
 
+def parents_of(note):
+    """Parent orders named after 'Amends:' in an OFR disposition note (not 'Amended by')."""
+    out = []
+    for seg in str(note).split("|"):
+        seg = seg.strip()
+        if re.match(r"^Amends\b", seg) and not seg.startswith("Amended"):
+            out += ["EO:" + m.upper().replace("-", "") for m in re.findall(r"\bEO (\d+(?:-[A-Za-z])?)", seg)]
+            out += ["EO:" + m for m in re.findall(r"^Amends:?\s+(\d+)\b", seg)]
+    return out
+
+
+def parents_map(cat):
+    """order -> set of parents, from its own 'Amends:' note and from the parents' 'Amended by:' notes."""
+    pm = defaultdict(set)
+    for iid, note in zip(cat["id"].map(norm_id), cat["disposition_notes"]):
+        pm[iid] |= set(parents_of(note))
+        for seg in str(note).split("|"):
+            seg = seg.strip()
+            if seg.startswith("Amended by"):
+                for m in re.findall(r"\bEO (\d+(?:-[A-Za-z])?)", seg):
+                    pm["EO:" + m.upper().replace("-", "")].add(iid)
+    return pm
+
+
+def actors(evs, klasses):
+    out = set()
+    for x in evs:
+        if x.klass in klasses and isinstance(x.acting, str):
+            out |= {a for a in x.acting.split("|") if a and a != "none"}
+    return out
+
+
+def build_actmap(e, c89):
+    """target -> set of instruments that revoked or superseded it (whole or partial) by 2013, from every later-events
+    edge and every 1989 table row, for ANY target (parents of amenders can lie before Thrower's range)."""
+    m = defaultdict(set)
+    ed = e[e["klass"].isin(REV | SUP) & (e["acting"] != e["target"])]
+    for r in ed.itertuples(index=False):
+        if isinstance(r.acting, str) and isinstance(r.target, str) and (r.event_year is None or pd.isna(r.event_year) or r.event_year <= WINDOW_LAST_YEAR):
+            m[r.target].add(r.acting)
+    for r in c89[c89["category"].isin(["revoked", "superseded", "replaced"])].itertuples(index=False):
+        for a in str(r.acting_documents).split("|"):
+            if a and a != "nan":
+                m[r.target].add(norm_id(a))
+    return m
+
+
+def find_amenders(ids, pm, actmap):
+    """order -> [(parent, shared acting instruments)] for orders that amend a parent which the same instrument that ended
+    the order also revoked or superseded ('as amended' revocations of the parent)."""
+    out = {}
+    for iid in ids:
+        mine = actmap.get(iid, set())
+        if not mine:
+            continue
+        hits = []
+        for par in sorted(pm.get(iid, ())):
+            shared = mine & actmap.get(par, set())
+            if shared:
+                hits.append((par, sorted(shared)))
+        if hits:
+            out[iid] = hits
+    return out
+
+
 def mindiff(y, ys):
     return min(abs(y - z) for z in ys) if ys else None
 
@@ -124,6 +200,11 @@ def main():
     rd["instrument_id"] = rd["instrument_id"].map(norm_id)
     status = dict(zip(rd["instrument_id"], rd["provisional_status"]))
     origin = dict(zip(rd["instrument_id"], rd["decision_origin"]))
+
+    actmap = build_actmap(e, c89)
+    pm = parents_map(cat)
+    amenders = find_amenders(list(t["instrument_id"]), pm, actmap)
+    notes_by_id = dict(zip(cat["id"].map(norm_id), cat["disposition_notes"]))
 
     peano = load_peano(cache)
     sh = load_sh_events(cache)
@@ -168,7 +249,7 @@ def main():
         Y_rev = yrs(inw, REV)
         Y_sup = yrs(inw, SUP)
         order_rows.append({"instrument_id": iid, "T_revoked": int(T_rev), "T_superseded": int(T_sup), "T_part": int(T_part),
-                           "P_rev_full": int(bool(Rf)), "P_rev_part": int(bool(Rp)), "P_sup": int(bool(P_sup)),
+                           "P_rev_full": int(bool(Rf)), "P_rev_part": int(bool(Rp)), "P_sup": int(bool(P_sup)), "P_sup_whole": int(bool(Sf)),
                            "P_other_end": int(bool(Eo)), "P_any_end": int(bool(P_end)), "P_post2013_end": int(bool(has(post, REV | SUP | {"other_end"}))),
                            "year": int(r["year"]), "T_revoke_year": T_ry, "P_rev_min_year": Y_rev[0] if Y_rev else None,
                            "P_rev_max_year": Y_rev[-1] if Y_rev else None, "in_force_1989": int(bool(inforce89)),
@@ -188,6 +269,9 @@ def main():
                 bits.append("no later-events edge of any kind and no 1989 row")
             if late:
                 bits.append("a project ending dated after 2013 exists")
+            for par in sorted(pm.get(iid, ())):
+                if actmap.get(par):
+                    bits.append("amends %s, which the project records as ended by %s; Thrower appears to count the amender as ending with its parent" % (par, "|".join(sorted(actmap[par]))))
             add(r, "thrower_revoked_project_silent",
                 "Thrower revoked in %s; project has no revocation, supersession or other ending dated by 2013: %s" % (T_ry, "; ".join(bits)),
                 inforce89 + late)
@@ -197,8 +281,13 @@ def main():
                 P_sup + Eo)
         if (not T_rev) and (not T_sup) and Rf:
             basis = "OFR note or 1989 table" if any(x.src == "C89" or x.evtype.startswith("ofr_note") for x in Rf) else "order text only (text_only_unverified under later-events' rules)"
-            add(r, "project_revoked_thrower_silent",
-                "project records a whole-order revocation dated %s (basis: %s); Thrower has revoked=0 and superseded=0" % (Y_rev[0] if Y_rev else "(undated)", basis), Rf)
+            if iid in amenders:
+                par, shared = amenders[iid][0]
+                add(r, "amender_of_revoked_parent",
+                    "the order amends %s, which the same acting instrument (%s) also revoked or superseded; the project records the amender's end as a whole-order revocation dated %s (basis: %s). Thrower codes amenders as not revoked; not counted as an omission" % (par, "|".join(shared), Y_rev[0] if Y_rev else "(undated)", basis), Rf)
+            else:
+                add(r, "project_revoked_thrower_silent",
+                    "project records a whole-order revocation dated %s (basis: %s); Thrower has revoked=0 and superseded=0" % (Y_rev[0] if Y_rev else "(undated)", basis), Rf)
         elif (not T_rev) and (not T_sup) and (not Rf) and Rp:
             add(r, "project_partial_revoked_thrower_silent",
                 "project records only partial/qualified revocation(s); Thrower codes partial revocations as revoked=1 but has 0 here", Rp)
@@ -269,7 +358,8 @@ def main():
     P_rev_any = ((O["P_rev_full"] == 1) | (O["P_rev_part"] == 1)).astype(int)
     S["revoked_vs_project_any_revocation"] = two_by_two(O["T_revoked"], P_rev_any)
     S["revoked_vs_project_any_end"] = two_by_two(O["T_revoked"], O["P_any_end"])
-    S["superseded_vs_project_supersession"] = two_by_two(O["T_superseded"], O["P_sup"])
+    S["superseded_vs_project_any_supersession_whole_or_partial"] = two_by_two(O["T_superseded"], O["P_sup"])
+    S["superseded_vs_project_whole_supersession_only"] = two_by_two(O["T_superseded"], O["P_sup_whole"])
     S["part_vs_project_part_only"] = two_by_two(O["T_part"], ((O["P_rev_part"] == 1) & (O["P_rev_full"] == 0)).astype(int))
     both = O[(O["T_revoked"] == 1) & (P_rev_any == 1) & O["T_revoke_year"].notna()].copy()
     both["T_revoke_year"] = both["T_revoke_year"].astype(int)
@@ -293,6 +383,20 @@ def main():
         "project_revocation_only_in_other_years": int(sum(1 for i in same["instrument_id"] if pd.notna(O2.loc[i, "year_min_diff"]) and O2.loc[i, "year_min_diff"] > 0)),
         "project_no_revocation": int(sum(1 for i in same["instrument_id"] if pd.isna(O2.loc[i, "year_min_diff"])))}
     S["thrower_revoked_partial_and_project_status_in_effect"] = int(((t["revoked"] == "1") & (t["partrevoked"] == "1") & (t["instrument_id"].map(status) == "yes")).sum())
+    tt = t.set_index("instrument_id")
+    S["amenders_of_revoked_parent"] = {
+        "orders_identified": len(amenders),
+        "thrower_revoked_among_them": int(sum(tt.loc[i, "revoked"] == "1" for i in amenders)),
+        "thrower_superseded_among_them": int(sum(tt.loc[i, "superseded"] == "1" for i in amenders)),
+        "kind_rows": int((D["kind"] == "amender_of_revoked_parent").sum()),
+        "kind_rows_basis_1989_table_only": int(((D["kind"] == "amender_of_revoked_parent") & (D["project_evidence"] == "C89:c89_table")).sum()),
+        "orders_revoked_by_thrower_that_are_amenders_of_a_revoked_parent_but_project_silent": sorted(
+            i for i, rr in tt.iterrows() if rr["revoked"] == "1" and not O.set_index("instrument_id").loc[i, "P_any_end"]
+            and any(actmap.get(par) for par in pm.get(i, ())))}
+    S["project_revoked_thrower_silent_basis"] = {
+        "1989_table_alone": int(((D["kind"] == "project_revoked_thrower_silent") & (D["project_evidence"] == "C89:c89_table")).sum()),
+        "any_OFR_note": int(((D["kind"] == "project_revoked_thrower_silent") & D["project_evidence"].str.contains("ofr_note")).sum()),
+        "order_text_only": int(((D["kind"] == "project_revoked_thrower_silent") & ~D["project_evidence"].str.contains("ofr_note|C89")).sum())}
     S["disagreement_counts_by_kind"] = D["kind"].value_counts().to_dict()
     pq = D[D["kind"] == "partial_vs_full"]
     pq = pq[pq["reason"].str.contains("Thrower revoked in full")]["project_fact"].str.extract(r"\[([^\]]*)\]")[0].fillna("")

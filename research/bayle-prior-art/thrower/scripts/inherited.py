@@ -10,6 +10,8 @@ Tests (all counts come from the files, nothing is typed in):
   4  flags: Thrower and the OFR notes agree, but a held official text or the 1989 Codification disagrees; and
      omissions shared by Thrower and the OFR notes that a held official text contradicts.
 """
+import glob
+import gzip
 import json
 import os
 import re
@@ -17,8 +19,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
-from crosscheck import C89_PATH, EDGES_PATH, REV, build_events, split_window, tfact
-from thrower_lib import load_c89, load_edges, load_peano, load_sh_events, read_csv, read_thrower, year_of
+from crosscheck import (C89_PATH, EDGES_PATH, REV, build_actmap, build_events, find_amenders, parents_map,
+                        split_window, tfact)
+from thrower_lib import load_c89, load_edges, load_sh_events, read_csv, read_thrower, year_of
 
 PRIMARY_TYPES = {"order_text_fr_originals", "order_text_govinfo_pdf", "order_text_opus_official_copy"}
 
@@ -38,12 +41,25 @@ def main():
 
     # ---- 1 lineage ----
     ids = set(e["edge_id"])
-    peano = load_peano(cache)
-    inst = peano.drop_duplicates("lemma_id")
-    S["lineage_peano"] = {"instance_lemmas": int(len(inst)),
-                          "origin_from_later_events": int((inst["origin_from"] == "later-events").sum()),
-                          "origin_edge_id_found_in_EDGES_csv": int(inst["edge_id"].isin(ids).sum()),
-                          "other_origins": inst.loc[inst["origin_from"] != "later-events", "origin_from"].value_counts().to_dict()}
+    lem = []
+    for f in sorted(glob.glob(os.path.join(cache, "jobs/peano-formulario/output/lemmas/*.jsonl.gz"))):
+        with gzip.open(f, "rt", encoding="utf-8") as fh:
+            for line in fh:
+                r = json.loads(line)
+                lem.append({"lemma_id": r["lemma_id"], "shard": "CLASS" if os.path.basename(f).startswith("CLASS") else "EO", "kind": r["kind"],
+                            "origin_from": r["origin"].get("from"), "edge_id": r["origin"].get("edge_id"), "relation": r["statement"]["relation"]})
+    L = pd.DataFrame(lem)
+    le = L[L["origin_from"] == "later-events"]
+    ax = L[L["origin_from"] != "later-events"]
+    ax_ids = set(ax["lemma_id"])
+    S["lineage_peano"] = {"lemmas_all_shards": int(len(L)),
+                          "from_later_events": int(len(le)),
+                          "from_later_events_with_edge_id_found_in_EDGES_csv": int(le["edge_id"].isin(ids).sum()),
+                          "from_axiom_files": int(len(ax)),
+                          "axiom_lemma_lines_in_EO_shards (copies of class lemmas)": int((ax["shard"] == "EO").sum()),
+                          "axiom_lemmas_in_CLASS_shard": int((ax["shard"] == "CLASS").sum()),
+                          "distinct_axiom_lemma_ids": int(len({r for r in ax_ids})),
+                          "axiom_lemma_relations": ax["relation"].value_counts().to_dict()}
     sh = load_sh_events(cache)
     S["lineage_status_history"] = {"events": int(len(sh)),
                                    "input_path_EDGES_csv": int((sh["input_path"] == EDGES_PATH).sum()),
@@ -57,38 +73,65 @@ def main():
     S["c89_revoked_rows_vs_later_events"] = rv["later_events_check"].fillna("blank").str.replace(r"DIFFERENT_acting_order:.*", "DIFFERENT_acting_order", regex=True).value_counts().to_dict()
 
     # ---- 2 fingerprint: 1989 table vs OFR notes, who does Thrower follow? ----
+    # Cells are confounded unless handled: (i) the table (as of 1989-01-20) cannot record later revocations;
+    # (ii) 'not revoked' in the table includes public_lands / superseded / codified, which are not 'not revoked';
+    # (iii) the table lists many amending orders as 'revoked by' the act that revoked their parent 'as amended'.
+    pm = parents_map(cat)
+    actmap = build_actmap(e, c89)
+    amend = find_amenders(list(tix.index), pm, actmap)
+    ofr_edges = e[e["klass"].isin(REV) & e["evidence_type"].str.startswith("ofr_note") & e["target"].isin(tix.index) & (e["acting"] != e["target"])]
+    ofr_years = {}
+    for r in ofr_edges.itertuples(index=False):
+        ofr_years.setdefault(r.target, []).append(r.event_year)
+    notes_by_id = dict(zip(cat["id"], cat["disposition_notes"]))
+    cats = c89[c89["target"].isin(tix.index)].groupby("target")["category"].agg(set).to_dict()
     rows = []
-    for iid, r in tix.iterrows():
-        evs = ev.get(iid, [])
-        inw, _ = split_window(evs)
-        c89_rows = [x for x in inw if x.src == "C89"]
-        if not c89_rows:
-            continue
-        ofr_full = [x for x in inw if x.src == "LE" and x.evtype.startswith("ofr_note") and x.klass == "revoke_full"]
-        ofr_part = [x for x in inw if x.src == "LE" and x.evtype.startswith("ofr_note") and x.klass == "revoke_part"]
-        c_rev = [x for x in c89_rows if x.klass == "revoke_full"]
-        c_inforce = [x for x in c89_rows if x.klass == "in_force_1989"]
-        ofr_before_1989 = [x for x in ofr_full if x.year is not None and x.year <= 1988]
-        rows.append({"iid": iid, "T_rev": r["revoked"] == "1", "T_part": r["partrevoked"] == "1",
-                     "ofr_full": bool(ofr_full), "ofr_any": bool(ofr_full or ofr_part), "c89_revoked": bool(c_rev),
-                     "c89_in_force": bool(c_inforce), "ofr_full_before_1989": bool(ofr_before_1989)})
+    for iid, cs in cats.items():
+        ys = ofr_years.get(iid, [])
+        in_window = [y for y in ys if y is None or pd.isna(y) or y <= 2013]
+        pre89 = [y for y in ys if y is not None and not pd.isna(y) and y <= 1988]
+        rows.append({"iid": iid, "T_rev": tix.loc[iid, "revoked"] == "1", "notes_2013": bool(in_window), "notes_1988": bool(pre89),
+                     "table_revoked": "revoked" in cs, "cats": cs, "amender": iid in amend,
+                     "amends_note": any(seg.strip().startswith("Amends") for seg in str(notes_by_id.get(iid)).split("|"))})
     F = pd.DataFrame(rows)
 
-    def rate(mask, label):
+    def cell(mask):
         sub = F[mask]
-        return {"orders": int(len(sub)), "thrower_revoked": int(sub["T_rev"].sum()),
-                "rate": round(float(sub["T_rev"].mean()), 4) if len(sub) else None}
+        return {"orders": int(len(sub)), "thrower_revoked": int(sub["T_rev"].sum())}
 
+    def in_cat(cs, names):
+        return bool(cs & names)
+
+    noncat = F["cats"].map(lambda cs: in_cat(cs, {"public_lands", "superseded", "replaced", "codified_here", "codified_elsewhere"}))
+    c_pre = F["notes_1988"] & ~F["table_revoked"]
+    only_post88 = F["notes_2013"] & ~F["notes_1988"] & ~F["table_revoked"]
     S["fingerprint"] = {
         "orders_with_a_1989_table_row": int(len(F)),
-        "OFR_notes_say_revoked_and_1989_says_revoked": rate(F.ofr_any & F.c89_revoked, ""),
-        "OFR_notes_silent_1989_says_revoked": rate(~F.ofr_any & F.c89_revoked, ""),
-        "OFR_notes_say_revoked_1989_not_revoked": rate(F.ofr_any & ~F.c89_revoked, ""),
-        "OFR_notes_say_revoked_before_1989_but_1989_codified": rate(F.ofr_full_before_1989 & F.c89_in_force, ""),
-        "neither_says_revoked": rate(~F.ofr_any & ~F.c89_revoked, ""),
+        "notes_2013_x_table (all revocation notes by 2013 incl. undated; confounded)": {
+            "notes_revoked_table_revoked": cell(F["notes_2013"] & F["table_revoked"]),
+            "notes_revoked_table_not_revoked": cell(F["notes_2013"] & ~F["table_revoked"]),
+            "notes_silent_table_revoked": cell(~F["notes_2013"] & F["table_revoked"]),
+            "neither": cell(~F["notes_2013"] & ~F["table_revoked"])},
+        "notes_silent_table_revoked_split": {
+            "amenders_of_a_parent_ended_by_the_same_act": cell(~F["notes_2013"] & F["table_revoked"] & F["amender"]),
+            "not_amenders": cell(~F["notes_2013"] & F["table_revoked"] & ~F["amender"]),
+            "broader_split_any_Amends_note_on_the_order": cell(~F["notes_2013"] & F["table_revoked"] & F["amends_note"]),
+            "broader_split_no_Amends_note": cell(~F["notes_2013"] & F["table_revoked"] & ~F["amends_note"])},
+        "notes_revoked_after_1988_only_table_not_revoked (the table could not record these)": cell(only_post88),
+        "notes_revoked_by_1988_table_not_revoked": {
+            "all": cell(c_pre),
+            "table_category_public_lands": cell(c_pre & F["cats"].map(lambda cs: "public_lands" in cs)),
+            "table_category_superseded_or_replaced": cell(c_pre & F["cats"].map(lambda cs: in_cat(cs, {"superseded", "replaced"}))),
+            "table_category_codified": cell(c_pre & F["cats"].map(lambda cs: in_cat(cs, {"codified_here", "codified_elsewhere"}))),
+            "restricted_excluding_those_three_categories": cell(c_pre & ~noncat),
+            "restricted_category_breakdown": F[c_pre & ~noncat]["cats"].map(lambda cs: "|".join(sorted(cs))).value_counts().to_dict()},
+        "notes_revoked_by_1988_table_revoked": cell(F["notes_1988"] & F["table_revoked"]),
+        "neither_note_nor_table_revoked_2013": cell(~F["notes_2013"] & ~F["table_revoked"]),
     }
-    S["fingerprint"]["reading"] = ("If Thrower's tables were independent of the OFR notes, her revoked rate in the second row would "
-                                   "resemble the first row's. A rate near 0 there and near 1 in the third row means she follows the notes.")
+    S["fingerprint"]["reading"] = ("The 2x2 is not a clean lineage test: its off-diagonal cells are mostly amenders, revocations after 1988 and "
+                                   "table categories that are not 'not revoked'. What remains (the non-amender 'notes silent, table revoked' cell and the "
+                                   "restricted 'notes revoked, table not' cell) is small. The lineage conclusion rests on Thrower's stated source, "
+                                   "the 1,578-to-2 agreement with the project's revocations and the copied EO 11654 typo.")
 
     # ---- 3 dates ----
     pat = re.compile(r"note_states_(\d{4})-\d\d-\d\d_but_catalog_signing_date_is_(\d{4})-\d\d-\d\d")

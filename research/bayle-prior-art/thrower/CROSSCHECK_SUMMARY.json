@@ -1,9 +1,20 @@
 {
+ "amenders_of_revoked_parent": {
+  "kind_rows": 77,
+  "kind_rows_basis_1989_table_only": 70,
+  "orders_identified": 543,
+  "orders_revoked_by_thrower_that_are_amenders_of_a_revoked_parent_but_project_silent": [
+   "EO:12890"
+  ],
+  "thrower_revoked_among_them": 337,
+  "thrower_superseded_among_them": 125
+ },
  "disagreement_counts_by_kind": {
-  "partial_vs_full": 24,
+  "amender_of_revoked_parent": 77,
+  "partial_vs_full": 22,
   "project_partial_revoked_thrower_silent": 23,
-  "project_revoked_thrower_silent": 126,
-  "project_superseded_thrower_silent": 38,
+  "project_revoked_thrower_silent": 50,
+  "project_superseded_thrower_silent": 34,
   "supersede_year_differs": 2,
   "thrower_revoked_project_silent": 2,
   "thrower_revoked_project_status_in_effect": 2,
@@ -12,20 +23,26 @@
   "year_differs": 6,
   "year_differs_by_one": 3
  },
- "disagreement_distinct_orders": 225,
- "disagreement_rows": 228,
+ "disagreement_distinct_orders": 221,
+ "disagreement_rows": 223,
  "drop_info": {
   "c89_rows_joined_to_thrower": 3712,
   "self_edges_dropped": 0,
-  "whole_edges_downgraded_to_partial_by_conflict": 165
+  "whole_edges_downgraded_to_partial_by_conflict": 116,
+  "whole_supersession_edges_downgraded_to_partial_by_conflict": 47
  },
  "expected_after_window_rows": 82,
  "orders": 6158,
  "part_vs_project_part_only": {
-  "both": 91,
-  "neither": 5989,
-  "project_only": 51,
-  "thrower_only": 27
+  "both": 90,
+  "neither": 5991,
+  "project_only": 49,
+  "thrower_only": 28
+ },
+ "project_revoked_thrower_silent_basis": {
+  "1989_table_alone": 13,
+  "any_OFR_note": 33,
+  "order_text_only": 4
  },
  "revoke_year_among_both_revoked": {
   "equals_project_max_year": 1554,
@@ -39,14 +56,14 @@
  },
  "revoked_vs_project_any_end": {
   "both": 1578,
-  "neither": 3691,
-  "project_only": 887,
+  "neither": 3680,
+  "project_only": 898,
   "thrower_only": 2
  },
  "revoked_vs_project_any_revocation": {
   "both": 1578,
-  "neither": 4404,
-  "project_only": 174,
+  "neither": 4403,
+  "project_only": 175,
   "thrower_only": 2
  },
  "revokedbyeo12553": {
@@ -68,16 +85,22 @@
   },
   "thrower_flagged": 140
  },
- "superseded_vs_project_supersession": {
+ "superseded_vs_project_any_supersession_whole_or_partial": {
   "both": 469,
-  "neither": 5602,
-  "project_only": 85,
+  "neither": 5601,
+  "project_only": 86,
   "thrower_only": 2
+ },
+ "superseded_vs_project_whole_supersession_only": {
+  "both": 408,
+  "neither": 5632,
+  "project_only": 55,
+  "thrower_only": 63
  },
  "thrower_full_project_partial_qualifier_types": {
   "in part": 11,
   "section or provision named": 1,
-  "whole in one source, partial in another (downgraded)": 5,
+  "whole in one source, partial in another (downgraded)": 3,
   "with respect to ... (clause may qualify a different verb)": 7
  },
  "thrower_revoke_year_equals_issue_year": {
