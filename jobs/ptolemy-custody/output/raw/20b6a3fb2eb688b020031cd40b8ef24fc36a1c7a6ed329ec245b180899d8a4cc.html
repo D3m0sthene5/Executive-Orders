@@ -1,0 +1,791 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#">
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta charset="utf-8"><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]},feature_flags:["soft_nav"]};(window.NREUM||(NREUM={})).loader_config={licenseKey:"dee899de70",applicationID:"80106271",browserID:"133825811"};;/*! For license information please see nr-loader-rum-1.303.0.min.js.LICENSE.txt */
+(()=>{var e,t,r={122:(e,t,r)=>{"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),a=0===Object.keys(r).length?e:r;for(let o in a)if(void 0!==e[o])try{if(null===e[o]){r[o]=null;continue}Array.isArray(e[o])&&Array.isArray(t[o])?r[o]=Array.from(new Set([...e[o],...t[o]])):"object"==typeof e[o]&&"object"==typeof t[o]?r[o]=i(e[o],t[o]):r[o]=e[o]}catch(e){r[o]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},154:(e,t,r)=>{"use strict";r.d(t,{OF:()=>c,RI:()=>i,WN:()=>u,bv:()=>a,gm:()=>o,mw:()=>s,sb:()=>d});var n=r(863);const i="undefined"!=typeof window&&!!window.document,a="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),o=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),s=Boolean("hidden"===o?.document?.visibilityState),c=/iPad|iPhone|iPod/.test(o.navigator?.userAgent),d=c&&"undefined"==typeof SharedWorker,u=((()=>{const e=o.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)())},163:(e,t,r)=>{"use strict";r.d(t,{j:()=>E});var n=r(384),i=r(741);var a=r(555);r(860).K7.genericEvents;const o="experimental.resources",s="register",c=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var d=r(614),u=r(944),l=r(122);const f="[data-nr-mask]",g=e=>(0,l.a)(e,(()=>{const e={feature_flags:[],experimental:{allow_registered_children:!1,resources:!1},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0},api:{get allow_registered_children(){return e.feature_flags.includes(s)||e.experimental.allow_registered_children},set allow_registered_children(t){e.experimental.allow_registered_children=t},duplicate_registered_data:!1},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(o)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:d.wk,inactiveMs:d.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){c(t)?e.mask_selector="".concat(t,",").concat(f):""===t||null===t?e.mask_selector=f:(0,u.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){c(t)?e.block_selector+=",".concat(t):""!==t&&(0,u.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,u.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},spa:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]}}})());var p=r(154),h=r(324);let m=0;const v={buildEnv:h.F3,distMethod:h.Xs,version:h.xv,originTime:p.WN},b={consented:!1},y={appMetadata:{},get consented(){return this.session?.state?.consent||b.consented},set consented(e){b.consented=e},customTransaction:void 0,denyList:void 0,disabled:!1,harvester:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++m}},_=e=>{const t=(0,l.a)(e,y),r=Object.keys(v).reduce((e,t)=>(e[t]={value:v[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)};var w=r(701);const x=e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e};var S=r(836),k=r(241);const R={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0},A=e=>(0,l.a)(e,R),T=new Set;function E(e,t={},r,o){let{init:s,info:c,loader_config:d,runtime:u={},exposed:l=!0}=t;if(!c){const e=(0,n.pV)();s=e.init,c=e.info,d=e.loader_config}e.init=g(s||{}),e.loader_config=A(d||{}),c.jsAttributes??={},p.bv&&(c.jsAttributes.isWorker=!0),e.info=(0,a.D)(c);const f=e.init,h=[c.beacon,c.errorBeacon];T.has(e.agentIdentifier)||(f.proxy.assets&&(x(f.proxy.assets),h.push(f.proxy.assets)),f.proxy.beacon&&h.push(f.proxy.beacon),e.beacons=[...h],function(e){const t=(0,n.pV)();Object.getOwnPropertyNames(i.W.prototype).forEach(r=>{const n=i.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let a=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return a?a(...t):n})})}(e),(0,n.US)("activatedFeatures",w.B),e.runSoftNavOverSpa&&=!0===f.soft_navigations.enabled&&f.feature_flags.includes("soft_nav")),u.denyList=[...f.ajax.deny_list||[],...f.ajax.block_internal?h:[]],u.ptid=e.agentIdentifier,u.loaderType=r,e.runtime=_(u),T.has(e.agentIdentifier)||(e.ee=S.ee.get(e.agentIdentifier),e.exposed=l,(0,k.W)({agentIdentifier:e.agentIdentifier,drained:!!w.B?.[e.agentIdentifier],type:"lifecycle",name:"initialize",feature:void 0,data:e.config})),T.add(e.agentIdentifier)}},234:(e,t,r)=>{"use strict";r.d(t,{W:()=>a});var n=r(836),i=r(687);class a{constructor(e,t){this.agentIdentifier=e,this.ee=n.ee.get(e),this.featureName=t,this.blocked=!1}deregisterDrain(){(0,i.x3)(this.agentIdentifier,this.featureName)}}},241:(e,t,r)=>{"use strict";r.d(t,{W:()=>a});var n=r(154);const i="newrelic";function a(e={}){try{n.gm.dispatchEvent(new CustomEvent(i,{detail:e}))}catch(e){}}},261:(e,t,r)=>{"use strict";r.d(t,{$9:()=>d,BL:()=>s,CH:()=>g,Dl:()=>_,Fw:()=>y,PA:()=>m,Pl:()=>n,Pv:()=>k,Tb:()=>l,U2:()=>a,V1:()=>S,Wb:()=>x,bt:()=>b,cD:()=>v,d3:()=>w,dT:()=>c,eY:()=>p,fF:()=>f,hG:()=>i,k6:()=>o,nb:()=>h,o5:()=>u});const n="api-",i="addPageAction",a="addToTrace",o="addRelease",s="finished",c="interaction",d="log",u="noticeError",l="pauseReplay",f="recordCustomEvent",g="recordReplay",p="register",h="setApplicationVersion",m="setCurrentRouteName",v="setCustomAttribute",b="setErrorHandler",y="setPageViewName",_="setUserId",w="start",x="wrapLogger",S="measure",k="consent"},289:(e,t,r)=>{"use strict";r.d(t,{GG:()=>a,Qr:()=>s,sB:()=>o});var n=r(878);function i(){return"undefined"==typeof document||"complete"===document.readyState}function a(e,t){if(i())return e();(0,n.sp)("load",e,t)}function o(e){if(i())return e();(0,n.DD)("DOMContentLoaded",e)}function s(e){if(i())return e();(0,n.sp)("popstate",e)}},324:(e,t,r)=>{"use strict";r.d(t,{F3:()=>i,Xs:()=>a,xv:()=>n});const n="1.303.0",i="PROD",a="CDN"},374:(e,t,r)=>{r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},384:(e,t,r)=>{"use strict";r.d(t,{NT:()=>o,US:()=>u,Zm:()=>s,bQ:()=>d,dV:()=>c,pV:()=>l});var n=r(154),i=r(863),a=r(910);const o={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function s(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function c(){let e=s();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,a.i)(...Object.values(e.o))),e}function d(e,t){let r=s();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t}function u(e,t){s()[e]=t}function l(){return function(){let e=s();const t=e.info||{};e.info={beacon:o.beacon,errorBeacon:o.errorBeacon,...t}}(),function(){let e=s();const t=e.init||{};e.init={...t}}(),c(),function(){let e=s();const t=e.loader_config||{};e.loader_config={...t}}(),s()}},389:(e,t,r)=>{"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},555:(e,t,r)=>{"use strict";r.d(t,{D:()=>s,f:()=>o});var n=r(384),i=r(122);const a={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function o(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}const s=e=>(0,i.a)(e,a)},566:(e,t,r)=>{"use strict";r.d(t,{LA:()=>s,bz:()=>o});var n=r(154);const i="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";function a(e,t){return e?15&e[t]:16*Math.random()|0}function o(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),i.split("").map(e=>"x"===e?a(t,r++).toString(16):"y"===e?(3&a()|8).toString(16):e).join("")}function s(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,i=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const o=[];for(var s=0;s<e;s++)o.push(a(r,i++).toString(16));return o.join("")}},606:(e,t,r)=>{"use strict";r.d(t,{i:()=>a});var n=r(908);a.on=o;var i=a.handlers={};function a(e,t,r,a){o(a||n.d,i,e,t,r)}function o(e,t,r,i,a){a||(a="feature"),e||(e=n.d);var o=t[a]=t[a]||{};(o[r]=o[r]||[]).push([e,i])}},607:(e,t,r)=>{"use strict";r.d(t,{W:()=>n});const n=(0,r(566).bz)()},614:(e,t,r)=>{"use strict";r.d(t,{BB:()=>o,H3:()=>n,g:()=>d,iL:()=>c,tS:()=>s,uh:()=>i,wk:()=>a});const n="NRBA",i="SESSION",a=144e5,o=18e5,s={STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},c={SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},d={OFF:0,FULL:1,ERROR:2}},630:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.pageViewEvent},646:(e,t,r)=>{"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},687:(e,t,r)=>{"use strict";r.d(t,{Ak:()=>d,Ze:()=>f,x3:()=>u});var n=r(241),i=r(836),a=r(606),o=r(860),s=r(646);const c={};function d(e,t){const r={staged:!1,priority:o.P3[t]||0};l(e),c[e].get(t)||c[e].set(t,r)}function u(e,t){e&&c[e]&&(c[e].get(t)&&c[e].delete(t),p(e,t,!1),c[e].size&&g(e))}function l(e){if(!e)throw new Error("agentIdentifier required");c[e]||(c[e]=new Map)}function f(e="",t="feature",r=!1){if(l(e),!e||!c[e].get(t)||r)return p(e,t);c[e].get(t).staged=!0,g(e)}function g(e){const t=Array.from(c[e]);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{c[e].delete(t),p(e,t)}))}function p(e,t,r=!0){const o=e?i.ee.get(e):i.ee,c=a.i.handlers;if(!o.aborted&&o.backlog&&c){if((0,n.W)({agentIdentifier:e,type:"lifecycle",name:"drain",feature:t}),r){const e=o.backlog[t],r=c[t];if(r){for(let t=0;e&&t<e.length;++t)h(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0]?.context()instanceof s.y&&t[0].on(e,t[1])})})}}o.isolatedBacklog||delete c[t],o.backlog[t]=null,o.emit("drain-"+t,[])}}function h(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],a=e[2];n.apply(i,a)}})}},699:(e,t,r)=>{"use strict";r.d(t,{It:()=>a,KC:()=>s,No:()=>i,qh:()=>o});var n=r(860);const i=16e3,a=1e6,o="SESSION_ERROR",s={[n.K7.logging]:!0,[n.K7.genericEvents]:!1,[n.K7.jserrors]:!1,[n.K7.ajax]:!1}},701:(e,t,r)=>{"use strict";r.d(t,{B:()=>a,t:()=>o});var n=r(241);const i=new Set,a={};function o(e,t){const r=t.agentIdentifier;a[r]??={},e&&"object"==typeof e&&(i.has(r)||(t.ee.emit("rumresp",[e]),a[r]=e,i.add(r),(0,n.W)({agentIdentifier:r,loaded:!0,drained:!0,type:"lifecycle",name:"load",feature:void 0,data:e})))}},741:(e,t,r)=>{"use strict";r.d(t,{W:()=>a});var n=r(944),i=r(261);class a{#e(e,...t){if(this[e]!==a.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e){return this.#e(i.Dl,e)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e(i.$9,e,t)}start(){return this.#e(i.d3)}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},773:(e,t,r)=>{"use strict";r.d(t,{z_:()=>a,XG:()=>s,TZ:()=>n,rs:()=>i,xV:()=>o});r(154),r(566),r(384);const n=r(860).K7.metrics,i="sm",a="cm",o="storeSupportabilityMetrics",s="storeEventMetrics"},782:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.pageViewTiming},836:(e,t,r)=>{"use strict";r.d(t,{P:()=>s,ee:()=>c});var n=r(384),i=r(990),a=r(646),o=r(607);const s="nr@context:".concat(o.W),c=function e(t,r){var n={},o={},u={},l=!1;try{l=16===r.length&&d.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,a){!1!==a&&(a=!0);if(c.aborted&&!i)return;t&&a&&t.emit(e,r,n);var s=g(n);h(e).forEach(e=>{e.apply(s,r)});var d=v()[o[e]];d&&d.push([f,e,r,s]);return s},get:m,listeners:h,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{o[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[o[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof a.y?e:e?(0,i.I)(e,s,()=>new a.y(s)):new a.y(s)}function p(e,t){n[e]=h(e).concat(t)}function h(e){return n[e]||[]}function m(t){return u[t]=u[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),d=(0,n.Zm)();d.ee||(d.ee=c)},843:(e,t,r)=>{"use strict";r.d(t,{u:()=>i});var n=r(878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}},860:(e,t,r)=>{"use strict";r.d(t,{$J:()=>u,K7:()=>c,P3:()=>d,XX:()=>i,Yy:()=>s,df:()=>a,qY:()=>n,v4:()=>o});const n="events",i="jserrors",a="browser/blobs",o="rum",s="browser/logs",c={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations",spa:"spa"},d={[c.pageViewEvent]:1,[c.pageViewTiming]:2,[c.metrics]:3,[c.jserrors]:4,[c.spa]:5,[c.ajax]:6,[c.sessionTrace]:7,[c.softNav]:8,[c.sessionReplay]:9,[c.logging]:10,[c.genericEvents]:11},u={[c.pageViewEvent]:o,[c.pageViewTiming]:n,[c.ajax]:n,[c.spa]:n,[c.softNav]:n,[c.metrics]:i,[c.jserrors]:i,[c.sessionTrace]:a,[c.sessionReplay]:a,[c.logging]:s,[c.genericEvents]:"ins"}},863:(e,t,r)=>{"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},878:(e,t,r)=>{"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function a(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>a,jT:()=>n,sp:()=>i})},908:(e,t,r)=>{"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(836).ee.get("handle");function i(e,t,r,i,a){a?(a.buffer([e],i),a.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},910:(e,t,r)=>{"use strict";r.d(t,{i:()=>a});var n=r(944);const i=new Map;function a(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e&&e.toString().includes("[native code]");return t||(0,n.R)(64,e?.name||e?.toString()),i.set(e,t),t})}},944:(e,t,r)=>{"use strict";r.d(t,{R:()=>i});var n=r(241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({agentIdentifier:null,drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},990:(e,t,r)=>{"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}}},n={};function i(e){var t=n[e];if(void 0!==t)return t.exports;var a=n[e]={exports:{}};return r[e](a,a.exports,i),a.exports}i.m=r,i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce((t,r)=>(i.f[r](e,t),t),[])),i.u=e=>"nr-rum-1.303.0.min.js",i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},t="NRBA-1.303.0.PROD:",i.l=(r,n,a,o)=>{if(e[r])e[r].push(n);else{var s,c;if(void 0!==a)for(var d=document.getElementsByTagName("script"),u=0;u<d.length;u++){var l=d[u];if(l.getAttribute("src")==r||l.getAttribute("data-webpack")==t+a){s=l;break}}if(!s){c=!0;var f={296:"sha512-DjFbtykbDCyUDGsp+l/dYhH0LhW/Jv9sDnc+aleTRmpV1ZRfyOeip4Sv4USz3Fk0DZCWshsM7d24cTr9Xf3L/A=="};(s=document.createElement("script")).charset="utf-8",i.nc&&s.setAttribute("nonce",i.nc),s.setAttribute("data-webpack",t+a),s.src=r,0!==s.src.indexOf(window.location.origin+"/")&&(s.crossOrigin="anonymous"),f[o]&&(s.integrity=f[o])}e[r]=[n];var g=(t,n)=>{s.onerror=s.onload=null,clearTimeout(p);var i=e[r];if(delete e[r],s.parentNode&&s.parentNode.removeChild(s),i&&i.forEach(e=>e(n)),t)return t(n)},p=setTimeout(g.bind(null,void 0,{type:"timeout",target:s}),12e4);s.onerror=g.bind(null,s.onerror),s.onload=g.bind(null,s.onload),c&&document.head.appendChild(s)}},i.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.p="https://js-agent.newrelic.com/",(()=>{var e={374:0,840:0};i.f.j=(t,r)=>{var n=i.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise((r,i)=>n=e[t]=[r,i]);r.push(n[2]=a);var o=i.p+i.u(t),s=new Error;i.l(o,r=>{if(i.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&("load"===r.type?"missing":r.type),o=r&&r.target&&r.target.src;s.message="Loading chunk "+t+" failed.\n("+a+": "+o+")",s.name="ChunkLoadError",s.type=a,s.request=o,n[1](s)}},"chunk-"+t,t)}};var t=(t,r)=>{var n,a,[o,s,c]=r,d=0;if(o.some(t=>0!==e[t])){for(n in s)i.o(s,n)&&(i.m[n]=s[n]);if(c)c(i)}for(t&&t(r);d<o.length;d++)a=o[d],i.o(e,a)&&e[a]&&e[a][0](),e[a]=0},r=self["webpackChunk:NRBA-1.303.0.PROD"]=self["webpackChunk:NRBA-1.303.0.PROD"]||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})(),(()=>{"use strict";i(374);var e=i(566),t=i(741);class r extends t.W{agentIdentifier=(0,e.LA)(16)}var n=i(860);const a=Object.values(n.K7);var o=i(163);var s=i(908),c=i(863),d=i(261),u=i(241),l=i(944),f=i(701),g=i(773);function p(e,t,i,a){const o=a||i;!o||o[e]&&o[e]!==r.prototype[e]||(o[e]=function(){(0,s.p)(g.xV,["API/"+e+"/called"],void 0,n.K7.metrics,i.ee),(0,u.W)({agentIdentifier:i.agentIdentifier,drained:!!f.B?.[i.agentIdentifier],type:"data",name:"api",feature:d.Pl+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,l.R)(23,e)}})}function h(e,t,r,n,i){const a=e.info;null===r?delete a.jsAttributes[t]:a.jsAttributes[t]=r,(i||null===r)&&(0,s.p)(d.Pl+n,[(0,c.t)(),t,r],void 0,"session",e.ee)}var m=i(687),v=i(234),b=i(289),y=i(154),_=i(384);const w=e=>y.RI&&!0===e?.privacy.cookies_enabled;function x(e){return!!(0,_.dV)().o.MO&&w(e)&&!0===e?.session_trace.enabled}var S=i(389),k=i(699);class R extends v.W{constructor(e,t){super(e.agentIdentifier,t),this.agentRef=e,this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,S.J)(()=>{(0,m.Ak)(e.agentIdentifier,this.featureName),t()}))}):(0,m.Ak)(e.agentIdentifier,t)}importAggregator(e,t,r={}){if(this.featAggregate)return;const n=async()=>{let n;await this.deferred;try{if(w(e.init)){const{setupAgentSession:t}=await i.e(296).then(i.bind(i,305));n=t(e)}}catch(e){(0,l.R)(20,e),this.ee.emit("internal-error",[e]),(0,s.p)(k.qh,[e],void 0,this.featureName,this.ee)}try{if(!this.#t(this.featureName,n,e.init))return(0,m.Ze)(this.agentIdentifier,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:i}=await t();this.featAggregate=new i(e,r),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,l.R)(34,e),this.abortHandler?.(),(0,m.Ze)(this.agentIdentifier,this.featureName,!0),this.loadedSuccessfully(!1),this.ee&&this.ee.abort()}};y.RI?(0,b.GG)(()=>n(),!0):n()}#t(e,t,r){if(this.blocked)return!1;switch(e){case n.K7.sessionReplay:return x(r)&&!!t;case n.K7.sessionTrace:return!!t;default:return!0}}}var A=i(630),T=i(614);class E extends R{static featureName=A.T;constructor(e){var t;super(e,A.T),this.setupInspectionEvents(e.agentIdentifier),t=e,p(d.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,s.p)(d.Pl+d.Fw,[(0,c.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>i.e(296).then(i.bind(i,108)))}setupInspectionEvents(e){const t=(t,r)=>{t&&(0,u.W)({agentIdentifier:e,timeStamp:t.timeStamp,loaded:"complete"===t.target.readyState,type:"window",name:r,data:t.target.location+""})};(0,b.sB)(e=>{t(e,"DOMContentLoaded")}),(0,b.GG)(e=>{t(e,"load")}),(0,b.Qr)(e=>{t(e,"navigate")}),this.ee.on(T.tS.UPDATE,(t,r)=>{(0,u.W)({agentIdentifier:e,type:"lifecycle",name:"session",data:r})})}}var N=i(843),j=i(878),I=i(782);class P extends R{static featureName=I.T;constructor(e){super(e,I.T),y.RI&&((0,N.u)(()=>(0,s.p)("docHidden",[(0,c.t)()],void 0,I.T,this.ee),!0),(0,j.sp)("pagehide",()=>(0,s.p)("winPagehide",[(0,c.t)()],void 0,I.T,this.ee)),this.importAggregator(e,()=>i.e(296).then(i.bind(i,350))))}}class O extends R{static featureName=g.TZ;constructor(e){super(e,g.TZ),y.RI&&document.addEventListener("securitypolicyviolation",e=>{(0,s.p)(g.xV,["Generic/CSPViolation/Detected"],void 0,this.featureName,this.ee)}),this.importAggregator(e,()=>i.e(296).then(i.bind(i,623)))}}new class extends r{constructor(e){var t;(super(),y.gm)?(this.features={},(0,_.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(E),this.runSoftNavOverSpa=[...this.desiredFeatures].some(e=>e.featureName===n.K7.softNav),(0,o.j)(this,e,e.loaderType||"agent"),t=this,p(d.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return h(t,e,r,d.cD,n);(0,l.R)(40,typeof r)}else(0,l.R)(39,typeof e)},t),function(e){p(d.Dl,function(t){if("string"==typeof t||null===t)return h(e,"enduser.id",t,d.Dl,!0);(0,l.R)(41,typeof t)},e)}(this),function(e){p(d.nb,function(t){if("string"==typeof t||null===t)return h(e,"application.version",t,d.nb,!1);(0,l.R)(42,typeof t)},e)}(this),function(e){p(d.d3,function(){e.ee.emit("manual-start-all")},e)}(this),function(e){p(d.Pv,function(t=!0){if("boolean"==typeof t){if((0,s.p)(d.Pl+d.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum()})}}else(0,l.R)(65,typeof t)},e)}(this),this.run()):(0,l.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return a.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),t=[...this.desiredFeatures];t.sort((e,t)=>n.P3[e.featureName]-n.P3[t.featureName]),t.forEach(t=>{if(!e[t.featureName]&&t.featureName!==n.K7.pageViewEvent)return;if(this.runSoftNavOverSpa&&t.featureName===n.K7.spa)return;if(!this.runSoftNavOverSpa&&t.featureName===n.K7.softNav)return;const r=function(e){switch(e){case n.K7.ajax:return[n.K7.jserrors];case n.K7.sessionTrace:return[n.K7.ajax,n.K7.pageViewEvent];case n.K7.sessionReplay:return[n.K7.sessionTrace];case n.K7.pageViewTiming:return[n.K7.pageViewEvent];default:return[]}}(t.featureName).filter(e=>!(e in this.features));r.length>0&&(0,l.R)(36,{targetFeature:t.featureName,missingDependencies:r}),this.features[t.featureName]=new t(this)})}catch(e){(0,l.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,_.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}({features:[E,P,O],loaderType:"lite"})})()})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="/documents/executive-order-10001-prescribing-or-amending-portions-the-selective-service-regulations" />
+<link rel="shortlink" href="/node/278566" />
+<link rel="shortcut icon" href="https://www.presidency.ucsb.edu/sites/default/files/favicon-app_0.png" type="image/png" />
+  <title>Executive Order 10001—Prescribing or Amending Portions of the Selective Service Regulations and Directing the Selection of Persons for Induction Into the Armed Forces and Their Induction | The American Presidency Project</title>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,800,700,600,300|Dosis:400,200,300,500,600,700,800' rel='stylesheet' type='text/css'>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_lQaZfjVpwP_oGNqdtWCSpJT1EMqXdMiU84ekLLxQnc4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_uuQd0L7qawhKpY0MHO8pVG2W6LSQqS5w9XHZMk3vO2U.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_vbEgx2XLR7Zv4cooqCR003JQm8ctJxS8MDvX_FsFGUs.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_oeHWMYUNGpyVpvA5OI5WFwKyBOcHdcrAoQuKZFMe0ng.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_95w1P56cK6XaxiF_CEwhZAgmNWjkIGFRauUF_xNVpzE.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_DW59q6nX-P3-D4cA08_V2iLlMJIaFdPFYT8X6nSFpV8.css" media="print" />
+  <!-- HTML5 element support for IE6-8 -->
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+<script>window.jQuery || document.write("<script src='/sites/default/modules/contrib/jquery_update/replace/jquery/1.12/jquery.min.js'>\x3C/script>")</script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_GOikDsJOX04Aww72M-XK1hkq4qiL_1XgGsRdkL0XlDo.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.13.3/jquery-ui.min.js"></script>
+<script>window.jQuery.ui || document.write("<script src='/sites/default/modules/contrib/jquery_update/replace/ui/ui/minified/jquery-ui.min.js'>\x3C/script>")</script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_onbE0n0cQY6KTDQtHO_E27UBymFC-RuqypZZ6Zxez-o.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_gHk2gWJ_Qw_jU2qRiUmSl7d8oly1Cx7lQFrqcp3RXcI.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_OnsvYlQ_LTosJ-SxmHIq3Rw7eH2XmXi69Q68wgclccA.js"></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-86410002-1"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-86410002-1", {"groups":"default","linker":{"domains":["dev-wwwpresidencyucsbedu.pantheonsite.io","www.presidency.ucsb.edu"]},"anonymize_ip":true});gtag("config", "G-86B9KEYGFJ", {"groups":"default","linker":{"domains":["dev-wwwpresidencyucsbedu.pantheonsite.io","www.presidency.ucsb.edu"]},"anonymize_ip":true});</script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_lcTf447kIisJfwJMjtPrAFuGvKNH6t_RbNx-yD768P0.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_gvpxcPEErmaiJn8qGSGx2O87lReivTR09hs10gIG3Yg.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","setHasJsCookie":0,"ajaxPageState":{"theme":"app","theme_token":"8AySOsEBaRY57FdjzfiHM0CmvIRgxW8BDjxvTiQiIRQ","js":{"sites\/default\/libraries\/jquery-ui-multiselect-widget\/src\/jquery.multiselect.js":1,"sites\/default\/libraries\/jquery-ui-multiselect-widget\/src\/jquery.multiselect.filter.js":1,"sites\/default\/modules\/contrib\/jquery_ui_multiselect_widget\/jquery_ui_multiselect_widget.js":1,"modules\/statistics\/statistics.js":1,"sites\/default\/themes\/bootstrap\/js\/bootstrap.js":1,"\/\/ajax.aspnetcdn.com\/ajax\/jQuery\/jquery-1.12.4.min.js":1,"0":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/default\/modules\/contrib\/jquery_update\/js\/jquery_browser.js":1,"\/\/ajax.aspnetcdn.com\/ajax\/jquery.ui\/1.13.3\/jquery-ui.min.js":1,"1":1,"misc\/form-single-submit.js":1,"sites\/default\/modules\/contrib\/entityreference\/js\/entityreference.js":1,"sites\/default\/modules\/contrib\/better_exposed_filters\/better_exposed_filters.js":1,"sites\/default\/modules\/contrib\/google_analytics\/googleanalytics.js":1,"https:\/\/www.googletagmanager.com\/gtag\/js?id=UA-86410002-1":1,"2":1,"sites\/default\/modules\/contrib\/field_group\/field_group.js":1,"sites\/default\/modules\/contrib\/rrssb\/rrssb.init.js":1,"sites\/default\/libraries\/rrssb-plus\/js\/rrssb.min.js":1,"sites\/default\/modules\/contrib\/extlink\/js\/extlink.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/affix.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/alert.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/button.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/carousel.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/collapse.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/dropdown.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/modal.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/tooltip.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/popover.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/scrollspy.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/tab.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/transition.js":1,"sites\/default\/themes\/app\/scripts\/scripts.js":1},"css":{"modules\/system\/system.base.css":1,"misc\/ui\/jquery.ui.core.css":1,"misc\/ui\/jquery.ui.theme.css":1,"misc\/ui\/jquery.ui.accordion.css":1,"sites\/default\/modules\/contrib\/date\/date_repeat_field\/date_repeat_field.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"sites\/default\/modules\/contrib\/extlink\/css\/extlink.css":1,"sites\/default\/modules\/contrib\/views\/css\/views.css":1,"sites\/default\/modules\/contrib\/ctools\/css\/ctools.css":1,"sites\/default\/libraries\/jquery-ui-multiselect-widget\/jquery.multiselect.css":1,"sites\/default\/libraries\/jquery-ui-multiselect-widget\/jquery.multiselect.filter.css":1,"sites\/default\/modules\/contrib\/jquery_ui_multiselect_widget\/jquery_ui_multiselect_widget.css":1,"sites\/default\/modules\/contrib\/vefl\/css\/vefl-layouts.css":1,"sites\/default\/modules\/contrib\/date\/date_api\/date.css":1,"public:\/\/rrssb\/rrssb.5db48430.css":1,"sites\/default\/libraries\/rrssb-plus\/css\/rrssb.css":1,"sites\/default\/themes\/app\/css\/style.css":1,"sites\/default\/themes\/app\/css\/oog.css":1,"sites\/default\/themes\/app\/css\/print.css":1}},"jquery_ui_multiselect_widget":{"module_path":"sites\/default\/modules\/contrib\/jquery_ui_multiselect_widget","multiple":1,"filter":1,"subselector":"#edit-category2","selectedlist":"4","autoOpen":0,"header":1,"height":"auto","classes":"app-uberselect","filter_auto_reset":1,"filter_width":"auto","jquery_ui_multiselect_widget_path_match_exclude":"admin\/*\r\nmedia\/*\r\nfile\/*\r\nsystem\/ajax"},"better_exposed_filters":{"datepicker":false,"slider":false,"settings":[],"autosubmit":false,"views":{"dpg_docs_media":{"displays":{"block_2":{"filters":[]}}},"report_a_typo":{"displays":{"block":{"filters":[]}}},"document_attached_files":{"displays":{"block":{"filters":[]},"block_1":{"filters":[]}}}}},"urlIsAjaxTrusted":{"\/advanced-search":true},"googleanalytics":{"account":["UA-86410002-1","G-86B9KEYGFJ"],"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackDomainMode":2,"trackCrossDomains":["dev-wwwpresidencyucsbedu.pantheonsite.io","www.presidency.ucsb.edu"]},"statistics":{"data":{"nid":"278566"},"url":"\/modules\/statistics\/statistics.php"},"field_group":{"div":"full"},"rrssb":{"size":"1","shrink":"1","regrow":"","minRows":"1","maxRows":"1","prefixReserve":"1em","prefixHide":"1em","alignRight":0},"extlink":{"extTarget":"_blank","extClass":0,"extLabel":"(link is external)","extImgClass":0,"extIconPlacement":"append","extSubdomains":1,"extExclude":"","extInclude":"","extCssExclude":"","extCssExplicit":"","extAlert":0,"extAlertText":"This link will take you to an external web site.","mailtoClass":0,"mailtoLabel":"(link sends e-mail)","extUseFontAwesome":false},"bootstrap":{"anchorsFix":1,"anchorsSmoothScrolling":1,"formHasError":1,"popoverEnabled":0,"popoverOptions":{"animation":1,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":1,"html":0,"placement":"auto left","selector":"","trigger":"hover focus","delay":0,"container":"body"}}});</script>
+</head>
+<body class="html not-front not-logged-in one-sidebar sidebar-first page-node page-node- page-node-278566 node-type-documents" >
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <div class="wrapper"> <!-- Wrapper for Sticky Footer -->
+
+      <div class="branding-region">
+      <div class="container">
+                  <div class="region region-branding">
+    <section id="block-block-1" class="block block-block site-title-block clearfix">
+
+      
+  <div class="site-title"><a href="https://www.presidency.ucsb.edu/">The American Presidency Project</a></div>
+
+</section>
+<section id="block-block-2" class="block block-block top-link-buttons clearfix">
+
+      
+  <p><a class="btn btn-default" href="https://www.presidency.ucsb.edu/about">About</a><a class="btn btn-default" href="/advanced-search"><span class="glyphicon glyphicon-search"></span> Search</a></p>
+<p id="ucScript"><a href="https://www.ucsb.edu/" target="_blank"><img alt="ucsb wordmark black" src="https://www.presidency.ucsb.edu/sites/default/files/pictures/uc_santa_barbara_wordmark_black_rgb.svg" style="width: 175px; height: 13px;" /></a></p>
+
+</section>
+  </div>
+      </div>
+    </div>
+  
+  <div id="navbar" role="banner" class="navbar navbar-default"><!-- Only way to remove "container" class -->
+    <div class="container">
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+              <div class="navbar-collapse collapse">
+          <nav role="navigation">
+                          <ul class="menu nav navbar-nav"><li class="first expanded active-trail active dropdown"><a href="/documents" class="active-trail dropdown-toggle" data-toggle="dropdown">Documents <span class="caret"></span></a><ul class="dropdown-menu"><li class="first leaf"><a href="/documents/presidential-documents-archive-guidebook">Guidebook</a></li>
+<li class="last leaf"><a href="/documents/category-attributes">Category Attributes</a></li>
+</ul></li>
+<li class="collapsed"><a href="/statistics">Statistics</a></li>
+<li class="leaf"><a href="/media" title="">Media Archive</a></li>
+<li class="leaf"><a href="/presidents" title="">Presidents</a></li>
+<li class="leaf"><a href="/analyses" title="">Analyses</a></li>
+<li class="last leaf"><a href="https://give.ucsb.edu/campaigns/58728/donations/new" title="">GIVE</a></li>
+</ul>                                              </nav>
+        </div>
+          </div>
+  </div>
+
+  <div role="banner" id="page-header" class="site-header">
+      </div>
+
+  <div class="main-container container">
+    <div class="row">
+
+          <aside class="col-sm-3 no-print" role="complementary">
+            <div class="region region-sidebar-first well">
+    <section id="block-menu-block-8" class="block block-menu-block doc-sub clearfix">
+
+        <h2 class="block-title">Documents</h2>
+    
+  <div class="menu-block-wrapper menu-block-8 menu-name-menu-documents parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-10329"><a href="/documents/presidential-documents-archive-guidebook" title="">Archive Guidebook</a></li>
+<li class="leaf active-trail menu-mlid-10330 active"><a href="/documents" title="" class="active-trail">Categories</a></li>
+<li class="last leaf menu-mlid-10791"><a href="/documents/category-attributes" title="">Attributes</a></li>
+</ul></div>
+
+</section>
+<section id="block-menu-block-7" class="block block-menu-block dropdown clearfix">
+
+        <h2 class="block-title">Categories</h2>
+    
+  <div class="menu-block-wrapper menu-block-7 menu-name-menu-doc-cat-menu parent-mlid-0 menu-level-1">
+    <ul class="menu nav"><li class="first expanded menu-mlid-10954 dropdown"><a href="/documents/app-categories/presidential" title="Presidential (73842)" class="dropdown-toggle" data-toggle="dropdown">Presidential (246969) <span class="caret"></span></a><ul class="dropdown-menu"><li class="first leaf menu-mlid-10910"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/eulogies" title="Eulogies (55)">Eulogies (69)</a></li>
+<li class="leaf menu-mlid-10930"><a href="/documents/app-categories/written-presidential-orders/presidential/executive-orders" title="Executive Orders (5885)">Executive Orders (10804)</a></li>
+<li class="leaf menu-mlid-10912"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/fireside-chats" title="Fireside Chats (27)">Fireside Chats (27)</a></li>
+<li class="leaf menu-mlid-10906"><a href="/documents/app-categories/presidential/interviews" title="Interviews (950)">Interviews (1031)</a></li>
+<li class="leaf menu-mlid-10894"><a href="/documents/app-categories/presidential/letters" title="Letters (4363)">Letters (4793)</a></li>
+<li class="leaf menu-mlid-10899"><a href="/documents/app-categories/presidential/miscellaneous-written" title="Miscellaneous Written (741)">Miscellaneous Written (112)</a></li>
+<li class="leaf menu-mlid-10907"><a href="/documents/app-categories/presidential/news-conferences" title="News Conferences (2096)">News Conferences (2522)</a></li>
+<li class="collapsed menu-mlid-10909"><a href="/documents/app-categories/presidential/spoken-addresses-and-remarks" title="Spoken Addresses and Remarks (5428)">Spoken Addresses and Remarks (35231)</a></li>
+<li class="leaf menu-mlid-10911"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/farewell-addresses" title="Farewell Address (10)">Farewell Addresses (12)</a></li>
+<li class="leaf menu-mlid-10913"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/inaugural-addresses" title="Inaugural Addresses (61)">Inaugural Addresses (63)</a></li>
+<li class="leaf menu-mlid-10895"><a href="/documents/app-categories/presidential/memoranda" title="Memoranda (1828)">Memoranda (3458)</a></li>
+<li class="leaf menu-mlid-10927"><a href="/documents/app-categories/citations/presidential/messages" title="Messages (11049)">Messages (12692)</a></li>
+<li class="leaf menu-mlid-10931"><a href="/documents/app-categories/written-presidential-orders/presidential/proclamations" title="Proclamations (7974)">Proclamations (9638)</a></li>
+<li class="leaf menu-mlid-10919"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/saturday-weekly-addresses" title="Saturday Addresses (Radio and Webcast) (1629)">Saturday Weekly Addresses (1639)</a></li>
+<li class="leaf menu-mlid-10920"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/state-dinners" title="State Dinners (953)">State Dinners (263)</a></li>
+<li class="leaf menu-mlid-10921"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/state-the-union-addresses" title="State of the Union Addresses (98)">State of the Union Addresses (100)</a></li>
+<li class="leaf menu-mlid-10928"><a href="/documents/app-categories/citations/presidential/state-the-union-written-messages" title="State of the Union Messages (1)">State of the Union Written Messages (140)</a></li>
+<li class="expanded menu-mlid-10934"><a href="/documents/app-categories/statements" title="Statements (8647)">Statements (14693)</a></li>
+<li class="leaf menu-mlid-10924"><a href="/documents/app-categories/presidential/vetoes" title="Vetoes (266)">Vetoes (1228)</a></li>
+<li class="collapsed menu-mlid-10925"><a href="/documents/app-categories/presidential/citations" title="Written Messages (11021)">Citations (13060)</a></li>
+<li class="last expanded menu-mlid-10929"><a href="/documents/app-categories/presidential/written-presidential-orders" title="Written Presidential Orders (13858)">Written Presidential Orders (47234)</a></li>
+</ul></li>
+<li class="leaf menu-mlid-10897"><a href="/documents/app-categories/remarks-administration-officials" title="Miscellaneous Press Secretary (23298)">Remarks by Administration Officials (186)</a></li>
+<li class="expanded menu-mlid-10887 dropdown"><a href="/documents/app-categories/elections-and-transitions" title="Elections and Transitions (16448)" class="dropdown-toggle" data-toggle="dropdown">Elections and Transitions (50265) <span class="caret"></span></a><ul class="dropdown-menu"><li class="first leaf menu-mlid-10888"><a href="/documents/app-categories/elections-and-transitions/campaign-documents" title="Campaign Documents (2747)">Campaign Documents (23621)</a></li>
+<li class="expanded menu-mlid-10889"><a href="/documents/app-categories/elections-and-transitions/convention-speeches" title="Convention Speeches (50)">Convention Speeches (128)</a></li>
+<li class="expanded menu-mlid-10890"><a href="/documents/app-categories/elections-and-transitions/debates" title="Debates (152)">Debates (191)</a></li>
+<li class="leaf menu-mlid-10892"><a href="/documents/app-categories/elections-and-transitions/party-platforms" title="Party Platforms (98)">Party Platforms (105)</a></li>
+<li class="last leaf menu-mlid-10893"><a href="/documents/app-categories/elections-and-transitions/transition-documents" title="Transition Documents (346)">Transition Documents (744)</a></li>
+</ul></li>
+<li class="last leaf menu-mlid-10883"><a href="/documents/app-categories/congressional" title="Congressional (3)">Congressional (11)</a></li>
+</ul></div>
+
+</section>
+  </div>
+        </aside>  <!-- /#sidebar-first -->
+      
+      <section class="col-sm-9">
+                        <a id="main-content"></a>
+                
+                          
+                          <div class="region region-content">
+    <section id="block-system-main" class="block block-system clearfix">
+
+      
+  
+
+<div  about="/documents/executive-order-10001-prescribing-or-amending-portions-the-selective-service-regulations" typeof="sioc:Item foaf:Document" class="node node-documents view-mode-full ">
+    <div class="row">
+    <div class="col-sm-8 ">
+      
+  <div class="field-docs-person">
+    <div  about="/people/president/harry-s-truman" typeof="sioc:Item foaf:Document" class="ds-1col node node-prez-diet view-mode-for_documents  clearfix">
+
+  
+  
+  <div class="field-diet-pictures">
+    <img typeof="foaf:Image" class="img-responsive" src="https://www.presidency.ucsb.edu/sites/default/files/styles/doc_img/public/people/harry-s-truman_1.jpg?itok=gLkW6ivb" width="170" height="230" alt="Harry S. Truman photo" />  </div>
+
+  <div class="field-title">
+    <h3 class="diet-title"><a href="/people/president/harry-s-truman">Harry S Truman</a></h3>  </div>
+
+  <div class="field-ds-byline">
+    
+  <div class="field-resuable-byline">
+    <div class="diet-by-line president"><span class="presidential-ordinal-number">33rd</span> <span class="job-position">President of the United States:</span> <span class="dates">1945 ‐ 1953</span></div>
+  </div>
+  </div>
+
+  <div class="field-ds-doc-title">
+    <h1>Executive Order 10001—Prescribing or Amending Portions of the Selective Service Regulations and Directing the Selection of Persons for Induction Into the Armed Forces and Their Induction</h1>
+  </div>
+</div>
+
+  </div>
+
+  <div class="field-docs-start-date-time">
+    <span  property="dc:date" datatype="xsd:dateTime" content="1948-09-17T00:00:00+00:00" class="date-display-single">September 17, 1948</span>  </div>
+
+  <div class="field-docs-content">
+    <p>By virtue of the authority vested in me by Title I of the Selective Service Act of 1948, approved June 24, 1948 (62 Stat. 604), it is ordered as follows:</p>
+<p>1. I hereby prescribe the following portions of the regulations governing the administration of Title I of the said Act, which shall constitute portions of Parts 628, 629, 631, 6532, 641, and 642 of Chapter VI of Title 32 of the Code of Federal Regulations, such regulations to be known as the Selective Service Regulations:</p>
+<p>PART 628-PHYSICAL EXAMINATION</p>
+<p>MEDICAL INTERVIEW BY LOCAL BOARD<br /><br />
+Sec.<br /><br />
+628.1 Purpose of medical interview.<br /><br />
+628.2 Registrants to be given medical interview.<br /><br />
+628.3 Duties of medical advisor to local board.<br /><br />
+628.4 Duties of local board.<br /><br />
+628.5 Transfer for medical interview.</p>
+<p>ARMED FORCES PHYSICAL EXAMINATION<br /><br />
+Sec.<br /><br />
+628.10 Who will be examined.<br /><br />
+628.11 Order to report for armed forces physical examination.<br /><br />
+628.12 Postponement of armed forces physical examination.<br /><br />
+628.13 Preparing records for a group ordered to report for armed forces physical examination.<br /><br />
+628.14 Transfer of registrants for physical examination.<br /><br />
+628.15 Transfer for armed forces physical examination directed by Director of<br /><br />
+Selective Service.<br /><br />
+628.16 Duty of registrant to report for and submit to armed forces physical<br /><br />
+examination.<br /><br />
+628.17 Forwarding registrants for armed forces physical examination.</p>
+<p>ACTION TAKEN AFTER ARMED FORCES PHYSICAL EXAMINATION<br /><br />
+628.25 Disposition of records<br /><br />
+628.26 Action when registrant's status not determined.</p>
+<p>MEDICAL INTERVIEW BY LOCAL BOARD</p>
+<p>§ 628.1 Purpose of medical interview. A medical interview of certain registrants by the medical advisor to the local board shall be accomplished for the purpose of screening at the local board those registrants who may have certain specified physical or mental conditions which disqualify them for service in the armed forces.</p>
+<p>§ 628.2 Registrants to be given medical interview. (a) When the local board is of the opinion that a registrant who is in a class available for service has one or more of the obvious defects or manifest conditions listed in Part 629 of this chapter it shall order the registrant to present himself for medical interview at a specified time and place by mailing to such registrant a Notice to Registrant to Appear for Medical Interview (SSS Form No. 220).</p>
+<p>(b) When a registrant who is in a class available for service claims that he has one or more of the obvious defects or manifest conditions listed in Part 629 of this chapter the local board shall order him to present himself for interview with the medical advisor to the local board at the time and place specified by the local board by mailing to such registrant a Notice to Registrant to Appear for Medical Interview (SSS Form No. 220).</p>
+<p>(c) When, because of a physical or mental condition, a registrant is unable to personally present himself for medical interview, a reputable physician may file an affidavit, or an authorized representative of a Federal or State agency may file an official statement with the local board, stating (1) the character of the condition or defect, (2) that the physician has personal professional knowledge thereof, or that the representative has official knowledge thereof, and (3) that the registrant is unable to personally present himself for medical interview due to the character of the defect or condition. The local board shall refer such affidavit or official statement which it receives to the medical advisor to the local board for review.</p>
+<p>§ 628.3 Duties of medical advisor to local board. (a) When the registrant is referred to the medical advisor to the local board for medical interview the medical advisor shall make only such examination as he deems is necessary to determine whether the registrant has one or more of the disqualifying defects or conditions listed in Part 629 of this chapter. No laboratory or X-ray work shall be authorized but reports of laboratory or X-ray work performed previously and presented by the registrant may be given consideration by the medical advisor. It shall be the duty of the registrant to present himself to the medical advisor to the local board at the time and place designated and to submit to examination.</p>
+<p>(b) The medical advisor to the local board shall (1) give each registrant who presents himself for medical interview such examination as he deems necessary, or (2) review each affidavit of a reputable physical or official statement of a representative of a Federal or State agency referred to him by the local board. From such examination or review, the medical advisor to the local board shall determine whether the registrant has one or more of the defects or conditions listed in Part 629 of this chapter and shall record his findings in item 20 of Section II of the Record of Induction (NME Form No. 47).</p>
+<p>§ 628.4 Duties of local board. (a) When no medical advisor to the local board is available, the local board, to the extent that it is capable of doing so, shall make the examination, review, and finding provided for in § 628.3</p>
+<p>(b) When a registrant is ordered to appear for medical interview the local board shall:</p>
+<p>(1) Prepare an original and two copies of the Record of Induction (NME Form No. 47), completing Section I and item 19 of Section II thereof, and send the original and both copies to the medical advisor to the local board for completion of item 20 of Section II after the medical interview; and</p>
+<p>(2) Enter under "Minutes of Actions by Local Board and Appeal Board" on the Classification Questionnaire (SSS Form No. 100) the date the Notice to Registrant to Appear for Medical Interview (SSS Form No. 220) was mailed to the registrant and the date upon which he is ordered to appear.</p>
+<p>(c) After completion of the medical interview the local board shall determine, after considering the findings and recommendations of the medical advisor to the local board, whether or not to order the registrant to report for armed forces physical examination. The local board shall enter the date of the medical interview in column 7 of the Classification Record (SSS Form No. 102).</p>
+<p>(d) If the local board determines that the registrant has a physical or mental condition listed in Part 629 of this chapter which disqualifies him for service in the armed forces, the following action shall be taken:</p>
+<p>(1) The local board shall file the original of the Record of Induction (NME Form No. 47) in the registrant's Cover Sheet (SSS Form No. 101) and forward the two copies of the Record of Induction (NME Form No. 47) to the State Director of Selective Service who shall forward one copy to the Surgeon General, Department of the Army, Washington, D.C., and retain one copy.</p>
+<p>(2) The local board shall review the classification of the registrant and if it finds under the provisions of Part 622 of this chapter that he should be placed in some other class, reopen his classification and classify him anew and mail him a Notice of Classification (SSS Form No. 110).</p>
+<p>(3) The local board shall cancel any Order to Report for Armed Forces Physical Examination (SSS Form No. 223) which it has mailed to the registrant and advise him in writing of such cancellation.</p>
+<p>(4) The local board shall note in column 4 of the Physical Examination List (SSS Form No. 225), if the registrant's name appears thereon, the fact that he has been found disqualified for service in the armed forces and also the classification in which he has been retained or placed.</p>
+<p>(e) If the local board determines that the registrant does not have a physical or mental condition listed in Part 629 of this chapter which disqualifies him for service in the armed forces, or if the local board has any doubt concerning the existence of any such condition, the local board shall order the registrant to report for armed forces physical examination as provided in § 628.11.</p>
+<p>§ 628.5 Transfer for medical interview. (a) Any registrant who has received a Notice to Registrant to Appear for Medical Interview (SSS Form No. 220) and who is so far from his own local board that presenting himself to the medical advisor to his local board would be a hardship may file a written request with the local board having jurisdiction of the area in which he is at that time located for his transfer for medical interview to that local board. The local board with which the request for transfer for medical interview is filed shall forward the request to the registrant's own local board.</p>
+<p>(b) Upon receiving such request for transfer for medical interview the registrant's own local board shall forward the original and two copies of the Record of Induction (NME Form No. 47), after completing Section I and item 19 of Section II thereof, to the local board of transfer and shall enter under "Minutes of Actions by Local Board and Appeal Board" on the Classification Questionnaire (SSS Form No. 100) the date such forms were forwarded and the designation of the local board of transfer.</p>
+<p>(c) The local board of transfer shall arrange for the medical interview of the registrant and on completion shall return the original and both copies of the Record of Induction (NME Form No. 47) to the registrant's own local board which shall take the further action required by paragraphs (c), (d), and (e) of § 628.4.</p>
+<p>ARMED FORCES PHYSICAL EXAMINATION</p>
+<p>§ 628.10 Who will be examined. Every registrant, before he is ordered to report for induction, shall be given an armed forces physical examination under the provisions of this part unless he is a delinquent.</p>
+<p>§ 628.11 Order to report for armed forces physical examination. (a) In accordance with instructions of the Director of Selective Service, the State Director of Selective Service shall periodically issue to each local board in his State a directive specifying the number of registrants to be delivered for armed forces physical examination and the time and place fixed for such delivery.</p>
+<p>(b) In complying with such directive, the local board shall mail an Order to Report for Armed Forces Physical Examination (SSS Form No. 223) to registrants who have been classified in Class I-A and Class I-A-O without regard to whether the registrants have requested or will request a personal appearance before the local board and without regard to whether an appeal has been or will be taken. The local board in complying with such directive shall, so far as is practicable, select and order to report for armed forces physical examination such registrants in the order of their liability for service.</p>
+<p>(c) The local board may also mail an Order to Report for Armed Forces Physical Examination (SSS Form No. 223) to any registrant (1) who is classified in a class other than Class I-A or Class I-A-O if it determines that his induction may shortly occur, or (2) when directed to do so by the Director of Selective Service ort the State Director of Selective Service.</p>
+<p>(d) At the time the local board prepares the original Order to Report for Armed Forces Physical Examination (SSS Form No. 223), it shall make a copy of such form and shall file the copy in the registrant's Cover Sheet (SSS Form No. 101).</p>
+<p>§ 618.12 Postponement of armed forces physical examination. The issuance of an Order to Report for Armed Forces Physical Examination (SSS Form No. 223) may be delayed or the forwarding of a registrant under such an order may be postponed to the same extent and in the same manner as provided in § 632.2 of this chapter with reference to an Order to Report for Induction (SSS Form No. 252); Provided, that any such delay or postponement under the provisions of this section shall terminate whenever the local board determines that the induction of the registrant is imminent, in which event the local board shall order the registrant to report for armed forces physical examination.</p>
+<p>§ 628.13 Preparing records for a group ordered to report for armed forces physical examination. (a) As soon as the local board has mailed orders to report for armed forces physical examination to all registrants who are to appear for such examination at a particular time and place it shall:</p>
+<p>(1) Prepare in quintuplicate a Physical Examination List (SSS Form No. 225), completing thereon the entries in columns (1), (2), and (3) for each such registrant.</p>
+<p>(2) Prepare in triplicate the Record of Induction (NME Form No. 47) by completing Section I and item 19 of Section II thereof for each such registrant for whom such form has not previously been completed.</p>
+<p>(3) Assemble and attach to the registrant's Record of Induction (NME Form No. 47) any information in the possession of the local board which should be considered by the armed forces in determining the acceptability of the registrant for military service.</p>
+<p>(b) Whenever a registrant referred to in paragraph (a) of this section is transferred to another local board for armed forces physical examination, a notation of such transfer shall be made in column 5 of the Physical Examination List (SSS Form No. 225) and all of the other records of such registrant prepared in the manner provided in paragraph (a) of this section shall be transmitted to the local board to which such registrant is transferred for armed forces physical examination in the manner and at the time provided in § 628.14.</p>
+<p>§ 628.14 Transfer of registrants for physical examination. (a) Any registrant who has received an Order to Report for Armed Forces Physical Examination (SSS Form No. 223) and who is so far from his own local board that reporting to his own local board would be a hardship may, subject to the provisions of this section, be transferred for armed forces physical examination to the local board having jurisdiction of the area in which he is at that time located.</p>
+<p>(b) Any such registrant desiring to be so transferred shall immediately report to the local board having jurisdiction of the area in which he is at that time located, present his Order to Report for Armed Forces Physical Examination (SSS Form No. 223), and complete, in quadruplicate, the request portion of Transfer for Armed Forces Physical Examination (SSS Form No. 222).</p>
+<p>(c) The local board with which such registrant files such request shall investigate the circumstances of the registrant's absence from his own local board area. If it finds that he does not have a good reason for his absence, it shall endorse its disapproval up9on his request, mail the original thereof to the registrant's own local board, mail a copy to the registrant, and file the remaining copies. Such registrant shall then be required to report in accordance with the Order to Report for Armed Forces Physical Examination (SSS Form No. 223) which he received from his own local board.</p>
+<p>(d) If the local board with which the registrant files such request finds that he has a good reason for his absence from his own local board area and that he is so far from his own local board area that it would be a hardship for him to return to his own local board area for his armed forces physical examination, it shall endorse its approval upon his request, mail the original and one copy by air mail (unless ordinary mail is as expeditious) to the registrant's own local board, mail a copy to the registrant, and file the remaining copy.</p>
+<p>(e) Immediately upon receiving the approved Transfer for Armed Forces Physical Examination (SSS Form No. 222), the registrant's own local board shall complete on the original thereof the order transferring the registrant for armed forces physical examination. It shall then mail the original of the Transfer for Armed Forces Physical Examination (SSS Form No. 222) to the local board to which the registrant is being transferred and shall file the copy in the registrant's Cover Sheet (SSS Form No. 101). It shall also mail to the local board to which the registrant is being transferred for armed forces physical examination, the original and two copies of the Report of Induction (NME Form No. 47), any information in the possession of the local board which should be considered by the armed forces in determining the acceptability of the registrant for military service, and any other records designated by the Director of Selective Service.</p>
+<p>(f) The local board to which such registrant is transferred for armed forces physical examination, when it receives the papers from the registrant's own local board as provided in paragraph (e) of this section, shall prepare and mail to the registrant a new Order to Report for Armed Forces Physical Examination (SSS Form No. 223) and shall add the name of the registrant to its Physical Examination List (SSS Form No. 225) indicating in the "Remarks" column thereof that the registrant is a transfer from another local board.</p>
+<p>§ 628.15 Transfer for armed forces physical examination directed by Director of Selective Service. (a) The Director of Selective Service may direct that a particular registrant or a registrant who comes within a described group of registrants be transferred for armed forces physical examination to such local board or local boards as he shall designate.</p>
+<p>(b) A registrant selected for armed forces physical examination shall be transferred for such examination to the local board having jurisdiction of the area in which he is at that time located whenever, from information in his file, it appears that the registrant is located in one and the registrant's own local board is located in another of the following: the continental United States, the Territory of Alaska, the Territory of Hawaii, Puerto Rico, or the Virgin Islands.</p>
+<p>(c) To accomplish the transfer for armed forces physical examination, under paragraphs (a) or (b) of this section, the registrant's own local board shall complete the Transfer for Armed Forces Physical Examination (SSS Form No. 222) in duplicate by inserting the date, name, and present address of the registrant and the words "By direction of the Director of Selective Service" on the front of such form and by completing the second endorsement on the back of such form. The copy of the Transfer for Armed Forces Physical Examination (SSS Form No. 222) shall be filed in the registrant's Cover Sheet (SSS Form No. 101). The local board shall then forward the original of the Transfer for Armed Forces Physical Examination (SSS Form No. 222), the original and both copies of the Report of Induction (NME Form No. 47), any information in the possession of the local board which should be considered by the armed forces in determining the acceptability of the registrant for military service, and any other records designated by the Director of Selective Service, to the State Director of Selective Service of the State in which the registrant is located. The State Director of Selective Service of the State in which the registrant is located shall check such documents and insert thereon the name and address of the local board in his State t which the registrant is transferred for armed forces physical examination and forward the documents to such local board. The local board to which the registrant is transferred shall cause the registrant to be given an armed forces physical examination and shall take the actions provided for in paragraphs (f) and (g) of § 628.14.</p>
+<p>§ 628.16 Duty of registrant to report for and submit to armed forces physical examination. (a) When the local board mails to a registrant an Order to Report for Armed Forces Physical Examination (SSS Form No 223), it shall be the duty of the registrant to report for such examination at the time and place fixed in such order unless, after the date the Order to Report for Armed Forces Physical Examination (SSS Form No. 223) is mailed and prior to the time fixed therein for the registrant to report for his armed forces physical examination, the local board cancels such Order to Report for Armed Forces Physical Examination (SSS Form No. 223) or postpones the time when such registrant shall so report and advises the registrant in writing of such cancellation or postponement.</p>
+<p>(b) If the time when the registrant is ordered to report for armed forces physical examination is postponed, it shall be the duty of the registrant to report for armed forces physical examination upon the termination of such postponement and he shall report for armed forces physical examination at such time and place as may be fixed by the local board. Regardless of the time when or the circumstances under which a registrant fails to report for armed forces physical examination when it is his duty to do so it shall thereafter be his continuing duty from day to day to report for armed forces physical examination to his local board and to each local board whose area he enters or in whose area he remains.</p>
+<p>(c) Upon reporting for armed forces physical examination, it shall be the duty of the registrant (1) to follow the instructions of a member or clerk of the local board as to the manner in which he will be transported to the location where his armed forces physical examination will take place, (2) to obey the instructions of the leader or assistant leaders appointed for the group being forwarded for armed forces physical examination, (3) to appear for an submit to such examination as the commanding officer of the induction station shall direct, and (4) to follow the instructions of a member or clerk of the local board as to the manner in which he will be transported on his return trip from the place where his armed forces physical examination takes place.</p>
+<p>§ 628.17 Forwarding registrants for armed forces physical examination. When the registrants who are to be forwarded for armed forces physical examination have assembled, the local board shall proceed as follows:</p>
+<p>(a) The roll shall be called, using the previously prepared Physical Examination List (SSS Form No. 225), and any absence shall be recorded in the "Remarks" column.</p>
+<p>(b) As each registrant's name is called he shall be observed by a member or clerk of the local board. If the member or clerk of the local board knows or sees a registrant who he believes may be disqualified for military service because of an obvious defect or manifest condition listed in Part 629 of this chapter, the registrant shall not be forwarded for armed forces physical examination on that day but shall be given a local board medical interview as provided in § 628.2 and if after such medical interview it is determined that the registrant is not disqualified he shall then be forwarded for an armed forces physical examination.</p>
+<p>(c) A leader and assistant leaders shall be appointed and furnished with proper credentials.</p>
+<p>(d) The leader shall be given the following in a sealed packet:</p>
+<p>(1) The original and two copies of the Physical Examination List (*SSS Form No. 225).</p>
+<p>(2) For each registrant being forwarded, the original and two copies of the Record of Induction (NME Form No. 47), any information in the possession of the local board which should be considered by the armed forces in determining the acceptability of the registrant for military service, and any other records designated by the Director of Selective Service.</p>
+<p>(e) When it is necessary, travel tickets or transportation requests, and meal and lodging requests for the group, both for the trip to the joint examining and induction station and for the return trip, shall be issued. The leader shall be instructed to deliver the sealed packet containing the original and two copies of the Physical Examination List (SSS Form No. 225), the originals and copies of the Record of Induction (NME Form No. 47), and other information to the commanding officer of the joint examining and induction station or his representative. He shall be instructed to return any unused portion of the transportation requests or any unused meal and lodging request to the local board.</p>
+<p>(f) The local board shall instruct all registrants in the group that it is their duty to obey the instructions of the leader and assistant leaders during the time they are going to and returning from the joint examining and induction station, that they will be met by proper representatives of the armed forces, that while they are at the joint examining and induction station, they will be subject to and must obey the orders of the representatives of the armed forces, that they must present themselves for and submit to such examination as the commanding officer of the joint examining and induction station shall direct, and that they will be returned to the local board when the examination is completed.</p>
+<p>(g) The local board shall mail one copy of the Physical Examination List (SSS Form No. 225) to the State Director of Selective Service and shall file one copy.</p>
+<p>ACTION TAKEN AFTER ARMED FORCES PHYSICAL EXAMINATION</p>
+<p>§ 628.25 Disposition of records. (a) The commanding officer of the joint examining and induction station will forward to the local board the following documents concerning registrants forwarded for armed forces physical examination:</p>
+<p>(1) For all registrants whether found acceptable or not acceptable for service in the armed forces, the original Physical Examination List (SSS Form No. 225) indicating in column 4 the disposition of each registrant forwarded for armed forces physical examination, and the original and one copy of Certificate of Acceptability (NME Form No. 62).</p>
+<p>(2) For each registrant found acceptable for service in the armed forces, the original and both copies of the Record of Induction (NME Form No. 47), the original and both copies of the Report of Medical Examination (Standard Form 88) together with any X-ray films and the original and both copies of Report of Medical History (Standard Form 89).</p>
+<p>(3) For each registrant found not acceptable for service in the armed forces, the original and one copy of the Record of Induction (NME Form No. 47), the original and one copy of the Report of Medical Examination (Standard Form 88) together with any X-ray films, and the original and one copy of the Report of Medical History (Standard Form 89).</p>
+<p>(4) All other records forwarded by the local board.</p>
+<p>(b) The commanding officer of the joint examining and induction station will retain one copy of the Physical Examination List (SSS Form No. 225) and send one copy of the Physical Examination List (SSS Form No. 225) to the State Director of Selective Service.</p>
+<p>(c) For registrants found not acceptable for service in the armed forces the commanding officer of the joint examining and induction station will retain one copy of the Record of Induction (NME Form No. 47), one copy of the Report of Medical Examination (Standard Form 88), and one copy of the Report of Medical History (Standard Form 879) for each such registrant.</p>
+<p>(d) Upon receipt of the documents described in paragraph (a) of this section, the local board shall take the following actions:</p>
+<p>(1) File the original Physical Examination List (SSS Form No. 225).</p>
+<p>(2) When a Certificate of Acceptability (NBME Form NO. 62) indicates that a registrant has been found acceptable for military service or that a registrant has been found not acceptable for military service, the local board shall immediately mail the original of such certificate together with any attachments thereto to the registrant and shall record the date of mailing of such Certificate of Acceptability (NME Form No. 62) under "Minutes of Action by Local Board and Appeal Board" on the registrant's Classification Questionnaire (SSS Form No. 100).</p>
+<p>(3) For each registrant found acceptable for military service, file the original and both copies of the Record of Induction (NME Form No. 47), the original and both copies of the Report of Medical Examination (Standard Form 88) together with any X-ray films, and the original and both copies of the Report of Medical History (Standard Form 89) in the registrant's Cover Sheet (SSS Form No. 101).</p>
+<p>(4) For each registrant rejected, file the original of the Record of Induction (NME Form No. 47), the original of the Report of Medical Examination (Standard Form 88) together with any X-ray films, and the original of the Report of Medical History (Standard Form 89) in the registrant's Cover Sheet (SSS Form No. 101) and forward to the State Director of Selective Service one copy of each of the above forms which shall be retained by him.</p>
+<p>§ 628.26 Action when registrant's status not determined. The joint examining and induction station will return the records of a registrant without determining his status when his records are incomplete and will indicate on the Certificate of Acceptability (NME Form No. 62) of such registrant that his status has not been determined because his records were incomplete. In each such case the local board shall take the following action:</p>
+<p>(a) If the Report of Medical Examination (Standard Form 88) and the Report of Medical history (Standard Form 89) have been completed, the local board shall secure and complete all the required records and send them, together with all records returned by the joint examining and induction station, to such station for final determination of the acceptability of the registrant.</p>
+<p>(b) If the Report of Medical Examination (Standard Form 88) and the Report of Medical History (Standard Form 89) have not been completed the local board shall secure and complete all the required records and shall, on the next delivery date, return the registrant to the joint examining and induction station for further processing, together with all such completed records and all records which were previously returned by the joint examining and induction station.</p>
+<p>PART 629-DISQUALIFYING OBVIOUS DEFECTS AND MANIFEST CONDITIONS</p>
+<p>§ 629.1 Alphabetical list of obvious defects and manifest conditions which disqualify for service in the armed forces. The existence of one or more of the obvious defects or manifest conditions contained in the following alphabetical list shall disqualify a registrant for service in the armed forces if the functional ability of the registrant is impaired to the extent that he cannot perform military duties in a satisfactory manner:</p>
+<p>Abdominal wall, sinuses of.<br /><br />
+Acromegaly.<br /><br />
+Acute disease, other than venereal (Reconsider after recovery).<br /><br />
+Addition, drug, confirmed, to such a degree s to interfere with following a useful<br /><br />
+vocation in civil life.<br /><br />
+Addison's disease.<br /><br />
+Alcoholism, chronic, to such a degree as to interfere with following a useful vocation in<br /><br />
+civil life.<br /><br />
+Amputation of arm or leg, or complete or partial loss of hand or foot.<br /><br />
+Anemia, aplastic; pernicious.<br /><br />
+Aneurysm, of any vessel.<br /><br />
+Angina pectoris, true.<br /><br />
+Aphonia.<br /><br />
+Aplastic anemia.<br /><br />
+Arch, obliteration of transverse associated with permanent flexion of toes (claw toes).<br /><br />
+Asthma, severe, obvious to medical advisor.<br /><br />
+Auditory canal, atresia of, or tumors of.<br /><br />
+Bladder, tumor of.<br /><br />
+Blindness, complete, both eyes.<br /><br />
+Bone, disease of any, or joint, healed with such resulting deformity or rigidity that<br /><br />
+function is impaired to a marked degree.<br /><br />
+Bone disease (suppurative periostitis, osteomyelitis, caries, or necrosis) of chest, including ribs, sternum, clavicles, scapulae, or vertebrae.<br /><br />
+Bone, tuberculosis of.<br /><br />
+Brain, hernia of.<br /><br />
+Brain, tumor of.<br /><br />
+Bronchus, tumor of, benign or malignant.<br /><br />
+Carcinoma, or other malignant tumor or disease of any organ or part of the body..<br /><br />
+Chest wall, unhealed sinuses of, following operation for empyema.<br /><br />
+Circulatory failure, evidenced by definite symptoms such as breathlessness, pain, and signs of congestive failure (engorged neck veins, enlarged liver, edema, as well as dyspnea).<br /><br />
+Clubfoot, of marked degree.<br /><br />
+Commitment, for insanity, or authentic history of medical treatment for insanity without<br /><br />
+commitment.<br /><br />
+Cornea, ulcer of, chronic.<br /><br />
+Coronary thrombosis and/or myocardial infarction, authenticated by electrocardiogram.<br /><br />
+Cyst, pilonidal, if evidenced by the presence of a tumor mass or discharging sinus.<br /><br />
+Deafness, complete, both ears.<br /><br />
+Deformities of marked degree which seriously interfere with function and weight-bearing power.<br /><br />
+Deformities of mouth, throat, and nose which interfere with mastication of ordinary food, with speech, or with breathing.<br /><br />
+Deformities of the skull in the nature of depressions, exostoses, severe.<br /><br />
+Deformities of skull of any degree associated with evidence of disease of the brain, spinal cord, or peripheral nerves.<br /><br />
+Dermatitis, herpetiformis, of long duration.<br /><br />
+Diabetes mellitus, confirmed.<br /><br />
+Disease, Addison's.<br /><br />
+Disease, Hodgkin's.<br /><br />
+Dislocations, old, unreduced, with rigidity, deformity, or dysfunction to a marked degree.<br /><br />
+Drug addition, confirmed, to such a degree as to interfere with following a useful vocation in civil life.<br /><br />
+Elephantiasis, severe.<br /><br />
+Empyema, residual accumulation or unhealed sinuses of chest wall following operation for empyema.<br /><br />
+Endocarditis, confirmed.<br /><br />
+Epilepsy, positive certification of.<br /><br />
+Epispadias, when urine cannot be voided in such manner as to avoid soiling of clothing or surroundings, or when accompanied by evidence of chronic infection of the genito-urinary tract.<br /><br />
+Esophagus, stricture of, or other organic disease.<br /><br />
+Eye, loss of one (surgical or congenital).<br /><br />
+Eyelid or eyelids, deformity of, such as inversion or eversion of a degree that forcible closure fails to cover the eyeball or in which there is a resultant conjunctival inflammation, corneal irritation, or a restriction of rotation of the eyeball.<br /><br />
+Feet, flat, when accompanied by marked symptoms and deformity.<br /><br />
+Fever, rheumatic, acute, or verified history of single or recurrent attacks within previous two years.<br /><br />
+Fistula, abdominal wall, anal, osseous, post-operative, or urinary.<br /><br />
+Flat feet, when accompanied by marked symptoms and deformity.<br /><br />
+Fractures, healed, of vertebrae or pelvic bones with associated symptoms which have prevented the individual from following a useful vocation in civil life.<br /><br />
+Fracture, old, ununited.<br /><br />
+Fungoides, mycosis.<br /><br />
+Gigantism.<br /><br />
+Glaucoma.<br /><br />
+Goitre, simple, if enlargement is of such a degree as to interfere with the wearing of ordinary clothing.<br /><br />
+Goitre toxic.<br /><br />
+Hallux valgus, if severe and associated with marked exostosis or bunion.<br /><br />
+Heart block (determined by electrocardiogram).<br /><br />
+Hemophilia.<br /><br />
+Hermaphroditism.<br /><br />
+Hernia, inguinal, which has descended into the scrotum; recurrent; post-operative; or ventral.<br /><br />
+Hernia of the brain<br /><br />
+Hodgkin's Disease.<br /><br />
+Hypospadia, when urine cannot be voided in such a manner as to avoid soiling of clothing or surroundings, or when accompanied by evidence of chronic infection of the genitor-urinary tract.<br /><br />
+Idiocy.<br /><br />
+Imbecility.<br /><br />
+Incontinence, urinary.<br /><br />
+Insanity, with commitment, o with authentic medical history of treatment for insanity without commitment.<br /><br />
+Jaws, diseases of, and associated structures which are irremediable or not easily remedied, or which incapacitate the individual in civil life. Extensive loss of oral tissue in an amount that would prevent replacement of missing teeth by a satisfactory denture.<br /><br />
+Joint, disease of, healed, with such resulting deformity or rigidity that function is impaired to a marked degree.<br /><br />
+Kidney, absence of one.<br /><br />
+Kidney, tumor of.<br /><br />
+Laryngeal paralysis, due to any cause.<br /><br />
+Larynx, destructive lesions of.<br /><br />
+Leprosy.<br /><br />
+Leukemia.<br /><br />
+Lobectomy.<br /><br />
+Lungs, tumor of, benign or malignant.<br /><br />
+Lupus vulgaris.<br /><br />
+Lymph node, enlargement of associated with leukemia or Hodgkin's Disease.<br /><br />
+Lymphosarcoma.<br /><br />
+Malignant disease or neoplasm of any organ or part of body.<br /><br />
+Mastoiditis, chronic.<br /><br />
+Mediastinum, tumor of, benign or malignant.<br /><br />
+Metallic poisoning, except argyria.<br /><br />
+Multiple sclerosis.<br /><br />
+Muscle, paralysis of, or contracture which disturbs function to such a degree as to interfere with following a useful vocation in civil life.<br /><br />
+Mutism.<br /><br />
+Myocardial infarction, authenticated by electrocardiogram.<br /><br />
+Neck, tumor of the thyroid, including enlarged lymph nodes and benign tumors, if the enlargement is of such a degree as to interfere with wearing of ordinary clothing.<br /><br />
+Orbit, tumor of.<br /><br />
+Osteomyelitis, active, of any bone or a substantiated history of osteomyelitis of any of the long bones of the extremities at any time.<br /><br />
+Otitis media, chronic, suppurative.<br /><br />
+Paralysis, laryngeal, due to any cause.<br /><br />
+Paralysis, muscular, or contracture which disturbs function to such a degree as to interfere with following a useful vocation in civil life.<br /><br />
+Paraplegia.<br /><br />
+Parkinson's syndrome, marked.<br /><br />
+Pemphigus, chronic.<br /><br />
+Penis, amputation of, if the resulting stump is insufficient to permit normal function of micturition.<br /><br />
+Peptic ulcer, active, if diagnosis is confirmed by X-ray or on surgical operation for same.<br /><br />
+Pernicious anemia.<br /><br />
+Perversion, sexual.<br /><br />
+Pilonidal cyst if evidenced by the presence of a tumor mass or discharging sinus.<br /><br />
+Plantar warts, on weight-bearing areas.<br /><br />
+Pleura, tumor of, benign or malignant.<br /><br />
+Pleurisy, with effusion, which is to be considered of tuberculous origin if no other cause can be proved.<br /><br />
+Pleurisy, tuberculous, with effusion.<br /><br />
+Pleuritis, chronic, adhesive, of such extent as to interfere with respiratory function.<br /><br />
+Pneumonectomy.<br /><br />
+Pulmonary tuberculosis, active within five years.<br /><br />
+Purpura, thrombocytopenic.<br /><br />
+Rheumatic fever, acute, or verified history of single or recurrent attacks within the previous two year.<br /><br />
+Scars, extensive, deep, or adherent, that interfere with muscular movement or that show a tendency to break down and ulcerate.<br /><br />
+Sclerosis, multiple.<br /><br />
+Sex perversion.<br /><br />
+Sinuses of the abdominal wall.<br /><br />
+Skull, deformities of, in the nature of depressions or exostoses, severe.<br /><br />
+Skull, deformities, of any degree associated with evidence of disease of the brain, spinal cord, or peripheral nerves.<br /><br />
+Splenic enlargement associated with leukemia, Hodgkin's Disease, splenic anemia, or other<br /><br />
+Disqualifying disease.<br /><br />
+Stammering or stuttering, to such a degree as to prevent following a useful vocation in civil life.<br /><br />
+Strabismus, permanent and severe.<br /><br />
+Stricture of urethra, severe.<br /><br />
+Syphilis, cerebrospinal, cardiovascular, or visceral.<br /><br />
+Testicle, tumor of.<br /><br />
+Thumbs, loss of one or both.<br /><br />
+Thrombocytopenic purpura<br /><br />
+Tracheostomy.<br /><br />
+Trachoma.<br /><br />
+Tuberculosis, active, of any part of the body.<br /><br />
+Tuberculosis, pulmonary, active within five years.]Tumors of bladder, kidney, or testicle.<br /><br />
+Tumor of brain.<br /><br />
+Tumor, benign, of breast or of chest wall, of such size and location as to interfere with wearing ordinary clothing.<br /><br />
+Tumor, benign or malignant, of trachea, bronchi, lungs, pleura, or mediastinum.<br /><br />
+Tumor, malignant, of breast or chest wall.<br /><br />
+Tumor of orbit.<br /><br />
+Tumor of thyroid or other structures of neck, including enlarged lymph nodes and benign tumors of the neck, if the enlargement is of such degree as to interfere with the wearing of ordinary clothing.<br /><br />
+Ulcer of cornea, chronic.<br /><br />
+Ulcer, peptic, active, if diagnosis is confirmed by X-ray or on surgical operation for same.<br /><br />
+Ulcers, of skin, chronic.<br /><br />
+Urethra, stricture of, severe.<br /><br />
+Warts, plantar, on weight-bearing area.</p>
+<p>PART 631-0-QUOTAS AND CALLS</p>
+<p>Sec.<br /><br />
+631.1 Quotas and credits.<br /><br />
+631.2 Determination of quotas, credits, and debits.<br /><br />
+631.3 Determination of local board quotas, credits, and debits.<br /><br />
+631.4 Calls by the Secretary of Defense<br /><br />
+631.5 Calls by the Director of Selective Service.<br /><br />
+631.6 Calls by State Director of Selective Service.<br /><br />
+631.7 Action by local board upon receipt of notice of call.</p>
+<p>§ 631.1 Quotas and credits. Quotas of men to be inducted for training and service in the armed forces shall be determined for each State, Territory, possession, and the District of Columbia, and for subdivisions thereof, on the basis of the actual number of registrants classified in Class I-A and Class I-A-0 who have been found acceptable for service in the armed forces. In fixing such quotas, credits shall be given for residents of such subdivisions who are serving on active duty in the armed forces on the date fixed for determining the quotas. After the quotas are fixed, credits shall be given in filling such quotas for residents of such subdivisions who subsequently enter upon active duty in the armed forces. Until the actual numbers necessary for determining the quotas are known, the quotas may be based on estimates, and subsequent adjustments therein shall be made when such actual numbers are known.</p>
+<p>§ 631.2 Determination of quotas, credits, and debits. (a) The Director of Selective Service shall determine the quotas, credits, and debits for the nation and for each State. Each State Director of Selective Service shall be required periodically to report the total number of registrants in the State and the number of registrants in the State who have been placed in Class I-A and Class I-A-O and have been found acceptable for service in the armed forces. Each State Director of Selective Service shall also periodically report the number of registrants inducted from his State on State Monthly Report of Deliveries, Inductions and Examinations (SSS Form No. 262).</p>
+<p>(b) The armed forces will furnish to each State Director of Selective Service a Report of Home Address at Time of Last Entry into Service (NME Form No. 53) for each person who is on active duty and who reports his or her permanent residence as being located in that State. Each State Director of Selective Service will similarly receive a home address report for each person, whether a registrant or not, who is a resident of is State and who subsequently enters upon active duty in the armed forces other than by induction through a local board.</p>
+<p>(c) When a person on active duty in the armed forces is separated from active duty status or is reported as being a deserter, the appropriate State Director of Selective Service will receive a report of separation from the armed forces for each such person.</p>
+<p>(d) Each State Director of Selective Service shall report periodically to the Director of Selective Service on State Monthly Report of Deliveries, Inductions and Examinations (SSS Form No. 262) the number of Reports of Home Address at Time of Last Entry into Service (NME Form No. 53) and the number of reports of separation from the armed forces properly forwarded to him for crediting and debiting purposes in his State. Each State Director of Selective Service shall also compute and allocate the debits and credits for each local board in his State.</p>
+<p>§ 631.3 Determination of local board quotas, credits, and debits. The State Director of Selective Service for each State shall determine the quotas, credits, and debits for each local board in his State. He shall from time to time call upon each local board to report the number of registrants in the local board, the number classified, and the number it has placed in Class I-A and Class I-A-O who have been found acceptable for service in the armed forces.</p>
+<p>§ 631.4 Calls by the Secretary of Defense. The Secretary of Defense shall from time to time place with the Director of Selective Service a call or requisition for a specified number of men to be inducted into the armed forces. The Secretary of Defense shall present such calls or requisitions to the Director of Selective Service not less than 60 days prior to the period during which the delivery and induction of such men are to be accomplished.</p>
+<p>§ 631.5 Calls by the Director of Selective Service. The Director of Selective Service shall, upon receipt of a call or requisition from the Secretary of Defense, allocate such call or requisition among the several States. The Director of Selective Service shall issue to the State Director of Selective Service of each State concerned a notice of Call on State (SSS Form No. 200) for the number of men found acceptable for service in the armed forces allocated to each State. The Director of Selective Service shall send two copies of each such Notice of Call on State (SSS Form No. 200) to the Secretary of Defense.</p>
+<p>§ 631.6 Calls by State Director of Selective Service. The State Director of Selective Service, upon receiving a Notice of Call on State (SSS Form No. 200) from the Director of Selective Service shall (a) allocate to the local boards concerned within his State the number of men which his State is called upon to furnish to service in the armed forces and (b) issue to each local board concerned a notice of Call on Local Board (SSS Form No. 201) directing the local board to select and deliver for induction the number of men who have been found to be acceptable for service in the armed forces fixed in such Notice of Call on Local Board (SSS Form No. 201). The State Director of Selective Service shall send a copy of each Notice of Call on Local Board (SSS Form No. 201) to the Commanding General of the Army Area in which his State is located and a copy to the commanding officer of the joint examining and induction station to which the selected men are directed to report for induction.</p>
+<p>§ 631.7 Action by local board upon receipt of notice of call. Each local board, upon receiving a Notice of Call on Local Board (SSS Form No. 201) from the State Director of Selective Service for a specified number of men shall select and order to report for induction the number of men required to fill the call from among its registrants who have been classified in Class I-A and Class I-A-O and who have been found acceptable for service in the armed forces, except that a registrant classified in Class I-A or Class I-A-O who is a delinquent may be selected and ordered to report for induction notwithstanding the fact that he has not been found acceptable for service in the armed forces. Such registrants shall be selected and ordered to report for induction in the order of their dates of birth with the oldest being selected first; Provided, that any such registrant who is a delinquent shall, regardless of his age, be selected and ordered to report for induction before any other registrant. When two or more such registrants have the same date of birth they shall, as among themselves, be selected in alphabetical order. The men so selected and ordered to report for induction shall be men to whom the local board has mailed a Certificate of Acceptability (NME Form No. 62) at least 21 days before the date fixed for induction; Provided, that a registrant classified in Class I-A or Class I-A-O who is a delinquent may be selected and ordered to report for induction to fill an induction call notwithstanding the fact that he has not been mailed a Certificate of Acceptability (NME Form No. 62). Whenever the number of postponements of induction materially reduces the number of men the local board actually can deliver in response to a call, the local board shall issue orders to report for induction to such numbers of additional men as may be necessary to meet the call, taking into account the number of men to be delivered following the expiration of postponements previously granted.</p>
+<p>PART 632-DELIVERY AND INDUCTION</p>
+<p>GENERAL</p>
+<p>Sec.<br /><br />
+632.1 Order to report for induction.<br /><br />
+632.2 Postponement of induction; general<br /><br />
+632.3 Postponement of induction; high school students.<br /><br />
+6342.4 Postponement of induction; college students.<br /><br />
+632.5 Preparing records for a group ordered to report for induction.</p>
+<p>TRANSFER FOR INDUCTION<br /><br />
+632.9 Certain registrants may request transfer for induction.<br /><br />
+632.10 Transfer for induction directed by Director of Selective Service.</p>
+<p>INDUCTION<br /><br />
+632.14 Duty of registrant to report for and submit to induction.<br /><br />
+632.15 Forwarding registrants for induction.<br /><br />
+632.16 Induction.</p>
+<p>DISPOSITION OF RECORDS<br /><br />
+632.20 Records returned to local board.<br /><br />
+632.21 Disposition of other records by the armed forces.</p>
+<p>RECLASSIFICATION<br /><br />
+632.30 Classification of registrants inducted or rejected.<br /><br />
+632.31 Registrants enlisted in the armed forces.</p>
+<p>GENERAL</p>
+<p>§ 632.1 Order to report for induction. Immediately upon determining which men are to report for induction, the local board shall prepare for each man an Order to Report for Induction (SSS Form No. 252) in duplicate. The date specified for reporting for induction shall be at least 10 days after the date on which the Order to Report for Induction (SSS Form No. 252) is mailed. The local board shall mail the original of the Order to Report for Induction (SSS Form No. 252) to the registrant and shall file the copy in his Cover Sheet (SSS Form No. 101).</p>
+<p>§ 632.2 Postponement of induction; general. (a) In case of death of a member of the registrant's immediate family, extreme emergency involving a member of the registrant's immediate family, serious illness of the registrant, or other extreme emergency beyond the registrant's control, the local board may, after the Order to Report for Induction (SSS Form No. 252) has been issued, postpone the time when such registrant shall so report for a period not to exceed 60 days from the date of such postponement, subject, however, in cases of imperative necessity, to one further postponement for a period not to exceed 60 days; And provided also, That the Director of Selective Service or any State Director of Selective Service (as to registrants registered within his State) may, for a good cause, at any time prior to the issuance of an Order to Report for Induction (SSS Form No. 252), postpone the issuance of such order until such time as he may deem advisable, or the Director of Selective Service or any State Director of Selective Service (as to registrants registered within his State) may, for good cause, at any time after the issuance of an Order to Report for Induction (SSS Form No. 252), postpone the induction of a registrant until such time as he may deem advisable, and no registrant whose induction has been thus postponed shall be inducted into the armed forces during the period of any such postponement.</p>
+<p>(b) The local board shall issue to each registrant shoe induction is postponed a Postponement of Induction (SSS Form No. 264), shall mail a copy of such form to the State Director of Selective Service, and shall note the date of the granting of the postponement and the date of its expiration in the "Remarks" column of the Classification Record (SSS Form No. 102).</p>
+<p>(c) Any period of postponement authorized in paragraph (a) of this section may be terminated before the date of its expiration when the issuing authority so directs and the registrant shall then report for induction at such time and place as may be fixed by the local board.</p>
+<p>(d) A postponement of induction shall not render invalid the Order to Report for Induction (SSS Form No. 252) which has been issued to the registrant but shall operate only to postpone the reporting date and the registrant shall report on the new date without having issued to him a new Order to Report for Induction (SSS Form No. 252).</p>
+<p>§ 632.2 Postponement of induction; high school students. (a) Any person who, while satisfactorily pursuing a full-time course of instruction at a high school or similar institution of learning, is ordered to report for induction prior to his graduation from such school or institution, shall, upon the facts being presented to the local board, have his induction postponed (1) until the time of his graduation therefrom, or (2) until he attains the twentieth anniversary of his birth, or (3) until he ceases satisfactorily to pursue such course of instruction, whichever is the earliest.</p>
+<p>(b) The date of issuance and the date of expiration of any period of postponement authorized in paragraph (a) of this section shall be noted in the "Remarks" column of the Classification Record (SSS Form No. 102), the registrant shall be issued a Postponement of Induction (SSS Form No. 264), and a copy of such Postponement of Induction (SSS Form No. 264) shall be mailed to the State Director of Selective Service.</p>
+<p>§ 632.4 Postponement of induction; college students. (a) Any person who, while satisfactorily pursuing a full-time course of instruction at a college, university, or similar institution of learning, is ordered to report for induction after the beginning and prior to the end of an academic year shall, upon the facts being presented to the local board, have his induction postponed (1) until the end of such academic year, or (2) until he ceases satisfactorily to pursue such course of instruction, whichever is the earlier.</p>
+<p>(b) The date of issuance and the date of expiration of any period of postponement authorized in paragraph (a) of this section shall be noted in the "Remarks" column of the Classification Record (SSS Form No. 102), the registrant shall be issued a Postponement of Induction (SSS Form No. 264), and a copy of such Postponement of Induction (SSS Form No. 264) shall be mailed to the State Director of Selective Service.</p>
+<p>§ 632.5 Preparing records for a group ordered to report for induction. (a) As soon as the local board has mailed an Order to Report for Induction (SSS Form No. 252) to all registrants who are directed to report for induction at a particular time and place, it shall:</p>
+<p>(1) Prepare in quintuplicate a Delivery List (SSS Form No. 261) completing thereon the entries in columns (1), (2), and (3) for each such registrant.</p>
+<p>(2) Assemble and attach to each registrant's Record for Induction (NME Form No. 47) the Report of Medical Examination (Standard Form 88), the Report of Medical History (Standard Form 89), any X-ray films made at the time of the armed forces physical examination, any waiver of disqualification, any order terminating civil custody, and all other information bearing on the acceptability of the registrant for service in the armed forces.</p>
+<p>(b) Whenever a registrant referred to in paragraph (a) of this section is transferred to another local board for induction, a notation of such transfer and the identity of the local board to which he is transferred shall be made in the "Remarks" column of the Delivery List (SSS Form No. 261). All of the records of such registrant prepared in the manner provided in subparagraph (2) of paragraph (a) of this section shall be transmitted to the local board to which such registrant is transferred for induction in the manner and at the time provided in § 632.9.</p>
+<p>TRANSFER FOR INDUCTION</p>
+<p>§ 632.9 Certain registrants may request transfer for induction. (a) Any registrant who is so far from his own local board that reporting to his own local board for induction would be a hardship may, subject to the provisions of this section, be transferred for induction to the local board having jurisdiction of the area in which he is at that time located. Application for such transfer may be made by the registrant at the time he receives his Order to Report for Induction (SSS Form No. 252).</p>
+<p>(b) Any such registrant desiring to be so transferred shall immediately report to the local board having jurisdiction of the area in which he is at that time located, present his Order to Report for Induction (SSS Form No. 252), and complete, in quintuplicate, the request portion of Request for Transfer for Delivery (SSS Form No. 260).</p>
+<p>(c) The local board with which such registrant files such request shall investigate the circumstances of the registrant's absence from his own local board area. If it finds that he does not have a good reason for his absence, it shall endorse its disapproval upon his request, mail the original thereof to the registrant's own local board, mail a copy to the registrant, and file one of the remaining copies. Such registrant shall then be required to report in accordance with the Order to Report for Induction (SSS Form No. 252) of his own local board.</p>
+<p>(d) If the local board with which the registrant files such request finds that he has a good reason for his absence from his own local board area and that he is so far from his own local board area that it would be a hardship for him to return to his own local board area for induction, it shall endorse its approval upon his request, mail the original and two copies by air mail (unless ordinary mail is as expeditious) to the registrant's own local board, mail a copy to the registrant, and file the remaining copy. When necessary for the accomplishment of the early induction of the registrant, the local board with which the registrant files his request may telegraph the registrant's own local board notifying it of the approval of the registrant's application for such transfer and requesting that the necessary records of the registrant be immediately forwarded to the local board of transfer. In such instances, the local board of transfer shall confirm the telegram by immediately mailing the original and two copies of the Request for Transfer for Delivery (SSS Form No. 260), with the endorsement of approval thereon, to the registrant's own local board.</p>
+<p>(e) When the registrant's own local board receives the approved Request for Transfer for Delivery (SSS Form No. 260), or receives a telegraphic approval of a request for transfer as provided in paragraph (d) of this section, it shall:</p>
+<p>(1) Immediately complete on the original of the Request for Transfer for Delivery (SSS Form No. 260) the order transferring the registrant for induction.</p>
+<p>(2) Prepare in triplicate the Transfer for Delivery (SSS Form No. 263) and the Report of Delivery of Transferred Registrant (SSS Form No. 263-A).</p>
+<p>(3) Mail one copy of the Request for Transfer for Delivery (SSS Form No. 260) together with one copy of the Transfer for Delivery (SSS Form No. 263) and one copy of the Report of Delivery of Transferred Registrant (SSS Form No. 263-A) to its State Director of Selective Service for his further action as provided in paragraph (i) of this section, and file the remaining copy of the Request for Transfer for Delivery (SSS Form No. 260), one copy of Transfer for Delivery (SSS Form No. 263), and one copy of Report of Delivery of Transferred Registrant (SSS Form No. 263-A in the registrant's Cover Sheet (SSS Form No. 101).</p>
+<p>4. Mail the original of the Request for Transfer for Delivery (SSS Form No. 260), the original of the Transfer for Delivery (SSSS Form No. 263), and the original of the Report of Delivery of Transferred Registrant (SSS Form No. 263-A) to the local board to which the registrant is being transferred for induction. In the event that the papers of the registrant have not already been forwarded to the local board of transfer, the forms referred to above shall be accompanied by the original and two copies of the Record of Induction (NME Form No. 47), all the records referred to in subparagraph (2) of paragraph (a) of § 632.5, and any other records designated by the Director of Selective Service.</p>
+<p>(f) When the local board to which such registrant is transferred for induction receives the papers from the registrant's own local board, as provided in paragraph (e) of this section, it shall proceed to deliver him for induction as soon as practicable after the date fixed for him to report for induction in the Order to Report for Induction (SSS Form No. 252) issued by his own local board. If possible, the transferred registrant shall be delivered for induction with the next call on the local board to which he has been transferred, but if there is to be no such call at an early date, it shall deliver such transferred registrant specially whenever the joint examining and induction station is receiving men. When the local board of transfer determines to deliver such transferred registrant specially, it shall notify its State Director of Selective Service and request that the necessary arrangements be made for the time and place at which such transferred registrant may be delivered specially. The local board to which such registrant has been transferred for induction shall prepare an Order for Transferred Man to Report for Induction (SSS Form No. 253), in duplicate, mail the original to the transferred registrant, and file the copy. The local board to which such registrant has been transferred for induction shall add the name of the registrant to its Delivery List (SSS Form No. 261) and shall make a notation of such transfer and the identity of the local board from which he is transferred in the "Remarks" column of the Delivery List (SSS Form No. 261).</p>
+<p>(g) The local board to which such registrant has been transferred for induction shall not substitute the transferred registrant for one of its selected men, but shall deliver the transferred registrant in addition to any deliveries it otherwise would make to fill its own call.</p>
+<p>(h) When the transferred registrant has been inducted or rejected or if he fails to report for induction, the local board to which such registrant was transferred for induction shall complete the Report of Delivery of Transferred Registrant (SSS Form No. 263-A), detach and forward it to the State Director of Selective Service for the State in which the local board of origin is located, and forward all papers with reference to such registrant, with the exception of the Delivery List (SSS Form No. 261), to his own local board.</p>
+<p>(i) The State Director of Selective Service for the State in which the local board of origin is located shall, upon receipt from the local board of transfer of the completed Report of Delivery of Transferred Registrant (SSS Form No. 263-A), record the disposition of the transferred registrant upon his copy of Report of Delivery of Transferred Registrant (SSS Form No. 263-A) and forward the original of the Report of Delivery of Transferred Registrant (SSS Form No. 263-A) to the local board of origin.</p>
+<p>(j) The transferred registrant, if inducted, shall not be credited to the local board to which he was transferred for delivery, but shall be credited to his own local board.</p>
+<p>§ 632.10 Transfer for induction directed by Director of Selective Service. (a) The Director of Selective Service may direct that a particular registrant or a registrant who comes within a described group of registrants be transferred for induction to such local board or local boards as he shall designate.</p>
+<p>(b) A registrant selected for induction shall be transferred for induction to the local board having jurisdiction of the area in which he is at that time located whenever, from information in his file, it appears that the registrant is located in one and the registrant's own local board is located in another of the following: The continental United States, the Territory of Alaska, the Territory of Hawaii, Puerto Rico, or the Virgin Islands of the United States.</p>
+<p>(c) To accomplish the transfer for induction under paragraph (a) or (b) of this section, the registrant's own local board shall:</p>
+<p>(1) Prepare in triplicate the Transfer for Delivery (SSS Form No. 263) and the Report of Delivery of Transferred Registrant (SSS Form No. 263-A).</p>
+<p>(2) Complete in duplicate the Request for Transfer for Delivery (SSS Form No. 260) by inserting the name and present address of the registrant and the words "By direction of the Director of Selective Service" and by completing the second endorsement on such form.</p>
+<p>(3) Mail one copy of the Request for Transfer for Delivery (SSS Form NO. 260) together with one copy of the Transfer for Delivery (SSS Form No. 263) and one copy of the Report of Delivery of Transferred Registrant (SSS Form No. 263-A) to its State Director of Selective Service and file one copy of the Request for Transfer for Delivery (SSS Form No. 260), one copy of the Transfer for Delivery (SSS Form No. 263), and one copy of the Report of Delivery of Transferred Registrant (SSS Form NO. 263-A) in the registrant's Cover Sheet (SSS Form No. 101).</p>
+<p>(4) Mail the original of the Request for Transfer for Delivery (SSS Form No. 260), the original of the Transfer for Delivery (SSS Form No. 263), the original of the Report of Delivery of Transferred Registrant (SSS Form No. 263-A) together with the original and two copies of the Record of Induction (NME Form No. 47), the original and two copies of the Report of Medical Examination (Standard Form 88) together with X-ray film, and the original and two copies of the Report of Medical History (Standard Form 89) if the registrant has received an armed forces physical examination, all other documents referred to in paragraph (e) of § 632.9, and any other records designated by the Director of Selective Service to the State Director of Selective Service of the State in which the registrant is located.</p>
+<p>(5) Place a notation of the transfer of the registrant in the "Remarks" column of the Classification Record (SSS Form No. 102).</p>
+<p>(d) The State Director of Selective Service of the State in which the registrant is located shall check the documents received from the registrant's own local board and, if not already accomplished, insert thereon the name and address of the local board in his State to which the registrant is transferred for induction and forward the documents to such local board. Unless the transfer of the registrant for induction is cancelled under paragraph (e) of this section, the local board to which the registrant is transferred shall cause the registrant to be delivered for induction and shall take the other actions provided for in paragraphs (f), (g), and (h) of § 632.9, and the State Director of Selective Service for the State in which the registrant's own local board is located shall take the action provided for in paragraph (i) of § 632.9.</p>
+<p>(e) A registrant transferred for induction under this section may within five days after the date on which the local board to which he has been so transferred has mailed to him an Order for Transferred Man to Report for Induction (SSS Form No. 253), file with such local board a written request to cancel his transfer for induction. Upon such a request being filed, such local board shall determine whether grave and unusual hardship will result to the registrant if he is not permitted to report to his own local board for induction and, if it so determines, shall cancel his transfer for induction. The local board shall record such determination on the Request for Transfer for Delivery (SSS Form No. 260) and the Transfer for Delivery (SSS Form NO. 263) and shall notify the registrant of its determination by letter. If the local board determines to cancel the transfer for induction, it shall (1) cancel the Order for Transferred Man to Report for Induction (SSS Form No. 253) which it mailed to the registrant, and (2) return the Request for Transfer for Delivery (SSS Form No. 260) and all other documents concerning such registrant to his local board through the State Director of Selective Service for the State in which the registrant's local board is located. Upon receipt of such documents, the registrant's own local board shall order the registrant to report to it for induction in the usual manner.</p>
+<p>INDUCTION</p>
+<p>§ 632.14 Duty of registrant to report for and submit to induction. (a) When the local board mails to a registrant an Order to Report for Induction (SSS Form No. 252), it shall be the duty of the registrant to report for induction at the time and place fixed in such order. If the time when the registrant is ordered to report for induction is postponed, it shall be the continuing duty 9f the registrant to report for induction upon the termination of such postponement and he shall report for induction at such time and place as may be fixed by the local board. Regardless of the time when or the circumstances under which a registrant fails to report for induction when it is his duty to do so, it shall thereafter be his continuing duty from day to day to report for induction to his local board and to each local board whose area he enters or in whose area he remains.</p>
+<p>(b) Upon reporting for induction, it shall be the duty of the registrant (1) to follow the instructions of a member or clerk of the local board as to the manner in which he shall be transported to the location where his induction will be accomplished, (2) to obey the instructions of the leader or assistant leaders appointed for the group being forwarded for induction, (3) to appear at the place where his induction will be accomplished, (4) to obey the orders of the representatives of the armed forces while at the place where his induction will be accomplished, (5) to submit to induction, and (6) if he is not accepted by the armed forces, to follow the instructions of the representatives of the armed forces as to the manner in which he will be transported on his return trip to the local board.</p>
+<p>§ 632.15 Forwarding registrants for induction. When the registrants who are to be forwarded for induction have assembled, the local board shall proceed as follows:</p>
+<p>(a) The roll shall be called, using the previously prepared Delivery List (SSS Form No. 261) and noting any absences thereon in the "Remarks" column. If any registrant fails to report for delivery, fails to report at the place of induction, is transferred to another local board for delivery, or is rejected, the local board shall not furnish a replacement for such registrant.</p>
+<p>(b) A leader and assistant leaders shall be appointed and each given a completed Appointment of Leader or Assistant Leader (SSS Form No. 340). Leaders and assistant leaders shall have such authority as is necessary to deliver the group to the place of induction.</p>
+<p>(c) The leader shall be given the following in a sealed packet:</p>
+<p>(1) The original and two copies of the Delivery List (SSS Form No. 261).</p>
+<p>(2) For each registrant being forwarded, the original and two copies of the Record of Induction (NME Form No. 47), all other records referred to in subparagraph (2) of paragraph (a) of § 632.5, and any other records designated by the Director of Selective Service.</p>
+<p>(d) When it is necessary, travel tickets or transportation requests, and meal and lodging requests for the group, covering their trip to the place of induction, shall be issued. The leader shall be instructed to deliver the sealed packet containing the original and two copies of the Delivery List (SSS Form No. 261), the originals and copies of the Record of Induction (NME Form No. 47), and all other information concerning the registrants in the group to the commanding officer of the induction station or to his representative.</p>
+<p>(e) The local board shall inform all registrants in the group that it is their duty to obey the instructions of the leader or assistant leaders during the time they are going to the place of induction; that they will be met by proper representatives of the armed forces at the place of induction; that while they are at the place of induction they will be subject to and must obey the orders of the representatives of the armed forces; that they must present themselves for and submit to induction; that, if they are rejected, the representatives of the armed forces will, to the extent prescribed by the regulations of the armed forces, provide transportation and subsistence for their return trip.</p>
+<p>(f) The local board shall mail one copy of the Delivery List (SSS Form No. 261) to the State Director of Selective Service and shall file one copy.</p>
+<p>§ 632.16 Induction. At the induction station, the selected men who have been forwarded for induction and found acceptable will be inducted into the armed forces.</p>
+<p>DISPOSITION OF RECORDS</p>
+<p>§ 632.20 Records returned to local board. (a) The commanding officer of the induction station will return to the local board the following documents concerning registrants forwarded for induction:</p>
+<p>(1) The original Delivery List (SSS Form No. 261), ind8icating under column 4 the disposition of each registrant forwarded for induction.</p>
+<p>(2) For each registrant inducted, a copy of Record of Induction (NME Form No 47), a copy of Report of Medical Examination (Standard Form 88), a copy of Report of Medical History (Standard Form 89), and any previous records of induction and reports of medical examination submitted.</p>
+<p>(3) For registrants not inducted, the original Record of Induction (NME Form No. 47), the original Report of Medical Examination (Standard Form 88) together with any X-ray film, and the original Report of Medical History (Standard Form 89).</p>
+<p>(b) Upon receipt of the documents described in paragraph (a) of this section, the local board shall take the following action:</p>
+<p>(1) File the original Delivery List (SSS Form No. 261).</p>
+<p>(2) File the copy of Record of Induction (NME Form No. 47), the copy of Report of Medical Examination (Standard Form 88), and the copy of Report of Medical History (Standard Form 89) in the Cover Sheet (SSS Form No. 101) for each registrant inducted.</p>
+<p>(3) File the original of the Record of Induction (NME Form No. 47), the original of Report of Medical Examination (Standard Form 88) together with any X-ray film, and the original of the Report of Medical History (Standard Form 89) in the Cover Sheet (SSS Form No. 101) for each registrant rejected.</p>
+<p>§ 632.21 Disposition of other records by the armed forces. The commanding officer of the induction station will dispose of the documents described below concerning registrants forwarded for induction as follows:</p>
+<p>(a) For registrants inducted, retain the original and one copy of the Record of Induction (NME Form No. 47), the original and one copy of the Report of Medical Examination (Standard Form 88) together with any X-ray film, and the original and one copy of the Report of Medical History (Standard Form 89).</p>
+<p>(b) For registrants rejected, retain one copy of the Record of Induction (NME Form No. 47), one copy of the Report of Medical Examination (Standard Form 88), and one copy of the Record of Medical History (Standard Form 89).</p>
+<p>(c) For registrants rejected, forward one copy of the Record of Induction (NME Form No. 47), one copy of the Report of Medical Examination (Standard Form 88), and one copy of the Report of Medical History (Standard Form 89) to the State Director of Selective Service.</p>
+<p>(d) Retain one copy of the Delivery List (SSS Form No. 261).</p>
+<p>(e) Forward one copy of the Delivery List (SSS Form No. 261) to the State Director of Selective Service.</p>
+<p>RECLASSIFICATION</p>
+<p>§ 632.30 Classification of registrants inducted or rejected. Upon receiving notice from the induction station that a selected man who has been forwarded for induction has been inducted or rejected, the local board shall reopen his classification and classify him anew.</p>
+<p>§ 632.31 Registrants enlisted in the armed forces. When the local board receives official information showing that a registrant has enlisted in the armed forces, it shall reopen his classification and classify him anew.</p>
+<p>PART 641-NOTICE</p>
+<p>Sec.<br /><br />
+641.1 Notice of requirements of selective service law.<br /><br />
+641.2 Failure to take notice.<br /><br />
+641.3 Communication by mail.<br /><br />
+641.5 Classification Record (SSS Form No. 102).<br /><br />
+641.6 Computation of time.</p>
+<p>§ 641.1 Notice of requirements of selective service law. Every person shall be deemed to have notice of the requirements of /Title I of the Selective Service Act of 1948 upon publication by the President of a proclamation or other public notice fixing a time for any registration. This provision shall apply not only to registrants but to all other persons.</p>
+<p>§ 641.2 Failure to take notice. (a) If a registrant or a person required to present himself for and submit to registration fails to perform any duty prescribed by the selective service law, or directions given pursuant thereto, within the required time, he shall be liable<br /><br />
+to fine and imprisonment under section 12 of the Selective Service Act of 1948.</p>
+<p>(b) If a registrant or any other person concerned fails to claim and exercise any right or privilege within the required time, he shall be deemed to have waived the right or privilege.</p>
+<p>§ 641.3 Communication by mail. It shall be the duty of each registrant to keep his local board advised at all times of the address where mail will reach him. The mailing of any order, notice, or blank form by the local board to a registrant at the address last reported by him to the local board shall constitute notice to him of the contents of the communication, whether he actually receives it or not.</p>
+<p>§ 641.5 Classification Record (SSS Form No. 102). The Classification Record (SSS Form No. 102) shall be open to the public at the local board office. It shall be the duty of each registrant to keep himself informed of his status, and any entry concerning him on the Classification Record (SSS Form No. 102) shall constitute due legal notice thereof to him and to all other interested persons.</p>
+<p>§ 641.6 Computation of time. The period of days allowed a registrant or other person to perform any act or duty required of him shall be counted as beginning on the day following that on which the notice to him is posted or mailed.</p>
+<p>PART 642-DELINQUENTS</p>
+<p>GENERAL</p>
+<p>Sec.<br /><br />
+642.1 Regulations governing delinquents.<br /><br />
+642.2 Continuing duty.<br /><br />
+642.3 Compliance with procedures of this part not condition precedent to<br /><br />
+prosecution.</p>
+<p>CLASSIFICATION AND INDUCTION OF DELINQUENTS<br /><br />
+Sec.<br /><br />
+642.11 Registration and classification of unregistered delinquent.<br /><br />
+642.12 Classification of registrant delinquent.<br /><br />
+642.13 Certain delinquents to be ordered to report for induction.<br /><br />
+642.14 Personal appearance, reopening, and appeal.<br /><br />
+642.15 Continuous duty of certain registrants to report for induction.</p>
+<p>DELIVERY OF DELINQUENT REGISTRANTS<br /><br />
+642.21 Procedure</p>
+<p>MEN IN CUSTODY<br /><br />
+642.31 Completing records of man liable for training and service.<br /><br />
+642.32 Obligation of man in custody, confinement, or imprisonment.<br /><br />
+642.33 Obligation of man after release from custody, confinement, or imprisonment.</p>
+<p>RECORDS AND REPORTS OF DELINQUENTS<br /><br />
+642.41 Report of delinquent to United States Attorney.<br /><br />
+642.42 Local board action subsequent to reporting a delinquent to United States<br /><br />
+Attorney.<br /><br />
+642.43 United States Attorney to advise final disposition.<br /><br />
+642.44 Local board record of delinquents.<br /><br />
+642.45 Confirmation of record of delinquents.<br /><br />
+642.46 State record of delinquents.</p>
+<p>GENERAL</p>
+<p>§ 642.1 Regulations governing delinquents. Delinquents, as defined in § 602.4 of this chapter shall be governed by the provisions of this part and such other provisions of the Selective Service Regulations as are not in conflict therewith.</p>
+<p>§ 642.2 Continuing duty. When it becomes the duty of a registrant or other person to perform an act or furnish information to a local board or other office or agency of the Selective Service System, the duty or obligation shall be a continuing duty or obligation from day to day and the failure to properly perform the act or the supplying of incorrect or false information shall in no way operate as a waiver of that continuing duty..</p>
+<p>§ 642.3 Compliance with procedures of this part not condition precedent to prosecution.<br /><br />
+Compliance by a local board or any other agency of the Selective Service System with any or all of the procedures prescribed by the regulations in this part is not a condition precedent to the prosecution of any person under the provisions of section 12 of the Selective Service Act of 1948.</p>
+<p>CLASSIFICATION AND INDUCTION OF DELINQUENTS</p>
+<p>§ 642.11 Registration and classification of unregistered delinquent. When a delinquent who has not registered reports or is brought before a local board, he shall be registered and the local board at which he registers shall enter on line 2 of his Registration Card (SSS Form No. 1) an address within the jurisdiction of such local board. As soon as possible after his registration, the local board shall classify him as provided in § 642.12.</p>
+<p>§ 642.12 Classification of registrant delinquent. Any delinquent registrant between the ages of 19 and 26 may be classified in or reclassified into Class I-A or Class I-A-OI, whichever is applicable, regardless of other circumstances: Provided, that a delinquent registrant in Class I-C who, after completion of any period of active service in the armed forces of the United States under the provisions of the Selective Service Act of 1948, has been separated from the armed forces or transferred to a reserve component thereof may not be classified in or reclassified into Class I-A or Class I-A-O, under this section unless his classification out of Class I-C is specifically authorized by the Director of Selective Service.</p>
+<p>§ 642.13 Certain delinquents to be ordered to report for induction. (a) The local board shall order each delinquent registrant between the ages of 19 and 26 who is classified in or reclassified into Class I-A or Class I-A-O to report for induction in the manner provided in § 631.7 of this chapter unless (1) it has already done so, or (2) pursuant to a written request of the United States Attorney, the local board determines not to order such registrant to report for induction.</p>
+<p>§ 642.14 Personal appearance, reopening, and appeal. (a) When a delinquent registrant is classified in or reclassified into Class I-A or Class I-A-O under the provisions of this part, a personal appearance may be requested and shall be granted under the same circumstances as in any other case.</p>
+<p>(b) The classification of a delinquent registrant who is classified in or reclassified into Class I-A or Class I-A-O under the provisions of this part may be reopened at any time before induction in the discretion of the local board without regard to the restrictions against reopening prescribed in § 625.2 of this chapter.</p>
+<p>(c) When a delinquent registrant is classified in or reclassified into Class I-A or Class I-A-O under the provisions of this part, an appeal may be taken under the same circumstances and by the same persons as in any other case.</p>
+<p>§ 642.15 Continuous duty of certain registrants to report for induction. Regardless of the time when or the circumstances under which a registrant fails or has failed to report for induction pursuant to an Order to Report for Induction (SSS Form No. 252) or pursuant to an Order for Transferred Man to Report for Induction (SSS Form No. 253) it shall thereafter be his continuing duty from day to day to report for induction to his own local board, and to each local board whose area he enters or in whose area he remains.</p>
+<p>DELIVERY OF DELINQUENT REGISTRANTS</p>
+<p>§ 642.21 Procedure. (a) If a delinquent registrant reports to or is brought before a local board other than his own local board, the local board to which he reports or before which he is brought shall advise his own local board by telegram or other expeditious means that the delinquent has reported to or has been brought before such local board and that he will be inducted if it is satisfactory to his own local board. The registrant's own local board shall reply by telegram or other expeditious means.</p>
+<p>(b) If the registrant's own local board advises or if it is ascertained from the United States Department of Justice that the registrant is delinquent because he has failed to respond to an Order to Report for Induction (SSS Form No. 252) or an Order for Transferred Man to Report for Induction (SSS Form No. 253), the delinquent shall be delivered for induction and the local board to which the registrant has reported or before which he has been brought shall prepare such papers as may be necessary in order to effect such induction and forward copies thereof to the registrant's own local board. The induction of such a registrant shall be reported to the registrant's own local board in the same manner as if the registrant had been transferred for delivery to the local board from which such registrant was inducted.</p>
+<p>(c) If the registrant's own local board advises that no Order to Report for Induction (SSS Form No. 252) or Order for Transferred Man to Report for Induction (SSS Form No. 253) ahs been issued to such registrant or that the registrant is no longer a delinquent, it shall advise the local board before which the registrant has appeared or has been brought of the action to be taken with reference to such registrant.</p>
+<p>MEN IN CUSTODY</p>
+<p>§ 642.31 Completing records of man liable for training and service. (a) Provided they are required and have not already been accomplished, the following steps shall be taken in connection with every man who has registered or who is required to register under the provisions of Title I of the Selective Service Act of 1948 immediately upon his reporting to or being brought before a local board or immediately upon his being taken into custody or his being placed in confinement.</p>
+<p>(1) He shall be registered; Provided, that any law enforcement official or any other authorized person may act as registrar.</p>
+<p>(2) He shall complete his Classification Questionnaire (SSS Form No. 100).</p>
+<p>(3) He shall complete his Special Form for Conscientious Objector (SSS Form No. 150), when applicable.</p>
+<p>(4) He shall complete all other necessary forms.</p>
+<p>(5) He may be physically examined.</p>
+<p>(b) If such a man is unable or refuses to fill out any form in the manner required by paragraph (a) of this section, such form shall be filled out by a member or clerk of a local board or the superintendent, warden, or other law enforcement official from information gained by interviewing the delinquent and from other sources.</p>
+<p>(c) If the signature of such man is required upon any form after it is filed out and he is unable or refuses to sign his name or make his mark upon any such form, a member or clerk of a local board or the superintendent, warden, or other law enforcement official shall sign such man's name and indicate that he has done so by signing his own name beneath the name of such man. The act of a member or clerk of a local board, or of the superintendent, warden, or other law enforcement official in so doing shall have the same force and effect as if such man had signed his name to such form.</p>
+<p>§ 642.32 Obligation of man in custody, confinement, or imprisonment. No man is relieved from complying with the selective service law during the time he is in custody, confinement, or imprisonment. He shall perform the duties and shall be accorded the rights and privileges of all registrants.</p>
+<p>§ 642.33 Obligation of man after release from custody, confinement or imprisonment. When a man is released from custody, confinement, or imprisonment, he shall immediately advise his local board of that fact and shall perform the duties and be accorded the rights and privileges of all registrants. This applies equally to a man taken into custody, confined, or imprisoned for a violation of the selective service law and to a man taken into custody, confined, or imprisoned for any other cause.</p>
+<p>RECORDS AND REPORTS OF DELINQUENTS</p>
+<p>§ 642.41 Report of delinquent to United States Attorney. (a) Every registrant who fails to comply with an Order to Report for Induction (SSS Form No. 252) or an Order for Transferred Man to Report for Induction (SSS Form No. 253) shall be reported promptly to the United States Attorney on Delinquent Registrant Report (SSS Form No. 301); provided, that if the local board believes by reasonable effort it may be able t locate the registrant and secure his compliance, it may delay the mailing of such Delinquent Registrant Report (SSS Form No. 301) for a period not in excess of 30 days. A copy of such Delinquent Registrant Report (SSS Form No. 301) shall be place in the delinquent's Cover Sheet (SSS Form No. 101).</p>
+<p>(b) In endeavoring to locate and to secure the compliance of a delinquent prior to reporting him to the United States Attorney the local board should contact the delinquent and the "employer" or "person who will always know" the delinquent's address, as shown on the Registration Card (SSS Form No. 1), or any other person likely to know his whereabouts. The local board may enlist the aid of local and State police officials or any other public or private agencies it deems advisable. In no event shall the local board order or participate in the arrest of a delinquent.</p>
+<p>(c) Whenever the local board suspects a person, other than one of its own registrants, of being a delinquent, it shall, upon its own motion or upon request of the United States Attorney, advise such person by letter that he is suspected of being a delinquent and directing him to submit to the local board evidence concerning his selective service. It shall be the duty of the person to whom such a letter is mailed to present such evidence to the local board and, if directed to do so, to appear personally before the local board. Unless the local board is convinced that such person is not delinquent, it shall report the facts to the United States Attorney by letter.</p>
+<p>§ 642.42 Local Board action subsequent to reporting a delinquent to United States Attorney. (a) After a delinquent has been reported to the United States Attorney, it is the responsibility of the United States Attorney to determine, subject to the supervision and direction of the Attorney General, whether the delinquent shall be prosecuted. Before permitting such a delinquent to be inducted, the local board should obtain the views of the United States Attorney concerning such action.</p>
+<p>(b) After a delinquent has been reported to the United States Attorney, the local board shall pr9omptly advise the United States Attorney by letter when:</p>
+<p>(1) The local board receives any additional information which (i) may be of assistance in locating the delinquent, (ii) has been requested by the United States Attorney, or (iii) may assist the United States Attorney in determining whether prosecution is warranted; or</p>
+<p>(2) The local board has taken any action with reference to the classification or status of the registrant.</p>
+<p>§ 642.43 United States Attorney to advise final disposition. The State Director of Selective Service shall request the United States Attorney to advise the local board concerned promptly by letter when he finally disposes of a case which has been reported to him on Delinquent Registrant Report (SSS Form No. 301).</p>
+<p>§ 642.44 Local Board record of delinquents. (a) The local board shall open and maintain a Record of Delinquents (SSS Form No. 302), listing thereon all currently delinquent registrants between the ages of 19 and 26. A person suspected of being an unregistered delinquent shall not be entered upon such report unless and until his registration has been accomplished. On the last day of each month the local board shall forward two copies of the Record of Delinquents (SSS Form No. 302) to the State Director of Selective Service and two copies to the United States Attorney having jurisdiction over the area in which such local board is located.</p>
+<p>(b) On the last day of each month the local board shall post a copy of the current Record of Delinquents (SSS Form No. 302 on its bulletin board. The aid of the press and radio should be solicited to give the widest possible publicity to delinquencies.</p>
+<p>§ 642.45 Confirmation of record of delinquents. The State Director of Selective Service shall request the United States Attorney to prepare, as of the 10th day of each month, a letter, in duplicate, either confirming the Record of Delinquents (SSS Form NO. 302) which was forwarded to him by the local board on the last day of the previous month or specifically setting forth discrepancies therein and to forward the original thereof to the local board concerned and a copy to the State Director of Selective Service.</p>
+<p>§ 642.46 State record of delinquents. The State Director of Selective Service shall prepare a Summary of Delinquencies (SSS Form No. 303) on or before the 15th day of each month and forward one copy to the Director of Selective Service, Washington, D.C.</p>
+<p>2. I hereby prescribe the following amendments of the Selective Service Regulations prescribed by Executive Order No. 9988 of August 20, 1948, and constituting portions of Chapter VI of Title 32 of the Code of Federal Regulations:</p>
+<p>(a) Section 622.3 of Part 622, Classification Rules and Principles, is amended to read as follows:</p>
+<p>"§ 622.3 Subclasses. The five main classes are further divided into subclasses as follows:</p>
+<p>CLASS I</p>
+<p>Class I-A: Available for military service.<br /><br />
+Class I-A-O: Conscientious objector available for noncombatant service only.</p>
+<p>Class I-C: Member of the armed forces of the United States, the Coast Guard, the Coast and Geodetic Survey or the Public Health Service, and certain registrants separated therefrom.</p>
+<p>Class I-D: Member of reserve component or student taking military training.</p>
+<p>CLASS II</p>
+<p>Class II-A: Deferred because of civilian employment (except agriculture).<br /><br />
+Class II-C: Deferred because of employment in agriculture.</p>
+<p>CLASS III</p>
+<p>Class III-A: Deferred because of dependents.</p>
+<p>CLASS IV</p>
+<p>Class IV-A: Registrant who has completed service; sole surviving son.<br /><br />
+Class IV-B: Official deferred by law.<br /><br />
+Class IV-C: Aliens<br /><br />
+Class IV-D: Minister of religion or divinity student.<br /><br />
+Class IV-E:L Conscientious objector opposed to both combatant and noncombatant military service.<br /><br />
+Class IV-F: Physically, mentally or morally unfit.</p>
+<p>CLASS V</p>
+<p>Class V-A: registrant over the age of liability for military service."</p>
+<p>(b) Section 624.3 of Part 624, Appearance Before Local Board, is amended to read as follows:</p>
+<p>"§ 624.3 of Part 624, Induction postponed. A registrant shall not be inducted during the period afforded him to appear in person before a member or members of the local board, and if the registrant requests a personal appearance he shall not be inducted until 10 days after the Notice of Classification (SSS Form No. 110) is mailed to him by the local board, as provided in paragraph (d) o § 642.2."</p>
+<p>3. At such time or times as he deems expedient, the Secretary of Defense shall make or cause to be made timely requisition upon the Director of Selective Service for such number of persons selected under Title I of the Selective Service Act of 1948 and the regulations issued pursuant thereto as may be required to provide and maintain the personnel strengths (other than one-year enlistee personnel strengths) of the respective armed forces within the limits authorized by section 2 of Title I of the said Act, and shall induct such persons into the armed forces of the United States.</p>
+<p>4. In the manner provided by Title I of the Selective Service Act of 1948 and the regulations issued pursuant thereto, the Director of Selective Service shall direct and supervise the selection of such numbers of persons as in his judgment are likely to be required from time to time to meet the requisitions made pursuant to paragraph 3 hereof, and shall make or cause to be made available for induction into the armed forces of the United States a sufficient number of men so selected to fill such requisitions.</p>
+<p>HARRY S. TRUMAN<br /><br />
+THE WHITE HOUSE,<br /><br />
+September 17, 1948</p>
+  </div>
+
+  <div class="field-prez-document-citation">
+    <p class="ucsbapp_citation">Harry S Truman, Executive Order 10001—Prescribing or Amending Portions of the Selective Service Regulations and Directing the Selection of Persons for Induction Into the Armed Forces and Their Induction Online by Gerhard Peters and John T. Woolley, The American Presidency Project https://www.presidency.ucsb.edu/node/278566</p>  </div>
+    </div>
+    <div class="col-sm-4 ">
+      <div class="group-meta">
+  <div class="field-ds-filed-under-">
+    <h3 class="oog-label">Filed Under</h3>  </div>
+<h3 class="label-above oog-label ds ">Categories</h3><div><a href="/documents/app-categories/presidential" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Presidential</a></div><div><a href="/documents/app-categories/presidential/written-presidential-orders" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Written Presidential Orders</a></div><div><a href="/documents/app-categories/written-presidential-orders/presidential/executive-orders" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Executive Orders</a></div><h3 class="label-above oog-label ds">Attributes</h3><div><a href="/documents/app-attributes/executive-orders" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Executive Orders</a></div><div class="jump"><div class="view view-dpg-docs-media view-id-dpg_docs_media view-display-id-block_2 view-dom-id-f0546b611e7ce24dc6f507278c3f0820">
+        
+    
+      <div class="view-content">
+        <div>
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div></div></div><div class="rrssb"><ul class="rrssb-buttons"><li class="rrssb-twitter"><a href="https://twitter.com/intent/tweet?text=Executive%20Order%2010001%E2%80%94Prescribing%20or%20Amending%20Portions%20of%20the%20Selective%20Service%20Regulations%20and%20Directing%20the%20Selection%20of%20Persons%20for%20Induction%20Into%20the%20Armed%20Forces%20and%20Their%20Induction&url=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10001-prescribing-or-amending-portions-the-selective-service-regulations" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">twitter</span></a></li><li class="rrssb-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10001-prescribing-or-amending-portions-the-selective-service-regulations" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">facebook</span></a></li><li class="rrssb-linkedin"><a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10001-prescribing-or-amending-portions-the-selective-service-regulations&title=Executive%20Order%2010001%E2%80%94Prescribing%20or%20Amending%20Portions%20of%20the%20Selective%20Service%20Regulations%20and%20Directing%20the%20Selection%20of%20Persons%20for%20Induction%20Into%20the%20Armed%20Forces%20and%20Their%20Induction" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">linkedin</span></a></li><li class="rrssb-googleplus"><a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10001-prescribing-or-amending-portions-the-selective-service-regulations" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">google+</span></a></li><li class="rrssb-email"><a href="mailto:?subject=Executive%20Order%2010001%E2%80%94Prescribing%20or%20Amending%20Portions%20of%20the%20Selective%20Service%20Regulations%20and%20Directing%20the%20Selection%20of%20Persons%20for%20Induction%20Into%20the%20Armed%20Forces%20and%20Their%20Induction&body=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10001-prescribing-or-amending-portions-the-selective-service-regulations" ><span class="rrssb-icon"></span><span class="rrssb-text">email</span></a></li></ul></div>
+  <div class="field-ds-big-search-block">
+    <section id="block-views-5c12edf56060306972111336e0789cf4" class="block block-views other-frontpage-block clearfix">
+
+        <h2 class="block-title">Simple Search of Our Archives</h2>
+    
+  <form action="/advanced-search" method="get" id="views-exposed-form-prez-documents-archive-search2-page-1" accept-charset="UTF-8"><div>  <div class="views-exposed-form vefl-layout bootstrap-6-6-stacked">
+    <div class="views-exposed-widgets clearfix">
+              <div class="vefl-region vefl-region-top">
+                      
+<div id="edit-field-keywords-wrapper" class="views-exposed-widget views-widget-edit-field-keywords">
+    
+  <div class="views-widget">    <div class="form-item form-item-field-keywords form-type-textfield form-group"><input class="form-control form-text" type="text" id="edit-field-keywords" name="field-keywords" value="" size="30" maxlength="128" /></div>  </div>
+  </div>
+                  </div>
+              <div class="vefl-region vefl-region-left">
+                  </div>
+              <div class="vefl-region vefl-region-right">
+                  </div>
+              <div class="vefl-region vefl-region-bottom">
+                      
+<div id="items-per-page-wrapper" class="views-exposed-widget views-widget-items-per-page">
+    
+      <div class="form-item form-item-items-per-page form-type-select form-group"> <label class="control-label" for="edit-items-per-page"># per page</label>
+<select class="form-control form-select" id="edit-items-per-page" name="items_per_page"><option value="5">5</option><option value="10">10</option><option value="25" selected="selected">25</option><option value="50">50</option><option value="100">100</option></select></div>  
+  </div>
+                      
+<div id="button-wrapper" class="views-exposed-widget views-widget-button views-submit-button">
+    
+      <button type="submit" id="edit-submit-prez-documents-archive-search2" name="" value="Apply" class="btn btn-default form-submit">Apply</button>
+  
+  </div>
+                  </div>
+          </div>
+  </div>
+</div></form>
+</section>
+  </div>
+
+  <div class="field-ds-typo">
+    <div class="view view-report-a-typo view-id-report_a_typo view-display-id-block view-dom-id-e2b7f727a3ed81ffa6555d0b57b9ccd6">
+        
+    
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field views-field-title">        <span class="field-content"><a href="/report-a-typo?content_id=278566&amp;title=Executive%20Order%2010001%E2%80%94Prescribing%20or%20Amending%20Portions%20of%20the%20Selective%20Service%20Regulations%20and%20Directing%20the%20Selection%20of%20Persons%20for%20Induction%20Into%20the%20Armed%20Forces%20and%20Their%20Induction" class="report-typo" target="_blank"><h3>Report a Typo</h3></a></span>  </div>  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Needed to activate display suite support on forms -->
+
+</section>
+  </div>
+<!-- Content -->
+      </section>
+
+      
+    </div>
+  </div>
+  
+  
+</div>
+<footer class="site-footer no-print">
+  <div class="container">
+      <div class="region region-footer">
+    <section id="block-block-4" class="block block-block attribution clearfix">
+
+      
+  <p><span>The American Presidency Project</span><br />John Woolley and Gerhard Peters<br /><strong><a href="https://www.presidency.ucsb.edu/contact">Contact</a></strong></p>
+
+</section>
+<section id="block-block-6" class="block block-block foot ucsb clearfix">
+
+      
+  <p style="text-align: center;display:inline-block;"><a class="twitter" href="https://twitter.com/presidency_proj" target="_blank">Twitter</a> <a class="facebook" href="https://www.facebook.com/pg/american.presidency.project/" target="_blank">Facebook</a></p>
+
+</section>
+<section id="block-block-5" class="block block-block copyright clearfix">
+
+      
+  <p>Copyright &copy; The American Presidency Project<br /><a href="http://www.ucsb.edu/terms-of-use" target="_blank">Terms of Service</a> | <a href="https://www.privacy.ucsb.edu/information-privacy/website-privacy" target="_blank">Privacy</a> | <a href="/accessibility">Accessibility</a></p><p><img alt="uc santa barbara logo" src="/sites/default/files/pictures/uc-santa-barbara-wordmark-white1x.svg" style="width: 197px; min-width: 150px; height: 14px;object-fit:cover;" /></p>
+</section>
+  </div>
+  </div>
+  </footer>
+  <script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_NKBfN5q_T2fdeVG6tE3pdNU7glYkyzgPuDTc4K3Ne1w.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"dee899de70","applicationID":"80106271","transactionName":"bl1XYxNYWkVYVxFdWVcXYEUIFhtfV1AATBhJUEU=","queueTime":0,"applicationTime":510,"atts":"QhpUFVtCSUs=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
+
+
