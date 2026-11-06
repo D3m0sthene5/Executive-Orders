@@ -29,13 +29,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 157; `search` finds the rest)
+## Newest results (6 of 158; `search` finds the rest)
 
+- 2026-11-06 F-20261106-selden-census **analysis**: Selden census (research/selden/census.py): every (target, acting instrument) lead in later-events, shepard-ci… Lesson: Before acquiring 'later law', classify what the blocked orders actually need: here a bounded search for unnamed later instruments and current-status sources serves far more orders than fetching named…
 - 2026-11-05 F-20261105-tischendorf-2 **partly worked**: Tischendorf first live run: one network request at a time with a single shared request budget Lesson: For any network job: follow jobs/README.md's parallel-workers rule from the start, give each route its own budget, and smoke-test each route on a handful of orders before a full run
 - 2026-11-05 F-20261105-tischendorf-1 **partly worked**: Tischendorf (jobs/tischendorf-originals): prove official printings for transcription-only orders by comparing… Lesson: A held transcription is evidence for locating its own original: comparing wording turns a number-only location into a measured match
 - 2026-11-05 F-20261105-theophilus **worked**: Theophilus wave (Bentham ranks 8 and 11): recover 48 custody-stranded reviewed claims by fresh prepare plus u… Lesson: Run the actual checker on the exact reviewed lines before buying review: it sorts recoverable claims from mechanically blocked ones for free. One-step-away is a source-acquisition queue, not a produc…
 - 2026-11-05 F-20261105-stable-main-publication **worked**: Integrate completed EO work and remove production/reporting publication races Lesson: Successful computation is not publication. Queue automatic writers before checkout, bind receipts to actual inputs, and keep shared inputs stable.
 - 2026-11-05 F-20261105-pr-cleanup-salvage **worked**: Owner-directed cleanup: de-conflicted and merged PRs 154-157 (job outputs taken from main for the runner to r… Lesson: Merge runner-output conflicts by taking main and letting the runner rebuild; dedupe Kean records by exact line, never by id; archive frozen-run material inertly and promote it through the normal chan…
-- 2026-11-05 F-20261105-machiavelli-source-questions **worked**: Examine actual report submission and judicial/collective-bargaining source questions Lesson: Distinguish submission from receipt, source-export time from event time, and a court judgment from the mandate making it effective. New source evidence requires scoped legal application and fresh rel…
 
-Register: 24 owner decisions, 14 answered questions, 157 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 24 owner decisions, 14 answered questions, 158 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
