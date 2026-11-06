@@ -44,6 +44,29 @@ class KeanTest(unittest.TestCase):
     def errors(self):
         return kean.check(kean.Repo(self.root))
 
+    def test_newest_and_asks_pages(self):
+        # Justinian B1/B2: NEWEST.md holds each notes file's first "## " block; the brief lists ask ids only.
+        self.write("HANDOFF/notes-claude.md", "# notes\n\n## 2026-11-06: newest\n\n- done\n\n## 2026-11-05: older\n\n- old\n")
+        self.run_cli("add-ask", "--question", "May we freeze merges for four hours?", "--why", "one chain publishes",
+                     "--asked-by", "t", "--id", "A-20261106-test-freeze")
+        self.run_cli("brief")
+        self.commit()
+        root = self.root
+        newest = open(os.path.join(root, kean.NEWEST_PAGE), encoding="utf-8").read()
+        self.assertIn("2026-11-06: newest", newest)
+        self.assertNotIn("2026-11-05: older", newest)
+        brief = open(os.path.join(root, kean.BRIEF), encoding="utf-8").read()
+        self.assertIn("A-20261106-test-freeze", brief)
+        self.assertNotIn("May we freeze", brief)
+        asks = open(os.path.join(root, kean.ASKS_PAGE), encoding="utf-8").read()
+        self.assertIn("May we freeze merges for four hours?", asks)
+        errors, warnings = self.errors()
+        self.assertEqual(errors, [])
+        self.write(kean.ASKS_PAGE, "edited\n")
+        errors, _ = self.errors()
+        self.assertTrue(any("KEAN_ASKS.md is out of date" in e for e in errors))
+        self.assertEqual(kean.BRIEF_MAX_BYTES, 16384)
+
     def test_clean_repository_passes_after_brief(self):
         self.run_cli("brief")
         self.commit()
