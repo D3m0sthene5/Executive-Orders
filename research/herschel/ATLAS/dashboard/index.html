@@ -1,0 +1,310 @@
+<meta name="dash-one-writer">
+<style>
+  .hz { display: grid; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); max-width: 72rem; margin-inline: auto; }
+  .hz-head { display: grid; gap: var(--cds-gap-sm); }
+  .hz-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .hz-lede { margin: 0; max-width: 46rem; color: var(--color-fg); line-height: 1.55; }
+  .hz-lede b { font-variant-numeric: tabular-nums; }
+  .hz-tiles { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+  .hz-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-xs); align-content: start; }
+  .hz-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .hz-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .hz-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+  .hz-grid { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); }
+  .hz-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-sm); align-content: start; min-width: 0; }
+  .hz-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .hz-note { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .hz-chart { position: relative; min-height: 15rem; }
+  .hz-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .hz-legend span { display: inline-flex; align-items: center; gap: var(--cds-gap-xs); }
+  .hz-sw { width: 0.625rem; height: 0.625rem; border-radius: 2px; display: inline-block; }
+  .hz-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+  .hz-tip .k { color: var(--cds-text-secondary); }
+  .hz-tablewrap { overflow-x: auto; }
+  .hz-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-body); font-variant-numeric: tabular-nums; }
+  .hz-table th { text-align: left; font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); }
+  .hz-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .hz-table .num { text-align: right; white-space: nowrap; }
+  .hz-bar { display: grid; grid-template-columns: 4.5rem 1fr; align-items: center; gap: var(--cds-gap-sm); }
+  .hz-bar i { display: block; height: 0.5rem; border-radius: 2px; }
+  .hz-fix { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .hz-details { font-size: var(--cds-font-size-body); color: var(--color-fg); }
+  .hz-details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+  .hz-details dl { display: grid; grid-template-columns: minmax(8rem, 14rem) 1fr; gap: var(--cds-gap-xs) var(--cds-gap-md); margin: var(--cds-gap-md) 0 0; }
+  .hz-details dt { color: var(--color-fg-muted); }
+  .hz-details dd { margin: 0; max-width: 46rem; }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  @media (max-width: 34rem) { .hz-details dl { grid-template-columns: 1fr; } }
+</style>
+
+<div class="hz">
+  <header class="hz-head">
+    <h1 class="hz-title">Herschel survey of the remaining work</h1>
+    <p class="hz-lede">Running every remaining agent step now, on the sources the project holds, would cost about
+      <b data-draw="costNow" data-source="headline" data-field="point" data-where="metric=cost_now_usd">—</b>
+      and carry only about <b data-draw="goodNow" data-source="headline" data-field="point" data-where="metric=orders_fully_good">—</b>
+      of <b data-draw="openOrders" data-source="headline" data-field="point" data-where="metric=open_orders">—</b> open orders through every step.
+      Most steps stop on a missing source, so the next money is better spent acquiring sources and fixing two claim-kit gaps.
+      Human certification, at about <b data-draw="certHoursLede" data-source="headline" data-field="point" data-where="metric=certification_hours">—</b> hours, is the largest cost left.</p>
+  </header>
+
+  <section class="hz-tiles" aria-label="Headline figures">
+    <div class="hz-tile">
+      <span class="hz-tile-label">Cost to attempt every open step now</span>
+      <span class="hz-big" data-draw="tCost" data-source="headline" data-field="point" data-where="metric=cost_now_usd">—</span>
+      <span class="hz-sub">80% range <span data-draw="tCostLo" data-source="headline" data-field="p10" data-where="metric=cost_now_usd">—</span> to <span data-draw="tCostHi" data-source="headline" data-field="p90" data-where="metric=cost_now_usd">—</span>, API list prices</span>
+    </div>
+    <div class="hz-tile">
+      <span class="hz-tile-label">Orders that would clear every step</span>
+      <span class="hz-big" data-draw="tGood" data-source="headline" data-field="point" data-where="metric=orders_fully_good">—</span>
+      <span class="hz-sub">80% range <span data-draw="tGoodLo" data-source="headline" data-field="p10" data-where="metric=orders_fully_good">—</span> to <span data-draw="tGoodHi" data-source="headline" data-field="p90" data-where="metric=orders_fully_good">—</span></span>
+    </div>
+    <div class="hz-tile">
+      <span class="hz-tile-label">Cost per order once its blockers are cleared</span>
+      <span class="hz-big" data-draw="tUnb" data-source="headline" data-field="point" data-where="metric=usd_per_unblocked_order">—</span>
+      <span class="hz-sub">80% range <span data-draw="tUnbLo" data-source="headline" data-field="p10" data-where="metric=usd_per_unblocked_order">—</span> to <span data-draw="tUnbHi" data-source="headline" data-field="p90" data-where="metric=usd_per_unblocked_order">—</span>, from 15 orders</span>
+    </div>
+    <div class="hz-tile">
+      <span class="hz-tile-label">Human certification of every dossier</span>
+      <span class="hz-big"><span data-draw="tCert" data-source="headline" data-field="point" data-where="metric=certification_hours">—</span> h</span>
+      <span class="hz-sub">about <span data-draw="tCertMin" data-source="headline" data-field="point" data-where="metric=certification_minutes_per_dossier">—</span> minutes each, an AI estimate from 6 dossiers</span>
+    </div>
+  </section>
+
+  <section class="hz-card" id="blockers">
+    <h2>What blocks the work</h2>
+    <p class="hz-note">Projected open orders blocked by each missing input. "Only blocker" counts orders that this input alone holds back.</p>
+    <div class="hz-tablewrap">
+      <table class="hz-table" data-source="blockers" data-row-key="blocker">
+        <thead><tr><th data-field="blocker">Missing input</th><th data-field="orders" class="num">Orders blocked</th><th data-field="sole" class="num">Only blocker</th><th data-field="fix">Who can fix it</th></tr></thead>
+        <tbody data-draw="blockersBody"></tbody>
+      </table>
+    </div>
+    <p class="hz-note">The status-history row is an exact census count of undecided orders; it overlaps the others.</p>
+  </section>
+
+  <div class="hz-grid">
+    <section class="hz-card" id="steps">
+      <h2>How each step ends</h2>
+      <p class="hz-note">Share of attempts that succeeded, stopped on a missing source, or failed review, projected over the census.</p>
+      <div class="hz-legend">
+        <span><i class="hz-sw" data-sw="0"></i>Succeeded</span>
+        <span><i class="hz-sw" data-sw="1"></i>Blocked on a source</span>
+        <span><i class="hz-sw" data-sw="2"></i>Failed or rejected</span>
+      </div>
+      <div class="hz-chart" data-draw="stepsChart" data-source="steps"></div>
+    </section>
+
+    <section class="hz-card" id="costs">
+      <h2>Where the money would go</h2>
+      <p class="hz-note">Projected cost of attempting everything now, by kind of work, with 80% ranges.</p>
+      <div class="hz-chart" data-draw="costsChart" data-source="costs"></div>
+    </section>
+  </div>
+
+  <section class="hz-card" id="strata">
+    <h2>By provisional status and era</h2>
+    <p class="hz-note">Each sampled order stands for its group's orders in the census.</p>
+    <div class="hz-tablewrap">
+      <table class="hz-table" data-source="strata" data-row-key="stratum">
+        <thead><tr><th data-field="stratum">Group</th><th data-field="census_orders" class="num">Orders</th><th data-field="sampled" class="num">Sampled</th><th data-field="usd_per_order" class="num">Cost per order</th><th data-field="share_fully_good" class="num">Cleared every step</th><th data-field="projected_usd" class="num">Projected cost</th></tr></thead>
+        <tbody data-draw="strataBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details class="hz-details">
+    <summary>Method and limits</summary>
+    <dl>
+      <dt>Sample</dt>
+      <dd><span data-draw="mSample" data-source="headline" data-field="point" data-where="metric=sampled_orders">—</span> orders in two independent random draws, each run through every open step by six coordinators, Sonnet workers and two blind Opus reviewers with planted controls. No planted control was missed.</dd>
+      <dt>Projection</dt>
+      <dd>Each group's measured costs and outcomes are scaled to the group's size in the census, with 80% ranges from 2,000 resamples. The two draws agree: <span data-draw="mR1" data-source="headline" data-field="round1" data-where="metric=cost_now_usd">—</span> from the first and <span data-draw="mR2" data-source="headline" data-field="round2" data-where="metric=cost_now_usd">—</span> from the second.</dd>
+      <dt>Dollars</dt>
+      <dd>API-equivalent: tokens priced at Anthropic list prices, not a share of a plan. The survey itself cost about <span data-draw="mSurvey" data-source="headline" data-field="point" data-where="metric=survey_usd">—</span>.</dd>
+      <dt>Coordination</dt>
+      <dd><span data-draw="mCoord" data-source="headline" data-field="point" data-where="metric=coordination_usd">—</span> of the projected cost is Opus coordination; reusing the survey's tools should lower it.</dd>
+      <dt>Speed</dt>
+      <dd>No API limit was met. One 8 GB cloud machine handled <span data-draw="mRate" data-source="headline" data-field="point" data-where="metric=orders_per_hour_one_machine">—</span> orders an hour before memory ran out; more speed needs more machines.</dd>
+      <dt>Left out</dt>
+      <dd>Some recorded blocks are wrong (reviewers found held evidence workers missed), so success may be understated. Small groups rest on 3 to 9 orders. Certification time is estimated from word counts, not timed readings.</dd>
+    </dl>
+  </details>
+</div>
+
+<script>
+  window.hz = (() => {
+    const usd0 = d3.format('$,.0f');
+    const usd2 = d3.format('$,.2f');
+    const int = d3.format(',.0f');
+    const pct = d3.format('.0%');
+    const rows = (id) => { const g = dash.data(id); return g.status === 'ok' ? g.data : null; };
+    const head = (metric, field) => {
+      const r = rows('headline');
+      if (!r) return null;
+      const row = r.find((x) => x.metric === metric);
+      const v = row ? Number(row[field]) : NaN;
+      return Number.isFinite(v) && row[field] !== '' ? v : null;
+    };
+    const tip = (box) => {
+      let t = box.querySelector('.hz-tip');
+      if (!t) { t = document.createElement('div'); t.className = 'hz-tip'; t.hidden = true; box.appendChild(t); }
+      return t;
+    };
+    const place = (box, t, ev) => {
+      const b = box.getBoundingClientRect();
+      const x = ev.clientX - b.left, y = ev.clientY - b.top;
+      const w = t.offsetWidth;
+      t.style.left = Math.max(0, Math.min(b.width - w, x + 12)) + 'px';
+      t.style.top = Math.max(0, y - 36) + 'px';
+    };
+    return { usd0, usd2, int, pct, rows, head, tip, place };
+  })();
+
+  const fig = (name, metric, field, fmt) => dash.draw(name, (el) => {
+    const v = hz.head(metric, field);
+    el.textContent = v == null ? '—' : fmt(v);
+  });
+  fig('costNow', 'cost_now_usd', 'point', hz.usd0);
+  fig('goodNow', 'orders_fully_good', 'point', hz.int);
+  fig('openOrders', 'open_orders', 'point', hz.int);
+  fig('certHoursLede', 'certification_hours', 'point', hz.int);
+  fig('tCost', 'cost_now_usd', 'point', hz.usd0);
+  fig('tCostLo', 'cost_now_usd', 'p10', hz.usd0);
+  fig('tCostHi', 'cost_now_usd', 'p90', hz.usd0);
+  fig('tGood', 'orders_fully_good', 'point', hz.int);
+  fig('tGoodLo', 'orders_fully_good', 'p10', hz.int);
+  fig('tGoodHi', 'orders_fully_good', 'p90', hz.int);
+  fig('tUnb', 'usd_per_unblocked_order', 'point', hz.usd2);
+  fig('tUnbLo', 'usd_per_unblocked_order', 'p10', hz.usd2);
+  fig('tUnbHi', 'usd_per_unblocked_order', 'p90', hz.usd2);
+  fig('tCert', 'certification_hours', 'point', hz.int);
+  fig('tCertMin', 'certification_minutes_per_dossier', 'point', d3.format('.0f'));
+  fig('mSample', 'sampled_orders', 'point', hz.int);
+  fig('mR1', 'cost_now_usd', 'round1', hz.usd0);
+  fig('mR2', 'cost_now_usd', 'round2', hz.usd0);
+  fig('mSurvey', 'survey_usd', 'point', hz.usd0);
+  fig('mCoord', 'coordination_usd', 'point', hz.usd0);
+  fig('mRate', 'orders_per_hour_one_machine', 'point', d3.format('.0f'));
+
+  const stepColors = () => [dash.colors[0], 'var(--cds-chart-muted)', 'var(--cds-chart-status-critical)'];
+  dash.onData(() => {
+    document.querySelectorAll('.hz-sw').forEach((s) => { s.style.background = stepColors()[Number(s.dataset.sw)]; });
+  });
+
+  dash.draw('blockersBody', (tb) => {
+    const r = hz.rows('blockers');
+    tb.replaceChildren();
+    if (!r) return;
+    const max = d3.max(r, (d) => Number(d.orders)) || 1;
+    r.forEach((d) => {
+      const tr = document.createElement('tr');
+      const c1 = document.createElement('td'); c1.textContent = d.blocker;
+      const c2 = document.createElement('td'); c2.className = 'num';
+      const bar = document.createElement('div'); bar.className = 'hz-bar';
+      const n = document.createElement('span'); n.textContent = hz.int(Number(d.orders));
+      const i = document.createElement('i'); i.style.width = (100 * Number(d.orders) / max) + '%'; i.style.background = dash.colors[0];
+      bar.append(n, i); c2.append(bar);
+      const c3 = document.createElement('td'); c3.className = 'num'; c3.textContent = d.sole === '' ? '' : hz.int(Number(d.sole));
+      const c4 = document.createElement('td'); c4.className = 'hz-fix'; c4.textContent = d.fix;
+      tr.append(c1, c2, c3, c4); tb.append(tr);
+    });
+  });
+
+  dash.draw('strataBody', (tb) => {
+    const r = hz.rows('strata');
+    tb.replaceChildren();
+    if (!r) return;
+    r.forEach((d) => {
+      const tr = document.createElement('tr');
+      const cells = [d.stratum, hz.int(Number(d.census_orders)), hz.int(Number(d.sampled)), hz.usd2(Number(d.usd_per_order)),
+        hz.pct(Number(d.share_fully_good)), hz.usd0(Number(d.projected_usd))];
+      cells.forEach((v, k) => { const td = document.createElement('td'); if (k) td.className = 'num'; td.textContent = v; tr.append(td); });
+      tb.append(tr);
+    });
+  });
+
+  dash.draw('stepsChart', (box) => {
+    const r = hz.rows('steps');
+    d3.select(box).selectAll('svg').remove();
+    if (!r) return;
+    const W = box.clientWidth || 400, rowH = 26, top = 4;
+    const svg = d3.select(box).append('svg').attr('width', '100%');
+    const probe = svg.append('text').attr('font-size', 12).style('font-family', 'var(--font-anthropic-sans)');
+    let lw = 0;
+    r.forEach((d) => { probe.text(d.step); lw = Math.max(lw, probe.node().getComputedTextLength()); });
+    probe.remove();
+    const left = Math.min(lw + 10, W * 0.45), right = 8, H = top + r.length * rowH + 22;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    const x = d3.scaleLinear([0, 1], [left, W - right]);
+    const cols = stepColors();
+    const keys = ['succeeded', 'blocked', 'failed_or_rejected'];
+    const names = ['Succeeded', 'Blocked', 'Failed or rejected'];
+    const t = hz.tip(box);
+    r.forEach((d, i) => {
+      const y = top + i * rowH;
+      svg.append('text').attr('x', left - 8).attr('y', y + rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end')
+        .attr('font-size', 12).attr('fill', 'var(--color-fg)').style('font-family', 'var(--font-anthropic-sans)').text(d.step);
+      let acc = 0;
+      keys.forEach((k, j) => {
+        const v = Number(d[k]) || 0;
+        if (v <= 0) return;
+        svg.append('rect').attr('x', x(acc)).attr('y', y + 5).attr('width', Math.max(0, x(acc + v) - x(acc))).attr('height', rowH - 10)
+          .style('fill', cols[j])
+          .on('mousemove', (ev) => {
+            t.replaceChildren();
+            const a = document.createElement('div'); a.className = 'k'; a.textContent = d.step;
+            const b = document.createElement('div'); b.textContent = `${names[j]}: ${hz.pct(v)}`;
+            t.append(a, b); t.hidden = false; hz.place(box, t, ev);
+          })
+          .on('mouseleave', () => { t.hidden = true; });
+        acc += v;
+      });
+    });
+    const ax = svg.append('g').attr('transform', `translate(0,${top + r.length * rowH + 2})`)
+      .call(d3.axisBottom(x).ticks(4).tickFormat(hz.pct).tickSizeOuter(0)).attr('font-size', null).attr('font-family', null);
+    ax.selectAll('text').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)');
+    ax.selectAll('line,path').attr('stroke', 'var(--cds-chart-axis)');
+  });
+
+  dash.draw('costsChart', (box) => {
+    const r = hz.rows('costs');
+    d3.select(box).selectAll('svg').remove();
+    if (!r) return;
+    const W = box.clientWidth || 400, rowH = 30, top = 4;
+    const svg = d3.select(box).append('svg').attr('width', '100%');
+    const probe = svg.append('text').attr('font-size', 12).style('font-family', 'var(--font-anthropic-sans)');
+    let lw = 0;
+    r.forEach((d) => { probe.text(d.kind); lw = Math.max(lw, probe.node().getComputedTextLength()); });
+    probe.text(hz.usd0(d3.max(r, (d) => Number(d.p90))));
+    const vw = probe.node().getComputedTextLength();
+    probe.remove();
+    const left = Math.min(lw + 10, W * 0.45), right = vw + 12, H = top + r.length * rowH + 22;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    const x = d3.scaleLinear([0, d3.max(r, (d) => Number(d.p90)) || 1], [left, W - right]).nice();
+    const t = hz.tip(box);
+    r.forEach((d, i) => {
+      const y = top + i * rowH, v = Number(d.usd), lo = Number(d.p10), hi = Number(d.p90);
+      svg.append('text').attr('x', left - 8).attr('y', y + rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end')
+        .attr('font-size', 12).attr('fill', 'var(--color-fg)').style('font-family', 'var(--font-anthropic-sans)').text(d.kind);
+      svg.append('rect').attr('x', x(0)).attr('y', y + 7).attr('width', Math.max(0, x(v) - x(0))).attr('height', rowH - 14)
+        .attr('rx', 3).style('fill', d.kind === 'Coordination' ? 'var(--cds-chart-muted)' : dash.colors[0])
+        .on('mousemove', (ev) => {
+          t.replaceChildren();
+          const a = document.createElement('div'); a.className = 'k'; a.textContent = d.kind;
+          const b = document.createElement('div'); b.textContent = `${hz.usd0(v)} (80%: ${hz.usd0(lo)} to ${hz.usd0(hi)})`;
+          t.append(a, b); t.hidden = false; hz.place(box, t, ev);
+        })
+        .on('mouseleave', () => { t.hidden = true; });
+      svg.append('line').attr('x1', x(lo)).attr('x2', x(hi)).attr('y1', y + rowH / 2).attr('y2', y + rowH / 2)
+        .attr('stroke', 'var(--color-fg-muted)').attr('stroke-width', 1.5);
+      svg.append('text').attr('x', x(hi) + 6).attr('y', y + rowH / 2).attr('dy', '0.35em').attr('font-size', 12)
+        .attr('fill', 'var(--color-fg-muted)').style('font-variant-numeric', 'tabular-nums').text(hz.usd0(v));
+    });
+    const ax = svg.append('g').attr('transform', `translate(0,${top + r.length * rowH + 2})`)
+      .call(d3.axisBottom(x).ticks(4).tickFormat(d3.format('$~s')).tickSizeOuter(0)).attr('font-size', null).attr('font-family', null);
+    ax.selectAll('text').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)');
+    ax.selectAll('line,path').attr('stroke', 'var(--cds-chart-axis)');
+  });
+</script>
