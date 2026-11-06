@@ -1,0 +1,115 @@
+{
+ "control_error_rate": 0.0,
+ "control_error_rate_excluding_span_checks": 0.0,
+ "design": "Planted controls run on every issue's own Title 3 bytes (a planted positive entry must be read with its exact span; a planted line without a dot leader and one with a non-numeric reference must not become entries; the planted block must add exactly one entry). Known facts: Title 3 entries whose order, change and Federal Register citation are known from the orders themselves, in named issues. Negatives: made-up and near-miss entries must be absent from every row. Member check: the public html URL hashes to the same bytes as the zip member. Span check: every entry re-sliced from the held bytes ends with its reference and starts with its item.",
+ "failed_controls": [],
+ "generated_utc": "2026-11-06T23:00:44Z",
+ "known_facts": {
+  "checks": 3,
+  "error_rate": 0.0,
+  "facts": [
+   {
+    "issue": "LSA-1997-01",
+    "name": "known_fact:12543:Continued by Notice of Jan. 2, 1997",
+    "ok": true
+   },
+   {
+    "issue": "LSA-2003-03",
+    "name": "known_fact:10865:Amended by EO 13284",
+    "ok": true
+   },
+   {
+    "issue": "LSA-2018-01",
+    "name": "known_fact:13799:Revoked by EO 13820",
+    "ok": true
+   }
+  ],
+  "failures": 0
+ },
+ "member_url_hash": {
+  "checks": 3,
+  "detail": [
+   {
+    "direct_sha256": "442064dee5adcde675c583777135563cca767a97318498ef63f7e05dbb3ce659",
+    "issue": "LSA-1997-01",
+    "kind": "positive",
+    "name": "member_url_hash_equals_zip_member",
+    "ok": true,
+    "url": "https://www.govinfo.gov/content/pkg/LSA-1997-01/html/LSA-1997-01-title3.htm",
+    "zip_member_sha256": "442064dee5adcde675c583777135563cca767a97318498ef63f7e05dbb3ce659"
+   },
+   {
+    "direct_sha256": "686cffdae96371e7b37228f1fd362355c1e48d2f46825f1496dece72282def58",
+    "issue": "LSA-2003-03",
+    "kind": "positive",
+    "name": "member_url_hash_equals_zip_member",
+    "ok": true,
+    "url": "https://www.govinfo.gov/content/pkg/LSA-2003-03/html/LSA-2003-03-title3.htm",
+    "zip_member_sha256": "686cffdae96371e7b37228f1fd362355c1e48d2f46825f1496dece72282def58"
+   },
+   {
+    "direct_sha256": "98cacab3020ec74f97c35b93a33f794295d517430ef9f5564131e40632992079",
+    "issue": "LSA-2018-01",
+    "kind": "positive",
+    "name": "member_url_hash_equals_zip_member",
+    "ok": true,
+    "url": "https://www.govinfo.gov/content/pkg/LSA-2018-01/html/LSA-2018-01-title3.htm",
+    "zip_member_sha256": "98cacab3020ec74f97c35b93a33f794295d517430ef9f5564131e40632992079"
+   }
+  ],
+  "failures": 0
+ },
+ "negatives_on_final_rows": {
+  "checks": 6,
+  "detail": [
+   {
+    "hits": 0,
+    "kind": "negative",
+    "name": "negative:made-up order number",
+    "ok": true
+   },
+   {
+    "hits": 0,
+    "kind": "negative",
+    "name": "negative:near miss of a real entry: wrong revoking order",
+    "ok": true
+   },
+   {
+    "hits": 0,
+    "kind": "negative",
+    "name": "negative:near miss of a real entry: wrong page",
+    "ok": true
+   },
+   {
+    "hits": 0,
+    "kind": "negative",
+    "name": "negative:near miss of a real entry: wrong amending order",
+    "ok": true
+   },
+   {
+    "hits": 0,
+    "kind": "negative",
+    "name": "negative:made-up CFR section of a made-up title",
+    "ok": true
+   },
+   {
+    "hits": 0,
+    "kind": "negative",
+    "name": "negative:made-up section of a real title",
+    "ok": true
+   }
+  ],
+  "error_rate": 0.0,
+  "failures": 0
+ },
+ "planted": {
+  "checks": 12,
+  "error_rate": 0.0,
+  "failures": 0
+ },
+ "span_check": {
+  "checks": 19020,
+  "error_rate": 0.0,
+  "failures": 0
+ }
+}

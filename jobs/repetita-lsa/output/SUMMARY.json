@@ -1,0 +1,112 @@
+{
+ "budget_refused": [],
+ "bytes_downloaded": 24418072,
+ "complete": true,
+ "control_error_rate": 0.0,
+ "entries_parsed_all_titles": 19020,
+ "eo_category_rows_with_target": 147,
+ "eo_mention_rows": 117,
+ "eo_mention_rows_outside_title3": 1,
+ "failed_issues": [],
+ "fetch_counters": {
+  "ok": 3,
+  "requested": 3
+ },
+ "fragment_files": [
+  "FRAGMENTS.jsonl"
+ ],
+ "fragments": 133,
+ "generated_utc": "2026-11-06T23:01:51Z",
+ "issues_carried_forward": 0,
+ "issues_deferred_by_time": 0,
+ "issues_failed": 0,
+ "issues_listed": 3,
+ "issues_not_found_speculative": 0,
+ "issues_read_ok": 3,
+ "issues_read_this_run": 3,
+ "job": "repetita-lsa",
+ "known_fact_error_rate": 0.0,
+ "leader_lines_independent_all_titles": 19025,
+ "limits": "Leads only. An LSA entry names a change and a Federal Register page this job does not hold. No status, census, codebook or count change. Certified: 0.",
+ "list_problems": [],
+ "planted_error_rate": 0.0,
+ "pre1997": {
+  "generated_utc": "2026-11-06T23:01:51Z",
+  "hathi": {
+   "error": "FetchError: blocked_by_robots_txt"
+  },
+  "hathi_read_check": {
+   "attempted": false,
+   "reason": "no full-view Hathi LSA or codification volume listed"
+  },
+  "internet_archive": {
+   "docs": 6,
+   "failed_queries": 0,
+   "queries": 5
+  },
+  "lsa_full_view_years": {
+   "1985": 1,
+   "1990": 1
+  },
+  "manifest_by_source_series_access": {
+   "internet_archive:cfr:full_view": 2,
+   "internet_archive:codification:full_view": 1,
+   "internet_archive:lsa:full_view": 2
+  },
+  "manifest_rows": 5,
+  "smoke_read_internet_archive": {
+   "attempted": true,
+   "bytes": 2444817,
+   "executive_order_mentions": 6,
+   "final_url": "https://dn711409.ca.archive.org/0/items/micro_IA41152616_0444/micro_IA41152616_0444_djvu.txt",
+   "first_lines": [
+    "IOns",
+    "re.",
+    "\u00ae"
+   ],
+   "has_djvu_txt": true,
+   "id": "micro_IA41152616_0444",
+   "metadata_rights_fields": {
+    "date": "1985",
+    "publisher": [
+     "United States Government Printing Office",
+     "Readex Microprint Corporation"
+    ],
+    "scanningcenter": "sanfrancisco"
+   },
+   "nonblank_lines": 65789,
+   "note": "Smoke read only. The text layer is OCR of a Readex microprint copy of a GPO publication; nothing from it is committed.",
+   "ok": true,
+   "sha256": "9d0dd4367df4839dbf0a78771a4345ad9f2cc0b73e539d4c363e4426fc39a80e",
+   "title": "List of CFR Sections Affected, 1973-1985. Volume III (Titles 28 through 41)",
+   "title_3_mentions": 0,
+   "url": "https://archive.org/download/micro_IA41152616_0444/micro_IA41152616_0444_djvu.txt"
+  }
+ },
+ "requests": 51,
+ "route": {
+  "api_crosscheck": {
+   "attempted": false
+  },
+  "api_key_env_name": null,
+  "api_key_kind": "none",
+  "api_key_present": false,
+  "bytes_route": "keyless: https://www.govinfo.gov/content/pkg/<issue>.zip (robots.txt permits /content/)",
+  "listing_route": "keyless: www.govinfo.gov LSA year sitemaps",
+  "note": "The govinfo API (key in X-Api-Key) is used only to cross-check the listing, and only with a real API_DATA_GOV_KEY (or GOVINFO_API_KEY); DEMO_KEY is refused for a full run. The full run does not wait for a key: it reads the keyless content URLs."
+ },
+ "row_files": [
+  "LSA_EO_ROWS.csv"
+ ],
+ "rows": 222,
+ "rows_before_dedupe_this_run": 222,
+ "rows_by_first_issue_year": {
+  "1997": 21,
+  "2003": 180,
+  "2018": 21
+ },
+ "seconds": 77.2,
+ "smoke": true,
+ "sources": 7,
+ "title3_rows": 221
+}
