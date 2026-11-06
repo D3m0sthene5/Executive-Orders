@@ -22,9 +22,17 @@ other sessions repeated or forgot them. Kean gives those three kinds of informat
 The files are append-only. To change an entry, add a new line with the same `id` and a higher `rev`
 (the `answer` and `wire` commands do this). The latest revision is the current one.
 
+## Generated pages (Justinian, 2026-11-06)
+
+`kean.py brief` writes three pages: `HANDOFF/KEAN.md` (the brief, at most 16,384 bytes since owner ruling R6;
+open asks appear as a count and ids), `HANDOFF/KEAN_ASKS.md` (every open ask in full) and `HANDOFF/NEWEST.md`
+(the newest entry of every notes file, each cut at 3,500 bytes). `check` fails a stale KEAN.md or KEAN_ASKS.md and
+warns on a stale NEWEST.md. The daily job writes `output/NEWEST.md` as well.
+
 ## The rules every agent follows
 
-1. **Start of a session:** read `HANDOFF/KEAN.md` and only the newest entry of each `HANDOFF/notes-*.md`. Before
+1. **Start of a session:** read `HANDOFF/KEAN.md`, `HANDOFF/KEAN_ASKS.md` if an ask concerns you, and `HANDOFF/NEWEST.md`
+   (the newest entry of each `HANDOFF/notes-*.md`; `kean.py newest` prints the current ones). Before
    proposing a tool, pilot, test or speed-up, run `python3 -I jobs/kean/kean.py search <subject words>` and read
    what earlier sessions found.
 2. **End of a session:** record each result with `add-finding`, each question for the owner with `add-ask`
