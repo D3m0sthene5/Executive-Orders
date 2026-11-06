@@ -15,8 +15,8 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 7 | probe.status_assignment.undecided | probe | 30 | 0.0 | 0.0 | $19 | ∞ | $19 |
 | 8 | recovery.custody_stranded | recovery | 48 | 30.7 | 0.0 | $19 | 159.9 | $39 |
 | 9 | production.one_step_away | production | 40 | 25.5 | 0.0 | $26 | 98.8 | $64 |
-| 10 | production.claim_ready.yes.fr | production | 352 | 82.1 | 0.0 | $228 | 36.1 | $292 |
-| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 3.2 | $17 | 19.1 | $309 |
+| 10 | production.claim_ready.yes.fr | production | 352 | 129.1 | 0.0 | $228 | 56.7 | $292 |
+| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 4.4 | $17 | 26.0 | $309 |
 | 12 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | $0.38 | 8.6 | $309 |
 | 13 | production.claim_ready.no.fr | production | 1002 | 33.4 | 0.0 | $648 | 5.2 | $957 |
 | 14 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
