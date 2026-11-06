@@ -8,11 +8,12 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (4)
+## Waiting for the owner (5)
 
 - **A-20261103-1** (2026-11-03, Codex): Provide Bacon-session.bundle or the original Bacon packet directory from EO Session Report? *Original scratch files are inaccessible, no Bacon publication was located, and the frozen sample/review receipts cannot be reconstructed faithfully*
 - **A-20261104-1** (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1? *Scoped occurrence intervals are usable now. Whole-case legal intervals need a separate scientific contract and fresh legal review. This is a contract proposal, not a request to choose case answers or relax production.*
 - **A-20261105-niebuhr-admit** (2026-11-05, claude): May the 30 orders in research/niebuhr/ADMISSION_QUEUE.csv (APP text held, 26 with the official OFR compilation text and page) be admitted to the census after a person checks each against its official page? Who does that… *They are signed, numbered executive orders the census misses through an ingestion gap; admission changes the census count, which only the owner can authorize, and identity review must be a person, not the machine.*
+- **A-20261106-gratian-push** (2026-11-06, claude): Will you push the claude/gratian-wiring bundle (or give the next Gratian session push access) so its wiring PR can be opened? *This session's request for push access to the repository was refused, so the branch exists only as a delivered git bundle; nothing in it changes a count, status, census or codebook entry.*
 - **A-20261106-mabillon-register** (2026-11-06, claude (Mabillon)): Register jobs/mabillon-held-printings in tracker.py (PR #164), so 1,771 orders count their held official printing? *Held GPO slip volumes, 1974 GPO Hoover and 1936 FR pages filed as transcriptions; proved by text, 0 of 6,834 planted negatives accepted.*
 
 ## Standing owner requirements
@@ -31,13 +32,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 162; `search` finds the rest)
+## Newest results (6 of 164; `search` finds the rest)
 
 - 2026-11-06 F-20261106-mabillon-volumes **worked**: Locate every order inside the committed OCR page dumps of the Commons GPO volumes 5800-8027, which hathi-gpo-… Lesson: A job's committed intermediate data (page dumps, OCR) can serve orders outside its original target list; look before refetching
 - 2026-11-06 F-20261106-mabillon-neighbours **analysis**: Apply Tischendorf's fingerprint rule unchanged to whole printed pages of GPO volumes, with neighbour negatives Lesson: A text fingerprint needs neighbour negatives and a uniqueness margin wherever pages hold several orders; Tischendorf's page-reading routes may carry the same risk
 - 2026-11-06 F-20261106-mabillon-nara **worked**: Read NARA's keyless AWS Open Data catalog export for Record Group 11 in full (400 chunks, 231 MB, 63 s on a r… Lesson: Read the archive's own bulk export before asking for an API key: it answers what is digitized for free, and the answer here was no
 - 2026-11-06 F-20261106-mabillon-held **worked**: Prove by text the government-printed passages hathi-gpo-orders already holds (GPO bound volumes, 1974 GPO Hoo… Lesson: Check what an existing job already holds under the wrong class before fetching: the biggest bulk source was in the repository
-- 2026-11-05 F-20261105-tischendorf-2 **partly worked**: Tischendorf first live run: one network request at a time with a single shared request budget Lesson: For any network job: follow jobs/README.md's parallel-workers rule from the start, give each route its own budget, and smoke-test each route on a handful of orders before a full run
-- 2026-11-05 F-20261105-tischendorf-1 **partly worked**: Tischendorf (jobs/tischendorf-originals): prove official printings for transcription-only orders by comparing… Lesson: A held transcription is evidence for locating its own original: comparing wording turns a number-only location into a measured match
+- 2026-11-06 F-20261106-gratian-wiring **partly worked**: Gratian lane: map every night-wave product to its tracker step or claim-kit route and close the wiring gaps (… Lesson: Before writing wiring, list who already globs jobs/*/output/FRAGMENTS*.jsonl and SOURCES.jsonl (claim-kit inputs.py, claim-checker sources.py): most products are wired by format, not by registration.…
+- 2026-11-06 F-20261106-gratian-ablation **analysis**: Ablation of the readiness tracker on main b561d57a with and without each night-wave product (research/gratian… Lesson: Measure a source product by the claim-ready group and the text step, not by ready: ready moves only through claims. A page-check lead to an official copy currently cancels a counting working-text con…
 
-Register: 27 owner decisions, 15 answered questions, 162 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 27 owner decisions, 15 answered questions, 164 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

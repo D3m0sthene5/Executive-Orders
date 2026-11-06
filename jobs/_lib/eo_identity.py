@@ -26,6 +26,9 @@ WPA_PRE1900 = "jobs/census-completeness/data/WPA_NUMBERED_pre1900.csv"
 # The complete 1944 WPA numbered list (orders 1 to about 8400, with month and day). It dates the ProQuest scans
 # whose other indexes hold only a year.
 WPA_NUMBERED = "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"
+# Niebuhr's identifications of numbered orders (dates mostly from secondary sources), typed by jobs/gratian-niebuhr-leads.
+# Read last: a lead only fills a missing date or refines an agreeing bare year, never replaces another source's date.
+NIEBUHR_DATE_LEADS = "jobs/gratian-niebuhr-leads/output/DATE_LEADS.csv"
 PROQUEST_DIR = "research/pre-1937-sources/ProQuest Pre-1937 Orders"
 PROQUEST_LINKS = PROQUEST_DIR + "/_resume/proquest_download_links.html"
 FIRST_FEDERAL_REGISTER = _dt.date(1936, 3, 14)
@@ -194,7 +197,8 @@ def load_dates(root, fragments=None):
     """id -> {'date': 'YYYY-MM-DD' or 'YYYY', 'title': str, 'date_source': str}.
 
     Best source first: the OFR catalog (1937 on), fr-originals, the American Presidency Project index,
-    any other fragment, the WPA pre-1900 list, then the ProQuest list (year only) and the census year.
+    any other fragment, the WPA pre-1900 list, then the ProQuest list (year only), the census year and,
+    last, Niebuhr's identification leads (jobs/gratian-niebuhr-leads).
     Every one of these is a machine index; none authenticates an identity.
     """
     out = {}
@@ -242,6 +246,10 @@ def load_dates(root, fragments=None):
         put(canon_id(*parse_eo_id(str(r["id"]))), str(r["y"]) if r.get("y") else None, None, "proquest_list_year")
     for iid, r in load_universe(root).items():
         put(iid, r.get("date_effective") or None, None, "census_year")
+    for r in read_csv(os.path.join(root, NIEBUHR_DATE_LEADS)):
+        if r.get("lead_grade") == "secondary_identification_lead":
+            put(r.get("instrument_id"), r.get("date") or None, r.get("title_or_subject"), "niebuhr_identification_lead",
+                r.get("president", ""))
     return out
 
 
