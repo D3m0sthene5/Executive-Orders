@@ -122,7 +122,23 @@ class PtolemyTests(unittest.TestCase):
         if not real.is_file():
             self.skipTest("no committed request list")
         routes = {r.get("route") for r in P.read_jsonl(real)}
-        self.assertLessEqual(routes, {"archive", "live"})
+        self.assertLessEqual(routes, {"archive", "live", "import"})
+
+    def test_import_route_keeps_exact_repository_files_only(self):
+        rel = "research/salvage/test-ptolemy-import.pdf"
+        reqs = [{"sha256": SHA_PDF, "route": "import", "path": rel, "url": "https://www.govinfo.gov/a.pdf"},
+                {"sha256": SHA_BAD, "route": "import", "path": "../outside.pdf"}]
+        (self.job / "REQUESTS.jsonl").write_text("".join(json.dumps(r) + "\n" for r in reqs), encoding="utf-8")
+        target = P.REPO / rel
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(PDF)
+        self.addCleanup(target.unlink)
+        out = self.root / "out1"
+        s = self.run_once(out)
+        self.assertTrue((out / "raw" / (SHA_PDF + ".pdf")).is_file())
+        ledger = {r["sha256"]: r["result"] for r in P.read_jsonl(out / "LEDGER.jsonl")}
+        self.assertEqual(ledger[SHA_BAD], "fetch_failed")
+        self.assertEqual(s["kept_total"], 1)
 
 
 if __name__ == "__main__":

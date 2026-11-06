@@ -179,6 +179,17 @@ def run(job_dir, out, cache, prior=None, fetch_archive=None, pool=None, budget=N
         budget.add(len(body))
         record(req, "kept", body=body, how=how)
 
+    # Files already in the repository but outside any source index (for example research/salvage/): kept here
+    # under the same exact-hash rule, so the checker can find them.
+    for req in [r for r in requests if r.get("route") == "import" and due(r)]:
+        src = (REPO / req.get("path", "")).resolve()
+        try:
+            src.relative_to(REPO.resolve())
+            body = src.read_bytes()
+        except (ValueError, OSError) as exc:
+            record(req, "fetch_failed", f"repository file unreadable: {type(exc).__name__}")
+            continue
+        keep_if_exact(req, body, f"imported from the repository file {req.get('path')}")
     archive = [r for r in requests if r.get("route") == "archive" and due(r)]
     live = [r for r in requests if r.get("route") == "live" and due(r)]
     counts = {"archive_due": len(archive), "live_due": len(live)}
