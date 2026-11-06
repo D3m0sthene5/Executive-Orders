@@ -1,0 +1,769 @@
+{
+  "checked_ids": [
+    "EO:10369A",
+    "EO:6171",
+    "EO:UN:executive-orders-01:row:102",
+    "EO:UN:executive-orders-01:row:12"
+  ],
+  "code_pins": {
+    "checker.py": "2e8348066db343557791428e7d084707949ef10dde18063210a9c57d17c8fd6b",
+    "dispatch.py": "19167f9d8ec0dcea98ad0c383d8366d9b9e1261c12092cfaf6e6e221489027c4",
+    "sources.py": "7bb63fdb6f154ee67a568bc690a3d3c081f3d6d39137ec7bb55b7d551695679b"
+  },
+  "dispatchable_ids": [],
+  "legal_requirement_coverage": "unknown",
+  "members": [
+    {
+      "blockers": [
+        {
+          "kind": "original_or_inventory_absent",
+          "reason": "Held original and nonempty inventory required for production; retain packet for source research."
+        }
+      ],
+      "instrument_id": "EO:10369A",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "No attributed held text located for this order.",
+          "No clause inventory extracted; do not submit an empty inventory.",
+          "No complete machine later-source search available."
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "absent_from_packet",
+            "instrument_id": "EO:10369A",
+            "kind": "official_original",
+            "reason": "No original evidence in dossier",
+            "shared_key": "EO:10369A",
+            "task_id": "TASK:75edd3cf3e8dd33fa4f6bf1e"
+          },
+          {
+            "availability": "absent_from_packet",
+            "instrument_id": "EO:10369A",
+            "kind": "complete_inventory",
+            "reason": "No complete operative inventory located",
+            "shared_key": "EO:10369A",
+            "task_id": "TASK:12edaff229231516571f8eb8"
+          }
+        ],
+        "unusable_declared_source_ids": []
+      },
+      "research_tasks": [
+        {
+          "availability": "absent_from_packet",
+          "instrument_id": "EO:10369A",
+          "kind": "official_original",
+          "reason": "No original evidence in dossier",
+          "shared_key": "EO:10369A",
+          "task_id": "TASK:75edd3cf3e8dd33fa4f6bf1e"
+        },
+        {
+          "availability": "absent_from_packet",
+          "instrument_id": "EO:10369A",
+          "kind": "complete_inventory",
+          "reason": "No complete operative inventory located",
+          "shared_key": "EO:10369A",
+          "task_id": "TASK:12edaff229231516571f8eb8"
+        }
+      ],
+      "sources": [],
+      "state": "source_blocked"
+    },
+    {
+      "blockers": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:6171#whole",
+          "kind": "required_source_custody",
+          "source": {
+            "page_or_item": "Executive_Orders_6071-6250.djvu; scanned pages 283-285; closing number 6171",
+            "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+            "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6171.txt",
+            "text_sha256": "0840aa71f8b445548297d8498122bdade7d881ecbd8d4d00ee377e041e58a742",
+            "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6071-6250.djvu"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:6171",
+          "kind": "required_source_custody",
+          "source": {
+            "page_or_item": "Executive_Orders_6071-6250.djvu; scanned pages 283-285; closing number 6171",
+            "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+            "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6171.txt",
+            "text_sha256": "0840aa71f8b445548297d8498122bdade7d881ecbd8d4d00ee377e041e58a742",
+            "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6071-6250.djvu"
+          }
+        }
+      ],
+      "instrument_id": "EO:6171",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "No dated status observation or later event was located for this order (explicit empty history, owner ruling 2026-11-05). Judge its status on its own terms and the bounded later-source searches below, and say so in the decision.",
+          "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:6171#whole",
+          "ORIGINAL:EO:6171"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "held_lead_not_official_original",
+            "instrument_id": "EO:6171",
+            "kind": "official_original",
+            "reason": "Held representation is a lead",
+            "shared_key": "EO:6171",
+            "task_id": "TASK:dd277cf50d1f026d46ee234d"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:6171",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:6171:TERM:EO:6171:7f773a71eeb0308f@0840aa71f8b44554",
+            "task_id": "TASK:6da80a12c8f080a9bc6344e7"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:6171",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:6171:TERM:EO:6171:a65060e5a392fac5@9ab04e91ed87ce1c",
+            "task_id": "TASK:7b4d1996ba69cc2f41c56955"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:6171",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:6171:TERM:EO:6171:a65060e5a392fac5@679dd9ebedfb26a8",
+            "task_id": "TASK:d785ea748dd8d5d743ab27af"
+          }
+        ],
+        "unusable_declared_source_ids": [
+          "CLAUSES:EO:6171#whole",
+          "ORIGINAL:EO:6171",
+          "TERM:EO:6171:7f773a71eeb0308f@0840aa71f8b44554",
+          "TERM:EO:6171:8bead2cb6adf4111@0840aa71f8b44554",
+          "TERM:EO:6171:9a998bd261db07b3@679dd9ebedfb26a8",
+          "TERM:EO:6171:9a998bd261db07b3@9ab04e91ed87ce1c",
+          "TERM:EO:6171:a65060e5a392fac5@679dd9ebedfb26a8",
+          "TERM:EO:6171:a65060e5a392fac5@9ab04e91ed87ce1c"
+        ]
+      },
+      "research_tasks": [
+        {
+          "availability": "held_lead_not_official_original",
+          "instrument_id": "EO:6171",
+          "kind": "official_original",
+          "reason": "Held representation is a lead",
+          "shared_key": "EO:6171",
+          "task_id": "TASK:dd277cf50d1f026d46ee234d"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:6171",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:6171:TERM:EO:6171:7f773a71eeb0308f@0840aa71f8b44554",
+          "task_id": "TASK:6da80a12c8f080a9bc6344e7"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:6171",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:6171:TERM:EO:6171:a65060e5a392fac5@9ab04e91ed87ce1c",
+          "task_id": "TASK:7b4d1996ba69cc2f41c56955"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:6171",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:6171:TERM:EO:6171:a65060e5a392fac5@679dd9ebedfb26a8",
+          "task_id": "TASK:d785ea748dd8d5d743ab27af"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:6171#whole",
+          "required": true,
+          "source": {
+            "page_or_item": "Executive_Orders_6071-6250.djvu; scanned pages 283-285; closing number 6171",
+            "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+            "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6171.txt",
+            "text_sha256": "0840aa71f8b445548297d8498122bdade7d881ecbd8d4d00ee377e041e58a742",
+            "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6071-6250.djvu"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:6171",
+          "required": true,
+          "source": {
+            "page_or_item": "Executive_Orders_6071-6250.djvu; scanned pages 283-285; closing number 6171",
+            "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+            "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6171.txt",
+            "text_sha256": "0840aa71f8b445548297d8498122bdade7d881ecbd8d4d00ee377e041e58a742",
+            "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6071-6250.djvu"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:6171:7f773a71eeb0308f@0840aa71f8b44554",
+          "required": false,
+          "source": {
+            "page_or_item": "Executive_Orders_6071-6250.djvu; scanned pages 283-285; closing number 6171",
+            "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+            "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6171.txt",
+            "text_sha256": "0840aa71f8b445548297d8498122bdade7d881ecbd8d4d00ee377e041e58a742",
+            "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6071-6250.djvu"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:6171:8bead2cb6adf4111@0840aa71f8b44554",
+          "required": false,
+          "source": {
+            "page_or_item": "Executive_Orders_6071-6250.djvu; scanned pages 283-285; closing number 6171",
+            "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+            "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6171.txt",
+            "text_sha256": "0840aa71f8b445548297d8498122bdade7d881ecbd8d4d00ee377e041e58a742",
+            "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6071-6250.djvu"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:6171:9a998bd261db07b3@679dd9ebedfb26a8",
+          "required": false,
+          "source": {
+            "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 361992; common-crawl capture 2025-09-16T08:01:57Z",
+            "sha256": "c61275285f690c9b4379b678264ca16d8bacee0c689466066a74b6819f70385c",
+            "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6171-c61275285f.txt",
+            "text_sha256": "679dd9ebedfb26a86afec25c65cb2948af66eb59fae237bbc288bc6fcb48765a",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:6171:9a998bd261db07b3@9ab04e91ed87ce1c",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/361992",
+            "page_or_item": "Executive Order 6171—Revocation of Withdrawal of Public Lands Pending Resurvey; June 15, 1933; APP node 361992; common-crawl capture 2025-09-16T08:01:57Z",
+            "sha256": "c61275285f690c9b4379b678264ca16d8bacee0c689466066a74b6819f70385c",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey.txt",
+            "text_sha256": "9ab04e91ed87ce1c90f7749818e3e531a0de163683dc881df5246d6c810756cc",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:6171:a65060e5a392fac5@679dd9ebedfb26a8",
+          "required": false,
+          "source": {
+            "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 361992; common-crawl capture 2025-09-16T08:01:57Z",
+            "sha256": "c61275285f690c9b4379b678264ca16d8bacee0c689466066a74b6819f70385c",
+            "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6171-c61275285f.txt",
+            "text_sha256": "679dd9ebedfb26a86afec25c65cb2948af66eb59fae237bbc288bc6fcb48765a",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:6171:a65060e5a392fac5@9ab04e91ed87ce1c",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/361992",
+            "page_or_item": "Executive Order 6171—Revocation of Withdrawal of Public Lands Pending Resurvey; June 15, 1933; APP node 361992; common-crawl capture 2025-09-16T08:01:57Z",
+            "sha256": "c61275285f690c9b4379b678264ca16d8bacee0c689466066a74b6819f70385c",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey.txt",
+            "text_sha256": "9ab04e91ed87ce1c90f7749818e3e531a0de163683dc881df5246d6c810756cc",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey"
+          }
+        }
+      ],
+      "state": "source_blocked"
+    },
+    {
+      "blockers": [
+        {
+          "kind": "original_or_inventory_absent",
+          "reason": "Held original and nonempty inventory required for production; retain packet for source research."
+        }
+      ],
+      "instrument_id": "EO:UN:executive-orders-01:row:102",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "No attributed held text located for this order.",
+          "No clause inventory extracted; do not submit an empty inventory.",
+          "target provision not located: EO:3461"
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "absent_from_packet",
+            "instrument_id": "EO:UN:executive-orders-01:row:102",
+            "kind": "official_original",
+            "reason": "No original evidence in dossier",
+            "shared_key": "EO:UN:executive-orders-01:row:102",
+            "task_id": "TASK:e7466f146c2a6ece23097342"
+          },
+          {
+            "availability": "held_not_loaded",
+            "instrument_id": "EO:UN:executive-orders-01:row:102",
+            "kind": "locate_held_provision",
+            "reason": "target provision not located: EO:3461",
+            "shared_key": "EO:3461",
+            "task_id": "TASK:0dfc714eb28c6381ebb7db07"
+          },
+          {
+            "availability": "absent_from_packet",
+            "instrument_id": "EO:UN:executive-orders-01:row:102",
+            "kind": "complete_inventory",
+            "reason": "No complete operative inventory located",
+            "shared_key": "EO:UN:executive-orders-01:row:102",
+            "task_id": "TASK:31207d775d8779bf2f9c7daf"
+          }
+        ],
+        "unusable_declared_source_ids": [
+          "ACTOR_TEXT:EO:3461"
+        ]
+      },
+      "research_tasks": [
+        {
+          "availability": "absent_from_packet",
+          "instrument_id": "EO:UN:executive-orders-01:row:102",
+          "kind": "official_original",
+          "reason": "No original evidence in dossier",
+          "shared_key": "EO:UN:executive-orders-01:row:102",
+          "task_id": "TASK:e7466f146c2a6ece23097342"
+        },
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:UN:executive-orders-01:row:102",
+          "kind": "locate_held_provision",
+          "reason": "target provision not located: EO:3461",
+          "shared_key": "EO:3461",
+          "task_id": "TASK:0dfc714eb28c6381ebb7db07"
+        },
+        {
+          "availability": "absent_from_packet",
+          "instrument_id": "EO:UN:executive-orders-01:row:102",
+          "kind": "complete_inventory",
+          "reason": "No complete operative inventory located",
+          "shared_key": "EO:UN:executive-orders-01:row:102",
+          "task_id": "TASK:31207d775d8779bf2f9c7daf"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "no saved copy with sha256 83a76e3cce9a... and no saved copy of https://www.govinfo.gov/content/pkg/SERIALSET-08081_00_00-002-0243-0000/pdf/SERIALSET-08081_00_00-002-0243-0000.pdf#page=174",
+              "field": "source",
+              "result": "fail",
+              "status": "not_held",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACTOR_TEXT:EO:3461",
+          "required": false,
+          "source": {
+            "page_or_item": "Thirty-Eighth Annual Report of the United States Civil Service Commission for the Fiscal Year Ended June 30, 1921, printed page 120 as cited by WPA, PDF page 174",
+            "sha256": "83a76e3cce9aaa41d76257329ee37df73dc70815c479bb69310a372835f2ed7f",
+            "text_path": "jobs/csc-annual-reports/output/texts/EO_3461.txt",
+            "text_sha256": "636711b09cca359afcd8bfb3160718611ece8bf958c0570bdfc9590b466c560d",
+            "url": "https://www.govinfo.gov/content/pkg/SERIALSET-08081_00_00-002-0243-0000/pdf/SERIALSET-08081_00_00-002-0243-0000.pdf#page=174"
+          }
+        }
+      ],
+      "state": "source_blocked"
+    },
+    {
+      "blockers": [
+        {
+          "kind": "original_or_inventory_absent",
+          "reason": "Held original and nonempty inventory required for production; retain packet for source research."
+        }
+      ],
+      "instrument_id": "EO:UN:executive-orders-01:row:12",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "No attributed held text located for this order.",
+          "No clause inventory extracted; do not submit an empty inventory.",
+          "No complete machine later-source search available.",
+          "No dated status observation or later event was located for this order (explicit empty history, owner ruling 2026-11-05). Judge its status on its own terms and the bounded later-source searches below, and say so in the decision."
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "absent_from_packet",
+            "instrument_id": "EO:UN:executive-orders-01:row:12",
+            "kind": "official_original",
+            "reason": "No original evidence in dossier",
+            "shared_key": "EO:UN:executive-orders-01:row:12",
+            "task_id": "TASK:ffe64c1f393e8de507dbe745"
+          },
+          {
+            "availability": "absent_from_packet",
+            "instrument_id": "EO:UN:executive-orders-01:row:12",
+            "kind": "complete_inventory",
+            "reason": "No complete operative inventory located",
+            "shared_key": "EO:UN:executive-orders-01:row:12",
+            "task_id": "TASK:e833d8980d5e971d0bb41e8c"
+          }
+        ],
+        "unusable_declared_source_ids": []
+      },
+      "research_tasks": [
+        {
+          "availability": "absent_from_packet",
+          "instrument_id": "EO:UN:executive-orders-01:row:12",
+          "kind": "official_original",
+          "reason": "No original evidence in dossier",
+          "shared_key": "EO:UN:executive-orders-01:row:12",
+          "task_id": "TASK:ffe64c1f393e8de507dbe745"
+        },
+        {
+          "availability": "absent_from_packet",
+          "instrument_id": "EO:UN:executive-orders-01:row:12",
+          "kind": "complete_inventory",
+          "reason": "No complete operative inventory located",
+          "shared_key": "EO:UN:executive-orders-01:row:12",
+          "task_id": "TASK:e833d8980d5e971d0bb41e8c"
+        }
+      ],
+      "sources": [],
+      "state": "source_blocked"
+    }
+  ],
+  "model_tokens": null,
+  "network_requests": 0,
+  "notice": "Re-run immediately before assignment. A receipt is not a lasting dispatch permit. Optional source gaps remain research tasks; all selected claim sources still require the actual checker and independent review.",
+  "ok": false,
+  "packet_fingerprint": "93d36e1808fa5418d7025290d54d135c1d9565ae1679039bf976a1754840ce78",
+  "packet_members": [
+    "EO:10369A",
+    "EO:6171",
+    "EO:UN:executive-orders-01:row:102",
+    "EO:UN:executive-orders-01:row:12"
+  ],
+  "packet_sha256": "a4c8ef26083ec1be01325af21558865cd8d5e9806f38d329bb8eee623bfd0b9f",
+  "schema": "eo-claim-kit-dispatch-check/v1",
+  "scientific_approval": false,
+  "source_blocked_ids": [
+    "EO:10369A",
+    "EO:6171",
+    "EO:UN:executive-orders-01:row:102",
+    "EO:UN:executive-orders-01:row:12"
+  ],
+  "source_index_notes": [
+    "jobs/app-executive-orders/output/SOURCES.jsonl: 792 source records (0 with saved bytes on this machine)",
+    "jobs/app-transcriptions/output/SOURCES.jsonl: 9902 source records (0 with saved bytes on this machine)",
+    "jobs/astra-source-retention/output/SOURCES.jsonl: 314 source records (314 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 0 records without a usable sha256, 7 unusable text_path/cache_path values",
+    "jobs/cassiodorus/output/SOURCES.jsonl: 10 source records (10 with saved bytes on this machine)",
+    "jobs/clark-discovery/output/SOURCES.jsonl: 445 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 92 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/clause-drafts/output/SOURCES.jsonl: 9761 source records (0 with saved bytes on this machine)",
+    "jobs/cotton-capture-custody/output/SOURCES.jsonl: 756 source records (756 with saved bytes on this machine)",
+    "jobs/current-law/output/SOURCES.jsonl: 110 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-sources/output/SOURCES.jsonl: 2 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-tail/output/SOURCES.jsonl: 1 source records (0 with saved bytes on this machine)",
+    "jobs/fr-originals/output/SOURCES.jsonl: 6497 source records (0 with saved bytes on this machine)",
+    "jobs/fr-pages/output/SOURCES.jsonl: 30 source records (28 with saved bytes on this machine)",
+    "jobs/hathi-gpo-orders/output/SOURCES.jsonl: 1531 source records (0 with saved bytes on this machine)",
+    "jobs/later-events/output/SOURCES.jsonl: 16566 source records (0 with saved bytes on this machine)",
+    "jobs/lewis-originals/output/SOURCES.jsonl: 439 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 285 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/mabillon-held-printings/output/SOURCES.jsonl: 2015 source records (0 with saved bytes on this machine)",
+    "jobs/numbered-early-orders/output/SOURCES.jsonl: 197 source records (0 with saved bytes on this machine)",
+    "jobs/opus-media-match/output/SOURCES.jsonl: 496 source records (0 with saved bytes on this machine)",
+    "jobs/ptolemy-custody/output/SOURCES.jsonl: 1390 source records (1390 with saved bytes on this machine)",
+    "jobs/shepard-citations/output/SOURCES.jsonl: 24 source records (24 with saved bytes on this machine)",
+    "jobs/source-ladder/output/SOURCES.jsonl: 632 source records (0 with saved bytes on this machine)",
+    "jobs/theophilus-sources/output/SOURCES.jsonl: 1499 source records (1499 with saved bytes on this machine)",
+    "jobs/wikisource-texts/output/SOURCES.jsonl: 1639 source records (1639 with saved bytes on this machine)",
+    "jobs/indian-reservations-1912: 1 committed volume(s) and 55 per-order text(s) indexed",
+    "jobs/isthmian-canal-1911: 1 committed volume(s) and 105 per-order text(s) indexed",
+    "jobs/ofr-codification-1989: 1 committed volume(s) and 0 per-order text(s) indexed",
+    "jobs/ofr-compilations: 1 committed volume(s) and 500 per-order text(s) indexed",
+    "jobs/richardson-volumes: 3 committed volume(s) and 68 per-order text(s) indexed",
+    "Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)",
+    "no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip"
+  ],
+  "source_recovery_tasks": [
+    {
+      "affected_references": [
+        {
+          "evidence_id": "CLAUSES:EO:6171#whole",
+          "field": null,
+          "instrument_id": "EO:6171",
+          "required": true
+        },
+        {
+          "evidence_id": "ORIGINAL:EO:6171",
+          "field": null,
+          "instrument_id": "EO:6171",
+          "required": true
+        },
+        {
+          "evidence_id": "TERM:EO:6171:7f773a71eeb0308f@0840aa71f8b44554",
+          "field": null,
+          "instrument_id": "EO:6171",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:6171:8bead2cb6adf4111@0840aa71f8b44554",
+          "field": null,
+          "instrument_id": "EO:6171",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "expected_sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:6171"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://commons.wikimedia.org/wiki/File:Executive_Orders_6071-6250.djvu"
+        ],
+        "wanted_id": "dispatch-59423a1885a7b26e5c15764c"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "page_or_item": "Executive_Orders_6071-6250.djvu; scanned pages 283-285; closing number 6171",
+          "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+          "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6171.txt",
+          "text_sha256": "0840aa71f8b445548297d8498122bdade7d881ecbd8d4d00ee377e041e58a742",
+          "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6071-6250.djvu"
+        }
+      ],
+      "task_id": "SOURCE:59423a1885a7b26e5c15764c"
+    },
+    {
+      "affected_references": [
+        {
+          "evidence_id": "TERM:EO:6171:9a998bd261db07b3@679dd9ebedfb26a8",
+          "field": null,
+          "instrument_id": "EO:6171",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:6171:9a998bd261db07b3@9ab04e91ed87ce1c",
+          "field": null,
+          "instrument_id": "EO:6171",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:6171:a65060e5a392fac5@679dd9ebedfb26a8",
+          "field": null,
+          "instrument_id": "EO:6171",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:6171:a65060e5a392fac5@9ab04e91ed87ce1c",
+          "field": null,
+          "instrument_id": "EO:6171",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "expected_sha256": "c61275285f690c9b4379b678264ca16d8bacee0c689466066a74b6819f70385c",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:6171"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey"
+        ],
+        "wanted_id": "dispatch-604ca98d7c2245a063dd1714"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 361992; common-crawl capture 2025-09-16T08:01:57Z",
+          "sha256": "c61275285f690c9b4379b678264ca16d8bacee0c689466066a74b6819f70385c",
+          "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6171-c61275285f.txt",
+          "text_sha256": "679dd9ebedfb26a86afec25c65cb2948af66eb59fae237bbc288bc6fcb48765a",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey"
+        },
+        {
+          "archival_id": "app:node/361992",
+          "page_or_item": "Executive Order 6171—Revocation of Withdrawal of Public Lands Pending Resurvey; June 15, 1933; APP node 361992; common-crawl capture 2025-09-16T08:01:57Z",
+          "sha256": "c61275285f690c9b4379b678264ca16d8bacee0c689466066a74b6819f70385c",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey.txt",
+          "text_sha256": "9ab04e91ed87ce1c90f7749818e3e531a0de163683dc881df5246d6c810756cc",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-6171-revocation-withdrawal-public-lands-pending-resurvey"
+        }
+      ],
+      "task_id": "SOURCE:604ca98d7c2245a063dd1714"
+    },
+    {
+      "affected_references": [
+        {
+          "evidence_id": "ACTOR_TEXT:EO:3461",
+          "field": null,
+          "instrument_id": "EO:UN:executive-orders-01:row:102",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "not_held"
+      ],
+      "expected_sha256": "83a76e3cce9aaa41d76257329ee37df73dc70815c479bb69310a372835f2ed7f",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:UN:executive-orders-01:row:102"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://www.govinfo.gov/content/pkg/SERIALSET-08081_00_00-002-0243-0000/pdf/SERIALSET-08081_00_00-002-0243-0000.pdf#page=174"
+        ],
+        "wanted_id": "dispatch-43a6763cd5147171815c4681"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "page_or_item": "Thirty-Eighth Annual Report of the United States Civil Service Commission for the Fiscal Year Ended June 30, 1921, printed page 120 as cited by WPA, PDF page 174",
+          "sha256": "83a76e3cce9aaa41d76257329ee37df73dc70815c479bb69310a372835f2ed7f",
+          "text_path": "jobs/csc-annual-reports/output/texts/EO_3461.txt",
+          "text_sha256": "636711b09cca359afcd8bfb3160718611ece8bf958c0570bdfc9590b466c560d",
+          "url": "https://www.govinfo.gov/content/pkg/SERIALSET-08081_00_00-002-0243-0000/pdf/SERIALSET-08081_00_00-002-0243-0000.pdf#page=174"
+        }
+      ],
+      "task_id": "SOURCE:43a6763cd5147171815c4681"
+    }
+  ],
+  "state": "source_blocked",
+  "unique_custody_checks": 4,
+  "unique_required_text_checks": 1,
+  "wall_seconds": 6.876526
+}

@@ -72,8 +72,20 @@ def validate_inputs(repo, contract=None):
     identities = unique_rows(
         [{"instrument_id": row.get("id") or row.get("instrument_id")} for row in census_rows
          if row.get("included_in_bibliography", "1") == "1"], "instrument_id", "Census")
-    require(len(identities) == census["count"], "Census identity count changed")
-    require(canonical_sha(sorted(identities)) == census["identity_sha256"], "Census identities changed")
+    # Owner ruling R9 (2026-11-06): the census may exceed the frozen 14,972 by pinned admissions and may
+    # spell a renamed id differently (EO:7933a -> EO:7933A). The count/hash pin is checked on the original
+    # population: admitted ids removed, renamed ids mapped back to their historical spelling.
+    aliases = dict(census.get("id_aliases", {}))            # historical id -> current census id
+    admitted_ids = set()
+    if census.get("admissions"):
+        admitted_ids = {(row.get("id") or row.get("instrument_id")) for row in
+                        read_csv(pinned_bytes(repo, census["admissions"]))}
+        require(len(admitted_ids) == census["admissions"]["count"], "Census admissions count changed")
+        require(admitted_ids <= set(identities), "Pinned admission absent from census")
+    back = {new: old for old, new in aliases.items()}
+    original = [back.get(i, i) for i in identities if i not in admitted_ids]
+    require(len(original) == census["count"], "Census identity count changed")
+    require(canonical_sha(sorted(original)) == census["identity_sha256"], "Census identities changed")
 
     baseline = contract["historical_status_baseline"]
     current = repo_file(repo, baseline["path"]).read_bytes()
@@ -98,8 +110,8 @@ def validate_inputs(repo, contract=None):
     actual = read_csv(current)
     unique_rows(actual, "instrument_id", "Current population")
     require(actual == expected, "Current status rows differ from independently pinned accepted inputs")
-    require(set(approved) <= set(identities), "Accepted status identity absent from census")
-    statuses = {iid: row["provisional_substantive_status"] for iid, row in approved.items()}
+    require({aliases.get(i, i) for i in approved} <= set(identities), "Accepted status identity absent from census")
+    statuses = {aliases.get(iid, iid): row["provisional_substantive_status"] for iid, row in approved.items()}
     require(all(value in {"yes", "no"} for value in statuses.values()), "Unsupported provisional status")
     return {
         "schema": "eo-validated-population/v1",
@@ -109,6 +121,7 @@ def validate_inputs(repo, contract=None):
         "universe": len(identities), "decided": len(statuses),
         "identity_sha256": canonical_sha(sorted(identities)),
         "status_sha256": canonical_sha(statuses), "statuses": statuses,
+        "id_aliases": aliases,
     }
 
 
@@ -143,7 +156,9 @@ def validate_derived(population, drafts=None, dossiers=None):
                     for line in fh:
                         if line.strip():
                             record = json.loads(line)
-                            yield {"instrument_id": record.get("instrument_id"),
+                            iid = record.get("instrument_id")
+                            # Owner ruling R9: drafts may still carry a historical id spelling.
+                            yield {"instrument_id": population.get("id_aliases", {}).get(iid, iid),
                                    "status": record.get("_draft", {}).get("provisional_status")}
         check_membership(records(), statuses, "status", "Draft")
         report["drafts"] = "exact coverage and statuses passed"

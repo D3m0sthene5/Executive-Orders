@@ -1,10 +1,16 @@
 # Executive Orders
 
-**Agents start here:** read [`HANDOFF/`](HANDOFF/README.md) for the latest notes between Claude, Astra and Codex, and add your own before you stop. Run scripts that are too big for a chat's container through the [shared runner in `jobs/`](jobs/README.md).
+**Agents start here:** read [`HANDOFF/`](HANDOFF/README.md) for the latest notes (Claude lanes are the production path; Astra and Codex are engaged only for named different-family reviews, owner ruling R11), and add your own before you stop. Run scripts that are too big for a chat's container through the [shared runner in `jobs/`](jobs/README.md).
 
-**Production control center:** [Open the live Site](https://executive-orders-production-atlas.edgyglove8.chatgpt.site) (owner sign-in) or [run the repository edition](research/progress/control-center/README.md). For a production session, start with the [Sol dossier assignment](research/progress/control-center/SOL_SESSION.md).
+**Production control center (snapshot):** the [ChatGPT Site](https://executive-orders-production-atlas.edgyglove8.chatgpt.site) (owner sign-in) is a snapshot last refreshed by Astra's Mission work of 2026-11-04 (PR #144); it is not the live control point. Current coordination is in [`HANDOFF/COORDINATION.md`](HANDOFF/COORDINATION.md) and [`HANDOFF/KEAN.md`](HANDOFF/KEAN.md). The [repository edition](research/progress/control-center/README.md) and the [Sol dossier assignment](research/progress/control-center/SOL_SESSION.md) are kept for reference.
 
 **Current dashboard:** [Research progress and recent work](research/progress/README.md) · [Generated counts, receipt freshness, and source generations](jobs/daily-digest/output/DASHBOARD.md).
+
+**Two denominators:** the *numbered series* (the census universe the tracker counts, 14,972 before the 2026-11-06 admissions; every readiness proportion is of this series) and the *unnumbered series* (class `catalogued_unnumbered`, owner ruling R10), reported as a lower-bound count of identities with a 95% interval for its total in [`jobs/domesday-register/output/UNNUMBERED_SUMMARY.json`](jobs/domesday-register/output/UNNUMBERED_SUMMARY.json); the two are never added together.
+
+**Population estimate (provisional, AI-reviewed, uncertified, n=120):** [`research/dorotheus/SAMPLE_ESTIMATE.md`](research/dorotheus/SAMPLE_ESTIMATE.md), the weighted share of orders with operative force on 2026-10-14 from the Stage 15 stratified sample, with its interval, nonresponse and sensitivity.
+
+**The one authoritative generated number:** `ready_for_human_review` in [`jobs/readiness-tracker/output/SUMMARY.json`](jobs/readiness-tracker/output/SUMMARY.json), read together with its `generation_id` (the runner's run id and input-manifest sha256, also in that job's `STATUS.json`); any other figure is derived from it or is a different tier.
 
 **Working progress measure:** the [readiness tracker](jobs/readiness-tracker/output/TRACKER.md) counts orders that are ready for human review (every machine research step done or searched to the end) and lists the single actions that unblock the most orders. Human verification is counted separately.
 

@@ -33,6 +33,22 @@ class PresidentFromDate(unittest.TestCase):
         self.assertEqual(b.president_from_date("")[1], "none")
 
 
+class Unnumbered(unittest.TestCase):
+    def test_second_denominator_is_read_when_present_and_never_changes_the_counts(self):
+        import json, tempfile, pathlib
+        d = pathlib.Path(tempfile.mkdtemp())
+        self.assertEqual(b.unnumbered_meta(d / "missing.json"),
+                         {"unnumbered_series_observed": None, "unnumbered_series_estimate_95": None})
+        (d / "u.json").write_text(json.dumps({"unnumbered_series_observed": 7, "unnumbered_series_estimate_95": [9, 12]}))
+        self.assertEqual(b.unnumbered_meta(d / "u.json"), {"unnumbered_series_observed": 7, "unnumbered_series_estimate_95": [9, 12]})
+        (d / "bad.json").write_text("{")
+        self.assertIsNone(b.unnumbered_meta(d / "bad.json")["unnumbered_series_observed"])
+        data, summary = b.build([reg("EO:2", "2", "1862-02-27", "Abraham Lincoln")], [ready_row("EO:2")], b.unnumbered_meta(d / "u.json"))
+        self.assertEqual(summary["orders"], 1)
+        self.assertEqual(summary["numbered_series_orders"], 1)
+        self.assertEqual(summary["unnumbered_series_observed"], 7)
+
+
 class Build(unittest.TestCase):
     def test_counts_and_order(self):
         regs = [reg("EO:10", "10", "1933-05-01"), reg("EO:2", "2", "1862-02-27", "Abraham Lincoln"),

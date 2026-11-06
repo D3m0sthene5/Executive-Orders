@@ -30,38 +30,53 @@ on:
         description: "Run named jobs only and retain receipts without publishing results"
         type: boolean
         default: false
+      requeue_depth:
+        description: "Set by Arsenale when it re-queues refused jobs (0 for an ordinary run; at most 2)"
+        required: false
+        default: "0"
+      downstream:
+        description: "Set by Arsenale: re-queued jobs that keep the downstream-only web-search budget"
+        required: false
+        default: ""
 
+# Each stage asks for its own permissions; only publish can write.
 permissions:
-  contents: write
+  contents: read
 
 # Leave Git LFS files (the multi-GB archive parts) as small pointer files unless
 # a job downloads one itself with `git lfs pull --include "<path>"`.
 env:
   GIT_LFS_SKIP_SMUDGE: "1"
 
-# Mutating runs and main progress reporting share a branch writer queue.
-# queue:max retains up to 100 pending runs rather than replacing a pending
-# production selection. Read-only diagnostics keep their exact event checkout.
+# Arsenale (.github/scripts/arsenale.py): plan, execute and publish are separate
+# jobs. Only publish holds the branch writer queue, which mutating runs and main
+# progress reporting share; queue:max retains up to 100 pending publishers rather
+# than replacing one. Execution needs no lock: every station runs on one pinned
+# input commit, and publish checks each job's freshness against the latest tip.
+# Read-only diagnostics keep their exact event checkout and never publish.
 
 jobs:
-  run:
+  plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
-    concurrency:
-      group: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic && format('read-only-job-diagnostic-{0}-{1}', github.run_id, github.run_attempt) || format('repository-output-writer-{0}', github.ref) }}
-      queue: max
-      cancel-in-progress: false
+    timeout-minutes: 30
+    outputs:
+      jobs: ${{ steps.plan.outputs.check_order }}
+      direct: ${{ steps.pick.outputs.direct }}
+      downstream: ${{ steps.pick.outputs.downstream }}
+      input_commit: ${{ steps.plan.outputs.input_commit }}
+      matrix: ${{ steps.plan.outputs.matrix }}
     steps:
       # Keep job code/data in this non-cone bootstrap. In particular, a cone
       # checkout of jobs/ includes every nested output generation before the
-      # picker knows which jobs will run. The materialization step below adds
-      # selected inputs/prior generations for audited versions, or all jobs for
-      # unaudited versions whose dynamic reads are not closed by declarations.
+      # picker knows which jobs will run. Each station's materialization step
+      # adds selected inputs/prior generations for audited versions, or all jobs
+      # for unaudited versions whose dynamic reads are not closed by declarations.
       - uses: actions/checkout@v4
         with:
-          persist-credentials: ${{ !inputs.diagnostic }}
-          # The writer lock is held before checkout. Execute current branch
-          # inputs; diagnostics remain pinned to their original event commit.
+          persist-credentials: false
+          # No lock is held while executing. Production executes the branch tip
+          # at plan time (pinned below for every station); diagnostics remain
+          # pinned to their original event commit.
           ref: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic && github.sha || github.ref }}
           fetch-depth: 0
           filter: blob:none
@@ -85,6 +100,8 @@ jobs:
           SCHEDULE: ${{ github.event.schedule }}
           INPUT_JOB: ${{ github.event.inputs.job }}
           DIAGNOSTIC: ${{ github.event.inputs.diagnostic }}
+          REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}
+          INPUT_DOWNSTREAM: ${{ github.event.inputs.downstream }}
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
@@ -112,37 +129,96 @@ jobs:
           sys.exit(not unittest.TextTestRunner(verbosity=2).run(suite).wasSuccessful())
           PY
 
+      # Stations: jobs joined by after.txt run in order on one runner; others run
+      # in parallel. The check order puts readers of another station's base
+      # output before that producer, exactly as the freshness guard requires.
+      - name: Plan parallel stations
+        id: plan
+        if: steps.pick.outputs.jobs != ''
+        env:
+          JOBS: ${{ steps.pick.outputs.jobs }}
+        run: python .github/scripts/arsenale.py plan
+
+      - name: Summarize an empty selection
+        continue-on-error: true
+        if: always() && (steps.pick.outcome != 'success' || steps.pick.outputs.jobs == '')
+        env:
+          JOBS: ""
+          PICK_OUTCOME: ${{ steps.pick.outcome }}
+        run: python .github/scripts/job_summary.py
+
+  execute:
+    needs: plan
+    if: needs.plan.outputs.jobs != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    # No concurrency group: stations of this run and of other runs execute at
+    # the same time. Nothing here can write to the repository.
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    name: "execute (station ${{ matrix.station }}: ${{ matrix.jobs }})"
+    steps:
+      - name: Record station start
+        run: echo "ARSENALE_STARTED_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ !inputs.diagnostic }}
+          # Every station executes the one input commit the plan pinned.
+          ref: ${{ needs.plan.outputs.input_commit }}
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/*/
+            /.github/**
+            /HANDOFF/**
+            /jobs/**
+            !/jobs/*/output/**
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # One cache per station composition; v1 (the serial runner's single cache)
+      # seeds stations that have none yet.
       - name: Restore each job's bounded download cache
-        if: steps.pick.outputs.jobs != '' && !inputs.diagnostic
+        if: ${{ !inputs.diagnostic }}
         uses: actions/cache@v4
         with:
           path: .job-cache
-          key: job-downloads-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: job-downloads-v2-${{ github.ref_name }}-${{ matrix.cache }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
+            job-downloads-v2-${{ github.ref_name }}-${{ matrix.cache }}-
             job-downloads-v1-${{ github.ref_name }}-
 
       - name: Read download cache for diagnostic jobs
-        if: steps.pick.outputs.jobs != '' && inputs.diagnostic
+        if: ${{ inputs.diagnostic }}
         uses: actions/cache/restore@v4
         with:
           path: .job-cache
-          key: job-downloads-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: job-downloads-v2-${{ github.ref_name }}-${{ matrix.cache }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
+            job-downloads-v2-${{ github.ref_name }}-${{ matrix.cache }}-
             job-downloads-v1-${{ github.ref_name }}-
 
       - name: Materialize selected job inputs and prior outputs
-        if: steps.pick.outputs.jobs != ''
         env:
-          JOBS: ${{ steps.pick.outputs.jobs }}
+          JOBS: ${{ matrix.jobs }}
         run: python .github/scripts/materialize_job_inputs.py
 
       - name: Run the jobs
-        if: steps.pick.outputs.jobs != ''
         env:
-          JOBS: ${{ steps.pick.outputs.jobs }}
+          JOBS: ${{ matrix.jobs }}
           # Jobs running only because a job they read changed; web-search jobs among them get a small budget.
-          DOWNSTREAM_ONLY: ${{ steps.pick.outputs.downstream }}
+          DOWNSTREAM_ONLY: ${{ needs.plan.outputs.downstream }}
           TRIGGER: ${{ github.event_name }} by ${{ github.actor }}
+          ARSENALE_INPUT_COMMIT: ${{ needs.plan.outputs.input_commit }}
           # Optional search keys for the Lewis/Clark web search (jobs/_lib/eo_websearch.py). Each is
           # empty unless the owner adds the secret under Settings -> Secrets and variables -> Actions;
           # an engine whose key is empty is skipped and listed as "needs_key" in the job summary.
@@ -153,14 +229,116 @@ jobs:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           NARA_API_KEY: ${{ secrets.NARA_API_KEY }}
           GOVINFO_API_KEY: ${{ secrets.GOVINFO_API_KEY }}
-        # Selection above keeps the original event BEFORE/AFTER. Native
-        # receipts bind to the actual checkout acquired after the writer lock.
+        # Selection keeps the original event BEFORE/AFTER. Native receipts bind
+        # to the actual checkout, which is the plan's pinned input commit.
         run: |
           execution_input_commit="$(git rev-parse HEAD)"
+          test "$execution_input_commit" = "$ARSENALE_INPUT_COMMIT"
           env GITHUB_SHA="$execution_input_commit" bash .github/scripts/run_jobs.sh
 
+      - name: Bundle this station's results
+        if: always()
+        env:
+          JOBS: ${{ matrix.jobs }}
+          ARSENALE_INPUT_COMMIT: ${{ needs.plan.outputs.input_commit }}
+        run: python .github/scripts/arsenale.py bundle --station ${{ matrix.station }} --out arsenale-station
+
+      - name: Hand the station's results to publish
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arsenale-${{ github.run_id }}-${{ github.run_attempt }}-station-${{ matrix.station }}
+          path: arsenale-station/
+          if-no-files-found: error
+          retention-days: 7
+
+      # Keep only this station's jobs in its cache, so parallel stations do not
+      # save copies of each other's downloads.
+      - name: Trim the cache to this station's jobs
+        if: always() && !inputs.diagnostic
+        env:
+          JOBS: ${{ matrix.jobs }}
+        run: |
+          shopt -s nullglob
+          for dir in .job-cache/*/; do
+            name="$(basename "$dir")"
+            [[ " $JOBS " == *" $name "* ]] || rm -rf -- "$dir"
+          done
+
+  publish:
+    needs: [plan, execute]
+    if: always() && needs.plan.result == 'success' && needs.plan.outputs.jobs != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    # The only lock: held from the latest-tip checkout through the push.
+    concurrency:
+      group: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic && format('read-only-job-diagnostic-{0}-{1}', github.run_id, github.run_attempt) || format('repository-output-writer-{0}', github.ref) }}
+      queue: max
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Record lock acquisition
+        run: echo "ARSENALE_LOCK_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ !inputs.diagnostic }}
+          # The writer lock is held before checkout: publish onto the latest
+          # branch state. Diagnostics remain pinned to their original event commit.
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic && github.sha || github.ref }}
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/*/
+            /.github/**
+            /HANDOFF/**
+            /jobs/**
+            !/jobs/*/output/**
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download the stations' results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: arsenale-${{ github.run_id }}-${{ github.run_attempt }}-station-*
+          path: arsenale-in
+
+      - name: Collect the stations' results onto the latest branch tip
+        env:
+          JOBS: ${{ needs.plan.outputs.jobs }}
+          ARSENALE_INPUT_COMMIT: ${{ needs.plan.outputs.input_commit }}
+        run: python .github/scripts/arsenale.py collect --artifacts arsenale-in
+
+      - name: Commit results to the branch
+        id: publish
+        if: ${{ !inputs.diagnostic }}
+        env:
+          JOBS: ${{ needs.plan.outputs.jobs }}
+          EVENT: ${{ github.event_name }}
+          BRANCH: ${{ github.ref_name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          test -s oversized/runner-freshness/ATTEMPTS.json || { echo "::error::Missing current execution receipts"; exit 1; }
+          bash .github/scripts/commit_results.sh
+
+      # Bounded: a re-queued run carries requeue_depth; at depth 2 nothing is dispatched.
+      - name: Re-queue refused jobs on the current branch
+        if: always() && !inputs.diagnostic && steps.publish.outcome != 'skipped'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}
+          DOWNSTREAM_ONLY: ${{ needs.plan.outputs.downstream }}
+          BRANCH: ${{ github.ref_name }}
+        run: python .github/scripts/arsenale.py requeue --workflow run-jobs.yml
+
       - name: Keep oversized files as a download
-        if: always() && steps.pick.outputs.jobs != '' && !inputs.diagnostic
+        if: always() && !inputs.diagnostic
         uses: actions/upload-artifact@v4
         with:
           name: oversized-outputs-${{ github.run_id }}
@@ -169,7 +347,7 @@ jobs:
           retention-days: 90
 
       - name: Keep diagnostic receipts
-        if: always() && steps.pick.outputs.jobs != '' && inputs.diagnostic
+        if: always() && inputs.diagnostic
         uses: actions/upload-artifact@v4
         with:
           name: diagnostic-receipts-${{ github.run_id }}-${{ github.run_attempt }}
@@ -179,31 +357,24 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
-      - name: Commit results to the branch
-        id: publish
-        if: always() && steps.pick.outputs.jobs != '' && !inputs.diagnostic
-        env:
-          JOBS: ${{ steps.pick.outputs.jobs }}
-          EVENT: ${{ github.event_name }}
-          BRANCH: ${{ github.ref_name }}
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          test -s oversized/runner-freshness/ATTEMPTS.json || { echo "::error::Missing current execution receipts"; exit 1; }
-          bash .github/scripts/commit_results.sh
-
       - name: Summarize selected jobs and publication
         continue-on-error: true
         if: always()
         env:
-          JOBS: ${{ steps.pick.outputs.jobs }}
+          JOBS: ${{ needs.plan.outputs.jobs }}
           DIAGNOSTIC: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic }}
-          DIRECT_JOBS: ${{ steps.pick.outputs.direct }}
-          PICK_OUTCOME: ${{ steps.pick.outcome }}
+          DIRECT_JOBS: ${{ needs.plan.outputs.direct }}
+          PICK_OUTCOME: ${{ needs.plan.result }}
           PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
           PUBLICATION: ${{ steps.publish.outputs.publication }}
+          GITHUB_SHA: ${{ needs.plan.outputs.input_commit }}
         run: |
           if [[ -f .github/scripts/job_summary.py ]]; then
             python .github/scripts/job_summary.py
           else
             echo "Job summary unavailable: repository scripts were not checked out." >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: Fail when a station delivered no results
+        if: always()
+        run: python .github/scripts/arsenale.py verdict

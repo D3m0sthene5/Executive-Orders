@@ -80,7 +80,8 @@ SOURCE_LIST_KEYS = ("sources", "source_refs")
 QUOTE_KEY = re.compile(r"(^|_)(quote|quotes|quoted|quotation|quotations|verbatim|excerpt|excerpts)($|_)")
 VERBATIM_EVIDENCE_KEYS = {"matched_date"}
 LEGAL_DATE_KEYS = {"date", "effective_date", "checked_through", "signing_date", "signed_on", "effective_on",
-                   "end_date", "start_date", "expiration_date", "terminated_on", "publication_date"}
+                   "end_date", "start_date", "expiration_date", "terminated_on", "publication_date",
+                   "earliest", "latest"}  # schema v2 interval bounds (owner ruling R2)
 ACTIVITY_DATE_KEYS = {"checked_on", "reviewed_on", "recorded_on", "retrieved_on", "accessed_on",
                       "searched_on", "retrieved_utc", "attempted_utc", "fetched_utc", "built_utc"}
 ACTIVITY_PREFIXES = ("retriev", "access", "review", "search", "record", "fetch", "download", "captur", "attempt")
@@ -89,6 +90,10 @@ CHECK_AGAINST_SIGNING = [
     re.compile(r"^operative_clauses\[\d+\]\.later_events\[\d+\]\.effective_date$"),
     re.compile(r"^operative_clauses\[\d+\]\.current_predicate\.checked_through$"),
     re.compile(r"^whole_order_end\.date$"),
+    # Schema v2 (R2): interval bounds and the order-level formal disposition.
+    re.compile(r"^operative_clauses\[\d+\]\.first_end\.(earliest|latest)$"),
+    re.compile(r"^whole_order_end\.(earliest|latest)$"),
+    re.compile(r"^formal_disposition\.date$"),
 ]
 
 # Fallback only: the readiness tracker's own mapping is imported when present.
@@ -315,7 +320,10 @@ def load_universe(repo):
 
 def load_statuses(repo):
     p = repo / P["decided"]
-    return {r["instrument_id"]: r["provisional_substantive_status"] for r in read_csv(p)} if p.is_file() else {}
+    # Owner ruling R9: the ledger keeps the historical spelling EO:7933a; the census now says EO:7933A.
+    aliases = {"EO:7933a": "EO:7933A"}
+    return ({aliases.get(r["instrument_id"], r["instrument_id"]): r["provisional_substantive_status"] for r in read_csv(p)}
+            if p.is_file() else {})
 
 
 def load_signing(repo):
@@ -954,6 +962,12 @@ def check_gate(claim, ctx, rows):
              "claim_gate.validate_claim error" + (f" (provisional status is {status})" if e == "whole_order_status_mismatch" else ""))
     if not errors:
         _row(rows, "claim_record", "structural_gate", "", "pass", "gate_passed", "claim_gate.validate_claim: no errors")
+    contest = getattr(ctx.gate, "status_contested", None)
+    if contest and contest(claim, status):
+        # Owner ruling R5: a contest of the ledger's status is recorded, not failed; the tracker blocks it.
+        _row(rows, "claim_record", "status_contest", "", "warn", "STATUS_CONTESTED",
+             f"claim asserts {claim.get('whole_order_status')!r}; the provisional ledger says {status!r}. The ledger is "
+             "unchanged until an owner-merged pull request resolves it (see jobs/readiness-tracker/output/CONTESTED.csv)")
     return errors, status
 
 

@@ -103,4 +103,15 @@ anything above the repository cap that must last longer as a release.
   other agents know to look for its results.
 # Output publication and failed attempts
 
+**Parallel stations (Arsenale, `.github/scripts/arsenale.py`).** A run has three stages. *Plan* picks
+the jobs and pins one input commit. *Execute* splits them into stations: jobs joined by `after.txt` share
+a station and run there in order; other stations run at the same time on separate machines, with no
+lock and a read-only token. *Publish* is the only stage that holds the branch writer lock: it checks out
+the latest branch, keeps only the jobs whose declared inputs are unchanged since the input commit, commits
+them in one `Results of job(s): ...` commit, and retries a rejected push up to five times. A job whose
+inputs changed while it ran is refused (the summary and `oversized/runner-freshness/ARSENALE.json` say
+why; its output is kept in the run's downloads) and re-run automatically on the current branch, at most
+twice. A job that reads another job's output must say so (`after.txt`, `needs.txt`, `inputs.txt` or
+`triggers.txt`); an undeclared read of another selected job may now see that job's previous output.
+
 The runner prepares and fingerprints inputs before replacing a job's output. It keeps the previous generation until the new job succeeds. A failed or blocked attempt is retained under `jobs/_attempts/<job>/<run>-<attempt>/`, including its status, log and any captured input manifest; the prior output is restored. Same-run dependent jobs are blocked. Independent successful jobs retain the normal provenance and publication checks. Failure receipts are published separately and never promote an older output to a new generation.

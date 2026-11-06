@@ -1,0 +1,1 @@
+sessions.py found no Claude Code transcripts on this machine (this harness keeps none on disk under ~/.claude/projects), so per-call token classes are unavailable; WORKERS.csv records the totals the Agent tool reported for each worker. Coordinator tokens are not measured.

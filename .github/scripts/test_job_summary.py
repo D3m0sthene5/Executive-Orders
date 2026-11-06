@@ -51,6 +51,23 @@ class SummaryTests(unittest.TestCase):
         self.assertIn("publication disabled", text)
         self.assertIn("Succeeded | — |", text)
 
+    def test_arsenale_refusal_requeue_and_stations(self):
+        self.put(job_summary.RECEIPTS / "ATTEMPTS.json", [dict(job="check", publish_output=True, exit_code=0),
+                                                         dict(job="tracker", publish_output=True, exit_code=0)])
+        self.put(job_summary.RECEIPTS / "ARSENALE.json", dict(
+            lock_acquired_utc="2026-11-06T10:00:00Z",
+            stations=[dict(station=1, jobs=["check"], started_utc="2026-11-06T09:50:00Z",
+                           finished_utc="2026-11-06T09:59:00Z")],
+            publication=dict(published=["tracker"], refused={"check": [dict(reason="inputs_changed",
+                                                                            because_refused=["src"])]}),
+            requeue=dict(dispatch=True, depth=1, limit=2, jobs=["check"], returncode=0)))
+        text = job_summary.render(dict(self.env, PUBLICATION="pushed"))
+        self.assertIn("Published: `tracker`.", text)
+        self.assertIn("- Freshness check refused `check`: `inputs_changed` (it read a refused candidate of src).", text)
+        self.assertIn("- Re-queued `check` at depth 1 of 2 (dispatched).", text)
+        self.assertIn("| 1 | `check` | 2026-11-06T09:50:00Z to 2026-11-06T09:59:00Z |", text)
+        self.assertIn("Writer lock acquired at 2026-11-06T10:00:00Z", text)
+
     def test_empty_selection_vs_incomplete_selection(self):
         self.assertIn("No production jobs selected.", job_summary.render(dict(self.env, JOBS="")))
         self.assertIn("Job selection unavailable.", job_summary.render(dict(self.env, JOBS="", PICK_OUTCOME="failure")))

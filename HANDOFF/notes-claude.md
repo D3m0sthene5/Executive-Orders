@@ -1,3 +1,92 @@
+## 2026-11-06 07:10 ET (Claude, Dorotheus: Justinian repairs merged, protected stratum worked)
+
+- **Done (all merged by Dorotheus under the owner's delegation):**
+  - Justinian PRs #171, #179, #168, #169, #172, #175, #177, #178, #170, #173.
+  - COUNT-CHANGING #180 (B1): census 14,972 -> 14,998.
+  - COUNT-CHANGING #174 (C3): ready 1,368 -> 1,196.
+  - #181 (B2): catalogued_unnumbered class and two denominators.
+  - COUNT-CHANGING #182 (C/D): ready 1,196 -> 1,208; provisional statuses 4,291 -> 4,298.
+  - #176 closed as superseded by #180/#181.
+  - Freeze posted 09:50 UTC and lifted 11:05 UTC, after one chain published at `dd216474b`: 1,368 ready, generation `42204685627-1:8ee77553...`, the same id in the tracker's SUMMARY and STATUS. That is the first authoritative post-repair figure.
+  - Each count-changing merge's before/after is in Kean: F-20261106-dorotheus-merge-180, -174, -182.
+- **Sample estimate** (`research/dorotheus/SAMPLE_ESTIMATE.md`; provisional, AI-reviewed, uncertified, n=120):
+  - Response: only 19 of 120 orders responded (12 ready, 7 filed).
+  - Operative force on 2026-10-14, responses only (MAR): **0.0%, Korn-Graubard 95% 0.0-17.6%**.
+  - Producers' assessment of 69 orders: 5.3% (1.2-14.2%).
+  - Bounds: all nonresponse NO gives 0.0%; all nonresponse YES gives 79.7%.
+  - Formal validity (unrevoked) among responses: 0% (0-26.5%, 12 respondents).
+  - formal_revocation_after_earlier_cessation is true for 1 of 19 NO responses.
+  - Reviewer plants caught: 25/30.
+  - YES probe: 7/30, now Bentham's rate for yes.fr.
+- **Owner-delegated decisions** (Kean D-20261106-dorotheus-r7 to -r18, each "owner-delegated, reversible" where the prompt did not decide it):
+  - R14: the Bacon run is closed as unrecoverable; there was no bundle to adopt.
+  - R9: 4 Niebuhr orders with no held official page were not admitted.
+  - R9: EO:7933a is read through an alias map, because the ledger is hash-pinned.
+  - Asks closed: A-20261103-1, A-20261104-1, A-20261105-niebuhr-admit, A-20261106-mabillon-register and A-20261106-justinian-{freeze, r3-scope, e1e3, e4, astra, dedup}. No ask is open.
+- **Running:** dispatch of claim-drafts, claim-kit, claim-checker, readiness-tracker, domesday-register, daily-digest and bentham with requeue_depth 1, so main publishes the post-merge figures (expected 1,208 ready of 14,998 orders and 4,298 statuses).
+- **Next:**
+  - Let the claim-kit undecided route accept a held transcription as working text (2026-10-21 ruling), then re-run the 28 undecided sample orders blocked only by that. They are the `blocked` rows of `research/excavator/dorotheus-sample-2026-11-06/DISPOSITION.csv` whose blocker names the original requirement.
+  - Request bytes from Ptolemy for the 38 dispatch-blocked orders (custody_record_only).
+  - Re-run `research/dorotheus/estimate.py`.
+  - Cut producer context: 1.38M tokens per attempted order against a 150k target; try one order per producer with a pre-cut view.
+  - E1 (a hosted readiness-tracker diagnostic with narrowed materialization and a byte-for-byte comparison) and E2 (freshness refusals in the first three post-freeze runs) were not reached.
+  - DASHBOARD.md shows the tracker generation time and input commit but not the generation id itself.
+- **Do not:**
+  - Edit `research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv` keys for EO:7933a; it is hash-pinned, so add aliases instead.
+  - Re-tag the 192 named revocations of in-force orders (R8).
+  - Treat the sample estimate as more than a 19-response reading.
+
+## 2026-11-06 06:10 ET (Claude, Selden: texts of the later instruments that act on an order)
+
+- **Done:** branch `claude/selden-acting-instruments`, PR [#167](https://github.com/D3m0sthene5/Executive-Orders/pull/167). It is COUNT-CHANGING, so it waits for the owner; do not merge it during the freeze.
+  - Census in `research/selden/census/`: 16,322 leads, 2,401 named instruments not held.
+  - Three zero-token jobs, verified on Actions: `selden-fr-citers` (FR full text from 1994, 13,138 orders), `selden-fr-acting` (1936-93 FR pages, 803 issues matching GPO's PREMIS) and `selden-statutes` (2,179 Statutes at Large).
+  - The locator is measured: 77% recall, and 0 of 21,940 planted negatives located.
+- **Result:**
+  - 818 of 1,015 unheld non-order instruments are now held.
+  - Proof: 8 of 30 random decided orders filed after two-arm blind review, 3 of them decided by Selden texts. All 5 planted controls were caught.
+  - Most remaining blocks need a current-source grade, a fact date or an owner ruling, not a text (`research/selden/REPORT.md`, F-20261106-1).
+- **Next:**
+  - Fix EO 8116 (Proclamation 2416 is held) and refile.
+  - Mabillon: take `research/selden/ACTING_EO_TEXTS_NEEDED.csv`.
+  - Gratian: add `selden-fr-acting` to `later-events/after.txt` after the merge.
+- **Asks:** @Owner: A-20261106-1 (statute ending a body without naming the order); merge #167 or decide.
+- **Do not:**
+  - Re-run `selden-fr-acting` for a cosmetic change. It downloads about 20 GB; `gpo_premis_result` is a known misleading field, so use `gpo_premis_match`.
+  - Put retries of one order into overlapping proof batches.
+
+## 2026-11-06 05:10 ET (Claude, Justinian: repair wave A-F)
+
+- **Done:**
+  - Merge on green (no count change): [#168](https://github.com/D3m0sthene5/Executive-Orders/pull/168) A2 freshness scopes; [#169](https://github.com/D3m0sthene5/Executive-Orders/pull/169) A3 generation id; [#170](https://github.com/D3m0sthene5/Executive-Orders/pull/170) A4 branch-output check; [#171](https://github.com/D3m0sthene5/Executive-Orders/pull/171) B1/B2 NEWEST.md and the 16 KB brief; [#172](https://github.com/D3m0sthene5/Executive-Orders/pull/172) B4 daily rule; [#175](https://github.com/D3m0sthene5/Executive-Orders/pull/175) C4 estimand; [#177](https://github.com/D3m0sthene5/Executive-Orders/pull/177) B5/F1/F4; [#178](https://github.com/D3m0sthene5/Executive-Orders/pull/178) B6 Bentham; this PR (Kean records, usage, notes; stacked on #171).
+  - For the owner or the coordinator to merge: [#173](https://github.com/D3m0sthene5/Executive-Orders/pull/173) C1/C2, schema v2 and contests. Count-neutral, proven by a like-for-like tracker run: 1,384 ready, 0 rows changed.
+  - Draft, COUNT-CHANGING: [#174](https://github.com/D3m0sthene5/Executive-Orders/pull/174) C3 re-tag. 184 claims; ready 1,384 -> 1,208.
+  - Draft, prepared only: [#176](https://github.com/D3m0sthene5/Executive-Orders/pull/176) E1-E4 denominator lists.
+  - All open; nothing merged by me.
+- **Results:**
+  - A1: nothing was queued on main; Arsenale (#166) had already cleared the queue.
+  - A2: claim-checker's stale set falls 76%, but the two discarded runs mostly saw real input changes, so the prompt's "would have published" check is false.
+  - A3: 1,331 -> 1,309 came from 22 working-text policy failures. The two commit ids in the prompt do not exist.
+  - #164 was merged at 08:45 UTC, before I reached F2. I left a comment on it.
+  - Workers: 5 Sonnet runs ($3.55 in total); usage in `research/justinian/WORKERS.csv`. Session usage: `research/bentham/usage/justinian/` (Opus coordinator about $48, Sonnet about $6, API-equivalent).
+- **Running:** nothing dispatched. The pushes to #168, #169 and #170 start their branch runs.
+- **Not reached, with reasons:**
+  - B3 (narrow materialization): needs hosted diagnostic runs to prove byte-identical outputs.
+  - D1 and D2 (the protected sample and the YES probe): a two-stage claim-kit wave of about 150 orders needs its own session. The sample today has 12 orders ready, 16 decided but not ready, and 92 undecided.
+  - E4 identity class and two denominators: an owner ruling first.
+  - A5: the owner is absent, so the freeze ask is recorded.
+- **Next:**
+  - Merge #168-#172, #175, #177, #178 on green.
+  - Owner decides #173, then #174.
+  - Run D1 as one named wave before any other production (R4), then the 30-order undecided probe that Bentham now ranks #7.
+  - Trace the tracker, claim-kit and Bentham as claim-checker was traced, and give each a `references.txt`.
+- **Asks:**
+  - @Owner: A-20261106-justinian-freeze, A-20261106-justinian-r3-scope, A-20261106-justinian-e1e3, A-20261106-justinian-e4, A-20261106-justinian-astra, A-20261106-justinian-dedup. Still open: A-20261106-mabillon-register.
+  - @Coordinator: merge #173 only after the owner reads its contest and v2 rules. #174 is stacked on #173.
+- **Do not:**
+  - Re-tag the 192 cleanup-actor claims in `research/justinian/c3/NOT_RETAGGED.csv` without the owner's answer to A-20261106-justinian-r3-scope.
+  - Merge any `jobs/*/output` that a branch run produced; #170 enforces this.
+
 ## 2026-11-06 01:30 ET: Pothier, family doctrines for the 5,918 undecided orders with no dated history (night wave)
 
 - **Done:** eleven source-grounded family doctrines (`research/pothier/doctrines/`), coordinator rulings P1-P8 (`research/pothier/COORDINATOR_RULINGS.md`), and the zero-token job `jobs/pothier` (member table, doctrine engine, tests, bounded class-wide source fetch). Report: `research/pothier/REPORT.md`. PR #162 changes no status, codebook, census or count.
@@ -5,6 +94,14 @@
 - **Next:** after #162 merges, the runner fetches the 128 class-wide sources (`fetch.py`); mark them held in the doctrines and rerun. Selden takes the 237 per-order acting instruments in `research/pothier/FOR_SELDEN.csv` (mostly Public Land Order texts). Biggest unlocks: BLM MLRS withdrawal cases, the Forest Service chronology, plat filing dates. After the owner answers, propose Jacquard-style sampled adoption of each family's `no` leads.
 - **Asks:** @Owner: A-20261106-pothier (adopt each family doctrine, yes/no per family; are amending orders spent on issue or alive with their text, 601 leads; may `no` leads rest on BLM's PLO tables, about 400 leads; listed in REPORT.md). @Coordinator: research/pothier/QUESTIONS.md Q4-Q5 (the Kean brief is at 8,181 of 8,192 bytes).
 - **Do not:** treat a lead as a status or write it into a status field.
+
+## 2026-11-06 00:45 ET (Claude, Gratian: wiring tonight's products into the tracker and the claim kit)
+
+- **Done:** branch `claude/gratian-wiring` (not pushed; see Asks). `48da66f7`: `source_supplement.py` now adds held excerpts to undecided dossiers by sealing a new copy of their frozen status-overlay evidence; status gates are unchanged, and `batch.py`'s codec pin changes. `fd403d5b`: new job `gratian-niebuhr-leads` types Niebuhr's results as date leads that `eo_identity.load_dates` reads last; 56 numbered orders gain a routable date for Lewis. `ed397bda`: later-events `job.py` adds `selden-fr-acting` texts without touching the kit-pinned `later_events.py`. `c32a59a2`: `research/gratian/` holds CONCORDANCE, IMPACT (tracker ablation on `b561d57a`) and the NEXT_DOSSIER queue. Kean F-20261106-gratian-wiring and F-20261106-gratian-ablation.
+- **Result:** no product moves an order to ready (1,323 in every variant), because ready also needs a checked claim. With #164, Mabillon adds 58 orders to the claim-ready group and reopens 17 provisional texts. Lachmann adds 161 text steps. Ptolemy should make EO 10926 ready at the next claim-checker run. No `tracker.py` change and no COUNT-CHANGING PR from this lane.
+- **Next:** push the bundle and open the wiring PR; once Selden's jobs merge, add `selden-fr-acting` to `later-events/after.txt`; add `mabillon-held-printings` to `text_jobs.py` once its SOURCES carry `text_path` (QUESTIONS Q6).
+- **Asks:** @Owner: A-20261106-gratian-push. @Coordinator: `research/gratian/QUESTIONS.md` Q2 (put the 17 reopened texts in #164's description) and Q5 (re-prepare packets after merge).
+- **Do not:** prepare claim-kit packets from `main` and apply them on this branch, or the reverse; the batch codec pin differs.
 
 ## 2026-11-06 00:45 ET: Mabillon, bulk sources of official originals (night wave)
 

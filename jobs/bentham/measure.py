@@ -64,6 +64,15 @@ PRICE_TABLE = {
 PHASE_FAMILY = {"production": "sonnet", "review": "opus", "coordination": "opus",
                 "correction": "sonnet", "integration": "sonnet"}
 TOKEN_KEYS = ("fresh_input", "cache_read", "cache_write", "output")
+# Justinian B6 (2026-11-06): a second cost unit, subscription window tokens. How the plan weights a cache
+# read against a fresh token is not published, so both weightings are reported and the planner flags any
+# rank that flips between them (and against API dollars).
+CACHE_READ_WEIGHTS = (1.0, 0.1)
+
+
+def window_tokens(tok: dict, denom: float) -> dict:
+    base = tok["fresh_input"] + tok["cache_write"] + tok["output"]
+    return {f"cache_read_weight_{w}": (base + w * tok["cache_read"]) / denom for w in CACHE_READ_WEIGHTS}
 
 
 class MeasureError(RuntimeError):
@@ -181,7 +190,9 @@ def compute_rates(repo: Path, rows: list[dict], status: dict[str, str], pooled_s
         for era in ("fr", "prefr"):
             sel = [r for r in prod if status.get(r["id"]) == st and era_of(r["id"]) == era]
             alt = None
-            for w in remaining_samples:
+            # Dorotheus 2026-11-06: the newest random sample of the remaining stratum describes today's pool best.
+            newest_first = sorted(remaining_samples, key=lambda w: (re.findall(r"\d{4}-\d{2}-\d{2}", w) or [""])[-1], reverse=True)
+            for w in newest_first:
                 smp = [r for r in sel if r["wave"] == w]
                 if len(smp) >= MIN_SAMPLE:
                     alt = count(sel)
@@ -242,7 +253,7 @@ def load_usage(repo: Path) -> list[dict]:
             if fam is None:
                 raise MeasureError(f"agent {r.get('agent_id')}: no model and unknown phase {r['phase']!r}")
             rows.append({"agent": r.get("agent_id"), "phase": r["phase"], "batch": r["batch"] or "",
-                         "family": fam, "recorded": recorded,
+                         "family": fam, "recorded": recorded, "calls": _int(r.get("calls")),
                          "tokens": {"fresh_input": _int(r["fresh_input"]), "cache_read": _int(r["cache_read"]),
                                     "cache_write": cw, "output": _int(r["output"])}})
         return rows
@@ -270,7 +281,7 @@ def _cost(total, tok, denom, per, source, basis, inferred):
     if not denom:
         raise MeasureError(f"cost denominator is zero for: {basis}")
     return {"usd": total / denom, "total_usd": total, "denominator": denom, "tokens": tok, "per": per,
-            "source": source,
+            "window_tokens": window_tokens(tok, denom), "source": source,
             "basis": basis + (f" Model family inferred from phase for {inferred} agent(s)."
                               if inferred else " Model family taken from each agent's recorded model.")}
 
@@ -319,15 +330,18 @@ def compute_costs(repo: Path, doc: dict, rows: list[dict], usage: list[dict]) ->
     p, r, c = (costs["production.per_attempt"], costs["review.per_submitted"], costs["coordination.per_attempt"])
     wt = {x: p["tokens"][x] + r["tokens"][x] + c["tokens"][x] for x in TOKEN_KEYS}
     wave_total = p["total_usd"] + r["total_usd"] + c["total_usd"]
+    wave_window = {k: p["window_tokens"][k] + r["window_tokens"][k] * share + c["window_tokens"][k]
+                   for k in p["window_tokens"]}
     costs["wave.per_attempt"] = {
         "usd": p["usd"] + r["usd"] * share + c["usd"], "total_usd": wave_total, "denominator": attempts,
-        "tokens": wt, "per": "attempted_order", "source": USAGE,
+        "tokens": wt, "per": "attempted_order", "source": USAGE, "window_tokens": wave_window,
         "basis": f"production.per_attempt + review.per_submitted x submit share ({submitted}/{attempts} = "
                  f"{share:.4f} verdicts per attempted order) + coordination.per_attempt."}
     filed = sum(1 for x in rows if x["filed"] and not x["correction"] and x["wave"] == WAVE)
     if filed:
         costs["wave.per_filed_dossier"] = {
             "usd": wave_total / filed, "total_usd": wave_total, "denominator": filed, "tokens": wt,
+            "window_tokens": window_tokens(wt, filed),
             "per": "filed_dossier", "source": USAGE,
             "basis": f"Same total as wave.per_attempt divided by {filed} claims filed in production batches. "
                      "A filed claim is not a certified dossier."}
@@ -337,7 +351,19 @@ def compute_costs(repo: Path, doc: dict, rows: list[dict], usage: list[dict]) ->
             t, k, corr_attempts, "attempted_order", USAGE,
             f"Correction-production agents ({len(corr_u)}), divided by {corr_attempts} orders attempted in "
             "c01-c03. Their review is not separated from the review phase above.", inf)
+    costs["_context"] = context_per_attempt(prod_u, attempts)
     return costs
+
+
+def context_per_attempt(prod_u: list[dict], attempts: int) -> dict:
+    """Justinian B6: the context a producer carries per attempted order (the lever the plan does not price)."""
+    tok = {k: sum(u["tokens"][k] for u in prod_u) for k in TOKEN_KEYS}
+    calls = sum(u.get("calls", 0) for u in prod_u)
+    return {"context_tokens_per_attempt": (tok["fresh_input"] + tok["cache_read"] + tok["cache_write"]) / attempts,
+            "cache_read_tokens_per_attempt": tok["cache_read"] / attempts,
+            "turns_per_attempt": calls / attempts if calls else None, "attempts": attempts,
+            "basis": "Production-phase agents of the tallied batches: (fresh input + cache read + cache write) and model "
+                     "calls ('calls' column) divided by orders attempted. A turn is one model call."}
 
 
 # ---------------------------------------------------------------- other waves
@@ -399,7 +425,8 @@ def measure(repo: Path | None = None) -> dict:
     all_rows = rows + [r for w in pooled for r in w.pop("rows")]
     rates = compute_rates(repo, all_rows, status, [w["source"] for w in pooled],
                           [w["wave"] for w in pooled if w.get("sample_of_remaining")])
-    return {"rates": rates, "costs": costs,
+    context = costs.pop("_context")
+    return {"rates": rates, "costs": costs, "context": context,
             "price_table": PRICE_TABLE, "waves": waves + more, "skipped": skipped}
 
 

@@ -1,3 +1,15 @@
+> **FREEZE LIFTED (Dorotheus, 2026-11-06 11:05 UTC).** One claim-checker -> readiness-tracker -> daily-digest chain
+> published on main at 11:03 UTC (`dd216474b`, run 42204732862): 1,368 ready of 14,972, generation
+> `42204685627-1:8ee77553...`, the same id in the tracker's SUMMARY.json and STATUS.json. Normal merging resumes;
+> Dorotheus is still merging its count-changing PRs (#180, #174, #181) and records each before/after in Kean.
+
+> **FREEZE (Dorotheus, posted 2026-11-06 09:50 UTC; owner ruling R7, Kean D-20261106-dorotheus-r7).**
+> A merge freeze on `main` is in force until one readiness-tracker -> claim-checker -> daily-digest chain has
+> published on main, or until 15:50 UTC, whichever is first. During the freeze only the Dorotheus session merges
+> or pushes to `main`. Other sessions: keep working on your branches and open pull requests; do not merge, do not
+> push to `main`, and do not push to a job folder whose run you need. Dorotheus lifts the freeze with a second
+> block here.
+
 # Night wave of 2026-11-05: Pothier, Mabillon and Selden
 
 The owner started three Opus sessions at about 22:10 ET on 2026-11-05 and named Claude (the session that wrote
@@ -190,4 +202,20 @@ failing, rebase first.
   fails with "evidence preflight dependencies changed; prepare a reviewed package" (failing since after 2026-10-22, not
   tonight's). `daily-digest` was blocked by them. Both are in the wiring lane: diagnose, fix without weakening a gate,
   and say in research/gratian/QUESTIONS.md if a reviewed package or an owner decision is needed.
+
+- **Pothier Q4-Q5 (06:05 UTC).** Q4: keep the one consolidated ask A-20261106-pothier. The coordinator shortened its pinned
+  Brave ruling, so main's brief is now 7,724 of 8,192 bytes, which leaves room for your ask after the merge. Q5: noted for
+  Gratian; leads stay leads (shown to a producer, never written into a status field). When your branch is final, mark
+  PR #162 ready for review and the coordinator merges it once tests pass.
+- **Owner ruling 2026-11-06 (Kean D-20261106-provisional-unchecked-original).** An official copy flagged for a page check
+  no longer removes the provisional text credit of a Lachmann-confirmed order (tracker change 113b54309), so Mabillon's
+  #164 does not set 17 orders back. Gratian: re-measure with this rule.
+
+- **Gratian (PR #165, pushed by the coordinator from the owner's bundle, 06:20 UTC).** Q1: pushed; A-20261106-gratian-push
+  answered. Q2: settled by the owner's ruling D-20261106-provisional-unchecked-original. Q3, Q4, Q7: defaults accepted.
+  Q5: merging now; no producer is preparing claim-kit packets tonight, and any packet prepared before #165 must be
+  prepared again. Q8: done, `jobs/claim-checker/after.txt` now lists `ptolemy-custody`.
+- **For Mabillon (Gratian Q6).** `jobs/mabillon-held-printings` `SOURCES.jsonl` has no `text_path`, so later-events
+  cannot scan the 1,771 proved texts for revocation sentences. Next Mabillon session: add `text_path` (the held passage
+  file) to each line; Gratian's `text_jobs.py` can then add the job to the scanned texts.
 

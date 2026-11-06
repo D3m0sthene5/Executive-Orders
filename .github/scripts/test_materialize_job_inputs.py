@@ -86,12 +86,15 @@ class MaterializeInputsTests(unittest.TestCase):
         self.assertIn("            !/jobs/*/output/**\n", workflow)
         self.assertNotIn("/jobs/*/job.py", workflow)
         choose = workflow.index("- name: Choose which jobs to run")
+        execute = workflow.index("\n  execute:\n")
         cache = workflow.index("- name: Restore each job's bounded download cache")
         materialize = workflow.index("- name: Materialize selected job inputs and prior outputs")
-        self.assertLess(choose, cache)
+        self.assertLess(choose, execute)
+        self.assertLess(execute, cache)
         self.assertLess(cache, materialize)
-        cache_step = workflow[cache:materialize]
-        self.assertIn("if: steps.pick.outputs.jobs != ''", cache_step)
+        # Stations (and so their cache restores) exist only when the plan picked jobs.
+        self.assertIn("    if: needs.plan.outputs.jobs != ''\n", workflow[execute:cache])
+        self.assertIn("JOBS: ${{ matrix.jobs }}", workflow[materialize:])
 
     def test_literal_sparse_patterns_escape_path_metacharacters(self):
         self.assertEqual(materializer.literal_pattern("jobs/sample/a*b?.[x].txt"),

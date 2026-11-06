@@ -2,9 +2,9 @@
   "rates": [
     {
       "key": "filed_per_attempt.yes.fr",
-      "value": 0.0,
-      "num": 0,
-      "den": 7,
+      "value": 0.23333333333333334,
+      "num": 7,
+      "den": 30,
       "unit": "share",
       "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json",
       "evidence": [
@@ -15,12 +15,31 @@
         {
           "quote": "instrument_id,provisional_status",
           "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/claude-icecore-2026-11-05/evidence/DISPOSITION.json"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/dorotheus-yesprobe-2026-11-06/evidence/DISPOSITION.json"
         }
       ],
-      "population": "tribonian-2026-11-04",
-      "pool": "orders attempted in non-correction batches of tribonian-2026-11-04 whose readiness-tracker provisional_status is 'yes' and whose EO number is >= 7532 (Federal Register index era)",
+      "population": "dorotheus-yesprobe-2026-11-06",
+      "pool": "orders attempted in non-correction batches of claude-icecore-2026-11-05+dorotheus-yesprobe-2026-11-06+tribonian-2026-11-04 whose readiness-tracker provisional_status is 'yes' and whose EO number is >= 7532 (Federal Register index era)",
       "n_studies": 1,
-      "note": "Share of attempted orders with a claim filed after review and the completion checker. Status joined from the tracker as it stands now, not as it stood at attempt time."
+      "by_wave": {
+        "dorotheus-yesprobe-2026-11-06": [
+          7,
+          30
+        ]
+      },
+      "note": "Share of attempted orders with a claim filed after review and the completion checker. Status joined from the tracker as it stands now, not as it stood at attempt time. Rate from a random sample of the orders remaining in this stratum (dorotheus-yesprobe-2026-11-06); pooled with earlier waves it would be 18/67, but those orders are no longer in the pool.",
+      "pooled_alternative": {
+        "num": 18,
+        "den": 67,
+        "value": 0.26865671641791045
+      }
     },
     {
       "key": "filed_per_attempt.yes.prefr",
@@ -37,18 +56,32 @@
         {
           "quote": "instrument_id,provisional_status",
           "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/claude-icecore-2026-11-05/evidence/DISPOSITION.json"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/dorotheus-yesprobe-2026-11-06/evidence/DISPOSITION.json"
         }
       ],
       "population": "tribonian-2026-11-04",
-      "pool": "orders attempted in non-correction batches of tribonian-2026-11-04 whose readiness-tracker provisional_status is 'yes' and whose EO number is < 7532 (pre-index era)",
+      "pool": "orders attempted in non-correction batches of claude-icecore-2026-11-05+dorotheus-yesprobe-2026-11-06+tribonian-2026-11-04 whose readiness-tracker provisional_status is 'yes' and whose EO number is < 7532 (pre-index era)",
       "n_studies": 1,
+      "by_wave": {
+        "tribonian-2026-11-04": [
+          0,
+          0
+        ]
+      },
       "note": "Share of attempted orders with a claim filed after review and the completion checker. Status joined from the tracker as it stands now, not as it stood at attempt time."
     },
     {
       "key": "filed_per_attempt.no.fr",
-      "value": 0.4758220502901354,
-      "num": 492,
-      "den": 1034,
+      "value": 0.03333333333333333,
+      "num": 1,
+      "den": 30,
       "unit": "share",
       "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json",
       "evidence": [
@@ -59,12 +92,31 @@
         {
           "quote": "instrument_id,provisional_status",
           "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/claude-icecore-2026-11-05/evidence/DISPOSITION.json"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/dorotheus-yesprobe-2026-11-06/evidence/DISPOSITION.json"
         }
       ],
-      "population": "tribonian-2026-11-04",
-      "pool": "orders attempted in non-correction batches of tribonian-2026-11-04 whose readiness-tracker provisional_status is 'no' and whose EO number is >= 7532 (Federal Register index era)",
+      "population": "claude-icecore-2026-11-05",
+      "pool": "orders attempted in non-correction batches of claude-icecore-2026-11-05+dorotheus-yesprobe-2026-11-06+tribonian-2026-11-04 whose readiness-tracker provisional_status is 'no' and whose EO number is >= 7532 (Federal Register index era)",
       "n_studies": 1,
-      "note": "Share of attempted orders with a claim filed after review and the completion checker. Status joined from the tracker as it stands now, not as it stood at attempt time."
+      "by_wave": {
+        "claude-icecore-2026-11-05": [
+          1,
+          30
+        ]
+      },
+      "note": "Share of attempted orders with a claim filed after review and the completion checker. Status joined from the tracker as it stands now, not as it stood at attempt time. Rate from a random sample of the orders remaining in this stratum (claude-icecore-2026-11-05); pooled with earlier waves it would be 493/1064, but those orders are no longer in the pool.",
+      "pooled_alternative": {
+        "num": 493,
+        "den": 1064,
+        "value": 0.4633458646616541
+      }
     },
     {
       "key": "filed_per_attempt.no.prefr",
@@ -81,18 +133,32 @@
         {
           "quote": "instrument_id,provisional_status",
           "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/claude-icecore-2026-11-05/evidence/DISPOSITION.json"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/dorotheus-yesprobe-2026-11-06/evidence/DISPOSITION.json"
         }
       ],
       "population": "tribonian-2026-11-04",
-      "pool": "orders attempted in non-correction batches of tribonian-2026-11-04 whose readiness-tracker provisional_status is 'no' and whose EO number is < 7532 (pre-index era)",
+      "pool": "orders attempted in non-correction batches of claude-icecore-2026-11-05+dorotheus-yesprobe-2026-11-06+tribonian-2026-11-04 whose readiness-tracker provisional_status is 'no' and whose EO number is < 7532 (pre-index era)",
       "n_studies": 1,
+      "by_wave": {
+        "tribonian-2026-11-04": [
+          0,
+          0
+        ]
+      },
       "note": "Share of attempted orders with a claim filed after review and the completion checker. Status joined from the tracker as it stands now, not as it stood at attempt time."
     },
     {
       "key": "filed_per_attempt.all",
-      "value": 0.47262247838616717,
-      "num": 492,
-      "den": 1041,
+      "value": 0.45181255526083114,
+      "num": 511,
+      "den": 1131,
       "unit": "share",
       "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json",
       "evidence": [
@@ -103,11 +169,33 @@
         {
           "quote": "instrument_id,provisional_status",
           "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/claude-icecore-2026-11-05/evidence/DISPOSITION.json"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/dorotheus-yesprobe-2026-11-06/evidence/DISPOSITION.json"
         }
       ],
-      "population": "tribonian-2026-11-04",
-      "pool": "all orders attempted in non-correction batches of tribonian-2026-11-04",
-      "n_studies": 1,
+      "population": "claude-icecore-2026-11-05+dorotheus-yesprobe-2026-11-06+tribonian-2026-11-04",
+      "pool": "all orders attempted in non-correction batches of claude-icecore-2026-11-05+dorotheus-yesprobe-2026-11-06+tribonian-2026-11-04",
+      "n_studies": 3,
+      "by_wave": {
+        "claude-icecore-2026-11-05": [
+          12,
+          60
+        ],
+        "dorotheus-yesprobe-2026-11-06": [
+          7,
+          30
+        ],
+        "tribonian-2026-11-04": [
+          492,
+          1041
+        ]
+      },
       "note": "Includes 0 attempted orders whose tracker status is blank or absent, which belong to no yes/no stratum. Correction batches excluded."
     },
     {
@@ -125,11 +213,25 @@
         {
           "quote": "instrument_id,provisional_status",
           "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/claude-icecore-2026-11-05/evidence/DISPOSITION.json"
+        },
+        {
+          "quote": "\"pool_into_rates\": true",
+          "source": "research/excavator/dorotheus-yesprobe-2026-11-06/evidence/DISPOSITION.json"
         }
       ],
       "population": "tribonian-2026-11-04",
       "pool": "orders attempted in correction batches c01, c02, c03 of tribonian-2026-11-04",
       "n_studies": 1,
+      "by_wave": {
+        "tribonian-2026-11-04": [
+          53,
+          83
+        ]
+      },
       "note": "Correction batches re-attempt orders that earlier batches blocked or rejected, so this rate is conditional on a prior failure and is not comparable to the others."
     }
   ],
@@ -145,6 +247,10 @@
         "output": 3974411
       },
       "per": "attempted_order",
+      "window_tokens": {
+        "cache_read_weight_1.0": 754834.6714697407,
+        "cache_read_weight_0.1": 103259.14351585016
+      },
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
       "basis": "Production-phase agents of 34 batches with a tally, divided by 1041 orders attempted in those non-correction batches. Producer batches without a tally (o25) are excluded from numerator and denominator. Model family taken from each agent's recorded model."
     },
@@ -159,6 +265,10 @@
         "output": 2396227
       },
       "per": "submitted_claim",
+      "window_tokens": {
+        "cache_read_weight_1.0": 460664.41800643085,
+        "cache_read_weight_0.1": 61232.76720257235
+      },
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
       "basis": "Review-phase agents whose batches are all tallied production batches, divided by 622 blind-review verdicts (upheld + rejected, summed from blind_review_verdicts in DISPOSITION); one verdict is one claim version judged, so re-reviews of revised versions and planted controls count. Excluded review agents (paired trial arms, re-review, untallied batches): lind-a03-A, lind-a03-B, lind-c01-A, lind-c01-B, lind-c02-A, lind-c02-B, lind-c03-A, lind-c03-B, rereview-n01. Model family taken from each agent's recorded model."
     },
@@ -173,6 +283,10 @@
         "output": 115927
       },
       "per": "attempted_order",
+      "window_tokens": {
+        "cache_read_weight_1.0": 52665.91930835735,
+        "cache_read_weight_0.1": 5790.531988472623
+      },
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
       "basis": "Coordinator agent, divided by 1041 production orders attempted. Lower bound: the coordinator transcript covers only the period after a context compaction. Model family taken from each agent's recorded model."
     },
@@ -188,6 +302,10 @@
       },
       "per": "attempted_order",
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
+      "window_tokens": {
+        "cache_read_weight_1.0": 1082748.6868395773,
+        "cache_read_weight_0.1": 145636.4009606148
+      },
       "basis": "production.per_attempt + review.per_submitted x submit share (622/1041 = 0.5975 verdicts per attempted order) + coordination.per_attempt."
     },
     "wave.per_filed_dossier": {
@@ -199,6 +317,10 @@
         "cache_read": 1083926544,
         "cache_write": 36716950,
         "output": 6486565
+      },
+      "window_tokens": {
+        "cache_read_weight_1.0": 2290937.7703252034,
+        "cache_read_weight_0.1": 308145.3117886179
       },
       "per": "filed_dossier",
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
@@ -215,9 +337,20 @@
         "output": 429750
       },
       "per": "attempted_order",
+      "window_tokens": {
+        "cache_read_weight_1.0": 1162912.4216867469,
+        "cache_read_weight_0.1": 152912.37228915663
+      },
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
       "basis": "Correction-production agents (3), divided by 83 orders attempted in c01-c03. Their review is not separated from the review phase above. Model family taken from each agent's recorded model."
     }
+  },
+  "context": {
+    "context_tokens_per_attempt": 751016.7934678195,
+    "cache_read_tokens_per_attempt": 723972.808837656,
+    "turns_per_attempt": 3.568683957732949,
+    "attempts": 1041,
+    "basis": "Production-phase agents of the tallied batches: (fresh input + cache read + cache write) and model calls ('calls' column) divided by orders attempted. A turn is one model call."
   },
   "price_table": {
     "sonnet": {
@@ -241,7 +374,24 @@
       "filed": 545,
       "production_attempted": 1041,
       "production_filed": 492,
-      "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
+      "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json",
+      "pooled_into_rates": true
+    },
+    {
+      "wave": "claude-icecore-2026-11-05",
+      "attempted": 60,
+      "filed": 12,
+      "source": "research/excavator/claude-icecore-2026-11-05/evidence/DISPOSITION.json",
+      "pooled_into_rates": true,
+      "sample_of_remaining": true
+    },
+    {
+      "wave": "dorotheus-yesprobe-2026-11-06",
+      "attempted": 30,
+      "filed": 7,
+      "source": "research/excavator/dorotheus-yesprobe-2026-11-06/evidence/DISPOSITION.json",
+      "pooled_into_rates": true,
+      "sample_of_remaining": true
     }
   ],
   "skipped": []

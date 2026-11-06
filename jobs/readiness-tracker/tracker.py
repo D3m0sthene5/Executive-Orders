@@ -42,6 +42,9 @@ STEP_NAMES = [s for s, _ in STEPS]
 # An adopted status is a prerequisite, never a failed search that can be waived.
 EXHAUSTIBLE_STEPS = frozenset(STEP_NAMES) - {"provisional_status"}
 
+# Historical id -> current census id (owner ruling R9; same map as jobs/claim-kit/population_contract.json id_aliases).
+ID_ALIASES = {"EO:7933a": "EO:7933A"}
+
 # Which step each claim_gate error belongs to.
 GATE_ERROR_STEP = [
     ("original_representation", "original_text"),
@@ -86,7 +89,12 @@ J = {
                                        # Tischendorf: official printings located by the order's own number plus a
                                        # text-fingerprint match with the held transcription, gated by planted
                                        # controls each run. Same rule: only finds not flagged needs_page_check.
-                                       "jobs/tischendorf-originals/output/FRAGMENTS.jsonl"],
+                                       "jobs/tischendorf-originals/output/FRAGMENTS.jsonl",
+                                       # Mabillon held printings: government-printed pages hathi-gpo-orders already
+                                       # holds (GPO bound volumes, 1974 GPO Hoover, 1936 FR), proved by Tischendorf's
+                                       # rule plus own-segment scoring and a neighbour margin, gated by planted
+                                       # controls each run. Same rule: only finds not flagged needs_page_check.
+                                       "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl"],
     # Richardson's Messages and Papers: a printed compilation transcribed from records and newspapers, not the
     # signed or officially printed original. A lead only; it never counts as the original text.
     # The American Presidency Project (app-executive-orders) is the same class: an editorial web transcription
@@ -451,10 +459,13 @@ def build(root, *, planning_closures=None):
     jobs, job_problems = load_job_outputs(root)
 
     universe = [r["id"] for r in read_csv(root, "universe") if r["included_in_bibliography"] == "1"]
-    decided = {r["instrument_id"]: r for r in read_csv(root, "decided")}
-    causal = {r["instrument_id"]: r for r in read_csv(root, "causal")}
-    crosswalk = {r["instrument_id"]: r for r in read_csv(root, "crosswalk")}
-    custody = {r["instrument_id"]: r for r in read_csv(root, "custody")}
+    # Owner ruling R9 (2026-11-06): the census renamed EO:7933a to EO:7933A; the hash-pinned ledger and
+    # older tables keep the historical spelling, so their keys are read through ID_ALIASES.
+    canon = lambda i: ID_ALIASES.get(i, i)
+    decided = {canon(r["instrument_id"]): r for r in read_csv(root, "decided")}
+    causal = {canon(r["instrument_id"]): r for r in read_csv(root, "causal")}
+    crosswalk = {canon(r["instrument_id"]): r for r in read_csv(root, "crosswalk")}
+    custody = {canon(r["instrument_id"]): r for r in read_csv(root, "custody")}
 
     statute_ok = {(r["source_key"], r["instrument_id"]) for r in read_csv(root, "statute") if r["acquired_pdf_bytes"] == "yes"}
 
@@ -492,6 +503,7 @@ def build(root, *, planning_closures=None):
     problems += more + job_problems
 
     orders = []
+    contested_rows = []  # R5: claims whose status disagrees with the provisional ledger
     machine_searched = set()
     working_index = W.Index(root)
     confirmed_texts, confirmation_rejections = counting_confirmations(root, jobs, working_index)
@@ -676,6 +688,31 @@ def build(root, *, planning_closures=None):
             blockers['original_text'].append('WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED')
         if factual_errors:
             blockers['counterevidence'].append('FACTUAL_EVENT_REVALIDATION_REQUIRED')
+        # Owner ruling R5 (2026-11-06): a claim may contest the ledger's status. That is a blocker, not a
+        # gate failure; the ledger is unchanged until an owner-merged pull request resolves it.
+        contested = claim is not None and claim_gate.status_contested(claim, status)
+        if contested:
+            # The ending step is judged against the ledger's status, so a contesting claim does not fill it.
+            ready = False
+            steps["ending_or_current_basis"] = False
+            blockers["ending_or_current_basis"] = ["STATUS_CONTESTED"]
+            contested_rows.append({"instrument_id": i, "ledger_status": status,
+                                   "claimed_status": claim.get("whole_order_status"),
+                                   "claim_sha256": claim_gate.claim_sha(claim)})
+        # Schema v2 (R2): an end bounded only by a later formal disposition (date_kind not_later_than,
+        # first_cause unresolved) records what the evidence shows but does not establish the first end.
+        v2 = claim is not None and claim.get("schema") == getattr(claim_gate, "SCHEMA_V2", None)
+        whole_end = claim.get("whole_order_end") if claim is not None and isinstance(claim.get("whole_order_end"), dict) else {}
+        end_kind = whole_end.get("date_kind", "exact" if whole_end else "") if v2 else ("exact" if whole_end else "")
+        bounded = v2 and (end_kind == "not_later_than" or any(
+            isinstance(c, dict) and isinstance(c.get("first_end"), dict) and c["first_end"].get("date_kind") == "not_later_than"
+            for c in claim.get("operative_clauses") or []))
+        if bounded and not gate_errors:
+            ready = False
+            steps["ending_or_current_basis"] = False
+            blockers["ending_or_current_basis"].append("FIRST_END_UNRESOLVED")
+        later_formal = (claim_gate.derived(claim)["formal_revocation_after_earlier_cessation"]
+                        if v2 and hasattr(claim_gate, "derived") else None)
         if i in holds:
             ready = False
             steps['counterevidence'] = False
@@ -706,11 +743,16 @@ def build(root, *, planning_closures=None):
             "factual_event_policy_errors": "|".join(factual_errors),
             "claim_record_errors": "|".join(claim_level),
             "opus_media_applicability_note": opus_media_note,
+            "claim_schema": claim.get("schema", "") if claim is not None else "",
+            "status_contested": "yes" if contested else "no",
+            "whole_end_date_kind": end_kind,
+            "formal_revocation_after_earlier_cessation": {True: "yes", False: "no"}.get(later_formal, ""),
             "blockers": "|".join(b for s in STEP_NAMES for b in blockers.get(s, [])),
             **{f"step_{s}": (("provisional" if s == "original_text" and text_provisional else "done")
                              if steps[s] else "open") if s in steps else "n/a" for s in STEP_NAMES},
         })
     build.job_outputs_used = jobs["used"]
+    build.contested = contested_rows
     build.confirmation_rejections = confirmation_rejections
     build.confirmations_counting = len(confirmed_texts)
     build.machine_search = {i: machine_search_record(i, jobs["search"]) for i in sorted(machine_searched)}
@@ -804,6 +846,11 @@ def summarise(orders, problems):
         "orders_total": total,
         "orders_with_provisional_status": len(decided),
         "ready_for_human_review": len(ready),
+        # R5 and schema v2 (Justinian 2026-11-06): contests and bounded ends, reported, never counted as ready.
+        "status_contested": sum(1 for o in orders if o.get("status_contested") == "yes"),
+        "claims_by_schema": dict(collections.Counter(o["claim_schema"] for o in orders if o.get("claim_schema"))),
+        "whole_end_date_kind": dict(collections.Counter(o["whole_end_date_kind"] for o in orders if o.get("whole_end_date_kind"))),
+        "formal_revocation_after_earlier_cessation": sum(1 for o in orders if o.get("formal_revocation_after_earlier_cessation") == "yes"),
         "ready_by_tier": dict(collections.Counter(o["ready_tier"] for o in ready)),
         "ready_by_text_evidence_tier": dict(collections.Counter(o.get("text_evidence_tier", "unknown") for o in ready)),
         "original_replacement_obligations": sum(o.get("original_copy_replacement_required") == "yes" for o in orders),
@@ -829,8 +876,53 @@ def pct(n, d):
     return f"{100 * n / d:.1f}%" if d else "n/a"
 
 
+UNNUMBERED_SUMMARY = "jobs/domesday-register/output/UNNUMBERED_SUMMARY.json"
+
+
+def unnumbered_fields(root, numbered_total):
+    """The second denominator (owner ruling R10). The numbered series is the census universe, unchanged. The unnumbered
+    series is reported as a lower-bound count with an interval for its total, read from the domesday-register's
+    committed output when it exists. The domesday-register runs after this job, so this reads the previous run."""
+    out = {"numbered_series_orders": numbered_total, "unnumbered_series_observed": None,
+           "unnumbered_series_estimate_95": None}
+    path = os.path.join(root, UNNUMBERED_SUMMARY)
+    try:
+        with open(path, encoding="utf-8") as fh:
+            u = json.load(fh)
+        est = u.get("unnumbered_series_estimate_95")
+        if isinstance(u.get("unnumbered_series_observed"), int):
+            out["unnumbered_series_observed"] = u["unnumbered_series_observed"]
+            if isinstance(est, list) and len(est) == 2 and all(isinstance(x, (int, float)) for x in est):
+                out["unnumbered_series_estimate_95"] = list(est)
+    except (OSError, ValueError):
+        pass
+    return out
+
+
+def unnumbered_line(s):
+    obs, est = s.get("unnumbered_series_observed"), s.get("unnumbered_series_estimate_95")
+    if obs is None:
+        return ("Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; "
+                f"`{UNNUMBERED_SUMMARY}` is missing.")
+    tail = f"; estimated total {est[0]:,.0f} to {est[1]:,.0f} (95% interval)" if est else ""
+    return (f"Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): "
+            f"{obs:,} identities observed, a lower bound{tail}. Not part of the numbered-series proportion above.")
+
+
+def generation_id():
+    """Justinian 2026-11-06: the runner's id for this execution (run token + input manifest sha256).
+
+    SUMMARY.json, TRACKER.md, READINESS_BY_ORDER.csv and the runner's STATUS.json carry the same
+    value, so a reader (daily-digest) can refuse files that come from different executions. A run
+    outside the runner is labelled local and never matches a published STATUS.json.
+    """
+    return os.environ.get("JOB_GENERATION_ID") or "local-unpublished"
+
+
 def write_outputs(out, orders, summary, inputs):
     os.makedirs(out, exist_ok=True)
+    generation = generation_id()
+    orders = [{**row, "generation_id": generation} for row in orders]
     # Claim-shaped later_source_search for each order the machines' searches completed;
     # agents copy it into the order's claim (claim-drafts and case-bundles can merge it).
     with open(os.path.join(out, "MACHINE_LATER_SEARCH.jsonl"), "w", encoding="utf-8", newline="\n") as fh:
@@ -841,11 +933,16 @@ def write_outputs(out, orders, summary, inputs):
         w = csv.DictWriter(fh, fieldnames=list(orders[0]))
         w.writeheader()
         w.writerows(orders)
+    # R5: every claim that contests the provisional ledger (instrument, ledger status, claimed status, claim sha).
+    with open(os.path.join(out, "CONTESTED.csv"), "w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=["instrument_id", "ledger_status", "claimed_status", "claim_sha256"])
+        w.writeheader()
+        w.writerows(getattr(build, "contested", []))
     with open(os.path.join(out, "SHARED_UNLOCKS.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=["orders_unblocked", "kind", "action", "blocker"])
         w.writeheader()
         w.writerows(summary["shared_unlocks"])
-    summary = {**summary, "inputs": inputs}
+    summary = {**summary, "generation_id": generation, "inputs": inputs}
     with open(os.path.join(out, "SUMMARY.json"), "w", encoding="utf-8") as fh:
         json.dump(summary, fh, indent=2)
         fh.write("\n")
@@ -854,7 +951,11 @@ def write_outputs(out, orders, summary, inputs):
     lines = [
         "# Readiness tracker",
         "",
-        f"**Ready for human review: {s['ready_for_human_review']:,} of {total:,} orders ({pct(s['ready_for_human_review'], total)})**",
+        f"**Numbered series: ready for human review {s['ready_for_human_review']:,} of {total:,} orders ({pct(s['ready_for_human_review'], total)})**",
+        "",
+        unnumbered_line(s),
+        "",
+        f"Generation: `{generation}` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).",
         "",
         "An order is ready when the machines have finished every step it needs: each step is backed by a saved",
         "source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in",
@@ -917,6 +1018,7 @@ def main():
     root, out = os.environ.get("REPO_ROOT", "."), os.environ.get("OUTPUT_DIR", "readiness-output")
     orders, problems = build(root)
     summary = summarise(orders, problems)
+    summary.update(unnumbered_fields(root, summary["orders_total"]))
     # The early rangers survey potential *new* identities outside the existing
     # 14,972 working bibliography. They must NEVER be added to order metrics.
     census_file = os.path.join(root, "jobs/census-candidates/output/SUMMARY.json")

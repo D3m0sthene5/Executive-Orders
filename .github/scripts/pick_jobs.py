@@ -8,9 +8,15 @@ Pushes stay light (owner, 2026-10-28: adding a file must not mean waiting on the
   (fnmatch, e.g. "research/readiness/claims/*") matching a path changed on the default branch
   since the previous sweep, plus every job that reads their outputs (after.txt).
 - The daily scheduled run (09:17 UTC) runs every job whose folder contains a file named DAILY,
-  plus their consumers.
+  plus their consumers. GitHub has delivered only the sweep since a second cron was added on
+  2026-10-28, so every sweep also runs each DAILY job whose newest committed receipt
+  (output/STATUS.json or jobs/_attempts/<name>/) is older than DAILY_STALE_HOURS (Justinian,
+  2026-11-06; this replaces .github/workflows/daily-dispatch.yml). Receipt ages come from Git
+  history, not from output files, which the picker's checkout omits.
 - A manual run runs the named job(s), separated by spaces or commas, plus their consumers.
   Manual diagnostics run only the requested jobs; the workflow retains receipts without publishing.
+  An Arsenale re-queue (a manual run with requeue_depth > 0) runs exactly the jobs it names, and
+  marks the names in its downstream input as downstream-only, as the refused run had them.
 Picked jobs are ordered so that any job listed in a job's after.txt runs before it. Folders
 starting with "_" (the template) are never run. The result goes to the step output "jobs" as a
 space-separated list; jobs a sweep runs only as consumers go to "downstream".
@@ -36,6 +42,7 @@ DAILY_CRON = "17 9 * * *"
 # A sweep looks back a little further than its 3-hour interval, so a commit is never missed between
 # sweeps; a file changed twice in the overlap only reruns the same jobs once more.
 SWEEP_WINDOW = "3 hours 20 minutes ago"
+DAILY_STALE_HOURS = 20
 
 
 # Audited at bc65c165 / Opus 71b06f9f. Include every COMPILER_FILES entry,
@@ -211,20 +218,54 @@ def downstream_only(direct, picked):
     return [name for name in picked if name not in set(direct)]
 
 
+def requeue_depth():
+    """Arsenale re-queue generation of a manual run (0 for an ordinary run)."""
+    value = (os.environ.get("REQUEUE_DEPTH") or "0").strip()
+    if not re.fullmatch(r"[0-9]{1,2}", value):
+        sys.exit(f"Invalid requeue_depth: {value!r}")
+    return int(value)
+
+
+def daily_jobs():
+    return sorted(name for name in os.listdir("jobs")
+                  if not name.startswith("_") and runnable(name) and os.path.isfile(os.path.join("jobs", name, "DAILY")))
+
+
+def receipt_age_hours(name, now=None):
+    """Hours since the newest commit touching the job's STATUS.json or its retained attempts; None if never."""
+    out = git("log", "-1", "--format=%ct", "HEAD", "--", f"jobs/{name}/output/STATUS.json", f"jobs/_attempts/{name}")
+    stamp = out.stdout.strip() if out.returncode == 0 else ""
+    if not stamp.isdigit():
+        return None
+    import time
+    return ((now if now is not None else time.time()) - int(stamp)) / 3600
+
+
+def stale_daily_jobs(hours=DAILY_STALE_HOURS, now=None):
+    """DAILY jobs with no receipt, or whose newest receipt is older than `hours`."""
+    stale = []
+    for name in daily_jobs():
+        age = receipt_age_hours(name, now)
+        if age is None or age > hours:
+            stale.append(name)
+    return stale
+
+
 def main():
     event, schedule = os.environ.get("EVENT"), os.environ.get("SCHEDULE") or ""
     sweep = event == "schedule" and schedule not in ("", DAILY_CRON)
     consumers = True
     runtime_tests = False
+    daily_due = []
     if sweep:
         picked = for_changes(recent_changes())
+        daily_due = [name for name in stale_daily_jobs() if name not in picked]
+        picked += daily_due
     elif event == "schedule":
-        picked = sorted(
-            name for name in os.listdir("jobs")
-            if not name.startswith("_") and runnable(name) and os.path.isfile(os.path.join("jobs", name, "DAILY"))
-        )
+        picked = daily_jobs()
     elif os.environ.get("EVENT") == "workflow_dispatch":
-        consumers = os.environ.get("DIAGNOSTIC") != "true"
+        # An Arsenale re-queue (requeue_depth > 0) reruns exactly the refused jobs.
+        consumers = os.environ.get("DIAGNOSTIC") != "true" and not requeue_depth()
         picked = []
         for name in re.split(r"[\s,]+", os.environ.get("INPUT_JOB") or ""):
             name = name.strip().strip("/").removeprefix("jobs/")
@@ -247,10 +288,20 @@ def main():
         picked = ordered(with_consumers(picked) if consumers else picked)
     except ValueError as exc:
         sys.exit(str(exc))
-    downstream = downstream_only(direct, picked) if sweep else []
+    if sweep:
+        # A DAILY job due by age runs at full strength, never as a downstream-only consumer.
+        downstream = [name for name in downstream_only(direct, picked) if name not in daily_due]
+    elif event == "workflow_dispatch":
+        # A re-queued sweep consumer keeps the small web-search budget it ran with.
+        named = set(re.split(r"[\s,]+", os.environ.get("INPUT_DOWNSTREAM") or ""))
+        downstream = [name for name in picked if name in named]
+    else:
+        downstream = []
     print("Jobs to run:", ", ".join(picked) or "none")
     if runtime_tests:
         print("Claim-kit runtime-only push: running unit tests; compiler refresh remains scheduled/manual.")
+    if daily_due:
+        print(f"DAILY jobs with no receipt in {DAILY_STALE_HOURS} hours:", ", ".join(daily_due))
     if downstream:
         print("Running only because a job they read changed:", ", ".join(downstream))
     with open(os.environ["GITHUB_OUTPUT"], "a") as fh:

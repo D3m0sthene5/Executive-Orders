@@ -1,21 +1,21 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-11-02T07:29:51Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-11-06T05:19:11Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 5271 orders** (clark_identified 13, clark_identified_not_in_universe 42, transcription_only 5216).
+**Scope: 3521 orders** (clark_identified 13, clark_identified_not_in_universe 42, transcription_only 3466).
 
 ## Where they stand on the ladder
 
 | Route | Status | Orders |
 |---|---|---:|
-| proquest_phrase_search | manual_lead | 2599 |
-| gpo_bound_volumes | in_volume_range_not_found | 1029 |
-| ofr_hoover_compilation | in_volume_range_not_found | 474 |
-| federal_register | in_ofr_catalog_no_citation | 431 |
+| proquest_phrase_search | manual_lead | 2479 |
 | proquest_local | pinakes_file_record_pages_unchecked | 286 |
-| federal_register | fr_era_not_in_ofr_catalog | 185 |
+| gpo_bound_volumes | in_volume_range_not_found | 169 |
 | federal_register | queued_result_not_published | 128 |
+| federal_register | in_ofr_catalog_no_citation | 121 |
+| ofr_hoover_compilation | in_volume_range_not_found | 115 |
 | federal_register | retrieval_recorded_needs_review | 115 |
+| federal_register | fr_era_not_in_ofr_catalog | 84 |
 | federal_register | queued_not_attempted_budget | 22 |
 | proquest_supplied_link | awaiting_acquisition | 2 |
 
@@ -33,8 +33,8 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 | Owner | Orders |
 |---|---:|
-| owner | 2601 |
-| agent_check | 2520 |
+| owner | 2481 |
+| agent_check | 890 |
 | machine_job | 150 |
 
 ## First twenty rows
@@ -64,25 +64,25 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Web search (online stage)
 
-100 of 5271 targets advanced this run (4786 never searched yet); 824 of 1500 requests used. 7057 hits on file, 83 pages confirmed to name the order (54 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+100 of 3521 targets advanced this run (2939 never searched yet); 730 of 1500 requests used. 8315 hits on file, 91 pages confirmed to name the order (58 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
 | bing_api | needs_key |
 | bing_rss | blocked_by_robots_txt |
-| brave_api | needs_key |
+| brave_api | blocked_by_robots_txt |
 | brave_html | blocked_by_robots_txt |
-| duckduckgo_html | http_403 |
-| duckduckgo_lite | http_403 |
+| duckduckgo_html | error |
+| duckduckgo_lite | error |
 | federal_register_api | ok |
 | google_books | http_429 |
 | google_cse | needs_key |
 | govinfo_search_page | ok |
 | hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
-| loc_books | error |
-| loc_manuscripts | error |
-| loc_newspapers | error |
+| loc_books | http_429 |
+| loc_manuscripts | http_429 |
+| loc_newspapers | http_429 |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
