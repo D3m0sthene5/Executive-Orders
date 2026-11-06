@@ -135,7 +135,8 @@ true (the neighbour really is on the page). The negative was corrected to keep t
 the text, and the score is taken on the order's own segment, between the previous closing number tag and its own.
 Second, orders issued as families (codes of fair competition, veterans regulations, land withdrawals for resurvey)
 share rare wording, and 49 neighbour negatives still passed; the neighbour margin rule removed all 49 while keeping
-75 of 77 positives. Both additions are local to the Mabillon job; Tischendorf was not edited. Its own routes also read
+75 of 77 positives (figures from the run before the volume route; with it, 0 of 6,834 negatives and 86 of 88
+positives). Both additions are local to the Mabillon job; Tischendorf was not edited; the coordinator will port both rules there. Its own routes also read
 whole pages, so the same neighbour risk may apply there (recorded in Kean, and raised in `QUESTIONS.md`).
 
 A ProQuest replica pre-check by the same method was considered and not built: only 68 of the 2,558 frame replicas

@@ -27,7 +27,7 @@ added here, each forced by this job's planted controls:
    matched, and on inspection all 11 were real: the next order is printed on the same page.
 2. **Neighbour margin.** Orders issued as families (codes of fair competition, veterans regulations, land
    withdrawals for resurvey) share rare wording. The claimed order's text must beat the text of every order numbered
-   within 3 of it by at least 0.15. Without it, 49 of 4,382 neighbour negatives were accepted; with it, 0.
+   within 3 of it by at least 0.15. Without it, 49 of 4,382 neighbour negatives were accepted (measured before the volume route was added); with it, 0.
 
 The independent witness is the American Presidency Project's transcription. It labels each order independently of
 these scans; it is not a second official printing.
