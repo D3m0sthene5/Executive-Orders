@@ -261,6 +261,7 @@ def main():
         started = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         inputs = repo / "oversized/runner-freshness" / (name + "-inputs.json")
         code, blocked, active, stopped, captured = 1, [], False, False, False
+        generation = None
         file_limit = LIMIT
         try:
             blocked = [dep for dep in freshness.lines(folder / "after.txt") if dep in failed]
@@ -275,6 +276,11 @@ def main():
             freshness.prepare(name)
             freshness.capture(name, inputs)
             captured = True
+            # Justinian 2026-11-06: one generation id per job execution, the run token plus the
+            # sha256 of the input manifest this run captured. The job writes it into its own
+            # outputs (JOB_GENERATION_ID) and STATUS.json records the same value, so a reader can
+            # refuse outputs whose files come from different executions.
+            generation = token + ":" + json.loads(inputs.read_text(encoding="utf-8"))["inputs_sha256"]
             file_limit = output_file_limit(folder)
             if backup.exists():
                 raise RuntimeError("previous generation backup already exists")
@@ -290,7 +296,7 @@ def main():
             cache.mkdir(parents=True, exist_ok=True)
             env = {**os.environ, "JOB_CACHE_MB": str(cap), "JOB_CACHE_DIR": str(cache),
                    "JOB_NAME": name, "JOB_DIR": str(folder), "OUTPUT_DIR": str(out), "REPO_ROOT": str(repo),
-                   "JOB_PRIOR_OUTPUT_DIR": str(backup)}
+                   "JOB_PRIOR_OUTPUT_DIR": str(backup), "JOB_GENERATION_ID": generation}
             if name in downstream and is_web_search_job(folder):
                 env["JOB_MAX_REQUESTS"] = str(PUSH_WEB_REQUESTS)
                 print(f"[Rattle Watch] {name} runs only because a job it reads changed on this push: web search "
@@ -323,7 +329,14 @@ def main():
                     target.parent.mkdir(parents=True, exist_ok=True)
                     shutil.move(str(path), str(target))
                     moved.append(relative.as_posix())
-            status = {"job": name, "result": "succeeded" if code == 0 else "blocked" if blocked else "failed",
+            # A job that refuses by design writes output/BLOCKED.json {"reason": ...} and exits non-zero.
+            refusal = None
+            if code and (result / "BLOCKED.json").is_file():
+                try:
+                    refusal = str(json.loads((result / "BLOCKED.json").read_text(encoding="utf-8")).get("reason"))
+                except (OSError, ValueError, AttributeError):
+                    refusal = "unreadable BLOCKED.json"
+            status = {"job": name, "result": "succeeded" if code == 0 else "blocked" if blocked or refusal else "failed",
                       "exit_code": code, "started_utc": started,
                       "finished_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                       "commit_run": os.environ.get("GITHUB_SHA"), "branch": os.environ.get("GITHUB_REF_NAME"),
@@ -331,7 +344,10 @@ def main():
                       "run_url": os.environ.get("RUN_URL") or "/".join((os.environ.get("GITHUB_SERVER_URL", ""), os.environ.get("GITHUB_REPOSITORY", ""), "actions/runs", os.environ.get("GITHUB_RUN_ID", ""))),
                       "machine": f"{platform.platform()}, Python {platform.python_version()}",
                       "max_output_file_bytes": file_limit,
-                      "oversized_files_moved_to_run_download": moved, "blocked_by": blocked}
+                      "oversized_files_moved_to_run_download": moved, "blocked_by": blocked,
+                      "generation_id": generation}
+            if refusal:
+                status["blocked_reason"] = refusal
             write(result / "STATUS.json", status)
             if captured:
                 shutil.copyfile(inputs, result / freshness.MANIFEST)
