@@ -44,3 +44,10 @@ are 30-100 MB). Tests (`test_acting.py`, offline) run first.
 ## Overlap with Ptolemy and Pothier (checked 2026-11-06, `research/selden/tools/overlap.py`, `research/selden/census/OVERLAP.json`)
 
 74 of the 1,360 source records name a daily-issue URL that is also on Ptolemy's request list (`jobs/ptolemy-custody/REQUESTS.jsonl`), with the same sha256; none is in Pothier's sources. Later runs carry every held page or text forward with no request, so none of these is fetched again.
+
+## Reading the PREMIS fields
+
+`gpo_premis_match` is the fixity result: true when the SHA-256 of the bytes we downloaded equals the SHA-256 GPO
+publishes in the package's PREMIS record (`gpo_premis_sha256`). `gpo_premis_result` is the raw result of
+`fixity.check_one`, which this job calls with no recorded hashes of its own, so it reads "mismatch" whenever GPO's
+record has a digest. Ignore it; it will be dropped or renamed at the next code change that needs a rerun anyway.

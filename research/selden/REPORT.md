@@ -158,8 +158,17 @@ pattern recurs across the 1,814. This is ask A-20261106-1.
 - **Stale packets.** Merging `main` after the proof packets were sealed changed
   `jobs/claim-kit/source_supplement.py`. Every packet was refused at apply and had to be prepared again. Merge before
   sealing packets, never after.
+- **Packets inside the research tree.** Proof packets live under `research/selden/proof/packets/`, which the claim
+  kit's prior-research scan reads. When batch b5 and a later Federal Register run added files naming b4's orders, b4
+  could no longer complete ("changed prior research"). Its three submissions were sealed again as b4r and reviewed
+  by two fresh blind reviewers, about 9 USD and 15 minutes. Run retries of an order only after every batch naming
+  it has completed.
 - **Unbound statutes.** Statutes named as acting on an order but not printing its number were held but not bound
   into packets, so producers could not cite them. Fixed in `proof/tools/supplement.py`.
+- **A misleading field.** In `selden-fr-acting/output/SOURCES.jsonl`, `gpo_premis_result` reads "mismatch" for
+  the 803 issues whose bytes do match GPO's PREMIS SHA-256 (`gpo_premis_match: true`). The job calls the shared fixity
+  check with no recorded hashes, so that raw field compares against nothing. The README says to ignore it. It was
+  not fixed tonight, because a code change re-runs about 20 GB of downloads.
 - **Worker processes.** `claude -p` workers cannot authenticate in this container, so the proof's producers and
   reviewers ran as subagents of this session. `jobs/bentham/sessions.py` found no transcripts on this machine, so
   `proof/telemetry/WORKERS.csv` records each worker's model and the total tokens the Agent tool reported.

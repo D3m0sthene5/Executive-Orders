@@ -61,3 +61,12 @@ minutes (Kean F-20261106-selden-fr-api-400). Fixed; the job now fails when most 
 **Default plan:** run the 30-order proof now (24 orders in three batches; the 3 PLO-dependent orders after the v2
 re-read; 3 orders are blocked by own-text custody, Ptolemy's lane), then the report and the PR. If you would rather
 I publish the held sources and the census first and run the proof afterwards, say so.
+
+## Q6. Final status at 11:10 UTC (no answer needed)
+
+The proof finished: 8 of 30 filed after two-arm blind review. Selden texts decided 3 of them: EO 7951 and 8480 (PLO
+pages) and EO 13934 (FR texts). 3 were rejected, 16 blocked, and 3 refused at screening; all 5 planted controls were
+caught by both arms. Claims are in `research/readiness/claims/claude-2026-11-06-selden-{b1r,b3r,b4r,b5}.jsonl` (8
+lines). Outcomes are in `proof/OUTCOMES.csv` and conclusions in `REPORT.md`. The Bentham gate says PILOT. Owner ask
+A-20261106-1: a statute that ends a body without naming the order. Respecting the freeze: nothing pushed to `main`,
+and PR #167 stays unmerged and count-changing.

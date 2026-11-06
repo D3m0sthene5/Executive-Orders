@@ -1,3 +1,22 @@
+## 2026-11-06 06:10 ET (Claude, Selden: texts of the later instruments that act on an order)
+
+- **Done:** branch `claude/selden-acting-instruments`, PR [#167](https://github.com/D3m0sthene5/Executive-Orders/pull/167). It is COUNT-CHANGING, so it waits for the owner; do not merge it during the freeze.
+  - Census in `research/selden/census/`: 16,322 leads, 2,401 named instruments not held.
+  - Three zero-token jobs, verified on Actions: `selden-fr-citers` (FR full text from 1994, 13,138 orders), `selden-fr-acting` (1936-93 FR pages, 803 issues matching GPO's PREMIS) and `selden-statutes` (2,179 Statutes at Large).
+  - The locator is measured: 77% recall, and 0 of 21,940 planted negatives located.
+- **Result:**
+  - 818 of 1,015 unheld non-order instruments are now held.
+  - Proof: 8 of 30 random decided orders filed after two-arm blind review, 3 of them decided by Selden texts. All 5 planted controls were caught.
+  - Most remaining blocks need a current-source grade, a fact date or an owner ruling, not a text (`research/selden/REPORT.md`, F-20261106-1).
+- **Next:**
+  - Fix EO 8116 (Proclamation 2416 is held) and refile.
+  - Mabillon: take `research/selden/ACTING_EO_TEXTS_NEEDED.csv`.
+  - Gratian: add `selden-fr-acting` to `later-events/after.txt` after the merge.
+- **Asks:** @Owner: A-20261106-1 (statute ending a body without naming the order); merge #167 or decide.
+- **Do not:**
+  - Re-run `selden-fr-acting` for a cosmetic change. It downloads about 20 GB; `gpo_premis_result` is a known misleading field, so use `gpo_premis_match`.
+  - Put retries of one order into overlapping proof batches.
+
 ## 2026-11-06 05:10 ET (Claude, Justinian: repair wave A-F)
 
 - **Done:**

@@ -40,7 +40,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 182; `search` finds the rest)
+## Newest results (6 of 183; `search` finds the rest)
 
 - 2026-11-06 F-20261106-selden-supplement-decided-only **analysis**: Route newly held later-instrument texts (Selden) into claim-kit packets with jobs/claim-kit/source_supplement… Lesson: Extending source_supplement (or an equivalent excerpt step) to the overlay route is needed before held acting texts can serve the 10,681 undecided orders; the coordinator has taken it up.
 - 2026-11-06 F-20261106-selden-fr-api-400 **failed**: selden-fr-citers first full runs (lane run and two runner shards) searched 13,138 orders through the Federal… Lesson: Same lesson as F-20261105-tischendorf-2, which this session read and did not apply: smoke-test every live route on a handful of real items before a full run, and make a job fail when most of its requ…
@@ -49,4 +49,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-06 F-20261106-mabillon-neighbours **analysis**: Apply Tischendorf's fingerprint rule unchanged to whole printed pages of GPO volumes, with neighbour negatives Lesson: A text fingerprint needs neighbour negatives and a uniqueness margin wherever pages hold several orders; Tischendorf's page-reading routes may carry the same risk
 - 2026-11-06 F-20261106-mabillon-nara **worked**: Read NARA's keyless AWS Open Data catalog export for Record Group 11 in full (400 chunks, 231 MB, 63 s on a r… Lesson: Read the archive's own bulk export before asking for an API key: it answers what is digitized for free, and the answer here was no
 
-Register: 45 owner decisions, 26 answered questions, 182 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 45 owner decisions, 26 answered questions, 183 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
