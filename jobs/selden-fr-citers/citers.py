@@ -133,16 +133,20 @@ def control_pairs(repo: Path, cat, limit=80):
 
 class Run:
     def __init__(self, out: Path, cache: Path, workers=4, transport=None, max_requests=12000, max_minutes=280,
-                 commit_bytes=200_000_000, max_doc_bytes=400_000, per_order_docs=40, prior=None, interval=0.2):
+                 commit_bytes=200_000_000, max_doc_bytes=400_000, per_order_docs=40, prior=None, interval=0.1):
         self.out, self.max_requests, self.deadline = out, max_requests, time.monotonic() + max_minutes * 60
         self.commit_bytes, self.max_doc_bytes, self.per_order_docs = commit_bytes, max_doc_bytes, per_order_docs
-        self.pool = FetchPool(cache / "fr", workers=workers, per_host=min(4, workers), transport=transport,
+        # At the shared pool's ceiling (owner, 2026-11-06: download as fast as allowed): 6 requests in flight per
+        # host, 0.1 s apart, robots.txt still obeyed; orders are processed on `workers` threads.
+        self.pool = FetchPool(cache / "fr", workers=workers, per_host=6, transport=transport,
                               max_bytes=12_000_000, timeout=90, user_agent=UA, min_interval=interval,
                               max_cache_bytes=1024 ** 3)
         self.prior = prior or {}
         self.committed = 0
         self.sources, self.fragments, self.citations, self.searches, self.failures = {}, [], [], [], []
         self.doc_text = {}   # docnum -> (raw, meta) for this run
+        import threading
+        self.lock = threading.RLock()
         (out / "texts").mkdir(parents=True, exist_ok=True)
 
     def budget(self):
@@ -179,6 +183,10 @@ class Run:
         return self.doc_text[num]
 
     def keep(self, doc, raw, meta, targets, acting_id):
+        with self.lock:
+            return self._keep(doc, raw, meta, targets, acting_id)
+
+    def _keep(self, doc, raw, meta, targets, acting_id):
         num = doc["document_number"]
         if num in self.sources:
             self.sources[num]["instrument_ids"] = sorted(set(self.sources[num]["instrument_ids"]) | set(targets),
@@ -288,8 +296,8 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
         except ValueError:
             prior_state = {}
     prior_src = {r.get("source_id", "")[7:]: r for r in S.read_jsonl(prior_dir / "SOURCES.jsonl")}
-    run = Run(out, cache, workers=int(env.get("JOB_WORKERS") or 4), transport=transport,
-              max_requests=int(env.get("JOB_MAX_REQUESTS") or 12000),
+    run = Run(out, cache, workers=int(env.get("JOB_WORKERS") or 12), transport=transport,
+              max_requests=int(env.get("JOB_MAX_REQUESTS") or 40000),
               max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 100),
               commit_bytes=int(env.get("SELDEN_COMMIT_BYTES") or 120_000_000), prior=prior_src)
     targets, docnum_to_eo, cat = load_targets(repo)
@@ -334,19 +342,33 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
     todo = [t for t in targets if t["id"] not in done_before]
     if limit:
         todo = todo[:limit]
+    shard = env.get("SELDEN_SHARD") or ((HERE / "SHARD").read_text().strip() if (HERE / "SHARD").is_file() else "")
+    if shard:  # "k/n": this runner takes every n-th order starting at k (parallel runner branches)
+        k, nsh = map(int, shard.split("/"))
+        todo = todo[k::nsh]
+    import concurrent.futures
     n = 0
-    for t in todo:
+
+    def one(t):
         if not run.budget():
-            break
+            return t, "budget"
         try:
             run.process(t, docnum_to_eo)
-            done_before.add(t["id"])
-        except (FetchError, ValueError) as e:
-            run.failures.append({"target": t["id"], "error": str(e)[:200]})
-        n += 1
-        if n % 200 == 0:
-            print(f"selden-fr-citers: {n}/{len(todo)} targets, {run.pool.requests} requests, "
-                  f"{len(run.fragments)} fragments", flush=True)
+            return t, None
+        except (FetchError, ValueError, OSError) as e:
+            return t, str(e)[:200]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=int(env.get("SELDEN_ORDER_THREADS") or 12)) as ex:
+        for t, err in ex.map(one, todo):
+            if err == "budget":
+                continue
+            if err:
+                run.failures.append({"target": t["id"], "error": err})
+            else:
+                done_before.add(t["id"])
+            n += 1
+            if n % 200 == 0:
+                print(f"selden-fr-citers: {n}/{len(todo)} targets, {run.pool.requests} requests, "
+                      f"{len(run.fragments)} fragments", flush=True)
     if not ctl["passed"]:
         for f in run.fragments:
             for row in f["data"]:

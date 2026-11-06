@@ -52,6 +52,9 @@ can change counts and waits for the owner's merge.
 
 ## Running
 
-On a push to this folder, daily (`DAILY`), and after `readiness-tracker` and `later-events`. Budget per run:
-`JOB_MAX_REQUESTS` (12,000), `JOB_TIME_BUDGET_MIN` (100), `JOB_WORKERS` (4; at most 4 requests in flight to the
-Federal Register, 0.2 s apart, robots.txt obeyed). Tests (`test_citers.py`, offline) run first.
+On a push to this folder, daily (`DAILY`), and after `readiness-tracker` and `later-events`. At the owner's request
+(2026-11-06) fetching runs at the shared pool's ceiling: orders on `SELDEN_ORDER_THREADS` (12) threads, at most 6
+requests in flight to the Federal Register, 0.1 s apart, robots.txt obeyed. Budget per run: `JOB_MAX_REQUESTS`
+(40,000), `JOB_TIME_BUDGET_MIN` (100). A `SHARD` file (`k/n`) in this folder, or `SELDEN_SHARD`, makes a runner
+take every n-th order from k, so several runner branches can search in parallel; `research/selden/tools/merge_shards.py`
+unites their outputs. Tests (`test_citers.py`, offline) run first.

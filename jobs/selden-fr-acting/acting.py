@@ -117,8 +117,8 @@ class Run:
     def __init__(self, out: Path, cache: Path, workers=4, transport=None, max_requests=3000, max_minutes=240,
                  max_download=30_000_000_000, commit_extract_bytes=80_000_000, premis=None, extract_procs=2):
         self.out = out
-        self.pool = FetchPool(cache / "govinfo", workers=workers, per_host=min(4, workers), transport=transport,
-                              max_bytes=450_000_000, timeout=180, user_agent=UA, min_interval=0.25,
+        self.pool = FetchPool(cache / "govinfo", workers=workers, per_host=6, transport=transport,
+                              max_bytes=450_000_000, timeout=180, user_agent=UA, min_interval=0.1,
                               max_cache_bytes=2 * 1024 ** 3)
         self.max_requests, self.max_download = max_requests, max_download
         self.deadline = time.monotonic() + max_minutes * 60
@@ -283,7 +283,7 @@ def main(repo: Path, out: Path, cache: Path, transport=None, premis=None, env=os
     items = wanted(repo)
     held = fr_pages_held(repo)
     limit = int(env.get("JOB_LIMIT") or 0)
-    run = Run(out, cache, workers=int(env.get("JOB_WORKERS") or 4), transport=transport,
+    run = Run(out, cache, workers=int(env.get("JOB_WORKERS") or 8), transport=transport,
               max_requests=int(env.get("JOB_MAX_REQUESTS") or 3000),
               max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 130), premis=premis, extract_procs=extract_procs)
     prior_dir = Path(env.get("JOB_PRIOR_OUTPUT_DIR") or (HERE / "output"))
@@ -338,7 +338,11 @@ def main(repo: Path, out: Path, cache: Path, transport=None, premis=None, env=os
         except Exception as e:  # a malformed PDF must not stop the run
             return it, f"{type(e).__name__}: {e}"[:300]
     n = 0
-    with concurrent.futures.ThreadPoolExecutor(max_workers=int(env.get("JOB_WORKERS") or 4)) as ex:
+    shard = env.get("SELDEN_SHARD") or ((HERE / "SHARD").read_text().strip() if (HERE / "SHARD").is_file() else "")
+    if shard:
+        k, nsh = map(int, shard.split("/"))
+        todo = todo[k::nsh]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=int(env.get("JOB_WORKERS") or 8)) as ex:
         for it, err in ex.map(safe, todo):
             n += 1
             if err:
