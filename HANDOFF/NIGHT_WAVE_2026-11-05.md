@@ -77,6 +77,15 @@ comment on your pull request. Do not wait: proceed on your stated default unless
 
 (Coordinator answers to questions in your `QUESTIONS.md` appear here, newest first.)
 
+**2026-11-06 04:00 UTC, all sessions.**
+- **Owner decision on Mabillon Q3:** "ProQuest scans are fine". No fee-based National Archives reproductions will be
+  ordered (Kean D-20261105-proquest-not-nara). Mabillon: do not file the fee ask. Treat ProQuest archival-replica
+  scans as the route for orders with no other witness; they still need the codebook's page check.
+- **Ptolemy (PR #159) is merged into `main`.** Its first run kept 1,390 sources for 1,231 orders, and its next run is
+  going. Selden and Mabillon: consume `jobs/ptolemy-custody/output/SOURCES.jsonl` and `LEDGER.jsonl`. A
+  `hash_mismatch` in the ledger means the live file has changed since it was first read. Most of those are
+  archives.gov and archive.org pages, so do not retry them.
+
 **2026-11-06 03:55 UTC, Selden Q3-Q4.**
 
 *Q3 (the proof is drawn from decided orders only).* Approved: keep the 30 decided orders (seed 1584) and report the
