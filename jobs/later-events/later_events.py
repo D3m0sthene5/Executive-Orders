@@ -689,6 +689,7 @@ def build_index(records):
     """Normalise catalog records; drop corrections; keep duplicates visible."""
     index = defaultdict(list)
     rows = []
+    corrections = load_date_corrections()
     for rec in records:
         title = rec.get("title") or ""
         docnum = rec.get("document_number") or ""
@@ -697,6 +698,7 @@ def build_index(records):
         ident = normalize_catalog_number(rec.get("executive_order_number"), title)
         if not ident:
             continue
+        rec = correct_record_dates(ident, rec, corrections)
         signing = rec.get("signing_date") or ""
         if signing and not re.fullmatch(r"\d{4}-\d\d-\d\d", signing):
             signing = ""
@@ -1758,6 +1760,32 @@ def write_jsonl(path, rows):
 CATALOG_COLUMNS = ["id", "executive_order_number_raw", "signing_date", "publication_date", "citation",
                    "document_number", "president", "title", "html_url", "pdf_url", "raw_text_url",
                    "disposition_notes", "post_cutoff", "api_page_source_id"]
+
+
+CATALOG_DATE_CORRECTIONS = Path(__file__).resolve().parent / "CATALOG_DATE_CORRECTIONS.csv"
+
+
+def load_date_corrections(path=None):
+    """{(instrument_id, field): (wrong, correct)} from the committed override table (owner ruling R9)."""
+    path = Path(path or CATALOG_DATE_CORRECTIONS)
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8", newline="") as fh:
+        return {(r["instrument_id"], r["field"]): (r["wrong"], r["correct"]) for r in csv.DictReader(fh)}
+
+
+def correct_record_dates(ident, rec, corrections=None):
+    """Return rec, or a copy with known-wrong signing/publication dates replaced (override table).
+    A value is replaced only while it still equals the recorded wrong value, so an upstream fix passes through."""
+    corrections = load_date_corrections() if corrections is None else corrections
+    out = rec
+    for field in ("signing_date", "publication_date"):
+        wc = corrections.get((ident, field))
+        if wc and rec.get(field) == wc[0]:
+            if out is rec:
+                out = dict(rec)
+            out[field] = wc[1]
+    return out
 
 
 def build_outputs(out_dir, catalog_rows, index, pages_sources, text_docs, universe, decided,
