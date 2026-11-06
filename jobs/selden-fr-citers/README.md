@@ -53,5 +53,5 @@ can change counts and waits for the owner's merge.
 ## Running
 
 On a push to this folder, daily (`DAILY`), and after `readiness-tracker` and `later-events`. Budget per run:
-`JOB_MAX_REQUESTS` (12,000), `JOB_TIME_BUDGET_MIN` (240), `JOB_WORKERS` (4; at most 4 requests in flight to the
+`JOB_MAX_REQUESTS` (12,000), `JOB_TIME_BUDGET_MIN` (100), `JOB_WORKERS` (4; at most 4 requests in flight to the
 Federal Register, 0.2 s apart, robots.txt obeyed). Tests (`test_citers.py`, offline) run first.

@@ -230,6 +230,24 @@ def run_controls(positives, texts, seed=1584):
             "misses": misses[:50], "false_hits": false_hits[:50]}
 
 
+def order_dates(repo: Path):
+    """instrument_id -> signing date (ISO) from jobs/domesday-register (every census order), then later-events'
+    OFR catalog for 1937 on, which wins where both have one."""
+    import csv
+    dates = {}
+    for rel, key, col in (("jobs/domesday-register/output/REGISTER.csv", "instrument_id", "date"),
+                          ("jobs/later-events/output/CATALOG_INDEX.csv", "id", "signing_date")):
+        p = Path(repo) / rel
+        if not p.is_file():
+            continue
+        with open(p, newline="", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                d = (r.get(col) or "").strip()
+                if re.fullmatch(r"\d{4}-\d{2}-\d{2}", d):
+                    dates[r[key]] = d
+    return dates
+
+
 def write_jsonl(path: Path, rows):
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as fh:

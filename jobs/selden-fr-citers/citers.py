@@ -88,6 +88,7 @@ def load_targets(repo: Path):
                 hist.add(json.loads(line).get("instrument_id"))
             except ValueError:
                 pass
+    dates = S.order_dates(repo)
     out = []
     for r in rt:
         iid = r["instrument_id"]
@@ -97,8 +98,9 @@ def load_targets(repo: Path):
         if r["step_ending_or_current_basis"] != "open" and r["step_counterevidence"] != "open":
             continue
         c = cat.get(iid, {})
+        c.setdefault("signing_date", dates.get(iid, ""))
         ready = r["text_evidence_tier"] == "original_supported" and (r["provisional_status"] or iid in hist)
-        out.append({"id": iid, "number": eo[0], "signing_date": c.get("signing_date") or "",
+        out.append({"id": iid, "number": eo[0], "signing_date": c.get("signing_date") or dates.get(iid, ""),
                     "publication_date": c.get("publication_date") or "", "own_doc": c.get("document_number") or "",
                     "priority": 0 if ready else 1})
     # Ready orders first, newest first (they have the most later citers), then the rest.
@@ -136,7 +138,7 @@ class Run:
         self.commit_bytes, self.max_doc_bytes, self.per_order_docs = commit_bytes, max_doc_bytes, per_order_docs
         self.pool = FetchPool(cache / "fr", workers=workers, per_host=min(4, workers), transport=transport,
                               max_bytes=12_000_000, timeout=90, user_agent=UA, min_interval=interval,
-                              max_cache_bytes=3 * 1024 ** 3)
+                              max_cache_bytes=1024 ** 3)
         self.prior = prior or {}
         self.committed = 0
         self.sources, self.fragments, self.citations, self.searches, self.failures = {}, [], [], [], []
@@ -288,7 +290,7 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
     prior_src = {r.get("source_id", "")[7:]: r for r in S.read_jsonl(prior_dir / "SOURCES.jsonl")}
     run = Run(out, cache, workers=int(env.get("JOB_WORKERS") or 4), transport=transport,
               max_requests=int(env.get("JOB_MAX_REQUESTS") or 12000),
-              max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 240),
+              max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 100),
               commit_bytes=int(env.get("SELDEN_COMMIT_BYTES") or 120_000_000), prior=prior_src)
     targets, docnum_to_eo, cat = load_targets(repo)
     limit = int(env.get("JOB_LIMIT") or 0)
