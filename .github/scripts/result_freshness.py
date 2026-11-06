@@ -12,6 +12,7 @@ command materializes matching tracked sparse inputs before a job starts.
 from __future__ import annotations
 
 import argparse
+import ast
 import fnmatch
 import hashlib
 import json
@@ -195,19 +196,139 @@ def valla_direct_reads(patterns):
     return paths
 
 
+LIBRARY = "jobs/_lib"
+# The runner itself executes this library file for every job (run_jobs.py).
+RUNNER_LIBRARY = ("jobs/_lib/cache_cap.py",)
+
+
+def _imported_names(path):
+    """Every module name a Python file imports, including local and conditional imports."""
+    tree_ = ast.parse(Path(path).read_text(encoding="utf-8"), filename=str(path))
+    names = set()
+    for node in ast.walk(tree_):
+        if isinstance(node, ast.Import):
+            names.update(alias.name.split(".")[-1] for alias in node.names)
+        elif isinstance(node, ast.ImportFrom):
+            names.add((node.module or "").split(".")[-1])
+            names.update(alias.name for alias in node.names)
+    return names
+
+
+def library_closure(name, patterns):
+    """Justinian (2026-11-06): the jobs/_lib files a job can load, or None if unknown.
+
+    A shared module the job's Python never imports (directly, through another
+    imported library module, or through a literal .py input it declares) cannot
+    change its outputs, so a change to it must not discard the job's results.
+    Non-Python library files (engine lists, benchmarks) and the runner's own
+    library helpers stay in every scope. Any unreadable or unparsable source
+    returns None, and the caller keeps the whole library.
+    """
+    library = Path(LIBRARY)
+    if not library.is_dir():
+        return None
+    modules = {p.stem: p for p in library.glob("*.py") if not p.name.startswith("test_")}
+    sources = []
+    folder = Path("jobs") / name
+    for path in folder.rglob("*.py"):
+        rel = path.relative_to(folder).parts
+        if any(p in {"output", "data", "__pycache__"} for p in rel) or path.name.startswith("test_"):
+            continue
+        sources.append(path)
+    for value in patterns:
+        if value.endswith(".py") and not any(c in value for c in "*?[") and Path(value).is_file():
+            sources.append(Path(value))
+    try:
+        found = set()
+        for path in sources:
+            found |= _imported_names(path) & set(modules)
+        pending = list(found)
+        while pending:
+            for dep in (_imported_names(modules[pending.pop()]) & set(modules)) - found:
+                found.add(dep)
+                pending.append(dep)
+    except (OSError, SyntaxError, UnicodeDecodeError, ValueError):
+        return None
+    keep = {modules[m].as_posix() for m in found} | set(RUNNER_LIBRARY)
+    keep |= {p.as_posix() for p in library.iterdir() if p.is_file() and p.suffix != ".py"}
+    return sorted(keep)
+
+
+def runner_scripts():
+    """Runner implementation files; its own unit tests cannot change a job's outputs."""
+    folder = Path(".github/scripts")
+    if not folder.is_dir():
+        return [".github/scripts"]
+    return sorted(p.as_posix() for p in folder.iterdir()
+                  if p.is_file() and not p.name.startswith("test_"))
+
+
+REFERENCE = re.compile(rb'(?<![A-Za-z0-9_./-])((?:research|releases|jobs)/[^"\\\s<>|]+)')
+REFERENCE_PREFIXES = ("research/", "releases/", "jobs/")
+
+
+def referenced_roots(name):
+    """Justinian (2026-11-06): repository paths named inside a job's provider records, or None.
+
+    jobs/<name>/references.txt lists glob patterns of provider files (claims,
+    SOURCES/FRAGMENTS records, provenance). Every research/, releases/ or jobs/
+    path string inside them becomes a freshness root, so the job is versioned on
+    the files its records point at instead of on whole trees. A reference that
+    is not an existing path keeps its nearest existing ancestor (conservative).
+    Returns None when the job declares no references or a provider is unreadable;
+    the caller then keeps the job's needs.txt roots.
+    """
+    declared = lines(f"jobs/{name}/references.txt")
+    if not declared:
+        return None
+    roots = set()
+    try:
+        for pattern in declared:
+            for path in sorted(Path().glob(pattern)):
+                if not path.is_file():
+                    continue
+                roots.add(path.as_posix())
+                for match in REFERENCE.finditer(path.read_bytes()):
+                    ref = match.group(1).decode("utf-8", "replace")
+                    ref = re.split(r"[#?]", ref, 1)[0].rstrip(".,;:)]}'")
+                    p = PurePosixPath(ref)
+                    if not ref.startswith(REFERENCE_PREFIXES) or ".." in p.parts:
+                        continue
+                    while str(p) not in ("", ".") and not Path(str(p)).exists():
+                        p = p.parent
+                    if str(p) not in ("", ".") and str(p) not in ("research", "releases", "jobs"):
+                        roots.add(str(p))
+    except OSError:
+        return None
+    return sorted(roots)
+
+
 def scope(name):
     if not NAME.fullmatch(name):
         raise ValueError(f"Invalid job name: {name!r}")
-    roots = [f"jobs/{name}", "jobs/_lib", ".github/scripts", ".github/workflows/run-jobs.yml"]
-    roots += lines(f"jobs/{name}/needs.txt")
+    declared_patterns = lines(f"jobs/{name}/triggers.txt") + lines(f"jobs/{name}/inputs.txt")
+    library = None if name == "valla" else library_closure(name, declared_patterns)
+    # Valla's materialization certificate binds the whole library and runner folder.
+    roots = [f"jobs/{name}", *(library if library is not None else [LIBRARY]),
+             *(runner_scripts() if name != "valla" else [".github/scripts"]),
+             ".github/workflows/run-jobs.yml"]
+    references = None if name == "valla" else referenced_roots(name)
+    if references is None:
+        roots += lines(f"jobs/{name}/needs.txt")
+    else:
+        # needs.txt stays the checkout declaration; the read scope is the
+        # declared inputs plus the files the job's provider records name.
+        roots += references
     predecessors = lines(f"jobs/{name}/after.txt")
     if any(not NAME.fullmatch(dep) for dep in predecessors):
         raise ValueError(f"Invalid after.txt dependency for {name}")
     roots += [f"jobs/{dep}/output" for dep in predecessors]
-    patterns = lines(f"jobs/{name}/triggers.txt") + lines(f"jobs/{name}/inputs.txt")
+    patterns = list(declared_patterns)
     # This job explicitly enumerates the corpus, rather than just after.txt.
+    # Its open asks come from the Kean register (jobs/kean/register/asks.jsonl,
+    # in its inputs.txt), not HANDOFF notes, so a note edit no longer discards it.
     if name == "daily-digest":
-        patterns += ["jobs/*/output/SUMMARY.json", "jobs/*/output/STATUS.json", "HANDOFF/notes-*.md"]
+        patterns += ["jobs/*/output/SUMMARY.json", "jobs/*/output/STATUS.json"]
     fallback_inventory = False
     referenced_files = []
     dynamic_complete = True
@@ -268,10 +389,13 @@ def literal_prefixes(declared):
         else:
             prefixes.add(".")
     # An ancestor prefix already covers all descendants.
-    result = []
+    if "." in prefixes:
+        return ["."]
+    result, kept = [], set()
     for prefix in sorted(prefixes, key=lambda value: (value.count("/"), value)):
-        if not any(parent == "." or under(prefix, parent) for parent in result):
+        if not any(a in kept for a in _ancestors(prefix)):
             result.append(prefix)
+            kept.add(prefix)
     return result
 
 
@@ -302,11 +426,20 @@ def tracked_entries(ref, declared):
     return select(candidates, declared)
 
 
+def _ancestors(path):
+    parts = path.split("/")
+    return ("/".join(parts[:i]) for i in range(1, len(parts) + 1))
+
+
 def select(entries, declared):
+    # Same result as any(under(p, root) for root in roots): a root matches a path
+    # exactly when it equals the path or one of its "/"-separated ancestors.
+    roots = set(declared["roots"])
+    patterns = declared["patterns"]
     return {p: value for p, value in entries.items()
             if not under(p, declared["exclude"])
-            and (any(under(p, root) for root in declared["roots"])
-                 or any(fnmatch.fnmatchcase(p, pat) for pat in declared["patterns"]))}
+            and (any(a in roots for a in _ancestors(p))
+                 or any(fnmatch.fnmatchcase(p, pat) for pat in patterns))}
 
 
 def tree(ref, declared=None):

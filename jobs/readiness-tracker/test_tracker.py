@@ -508,6 +508,76 @@ class TrackerTest(unittest.TestCase):
         orders, _ = self.run_tracker([claim])
         self.assertEqual(orders["EO:1"]["step_ending_or_current_basis"], "open")
         self.assertEqual(orders["EO:1"]["ready_for_human_review"], "no")
+        # R5 (2026-11-06): the disagreement is a contest, recorded as a blocker, not a gate failure.
+        self.assertEqual(orders["EO:1"]["status_contested"], "yes")
+        self.assertIn("STATUS_CONTESTED", orders["EO:1"]["blockers"])
+        self.assertNotIn("whole_order_status_mismatch", orders["EO:1"]["claim_record_errors"])
+
+    # ---- schema v2 (owner ruling R2) and contests (R5), Justinian 2026-11-06
+    def v2_claim(self, kind="exact", cause="under_original_terms", disposition=None):
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        claim["schema"] = "eo-lifecycle-claim/v2"
+        end = {"date_kind": kind, "first_cause": cause, "actor": "board", "mechanism": "expiration_by_own_terms",
+               "mechanism_note": "reported by its own deadline", "source": SRC}
+        if kind == "interval":
+            end.update(earliest="1950-06-01", latest="1950-06-30")
+        else:
+            end["date"] = "1950-06-30"
+        claim["operative_clauses"][0]["first_end"] = dict(end)
+        claim["whole_order_end"] = dict(end)
+        if disposition:
+            claim["formal_disposition"] = disposition
+        return claim
+
+    def gate(self):
+        sys.path.insert(0, str(self.root / "research/stage19/code"))
+        import claim_gate
+        return claim_gate
+
+    def test_v2_gate_rules(self):
+        g = self.gate()
+        self.assertEqual(g.validate_claim(self.v2_claim(), expected_status="no"), [])
+        self.assertEqual(g.validate_claim(self.v2_claim("interval"), expected_status="no"), [])
+        # not_later_than only with an unresolved first cause, and only with a formal disposition no earlier.
+        nlt = self.v2_claim("not_later_than", "unresolved", {"instrument": "EO:12553", "date": "1986-02-25"})
+        self.assertEqual(g.validate_claim(nlt, expected_status="no"), [])
+        bad = self.v2_claim("not_later_than", "later_presidential", {"instrument": "EO:12553", "date": "1986-02-25"})
+        self.assertIn("clause_0_first_end_not_later_than_requires_unresolved_cause", g.validate_claim(bad))
+        self.assertIn("clause_0_first_end_not_later_than_requires_unresolved_cause",
+                      g.validate_claim(self.v2_claim("exact", "unresolved")))
+        self.assertIn("not_later_than_without_formal_disposition",
+                      g.validate_claim(self.v2_claim("not_later_than", "unresolved")))
+        early = self.v2_claim("not_later_than", "unresolved", {"instrument": "EO:1", "date": "1950-01-01"})
+        self.assertIn("not_later_than_after_formal_disposition", g.validate_claim(early))
+        one_day = self.v2_claim("interval")
+        one_day["operative_clauses"][0]["first_end"].update(earliest="1950-06-30")
+        self.assertIn("clause_0_first_end_interval", g.validate_claim(one_day))
+        mech = self.v2_claim()
+        mech["operative_clauses"][0]["first_end"]["mechanism"] = "own end date"
+        self.assertIn("clause_0_first_end_mechanism", g.validate_claim(mech))
+        filled = self.v2_claim()
+        filled["formal_revocation_after_earlier_cessation"] = True
+        self.assertIn("derived_field_hand_filled:formal_revocation_after_earlier_cessation", g.validate_claim(filled))
+        later = self.v2_claim(disposition={"instrument": "EO:12553", "date": "1986-02-25"})
+        self.assertIs(g.derived(later)["formal_revocation_after_earlier_cessation"], True)
+        self.assertIsNone(g.derived(nlt)["formal_revocation_after_earlier_cessation"])
+        # v1 claims validate unchanged; a contest is not a gate error (R5).
+        self.assertEqual(g.validate_claim(copy.deepcopy(COMPLETE_NO_CLAIM), expected_status="no"), [])
+        self.assertEqual(g.validate_claim(copy.deepcopy(COMPLETE_NO_CLAIM), expected_status="yes"), [])
+        self.assertTrue(g.status_contested(COMPLETE_NO_CLAIM, "yes"))
+        self.assertFalse(g.status_contested(COMPLETE_NO_CLAIM, None))
+
+    def test_v2_exact_is_ready_and_not_later_than_is_not(self):
+        exact = self.v2_claim(disposition={"instrument": "EO:12553", "date": "1986-02-25"})
+        orders, s = self.run_tracker([exact])
+        self.assertEqual(orders["EO:2"]["ready_for_human_review"], "yes")
+        self.assertEqual(orders["EO:2"]["formal_revocation_after_earlier_cessation"], "yes")
+        nlt = self.v2_claim("not_later_than", "unresolved", {"instrument": "EO:12553", "date": "1986-02-25"})
+        orders, s = self.run_tracker([nlt])
+        self.assertEqual(orders["EO:2"]["ready_for_human_review"], "no")
+        self.assertIn("FIRST_END_UNRESOLVED", orders["EO:2"]["blockers"])
+        self.assertEqual(orders["EO:2"]["whole_end_date_kind"], "not_later_than")
+        self.assertEqual(s["whole_end_date_kind"], {"not_later_than": 1})
 
     def test_bad_exhausted_record_is_reported_not_counted(self):
         orders, s = self.run_tracker([], [{"instrument_id": "EO:2", "step": "savings_residuals", "searched": []}])
