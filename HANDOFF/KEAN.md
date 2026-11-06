@@ -36,13 +36,13 @@ Nothing.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 187; `search` finds the rest)
+## Newest results (6 of 188; `search` finds the rest)
 
+- 2026-11-06 F-20261106-merge-167-selden **analysis**: Merge COUNT-CHANGING PR #167 (Selden acting-instrument texts) at the owner's request to merge every open PR:… Lesson: A new job's branch outputs are its only generation; restore main's outputs only for jobs that already exist on main.
 - 2026-11-06 F-20261106-mabillon-volumes **worked**: Locate every order inside the committed OCR page dumps of the Commons GPO volumes 5800-8027, which hathi-gpo-… Lesson: A job's committed intermediate data (page dumps, OCR) can serve orders outside its original target list; look before refetching
 - 2026-11-06 F-20261106-mabillon-neighbours **analysis**: Apply Tischendorf's fingerprint rule unchanged to whole printed pages of GPO volumes, with neighbour negatives Lesson: A text fingerprint needs neighbour negatives and a uniqueness margin wherever pages hold several orders; Tischendorf's page-reading routes may carry the same risk
 - 2026-11-06 F-20261106-mabillon-nara **worked**: Read NARA's keyless AWS Open Data catalog export for Record Group 11 in full (400 chunks, 231 MB, 63 s on a r… Lesson: Read the archive's own bulk export before asking for an API key: it answers what is digitized for free, and the answer here was no
 - 2026-11-06 F-20261106-mabillon-held **worked**: Prove by text the government-printed passages hathi-gpo-orders already holds (GPO bound volumes, 1974 GPO Hoo… Lesson: Check what an existing job already holds under the wrong class before fetching: the biggest bulk source was in the repository
 - 2026-11-06 F-20261106-justinian-wpa **analysis**: E1: re-parse the Lord 1944 WPA numbered list at its page boundaries for the 46 missing integers. Lesson: Distinguish what a finding aid's parse misses from what the census misses; a missing scan page is not an OCR error.
-- 2026-11-06 F-20261106-justinian-schema-v2 **worked**: C1/C2: claim schema v2 (date_kind, codebook first_cause, mechanism enum, formal_disposition, derived formal_r… Lesson: Prove a gate change count-neutral by running the tracker with old and new code on the same data before asking for a merge.
 
-Register: 45 owner decisions, 26 answered questions, 187 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 45 owner decisions, 26 answered questions, 188 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
