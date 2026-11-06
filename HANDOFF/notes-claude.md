@@ -1,3 +1,11 @@
+## 2026-11-06 01:30 ET: Pothier, family doctrines for the 5,918 undecided orders with no dated history (night wave)
+
+- **Done:** eleven source-grounded family doctrines (`research/pothier/doctrines/`), coordinator rulings P1-P8 (`research/pothier/COORDINATOR_RULINGS.md`), and the zero-token job `jobs/pothier` (member table, doctrine engine, tests, bounded class-wide source fetch). Report: `research/pothier/REPORT.md`. PR #162 changes no status, codebook, census or count.
+- **Result:** doctrines cover 5,834 members and decide 2,139 status leads (2,088 `no`, 51 `yes`); 3,695 stay `open` with stated reasons. Two blind Opus reviews per doctrine caught 44 of 44 planted errors; a blind 30-member pilot per doctrine caught 22 of 22 controls and found 1 wrong status in 129 decided leads (fixed; 95% upper bound 4.2%) and 10 of 201 open leads decidable. About 15M Opus subagent tokens, 4 h. Kean F-20261106-pothier plus one finding per family. Certified 0.
+- **Next:** after #162 merges, the runner fetches the 128 class-wide sources (`fetch.py`); mark them held in the doctrines and rerun. Selden takes the 237 per-order acting instruments in `research/pothier/FOR_SELDEN.csv` (mostly Public Land Order texts). Biggest unlocks: BLM MLRS withdrawal cases, the Forest Service chronology, plat filing dates. After the owner answers, propose Jacquard-style sampled adoption of each family's `no` leads.
+- **Asks:** @Owner: A-20261106-pothier (adopt each family doctrine, yes/no per family; are amending orders spent on issue or alive with their text, 601 leads; may `no` leads rest on BLM's PLO tables, about 400 leads; listed in REPORT.md). @Coordinator: research/pothier/QUESTIONS.md Q4-Q5 (the Kean brief is at 8,181 of 8,192 bytes).
+- **Do not:** treat a lead as a status or write it into a status field.
+
 ## 2026-11-06 00:45 ET: Mabillon, bulk sources of official originals (night wave)
 
 - **Done:** `research/mabillon/REPORT.md` and `COVERAGE.md` (frame of 5,943 orders with NO_OFFICIAL_SOURCE_LOCATED; it reproduces Herschel's 5,313 and 1,234). There are three new zero-token jobs with tests and verified runs on the branch:
