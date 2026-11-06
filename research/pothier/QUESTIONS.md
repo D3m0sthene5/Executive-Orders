@@ -27,6 +27,15 @@ Jacquard-style sampled adoption of the `no` leads of a family whose pilot shows 
 so I record `bentham.py gate` results but do not stop on an economic STOP; a planted-control miss sends the doctrine
 back (as briefed).
 
+## Q4. Kean brief size
+
+The Kean brief is capped at 8,192 bytes and main was at 7,912 before this session. The eleven per-family adoption
+asks would not fit, so they are one ask, A-20261106-pothier, whose lines are listed in research/pothier/REPORT.md
+("Owner decisions asked"). After this branch the brief is at 8,181 bytes: the next session to add an ask will need to
+shorten entries or the cap will need raising.
+
+*Default:* leave the one consolidated ask; the per-family asks are recorded and withdrawn as merged.
+
 ## Answers
 
 (empty)

@@ -137,5 +137,16 @@ and 567 cite at least one source not yet held; each lead says so in its gaps.
 
 ## Owner decisions asked (Kean)
 
-One adoption decision per family, plus the cross-family rule on amending orders; see the ask ids in
-`HANDOFF/notes-claude.md` and `HANDOFF/KEAN.md`.
+Kean ask **A-20261106-pothier** collects these decisions in one ask (the Kean brief has a size limit); please answer
+each line separately:
+
+1. **Adopt each family doctrine** as the claim kit's first-step guidance for its members (yes or no per family):
+   PD-LAND-WITHDRAWAL, PD-NATIONAL-FOREST, PD-CS-RULES, PD-ADMIN, PD-MILITARY-RESERVATION, PD-CUSTOMS-CONSULAR,
+   PD-CS-ONE-PERSON, PD-CLASS-EVENTS, PD-INDIAN, PD-REFUGE-LIGHTHOUSE, PD-WAR-EMERGENCY. Adoption lets a producer
+   start from the doctrine's lead, mechanism, sources and gaps; it changes no status, and each order still needs its
+   own claim-kit decision and review. A later ask can propose Jacquard-style sampled adoption of a family's `no` leads
+   (the owner's 2026-10-31 rule: 59-order sample, zero misses).
+2. **Amending orders (601 leads):** spent on issue with their text merged into the parent (ruling P2, as applied), or
+   alive as long as the text they inserted (the leads become `open` until each parent is decided)?
+3. **BLM's Tables of Public Land Orders (about 400 leads):** may a `no` lead rest on the table row before the Public
+   Land Order's own text is acquired (as applied, with the gap disclosed)?
