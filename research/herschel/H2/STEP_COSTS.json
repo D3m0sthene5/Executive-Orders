@@ -1,0 +1,213 @@
+{
+ "original_text": {
+  "workers": [
+   "H2-w01",
+   "H2-w02",
+   "H2-w03"
+  ],
+  "distinct_orders": 19,
+  "worker_order_attempts": 19,
+  "outcomes": {
+   "blocked": 14,
+   "done": 5
+  },
+  "usd": 1.3849,
+  "usd_per_order_attempt": 0.0729,
+  "tokens": {
+   "fresh_input": 70,
+   "cache_read": 2006161,
+   "cache_write": 130734,
+   "output": 19504
+  },
+  "tokens_per_order_attempt": {
+   "fresh_input": 4,
+   "cache_read": 105587,
+   "cache_write": 6881,
+   "output": 1027
+  },
+  "active_seconds": 563
+ },
+ "replace_original": {
+  "workers": [
+   "H2-w04"
+  ],
+  "distinct_orders": 6,
+  "worker_order_attempts": 6,
+  "outcomes": {
+   "blocked": 4,
+   "done": 2
+  },
+  "usd": 0.3454,
+  "usd_per_order_attempt": 0.0576,
+  "tokens": {
+   "fresh_input": 18,
+   "cache_read": 445088,
+   "cache_write": 30112,
+   "output": 6590
+  },
+  "tokens_per_order_attempt": {
+   "fresh_input": 3,
+   "cache_read": 74181,
+   "cache_write": 5019,
+   "output": 1098
+  },
+  "active_seconds": 267
+ },
+ "lifecycle": {
+  "workers": [
+   "H2-w05",
+   "H2-w06",
+   "H2-w07",
+   "H2-w12"
+  ],
+  "distinct_orders": 15,
+  "worker_order_attempts": 17,
+  "outcomes": {
+   "done": 8,
+   "blocked": 9
+  },
+  "usd": 6.1624,
+  "usd_per_order_attempt": 0.3625,
+  "tokens": {
+   "fresh_input": 256,
+   "cache_read": 12219049,
+   "cache_write": 381938,
+   "output": 70908
+  },
+  "tokens_per_order_attempt": {
+   "fresh_input": 15,
+   "cache_read": 718768,
+   "cache_write": 22467,
+   "output": 4171
+  },
+  "active_seconds": 3379
+ },
+ "provisional_status": {
+  "workers": [
+   "H2-w08",
+   "H2-w09"
+  ],
+  "distinct_orders": 13,
+  "worker_order_attempts": 13,
+  "outcomes": {
+   "blocked": 10,
+   "done": 3
+  },
+  "usd": 2.1829,
+  "usd_per_order_attempt": 0.1679,
+  "tokens": {
+   "fresh_input": 112,
+   "cache_read": 3870810,
+   "cache_write": 140060,
+   "output": 33074
+  },
+  "tokens_per_order_attempt": {
+   "fresh_input": 9,
+   "cache_read": 297755,
+   "cache_write": 10774,
+   "output": 2544
+  },
+  "active_seconds": 1652
+ },
+ "review_text": {
+  "workers": [
+   "H2-w10",
+   "H2-w11"
+  ],
+  "distinct_orders": 7,
+  "worker_order_attempts": 14,
+  "outcomes": {
+   "upheld": 12,
+   "control_caught": 2
+  },
+  "usd": 1.6707,
+  "usd_per_order_attempt": 0.1193,
+  "tokens": {
+   "fresh_input": 52,
+   "cache_read": 1465429,
+   "cache_write": 97486,
+   "output": 13138
+  },
+  "tokens_per_order_attempt": {
+   "fresh_input": 4,
+   "cache_read": 104674,
+   "cache_write": 6963,
+   "output": 938
+  },
+  "active_seconds": 343
+ },
+ "review_status": {
+  "workers": [
+   "H2-w13",
+   "H2-w14"
+  ],
+  "distinct_orders": 3,
+  "worker_order_attempts": 6,
+  "outcomes": {
+   "control_caught": 2,
+   "upheld": 4
+  },
+  "usd": 1.7505,
+  "usd_per_order_attempt": 0.2918,
+  "tokens": {
+   "fresh_input": 66,
+   "cache_read": 1784932,
+   "cache_write": 84135,
+   "output": 13276
+  },
+  "tokens_per_order_attempt": {
+   "fresh_input": 11,
+   "cache_read": 297489,
+   "cache_write": 14022,
+   "output": 2213
+  },
+  "active_seconds": 462
+ },
+ "review_lifecycle": {
+  "workers": [
+   "H2-w15",
+   "H2-w16",
+   "H2-w17",
+   "H2-w18"
+  ],
+  "distinct_orders": 8,
+  "worker_order_attempts": 20,
+  "outcomes": {
+   "upheld": 8,
+   "rejected": 6,
+   "control_caught": 6
+  },
+  "usd": 9.2798,
+  "usd_per_order_attempt": 0.464,
+  "tokens": {
+   "fresh_input": 248,
+   "cache_read": 10650259,
+   "cache_write": 366447,
+   "output": 66526
+  },
+  "tokens_per_order_attempt": {
+   "fresh_input": 12,
+   "cache_read": 532513,
+   "cache_write": 18322,
+   "output": 3326
+  },
+  "active_seconds": 1412
+ },
+ "coordination": {
+  "usd": 39.5811,
+  "tokens": {
+   "fresh_input": 434,
+   "cache_read": 55489801,
+   "cache_write": 1285408,
+   "output": 152011
+  },
+  "usd_per_assigned_order": 1.1642
+ },
+ "_notes": [
+  "usd priced by jobs/bentham/measure.py PRICE_TABLE over sessions.py rows since 2026-11-05T23:24Z (mirror config dir of H2 transcripts only)",
+  "lifecycle is one claim-kit producer step covering clause_inventory, ending_or_current_basis, savings_residuals and counterevidence; the kit produces them in one sheet, so the four are not separable",
+  "worker_order_attempts counts an order once per worker that handled it (EO:6249 and EO:6606E twice in lifecycle; reviews count each arm)",
+  "review usd includes after-reveal passes; review_lifecycle includes the rl2 control round (w17,w18) the kit's per-packet control rule required",
+  "OOM-killed passes' tokens are included in their worker's totals"
+ ]
+}

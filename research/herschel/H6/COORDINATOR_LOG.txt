@@ -1,0 +1,151 @@
+START 2026-11-05T23:28:38Z H6 coordinator (round 2)
+PREPARE U2 2026-11-05T23:30:52Z -> 2026-11-05T23:31:14Z
+PREPARE U3 2026-11-05T23:30:52Z -> 2026-11-05T23:31:14Z
+PREPARE U1 2026-11-05T23:30:52Z -> 2026-11-05T23:31:14Z
+PREPARE U4 2026-11-05T23:30:52Z -> 2026-11-05T23:35:30Z
+PREPARE D2 2026-11-05T23:30:52Z -> 2026-11-05T23:35:33Z
+PREPARE D1 2026-11-05T23:30:52Z -> 2026-11-05T23:35:48Z
+NOTE 2026-11-05T23:47:35Z: Route decisions. (1) U1-U3 (24 undecided pre-1937 orders): kit prepare refuses (status-history INDEX has no dated history; 'no dated history located'), so no dossier exists; these run on a manual route (coordinator bundle of held leads tools/bundle.py, kit-layout sheets outside the kit, no apply/batch-check possible, no filing). (2) Dispatch-check blocks on custody: EO:1834 (CSC 30th report PDF not held), EO:13661 (79 FR 15535 PDF custody_record_only), EO:13821 (83 FR 1507 PDF custody_record_only) -> lifecycle steps recorded blocked by coordinator (machine prescreen, no worker). (3) One step per worker: the four claim-sheet steps run as sequential workers on one sheet, each owning its columns; the last production worker closes the row; coordinator runs apply/batch-check by script. This adds per-worker reading overhead versus a single producer pass (bias upward), recorded as a measurement caveat. (4) Scheduler tools/sched.py keeps up to 12 of my workers running. Machine: 2 CPUs, 8 GB RAM shared by 5 coordinators.
+H6-w01 sonnet launched 2026-11-05T23:47:36Z concurrent=3
+H6-w06 sonnet launched 2026-11-05T23:47:36Z concurrent=7
+H6-w03 sonnet launched 2026-11-05T23:47:36Z concurrent=6
+H6-w07 sonnet launched 2026-11-05T23:47:36Z concurrent=9
+H6-w02 sonnet launched 2026-11-05T23:47:36Z concurrent=5
+H6-w08 sonnet launched 2026-11-05T23:47:36Z concurrent=9
+H6-w12 sonnet launched 2026-11-05T23:47:36Z concurrent=9
+H6-w13 sonnet launched 2026-11-05T23:47:36Z concurrent=9
+H6-w14 sonnet launched 2026-11-05T23:47:36Z concurrent=9
+NOTE 2026-11-05T23:48:23Z: machine memory: 21 claude -p workers (all coordinators) use 4.3 GB of 8 GB, no swap, MemAvailable ~1 GB, load 33 on 2 CPUs. Scheduler now defers launches while MemAvailable < 700 MB (logged as MEMGUARD in sched.log) to avoid OOM kills; concurrency below 12 for this reason is a machine limit, recorded.
+H6-w12 done 2026-11-05T23:50:40Z cost 0.4248962999999999
+H6-w06 done 2026-11-05T23:51:14Z cost 0.4194314
+DISPATCH U4 exit 0 2026-11-05T23:51:23Z
+H6-w07 done 2026-11-05T23:51:32Z cost 0.4107488
+LIMIT H6-w13 2026-11-05T23:51:41Z: ation_ms":229045,"uuid":"9eb5c513-0b36-4182-9bd9-8e4261723b92","ttft_stream_ms":5298,"time_to_request_ms":3060,"time_to_request_phases_ms":{"other":203,"system_prompt":220,"resume_other":0,"process_user_
+e_breakpoints_ms":37,"sent_build_surrogate_scan_ms":0},"first_content_frame_ms":5298,"time_to_request_from_spawn_ms":1843876,"warm_spare_claimed":false,"flag_fetch_kick":"not_asked_warm","time_origin_ms"
+H6-w13 done 2026-11-05T23:51:42Z cost 0.5918157000000001
+DISPATCH D2 exit 0 2026-11-05T23:51:58Z
+DISPATCH D1 exit 0 2026-11-05T23:52:00Z
+NOTE 2026-11-05T23:52:12Z: the LIMIT line for H6-w13 at 23:51:41Z is a false positive (launcher regex matched the digits 429/529 inside a UUID/timing field of a successful result); regex tightened. Dispatch-check v2 exit 0 for D1, D2, U4 (assigned subsets); kit workers released.
+H6-w05 sonnet launched 2026-11-05T23:52:17Z concurrent=11
+H6-w04 sonnet launched 2026-11-05T23:52:17Z concurrent=11
+H6-w09 sonnet launched 2026-11-05T23:52:17Z concurrent=11
+H6-w10 sonnet launched 2026-11-05T23:52:17Z concurrent=11
+H6-w11 sonnet launched 2026-11-05T23:52:17Z concurrent=11
+H6-w15 sonnet launched 2026-11-05T23:52:17Z concurrent=11
+H6-w05 done 2026-11-05T23:54:05Z cost 0.2055
+H6-w09 done 2026-11-05T23:54:33Z cost 
+H6-w16 sonnet launched 2026-11-05T23:54:37Z concurrent=10
+H6-w04 done 2026-11-05T23:54:55Z cost 
+H6-w10 done 2026-11-05T23:55:09Z cost 
+H6-w19 sonnet launched 2026-11-05T23:55:19Z concurrent=9
+H6-w11 done 2026-11-05T23:55:20Z cost 
+H6-w21 sonnet launched 2026-11-05T23:55:24Z concurrent=9
+H6-w16 done 2026-11-05T23:55:36Z cost 
+H6-w17 sonnet launched 2026-11-05T23:55:39Z concurrent=9
+H6-w20 sonnet launched 2026-11-05T23:55:44Z concurrent=9
+H6-w19 done 2026-11-05T23:55:44Z cost 
+H6-w15 done 2026-11-05T23:56:02Z cost 
+H6-w21 done 2026-11-05T23:56:06Z cost 
+H6-w17 done 2026-11-05T23:56:07Z cost 
+H6-w18 sonnet launched 2026-11-05T23:56:19Z concurrent=8
+H6-w22 sonnet launched 2026-11-05T23:56:19Z concurrent=8
+H6-w02 sonnet resume 7b16d308-1dd9-49e8-a2ba-0e3541d1f847 launched 2026-11-05T23:58:19Z concurrent=5
+H6-w01 sonnet resume 172a6f1b-04d6-4e79-a00e-9914141ebd37 launched 2026-11-05T23:58:19Z concurrent=5
+H6-w03 sonnet resume cf195808-dee5-48d1-90b7-3beef9f56123 launched 2026-11-05T23:58:19Z concurrent=6
+H6-w04 sonnet resume c9209f95-8b8f-44c0-8704-98c32bd524f1 launched 2026-11-05T23:58:19Z concurrent=6
+H6-w10 sonnet resume de6969cc-e4d9-49f9-8e93-719d3d9a596e launched 2026-11-05T23:58:19Z concurrent=7
+H6-w11 sonnet resume ac39746d-c1c8-4182-b2b8-bc8a6f39dbda launched 2026-11-05T23:58:19Z concurrent=7
+H6-w16 sonnet resume 62934f05-cce7-4fa2-9e9d-47de5d561e2c launched 2026-11-05T23:58:19Z concurrent=7
+LIMIT-EVENTS 2026-11-05T23:58:49Z: 23:51-23:56Z kernel OOM killer ('Memory cgroup out of memory: Killed process <pid> (claude)' / '(python3)') killed my workers w01 w02 w03 w04 w09 w10 w11 w15 w16 w17 w19 w21 (and launcher shells of w08 w14 after they finished). Cause: about 21 claude -p workers across coordinators plus parallel cruden.py scans (about 200 MB each; w01 ran 7 at once) on an 8 GB box with no swap. w09 and w15 had finished their files (accepted). Scheduler bug: it counted an empty (killed) result as done and launched w17-w22 early; those six are discarded (no sheet writes) and replaced by w33-w38. Fixes: killed workers resume their own session (--resume) with a continue prompt; scheduler treats empty results as failed and retries up to 3 times; launch guard MemAvailable >= 1200 MB; prompts now require cruden runs one at a time; stdin closed.
+NOTE 2026-11-05T23:59:30Z: integrator shared rule adopted: launch only if pgrep -fc 'claude -p' < 18 and MemAvailable > 900 MB, else wait 20 s; MEMGUARD logged at most once per minute; heavy helpers one at a time; concurrency 12 is a ceiling; OOM reruns marked oom_rerun in TRACE.
+NOTE 2026-11-06T00:10:33Z: the 7 OOM-reruns (resume of w01 w02 w03 w04 w10 w11 w16) all finished 23:58:54-00:01:53Z; their launcher shells were killed when I restarted the scheduler at 23:59:30Z (they ran inside the old scheduler's task), so the coordinator wrote their LAUNCHES lines from the result files and cleared the stale slots. The scheduler is not restarted again while workers run.
+H6-w33 sonnet launched 2026-11-06T00:10:38Z concurrent=4
+H6-w37 sonnet launched 2026-11-06T00:10:38Z concurrent=6
+H6-w24 sonnet launched 2026-11-06T00:10:38Z concurrent=6
+H6-w35 sonnet launched 2026-11-06T00:10:38Z concurrent=6
+H6-w27 sonnet launched 2026-11-06T00:10:38Z concurrent=6
+H6-w30 sonnet launched 2026-11-06T00:10:38Z concurrent=6
+H6-w33 done 2026-11-06T00:11:28Z rc=0 cost 0.2543841
+H6-w34 sonnet launched 2026-11-06T00:11:31Z concurrent=6
+H6-w30 done 2026-11-06T00:13:26Z rc=0 cost 0.44282430000000006
+H6-w31 sonnet launched 2026-11-06T00:13:31Z concurrent=6
+H6-w27 done 2026-11-06T00:14:13Z rc=0 cost 0.5199443
+H6-w28 sonnet launched 2026-11-06T00:14:18Z concurrent=6
+H6-w24 done 2026-11-06T00:14:33Z rc=0 cost 0.4700228
+H6-w25 sonnet launched 2026-11-06T00:14:38Z concurrent=6
+H6-w32 sonnet launched 2026-11-06T00:14:58Z concurrent=6
+H6-w31 done 2026-11-06T00:14:58Z rc=0 cost 0.3585188
+H6-w28 done 2026-11-06T00:16:03Z rc=0 cost 0.31898950000000004
+H6-w29 sonnet launched 2026-11-06T00:16:05Z concurrent=6
+H6-w25 done 2026-11-06T00:16:27Z rc=0 cost 0.39024629999999993
+H6-w26 sonnet launched 2026-11-06T00:16:31Z concurrent=6
+H6-w35 done 2026-11-06T00:18:07Z rc=0 cost 1.1548015000000003
+H6-w36 sonnet launched 2026-11-06T00:18:11Z concurrent=6
+H6-w34 done 2026-11-06T00:18:55Z rc=0 cost 0.49227210000000005
+H6-w29 done 2026-11-06T00:20:16Z rc=0 cost 0.43601609999999996
+REVIEWQ U2 2026-11-06T00:20:26Z: 2 records, skipped (nothing proposed) ['EO:2280', 'EO:2491', 'EO:3804', 'EO:4155', 'EO:660', 'EO:6798']; plant {"batch": "U2", "records": 2, "controls": ["EO:5615"], "eligible": 2}
+REVIEWQ U2: reviewers H6-w39 (A) and H6-w40 (B) queued
+H6-w39 opus launched 2026-11-06T00:20:31Z concurrent=6
+H6-w40 opus launched 2026-11-06T00:20:31Z concurrent=6
+APPLY D1 2026-11-06T00:19:23Z -> 2026-11-06T00:20:34Z apply_rc=0 batchcheck_rc=0
+H6-w36 done 2026-11-06T00:20:42Z rc=0 cost 0.604378
+H6-w32 done 2026-11-06T00:20:48Z rc=0 cost 0.5745985
+REVIEWQ U3 2026-11-06T00:20:56Z: 4 records, skipped (nothing proposed) ['EO:130', 'EO:2858', 'EO:6131A', 'EO:819½']; plant {"batch": "U3", "records": 4, "controls": ["EO:5757"], "eligible": 4}
+REVIEWQ U3: reviewers H6-w41 (A) and H6-w42 (B) queued
+REVIEWQ D1 2026-11-06T00:20:56Z: nothing proposed; no review. skipped=[]
+H6-w41 opus launched 2026-11-06T00:20:59Z concurrent=6
+H6-w42 opus launched 2026-11-06T00:20:59Z concurrent=6
+H6-w26 done 2026-11-06T00:21:03Z rc=0 cost 0.3292872
+REVIEWQ U1 2026-11-06T00:21:27Z: 2 records, skipped (nothing proposed) ['EO:1911', 'EO:2543', 'EO:3652', 'EO:4559', 'EO:5466', 'EO:6595']; plant {"batch": "U1", "records": 2, "controls": ["EO:3865"], "eligible": 2}
+REVIEWQ U1: reviewers H6-w43 (A) and H6-w44 (B) queued
+H6-w43 opus launched 2026-11-06T00:21:31Z concurrent=7
+H6-w44 opus launched 2026-11-06T00:21:31Z concurrent=7
+APPLY D2 2026-11-06T00:21:04Z -> 2026-11-06T00:21:39Z apply_rc=0 batchcheck_rc=0
+REVIEWQ D2 2026-11-06T00:21:57Z: nothing proposed; no review. skipped=[]
+H6-w40 done 2026-11-06T00:22:55Z rc=0 cost 0.564842
+H6-w37 done 2026-11-06T00:23:11Z rc=0 cost 1.2966341000000001
+H6-w38 sonnet launched 2026-11-06T00:23:19Z concurrent=6
+H6-w39 done 2026-11-06T00:23:54Z rc=0 cost 0.7679568
+H6-w43 done 2026-11-06T00:23:55Z rc=0 cost 0.5872492
+H6-w44 done 2026-11-06T00:24:13Z rc=0 cost 0.6668255999999999
+NOTE 2026-11-06T00:24:26Z: D1 apply/batch-check rc 0: 0 claims (6 blocked). D2: 0 claims (5 blocked, EO:13282 unresolved because the working-text confirmations of its ending sources were owned by no step under the split; a one-order correction worker is queued, outcome file outcomes/ending_or_current_basis-fix.json is not used: its result is recorded from its notes).
+H6-w45 sonnet launched 2026-11-06T00:24:31Z concurrent=4
+H6-w38 done 2026-11-06T00:25:40Z rc=0 cost 0.5363973
+H6-w23 sonnet launched 2026-11-06T00:25:40Z concurrent=4
+H6-w42 done 2026-11-06T00:26:20Z rc=0 cost 1.1183098
+H6-w45 done 2026-11-06T00:26:35Z rc=0 cost 0.4423363
+H6-w41 done 2026-11-06T00:27:44Z rc=0 cost 1.118796
+NOTE 2026-11-06T00:28:13Z: blind reviews U1 (w43,w44) U2 (w39,w40) U3 (w41,w42): planted controls EO:3865, EO:5615, EO:5757 rejected by both arms in each batch (caught 6/6 arm-checks). Reveals queued (resume each reviewer). EO:13282 fix (w45): blocked, needs 68 FR 1133 PDF page images for original_pages_confirmed.
+H6-w23 done 2026-11-06T00:28:15Z rc=0 cost 0.41518130000000003
+H6-w40-reveal opus resume 4cca7edb-e9ef-401b-8432-c41063a74c31 launched 2026-11-06T00:28:19Z concurrent=6
+H6-w42-reveal opus resume 30e844f3-94a0-4e65-9444-b40d9f556c71 launched 2026-11-06T00:28:19Z concurrent=6
+H6-w41-reveal opus resume 9445b479-9744-4947-83f4-7190587ff7fc launched 2026-11-06T00:28:19Z concurrent=6
+H6-w39-reveal opus resume fd29e8db-ea53-466f-a6d0-d9ba3309f627 launched 2026-11-06T00:28:19Z concurrent=6
+H6-w44-reveal opus resume e49d0746-0218-4965-88de-6513c8ab980b launched 2026-11-06T00:28:19Z concurrent=6
+H6-w43-reveal opus resume 8c9f097d-b50f-47dc-aa81-c8d76da44393 launched 2026-11-06T00:28:19Z concurrent=6
+REVIEWQ U4 2026-11-06T00:28:27Z: 2 records, skipped (nothing proposed) ['EO:12896', 'EO:13821', 'EO:8667', 'EO:9431']; plant {"batch": "U4", "records": 2, "controls": ["EO:11350"], "eligible": 2}
+H6-w44-reveal done 2026-11-06T00:28:52Z rc=0 cost 0.7893119999999999
+H6-w43-reveal done 2026-11-06T00:28:55Z rc=0 cost 0.7160032
+H6-w40-reveal done 2026-11-06T00:29:05Z rc=0 cost 0.7512947999999999
+APPLY U4 2026-11-06T00:28:39Z -> 2026-11-06T00:29:05Z apply_rc=0 batchcheck_rc=0
+H6-w42-reveal done 2026-11-06T00:29:06Z rc=0 cost 1.299429
+H6-w41-reveal done 2026-11-06T00:29:07Z rc=0 cost 1.3304181999999998
+H6-w39-reveal done 2026-11-06T00:29:10Z rc=0 cost 0.9911710000000001
+REVIEWQ U4 2026-11-06T00:29:33Z: 2 records, skipped (nothing proposed) ['EO:12896', 'EO:13821', 'EO:8667', 'EO:9431']; plant {"batch": "U4", "records": 2, "controls": ["EO:11350"], "eligible": 2}
+REVIEWQ U4: reviewers H6-w46 (A) and H6-w47 (B) queued
+REVIEWQ D1 2026-11-06T00:29:33Z: nothing proposed; no review. skipped=[]
+REVIEWQ D2 2026-11-06T00:29:33Z: nothing proposed; no review. skipped=[]
+H6-w46 opus launched 2026-11-06T00:29:39Z concurrent=2
+H6-w47 opus launched 2026-11-06T00:29:39Z concurrent=2
+H6-w46 done 2026-11-06T00:32:42Z rc=0 cost 1.3341759999999998
+H6-w47 done 2026-11-06T00:32:56Z rc=0 cost 1.3851731999999997
+NOTE 2026-11-06T00:33:12Z: U4 blind (w46,w47): control EO:11350 (clause end dates moved back 3 years; its status intervals carried no dates, so the plant touched only the lifecycle sheet) rejected on the lifecycle sheet by both arms (caught). Both arms also reject EO:11929's lifecycle sheet (A: earlier-end check list; B: no working-text confirmation for EO 11929's own text); status proposals upheld. Reveals queued.
+CORRECTION 2026-11-06T00:33:18Z: EO:11350's status interval does carry a date (key 'end': 1986-02-25); plant.py shifted only 'to' keys, so the planted status interval was left genuine and only the clause end dates were moved. The control tested the lifecycle sheet only. Same limit applies to the HAND plants if their intervals used 'end' (U1-U3 plants did shift 'to' keys: reviewers cite the shifted 'to' dates).
+H6-w46-reveal opus resume cf4be09a-92dd-4826-b823-a1cb2df1fd34 launched 2026-11-06T00:33:19Z concurrent=2
+H6-w47-reveal opus resume 64bb352b-85a3-435e-aa7e-6b9938c34dc1 launched 2026-11-06T00:33:19Z concurrent=2
+H6-w47-reveal done 2026-11-06T00:33:57Z rc=0 cost 1.5556009999999998
+H6-w46-reveal done 2026-11-06T00:34:07Z rc=0 cost 1.5526173999999997
+NOTE 2026-11-06T00:34:23Z: sessions.py (Hamilton load) refuses transcript 67c1fb18 (discarded OOM-killed H6-w19: last line truncated by the kill). Telemetry runs on a scratch HOME holding only H6 transcripts (symlinks) with a copy of that one minus its partial last line; other coordinators' transcripts excluded so --since does not mix their usage into mine.
+END 2026-11-06T00:37Z H6 summary. All 42 orders reached; every open step attempted by a worker or (3 custody-blocked members) by the dispatch-check prescreen. Workers: 38 production/fix sessions (Sonnet; 6 of them discarded attempts) and 8 Opus blind reviewers (each resumed once for the reveal). USD (sessions.py + measure.py prices, H6 transcripts only): 62.98, of which coordination 21.47, review 11.97, production 29.54 (incl. discarded 0.93). Peak concurrency 11 of mine at 23:52:17Z (at most 9 after the OOM event; after 23:59 the shared memory rule and the step dependencies kept it at 7 or fewer). Limit events: no API rate, usage or overload message was seen; the only limit was machine memory (kernel OOM killer, 23:51-23:56Z, 12 of my workers). Planted controls 4/4 caught by both arms (U1 EO:3865, U2 EO:5615, U3 EO:5757, U4 EO:11350); none missed. Filed claims: 0 (D1, D2 produced no submit rows; U1-U3 manual route cannot file; U4 undecided overlay cannot file to readiness). No status, codebook, census or certified count (0) changed.
+Measurement caveats: (1) the four claim-sheet steps ran as separate sequential workers; each re-reads the rules and the order, so per-step costs overstate a single-producer pass, and one column (working-text confirmations of ending sources) fell between steps (EO:13282). (2) 24 of 30 undecided orders have no status-history record, so the kit cannot hold them; their steps ran on a manual route without kit apply/batch-check. (3) Reviews were run only for records with a status proposal or a submit row (10 of 42); orders blocked at every step were not reviewed (review = not_applicable).
+NOTE 2026-11-06T00:37:34Z: evidence committed (cebe192a); packets folder deleted.

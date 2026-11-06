@@ -8,10 +8,12 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (2)
+## Waiting for the owner (4)
 
 - **A-20261103-1** (2026-11-03, Codex): Provide Bacon-session.bundle or the original Bacon packet directory from EO Session Report? *Original scratch files are inaccessible, no Bacon publication was located, and the frozen sample/review receipts cannot be reconstructed faithfully*
 - **A-20261104-1** (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1? *Scoped occurrence intervals are usable now. Whole-case legal intervals need a separate scientific contract and fresh legal review. This is a contract proposal, not a request to choose case answers or relax production.*
+- **A-20261105-1** (2026-11-05, claude): May the claim kit start an undecided order whose bounded search found no dated later event (an explicit empty history), instead of refusing it? 5,918 of 10,681 undecided orders are refused today. *This is an evidence-rule change; it decides whether most pre-1937 orders can enter the kit before a pre-1937 disposition source is found.*
+- **A-20261105-2** (2026-11-05, claude): What did your weekly usage read in Settings > Usage after the Herschel run (it reset to about 0% at the Ultra upgrade, 2026-11-05 18:25 ET)? *bentham.py calibrate needs one measured pair (run USD about 350, percent used) to show plan lines as a share of a week.*
 
 ## Standing owner requirements
 
@@ -28,13 +30,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 153; `search` finds the rest)
+## Newest results (6 of 151; `search` finds the rest)
 
+- 2026-11-05 F-20261105-tischendorf-2 **partly worked**: Tischendorf first live run: one network request at a time with a single shared request budget Lesson: For any network job: follow jobs/README.md's parallel-workers rule from the start, give each route its own budget, and smoke-test each route on a handful of orders before a full run
+- 2026-11-05 F-20261105-tischendorf-1 **partly worked**: Tischendorf (jobs/tischendorf-originals): prove official printings for transcription-only orders by comparing… Lesson: A held transcription is evidence for locating its own original: comparing wording turns a number-only location into a measured match
 - 2026-11-05 F-20261105-theophilus **worked**: Theophilus wave (Bentham ranks 8 and 11): recover 48 custody-stranded reviewed claims by fresh prepare plus u… Lesson: Run the actual checker on the exact reviewed lines before buying review: it sorts recoverable claims from mechanically blocked ones for free. One-step-away is a source-acquisition queue, not a produc…
 - 2026-11-05 F-20261105-stable-main-publication **worked**: Integrate completed EO work and remove production/reporting publication races Lesson: Successful computation is not publication. Queue automatic writers before checkout, bind receipts to actual inputs, and keep shared inputs stable.
-- 2026-11-05 F-20261105-machiavelli-source-questions **worked**: Examine actual report submission and judicial/collective-bargaining source questions Lesson: Distinguish submission from receipt, source-export time from event time, and a court judgment from the mandate making it effective. New source evidence requires scoped legal application and fresh rel…
-- 2026-11-05 F-20261105-machiavelli-production **partly worked**: Run a disjoint modern undecided EO research and production swarm Lesson: Freeze exact case ownership and distinguish research/status-source approval from first-cessation history and owner adoption; carry cumulative analysis across the gate.
-- 2026-11-05 F-20261105-machiavelli-custody **worked**: Recover exact raw source bytes through the existing bounded queued retention route Lesson: Use exact URL/hash/source-role manifests and existing native retention; a file path or tracker tier is not custody and a whole issue can have a smaller official alternate witness.
-- 2026-11-05 F-20261105-machiavelli-continuation-custody **worked**: Retained85requested representations via9boundednative-acquisition jobs; packagedlargebytes forboundedGithub t… Lesson: Byte custody is not automatic original grade, admission, or legal acceptance. Restore exact original paths before native checks. OptionalNortonpilot cap is not universal gate; ordinary reviewed sourc…
+- 2026-11-05 F-20261105-icecore **stopped at gate**: Ice core probe: 30 orders drawn by decade from each remaining claim-ready stratum (886 NO, 359 YES), run as o… Lesson: A finished wave's yield describes the orders it drew, not the ones left: Tribonian skimmed the NO stratum, so its 47.6% overstated the remaining NO yield about fourteenfold (47.6% against 3.3%). Meas…
+- 2026-11-05 F-20261105-herschel-survey **analysis**: Herschel: free census of all 96,598 open order-steps, two independent probability samples (153 + 85 orders) r… Lesson: Do not run a full agent wave on current holdings: fix zero-agent blockers first (byte retention, overlay write rule, machine later-source searches, pre-1937 disposition source), then re-run Bentham.…
 
-Register: 23 owner decisions, 13 answered questions, 153 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 23 owner decisions, 13 answered questions, 151 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

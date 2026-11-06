@@ -1,0 +1,38 @@
+{
+  "schema": "herschel-research-status-decision/v1",
+  "instrument_id": "EO:5728",
+  "agent": "claude-herschel-H3-w09",
+  "route": "research_only_no_status_history",
+  "approved": false,
+  "identity_confirmed": true,
+  "observations_reviewed": [],
+  "conflict_resolutions": {},
+  "recommended_provisional_status": "no",
+  "rationale": "Identity confirmed: held Hathi printed copy and OFR 1974 compilation OCR of EO 5728 (Sept 29, 1931, Hoover): extends for 10 years the trust period on Otoe and Missouria allotments 'whose trust period expires during the calendar year 1931'. The sole command is a one-time extension with a fixed-length term: each extended period began in 1931 and ran 10 years, so no part could run past 1941-12-31 by the order's own terms (exact per-allotment dates unknown; the latest possible end is 1941-12-31). The command was exhausted by its own term; any later statutory or executive continuation of trust status would be a separate surviving consequence, not this order, and none is held or relied on. Cruden number search finds no later instrument citing it (hits are only its own two texts). Provisional proposal only: both texts are non-original representations (government_printed_copy / OCR compilation), so 'original not yet held; replace and re-check quotes when an official copy is retrieved'. Dossier unavailable, so no TERM: evidence id; held paths cited.",
+  "material_gaps": [
+    "Claim-kit dossier unavailable: `kit.py dossier EO:5728` exits 'no dated history located for EO:5728' and writes nothing (zero-byte file), so there is no evidence map, original_source_id, own-terms, actor chain or lead list to review, no dossier sha256 to bind, and no dossier evidence id (TERM:/ACT:/CURRENT:) can be cited; held file paths are used instead.",
+    "Original-grade confirmation: held text is a machine-read government printed copy (not authenticated as an original) plus a 1974 OFR compilation OCR; no acceptable_as_original record; an acceptable_as_original record with page confirmation (from a dossier) is not available.",
+    "Per-allotment trust expiry dates in 1931 are not held (only the 1941-12-31 outer bound is claimed).",
+    "A held source on any later statutory/executive extension of the Otoe-Missouria trust periods would show a surviving consequence, not an ending of this order; not required for the proposal but not checked beyond Cruden."
+  ],
+  "basis_evidence": [
+    {
+      "id_or_path": "jobs/hathi-gpo-orders/output/texts/EO_5728.txt",
+      "sha256": "a3884c7cb4da53b5308c2817b325fdb9c555d983aefe8402a08e5a8bcbc1cf86",
+      "quote": "whose trust period expires during the calendar year 1931, be, and the same is hereby, extended for a period of 10 years."
+    },
+    {
+      "id_or_path": "jobs/ofr-compilations/output/texts/EO_5728.txt",
+      "sha256": "87fff4d9ebf126f57490d63c0050a377d613a2c553fe08df7b02cb76045d1945",
+      "quote": "whose trust period expires during the calendar year 1931, be, and the same is hereby, extended for a period of 10 years ."
+    }
+  ],
+  "basis_review_confirmed": true,
+  "earlier_endings_checked": true,
+  "partial_scope_checked": true,
+  "savings_checked": true,
+  "current_predicate_checked_through": null,
+  "original_pages_confirmed": false,
+  "dossier_sha256": null,
+  "notice": "Producer research decision only; outside the kit's undecided route because no status history exists. Independent review and owner adoption remain separate."
+}

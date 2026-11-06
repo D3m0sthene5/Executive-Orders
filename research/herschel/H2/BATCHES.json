@@ -1,0 +1,42 @@
+[
+ {
+  "batch": "rt1",
+  "attempted": 25,
+  "submitted": 7,
+  "filed": 7,
+  "controls_missed": 0,
+  "usd": 3.65,
+  "kind": "text.original_text+replace_original",
+  "note": "original_text (19 orders, w01-w03) and replace_original (6 orders, w04); 7 done proposals reviewed by two blind Opus arms (w10,w11), 1 planted identity control caught by both, genuine upheld after reveal; filed = proposals upheld by both (text confirmations/swap records, not lifecycle claims); usd = worker CLI total_cost_usd, coordinator excluded"
+ },
+ {
+  "batch": "rs1",
+  "attempted": 13,
+  "submitted": 3,
+  "filed": 2,
+  "controls_missed": 0,
+  "usd": 3.93,
+  "kind": "status.provisional_status",
+  "note": "provisional_status for 13 undecided orders (w08,w09; both OOM-killed once and resumed): 3 proposals (all NO), 10 blocked; two blind Opus arms (w13,w14); planted EO:5375 caught by both; genuine EO:5375 rejected after reveal by both (number-search record carried over from other orders, contradicts EO 7417 revocation); filed = proposals upheld by both (status proposals, never adopted); usd = sessions.py priced"
+ },
+ {
+  "batch": "rl1",
+  "attempted": 15,
+  "submitted": 8,
+  "filed": 4,
+  "controls_missed": 0,
+  "usd": 13.16,
+  "kind": "lifecycle.no+yes",
+  "note": "lifecycle route (clause_inventory..counterevidence) for 15 decided orders put to producers w05 (yes 6), w06 (noA 5), w07 (noB 4), w12 (NIRA rerun of 6249/6606E); 8 claims; two blind Opus arms w15,w16; planted EO:799 caught by both; filed 4 (799, 10863, 12598, 5930; the last three after the rl2 control round); usd = producers + rl1 reviewers (sessions.py priced), coordinator excluded"
+ },
+ {
+  "batch": "rl2",
+  "attempted": 0,
+  "submitted": 0,
+  "filed": 0,
+  "controls_missed": 0,
+  "usd": 2.28,
+  "kind": "lifecycle.control_round",
+  "note": "kit completion needs a planted control per packet: fresh blind Opus pair w17,w18 reviewed planted EO:12598 (yes) and EO:5930 (noA), both caught by both arms, genuine upheld after reveal; filings counted under rl1"
+ }
+]

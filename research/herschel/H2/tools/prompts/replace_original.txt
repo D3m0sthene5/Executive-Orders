@@ -1,0 +1,17 @@
+You are worker WORKER on the Herschel survey of an empirical legal-history project (repository /home/claude/executive-orders). Never run any command that changes git state (no git add, commit, checkout, stash, reset, pull). You do ONE step, "replace_original", for the orders listed below. Work economically. Record your UTC start time with `date -u +%FT%TZ` first.
+
+THE STEP. Each of these orders currently rests on a transcription (the tracker marks original_copy_replacement_required = yes in jobs/readiness-tracker/output/READINESS_BY_ORDER.csv). The step asks: is an official printing of this order held among the project's bytes, so that the transcription can be swapped for it and every quotation rechecked? Read research/readiness/owner_rulings/2026-10-21-transcription-as-text.md briefly. For each order list its held fragments with `python3 -c "import sys;sys.path.insert(0,'jobs/_lib');import eo_identity as I;import json;print(json.dumps(I.load_fragments('.').get('EO:N',[]),indent=1))"`, read its row in jobs/lewis-originals/output/ROUTES.csv, and check jobs/fr-originals, jobs/ofr-compilations (Hoover compilation volume texts, by number), jobs/hathi-gpo-orders (GPO bound-volume texts, by number), jobs/numbered-early-orders and branch claude/tischendorf-tracker (`git show claude/tischendorf-tracker:jobs/tischendorf-originals/output/FINDS.csv`, read-only). Use `python3 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py number EO:N --write /tmp/claude-0/herschel-H2-work/WORKER/EO_N.json` to search held texts.
+
+An official printing qualifies only if it is a government printing of this order (Federal Register, a GPO bound volume, an official compilation) whose held bytes contain this order's complete text, identified as this order by number or by date and subject in the printing itself. A machine-read (OCR) government printing counts as an official printing held, but say so. If one qualifies: diff it against the transcription the project currently relies on (the app-executive-orders or other transcription fragment) word by word after normalizing whitespace and hyphenation, and list every substantive difference (words, numbers, dates, names). No claim has been filed for these orders, so there are no filed quotations to recheck: record the swap as available and the differences found, which is the quotation recheck any later claim must use.
+
+OUTPUT. Write one JSON object per order, one per line, to /home/claude/executive-orders/research/herschel/H2/steps/WORKER/RESULT.jsonl (create the folder; write nothing else in the repository):
+{"instrument_id":"EO:N","step":"replace_original","outcome":"done" | "blocked:<acquisition that would unblock it>" | "failed:<reason>",
+ "transcription":{"path":"...","sha256_of_file":"..."}, "official_printing":{"held":true|false,"path":null|"...","sha256_of_file":null|"...","kind":"FR|GPO bound volume|OFR compilation|other","machine_read":true|false,"identity_evidence":"<what in the printing names this order>"},
+ "differences":[{"transcription":"...","printing":"...","substantive":true|false}], "minutes":<wall minutes on this order>, "note":"<one sentence>"}
+"done" means a qualifying official printing is held and the diff is recorded. Otherwise blocked:<exact acquisition> (for example "blocked:GPO bound volume page image for EO N").
+
+ORDERS: ORDERLIST
+
+Reply in at most 80 words: counts done/blocked/failed, start and end UTC.
+
+Scratch-file rule: keep any scripts or working files only under /tmp/claude-0/herschel-H2-work/WORKER/ (create it).

@@ -1,0 +1,19 @@
+You are worker WORKER on an empirical legal-history project (repository /home/claude/executive-orders). Never run any command that changes git state, never fetch from the network (no WebFetch, WebSearch, curl or wget), and write files only where this brief says. Step: original_text. You do not decide status or lifecycle.
+
+Orders: ORDERLIST
+
+For each order, find out whether the project already holds an official printing of the order (the copy that authenticates its text: the signed original, the Federal Register printing, an official government compilation printing, or an archival scan of the original), and grade what is held. Use only what the project's jobs already hold. Look, in this order, and stop for an order once you have a definite answer:
+1. `python3 jobs/claim-kit/kit.py dossier EO:N` (prints the order's dossier; read its original/working-text sources, text_representations, source grades and its missing list) and the order's row in jobs/readiness-tracker/output/READINESS_BY_ORDER.csv (blockers, text_evidence_tier, provisional_text_grade).
+2. Held fragments that name the order: `grep -l '"EO:N"' jobs/*/output/FRAGMENTS*.jsonl jobs/*/data/**/FRAGMENTS*.jsonl` and read the matching rows' grade, source, text path and page fields (jobs/fr-originals, jobs/pinakes ProQuest scans, OFR or Hathi compilations, lewis routes and others).
+3. The tischendorf-originals job on another branch: `git show claude/tischendorf-tracker:jobs/tischendorf-originals/output/` lists its outputs (read-only `git show`/`git ls-tree` only; no checkout); look for rows naming the order.
+4. If a scan or page image is held for the order (a file path under the repository), open the image (your Read tool shows images) and do the page check: does the page show this order's number, date and text, and does the held text match it? An archival replica "needs page check" grade is resolved only by looking at the image.
+Spend at most about 6 minutes on any one order; if nothing is held, record the block at once.
+
+Outcome per order, exactly one of:
+- "done:<grade>" when an official copy is held and its identity and pages check (give grade, path, sha256 if recorded, page);
+- "blocked:<acquisition>" when no official copy is held or the held scan fails the page check, where <acquisition> names the exact item that would unblock it (for example "blocked:acquire FR 1934-11-28 p.xxxx scan", "blocked:acquire NARA RG11 original or State Dept compilation printing of EO 280 (1904)"); say which held candidates you rejected and why;
+- "failed:<reason>" only if a tool broke.
+
+Write one JSON object per order, one per line, to /home/claude/executive-orders/research/herschel/H3/steps/WORKER_original_text.jsonl with fields: instrument_id, step "original_text", outcome, held_candidates (list of {path_or_id, grade, why_accepted_or_rejected}), page_check ("passed"|"failed"|"no_image_held"|"not_applicable"), acquisition_needed (string or null), replace_original_possible (true if an official copy is held while the dossier still rests on a transcription), started_utc, ended_utc. Record times with `date -u +%FT%TZ`. Keep any scratch files under /tmp/claude-0/herschel-H3-work/WORKER/ (create it). Write nothing else in the repository.
+
+Reply in at most 80 words: the outcome per order.

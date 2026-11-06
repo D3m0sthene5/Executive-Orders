@@ -1,0 +1,71 @@
+{
+ "schema": "eo-claim-kit-completion/v1",
+ "agent": "claude",
+ "producer_model_family": "Anthropic",
+ "independence_requirement": "same_family_separate_context",
+ "publication": {
+  "mode": "own_claims",
+  "path": "research/readiness/claims/claude-2026-11-05-herschel-H4-q2.jsonl"
+ },
+ "members": [
+  {
+   "instrument_id": "EO:11320",
+   "outcome": "submit",
+   "claim_sha256": "169278bcd5c2ceb3cf61c025f14b53f8d3fea102860702028de95675a5637d17",
+   "claim": {
+    "path": "research/herschel/H4/packets/q2/packet/applied-v2/CLAIMS.proposed.jsonl",
+    "sha256": "955263949a2384fa6c6f4c53676a6cd1d8c97db2bddc9d843559f5aae3cfb5bd",
+    "line": 1
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/herschel/H4/packets/q2/packet/PACKET.json",
+    "sha256": "414bb6d5ee1f249507856c02d70a7f6ec15669ee046992cf3df85caf7c9d753a"
+   },
+   "after_reveal_review": {
+    "path": "research/herschel/H4/packets/q2/packet/reviews/AFTER_REVEAL_A.jsonl",
+    "sha256": "d82e19cf7e82eafbd24ebdd5d50773a7f5e36baf149b74b1ff2654c29e5ed421",
+    "line": 1
+   }
+  },
+  {
+   "instrument_id": "EO:12435",
+   "outcome": "blocked",
+   "reason": "[\"Own-terms end date not established: section 4(b) as amended by EO 12507 (1985-03-22) says the Commission 'shall terminate on April 1, 1986, or thirty days after it submits its final report, whichever occurs first'; no held source dates the submission of the final report, so the first-end date (on or before 1986-04-01) cannot be fixed. The later revocation by EO 12610 (1987-09-30) is not the first end. Missing source: a held record of the date the President's Commission on Organized Crime submitted its final report. Held EO 12507 and EO 12610 texts are only APP transcriptions or unregistered for this clause; the held FR text of EO 12435 also lacks the order heading boundary (own_text_boundary verified_whole_order false).\"]"
+  },
+  {
+   "instrument_id": "EO:10418",
+   "outcome": "blocked",
+   "reason": "[\"End not established: EO 10418 only amends EO 10321 (1952-01-24) by striking out 1950 and inserting 1951; EO 10321 opened returns to the Senate Committee on Rules and Administration 'during the Eighty-second Congress', so the amendment plausibly ends when that Congress ended. Missing held sources: EO 10321's text is not a citable evidence record in this packet, and no held source dates the end of the Eighty-second Congress (3 January 1953). No later order naming EO 10418 or EO 10321 is held.\"]"
+  }
+ ],
+ "controls": [
+  {
+   "instrument_id": "EO:11320",
+   "planted_claim_sha256": "9d41861fb6b441cc4152c13d6c89c9767f98c8a025a0c03ad9110c86891196a6",
+   "seed": {
+    "path": "research/herschel/H4/packets/q2/packet/completion/SEED_RECEIPT_EO_11320.json",
+    "sha256": "cbc9edffeae00e41990cb731c9261b923f360eea64d4bc0f7c55d3df289cbc97"
+   },
+   "review": {
+    "path": "research/herschel/H4/packets/q2/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "81794c0255a9613cf75a0b62de8dd12eddc28511fe8f0d7cff9d99731de941fa",
+    "line": 1
+   },
+   "adjudication": {
+    "path": "research/herschel/H4/packets/q2/packet/completion/CONTROL_ADJUDICATION_EO_11320.json",
+    "sha256": "189bc3412d5c74fccf37655a5e3d5f5a4b2d140e23b292dea02e2d8ece47ccf5"
+   }
+  }
+ ],
+ "receipts": [
+  {
+   "path": "research/herschel/H4/packets/q2/packet/reviews/BLIND_REVIEW_B.jsonl",
+   "sha256": "9018695d68e4f650df8f4bb7496885bf0e5c951d80178646879a2b8e5eb1015a"
+  },
+  {
+   "path": "research/herschel/H4/packets/q2/packet/reviews/AFTER_REVEAL_B.jsonl",
+   "sha256": "d7accb63a4047bf6672db7485f118bda4bc27ffd83a71b04a57b1ea23c728fe5"
+  }
+ ]
+}

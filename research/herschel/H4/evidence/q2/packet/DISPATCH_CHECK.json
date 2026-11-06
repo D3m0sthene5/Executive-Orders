@@ -1,0 +1,1257 @@
+{
+  "checked_ids": [
+    "EO:10418",
+    "EO:11320",
+    "EO:12435"
+  ],
+  "code_pins": {
+    "checker.py": "2e8348066db343557791428e7d084707949ef10dde18063210a9c57d17c8fd6b",
+    "dispatch.py": "19167f9d8ec0dcea98ad0c383d8366d9b9e1261c12092cfaf6e6e221489027c4",
+    "sources.py": "7bb63fdb6f154ee67a568bc690a3d3c081f3d6d39137ec7bb55b7d551695679b"
+  },
+  "dispatchable_ids": [
+    "EO:10418",
+    "EO:11320",
+    "EO:12435"
+  ],
+  "legal_requirement_coverage": "unknown",
+  "members": [
+    {
+      "blockers": [],
+      "instrument_id": "EO:10418",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:10418#whole",
+          "ORIGINAL:EO:10418"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [],
+        "unusable_declared_source_ids": []
+      },
+      "research_tasks": [],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1952-12-10/pdf/FR-1952-12-10.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1952-12-10/premis.xml, checked 2026-10-18T00:55:14Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:10418#whole",
+          "required": true,
+          "source": {
+            "page_or_item": "17 FR 11155, PDF pages 1-1",
+            "sha256": "f262e854f5dad021a355829f2d9c8fd74f86ed798739f12823c37bb6c564f238",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10418.txt",
+            "text_sha256": "2968a145241fb440eb4aa1efaaa14a3d0c42ffd97cb8499f5e64ef71af943cd5",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1952-12-10/pdf/FR-1952-12-10.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1952-12-10/pdf/FR-1952-12-10.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1952-12-10/premis.xml, checked 2026-10-18T00:55:14Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:10418",
+          "required": true,
+          "source": {
+            "page_or_item": "17 FR 11155, PDF pages 1-1",
+            "sha256": "f262e854f5dad021a355829f2d9c8fd74f86ed798739f12823c37bb6c564f238",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10418.txt",
+            "text_sha256": "2968a145241fb440eb4aa1efaaa14a3d0c42ffd97cb8499f5e64ef71af943cd5",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1952-12-10/pdf/FR-1952-12-10.pdf"
+          }
+        }
+      ],
+      "state": "dispatchable_for_research"
+    },
+    {
+      "blockers": [],
+      "instrument_id": "EO:11320",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "Current-law lead lacks an original-source sha256.",
+          "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+          "target provision not located: EO:12553"
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:11320#whole",
+          "ORIGINAL:EO:11320"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "citation_or_pointer_only",
+            "instrument_id": "EO:11320",
+            "kind": "operative_current_law",
+            "reason": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+            "shared_key": "{\"basis_code\":\"cfr_text_reference\",\"source\":{\"page_or_item\":\"22 CFR 1203.735-203 (section_text; GovInfo eCFR XML title 22, amended through 2026-10-13; NODE 22:2.0.8.2.4.2.9.3)\",\"sha256\":\"1ccc7e8d3c0be07a98043661e84bc1e6ab963778bcab2c499127f00b8aca5ae6\",\"url\":\"https://www.govinfo.gov/bulkdata/ECFR/title-22/ECFR-title22.xml\"}}",
+            "task_id": "TASK:5041f2243477dba6fdbe6a85"
+          },
+          {
+            "availability": "citation_or_pointer_only",
+            "instrument_id": "EO:11320",
+            "kind": "operative_current_law",
+            "reason": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+            "shared_key": "{\"basis_code\":\"cfr_text_reference\",\"source\":{\"page_or_item\":\"22 CFR 1203.735-305 (section_text; GovInfo eCFR XML title 22, amended through 2026-10-13; NODE 22:2.0.8.2.4.3.9.5)\",\"sha256\":\"1ccc7e8d3c0be07a98043661e84bc1e6ab963778bcab2c499127f00b8aca5ae6\",\"url\":\"https://www.govinfo.gov/bulkdata/ECFR/title-22/ECFR-title22.xml\"}}",
+            "task_id": "TASK:53ac5249fe565cb278185f26"
+          },
+          {
+            "availability": "citation_or_pointer_only",
+            "instrument_id": "EO:11320",
+            "kind": "operative_current_law",
+            "reason": "Current-law lead lacks an original-source sha256.",
+            "shared_key": "{}",
+            "task_id": "TASK:1b16444cae50780611b48e39"
+          },
+          {
+            "availability": "citation_or_pointer_only",
+            "instrument_id": "EO:11320",
+            "kind": "operative_current_law",
+            "reason": "Current-law lead lacks an original-source sha256.",
+            "shared_key": "{}",
+            "task_id": "TASK:1b16444cae50780611b48e39"
+          },
+          {
+            "availability": "held_not_loaded",
+            "instrument_id": "EO:11320",
+            "kind": "locate_held_provision",
+            "reason": "target provision not located: EO:12553",
+            "shared_key": "EO:12553",
+            "task_id": "TASK:48e06a65c7d130b32bdcd8e2"
+          }
+        ],
+        "unusable_declared_source_ids": []
+      },
+      "research_tasks": [
+        {
+          "availability": "citation_or_pointer_only",
+          "instrument_id": "EO:11320",
+          "kind": "operative_current_law",
+          "reason": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+          "shared_key": "{\"basis_code\":\"cfr_text_reference\",\"source\":{\"page_or_item\":\"22 CFR 1203.735-203 (section_text; GovInfo eCFR XML title 22, amended through 2026-10-13; NODE 22:2.0.8.2.4.2.9.3)\",\"sha256\":\"1ccc7e8d3c0be07a98043661e84bc1e6ab963778bcab2c499127f00b8aca5ae6\",\"url\":\"https://www.govinfo.gov/bulkdata/ECFR/title-22/ECFR-title22.xml\"}}",
+          "task_id": "TASK:5041f2243477dba6fdbe6a85"
+        },
+        {
+          "availability": "citation_or_pointer_only",
+          "instrument_id": "EO:11320",
+          "kind": "operative_current_law",
+          "reason": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+          "shared_key": "{\"basis_code\":\"cfr_text_reference\",\"source\":{\"page_or_item\":\"22 CFR 1203.735-305 (section_text; GovInfo eCFR XML title 22, amended through 2026-10-13; NODE 22:2.0.8.2.4.3.9.5)\",\"sha256\":\"1ccc7e8d3c0be07a98043661e84bc1e6ab963778bcab2c499127f00b8aca5ae6\",\"url\":\"https://www.govinfo.gov/bulkdata/ECFR/title-22/ECFR-title22.xml\"}}",
+          "task_id": "TASK:53ac5249fe565cb278185f26"
+        },
+        {
+          "availability": "citation_or_pointer_only",
+          "instrument_id": "EO:11320",
+          "kind": "operative_current_law",
+          "reason": "Current-law lead lacks an original-source sha256.",
+          "shared_key": "{}",
+          "task_id": "TASK:1b16444cae50780611b48e39"
+        },
+        {
+          "availability": "citation_or_pointer_only",
+          "instrument_id": "EO:11320",
+          "kind": "operative_current_law",
+          "reason": "Current-law lead lacks an original-source sha256.",
+          "shared_key": "{}",
+          "task_id": "TASK:1b16444cae50780611b48e39"
+        },
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:11320",
+          "kind": "locate_held_provision",
+          "reason": "target provision not located: EO:12553",
+          "shared_key": "EO:12553",
+          "task_id": "TASK:48e06a65c7d130b32bdcd8e2"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl, opus_stage11_fetch_meta; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1986-03-03/premis.xml, checked 2026-10-18T00:55:52Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACTOR_TEXT:EO:12553",
+          "required": false,
+          "source": {
+            "page_or_item": "51 FR 7237, PDF pages 9-15",
+            "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+            "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1966-12-15/pdf/FR-1966-12-15.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1966-12-15/premis.xml, checked 2026-10-18T00:55:29Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:11320#whole",
+          "required": true,
+          "source": {
+            "page_or_item": "31 FR 15789, PDF pages 5-5",
+            "sha256": "b3599ac1bd45fc283c9fb5148168fab73153a2ed01552ae6fd9b00540eaba4a8",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_11320.txt",
+            "text_sha256": "2d21ea2dbfb35bb68b1413e5d11ee1ffd61c09acca25e5bd32a91d1f71f14c35",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1966-12-15/pdf/FR-1966-12-15.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1966-12-15/pdf/FR-1966-12-15.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1966-12-15/premis.xml, checked 2026-10-18T00:55:29Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:11320",
+          "required": true,
+          "source": {
+            "page_or_item": "31 FR 15789, PDF pages 5-5",
+            "sha256": "b3599ac1bd45fc283c9fb5148168fab73153a2ed01552ae6fd9b00540eaba4a8",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_11320.txt",
+            "text_sha256": "2d21ea2dbfb35bb68b1413e5d11ee1ffd61c09acca25e5bd32a91d1f71f14c35",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1966-12-15/pdf/FR-1966-12-15.pdf"
+          }
+        }
+      ],
+      "state": "dispatchable_for_research"
+    },
+    {
+      "blockers": [],
+      "instrument_id": "EO:12435",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "Acting identity absent from census: PL:98-368",
+          "Current-law lead lacks an original-source sha256.",
+          "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:12435#sec1",
+          "CLAUSES:EO:12435#sec1-b",
+          "CLAUSES:EO:12435#sec1-b-dup2",
+          "CLAUSES:EO:12435#sec1-b-dup3",
+          "CLAUSES:EO:12435#sec1-c",
+          "ORIGINAL:EO:12435"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "citation_or_pointer_only",
+            "instrument_id": "EO:12435",
+            "kind": "operative_current_law",
+            "reason": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+            "shared_key": "{\"basis_code\":\"statutory_note_reference\",\"source\":{\"page_or_item\":\"18 U.S.C. 1961 note; note 'President’s Commission on Organized Crime; Taking of Testimony and Receipt of Evidence' [USLM note id idd3c0a4b9-b5bd-11f1-a405-86f9ef1fd617]; usc18.xml (sha256 6e533149e4e0383acdc834fe4c8823c43bee6daf1f4f5d0c85ee4bad8ba13705) in xml_uscAll@119-121.zip\",\"sha256\":\"c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142\",\"url\":\"https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip\"}}",
+            "task_id": "TASK:1e5401315f5ca108b632e742"
+          },
+          {
+            "availability": "citation_or_pointer_only",
+            "instrument_id": "EO:12435",
+            "kind": "operative_current_law",
+            "reason": "Current-law lead lacks an original-source sha256.",
+            "shared_key": "{}",
+            "task_id": "TASK:1b16444cae50780611b48e39"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:12435",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:12435:TERM:EO:12435:478b095d41ff43d2@cf9ef2ea530d9714",
+            "task_id": "TASK:95cdd3cc32cf0c5ad37db2d2"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:12435",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:12435:TERM:EO:12435:55c0f129a78569e9@ab6260e249c3dca0",
+            "task_id": "TASK:955e1a3ac97d83f683aa452d"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:12435",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:12435:TERM:EO:12435:3404f89edadbb6fb@ab6260e249c3dca0",
+            "task_id": "TASK:a69acdcf01d175b5d0f3e154"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:12435",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:12435:TERM:EO:12435:6a425fa22ed1fd30@ab6260e249c3dca0",
+            "task_id": "TASK:4d4ff4af64c585afc377f344"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:12435",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:12435:TERM:EO:12435:55c0f129a78569e9@c88f7761d296aa86",
+            "task_id": "TASK:2c782c6fe0199ba96c587ba0"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:12435",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:12435:TERM:EO:12435:3404f89edadbb6fb@c88f7761d296aa86",
+            "task_id": "TASK:2656f590722cb031967e653f"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:12435",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:12435:TERM:EO:12435:6a425fa22ed1fd30@c88f7761d296aa86",
+            "task_id": "TASK:3e8373cdc1b71186fdd1a582"
+          }
+        ],
+        "unusable_declared_source_ids": [
+          "ACT:EO:12435>EO:12507",
+          "ACT:EO:12435>EO:12507@71a4109021456cdc",
+          "ACT:EO:12435>EO:12610@51aafc1ddf6a6d79",
+          "ACT:EO:12435>EO:12610@661ee4f427705868",
+          "TERM:EO:12435:04f91f7d56755023@ab6260e249c3dca0",
+          "TERM:EO:12435:04f91f7d56755023@c88f7761d296aa86",
+          "TERM:EO:12435:3404f89edadbb6fb@ab6260e249c3dca0",
+          "TERM:EO:12435:3404f89edadbb6fb@c88f7761d296aa86",
+          "TERM:EO:12435:55c0f129a78569e9@ab6260e249c3dca0",
+          "TERM:EO:12435:55c0f129a78569e9@c88f7761d296aa86",
+          "TERM:EO:12435:6a425fa22ed1fd30@ab6260e249c3dca0",
+          "TERM:EO:12435:6a425fa22ed1fd30@c88f7761d296aa86"
+        ]
+      },
+      "research_tasks": [
+        {
+          "availability": "citation_or_pointer_only",
+          "instrument_id": "EO:12435",
+          "kind": "operative_current_law",
+          "reason": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+          "shared_key": "{\"basis_code\":\"statutory_note_reference\",\"source\":{\"page_or_item\":\"18 U.S.C. 1961 note; note 'President’s Commission on Organized Crime; Taking of Testimony and Receipt of Evidence' [USLM note id idd3c0a4b9-b5bd-11f1-a405-86f9ef1fd617]; usc18.xml (sha256 6e533149e4e0383acdc834fe4c8823c43bee6daf1f4f5d0c85ee4bad8ba13705) in xml_uscAll@119-121.zip\",\"sha256\":\"c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142\",\"url\":\"https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip\"}}",
+          "task_id": "TASK:1e5401315f5ca108b632e742"
+        },
+        {
+          "availability": "citation_or_pointer_only",
+          "instrument_id": "EO:12435",
+          "kind": "operative_current_law",
+          "reason": "Current-law lead lacks an original-source sha256.",
+          "shared_key": "{}",
+          "task_id": "TASK:1b16444cae50780611b48e39"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:12435",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:12435:TERM:EO:12435:478b095d41ff43d2@cf9ef2ea530d9714",
+          "task_id": "TASK:95cdd3cc32cf0c5ad37db2d2"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:12435",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:12435:TERM:EO:12435:55c0f129a78569e9@ab6260e249c3dca0",
+          "task_id": "TASK:955e1a3ac97d83f683aa452d"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:12435",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:12435:TERM:EO:12435:3404f89edadbb6fb@ab6260e249c3dca0",
+          "task_id": "TASK:a69acdcf01d175b5d0f3e154"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:12435",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:12435:TERM:EO:12435:6a425fa22ed1fd30@ab6260e249c3dca0",
+          "task_id": "TASK:4d4ff4af64c585afc377f344"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:12435",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:12435:TERM:EO:12435:55c0f129a78569e9@c88f7761d296aa86",
+          "task_id": "TASK:2c782c6fe0199ba96c587ba0"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:12435",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:12435:TERM:EO:12435:3404f89edadbb6fb@c88f7761d296aa86",
+          "task_id": "TASK:2656f590722cb031967e653f"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:12435",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:12435:TERM:EO:12435:6a425fa22ed1fd30@c88f7761d296aa86",
+          "task_id": "TASK:3e8373cdc1b71186fdd1a582"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:12435>EO:12507",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/259339",
+            "page_or_item": "Executive Order 12507—Continuance of the President's Commission on Organized Crime; March 22, 1985; APP node 259339; common-crawl capture 2026-01-17T18:50:21Z",
+            "sha256": "78fadaa76cd456724c4ae90614983109eb7300d2900d954b6d675605c2f2cb25",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12507-continuance-the-presidents-commission-organized-crime.txt",
+            "text_sha256": "02994772b6f7291a6ca421779aeced95fecc8e4a65646ed2997c632dd5bd7822",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12507-continuance-the-presidents-commission-organized-crime"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:12435>EO:12507@71a4109021456cdc",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/259339",
+            "page_or_item": "Executive Order 12507—Continuance of the President's Commission on Organized Crime; March 22, 1985; APP node 259339; common-crawl capture 2026-01-17T18:50:21Z",
+            "sha256": "78fadaa76cd456724c4ae90614983109eb7300d2900d954b6d675605c2f2cb25",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12507-continuance-the-presidents-commission-organized-crime.txt",
+            "text_sha256": "02994772b6f7291a6ca421779aeced95fecc8e4a65646ed2997c632dd5bd7822",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12507-continuance-the-presidents-commission-organized-crime"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1987-10-02/premis.xml, checked 2026-10-18T00:55:53Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:12435>EO:12610",
+          "required": false,
+          "source": {
+            "page_or_item": "52 FR 36901, PDF pages 21-22",
+            "sha256": "4a26ec550c492dabadc0d11300b8310171da228ee75c275500d261ab8c8ca753",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12610.txt",
+            "text_sha256": "ec9cc7092397ff7b9d5cdeed2ba05a277dbcca6e84a1a07cb6bd2a478c787a8b",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1987-10-02/premis.xml, checked 2026-10-18T00:55:53Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:12435>EO:12610:effective#0",
+          "required": false,
+          "source": {
+            "page_or_item": "52 FR 36901, PDF pages 21-22",
+            "sha256": "4a26ec550c492dabadc0d11300b8310171da228ee75c275500d261ab8c8ca753",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12610.txt",
+            "text_sha256": "ec9cc7092397ff7b9d5cdeed2ba05a277dbcca6e84a1a07cb6bd2a478c787a8b",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1987-10-02/premis.xml, checked 2026-10-18T00:55:53Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:12435>EO:12610@0f366e4c4365ef96",
+          "required": false,
+          "source": {
+            "page_or_item": "52 FR 36901, PDF pages 21-22; cited revocation/exception/effective provisions; FR-1987-10-02.pdf PDF pages 1-40 of 248",
+            "sha256": "4a26ec550c492dabadc0d11300b8310171da228ee75c275500d261ab8c8ca753",
+            "text_path": "jobs/source-ladder/output/texts/queue_EO_12610_52_FR_36901_PDF_pages_21-22_cited_revocation_exception_effective_provisions_8ea075a1fc.txt",
+            "text_sha256": "073afb5cda1f7fc36748f041d424841b53b850264b5c671cf0d73fac2bc549a5",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:12435>EO:12610@51aafc1ddf6a6d79",
+          "required": false,
+          "source": {
+            "page_or_item": "American Presidency Project web page (transcription; not an official edition)",
+            "sha256": "a90bab05e54e57e449140873cda3d123cddf915b5831f6d2f882d029fdc00a44",
+            "text_path": "jobs/clause-drafts/output/texts/cd-opus_zip-12610-a90bab05e5.txt",
+            "text_sha256": "d5b30775adfbabb63b7370af9925a4599d10f711cc371dc9dc6dc2c22298ba86",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12610-continuance-certain-federal-advisory-committees"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1987-10-02/premis.xml, checked 2026-10-18T00:55:53Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:12435>EO:12610@52bc54211a24b76a",
+          "required": false,
+          "source": {
+            "page_or_item": "52 FR 36901, PDF pages 21-22",
+            "sha256": "4a26ec550c492dabadc0d11300b8310171da228ee75c275500d261ab8c8ca753",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12610.txt",
+            "text_sha256": "ec9cc7092397ff7b9d5cdeed2ba05a277dbcca6e84a1a07cb6bd2a478c787a8b",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:12435>EO:12610@661ee4f427705868",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/251553",
+            "page_or_item": "Executive Order 12610—Continuance of Certain Federal Advisory Committees; September 30, 1987; APP node 251553; common-crawl capture 2025-10-15T21:55:32Z",
+            "sha256": "86c478e9d566407bb80c94ba692e86048bed118e9c8108d11d334afb2742613b",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12610-continuance-certain-federal-advisory-committees.txt",
+            "text_sha256": "013436cc6621a0061a2c7f6214ed785212e77eb82441de022146d86c5cd027b9",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12610-continuance-certain-federal-advisory-committees"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1987-10-02/premis.xml, checked 2026-10-18T00:55:53Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:12435>EO:12610@6690d02e8e92d236",
+          "required": false,
+          "source": {
+            "page_or_item": "52 FR 36901, PDF pages 21-22",
+            "sha256": "4a26ec550c492dabadc0d11300b8310171da228ee75c275500d261ab8c8ca753",
+            "text_path": "jobs/fr-originals/output/texts/EO_12610.txt",
+            "text_sha256": "ec9cc7092397ff7b9d5cdeed2ba05a277dbcca6e84a1a07cb6bd2a478c787a8b",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1985-03-26/pdf/FR-1985-03-26.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1985-03-26/premis.xml, checked 2026-10-18T00:55:51Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACTOR_TEXT:EO:12507",
+          "required": false,
+          "source": {
+            "page_or_item": "50 FR 11835, PDF pages 15-15",
+            "sha256": "f9d9101b5a1d86b656e9bc63ec1ee1958f19a8d1d4a4a81a5f7872a70c218929",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12507.txt",
+            "text_sha256": "1629a93d7a91fc77b1c08a128de730263279bf5084a67caf826145919441ab2f",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1985-03-26/pdf/FR-1985-03-26.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1987-10-02/premis.xml, checked 2026-10-18T00:55:53Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACTOR_TEXT:EO:12610",
+          "required": false,
+          "source": {
+            "page_or_item": "52 FR 36901, PDF pages 21-22",
+            "sha256": "4a26ec550c492dabadc0d11300b8310171da228ee75c275500d261ab8c8ca753",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12610.txt",
+            "text_sha256": "ec9cc7092397ff7b9d5cdeed2ba05a277dbcca6e84a1a07cb6bd2a478c787a8b",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1987-10-02/pdf/FR-1987-10-02.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1983-08-01/premis.xml, checked 2026-10-18T00:55:49Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:12435#sec1",
+          "required": true,
+          "source": {
+            "page_or_item": "48 FR 34723, PDF pages 9-10",
+            "sha256": "f06b4685e4117072263820b96f6db046fc5d2f7fc5885d788c0185c7d2950db2",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12435.txt",
+            "text_sha256": "cf9ef2ea530d9714981a9066da2e97649a1a84b7808d25720438e7c19f9796af",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1983-08-01/premis.xml, checked 2026-10-18T00:55:49Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:12435#sec1-b",
+          "required": true,
+          "source": {
+            "page_or_item": "48 FR 34723, PDF pages 9-10",
+            "sha256": "f06b4685e4117072263820b96f6db046fc5d2f7fc5885d788c0185c7d2950db2",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12435.txt",
+            "text_sha256": "cf9ef2ea530d9714981a9066da2e97649a1a84b7808d25720438e7c19f9796af",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1983-08-01/premis.xml, checked 2026-10-18T00:55:49Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:12435#sec1-b-dup2",
+          "required": true,
+          "source": {
+            "page_or_item": "48 FR 34723, PDF pages 9-10",
+            "sha256": "f06b4685e4117072263820b96f6db046fc5d2f7fc5885d788c0185c7d2950db2",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12435.txt",
+            "text_sha256": "cf9ef2ea530d9714981a9066da2e97649a1a84b7808d25720438e7c19f9796af",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1983-08-01/premis.xml, checked 2026-10-18T00:55:49Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:12435#sec1-b-dup3",
+          "required": true,
+          "source": {
+            "page_or_item": "48 FR 34723, PDF pages 9-10",
+            "sha256": "f06b4685e4117072263820b96f6db046fc5d2f7fc5885d788c0185c7d2950db2",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12435.txt",
+            "text_sha256": "cf9ef2ea530d9714981a9066da2e97649a1a84b7808d25720438e7c19f9796af",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1983-08-01/premis.xml, checked 2026-10-18T00:55:49Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:12435#sec1-c",
+          "required": true,
+          "source": {
+            "page_or_item": "48 FR 34723, PDF pages 9-10",
+            "sha256": "f06b4685e4117072263820b96f6db046fc5d2f7fc5885d788c0185c7d2950db2",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12435.txt",
+            "text_sha256": "cf9ef2ea530d9714981a9066da2e97649a1a84b7808d25720438e7c19f9796af",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1983-08-01/premis.xml, checked 2026-10-18T00:55:49Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:12435",
+          "required": true,
+          "source": {
+            "page_or_item": "48 FR 34723, PDF pages 9-10",
+            "sha256": "f06b4685e4117072263820b96f6db046fc5d2f7fc5885d788c0185c7d2950db2",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12435.txt",
+            "text_sha256": "cf9ef2ea530d9714981a9066da2e97649a1a84b7808d25720438e7c19f9796af",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:12435:04f91f7d56755023@ab6260e249c3dca0",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/262798",
+            "page_or_item": "Executive Order 12435—President's Commission on Organized Crime; July 28, 1983; APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+            "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12435-presidents-commission-organized-crime.txt",
+            "text_sha256": "ab6260e249c3dca072a84891878496017befff5ca71c2160f26f10b576edfc24",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:12435:04f91f7d56755023@c88f7761d296aa86",
+          "required": false,
+          "source": {
+            "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+            "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+            "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-12435-15988a36d1.txt",
+            "text_sha256": "c88f7761d296aa864d0b139c610c5e1686d95dc785fbac2e05971be69c904933",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:12435:3404f89edadbb6fb@ab6260e249c3dca0",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/262798",
+            "page_or_item": "Executive Order 12435—President's Commission on Organized Crime; July 28, 1983; APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+            "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12435-presidents-commission-organized-crime.txt",
+            "text_sha256": "ab6260e249c3dca072a84891878496017befff5ca71c2160f26f10b576edfc24",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:12435:3404f89edadbb6fb@c88f7761d296aa86",
+          "required": false,
+          "source": {
+            "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+            "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+            "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-12435-15988a36d1.txt",
+            "text_sha256": "c88f7761d296aa864d0b139c610c5e1686d95dc785fbac2e05971be69c904933",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1983-08-01/premis.xml, checked 2026-10-18T00:55:49Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:12435:478b095d41ff43d2@cf9ef2ea530d9714",
+          "required": false,
+          "source": {
+            "page_or_item": "48 FR 34723, PDF pages 9-10",
+            "sha256": "f06b4685e4117072263820b96f6db046fc5d2f7fc5885d788c0185c7d2950db2",
+            "text_path": "jobs/fr-originals/output/texts/EO_12435.txt",
+            "text_sha256": "cf9ef2ea530d9714981a9066da2e97649a1a84b7808d25720438e7c19f9796af",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1983-08-01/pdf/FR-1983-08-01.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:12435:55c0f129a78569e9@ab6260e249c3dca0",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/262798",
+            "page_or_item": "Executive Order 12435—President's Commission on Organized Crime; July 28, 1983; APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+            "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12435-presidents-commission-organized-crime.txt",
+            "text_sha256": "ab6260e249c3dca072a84891878496017befff5ca71c2160f26f10b576edfc24",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:12435:55c0f129a78569e9@c88f7761d296aa86",
+          "required": false,
+          "source": {
+            "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+            "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+            "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-12435-15988a36d1.txt",
+            "text_sha256": "c88f7761d296aa864d0b139c610c5e1686d95dc785fbac2e05971be69c904933",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:12435:6a425fa22ed1fd30@ab6260e249c3dca0",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/262798",
+            "page_or_item": "Executive Order 12435—President's Commission on Organized Crime; July 28, 1983; APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+            "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12435-presidents-commission-organized-crime.txt",
+            "text_sha256": "ab6260e249c3dca072a84891878496017befff5ca71c2160f26f10b576edfc24",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:12435:6a425fa22ed1fd30@c88f7761d296aa86",
+          "required": false,
+          "source": {
+            "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+            "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+            "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-12435-15988a36d1.txt",
+            "text_sha256": "c88f7761d296aa864d0b139c610c5e1686d95dc785fbac2e05971be69c904933",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+          }
+        }
+      ],
+      "state": "dispatchable_for_research"
+    }
+  ],
+  "model_tokens": null,
+  "network_requests": 0,
+  "notice": "Re-run immediately before assignment. A receipt is not a lasting dispatch permit. Optional source gaps remain research tasks; all selected claim sources still require the actual checker and independent review.",
+  "ok": true,
+  "packet_fingerprint": "6d977bac76e2ecdfb9317156f53732a13f3e9e7d038c9e58180d53f9c93ef066",
+  "packet_members": [
+    "EO:10418",
+    "EO:11320",
+    "EO:12435"
+  ],
+  "packet_sha256": "414bb6d5ee1f249507856c02d70a7f6ec15669ee046992cf3df85caf7c9d753a",
+  "schema": "eo-claim-kit-dispatch-check/v1",
+  "scientific_approval": false,
+  "source_blocked_ids": [],
+  "source_index_notes": [
+    "jobs/app-executive-orders/output/SOURCES.jsonl: 792 source records (0 with saved bytes on this machine)",
+    "jobs/app-transcriptions/output/SOURCES.jsonl: 9902 source records (0 with saved bytes on this machine)",
+    "jobs/astra-source-retention/output/SOURCES.jsonl: 314 source records (314 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 0 records without a usable sha256, 7 unusable text_path/cache_path values",
+    "jobs/cassiodorus/output/SOURCES.jsonl: 10 source records (10 with saved bytes on this machine)",
+    "jobs/clark-discovery/output/SOURCES.jsonl: 463 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 92 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/clause-drafts/output/SOURCES.jsonl: 9761 source records (0 with saved bytes on this machine)",
+    "jobs/cotton-capture-custody/output/SOURCES.jsonl: 756 source records (756 with saved bytes on this machine)",
+    "jobs/current-law/output/SOURCES.jsonl: 110 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-sources/output/SOURCES.jsonl: 2 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-tail/output/SOURCES.jsonl: 1 source records (0 with saved bytes on this machine)",
+    "jobs/fr-originals/output/SOURCES.jsonl: 6497 source records (0 with saved bytes on this machine)",
+    "jobs/fr-pages/output/SOURCES.jsonl: 30 source records (28 with saved bytes on this machine)",
+    "jobs/hathi-gpo-orders/output/SOURCES.jsonl: 1531 source records (0 with saved bytes on this machine)",
+    "jobs/later-events/output/SOURCES.jsonl: 17528 source records (0 with saved bytes on this machine)",
+    "jobs/lewis-originals/output/SOURCES.jsonl: 410 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 408 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/numbered-early-orders/output/SOURCES.jsonl: 197 source records (0 with saved bytes on this machine)",
+    "jobs/opus-media-match/output/SOURCES.jsonl: 496 source records (0 with saved bytes on this machine)",
+    "jobs/shepard-citations/output/SOURCES.jsonl: 24 source records (24 with saved bytes on this machine)",
+    "jobs/source-ladder/output/SOURCES.jsonl: 632 source records (0 with saved bytes on this machine)",
+    "jobs/wikisource-texts/output/SOURCES.jsonl: 1639 source records (1639 with saved bytes on this machine)",
+    "jobs/indian-reservations-1912: 1 committed volume(s) and 55 per-order text(s) indexed",
+    "jobs/isthmian-canal-1911: 1 committed volume(s) and 105 per-order text(s) indexed",
+    "jobs/ofr-codification-1989: 1 committed volume(s) and 0 per-order text(s) indexed",
+    "jobs/ofr-compilations: 1 committed volume(s) and 500 per-order text(s) indexed",
+    "jobs/richardson-volumes: 3 committed volume(s) and 68 per-order text(s) indexed",
+    "Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)",
+    "no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip"
+  ],
+  "source_recovery_tasks": [
+    {
+      "affected_references": [
+        {
+          "evidence_id": "ACT:EO:12435>EO:12507",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        },
+        {
+          "evidence_id": "ACT:EO:12435>EO:12507@71a4109021456cdc",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "expected_sha256": "78fadaa76cd456724c4ae90614983109eb7300d2900d954b6d675605c2f2cb25",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:12435"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-12507-continuance-the-presidents-commission-organized-crime"
+        ],
+        "wanted_id": "dispatch-0a055a97bdc59684b3eb8e03"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "archival_id": "app:node/259339",
+          "page_or_item": "Executive Order 12507—Continuance of the President's Commission on Organized Crime; March 22, 1985; APP node 259339; common-crawl capture 2026-01-17T18:50:21Z",
+          "sha256": "78fadaa76cd456724c4ae90614983109eb7300d2900d954b6d675605c2f2cb25",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-12507-continuance-the-presidents-commission-organized-crime.txt",
+          "text_sha256": "02994772b6f7291a6ca421779aeced95fecc8e4a65646ed2997c632dd5bd7822",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-12507-continuance-the-presidents-commission-organized-crime"
+        }
+      ],
+      "task_id": "SOURCE:0a055a97bdc59684b3eb8e03"
+    },
+    {
+      "affected_references": [
+        {
+          "evidence_id": "ACT:EO:12435>EO:12610@51aafc1ddf6a6d79",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "expected_sha256": "a90bab05e54e57e449140873cda3d123cddf915b5831f6d2f882d029fdc00a44",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:12435"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-12610-continuance-certain-federal-advisory-committees"
+        ],
+        "wanted_id": "dispatch-9f090e940e9d97e70fc4ab83"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "page_or_item": "American Presidency Project web page (transcription; not an official edition)",
+          "sha256": "a90bab05e54e57e449140873cda3d123cddf915b5831f6d2f882d029fdc00a44",
+          "text_path": "jobs/clause-drafts/output/texts/cd-opus_zip-12610-a90bab05e5.txt",
+          "text_sha256": "d5b30775adfbabb63b7370af9925a4599d10f711cc371dc9dc6dc2c22298ba86",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-12610-continuance-certain-federal-advisory-committees"
+        }
+      ],
+      "task_id": "SOURCE:9f090e940e9d97e70fc4ab83"
+    },
+    {
+      "affected_references": [
+        {
+          "evidence_id": "ACT:EO:12435>EO:12610@661ee4f427705868",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "expected_sha256": "86c478e9d566407bb80c94ba692e86048bed118e9c8108d11d334afb2742613b",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:12435"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-12610-continuance-certain-federal-advisory-committees"
+        ],
+        "wanted_id": "dispatch-47a2fa0147fbbcde613cd4b2"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "archival_id": "app:node/251553",
+          "page_or_item": "Executive Order 12610—Continuance of Certain Federal Advisory Committees; September 30, 1987; APP node 251553; common-crawl capture 2025-10-15T21:55:32Z",
+          "sha256": "86c478e9d566407bb80c94ba692e86048bed118e9c8108d11d334afb2742613b",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-12610-continuance-certain-federal-advisory-committees.txt",
+          "text_sha256": "013436cc6621a0061a2c7f6214ed785212e77eb82441de022146d86c5cd027b9",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-12610-continuance-certain-federal-advisory-committees"
+        }
+      ],
+      "task_id": "SOURCE:47a2fa0147fbbcde613cd4b2"
+    },
+    {
+      "affected_references": [
+        {
+          "evidence_id": "TERM:EO:12435:04f91f7d56755023@ab6260e249c3dca0",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:12435:04f91f7d56755023@c88f7761d296aa86",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:12435:3404f89edadbb6fb@ab6260e249c3dca0",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:12435:3404f89edadbb6fb@c88f7761d296aa86",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:12435:55c0f129a78569e9@ab6260e249c3dca0",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:12435:55c0f129a78569e9@c88f7761d296aa86",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:12435:6a425fa22ed1fd30@ab6260e249c3dca0",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:12435:6a425fa22ed1fd30@c88f7761d296aa86",
+          "field": null,
+          "instrument_id": "EO:12435",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "expected_sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:12435"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+        ],
+        "wanted_id": "dispatch-deffbe810c4c0051c65be029"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "archival_id": "app:node/262798",
+          "page_or_item": "Executive Order 12435—President's Commission on Organized Crime; July 28, 1983; APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+          "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-12435-presidents-commission-organized-crime.txt",
+          "text_sha256": "ab6260e249c3dca072a84891878496017befff5ca71c2160f26f10b576edfc24",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+        },
+        {
+          "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 262798; wayback capture 2019-05-05T23:53:18Z",
+          "sha256": "15988a36d120d394c2ed37a23c31db6d3db502a5a7a45d47537eea79e4f833db",
+          "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-12435-15988a36d1.txt",
+          "text_sha256": "c88f7761d296aa864d0b139c610c5e1686d95dc785fbac2e05971be69c904933",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-12435-presidents-commission-organized-crime"
+        }
+      ],
+      "task_id": "SOURCE:deffbe810c4c0051c65be029"
+    }
+  ],
+  "state": "dispatchable_for_research",
+  "unique_custody_checks": 11,
+  "unique_required_text_checks": 3,
+  "wall_seconds": 47.136112
+}

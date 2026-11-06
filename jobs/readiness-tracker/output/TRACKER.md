@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 1,331 of 14,972 orders (8.9%)**
+**Ready for human review: 1,309 of 14,972 orders (8.7%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -8,8 +8,8 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 4,291. The other 10,681 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 804, 'transcription_dependent': 527}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 1,886; quotation rechecks: 1,886. These remain work after readiness.
+Ready by text evidence: {'original_supported': 782, 'transcription_dependent': 527}. Provisional working texts do not authenticate originals.
+Outstanding original replacement obligations: 1,912; quotation rechecks: 1,912. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 1,357. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5970}.
 
@@ -18,25 +18,24 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 4,291 | 4,291 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 2,930 | 4,291 | 68.3% |
-| Complete inventory of the order's operative clauses | 1,399 | 4,291 | 32.6% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,354 | 4,291 | 31.6% |
-| Savings clauses and surviving effects closed | 1,387 | 4,291 | 32.3% |
+| Original or explicitly reviewed provisional working text saved | 2,975 | 4,291 | 69.3% |
+| Complete inventory of the order's operative clauses | 1,373 | 4,291 | 32.0% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,332 | 4,291 | 31.0% |
+| Savings clauses and surviving effects closed | 1,362 | 4,291 | 31.7% |
 | Search for later contrary sources recorded, no open conflicts | 2,856 | 4,291 | 66.6% |
-| Every shared legal source it cites has been retrieved | 209 | 236 | 88.6% |
+| Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 839 | 14.9% |
 
 ## Do these first: one action, many orders
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 3,667 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 3,461 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
 | 2,558 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
-| 285 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 174 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
-| 3 | one source | Retrieve shared source USC::48 U.S.C. 863) |
 | 3 | one source | Retrieve shared source EO::6964 |
 | 3 | one source | Retrieve shared source EO::6910 |
 | 2 | one source | Retrieve shared source CFR::26 CFR 458.324 |
@@ -47,8 +46,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 10,681 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 1,078 | 5,943 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 1,014 | 3,667 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 1,072 | 5,848 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 969 | 3,461 |
 | `NO_CLAUSE_INVENTORY` | 2,846 | 2,846 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,846 | 2,846 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 127 | 2,558 |
@@ -56,17 +55,17 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,248 | 1,248 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 391 | 391 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 87 | 285 |
 | `OPUS_MEDIA_NONE_CITED` | 212 | 212 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 48 | 174 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
 | `CLAIM_INCOMPLETE` | 88 | 88 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
-| `SHARED_SOURCE_NOT_RETRIEVED` | 27 | 27 |
+| `CLAIM_CHECK_FAILED` | 33 | 33 |
+| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 28 | 28 |
+| `SHARED_SOURCE_NOT_RETRIEVED` | 24 | 24 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 18 | 18 |
 | `OPEN_SOURCE_AUDIT` | 10 | 10 |
-| `CLAIM_CHECK_FAILED` | 7 | 7 |
-| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 2 | 2 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 
 ## How to move an order forward
@@ -87,6 +86,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - ofr-compilations: 500
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
+- tischendorf-originals: 292
 - richardson-volumes (lead only, never counted as the original): 68
 - app-executive-orders (lead only, never counted as the original): 9,902
 - hathi-gpo-orders (lead only, never counted as the original): 1,531

@@ -1,0 +1,324 @@
+{
+ "schema": "herschel-H2-costs/v1",
+ "since": "2026-11-05T23:24:00Z",
+ "price_table": {
+  "sonnet": {
+   "input": 3.0,
+   "output": 15.0,
+   "cache_read": 0.3,
+   "cache_write": 3.75
+  },
+  "opus": {
+   "input": 5.0,
+   "output": 25.0,
+   "cache_read": 0.5,
+   "cache_write": 6.25
+  },
+  "source": "assumption: Anthropic API list prices; plan allowances are not published"
+ },
+ "total_usd": 62.3577,
+ "per_step": {
+  "coordination": {
+   "usd": 39.5811,
+   "workers": [
+    "coordinator"
+   ],
+   "fresh_input": 434,
+   "cache_read": 55489801,
+   "cache_write": 1285408,
+   "output": 152011
+  },
+  "lifecycle": {
+   "usd": 6.1624,
+   "workers": [
+    "H2-w05",
+    "H2-w06",
+    "H2-w07",
+    "H2-w12"
+   ],
+   "fresh_input": 256,
+   "cache_read": 12219049,
+   "cache_write": 381938,
+   "output": 70908
+  },
+  "original_text": {
+   "usd": 1.3849,
+   "workers": [
+    "H2-w01",
+    "H2-w02",
+    "H2-w03"
+   ],
+   "fresh_input": 70,
+   "cache_read": 2006161,
+   "cache_write": 130734,
+   "output": 19504
+  },
+  "provisional_status": {
+   "usd": 2.1829,
+   "workers": [
+    "H2-w08",
+    "H2-w09"
+   ],
+   "fresh_input": 112,
+   "cache_read": 3870810,
+   "cache_write": 140060,
+   "output": 33074
+  },
+  "replace_original": {
+   "usd": 0.3454,
+   "workers": [
+    "H2-w04"
+   ],
+   "fresh_input": 18,
+   "cache_read": 445088,
+   "cache_write": 30112,
+   "output": 6590
+  },
+  "review_lifecycle": {
+   "usd": 9.2798,
+   "workers": [
+    "H2-w15",
+    "H2-w16",
+    "H2-w17",
+    "H2-w18"
+   ],
+   "fresh_input": 248,
+   "cache_read": 10650259,
+   "cache_write": 366447,
+   "output": 66526
+  },
+  "review_status": {
+   "usd": 1.7505,
+   "workers": [
+    "H2-w13",
+    "H2-w14"
+   ],
+   "fresh_input": 66,
+   "cache_read": 1784932,
+   "cache_write": 84135,
+   "output": 13276
+  },
+  "review_text": {
+   "usd": 1.6707,
+   "workers": [
+    "H2-w10",
+    "H2-w11"
+   ],
+   "fresh_input": 52,
+   "cache_read": 1465429,
+   "cache_write": 97486,
+   "output": 13138
+  }
+ },
+ "per_worker": {
+  "H2-w01": {
+   "step": "original_text",
+   "family": "sonnet",
+   "usd": 0.5729,
+   "active_seconds": 252,
+   "wall_seconds": 252,
+   "fresh_input": 32,
+   "cache_read": 930460,
+   "cache_write": 46470,
+   "output": 7962
+  },
+  "H2-w02": {
+   "step": "original_text",
+   "family": "sonnet",
+   "usd": 0.3303,
+   "active_seconds": 89,
+   "wall_seconds": 89,
+   "fresh_input": 16,
+   "cache_read": 412419,
+   "cache_write": 35156,
+   "output": 4981
+  },
+  "H2-w03": {
+   "step": "original_text",
+   "family": "sonnet",
+   "usd": 0.4816,
+   "active_seconds": 222,
+   "wall_seconds": 222,
+   "fresh_input": 22,
+   "cache_read": 663282,
+   "cache_write": 49108,
+   "output": 6561
+  },
+  "H2-w04": {
+   "step": "replace_original",
+   "family": "sonnet",
+   "usd": 0.3454,
+   "active_seconds": 267,
+   "wall_seconds": 267,
+   "fresh_input": 18,
+   "cache_read": 445088,
+   "cache_write": 30112,
+   "output": 6590
+  },
+  "H2-w05": {
+   "step": "lifecycle",
+   "family": "sonnet",
+   "usd": 2.8167,
+   "active_seconds": 1468,
+   "wall_seconds": 2660,
+   "fresh_input": 110,
+   "cache_read": 6289930,
+   "cache_write": 141513,
+   "output": 26578
+  },
+  "H2-w06": {
+   "step": "lifecycle",
+   "family": "sonnet",
+   "usd": 1.2265,
+   "active_seconds": 365,
+   "wall_seconds": 365,
+   "fresh_input": 48,
+   "cache_read": 2096607,
+   "cache_write": 92323,
+   "output": 16746
+  },
+  "H2-w07": {
+   "step": "lifecycle",
+   "family": "sonnet",
+   "usd": 1.0887,
+   "active_seconds": 940,
+   "wall_seconds": 940,
+   "fresh_input": 50,
+   "cache_read": 1953248,
+   "cache_write": 75066,
+   "output": 14740
+  },
+  "H2-w08": {
+   "step": "provisional_status",
+   "family": "sonnet",
+   "usd": 1.0872,
+   "active_seconds": 808,
+   "wall_seconds": 808,
+   "fresh_input": 58,
+   "cache_read": 1960332,
+   "cache_write": 67739,
+   "output": 16328
+  },
+  "H2-w09": {
+   "step": "provisional_status",
+   "family": "sonnet",
+   "usd": 1.0957,
+   "active_seconds": 844,
+   "wall_seconds": 844,
+   "fresh_input": 54,
+   "cache_read": 1910478,
+   "cache_write": 72321,
+   "output": 16746
+  },
+  "H2-w10": {
+   "step": "review_text",
+   "family": "opus",
+   "usd": 0.8289,
+   "active_seconds": 169,
+   "wall_seconds": 169,
+   "fresh_input": 24,
+   "cache_read": 674418,
+   "cache_write": 50221,
+   "output": 7106
+  },
+  "H2-w11": {
+   "step": "review_text",
+   "family": "opus",
+   "usd": 0.8419,
+   "active_seconds": 174,
+   "wall_seconds": 174,
+   "fresh_input": 28,
+   "cache_read": 791011,
+   "cache_write": 47265,
+   "output": 6032
+  },
+  "H2-w12": {
+   "step": "lifecycle",
+   "family": "sonnet",
+   "usd": 1.0305,
+   "active_seconds": 606,
+   "wall_seconds": 1764,
+   "fresh_input": 48,
+   "cache_read": 1879264,
+   "cache_write": 73036,
+   "output": 12844
+  },
+  "H2-w13": {
+   "step": "review_status",
+   "family": "opus",
+   "usd": 0.8776,
+   "active_seconds": 264,
+   "wall_seconds": 264,
+   "fresh_input": 34,
+   "cache_read": 897542,
+   "cache_write": 41142,
+   "output": 6860
+  },
+  "H2-w14": {
+   "step": "review_status",
+   "family": "opus",
+   "usd": 0.873,
+   "active_seconds": 198,
+   "wall_seconds": 198,
+   "fresh_input": 32,
+   "cache_read": 887390,
+   "cache_write": 42993,
+   "output": 6416
+  },
+  "H2-w15": {
+   "step": "review_lifecycle",
+   "family": "opus",
+   "usd": 3.6233,
+   "active_seconds": 541,
+   "wall_seconds": 541,
+   "fresh_input": 92,
+   "cache_read": 4502295,
+   "cache_write": 123799,
+   "output": 23916
+  },
+  "H2-w16": {
+   "step": "review_lifecycle",
+   "family": "opus",
+   "usd": 3.3755,
+   "active_seconds": 541,
+   "wall_seconds": 541,
+   "fresh_input": 88,
+   "cache_read": 4040871,
+   "cache_write": 124824,
+   "output": 22980
+  },
+  "H2-w17": {
+   "step": "review_lifecycle",
+   "family": "opus",
+   "usd": 1.3214,
+   "active_seconds": 183,
+   "wall_seconds": 183,
+   "fresh_input": 38,
+   "cache_read": 1247966,
+   "cache_write": 68044,
+   "output": 10878
+  },
+  "H2-w18": {
+   "step": "review_lifecycle",
+   "family": "opus",
+   "usd": 0.9596,
+   "active_seconds": 147,
+   "wall_seconds": 147,
+   "fresh_input": 30,
+   "cache_read": 859127,
+   "cache_write": 49780,
+   "output": 8752
+  },
+  "coordinator": {
+   "step": "coordination",
+   "family": "opus",
+   "usd": 39.5811,
+   "active_seconds": 4694,
+   "wall_seconds": 6131,
+   "fresh_input": 434,
+   "cache_read": 55489801,
+   "cache_write": 1285408,
+   "output": 152011
+  }
+ }
+}

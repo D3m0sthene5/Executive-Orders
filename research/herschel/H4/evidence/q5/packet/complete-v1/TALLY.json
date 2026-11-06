@@ -1,0 +1,69 @@
+{
+  "attempted": 3,
+  "claims_published": 1,
+  "concurrent_disjoint_claim_files": [
+    {
+      "instrument_ids": [
+        "EO:649"
+      ],
+      "path": "research/readiness/claims/claude-2026-11-05-herschel-H5-d1.jsonl",
+      "sha256": "c61b26acbc39a96b75d3f5aea8d5507ff3797867a9233d5030a2c27ee3e7956f"
+    }
+  ],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:12724",
+      "planted_claim_sha256": "3f24ec98b8cb86dfa63d9637b63feb7bff4c4f58a2cb1696a4b3c5aa7707c13f",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 2,
+    "eligible": 1
+  },
+  "eligible": [
+    "EO:12724"
+  ],
+  "eligible_per_attempt": 0.3333333333333333,
+  "exceptions": 0,
+  "finished_utc": "2026-11-06T00:31:39.937192+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "after_reveal": true,
+      "claim_sha256": "e6cd1a04b2f7d17e8070b006e05c6974c910790d530ba1c2865a055756ce96e2",
+      "gate_errors": [],
+      "instrument_id": "EO:12724",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13872",
+      "outcome": "blocked",
+      "reason": "[\"custody_record_only: original FR bytes (84 FR 22321, PDF pp. 1-5) not held in any committed place; retain the govinfo PDF bytes (pre-assignment dispatch block, coordinator H4)\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:14074",
+      "outcome": "blocked",
+      "reason": "[\"custody_record_only: original FR bytes (87 FR 32945, PDF pp. 1-19) not held in any committed place; retain the govinfo PDF bytes (pre-assignment dispatch block, coordinator H4)\"]"
+    }
+  ],
+  "packet_loads": {
+    "research/herschel/H4/packets/q5/packet": 2
+  },
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 1,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-06T00:28:57.664875+00:00",
+  "submitted": 1,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 162.27234275799947
+}

@@ -1,0 +1,48 @@
+{
+ "schema": "eo-status-history-decision/v1-manual",
+ "instrument_id": "EO:4114",
+ "agent": "claude",
+ "route": "manual_no_status_history",
+ "recommended_provisional_status": "no",
+ "basis": [
+  {
+   "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4114.txt",
+   "sha256": "5e9709b62fb29f6dccff778b1a7be2b72bc341d69c76a6ccd409a95c3083e23f",
+   "char_start": 911,
+   "char_end": 994,
+   "quote": "The National Forest hereby created shall be known as the McClellan National\nForest.",
+   "role": "identity: the order itself (Coolidge, December 22, 1924, [No. 4114])"
+  },
+  {
+   "text_path": "jobs/pinakes-htr/output/texts/EO_4877.vlm_chandra.txt",
+   "sha256": "3b60a48da6197eb30efeb2c1a9784501b52b0bea67d2237f674eb8ab1c2de537",
+   "char_start": 16,
+   "char_end": 311,
+   "quote": "The Executive Order dated December 22, 1924, (No. 4114) establishing the McClellan National Forest, Alabama, pursuant to the provisions of Section 9 of the Act of Congress approved June 7, 1924, (43 Stat., 655) on a portion of the Camp McClellan Military Reservation, Alabama, is hereby revoked.",
+   "role": "ending basis: EO 4877 (May 4, 1928) revokes this order by number, date and subject"
+  }
+ ],
+ "identity_confirmed": true,
+ "earlier_endings_checked": true,
+ "partial_scope_checked": true,
+ "savings_checked": true,
+ "original_pages_confirmed": false,
+ "current_predicate_checked_through": null,
+ "proposed_intervals": [
+  {
+   "scope": "whole order (establishment of McClellan National Forest from part of Camp McClellan)",
+   "from": "1924-12-22",
+   "to": "1928-05-04",
+   "end_basis": "revoked by EO 4877, May 4, 1928 ('is hereby revoked'); inclusive/exclusive reading immaterial to 2026-10-14"
+  }
+ ],
+ "searches_run": [
+  "cruden.py number EO:4114 (own run, /tmp/claude-0/herschel-H6-work/H6-w03/cruden-EO_4114.json): 0 hits",
+  "cruden.py literal 'McClellan National Forest': 8 matches in 6 files; EO 4877 held in ProQuest OCR (pinakes-proquest-ingest EO_4877.txt) and three pinakes-htr readings (tess300, vlm_chandra, vlm_qwen3) with the same wording"
+ ],
+ "material_gaps": [
+  "No page images of EO 4877 or EO 4114 inspected (text layers/VLM transcriptions only); the ProQuest OCR layer of EO 4877 is noisy, the quoted VLM reading agrees with the qwen3 reading and tesseract fragments"
+ ],
+ "rationale": "EO 4114 (Coolidge, 22 Dec 1924, [No. 4114]) established the McClellan National Forest from the Camp McClellan Military Reservation. A held later order, EO 4877 of 4 May 1928 (Coolidge, [No. 4877]), names it by number and date and says it 'is hereby revoked', so the whole order ended 1928-05-04, long before 2026-10-14. EO 4877 has no partial revocation or savings clause.",
+ "approved": true
+}
