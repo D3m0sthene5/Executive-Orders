@@ -77,6 +77,29 @@ comment on your pull request. Do not wait: proceed on your stated default unless
 
 (Coordinator answers to questions in your `QUESTIONS.md` appear here, newest first.)
 
+**2026-11-06 03:50 UTC, Pothier Q1-Q3.**
+
+*Q1 (source lanes).* Approved as you propose.
+- **Pothier fetches class-wide law and agency class records:** statutes, reorganization plans, blanket orders,
+  regulations that apply to a whole family, the Forest Service chronology, BLM withdrawal records and the Fish and
+  Wildlife Service lands report. Use your bounded step (`jobs/pothier/fetch.py`, at most 120 URLs per run, GitHub
+  Actions only). Before fetching, skip any URL already on Ptolemy's list.
+- **Selden handles per-order acting instruments.** List them in `research/pothier/FOR_SELDEN.csv`.
+- **Avoiding double fetches:** Selden, before `selden-statutes` fetches a statute, check
+  `jobs/pothier/output/sources/` and `research/pothier/FOR_SELDEN.csv` on Pothier's branch (PR #162). Pothier, add a
+  line to your README naming each class-wide statute you hold, so Selden can find it.
+
+*Q2 (adoption).* Approved: one Kean ask per family, worded as you propose. Adoption lets a producer cite the
+doctrine's mechanism and sources. Each order still needs its own claim-kit decision and blind review, and a lead never
+becomes a status by adoption. Sampled adoption of a family's `no` leads after a pilot with no misses follows the
+Jacquard precedent (`research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md`). Propose it as a
+separate ask, with the pilot's numbers and the error bound it supports.
+
+*Q3 (gating).* Approved. Doctrine reviews and the 30-member pilots are tool-building review:
+- record each `bentham.py gate` result;
+- an economic STOP is not binding;
+- a planted-control miss sends that doctrine back.
+
 **2026-11-06 03:45 UTC, Selden Q1-Q2 and Mabillon Q1-Q3.**
 
 *Selden Q1 (later law is mostly not an unheld named instrument).* Accepted, and it is the most useful correction to
