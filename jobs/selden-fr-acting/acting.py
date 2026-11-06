@@ -109,6 +109,19 @@ def fr_pages_held(repo: Path):
     return held
 
 
+def heading_page(pages, actor):
+    """Index of the first page on which the instrument's own heading starts a line ('Public Land Order 936'), or
+    None. A line start excludes references ('revoked by Public Land Order 936') and codification-guide entries."""
+    if not actor.startswith("PLO:"):
+        return None
+    num = actor.split(":", 1)[1]
+    pat = re.compile(r"(?m)^[ \t\[]*" + frpages.heading_pattern({"plo": int(num)}).pattern, re.I)
+    for i, t in enumerate(pages):
+        if t and pat.search(t):
+            return i
+    return None
+
+
 def _pdf_text(raw, wanted=None):
     return frpages.pdf_pages(raw, wanted)
 
@@ -212,9 +225,22 @@ class Run:
             first, last, notes, conf = frpages.locate(pages, job, hint)
             if first is not None:
                 notes = notes + ["window_read_around_link_hint"]
-        if first is None:
+        if first is None or not any(n.startswith("heading_found") for n in notes):
+            # The hint is often wrong (first run, 2026-11-06: about 750 of 825 pages lacked the instrument's own
+            # heading). Read the whole issue, then, if the cited page still lacks it, take the page where the
+            # instrument's heading starts a line.
             pages = self.page_texts(raw)
             first, last, notes, conf = frpages.locate(pages, job, hint)
+            if first is None or not any(n.startswith("heading_found") for n in notes):
+                found = heading_page(pages, it["actor"])
+                if found is not None:
+                    first, last = found, min(len(pages) - 1, found + 1)
+                    for j in range(found, min(len(pages), found + frpages.MAX_DOC_PAGES)):
+                        if S.FILING.search(pages[j] or ""):
+                            last = j
+                            break
+                    notes = (notes or []) + [f"heading_found_by_whole_issue_scan_on_pdf_page_{found + 1}"]
+                    conf = "medium"
         if first is None:
             raise FetchError("cited page not found in issue: " + ";".join(notes))
         body = "".join(f"\n=== PDF page {i + 1} of {len(pages)} ===\n{pages[i]}" for i in range(first, last + 1))
@@ -287,28 +313,39 @@ def main(repo: Path, out: Path, cache: Path, transport=None, premis=None, env=os
               max_requests=int(env.get("JOB_MAX_REQUESTS") or 3000),
               max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 130), premis=premis, extract_procs=extract_procs)
     prior_dir = Path(env.get("JOB_PRIOR_OUTPUT_DIR") or (HERE / "output"))
+    # Earlier outputs to carry forward: the previous output, then runner-shard outputs in data/shards/<k>/.
+    priors = [prior_dir] + sorted(p for p in (HERE / "data" / "shards").glob("*") if p.is_dir())
     prior = {}
-    for r in S.read_jsonl(prior_dir / "SOURCES.jsonl"):
-        if r.get("source_id", "").startswith("fr-issue:") and r.get("fr_volume"):
-            prior.setdefault((int(r["fr_volume"]), int(r["fr_page"])), {})["issue"] = r
-        elif r.get("source_id", "").startswith("fr-extract:"):
-            m = re.search(r"(\d+) FR (\d+)", r.get("page_or_item") or "")
-            if m:
-                prior.setdefault((int(m.group(1)), int(m.group(2))), {})["extract"] = r
+    for d in priors:
+        for r in S.read_jsonl(d / "SOURCES.jsonl"):
+            if r.get("source_id", "").startswith("fr-issue:") and r.get("fr_volume"):
+                key = (int(r["fr_volume"]), int(r["fr_page"]))
+                ok = any(str(n).startswith("heading_found") for n in r.get("location_notes") or [])
+                cur = prior.get(key)
+                if cur is None or (ok and not cur.get("ok")):
+                    prior[key] = {"issue": r, "dir": d, "ok": ok}
+        for r in S.read_jsonl(d / "SOURCES.jsonl"):
+            if r.get("source_id", "").startswith("fr-extract:"):
+                m = re.search(r"(\d+) FR (\d+)", r.get("page_or_item") or "")
+                key = (int(m.group(1)), int(m.group(2))) if m else None
+                if key in prior and prior[key]["dir"] == d and r.get("issue_sha256") == prior[key]["issue"]["sha256"]:
+                    prior[key]["extract"] = r
     todo, offline_n, carried_n = [], 0, 0
     for it in items:
         pk = (it["vol"], it["page"])
         pr = prior.get(pk) or {}
-        tp = prior_dir / (pr.get("issue", {}).get("text_path") or "-")
-        if pr.get("issue") and tp.is_file():
+        pdir = pr.get("dir") or prior_dir
+        tp = pdir / (pr.get("issue", {}).get("text_path") or "-")
+        good = any(str(n).startswith("heading_found") for n in (pr.get("issue") or {}).get("location_notes") or [])
+        if pr.get("issue") and tp.is_file() and good:
             # Carried forward from the previous run with no request; the locator re-reads the kept page text.
             text = tp.read_text(encoding="utf-8")
             (out / "texts" / tp.name).write_text(text, encoding="utf-8")
             src = pr["issue"]
             cite = src
             ex = pr.get("extract")
-            if ex and (prior_dir / ex["cache_path"]).is_file() and S.sha256((prior_dir / ex["cache_path"]).read_bytes()) == ex["sha256"]:
-                (out / ex["cache_path"]).write_bytes((prior_dir / ex["cache_path"]).read_bytes())
+            if ex and (pdir / ex["cache_path"]).is_file() and S.sha256((pdir / ex["cache_path"]).read_bytes()) == ex["sha256"]:
+                (out / ex["cache_path"]).write_bytes((pdir / ex["cache_path"]).read_bytes())
                 run.committed += ex["bytes"]
                 cite = ex
             run.sources.append(src)
