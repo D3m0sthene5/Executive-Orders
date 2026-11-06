@@ -92,11 +92,13 @@ merged too. A job with no output yet is simply skipped (the summary says so).
     candidates to choose from (already in the claim's field shapes), the gate
     errors that remain, the claim-checker result, the readiness steps the
     draft would satisfy once an agent confirms it, and an effort estimate.
-- `DRAFT_CLAIMS_UNDECIDED.jsonl`: only with `CLAIM_DRAFTS_SCOPE=all`: the same
-  for orders without a provisional status that some job found something for.
-  These can never pass the gate (no status), so by default they are not
-  written. (A file that would pass 90 MB is continued in `..._2.jsonl`,
-  because GitHub cannot keep files over 95 MB.)
+- `DRAFT_CLAIMS_UNDECIDED.jsonl`: the same for orders without a provisional
+  status that some job found something for. They cannot pass the claim gate
+  themselves (no status), but the claim kit's undecided route (status overlay)
+  reads each one's machine later-source searches from it, so the GitHub run
+  writes them (`job.py` sets `CLAIM_DRAFTS_SCOPE=all` since 2026-11-05). (A file
+  that would pass 90 MB is continued in `..._2.jsonl`, because GitHub cannot
+  keep files over 95 MB.)
 - `TODO_BY_ORDER.csv`: one row per draft: order, remaining gate errors, gate
   errors that would remain even after accepting the machine suggestions,
   whether only judgment is left, fields needing judgment, missing evidence,
@@ -209,9 +211,9 @@ Options (environment variables):
 - `JOB_LIMIT=50`: draft only the first 50 orders (decided orders first, the
   ones with the most machine evidence first).
 - `CLAIM_DRAFTS_IDS=EO:12944,EO:9066`: draft only these orders.
-- `CLAIM_DRAFTS_SCOPE=decided` (the default): only the 3,359 orders with a
-  provisional status. `CLAIM_DRAFTS_SCOPE=all` also writes
-  `DRAFT_CLAIMS_UNDECIDED.jsonl`.
+- `CLAIM_DRAFTS_SCOPE=all` (the default in `job.py`): decided orders, then
+  undecided ones into `DRAFT_CLAIMS_UNDECIDED.jsonl`. `CLAIM_DRAFTS_SCOPE=decided`
+  drafts only the orders with a provisional status (`drafts.py`'s own default).
 - `CLAIM_DRAFTS_INPUTS="<folder>;<folder>"`: read other jobs' results from these
   folders instead of `jobs/*/output/` (for trying out sample runs kept outside
   the repo). Each folder's job is read from its `SUMMARY.json`; write
