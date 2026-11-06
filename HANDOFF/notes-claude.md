@@ -1,3 +1,11 @@
+## 2026-11-06 00:45 ET (Claude, Gratian: wiring tonight's products into the tracker and the claim kit)
+
+- **Done:** branch `claude/gratian-wiring` (not pushed; see Asks). `48da66f7`: `source_supplement.py` now adds held excerpts to undecided dossiers by sealing a new copy of their frozen status-overlay evidence; status gates are unchanged, and `batch.py`'s codec pin changes. `fd403d5b`: new job `gratian-niebuhr-leads` types Niebuhr's results as date leads that `eo_identity.load_dates` reads last; 56 numbered orders gain a routable date for Lewis. `ed397bda`: later-events `job.py` adds `selden-fr-acting` texts without touching the kit-pinned `later_events.py`. `c32a59a2`: `research/gratian/` holds CONCORDANCE, IMPACT (tracker ablation on `b561d57a`) and the NEXT_DOSSIER queue. Kean F-20261106-gratian-wiring and F-20261106-gratian-ablation.
+- **Result:** no product moves an order to ready (1,323 in every variant), because ready also needs a checked claim. With #164, Mabillon adds 58 orders to the claim-ready group and reopens 17 provisional texts. Lachmann adds 161 text steps. Ptolemy should make EO 10926 ready at the next claim-checker run. No `tracker.py` change and no COUNT-CHANGING PR from this lane.
+- **Next:** push the bundle and open the wiring PR; once Selden's jobs merge, add `selden-fr-acting` to `later-events/after.txt`; add `mabillon-held-printings` to `text_jobs.py` once its SOURCES carry `text_path` (QUESTIONS Q6).
+- **Asks:** @Owner: A-20261106-gratian-push. @Coordinator: `research/gratian/QUESTIONS.md` Q2 (put the 17 reopened texts in #164's description) and Q5 (re-prepare packets after merge).
+- **Do not:** prepare claim-kit packets from `main` and apply them on this branch, or the reverse; the batch codec pin differs.
+
 ## 2026-11-06 00:45 ET: Mabillon, bulk sources of official originals (night wave)
 
 - **Done:** `research/mabillon/REPORT.md` and `COVERAGE.md` (frame of 5,943 orders with NO_OFFICIAL_SOURCE_LOCATED; it reproduces Herschel's 5,313 and 1,234). There are three new zero-token jobs with tests and verified runs on the branch:
