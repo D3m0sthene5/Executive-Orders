@@ -35,16 +35,19 @@ def build(root,day,old):
     if p.exists():
         with p.open(encoding='utf-8',newline='') as f:
             for row in list(csv.DictReader(f))[:7]:lines.append('- '+'; '.join(f'{k}: {v}' for k,v in row.items()))
-    lines+=['','## Open asks from the newest handoff entries','']
-    for p in sorted((root/'HANDOFF').glob('notes-*.md')):
-        text=p.read_text(encoding='utf-8');parts=text.split('\n## ')
-        newest=parts[1] if len(parts)>1 else text
-        asks=[];inside=False
-        for line in newest.splitlines():
-            if '**Asks:**' in line:inside=True
-            elif line.startswith('- **'):inside=False
-            if inside:asks.append(line.strip())
-        lines.append(f'- {p.name}: '+(' '.join(asks)[:1100] or 'No open ask recorded in newest entry.'))
+    lines+=['','## Open asks for the owner (Kean register)','']
+    # Justinian 2026-11-06: asks are recorded in Kean (CLAUDE.md, AGENTS.md), so the digest
+    # reads the register instead of HANDOFF notes; a note edit no longer discards this job.
+    asks={}
+    reg=root/'jobs/kean/register/asks.jsonl'
+    if reg.exists():
+        for raw in reg.read_text(encoding='utf-8').splitlines():
+            try:rec=json.loads(raw)
+            except ValueError:continue
+            if isinstance(rec,dict) and isinstance(rec.get('id'),str):asks[rec['id']]=rec  # later revision wins
+    open_asks=sorted((a for a in asks.values() if a.get('status')=='open'),key=lambda a:(str(a.get('date')),a['id']))
+    for a in open_asks:lines.append(f"- {a['id']} ({a.get('date','')}, {a.get('asked_by','')}): {str(a.get('question',''))[:300]}")
+    if not open_asks:lines.append('No open ask is recorded in the Kean register.')
     lines+=['','## Published output status','',
         'A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.']
     failed=[]
@@ -58,8 +61,23 @@ def build(root,day,old):
     if len(lines)>149:lines=lines[:148]+['Additional items omitted to keep this operational digest below 150 lines.']
     return '\n'.join(lines)+'\n',snapshot
 
+def generation_mismatch(root):
+    """Justinian 2026-11-06: the tracker's SUMMARY.json and STATUS.json must come from one execution."""
+    folder=root/'jobs/readiness-tracker/output'
+    summary,status=load(folder/'SUMMARY.json'),load(folder/'STATUS.json')
+    a,b=summary.get('generation_id'),status.get('generation_id')
+    if a is None and b is None:return None  # both written before generation ids existed
+    if a!=b:return f'readiness-tracker SUMMARY.json generation {a!r} differs from its STATUS.json generation {b!r}'
+    return None
+
 def main():
     root=Path(os.environ['REPO_ROOT']);out=Path(os.environ['OUTPUT_DIR'])
+    reason=generation_mismatch(root)
+    if reason:
+        out.mkdir(parents=True,exist_ok=True)
+        (out/'BLOCKED.json').write_text(json.dumps({'reason':reason},indent=2)+'\n',encoding='utf-8')
+        print('Digest not rendered: '+reason)
+        raise SystemExit(3)
     tests=subprocess.run([__import__('sys').executable,'-m','unittest','-v','test_dashboard','test_mission'],cwd=Path(__file__).resolve().parent)
     if tests.returncode:
         raise SystemExit('Dashboard tests failed; digest not published.')
