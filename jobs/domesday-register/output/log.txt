@@ -1,26 +1,40 @@
 test_candidates_are_kept_out_of_the_register (test_register.Register.test_candidates_are_kept_out_of_the_register) ... ok
 test_missing_lewis_and_clark_outputs_are_fine (test_register.Register.test_missing_lewis_and_clark_outputs_are_fine) ... ok
 test_register_rows_consolidate_every_source (test_register.Register.test_register_rows_consolidate_every_source) ... ok
+test_census_id_only_on_firm_match (test_unnumbered.Dedup.test_census_id_only_on_firm_match) ... ok
+test_exact_date_and_two_words_merge_but_date_alone_never (test_unnumbered.Dedup.test_exact_date_and_two_words_merge_but_date_alone_never) ... ok
+test_month_and_year_precise_lord_dates_never_merge (test_unnumbered.Dedup.test_month_and_year_precise_lord_dates_never_merge) ... ok
+test_numbered_cluster_mentions_are_left_out_and_lord_row_flagged (test_unnumbered.Dedup.test_numbered_cluster_mentions_are_left_out_and_lord_row_flagged) ... ok
+test_chapman_textbook (test_unnumbered.Estimator.test_chapman_textbook) ... ok
+test_complete_overlap_is_degenerate_not_a_crash (test_unnumbered.Estimator.test_complete_overlap_is_degenerate_not_a_crash) ... ok
+test_estimate_restricts_to_day_precise_years_to_1899 (test_unnumbered.Estimator.test_estimate_restricts_to_day_precise_years_to_1899) ... ok
+test_run_writes_outputs_on_a_tiny_repository (test_unnumbered.Run.test_run_writes_outputs_on_a_tiny_repository) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/domesday-register/test_unnumbered.py:155: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/unnum-2o0v2so7/_out/UNNUMBERED_SUMMARY.json' mode='r' encoding='UTF-8'>
+  self.assertIn("assumptions", json.loads(open(os.path.join(out, "UNNUMBERED_SUMMARY.json")).read())["capture_recapture"])
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_committed_seed_matches_lords_list_when_available (test_unnumbered.Seed.test_committed_seed_matches_lords_list_when_available) ... ok
+test_dates_are_as_precise_as_printed (test_unnumbered.Seed.test_dates_are_as_precise_as_printed) ... ok
 
 ----------------------------------------------------------------------
-Ran 3 tests in 0.009s
+Ran 13 tests in 0.045s
 
 OK
+{"unnumbered_series_observed": 2334, "unnumbered_series_estimate_95": [4101, 5095]}
 {
-  "orders": 14972,
+  "orders": 14998,
   "by_best_held": {
-    "transcription_only": 2906,
-    "archival_replica_scan": 2746,
+    "transcription_only": 2875,
+    "archival_replica_scan": 2745,
     "nothing": 90,
-    "official_original_counted": 8945,
-    "official_found_page_check_pending": 285
+    "official_original_counted": 9116,
+    "official_found_page_check_pending": 172
   },
   "candidates_not_in_register": {
-    "total": 59,
+    "total": 33,
     "by_strength": {
-      "cited": 11,
-      "strong": 38,
-      "weak": 6,
+      "cited": 10,
+      "strong": 14,
+      "weak": 5,
       "": 4
     }
   },

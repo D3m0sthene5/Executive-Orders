@@ -14,18 +14,18 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 6 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.3 | free | ∞ | free |
 | 7 | probe.status_assignment.undecided | probe | 30 | 0.0 | 0.0 | $19 | ∞ | $19 |
 | 8 | recovery.custody_stranded | recovery | 48 | 30.7 | 0.0 | $19 | 159.9 | $39 |
-| 9 | production.one_step_away | production | 40 | 25.5 | 0.0 | $26 | 98.8 | $64 |
-| 10 | production.claim_ready.yes.fr | production | 352 | 82.1 | 0.0 | $228 | 36.1 | $292 |
-| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 3.2 | $17 | 19.1 | $309 |
-| 12 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | $0.38 | 8.6 | $309 |
-| 13 | production.claim_ready.no.fr | production | 1002 | 33.4 | 0.0 | $648 | 5.2 | $957 |
-| 14 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
-| 15 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
-| 16 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
+| 9 | production.one_step_away | production | 219 | 139.8 | 0.0 | $142 | 98.8 | $180 |
+| 10 | production.claim_ready.yes.fr | production | 345 | 80.5 | 0.0 | $223 | 36.1 | $403 |
+| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 3.2 | $17 | 19.1 | $420 |
+| 12 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | $0.38 | 8.6 | $420 |
+| 13 | production.claim_ready.no.fr | production | 1018 | 33.9 | 0.0 | $658 | 5.2 | $1,078 |
+| 14 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $1,078 |
+| 15 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $1,078 |
+| 16 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $1,078 |
 
 Unranked (a yield or cost is not measured; Bentham will not guess). For a production stratum the next step is a 30-order probe, run under the gate, that measures its yield:
 
-- status_assignment.undecided (10681 orders): no measured yield for 'filed_per_attempt.undecided': unranked. Ranked above as `probe.status_assignment.undecided`: 30 orders, about $19; an unmeasured stratum is never left unranked for a second plan.
+- status_assignment.undecided (10700 orders): no measured yield for 'filed_per_attempt.undecided': unranked. Ranked above as `probe.status_assignment.undecided`: 30 orders, about $19; an unmeasured stratum is never left unranked for a second plan.
 
 Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
 
