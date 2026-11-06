@@ -1,14 +1,9 @@
-
 # Provisional working-text policy and its actual source declarations / held texts.
 jobs/claim-checker/job.py
 jobs/claim-checker/checker.py
 jobs/claim-checker/sources.py
 jobs/claim-checker/proquest_inputs.py
 jobs/claim-kit/working_text.py
-jobs/*/output/FRAGMENTS*.jsonl
-jobs/*/data/**/FRAGMENTS*.jsonl
-jobs/*/output/texts/**
-jobs/*/data/**
 jobs/claim-kit/factual_events.py
 jobs/norton/model.py
 jobs/readiness-tracker/tracker.py
@@ -18,10 +13,36 @@ jobs/source-ladder/fetch_ladder.py
 jobs/source-ladder/embedded_cites.py
 jobs/source-ladder/report_dates.py
 jobs/source-ladder/request_contract.py
-# Providers discovered by checker/sources.py and the imported policy modules.
-# These files contain dynamic path references, so retain the provider trees and
-# every output path to which those references may resolve.
-jobs/*/output/**
+# Justinian 2026-11-06: the read scope is no longer research/**, releases/** and jobs/*/output/**.
+# It is these code-level reads (checker.py P, sources.py INPUTS/OPUS_DIR, working_text.py) and every
+# path named in the provider records listed in references.txt. See research/justinian/FRESHNESS_SCOPES.md.
+# Globbed by the code itself:
+jobs/*/output/FRAGMENTS*.jsonl
+jobs/*/data/**/FRAGMENTS*.jsonl
+jobs/*/output/SOURCES*.jsonl
+jobs/*/output/*.csv
 jobs/*/data/**
-research/**
-releases/**
+# Read by constructed names (texts/<id>.txt, raw/<sha256>.html) from provider records:
+jobs/*/output/texts/**
+jobs/*/output/raw/**
+jobs/lachmann/output/*.jsonl
+jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl
+jobs/official-fixity/output/MATCHED_BY_SHA256.json
+jobs/pinakes-proquest-ingest/output/*
+research/readiness/claims/*
+research/readiness/factual/**
+research/readiness/owner_rulings/*
+research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv
+research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv
+research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv
+research/stage14/QUEUES/OFFICIAL_DIRECT_DOCUMENT_FETCH_MANIFEST.csv
+research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv
+research/stage21/original_sources/ACQUISITION_LOG.jsonl
+research/stage20/output/STATUTE_FETCH_INDEX.csv
+research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
+research/stage18/SOURCE_MANIFEST.json
+releases/opus_stage11_complete/**
+releases/source_books/**
+# ProQuest replica scans materialized by proquest_inputs.py (read only; out of this session's edit scope).
+ProQuest Pre-1937 Orders/**
+research/pre-1937-sources/ProQuest Pre-1937 Orders/**
