@@ -1,6 +1,6 @@
 {
   "schema": "eo-proquest-materialization/2",
-  "commit": "6cff8ce9b12012f95eecd8b237c421cba1f2cff3",
+  "commit": "0bf89edfb4e91f127b58f7afe73cb3d075e41bd9",
   "input_sha256": {
     "research/readiness/claims/astra-2026-10-17-p12553a.jsonl": "b3b4e784cc1822e2aa90e3191db43ec2c90887398b9477b23bb27abc1160dfe8",
     "research/readiness/claims/astra-2026-10-17-p12553b.jsonl": "2c650f156a5961e1a290c472451ae143d9931aea300a1e3de97bc9ef71695c24",
@@ -93,6 +93,17 @@
     "research/readiness/claims/claude-2026-11-04-tribonian-o23.jsonl": "9f520fd067b0a48e3f4a3b33b413e908dc1f84598e28c7244fb70ebcd0cc3736",
     "research/readiness/claims/claude-2026-11-04-tribonian-o24.jsonl": "a5e0ea6eb19fd1d1ed67322d22a34750c0e13d7fbbf270054d1f5fe4696cf658",
     "research/readiness/claims/claude-2026-11-04-tribonian-o27.jsonl": "447c362853db4776f5e9510810e5333fdcc293336fae9078ef986fe5e5282b8b",
+    "research/readiness/claims/claude-2026-11-05-herschel-H2-rl1-noB2.jsonl": "19a4f73c368e50c7dc9d71b4472e069b338b30d0473dba211b4a6867bc53492e",
+    "research/readiness/claims/claude-2026-11-05-herschel-H2-rl2-noA2.jsonl": "97a1789eb4ec6e63f1acb97691518ff75dbd6f929ed94e4c1cac5eccfcc2886c",
+    "research/readiness/claims/claude-2026-11-05-herschel-H2-rl2-yes.jsonl": "00acd9c8d310c63caf1fed141df867e290f377052470da60b94f2c54ee60628c",
+    "research/readiness/claims/claude-2026-11-05-herschel-H4-q2.jsonl": "955263949a2384fa6c6f4c53676a6cd1d8c97db2bddc9d843559f5aae3cfb5bd",
+    "research/readiness/claims/claude-2026-11-05-herschel-H4-q5.jsonl": "fef09cbee3b7b0c742e3410c5ec245bb0d0ca1d790fddde20ac93f106c1367d5",
+    "research/readiness/claims/claude-2026-11-05-herschel-H5-d1.jsonl": "c61b26acbc39a96b75d3f5aea8d5507ff3797867a9233d5030a2c27ee3e7956f",
+    "research/readiness/claims/claude-2026-11-05-icecore-no.jsonl": "a072c2593a7253023a872b8da34e2d584275002d05d0887f3cb918065810d269",
+    "research/readiness/claims/claude-2026-11-05-icecore-yes.jsonl": "e915887ef84fa84138984edf416704ef253f014c46314005bfc619564aff3f79",
+    "research/readiness/claims/claude-2026-11-05-theophilus-r01.jsonl": "ec7bd711a17913eeb5cd10cb9ffa23dddd9e022d4b88b0546f9d6024aa4af8a5",
+    "research/readiness/claims/claude-2026-11-05-theophilus-r02.jsonl": "75403ccfef17ba89a79b0d72737543c57fa1eb2d5d556e95fdbb4f821eab37c3",
+    "research/readiness/claims/claude-2026-11-05-theophilus-r03.jsonl": "f9807850c6ac9078fbbef0dac3e1b659c0793aa076b230e4664021259d2da85c",
     "research/readiness/claims/claude-b0-producer-2026-10-29-nira.jsonl": "ac1c897c17c2b6b459c89f1fb5ff119dd4edf1a98d2c1644913d69f66b5c225d",
     "research/readiness/claims/claude-bowditch-y2-01-2026-10-20.jsonl": "b057707650d20d09ff326f37f3007a141508e7b28ac0db587397dde28b0ab4f4",
     "research/readiness/claims/claude-bowditch-y2-02-2026-10-20.jsonl": "dbb0df83d958c2de069ffe925202c666e21644cf077bd959954847d21e467f24",
@@ -145,15 +156,15 @@
     "research/readiness/claims/codex-swarm-2026-10-21.jsonl": "308a4657e4c70d4f31a6352be0811a5e49836062420abdad5519748a5278c8b5",
     "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl": "5cd4502e5e261bfe0ec7803c4673707a7dbb4da6dec424a8bfab055f7a38639c"
   },
-  "selection_sha256": "6c4a6419a9fb30e3265f5ba88fe1cf972734a67e2b6e3d270aceb8420285f534",
+  "selection_sha256": "bd10db49600c02f462bf02eccd580170ee1d4275ef183152325c3bb55d38406d",
   "next_cursor": null,
   "bounds": {
     "max_artifacts": 8,
     "max_artifact_bytes": 8000000,
     "max_invocation_bytes": 24000000
   },
-  "bytes_read": 271942,
-  "artifacts_attempted": 5,
+  "bytes_read": 446295,
+  "artifacts_attempted": 6,
   "artifacts": [
     {
       "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
@@ -198,6 +209,52 @@
       "state": "restored_exact_blob",
       "bytes_read": 78595,
       "git_blob": "b1115190baaace0021f97ef277769d77ab713de8",
+      "git_object_present_before_read": false,
+      "git_object_fetch_attempted": true
+    },
+    {
+      "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+      "claims": {
+        "EO:799": {
+          "claim_key": "research/readiness/claims/claude-2026-11-05-herschel-H2-rl1-noB2.jsonl:1",
+          "claim_sha256": "5832838af9b6d230090725bdf195f903fb106b2d4fd304384ac9c98b15c34745",
+          "references": [
+            {
+              "field": "operative_clauses[0].first_end.source",
+              "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+              "source_instrument_id": "EO:799"
+            },
+            {
+              "field": "operative_clauses[0].original_source",
+              "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+              "source_instrument_id": "EO:799"
+            },
+            {
+              "field": "original_representation",
+              "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+              "source_instrument_id": "EO:799"
+            },
+            {
+              "field": "savings_residuals.source",
+              "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+              "source_instrument_id": "EO:799"
+            },
+            {
+              "field": "whole_order_end.source",
+              "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+              "source_instrument_id": "EO:799"
+            }
+          ]
+        }
+      },
+      "path": "ProQuest Pre-1937 Orders/PT1-1908-EO-799.pdf",
+      "association_paths": [
+        "ProQuest Pre-1937 Orders/PT1-1908-EO-799.pdf"
+      ],
+      "association_conflict": false,
+      "state": "restored_exact_blob",
+      "bytes_read": 174353,
+      "git_blob": "56e036e024c32eaaaac759de389e48d115ae7cab",
       "git_object_present_before_read": false,
       "git_object_fetch_attempted": true
     },
@@ -419,6 +476,41 @@
           "field": "whole_order_end.source",
           "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732",
           "source_instrument_id": "EO:254"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:799",
+      "path": "ProQuest Pre-1937 Orders/PT1-1908-EO-799.pdf",
+      "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+      "state": "restored_exact_blob",
+      "claim_key": "research/readiness/claims/claude-2026-11-05-herschel-H2-rl1-noB2.jsonl:1",
+      "claim_sha256": "5832838af9b6d230090725bdf195f903fb106b2d4fd304384ac9c98b15c34745",
+      "references": [
+        {
+          "field": "operative_clauses[0].first_end.source",
+          "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+          "source_instrument_id": "EO:799"
+        },
+        {
+          "field": "operative_clauses[0].original_source",
+          "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+          "source_instrument_id": "EO:799"
+        },
+        {
+          "field": "original_representation",
+          "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+          "source_instrument_id": "EO:799"
+        },
+        {
+          "field": "savings_residuals.source",
+          "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+          "source_instrument_id": "EO:799"
+        },
+        {
+          "field": "whole_order_end.source",
+          "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb",
+          "source_instrument_id": "EO:799"
         }
       ]
     },
