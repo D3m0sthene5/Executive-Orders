@@ -29,8 +29,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: jobs
-          sparse-checkout-cone-mode: true
+          # only the marker files: jobs/ outputs are many GB
+          filter: blob:none
+          sparse-checkout: |
+            /jobs/*/DAILY
+            /jobs/*/job.py
+            /jobs/*/job.sh
+          sparse-checkout-cone-mode: false
       - name: Ask run-jobs to run every DAILY job
         env:
           GH_TOKEN: ${{ github.token }}
