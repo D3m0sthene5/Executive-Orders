@@ -8,11 +8,12 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (4)
+## Waiting for the owner (5)
 
 - **A-20261103-1** (2026-11-03, Codex): Provide Bacon-session.bundle or the original Bacon packet directory from EO Session Report? *Original scratch files are inaccessible, no Bacon publication was located, and the frozen sample/review receipts cannot be reconstructed faithfully*
 - **A-20261104-1** (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1? *Scoped occurrence intervals are usable now. Whole-case legal intervals need a separate scientific contract and fresh legal review. This is a contract proposal, not a request to choose case answers or relax production.*
 - **A-20261105-niebuhr-admit** (2026-11-05, claude): May the 30 orders in research/niebuhr/ADMISSION_QUEUE.csv (APP text held, 26 with the official OFR compilation text and page) be admitted to the census after a person checks each against its official page? Who does that… *They are signed, numbered executive orders the census misses through an ingestion gap; admission changes the census count, which only the owner can authorize, and identity review must be a person, not the machine.*
+- **A-20261106-1** (2026-11-06, claude-selden): When a statute abolishes the body an order created, or ends the national emergency an order's term depends on, without naming the order, does that statute date the order's end (for example PL 92-255 for EO 11599, PL 94-… *In the Selden 30-order proof, three orders (EO 11270, 11599, 12304) are blocked only because the held statute does not name the order. The same pattern recurs among the 1,814 later-law-only orders, and no further download can resolve it.*
 - **A-20261106-mabillon-register** (2026-11-06, claude (Mabillon)): Register jobs/mabillon-held-printings in tracker.py (PR #164), so 1,771 orders count their held official printing? *Held GPO slip volumes, 1974 GPO Hoover and 1936 FR pages filed as transcriptions; proved by text, 0 of 6,834 planted negatives accepted.*
 
 ## Standing owner requirements
