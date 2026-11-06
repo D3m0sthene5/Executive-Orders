@@ -1,0 +1,132 @@
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:46: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpbobtkpv3/repo/jobs/domesday-register/output/REGISTER.csv' mode='r' encoding='utf-8'>
+  return {r["instrument_id"] for r in csv.DictReader(open(path, encoding="utf-8", newline=""))}
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:75: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpbobtkpv3/repo/jobs/readiness-tracker/output/READINESS_BY_ORDER.csv' mode='r' encoding='utf-8'>
+  for r in csv.DictReader(open(readiness_csv, encoding="utf-8", newline="")):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:80: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpbobtkpv3/repo/jobs/current-law/output/ORDERS_CURRENT_LAW.csv' mode='r' encoding='utf-8'>
+  for r in csv.DictReader(open(current_csv, encoding="utf-8", newline="")):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+eligible YES orders 1; usc sections 2; cfr targets 2; unparsed citations 1
+notices 2 1
+{
+ "job": "theophilus-sources",
+ "generated_utc": "2026-11-05T21:22:00Z",
+ "notices": {
+  "listed": 2,
+  "fetched": 1
+ },
+ "orders_named_in_notices": 2,
+ "eligible_yes_orders": 1,
+ "usc_sections_planned": 2,
+ "cfr_targets_planned": 2,
+ "sections_fetched": {
+  "usc": 1,
+  "cfr": 2
+ },
+ "yes_orders_covered_by_sections": 1,
+ "failures_total": 3,
+ "failures_by_reason": {
+  "http_404": 1,
+  "section_not_found_in_title_xml": 1,
+  "usc_citation_not_a_single_section": 1
+ },
+ "usc_release_point": "119-121",
+ "limits": "No legal finding. Notices before 1994 are not in the Federal Register API and are left for a later route."
+}
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/test_job.py:131: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpbobtkpv3/out/SOURCES.jsonl' mode='r' encoding='UTF-8'>
+  recs = [json.loads(l) for l in open(out / "SOURCES.jsonl")]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.067s
+
+OK
+eligible YES orders 364; usc sections 259; cfr targets 609; unparsed citations 31
+notices 673 673
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 1357, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/client.py", line 1386, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/client.py", line 1432, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/client.py", line 1381, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/client.py", line 1141, in _send_output
+    self.send(msg)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/client.py", line 1085, in send
+    self.connect()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/http/client.py", line 1527, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/ssl.py", line 1054, in _create
+    self.do_handshake()
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/ssl.py", line 1332, in do_handshake
+    self._sslobj.do_handshake()
+TimeoutError: _ssl.c:994: The handshake operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/job.py", line 22, in <module>
+    s = theophilus.run_job(repo, out, cache, workers, previous_path=prev_copy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py", line 488, in run_job
+    run.cfr(cfr_plan)
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py", line 409, in cfr
+    for title, date, dsrc, items, res, errs in self.big.map(one, sorted(by_title)):
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/_lib/fetch_pool.py", line 172, in map
+    with concurrent.futures.ThreadPoolExecutor(max_workers=self.workers) as ex:return list(ex.map(func,items))
+                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py", line 380, in one
+    raw = retry(lambda: self.small.fetch(url))["body"]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py", line 222, in retry
+    return fn()
+           ^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py", line 380, in <lambda>
+    raw = retry(lambda: self.small.fetch(url))["body"]
+                        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/_lib/fetch_pool.py", line 161, in fetch
+    status,headers,body=self.request(current)
+                        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/_lib/fetch_pool.py", line 125, in request
+    status,rh,response=self.transport_fn(url,hs,timeout or self.timeout);rh={k.lower():v for k,v in rh.items()}
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/_lib/fetch_pool.py", line 18, in http_transport
+    try:r=urllib.request.build_opener(NoRedirect).open(req,timeout=timeout)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 1405, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/urllib/request.py", line 1360, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error _ssl.c:994: The handshake operation timed out>
