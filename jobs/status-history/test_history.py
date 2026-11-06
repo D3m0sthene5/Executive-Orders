@@ -4,7 +4,7 @@ import json
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from history import normalized_span,temporal_history,api_anchor,row_chunks,blank_decision,show,compact,canon
+from history import normalized_span,temporal_history,api_anchor,row_chunks,blank_decision,show,compact,canon,EMPTY_HISTORY_FLAG,validate_packet
 
 
 class HistoryTests(unittest.TestCase):
@@ -64,6 +64,22 @@ class HistoryTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'stale outputs'):show(p,'EO:1')
             (p/'FAILED.json').unlink();(p/'STATUS.json').write_text('{"result":"failed"}',encoding='utf-8')
             with self.assertRaisesRegex(ValueError,'did not succeed'):show(p,'EO:1')
+
+    def test_order_without_dated_history_gets_an_explicit_noted_empty_packet(self):
+        with tempfile.TemporaryDirectory() as t:
+            p=Path(t)
+            index=[{'instrument_id':'EO:5','history':None,'flags':['NO_STATUS_OBSERVATION_LOCATED'],'status':None,
+                    'events':0,'observations':0}]
+            (p/'INDEX.json').write_text(json.dumps(index),encoding='utf-8')
+            a=show(p,'EO:5');b=show(p,'EO:5')
+            self.assertEqual(canon(a),canon(b))  # deterministic, so a frozen copy compares exactly
+            h=a['history']
+            self.assertTrue(h['empty_history']);self.assertIn(EMPTY_HISTORY_FLAG,h['flags'])
+            self.assertIsNone(h['provisional_status']);self.assertEqual(h['legal_cutoff'],'2026-10-14')
+            self.assertIn('not evidence',h['notice'])
+            self.assertEqual((a['events'],a['observations']),([],[]))
+            self.assertEqual(validate_packet(p,a),[])
+            with self.assertRaisesRegex(ValueError,'no dated history located'):show(p,'EO:99999')
 
     def test_startup_cap_discloses_overflow_and_preserves_full_pointer(self):
         h={'instrument_id':'EO:1','fingerprint':'a'*64,'legal_cutoff':'2026-10-14','provisional_status':None,

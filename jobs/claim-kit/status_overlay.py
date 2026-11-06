@@ -295,6 +295,10 @@ def _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads
     elif clause:
         raise ValueError("selected_text_missing_for_compiled_clause")
     missing = list(leads.get("missing", []))
+    if packet["history"].get("empty_history"):
+        missing.append("No dated status observation or later event was located for this order (explicit empty "
+                       "history, owner ruling 2026-11-05). Judge its status on its own terms and the bounded "
+                       "later-source searches below, and say so in the decision.")
     for actor in actor_ids:
         source = actor_clauses.get(actor, {}).get("source")
         if source is None:
@@ -748,6 +752,10 @@ def propose(repo, decision, review, evidence):
                 "ready_for_owner_acceptance": True, "canonical_status_written": False,
                 "promotion_target": STATUSES,
                 "notice": "Reviewed proposal only. Owner adoption through the authoritative process is still required; no automatic publication exists."}
+    if (evidence.get("history_packet") or {}).get("history", {}).get("empty_history"):
+        proposal["history_basis"] = ("explicit empty history: no dated status observation or later event was located; "
+                                     "the recommendation rests on the order's own terms and the recorded bounded "
+                                     "searches (owner ruling 2026-11-05)")
     proposal["proposal_id"] = "status-overlay:" + evidence["instrument_id"] + ":" + canonical_sha(proposal)[:20]
     return _seal(proposal)
 
