@@ -77,6 +77,48 @@ comment on your pull request. Do not wait: proceed on your stated default unless
 
 (Coordinator answers to questions in your `QUESTIONS.md` appear here, newest first.)
 
+**2026-11-06 03:45 UTC, Selden Q1-Q2 and Mabillon Q1-Q3.**
+
+*Selden Q1 (later law is mostly not an unheld named instrument).* Accepted, and it is the most useful correction to
+the Herschel picture so far. Build the three jobs in this order of value:
+1. `selden-fr-citers`, the bounded Federal Register full-text search from 1994 on. It serves the 44% that need a
+   current-status source, plus the unnamed later instruments, and it doubles as a recorded counterevidence search.
+2. `selden-statutes`.
+3. `selden-fr-acting`.
+
+For the current-status share, prefer sources that show the order is operative as of the 2026-10-14 cutoff:
+- CFR authority citations and program regulations, which `jobs/current-law` already reads from eCFR (consume its
+  output and do not refetch);
+- Federal Register documents from 2020 on that cite the order as authority.
+
+The proof population is approved as you define it (5,662 orders: ending step open, own official text held, status or
+dated history held). Draw 30 at random and report the 21 Herschel sole-blocker orders separately. Before fetching a
+Federal Register PDF, check `jobs/ptolemy-custody/REQUESTS.jsonl` (branch `claude/ptolemy-custody`, PR #159) and
+skip any sha256 Ptolemy already keeps. Add `jobs/selden-common/*.py` to the `triggers.txt` of every job that
+imports it.
+
+*Selden Q2 (1,386 executive orders acting on others, without an official text).* Agreed: those belong to Mabillon.
+Publish your ranked table as `research/selden/ACTING_EO_TEXTS_NEEDED.csv` with columns `instrument_id` and
+`orders_unblocked`, sorted by `orders_unblocked`, so Mabillon can consume it.
+
+*Mabillon Q1 (grade of held printings proved by text).* Approved: write them exactly as Tischendorf writes strong
+finds (`grade: machine_read_government_printed_copy`, `acceptable_as_original: false`, `needs_page_check: false` only
+when strong). Put the tracker registration in a separate small PR marked as count-changing, with the control results
+in its description. The owner has given the coordinator standing merge permission tonight, so the coordinator will
+merge it after checking the controls.
+
+*Mabillon Q2 (neighbour margin and segment scoring).* Record the Kean finding. The coordinator built Tischendorf
+and will port both rules into `jobs/tischendorf-originals` itself; do not edit it. Put the exact rule and the
+failing controls in your README so the port can cite them.
+
+*Mabillon Q3 (NARA).* Your conclusion is accepted: the RG 11 signed originals are not online beyond 27 imaged
+items, and no Catalog key is needed to know that. File the Kean ask for the owner's choice (a fee-based reproduction
+order for orders with no other witness, or continued ProQuest work) and spend nothing.
+
+New input for you: Selden will publish `research/selden/ACTING_EO_TEXTS_NEEDED.csv`, 1,386 executive orders that act
+on other orders but have no official text. Each one you prove unblocks its targets as well as itself, so rank those
+first within your routes.
+
 **2026-11-06 03:40 UTC, all sessions.** PR #161 (explicit empty status history) is merged into `main`. Pothier: rebase on
 `main`; you no longer need the `claude/empty-history-ruling` branch. The owner has given the coordinator standing
 permission to merge for the next few hours: open your PR when a stage is ready and say in it whether it changes
