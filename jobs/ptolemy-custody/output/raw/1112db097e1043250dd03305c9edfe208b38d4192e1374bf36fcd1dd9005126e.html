@@ -1,0 +1,877 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#">
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta charset="utf-8"><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"dee899de70",applicationID:"80106271"};;/*! For license information please see nr-loader-rum-1.285.0.min.js.LICENSE.txt */
+(()=>{var e,t,r={8122:(e,t,r)=>{"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),o=0===Object.keys(r).length?e:r;for(let a in o)if(void 0!==e[a])try{if(null===e[a]){r[a]=null;continue}Array.isArray(e[a])&&Array.isArray(t[a])?r[a]=Array.from(new Set([...e[a],...t[a]])):"object"==typeof e[a]&&"object"==typeof t[a]?r[a]=i(e[a],t[a]):r[a]=e[a]}catch(e){(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},2555:(e,t,r)=>{"use strict";r.d(t,{Vp:()=>c,fn:()=>s,x1:()=>u});var n=r(384),i=r(8122);const o={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0},a={};function s(e){try{const t=c(e);return!!t.licenseKey&&!!t.errorBeacon&&!!t.applicationID}catch(e){return!1}}function c(e){if(!e)throw new Error("All info objects require an agent identifier!");if(!a[e])throw new Error("Info for ".concat(e," was never set"));return a[e]}function u(e,t){if(!e)throw new Error("All info objects require an agent identifier!");a[e]=(0,i.a)(t,o);const r=(0,n.nY)(e);r&&(r.info=a[e])}},5217:(e,t,r)=>{"use strict";r.d(t,{D0:()=>m,gD:()=>v,xN:()=>h});r(860).K7.genericEvents;const n="experimental.marks",i="experimental.measures",o="experimental.resources",a=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var s=r(2614),c=r(944),u=r(384),l=r(8122);const d="[data-nr-mask]",f=()=>{const e={feature_flags:[],experimental:{marks:!1,measures:!1,resources:!1},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{get capture_marks(){return e.feature_flags.includes(n)||e.experimental.marks},set capture_marks(t){e.experimental.marks=t},get capture_measures(){return e.feature_flags.includes(i)||e.experimental.measures},set capture_measures(t){e.experimental.measures=t},capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(o)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:s.wk,inactiveMs:s.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){a(t)?e.mask_selector="".concat(t,",").concat(d):""===t||null===t?e.mask_selector=d:(0,c.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){a(t)?e.block_selector+=",".concat(t):""!==t&&(0,c.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,c.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},spa:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]}}},g={},p="All configuration objects require an agent identifier!";function m(e){if(!e)throw new Error(p);if(!g[e])throw new Error("Configuration for ".concat(e," was never set"));return g[e]}function h(e,t){if(!e)throw new Error(p);g[e]=(0,l.a)(t,f());const r=(0,u.nY)(e);r&&(r.init=g[e])}function v(e,t){if(!e)throw new Error(p);var r=m(e);if(r){for(var n=t.split("."),i=0;i<n.length-1;i++)if("object"!=typeof(r=r[n[i]]))return;r=r[n[n.length-1]]}return r}},3371:(e,t,r)=>{"use strict";r.d(t,{V:()=>f,f:()=>d});var n=r(8122),i=r(384),o=r(6154),a=r(9324);let s=0;const c={buildEnv:a.F3,distMethod:a.Xs,version:a.xv,originTime:o.WN},u={customTransaction:void 0,disabled:!1,isolatedBacklog:!1,loaderType:void 0,maxBytes:3e4,onerror:void 0,ptid:void 0,releaseIds:{},appMetadata:{},session:void 0,denyList:void 0,timeKeeper:void 0,obfuscator:void 0,harvester:void 0},l={};function d(e){if(!e)throw new Error("All runtime objects require an agent identifier!");if(!l[e])throw new Error("Runtime for ".concat(e," was never set"));return l[e]}function f(e,t){if(!e)throw new Error("All runtime objects require an agent identifier!");l[e]={...(0,n.a)(t,u),...c},Object.hasOwnProperty.call(l[e],"harvestCount")||Object.defineProperty(l[e],"harvestCount",{get:()=>++s});const r=(0,i.nY)(e);r&&(r.runtime=l[e])}},9324:(e,t,r)=>{"use strict";r.d(t,{F3:()=>i,Xs:()=>o,xv:()=>n});const n="1.285.0",i="PROD",o="CDN"},6154:(e,t,r)=>{"use strict";r.d(t,{OF:()=>c,RI:()=>i,WN:()=>l,bv:()=>o,gm:()=>a,mw:()=>s,sb:()=>u});var n=r(1863);const i="undefined"!=typeof window&&!!window.document,o="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),a=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),s=Boolean("hidden"===a?.document?.visibilityState),c=/iPad|iPhone|iPod/.test(a.navigator?.userAgent),u=c&&"undefined"==typeof SharedWorker,l=((()=>{const e=a.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)())},3241:(e,t,r)=>{"use strict";r.d(t,{W:()=>o});var n=r(6154);const i="newrelic";function o(e={}){try{n.gm.dispatchEvent(new CustomEvent(i,{detail:e}))}catch(e){}}},1687:(e,t,r)=>{"use strict";r.d(t,{Ak:()=>c,Ze:()=>d,x3:()=>u});var n=r(7836),i=r(3606),o=r(860),a=r(2646);const s={};function c(e,t){const r={staged:!1,priority:o.P3[t]||0};l(e),s[e].get(t)||s[e].set(t,r)}function u(e,t){e&&s[e]&&(s[e].get(t)&&s[e].delete(t),g(e,t,!1),s[e].size&&f(e))}function l(e){if(!e)throw new Error("agentIdentifier required");s[e]||(s[e]=new Map)}function d(e="",t="feature",r=!1){if(l(e),!e||!s[e].get(t)||r)return g(e,t);s[e].get(t).staged=!0,f(e)}function f(e){const t=Array.from(s[e]);t.every((([e,t])=>t.staged))&&(t.sort(((e,t)=>e[1].priority-t[1].priority)),t.forEach((([t])=>{s[e].delete(t),g(e,t)})))}function g(e,t,r=!0){const o=e?n.ee.get(e):n.ee,s=i.i.handlers;if(!o.aborted&&o.backlog&&s){if(r){const e=o.backlog[t],r=s[t];if(r){for(let t=0;e&&t<e.length;++t)p(e[t],r);Object.entries(r).forEach((([e,t])=>{Object.values(t||{}).forEach((t=>{t[0]?.on&&t[0]?.context()instanceof a.y&&t[0].on(e,t[1])}))}))}}o.isolatedBacklog||delete s[t],o.backlog[t]=null,o.emit("drain-"+t,[])}}function p(e,t){var r=e[1];Object.values(t[r]||{}).forEach((t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],o=e[2];n.apply(i,o)}}))}},7836:(e,t,r)=>{"use strict";r.d(t,{P:()=>c,ee:()=>u});var n=r(384),i=r(8990),o=r(3371),a=r(2646),s=r(5607);const c="nr@context:".concat(s.W),u=function e(t,r){var n={},s={},l={},d=!1;try{d=16===r.length&&(0,o.f)(r).isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,o){!1!==o&&(o=!0);if(u.aborted&&!i)return;t&&o&&t.emit(e,r,n);for(var a=g(n),c=m(e),l=c.length,d=0;d<l;d++)c[d].apply(a,r);var p=v()[s[e]];p&&p.push([f,e,r,a]);return a},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach((([e,n])=>{s[n]=t,t in r||(r[t]=[])}))},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach((e=>{delete f.backlog[e]}))},isBuffering:function(e){return!!v()[s[e]]},debugId:r,backlog:d?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:d};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof a.y?e:e?(0,i.I)(e,c,(()=>new a.y(c))):new a.y(c)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return l[t]=l[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),l=(0,n.Zm)();l.ee||(l.ee=u)},2646:(e,t,r)=>{"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},9908:(e,t,r)=>{"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,o){o?(o.buffer([e],i),o.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},3606:(e,t,r)=>{"use strict";r.d(t,{i:()=>o});var n=r(9908);o.on=a;var i=o.handlers={};function o(e,t,r,o){a(o||n.d,i,e,t,r)}function a(e,t,r,i,o){o||(o="feature"),e||(e=n.d);var a=t[o]=t[o]||{};(a[r]=a[r]||[]).push([e,i])}},3878:(e,t,r)=>{"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function o(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>o,jT:()=>n,sp:()=>i})},5607:(e,t,r)=>{"use strict";r.d(t,{W:()=>n});const n=(0,r(9566).bz)()},9566:(e,t,r)=>{"use strict";r.d(t,{LA:()=>s,bz:()=>a});var n=r(6154);const i="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";function o(e,t){return e?15&e[t]:16*Math.random()|0}function a(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),i.split("").map((e=>"x"===e?o(t,r++).toString(16):"y"===e?(3&o()|8).toString(16):e)).join("")}function s(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,i=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const a=[];for(var s=0;s<e;s++)a.push(o(r,i++).toString(16));return a.join("")}},2614:(e,t,r)=>{"use strict";r.d(t,{BB:()=>a,H3:()=>n,g:()=>u,iL:()=>c,tS:()=>s,uh:()=>i,wk:()=>o});const n="NRBA",i="SESSION",o=144e5,a=18e5,s={STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},c={SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},u={OFF:0,FULL:1,ERROR:2}},1863:(e,t,r)=>{"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944:(e,t,r)=>{"use strict";function n(e,t){"function"==typeof console.debug&&console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t)}r.d(t,{R:()=>n})},5701:(e,t,r)=>{"use strict";r.d(t,{B:()=>a,t:()=>s});var n=r(7836),i=r(3241);const o=new Set,a={};function s(e,t){const r=n.ee.get(t);a[t]??={},e&&"object"==typeof e&&(o.has(t)||(r.emit("rumresp",[e]),a[t]=e,o.add(t),(0,i.W)({agentIdentifier:t,loaded:!0,type:"lifecycle",name:"load",feature:void 0,data:e})))}},8990:(e,t,r)=>{"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},6389:(e,t,r)=>{"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout((()=>{i=clearTimeout(i)}),t)),n||(clearTimeout(i),i=setTimeout((()=>{e.apply(this,r)}),t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},5289:(e,t,r)=>{"use strict";r.d(t,{GG:()=>o,sB:()=>a});var n=r(3878);function i(){return"undefined"==typeof document||"complete"===document.readyState}function o(e,t){if(i())return e();(0,n.sp)("load",e,t)}function a(e){if(i())return e();(0,n.DD)("DOMContentLoaded",e)}},384:(e,t,r)=>{"use strict";r.d(t,{NT:()=>o,US:()=>l,Zm:()=>a,bQ:()=>c,dV:()=>s,nY:()=>u,pV:()=>d});var n=r(6154),i=r(1863);const o={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function a(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function s(){let e=a();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket}),e}function c(e,t){let r=a();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t}function u(e){let t=a();return t.initializedAgents?.[e]}function l(e,t){a()[e]=t}function d(){return function(){let e=a();const t=e.info||{};e.info={beacon:o.beacon,errorBeacon:o.errorBeacon,...t}}(),function(){let e=a();const t=e.init||{};e.init={...t}}(),s(),function(){let e=a();const t=e.loader_config||{};e.loader_config={...t}}(),a()}},2843:(e,t,r)=>{"use strict";r.d(t,{u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",(function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)}),r,i)}},3434:(e,t,r)=>{"use strict";r.d(t,{Jt:()=>o,YM:()=>c});var n=r(7836),i=r(5607);const o="nr@original:".concat(i.W);var a=Object.prototype.hasOwnProperty,s=!1;function c(e,t){return e||(e=n.ee),r.inPlace=function(e,t,n,i,o){n||(n="");const a="-"===n.charAt(0);for(let s=0;s<t.length;s++){const c=t[s],u=e[c];l(u)||(e[c]=r(u,a?c+n:n,i,c,o))}},r.flag=o,r;function r(t,r,n,s,c){return l(t)?t:(r||(r=""),nrWrapper[o]=t,function(e,t,r){if(Object.defineProperty&&Object.keys)try{return Object.keys(e).forEach((function(r){Object.defineProperty(t,r,{get:function(){return e[r]},set:function(t){return e[r]=t,t}})})),t}catch(e){u([e],r)}for(var n in e)a.call(e,n)&&(t[n]=e[n])}(t,nrWrapper,e),nrWrapper);function nrWrapper(){var o,a,l,d;try{a=this,o=[...arguments],l="function"==typeof n?n(o,a):n||{}}catch(t){u([t,"",[o,a,s],l],e)}i(r+"start",[o,a,s],l,c);try{return d=t.apply(a,o)}catch(e){throw i(r+"err",[o,a,e],l,c),e}finally{i(r+"end",[o,a,d],l,c)}}}function i(r,n,i,o){if(!s||t){var a=s;s=!0;try{e.emit(r,n,i,t,o)}catch(t){u([t,r,n,i],e)}s=a}}}function u(e,t){t||(t=n.ee);try{t.emit("internal-error",e)}catch(e){}}function l(e){return!(e&&"function"==typeof e&&e.apply&&!e[o])}},993:(e,t,r)=>{"use strict";r.d(t,{A$:()=>o,ET:()=>a,p_:()=>i});var n=r(860);const i={ERROR:"ERROR",WARN:"WARN",INFO:"INFO",DEBUG:"DEBUG",TRACE:"TRACE"},o={OFF:0,ERROR:1,WARN:2,INFO:3,DEBUG:4,TRACE:5},a="log";n.K7.logging},8154:(e,t,r)=>{"use strict";r.d(t,{z_:()=>o,XG:()=>s,TZ:()=>n,rs:()=>i,xV:()=>a});r(6154),r(9566),r(384);const n=r(860).K7.metrics,i="sm",o="cm",a="storeSupportabilityMetrics",s="storeEventMetrics"},6630:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.pageViewEvent},782:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.pageViewTiming},6344:(e,t,r)=>{"use strict";r.d(t,{G4:()=>i});var n=r(2614);r(860).K7.sessionReplay;const i={RECORD:"recordReplay",PAUSE:"pauseReplay",REPLAY_RUNNING:"replayRunning",ERROR_DURING_REPLAY:"errorDuringReplay"};n.g.ERROR,n.g.FULL,n.g.OFF},4234:(e,t,r)=>{"use strict";r.d(t,{W:()=>o});var n=r(7836),i=r(1687);class o{constructor(e,t){this.agentIdentifier=e,this.ee=n.ee.get(e),this.featureName=t,this.blocked=!1}deregisterDrain(){(0,i.x3)(this.agentIdentifier,this.featureName)}}},7603:(e,t,r)=>{"use strict";r.d(t,{j:()=>V});var n=r(860),i=r(2555),o=r(3371),a=r(9908),s=r(7836),c=r(1687),u=r(5289),l=r(6154),d=r(944),f=r(8154),g=r(384),p=r(6344);const m=["setErrorHandler","finished","addToTrace","addRelease","recordCustomEvent","addPageAction","setCurrentRouteName","setPageViewName","setCustomAttribute","interaction","noticeError","setUserId","setApplicationVersion","start",p.G4.RECORD,p.G4.PAUSE,"log","wrapLogger"],h=["setErrorHandler","finished","addToTrace","addRelease"];var v=r(1863),b=r(2614),y=r(993);var w=r(2646),R=r(3434);const A=new Map;function E(e,t,r,n){if("object"!=typeof t||!t||"string"!=typeof r||!r||"function"!=typeof t[r])return(0,d.R)(29);const i=function(e){return(e||s.ee).get("logger")}(e),o=(0,R.YM)(i),a=new w.y(s.P);a.level=n.level,a.customAttributes=n.customAttributes;const c=t[r]?.[R.Jt]||t[r];return A.set(c,a),o.inPlace(t,[r],"wrap-logger-",(()=>A.get(c))),i}var _=r(3241),x=r(5701);function N(){const e=(0,g.pV)();m.forEach((t=>{e[t]=(...r)=>function(t,...r){let n=[];return Object.values(e.initializedAgents).forEach((e=>{e&&e.api?e.exposed&&e.api[t]&&n.push(e.api[t](...r)):(0,d.R)(38,t)})),n.length>1?n:n[0]}(t,...r)}))}const k={};function I(e,t,g=!1){t||(0,c.Ak)(e,"api");const m={};var w=s.ee.get(e),R=w.get("tracer");k[e]=b.g.OFF,w.on(p.G4.REPLAY_RUNNING,(t=>{k[e]=t}));var A="api-",N=A+"ixn-";function I(t,r,n,o){const a=(0,i.Vp)(e);return null===r?delete a.jsAttributes[t]:(0,i.x1)(e,{...a,jsAttributes:{...a.jsAttributes,[t]:r}}),S(A,n,!0,o||null===r?"session":void 0)(t,r)}function T(){}m.log=function(e,{customAttributes:t={},level:r=y.p_.INFO}={}){(0,a.p)(f.xV,["API/log/called"],void 0,n.K7.metrics,w),function(e,t,r={},i=y.p_.INFO){(0,a.p)(f.xV,["API/logging/".concat(i.toLowerCase(),"/called")],void 0,n.K7.metrics,e),(0,a.p)(y.ET,[(0,v.t)(),t,r,i],void 0,n.K7.logging,e)}(w,e,t,r)},m.wrapLogger=(e,t,{customAttributes:r={},level:i=y.p_.INFO}={})=>{(0,a.p)(f.xV,["API/wrapLogger/called"],void 0,n.K7.metrics,w),E(w,e,t,{customAttributes:r,level:i})},h.forEach((e=>{m[e]=S(A,e,!0,"api")})),m.addPageAction=S(A,"addPageAction",!0,n.K7.genericEvents),m.recordCustomEvent=S(A,"recordCustomEvent",!0,n.K7.genericEvents),m.setPageViewName=function(t,r){if("string"==typeof t)return"/"!==t.charAt(0)&&(t="/"+t),(0,o.f)(e).customTransaction=(r||"http://custom.transaction")+t,S(A,"setPageViewName",!0)()},m.setCustomAttribute=function(e,t,r=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof t)||null===t)return I(e,t,"setCustomAttribute",r);(0,d.R)(40,typeof t)}else(0,d.R)(39,typeof e)},m.setUserId=function(e){if("string"==typeof e||null===e)return I("enduser.id",e,"setUserId",!0);(0,d.R)(41,typeof e)},m.setApplicationVersion=function(e){if("string"==typeof e||null===e)return I("application.version",e,"setApplicationVersion",!1);(0,d.R)(42,typeof e)},m.start=()=>{try{(0,a.p)(f.xV,["API/start/called"],void 0,n.K7.metrics,w),w.emit("manual-start-all")}catch(e){(0,d.R)(23,e)}},m[p.G4.RECORD]=function(){(0,a.p)(f.xV,["API/recordReplay/called"],void 0,n.K7.metrics,w),(0,a.p)(p.G4.RECORD,[],void 0,n.K7.sessionReplay,w)},m[p.G4.PAUSE]=function(){(0,a.p)(f.xV,["API/pauseReplay/called"],void 0,n.K7.metrics,w),(0,a.p)(p.G4.PAUSE,[],void 0,n.K7.sessionReplay,w)},m.interaction=function(e){return(new T).get("object"==typeof e?e:{})};const j=T.prototype={createTracer:function(e,t){var r={},i=this,o="function"==typeof t;return(0,a.p)(f.xV,["API/createTracer/called"],void 0,n.K7.metrics,w),g||(0,a.p)(N+"tracer",[(0,v.t)(),e,r],i,n.K7.spa,w),function(){if(R.emit((o?"":"no-")+"fn-start",[(0,v.t)(),i,o],r),o)try{return t.apply(this,arguments)}catch(e){const t="string"==typeof e?new Error(e):e;throw R.emit("fn-err",[arguments,this,t],r),t}finally{R.emit("fn-end",[(0,v.t)()],r)}}}};function S(t,r,i,o){return function(){return(0,a.p)(f.xV,["API/"+r+"/called"],void 0,n.K7.metrics,w),(0,_.W)({agentIdentifier:e,loaded:!!x.B?.[e],type:"data",name:"api",feature:t+r,data:{notSpa:i,bufferGroup:o}}),o&&(0,a.p)(t+r,[i?(0,v.t)():performance.now(),...arguments],i?null:this,o,w),i?void 0:this}}function O(){r.e(296).then(r.bind(r,8778)).then((({setAPI:t})=>{t(e),(0,c.Ze)(e,"api")})).catch((e=>{(0,d.R)(27,e),w.abort()}))}return["actionText","setName","setAttribute","save","ignore","onEnd","getContext","end","get"].forEach((e=>{j[e]=S(N,e,void 0,g?n.K7.softNav:n.K7.spa)})),m.setCurrentRouteName=g?S(N,"routeName",void 0,n.K7.softNav):S(A,"routeName",!0,n.K7.spa),m.noticeError=function(t,r){"string"==typeof t&&(t=new Error(t)),(0,a.p)(f.xV,["API/noticeError/called"],void 0,n.K7.metrics,w),(0,a.p)("err",[t,(0,v.t)(),!1,r,!!k[e]],void 0,n.K7.jserrors,w)},l.RI?(0,u.GG)((()=>O()),!0):O(),m}var T=r(5217),j=r(8122);const S={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0},O={};const P=e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e};let K=!1;function V(e,t={},r,n){let{init:a,info:c,loader_config:u,runtime:d={},exposed:f=!0}=t;d.loaderType=r;const p=(0,g.pV)();c||(a=p.init,c=p.info,u=p.loader_config),(0,T.xN)(e.agentIdentifier,a||{}),function(e,t){if(!e)throw new Error("All loader-config objects require an agent identifier!");O[e]=(0,j.a)(t,S);const r=(0,g.nY)(e);r&&(r.loader_config=O[e])}(e.agentIdentifier,u||{}),c.jsAttributes??={},l.bv&&(c.jsAttributes.isWorker=!0),(0,i.x1)(e.agentIdentifier,c);const m=(0,T.D0)(e.agentIdentifier),h=[c.beacon,c.errorBeacon];K||(m.proxy.assets&&(P(m.proxy.assets),h.push(m.proxy.assets)),m.proxy.beacon&&h.push(m.proxy.beacon),N(),(0,g.US)("activatedFeatures",x.B),e.runSoftNavOverSpa&&=!0===m.soft_navigations.enabled&&m.feature_flags.includes("soft_nav")),d.denyList=[...m.ajax.deny_list||[],...m.ajax.block_internal?h:[]],d.ptid=e.agentIdentifier,(0,o.V)(e.agentIdentifier,d),e.ee=s.ee.get(e.agentIdentifier),void 0===e.api&&(e.api=I(e.agentIdentifier,n,e.runSoftNavOverSpa)),void 0===e.exposed&&(e.exposed=f),K||(0,_.W)({agentIdentifier:e.agentIdentifier,loaded:!!x.B?.[e.agentIdentifier],type:"lifecycle",name:"initialize",feature:void 0,data:{init:m,info:c,loader_config:u,runtime:d}}),K=!0}},8374:(e,t,r)=>{r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860:(e,t,r)=>{"use strict";r.d(t,{$J:()=>l,K7:()=>c,P3:()=>u,XX:()=>i,Yy:()=>s,df:()=>o,qY:()=>n,v4:()=>a});const n="events",i="jserrors",o="browser/blobs",a="rum",s="browser/logs",c={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations",spa:"spa"},u={[c.pageViewEvent]:1,[c.pageViewTiming]:2,[c.metrics]:3,[c.jserrors]:4,[c.spa]:5,[c.ajax]:6,[c.sessionTrace]:7,[c.softNav]:8,[c.sessionReplay]:9,[c.logging]:10,[c.genericEvents]:11},l={[c.pageViewEvent]:a,[c.pageViewTiming]:n,[c.ajax]:n,[c.spa]:n,[c.softNav]:n,[c.metrics]:i,[c.jserrors]:i,[c.sessionTrace]:o,[c.sessionReplay]:o,[c.logging]:s,[c.genericEvents]:"ins"}}},n={};function i(e){var t=n[e];if(void 0!==t)return t.exports;var o=n[e]={exports:{}};return r[e](o,o.exports,i),o.exports}i.m=r,i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce(((t,r)=>(i.f[r](e,t),t)),[])),i.u=e=>"nr-rum-1.285.0.min.js",i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},t="NRBA-1.285.0.PROD:",i.l=(r,n,o,a)=>{if(e[r])e[r].push(n);else{var s,c;if(void 0!==o)for(var u=document.getElementsByTagName("script"),l=0;l<u.length;l++){var d=u[l];if(d.getAttribute("src")==r||d.getAttribute("data-webpack")==t+o){s=d;break}}if(!s){c=!0;var f={296:"sha512-Aa+vt/G+VUnXF5imJD27xfBbG00pJRbxEVq24dgn/KfPYsDLKETEMkS7ezrIti3e/7t6va9a0PBrFlxSB0FCeA=="};(s=document.createElement("script")).charset="utf-8",s.timeout=120,i.nc&&s.setAttribute("nonce",i.nc),s.setAttribute("data-webpack",t+o),s.src=r,0!==s.src.indexOf(window.location.origin+"/")&&(s.crossOrigin="anonymous"),f[a]&&(s.integrity=f[a])}e[r]=[n];var g=(t,n)=>{s.onerror=s.onload=null,clearTimeout(p);var i=e[r];if(delete e[r],s.parentNode&&s.parentNode.removeChild(s),i&&i.forEach((e=>e(n))),t)return t(n)},p=setTimeout(g.bind(null,void 0,{type:"timeout",target:s}),12e4);s.onerror=g.bind(null,s.onerror),s.onload=g.bind(null,s.onload),c&&document.head.appendChild(s)}},i.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.p="https://js-agent.newrelic.com/",(()=>{var e={374:0,840:0};i.f.j=(t,r)=>{var n=i.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var o=new Promise(((r,i)=>n=e[t]=[r,i]));r.push(n[2]=o);var a=i.p+i.u(t),s=new Error;i.l(a,(r=>{if(i.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var o=r&&("load"===r.type?"missing":r.type),a=r&&r.target&&r.target.src;s.message="Loading chunk "+t+" failed.\n("+o+": "+a+")",s.name="ChunkLoadError",s.type=o,s.request=a,n[1](s)}}),"chunk-"+t,t)}};var t=(t,r)=>{var n,o,[a,s,c]=r,u=0;if(a.some((t=>0!==e[t]))){for(n in s)i.o(s,n)&&(i.m[n]=s[n]);if(c)c(i)}for(t&&t(r);u<a.length;u++)o=a[u],i.o(e,o)&&e[o]&&e[o][0](),e[o]=0},r=self["webpackChunk:NRBA-1.285.0.PROD"]=self["webpackChunk:NRBA-1.285.0.PROD"]||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})(),(()=>{"use strict";i(8374);var e=i(944),t=i(6344),r=i(9566);class n{agentIdentifier;constructor(){this.agentIdentifier=(0,r.LA)(16)}#e(t,...r){if("function"==typeof this.api?.[t])return this.api[t](...r);(0,e.R)(35,t)}addPageAction(e,t){return this.#e("addPageAction",e,t)}recordCustomEvent(e,t){return this.#e("recordCustomEvent",e,t)}setPageViewName(e,t){return this.#e("setPageViewName",e,t)}setCustomAttribute(e,t,r){return this.#e("setCustomAttribute",e,t,r)}noticeError(e,t){return this.#e("noticeError",e,t)}setUserId(e){return this.#e("setUserId",e)}setApplicationVersion(e){return this.#e("setApplicationVersion",e)}setErrorHandler(e){return this.#e("setErrorHandler",e)}addRelease(e,t){return this.#e("addRelease",e,t)}log(e,t){return this.#e("log",e,t)}}class o extends n{#e(t,...r){if("function"==typeof this.api?.[t])return this.api[t](...r);(0,e.R)(35,t)}start(){return this.#e("start")}finished(e){return this.#e("finished",e)}recordReplay(){return this.#e(t.G4.RECORD)}pauseReplay(){return this.#e(t.G4.PAUSE)}addToTrace(e){return this.#e("addToTrace",e)}setCurrentRouteName(e){return this.#e("setCurrentRouteName",e)}interaction(){return this.#e("interaction")}wrapLogger(e,t,r){return this.#e("wrapLogger",e,t,r)}}var a=i(860),s=i(5217);const c=Object.values(a.K7);function u(e){const t={};return c.forEach((r=>{t[r]=function(e,t){return!0===(0,s.gD)(t,"".concat(e,".enabled"))}(r,e)})),t}var l=i(7603);var d=i(1687),f=i(4234),g=i(5289),p=i(6154),m=i(384);const h=e=>p.RI&&!0===(0,s.gD)(e,"privacy.cookies_enabled");function v(e){return!!(0,m.dV)().o.MO&&h(e)&&!0===(0,s.gD)(e,"session_trace.enabled")}var b=i(6389);class y extends f.W{constructor(e,t,r=!0){super(e.agentIdentifier,t),this.auto=r,this.abortHandler=void 0,this.featAggregate=void 0,this.onAggregateImported=void 0,!1===e.init[this.featureName].autoStart&&(this.auto=!1),this.auto?(0,d.Ak)(e.agentIdentifier,t):this.ee.on("manual-start-all",(0,b.J)((()=>{(0,d.Ak)(e.agentIdentifier,this.featureName),this.auto=!0,this.importAggregator(e)})))}importAggregator(t,r={}){if(this.featAggregate||!this.auto)return;let n;this.onAggregateImported=new Promise((e=>{n=e}));const o=async()=>{let o;try{if(h(this.agentIdentifier)){const{setupAgentSession:e}=await i.e(296).then(i.bind(i,3861));o=e(t)}}catch(t){(0,e.R)(20,t),this.ee.emit("internal-error",[t]),this.featureName===a.K7.sessionReplay&&this.abortHandler?.()}try{if(!this.#t(this.featureName,o))return(0,d.Ze)(this.agentIdentifier,this.featureName),void n(!1);const{lazyFeatureLoader:e}=await i.e(296).then(i.bind(i,6103)),{Aggregate:a}=await e(this.featureName,"aggregate");this.featAggregate=new a(t,r),t.runtime.harvester.initializedAggregates.push(this.featAggregate),n(!0)}catch(t){(0,e.R)(34,t),this.abortHandler?.(),(0,d.Ze)(this.agentIdentifier,this.featureName,!0),n(!1),this.ee&&this.ee.abort()}};p.RI?(0,g.GG)((()=>o()),!0):o()}#t(e,t){switch(e){case a.K7.sessionReplay:return v(this.agentIdentifier)&&!!t;case a.K7.sessionTrace:return!!t;default:return!0}}}var w=i(6630);class R extends y{static featureName=w.T;constructor(e,t=!0){super(e,w.T,t),this.importAggregator(e)}}var A=i(9908),E=i(2843),_=i(3878),x=i(782),N=i(1863);class k extends y{static featureName=x.T;constructor(e,t=!0){super(e,x.T,t),p.RI&&((0,E.u)((()=>(0,A.p)("docHidden",[(0,N.t)()],void 0,x.T,this.ee)),!0),(0,_.sp)("pagehide",(()=>(0,A.p)("winPagehide",[(0,N.t)()],void 0,x.T,this.ee))),this.importAggregator(e))}}var I=i(8154);class T extends y{static featureName=I.TZ;constructor(e,t=!0){super(e,I.TZ,t),p.RI&&document.addEventListener("securitypolicyviolation",(e=>{(0,A.p)(I.xV,["Generic/CSPViolation/Detected"],void 0,this.featureName,this.ee)})),this.importAggregator(e)}}new class extends o{constructor(t){super(),p.gm?(this.features={},(0,m.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(t.features||[]),this.desiredFeatures.add(R),this.runSoftNavOverSpa=[...this.desiredFeatures].some((e=>e.featureName===a.K7.softNav)),(0,l.j)(this,t,t.loaderType||"agent"),this.run()):(0,e.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}run(){try{const t=u(this.agentIdentifier),r=[...this.desiredFeatures];r.sort(((e,t)=>a.P3[e.featureName]-a.P3[t.featureName])),r.forEach((r=>{if(!t[r.featureName]&&r.featureName!==a.K7.pageViewEvent)return;if(this.runSoftNavOverSpa&&r.featureName===a.K7.spa)return;if(!this.runSoftNavOverSpa&&r.featureName===a.K7.softNav)return;const n=function(e){switch(e){case a.K7.ajax:return[a.K7.jserrors];case a.K7.sessionTrace:return[a.K7.ajax,a.K7.pageViewEvent];case a.K7.sessionReplay:return[a.K7.sessionTrace];case a.K7.pageViewTiming:return[a.K7.pageViewEvent];default:return[]}}(r.featureName).filter((e=>!(e in this.features)));n.length>0&&(0,e.R)(36,{targetFeature:r.featureName,missingDependencies:n}),this.features[r.featureName]=new r(this)}))}catch(t){(0,e.R)(22,t);for(const e in this.features)this.features[e].abortHandler?.();const r=(0,m.Zm)();delete r.initializedAgents[this.agentIdentifier]?.api,delete r.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return r.ee.get(this.agentIdentifier).abort(),!1}}}({features:[R,k,T],loaderType:"lite"})})()})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="/documents/executive-order-10813-including-certain-lands-the-chattahoochee-national-forest-and-the" />
+<link rel="shortlink" href="/node/234322" />
+<link rel="shortcut icon" href="https://www.presidency.ucsb.edu/sites/default/files/favicon-app_0.png" type="image/png" />
+  <title>Executive Order 10813—Including Certain Lands in the Chattahoochee National Forest and the Nantahala National Forest | The American Presidency Project</title>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,800,700,600,300|Dosis:400,200,300,500,600,700,800' rel='stylesheet' type='text/css'>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_lQaZfjVpwP_oGNqdtWCSpJT1EMqXdMiU84ekLLxQnc4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_uuQd0L7qawhKpY0MHO8pVG2W6LSQqS5w9XHZMk3vO2U.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_vbEgx2XLR7Zv4cooqCR003JQm8ctJxS8MDvX_FsFGUs.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_oeHWMYUNGpyVpvA5OI5WFwKyBOcHdcrAoQuKZFMe0ng.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_95w1P56cK6XaxiF_CEwhZAgmNWjkIGFRauUF_xNVpzE.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_DW59q6nX-P3-D4cA08_V2iLlMJIaFdPFYT8X6nSFpV8.css" media="print" />
+  <!-- HTML5 element support for IE6-8 -->
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+<script>window.jQuery || document.write("<script src='/sites/default/modules/contrib/jquery_update/replace/jquery/1.12/jquery.min.js'>\x3C/script>")</script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_GOikDsJOX04Aww72M-XK1hkq4qiL_1XgGsRdkL0XlDo.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.13.3/jquery-ui.min.js"></script>
+<script>window.jQuery.ui || document.write("<script src='/sites/default/modules/contrib/jquery_update/replace/ui/ui/minified/jquery-ui.min.js'>\x3C/script>")</script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_onbE0n0cQY6KTDQtHO_E27UBymFC-RuqypZZ6Zxez-o.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_gHk2gWJ_Qw_jU2qRiUmSl7d8oly1Cx7lQFrqcp3RXcI.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_OnsvYlQ_LTosJ-SxmHIq3Rw7eH2XmXi69Q68wgclccA.js"></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-86410002-1"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-86410002-1", {"groups":"default","linker":{"domains":["dev-wwwpresidencyucsbedu.pantheonsite.io","www.presidency.ucsb.edu"]},"anonymize_ip":true});gtag("config", "G-86B9KEYGFJ", {"groups":"default","linker":{"domains":["dev-wwwpresidencyucsbedu.pantheonsite.io","www.presidency.ucsb.edu"]},"anonymize_ip":true});</script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_lcTf447kIisJfwJMjtPrAFuGvKNH6t_RbNx-yD768P0.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_gvpxcPEErmaiJn8qGSGx2O87lReivTR09hs10gIG3Yg.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","setHasJsCookie":0,"ajaxPageState":{"theme":"app","theme_token":"HCufQ5muKkZw9gUd8qcJaWtpq1Ehi_NDYmSdglSc84c","js":{"sites\/default\/libraries\/jquery-ui-multiselect-widget\/src\/jquery.multiselect.js":1,"sites\/default\/libraries\/jquery-ui-multiselect-widget\/src\/jquery.multiselect.filter.js":1,"sites\/default\/modules\/contrib\/jquery_ui_multiselect_widget\/jquery_ui_multiselect_widget.js":1,"modules\/statistics\/statistics.js":1,"sites\/default\/themes\/bootstrap\/js\/bootstrap.js":1,"\/\/ajax.aspnetcdn.com\/ajax\/jQuery\/jquery-1.12.4.min.js":1,"0":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/default\/modules\/contrib\/jquery_update\/js\/jquery_browser.js":1,"\/\/ajax.aspnetcdn.com\/ajax\/jquery.ui\/1.13.3\/jquery-ui.min.js":1,"1":1,"misc\/form-single-submit.js":1,"sites\/default\/modules\/contrib\/entityreference\/js\/entityreference.js":1,"sites\/default\/modules\/contrib\/better_exposed_filters\/better_exposed_filters.js":1,"sites\/default\/modules\/contrib\/google_analytics\/googleanalytics.js":1,"https:\/\/www.googletagmanager.com\/gtag\/js?id=UA-86410002-1":1,"2":1,"sites\/default\/modules\/contrib\/field_group\/field_group.js":1,"sites\/default\/modules\/contrib\/rrssb\/rrssb.init.js":1,"sites\/default\/libraries\/rrssb-plus\/js\/rrssb.min.js":1,"sites\/default\/modules\/contrib\/extlink\/js\/extlink.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/affix.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/alert.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/button.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/carousel.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/collapse.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/dropdown.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/modal.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/tooltip.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/popover.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/scrollspy.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/tab.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/transition.js":1,"sites\/default\/themes\/app\/scripts\/scripts.js":1},"css":{"modules\/system\/system.base.css":1,"misc\/ui\/jquery.ui.core.css":1,"misc\/ui\/jquery.ui.theme.css":1,"misc\/ui\/jquery.ui.accordion.css":1,"sites\/default\/modules\/contrib\/date\/date_repeat_field\/date_repeat_field.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"sites\/default\/modules\/contrib\/extlink\/css\/extlink.css":1,"sites\/default\/modules\/contrib\/views\/css\/views.css":1,"sites\/default\/modules\/contrib\/ctools\/css\/ctools.css":1,"sites\/default\/libraries\/jquery-ui-multiselect-widget\/jquery.multiselect.css":1,"sites\/default\/libraries\/jquery-ui-multiselect-widget\/jquery.multiselect.filter.css":1,"sites\/default\/modules\/contrib\/jquery_ui_multiselect_widget\/jquery_ui_multiselect_widget.css":1,"sites\/default\/modules\/contrib\/vefl\/css\/vefl-layouts.css":1,"sites\/default\/modules\/contrib\/date\/date_api\/date.css":1,"public:\/\/rrssb\/rrssb.87ab17e3.css":1,"sites\/default\/libraries\/rrssb-plus\/css\/rrssb.css":1,"sites\/default\/themes\/app\/css\/style.css":1,"sites\/default\/themes\/app\/css\/oog.css":1,"sites\/default\/themes\/app\/css\/print.css":1}},"jquery_ui_multiselect_widget":{"module_path":"sites\/default\/modules\/contrib\/jquery_ui_multiselect_widget","multiple":1,"filter":1,"subselector":"#edit-category2","selectedlist":"4","autoOpen":0,"header":1,"height":"auto","classes":"app-uberselect","filter_auto_reset":1,"filter_width":"auto","jquery_ui_multiselect_widget_path_match_exclude":"admin\/*\r\nmedia\/*\r\nfile\/*\r\nsystem\/ajax"},"better_exposed_filters":{"datepicker":false,"slider":false,"settings":[],"autosubmit":false,"views":{"dpg_docs_media":{"displays":{"block_2":{"filters":[]}}},"report_a_typo":{"displays":{"block":{"filters":[]}}},"document_attached_files":{"displays":{"block":{"filters":[]},"block_1":{"filters":[]}}}}},"urlIsAjaxTrusted":{"\/advanced-search":true},"googleanalytics":{"account":["UA-86410002-1","G-86B9KEYGFJ"],"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackDomainMode":2,"trackCrossDomains":["dev-wwwpresidencyucsbedu.pantheonsite.io","www.presidency.ucsb.edu"]},"statistics":{"data":{"nid":"234322"},"url":"\/modules\/statistics\/statistics.php"},"field_group":{"div":"full"},"rrssb":{"size":"1","shrink":"1","regrow":"","minRows":"1","maxRows":"1","prefixReserve":"1em","prefixHide":"1em","alignRight":0},"extlink":{"extTarget":"_blank","extClass":0,"extLabel":"(link is external)","extImgClass":0,"extIconPlacement":"append","extSubdomains":1,"extExclude":"","extInclude":"","extCssExclude":"","extCssExplicit":"","extAlert":0,"extAlertText":"This link will take you to an external web site.","mailtoClass":0,"mailtoLabel":"(link sends e-mail)","extUseFontAwesome":false},"bootstrap":{"anchorsFix":1,"anchorsSmoothScrolling":1,"formHasError":1,"popoverEnabled":0,"popoverOptions":{"animation":1,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":1,"html":0,"placement":"auto left","selector":"","trigger":"hover focus","delay":0,"container":"body"}}});</script>
+</head>
+<body class="html not-front not-logged-in one-sidebar sidebar-first page-node page-node- page-node-234322 node-type-documents" >
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <div class="wrapper"> <!-- Wrapper for Sticky Footer -->
+
+      <div class="branding-region">
+      <div class="container">
+                  <div class="region region-branding">
+    <section id="block-block-1" class="block block-block site-title-block clearfix">
+
+      
+  <div class="site-title"><a href="https://www.presidency.ucsb.edu/">The American Presidency Project</a></div>
+
+</section>
+<section id="block-block-2" class="block block-block top-link-buttons clearfix">
+
+      
+  <p><a class="btn btn-default" href="https://www.presidency.ucsb.edu/about">About</a><a class="btn btn-default" href="/advanced-search"><span class="glyphicon glyphicon-search"></span> Search</a></p>
+<p id="ucScript"><a href="https://www.ucsb.edu/" target="_blank"><img alt="ucsb wordmark black" src="https://www.presidency.ucsb.edu/sites/default/files/pictures/uc_santa_barbara_wordmark_black_rgb.svg" style="width: 175px; height: 13px;" /></a></p>
+
+</section>
+  </div>
+      </div>
+    </div>
+  
+  <div id="navbar" role="banner" class="navbar navbar-default"><!-- Only way to remove "container" class -->
+    <div class="container">
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+              <div class="navbar-collapse collapse">
+          <nav role="navigation">
+                          <ul class="menu nav navbar-nav"><li class="first expanded active-trail active dropdown"><a href="/documents" class="active-trail dropdown-toggle" data-toggle="dropdown">Documents <span class="caret"></span></a><ul class="dropdown-menu"><li class="first leaf"><a href="/documents/presidential-documents-archive-guidebook">Guidebook</a></li>
+<li class="last leaf"><a href="/documents/category-attributes">Category Attributes</a></li>
+</ul></li>
+<li class="collapsed"><a href="/statistics">Statistics</a></li>
+<li class="leaf"><a href="/media" title="">Media Archive</a></li>
+<li class="leaf"><a href="/presidents" title="">Presidents</a></li>
+<li class="leaf"><a href="/analyses" title="">Analyses</a></li>
+<li class="last leaf"><a href="https://giving.ucsb.edu/Funds/Give?id=185" title="">GIVE</a></li>
+</ul>                                              </nav>
+        </div>
+          </div>
+  </div>
+
+  <div role="banner" id="page-header" class="site-header">
+      </div>
+
+  <div class="main-container container">
+    <div class="row">
+
+          <aside class="col-sm-3 no-print" role="complementary">
+            <div class="region region-sidebar-first well">
+    <section id="block-menu-block-8" class="block block-menu-block doc-sub clearfix">
+
+        <h2 class="block-title">Documents</h2>
+    
+  <div class="menu-block-wrapper menu-block-8 menu-name-menu-documents parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-10329"><a href="/documents/presidential-documents-archive-guidebook" title="">Archive Guidebook</a></li>
+<li class="leaf active-trail menu-mlid-10330 active"><a href="/documents" title="" class="active-trail">Categories</a></li>
+<li class="last leaf menu-mlid-10791"><a href="/documents/category-attributes" title="">Attributes</a></li>
+</ul></div>
+
+</section>
+<section id="block-menu-block-7" class="block block-menu-block dropdown clearfix">
+
+        <h2 class="block-title">Categories</h2>
+    
+  <div class="menu-block-wrapper menu-block-7 menu-name-menu-doc-cat-menu parent-mlid-0 menu-level-1">
+    <ul class="menu nav"><li class="first expanded menu-mlid-10954 dropdown"><a href="/documents/app-categories/presidential" title="Presidential (73842)" class="dropdown-toggle" data-toggle="dropdown">Presidential (244003) <span class="caret"></span></a><ul class="dropdown-menu"><li class="first leaf menu-mlid-10910"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/eulogies" title="Eulogies (55)">Eulogies (67)</a></li>
+<li class="leaf menu-mlid-10930"><a href="/documents/app-categories/written-presidential-orders/presidential/executive-orders" title="Executive Orders (5885)">Executive Orders (10564)</a></li>
+<li class="leaf menu-mlid-10912"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/fireside-chats" title="Fireside Chats (27)">Fireside Chats (27)</a></li>
+<li class="leaf menu-mlid-10906"><a href="/documents/app-categories/presidential/interviews" title="Interviews (950)">Interviews (1031)</a></li>
+<li class="leaf menu-mlid-10894"><a href="/documents/app-categories/presidential/letters" title="Letters (4363)">Letters (4775)</a></li>
+<li class="leaf menu-mlid-10899"><a href="/documents/app-categories/presidential/miscellaneous-written" title="Miscellaneous Written (741)">Miscellaneous Written (112)</a></li>
+<li class="leaf menu-mlid-10907"><a href="/documents/app-categories/presidential/news-conferences" title="News Conferences (2096)">News Conferences (2515)</a></li>
+<li class="collapsed menu-mlid-10909"><a href="/documents/app-categories/presidential/spoken-addresses-and-remarks" title="Spoken Addresses and Remarks (5428)">Spoken Addresses and Remarks (34912)</a></li>
+<li class="leaf menu-mlid-10911"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/farewell-addresses" title="Farewell Address (10)">Farewell Addresses (12)</a></li>
+<li class="leaf menu-mlid-10913"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/inaugural-addresses" title="Inaugural Addresses (61)">Inaugural Addresses (63)</a></li>
+<li class="leaf menu-mlid-10895"><a href="/documents/app-categories/presidential/memoranda" title="Memoranda (1828)">Memoranda (3565)</a></li>
+<li class="leaf menu-mlid-10927"><a href="/documents/app-categories/citations/presidential/messages" title="Messages (11049)">Messages (12581)</a></li>
+<li class="leaf menu-mlid-10931"><a href="/documents/app-categories/written-presidential-orders/presidential/proclamations" title="Proclamations (7974)">Proclamations (9477)</a></li>
+<li class="leaf menu-mlid-10919"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/saturday-weekly-addresses" title="Saturday Addresses (Radio and Webcast) (1629)">Saturday Weekly Addresses (1639)</a></li>
+<li class="leaf menu-mlid-10920"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/state-dinners" title="State Dinners (953)">State Dinners (262)</a></li>
+<li class="leaf menu-mlid-10921"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/state-the-union-addresses" title="State of the Union Addresses (98)">State of the Union Addresses (100)</a></li>
+<li class="leaf menu-mlid-10928"><a href="/documents/app-categories/citations/presidential/state-the-union-written-messages" title="State of the Union Messages (1)">State of the Union Written Messages (140)</a></li>
+<li class="expanded menu-mlid-10934"><a href="/documents/app-categories/statements" title="Statements (8647)">Statements (14624)</a></li>
+<li class="leaf menu-mlid-10924"><a href="/documents/app-categories/presidential/vetoes" title="Vetoes (266)">Vetoes (1228)</a></li>
+<li class="collapsed menu-mlid-10925"><a href="/documents/app-categories/presidential/citations" title="Written Messages (11021)">Citations (12949)</a></li>
+<li class="last expanded menu-mlid-10929"><a href="/documents/app-categories/presidential/written-presidential-orders" title="Written Presidential Orders (13858)">Written Presidential Orders (46200)</a></li>
+</ul></li>
+<li class="leaf menu-mlid-10897"><a href="/documents/app-categories/remarks-administration-officials" title="Miscellaneous Press Secretary (23298)">Remarks by Administration Officials (182)</a></li>
+<li class="expanded menu-mlid-10887 dropdown"><a href="/documents/app-categories/elections-and-transitions" title="Elections and Transitions (16448)" class="dropdown-toggle" data-toggle="dropdown">Elections and Transitions (50243) <span class="caret"></span></a><ul class="dropdown-menu"><li class="first leaf menu-mlid-10888"><a href="/documents/app-categories/elections-and-transitions/campaign-documents" title="Campaign Documents (2747)">Campaign Documents (23621)</a></li>
+<li class="expanded menu-mlid-10889"><a href="/documents/app-categories/elections-and-transitions/convention-speeches" title="Convention Speeches (50)">Convention Speeches (128)</a></li>
+<li class="expanded menu-mlid-10890"><a href="/documents/app-categories/elections-and-transitions/debates" title="Debates (152)">Debates (191)</a></li>
+<li class="leaf menu-mlid-10892"><a href="/documents/app-categories/elections-and-transitions/party-platforms" title="Party Platforms (98)">Party Platforms (105)</a></li>
+<li class="last leaf menu-mlid-10893"><a href="/documents/app-categories/elections-and-transitions/transition-documents" title="Transition Documents (346)">Transition Documents (744)</a></li>
+</ul></li>
+<li class="last leaf menu-mlid-10883"><a href="/documents/app-categories/congressional" title="Congressional (3)">Congressional (11)</a></li>
+</ul></div>
+
+</section>
+  </div>
+        </aside>  <!-- /#sidebar-first -->
+      
+      <section class="col-sm-9">
+                        <a id="main-content"></a>
+                
+                          
+                          <div class="region region-content">
+    <section id="block-system-main" class="block block-system clearfix">
+
+      
+  
+
+<div  about="/documents/executive-order-10813-including-certain-lands-the-chattahoochee-national-forest-and-the" typeof="sioc:Item foaf:Document" class="node node-documents view-mode-full ">
+    <div class="row">
+    <div class="col-sm-8 ">
+      
+  <div class="field-docs-person">
+    <div  about="/people/president/dwight-d-eisenhower" typeof="sioc:Item foaf:Document" class="ds-1col node node-prez-diet view-mode-for_documents  clearfix">
+
+  
+  
+  <div class="field-diet-pictures">
+    <img typeof="foaf:Image" class="img-responsive" src="https://www.presidency.ucsb.edu/sites/default/files/styles/doc_img/public/people/dwight-d-eisenhower_1.jpg?itok=pPtAqTkV" width="170" height="230" alt="Dwight D. Eisenhower photo" />  </div>
+
+  <div class="field-title">
+    <h3 class="diet-title"><a href="/people/president/dwight-d-eisenhower">Dwight D. Eisenhower</a></h3>  </div>
+
+  <div class="field-ds-byline">
+    
+  <div class="field-resuable-byline">
+    <div class="diet-by-line president"><span class="presidential-ordinal-number">34th</span> <span class="job-position">President of the United States:</span> <span class="dates">1953 ‐ 1961</span></div>
+  </div>
+  </div>
+
+  <div class="field-ds-doc-title">
+    <h1>Executive Order 10813—Including Certain Lands in the Chattahoochee National Forest and the Nantahala National Forest</h1>
+  </div>
+</div>
+
+  </div>
+
+  <div class="field-docs-start-date-time">
+    <span  property="dc:date" datatype="xsd:dateTime" content="1959-04-29T00:00:00+00:00" class="date-display-single">April 29, 1959</span>  </div>
+
+  <div class="field-docs-content">
+    <p>WHEREAS on September 18, 1958, the Tennessee Valley Authority and the United States Department of Agriculture entered into two agreements (Contracts TV-18549A and TV-20031A) providing for the transfer by the Authority to the Department of the right of possession and all other right, title, and interest which the Authority might have in or to certain lands therein designated and described in Towns County and Union County, Georgia, and in Cherokee County and Clay County, North Carolina, so that the lands in Georgia might be included in and reserved as parts of the Chattahoochee National Forest and the lands in North Carolina might be included in and reserved as parts of the Nantahala National Forest, in accordance with the provisions and conditions of those agreements and subject to the approval required by section 4(k) (c) of the Tennessee Valley Authority Act of 1933, as amended by the act of July 18, 1941 (55 Stat. 599); and</p>
+<p>WHEREAS on January 24, 1959, the agreements of September 18, 1958, between the Tennessee Valley Authority and the United States Department of Agriculture were approved by the Director of the Bureau of the Budget pursu,nt to the provisions of section 4(k) (c) of the Tennessee Valley Authority Act of 1933, as amended, and of section 1(h) of Executive Order No. 10530 of May 10, 1954; and</p>
+<p>WHEREAS it appears that such lands are suitable for national-forest purposes and that the inclusion thereof in the Chattahoochee National Forest and the Nantahala National Forest as hereinafter indicated would be in the public interest:</p>
+<p>NOW, THEREFORE, by virtue of the authority vested in me by section 24 of the act of March 3, 1891, 26 Stat. 1103, and the act of June 4, 1897, 30 Stat. 34, 36 (16 U.S.C. 471, 473), and as President of the United States, and upon the recommendation of the Secretary of Agriculture, it is ordered as follows:</p>
+<p>1. There is hereby included in and reserved as parts of the Chattahoochee National Forest the following-described lands, such inclusion and reservation to be in accordance with and subject to all the provisions and conditions of the above-mentioned agreements of September 18, 1958, between the Tennessee Valley Authority and the United States Department of Agriculture:<br /><br />
+Lands lying in Union County, State of Georgia, in Districts 8 and 9 of section 1, on the shores of Nottely Lake, being more particularly described as follows:</p>
+<p align="center">Parcel No. 1</p>
+<p>A tract of land located in Land Lots 54, 55, 56, 57, 88, and 89 of District 8, approximately 3/4 mile west of Nottely Dam, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 1-40 (Coordinates: N. 1,806,316; E. 518,482) in the center line of an old road and in the boundary of the United States of America's land at a corner of the lands of W. J. Byers, J. L. Raper et ux, and the D. T. Meadows heirs.<br /><br />
+From the initial point with the United States of America's boundary line, S. 48° 15' E., 362 feet to US-TVA Monument 1-41 in the center line of an old road;<br /><br />
+With the center line of the old road as it meanders in an easterly direction to a metal marker (Coordinates: N. 1,806,101; E. 519,- 201);<br /><br />
+Leaving the old road, S. 38°50' E., 250 feet to a metal marker;<br /><br />
+N. 62°40' E., 368 feet to a metal marker in the center line of an old road;<br /><br />
+With the center line of the old road as it meanders in an easterly direction to a metal marker (Coordinates: N. 1,806,068; E. 520,- 041);<br /><br />
+Leaving the old road, N. 42°22' E., 323 feet to a point in the center line of a branch;<br /><br />
+With the center line of the branch as it meanders in a northeasterly direction to a point (Coordinates: N. 1,806,499; E. 520,385);<br /><br />
+Leaving the branch N. 75°38' E., 210 feet to US-TVA Monument 1-47;<br /><br />
+N. 88°51' E., 1,331 feet to a metal marker; Leaving the United States of America's boundary line,<br /><br />
+S. 51°21' W., 3,829 feet to a metal marker;<br /><br />
+S. 38°43' E., 290 feet, passing a metal marker at 260 feet, to a metal marker in the center line of the Nottely Dam Access Road;<br /><br />
+With the center line of the access road as it meanders in a southwesterly direction to a metal marker (Coordinates: N. 1,801,745; E. 516,694) in the center line of an old road and in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+With the center line of the old road as it meanders in a northerly direction approximately along a bearing and distance of N. 6°41' E., 112 feet to a metal marker;<br /><br />
+Leaving the old road, N. 9°30' W., 212 feet to a metal marker;<br /><br />
+N. 0°06' E., 1,135 feet to a metal marker in the center line of an old road;<br /><br />
+With the center line of the old road as it meanders in a northerly direction, passing a point (Coordinates: N. 1,803,805; E. 516,541) at a junction of roads, to a point (Coordinates: N. 1,804,568; E. 517,178);<br /><br />
+Leaving the old road, N. 46°59' W., 554 feet to a metal marker;<br /><br />
+N. 42°22' E., 537 feet to a metal marker;<br /><br />
+S. 50°23' E., 565 feet to US-TVA Monument 1-35 on the northwest side of a public road;<br /><br />
+With the meanders of the northwest side of the public road in a northeasterly direction approximately along the following bearings and distances:<br /><br />
+N. 41° E., 445 feet,<br /><br />
+N. 31° E., 110 feet,<br /><br />
+N. 19° E., 235 feet to a metal marker (Coordinates: N. 1,805,632; E. 518,000);<br /><br />
+N. 68°12' W., 22 feet to a metal marker in the center line of an old road;<br /><br />
+With the center line of the old road as it meanders in a northeasterly direction, passing a metal marker (Coordinates: N. 1,805,822; E. 518,096) and a metal marker (Coordinates: N. 1,805,991; E. 518,356) at a junction of roads, to the point of beginning.<br /><br />
+The land described above as Parcel No. 1 contains 203 acres, more or less.</p>
+<p align="center">Parcel No. 2</p>
+<p>A tract of land located in Land Lots 37, 38, and 71 of District 9, approximately 1/2 mile northeast of Nottely Dam, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 1-14 (Coordinates: N. 1,806,400; E. 526,869) in the boundary of the United States of America's land at a corner of the lands of Thomas Daniel, C. J. Johnson, and C. G. Kuykendall.<br /><br />
+From the initial point with the United States of America's boundary line, S. 0°08' E., 2,587 feet to US-TVA Monument 2-15;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+S. 89°54' W., 1,150 feet to a metal marker;<br /><br />
+N. 0°02' E., 1,868 feet to a metal marker;<br /><br />
+N. 46°52' W., 1,145 feet to a metal marker at the corner of Land Lots 37, 38, 71, and 72, District 9, Section 1;<br /><br />
+N. 72°12' W., 2,078 feet to a metal marker in the center line of an old road;<br /><br />
+With the center line of the old road as it meanders in a southwesterly direction approximately along the following bearings and distances:<br /><br />
+S. 17°42' W., 44 feet to a metal marker, S. 55°44' W., 426 feet to a metal marker at a junction of old roads;<br /><br />
+Leaving the old road, S. 82°35' W., 75 feet to a metal marker;<br /><br />
+S. 74°26' W., 80 feet, passing a 30-inch sycamore tree at 4 feet, to a point in the center line of the Nottely River and in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+With the center line of the Nottely River as it meanders downstream to a point (Coordinates: N. 1,807,971; E. 522,366);<br /><br />
+Leaving the river, S. 61°10' E., 713 feet to US-TVA Monument 1-50;<br /><br />
+S. 7°06' W., 364 feet to a metal marker in the center line of an abandoned road;<br /><br />
+With the center line of the abandoned road as it meanders in a northeasterly direction and subsequently in an easterly direction, passing a metal marker (Coordinates: N. 1,807,528; E. 523,0132), a metal marker (Coordinates: N. 1,807,550; E. 523,185), a metal marker (Coordinates: N. 1,807,528; E. 523,436), and a metal marker (Coordinates: N. 1,807,492; E. 524,317), to a point (Coordinates: N. 1,807,419; E. 524,534) in the center of the junction of the abandoned road with a public road;<br /><br />
+With the center line of the public road as it meanders in a southeasterly direction, passing a point (Coordinates: N. 1,806,905; E. 524,882), a point (Coordinates: N. 1,806,797; E. 525,063), and a point (Coordinates: N. 1,806,741; E. 525,202), to US-TVA Monument 1-13;<br /><br />
+Leaving the public road, S. 88°32' E., 544 feet to the point of beginning. The land described above as Parcel No. 2 contains 127 acres, more or less.</p>
+<p align="center">Parcel No. 4</p>
+<p>Three islands formed by the 1,780-foot (MSL) contour and lying in Nottely Lake in Land Lots 109, 110, and 144 of District 9, approximately 1 y4 miles south of Nottely Dam, the said islands being more particularly described as follows:<br /><br />
+An island having a length of approximately 1,780 feet and an approximate maximum width of 770 feet, the center of the island being defined approximately by the coordinates N. 1,796,350 and E. 523,350.<br /><br />
+An island having a length of approximately 340 feet and an approximate maximum width of 160 feet, the center of the island being defined approximately by the coordinates N. 1,797,160 and E. 524,290.<br /><br />
+An island having a length of approximately 340 feet and an approximate maximum width of 220 feet, the center of the island being defined approximately by the coordinates N. 1,797,460 and E. 524,830.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 4 and from this order 3.5 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 4 after giving effect to the exclusion above noted, contains 12.9 acres, more or less.</p>
+<p align="center">Parcel No. 5</p>
+<p>A tract of land lying in Land Lots 106, 110, and 111 of District 9, on the northeast shores of Nottely Lake approximately 1 mile southeast of Nottely Dam, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 4-6 (Coordinates: N. 1,798,393; E. 529,371) in the boundary of the United States of America's land at a corner of the lands of H. W. Deaver and Solomon A. Deaver.<br /><br />
+From the initial point with the United States of America's boundary line, 8. 0°17' W., 2,007 feet, passing a metal marker at 1,125 feet and a metal marker in the 1,785-foot contour at 1,967 feet to a point in the 1,780-foot contour on the shore of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a general northwesterly direction;<br /><br />
+Leaving the contour, S. 89°29' E., 783 feet, passing a metal marker (Coordinates: N. 1,798,464; E. 526,880) in the 1,785-foot contour at 26 feet, a metal marker and a stone at the corner of Land Lots 106, 107, 110, and 111 at 338 feet, and a metal marker at 768 feet, to a metal marker in the center line of a road;<br /><br />
+With the center line of the road as it meanders in an easterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the road, S. 9°33' W., 235 feet to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 5 and from this order 13.5 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 5 after giving effect to the exclusion above noted, contains 110 acres, more or less.</p>
+<p align="center">Parcel No. 6</p>
+<p>Land lying in Land Lots 112, 141, 142, 147, and 148 of District 9, on the northeast shores of Nottely Lake approximately 13% miles southeast of Nottely Dam, and more particularly described as follows:<br /><br />
+Beginning at a metal marker (Coordinates: N. 1,796,259; E. 531,483) in the boundary of the United States of America's land at a corner of the lands of E. L. Chastain and the Union Power Company.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 6°10' E., 317 feet to US-TVA Monument 4-14;<br /><br />
+S. 1°24' W., 285 feet to US-TVA Monument 4-15;<br /><br />
+S. 78°06' W., 917 feet to US-TVA Monument 4-16;<br /><br />
+S. 51°48' E., 650 feet to US-TVA Monument 4-38;<br /><br />
+S. 42°52' W., 1,011 feet to a metal marker; S. 32°48' W., 268 feet to a metal marker in the center line of a trail;<br /><br />
+With the center line of the trail as it meanders in a southerly direction to US-TVA Monument 4-41 (Coordinates: N. 1,793,375; E. 530,344);<br /><br />
+Leaving the trail, N. 88°44' E., 281 feet, passing a metal marker in the 1,785-foot contour at 264 feet, to a point in the 1,780-foot contour on the west shore of an inlet of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a southerly direction to the mouth of the inlet, thence down the lake in a westerly direction and subsequently in a general northerly direction to the mouth of the Chastain Branch Embayment of the lake, and thence up the embayment in a northeasterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, S. 60°45' E., 348 feet, passing a metal marker in the 1,785-foot contour at 28 feet, to the point of beginning.<br /><br />
+Also an island formed by the 1,780-foot (MSL) contour and lying in Nottely Lake immediately southeast of the above described mainland, the said island having a length of approximately 830 feet and an approximate maximum width of 620 feet, the center of the island being defined approximately by the coordinates N. 1,792,080 and E. 531,120.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 6 and from this order 15.7 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 6, after giving effect to the exclusion above noted, contains 132 acres, more or less.</p>
+<p align="center">Parcel No. 7</p>
+<p>A tract of land lying in Land Lots 138, 139, 140, 141, 148, 149, 150, and 151 of District 9, on the north shores of the Ivylog Creek Embayment of Nottely Lake, approximately 2 y4 miles southeast of Nottely Dam, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 5-10 (Coordinates: N. 1,796,005; E. 537,633) at the corner of Land Lots 114, 115, 138, and 139 and in the boundary of the United States of America's land at a corner of the lands of the Union Power Company, J. L. Elliott, and Lee Truelove.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 89°40' E., 1,350 feet, passing a metal marker in the 1,785-foot contour at 1,336 feet, to a point in the 1,780-foot contour on the northwest shore of the Ivylog Creek Embayment of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders down the embayment in a general westerly direction to a point on the east shore of an inlet and in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, N. 88°44' E., 666 feet, passing a metal marker in the 1,785-foot contour at 19 feet, to US-TVA Monument 4-36;<br /><br />
+N. 18°12' W., 1,095 feet to US-TVA Monument 4-37;<br /><br />
+S. 86°49' E., 863 feet to US-TVA Monument 4-18;<br /><br />
+S. 0°14' E., 569 feet to US-TVA Monument 4-19;<br /><br />
+N. 76°39' E., 1,486 feet to US-TVA Monument 5-1;<br /><br />
+N. 1°00' E., 744 feet to US-TVA Monument 5-2;<br /><br />
+S. 89°51' E., 1,195 feet to US-TVA Monument 5-3;<br /><br />
+N. 87°54' E., 1,228 feet to US-TVA Monument 5-4;<br /><br />
+S. 1°54' E., 1,503 feet to US-TVA Monument 5-5;<br /><br />
+N. 88°34' E., 720 feet to US-TVA Monument 5-6;<br /><br />
+N. 7°43' E., 335 feet to US-TVA Monument 5-7;<br /><br />
+N. 24°41' E., 924 feet to US-TVA Monument 5-8;<br /><br />
+N. 7°59' W., 806 feet to US-TVA Monument 5-9;<br /><br />
+N. 21°44' E., 600 feet to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 7 and from this order 11.7 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 7, after giving effect to the exclusion above noted, contains 158 acres, more or less.</p>
+<p align="center">Parcel No. 8</p>
+<p>A tract of land lying in Land Lots 140, 148, 149, 150, 151, 176, and 185 of District 9, on the northeast shores of Nottely Lake approximately 23/4 miles southeast of Nottely Dam, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 7-2 (Coordinates: N. 1,792,448; E. 539,460) in the boundary of the United States of America's land at a corner of the lands of Mrs. Callie King and Grant &amp; Henry Brown.<br /><br />
+From the intial point with the United States of America's boundary line,<br /><br />
+S. 71°21' W., 1,063 feet to US-TVA Monument 7-3;<br /><br />
+S. 89°25' W., 793 feet to US-TVA Monument 7-4;<br /><br />
+S. 1°20' E., 129 feet to US-TVA Monument 7-5;<br /><br />
+N. 89°37' W., 891 feet to US-TVA Monument 7-6;<br /><br />
+S. 6°42' E., 429 feet to US-TVA Monument 7-7;<br /><br />
+S. 87°39' W., 1,296 feet to US-TVA Monument 7-8;<br /><br />
+S. 13°00' E., 227 feet to US-TVA Monument 7-9;<br /><br />
+S. 88°41' W., 1,285 feet, passing US-TVA Monument 7-9A at 508 feet, to US-TVA Monument 7-10;<br /><br />
+S. 3°37' W., 491 feet to US-TVA Monument 7-11;<br /><br />
+N. 88°57' E., 380 feet to a metal marker in the center line of a road;<br /><br />
+With the center line of the road as it meanders in a southerly direction to US-TVA Monument 7-13 (Coordinates: N. 1,788,188; E. 534,583);<br /><br />
+Leaving the road, S. 88°22' E., 291 feet, passing a metal marker in the 1,785-foot contour at 271 feet, to a point in the 1,780-foot contour on the west shore of the Reece Creek Embayment of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a southerly direction to the mouth of the embayment, thence down the lake in a general northwesterly direction to the mouth of the Ivylog Creek Embayment, thence up the Ivylog Creek Embayment in a general easterly direction to a point in the center line of a branch and in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+With the center line of the branch as it meanders upstream, passing a metal marker in the 1,785-foot contour;<br /><br />
+Leaving the branch, S. 40°09' E., 437 feet to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 8 and from this order 16.5 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 8, after giving effect to the exclusion above noted, contains 216 acres, more or less.</p>
+<p align="center">Parcel No. 9</p>
+<p>Land lying in Land Lots 186, 187, 188, 189, 209, 210, 211, 224, and 225 of District 9, on the northeast shores of Nottely Lake approximately 31/2 miles northwest of Blairsville, and being all that land which lies above the 1,780-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a point in the 1,780-foot contour on the east shore of the Reece Creek Embayment of Nottely Lake and in the boundary between the lands of the United States of America and C. S. Mauney.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 88°35' E., 2,210 feet, passing a metal marker in the 1,785-foot contour at 28 feet, to US-TVA Monument 7-15 (Coordinates: N. 1,788,240; E. 537,665) at the corner of Land Lots 174, 175, 186, and 187;<br /><br />
+S. 1°03' E., 1,358 feet to US-TVA Monument 7-16;<br /><br />
+N. 87'33' E., 2,526 feet to US-TVA Monument 7-17;<br /><br />
+N. 5°28' E., 262 feet to US-TVA Monument 7-18;<br /><br />
+Due east, 1,757 feet, passing a metal marker at 1,245 feet, to US-TVA Monument 7-20;<br /><br />
+S. 10°18' E., 246 feet to US--TVA Monument 7-21;<br /><br />
+S. 88°35' E., 1,583 feet to a metal marker; S. 0°05' E., 1,314 feet to US-TVA Monument 7-23;<br /><br />
+S. 88'42' W., 798 feet to U13-TVA Monument 7-24 at the corner of Land Lots 188, 189, 208, and 209;<br /><br />
+8. 0'51' E., 1,674 feet, passing a metal marker in the 1,785-foot contour on the north shore of a small inlet at 388 feet, a metal marker in the 1,785-foot contour on the south shore of the small inlet at 561 feet, and a metal marker at 1,614 feet, to a metal marker;<br /><br />
+S. 1°07' E., 976 feet to US-TVA Monument 9-2 at the corner of Land Lots 208, 209, 224, and 225;<br /><br />
+N. 89°50' E., 2,366 feet to a stone in the center line of a road;<br /><br />
+With the center line of the road as it meanders in a southerly direction to a metal marker (Coordinates: N. 1,782,310; E. 545,417);<br /><br />
+Leaving the center line of the road, N. 62°21' E., 71 feet to a stone;<br /><br />
+S. 0°24' E., 884 feet, passing a metal marker in the 1,785-foot contour at 840 feet, to a point in the 1,780-foot contour on the west shore of an inlet of Nottely Lake.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 9 and from this order 20.1 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 9, after giving effect to the exclusion above noted, contains 403 acres, more or less.</p>
+<p align="center">Parcel No. 10</p>
+<p>Land lying in Land Lot 243 of District 9, on the north shore of Nottely Lake, approximately 3 miles northwest of Blairsville, and being all that land which lies above the 1,780-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a point in the 1,780-foot contour on the north shore of Nottely Lake and in the boundary between the lands of the United States of America and Joe and Judge Stephens.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 89°29' E., 798 feet, passing a metal marker in the 1,785-foot contour at 39 feet, a metal marker in the 1,785-foot contour at 223 feet, and a metal marker in the 1,785-foot contour at 380 feet, to a stone (Coordinates: N. 1,780,390; E. 548,138) at the corner of Land Lots 226, 227, 242, and 243;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+N. 89'29' E., 5 feet to a point in the 1,780-foot contour on the shore of Nottely Lake.<br /><br />
+There is hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 10 and from this order 0.4 acre, more or less, being those portions of the said land which lie below elevation 1,785 (MSL)<br /><br />
+The land described above as Parcel No. 10, after giving effect to the exclusion above noted, contains 0.7 acre, more or less.</p>
+<p align="center">Parcel No. 11</p>
+<p>A tract of land lying in Land Lot 227 of District 9, on the east shores of an inlet on the north side of Nottely Lake, approximately 2% miles northwest of Blairsville, and more particularly described as follows:<br /><br />
+Beginning at a stone (Coordinates: N. 1,780,984; E. 550,280) on the north edge of U.S. Highway 19 and in the boundary of the United States of America's land at a corner of the lands of Charles S. Sheridan and B. T. Sheridan.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 8°40' W., 92 feet, passing a metal marker on the south edge of U.S. Highway 19 at 26 feet to a stone;<br /><br />
+N. 86°34' W., 32 feet to a metal marker;<br /><br />
+8. 17°24' E., 9 feet to a metal marker;<br /><br />
+S. 6°00' E., 40 feet to a metal marker;<br /><br />
+S. 89°00' W., 66 feet, passing a metal marker which is at or near the 1,785-foot contour at 40 feet, to a point in the 1,780-foot contour on the east shore of an inlet of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a general northerly direction to a point on the south side of U.S. Highway 19 and in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, N. 4°28' W., 63 feet, passing a metal marker in the 1,785-foot contour at 24 feet, to a point (Coordinates: N. 1,781,044; E. 550,122) in U.S. Highway 19;<br /><br />
+S. 86°33' E., 35 feet;<br /><br />
+8. 76°30' E., 10 feet;<br /><br />
+N. 0°48' E., 25 feet, passing a metal marker in the 1,785-foot contour at 13 feet, to a point in the 1,780-foot contour on the shore of the previously mentioned inlet of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a general northerly direction to a point at or near a metal marker at a corner in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, S. 84°48' E., 106 feet from the last mentioned metal marker, passing a metal marker in the 1,785-foot contour at 12 feet, to a metal marker;<br /><br />
+S. 1 °00' E., 23 feet to a metal marker;<br /><br />
+S. 86°24' E., 11 feet to a 12-inch white oak tree;<br /><br />
+S. 8°06' W., 98 feet to the point of beginning.<br /><br />
+There is hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 11 and from this order 0.2 acre, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 11, after giving effect to the exclusion above noted, contains 0.3 acre, more or less.</p>
+<p align="center">Parcel No. 12</p>
+<p>A tract of land lying in Land Lots 241 and 242 of District 9, on the northeast shores of Nottely Lake, approximately 2 miles north-west of Blairsville, and more particularly described as follows:<br /><br />
+Beginning at a metal marker (Coordinates: N. 1,778,989; E. 551,360) in the center line of a road and in the boundary of the United States of America's land at a corner of the lands of E. S. Davenport and Mrs. Ida Boling.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+With the center line of the road as it meanders in a southeasterly direction, passing a metal marker (Coordinates: S. 1,778,758; E. 551,573), a metal marker (Coordinates: N. 1,778,514; E. 551,717), and a metal marker (Coordinates: N. 1,778,378; E. 551,779) in the 1,785-foot contour, to a point (Coordinates: N. 1,778,315; E. 551,843) in the 1,780-foot contour on the shore of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a westerly direction and subsequently in a northeasterly direction to a point (Coordinates: N. 1,779,404; E. 550,979) in the center line of the previously mentioned road and in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+With the center line of the road as it meanders in a southeasterly direction, passing a metal marker (Coordinates: N. 1,779,- 329; E. 551,006) in the 1,785-foot contour, to the point of beginning.<br /><br />
+There are hereby expressly EXCEPT") AND EXCLUDED from the land described above as Parcel No. 12 and from this order 2.5 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 12, after giving effect to the exclusion above noted, contains 20.7 acres, more or less.</p>
+<p align="center">Parcel No. 13</p>
+<p>Land lying in Land Lots 240, 264, and 265 of District 9, on the east shores of Nottely Lake, approximately 13/1 miles west of Blairsville, the said land being comprised of two separate portions and being more particularly described as follows:<br /><br />
+Portion 1. Beginning at US-TVA Monument 10-19 (Coordinates: N. 1,777,725; E. 553,849) in the boundary of the United States of America's land at a corner of the lands of the Union Power Company and Olin P. Wellborn.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 88°41' W., 317 feet, crossing U.S. Highway 19, to US-TVA Monument 10-8 at the corner of Land Lots 240, 241, 264, and 265;<br /><br />
+S. 7°02' E., 455 feet, passing a metal marker in the 1,785-foot contour at 428 feet, to a point in the 1,780-foot contour on the north shore of the Wellborn Creek Embayment of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a westerly direction to the mouth of the Wellborn Creek Embayment and thence up an inlet of the lake in a northerly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, N. 89°01' E., approximately 25 feet to the previously mentioned US-TVA Monument 10-8;<br /><br />
+N. 10°23' W., 58 feet;<br /><br />
+N. 2°41' W., approximately 120 feet to a point in the 1,780-foot contour on the east shore of the last mentioned inlet;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a general northerly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, N. 2°41' W., approximately 60 feet;<br /><br />
+N. 39°40' E., 118 feet, passing a metal marker in the 1,785-foot contour at 3 feet, to a point in a line 65 feet east of and parallel to the center line of U.S. Highway 19;<br /><br />
+With a line 65 feet east of and parallel to a 300-foot cubic spiral for a 3-degree curve on the center line of the highway as it curves to the right in a southerly direction approximately 96 feet to a point opposite the S.T. of the spiral;<br /><br />
+S. 22°24' E., 139 feet;<br /><br />
+With a line at right angles to the center line of the highway, N. 67°36' E., 55 feet;<br /><br />
+With a line 120 feet east of and parallel to the center line of the highway S. 22°24' E., 208 feet to the point of beginning.<br /><br />
+Portion 2. Beginning at a point in the 1,780-foot contour on the west shore of an inlet of Nottely Lake and in the boundary of the United States of America's land from which US-TVA Monument 10-8 at a corner in the boundary of the above-described Portion 1 bears N. 89°01' E. at a distance of 216 feet.<br /><br />
+From the initial point,<br /><br />
+With the 1,780-foot contour as it meanders in a southerly direction to the mouth of the inlet and thence down the lake in a northwesterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, N. 89°01' E., 398 feet, passing a metal marker in the 1,785-foot contour at 26 feet and a metal marker in the 1,785-foot contour at 376 feet, to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 13 and from this order 1.6 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 13, after giving effect to the exclusion above noted, contains 3.3 acres, more or less.</p>
+<p align="center">Parcel No. 14</p>
+<p>A tract of land lying in Land Lot 240 of District 9, on the northeast side of Nottely Lake, approximately 11/2 miles northwest of Blairsville, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 10-20 (Coordinates: N. 1,777,748; E. 554,854) in the boundary of the United States of America's land at a corner of the lands of Olin F. Wellborn and the Union Power Company.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 44°09' E., 761 feet to a stone;<br /><br />
+S. 29°21' E., 18 feet to a stone;<br /><br />
+S. 10°51' W., 146 feet, passing US-TVA Monument 10-23WC at 111 feet, to a point in the center line of Wellborn Creek;<br /><br />
+With the center line of Wellborn Creek as it meanders downstream in a southwesterly direction;<br /><br />
+Leaving the creek, - S. 88°41' W., 312 feet, passing US-TVA Monument 10-24WC at 17 feet, to the point of beginning.<br /><br />
+The land described above as Parcel No. 14 contains 1.7 acres, more or less.</p>
+<p align="center">Parcel No. 15</p>
+<p>A tract of land lying in Land Lot 264 of District 9, on the south shores of Nottely Lake, approximately 13/4 miles west of Blairsville, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 11-7 (Coordinates: N. 1,776,328; E. 553,535) in the boundary of the United States of America's land at a corner of the lands of the E. 0. Wellborn Heirs and C. L. Butt.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 72°01' W., 1,787 feet to US-TVA Monument 11-8;<br /><br />
+S. 14°00' E., 665 feet, passing US-TVA Monument 11-9WC at 655 feet, to a point in the center line of a branch at the head of the 1,785-foot contour at the south end of an inlet of Nottely Lake;<br /><br />
+With the center line of the branch as it meanders downstream approximately along a bearing and distance of N. 37°35' W., 117 feet to the head of the 1,780-foot contour in the inlet of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders down the inlet in a northerly direction to the mouth of the inlet and thence down the lake in an easterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, due south, 111 feet, passing a metal marker in the 1,785-foot contour at 35 feet, to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 15 and from this order 1.4 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 15, after giving effect to the exclusion above noted, contains 9.6 acres, more or less.</p>
+<p align="center">Parcel No. 16</p>
+<p>A tract of land lying in Land Lot 301 of District 9, on the west shores of Nottely Lake, approximately 11/2 miles west of Blairsville, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 12-3 (Coordinates: N. 1,769,975; E. 554,914) in the boundary of the United States of America's land at a corner of the lands of John C. Corn and Mrs. Flora Myers.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 8°44' W., 1,845 feet, passing a metal marker in the 1,785-foot contour at 1,826 feet, to a point in the 1,780-foot contour on the shore of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a southeasterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, S. 76°16' W., 641 feet, passing a metal marker in the 1,785-foot contour at 29 feet, to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 16 and from this order 1.3 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 16, after giving effect to the exclusion above noted, contains 13.8 acres, more or less.</p>
+<p align="center">Parcel No. 17</p>
+<p>A tract of land lying in Land Lot 300 of District 9, on the south shores of Nottely Lake, approximately 13/4 miles west of Blairsville, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 11-5 (Co..ordinates: N. 1,769,794; E. 553,568) at the<br /><br />
+corner of Land Lots 300, 301, 312, and 313 and in the boundary of the United States of America's land at a corner of the lands of Mrs. Flora Myers and John C. Corn.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 89°19' W., 1,068 feet, passing a metal marker in the 1,785-foot contour at 1,019 feet, to a point in the 1,780-foot contour on the east shore of the Coosa Creek Embayment of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders down the Coosa Creek Embayment in a northwesterly direction to the mouth of the embayment and thence up the lake in a northeasterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, S. 0°05' E., 1,190 feet, passing a metal marker in the 1,785-foot contour at 12 feet, to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 17 and from this order 1.5 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 17, after giving effect to the exclusion above noted, contains 20.5 acres, more or less.</p>
+<p align="center">Parcel No. 18</p>
+<p>Land lying in Land Lot 313 of District 9, on the west shores of the Coosa Creek Embayment of Nottely Lake, approximately 2 miles west of Blairsville, and being all that land which lies above the 1,780-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a point in the 1,780-foot contour on the west shore of the Coosa Creek Embayment and in the boundary between the lands of the United States of America and Union County.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 86°29' W., 307 feet, passing a metal marker in the 1,785-foot contour at 27 feet, to US-TVA Monument 12-1 (Coordinates: N. 1,767,959; E. 550,912) at a common corner of the lands of the United States of America, Union County, Neppie Findley, and Frankie Wellborn;<br /><br />
+N. 0°11' W., 1,872 feet to US-TVA Monument 12-2 at the corner of Land Lots 299, 300, 313, and 314;<br /><br />
+S. 89°04' E., 913 feet, passing a metal marker in the 1,785-foot contour at 845 feet, to a point in the 1,780-foot contour on the shore of the Coosa Creek Embayment.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 18 and from this order 2.5 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 18, after giving effect to the exclusion above noted, contains 34.9 acres, more or less.</p>
+<p align="center">Parcel No. 19</p>
+<p>A tract of land lying in Land Lots 227 and 242 of District 9, at the north end of a peninsula in Nottely Lake at the mouth of the Brackett Creek Embayment of the lake, and more particularly described as follows:<br /><br />
+Beginning at a stone (Coordinates: N. 1,780,402; E. 548,732) in the boundary of the United States of America's land at a corner to the land of A. M. McAfee.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 24°03' E., 307 feet to a 2-inch black oak tree;<br /><br />
+S. 38°20' W., 92 feet, passing a metal marker in the 1,785-foot contour at 75 feet, to a point in the 1,780-foot contour on the northeast shore of the Brackett Creek Embayment;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders around the north end of the peninsula to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, N. 87°06' W., 344 feet, passing a metal marker in the 1,785-foot contour at 25 feet, to the point of beginning.<br /><br />
+There is hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 19 and from this order 0.6 acre, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 19, after giving effect to the exclusion above noted, contains 2.2 acres, more or less.</p>
+<p align="center">Parcel No. 20</p>
+<p>A tract of land lying in Land Lot 242 of District 9, on the southwest shore of the Brackett Creek Embayment of Nottely Lake at the mouth of the embayment, and more particularly described as follows:<br /><br />
+Beginning at a 16-inch cherry tree (Coordinates: N. 1,779,500; E. 548,157) in the boundary of the United States of America's land at a corner to the land of A. M. McAfee.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 1°13' W., 356 feet, passing a metal marker in the 1,785-foot contour at 344 feet, to a point in the 1,780-foot contour on the south shore of Nottely Lake immediately west of the mouth of the Brackett Creek Embayment;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders up the Brackett Creek Embayment in an easterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, S. 26°54' W., 139 feet, passing a metal marker in the 1,785-foot contour at 20 feet, to a 4-inch mulberry tree;<br /><br />
+S. 78°11' W., 376 feet to the point of beginning.<br /><br />
+There is hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 20 and from this order 0.2 acre, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 20, after giving effect to the exclusion above noted, contains 2.4 acres, more or less.</p>
+<p align="center">Parcel No. 21</p>
+<p>A tract of land lying in Land Lot 243 of District 9, on the south shores of Nottely Lake, approximately 3 miles west of Blairsville, and more particularly described as follows:<br /><br />
+Beginning at a point (Coordinates: N. 1,778,103; E. 545,519) in the center line of an old road location at a county road and in the boundary of the United States of America's land at a corner of the lands of J. A. di J. M. Brackett and J. S. Young.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 0°21' E., 719 feet, passing US-TVA Monument 10-15WC at 15 feet, to a stone;<br /><br />
+N. 0°19' W., 1,368 feet, passing a metal marker in the 1,785-foot contour at 1,361 feet, to a point in the 1,780-foot contour on the south shore of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a general easterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, S. 0° 17' E., 1,478 feet, passing a metal marker (Coordinates: N. 1,779,815; E. 546,782) in the 1,785-foot contour at 26 feet and US-TVA Monument 10-14WC at 1,468 feet, to a point in the center line of an old road;<br /><br />
+With the center line of the old road location as it meanders in a westerly direction to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 21 and from this order 1.2 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 21, after giving effect to the exclusion above noted, contains 55 acres, more or less.</p>
+<p align="center">Parcel No. 22</p>
+<p>Land lying in Land Lots 224 and 225 of District 9, on the southwest shores of Nottely Lake, approximately 31/2 miles west of Blairsville, and being all that land which lies above the 1,780-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a point in the 1,780-foot contour on the shore of Nottely Lake and in the boundary between the lands of the United States of America and Emma L. Stephens.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 89°29' W., 1,648 feet, passing a metal marker (Coordinates: N. 1,780,358; E. 544,- 627) in the 1,785-foot contour at 81 feet, a metal marker in the 1,785-foot contour at 537 feet, and a metal marker in the 1,785-foot contour at 730 feet, to a stone;<br /><br />
+N. 89°41' W., 176 feet to US-TVA Monument 9-4 at the corner of Land Lots 224, 225, 244, and 245;<br /><br />
+S. 88°34' W., 1,091 feet, passing a metal marker in the 1,785-foot contour on the east shore of an inlet at 315 feet and a metal marker in the 1,785-foot contour on the west shore of the inlet at 489 feet, to a metal marker;<br /><br />
+S. 88°19' W., 441 feet to US-TVA Monument 9-6;<br /><br />
+S. 89°17' W., 792 feet to US-TVA Monument 9-7;<br /><br />
+N. 27°46' E., 1,608 feet to a metal marker;<br /><br />
+N. 38°22' E., 361 feet, passing a metal marker in the 1,785-foot contour at 344 feet, to a point in the 1,780-foot contour on the southwest shore of Nottely Lake.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 22 and from this order 3.1 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 22, after giving effect to the exclusion above noted, contains 53 acres, more or less.</p>
+<p align="center">Parcel No. 23</p>
+<p>A tract of land lying in Land Lots 209, 223, and 224 of District 9, on the southwest shores of Nottely Lake, approximately 41/4 miles west of Blairsville, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 9-10 (Coordinates: N. 1,782,508; E. 540,053) in the boundary of the United States of America's land at a corner of the lands of Marozy Cagle and the Rena Ballew Heirs.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 9°45' E., 437 feet to US-TVA Monument 9-11;<br /><br />
+N. 85°06' E., 105 feet to US-TVA Monument 9-12 at the corner of Land Lots 209, 210, 223, and 224;<br /><br />
+N. 0°10' W., 552 feet, passing a metal marker in the 1,785-foot contour at 490 feet, to a point in the 1,780-foot contour on the shore of Nottely Lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a general southeasterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, S. 52°32' W., 145 feet, passing a metal marker in the 1,785-foot contour at 9 feet, to a metal marker;<br /><br />
+N. 84°07' W., 984 feet to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 23 and from this order 2.2 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 23, after giving effect to the exclusion above noted, contains 9.0 acres, more or less.</p>
+<p align="center">Parcel No. 24</p>
+<p>A tract of land lying in Land Lots 188 and 209 of District 9, being that northeast end of a peninsula in Nottely Lake at McBee Bend, approximately 41/2 miles northwest of Blairsville, and more particularly described as follows:<br /><br />
+Beginning at a point in the 1,780-foot contour on the shore of Nottely Lake on the southeast side of the peninsula and in the boundary between the lands of the United States of America and T. J. McGlamery.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 0°10' W., 367 feet, passing a metal marker (Coordinates: N. 1,785,284; E. 540,225) in the 1,785-foot contour at 10 feet and a metal marker in the 1,785-foot contour at 347 feet, to a point in the 1,780-foot contour on the shore of Nottely Lake and on the northwest side of the peninsula;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders around the peninsula in a northeasterly, direction, a southerly direction, and subsequently in a westerly direction to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 24 and from this order 1.4 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 24, after giving effect to the exclusion above noted, contains 18.7 acres, more or less.</p>
+
+<p align="center">Parcel No. 25</p>
+<p>A tract of land lying in Land Lot 211 of District 9, on the south shores of the Youngcane Creek Embayment of Nottely Lake at the mouth of the embayment, and more particularly described as follows:<br /><br />
+Beginning at a metal marker (Coordinates: N. 1,784,265; E. 536,070) in the boundary of the United States of America's land at a corner of the lands of Pat Haralson and James A. Mason.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 80°57' W., 166 feet, passing a metal marker in the 1,785-foot contour at 157 feet, to a point in the 1,780-foot contour on the shore of the Youngcane Creek Embayment;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a northerly direction and subsequently in a general easterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, S. 18°03' E., 451 feet, passing a metal marker in the 1,785-foot contour at 28 feet, to a metal marker;<br /><br />
+S. 70°58' W., 150 feet to US-TVA Monument 9-21B;<br /><br />
+N. 73°01' W., 610 feet to US-TVA Monument 9-21A;<br /><br />
+S. 1°38' E., 140 feet to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 25 and from this order 1.1 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL)<br /><br />
+The land described above as Parcel No. 25, after giving effect to the exclusion above noted, contains 6.6 acres, more or less.</p>
+<p align="center">Parcel No. 26</p>
+<p>An island formed by the 1,780-foot (MSL) contour and lying in Nottely Lake in Land Lots 185, 186, 211, and 212 of District 9 opposite the mouth of the Youngcane Creek Embayment of the lake, the said island having a length of approximately 2,200 feet and an approximate maximum width of 1,800 feet, the center of the island being defined approximately by the coordinates N. 1,785,- 800 and E. 535,200.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 26 and from this order 5.3 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 26, after giving effect to the exclusion above noted, contains 41.5 acres, more or less.<br /></p>
+<p align="center">Parcel No. 27</p>
+<p>Land lying in Land Lots 148, 176, and 177 of District 9 on the southwest shores of Nottely Lake, approximately 234 miles southeast of Nottely Dam, and more particularly described as follows:<br /><br />
+Beginning at a point (Coordinates: N. 1,788,746; E. 530,956) in the 1,780-foot contour on the southwest shore of Nottely Lake and in the boundary between the lands of the United States of America and John H. Huggins.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 86°33' W., 939 feet, passing a metal marker in the 1,785-foot contour at 50 feet and a metal marker in the 1,785-foot contour at 889 feet, to a point in the 1,780-foot contour on the east shore of the Jack Creek Embayment of the lake;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a northerly direction and subsequently in a general easterly direction to the point of beginning.<br /><br />
+Also three islands formed by the 1,780-foot (MSL) contour and lying in Nottely Lake in the vicinity of the above described mainland, the dimensions and the approximate coordinates of the center of each of the islands being defined as follows:<br /><br />
+(1) An island having a length of approximately 1,800 feet and an approximate maximum width of 1,300 feet, the coordinates of the center of the island being approximately N. 1,790,000 and E. 530,900.<br /><br />
+(2) An island having a length of approximately 690 feet and an approximate maximum width of 300 feet, the coordinates of the center of the island being approximately N. 1,790,670 and E. 531,630.<br /><br />
+(3) An island having a length of approximately 1,750 feet and an approximate maximum width of 720 feet, the coordinates of the center of the island being approximately N. 1,699,900 and E. 532,400.,<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 27 and from this order 10.5 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 27, after giving effect to the exclusion above noted, contains 39.1 acres, more or less.</p>
+<p align="center">Parcel No. 28</p>
+<p>A tract of land lying in Land Lot 183 of District 9 on the southeast shores of the Jack Creek Embayment of Nottely Lake, approximately 3 1/4 miles south of Nottely Dam, and more particularly described as follows:<br /><br />
+Beginning at US-TVA Monument 6-1 (Coordinates: N. 1,786,842; E. 529,946) in the boundary of the United States of America's land at a corner of the lands of John H. Huggins, Nancy Byrd, and Moses Holbrooks.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 88°54' W., 1,892 feet, passing a metal marker in the 1,785-foot contour at 1,762 feet, to a point in the 1,780-foot contour on the shore of the Jack Creek Embayment;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a general northeasterly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, S. 0°55' W., 1,035 feet, passing a metal marker in the 1,785-foot contour at 48 feet, to the point of beginning.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 28 and from this order 1.8 acres, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 28, after giving effect to the exclusion above noted, contains 16.9 acres, more or less.</p>
+<p align="center">Parcel No. 29</p>
+<p>Land lying in Land Lots 178 and 183 of District 9 on the west shores of the Jack Creek Embayment of Nottely Lake, approximately 2% miles south of Nottely Dam, and being all that land which lies above the 1,780-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a point in the 1,780-foot contour on the west shore of the Jack Creek Embayment and in the boundary between the lands of the United States of America and Moses Holbrooks.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 88°54' W., 58 feet, passing a metal marker in the 1,785-foot contour at 20 feet, to US-TVA Monument 6-2 (Coordinates: N. 1,786,791; E. 527,273).<br /><br />
+N. 1°15' W., 941 feet, passing a metal marker in the 1,785-foot contour at 13 feet, a metal marker in'the 1,785-foot contour at 296 feet, US-TVA Monument 6-3 at 456 feet, and a metal marker at 852 feet, to a point in the 1,780-foot contour at the south end of an inlet of Nottely Lake.<br /><br />
+Also an island formed by the 1,780-foot (MSL) contour and lying in Nottely Lake immediately northeast of the above described mainland, the said island having a length of approximately 1,600 feet and an approximate maximum width of 520 feet, the center of the island being defined approximately by the coordinates N. 1,789,200 and E. 528,600.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 29 and from this order 7.5 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 29, after giving effect to the exclusion above noted, contains 21.2 acres, more or less.</p>
+<p align="center">Parcel No. 30</p>
+<p>Land lying in Land Lots 126, 127, and 128 of District 8 and in Land Lots 109, 143, 144, 145, and 146 of District 9, on the south and west shores of Nottely Lake, approximately 114 miles south of Nottely Dam, and being all that land which lies above the 1,780-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a point in the 1,780-foot contour on the southwest shore of Nottely Lake and in the boundary between the lands of the United States of America and Addie A. Nicholson.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 88°29' W., 613 feet, passing a metal marker in the 1,785-foot contour at 14 feet, to US-TVA Monument 6-4 (Coordinates: N. 1,790,620; E. 524,582) at the corner of Land Lots 145, 146, 179, and 180 of District 9;<br /><br />
+S. 88°29' W., 585 feet to US-TVA Monument 6-5;<br /><br />
+N. 8°51' E., 137 feet to a metal marker; N. 5°47' E., 169 feet to a metal marker; N. 3°59' E., 187 feet to a metal marker; N. 0°56' W., 185 feet to a metal marker; N. 2°26' W., 235 feet to a metal marker; N. 2°07' E., 135 feet to a metal marker; N. 79°17' E., 188 feet to a metal marker; N. 75°58' E., 268 feet to a metal marker; N. 36°52' E., 55 feet to a metal marker; N. 17°15' E., 169 feet to a metal marker; N. 13°30' E., 129 feet to a metal marker; N. 0°37' E., 1,262 feet, passing a metal marker in the center line of a trail at 980 feet, to US-TVA Monument 4-20 at the corner of Land Lots 143, 144, 145, and 146 of District 9; S. 89°47' W., 2,632 feet to US-TVA Monument 4-21 at a corner of Land Lots 144 and 145 of District 9;<br /><br />
+Due north, 373 feet to US-TVA Monument 4-21B at a corner of Land Lots 127 and 162 of District 8;<br /><br />
+Due west, 745 feet to a metal marker;<br /><br />
+S. 89°30' W., 1,585 feet to US-TVA Monument 3-1 at the corner of Land Lots 127, 128, 161, and 162 of District 8;<br /><br />
+S. 89°30' W., 774 feet, passing a metal marker in 1,785-foot contour at 754 feet, to a point in the 1,780-foot contour on the east shore of the Low Creek Embayment of Nottely Lake.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 30 and from this order 16.2 acres, more or less, being those portions of the said land which lie below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 30, after giving effect to the exclusion above noted, contains 310 acres, more or less.</p>
+<p align="center">Parcel No. 31</p>
+<p>Land lying in Land Lot 128 of District 8 on the west shores of the Low Creek Embayment of Nottely Lake, approximately 2 miles southwest of Nottely Dam, and being all that land which lies above the 1,780-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a point in the 1,780-foot contour on the west shore of the Low Creek Embayment and in the boundary between the lands of the United States of America and M. V. Dean.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 89°48' W., 109 feet, passing a metal marker in the 1,785-foot contour at 57 feet, to US-TVA Monument 3-2 (Coordinates: N. 1,793,744; E. 518,258) at a common corner of the lands of the United States of America, M. V. Dean, and Mary Davenport;<br /><br />
+N. 1°08' W., 1,159 feet, passing a metal marker in the 1,785-foot contour at 297 feet and a metal marker in the 1,785-foot contour at 903 feet, to US-TVA Monument 3-3;<br /><br />
+N. 2°26' W., 269 feet, passing a metal marker in the 1,785-foot contour at 236 feet, to a point in the 1,780-foot contour on the south shore of the Camp Creek Embayment of Nottely Lake.<br /><br />
+There is hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 31 and from this order 1.0 acre, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 31, after giving effect to the exclusion above noted, contains 3.0 acres, more or less.</p>
+<p align="center">Parcel No. 32</p>
+<p>A tract of land lying in Land Lot 126 of District 8 on the west shore of the Camp Creek Embayment of Nottely Lake, approximately 1 mile southwest of Nottely Dam, and more particularly described as follows:<br /><br />
+Beginning at a metal marker (Coordinates: N. 1,798,283; E. 520,880) in the boundary between the lands of the United States of America and Isado Thomas.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 0°23' W., 197 feet, passing a metal marker in the 1,785-foot contour at 170 feet, to a point in the 1,780-foot contour on the shore of the Camp Creek Embayment;<br /><br />
+Leaving the United States of America's boundary line,<br /><br />
+With the 1,780-foot contour as it meanders in a general southerly direction to a point in the boundary of the United States of America's land;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the contour, N. 0 °23' W., 281 feet, passing a metal marker in the 1,785-foot contour at 27 feet, to the point of beginning.<br /><br />
+There is hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 32 and from this order 0.5 acre, more or less, being that portion of the said land which lies below elevation 1,785 (MSL).<br /><br />
+The land described above as Parcel No. 32, after giving effect to the exclusion above noted, contains 0.7 acre, more or less.</p>
+<p align="center">TRACT No. XTCHR-2</p>
+<p>A tract of land lying in Towns County, State of Georgia, in Land Lots 50, 51, and 52 of District 17, Section 1, on the south side of the Long Bullet Creek Embayment of Chatuge Lake, approximately 3 miles northwest of Hiawassee, and more particularly described as follows:<br /><br />
+Beginning at a stone (Coordinates: N. 1,806,564; E. 605,474) at the corner of Land Lots 50, 51, 58, and 59 and in the boundary of the United States of America's land at a corner of the lands of W. C. Cloer and D. H. Nichols.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 0°40' E., 520 feet to a stone;<br /><br />
+N. 89°11' W., 200 feet to a metal marker; Leaving the United States of America's boundary line,<br /><br />
+N. 0°16' E., 471 feet to a point in the center line of U.S. Highway 76;<br /><br />
+With the center line of U.S. Highway 76 as it meanders in an easterly direction approx. imately 2,760 feet to a point in the boundary of the United States of America's land from which a metal marker bears N. 0°26' W. at a distance of 34 feet;<br /><br />
+With the United States of America's boundary line,<br /><br />
+Leaving the highway, S. 0'26' E., 892 feet to a stone;<br /><br />
+S. 89°35' W., 409 feet to a metal marker at the corner of Land Lots 51, 52, 57, and 58; N. 89°19' W., 334 feet to a stone;<br /><br />
+S. 89°24' W., 288 feet to a stone;<br /><br />
+S. 89 °47' W., 273 feet to a stone;<br /><br />
+Due west, 290 feet to a stone;<br /><br />
+S. 88° 15' W., 131 feet to a metal marker; S. 89°28' W., 426 feet to a metal marker; N. 86°00' W., 387 feet to the point of beginning.<br /><br />
+The land as described above contains 64 acres, more or less.</p>
+<p align="center">TRACT No. XTCHR-3</p>
+<p>Land lying in Towns County, State of Georgia, in Land Lots 90 and 91 of District 17 and Land Lots 75, 76, 77, 78, 113, 114, and 116 of District 18, Section 1, on the west shores of Chatuge Lake opposite Hiawassee, the said land being comprised of two parcels and being more particularly described as follows:</p>
+<p align="center">Parcel No. 1</p>
+<p>All that land which lies above the 1,928-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a point in the 1,928-foot contour on the west shore of Chatuge Lake and in the boundary between the lands of the United States of America and R. F. Weeks.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 86°41' W., 207 feet, passing a metal marker in the 1,933-foot contour at 125 feet, to a 6-inch white oak stump (Coordinates: N. 1,798,182; E. 619,855);<br /><br />
+N. 89°17' W., 965 feet to a twin red oak tree at the top of a ridge;<br /><br />
+With the top of the ridge as it meanders in a northerly direction approximately along a bearing and distance of N. 5°43' W., 402 feet to a stone;<br /><br />
+Leaving the ridge, N. 89°16' W., 776 feet to a stone at the corner of Land Lots 113, 114, 115, and 116 of District 18;<br /><br />
+N. 89°40' W., 1,365 feet to US-TVA Monument 10-16;<br /><br />
+S. 89°52' W., 440 feet to US-TVA Monument 10-17;<br /><br />
+N. 89°32' W., 777 feet, passing a metal marker in the 1,933-foot contour on the east shore of the Burch Branch Inlet of Chatuge Lake at 254 feet and a metal marker in the 1,933-foot contour on the west shore of the inlet at 712 feet, to a point in the center line of State Highway 288;<br /><br />
+With the center line of State Highway 288 as it meanders in a northerly direction approximately along the following bearings and distances: N. 2°57' E., 382 feet, N. 0°53' E., 385 feet, and due north 44 feet;<br /><br />
+Leaving the highway, N. 89°30' E., 455 feet, passing US-TVA Monument 10-21WC at 16 feet and a metal marker in the 1,933-foot contour on the west shore of the Burch Branch Inlet at 402 feet, to US-TVA Monument 10-22;<br /><br />
+N. 2°00' E., 543 feet, passing a metal marker in the 1,933-foot contour at 255 feet, to a metal marker;<br /><br />
+N. 89°50' W., 506 feet, passing US-TVA Monument 10-24A at 492 feet, to a point at State Highway 288;<br /><br />
+N. 1°56' E., 89 feet to US-TVA Monument 10-25;<br /><br />
+S. 89°40' E., 561 feet, passing a stone and a metal marker at 15 feet and a metal marker in the 1,933-foot contour at 533 feet, to a point in the 1,928-foot contour on the west shore of the Burch Branch Inlet of Chatuge Lake.<br /><br />
+Also two islands formed by the 1,928-foot contour and lying in Chatuge Lake in the vicinity of the above described mainland, the dimensions and the approximate coordinates of the center of each of the islands being defined as follows:<br /><br />
+(1) An island having a length of approximately 620 feet and an approximate maximum width of 350 feet, the coordinates of the center of the island being approximately N. 1,804,300 and E. 618,450.<br /><br />
+(2) An island having a length of approximately 400 feet and an approximate maximum width of 190 feet, the coordinates of the center of the island being approximately N. 1,801,160 and E. 619,240.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 1 and from this order 21.0 acres, more or less, being those portions of the said land which lie below elevation 1,933 (MSL).<br /><br />
+The land described above as Parcel No. 1, after giving effect to the exclusion above noted, contains 276 acres, more or less.</p>
+<p align="center">Parcel No. 2</p>
+<p>All that land which lies above the 1,928-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a point in the 1,928-foot contour on the north shore of the Hog Creek Embayment of Chatuge Lake, in the center line of State Highway 288 at the north end of a bridge across the embayment, and in the boundary between the lands of the United States of America and the Trustees of the Union Hill Methodist Church.<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+N. 2°32' E., 205 feet, passing a metal marker at 11 feet, to a stone and US-TVA Monument 10-26;<br /><br />
+S. 89°27' W., 209 feet to US-TVA Monument 10-27 (Coordinates: N. 1,801,171; E. 614,691);<br /><br />
+N. 33°41' E., 18 feet to a stone and a metal marker;<br /><br />
+N. 6°30' E., 265 feet to a 4-inch pine tree and a metal marker;<br /><br />
+N. 25°40' W., 259 feet to a stone;<br /><br />
+N. 19°00' W., 194 feet to a stone;<br /><br />
+N. 2°44' E., 294 feet to a 14-inch oak tree; N. 88°39' E., 127 feet to a stone;<br /><br />
+N. 1°27' W., 434 feet to a stone;<br /><br />
+S. 86°21' E., 229 feet, passing a metal marker in the 1,933-foot contour at 181 feet, to a point in the 1,928-foot contour on the west shore of an inlet of the Hog Creek Embayment of Chatuge Lake.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 2 and from this order 6.1 acres, more or less, being those portions of the said land which lie below elevation 1,933 (MSL)<br /><br />
+The land described above as Parcel No. 2, after giving effect to the exclusion above noted, contains 45.0 acres, more or less.<br /><br />
+Num: The positions of corners and directions of lines are referred to the Georgia (West) Coordinate System. The contour elevation is based on MSL Datum as established by the USC&amp;GS Southeastern Supplementary Adjustment of 1936. The boundary markers designated "US-TVA Monument" are concrete monuments capped by bronze tablets imprinted with the given numbers.<br /><br />
+2. There is hereby included in and reserved as parts of the Nantahala National Forest, the following-described lands, such inclusion and reservation to be in accordance with and subject to all the provisions and conditions of the two above-mentioned agreements of September 18, 1958, between the Tennessee Valley Authority and the United States Department of Agriculture:</p>
+<p align="center">TRACT No. XTFBDR-1</p>
+<p>A strip of land located in the Eighth Civil District of Cherokee County, State of North Carolina, on the Hiwassee Dam Access Road, approximately 11/2 miles southwest of Hiwassee Dam, the strip being 125 feet wide, lying south of and adjacent to the center line of the access road, the center line of the road and the end boundaries of the strip being described as follows:<br /><br />
+Beginning at a point on a 9 degree curve on the center line of the access road at survey station 539, +13.8 from which US-TVA Monument 56-4 (Coordinates: N. 542,864; E. 449,320) at a corner in the boundary between the lands of the United States of America and Fulbar Nelson bears S. 25°23' E. at a distance of 125 feet, the strip being bounded on the northeast end by the line extending on a bearing of S. 25°23' E. through the said survey station; thence with the curve as it curves to the right in a westerly direction, 332.8 feet to survey station 535, +81.0 where the strip terminates and becomes bounded on the west end by a line extending on a bearing of S. 5° 13' W. through the said survey station, said line being radial to the curve on the center line.<br /><br />
+The above described strip of land contains 1.0 acre, more or less.</p>
+<p align="center">TRACT No. XTCHR-1</p>
+<p>Land lying in the Hiwassee Township of Clay County, State of North Carolina, on the east shores of Chatuge Lake opposite Chatuge Dam, the said land being comprised of two parcels and being more particularly described as follows:</p>
+<p align="center">Parcel No. 1</p>
+<p>All that land which lies above the 1,928-foot (MSL) contour and is contiguous to and on the lakeward side of a line described as follows:<br /><br />
+Beginning at a metal marker in the 1,928-foot contour on the south shore of the Shooting Creek Embayment of Chatuge Lake and in the boundary of the United States of America's land,<br /><br />
+From the initial point with the United States of America's boundary line,<br /><br />
+S. 1 °32' W., 256 feet, passing a metal marker in the 1,933-foot contour at 76 feet, to US-TVA Monument 4-4 (Coordinates: N. 490,928; E. 577,342) in the said boundary line at a corner of the lands of A. M. Hollifield et ux and Otis Eller et ux;<br /><br />
+S. 82°14' W., 222 feet to US-TVA Monument 4-5;<br /><br />
+N. 88°52' W., 1,310 feet to a 14-inch oak tree;<br /><br />
+N. 1°12' E., 191 feet to a stone;<br /><br />
+N. 87°59' W., 199 feet to a stone;<br /><br />
+N. 7°01' E., 973 feet, passing a metal marker in the 1,933-foot contour on the south shore of a small inlet at 120 feet and a metal marker in the 1,933-foot contour on the north shore of the inlet at 448 feet, to a metal marker in the center line of a road;<br /><br />
+With the center line of the road as it meanders in a westerly direction approximately along the following bearings and distances: S. 66°33' W., 774 feet to a metal marker, S. 79°43' W., 286 feet to US-TVA Monument 4-31, and S. 80°30' W., 285 feet to US-TVA Monument 4-32;<br /><br />
+Leaving the road, S. 10°18' E., 11 feet to a stone;<br /><br />
+S. 15°28' E., 458 feet to US-TVA Monument 6-3;<br /><br />
+S. 16°09' E., 198 feet to a metal marker;<br /><br />
+S. 15°30' E., 333 feet to a metal marker; S. 15°36' E., 205 feet to an 8-inch persimmon tree;<br /><br />
+S. 24°51' E., 164 feet to a metal marker;<br /><br />
+S. 45°44' W., 583 feet, passing a metal marker in the 1,933-foot contour on the east shore of the Blue Branch Embayment at 462 feet and a metal marker at 571 feet, to a point in the center line of a road;<br /><br />
+With the center line of the road S. 50°44' E., 123 feet, passing US-TVA Monument 68A at 42 feet, to a metal marker in the 1,933-foot contour on the shore of the Blue Branch Embayment;<br /><br />
+Continuing with the center line of the road as it curves to the right in a southerly direction approximately along a bearing and distance of S. 6°41' E., 379 feet to US-TVA Monument 6-30;<br /><br />
+Leaving the road, S. 69°09' W., 202 feet to a stump; S. 18°22' W., 251 feet to a stone;<br /><br />
+N. 72°31' W., 882 feet, passing a metal marker in the 1,933-foot contour on the east shore of the Blue Branch Embayment at 194 feet and a metal marker in the 1,933-foot contour on the west shore of the embayment at 534 feet, to a metal marker;<br /><br />
+Due South, 741 feet to a stone;<br /><br />
+N. 84°53' W., 213 feet to a metal marker; N. 60°30' W., 471 feet to a stone;<br /><br />
+N. 1°38' W., 352 feet to a stone;<br /><br />
+N. 1°19' W., 392 feet to a metal marker;<br /><br />
+S. 70°46' W., 137 feet to a 10-inch apple tree;<br /><br />
+N. 77°00' W., 498 feet to a metal marker; S. 4°30' W., 763 feet to a stone;<br /><br />
+S. 11°13' W., 282 feet, passing US-TVA Monument 6-41A at 242 feet, to a 10-inch black oak tree;<br /><br />
+S. 8°05' W., 475 feet to a stone;<br /><br />
+S. 8°09' W., 536 feet to a stone pile;<br /><br />
+S. 80°28' E., 1,051 feet to a 14-inch post oak tree;<br /><br />
+S. 12°02' W., 346 feet to US-TVA Monument 6-19 in the center line of an old road;<br /><br />
+With the center line of an old road as it meanders in a southwesterly direction approximately along the following bearings and distances: S. 29°02' W., 1,133 feet to US-TVA Monument 6-20 and S. 35°52' W., 102 feet to US-TVA Monument 6-21;<br /><br />
+Leaving the old road, S. 83°59' E., 366 feet to US-TVA Monument 6-22 (Coordinates: N. 486,116; E. 572,672);<br /><br />
+S. 83°09' E., 281 feet, passing a metal marker in the 1,933-foot contour at 75 feet, to a metal marker in the 1,928-foot contour on the shore of the Sneaking Creek Embayment of Chatuge Lake.<br /><br />
+Also two islands formed by the 1,928-foot contour and lying in Chatuge Lake in the vicinity of the above-described mainland, the dimensions and the approximate coordinates of the center of each of the islands being defined as follows:<br /><br />
+(1) An island having a length of approximately 360 feet and an approximate maximum width of 240 feet, the coordinates of the center of the island being approximately N. 493,520 and E. 576,340.<br /><br />
+(2) An island having a length of approximately 500 feet and an approximate maximum width of 240 feet, the coordinates of the center of the island being approximately N. 490,960 and E. 569,160.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the land described above as Parcel No. 1 and from the operation of this order 87 acres, more or less, being those portions of the land which lie below elevation 1,933 (MSL).<br /><br />
+The land described above as Parcel No. 1, after giving effect to the exclusion above noted, contains 693 acres, more or less.</p>
+<p align="center">Parcel No. 2</p>
+<p>An island formed by the 1,928-foot (MSL) contour and lying in Chatuge Lake opposite Chatuge Dam, such island having a length of approximately 3,050 feet and an approximate maximum width of 1,870 feet, the coordinates of the center of the island being approximately N. 494,450 and E. 569,400.<br /><br />
+There are hereby expressly EXCEPTED AND EXCLUDED from the island described above as Parcel No. 2 and from the operation of this order 7.0 acres, more or less, being that portion of the island which lies below elevation 1,933 (MSL).<br /><br />
+The island described above as Parcel No. 2, after giving effect to the exclusion above noted, contains 44.0 acres, more or less.</p>
+<p>NOTE: The positions of corners and directions of lines are referred to the North Carolina Coordinate System. The contour elevation is based on MSL Datum as established by the USC&amp;GS Southeastern Supplementary Adjustment of 1936. The boundary markers designated "US-TVA Monument" are concrete monuments capped by bronze tablets imprinted with the given numbers.</p>
+<p>DWIGHT D. EISENHOWER</p>
+<p>THE WHITE HOUSE,</p>
+<p>April 29, 1959.</p>
+  </div>
+
+  <div class="field-prez-document-citation">
+    <p class="ucsbapp_citation">Dwight D. Eisenhower, Executive Order 10813—Including Certain Lands in the Chattahoochee National Forest and the Nantahala National Forest Online by Gerhard Peters and John T. Woolley, The American Presidency Project https://www.presidency.ucsb.edu/node/234322</p>  </div>
+    </div>
+    <div class="col-sm-4 ">
+      <div class="group-meta">
+  <div class="field-ds-filed-under-">
+    <h3 class="oog-label">Filed Under</h3>  </div>
+<h3 class="label-above oog-label ds ">Categories</h3><div><a href="/documents/app-categories/presidential" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Presidential</a></div><div><a href="/documents/app-categories/presidential/written-presidential-orders" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Written Presidential Orders</a></div><div><a href="/documents/app-categories/written-presidential-orders/presidential/executive-orders" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Executive Orders</a></div><h3 class="label-above oog-label ds">Attributes</h3><div><a href="/documents/app-attributes/executive-orders" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Executive Orders</a></div><div class="jump"><div class="view view-dpg-docs-media view-id-dpg_docs_media view-display-id-block_2 view-dom-id-450a485df5a89ccaa98e5af1d2c5bf79">
+        
+    
+      <div class="view-content">
+        <div>
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div></div></div><div class="rrssb"><ul class="rrssb-buttons"><li class="rrssb-twitter"><a href="https://twitter.com/intent/tweet?text=Executive%20Order%2010813%E2%80%94Including%20Certain%20Lands%20in%20the%20Chattahoochee%20National%20Forest%20and%20the%20Nantahala%20National%20Forest&url=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10813-including-certain-lands-the-chattahoochee-national-forest-and-the" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">twitter</span></a></li><li class="rrssb-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10813-including-certain-lands-the-chattahoochee-national-forest-and-the" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">facebook</span></a></li><li class="rrssb-linkedin"><a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10813-including-certain-lands-the-chattahoochee-national-forest-and-the&title=Executive%20Order%2010813%E2%80%94Including%20Certain%20Lands%20in%20the%20Chattahoochee%20National%20Forest%20and%20the%20Nantahala%20National%20Forest" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">linkedin</span></a></li><li class="rrssb-googleplus"><a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10813-including-certain-lands-the-chattahoochee-national-forest-and-the" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">google+</span></a></li><li class="rrssb-email"><a href="mailto:?subject=Executive%20Order%2010813%E2%80%94Including%20Certain%20Lands%20in%20the%20Chattahoochee%20National%20Forest%20and%20the%20Nantahala%20National%20Forest&body=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-10813-including-certain-lands-the-chattahoochee-national-forest-and-the" ><span class="rrssb-icon"></span><span class="rrssb-text">email</span></a></li></ul></div>
+  <div class="field-ds-big-search-block">
+    <section id="block-views-5c12edf56060306972111336e0789cf4" class="block block-views other-frontpage-block clearfix">
+
+        <h2 class="block-title">Simple Search of Our Archives</h2>
+    
+  <form action="/advanced-search" method="get" id="views-exposed-form-prez-documents-archive-search2-page-1" accept-charset="UTF-8"><div>  <div class="views-exposed-form vefl-layout bootstrap-6-6-stacked">
+    <div class="views-exposed-widgets clearfix">
+              <div class="vefl-region vefl-region-top">
+                      
+<div id="edit-field-keywords-wrapper" class="views-exposed-widget views-widget-edit-field-keywords">
+    
+  <div class="views-widget">    <div class="form-item form-item-field-keywords form-type-textfield form-group"><input class="form-control form-text" type="text" id="edit-field-keywords" name="field-keywords" value="" size="30" maxlength="128" /></div>  </div>
+  </div>
+                  </div>
+              <div class="vefl-region vefl-region-left">
+                  </div>
+              <div class="vefl-region vefl-region-right">
+                  </div>
+              <div class="vefl-region vefl-region-bottom">
+                      
+<div id="items-per-page-wrapper" class="views-exposed-widget views-widget-items-per-page">
+    
+      <div class="form-item form-item-items-per-page form-type-select form-group"> <label class="control-label" for="edit-items-per-page"># per page</label>
+<select class="form-control form-select" id="edit-items-per-page" name="items_per_page"><option value="5">5</option><option value="10">10</option><option value="25" selected="selected">25</option><option value="50">50</option><option value="100">100</option></select></div>  
+  </div>
+                      
+<div id="button-wrapper" class="views-exposed-widget views-widget-button views-submit-button">
+    
+      <button type="submit" id="edit-submit-prez-documents-archive-search2" name="" value="Apply" class="btn btn-default form-submit">Apply</button>
+  
+  </div>
+                  </div>
+          </div>
+  </div>
+</div></form>
+</section>
+  </div>
+
+  <div class="field-ds-typo">
+    <div class="view view-report-a-typo view-id-report_a_typo view-display-id-block view-dom-id-5b836810059f19a8bdcd5ba43c8af40f">
+        
+    
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field views-field-title">        <span class="field-content"><a href="/report-a-typo?content_id=234322&amp;title=Executive%20Order%2010813%E2%80%94Including%20Certain%20Lands%20in%20the%20Chattahoochee%20National%20Forest%20and%20the%20Nantahala%20National%20Forest" class="report-typo" target="_blank"><h3>Report a Typo</h3></a></span>  </div>  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Needed to activate display suite support on forms -->
+
+</section>
+  </div>
+<!-- Content -->
+      </section>
+
+      
+    </div>
+  </div>
+  
+  
+</div>
+<footer class="site-footer no-print">
+  <div class="container">
+      <div class="region region-footer">
+    <section id="block-block-4" class="block block-block attribution clearfix">
+
+      
+  <p><span>The American Presidency Project</span><br />John Woolley and Gerhard Peters<br /><strong><a href="https://www.presidency.ucsb.edu/contact">Contact</a></strong></p>
+
+</section>
+<section id="block-block-6" class="block block-block foot ucsb clearfix">
+
+      
+  <p style="text-align: center;display:inline-block;"><a class="twitter" href="https://twitter.com/presidency_proj" target="_blank">Twitter</a> <a class="facebook" href="https://www.facebook.com/pg/american.presidency.project/" target="_blank">Facebook</a></p>
+
+</section>
+<section id="block-block-5" class="block block-block copyright clearfix">
+
+      
+  <p>Copyright &copy; The American Presidency Project<br /><a href="http://www.ucsb.edu/terms-of-use" target="_blank">Terms of Service</a> | <a href="https://www.privacy.ucsb.edu/information-privacy/website-privacy" target="_blank">Privacy</a> | <a href="/accessibility">Accessibility</a></p><p><img alt="uc santa barbara logo" src="/sites/default/files/pictures/uc-santa-barbara-wordmark-white1x.svg" style="width: 197px; min-width: 150px; height: 14px;object-fit:cover;" /></p>
+</section>
+  </div>
+  </div>
+  </footer>
+  <script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_NKBfN5q_T2fdeVG6tE3pdNU7glYkyzgPuDTc4K3Ne1w.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"dee899de70","applicationID":"80106271","transactionName":"bl1XYxNYWkVYVxFdWVcXYEUIFhtfV1AATBhJUEU=","queueTime":0,"applicationTime":569,"atts":"QhpUFVtCSUs=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
+
+
