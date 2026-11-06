@@ -11,7 +11,8 @@ Hypotheses, all labelled hypotheses, never facts:
   CAL    L&P `year` is the calendar year of signing, so L&P year counts should equal register year counts.
   DESC   within a year, L&P rows run in descending EO-number order.
   ASC    within a year, L&P rows run in ascending EO-number order.
-Independent signals, taken from Thrower and joined to the register by EO number (and suffix):
+Signals taken from Thrower (not independent of L&P: its ceremonial values look carried over from Thrower, so
+agreement tests row order, not the accuracy of either file), and joined to the register by EO number (and suffix):
   ceremonial     L&P ceremonial vs Thrower ceremonial
   revoked_next   L&P revoked_next_term vs "Thrower revoke_year is by the last year of the following
                  four-year block" (blocks 1937-40, 1941-44, ...; inferred, see README.md)
@@ -61,6 +62,10 @@ def load(rda, thr, reg):
     r["sfx"] = r.suffix.fillna("")
     r["year"] = r.date.str[:4].astype(int)
     r = r[(r.num >= 7532) & (r.date >= "1937-01-01") & (r.date <= CUTOFF)].copy()
+    # Known register defects (coordinator check, 2026-11-07): EO:7700A duplicates EO:7700 (Thrower has only 7700);
+    # EO:10276 carries a date typo (1961-07-31) and belongs to 1951 (Thrower year 1951; neighbours 10275, 10277 are 1951).
+    r = r[r.key != "7700-A"].copy()
+    r.loc[r.key == "10276", "year"] = 1951
     return dt, t, r
 
 
@@ -204,16 +209,19 @@ def main(rda, thr, reg, out, perms=2000):
             # ASC hypothesis: L&P row k within the year <-> k-th smallest EO number of that year
             Rs = R.reset_index(drop=True)
             agree = (l_cer == t_cer_asc) & np.where(np.isnan(t_rev_asc), True, l_rev == t_rev_asc)
+            has_pos = (l_cer == 1) | (t_cer_asc == 1) | (l_rev == 1) | (t_rev_asc == 1)
             for k in range(n_l):
                 aligned.append({
                     "lp_row": int(L.row.iloc[k]), "year": y, "eo_key": Rs.key[k], "eo_number": int(Rs.num[k]),
                     "eo_suffix": Rs.sfx[k], "eo_date": Rs.date[k],
                     "year_alignment_class": cls, "year_p_ASC": rec["p_ASC"], "year_excess_ASC": round(rec["excess_ASC"], 4),
                     "row_signals_agree": bool(agree[k]),
+                    "row_has_positive_signal": bool(has_pos[k]),
                     "lp_ceremonial": int(l_cer[k]), "thrower_ceremonial": int(t_cer_asc[k]),
                     "lp_revoked_next_term": int(l_rev[k]),
                     "thrower_revoked_next_term_derived": ("" if np.isnan(t_rev_asc[k]) else int(t_rev_asc[k])),
                     "lp_immutable": int(L.immutable.iloc[k]), "lp_foreign": int(L.foreign.iloc[k]),
+                    "year_null_mean_agreements": round(rec["null_mean"], 2),
                     "hypothesis": "L&P rows within a year run in ascending EO-number order (ASC); a labelled hypothesis, not a fact",
                 })
     res = pd.DataFrame(rows)
@@ -229,6 +237,10 @@ def main(rda, thr, reg, out, perms=2000):
         summ["aligned_rows"] = int(len(al))
         summ["aligned_rows_signals_agree"] = int(al.row_signals_agree.sum())
         summ["aligned_years"] = int(al.year.nunique())
+        pos = al[al.row_has_positive_signal]
+        summ["aligned_rows_with_positive_signal"] = int(len(pos))
+        summ["aligned_rows_with_positive_signal_agree"] = int(pos.row_signals_agree.sum())
+        summ["aligned_rows_expected_agreements_by_chance"] = float(al.groupby("year").year_null_mean_agreements.first().sum())
     summ["years_count_match"] = int(res.count_match.sum())
     summ["years_tested"] = int(len(tested))
     summ["years_informative"] = int(len(inf))

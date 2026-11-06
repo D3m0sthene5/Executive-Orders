@@ -79,9 +79,10 @@ anything I could reach. See REQUEST_EMAIL.md.
   leave supersession and nullification out of the outcome although the tables treat them as interchangeable with
   revocation (SI-2). The method of reading the tables (human reading or string matching) is not described; the only
   string matching the SI documents is for immutability (below).
-- Why a short window (p. 355): it "helps reduce the influence of 'housekeeping' orders that occur decades latter [sic],
-  include mass revocations, and do not represent the kind of politically-motivated reversals of interest." This is the
-  authors' own statement that long-lag revocations are housekeeping, which is the territory of the project's thesis.
+- Why a short window (p. 355): they say it "helps reduce the influence of 'housekeeping' orders that occur decades latter
+  [sic], include mass revocations, and do not represent the kind of politically-motivated reversals of interest." That
+  is their reason for the design: the window reduces the weight of such revocations in their estimates. It is not a
+  finding about which long-lag revocations were housekeeping.
 - SI-3: EO 12553 is read as evidence for their argument: "The vast majority" of the orders it revoked "had outlived the
   function they originally performed", "alive" on paper but spent, and the White House called them "obsolete or
   inactive" (SI-3, citing an Associated Press story, 1986). Their conclusion: mass revocation was not mass policy
@@ -129,11 +130,11 @@ every year 1937 to 2013 (README.md), consistent with the variable being carried 
 
 ## 6. Other points that bear on the project
 
-- L&P state the thesis the project tests, in their words about the formal record: orders can be alive "on paper"
-  (p. 354, SI-3), and nothing requires an inactive order to be revoked (SI-2). They treat this as a measurement caveat,
+- L&P give prior art for the concern behind the project's thesis, in their words about the formal record: orders can be
+  alive "on paper" (p. 354, SI-3), and nothing requires an inactive order to be revoked (SI-2). They treat this as a measurement caveat,
   not as a quantity, and do not date any order's real end.
 - Their model reports four columns of results (Table C.1, SI-11); my replication from `orders.Rda` reproduces column 1
-  and column 3 exactly (n, coefficients, AIC), see BASELINE.md.
+  and column 3 (n, AIC and all coefficients to 3 decimals; standard errors within 0.003), see BASELINE.md.
 - Survival models were set aside because they are sensitive to specification and orders are not independent: orders
   revoke other orders, and chains of amendments imply joint revocation (p. 355; SI-4).
 - Case studies (from p. 357): police-equipment transfers, Guantanamo, embassy locations. Not used here.

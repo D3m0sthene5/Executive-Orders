@@ -1,6 +1,7 @@
 """Summaries of Thrower (2017) eo_original_list.csv that bear on the project's cleanup thesis.
 
-Usage: py -I thrower_summary.py THROWER_CSV OUT_DIR
+Usage: py -I thrower_summary.py THROWER_CSV OUT_DIR [THROWER_MAIN_DTA]
+The optional main .dta (thrower_ajps_replication_main.dta, order-year panel) carries the revokedbyeo12553 flag.
 Writes OUT_DIR/thrower_summary.json. Counts only; no legal status is asserted.
 Thrower's `revoke_year` is the year the disposition tables record a revocation, not an operative end date.
 """
@@ -11,7 +12,7 @@ from pathlib import Path
 import pandas as pd
 
 
-def main(csv, out):
+def main(csv, out, dta=None):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     t = pd.read_csv(csv, dtype={"eonumber": str})
@@ -43,10 +44,22 @@ def main(csv, out):
     S["revoked_excluding_1986_n"] = int(len(rv) - len(y86))
     S["revokedbyotherthaneo_n"] = int(t.revokedbyotherthaneo.sum())
     S["revokedbyotherthaneo_among_1986_revoked_n"] = int(y86.revokedbyotherthaneo.sum())
+    S["partrevoked_and_revoked_n"] = int(((t.partrevoked == 1) & (t.revoked == 1)).sum())
+    S["never_revoked_n"] = int((t.revoked == 0).sum())
+    S["never_revoked_but_superseded_n"] = int(((t.revoked == 0) & (t.superseded == 1)).sum())
+    S["neither_revoked_nor_superseded_n"] = int(((t.revoked == 0) & (t.superseded == 0)).sum())
+    S["neither_revoked_nor_superseded_share"] = float(((t.revoked == 0) & (t.superseded == 0)).mean())
+    if dta:
+        d = pd.read_stata(dta, convert_categoricals=False)
+        f = d.groupby("id").revokedbyeo12553.max()
+        m = t.merge(f.rename("eo12553"), left_on="id", right_index=True, how="left")
+        S["eo12553_flag_main_dta_orders"] = int(m.eo12553.sum())
+        S["eo12553_flag_revoke_year_counts"] = {str(int(k)): int(v) for k, v in m[m.eo12553 == 1].revoke_year.value_counts().items()}
+        S["eo12553_flag_and_revokedbyotherthaneo_n"] = int(((m.eo12553 == 1) & (m.revokedbyotherthaneo == 1)).sum())
     S["columns"] = list(t.columns)
     (out / "thrower_summary.json").write_text(json.dumps(S, indent=2, sort_keys=True), encoding="utf-8", newline="\n")
     print(json.dumps(S, indent=1, sort_keys=True))
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None)

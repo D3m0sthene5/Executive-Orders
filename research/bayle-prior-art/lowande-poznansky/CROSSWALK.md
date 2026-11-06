@@ -17,8 +17,12 @@ distinct" and that current force is never derived "from formal label alone". The
 `present_normative_effect` rolled up by TC03, has no counterpart in either dataset. Two consequences for any use of
 their data:
 
-1. A prior-art `revoked = 0` says "no formal act recorded", never "in force". A `revoked = 1` gives the latest date the
-   order can have been in force by formal act, which is at most the latest cessation (TC13), not the first.
+1. A prior-art `revoked = 0` says "no formal act recorded", never "in force". A `revoked = 1` records a revocation, which
+   may be partial: Thrower's `revoked` includes 117 of her 118 partial revocations (`partrevoked`), and a partly
+   revoked order can still be in force (the checker cites EO 11063 and EO 8065; in her CSV both are coded
+   `revoked = 1, partrevoked = 0`, so the flags do not separate whole from partial, and I have not read those
+   orders). For a whole revocation the formal date is at most the latest cessation (TC13); it never shows the first.
+   Likewise "never revoked" is not "formally still valid": 426 of 4,578 never-revoked orders are coded superseded.
 2. The project's derived field `formal_revocation_after_earlier_cessation` cannot be computed from their data: it needs
    an evidenced first end, which they do not have.
 
@@ -29,11 +33,11 @@ their data:
 | L&P `revoked_next_term` | `formal_disposition` + date, windowed | narrower | A 1 to 7 year indicator, non-ceremonial, formal act only. Later revocations (in Thrower's list a median of 7 years and a quarter 19 or more years after issue) are outside it by design. |
 | L&P `immutable` | none; nearest TC06 durable_status, TC07 spent dispositive acts | different axis | Irreversible outcomes in the world, coded from the title. TC07 excludes completed pure dispositive acts (a land sale, a transfer, an appointment) from operative force unless an independent continuing norm or status is shown. So immutable = 1 neither implies nor excludes operative effect. TC06 needs an identified continuing legal status attributable to the order; L&P require no such status. |
 | L&P and Thrower `ceremonial` | none; nearest `ever_operative_states` = `hortatory_only`, TC07 | no counterpart | The project decides effect clause by clause. A ceremonial order is excluded from L&P's models but is an ordinary census row with a status to determine. |
-| Thrower `revoked`, `revoke_year` | `formal_disposition.instrument`, `.date`, mechanism `express_revocation` | narrower in time (year not date) | Revocation year is the year of a formal act and, for EO 12553 (377 orders with revocation year 1986 in Thrower's list), says nothing about when each order ceased. Project: TC13 cleanup dates supply "at most latest cessation". |
+| Thrower `revoked`, `revoke_year` | `formal_disposition.instrument`, `.date`, mechanism `express_revocation` | narrower in time (year not date) | Revocation year is the year of a formal act and, for EO 12553 (377 orders have revocation year 1986 in Thrower's list; her `revokedbyeo12553` flag in the main `.dta` covers 372, 370 of them in 1986; the project has EO 12553 edges for 383 orders in range), says nothing about when each order ceased. `revoked` also includes partial revocations (117 of 118), so it is not a whole-order end. Project: TC13 cleanup dates supply "at most latest cessation". |
 | Thrower `superseded` | mechanism `express_supersession` or `implied_supersession` | equivalent in kind | L&P drop it from their outcome; the disposition tables treat it as interchangeable with revocation (SI-2); ESTIMAND.md counts revoked, superseded or rescinded as formal disposition. |
 | Thrower `partrevoked`, `substantive_amended` | clause-level `later_events`; TC02, TC09 | narrower | Partial changes do not support whole closure; amendment is an event on a clause, not an end. |
 | Thrower revocation-type flags (`reject_revoke_eo`, `transfer_rv`, `abolish_rv`, `amend_rv`, `other_auth_rv`) | `mechanism`, actor | partial | Classify the revoking order's purpose, not the first end. |
-| Thrower `revokedbyotherthaneo` (CSV) vs `revokedbyeo12553` (PDF) | `first_cause_type` | unresolved | The CSV header and the PDF codebook name different things. 140 rows flagged in the CSV, 98.6% of them revoked; only 1 of 377 orders revoked in 1986 is flagged. I cannot say which is meant. |
+| Thrower `revokedbyotherthaneo` (CSV) and `revokedbyeo12553` (main `.dta`, PDF codebook) | `first_cause_type`; edges from EO 12553 | two different flags | Resolved by the checker and confirmed here: the CSV's `revokedbyotherthaneo` (140 orders, 98.6% revoked, 1 of the 377 revoked in 1986) is a different flag from the codebook's `revokedbyeo12553`, which is in `thrower_ajps_replication_main.dta` (372 orders; 370 with revocation year 1986, one each in 1982 and 1987; none overlaps the CSV flag). The CSV does not carry the EO 12553 flag. |
 | L&P "nullified" (37 cases excluded) | `mechanism` other plus `mechanism_note` | no clean mapping | Not a listed mechanism. |
 | Thrower `eonumber`, `year` | `instrument_id`, `date` | equivalent for numbered orders | Lettered orders are separate rows; Thrower's `year` is a president-coded year for orders in January of inauguration years (106 differ from the register's calendar year), while L&P's `year` matches the calendar. |
 | L&P `foreign`, Thrower topic dummies, political covariates | none | no counterpart | Regression controls and subject tags; no legal-status content. |
