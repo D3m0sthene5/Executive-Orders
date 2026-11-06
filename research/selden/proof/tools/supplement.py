@@ -16,6 +16,10 @@ sys.path.insert(0, str(ROOT / "jobs/selden-common"))
 import selden_common as S  # noqa: E402
 OUT = ROOT / "research/selden/proof/packets"
 JOBS = {k: ROOT / "jobs" / k / "output" for k in ("selden-fr-citers", "selden-fr-acting", "selden-statutes")}
+# Runner-shard outputs not yet united into the citers job's own output (jobs/selden-fr-citers/data/shards/<k>).
+for d in sorted((ROOT / "jobs/selden-fr-citers/data/shards").glob("*")):
+    if (d / "SOURCES.jsonl").is_file():
+        JOBS["selden-fr-citers:" + d.name] = d
 PER_ORDER = 10
 WIDEN = 700
 
@@ -48,7 +52,12 @@ def main(batch, *ids):
     entries, brief, seen = [], [f"# Selden brief for proof batch {batch}\n",
                                 "Machine leads from jobs/selden-fr-citers, selden-fr-acting and selden-statutes. Read "
                                 "the held text around every excerpt; nothing here is a legal finding.\n"], set()
-    searches = {r["instrument_id"]: r for r in rows(JOBS["selden-fr-citers"] / "SEARCHES.jsonl")}
+    searches = {}
+    for job in JOBS:
+        if job.startswith("selden-fr-citers"):
+            for r in rows(JOBS[job] / "SEARCHES.jsonl"):
+                if r.get("examined") or r["instrument_id"] not in searches:
+                    searches[r["instrument_id"]] = r
     basis = {}
     for b in rows(JOBS["selden-statutes"] / "BASIS.jsonl"):
         basis.setdefault(b["instrument_id"], []).append(b)
@@ -61,7 +70,7 @@ def main(batch, *ids):
             brief.append("- Federal Register full-text search: not yet run for this order.\n")
         leads = []
         for job in JOBS:
-            for f in rows(JOBS[job] / "FRAGMENTS.jsonl"):
+            for f in rows(JOBS[job] / "FRAGMENTS.jsonl"):  # noqa: shard dirs hold the same file layout
                 if f.get("instrument_id") != iid:
                     continue
                 for d in f["data"]:
@@ -86,7 +95,7 @@ def main(batch, *ids):
                 lo, hi = map(int, d["quote_span"].split("-"))
                 if text[lo:hi] == d["quote"]:
                     a, b = widen(text, lo, hi)
-                    al = alias(job.split("-")[-1], d["acting_id"], iid)
+                    al = alias(job.split(":")[0].split("-")[-1], d["acting_id"], iid)
                     if al in seen:
                         al = alias(al, str(n))
                     seen.add(al)
@@ -126,6 +135,33 @@ def main(batch, *ids):
                     line += f" -> SUPPLEMENT:{al} (first 8,000 characters; read the full text)"
                     n += 1
             brief.append(line + "\n")
+        # Statutes the finding jobs name as acting on this order whose text is held, even when the statute does not
+        # print the order's number (the National Emergencies Act for emergency-dependent orders): bind the text so
+        # the producer can read and cite it. Binding is not a finding that the statute ended the order.
+        for job in JOBS:
+            if job != "selden-statutes":
+                continue
+            for r in rows(JOBS[job] / "SOURCES.jsonl"):
+                ids = r.get("instrument_ids") or []
+                if iid not in ids[1:] or not r.get("cache_path") or not (ids[0].startswith("PL:") or ":" in ids[0] and
+                                                                         not ids[0].startswith("STAT:")):
+                    continue
+                tp, local = JOBS[job] / r["text_path"], JOBS[job] / r["cache_path"]
+                al = alias("actstat", ids[0], iid)
+                if al in seen or not tp.is_file() or not local.is_file() or n >= PER_ORDER + 2:
+                    continue
+                seen.add(al)
+                text = tp.read_bytes().decode("utf-8")
+                entries.append({"alias": al, "instrument_ids": [iid], "actor_id": ids[0],
+                                "reason": f"Selden statutes: Statutes at Large text of {ids[0]}, which the finding jobs "
+                                          f"name as acting on {iid} (machine lead; the statute may not name the order)",
+                                "char_start": 0, "char_end": min(len(text), 60000),
+                                "source": {"url": r["url"], "sha256": r["sha256"], "text_path": tp.relative_to(ROOT).as_posix(),
+                                           "text_sha256": fsha(tp), "page_or_item": r.get("page_or_item"),
+                                           "local_path": local.relative_to(ROOT).as_posix()}})
+                brief.append(f"- [selden-statutes] {ids[0]} is named as acting on this order by a finding job; full "
+                             f"statute text {tp.relative_to(ROOT)} -> SUPPLEMENT:{al} (first 60,000 characters)\n")
+                n += 1
         if not leads and not basis.get(iid):
             brief.append("- No Selden lead names this order.\n")
     d = OUT / batch
