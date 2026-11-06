@@ -8,12 +8,10 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (4)
+## Waiting for the owner (2)
 
 - **A-20261103-1** (2026-11-03, Codex): Provide Bacon-session.bundle or the original Bacon packet directory from EO Session Report? *Original scratch files are inaccessible, no Bacon publication was located, and the frozen sample/review receipts cannot be reconstructed faithfully*
 - **A-20261104-1** (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1? *Scoped occurrence intervals are usable now. Whole-case legal intervals need a separate scientific contract and fresh legal review. This is a contract proposal, not a request to choose case answers or relax production.*
-- **A-20261105-1** (2026-11-05, claude): May the claim kit start an undecided order whose bounded search found no dated later event (an explicit empty history), instead of refusing it? 5,918 of 10,681 undecided orders are refused today. *This is an evidence-rule change; it decides whether most pre-1937 orders can enter the kit before a pre-1937 disposition source is found.*
-- **A-20261105-2** (2026-11-05, claude): What did your weekly usage read in Settings > Usage after the Herschel run (it reset to about 0% at the Ultra upgrade, 2026-11-05 18:25 ET)? *bentham.py calibrate needs one measured pair (run USD about 350, percent used) to show plan lines as a share of a week.*
 
 ## Standing owner requirements
 
@@ -30,13 +28,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 149; `search` finds the rest)
+## Newest results (6 of 148; `search` finds the rest)
 
 - 2026-11-05 F-20261105-theophilus **worked**: Theophilus wave (Bentham ranks 8 and 11): recover 48 custody-stranded reviewed claims by fresh prepare plus u… Lesson: Run the actual checker on the exact reviewed lines before buying review: it sorts recoverable claims from mechanically blocked ones for free. One-step-away is a source-acquisition queue, not a produc…
 - 2026-11-05 F-20261105-stable-main-publication **worked**: Integrate completed EO work and remove production/reporting publication races Lesson: Successful computation is not publication. Queue automatic writers before checkout, bind receipts to actual inputs, and keep shared inputs stable.
 - 2026-11-05 F-20261105-icecore **stopped at gate**: Ice core probe: 30 orders drawn by decade from each remaining claim-ready stratum (886 NO, 359 YES), run as o… Lesson: A finished wave's yield describes the orders it drew, not the ones left: Tribonian skimmed the NO stratum, so its 47.6% overstated the remaining NO yield about fourteenfold (47.6% against 3.3%). Meas…
-- 2026-11-05 F-20261105-herschel-survey **analysis**: Herschel: free census of all 96,598 open order-steps, two independent probability samples (153 + 85 orders) r… Lesson: Do not run a full agent wave on current holdings: fix zero-agent blockers first (byte retention, overlay write rule, machine later-source searches, pre-1937 disposition source), then re-run Bentham.…
 - 2026-11-05 F-20261105-2 **worked**: Bentham (jobs/bentham): joined Hamilton, wave dispositions, Polya, the tracker's shared unlocks and Llull's m… Lesson: A tool that needs a person to feed it is not wired in: Hamilton, Llull, Neyman and Polya each worked but none ran before a wave because each needed manual input and no protocol step required it
 - 2026-11-05 F-20261105-1 **worked**: Gessner cards: a daily job joining READINESS_BY_ORDER.csv and the Domesday REGISTER.csv into one self-contain… Lesson: Derive display-only fields from committed outputs in a job, never in a chat; a disagreement between a date rule and a recorded name is a data-quality lead, not a correction
+- 2026-11-04 F-20261104-tribonian-finalization-recovery **worked**: Reconcile current Tribonian claims with the combined tracker and refresh retained Capcom history Lesson: Use exact current hashes and a successful combined generation; campaign filings and batch-local totals cannot replace a project-wide recount.
 
-Register: 23 owner decisions, 13 answered questions, 149 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 23 owner decisions, 13 answered questions, 148 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
