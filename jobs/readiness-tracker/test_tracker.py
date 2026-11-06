@@ -243,6 +243,33 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(orders["EO:3"]["step_original_text"], "open")
         self.assertIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
 
+    def test_checked_proquest_replica_credits_the_text_step_with_a_flag(self):
+        # Photius P4 (2026-11-06): a replica a worker read and found to be the order counts for the text step; the row
+        # carries REPLICA_CHECKED_PROQUEST_BYTES; an unchecked or failed replica stays a lead.
+        def frag(i, check, grade):
+            return json.dumps({"instrument_id": i, "kind": "original_representation", "produced_by": "photius-replica-check",
+                               "grade": grade, "acceptable_as_original": False,
+                               "data": {"url": "https://congressional.proquest.com/x", "sha256": "a" * 64,
+                                        "page_or_item": "ProQuest replica", "needs_page_check": check, "grade": grade}})
+        pq = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "pinakes-proquest-ingest",
+                         "data": {"url": "https://congressional.proquest.com/x", "needs_page_check": True}})
+        nl = chr(10)
+        files = {tracker.J["checked_replica_fragments"][0]: frag("EO:1", False, "archival_replica_checked") + nl
+                 + frag("EO:3", True, "archival_replica_check_failed_or_pending") + nl,
+                 tracker.J["archival_replica_fragments"][0]: pq + nl}
+        orders, s = self.run_tracker(files=files)
+        self.assertEqual(orders["EO:1"]["step_original_text"], "done")
+        self.assertEqual(orders["EO:1"]["informational_flags"], "REPLICA_CHECKED_PROQUEST_BYTES")
+        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
+        self.assertIn("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
+        self.assertEqual(s["text_step_from_checked_replica"], 1)
+        # an official printing outranks the replica credit: no flag when the step was already satisfied
+        fr = json.dumps({"instrument_id": "EO:1", "kind": "original_representation",
+                         "data": {"url": "https://www.govinfo.gov/x.pdf", "needs_page_check": False}})
+        orders, s = self.run_tracker(files={**files, tracker.J["fr_fragments"][1]: fr + nl})
+        self.assertEqual(orders["EO:1"]["informational_flags"], "")
+        self.assertEqual(s["text_step_from_checked_replica"], 0)
+
     def test_richardson_transcription_is_a_lead_never_the_original(self):
         rec = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "richardson-volumes",
                           "data": {"url": "https://hdl.handle.net/2027/ufl.31262091102953", "sha256": "f" * 64,
