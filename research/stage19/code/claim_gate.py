@@ -11,6 +11,20 @@ from datetime import date
 from urllib.parse import urlparse
 
 LEGAL_CUTOFF="2026-10-14"
+SCHEMA_V1="eo-lifecycle-claim/v1"
+# Schema v2 (owner ruling R2, 2026-11-06; Kean D-20261106-justinian-r2) adopts the legal first-ending
+# interval contract alongside immutable v1. Vocabularies come from the immutable Stage 15 codebook
+# (research/stage15/LEGAL/OPERATIONAL_STATE_CODEBOOK_DRAFT.json): first_cause_type verbatim, and
+# date_kind is the codebook's historical_evidence_dates restricted to the kinds a first end can take.
+SCHEMA_V2="eo-lifecycle-claim/v2"
+DATE_KINDS=("exact","not_later_than","interval")
+FIRST_CAUSES=("under_original_terms","later_amendment_imposed_condition","later_presidential","legislative",
+              "regulatory","judicial","completion_of_task","never_activated","unresolved")
+MECHANISMS=("express_revocation","express_supersession","implied_supersession","amendment",
+            "expiration_by_own_terms","condition_or_event_occurred","task_completed","body_abolished",
+            "statutory_termination","authority_repealed_or_lapsed","judicial_invalidation","regulatory_action",
+            "never_activated","other")
+DERIVED_FIELDS=("formal_revocation_after_earlier_cessation",)
 
 def canonical(value):
     return json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(",",":"))
@@ -39,14 +53,88 @@ def exact_date(value):
         return False
 
 
+def status_contested(claim, expected_status=None):
+    """Owner ruling R5 (2026-11-06): a claim may assert a status that disagrees with the provisional ledger.
+
+    This is a contest, not a gate failure: the tracker records blocker STATUS_CONTESTED and lists the
+    claim in CONTESTED.csv; the ledger changes only through an owner-merged pull request.
+    """
+    status=claim.get("whole_order_status") if isinstance(claim,dict) else None
+    return bool(expected_status in ("yes","no") and status in ("yes","no") and status!=expected_status)
+
+
+def end_window(end, v2):
+    """(earliest, latest, established) of a first or whole-order end that passed its checks."""
+    if not v2 or end.get("date_kind")=="exact":
+        return end["date"], end["date"], True
+    if end["date_kind"]=="interval":
+        return end["earliest"], end["latest"], True
+    return None, end["date"], False
+
+
+def v2_end_errors(end, label):
+    """Schema v2 timing, cause and mechanism of one first end (or of the whole-order end)."""
+    errors=[]
+    kind=end.get("date_kind")
+    cause=end.get("first_cause")
+    if kind not in DATE_KINDS:
+        return [f"{label}_date_kind"]
+    if cause not in FIRST_CAUSES:
+        errors.append(f"{label}_first_cause")
+    if kind=="exact":
+        if not exact_date(end.get("date")) or end["date"]>LEGAL_CUTOFF:
+            errors.append(f"{label}_date")
+    elif kind=="interval":
+        lo,hi=end.get("earliest"),end.get("latest")
+        if "date" in end or not exact_date(lo) or not exact_date(hi) or not lo<hi or hi>LEGAL_CUTOFF:
+            # A one-day interval must be written as exact (contract proposal); never a midpoint in "date".
+            errors.append(f"{label}_interval")
+    elif not exact_date(end.get("date")) or end["date"]>LEGAL_CUTOFF:
+        errors.append(f"{label}_date")
+    # A latest-possible end without affirmative evidence of the ending event is not a first end:
+    # not_later_than is accepted only while the first cause is unresolved, and only then.
+    if (kind=="not_later_than")!=(cause=="unresolved"):
+        errors.append(f"{label}_not_later_than_requires_unresolved_cause")
+    if end.get("mechanism") not in MECHANISMS:
+        errors.append(f"{label}_mechanism")
+    note=end.get("mechanism_note")
+    if note is not None and not isinstance(note,str) or (end.get("mechanism")=="other" and not (note or "").strip()):
+        errors.append(f"{label}_mechanism_note")
+    if not end.get("actor") or not source_ok(end.get("source")):
+        errors.append(f"{label}_actor_or_source")
+    return errors
+
+
+def derived(claim):
+    """Fields the gate computes and a producer never fills (schema v2).
+
+    formal_revocation_after_earlier_cessation: True when the order's formal disposition (for example a
+    later cleanup revocation) is dated after an established whole-order end; False when it is not; None
+    when there is no formal disposition or the whole-order end is only bounded (not_later_than).
+    """
+    out={"formal_revocation_after_earlier_cessation":None}
+    if not isinstance(claim,dict) or claim.get("schema")!=SCHEMA_V2:
+        return out
+    disposition,whole=claim.get("formal_disposition"),claim.get("whole_order_end")
+    if not isinstance(disposition,dict) or not exact_date(disposition.get("date")) or not isinstance(whole,dict):
+        return out
+    if whole.get("date_kind")=="exact" and exact_date(whole.get("date")):
+        out["formal_revocation_after_earlier_cessation"]=whole["date"]<disposition["date"]
+    elif whole.get("date_kind")=="interval" and exact_date(whole.get("latest")):
+        out["formal_revocation_after_earlier_cessation"]=whole["latest"]<disposition["date"]
+    return out
+
+
 def validate_claim(claim, expected_status=None):
     errors=[]
-    if claim.get("schema")!="eo-lifecycle-claim/v1":
+    v2=claim.get("schema")==SCHEMA_V2
+    if claim.get("schema") not in (SCHEMA_V1,SCHEMA_V2):
         errors.append("schema")
     if not isinstance(claim.get("instrument_id"),str) or not claim["instrument_id"].startswith("EO:"):
         errors.append("instrument_id")
     status=claim.get("whole_order_status")
-    if status not in ("yes","no") or (expected_status and status!=expected_status):
+    # R5: disagreement with the ledger is a contest (status_contested), not a structural error.
+    if status not in ("yes","no"):
         errors.append("whole_order_status_mismatch")
     if not source_ok(claim.get("original_representation")):
         errors.append("original_representation_provenance")
@@ -56,6 +144,7 @@ def validate_claim(claim, expected_status=None):
     scope_ids=set()
     continuing=0
     end_dates=[]
+    windows=[]
     for n,clause in enumerate(clauses):
         if not isinstance(clause,dict):
             errors.append(f"clause_{n}_not_object")
@@ -74,7 +163,12 @@ def validate_claim(claim, expected_status=None):
                 errors.append(f"clause_{n}_current_predicate")
         elif state in ("terminated","never_activated"):
             end=clause.get("first_end")
-            if not isinstance(end,dict) or not exact_date(end.get("date")) or end.get("date", "9999")>LEGAL_CUTOFF or not end.get("actor") or not end.get("mechanism") or not source_ok(end.get("source")):
+            if v2:
+                problems=v2_end_errors(end,f"clause_{n}_first_end") if isinstance(end,dict) else [f"clause_{n}_first_end"]
+                errors+=problems
+                if not problems:
+                    windows.append(end_window(end,True))
+            elif not isinstance(end,dict) or not exact_date(end.get("date")) or end.get("date", "9999")>LEGAL_CUTOFF or not end.get("actor") or not end.get("mechanism") or not source_ok(end.get("source")):
                 errors.append(f"clause_{n}_first_end")
             else:
                 end_dates.append(end["date"])
@@ -85,7 +179,26 @@ def validate_claim(claim, expected_status=None):
             errors.append(f"clause_{n}_later_events_list")
         elif any(not isinstance(event,dict) or not exact_date(event.get("effective_date")) or event.get("effective_date", "9999")>LEGAL_CUTOFF or not event.get("actor") or not event.get("mechanism") or not source_ok(event.get("source")) for event in events):
             errors.append(f"clause_{n}_later_event_evidence")
-    if status=="no":
+    if status=="no" and v2:
+        if continuing:
+            errors.append("no_with_continuing_clause")
+        whole=claim.get("whole_order_end")
+        problems=v2_end_errors(whole,"whole_order_end") if isinstance(whole,dict) else ["whole_order_end_evidence"]
+        errors+=problems
+        if not problems and windows:
+            # whole_order_end is the LATEST clause first end (not the first moment the order lost force):
+            # [max(clause earliest), max(clause latest)], bounded only if any clause is bounded.
+            lo,hi,est=end_window(whole,True)
+            latest=max(w[1] for w in windows)
+            if any(not w[2] for w in windows):
+                want=("not_later_than",None,latest)
+            elif all(w[0]==w[1] for w in windows):
+                want=("exact",latest,latest)
+            else:
+                want=("interval",max(w[0] for w in windows),latest)
+            if (whole.get("date_kind"),lo if whole.get("date_kind")!="not_later_than" else None,hi)!=want:
+                errors.append("whole_order_end_not_last_clause_end")
+    elif status=="no":
         if continuing:
             errors.append("no_with_continuing_clause")
         whole=claim.get("whole_order_end")
@@ -108,6 +221,31 @@ def validate_claim(claim, expected_status=None):
         errors.append("unresolved_material_gaps")
     if not isinstance(claim.get("research_rationale"),str) or len(claim["research_rationale"].strip())<40:
         errors.append("research_rationale")
+    if v2:
+        errors+=v2_order_errors(claim, windows)
+    return errors
+
+
+def v2_order_errors(claim, windows):
+    """Order-level formal disposition and the derived fields (schema v2)."""
+    errors=[]
+    disposition=claim.get("formal_disposition")
+    if disposition is not None:
+        if (not isinstance(disposition,dict) or not isinstance(disposition.get("instrument"),str)
+                or not disposition["instrument"].strip() or not exact_date(disposition.get("date"))
+                or disposition["date"]>LEGAL_CUTOFF
+                or ("source" in disposition and not source_ok(disposition["source"]))):
+            errors.append("formal_disposition")
+    bounded=[w for w in windows if not w[2]]
+    if bounded:
+        # A not_later_than bound needs the instrument that formally disposed of the order no later than it.
+        if not isinstance(disposition,dict) or not exact_date(disposition.get("date")):
+            errors.append("not_later_than_without_formal_disposition")
+        elif any(w[1]>disposition["date"] for w in bounded):
+            errors.append("not_later_than_after_formal_disposition")
+    for field in DERIVED_FIELDS:
+        if field in claim:
+            errors.append(f"derived_field_hand_filled:{field}")
     return errors
 
 
@@ -134,6 +272,9 @@ def validate_review(review,claim):
         whole=claim.get("whole_order_end")
         if isinstance(whole,dict):
             cited.append(whole.get("source"))
+        disposition=claim.get("formal_disposition")
+        if isinstance(disposition,dict) and "source" in disposition:
+            cited.append(disposition.get("source"))
         for note in claim.get("source_notes",[]):
             if isinstance(note,dict):
                 cited.append(note.get("source"))
