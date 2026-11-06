@@ -21,3 +21,22 @@ the order-originals lane (Mabillon). **Default:** Selden does not fetch them; th
 "supplied by the originals lane".
 
 ## Answers
+
+## Q3. The proof draw is from the decided part of the approved population
+
+`jobs/claim-kit/source_supplement.py` adds held excerpts only to decided dossiers ("undecided dossiers require
+their existing status-overlay route"), so new acting texts can reach a producer through the kit only for decided
+orders. **Default (already done, before any Selden output existed):** the 30 were drawn with seed 1584 from the
+1,531 decided orders of the 5,662 that have no claim on file (`research/selden/proof/FRAME.json`, `SAMPLE.csv`).
+The 21 Herschel sole-blocker orders are reported separately. If you want undecided orders in the proof, say so and I
+will add a second stratum through the overlay route.
+
+## Q4. Ptolemy and Pothier overlap
+
+`selden-fr-acting` fetches 1936-1993 daily-issue PDFs and `selden-statutes` granule PDFs. Its first run started
+before the answers above. **Default:** after it ends, compare every fetched URL and sha256 with Ptolemy's
+`REQUESTS.jsonl` and Pothier's `FOR_SELDEN.csv` / `jobs/pothier/output/sources/`, report overlaps, and from the
+next run skip any URL on those lists.
+
+`research/selden/ACTING_EO_TEXTS_NEEDED.csv` is published (1,386 executive orders; `orders_unblocked` = census
+orders each is printed as acting on, a lead count, not a proof that holding it unblocks them).
