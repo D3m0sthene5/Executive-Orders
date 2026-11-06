@@ -31,13 +31,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 165; `search` finds the rest)
+## Newest results (6 of 167; `search` finds the rest)
 
 - 2026-11-06 F-20261106-mabillon-volumes **worked**: Locate every order inside the committed OCR page dumps of the Commons GPO volumes 5800-8027, which hathi-gpo-… Lesson: A job's committed intermediate data (page dumps, OCR) can serve orders outside its original target list; look before refetching
 - 2026-11-06 F-20261106-mabillon-neighbours **analysis**: Apply Tischendorf's fingerprint rule unchanged to whole printed pages of GPO volumes, with neighbour negatives Lesson: A text fingerprint needs neighbour negatives and a uniqueness margin wherever pages hold several orders; Tischendorf's page-reading routes may carry the same risk
 - 2026-11-06 F-20261106-mabillon-nara **worked**: Read NARA's keyless AWS Open Data catalog export for Record Group 11 in full (400 chunks, 231 MB, 63 s on a r… Lesson: Read the archive's own bulk export before asking for an API key: it answers what is digitized for free, and the answer here was no
 - 2026-11-06 F-20261106-mabillon-held **worked**: Prove by text the government-printed passages hathi-gpo-orders already holds (GPO bound volumes, 1974 GPO Hoo… Lesson: Check what an existing job already holds under the wrong class before fetching: the biggest bulk source was in the repository
 - 2026-11-06 F-20261106-job-wiring-audit **partly worked**: Scripted audit of all 79 jobs: last status, newer failed attempts, triggers/DAILY, and every reader of each j… Lesson: A job's STATUS date is not a liveness signal for deterministic jobs (record-only runs are not committed); check jobs/_attempts for newer failures instead. Keep jobs that refuse by design out of after…
-- 2026-11-06 F-20261106-daily-cron-silent **analysis**: Checked every scheduled run-jobs.yml run since 2026-10-18 for the schedule string GitHub delivered. Lesson: Do not rely on one cron line for daily freshness; check delivered schedules (SCHEDULE in the run log), not configured ones.
+- 2026-11-06 F-20261106-gratian-wiring **partly worked**: Gratian lane: map every night-wave product to its tracker step or claim-kit route and close the wiring gaps (… Lesson: Before writing wiring, list who already globs jobs/*/output/FRAGMENTS*.jsonl and SOURCES.jsonl (claim-kit inputs.py, claim-checker sources.py): most products are wired by format, not by registration.…
 
-Register: 27 owner decisions, 15 answered questions, 165 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 27 owner decisions, 16 answered questions, 167 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

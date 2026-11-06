@@ -457,7 +457,7 @@ def _view_loaded(packet,dossiers,order,source):
         'All material evidence remains in READ.md and the lossless PACKET.json.'])
 
 
-def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=False,history_bundles=None):
+def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=False,history_bundles=None,frozen_evidence=None):
     started=time.monotonic();repo=Path(repo).resolve();out=Path(out).resolve();dest=Path(dest).resolve()
     if dest.exists():raise ValueError('prepare destination exists; refusing overwrite')
     if not dest.is_relative_to(repo/'research') or not 1<=len(ids)<=50 or len(set(ids))!=len(ids):raise ValueError('bounded distinct IDs and research destination required')
@@ -475,6 +475,16 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
         import status_overlay
         freeze_stats={iid:{} for iid in pending}
         evidences=status_overlay.prepare_evidence_many(repo,out,pending,freeze_stats)
+    if frozen_evidence:
+        # Undecided members whose frozen overlay evidence a caller already derived (source_supplement): the
+        # same sealed-evidence checks as a fresh freeze; nothing here relaxes the status-overlay route.
+        import status_overlay
+        if not set(frozen_evidence)<=set(ids) or set(frozen_evidence)&set(evidences):
+            raise ValueError('frozen undecided evidence must name distinct requested members')
+        status_overlay.validate_evidence_many(repo,frozen_evidence)
+        for iid,evidence in frozen_evidence.items():
+            if evidence.get('instrument_id')!=iid:raise ValueError('frozen undecided evidence identity mismatch: '+iid)
+            evidences[iid]=evidence;freeze_stats[iid]={'frozen_evidence_supplied':True,'corpus_rebuilds':0}
     for iid in ids:
         if iid in evidences:
             stats=freeze_stats[iid];evidence=evidences[iid]
