@@ -1,21 +1,23 @@
 {
-  "orders_total": 14972,
+  "orders_total": 14998,
   "orders_with_provisional_status": 4291,
-  "ready_for_human_review": 1368,
+  "ready_for_human_review": 1196,
   "status_contested": 0,
   "claims_by_schema": {
-    "eo-lifecycle-claim/v1": 1505
+    "eo-lifecycle-claim/v2": 184,
+    "eo-lifecycle-claim/v1": 1321
   },
   "whole_end_date_kind": {
-    "exact": 1398
+    "not_later_than": 184,
+    "exact": 1214
   },
   "formal_revocation_after_earlier_cessation": 0,
   "ready_by_tier": {
-    "complete_claim": 1368
+    "complete_claim": 1196
   },
   "ready_by_text_evidence_tier": {
-    "original_supported": 812,
-    "transcription_dependent": 556
+    "original_supported": 645,
+    "transcription_dependent": 551
   },
   "original_replacement_obligations": 1146,
   "quotation_recheck_obligations": 1146,
@@ -48,7 +50,7 @@
       "applicable": 4291
     },
     "original_text": {
-      "done": 3262,
+      "done": 3261,
       "applicable": 4291,
       "provisional": 60
     },
@@ -57,7 +59,7 @@
       "applicable": 4291
     },
     "ending_or_current_basis": {
-      "done": 1390,
+      "done": 1214,
       "applicable": 4291
     },
     "savings_residuals": {
@@ -65,7 +67,7 @@
       "applicable": 4291
     },
     "counterevidence": {
-      "done": 2861,
+      "done": 2862,
       "applicable": 4291
     },
     "shared_sources": {
@@ -81,37 +83,38 @@
     "1/6": 900,
     "1/7": 9,
     "1/8": 1,
-    "2/6": 454,
+    "2/6": 458,
     "2/7": 60,
     "2/8": 6,
-    "3/6": 698,
+    "3/6": 694,
     "3/7": 448,
     "3/8": 31,
     "4/6": 28,
     "4/7": 57,
     "4/8": 168,
-    "5/6": 35,
+    "5/6": 207,
     "5/8": 21,
-    "6/6": 1343,
+    "6/6": 1171,
     "6/7": 5,
     "6/8": 1,
     "7/7": 21,
     "8/8": 5
   },
   "orders_blocked_by": {
-    "NO_PROVISIONAL_STATUS": 10681,
-    "NO_OFFICIAL_SOURCE_LOCATED": 4760,
+    "NO_PROVISIONAL_STATUS": 10707,
+    "NO_OFFICIAL_SOURCE_LOCATED": 4787,
     "NO_CLAUSE_INVENTORY": 2786,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 2786,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2735,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2762,
     "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2557,
     "FIRST_END_UNPROVED": 2408,
-    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1245,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1244,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 535,
     "OPUS_MEDIA_REFETCH_NEEDED": 431,
     "CURRENT_BASIS_UNPROVED": 378,
     "OPUS_MEDIA_NONE_CITED": 203,
-    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 137,
+    "FIRST_END_UNRESOLVED": 184,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 141,
     "CLAIM_INCOMPLETE": 88,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
@@ -119,21 +122,22 @@
     "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 30,
     "SHARED_SOURCE_NOT_RETRIEVED": 24,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
-    "OPEN_SOURCE_AUDIT": 10,
+    "OPEN_SOURCE_AUDIT": 6,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
   },
   "decided_orders_blocked_by": {
     "NO_CLAUSE_INVENTORY": 2786,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 2786,
     "FIRST_END_UNPROVED": 2408,
-    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1245,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 819,
-    "NO_OFFICIAL_SOURCE_LOCATED": 765,
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1244,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 820,
+    "NO_OFFICIAL_SOURCE_LOCATED": 766,
     "OPUS_MEDIA_REFETCH_NEEDED": 431,
     "CURRENT_BASIS_UNPROVED": 378,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 204,
     "OPUS_MEDIA_NONE_CITED": 203,
-    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 137,
+    "FIRST_END_UNRESOLVED": 184,
+    "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 141,
     "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 126,
     "CLAIM_INCOMPLETE": 88,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
@@ -142,7 +146,7 @@
     "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 30,
     "SHARED_SOURCE_NOT_RETRIEVED": 24,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
-    "OPEN_SOURCE_AUDIT": 10,
+    "OPEN_SOURCE_AUDIT": 6,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
     "NO_PROVISIONAL_STATUS": 0
   },
@@ -150,7 +154,7 @@
     {
       "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
       "kind": "machine_job",
-      "orders_unblocked": 2735,
+      "orders_unblocked": 2762,
       "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
     },
     {
@@ -208,7 +212,15 @@
       "blocker": "OPUS_MEDIA_MATCH_AMBIGUOUS"
     }
   ],
-  "input_problems": [],
+  "input_problems": [
+    "STALE_SOURCE_AUDIT_HOLD:EO:10622: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
+    "STALE_SOURCE_AUDIT_HOLD:EO:11040: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
+    "STALE_SOURCE_AUDIT_HOLD:EO:11078: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
+    "STALE_SOURCE_AUDIT_HOLD:EO:9922: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json"
+  ],
+  "numbered_series_orders": 14998,
+  "unnumbered_series_observed": null,
+  "unnumbered_series_estimate_95": null,
   "historical_census_candidates_OUTSIDE_DENOMINATOR": {
     "distinct_LOC_item_ID_candidates": 67,
     "LOC_transcribed_items": 0,
@@ -218,7 +230,7 @@
     "newly_admitted_EOs": 0,
     "separate_from_14972_census": true
   },
-  "generation_id": "42204685627-1:8ee77553cb8b68f7c877740fd894ed4b679778c9a71c95df7d534ea090e2be48",
+  "generation_id": "42213387784-1:7fae70be62af94f5a8105c0175490320492cb212f8cc138c84103af9b486c0b4",
   "inputs": {
     "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
     "decided": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
@@ -266,7 +278,7 @@
       "pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade)": 2750,
       "lachmann working-text confirmations (provisional text step only, never an original)": 7738,
       "opus-media-match status": 1155,
-      "source-ladder": 632,
+      "source-ladder": 672,
       "claim-checker": 1505,
       "machine later-source search": 6938
     }
