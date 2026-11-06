@@ -1,0 +1,3717 @@
+{
+ "schema": "pothier-family-doctrine/v1",
+ "doctrine_id": "PD-ADMIN",
+ "family": "Administrative orders: organization, regulations, pay and allowances, fund allotments, territories, property transfers, own-terms expiry, tax return inspection, closings",
+ "version": 1,
+ "members": {
+  "field": "x1_type",
+  "in": [
+   "organization_agency",
+   "regulations_issuance",
+   "pay_allowances",
+   "fund_allotment",
+   "territories",
+   "property_transfer",
+   "own_terms_expiry",
+   "tax_return_inspection",
+   "closing_mourning"
+  ]
+ },
+ "mechanisms": [
+  {
+   "id": "M-SPENT",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "An order whose whole operative content revokes, cancels, amends or modifies another order is spent as a command when issued; what it did becomes part of the other order's lifecycle (owner rule in the Pothier author brief).",
+   "effective_date_rule": "The order's date.",
+   "source_ids": []
+  },
+  {
+   "id": "M-REVOKED",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "A later executive order that by its terms revokes, supersedes, cancels or abolishes this order (or the body it created or continued) as a whole ends it.",
+   "effective_date_rule": "The revoking order's date, or the effective date it states.",
+   "source_ids": [
+    "S-EO1706",
+    "S-EO3261",
+    "S-EO3583",
+    "S-EO4021",
+    "S-EO4158",
+    "S-EO5376",
+    "S-EO5605",
+    "S-EO5952",
+    "S-EO6005A",
+    "S-EO6550",
+    "S-EO6562",
+    "S-EO6612",
+    "S-EO6724",
+    "S-EO6776",
+    "S-EO6777",
+    "S-EO6858",
+    "S-EO6913",
+    "S-EO7005",
+    "S-EO7044",
+    "S-EO8714",
+    "S-EO9461"
+   ]
+  },
+  {
+   "id": "M-TAX76",
+   "kind": "statute",
+   "effect": "ends",
+   "description": "Section 1202 of the Tax Reform Act of 1976 rewrote 26 U.S.C. 6103 from January 1, 1977: no federal officer may disclose any return or return information except as Title 26 authorizes, and the new section has no inspection upon order of the President. Every order opening returns to inspection by its own force could no longer operate after that date.",
+   "effective_date_rule": "Ended within the interval from the order's date to 1977-01-01; most ended much earlier with the investigation or body named, a date the project does not hold.",
+   "source_ids": [
+    "S-TRA76-A",
+    "S-TRA76-G",
+    "S-TRA76-I"
+   ]
+  },
+  {
+   "id": "M-OWNDATE",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "The order states its own end: a period ('for and during six months ... and for no longer time'), a date to which something is deferred or continued, a named day or days, or a fiscal year or other stated period for which rates apply.",
+   "effective_date_rule": "The stated last day; where the order lets an earlier event end it (a proviso or 'unless otherwise directed'), the interval from the order's date to that stated day.",
+   "source_ids": [
+    "S-EO1120",
+    "S-EO516",
+    "S-EO7090",
+    "S-EO7121"
+   ]
+  },
+  {
+   "id": "M-ANCSA",
+   "kind": "statute",
+   "effect": "ends",
+   "description": "ANCSA section 19(a) revoked every reserve set aside by Executive order for Native use or for the administration of Native affairs in Alaska, except Annette Island, subject to valid existing rights of non-Natives.",
+   "effective_date_rule": "Ended within the interval from the order's date to 1971-12-18 (enactment); some ended earlier by partial or whole revocation.",
+   "source_ids": [
+    "S-ANCSA"
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S-TRA76-A",
+   "citation": "Tax Reform Act of 1976, Pub. L. 94-455, sec. 1202(a), 90 Stat. 1520, 1667-1668 (Oct. 4, 1976), enacting 26 U.S.C. 6103(a)",
+   "title": "Tax Reform Act of 1976, sec. 1202 (new 26 U.S.C. 6103(a), general rule of confidentiality)",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg1520.pdf",
+   "held": true,
+   "held_path": "jobs/source-ladder/output/texts/queue_EO_10906_Tax_Reform_Act_of_1976_Pub._L._94-455_sec._1202_90_Stat._1667_which_rewrote_sec._6103_64c0b4c21d.txt",
+   "sha256": "38235434bbf04013146a46e5e35912661539be250b864905434e3039bd4ba956",
+   "pin": "confidential, and except as authorized by this title",
+   "establishes": "From its effective date, returns and return information are confidential and no officer or employee of the United States may disclose any of them except as Title 26 itself authorizes; the rewritten section 6103 contains no authority for inspection upon order of the President (its only presidential provision, 6103(g), is disclosure to the President and named White House staff on written request)."
+  },
+  {
+   "id": "S-TRA76-G",
+   "citation": "Tax Reform Act of 1976, Pub. L. 94-455, sec. 1202(a), 90 Stat. 1520, 1672 (new 26 U.S.C. 6103(g))",
+   "title": "Tax Reform Act of 1976, new 26 U.S.C. 6103(g)",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg1520.pdf",
+   "held": true,
+   "held_path": "jobs/source-ladder/output/texts/queue_EO_10906_Tax_Reform_Act_of_1976_Pub._L._94-455_sec._1202_90_Stat._1667_which_rewrote_sec._6103_64c0b4c21d.txt",
+   "sha256": "38235434bbf04013146a46e5e35912661539be250b864905434e3039bd4ba956",
+   "pin": "DISCLOSURE TO PRESIDENT AND CERTAIN OTHER PERSONS",
+   "establishes": "The only provision of the rewritten section 6103 that mentions the President is disclosure to the President and persons he names, on written request; there is no inspection by others upon order of the President."
+  },
+  {
+   "id": "S-TRA76-I",
+   "citation": "Tax Reform Act of 1976, Pub. L. 94-455, sec. 1202(i), 90 Stat. 1520, 1688 (effective date)",
+   "title": "Tax Reform Act of 1976, sec. 1202(i) effective date",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg1520.pdf",
+   "held": true,
+   "held_path": "jobs/source-ladder/output/texts/queue_EO_10906_Tax_Reform_Act_of_1976_Pub._L._94-455_sec._1202_90_Stat._1667_which_rewrote_sec._6103_64c0b4c21d.txt",
+   "sha256": "38235434bbf04013146a46e5e35912661539be250b864905434e3039bd4ba956",
+   "pin": "(i) EFFECTIVE DATE.—The amendments made by this section take",
+   "establishes": "The section 6103 rewrite took effect January 1, 1977 (the sentence continues on the next line: \"effect January 1, 1977.\")."
+  },
+  {
+   "id": "S-ANCSA",
+   "citation": "Alaska Native Claims Settlement Act, Pub. L. 92-203, sec. 19(a), 85 Stat. 688, 710 (Dec. 18, 1971); 43 U.S.C. 1618(a)",
+   "title": "ANCSA sec. 19(a): revocation of reserves for Native use",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-85/pdf/STATUTE-85-Pg688.pdf",
+   "held": false,
+   "held_path": "",
+   "sha256": "",
+   "pin": "",
+   "establishes": "Revokes, subject to valid existing rights of non-Natives, \"the various reserves set aside by legislation or by Executive or Secretarial Order for Native use or for administration of Native affairs\", except the Annette Island Reserve.",
+   "note": "Read on the web (Cornell LII text of 43 U.S.C. 1618(a), source credit Pub. L. 92-203, sec. 19, 85 Stat. 710); not yet held."
+  },
+  {
+   "id": "S-STCC-ACT",
+   "citation": "Act of March 2, 1901, ch. 804, sec. 16, 31 Stat. 877 (Spanish Treaty Claims Commission)",
+   "title": "Act to carry into effect Article VII of the Treaty of Paris (1898)",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-31/pdf/STATUTE-31-Pg877.pdf",
+   "held": false,
+   "held_path": "",
+   "sha256": "",
+   "pin": "",
+   "establishes": "Authority for the President to extend the two-year period of the Commission; every member order recites it. Context only: the members end by their own stated period, not by this Act.",
+   "note": "Page and chapter as recited in the member orders and standard citation; not yet opened by the project (unverified page)."
+  },
+  {
+   "id": "S-EO1120",
+   "citation": "Executive Order 1120 (1909-08-06), held text (mirror_transcription)",
+   "title": "Executive Order 1120—Time Limit for Completion of the Work of the Spanish Treaty Claims Commission Extended to March 2, ",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-1120-time-limit-for-completion-the-work-the-spanish-treaty-claims.txt",
+   "sha256": "1e26c5efa9531eb37770ad26d3cf872c1843ec0fafd8febd15857ca8d0ea72db",
+   "pin": "is hereby extended for and during six months from and after the second day of September, 1909, and for no longer time",
+   "establishes": "Exemplar of the series: each order extends the Commission for a stated number of months from a stated date \"and for no longer time\"."
+  },
+  {
+   "id": "S-EO516",
+   "citation": "Executive Order 516 (1906-10-06), held text (mirror_transcription)",
+   "title": "Extending the Spanish Treaty Claims Commission to March 2, 1907",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_516.txt",
+   "sha256": "678e814a63d59532ce36b778831c6ac83ec68a7ee3878caa7d7d2ff7e74f8d51",
+   "pin": "is hereby extended to March 2, 1907, instead of January 1",
+   "establishes": "EO 516 substituted March 2, 1907 for the January 1, 1907 limit of EO 492."
+  },
+  {
+   "id": "S-EO7090",
+   "citation": "Executive Order 7090 (1935-06-29), held text (mirror_transcription)",
+   "title": "Extending the National Labor Relations Board",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7090-extending-the-national-labor-relations-board.txt",
+   "sha256": "13f937c4b6c3ad18260b013257ccea26456fffe107ac788420679eb26c6f48b4",
+   "pin": "is hereby amended by substituting for the date \"July 1, 1935\" occurring in paragraph numbered 1 thereof the date \"August 1, 1935.\"",
+   "establishes": "EO 7090 moved EO 7074's end from July 1 to August 1, 1935."
+  },
+  {
+   "id": "S-EO7121",
+   "citation": "Executive Order 7121 (1935-07-31), held text (mirror_transcription)",
+   "title": "Extending the National Labor Relations Board",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7121-extending-the-national-labor-relations-board.txt",
+   "sha256": "f078303ce9bc66fba37bbed316ddb33548fc72c9d135acd517a3a057303f8ea3",
+   "pin": "is hereby further amended by substituting for the date \"August 1, 1935\" the date \"September 1, 1935.\"",
+   "establishes": "EO 7121 moved EO 7074's end to September 1, 1935."
+  },
+  {
+   "id": "S-EO5376",
+   "citation": "Executive Order 5376 (June 23, 1930)",
+   "title": "Executive Order 5376 (June 23, 1930)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5376-salaries-american-members-international-joint-commission.txt",
+   "sha256": "efe90e45664dfc3e66bb2529a47ce2a3c47d15b05333882af754a7cb10aee3f1",
+   "pin": "Executive Order No. 1440 dated December 4, 1911, is hereby revoked.",
+   "establishes": "Revokes EO 1440 as a whole."
+  },
+  {
+   "id": "S-EO6005A",
+   "citation": "Executive Order 6005-A (January 21, 1933), OFR Hoover compilation",
+   "title": "Executive Order 6005-A (January 21, 1933), OFR Hoover compilation",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/ofr-compilations/output/texts/EO_6005A.txt",
+   "sha256": "d1148185004400f371f419013a5fc2c909b6a44bf4f2c6a61bf597b693d5a9e3",
+   "pin": "is hereby revoked",
+   "establishes": "Revokes EO 3360 (flag of the Secretary of State) as a whole."
+  },
+  {
+   "id": "S-EO6612",
+   "citation": "Executive Order 6612 (February 22, 1934)",
+   "title": "Executive Order 6612 (February 22, 1934)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6612-revocation-executive-order-june-19-1923-establishing-certain.txt",
+   "sha256": "ee109cb264f8426a8268a22fcbc9e686d507eb0d19750201a8b0262bc98f5c31",
+   "pin": "Executive Order No. 3870, of June 19, 1923",
+   "establishes": "Revokes EO 3870 as a whole (\"... is hereby revoked\")."
+  },
+  {
+   "id": "S-EO6562",
+   "citation": "Executive Order 6562 (January 18, 1934)",
+   "title": "Executive Order 6562 (January 18, 1934)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6562-additional-compensation-enlisted-men-the-army-for-special.txt",
+   "sha256": "89a77bf9f8faf8a23dfb0384b783a632eb3408002f24cdd4c5fdff6796370623",
+   "pin": "This order supersedes Executive Order No. 3962, dated February 19, 1924.",
+   "establishes": "Supersedes EO 3962 as a whole."
+  },
+  {
+   "id": "S-EO5952",
+   "citation": "Executive Order 5952 (November 23, 1932)",
+   "title": "Executive Order 5952 (November 23, 1932)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5952-army-ration.txt",
+   "sha256": "0a95981c362b128a0afa2bd5e4df05c940f52fee7ab8650e67b686cbdec81ea4",
+   "pin": "Executive Order No. 4580 of February 3, 1927, prescribing the Army ration, and Executive Order No. 5337 of April 23, 1930, amendatory thereof, are revoked",
+   "establishes": "Revokes EO 4580 and EO 5337; the new ration it promulgates takes effect April 1, 1933."
+  },
+  {
+   "id": "S-EO5605",
+   "citation": "Executive Order 5605 (April 21, 1931)",
+   "title": "Executive Order 5605 (April 21, 1931)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5605-actual-expenses-and-per-diem-allowances-for-civilian-officers-and.txt",
+   "sha256": "a5da16167e8bc02a936b9f31efbd37b021b060e21f687e6e9b6e4b839133b7d8",
+   "pin": "is hereby revoked, effective July 1, 1931",
+   "establishes": "Revokes EO 5014 effective July 1, 1931."
+  },
+  {
+   "id": "S-EO6913",
+   "citation": "Executive Order 6913 (December 4, 1934)",
+   "title": "Executive Order 6913 (December 4, 1934)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6913-rules-governing-the-obtaining-narcotic-drugs-and-preparations.txt",
+   "sha256": "b21a4c969b6236a1cdc5994ae60e1403ad6d6926d034bfbf12c5064003c5d58d",
+   "pin": "This order supersedes Executive Order No. 5502, of December 2, 1930.",
+   "establishes": "Supersedes EO 5502 as a whole."
+  },
+  {
+   "id": "S-EO6776",
+   "citation": "Executive Order 6776 (June 30, 1934)",
+   "title": "Executive Order 6776 (June 30, 1934)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6776-veterans-regulation-no-8.txt",
+   "sha256": "7dc33cc1bcf5ea901370700dc3255e7b02f810eb5df66f6111a9092ca86e7bf7",
+   "pin": "is hereby canceled as of the date thereof",
+   "establishes": "Cancels EO 6096 (Veterans Regulation No. 8) as of its own date, March 31, 1933."
+  },
+  {
+   "id": "S-EO8714",
+   "citation": "Executive Order 8714 (March 18, 1941)",
+   "title": "Executive Order 8714 (March 18, 1941)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-8714-designating-certain-officers-act-secretary-the-treasury-case-absence.txt",
+   "sha256": "729bc657831846c53bc7bb829b445554981596ee5fea492c85764a5bc2cf4d2b",
+   "pin": "Executive Order No. 6202-B of July 11, 1933, is hereby revoked.",
+   "establishes": "Revokes EO 6202-B as a whole."
+  },
+  {
+   "id": "S-EO6550",
+   "citation": "Executive Order 6550 (January 6, 1934)",
+   "title": "Executive Order 6550 (January 6, 1934)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6550-regulating-the-further-allocation-and-obligation-emergency-funds.txt",
+   "sha256": "710922cb7cb7c79c89f6b0630bae0efade770fd5d152257e2edda0c9bf45455f",
+   "pin": "Executive Order No. 6548, dated January 3, 1934, is hereby revoked and rescinded.",
+   "establishes": "Revokes EO 6548 as a whole."
+  },
+  {
+   "id": "S-EO9461",
+   "citation": "Executive Order 9461 (August 7, 1944)",
+   "title": "Executive Order 9461 (August 7, 1944)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-9461-abolishing-the-executive-committee-commercial-policy.txt",
+   "sha256": "ec806d87316d717dfc25a84fb3e67e859481ea209c4873d26bddd2dc4b321f74",
+   "pin": "continued by Executive Order No. 6656 of March 27, 1934, and Executive Order No. 7260 of December 31, 1935, is hereby ab",
+   "establishes": "Abolishes the Executive Committee on Commercial Policy that EO 6656 and EO 7260 continued."
+  },
+  {
+   "id": "S-EO6724",
+   "citation": "Executive Order 6724 (May 28, 1934)",
+   "title": "Executive Order 6724 (May 28, 1934)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6724-authorizing-the-purchase-or-rental-land-for-emergency-conservation.txt",
+   "sha256": "ca5082cbac270cd94a630f0ae6df17e7cf5ac7016894f71b7a545b7ec77c0e76",
+   "pin": "Executive Order No. 6684, of April 19, 1934, authorizing the purchase or rental of land for emergency conservation work, is hereby rescinded.",
+   "establishes": "Rescinds EO 6684 as a whole."
+  },
+  {
+   "id": "S-EO6777",
+   "citation": "Executive Order 6777 (June 30, 1934)",
+   "title": "Executive Order 6777 (June 30, 1934)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6777-establishing-the-national-resources-board.txt",
+   "sha256": "badea175b02eb0c34b23d703d2d1938913d05e9e173db4c52a370f931bc4ce5e",
+   "pin": "The Committee on National Land Problems, created by Executive Order No. 6693, of April 28, 1934, is hereby abolished.",
+   "establishes": "Abolishes the committee that EO 6693 created."
+  },
+  {
+   "id": "S-EO6858",
+   "citation": "Executive Order 6858 (September 26, 1934)",
+   "title": "Executive Order 6858 (September 26, 1934)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6858-creation-the-textile-labor-relations-board-etc.txt",
+   "sha256": "714ab95523486a3ce87d8c07ffc2f9242d87faffe3c4e634215b4f91fbab4ec9",
+   "pin": "The Board of Inquiry for the Cotton Textile Industry created by Executive Order No. 6840 of September 5, 1934",
+   "establishes": "Section 9 abolishes the Board of Inquiry that EO 6840 created (\"... are hereby abolished\")."
+  },
+  {
+   "id": "S-EO7005",
+   "citation": "Executive Order 7005 (1935-04-10), held text (mirror_transcription)",
+   "title": "E. 0. 6832 of Aug. 23, 1934, making funds availablefor expenses of the National Railroad Adjustment Board, revoked.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7005-revocation-executive-order-no-6832-august-23-1934-making-funds.txt",
+   "sha256": "f08fd9fe13e895c5a83120d1093851f3a4b763c8915faf6c82a3edb7f6bf874e",
+   "pin": "Executive Order No. 6832, of August 23, 1934, making funds available for expenses of the National Railroad Adjustment Board, is hereby revoked.",
+   "establishes": "Revokes EO 6832 as a whole."
+  },
+  {
+   "id": "S-EO7044",
+   "citation": "Executive Order 7044 (1935-05-15), held text (mirror_transcription)",
+   "title": "E. 0. 7004 of Apr. 10, 1935, transferringthe land office for the Linkton Land District,Oreg.,from Lakeview to Klamath, r",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7044-revocation-executive-order-no-7004-april-10-1935-changing-location.txt",
+   "sha256": "b6990da08a5210cb791ef68d42420bb6c448a292b00ffb4ad78da1c37b174d6a",
+   "pin": "is hereby revoked",
+   "establishes": "Revokes EO 7004 as a whole."
+  },
+  {
+   "id": "S-EO1706",
+   "citation": "Executive Order 1706 (1913-02-20), held text (archival_replica_scan_pending_codebook)",
+   "title": "E. 0. [1648] of Nov. 23, 1912, abolishing the Vernal Land Office,Utah, revoked. [146]",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_1706.txt",
+   "sha256": "821d921925bbacd236b1e110452cbfe2e59f763a9b6ae407d9cc7958842ffda3",
+   "pin": "is hereby revoked",
+   "establishes": "Revokes EO 1648 (discontinuance of the Vernal, Utah, land office) as a whole."
+  },
+  {
+   "id": "S-EO3583",
+   "citation": "Executive Order 3583 (1921-11-29), held text (archival_replica_scan_pending_codebook)",
+   "title": "E. 0. [3251] of Mar. 26, 1920, abolishing the Camden Land District,Ark., revoked.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3583.txt",
+   "sha256": "a4ff4b6ebeff3fcf2f4070a62214287a3b04951070e73d77a2b3c54790e25e71",
+   "pin": "is hereby revoked",
+   "establishes": "Revokes EO 3251 (discontinuance of the Camden, Arkansas, land district) as a whole."
+  },
+  {
+   "id": "S-EO4158",
+   "citation": "Executive Order 4158 (1925-02-19), held text (archival_replica_scan_pending_codebook)",
+   "title": "E. 0. [4147] of Feb. 6, 1925, abolishingthe Vernal Land District,Utah, revoked.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4158.txt",
+   "sha256": "1b3d36fab42e64d1445cc593379fbd75f4b6d331e318e07837a554560da4e9e1",
+   "pin": "is hereby revoked",
+   "establishes": "Revokes EO 4147 (discontinuance of the Vernal, Utah, land district) as a whole."
+  },
+  {
+   "id": "S-EO3261",
+   "citation": "Executive Order 3261 (1920-04-23), held text (archival_replica_scan_pending_codebook)",
+   "title": "E. 0. 3166 of Sept. 15, 1919, transferring the schooner Hermes to the Government of the Territory of Hawaii, revoked.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3261.txt",
+   "sha256": "6873f8787671150767282671d3a0c10267f2e809d35d0915a6c41428e66d1be5",
+   "pin": "is hereby cancelled",
+   "establishes": "Cancels EO 3166 (transfer of the schooner Hermes to the Territory of Hawaii) as a whole."
+  },
+  {
+   "id": "S-EO4021",
+   "citation": "Executive Order 4021 (1924-06-07), held text (archival_replica_scan_pending_codebook)",
+   "title": "* Southwestern Alaska FisheriesReservation abolished. * Has form of a proclamation.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4021.txt",
+   "sha256": "1b157d8c8555fa20208fa112097752eeea3f1e795bb7a7b68b530467899bd6c7",
+   "pin": "creating the Southwestern Alaska Fisheries Reservation, is hereby revoked",
+   "establishes": "Revokes the order creating the Southwestern Alaska Fisheries Reservation (EO 3752)."
+  }
+ ],
+ "procedure": [
+  {
+   "branch_id": "B01",
+   "description": "Revoke-only orders: the whole operative text revokes, rescinds or cancels another order (member list fixed after reading each held text).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1074",
+      "EO:1182",
+      "EO:1706",
+      "EO:3583",
+      "EO:4158",
+      "EO:3261",
+      "EO:446",
+      "EO:6575",
+      "EO:7005",
+      "EO:7044",
+      "EO:6612",
+      "EO:4020",
+      "EO:4021",
+      "EO:6668",
+      "EO:6669",
+      "EO:6776"
+     ]
+    },
+    {
+     "text_regex": "revoked|rescinded|cancell?ed"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue_revocation",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content revokes, rescinds or cancels another order; that command was performed when the order issued. Its effect is evidence for the revoked order's lifecycle.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-SPENT"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B02",
+   "description": "Amend-only orders: the whole operative text amends, modifies or restates another order or regulation (member list fixed after reading each held text).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1081",
+      "EO:1088",
+      "EO:1173",
+      "EO:1333",
+      "EO:1407",
+      "EO:1686",
+      "EO:1750",
+      "EO:1797",
+      "EO:2021",
+      "EO:2186",
+      "EO:2686",
+      "EO:3749",
+      "EO:2441",
+      "EO:2779",
+      "EO:2812",
+      "EO:3010A",
+      "EO:3024B",
+      "EO:3283",
+      "EO:330B",
+      "EO:3690",
+      "EO:3750",
+      "EO:3935",
+      "EO:402",
+      "EO:4413",
+      "EO:459",
+      "EO:4619",
+      "EO:4647",
+      "EO:4698",
+      "EO:5067",
+      "EO:757",
+      "EO:759",
+      "EO:918",
+      "EO:980",
+      "EO:6159",
+      "EO:6175",
+      "EO:6265",
+      "EO:6547",
+      "EO:6554",
+      "EO:6565",
+      "EO:6566",
+      "EO:6567",
+      "EO:6568",
+      "EO:6576",
+      "EO:6606",
+      "EO:6622",
+      "EO:6661",
+      "EO:6662",
+      "EO:6695",
+      "EO:6775",
+      "EO:6787",
+      "EO:6956",
+      "EO:6963",
+      "EO:6967",
+      "EO:6989",
+      "EO:6990",
+      "EO:6991",
+      "EO:6992",
+      "EO:7111",
+      "EO:7117",
+      "EO:7119",
+      "EO:7124",
+      "EO:7125",
+      "EO:7190",
+      "EO:7197",
+      "EO:7200",
+      "EO:7203",
+      "EO:7204",
+      "EO:7296",
+      "EO:7436",
+      "EO:7089",
+      "EO:7090",
+      "EO:7091",
+      "EO:7121",
+      "EO:4459",
+      "EO:5471",
+      "EO:6352",
+      "EO:7209"
+     ]
+    },
+    {
+     "text_regex": "amend|modif|substitut|rescinded and the following|extended to include"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue_amendment",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content amends or modifies another order; under the owner rule it is spent as a command on issue and its substance lives on, if at all, as part of the amended order, whose own lifecycle decides that question.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-SPENT"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "The amended order's status is a separate question and is not decided here."
+   ]
+  },
+  {
+   "branch_id": "B03-01",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1440"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 5376 revoked EO 1440 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1930-06-23",
+     "basis": "date of EO 5376"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO5376"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-02",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3360"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 6005-A revoked EO 3360 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-01-21",
+     "basis": "date of EO 6005-A"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6005A"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-03",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3870"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 6612 revoked EO 3870 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-02-22",
+     "basis": "date of EO 6612"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6612"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-04",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3962"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 6562 superseded EO 3962 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-01-18",
+     "basis": "date of EO 6562"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6562"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-05",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4580",
+      "EO:5337"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 5952 revoked EO 4580 and its amendment EO 5337 in terms.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1932-11-23",
+     "to": "1933-04-01",
+     "basis": "EO 5952 signed 1932-11-23 revokes both; the replacement ration it promulgates takes effect 1933-04-01, so the revocation took effect on one of those dates"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO5952"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-06",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5014"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 5605 revoked EO 5014 effective July 1, 1931.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1931-07-01",
+     "basis": "effective date stated in EO 5605"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO5605"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-07",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5502"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 6913 superseded EO 5502 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-12-04",
+     "basis": "date of EO 6913"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6913"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-08",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6096"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 6776 canceled EO 6096 (Veterans Regulation No. 8) as of its own date.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1933-03-31",
+     "to": "1934-06-30",
+     "basis": "EO 6776 (1934-06-30) canceled EO 6096 'as of the date thereof' (1933-03-31)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6776"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-09",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6202B"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 8714 revoked EO 6202-B in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1941-03-18",
+     "basis": "date of EO 8714"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO8714"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-10",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6548"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 6550 revoked and rescinded EO 6548 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-01-06",
+     "basis": "date of EO 6550"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6550"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-11",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6656",
+      "EO:7260"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 9461 abolished the Executive Committee on Commercial Policy, naming EO 6656 and EO 7260 as the orders that continued it; those orders have no object after the abolition.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1944-08-07",
+     "basis": "date of EO 9461"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO9461"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-12",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6684"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 6724 rescinded EO 6684 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-05-28",
+     "basis": "date of EO 6724"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6724"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-13",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6693"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 6777 abolished the Committee on National Land Problems that EO 6693 created.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-06-30",
+     "basis": "date of EO 6777"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6777"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-14",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6832"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 7005 revoked EO 6832 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-04-10",
+     "basis": "date of EO 7005"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO7005"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-15",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6840"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 6858 section 9 abolished the Board of Inquiry that EO 6840 created.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-09-26",
+     "basis": "date of EO 6858"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6858"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-16",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:7004"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 7044 revoked EO 7004 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-05-15",
+     "basis": "date of EO 7044"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO7044"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-17",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1648"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 1706 revoked EO 1648 in terms, three months after issue; whether the office had been discontinued meanwhile is not recorded.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1913-02-20",
+     "basis": "date of EO 1706"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO1706"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-18",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3251"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 3583 revoked EO 3251 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1921-11-29",
+     "basis": "date of EO 3583"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO3583"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-19",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4147"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 4158 revoked EO 4147 in terms, thirteen days after issue.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1925-02-19",
+     "basis": "date of EO 4158"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO4158"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-20",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3166"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 3261 cancelled EO 3166 in terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1920-04-23",
+     "basis": "date of EO 3261"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO3261"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-21",
+   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3752"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 4021 revoked the order creating the Southwestern Alaska Fisheries Reservation in terms, reciting that the Act of June 6, 1924 made it unnecessary.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1924-06-07",
+     "basis": "date of EO 4021"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO4021"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B04",
+   "description": "Tax-return inspection orders: the order opens returns (or a class of returns) to inspection by its own force under a Revenue Act or Tariff Act provision.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "tax_return_inspection"
+     ]
+    },
+    {
+     "text_regex": "open(ed)? (to|for) (the )?inspec|inspection of .{0,40}returns|INSPECTION OF INCOME"
+    },
+    {
+     "not": {
+      "text_regex": "decisions of the Commissioner of Internal Revenue allowing a refund"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_statute_tax_reform_1976",
+    "basis_kind": "ACT",
+    "basis": "From January 1, 1977, the rewritten 26 U.S.C. 6103 forbids every federal officer to disclose any return or return information except as Title 26 authorizes, and it contains no inspection upon order of the President; an order opening returns to inspection could not operate after that date. Most members ended earlier with the committee, investigation or Congress they name.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1977-01-01",
+     "basis": "Tax Reform Act of 1976 sec. 1202(i)"
+    },
+    "mechanism_ids": [
+     "M-TAX76"
+    ],
+    "source_ids": [
+     "S-TRA76-A",
+     "S-TRA76-G",
+     "S-TRA76-I"
+    ]
+   },
+   "gaps": [
+    "The earlier end (the named committee's or investigation's end, or a superseding inspection order) is not held; the interval is therefore wide.",
+    "New section 6103(b)(1) defines 'return' as one filed under Title 26; the application to returns filed under the pre-1939 Revenue Acts rests on the statute's general prohibition and on the absence of any surviving presidential-order authority, not on an express provision about old returns.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B05-1022",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1022"
+     ]
+    },
+    {
+     "text_regex": "six months from and after the second day of March, (1909|9 ?0 ?9)"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1909-09-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1909-09-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-921",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:921"
+     ]
+    },
+    {
+     "text_regex": "six months from and after the second \\(?lay of Septembe\\w*, nineteen hundred and eight"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1909-03-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1909-03-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-1120",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1120"
+     ]
+    },
+    {
+     "text_regex": "six months from and after the second day of September, 1909"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1910-03-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1910-03-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-1167",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1167"
+     ]
+    },
+    {
+     "text_regex": "two months from and after the second day of March, 1910"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1910-05-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1910-05-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-228",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:228"
+     ]
+    },
+    {
+     "text_regex": "six months from and after the second day of September, nineteen hundred and three"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1904-03-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1904-03-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-246",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:246"
+     ]
+    },
+    {
+     "text_regex": "six months from and after the second day of March, nineteen hundred and four"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1904-09-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1904-09-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-407",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:407"
+     ]
+    },
+    {
+     "text_regex": "six months from and after the second day of March, nine- ?teen hundred and six"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1906-09-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1906-09-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-557",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:557"
+     ]
+    },
+    {
+     "text_regex": "six months from and after the second day of March, 1907"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1907-09-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1907-09-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-674",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:674"
+     ]
+    },
+    {
+     "text_regex": "six months from and after the second day of September, 1907"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1908-03-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1908-03-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-492",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:492"
+     ]
+    },
+    {
+     "text_regex": "extended to January 1, 1907, and for no longer time"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1907-03-02. EO 492 stated January 1, 1907; EO 516 substituted March 2, 1907 before that day, so EO 492 as amended ran to March 2, 1907.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1907-03-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120",
+     "S-EO516"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-516",
+   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:516"
+     ]
+    },
+    {
+     "text_regex": "extended to March 2, 1907, instead of January 1"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1907-03-02.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1907-03-02",
+     "basis": "stated period in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+   ]
+  },
+  {
+   "branch_id": "B05-ZZ",
+   "description": "Spanish Treaty Claims Commission extension whose period and 'no longer time' clause are legible but whose starting date is partly illegible.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:292",
+      "EO:749"
+     ]
+    },
+    {
+     "text_regex": "months from and after the second d"
+    },
+    {
+     "text_regex": "longer time"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order extends the Commission for a stated number of months from a second day of March 'and for no longer time'; the last order of the series (EO 1167) ran only to May 2, 1910, so this one ended no later than that.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1910-05-02",
+     "basis": "stated period, starting-year digits illegible in the held text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO1120"
+    ]
+   },
+   "gaps": [
+    "The year of the starting date is illegible in the held text; the bound assumes the March 2 next after the order's date, as in every legible member.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B06-6222",
+   "description": "Order that defers or continues something to a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6222"
+     ]
+    },
+    {
+     "text_regex": "postponed to September 10, 1933"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-09-10",
+     "basis": "stated date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+   ]
+  },
+  {
+   "branch_id": "B06-6690",
+   "description": "Order that defers or continues something to a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6690"
+     ]
+    },
+    {
+     "text_regex": "deferred until May 21, 1934"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-05-21",
+     "basis": "stated date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+   ]
+  },
+  {
+   "branch_id": "B06-6512",
+   "description": "Order that defers or continues something to a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6512"
+     ]
+    },
+    {
+     "text_regex": "deferred to January 16, 1934"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-01-16",
+     "basis": "stated date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+   ]
+  },
+  {
+   "branch_id": "B06-7100",
+   "description": "Order that defers or continues something to a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:7100"
+     ]
+    },
+    {
+     "text_regex": "extended from July 31, 1935, to December 1, 1935"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-12-01",
+     "basis": "stated date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+   ]
+  },
+  {
+   "branch_id": "B06-6244",
+   "description": "Order that defers or continues something to a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6244"
+     ]
+    },
+    {
+     "text_regex": "delayed until October 10, 1933: Provided"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1933-10-10",
+     "basis": "stated date; a joint order could end the delay earlier"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+   ]
+  },
+  {
+   "branch_id": "B06-6245",
+   "description": "Order that defers or continues something to a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6245"
+     ]
+    },
+    {
+     "text_regex": "unless otherwise directed hereafter, until September 30, 1933"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1933-09-30",
+     "basis": "stated date; a later direction could end it earlier"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+   ]
+  },
+  {
+   "branch_id": "B06-6731",
+   "description": "Order that defers or continues something to a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6731"
+     ]
+    },
+    {
+     "text_regex": "delayed until October 1, 1934: Provided"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1934-10-01",
+     "basis": "stated date; the Commission could make the transfer earlier"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+   ]
+  },
+  {
+   "branch_id": "B06-6927",
+   "description": "Order that defers or continues something to a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6927"
+     ]
+    },
+    {
+     "text_regex": "further delayed until June 30, 1935: Provided"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1935-06-30",
+     "basis": "stated date; the Treasury Secretary could make transfers earlier"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+   ]
+  },
+  {
+   "branch_id": "B06-625",
+   "description": "Order that defers or continues something to a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:625"
+     ]
+    },
+    {
+     "text_regex": "postponed to June 30, 1.08"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1908-06-30",
+     "basis": "stated date; year digit damaged in the held text ('1G08'), read with the order's 1907 date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+   ]
+  },
+  {
+   "branch_id": "B06-7074",
+   "description": "EO 7074 continued the first National Labor Relations Board until July 1, 1935; EO 7090 and EO 7121 amended that date to September 1, 1935.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:7074"
+     ]
+    },
+    {
+     "text_regex": "continued in existence until July 1, 1935"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_date_as_amended",
+    "basis_kind": "TERM",
+    "basis": "By its own terms as amended by EO 7090 and EO 7121 (both held, both found as amendment edges on this member), the Board's continuation ended September 1, 1935.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-09-01",
+     "basis": "date substituted by EO 7121"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-EO7090",
+     "S-EO7121"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "No later amendment beyond EO 7121 is held; one would move the date."
+   ]
+  },
+  {
+   "branch_id": "B07",
+   "description": "Alaska reserves set aside by the order for the Bureau of Education and Alaska Natives, or for a Native village.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1896",
+      "EO:1987",
+      "EO:2508",
+      "EO:2525",
+      "EO:2757",
+      "EO:3673"
+     ]
+    },
+    {
+     "text_regex": "natives? (of Alaska|of indigenous|residing)"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_statute_ancsa",
+    "basis_kind": "ACT",
+    "basis": "ANCSA section 19(a) revoked every reserve set aside by Executive order for Native use or for the administration of Native affairs in Alaska except Annette Island; this order's reserve is one (the order reserves the land for the use of the Bureau of Education and Natives, or for the natives of a village).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1971-12-18",
+     "basis": "ANCSA enacted December 18, 1971"
+    },
+    "mechanism_ids": [
+     "M-ANCSA"
+    ],
+    "source_ids": [
+     "S-ANCSA"
+    ]
+   },
+   "gaps": [
+    "EO 5207 (1929) revoked part of the Norton Bay reserve (EO 2508 as amended by EO 2525); other partial earlier revocations are not searched.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-1728",
+   "description": "Holiday, excusal or short-day order for a named calendar day or days.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1728"
+     ]
+    },
+    {
+     "text_regex": "excused from work on Tuesday, March 4, 1913"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order's only command applies to a named day (the last named day is 1913-03-04); it ended at the close of that day. Pay already earned is an accrued effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1913-03-04",
+     "basis": "last named day in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-2540",
+   "description": "Holiday, excusal or short-day order for a named calendar day or days.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2540"
+     ]
+    },
+    {
+     "text_regex": "excused from work on Monday, March 5"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order's only command applies to a named day (the last named day is 1917-03-05); it ended at the close of that day. Pay already earned is an accrued effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1917-03-05",
+     "basis": "last named day in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-3205",
+   "description": "Holiday, excusal or short-day order for a named calendar day or days.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3205"
+     ]
+    },
+    {
+     "text_regex": "December 24th and D\\w*ecem\\w*ber 3\\w*, 1919"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order's only command applies to a named day (the last named day is 1919-12-31); it ended at the close of that day. Pay already earned is an accrued effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1919-12-31",
+     "basis": "last named day in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-3370",
+   "description": "Holiday, excusal or short-day order for a named calendar day or days.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3370"
+     ]
+    },
+    {
+     "text_regex": "December 24th and December 3\\w*, 1920"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order's only command applies to a named day (the last named day is 1920-12-31); it ended at the close of that day. Pay already earned is an accrued effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1920-12-31",
+     "basis": "last named day in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-3589",
+   "description": "Holiday, excusal or short-day order for a named calendar day or days.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3589"
+     ]
+    },
+    {
+     "text_regex": "on December 24th, 1921, four hours"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order's only command applies to a named day (the last named day is 1921-12-24); it ended at the close of that day. Pay already earned is an accrued effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1921-12-24",
+     "basis": "last named day in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-3665",
+   "description": "Holiday, excusal or short-day order for a named calendar day or days.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3665"
+     ]
+    },
+    {
+     "text_regex": "April 27, 1922, it is hereby ordered that on that date four hours"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order's only command applies to a named day (the last named day is 1922-04-27); it ended at the close of that day. Pay already earned is an accrued effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1922-04-27",
+     "basis": "last named day in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-3765",
+   "description": "Holiday, excusal or short-day order for a named calendar day or days.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3765"
+     ]
+    },
+    {
+     "text_regex": "on December 23, 1922, four hours"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order's only command applies to a named day (the last named day is 1922-12-23); it ended at the close of that day. Pay already earned is an accrued effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1922-12-23",
+     "basis": "last named day in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-3934",
+   "description": "Holiday, excusal or short-day order for a named calendar day or days.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3934"
+     ]
+    },
+    {
+     "text_regex": "on December 2 ?4th, 1923, four hours"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order's only command applies to a named day (the last named day is 1923-12-24); it ended at the close of that day. Pay already earned is an accrued effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1923-12-24",
+     "basis": "last named day in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-4110",
+   "description": "Holiday, excusal or short-day order for a named calendar day or days.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4110"
+     ]
+    },
+    {
+     "text_regex": "on December \\.?24,"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order's only command applies to a named day (the last named day is 1924-12-24); it ended at the close of that day. Pay already earned is an accrued effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1924-12-24",
+     "basis": "last named day in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-2237",
+   "description": "Leave with pay for veterans to attend a named encampment on stated days, plus the days needed for the journey.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2237"
+     ]
+    },
+    {
+     "text_regex": "September 26th to Octo- ?ber 3rd, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_period",
+    "basis_kind": "TERM",
+    "basis": "The order grants leave for stated days of a 1915 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1915-12-31",
+     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-2423",
+   "description": "Leave with pay for veterans to attend a named encampment on stated days, plus the days needed for the journey.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2423"
+     ]
+    },
+    {
+     "text_regex": "August 26th to Sep- ?tem\\w* 3rd, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_period",
+    "basis_kind": "TERM",
+    "basis": "The order grants leave for stated days of a 1916 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1916-12-31",
+     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-2669",
+   "description": "Leave with pay for veterans to attend a named encampment on stated days, plus the days needed for the journey.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2669"
+     ]
+    },
+    {
+     "text_regex": "from August 20 to August 27, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_period",
+    "basis_kind": "TERM",
+    "basis": "The order grants leave for stated days of a 1917 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1917-12-31",
+     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-2882",
+   "description": "Leave with pay for veterans to attend a named encampment on stated days, plus the days needed for the journey.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2882"
+     ]
+    },
+    {
+     "text_regex": "from September 3 to 5, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_period",
+    "basis_kind": "TERM",
+    "basis": "The order grants leave for stated days of a 1918 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1918-12-31",
+     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-2890",
+   "description": "Leave with pay for veterans to attend a named encampment on stated days, plus the days needed for the journey.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2890"
+     ]
+    },
+    {
+     "text_regex": "from August 18 to 24, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_period",
+    "basis_kind": "TERM",
+    "basis": "The order grants leave for stated days of a 1918 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1918-12-31",
+     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-3112",
+   "description": "Leave with pay for veterans to attend a named encampment on stated days, plus the days needed for the journey.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3112"
+     ]
+    },
+    {
+     "text_regex": "from September seventh to fourteenth, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_period",
+    "basis_kind": "TERM",
+    "basis": "The order grants leave for stated days of a 1919 encampment and the travel days 'necessary for the journey ... and return'; it ended when the last such traveller was back at his post.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1919-12-31",
+     "basis": "stated leave days plus travel days; the year-end upper bound is an inference (a rail journey within the United States took days, not months), not a measured date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-3865",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3865"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1924"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1924-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1924-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-3996",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3996"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1925"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1925-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1925-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-4228",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4228"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1926"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1926-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1926-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-4414",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4414"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending J\\w+ 30, 1927"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1927-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1927-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-4620",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4620"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1928"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1928-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1928-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-4847",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4847"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1929"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1929-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1929-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-5099",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5099"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1930"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1930-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1930-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-5355",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5355"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1931"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1931-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1931-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-5583",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5583"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1932"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1932-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1932-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6213",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6213"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1934"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1934-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6769",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6769"
+     ]
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1935"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1935-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6085",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6085"
+     ]
+    },
+    {
+     "text_regex": "during the period from April 1, 1933, to June 30, 1933, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1933-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6188",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6188"
+     ]
+    },
+    {
+     "text_regex": "during the period from July 1, 1933, to December 31, 1933, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1933-12-31; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-12-31",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6553",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6553"
+     ]
+    },
+    {
+     "text_regex": "during the period from January 1, 1934, to June 30, 1934, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1934-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6791",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6791"
+     ]
+    },
+    {
+     "text_regex": "during the period from July 1, 1934, to December 31, 1934, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1934-12-31; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-12-31",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6936",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6936"
+     ]
+    },
+    {
+     "text_regex": "during the period from January 1, 1935, to June 30, 1935, inclusive"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1935-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6176",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6176"
+     ]
+    },
+    {
+     "text_regex": "for the period from July 1 to September 30, 1933"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1933-09-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-09-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6332",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6332"
+     ]
+    },
+    {
+     "text_regex": "for the month of March 1934"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1934-03-31; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-03-31",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-6675",
+   "description": "Rates or percentages fixed by the order for a stated fiscal year or other stated period.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6675"
+     ]
+    },
+    {
+     "text_regex": "beginning April 1, 1934, and ending June 30, 1934"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order fixes allowance rates or a pay-reduction percentage only for a stated period, whose last day is 1934-06-30; it ended then. Payments made are accrued effects.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-06-30",
+     "basis": "last day of the period stated in the order's text"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-2968A",
+   "description": "Allotment for use 'during said fiscal year' (ending June 30, 1919).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2968A"
+     ]
+    },
+    {
+     "text_regex": "during said fiscal year"
+    },
+    {
+     "text_regex": "fiscal year ending June 30, 1919"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_fiscal_year",
+    "basis_kind": "TERM",
+    "basis": "The order transfers a sum from the fiscal-year 1919 appropriation for mail censorship and allots it to the War Secretary for censorship in the Canal Zone 'during said fiscal year'; its operative command could not run past June 30, 1919. Later payments of obligations are accrued effects.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1919-06-30",
+     "basis": "the order's own fiscal-year limit"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B09-457",
+   "description": "Authority to employ a copyist for not more than three months.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:457"
+     ]
+    },
+    {
+     "text_regex": "not to exceed three months"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_stated_period",
+    "basis_kind": "TERM",
+    "basis": "The order authorizes one temporary employment 'not to exceed three months' from its date of June 13, 1906.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1906-09-13",
+     "basis": "three months from the order's date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "O01",
+   "description": "Members whose held text or X1 type does not match the family (another order's text, an unreadable scan, or a different kind of order).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1",
+      "EO:4",
+      "EO:13",
+      "EO:25",
+      "EO:27-1",
+      "EO:112",
+      "EO:113",
+      "EO:3885",
+      "EO:3885C",
+      "EO:1183",
+      "EO:1302",
+      "EO:3292",
+      "EO:3319",
+      "EO:3878",
+      "EO:4075",
+      "EO:4571",
+      "EO:4175",
+      "EO:6169",
+      "EO:6126",
+      "EO:319",
+      "EO:310",
+      "EO:311",
+      "EO:313A",
+      "EO:339",
+      "EO:3016V",
+      "EO:3052",
+      "EO:23-1",
+      "EO:569",
+      "EO:106"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misclassified_or_text_mismatch",
+    "basis_kind": "NONE",
+    "basis": "The held text is another order's, unreadable, or of a kind outside this family; the member needs reassignment or a better text before any doctrine applies.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Reassign by text (for example EO 3878, 4075, 4571 are Indian trust-period extensions; EO 3885 is a military land withdrawal; EO 1 and EO 4 are Civil War orders) or acquire a legible text."
+   ]
+  },
+  {
+   "branch_id": "O02",
+   "description": "Closings, holidays and mourning orders without a single stated calendar day or period in the held text.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "closing_mourning"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "closing_without_fixed_day",
+    "basis_kind": "NONE",
+    "basis": "The day is described only as Labor Day, 'the day of the funeral' or a period without a starting date, or the order is a standing rule ('hereafter'); the text alone fixes no end date.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "For Labor Day orders without 'hereafter' (EO 677, 926, 1122, 1243): evidence that each covered only that year's Labor Day; for funeral-day orders: the funeral date from an official record; the Jacquard L3 review rejected these on the same ground."
+   ]
+  },
+  {
+   "branch_id": "O03",
+   "description": "Remaining own-terms orders: event-relative date (EO 6221), 'until further order' (EO 7084, 7085 as amended by EO 7089, 7091), a deferral until a condition (EO 6624), or an illegible period (EO 267, 345).",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "own_terms_expiry"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "own_terms_not_fixed",
+    "basis_kind": "NONE",
+    "basis": "The stated end depends on an outside event, on a later order, or cannot be read.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "EO 6221: the convening date of the second session of the 73d Congress (Congressional Record) and whether EO 6624 carried the Board deferral forward; EO 7084/7085: the order ending the Textile and Steel Labor Relations Boards; EO 267/345: a legible text."
+   ]
+  },
+  {
+   "branch_id": "O03T",
+   "description": "Tax inspection order whose object is the Commissioner's refund decisions rather than returns (EO 5079).",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "tax_return_inspection"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "tax_refund_decisions_outlier",
+    "basis_kind": "NONE",
+    "basis": "EO 5079 opens to inspection decisions allowing refunds, credits or abatements over $20,000; whether the 1976 rewrite of section 6103 reaches such decisions (as 'return information') is not settled by the held text.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Treasury regulations approved with EO 5079 and the later statutory treatment of large refunds (Revenue Act of 1928 sec. 710 reports to the Joint Committee)."
+   ]
+  },
+  {
+   "branch_id": "O04",
+   "description": "Fund allotments and allocations not decided above.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "fund_allotment"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "fund_allotment_needs_appropriation",
+    "basis_kind": "NONE",
+    "basis": "The allotment's command ends when its funds are obligated and spent or when the appropriation's period of availability ends, but the period depends on the appropriation item (annual, multi-year, or 'until expended'), which the project does not hold for these members.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Each member's appropriation item (for example the 'Temporary Government for West Indian Islands' items of the Naval Appropriation Acts; the Fourth Deficiency Act 1933 and the Emergency Relief Appropriation Act 1935 provisions on availability), and the general lapse rule (Rev. Stat. 3690; 31 U.S.C. 1502(a), 1552)."
+   ]
+  },
+  {
+   "branch_id": "O05",
+   "description": "Property transfers not decided above.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "property_transfer"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "transfer_needs_delivery_record",
+    "basis_kind": "NONE",
+    "basis": "Under the reviewed type rule TR-PROPERTY-TRANSFER the order is spent on delivery, and the delivery or accession date is a record the project does not hold; several members also carry return-on-notice, temporary-use or personnel terms.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Delivery or accession records (agency annual reports, Navy vessel registers, Library of Congress accession records)."
+   ]
+  },
+  {
+   "branch_id": "O06",
+   "description": "Territorial orders not decided above (Alaska land and timber reserves, Puerto Rico acting-judge designations, Virgin Islands and Hawaii administration, Guam and Samoa, Cuba 1906).",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "territories"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "territory_needs_event_source",
+    "basis_kind": "NONE",
+    "basis": "No class event reaches these members by its terms on the sources held: statehood acts and organic acts continue or replace territorial arrangements without naming these orders, Alaska timber and land reserves are land withdrawals, and an acting-judge designation ends with the absence it covers, a date the project does not hold.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "For PR acting judges: the service dates of the absent judges (Federal Judicial Center biographical directory); for Hawaii (EO 116, 122): Hawaiian Organic Act, Act of April 30, 1900, 31 Stat. 141; for EO 518: the end of the Provisional Government of Cuba (January 28, 1909); for land reserves: the PD-LAND-WITHDRAWAL doctrine."
+   ]
+  },
+  {
+   "branch_id": "O07",
+   "description": "Pay and allowance orders not decided above (standing pay rules, named-person compensation, emergency-agency wage rules).",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "pay_allowances"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "pay_rule_standing_or_named_person",
+    "basis_kind": "NONE",
+    "basis": "Standing pay rules persist until displaced, and no later pay statute held by the project names these orders or extinguishes them by its terms; named-person compensation orders need the person's dates or the commission's end.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Career Compensation Act of 1949 (63 Stat. 802) and Pay Readjustment Act of 1942 (56 Stat. 359) texts, checked for terms reaching presidential pay orders; the end of each named commission."
+   ]
+  },
+  {
+   "branch_id": "O08",
+   "description": "Regulations orders not decided above (Army ration and punishment limits, passport rules, Hot Springs hospital rules, Veterans Regulations, Alien Property Custodian powers, emergency-relief employment rules).",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "regulations_issuance"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "regulation_standing",
+    "basis_kind": "NONE",
+    "basis": "A regulation order stands until revoked or superseded; the later instruments that replaced these series (later ration and passport orders, the Manuals for Courts-Martial, the Veterans' Benefits Act of 1957) are not held, and the 1957 Act carries a savings section for outstanding regulations (sec. 2307) whose terms must be read.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Veterans' Benefits Act of 1957, Pub. L. 85-56, titles XXII-XXIII, 71 Stat. 157-172; later passport and Army ration orders that state they supersede earlier ones."
+   ]
+  },
+  {
+   "branch_id": "O09",
+   "description": "Organization orders not decided above (land-office discontinuances and consolidations, boards and committees, succession orders, transfers of functions).",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "organization_agency"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "organization_standing",
+    "basis_kind": "NONE",
+    "basis": "An organization order persists until the body or arrangement is abolished; the abolition statutes and reorganization plans that would end these members (for example Reorganization Plan No. 3 of 1946 for the General Land Office's district offices) are not held, and a land-office discontinuance may continue to define the receiving district.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Reorganization Plan No. 3 of 1946, sec. 403, 60 Stat. 1097, 1100; the abolition instrument of each named board or committee."
+   ]
+  },
+  {
+   "branch_id": "O99",
+   "description": "Catch-all.",
+   "when": [],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "no_rule_applies",
+    "basis_kind": "NONE",
+    "basis": "No branch of this doctrine applies.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Read the order."
+   ]
+  }
+ ],
+ "undecidable": [
+  {
+   "reason": "Held text is another order's, unreadable, or outside the family's kinds",
+   "detected_by": "O01"
+  },
+  {
+   "reason": "Closing or mourning order with no fixed calendar day in the text, or a standing holiday rule",
+   "detected_by": "O02"
+  },
+  {
+   "reason": "Own-terms order whose end depends on an outside event, a later order or an illegible period",
+   "detected_by": "O03"
+  },
+  {
+   "reason": "Fund allotment whose appropriation's period of availability is not held",
+   "detected_by": "O04"
+  },
+  {
+   "reason": "Property transfer whose delivery record is not held",
+   "detected_by": "O05"
+  },
+  {
+   "reason": "Territorial order reached by no held class event",
+   "detected_by": "O06"
+  },
+  {
+   "reason": "Standing pay rule or named-person compensation without a displacing statute or the person's dates",
+   "detected_by": "O07"
+  },
+  {
+   "reason": "Standing regulation without a held superseding instrument",
+   "detected_by": "O08"
+  },
+  {
+   "reason": "Standing organization order without a held abolition instrument",
+   "detected_by": "O09"
+  }
+ ]
+}

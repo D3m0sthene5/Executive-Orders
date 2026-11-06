@@ -1,0 +1,1305 @@
+{
+ "schema": "pothier-family-doctrine/v1",
+ "doctrine_id": "PD-WAR-EMERGENCY",
+ "family": "War and emergency orders (First World War measures, Alien Property Custodian sales, eight-hour suspensions, one air-space reservation)",
+ "version": 1,
+ "members": {
+  "field": "x1_type",
+  "in": [
+   "alien_property_sale",
+   "wwi_emergency",
+   "labor_hours_suspension",
+   "defensive_sea_area"
+  ]
+ },
+ "mechanisms": [
+  {
+   "id": "M1",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "An order whose only command revokes, rescinds, amends, restores, dissolves a body created by another order, declares another order's authorization terminated, or itself takes title, does all it commands on issue; its effect is evidence for the other order's lifecycle.",
+   "effective_date_rule": "The order's date (an order that states a later effective hour is spent at that hour).",
+   "source_ids": []
+  },
+  {
+   "id": "M2",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "An order that states its own end: a fixed day (EO 3233, EO 6023), the duration of the war (EO 2652), or the war plus six months after a treaty of peace is proclaimed (EO 2929).",
+   "effective_date_rule": "The stated day, read inclusively; for war-keyed terms, no later than the proclamation of the last 1921 peace treaty (Dec. 20, 1921) or six months after it (June 20, 1922).",
+   "source_ids": [
+    "S5",
+    "S6",
+    "S7"
+   ]
+  },
+  {
+   "id": "M3",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "EO 3320 terminated and abolished the Food Administration and the office of Wheat Director and confined the Grain Corporation to liquidation, ending the orders that created or staffed those offices or directed their operations.",
+   "effective_date_rule": "Aug. 21, 1920 (fixed for orders the abolition names; for the others, no later than that day).",
+   "source_ids": [
+    "S8"
+   ]
+  },
+  {
+   "id": "M4",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "EO 3154 ended the Committee on Public Information, and with it the orders creating the Committee and its divisions.",
+   "effective_date_rule": "Aug. 21, 1919, the date NARA records for the abolition.",
+   "source_ids": [
+    "S9",
+    "S10"
+   ]
+  },
+  {
+   "id": "M5",
+   "kind": "statute",
+   "effect": "ends",
+   "description": "The Lever Act's provisions ceased to be in effect when the war with Germany terminated, which S1 fixes as March 3, 1921 (the Lever Act is not among S1's exceptions). Orders whose only operation is to vest, delegate or direct the exercise of Lever Act powers had nothing left to operate on.",
+   "effective_date_rule": "No later than March 3, 1921 (interval from the order's date).",
+   "source_ids": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "id": "M6",
+   "kind": "statute",
+   "effect": "ends",
+   "description": "The Overman Act's termination paragraph restored every agency's statutory functions 'any authorization of the President under this Act to the contrary notwithstanding', so its ending reached the orders made under it.",
+   "effective_date_rule": "Between Sept. 3, 1921 (six months after March 3, 1921 under S1) and June 20, 1922 (six months after the last treaty proclamation); claimed as an interval from the order's date to June 20, 1922.",
+   "source_ids": [
+    "S1",
+    "S3",
+    "S5",
+    "S6"
+   ]
+  },
+  {
+   "id": "M7",
+   "kind": "statute",
+   "effect": "ends",
+   "description": "The emergency shipping fund section ended all authority granted to the President by it 'or by him delegated' six months after the final treaty of peace with Germany was proclaimed.",
+   "effective_date_rule": "No later than May 14, 1922 (six months after Nov. 14, 1921); Sept. 3, 1921 if S1 is read to govern that clause.",
+   "source_ids": [
+    "S1",
+    "S4",
+    "S5"
+   ]
+  },
+  {
+   "id": "M8",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "EO 3019-A dissolved the War Industries Board on Jan. 1, 1919 except for winding-up and listed functions, all resting on Overman Act authority that ended with that Act (M6).",
+   "effective_date_rule": "Between Jan. 1, 1919 and June 20, 1922.",
+   "source_ids": [
+    "S12",
+    "S3",
+    "S6"
+   ]
+  },
+  {
+   "id": "M9",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "EO 2952 revoked EO 2913.",
+   "effective_date_rule": "The revoking order's date (Sept. 6, 1918 for EO 2952); EO 3180 operates as of July 14, 1919 though issued Nov. 25, 1919.",
+   "source_ids": [
+    "S13",
+    "S20"
+   ]
+  },
+  {
+   "id": "M10",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "The War Trade Board's functions were transferred to the State Department and the Board abolished effective June 30, 1919 under EOs 3059 and 3086-A; that performance exhausted the transfer orders and ended appointments to the Board.",
+   "effective_date_rule": "No later than June 30, 1919.",
+   "source_ids": [
+    "S14",
+    "S11"
+   ]
+  },
+  {
+   "id": "M11",
+   "kind": "class_event",
+   "effect": "lead_only",
+   "description": "S1 fixes March 3, 1921 as the end of the war for Acts, joint resolutions and proclamations contingent on it. It ends no order by itself: it reaches an order only through the statute the order rests on, does not govern an executive order's own words such as 'during the war', and excepts the Trading with the Enemy Act.",
+   "effective_date_rule": "March 3, 1921, only through a statute that by its terms depends on the war's end.",
+   "source_ids": [
+    "S1"
+   ]
+  },
+  {
+   "id": "M12",
+   "kind": "continuity_only",
+   "effect": "continuity_only",
+   "description": "Alien Property Custodian functions were transferred (EO 6694 of 1934 to the Department of Justice; EO 9095 of 1942 to a new Custodian; EO 9788 of 1946 to the Attorney General; the Office of Alien Property was abolished in 1966 with blocking controls moved to Treasury by EO 11281). A transfer of functions carries an authorization forward; none of these instruments, nor the Knox-Porter Resolution's sec. 5, extinguishes a First World War sale authorization.",
+   "effective_date_rule": "None.",
+   "source_ids": [
+    "S15",
+    "S16",
+    "S7",
+    "S18"
+   ]
+  },
+  {
+   "id": "M13",
+   "kind": "own_terms",
+   "effect": "lead_only",
+   "description": "An order authorizing the Custodian (or Frank L. Polk as delegate) to sell, reject bids for, resell or release named property is exhausted when that act is done; the order sets no deadline, so whether and when it was done must come from the Custodian's reports.",
+   "effective_date_rule": "The date of sale, rejection or release, from the Custodian's reports (not held).",
+   "source_ids": [
+    "S17",
+    "S18"
+   ]
+  },
+  {
+   "id": "M14",
+   "kind": "own_terms",
+   "effect": "lead_only",
+   "description": "An eight-hour suspension for named work or contracts ends when that work is completed, on a stated term, or by a further order; the suspension authority itself (39 Stat. 1192) is not war-contingent.",
+   "effective_date_rule": "Completion of the work (not held).",
+   "source_ids": [
+    "S19"
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "citation": "Joint Resolution of March 3, 1921, ch. 136, Pub. Res. No. 64, 41 Stat. 1359-1360",
+   "title": "Joint resolution declaring that certain Acts of Congress, joint resolutions and proclamations shall be construed as if the war had ended and the present or existing emergency expired",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-41/pdf/STATUTE-41-Pg1359.pdf",
+   "held": true,
+   "held_path": "jobs/astra-source-retention/output/pages/d811bcf2c2b599b84e4ad86642156c45ec38f2bd4c077a1bbb22cb29f6be82ad/dc02551261e1c39583eb83568c28d3de8d373164d84bf0a0df422e6e15ba9617/selected-pages.txt",
+   "sha256": "881d541d4c87f4a2c0e7a0bcd000c6b72af47116ccc5cff57f073a81e6e4870c",
+   "pdf_sha256": "d811bcf2c2b599b84e4ad86642156c45ec38f2bd4c077a1bbb22cb29f6be82ad",
+   "pin": "shall be construed and treated as the date",
+   "pins_more": [
+    "excepting, however, from the operation",
+    "the Act known as the Trading with the Enemy"
+   ],
+   "establishes": "For any Act, joint resolution or proclamation whose provisions depend on the duration or termination date of the war with Germany and Austria-Hungary, March 3, 1921 is treated as the termination date; Acts in force only during the war (or the war plus a limited period) are administered as if the war ended then; the Trading with the Enemy Act and its amendments (with the Liberty Bond Acts, parts of the War Finance Corporation Act and the D.C. rents title) are excepted. It speaks of Acts, joint resolutions and proclamations, not of executive orders."
+  },
+  {
+   "id": "S2",
+   "citation": "Act of Aug. 10, 1917, ch. 53, sec. 24, 40 Stat. 276, 283 (Lever Food and Fuel Control Act)",
+   "title": "Lever Act, termination section",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-40/pdf/STATUTE-40-Pg276.pdf",
+   "held": false,
+   "pin": "That the provisions of this Act shall cease to be in effect when the existing state of war between the United States and Germany shall have terminated",
+   "establishes": "The Act's provisions (the powers the President delegated by the members in branch B13) ceased to be in effect when the war with Germany terminated; the termination saves only acts done, rights and obligations accrued and pending suits. Read on the web 2026-11-05; not yet held."
+  },
+  {
+   "id": "S3",
+   "citation": "Act of May 20, 1918, ch. 78, sec. 1 proviso and sec. 6, 40 Stat. 556, 556-557 (Overman Act)",
+   "title": "Overman Act, duration proviso and termination paragraph",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-40/pdf/STATUTE-40-Pg556.pdf",
+   "held": false,
+   "pin": "any authorization of the President under this Act to the contrary notwithstanding",
+   "establishes": "The Act remained in force during the war and for six months after the termination of the war by the proclamation of the treaty of peace (or an earlier time the President designated); upon its termination every agency and officer was to exercise the functions provided by law, any authorization of the President under the Act to the contrary notwithstanding. So the Act's ending reached the orders made under it. Read on the web 2026-11-05; not yet held."
+  },
+  {
+   "id": "S4",
+   "citation": "Act of June 15, 1917, ch. 29, 'Emergency shipping fund', 40 Stat. 182, 183",
+   "title": "Urgent Deficiency Appropriation Act of 1917, emergency shipping fund termination sentence",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-40/pdf/STATUTE-40-Pg182.pdf",
+   "held": false,
+   "pin": "All authority granted to the President herein, or by him delegated, shall cease six months after a final treaty of peace is proclaimed between this Government and the German Empire.",
+   "establishes": "Every power the President held under the emergency shipping fund section, and every delegation of it, ceased six months after the proclamation of a final treaty of peace with Germany. Read on the web 2026-11-05; not yet held."
+  },
+  {
+   "id": "S5",
+   "citation": "Treaty of peace between the United States and Germany, signed at Berlin Aug. 25, 1921, proclaimed Nov. 14, 1921, 42 Stat. 1939",
+   "title": "Treaty of Berlin (U.S.-Germany)",
+   "url": "https://www.govinfo.gov/link/statute/42/1939",
+   "held": false,
+   "pin": "proclaimed November 14, 1921 (as read on the govinfo page; exact printed wording not yet held)",
+   "establishes": "The final treaty of peace with Germany was proclaimed November 14, 1921, so six months after it is May 14, 1922. Read on the web 2026-11-05; not yet held."
+  },
+  {
+   "id": "S6",
+   "citation": "Treaty of peace between the United States and Hungary, signed at Budapest Aug. 29, 1921, proclaimed Dec. 20, 1921, 42 Stat. 1951",
+   "title": "Treaty of Budapest (U.S.-Hungary)",
+   "url": "https://www.govinfo.gov/link/statute/42/1951",
+   "held": false,
+   "pin": "proclaimed December 20, 1921 (as read on the govinfo page; exact printed wording not yet held)",
+   "establishes": "The last of the 1921 peace treaties was proclaimed December 20, 1921; six months after it is June 20, 1922, the latest date any reading of the Overman Act's duration can reach. Read on the web 2026-11-05; not yet held."
+  },
+  {
+   "id": "S7",
+   "citation": "Joint Resolution of July 2, 1921, ch. 40, 42 Stat. 105 (Knox-Porter Resolution)",
+   "title": "Joint resolution terminating the state of war with Germany and Austria-Hungary",
+   "url": "https://www.govinfo.gov/link/statute/42/105",
+   "held": false,
+   "pin": "is hereby declared at an end",
+   "establishes": "Declared the state of war with Germany (sec. 1) and Austria-Hungary (sec. 3) at an end; sec. 5 (42 Stat. 106-107) retained enemy property in the United States pending provision for American claims. Context for orders whose own terms run for the war; it ends no Alien Property Custodian sale authorization. Read on the web 2026-11-05; not yet held."
+  },
+  {
+   "id": "S8",
+   "citation": "Executive Order 3320 of Aug. 21, 1920 (family member)",
+   "title": "Liquidation of United States Grain Corporation; Food Administration and Wheat Director terminated",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-3320-liquidation-united-states-grain-corporation",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-3320-liquidation-united-states-grain-corporation.txt",
+   "sha256": "8ebf01ab5fdd0fc79e7d6d9e9ef7d2056a163608a68d0c0dc906eb5a28182d98",
+   "pin": "the executive administration and office created by said Executive Order of May 14, 1919, is hereby terminated and abolished",
+   "pins_more": [
+    "are hereby terminated and abolished",
+    "continuing to act as a governmental agency for this purpose only",
+    "shall in no way affect licenses heretofore required"
+   ],
+   "establishes": "On Aug. 21, 1920 the President terminated and abolished the United States Food Administration and all its divisions, and the office of United States Wheat Director created by the order of May 14, 1919 (EO 3087), and confined the Grain Corporation to liquidation; it saved sugar licenses and sugar regulations and the powers transferred to the Attorney General in November 1919. Held text is a mirror transcription (APP)."
+  },
+  {
+   "id": "S9",
+   "citation": "Executive Order 3154 of Aug. 21, 1919 (family member)",
+   "title": "Dissolving Committee on Public Information and transferring assets to Council of National Defense",
+   "url": "https://en.wikisource.org/wiki/Executive_Order_3154",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_3154.txt",
+   "sha256": "9aa1c85c957633b283a3cbfaa4494dfaa64cd2a7ac7370d908e3d760a2d370b4",
+   "pin": "the Committee on Public Information shall cease and be at an end",
+   "establishes": "The Committee on Public Information was to cease upon the transfer of its papers and property to the Council of National Defense. Held text is a mirror transcription (Wikisource)."
+  },
+  {
+   "id": "S10",
+   "citation": "National Archives, Guide to Federal Records, Record Group 63 (Records of the Committee on Public Information), administrative history",
+   "title": "NARA RG 63 administrative history",
+   "url": "https://www.archives.gov/research/guide-fed-records/groups/063.html",
+   "held": false,
+   "pin": "Abolished August 21, 1919, by EO 3154 (as read on the web; exact wording not yet held)",
+   "establishes": "The National Archives records the Committee as abolished on Aug. 21, 1919 by EO 3154, with the Council of National Defense as liquidator. Read on the web 2026-11-05; not yet held."
+  },
+  {
+   "id": "S11",
+   "citation": "National Archives, Guide to Federal Records, Record Group 182 (Records of the War Trade Board), administrative history",
+   "title": "NARA RG 182 administrative history",
+   "url": "https://www.archives.gov/research/guide-fed-records/groups/182.html",
+   "held": false,
+   "pin": "abolished effective June 30, 1919, by EOs 3059 (March 3, 1919) and 3086-A (May 12, 1919) (as read on the web; exact wording not yet held)",
+   "establishes": "The War Trade Board was abolished effective June 30, 1919 under EOs 3059 and 3086-A (as amended by EO 3099), its functions passing to a War Trade Board Section of the Department of State, itself abolished by the Act of May 27, 1921 (42 Stat. 9). Read on the web 2026-11-05; not yet held."
+  },
+  {
+   "id": "S12",
+   "citation": "Executive Order 3019-A of Dec. 1918 (family member)",
+   "title": "Dissolution of the War Industries Board",
+   "url": "https://congressional.proquest.com/congressional/docview/t67.d72.1918-eo-3019a",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3019A.txt",
+   "sha256": "88a3dffe27403c0e0dfe0a11b193f4a1f35f06e8f5ed9f0e4221a351385c49e2",
+   "pin": "terminate and dissolve on",
+   "pins_more": [
+    "for the sole and only purpose of winding"
+   ],
+   "establishes": "Under the Overman Act, the War Industries Board and its subordinate bodies were to terminate and dissolve on Jan. 1, 1919, except listed functions continued or transferred until completed and a continuation for the sole purpose of winding up. Held text is a page-scan OCR."
+  },
+  {
+   "id": "S13",
+   "citation": "Executive Order 2952 of Sept. 6, 1918 (family member)",
+   "title": "Revoking EO 2913 and authorizing the War Industries Board to use Squares 229 and 230",
+   "url": "https://congressional.proquest.com/congressional/docview/t67.d72.1918-eo-2952",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2952.txt",
+   "sha256": "8be021dd8b7b244d803dbb7cad0c94fa23f6beed7d14bc8443f55aa092a99bf4",
+   "pin": "Squares 229 and 230",
+   "establishes": "Revoked and rescinded the order of July 15, 1918 authorizing the Secretary of Labor to use Squares 229 and 230 (EO 2913). Held text is a page-scan OCR; the revoking words read 'revoke and rescind the Executive Order issued July i 5, 1918' with OCR errors."
+  },
+  {
+   "id": "S20",
+   "citation": "Executive Order 3180 of Nov. 25, 1919 (family member)",
+   "title": "Re-vesting in designated officers certain powers under the Trading with the Enemy Act",
+   "url": "https://congressional.proquest.com/congressional/docview/t67.d72.1919-eo-3180",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3180.txt",
+   "sha256": "37081abdcee20404fee36ee13a15ec4c8de1044e6b2cb749ecea921bc6fa3cf0",
+   "pin": "as of the 14th day of July, 1919",
+   "establishes": "Rescinds EO 2837 (the order of April 11, 1918) as of July 14, 1919. Held text is page-scan OCR."
+  },
+  {
+   "id": "S14",
+   "citation": "Executive Orders 3059 of Mar. 3, 1919 and 3086-A of May 12, 1919 (family members)",
+   "title": "Transfer of War Trade Board functions to the Department of State",
+   "url": "https://congressional.proquest.com/congressional/docview/t67.d72.1919-eo-3059",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3059.txt",
+   "sha256": "7b82fcbe2dc279ed6594589ebd25cdd92f9ba502e73cb395e634f845fa9f769e",
+   "pin": "to the Department of State",
+   "establishes": "Under the Overman Act, the War Trade Board's chairman was to relinquish and transfer the Board's duties, powers, records and property to the Department of State whenever expedient (EO 3086-A, held at jobs/pinakes-proquest-ingest/output/texts/EO_3086A.txt, sha256 fb7663ad5710690828ecda41e651e602719c26c6c3a0096e2150152f3d5ca076, repeats the direction). Held texts are page-scan OCR."
+  },
+  {
+   "id": "S15",
+   "citation": "Executive Order 9788 of Oct. 14, 1946, 11 FR 11981",
+   "title": "Terminating the Office of Alien Property Custodian and transferring its functions to the Attorney General",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1946-10-15/pdf/FR-1946-10-15.pdf",
+   "held": true,
+   "held_path": "jobs/source-ladder/output/texts/EO_9788_2e0f1ac5d8.txt",
+   "sha256": "e6cb1640b3fc2a6adfe4ec97275f17148e5994c690bb12a33ae16b718c33f648",
+   "pin": "All property or interests vested in or transferred to the Alien Property Cus",
+   "establishes": "The Custodian's office was terminated but all its powers, duties and functions, and all vested property still held, passed to the Attorney General: a transfer of functions, not an end of authorizations already given. Held text is machine-extracted from the Federal Register PDF."
+  },
+  {
+   "id": "S16",
+   "citation": "Executive Order 11281 of May 13, 1966, 31 FR 7215",
+   "title": "Transferring jurisdiction over certain blocked assets from the Attorney General to the Secretary of the Treasury",
+   "url": "https://www.archives.gov/federal-register/codification/executive-order/11281.html",
+   "held": false,
+   "pin": "will be abolished on or before June 30, 1966 (as read on the web; exact wording not yet held)",
+   "establishes": "Recites that the Office of Alien Property would be abolished by June 30, 1966 and that vesting under the Trading with the Enemy Act had ended; it moves blocking controls (EO 8389) to Treasury and says nothing that extinguishes First World War sale authorizations. Read on the web 2026-11-05; not yet held."
+  },
+  {
+   "id": "S17",
+   "citation": "Alien Property Custodian Report: a detailed report of all proceedings under the Trading with the Enemy Act during 1918 and to Feb. 15, 1919 (Washington, 1919), and the Custodian's later annual reports (1919-1934)",
+   "title": "Alien Property Custodian reports",
+   "url": "https://catalog.hathitrust.org/Record/001756793",
+   "held": false,
+   "pin": "(not held)",
+   "establishes": "The record that would show whether, when and to whom each authorized sale was made, or whether bids were rejected and the property resold or returned; it is the evidence the open alien-property branch needs."
+  },
+  {
+   "id": "S18",
+   "citation": "Trading with the Enemy Act, Act of Oct. 6, 1917, ch. 106, 40 Stat. 411, sec. 12 as amended by the Act of Mar. 28, 1918 (as recited in the member orders); current text 50 U.S.C. 4312",
+   "title": "Trading with the Enemy Act sec. 12",
+   "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title50-section4312&num=0&edition=prelim",
+   "held": false,
+   "pin": "(not held)",
+   "establishes": "The authority under which the President determined, for named property, that the Custodian could sell other than at public sale after advertisement; the Act stays in force today and was excepted from S1, so no statutory ending reaches these orders."
+  },
+  {
+   "id": "S19",
+   "citation": "Act of Mar. 4, 1917, ch. 180 (naval appropriations for FY 1918), eight-hour suspension proviso, 39 Stat. 1192 (as quoted in EO 2769 and EO 2928)",
+   "title": "Naval Appropriation Act of 1917, national-emergency suspension of the eight-hour law",
+   "url": "https://www.govinfo.gov/link/statute/39/1192",
+   "held": false,
+   "pin": "in case of national emergency the President is authorized to suspend provisions of law prohibiting more than eight hours labor",
+   "establishes": "The suspension authority is a standing power 'in case of national emergency', not a provision contingent on the duration of the 1917 war, so S1 does not by its terms end it or the suspensions made under it."
+  }
+ ],
+ "procedure": [
+  {
+   "branch_id": "B01",
+   "description": "Members whose held text is a different, non-war order (a land withdrawal, a forest boundary change, a civil-service return, consular wage regulations, visa fees): the X1 type came from a run-on WPA summary or a number collision. Route to the family the text belongs to.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3042",
+      "EO:3060A",
+      "EO:3085",
+      "EO:3097",
+      "EO:4224"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misclassified_route_to_other_family",
+    "basis_kind": "NONE",
+    "basis": "The held text is not a war or alien-property order; this doctrine does not decide it.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Reassign to the doctrine for the text's subject (land withdrawal, national forest, civil service, consular regulations) or resolve the text/number conflict (EO 4224's WPA summary describes an alien-property sale; the held APP text is a visa-fee order)."
+   ]
+  },
+  {
+   "branch_id": "B02",
+   "description": "EO 3087-A: the held text is a National Archives microfilm transcription that carries EO 3086-A's wording and number; the order's own text is not securely held.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3087A"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "text_conflict",
+    "basis_kind": "NONE",
+    "basis": "The held text reproduces EO 3086-A, so the order's own terms are not established.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": [
+     "S3"
+    ]
+   },
+   "gaps": [
+    "Acquire an official printing of EO 3087-A (May 14, 1919). If it is an Overman Act transfer of War Trade Board functions, branch B15's rule would apply."
+   ]
+  },
+  {
+   "branch_id": "B03",
+   "description": "Orders that only revoke, rescind, amend, restore, dissolve a body created by another order, declare another order's authorization terminated, or themselves take title: spent on issue.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2743A",
+      "EO:2801",
+      "EO:2940",
+      "EO:2967",
+      "EO:3030",
+      "EO:3049",
+      "EO:3094B",
+      "EO:3099",
+      "EO:3132",
+      "EO:3176",
+      "EO:3180",
+      "EO:3374",
+      "EO:3265",
+      "EO:4224A"
+     ]
+    },
+    {
+     "text_regex": "revok|rescind|amend|dissolved|was and is terminated|is taken over"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only command revokes, rescinds, amends or restores another order (EO 2743-A amends the coal price scale; 2801, 2940 amend EO 2729-A; 2967, 3030 amend the censorship order; 3049 amends the order of July 3, 1918; 3099 amends EO 3086-A; 3265 and 4224-A amend earlier sale orders), rescinds an order or a revocation (3094-B, 3180), dissolves the Censorship Board (3132), declares an authorization terminated as of Jan. 1, 1920 (3374), or itself takes title to all seized enemy vessels (3176). It did everything it commanded on issue; its effect is evidence for the other order's lifecycle.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "The effect (an amended text, a revived power, title to vessels) survives as a consequence and belongs to the affected order's lifecycle.",
+    "EO 2743-A was operative from 7 a.m. Oct. 29, 1917 and EO 3180 rescinds as of July 14, 1919; the order date is the issue date, not those effective times."
+   ]
+  },
+  {
+   "branch_id": "B04",
+   "description": "EO 3233 (Tidewater Coal Exchange order reinstated) states its own end: midnight, April 30, 1920.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3233"
+     ]
+    },
+    {
+     "text_regex": "remain in force and effect until midnight of the thirtieth"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_term_fixed_end",
+    "basis_kind": "TERM",
+    "basis": "The order says it 'shall remain in force and effect until midnight of the thirtieth day of April, 1920, at which time, unless otherwise ordered, it shall cease to be operative'.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1920-04-30",
+     "basis": "stated end, inclusive (runs through the end of April 30, 1920); exclusive reading: ends when that day begins"
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "'Unless otherwise ordered': no extension order between Feb. 25 and Apr. 30, 1920 is recorded in the WPA list or the held edges; EO 3247 (Mar. 19, 1920) preserved this order from its suspension but did not extend it."
+   ]
+  },
+  {
+   "branch_id": "B05",
+   "description": "EO 6023 (air-space reservation over the District of Columbia) states its own period: 9 a.m. to 5 p.m. on March 4, 1933.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6023"
+     ]
+    },
+    {
+     "text_regex": "on March 4, 1933"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_term_fixed_end",
+    "basis_kind": "TERM",
+    "basis": "The order designates the air space over the District of Columbia a prohibited area 'from 9 a. m. to 5 p. m., on March 4, 1933' and nothing else. It is an inauguration-day reservation under the Air Commerce Act of 1926, not a defensive sea area.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-03-04",
+     "basis": "stated period ends 5 p.m. March 4, 1933"
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Held text is OCR of the 1974 OFR compilation; no gap in the end itself."
+   ]
+  },
+  {
+   "branch_id": "B06",
+   "description": "EO 2929 (petroleum specifications through the Fuel Administrator) states its own term: the war and six months after its termination by the proclamation of a treaty of peace.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2929"
+     ]
+    },
+    {
+     "text_regex": "six months after the termination thereof by the proclamation of a treaty of peace"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_term_war_plus_six_months",
+    "basis_kind": "TERM",
+    "basis": "The order says it remains in force 'during the continuance of the present war and for six months after the termination thereof by the proclamation of a treaty of peace, or until amended, modified, or rescinded'. The treaty with Germany was proclaimed Nov. 14, 1921 and the last treaty (Hungary) Dec. 20, 1921, so the term ran out no later than June 20, 1922.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1922-06-20",
+     "basis": "no later than six months after the last 1921 treaty proclamation; May 14, 1922 if 'a treaty of peace' means the German treaty; earlier if rescinded"
+    },
+    "mechanism_ids": [
+     "M2",
+     "M6"
+    ],
+    "source_ids": [
+     "S5",
+     "S6"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "EO 3374 recites that the Fuel Administration's activities were suspended on or before Jan. 1, 1920, so the order's practical operation likely ended earlier; that recital is not a rescission."
+   ]
+  },
+  {
+   "branch_id": "B07",
+   "description": "EO 2679-A (organizing the Food Administration) and EO 3087 (Wheat Director): EO 3320 terminated and abolished both by name.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2679A",
+      "EO:3087"
+     ]
+    },
+    {
+     "any_regex": "food administration|wheat director|w\\S*heat d"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "EO 3320 (Aug. 21, 1920) declares the United States Food Administration 'and all remaining divisions and branches thereof' terminated and abolished, and 'the executive administration and office created by said Executive Order of May 14, 1919' (EO 3087) terminated and abolished.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1920-08-21",
+     "basis": "EO 3320"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S8"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "EO 3320 saved sugar licenses and sugar regulations already made; those are separate instruments, not EO 2679-A or 3087.",
+    "Acts done and ratified under these orders survive as consequences."
+   ]
+  },
+  {
+   "branch_id": "B08",
+   "description": "Orders that designate acting Food Administrators or direct the Food Administrator, the Wheat Director or the Grain Corporation (as wheat-buying agency) to act: their offices were abolished and the Corporation confined to liquidation by EO 3320.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2907A",
+      "EO:2997",
+      "EO:3024C",
+      "EO:2736",
+      "EO:2884",
+      "EO:3100",
+      "EO:3143"
+     ]
+    },
+    {
+     "any_regex": "food admin|wheat|grain"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "Each order operates only through the Food Administrator, the Wheat Director or the Grain Corporation's buying functions. EO 3320 abolished the Food Administration and the Wheat Director's office and directed the Grain Corporation to continue 'as a governmental agency for this purpose only', namely liquidation. The order therefore ended no later than Aug. 21, 1920; some ended earlier on their own terms (acting designations 'during the absence' of Hoover or Rickard).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1920-08-21",
+     "basis": "no later than EO 3320"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S8"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "The exact earlier end of the 'during his absence' designations (EO 2907-A, 2997, 3024-C) is not held.",
+    "EO 2884's increase of the Grain Corporation's capital stock is a completed act whose consequence lasted until the Corporation's dissolution; only the continuing command is claimed ended."
+   ]
+  },
+  {
+   "branch_id": "B09",
+   "description": "Orders creating the Committee on Public Information and its divisions: ended with the Committee under EO 3154.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2594",
+      "EO:2708",
+      "EO:2774A",
+      "EO:2822A"
+     ]
+    },
+    {
+     "text_regex": "Committee on Public Information"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "EO 3154 (Aug. 21, 1919) directed the transfer of the Committee's papers and property to the Council of National Defense and provided that 'upon such relinquishment and transfer the Committee on Public Information shall cease and be at an end'; the National Archives records the Committee as abolished Aug. 21, 1919 by EO 3154, with the Council as liquidator. An order creating the Committee or a division under it has no object once the Committee is gone.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1919-08-21",
+     "basis": "EO 3154 as dated by NARA RG 63"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S9",
+     "S10"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "EO 3154 made the end conditional on the transfer; the held record of the transfer's completion is the NARA finding aid (not yet held), which dates the abolition to the order's date."
+   ]
+  },
+  {
+   "branch_id": "B10",
+   "description": "EO 2913 (Labor Secretary to use Squares 229 and 230 for war housing): revoked by EO 2952.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2913"
+     ]
+    },
+    {
+     "text_regex": "229 and 230"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "EO 2952 (Sept. 6, 1918) revokes and rescinds 'the Executive Order issued July 15, 1918' authorizing the Secretary of Labor to use Squares 229 and 230; EO 2913 is that order (EO 2912 of the same day concerns Squares 685 and 634).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1918-09-06",
+     "basis": "date printed on EO 2952"
+    },
+    "mechanism_ids": [
+     "M9"
+    ],
+    "source_ids": [
+     "S13"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "The census dates EO 2952 only to '1918'; its printed date Sept. 6, 1918 is from the held scan."
+   ]
+  },
+  {
+   "branch_id": "B10A",
+   "description": "EO 2837 (revoking Treasury and Federal Trade Commission licensing powers on enemy patents and trade-marks, with 'no such license shall be granted until further order'): rescinded by EO 3180.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2837"
+     ]
+    },
+    {
+     "text_regex": "until further order"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "Besides revoking two licensing powers, EO 2837 forbade such licenses 'until further order', a continuing command. EO 3180 (Nov. 25, 1919, a family member) rescinds 'as of the 14th day of July, 1919, the Executive Order of April 11, 1918' and confirms licenses issued from that day.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1919-07-14",
+     "to": "1919-11-25",
+     "basis": "EO 3180 issued Nov. 25, 1919, rescinding as of July 14, 1919"
+    },
+    "mechanism_ids": [
+     "M9"
+    ],
+    "source_ids": [
+     "S20"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing"
+   ]
+  },
+  {
+   "branch_id": "B11",
+   "description": "Appointments of members of the War Trade Board (EO 3024-A, 3057): ended when the Board was abolished.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3024A",
+      "EO:3057"
+     ]
+    },
+    {
+     "text_regex": "as a member of the W"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_with_body",
+    "basis_kind": "ACT",
+    "basis": "The order appoints a member of the War Trade Board. Under EOs 3059 and 3086-A (held) the Board's duties, powers, records and property were transferred to the Department of State, and the National Archives records the Board as abolished effective June 30, 1919. A seat on an abolished board ends with it.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1919-06-30",
+     "basis": "NARA RG 182: Board abolished effective June 30, 1919"
+    },
+    "mechanism_ids": [
+     "M10"
+    ],
+    "source_ids": [
+     "S14",
+     "S11"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "The abolition date rests on the NARA finding aid (not yet held); EO 3099 (amending EO 3086-A) is a family member decided in B03."
+   ]
+  },
+  {
+   "branch_id": "B12",
+   "description": "EOs 3059 and 3086-A (authority for the War Trade Board's chairman to transfer its functions to the State Department): exhausted by the transfer completed by June 30, 1919.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3059",
+      "EO:3086A"
+     ]
+    },
+    {
+     "text_regex": "War Trade Board"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "exhausted_by_performance",
+    "basis_kind": "TERM",
+    "basis": "The order's command is that the chairman transfer the Board's duties, powers, records and property to the Department of State when expedient. The National Archives records the Board as abolished effective June 30, 1919 under these orders, with the State Department's War Trade Board Section as successor, so the transfer was done by then. The Overman Act's termination (M6) is a later backstop.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1919-06-30",
+     "basis": "NARA RG 182"
+    },
+    "mechanism_ids": [
+     "M10",
+     "M6"
+    ],
+    "source_ids": [
+     "S14",
+     "S11",
+     "S3"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "The performance evidence is the NARA finding aid (not yet held); the departmental orders of July 1 and Oct. 7, 1919 that set up the State Department section are not held."
+   ]
+  },
+  {
+   "branch_id": "B13",
+   "description": "Orders whose only operation is to vest, delegate or direct the exercise of Lever Act powers over fuel, distilled spirits or food-licensee profits (not otherwise ended by EO 3320).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2690",
+      "EO:2694A",
+      "EO:2765",
+      "EO:3173",
+      "EO:3235",
+      "EO:3240",
+      "EO:3247"
+     ]
+    },
+    {
+     "text_regex": "products,? and fuel|fuel adm"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_with_statute",
+    "basis_kind": "ACT",
+    "basis": "The order confers or directs the exercise of powers that the Act of Aug. 10, 1917 gave the President (the Fuel Administrator's office and powers, Treasury supervision of distilled spirits under secs. 15-16, profit rules for licensees under sec. 5, coal control by the Director General of Railroads, and EO 3247's suspension of the coal orders). Section 24 provides that 'the provisions of this Act shall cease to be in effect' when the war with Germany terminated, saving only acts done and rights accrued; the 1921 joint resolution fixes that date as March 3, 1921 and does not except the Lever Act. With the powers gone, nothing in the order continued to operate.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1921-03-03",
+     "basis": "no later than the Lever Act's cessation under 41 Stat. 1359"
+    },
+    "mechanism_ids": [
+     "M5",
+     "M11"
+    ],
+    "source_ids": [
+     "S1",
+     "S2"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "Section 24 reaches the Act's provisions; that it thereby reaches delegations of them is this doctrine's reading (no instrument names these orders). Owner review of that reading is requested.",
+    "EO 3247 suspended EOs 3235 and 3240 (and the Fuel Administrator's later orders) from Apr. 1, 1920; a suspension is not an end, so the claimed end remains no later than March 3, 1921.",
+    "EO 2765's sugar-licensee part was saved from EO 3320, which is why it is decided here rather than in B08."
+   ]
+  },
+  {
+   "branch_id": "B14",
+   "description": "Delegations or exercises of the President's emergency shipping fund powers (Act of June 15, 1917).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2664",
+      "EO:3018",
+      "EO:3063",
+      "EO:3064",
+      "EO:2825A"
+     ]
+    },
+    {
+     "text_regex": "emergency shipping fund|June 15, 1917|fifteenth, nineteen hundred and seventeen"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_with_statute",
+    "basis_kind": "ACT",
+    "basis": "The order delegates, withdraws and redelegates, or exercises powers under the emergency shipping fund section of the Act of June 15, 1917, which provides: 'All authority granted to the President herein, or by him delegated, shall cease six months after a final treaty of peace is proclaimed between this Government and the German Empire.' The treaty with Germany was proclaimed Nov. 14, 1921, so the delegated authority ceased no later than May 14, 1922.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1922-05-14",
+     "basis": "six months after Nov. 14, 1921; Sept. 3, 1921 if 41 Stat. 1359 governs the clause"
+    },
+    "mechanism_ids": [
+     "M7"
+    ],
+    "source_ids": [
+     "S4",
+     "S5",
+     "S1"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "Whether a later statute (for example the Merchant Marine Act of 1920) extended or ended the fund's authority earlier has not been checked; an earlier end would still fall inside the interval, an extension would not.",
+    "EO 3018 also delegates powers under later Acts enlarging the fund (to Nov. 4, 1918); that those powers sit within 'herein' is assumed from the orders' own description of them as emergency shipping fund powers."
+   ]
+  },
+  {
+   "branch_id": "B15",
+   "description": "Orders made under the Overman Act (Act of May 20, 1918) redistributing functions: liquidation of the War Industries Board and the Bituminous Coal Commission, payment of Fuel Administration claims by Interior, transfer of Navy war vessels to other departments.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3019A",
+      "EO:3161",
+      "EO:3248A",
+      "EO:3249",
+      "EO:3091"
+     ]
+    },
+    {
+     "text_regex": "co-?ordinate or consolidate|Chapter 78"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_with_statute",
+    "basis_kind": "ACT",
+    "basis": "The order rests on the Overman Act, which remained in force during the war and for six months after its termination by the proclamation of the treaty of peace, and on its termination required every agency to exercise its functions as provided by law, 'any authorization of the President under this Act to the contrary notwithstanding'. The latest reading of that duration ends June 20, 1922 (six months after the Hungarian treaty proclamation); under 41 Stat. 1359 it ends Sept. 3, 1921.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1922-06-20",
+     "basis": "Overman Act termination, latest reading"
+    },
+    "mechanism_ids": [
+     "M6",
+     "M11"
+    ],
+    "source_ids": [
+     "S3",
+     "S5",
+     "S6",
+     "S1"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "The Act allowed the President to designate an earlier end; none is recorded. No extension is known.",
+    "Records transferred under these orders stayed where they went; that custody is a consequence, not the continuing order."
+   ]
+  },
+  {
+   "branch_id": "B16",
+   "description": "EO 2868 (War Industries Board as a separate agency): dissolved by EO 3019-A, whose winding-up continuation ended with the Overman Act.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2868"
+     ]
+    },
+    {
+     "text_regex": "War Industries Board"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "EO 3019-A ordered that the Board and all its subordinate bodies 'terminate and dissolve on January 1, 1919', except functions transferred to other bodies and a continuation 'for the sole and only purpose of winding up'; those exceptions rest on Overman Act authority, which ended no later than June 20, 1922 (B15).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1919-01-01",
+     "to": "1922-06-20",
+     "basis": "EO 3019-A and the Overman Act's end"
+    },
+    "mechanism_ids": [
+     "M8",
+     "M6"
+    ],
+    "source_ids": [
+     "S12",
+     "S3",
+     "S6"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "The date the winding-up was completed is not held (EO 3161 shows the Council of National Defense paying the Board's obligations by Aug. 1919)."
+   ]
+  },
+  {
+   "branch_id": "B17",
+   "description": "EO 2652 (watch officers' citizenship requirement suspended 'for the duration of the war'): own term keyed to the war.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2652"
+     ]
+    },
+    {
+     "text_regex": "for the duration of the war"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_term_war_duration",
+    "basis_kind": "TERM",
+    "basis": "The suspension lets qualifying aliens serve as watch officers 'for the duration of the war'. The war the order refers to (with Germany) was declared at an end by the joint resolution of July 2, 1921 and closed by the treaty proclaimed Nov. 14, 1921; on any reading the stated duration ran out no later than Dec. 20, 1921, the last 1921 treaty proclamation.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1921-12-20",
+     "basis": "war's end on the latest reading; earlier if revoked"
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S7",
+     "S5",
+     "S6"
+    ]
+   },
+   "gaps": [
+    "order text is held only as a transcription or page scan; the operative clause relied on should be checked against an official printing",
+    "41 Stat. 1359 governs Acts, joint resolutions and proclamations, not an executive order's own words, so March 3, 1921 is not used as the date."
+   ]
+  },
+  {
+   "branch_id": "B18",
+   "description": "Alien Property Custodian sale, rejection-of-bids, resale and release determinations (including Frank L. Polk's orders under EO 3016): single authorizations exhausted only when the act was done.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "field": "x1_type",
+       "in": [
+        "alien_property_sale"
+       ]
+      },
+      {
+       "field": "instrument_id",
+       "in": [
+        "EO:3016C",
+        "EO:3016E",
+        "EO:3016G",
+        "EO:3016P",
+        "EO:3016Q"
+       ]
+      }
+     ]
+    },
+    {
+     "any_regex": "trading with|custodian|enemy"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "single_authorization_performance_unrecorded",
+    "basis_kind": "NONE",
+    "basis": "The order authorizes (or directs) one disposition of named property under sec. 12 of the Trading with the Enemy Act and sets no deadline. It is spent when the sale, rejection, resale or release is made, but no held record shows that it was made. The Trading with the Enemy Act is excepted from the 1921 resolution and is still law, and the later transfers of the Custodian's functions (EO 6694, 9095, 9788; the 1966 abolition of the Office of Alien Property) moved the functions without extinguishing authorizations, so no class event ends an unexercised authorization.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M13",
+     "M12",
+     "M11"
+    ],
+    "source_ids": [
+     "S17",
+     "S18",
+     "S15",
+     "S16",
+     "S7"
+    ]
+   },
+   "gaps": [
+    "The Custodian's report for 1918 to Feb. 15, 1919 and the annual reports for 1919-1934 (S17) would show the sale or rejection for each trust; until one is held the order stays open.",
+    "Property returned under the Settlement of War Claims Act of 1928 (45 Stat. 254; not held) would make an unexercised authorization moot; that would need its own evidence.",
+    "Orders covering several lots or properties need one end per lot.",
+    "EO 2832 is a general rule (private sale of merchandise in lots worth no more than $10,000), not a single authorization; it ends only by revocation or supersession, which is not held."
+   ]
+  },
+  {
+   "branch_id": "B19",
+   "description": "Other orders under the Trading with the Enemy Act: delegations of powers to the Custodian, the Treasury, the Attorney General and the War Trade Board, and general rules.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "wwi_emergency"
+     ]
+    },
+    {
+     "text_regex": "trading.with.the.enemy|trading-with-the-enemy"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "twea_excepted_continuing",
+    "basis_kind": "NONE",
+    "basis": "The Trading with the Enemy Act is excepted from the 1921 resolution and remains in force; the order's delegations were carried forward by later transfers rather than ended, and no held instrument revokes it.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M11",
+     "M12"
+    ],
+    "source_ids": [
+     "S1",
+     "S15"
+    ]
+   },
+   "gaps": [
+    "A revocation or supersession of each delegation (for example by EO 6694 of 1934, EO 9095 of 1942 or later delegations under sec. 5(b)) must be found and read; EO 6694's text is not held. EO 2729-A is a multi-part order whose Censorship Board part was ended by EO 3132 and whose War Trade Board part ended with the Board (B11-B12); its other parts remain open."
+   ]
+  },
+  {
+   "branch_id": "B20",
+   "description": "Eight-hour-law suspensions or waivers for named work, contracts or agencies.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "labor_hours_suspension"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "suspension_completion_unrecorded",
+    "basis_kind": "NONE",
+    "basis": "Each order suspends the eight-hour law for named construction, contracts or purchase orders (EO 2656, 2663, 2678, 2769), for an agency's contracts 'during the present national emergency' (EO 2864, 2928), or for Shipping Board repair contracts 'until further order' (EO 3015). The authority (39 Stat. 1192, or sec. 2 of the Act of June 19, 1912) is not contingent on the 1917 war, so the 1921 resolution does not reach it; completion of the work, or the end of the 'present national emergency' an executive order speaks of, is not recorded.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M14",
+     "M11"
+    ],
+    "source_ids": [
+     "S19",
+     "S1"
+    ]
+   },
+   "gaps": [
+    "Completion records for the Post Office equipment shops (Washington), the Treasury buildings at 500-508 Fourteenth Street NW, the Alaska Railroad car contracts and the D.C. fuel yards; a revoking order for EO 3015; an instrument fixing the end of the 'present national emergency' for EOs 2864 and 2928."
+   ]
+  },
+  {
+   "branch_id": "B21",
+   "description": "Single acts and transfers whose performance is not recorded: seizure or transfer of named vessels, piers and transports, appraisal boards, transfers of records, property and funds, disposal of materials, and the CPI transfer itself.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2651",
+      "EO:2653",
+      "EO:2692A",
+      "EO:2748",
+      "EO:2859A",
+      "EO:3021",
+      "EO:3145",
+      "EO:3154",
+      "EO:3396",
+      "EO:3426",
+      "EO:3462",
+      "EO:3549",
+      "EO:3570",
+      "EO:3580",
+      "EO:3086B",
+      "EO:3012",
+      "EO:3296",
+      "EO:2952",
+      "EO:2912"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "single_act_performance_unrecorded",
+    "basis_kind": "NONE",
+    "basis": "The order commands a single act (take over a vessel, transfer piers, ships, records or funds, appoint an appraisal board) or a continuing custody arrangement; it is spent only when performed, and no held record shows performance and its date.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Shipping Board and Navy annual reports (vessels, piers, transports), NARA administrative histories (records transfers), and the Housing Corporation's reports (EO 2912, 2952, 3296) would show performance. EO 2859-A has no held text."
+   ]
+  },
+  {
+   "branch_id": "B99",
+   "description": "Catch-all: agencies and government corporations that continued under later liquidation (Grain Corporation EO 2681 and 3320; U.S. Housing Corporation EO 2985-A, 3408), radio and cable control (2585, 2605-A, 2604), the consular-fee order 'during the continuance of the war and until further orders' (2826), and other continuing war orders (2616, 2645, 2687, 2874, 2888, 3017, 3053-A).",
+   "when": [],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "no_class_rule",
+    "basis_kind": "NONE",
+    "basis": "No ending basis that reaches the order is held: its authority is not shown to have ended with a statute that reached it, or it created a body whose dissolution date is not held, or its own term is ambiguous.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M11"
+    ],
+    "source_ids": [
+     "S1"
+    ]
+   },
+   "gaps": [
+    "Grain Corporation and Housing Corporation dissolution records; the return of radio stations and the end of cable censorship; the naval emergency fund's and the Act of July 18, 1918's own termination clauses (EO 2687, 3017); the Act of Apr. 22, 1918's text (EO 2888, which may fall under B14); reading of EO 2826's 'and until further orders'."
+   ]
+  }
+ ],
+ "undecidable": [
+  {
+   "reason": "Alien Property Custodian authorizations to sell, reject bids, resell or release: whether and when each act was done is in the Custodian's reports, not held (148 members).",
+   "detected_by": "B18"
+  },
+  {
+   "reason": "Trading with the Enemy Act delegations and general rules: the Act is excepted from the 1921 resolution and still in force; supersession of each delegation not yet read.",
+   "detected_by": "B19"
+  },
+  {
+   "reason": "Eight-hour suspensions: completion of the work, or the end of an executive order's 'present national emergency', not recorded.",
+   "detected_by": "B20"
+  },
+  {
+   "reason": "Single acts and transfers whose performance is not recorded.",
+   "detected_by": "B21"
+  },
+  {
+   "reason": "Bodies continued in liquidation, communications control, ambiguous own terms, statutes whose termination clause is not yet read.",
+   "detected_by": "B99"
+  },
+  {
+   "reason": "Misclassified members and a text conflict.",
+   "detected_by": "B01, B02"
+  }
+ ]
+}

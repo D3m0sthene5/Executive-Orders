@@ -1,0 +1,3631 @@
+{
+ "schema": "pothier-family-doctrine/v1",
+ "doctrine_id": "PD-INDIAN",
+ "family": "Indian reservation orders and trust-period extensions (X1 type indian_reservation_trust), 1905-1936",
+ "version": 1,
+ "members": {
+  "field": "x1_type",
+  "in": [
+   "indian_reservation_trust"
+  ]
+ },
+ "mechanisms": [
+  {
+   "id": "M1",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "A trust-extension order extends the trust period on named allotments, or on all allotments whose period expires in a stated year or on a stated date, for a stated number of years. Its operation ends when that extended period runs out.",
+   "effective_date_rule": "Stated expiry year (or date) plus the stated number of years; an interval covering the calendar year(s) in which the extended periods end, widened to the order date plus the period where the text does not say the extension runs from expiry.",
+   "source_ids": [
+    "S-GAA",
+    "S-1906"
+   ]
+  },
+  {
+   "id": "M2",
+   "kind": "statute",
+   "effect": "continuity_only",
+   "description": "IRA sec. 2 (1934) extended and continued every trust period then running \"until otherwise directed by Congress\", except for the Oklahoma tribes listed in sec. 13 and reservations that voted to exclude themselves under sec. 18. It continues the trust by statute; it does not name, amend or continue any executive order, and it is not an end of one.",
+   "effective_date_rule": "1934-06-18; no date for any member.",
+   "source_ids": [
+    "S-IRA",
+    "S-5102",
+    "S-CFRAPP"
+   ]
+  },
+  {
+   "id": "M3",
+   "kind": "statute",
+   "effect": "continuity_only",
+   "description": "For reservations that voted to exclude themselves from the IRA, the Act of June 15, 1935, sec. 3, extended unextended trust periods to December 31, 1936; later blanket orders (EO 7464 and its annual successors to EO 10191) and Interior orders to 1988 extended them further. Each is a new instrument running from the expiry of the period it extends.",
+   "effective_date_rule": "None for any member.",
+   "source_ids": [
+    "S-1935",
+    "S-EO7464",
+    "S-CFRAPP"
+   ]
+  },
+  {
+   "id": "M4",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "A temporary withdrawal \"until\" a stated date, in aid of proposed legislation, ends on that date by its own terms (the lands then \"become subject to disposal ... without further order\"), or earlier if Congress legislates or the President directs otherwise.",
+   "effective_date_rule": "The stated date.",
+   "source_ids": []
+  },
+  {
+   "id": "M5",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "A later executive order that names the member and cancels, revokes or supersedes it ends it.",
+   "effective_date_rule": "The date of the later order.",
+   "source_ids": [
+    "S-EO324A",
+    "S-EO1296",
+    "S-EO1649",
+    "S-EO2524",
+    "S-EO2332",
+    "S-EO3637",
+    "S-EO5843",
+    "S-EO6147"
+   ]
+  },
+  {
+   "id": "M6",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "An order whose only command restores lands to the public domain, eliminates lands from a reservation, amends or partly revokes another order, or confirms a single entry is spent on issue as a command; its effect is evidence for the lifecycle of the order or reservation it changed.",
+   "effective_date_rule": "The order date.",
+   "source_ids": []
+  },
+  {
+   "id": "M7",
+   "kind": "statute",
+   "effect": "lead_only",
+   "description": "From 1919-06-30 no new executive-order reservation could be made, and from 1927-03-03 the boundaries of executive-order reservations could be changed only by Act of Congress. A standing reservation order therefore persists until a later executive order (before 1927-03-03) or a statute changes or ends it; these statutes end nothing themselves and tell where to look.",
+   "effective_date_rule": "None.",
+   "source_ids": [
+    "S-1919",
+    "S-1927",
+    "S-398d",
+    "S-SIOUX"
+   ]
+  },
+  {
+   "id": "M8",
+   "kind": "review_program",
+   "effect": "persists",
+   "description": "A regulation in force on the cutoff that identifies the reservation as the one the order established is a current-law predicate that the order's operative effect, the reservation, was in force on 2026-10-14.",
+   "effective_date_rule": "None (in force on the cutoff).",
+   "source_ids": [
+    "S-KALISPEL"
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S-GAA",
+   "citation": "Act of February 8, 1887 (General Allotment Act), ch. 119, sec. 5, 24 Stat. 388, 389",
+   "title": "General Allotment Act, section 5: 25-year trust and the President's power to extend it",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-24/pdf/STATUTE-24-Pg388.pdf",
+   "held": false,
+   "establishes": "The United States holds an allotment in trust for twenty-five years, and \"the President of the United States may in any case in his discretion extend the period\" (24 Stat. 389, read on govinfo 2026-11-05).",
+   "held_path": ""
+  },
+  {
+   "id": "S-1906",
+   "citation": "Act of June 21, 1906, ch. 3504, 34 Stat. 325, 326",
+   "title": "Indian appropriation act for fiscal year 1907: President may continue restrictions on alienation before the trust period expires",
+   "url": "https://archive.org/download/bwb_S0-DZH-184_4/bwb_S0-DZH-184_4_djvu.xml",
+   "held": true,
+   "held_path": "jobs/numbered-early-orders/output/books/KAPPLER_III_pages.jsonl.gz",
+   "sha256": "64716cbce8caf0001bf5430e47edb13129971c506f5c1a9c1a4fe3eb515523ed",
+   "pin": "President may in his discretion continue such restrictions on alien-",
+   "establishes": "Kappler vol. III, printed page 193 (gzip JSON lines, image 201): prior to the expiration of the trust period the President may continue restrictions on alienation \"for such period as he may deem best\"; the authority cited by most members. (The url field gives the Kappler vol. IV item; the vol. III item is recorded in jobs/numbered-early-orders/output/books/KAPPLER_III.json.)"
+  },
+  {
+   "id": "S-IRA",
+   "citation": "Act of June 18, 1934 (Indian Reorganization Act), ch. 576, secs. 2, 13, 18, 48 Stat. 984, 984, 986-987, 988",
+   "title": "Indian Reorganization Act",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-48/pdf/STATUTE-48-Pg984.pdf",
+   "held": false,
+   "establishes": "Sec. 2 (p. 984): \"The existing periods of trust placed upon any Indian lands and any restriction on alienation thereof are hereby extended and continued until otherwise directed by Congress.\" Sec. 13 (pp. 986-987) makes sec. 2 inapplicable to listed Oklahoma tribes; sec. 18 (p. 988) makes the Act inapplicable to a reservation whose adult Indians vote against it at an election called within one year. Read on govinfo 2026-11-05.",
+   "held_path": ""
+  },
+  {
+   "id": "S-5102",
+   "citation": "25 U.S.C. 5102 (formerly 25 U.S.C. 462)",
+   "title": "Existing periods of trust extended (current Code)",
+   "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title25-section5102&num=0&edition=prelim",
+   "held": false,
+   "establishes": "Current Code text of IRA sec. 2, source credit June 18, 1934, ch. 576, sec. 2, 48 Stat. 984 (read on law.cornell.edu 2026-11-05; uscode.house.gov refused the fetch). It continues trust periods by statute; it does not name or continue any executive order.",
+   "held_path": ""
+  },
+  {
+   "id": "S-1935",
+   "citation": "Act of June 15, 1935, ch. 260, sec. 3, 49 Stat. 378",
+   "title": "Election procedure under the IRA; trust periods on excluded reservations extended to December 31, 1936",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-49/pdf/STATUTE-49-Pg378.pdf",
+   "held": false,
+   "establishes": "Sec. 3: where a trust period had not been extended past December 31, 1936 and the reservation voted or votes to exclude itself from the IRA, \"the periods of trust or the restrictions on alienation of such lands are hereby extended to December 31, 1936.\" Read on govinfo 2026-11-05.",
+   "held_path": ""
+  },
+  {
+   "id": "S-EO7464",
+   "citation": "Executive Order 7464, September 30, 1936, 1 FR 1507",
+   "title": "Extending certain periods of trust on Indian lands (a member of this family)",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-7464-extending-certain-periods-trust-indian-lands",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7464-extending-certain-periods-trust-indian-lands.txt",
+   "sha256": "83a8bcd62e865da9787eb48339bd992e714af9ce819e336ba241792fba909e91",
+   "pin": "extended in each case for a further period of 25 years",
+   "establishes": "An example of the later blanket orders: trusts expiring December 31, 1936 or during 1937 were extended by a new order for 25 years from their own expiry, without amending the earlier tribe-by-tribe orders."
+  },
+  {
+   "id": "S-CFRAPP",
+   "citation": "25 CFR chapter I, Appendix: Extension of the Trust or Restricted Status of Certain Indian Lands",
+   "title": "Current CFR list of orders and Acts continuing trust periods",
+   "url": "https://www.ecfr.gov/current/title-25/chapter-I/appendix-Appendix%20to%20Chapter%20I",
+   "held": false,
+   "establishes": "A current official list (read on law.cornell.edu and customsmobile.com 2026-11-05; the project holds only search excerpts in jobs/current-law/output/FRAGMENTS.jsonl) citing these extension orders reservation by reservation, marking IRA reservations whose trust is \"extended indefinitely\" by the IRA, and listing the general orders from EO 6498 (1933) to EO 10191 (1950) and Interior orders to 53 FR 30674 (1988). It is a citation list of past extensions, not a statement that any order is in force.",
+   "held_path": ""
+  },
+  {
+   "id": "S-1919",
+   "citation": "Act of June 30, 1919, ch. 4, sec. 27, 41 Stat. 3 (sec. 27 on p. 34 per the coordinator lead; pinpoint unverified)",
+   "title": "No new executive-order Indian reservations",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-41/pdf/STATUTE-41-Pg3.pdf",
+   "held": true,
+   "held_path": "jobs/numbered-early-orders/output/books/KAPPLER_IV_pages.jsonl.gz",
+   "sha256": "dc2c1f289678a7f3c680ca22c34fb2d511b13f98d868d196afd0f8533708cf63",
+   "pin": "or as an Indian reservation except by act of Congress.",
+   "establishes": "Kappler vol. IV printed page 225 (image 235): \"hereafter no public lands of the United States shall be withdrawn by Executive Order, proclamation, or otherwise, for or as an Indian reservation except by act of Congress.\" It bars new orders; it does not end existing ones."
+  },
+  {
+   "id": "S-1927",
+   "citation": "Act of March 3, 1927, ch. 299, sec. 4, 44 Stat. 1347 (25 U.S.C. 398d)",
+   "title": "Boundaries of executive-order reservations changeable only by Act of Congress",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-44/pdf/STATUTE-44-Pg1347.pdf",
+   "held": true,
+   "held_path": "jobs/numbered-early-orders/output/books/KAPPLER_IV_pages.jsonl.gz",
+   "sha256": "dc2c1f289678a7f3c680ca22c34fb2d511b13f98d868d196afd0f8533708cf63",
+   "pin": "That hereafter changes in the boundaries of reservations",
+   "establishes": "Kappler vol. IV printed page 936 (image 610): changes in the boundaries of reservations created by Executive order \"for the use and occupation of Indians shall not be made except by Act of Congress\", with a proviso for temporary withdrawals by the Secretary of the Interior. From 1927-03-03 a member reservation could be reduced or ended only by statute. It ends nothing."
+  },
+  {
+   "id": "S-398d",
+   "citation": "25 U.S.C. 398d, as amended by Pub. L. 94-579, sec. 704(a), 90 Stat. 2792 (1976)",
+   "title": "Current Code text of the 1927 rule",
+   "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title25-section398d&num=0&edition=prelim",
+   "held": false,
+   "establishes": "The 1927 rule remains current law; FLPMA sec. 704(a) struck the temporary-withdrawal proviso (read on law.cornell.edu 2026-11-05).",
+   "held_path": ""
+  },
+  {
+   "id": "S-SIOUX",
+   "citation": "Sioux Tribe of Indians v. United States, 316 U.S. 317, 331 (1942)",
+   "title": "Nature of executive-order reservations",
+   "url": "https://tile.loc.gov/storage-services/service/ll/usrep/usrep316/usrep316317/usrep316317.pdf",
+   "held": false,
+   "establishes": "Before 1927 the Indians' interest in an executive-order reservation was \"subject to termination at the will of either the executive or Congress\" (316 U.S. at 331, read on justia.com 2026-11-05): such reservations were revocable, so their status turns on later instruments, not on any class-wide end.",
+   "held_path": ""
+  },
+  {
+   "id": "S-KALISPEL",
+   "citation": "40 CFR 49.10198(b) (added 84 FR 34313, July 18, 2019)",
+   "title": "Kalispel Reservation designated a Class I air-quality area",
+   "url": "https://www.ecfr.gov/on/2026-10-14/title-40/section-49.10198",
+   "held": true,
+   "held_path": "jobs/current-law/output/MENTIONS.csv",
+   "sha256": "0af2d6b227dee12f2925791b78a28657a70090898bc091d5b84c2f0b755aeb74",
+   "pin": "Kalispel Reservation, as established by Executive Order No. 1904",
+   "establishes": "A regulation in force on 2026-10-14 (eCFR point-in-time search excerpt held in MENTIONS.csv; full text read on law.cornell.edu 2026-11-05) designates \"the original Kalispel Reservation, as established by Executive Order No. 1904, signed by President Woodrow Wilson on March 23, 1914\" a Class I area, treating the reservation the order established as existing."
+  },
+  {
+   "id": "S-WHITEEARTH",
+   "citation": "White Earth Reservation Land Settlement Act of 1985, Pub. L. 99-264, sec. 3(i), 100 Stat. 61, 62 (1986) (25 U.S.C. 331 note)",
+   "title": "Statutory construction of EO 4642, 5768 and 5953",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-100/pdf/STATUTE-100-Pg61.pdf",
+   "held": false,
+   "establishes": "For the purposes of that Act, EO 4642, 5768 and 5953 \"shall be deemed to have extended trust periods on all allotments\" that would otherwise have expired in 1927, 1932 or 1933 (read on govinfo 2026-11-05). The provision fixes the orders' past effect; it does not continue them.",
+   "held_path": ""
+  },
+  {
+   "id": "S-KENAI",
+   "citation": "43 U.S.C. 1784 note (Kenai Natives Association Land Exchange)",
+   "title": "Statutory note naming \"Executive Order 2943\"",
+   "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title43-section1784&num=0&edition=prelim",
+   "held": true,
+   "held_path": "jobs/current-law/output/MENTIONS.csv",
+   "sha256": "0af2d6b227dee12f2925791b78a28657a70090898bc091d5b84c2f0b755aeb74",
+   "pin": "withdrawn by Executive Order 2943 and known as the old Fish and Wildlife Service Headquarters site",
+   "establishes": "The note describes a tract in Kenai, Alaska \"withdrawn by Executive Order 2943\"; member EO 2943 is a one-year trust extension for Klamath River allottees in California, so the note refers to some other instrument (identity unverified) and is no predicate for this member."
+  },
+  {
+   "id": "S-EO324A",
+   "citation": "Executive Order 324-A, May 1905 (Kappler III 690; IR 1912 p. 19)",
+   "title": "Cancels the Navajo (Utah) addition of March 10, 1905",
+   "url": "https://hdl.handle.net/2027/coo1.ark:/13960/t9q254654",
+   "held": true,
+   "held_path": "jobs/indian-reservations-1912/output/texts/1905-05_IR1912-p19-1_navajo-reservation.txt",
+   "sha256": "8b889beb9939600f56f24a40465ffbf3454cf909b1be36068f1c77e03858212c",
+   "pin": "The Executive order of March 10, 1905, setting apart",
+   "establishes": "\"The Executive order of March 10, 1905, setting apart certain lands in Utah as an addition to the Navaho Indian Reservation, is hereby canceled\" (the Wikisource copy jobs/wikisource-texts/output/texts/EO_324A.txt dates it May 15, 1905)."
+  },
+  {
+   "id": "S-EO1296",
+   "citation": "Executive Order 1296, February 2, 1911 (WPA date February 1)",
+   "title": "Cancels EO 1267 (Fort Mojave addition)",
+   "url": "https://hdl.handle.net/2027/coo1.ark:/13960/t9q254654",
+   "held": true,
+   "held_path": "jobs/indian-reservations-1912/output/texts/1911-02-02_IR1912-p13-3_fort-mojave-reservation.txt",
+   "sha256": "b2c43baf47a4b3b07815b7dd68800bf5800f581b028a9c03164af6a2da9a2f6f",
+   "pin": "It is hereby ordered that Executive Order No. 1267, dated Decem-",
+   "establishes": "EO 1267 of December 1, 1910 \"be, and the same is hereby, cancelled\"."
+  },
+  {
+   "id": "S-EO1649",
+   "citation": "Executive Order 1649, November 26, 1912",
+   "title": "Cancels EO 1632 (Moapa River addition)",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-1649-altering-lands-composing-the-moapa-river-indian-reservation",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-1649-altering-lands-composing-the-moapa-river-indian-reservation.txt",
+   "sha256": "5fa329310fa32053303777f5e4ff762c185a3b61086788aa5206d0e80667ced4",
+   "pin": "Executive Order number 1632, dated October 28, 1912",
+   "establishes": "EO 1632 \"is hereby cancelled\" and other lands are added in its place."
+  },
+  {
+   "id": "S-EO2524",
+   "citation": "Executive Order 2524, February 1, 1917",
+   "title": "Revokes the Papago withdrawals of June 16, 1911, December 5, 1912 and January 14, 1916",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-2524-reserving-certain-lands-the-state-arizona-for-the-papago-indians",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-2524-reserving-certain-lands-the-state-arizona-for-the-papago-indians.txt",
+   "sha256": "0c77679f3d2f2ce8579f693e25fc314809e834d52e158581526eb02b16b134b9",
+   "pin": "December 5, 1912, and January 14, 1916",
+   "establishes": "The orders of June 16, 1911, December 5, 1912 (EO 1655) and January 14, 1916 \"be, and the same hereby are, revoked\" (also printed in Kappler IV p. 1005)."
+  },
+  {
+   "id": "S-EO2332",
+   "citation": "Executive Order 2332, February 29, 1916",
+   "title": "Revokes EO 1228 (Siletz withdrawal)",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-2332-former-siletz-indian-reservation",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-2332-former-siletz-indian-reservation.txt",
+   "sha256": "5c24f8803ec88783fb23a4bd87001a9ab4ef60dba6de8275840b85ea5a7021a1",
+   "pin": "Executive Order No. 1228",
+   "establishes": "EO 1228 of July 13, 1910, as modified by EO 2223, \"is hereby revoked\", the lands to be open to entry on and after April 1, 1916 (also Kappler IV p. 1045)."
+  },
+  {
+   "id": "S-EO3637",
+   "citation": "Executive Order 3637, February 16, 1922",
+   "title": "Supersedes EO 3351 (Zia Pueblo withdrawal)",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-3637-zia-pubelo-new-mexico",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-3637-zia-pubelo-new-mexico.txt",
+   "sha256": "172dee433a5ab981be7dc51d70d7fe6eaf518718d5df03d051aa43108ddd2882",
+   "pin": "This order supersedes and takes the place of Executive Order No. 3351",
+   "establishes": "\"This order supersedes and takes the place of Executive Order No. 3351, dated November 6, 1920\"; its own withdrawal runs \"until March 5, 1924\"."
+  },
+  {
+   "id": "S-EO5843",
+   "citation": "Executive Order 5843, April 28, 1932",
+   "title": "Revokes EO 1529",
+   "url": "https://archive.org/details/4731703.proc.002.umich.edu",
+   "held": true,
+   "held_path": "jobs/ofr-compilations/output/texts/EO_5843.txt",
+   "sha256": "2e679ade54c006514d7c95260376312e42b3ebe2afd3257ae4488043651bf30d",
+   "pin": "REVOCATION OF EXECUTIVE ORDER No. 1529 OF MAY 9 , 1912",
+   "establishes": "Executive Order No. 1529 of May 9, 1912, which temporarily reserved lands until their suitability for allotment could be investigated, \"is hereby revoked\"."
+  },
+  {
+   "id": "S-EO6147",
+   "citation": "Executive Order 6147, May 26, 1933",
+   "title": "Revokes EO 6131",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-6147-emergency-conservation-work-upon-indian-reservations",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6147-emergency-conservation-work-upon-indian-reservations.txt",
+   "sha256": "7cfec0c4d97e5b0fff361e4ee0910bdf82aa6243cb2689d2ebc558c68a47b88a",
+   "pin": "Executive Order No. 6131, dated May 12, 1933, is hereby revoked",
+   "establishes": "EO 6131 \"is hereby revoked\"."
+  }
+ ],
+ "procedure": [
+  {
+   "branch_id": "B01-KALISPEL",
+   "description": "EO 1904 (Kalispel Reservation): a current regulation identifies the reservation the order established.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1904"
+     ]
+    },
+    {
+     "text_regex": "reservation for the Kalispel"
+    }
+   ],
+   "lead": {
+    "status_lead": "yes",
+    "lead_kind": "persists_reservation_named_in_current_regulation",
+    "basis_kind": "CURRENT",
+    "basis": "40 CFR 49.10198(b), in force on 2026-10-14, designates \"the original Kalispel Reservation, as established by Executive Order No. 1904\" a Class I area; the regulation treats the reservation the order created as existing.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M8",
+     "M7"
+    ],
+    "source_ids": [
+     "S-KALISPEL",
+     "S-1927"
+    ]
+   },
+   "gaps": [
+    "Full text of 40 CFR 49.10198 as of 2026-10-14 is held only as a search excerpt in jobs/current-law/output/MENTIONS.csv; acquire the section text.",
+    "The member text is an archival scan (OCR); the regulation, not the scan, carries the lead."
+   ]
+  },
+  {
+   "branch_id": "B02-ACT-302A",
+   "description": "EO:302A: ended by a later held order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:302A"
+     ]
+    },
+    {
+     "any_regex": "Navaj?ho"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order_naming_it",
+    "basis_kind": "ACT",
+    "basis": "Cancelled by EO 324-A (May 1905), which names \"the Executive order of March 10, 1905\".",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1905-05-01",
+     "to": "1905-05-31",
+     "basis": "EO 324-A is dated May 1905 (WPA, IR 1912; May 15, 1905 in the Wikisource copy)."
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S-EO324A"
+    ]
+   },
+   "gaps": [
+    "The revoking order is held only as a transcription or compiled copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-ACT-1267",
+   "description": "EO:1267: ended by a later held order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1267"
+     ]
+    },
+    {
+     "any_regex": "Mojave"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order_naming_it",
+    "basis_kind": "ACT",
+    "basis": "Cancelled by EO 1296, which names EO 1267.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1911-02-01",
+     "to": "1911-02-02",
+     "basis": "EO 1296 is printed as February 2, 1911; the WPA list dates it February 1, 1911."
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S-EO1296"
+    ]
+   },
+   "gaps": [
+    "The revoking order is held only as a transcription or compiled copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-ACT-1632",
+   "description": "EO:1632: ended by a later held order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1632"
+     ]
+    },
+    {
+     "any_regex": "Moapa"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order_naming_it",
+    "basis_kind": "ACT",
+    "basis": "Cancelled by EO 1649 (November 26, 1912), which names EO 1632.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1912-11-26",
+     "basis": "date of EO 1649"
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S-EO1649"
+    ]
+   },
+   "gaps": [
+    "The revoking order is held only as a transcription or compiled copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-ACT-1655",
+   "description": "EO:1655: ended by a later held order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1655"
+     ]
+    },
+    {
+     "any_regex": "Papago"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order_naming_it",
+    "basis_kind": "ACT",
+    "basis": "Revoked by EO 2524 (February 1, 1917), which revokes the Papago order of December 5, 1912 (EO 1655).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1917-02-01",
+     "basis": "date of EO 2524"
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S-EO2524"
+    ]
+   },
+   "gaps": [
+    "The revoking order is held only as a transcription or compiled copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-ACT-1228",
+   "description": "EO:1228: ended by a later held order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1228"
+     ]
+    },
+    {
+     "any_regex": "Siletz"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order_naming_it",
+    "basis_kind": "ACT",
+    "basis": "Revoked by EO 2332 (February 29, 1916), which names EO 1228 of July 13, 1910.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1916-02-29",
+     "basis": "date of EO 2332"
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S-EO2332"
+    ]
+   },
+   "gaps": [
+    "The revoking order is held only as a transcription or compiled copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-ACT-1529",
+   "description": "EO:1529: ended by a later held order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1529"
+     ]
+    },
+    {
+     "any_regex": "Paiute"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order_naming_it",
+    "basis_kind": "ACT",
+    "basis": "Revoked by EO 5843 (April 28, 1932), which names EO 1529 of May 9, 1912.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1932-04-28",
+     "basis": "date of EO 5843"
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S-EO5843"
+    ]
+   },
+   "gaps": [
+    "The revoking order is held only as a transcription or compiled copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-ACT-3351",
+   "description": "EO:3351: ended by a later held order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3351"
+     ]
+    },
+    {
+     "any_regex": "March 5"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order_naming_it",
+    "basis_kind": "ACT",
+    "basis": "Superseded by EO 3637 (February 16, 1922), which \"supersedes and takes the place of Executive Order No. 3351\"; its own withdrawal ran only until March 5, 1922 in any case.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1922-02-16",
+     "basis": "date of EO 3637; the order's own term would have ended 1922-03-05"
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S-EO3637"
+    ]
+   },
+   "gaps": [
+    "The revoking order is held only as a transcription or compiled copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-ACT-6131",
+   "description": "EO:6131: ended by a later held order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6131"
+     ]
+    },
+    {
+     "any_regex": "fund|Fund"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order_naming_it",
+    "basis_kind": "ACT",
+    "basis": "Revoked by EO 6147 (May 26, 1933), which names EO 6131.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-05-26",
+     "basis": "date of EO 6147"
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S-EO6147"
+    ]
+   },
+   "gaps": [
+    "The revoking order is held only as a transcription or compiled copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B03-TERM-3307",
+   "description": "EO:3307: temporary withdrawal in aid of legislation until a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3307"
+     ]
+    },
+    {
+     "text_regex": "temporarily withdrawn.{0,120}until March"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "temporary_withdrawal_ended_on_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order withdraws the lands \"until\" 1921-03-05 in aid of proposed legislation and states that, absent legislation or other direction, they become subject to disposal on that date without further order; at the latest the withdrawal ended then (earlier if Congress legislated or another order disposed of the lands).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1921-03-05",
+     "basis": "date stated in the order (upper bound of the end)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Whether legislation or another direction ended the withdrawal earlier is not held; it would move the date earlier, not change the lead.",
+    "No held instrument extends this order itself; a later re-withdrawal of the same lands (as EO of May 3, 1921 did for the EO 3307 lands, Kappler IV p. 1048) is a new order."
+   ]
+  },
+  {
+   "branch_id": "B03-TERM-3637",
+   "description": "EO:3637: temporary withdrawal in aid of legislation until a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3637"
+     ]
+    },
+    {
+     "text_regex": "temporarily withdrawn.{0,200}until March 5, 1924"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "temporary_withdrawal_ended_on_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order withdraws the lands \"until\" 1924-03-05 in aid of proposed legislation and states that, absent legislation or other direction, they become subject to disposal on that date without further order; at the latest the withdrawal ended then (earlier if Congress legislated or another order disposed of the lands).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1924-03-05",
+     "basis": "date stated in the order (upper bound of the end)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Whether legislation or another direction ended the withdrawal earlier is not held; it would move the date earlier, not change the lead.",
+    "No held instrument extends this order itself; a later re-withdrawal of the same lands (as EO of May 3, 1921 did for the EO 3307 lands, Kappler IV p. 1048) is a new order."
+   ]
+  },
+  {
+   "branch_id": "B03-TERM-4041",
+   "description": "EO:4041: temporary withdrawal in aid of legislation until a stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4041"
+     ]
+    },
+    {
+     "text_regex": "temporarily withdrawn.{0,200}until March 5, 1925"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "temporary_withdrawal_ended_on_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order withdraws the lands \"until\" 1925-03-05 in aid of proposed legislation and states that, absent legislation or other direction, they become subject to disposal on that date without further order; at the latest the withdrawal ended then (earlier if Congress legislated or another order disposed of the lands).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1925-03-05",
+     "basis": "date stated in the order (upper bound of the end)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Whether legislation or another direction ended the withdrawal earlier is not held; it would move the date earlier, not change the lead.",
+    "No held instrument extends this order itself; a later re-withdrawal of the same lands (as EO of May 3, 1921 did for the EO 3307 lands, Kappler IV p. 1048) is a new order."
+   ]
+  },
+  {
+   "branch_id": "B04-OUT-LAND-DISTRICT",
+   "description": "Land-district and land-office administration orders (lands inside reservations transferred between districts, districts abolished). Not an Indian reservation or trust order; route to the doctrine for its kind.",
+   "when": [
+    {
+     "summary_regex": "[Ll]and ?Dis ?trict"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "outside_family_land_district_administration",
+    "basis_kind": "NONE",
+    "basis": "The order is misfiled in this family (X1 type indian_reservation_trust); its lifecycle follows the rules for its own kind, which this doctrine does not decide.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Needs the doctrine for its own kind (PD-ADMIN, PD-CS-RULES or PD-LAND-WITHDRAWAL) or individual review."
+   ]
+  },
+  {
+   "branch_id": "B04-OUT-CS-RULES",
+   "description": "Civil Service Rules amendment (Neopit mills employees). Not an Indian reservation or trust order; route to the doctrine for its kind.",
+   "when": [
+    {
+     "summary_regex": "Civil Service Rules"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "outside_family_civil_service_rules",
+    "basis_kind": "NONE",
+    "basis": "The order is misfiled in this family (X1 type indian_reservation_trust); its lifecycle follows the rules for its own kind, which this doctrine does not decide.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Needs the doctrine for its own kind (PD-ADMIN, PD-CS-RULES or PD-LAND-WITHDRAWAL) or individual review."
+   ]
+  },
+  {
+   "branch_id": "B04-OUT-ECW",
+   "description": "Emergency Conservation Work fund and personnel orders. Not an Indian reservation or trust order; route to the doctrine for its kind.",
+   "when": [
+    {
+     "summary_regex": "Fund of \\$|Civilian ?Con ?servation|Emergency Conservation|conserva ?tion work"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "outside_family_emergency_conservation_work",
+    "basis_kind": "NONE",
+    "basis": "The order is misfiled in this family (X1 type indian_reservation_trust); its lifecycle follows the rules for its own kind, which this doctrine does not decide.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Needs the doctrine for its own kind (PD-ADMIN, PD-CS-RULES or PD-LAND-WITHDRAWAL) or individual review."
+   ]
+  },
+  {
+   "branch_id": "B04-OUT-RECLAMATION",
+   "description": "Fort Shaw school lands withdrawn for the Reclamation Service until no longer needed. Not an Indian reservation or trust order; route to the doctrine for its kind.",
+   "when": [
+    {
+     "summary_regex": "Reclamation Service"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "outside_family_reclamation_withdrawal",
+    "basis_kind": "NONE",
+    "basis": "The order is misfiled in this family (X1 type indian_reservation_trust); its lifecycle follows the rules for its own kind, which this doctrine does not decide.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Needs the doctrine for its own kind (PD-ADMIN, PD-CS-RULES or PD-LAND-WITHDRAWAL) or individual review."
+   ]
+  },
+  {
+   "branch_id": "B04-OUT-MONUMENT",
+   "description": "Temporary withdrawal pending a national monument decision. Not an Indian reservation or trust order; route to the doctrine for its kind.",
+   "when": [
+    {
+     "summary_regex": "national ?monument"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "outside_family_monument_withdrawal",
+    "basis_kind": "NONE",
+    "basis": "The order is misfiled in this family (X1 type indian_reservation_trust); its lifecycle follows the rules for its own kind, which this doctrine does not decide.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Needs the doctrine for its own kind (PD-ADMIN, PD-CS-RULES or PD-LAND-WITHDRAWAL) or individual review."
+   ]
+  },
+  {
+   "branch_id": "B05-SPENT",
+   "description": "Orders whose only command restores lands to the public domain, eliminates lands from a reservation, amends or partly revokes another order, or confirms one erroneously allowed entry.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1000",
+      "EO:1090",
+      "EO:1172",
+      "EO:1284",
+      "EO:628",
+      "EO:3759",
+      "EO:1483",
+      "EO:2030",
+      "EO:1598",
+      "EO:1621",
+      "EO:743",
+      "EO:744",
+      "EO:1406",
+      "EO:1322",
+      "EO:1349",
+      "EO:2332",
+      "EO:3020"
+     ]
+    },
+    {
+     "any_regex": "restored to (?:the )?(?:public domain|status)|amended|eliminat|revoked|confirmed"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue_restoring_or_amending",
+    "basis_kind": "TERM",
+    "basis": "The order performs a single act on issue (restoration, elimination, amendment, partial revocation or confirmation of an entry); as a command it is spent on its date, and its effect is evidence for the lifecycle of the order or reservation it changed (owner rule).",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "EO 2332 opens the lands to entry on and after 1916-04-01; the command is spent on issue, the opening date is its effect.",
+    "EO 1483 also directs action \"upon completion of said exchange\"; that follow-on direction is treated as part of the single restoration.",
+    "EO 3020: the scan label reads \"No. 3024\"; the content (confirmation of entry Glasgow 047076) matches the WPA entry for 3020."
+   ]
+  },
+  {
+   "branch_id": "B06-TRUST-CL-4642",
+   "description": "EO:4642: trust extension named in current law.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4642"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1937-01-01",
+     "to": "1937-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935",
+     "S-WHITEEARTH"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval.",
+    "White Earth Act sec. 3(i) deems EO 4642 to have extended trust periods that would otherwise have expired in 1927; that fixes the order's past effect and does not continue it. The engine flags the current-law mention; it is not a predicate that the order is in force."
+   ]
+  },
+  {
+   "branch_id": "B06-TRUST-CL-5768",
+   "description": "EO:5768: trust extension named in current law.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5768"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1942-01-01",
+     "to": "1942-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935",
+     "S-WHITEEARTH"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval.",
+    "White Earth Act sec. 3(i) deems EO 5768 to have extended trust periods that would otherwise have expired in 1932 (the Act dates it \"December 10, 1931\"; the held text is dated December 30, 1931). The engine flags the current-law mention; it is not a predicate that the order is in force."
+   ]
+  },
+  {
+   "branch_id": "B06-TRUST-CL-5953",
+   "description": "EO:5953: trust extension named in current law.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5953"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1943-01-01",
+     "to": "1943-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935",
+     "S-WHITEEARTH"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval.",
+    "White Earth Act sec. 3(i) deems EO 5953 to have extended trust periods that would otherwise have expired in 1933; that fixes the order's past effect and does not continue it. The engine flags the current-law mention; it is not a predicate that the order is in force."
+   ]
+  },
+  {
+   "branch_id": "B06-TRUST-CL-6498",
+   "description": "EO:6498: trust extension named in current law.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6498"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1944-01-01",
+     "to": "1944-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935",
+     "S-CFRAPP"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval.",
+    "25 CFR chapter I appendix lists EO 6498 as the first general extension order; the appendix is a citation list of past extensions. The engine flags the current-law mention; it is not a predicate that the order is in force."
+   ]
+  },
+  {
+   "branch_id": "B06-TRUST-CL-2943",
+   "description": "EO:2943: trust extension named in current law.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2943"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1919-01-01",
+     "to": "1919-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935",
+     "S-KENAI"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval.",
+    "43 U.S.C. 1784 note names an \"Executive Order 2943\" withdrawing a tract in Kenai, Alaska; that is not this order (a California trust extension). The engine flags the current-law mention; it is not a predicate that the order is in force."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1916-01",
+   "description": "Trust-extension orders whose extended periods end 1916-01-01 to 1916-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2133"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1916-01-01",
+     "to": "1916-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1918-02",
+   "description": "Trust-extension orders whose extended periods end 1918-01-01 to 1918-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2623"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1918-01-01",
+     "to": "1918-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1919-03",
+   "description": "Trust-extension orders whose extended periods end 1919-01-01 to 1919-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2778"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1919-01-01",
+     "to": "1919-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1920-04",
+   "description": "Trust-extension orders whose extended periods end 1920-01-01 to 1920-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3024"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1920-01-01",
+     "to": "1920-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1921-05",
+   "description": "Trust-extension orders whose extended periods end 1921-01-01 to 1921-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3301",
+      "EO:3327"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1921-01-01",
+     "to": "1921-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1923-06",
+   "description": "Trust-extension orders whose extended periods end 1923-01-01 to 1923-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3223"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1923-01-01",
+     "to": "1923-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1924-07",
+   "description": "Trust-extension orders whose extended periods end 1924-01-01 to 1924-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3047",
+      "EO:3048"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1924-01-01",
+     "to": "1924-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1925-08",
+   "description": "Trust-extension orders whose extended periods end 1925-01-01 to 1925-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3302"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1925-01-01",
+     "to": "1925-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1926-09",
+   "description": "Trust-extension orders whose extended periods end 1926-01-01 to 1926-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2432",
+      "EO:2453"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1926-01-01",
+     "to": "1926-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1929-10",
+   "description": "Trust-extension orders whose extended periods end 1926-01-01 to 1929-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2363"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1926-01-01",
+     "to": "1929-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1927-11",
+   "description": "Trust-extension orders whose extended periods end 1927-01-01 to 1927-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2494",
+      "EO:2512",
+      "EO:2580",
+      "EO:2591",
+      "EO:2607",
+      "EO:2684",
+      "EO:2747"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1927-01-01",
+     "to": "1927-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1927-12",
+   "description": "Trust-extension orders whose extended periods end 1927-06-12 to 1927-06-12.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2856"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1927-06-12",
+     "basis": "stated expiry date plus stated period"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1928-13",
+   "description": "Trust-extension orders whose extended periods end 1928-01-01 to 1928-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2795",
+      "EO:2804",
+      "EO:2816",
+      "EO:2927",
+      "EO:2965"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1928-01-01",
+     "to": "1928-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1928-14",
+   "description": "Trust-extension orders whose extended periods end 1928-06-05 to 1928-06-05.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2866"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1928-06-05",
+     "basis": "stated expiry date plus stated period"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1929-15",
+   "description": "Trust-extension orders whose extended periods end 1929-01-01 to 1929-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3110",
+      "EO:3111"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1929-01-01",
+     "to": "1929-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1930-16",
+   "description": "Trust-extension orders whose extended periods end 1930-01-01 to 1930-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3250",
+      "EO:3304",
+      "EO:3312"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1930-01-01",
+     "to": "1930-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1930-17",
+   "description": "Trust-extension orders whose extended periods end 1930-12-18 to 1930-12-28.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3348"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1930-12-18",
+     "to": "1930-12-28",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1931-18",
+   "description": "Trust-extension orders whose extended periods end 1931-01-01 to 1931-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3445",
+      "EO:3446",
+      "EO:3447",
+      "EO:3586"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1931-01-01",
+     "to": "1931-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1932-19",
+   "description": "Trust-extension orders whose extended periods end 1932-01-01 to 1932-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3613",
+      "EO:3614",
+      "EO:3630",
+      "EO:3699"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1932-01-01",
+     "to": "1932-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1934-20",
+   "description": "Trust-extension orders whose extended periods end 1932-01-01 to 1934-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3722"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1932-01-01",
+     "to": "1934-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1933-21",
+   "description": "Trust-extension orders whose extended periods end 1933-01-01 to 1933-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3805",
+      "EO:3853"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1933-01-01",
+     "to": "1933-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1934-22",
+   "description": "Trust-extension orders whose extended periods end 1934-01-01 to 1934-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3995",
+      "EO:4024",
+      "EO:4029"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1934-01-01",
+     "to": "1934-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1935-23",
+   "description": "Trust-extension orders whose extended periods end 1935-01-01 to 1935-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4145",
+      "EO:4154",
+      "EO:4157",
+      "EO:4159",
+      "EO:4168",
+      "EO:4233",
+      "EO:4281",
+      "EO:4293",
+      "EO:4298"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1935-01-01",
+     "to": "1935-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1936-24",
+   "description": "Trust-extension orders whose extended periods end 1936-01-01 to 1936-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4382",
+      "EO:4384",
+      "EO:4398",
+      "EO:4406",
+      "EO:4407",
+      "EO:4408",
+      "EO:4417",
+      "EO:4435",
+      "EO:4470"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1936-01-01",
+     "to": "1936-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1937-25",
+   "description": "Trust-extension orders whose extended periods end 1936-01-01 to 1937-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4464"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1936-01-01",
+     "to": "1937-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1937-26",
+   "description": "Trust-extension orders whose extended periods end 1936-12-04 to 1937-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4548"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1936-12-04",
+     "to": "1937-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1937-27",
+   "description": "Trust-extension orders whose extended periods end 1936-12-23 to 1937-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4557"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1936-12-23",
+     "to": "1937-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1937-28",
+   "description": "Trust-extension orders whose extended periods end 1937-01-01 to 1937-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4587",
+      "EO:4588",
+      "EO:4600",
+      "EO:4687",
+      "EO:4688",
+      "EO:4694"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1937-01-01",
+     "to": "1937-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1938-29",
+   "description": "Trust-extension orders whose extended periods end 1938-01-01 to 1938-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4765",
+      "EO:4775",
+      "EO:4858",
+      "EO:4898",
+      "EO:4979",
+      "EO:4981",
+      "EO:4994"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1938-01-01",
+     "to": "1938-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1938-30",
+   "description": "Trust-extension orders whose extended periods end 1938-06-05 to 1938-06-05.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4816"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1938-06-05",
+     "basis": "stated expiry date plus stated period"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1939-31",
+   "description": "Trust-extension orders whose extended periods end 1939-01-01 to 1939-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3980",
+      "EO:5023",
+      "EO:5028",
+      "EO:5087",
+      "EO:5148",
+      "EO:5173"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1939-01-01",
+     "to": "1939-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1940-32",
+   "description": "Trust-extension orders whose extended periods end 1939-12-31 to 1940-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5253"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1939-12-31",
+     "to": "1940-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1940-33",
+   "description": "Trust-extension orders whose extended periods end 1940-01-01 to 1940-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5299",
+      "EO:5301",
+      "EO:5302",
+      "EO:5303",
+      "EO:5305",
+      "EO:5306",
+      "EO:5356",
+      "EO:5357",
+      "EO:5415",
+      "EO:5416",
+      "EO:5466",
+      "EO:5474"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1940-01-01",
+     "to": "1940-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1941-34",
+   "description": "Trust-extension orders whose extended periods end 1940-12-17 to 1941-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5516"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1940-12-17",
+     "to": "1941-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1941-35",
+   "description": "Trust-extension orders whose extended periods end 1941-01-01 to 1941-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5539",
+      "EO:5546",
+      "EO:5556",
+      "EO:5557",
+      "EO:5575",
+      "EO:5580",
+      "EO:5626",
+      "EO:5728",
+      "EO:5730",
+      "EO:5734"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1941-01-01",
+     "to": "1941-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1942-36",
+   "description": "Trust-extension orders whose extended periods end 1941-01-01 to 1942-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5746"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1941-01-01",
+     "to": "1942-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1942-37",
+   "description": "Trust-extension orders whose extended periods end 1942-01-01 to 1942-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5955"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1942-01-01",
+     "to": "1942-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1943-38",
+   "description": "Trust-extension orders whose extended periods end 1943-01-01 to 1943-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6341"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1943-01-01",
+     "to": "1943-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1945-39",
+   "description": "Trust-extension orders whose extended periods end 1945-01-01 to 1945-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6926",
+      "EO:6939",
+      "EO:6940",
+      "EO:6961",
+      "EO:6962",
+      "EO:6968",
+      "EO:7001",
+      "EO:7009",
+      "EO:7036"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1945-01-01",
+     "to": "1945-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1946-40",
+   "description": "Trust-extension orders whose extended periods end 1945-01-01 to 1946-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3362"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1945-01-01",
+     "to": "1946-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1946-41",
+   "description": "Trust-extension orders whose extended periods end 1946-01-01 to 1946-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3363",
+      "EO:3383",
+      "EO:7206"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1946-01-01",
+     "to": "1946-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B07-TRUST-1962-42",
+   "description": "Trust-extension orders whose extended periods end 1961-12-31 to 1962-12-31.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:7464"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1961-12-31",
+     "to": "1962-12-31",
+     "basis": "stated expiry plus stated period (see doctrine table)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval."
+   ]
+  },
+  {
+   "branch_id": "B08-TRUST-NOEXPIRY",
+   "description": "Trust-extension orders that state the period but not the year in which the extended trust expires.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "^\\W*Trust periods? "
+      },
+      {
+       "text_regex": "(?:trust period|period of trust|periods? of restriction|restrictive period).{0,400}(?:extended|extendeci)"
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1916",
+      "EO:2066",
+      "EO:2109",
+      "EO:2317",
+      "EO:2374",
+      "EO:2376",
+      "EO:2966",
+      "EO:3994",
+      "EO:5383"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "trust_extension_term_expired_date_bounded",
+    "basis_kind": "TERM",
+    "basis": "The order extends the trust period on the allotments it covers for a stated number of years; by its own terms its operation ends when that extended period runs out. Where the period was still running on 1934-06-18 and the land was under the IRA, IRA sec. 2 thereafter continued the trust by statute, and for excluded reservations the 1935 Act and later new orders did so; those are other instruments, so the trust may continue while this order's own term ends. These orders extend an existing, unexpired period on allotments already patented when the order issued; the allotment trust period is 25 years from patent (GAA sec. 5), so the extended period ended no later than 25 years plus the stated period after the order date, by 1965 for every member here.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1965-12-31",
+     "basis": "order date to the latest bound: order year + 25 + stated period (EO 5383, 1930 + 25 + 10)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2",
+     "M3"
+    ],
+    "source_ids": [
+     "S-GAA",
+     "S-1906",
+     "S-IRA",
+     "S-1935"
+    ]
+   },
+   "gaps": [
+    "Owner decision needed: this lead reads IRA sec. 2 as continuing the trust by statute and not the order. On the other reading (the statute lengthened the order's own period), the order's operative effect would be continued indefinitely by statute and the lead would change to open pending a current predicate for the tribe's lands (25 U.S.C. 5102 and the 25 CFR chapter I appendix, neither held).",
+    "IRA sec. 2 (48 Stat. 984), 25 U.S.C. 5102 and the Act of June 15, 1935 are read only on the web, not held.",
+    "Expiry year and period are read from the order text (WPA 1944 summary where the scan is illegible); individual allotment expiry dates are not held, so the end is an interval.",
+    "Patent dates of the allotments are not held; the upper bound assumes the period extended was the 25-year GAA period (EO 2109 extends a \"ten year period of trust\" under the Moses agreement, and EO 4382 of 1926 extends Chief Moses trusts expiring during 1926 \"from March 8, 1926\", consistent with an end in 1926; EO 3994 extends Lake Traverse trusts for a \"further\" 15 years after EO 1916)."
+   ]
+  },
+  {
+   "branch_id": "B09-OPEN-TEMP-1927",
+   "description": "Temporary withdrawals for Indian use whose stated end (March 5, 1927) fell two days after the Act of March 3, 1927.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4177",
+      "EO:4297"
+     ]
+    },
+    {
+     "text_regex": "temporarily withdrawn.{0,200}until March 5, 1927"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "temporary_withdrawal_end_after_1927_act",
+    "basis_kind": "NONE",
+    "basis": "By its terms the withdrawal ended on 1927-03-05, but it was made \"for the use and benefit of the Indians\" of an existing reservation and its end came after sec. 4 of the Act of March 3, 1927 barred changes in executive-order reservation boundaries except by Act of Congress; whether the lapse was such a change is not decided by any held source.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1927-03-05",
+     "basis": "date stated in the order (candidate end)"
+    },
+    "mechanism_ids": [
+     "M4",
+     "M7"
+    ],
+    "source_ids": [
+     "S-1927"
+    ]
+   },
+   "gaps": [
+    "A decision or practice construing sec. 4 for presidential temporary withdrawals that lapsed after 1927-03-03, and the later legislative history of the Walker River and Mesa Grande lands (Statutes at Large; U.S. Code title 25)."
+   ]
+  },
+  {
+   "branch_id": "B09-OPEN-CONDITION",
+   "description": "Reservations or withdrawals that last until a condition is met (no longer needed; examination and classification; suitability for allotment investigated).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1271",
+      "EO:1518",
+      "EO:1603"
+     ]
+    },
+    {
+     "text_regex": "until such time|examination and classification|until their suitableness"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "conditional_reservation_condition_unproven",
+    "basis_kind": "NONE",
+    "basis": "The order ends when its stated condition occurs; no held source shows when, or whether, it occurred.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M7"
+    ],
+    "source_ids": [
+     "S-1927"
+    ]
+   },
+   "gaps": [
+    "Evidence of the condition (Interior records, a later order or statute disposing of the lands)."
+   ]
+  },
+  {
+   "branch_id": "B09-OPEN-BOUNDARY-DEFINITION",
+   "description": "Orders that define or redefine a boundary of an existing reservation.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2273",
+      "EO:4628"
+     ]
+    },
+    {
+     "text_regex": "boundary"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "persists_boundary_definition_needs_current_predicate",
+    "basis_kind": "NONE",
+    "basis": "The order fixes a boundary line that operates as long as the reservation boundary does; whether it was in force on the cutoff depends on later statutes for that reservation.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M7"
+    ],
+    "source_ids": [
+     "S-1927"
+    ]
+   },
+   "gaps": [
+    "A current statute, regulation or official land record describing that reservation boundary."
+   ]
+  },
+  {
+   "branch_id": "B09-OPEN-NO-ORDER-TEXT",
+   "description": "Interior Secretary recommendations listed as orders (Uintah water-supply lands, 1905); one has no held text, the other is an approved letter in a poor scan.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:342B",
+      "EO:343A"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "reservation_approval_text_unreadable",
+    "basis_kind": "NONE",
+    "basis": "The held material does not show the operative terms of the presidential approval.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "A legible copy of the approved recommendation (Kappler III or the 1912 compilation)."
+   ]
+  },
+  {
+   "branch_id": "B10-OPEN-STANDING-RESERVATION",
+   "description": "Orders that create, enlarge or set apart land as a reservation or for Indian use, with no stated end.",
+   "when": [
+    {
+     "any_regex": "set (?:apart|aside)|reserved (?:from|for)|withdrawn from (?:settlement|sale|entry|all forms)|withheld from sale"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "persists_standing_reservation_needs_current_predicate",
+    "basis_kind": "NONE",
+    "basis": "A reservation order continues until a later order (before 1927-03-03) or a statute changes or ends it; after 1927-03-03 only an Act of Congress could change its boundaries. No class-wide event ended these reservations, and no held current-law record shows them in force.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M7"
+    ],
+    "source_ids": [
+     "S-1919",
+     "S-1927",
+     "S-398d",
+     "S-SIOUX"
+    ]
+   },
+   "gaps": [
+    "Per reservation: later statutes confirming, enlarging, diminishing, terminating or restoring these lands (Statutes at Large, U.S. Code title 25 notes), and a current predicate (statute, regulation or BIA land record) for the lands on 2026-10-14.",
+    "Kappler IV (held, to 1927) prints the later orders for these reservations and is the place to check for pre-1927 executive changes."
+   ]
+  },
+  {
+   "branch_id": "B99-CATCHALL",
+   "description": "Anything not matched above.",
+   "when": [],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "unclassified",
+    "basis_kind": "NONE",
+    "basis": "No branch fits the order as held.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Individual review."
+   ]
+  }
+ ],
+ "undecidable": [
+  {
+   "reason": "Standing reservation orders: persistence needs a per-reservation current-law predicate the project does not hold.",
+   "detected_by": "B10-OPEN-STANDING-RESERVATION"
+  },
+  {
+   "reason": "Out-of-family orders (land districts, Civil Service Rules, Emergency Conservation Work, Reclamation Service, monument withdrawal).",
+   "detected_by": "B04-OUT-*"
+  },
+  {
+   "reason": "Temporary withdrawals lapsing on 1927-03-05, after the 1927 Act.",
+   "detected_by": "B09-OPEN-TEMP-1927"
+  },
+  {
+   "reason": "Conditional reservations whose condition is not evidenced.",
+   "detected_by": "B09-OPEN-CONDITION"
+  },
+  {
+   "reason": "Boundary-definition orders.",
+   "detected_by": "B09-OPEN-BOUNDARY-DEFINITION"
+  },
+  {
+   "reason": "No readable order text.",
+   "detected_by": "B09-OPEN-NO-ORDER-TEXT"
+  }
+ ]
+}

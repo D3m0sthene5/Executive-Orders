@@ -1,0 +1,1096 @@
+{
+ "schema": "pothier-family-doctrine/v1",
+ "doctrine_id": "PD-CS-ONE-PERSON",
+ "family": "one-person civil service orders (individual waivers, personnel designations, patent-signing designations, retirement exemptions)",
+ "version": 1,
+ "members": {
+  "field": "x1_type",
+  "in": [
+   "cs_waiver_individual",
+   "personnel_designation",
+   "patent_signing_designation",
+   "retirement_exemption"
+  ]
+ },
+ "mechanisms": [
+  {
+   "id": "M1",
+   "kind": "life_of_person",
+   "effect": "ends",
+   "description": "A one-person permission (appointment, reinstatement, transfer, promotion, classification or exemption of a named person) can operate only for that person. It is exhausted when used and in any event cannot operate after the person's death. The death is bounded by the longest verified human life, counted from the latest date on which the order's own text shows the person alive, or from the order date less a minimum age that the text or a cited rule fixes.",
+   "effective_date_rule": "Ended within (order date, bound], bound = X + 122 years 164 days, where X is the latest date at which the quoted fact shows the person alive, or the order date minus the minimum age (whole years). Use of the permission is unknown; a used permission ended earlier.",
+   "source_ids": [
+    "S1",
+    "S10",
+    "S3",
+    "S6",
+    "S7",
+    "S8"
+   ]
+  },
+  {
+   "id": "M2",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "EO 209 replaced the 1896 Civil Service Rules and every amendment of them on April 15, 1903, so a rule amendment or special rule made under the 1896 rules ceased then (if a one-time permission in it had not already been used).",
+   "effective_date_rule": "Interval (order date, 1903-04-15].",
+   "source_ids": [
+    "S2"
+   ]
+  },
+  {
+   "id": "M3",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "A later order that expressly revokes this member (EO 5371 for EO 5332) or the appointment it authorized (EO 6179-A for EO 4528).",
+   "effective_date_rule": "The revoking order's date (fixed), or the interval (order date, revoking date] where use is unknown.",
+   "source_ids": [
+    "S4",
+    "S5"
+   ]
+  },
+  {
+   "id": "M4",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "A designation for a stated period ('for a period of two years', 'for a term of four years', 'ten days from the date hereof', 'shall terminate on July 31, 1935') ends by its own terms; an order that only amends another order to end an exemption on a named day (EO 6142) has nothing left to do after that day.",
+   "effective_date_rule": "Order date plus the stated period, or the stated date.",
+   "source_ids": [
+    "S10"
+   ]
+  },
+  {
+   "id": "M5",
+   "kind": "continuity_only",
+   "effect": "lead_only",
+   "description": "General rewrites of the Civil Service Rules (EO 7916 of 1938, EO 8743 of 1941, EO 9830 of 1947, EO 10577 of 1954) revoke only listed orders and list no one-person waiver; the Act of March 27, 1922 and EO 9830 sec. 1.1(b) recognize status granted by executive order. None of these ends a member; they are recorded so that no branch relies on them.",
+   "effective_date_rule": "None.",
+   "source_ids": []
+  },
+  {
+   "id": "M6",
+   "kind": "later_instrument",
+   "effect": "lead_only",
+   "description": "EO 3461 (May 16, 1921) revokes 'all Executive orders ... authorizing appointments ... because of war emergencies existing at the time' and lists 45 orders; the held copy stops at item 27. A member whose own text rests on the war emergency is covered only on a reading of the general clause, which the machine cannot apply. No branch uses it.",
+   "effective_date_rule": "Would be the interval (order date, 1921-05-16].",
+   "source_ids": []
+  }
+ ],
+ "sources": [
+  {
+   "id": "S1",
+   "citation": "Guinness World Records, 'Oldest person (ever)': Jeanne Louise Calment, 21 February 1875 - 4 August 1997, aged 122 years 164 days",
+   "title": "Longest authenticated human life",
+   "url": "https://guinnessworldrecords.com/world-records/oldest-person",
+   "held": false,
+   "pin": "122 years 164 days",
+   "establishes": "No person has been verified to live longer than 122 years 164 days, so a person alive (or at least a stated age) on a known date died no later than that date plus 122 years 164 days (less the stated age)."
+  },
+  {
+   "id": "S2",
+   "citation": "EO 209 (Mar. 20, 1903), Civil Service Rules, effective Apr. 15, 1903 (Wikisource text, rev. per held file)",
+   "title": "Civil Service Rules of 1903 promulgated in lieu of the 1896 rules",
+   "url": "https://en.wikisource.org/wiki/Executive_Order_209",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_209.txt",
+   "sha256": "131c53601214343ec8d9a0cee75e4fe45e128a227c056fb811fec91dc170322a",
+   "pin": "the President promulgates the following rules in lieu of those promulgated May 6, 1896, and the amendments thereof",
+   "establishes": "From April 15, 1903 ('Approved, to take effect on and after April 15, 1903') the 1896 rules and every amendment of them were replaced, so a rule amendment or special rule issued under the 1896 rules ceased as an instrument no later than that day."
+  },
+  {
+   "id": "S3",
+   "citation": "EO 3455 (May 10, 1921), Concerning Appointments of Postmasters (Wikisource text)",
+   "title": "Age bar for presidential postmaster examinations",
+   "url": "https://en.wikisource.org/wiki/Executive_Order_3455",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_3455.txt",
+   "sha256": "46478a4f450cc35d03cc3416b1fe30f9c209d9eb24e6a75113be0e52378f072d",
+   "pin": "No person who has passed his sixty-fifth birthday",
+   "establishes": "The only age limit in the postmaster examination order of May 10, 1921 bars persons past their 65th birthday, so a waiver of 'that part ... which pertains to the age limit' was issued for a person aged at least 65 (64 is used for safety)."
+  },
+  {
+   "id": "S4",
+   "citation": "EO 6179-A (June 16, 1933), Revocation of appointments to classified positions in the Department of Labor (APP transcription)",
+   "title": "Revocation of ten presidential waiver appointments",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-6179-revocation-appointment-classified-positions-the-department-labor",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6179-revocation-appointment-classified-positions-the-department-labor.txt",
+   "sha256": "a57c96a33ec6f168a59c0b4c993696feae4a8101bd68598cfb33e16d3bd61f21",
+   "pin": "The appointment on October 23, 1926, of Mrs. Susan T. Waite as Clerk in the Bureau of Labor Statistics, Department of Labor.",
+   "establishes": "The presidential appointment of Susan T. Waite of October 23, 1926 (the waiver EO 4528 of that date) was revoked on June 16, 1933."
+  },
+  {
+   "id": "S5",
+   "citation": "EO 5371 (June 19, 1930), Order of precedence of the Assistant Secretaries of War (APP transcription)",
+   "title": "Revocation of EO 5332",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-5371-order-precedence-the-assistant-secretaries-war",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5371-order-precedence-the-assistant-secretaries-war.txt",
+   "sha256": "e7cd754745d3b97a301b78367c0044bb115d4102909c6cbc0c899f3023d2a832",
+   "pin": "Executive Order No. 5332, April 22, 1930, temporarily changing the order of precedence of the Assistant Secretaries of War is revoked.",
+   "establishes": "EO 5332 was expressly revoked on June 19, 1930."
+  },
+  {
+   "id": "S6",
+   "citation": "Civil Service Retirement Act, Act of May 22, 1920, ch. 195, sec. 1, 41 Stat. 614, as printed in the Civil Service Commission's 39th Annual Report (FY1922), printed p. 99",
+   "title": "Retirement ages under the 1920 Act",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-41/pdf/STATUTE-41-Pg614.pdf",
+   "held": true,
+   "held_path": "jobs/numbered-early-orders/output/books/CSR_1922_pages.jsonl.gz",
+   "sha256": "2106b2c5749ee44e9ccea4ade12daa7224877d9915e88f5dbcea250958a7dab4",
+   "pin": "railway postal clerks at sixty-two years of age",
+   "establishes": "The lowest retirement age fixed by the 1920 Act is 62 (railway postal clerks); others retire at 65 or 70. The Statutes at Large page itself was read on the web (govinfo) and is to be acquired."
+  },
+  {
+   "id": "S7",
+   "citation": "Act of May 29, 1930, ch. 349, sec. 1, 46 Stat. 468 (amending the Civil Service Retirement Act)",
+   "title": "Retirement ages under the 1930 amendment",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-46/pdf/STATUTE-46-Pg468.pdf",
+   "held": false,
+   "pin": "shall be eligible at sixty-two years of age",
+   "establishes": "The 1930 amendment, in force for the 1932-1933 exemptions, keeps 62 as the lowest retirement age (read on govinfo, not yet held). The death bound holds for any minimum age of 34 or more, so the exact figure does not change the result."
+  },
+  {
+   "id": "S8",
+   "citation": "Act of June 30, 1932, ch. 314, Part II, sec. 204, 47 Stat. 382 (Legislative Branch Appropriation Act, fiscal 1933; page of sec. 204 unverified), as quoted in the member orders themselves",
+   "title": "Economy Act compulsory separation and presidential exemption",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-47/pdf/STATUTE-47-Pg382.pdf",
+   "held": false,
+   "pin": "section 204 of Part II of the act",
+   "establishes": "The authority under which the 1932-1933 exemptions issued; the members' own texts state that each named person has reached (or reaches that month) the retirement age prescribed for automatic separation."
+  },
+  {
+   "id": "S9",
+   "citation": "Civil Service Commission, 32nd Annual Report (FY1915), printed pp. 7-8 (held page texts)",
+   "title": "CSC annual reports print waiver orders in full",
+   "url": "https://archive.org/details/annualreportuni01commgoog",
+   "held": true,
+   "held_path": "jobs/numbered-early-orders/output/books/CSR_1915_pages.jsonl.gz",
+   "sha256": "94cee92a0855d216af345776ed26e77031aa26e666c100e15630a66c2d54fbec",
+   "pin": "published in full in the appendix",
+   "establishes": "The Commission's reports print each waiver order in full, so a held report slice that runs from the date line to the end of the Commission's note is the whole order even without a signature line."
+  },
+  {
+   "id": "S10",
+   "citation": "The member order's own held text (path and sha256 in each lead's order_text); per-member quotes in research/pothier/doctrines/PD-CS-ONE-PERSON.md, Appendix A",
+   "title": "Facts stated in the order itself",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pothier/output/MEMBERS.jsonl",
+   "sha256": "db4fdde88081fe2360092f7a2c2f5ef1a89984b09360745e46d74f372f9d8d4f",
+   "pin": "primary_text_path",
+   "establishes": "The order's own words: the stated period of a designation, or a dated earlier fact or stated age of the named person."
+  }
+ ],
+ "procedure": [
+  {
+   "branch_id": "B01",
+   "description": "EO 5332 (Assistant Secretary of War to act during the Secretary's absence, 'pending further orders') is expressly revoked by EO 5371 of June 19, 1930.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5332"
+     ]
+    },
+    {
+     "mechanism_in": [
+      "revocation"
+     ],
+     "count_gte": 1
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "expressly_revoked",
+    "basis_kind": "ACT",
+    "basis": "EO 5371 (June 19, 1930) states that 'Executive Order No. 5332, April 22, 1930, temporarily changing the order of precedence of the Assistant Secretaries of War is revoked.'",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1930-06-19",
+     "basis": "date of EO 5371"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S5"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B02",
+   "description": "EO 4528 (reinstatement of Susan T. Waite, Oct. 23, 1926): the appointment it authorized was revoked by EO 6179-A.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4528"
+     ]
+    },
+    {
+     "text_regex": "Waite"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "appointment_revoked",
+    "basis_kind": "ACT",
+    "basis": "EO 6179-A (June 16, 1933) revokes 'The appointment on October 23, 1926, of Mrs. Susan T. Waite as Clerk in the Bureau of Labor Statistics', which is the presidential authorization EO 4528 of that date; any unused permission and any appointment under it ended no later than June 16, 1933.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1933-06-16",
+     "basis": "EO 6179-A"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S4"
+    ]
+   },
+   "gaps": [
+    "EO 6179-A identifies the appointment by date, name and position, not by order number; the match to EO 4528 rests on all three agreeing.",
+    "Whether Mrs. Waite was in fact reinstated before 1933 is not shown."
+   ]
+  },
+  {
+   "branch_id": "B03",
+   "description": "EO 6142 only amends EO 5872 so as to end Pickens Neagle's exemption on May 31, 1933.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6142"
+     ]
+    },
+    {
+     "text_regex": "is hereby amended so as to terminate the exemption of the said Pickens Neagle on May 31, 1933"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "amending_order_spent",
+    "basis_kind": "TERM",
+    "basis": "The order's only command is that Neagle's exemption under EO 5872 terminate on May 31, 1933; once that day passed the order had nothing left to do. Its effect is evidence for EO 5872's lifecycle, not a continuing command.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-05-31",
+     "basis": "the day the order names"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S10"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B03b",
+   "description": "Orders that only revoke or modify other one-person orders: EO 6179-A (revokes ten waiver appointments) and EO 7472 (modifies EO 7140).",
+   "when": [
+    {
+     "any_of": [
+      {
+       "all_of": [
+        {
+         "field": "instrument_id",
+         "in": [
+          "EO:6179A"
+         ]
+        },
+        {
+         "text_regex": "without regard to the requirements of the civil-service rules, are upon the recommendation of the Secretary of Labor, hereby revoked"
+        }
+       ]
+      },
+      {
+       "all_of": [
+        {
+         "field": "instrument_id",
+         "in": [
+          "EO:7472"
+         ]
+        },
+        {
+         "text_regex": "Executive Order No\\. 7140 of August 13, 1935.{0,300}is hereby modified so as to permit"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoking_or_amending_order_spent",
+    "basis_kind": "TERM",
+    "basis": "The order's only command revokes or modifies another order and took effect on issue; it has nothing left to do. Its effect is evidence for the lifecycle of the orders it acts on (EO 7140 stays open on its own record).",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S10"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B04",
+   "description": "Rule amendments and special rules made under the 1896 Civil Service Rules (dated May 6, 1896 to March 19, 1903) whose held text says so: replaced by EO 209 on April 15, 1903.",
+   "when": [
+    {
+     "field": "date",
+     "gte": "1896-05-06"
+    },
+    {
+     "field": "date",
+     "lt": "1903-03-20"
+    },
+    {
+     "text_regex": "special (?:civil[- ]service )?rule|(?:civil[- ]service )?rule [ivxl]+\\W.{0,120}(?:is hereby amended|amended (?:by|so as|to read))|hereby amended by (?:striking|adding|inserting)"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "replaced_by_rule_revision",
+    "basis_kind": "ACT",
+    "basis": "EO 209 promulgated new Civil Service Rules 'in lieu of those promulgated May 6, 1896, and the amendments thereof', effective April 15, 1903. An amendment or special rule issued under the 1896 rules ceased as an instrument no later than that day; a one-time permission it contained ended earlier if used.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1903-04-15",
+     "basis": "EO 209 effective date"
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S2"
+    ]
+   },
+   "gaps": [
+    "Treating a 'special rule' (a one-position or one-list exception) as an 'amendment' of the 1896 rules follows the reading accepted in TR-CS-WAIVER reviews R5-R7; EO 209 has no revocation clause naming them.",
+    "Rule amendments (EO 123, 158, 164) are typed one-person waivers in error; their lead belongs with the civil-service rules family (PD-CS-RULES) if it covers them."
+   ]
+  },
+  {
+   "branch_id": "B05",
+   "description": "Designations for a stated number of years ('for a period of two years', 'for a term of four years').",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "personnel_designation"
+     ]
+    },
+    {
+     "text_regex": "(?:designate [A-Z].{0,200}?(?:for a period of|to serve as such for a term of)) (?:two|three|four|five|\\d) years"
+    },
+    {
+     "not": {
+      "summary_regex": "establish|piers|revoked"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "term_expired",
+    "basis_kind": "TERM",
+    "basis": "The order designates a named person for a stated number of years; the designation ends by its own terms at the end of that period.",
+    "date_rule": {
+     "kind": "order_date_plus_years",
+     "regex": "(?:period|term) of (\\w+) years"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S10"
+    ]
+   },
+   "gaps": [
+    "A re-designation of the same person, or an earlier end (e.g., the Commerce Court's abolition in 1913 for EO 1753), is not searched; it could only make the end earlier."
+   ]
+  },
+  {
+   "branch_id": "B06",
+   "description": "EO 4300: John H. Guill designated Acting Farm Loan Commissioner 'for a period of ten days from the date hereof' (Sept. 11, 1925).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4300"
+     ]
+    },
+    {
+     "text_regex": "for a period of ten days from the date hereof"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "term_expired",
+    "basis_kind": "TERM",
+    "basis": "The designation runs for ten days from September 11, 1925.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1925-09-21",
+     "basis": "order date plus ten days"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S10"
+    ]
+   },
+   "gaps": [
+    "The order's date is read from the held scan's date line (September 11, 1925); the member record carries only the year."
+   ]
+  },
+  {
+   "branch_id": "B07",
+   "description": "EO 4639: Lewis J. Pettijohn designated Acting Farm Loan Commissioner 'for a period of ten days from the date hereof, or until' the Commissioner's return.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4639"
+     ]
+    },
+    {
+     "text_regex": "for a period of ten days from the date hereof"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "term_expired",
+    "basis_kind": "TERM",
+    "basis": "The designation runs at most ten days from April 26, 1927 (earlier if the Commissioner returned).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1927-05-06",
+     "basis": "order date plus ten days"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S10"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B08",
+   "description": "EO 6725: additional members of the Science Advisory Board whose 'term of office ... shall terminate on July 31, 1935'.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6725"
+     ]
+    },
+    {
+     "text_regex": "shall terminate on July 31, 1935"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "term_expired",
+    "basis_kind": "TERM",
+    "basis": "The appointments end on the date the order states.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-07-31",
+     "basis": "stated in the order"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S10"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B09",
+   "description": "Exemptions under sec. 204 of the 1932 Act for named persons who 'have reached' (or 'during the current month' reach) 'the retirement age prescribed for automatic separation'.",
+   "when": [
+    {
+     "text_regex": "(?:have reached|will reach|reach) the retire-?\\s?ment age prescribed for auto-?\\s?matic separation"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "life_of_person_bound",
+    "basis_kind": "TERM",
+    "basis": "The exemption can apply only to the persons named, each of whom had reached (or reached that month) a statutory retirement age, the lowest of which is 62 (S6, S7). With a minimum age of 61, every named person died no later than order date - 61 years + 122 years 164 days (at the latest 1994-06-18 for the members on this branch). The result holds for any minimum age of 34 or more.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1994-06-18",
+     "basis": "latest member 1933-01-05 minus 61 years plus 122 years 164 days"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S1",
+     "S6",
+     "S7",
+     "S8",
+     "S10"
+    ]
+   },
+   "gaps": [
+    "The bound rests on the longest verified human life (S1, held only on the web until acquired).",
+    "Each order names several persons; the order is spent only when every person's exemption has ended, and the bound covers all of them because each reached retirement age.",
+    "Later serial exemptions of the same persons (EO 5873, 5875 for EO 5896) do not affect the bound."
+   ]
+  },
+  {
+   "branch_id": "B10",
+   "description": "Waivers of the age limit of the postmaster examination order of May 10, 1921 (EO 3455) for a named candidate.",
+   "when": [
+    {
+     "text_regex": "order o[ft] may\\W{0,3}(?:10|1o|j ?o|lo),?\\W{0,3}1.{0,3}21,?\\s*,?\\s*(?:w?hich pertains to the (?:maximum )?age (?:limit|requirement)|is so far waived as to permit the exami-? ?nation papers of .{0,200}?over 65 years of age)"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "life_of_person_bound",
+    "basis_kind": "TERM",
+    "basis": "EO 3455's only age limit bars any person 'who has passed his sixty-fifth birthday'; a waiver of that part for a named candidate shows the candidate was at least 65 (64 is used). The candidate died no later than order date - 64 years + 122 years 164 days (at the latest 1985-08-08 for this branch); the result holds for any minimum age of 34 or more.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1985-08-08",
+     "basis": "latest member 1927-02-25 minus 64 years plus 122 years 164 days"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S1",
+     "S3",
+     "S10"
+    ]
+   },
+   "gaps": [
+    "Use of the permission is unknown: whether and when the named person was appointed, reinstated or transferred is not shown (NARA St. Louis service card or Official Register would show it).",
+    "The bound rests on the longest verified human life (S1, held only on the web until acquired).",
+    "Whether the candidate was appointed postmaster is not shown (the order only permits the papers to be rated)."
+   ]
+  },
+  {
+   "branch_id": "B11",
+   "description": "One-person waivers whose own text states the person's age or an age limit the person exceeds (verified list, Appendix A).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3378",
+      "EO:3499",
+      "EO:3856",
+      "EO:4118",
+      "EO:5084"
+     ]
+    },
+    {
+     "text_regex": "years (?:of age|[Oo].d)|age limit of"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "life_of_person_bound",
+    "basis_kind": "TERM",
+    "basis": "The order's text states the named person's age (52, 58) or that the person exceeds a stated age limit (over 35, beyond 45, over 50). The person died no later than order date - that age + 122 years 164 days (per member in Appendix A; at the latest 2008-11-27).",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "2008-11-27",
+     "basis": "latest per-member bound in Appendix A"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S1",
+     "S10"
+    ]
+   },
+   "gaps": [
+    "Use of the permission is unknown: whether and when the named person was appointed, reinstated or transferred is not shown (NARA St. Louis service card or Official Register would show it).",
+    "The bound rests on the longest verified human life (S1, held only on the web until acquired)."
+   ]
+  },
+  {
+   "branch_id": "B12",
+   "description": "Orders dated before May 3, 1904 that authorize an action for, or designate, named persons only (minimum age 0).",
+   "when": [
+    {
+     "field": "date",
+     "lt": "1904-05-03"
+    },
+    {
+     "field": "x1_type",
+     "in": [
+      "cs_waiver_individual",
+      "personnel_designation"
+     ]
+    },
+    {
+     "any_of": [
+      {
+       "field": "named_persons",
+       "nonempty": true
+      },
+      {
+       "field": "instrument_id",
+       "in": [
+        "EO:162"
+       ]
+      }
+     ]
+    },
+    {
+     "text_regex": "may be (?:appointed|reinstated|transferred|promoted|employed|restored|classified)|designate the following named persons|is hereby (?:appointed|designated)"
+    },
+    {
+     "not": {
+      "text_regex": "\\b(?:all|any|such) (?:other )?(?:persons|employees|laborers|positions|clerks)\\b|persons who may hereafter|in like circumstances|whose names are on a list|named in the list|on a list"
+     }
+    },
+    {
+     "not": {
+      "field": "instrument_id",
+      "in": [
+       "EO:221",
+       "EO:223",
+       "EO:234",
+       "EO:251",
+       "EO:225"
+      ]
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "life_of_person_bound",
+    "basis_kind": "TERM",
+    "basis": "Every person the order names was alive on the order date, so each died no later than the order date plus 122 years 164 days, which for an order dated before May 3, 1904 falls before October 14, 2026 (at the latest 2026-01-09 for this branch). No minimum age is assumed.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "2026-01-09",
+     "basis": "latest member 1903-07-29 plus 122 years 164 days"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S1",
+     "S10"
+    ]
+   },
+   "gaps": [
+    "Use of the permission is unknown: whether and when the named person was appointed, reinstated or transferred is not shown (NARA St. Louis service card or Official Register would show it).",
+    "The bound rests on the longest verified human life (S1, held only on the web until acquired).",
+    "For EO 162 (reception delegates for Prince Henry's 1902 visit) the stated purpose also ended with the visit; the bound does not need it."
+   ]
+  },
+  {
+   "branch_id": "B13",
+   "description": "One-person waivers whose own text shows the named person alive (employed, serving, appointed) on a date before May 3, 1904 (verified list, Appendix A).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1863",
+      "EO:1953",
+      "EO:1961",
+      "EO:1983",
+      "EO:2009",
+      "EO:2083",
+      "EO:2140",
+      "EO:2165",
+      "EO:2244",
+      "EO:2447",
+      "EO:2853",
+      "EO:2936",
+      "EO:2951",
+      "EO:3114",
+      "EO:3175",
+      "EO:325",
+      "EO:3343",
+      "EO:3432",
+      "EO:3460",
+      "EO:3467",
+      "EO:3479",
+      "EO:3490",
+      "EO:3516",
+      "EO:3533",
+      "EO:3548",
+      "EO:3587",
+      "EO:3606",
+      "EO:3713",
+      "EO:3937",
+      "EO:4122",
+      "EO:4357",
+      "EO:4367",
+      "EO:4376",
+      "EO:4480",
+      "EO:4541",
+      "EO:4563",
+      "EO:4742",
+      "EO:4743",
+      "EO:4769",
+      "EO:4793",
+      "EO:4906",
+      "EO:5020",
+      "EO:5061",
+      "EO:5075",
+      "EO:5128",
+      "EO:5135",
+      "EO:5269",
+      "EO:5285",
+      "EO:5501",
+      "EO:6058",
+      "EO:957"
+     ]
+    },
+    {
+     "text_regex": "\\b(?:18[4-9]\\d|190[0-3])\\b|years"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "life_of_person_bound",
+    "basis_kind": "TERM",
+    "basis": "The order's text states that the named person was employed, appointed or serving on or by a date X before May 3, 1904, so the person was born no later than X and died no later than X + 122 years 164 days, before October 14, 2026 (per member in Appendix A; at the latest 2026-03-11). No minimum age is assumed.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "2026-03-11",
+     "basis": "latest per-member bound in Appendix A"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S1",
+     "S9",
+     "S10"
+    ]
+   },
+   "gaps": [
+    "Use of the permission is unknown: whether and when the named person was appointed, reinstated or transferred is not shown (NARA St. Louis service card or Official Register would show it).",
+    "The bound rests on the longest verified human life (S1, held only on the web until acquired).",
+    "Several held texts are Civil Service Commission report prints without a signature line; the reports print the orders in full (S9), and each quoted sentence names the person in the member's WPA summary.",
+    "The list was verified by reading; it is closed. A new held text or a corrected identity requires re-verification."
+   ]
+  },
+  {
+   "branch_id": "B20",
+   "description": "Held text names a different person from the member's WPA summary or does not contain the order's command (identity not established).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:221",
+      "EO:223",
+      "EO:234",
+      "EO:251",
+      "EO:1587",
+      "EO:1912",
+      "EO:3433",
+      "EO:3511",
+      "EO:4431",
+      "EO:3523",
+      "EO:4011"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "identity_or_command_not_in_text",
+    "basis_kind": "NONE",
+    "basis": "The held text either belongs to a neighbouring order (EO 1912, 3433, 3511, 4431, 3523), is the Commission's narrative without the command (EO 221, 223, 234), is unreadable (EO 251), has a summary that misdescribes it (EO 4011 waives residence, not age), or names a second person whose age is not bounded (EO 1587: Milson and Leach).",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "The order's own text (CSC annual report page or archival scan) for the claimed number and date."
+   ]
+  },
+  {
+   "branch_id": "B24",
+   "description": "Designations of named clerks to sign the President's name to land patents.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "patent_signing_designation"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "patent_signer_no_term",
+    "basis_kind": "NONE",
+    "basis": "The designation is personal and ends when the clerk leaves the post, is superseded or dies; the held texts do not fix the clerk's age or separation, and implied supersession by a later designation is not shown by any held text.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The clerk's separation or death date (General Land Office personnel records); the statute governing the patent-signing secretary (Rev. Stat. sec. 450 and later law) to see whether later law ended presidential designations."
+   ]
+  },
+  {
+   "branch_id": "B21",
+   "description": "Not a one-person personnel instrument: land and district orders, boats, radio frequencies, bonds, boards and agencies established, class exclusions from the Retirement Act, transfers of property (X1 typing too broad).",
+   "when": [
+    {
+     "any_of": [
+      {
+       "all_of": [
+        {
+         "field": "x1_type",
+         "in": [
+          "personnel_designation",
+          "retirement_exemption"
+         ]
+        },
+        {
+         "summary_regex": "\\b(?:land districts?|internal revenue district|forfeit\\w*|motor ?boat|gasoline (?:boat|launch)|launch|frequenc\\w*|radio|penal bonds?|airspace|patrol|vessels?|piers?|camp sherman|surplus supplies|russian relief|purchasing commission|reward|alien property|postal savings|duties of sec|council of fine arts|committee to review|established|abolished|consolidated|retransferred|naval (?:surgeons|medical)|directed to furnish|excluded from the|made applicable|extended to include|records, papers|appointments, transfers|composition of|regulations governing|coast guard|halibut|prohibited area|emergency conservation|chief of finance|additional members appointed)\\b"
+        }
+       ]
+      },
+      {
+       "all_of": [
+        {
+         "field": "x1_type",
+         "in": [
+          "cs_waiver_individual"
+         ]
+        },
+        {
+         "field": "named_persons",
+         "empty": true
+        },
+        {
+         "summary_regex": "\\blands?\\b[^.]{0,60}\\b(?:withdraw|reserv|selection)|townsite|national forest"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misclassified_other_family",
+    "basis_kind": "NONE",
+    "basis": "The WPA summary shows an order outside this family; it must be decided by the doctrine for its true kind.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Re-typing to the proper family (land, administration, war-emergency, civil-service rules)."
+   ]
+  },
+  {
+   "branch_id": "B22",
+   "description": "Class orders, general authorities and rule amendments typed as one-person waivers (no person named, or persons defined by a class or list, or a continuing authority).",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "cs_waiver_individual"
+     ]
+    },
+    {
+     "any_of": [
+      {
+       "summary_regex": "^(?:\\W*)(?:civil ?service rule|schedule [ab]|employees|employment of|appointment of|appointments|appointees|persons|certain|all |such |reinstatement (?:in the classified ?service )?of persons|honorably|initial appointments|seventeen|ten designated|twenty|thirty|rating of the examination papers of .* residence|.{0,40}(?:sec ?'?y|secretary|director|commission|commissioner|administrator|attorney general|postmaster general|public printer|governor) (?:\\w+ )?(?:authorized|empowered|directed))"
+      },
+      {
+       "field": "named_persons",
+       "empty": true
+      },
+      {
+       "text_regex": "\\b(?:all|any|such) (?:other )?(?:persons|employees|laborers|positions|clerks)\\b|persons who may hereafter|in like circumstances|whose names are on a list|named in the list|on a list"
+      }
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "class_or_general_authority",
+    "basis_kind": "NONE",
+    "basis": "The death of a named person cannot end an authority that reaches a class, a list, a position or future persons; such orders end, if at all, by a later instrument or rule revision that the family doctrine for civil-service rules must establish.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Re-typing to PD-CS-RULES or PD-WAR-EMERGENCY; for 1917-1921 war orders, EO 3461's full list (items 28-45)."
+   ]
+  },
+  {
+   "branch_id": "B23",
+   "description": "Designations of a named officer to act as head of a department during absences (Rev. Stat. sec. 179) and other named-person appointments without a stated term.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "personnel_designation"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "designation_no_term",
+    "basis_kind": "NONE",
+    "basis": "The designation lasts while the absence lasts or until superseded, and in any event ends with the designee's tenure or death; no held field fixes the designee's minimum age or the date the designee left office.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The designee's separation or death date (Official Register, agency history, Biographical Directory); a statute fixing a minimum age for the office."
+   ]
+  },
+  {
+   "branch_id": "B25",
+   "description": "Retirement-act class exclusions and other retirement orders not exempting named persons.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "retirement_exemption"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "retirement_class_order",
+    "basis_kind": "NONE",
+    "basis": "These orders exclude or include classes of employees under the Retirement Act; they are not one-person exemptions.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Re-typing; the later Retirement Act amendments and the Civil Service Retirement Act of 1956 for their effect on class exclusions."
+   ]
+  },
+  {
+   "branch_id": "B26",
+   "description": "Messenger, boy, girl or apprentice appointments with no fact fixing a minimum age.",
+   "when": [
+    {
+     "any_regex": "messenger|\\bboy\\b|\\bgirl\\b|apprentice"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "one_person_minor_possible",
+    "basis_kind": "NONE",
+    "basis": "The person may have been a child at the order date; no held fact fixes a minimum age, so the death bound cannot be placed before the cutoff.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The person's birth date or separation/death (NARA St. Louis service card; Official Register; a later order naming the person)."
+   ]
+  },
+  {
+   "branch_id": "B99",
+   "description": "One-person waivers dated May 3, 1904 or later with no held fact fixing the person's minimum age or a dated earlier presence before May 3, 1904 (catch-all).",
+   "when": [],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "one_person_no_age_fact",
+    "basis_kind": "NONE",
+    "basis": "The permission ended when used or at the person's death, but neither date is shown and no quoted fact bounds the death before October 14, 2026. A position or title, 'Mrs.', 'widow of' or a later name match does not fix an adult age under the evidence rule.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "The action date or separation/death date (NARA St. Louis service record card, about $20 each; the Official Register of July 1 in odd years to 1921); or an owner decision accepting a sourced minimum employment age (see the doctrine's coordinator decisions)."
+   ]
+  }
+ ],
+ "undecidable": [
+  {
+   "reason": "one-person waiver after May 2, 1904 with no fact in the text bounding the person's age or earlier presence",
+   "detected_by": "B99"
+  },
+  {
+   "reason": "possible minor (messenger, boy, girl, apprentice)",
+   "detected_by": "B26"
+  },
+  {
+   "reason": "designation of a named officer without a stated term",
+   "detected_by": "B23"
+  },
+  {
+   "reason": "land-patent signer designation",
+   "detected_by": "B24"
+  },
+  {
+   "reason": "class order, list or general authority typed as a one-person waiver",
+   "detected_by": "B22"
+  },
+  {
+   "reason": "misclassified, other family",
+   "detected_by": "B21"
+  },
+  {
+   "reason": "retirement class order",
+   "detected_by": "B25"
+  },
+  {
+   "reason": "identity or command not in held text",
+   "detected_by": "B20"
+  }
+ ]
+}

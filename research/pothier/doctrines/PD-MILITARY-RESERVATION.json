@@ -1,0 +1,1839 @@
+{
+ "schema": "pothier-family-doctrine/v1",
+ "doctrine_id": "PD-MILITARY-RESERVATION",
+ "family": "Military and naval reservations (X1 type military_naval_reservation)",
+ "version": 1,
+ "members": {
+  "field": "x1_type",
+  "in": [
+   "military_naval_reservation"
+  ]
+ },
+ "mechanisms": [
+  {
+   "id": "M1",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "An order whose only command revokes, vacates, amends or restores is performed when it issues; it is spent on issue as a command, and its effect is evidence about the order it acts on.",
+   "effective_date_rule": "order date",
+   "source_ids": [
+    "S-ORDER"
+   ]
+  },
+  {
+   "id": "M2",
+   "kind": "statute",
+   "effect": "ends",
+   "description": "Relinquishment under the Act of July 5, 1884: the President places reservation lands found useless for military purposes under the Secretary of the Interior for disposal. The order ends the military reservation over the lands it names.",
+   "effective_date_rule": "date of the relinquishing order",
+   "source_ids": [
+    "S-1884"
+   ]
+  },
+  {
+   "id": "M3",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "A later executive order that revokes, vacates, rescinds or supersedes the member by number or date, or relinquishes all of the member's lands, ends it. Version 1 uses 25 such orders whose texts are held (23 are members of this family; EO 7320 and EO 9293 are not).",
+   "effective_date_rule": "date of the later order",
+   "source_ids": [
+    "S-EO2143",
+    "S-EO2405",
+    "S-EO3067",
+    "S-EO3313A",
+    "S-EO683",
+    "S-EO5254",
+    "S-EO5240",
+    "S-EO1282",
+    "S-EO1011",
+    "S-EO3952",
+    "S-EO3402",
+    "S-EO3497",
+    "S-EO3514",
+    "S-EO4062",
+    "S-EO3418",
+    "S-EO636",
+    "S-EO3130",
+    "S-EO4047",
+    "S-EO7320",
+    "S-EO7387",
+    "S-EO7407",
+    "S-EO9293",
+    "S-EO2563",
+    "S-EO2377",
+    "S-EO5715"
+   ]
+  },
+  {
+   "id": "M4",
+   "kind": "class_event",
+   "effect": "ends",
+   "description": "Philippine independence: surrender of all U.S. reservations by Proclamation 2695 on July 4, 1946 under sec. 10(a) of the 1934 Act, and of all remaining rights except base use by agreement under the Treaty of General Relations on October 22, 1946.",
+   "effective_date_rule": "interval from the order date to 1946-10-22",
+   "source_ids": [
+    "S-TM",
+    "S-P2695",
+    "S-TGR",
+    "S-JR1944",
+    "S-MBA1947"
+   ]
+  },
+  {
+   "id": "M5",
+   "kind": "class_event",
+   "effect": "ends",
+   "description": "End of the Canal Zone: the Panama Canal Treaty of 1977 entered into force on October 1, 1979, Panama reassumed plenary jurisdiction, and later U.S. use of military areas rested on the Treaty and its Article IV implementing agreement; the Treaty terminated December 31, 1999.",
+   "effective_date_rule": "interval from the order date to 1979-10-01",
+   "source_ids": [
+    "S-PCA",
+    "S-PCT"
+   ]
+  },
+  {
+   "id": "M6",
+   "kind": "statute",
+   "effect": "lead_only",
+   "description": "Hawaii Admission Act sec. 5(c) and 5(e): lands set aside by executive order remained U.S. property at statehood; lands found no longer needed within five years were conveyed to the State. A lead for each Hawaii tract.",
+   "effective_date_rule": "none for the class; conveyance date per tract",
+   "source_ids": [
+    "S-HAA"
+   ]
+  },
+  {
+   "id": "M7",
+   "kind": "later_instrument",
+   "effect": "lead_only",
+   "description": "Later revocations, Public Land Orders, transfers, statutes conveying named reservations, and surplus-property disposals, tract by tract; none applies to the class as a whole.",
+   "effective_date_rule": "date of the instrument that reaches the member's lands",
+   "source_ids": []
+  },
+  {
+   "id": "M8",
+   "kind": "continuity_only",
+   "effect": "continuity_only",
+   "description": "FLPMA sec. 701(c) savings and sec. 704(a) repeal of withdrawal authority (1976); the Engle Act of 1958 is prospective. These keep existing reservations in force until modified and are never an end.",
+   "effective_date_rule": "none",
+   "source_ids": [
+    "S-FLPMA",
+    "S-ENGLE"
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S-ORDER",
+   "citation": "The member order's own held text (primary_text_path)",
+   "title": "Member order text",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pothier/output/MEMBERS.jsonl",
+   "sha256": "",
+   "pin": "",
+   "establishes": "What the member order itself commands: a revocation, a restoration or relinquishment, an amendment, or a reservation; the machine reads it through the regex conditions of each branch."
+  },
+  {
+   "id": "S-TM",
+   "citation": "Philippine Independence Act (Tydings-McDuffie Act), Act of Mar. 24, 1934, ch. 84, secs. 5 and 10, 48 Stat. 456, 459, 463",
+   "title": "Philippine Independence Act",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-48/pdf/STATUTE-48-Pg456.pdf",
+   "held": true,
+   "held_path": "jobs/astra-source-retention/output/pages/2900efa1f3ecea81c6d760bd99e6102ae951bd8eed35a7fa461c258e537ebb8e/4d52c0464a453c382faaf4cc7bd953308f9ef9b369f59e1a69e0e50093fbcdf1/selected-pages.txt",
+   "sha256": "636fc71799d9391051b56054be9bb9ce42ab58d46fa0e458d36c9fc465386f70",
+   "pin": "including all military and other reservations",
+   "establishes": "Section 10(a) directed the President, on the July 4 after ten years of the Commonwealth, to withdraw and surrender all U.S. possession, jurisdiction, control or sovereignty over the Philippine Islands, 'including all military and other reservations of the Government of the United States in the Philippines (except such naval reservations and fueling stations as are reserved under section 5)'; section 10(b) left naval reservations and fueling stations 'in its present status' pending negotiation."
+  },
+  {
+   "id": "S-P2695",
+   "citation": "Proclamation No. 2695, Independence of the Philippines, July 4, 1946, 60 Stat. 1352, 1353",
+   "title": "Proclamation 2695",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-60/pdf/STATUTE-60-Pg1352.pdf",
+   "held": true,
+   "held_path": "jobs/astra-source-retention/output/pages/c493d8ef1e3055a50ab3dc4e404b2eaf359537fe78638e57dbd8424bee8a0447/adb2b31e2516fd67174bfb53b7aa579a8236a1c6d0d27e4d768438fc2a4577c5/selected-pages.txt",
+   "sha256": "5fdd773800d1210fe04c363d9d4839adc86794bf0b3cded9ba17065b8e1127c1",
+   "pin": "hereby withdraws and surrenders",
+   "establishes": "On July 4, 1946, acting under the 1934 Act and 'subject to the reservations provided for in the applicable statutes', the President withdrew and surrendered all U.S. rights of possession, supervision, jurisdiction, control or sovereignty over the territory and people of the Philippines."
+  },
+  {
+   "id": "S-TGR",
+   "citation": "Treaty of General Relations between the United States and the Republic of the Philippines, signed July 4, 1946, art. I, 61 Stat. 1174 (ratifications exchanged and in force Oct. 22, 1946)",
+   "title": "Treaty of General Relations (Treaty of Manila) 1946",
+   "url": "https://www.govinfo.gov/link/statute/61/1174",
+   "held": false,
+   "held_path": "",
+   "sha256": "",
+   "pin": "except the use of such bases, necessary appurtenances to such bases",
+   "establishes": "Article I (read on the web, not held) withdraws and surrenders all U.S. rights of possession, supervision, jurisdiction, control or sovereignty over the Philippine Islands, except the use of such bases as the United States may by agreement with the Republic deem necessary to retain; the treaty entered into force on October 22, 1946, so any base withheld under the 1944 joint resolution or kept 'in its present status' under section 10(b) was thereafter used under agreement, not under the reserving executive order."
+  },
+  {
+   "id": "S-JR1944",
+   "citation": "Joint Resolution of June 29, 1944, ch. 322, sec. 2, 58 Stat. 626 (22 U.S.C. 1392)",
+   "title": "Philippine bases joint resolution",
+   "url": "https://www.govinfo.gov/link/statute/58/626",
+   "held": false,
+   "held_path": "",
+   "sha256": "",
+   "pin": "withhold or to acquire and to retain such bases",
+   "establishes": "Authorized the President, after negotiation, to withhold or acquire and retain bases in the Philippines in addition to those provided for by the 1934 Act; it explains why some Army reservations were not surrendered on July 4, 1946 (read on the web through 22 U.S.C. 1392, not held)."
+  },
+  {
+   "id": "S-PCA",
+   "citation": "Panama Canal Act of 1979, Pub. L. 96-70, secs. 3(b)(1), 1504 and 3304, 93 Stat. 452, 455, 488, 500",
+   "title": "Panama Canal Act of 1979",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-93/pdf/STATUTE-93-Pg452.pdf",
+   "held": true,
+   "held_path": "jobs/source-ladder/output/texts/queue_EO_9293_Panama_Canal_Treaty_1977_and_Panama_Canal_Act_of_1979_Pub._L._96-70_93_Stat._452_instr_8d101fb40b.txt",
+   "sha256": "2128a6390e37a43b60c721f18c5cd3bfb281b65e4e21d3cf0d95feca3680e10f",
+   "pin": "shall be deemed to refer to the areas and",
+   "establishes": "From the date the Panama Canal Treaty of 1977 entered into force (sec. 3304), 'Canal Zone' in U.S. law is deemed to refer to the areas and installations in the Republic of Panama made available to the United States under the Treaty (sec. 3(b)(1)); the Zone as U.S.-controlled territory in which the President set apart reservations ceased on that date."
+  },
+  {
+   "id": "S-PCT",
+   "citation": "Panama Canal Treaty, signed Sept. 7, 1977, arts. II, IV, XI, 33 U.S.T. 39, T.I.A.S. No. 10030, 1280 U.N.T.S. 3 (No. 21086); in force Oct. 1, 1979",
+   "title": "Panama Canal Treaty of 1977",
+   "url": "https://treaties.un.org/doc/Publication/UNTS/Volume%201280/volume-1280-I-21086-English.pdf",
+   "held": false,
+   "held_path": "",
+   "sha256": "",
+   "pin": "shall reassume plenary jurisdiction over the former Canal Zone",
+   "establishes": "The Treaty came into force on October 1, 1979; on entry into force it terminated and superseded the Isthmian Canal Convention of 1903 (art. I(1)(a)) and Panama reassumed plenary jurisdiction over the former Canal Zone on entry into force; U.S. military use of defense sites thereafter rested on the separate Agreement in Implementation of Article IV; the Treaty terminated at noon, Panama time, December 31, 1999 (read on the web in the UNTS copy, not held)."
+  },
+  {
+   "id": "S-1884",
+   "citation": "Act of July 5, 1884, ch. 214, sec. 1, 23 Stat. 103",
+   "title": "Abandoned Military Reservations Act",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-23/pdf/STATUTE-23-Pg103.pdf",
+   "held": false,
+   "held_path": "",
+   "sha256": "",
+   "pin": "to be placed under the control of the Secretary of the Interior for disposition",
+   "establishes": "When the President finds the lands of a military reservation, or any portion, useless for military purposes, he shall cause them to be placed under the control of the Secretary of the Interior for disposition under the Act (read on the web, not held); an order made under it relinquishes the military reservation over the lands it names."
+  },
+  {
+   "id": "S-FLPMA",
+   "citation": "Federal Land Policy and Management Act of 1976, Pub. L. 94-579, secs. 701(c) and 704(a), 90 Stat. 2743, 2786, 2792",
+   "title": "FLPMA",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg2743.pdf",
+   "held": true,
+   "held_path": "jobs/astra-source-retention/output/pages/3949c2ad363f3a8922cebc8a306985abd31cd1b304d17337104dc5509c71a906/08af99862ff7a5cb6fc75e6c78c101bd219fe0a5c7602f678ec00e0d828a65a6/selected-pages.txt",
+   "sha256": "e14185c661715326d9306d39413ea761527b18a9a9335ebcab70e298e459a786",
+   "pin": "in effect as of the date of approval of this Act shall remain in full",
+   "establishes": "Section 704(a) repealed, from October 21, 1976, the President's implied withdrawal authority and the withdrawal sections of the Pickett Act of June 25, 1910 (36 Stat. 847); section 701(c) kept all withdrawals and reservations then in effect in full force until modified under FLPMA or other law. This is a continuity point, never an end."
+  },
+  {
+   "id": "S-ENGLE",
+   "citation": "Engle Act, Pub. L. 85-337, Feb. 28, 1958, 72 Stat. 27 (43 U.S.C. 155-158)",
+   "title": "Engle Act",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-72/pdf/STATUTE-72-Pg27.pdf",
+   "held": false,
+   "held_path": "",
+   "sha256": "",
+   "pin": "on and after February 28, 1958 the provisions hereof shall apply",
+   "establishes": "Requires an Act of Congress for defense withdrawals of more than 5,000 acres made on and after February 28, 1958 (read on the web through 43 U.S.C. 155, not held); it is prospective and neither ends nor confirms an earlier executive-order reservation."
+  },
+  {
+   "id": "S-HAA",
+   "citation": "Hawaii Admission Act, Pub. L. 86-3, sec. 5(c) and 5(e), 73 Stat. 4, 5-6 (1959)",
+   "title": "Hawaii Admission Act",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-73/pdf/STATUTE-73-Pg4.pdf",
+   "held": false,
+   "held_path": "",
+   "sha256": "",
+   "pin": "shall remain the property of the United States subject only to the limitations, if any, imposed",
+   "establishes": "Lands set aside for federal use by Act, proclamation or executive order on the date of admission remained U.S. property (sec. 5(c)); each agency was to report within five years, and land the President found no longer needed was to be conveyed to the State (sec. 5(e)) (read on the web, not held). It is a lead for each Hawaii reservation, not an end or a continuation of any one order."
+  },
+  {
+   "id": "S-MBA1947",
+   "citation": "Agreement between the United States and the Republic of the Philippines concerning Military Bases, signed Mar. 14, 1947, 43 U.N.T.S. (No. 673) (Statutes at Large citation unverified)",
+   "title": "Military Bases Agreement 1947",
+   "url": "https://treaties.un.org/doc/Publication/UNTS/Volume%2043/volume-43-I-673-English.pdf",
+   "held": false,
+   "held_path": "",
+   "sha256": "",
+   "pin": "",
+   "establishes": "Not read in full. Needed only if the owner wants to test the doctrine's position that U.S. use of retained Philippine bases after 1946 rested on this agreement rather than on the reserving executive orders."
+  },
+  {
+   "id": "S-EO2143",
+   "citation": "Executive Order 2143 of 1915-03-03",
+   "title": "EO 2143",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2143.txt",
+   "sha256": "37559f11d2b65b00f63e489de04b0cedfaf78a7eb6ea964a7e70128b09ce0331",
+   "pin": "Executive Order No. 1 169, dated February 15",
+   "establishes": "Executive Order 2143 revokes EO 1169 (Arizona National Guard rifle range) as a whole."
+  },
+  {
+   "id": "S-EO2405",
+   "citation": "Executive Order 2405 of 1916-06-19",
+   "title": "EO 2405",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2405.txt",
+   "sha256": "64a06b4645950b0b0c44f1127598e1f3cfad32cb902249e310f6a690d03c1ea6",
+   "pin": "Executive Order No. 2136 of February io, 1915, is hereby revoked",
+   "establishes": "Executive Order 2405 revokes EO 2136 (Momungan, Mindanao) and re-reserves the tract under its own terms."
+  },
+  {
+   "id": "S-EO3067",
+   "citation": "Executive Order 3067 of 1919-03-25",
+   "title": "EO 3067",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3067.txt",
+   "sha256": "34b2b5067ff591bdc27ca4b614811d63434113e71debc99bf79c45893cce05cf",
+   "pin": "2978 is hereby revoked",
+   "establishes": "Executive Order 3067 revokes EO 2978 (tract seaward of Fort DeRussy) and makes a new withdrawal."
+  },
+  {
+   "id": "S-EO3313A",
+   "citation": "Executive Order 3313-A of 1920-07-24",
+   "title": "EO 3313-A",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3313A.txt",
+   "sha256": "fc66db137eb5c349e2d68a4a314557e5e963458aadf95bede3932e9bc8a182a3",
+   "pin": "on this subject is hereby revoked",
+   "establishes": "Executive Order 3313-A revokes EO 3293 (Limbones Island) and re-reserves the island under a different statute."
+  },
+  {
+   "id": "S-EO683",
+   "citation": "Executive Order 683 of 1907-08-19",
+   "title": "EO 683",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_683.txt",
+   "sha256": "796b7d073b6412e1d801cbded22ac2e51ea8930fe4f46a96113ab59c04dd5caa",
+   "pin": "situated in the city of Manila, Philippine Islands, is hereby revoked",
+   "establishes": "Executive Order 683 revokes EO 666 (enlargement of Malate Barracks parcel B) as a whole."
+  },
+  {
+   "id": "S-EO5254",
+   "citation": "Executive Order 5254 of 1929-12-31",
+   "title": "EO 5254",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5254-restoring-certain-reserved-lands-for-target-range-purposes-and.txt",
+   "sha256": "f544cf86ce25f3a993c37b210c33af7ca971e69dd3e05063b9dc683c69d1cfc5",
+   "pin": "is hereby revoked and set aside",
+   "establishes": "Executive Order 5254 revokes EO 4393 (New Mexico National Guard target range) as a whole."
+  },
+  {
+   "id": "S-EO5240",
+   "citation": "Executive Order 5240 of 1929-12-14",
+   "title": "EO 5240",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5240-correction-description-pupukea-military-reservation-territory-hawaii.txt",
+   "sha256": "c2e54538de6e31178b5d7e3a7a14660735d37d7c0c46e1fd47c108a30eafcbdb",
+   "pin": "be and the same is hereby revoked",
+   "establishes": "Executive Order 5240 revokes EO 5174 (an earlier correction of the Pupukea description)."
+  },
+  {
+   "id": "S-EO1282",
+   "citation": "Executive Order 1282 of 1911-01-10",
+   "title": "EO 1282",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_1282.txt",
+   "sha256": "2437ea6871f358f0b19e9445b351aee290ecfe7d2e3eaf9415c517033bd6d9d1",
+   "pin": "reserved for military purposes by Executive Order of May 13, 1908",
+   "establishes": "Executive Order 1282 places all the lands reserved by EO 796 (Biliran Island) under the control of the Philippine government."
+  },
+  {
+   "id": "S-EO1011",
+   "citation": "Executive Order 1011 of 1909-01-22",
+   "title": "EO 1011",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_1011.txt",
+   "sha256": "312505f2b760fc7165ca3780bcf84863b7f02095fd63b137e16505f14ed5db1e",
+   "pin": "is hereby vacated",
+   "establishes": "Executive Order 1011 vacates EO 803 (Fort Keogh placed under Interior) before disposal and returns the reservation to the War Department."
+  },
+  {
+   "id": "S-EO3952",
+   "citation": "Executive Order 3952 of 1924-02-02",
+   "title": "EO 3952",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3952.txt",
+   "sha256": "ea8786afefb32ce5039ae6c71fca9987e9a139c3b1d2a08803912fa622b93062",
+   "pin": "the remaining part of said Reservation",
+   "establishes": "Executive Order 3952 recites that the part of Fort Keogh east of the Tongue River went to Interior by the order of July 26, 1922, and places 'all the remaining part' under Interior for disposal, ending the reservation that EO 1011 redeclared."
+  },
+  {
+   "id": "S-EO3402",
+   "citation": "Executive Order 3402 of 1921-02-11",
+   "title": "EO 3402",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3402.txt",
+   "sha256": "fb48caaade1c3754cf330cff7880c059da615ee16048a69fbbde6aa8ddff0e55",
+   "pin": "reserved for military purposes by Exeentive Order No. 2772",
+   "establishes": "Executive Order 3402 places all public lands in T. 22 S., R. 9 W., N.M.P.M. reserved by EO 2772 (the whole of that order's lands) under Interior for disposal."
+  },
+  {
+   "id": "S-EO3497",
+   "citation": "Executive Order 3497 of 1921-06-15",
+   "title": "EO 3497",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3497.txt",
+   "sha256": "5e9c1c8eb412424507a0d7a04fa364ec32f6800f2d53c61fd2b87715b1ca9d39",
+   "pin": "reserved for military purposes by Executive Order No. 2517",
+   "establishes": "Executive Order 3497 places the 720 acres reserved by EO 2517 (same legal description) under Interior for disposal."
+  },
+  {
+   "id": "S-EO3514",
+   "citation": "Executive Order 3514 of 1921-07-14",
+   "title": "EO 3514",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3514.txt",
+   "sha256": "f219f12c4be5f5d9b000d8abc8af4abd3edacbf060ea7cb93d75d75ea82e5b34",
+   "pin": "dated November 13, 1909",
+   "establishes": "Executive Order 3514 places sections 19, 30 and 31, T. 14 S., R. 15 E., reserved by EO 1136 (the whole of that order's lands) under Interior for disposal."
+  },
+  {
+   "id": "S-EO4062",
+   "citation": "Executive Order 4062 of 1924-08-11",
+   "title": "EO 4062",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4062.txt",
+   "sha256": "f8f2a46bc965ad9ef2a0e3ecd407c2f370e3f6d471a35adcda4a673203305c73",
+   "pin": "No. 2944 dated August 23, 1918",
+   "establishes": "Executive Order 4062 returns the 66.12 acres reserved by EO 2944 (Virginia Key) to the Interior Department."
+  },
+  {
+   "id": "S-EO3418",
+   "citation": "Executive Order 3418 of 1921-03-08",
+   "title": "EO 3418",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3418.txt",
+   "sha256": "495c1d646773f952627d9837222d9d18d85d4e50559e8a3e797e4f24d1c755f4",
+   "pin": "the Military Reservation at Nulato,",
+   "establishes": "Executive Order 3418 places the Nulato reservation 'as set apart by' the orders of May 4, 1908 and October 24, 1911 (EO 1423) under Interior for disposal."
+  },
+  {
+   "id": "S-EO636",
+   "citation": "Executive Order 636 of 1907-05-16",
+   "title": "EO 636",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_636.txt",
+   "sha256": "edb3d1d85ec343eb5e1c64ad0e2223cde1259d0b38d8c5267f818f0201474041",
+   "pin": "is hereby rescinded",
+   "establishes": "Executive Order 636 rescinds the Fort St. Michael transfer order of November 20, 1905 (EO 372-B) as amended June 8, 1906 (EO 456) before it took effect."
+  },
+  {
+   "id": "S-EO3130",
+   "citation": "Executive Order 3130 of 1919-07-25",
+   "title": "EO 3130",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_3130.txt",
+   "sha256": "e0660d4c78ef4b53c7699d2e5a8fc08ba175d16c1d3a03a49d2d374c48dd4459",
+   "pin": "is hereby rescinded",
+   "establishes": "Executive Order 3130 rescinds the order of May 28, 1918 (EO 2869) transferring part of the Balboa radio station reservation to the War Department."
+  },
+  {
+   "id": "S-EO4047",
+   "citation": "Executive Order 4047 of 1924-07-08",
+   "title": "EO 4047",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4047.txt",
+   "sha256": "36a21513e7beda74fe9a94b171e759730dbc27c1ffd80fab090be075d11383b1",
+   "pin": "are all hereby rescinded",
+   "establishes": "Executive Order 4047 rescinds the Balboa radio station order of May 26, 1914 (EO 1948) and the addition of May 16, 1923 (EO 3848), replacing them with a new naval reservation."
+  },
+  {
+   "id": "S-EO7320",
+   "citation": "Executive Order 7320 of 1936-03-19",
+   "title": "EO 7320",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7320-establishing-kellys-slough-migratory-waterfowl-refuge-north-dakota.txt",
+   "sha256": "19c37de589f75aec9947e6d963562bcfa221c9f0a133ec634533f54846702e00",
+   "pin": "No. 2385 of May 22, 1916",
+   "establishes": "Executive Order 7320 revokes EO 2275 and EO 2385 (North Dakota militia target range withdrawals)."
+  },
+  {
+   "id": "S-EO7387",
+   "citation": "Executive Order 7387 of 1936-06-15",
+   "title": "EO 7387",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7387-reservation-naval-station-balboa-canal-zone.txt",
+   "sha256": "aecde2ea6553254747e0a9bd99e1625ea9895cacc46f470f9b3fd78579eb61de",
+   "pin": "This order supersedes Executive Order No. 4047",
+   "establishes": "Executive Order 7387 supersedes EO 4047 (Balboa naval reservation)."
+  },
+  {
+   "id": "S-EO7407",
+   "citation": "Executive Order 7407 of 1936-07-06",
+   "title": "EO 7407",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7407-quarry-heights-military-reservation-canal-zone.txt",
+   "sha256": "d62e9a17987e4231f04397885d7db087958aad7d17a97573482038c0dd653513",
+   "pin": "This order supersedes Executive Orders No. 3202",
+   "establishes": "Executive Order 7407 supersedes EOs 3202, 3386 and 3428 (Quarry Heights) and releases lands not in the new description."
+  },
+  {
+   "id": "S-EO9293",
+   "citation": "Executive Order 9293 of 1943-01-02",
+   "title": "EO 9293",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-9293-quarry-heights-military-reservation-canal-zone.txt",
+   "sha256": "2a926529004d2f8a5003151ce55a7a882a9e6346dc042a09796315d5b2c07694",
+   "pin": "This order supersedes Executive Order No. 7407",
+   "establishes": "Executive Order 9293 supersedes EO 7407 (Quarry Heights, 1936)."
+  },
+  {
+   "id": "S-EO2563",
+   "citation": "Executive Order 2563 of 1917-03-27",
+   "title": "EO 2563",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2563.txt",
+   "sha256": "cd6f0f06894b0672a7a101e33ac0e468e8c2d31ce4b1596bcef10459b5960d14",
+   "pin": "is hereby vacated",
+   "establishes": "Executive Order 2563 vacates the order of January 4, 1911 (EO 1279) placing Fort Ringgold under Interior, before disposal."
+  },
+  {
+   "id": "S-EO2377",
+   "citation": "Executive Order 2377 of 1916-05-02",
+   "title": "EO 2377",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2377.txt",
+   "sha256": "a4ef377692f425312e89b1f9b64ccc5caecc60c276b1f6d02c961fb86c877b70",
+   "pin": "is hereby vacated",
+   "establishes": "Executive Order 2377 vacates the order of October 14, 1911 (EO 1422) placing Fort Brown under Interior, before disposal."
+  },
+  {
+   "id": "S-EO5715",
+   "citation": "Executive Order 5715 of 1931-09-16",
+   "title": "EO 5715",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/ofr-compilations/output/texts/EO_5715.txt",
+   "sha256": "13b09f9b079035f5f7205e23a5fb622613e02218eee3681ed90269966bf6400c",
+   "pin": "are hereby removed",
+   "establishes": "Executive Order 5715 restores the rest of the Barracks Lot to the Territory of Hawaii and removes 'the restrictions as to use imposed by Executive Order No. 1507', the armory-use condition and reversion that were EO 1507's only continuing clause."
+  }
+ ],
+ "procedure": [
+  {
+   "branch_id": "B01",
+   "description": "Members that are not land reservations at all (Saturday working hours, Civil Service Rules schedules, Marine Corps duties, seizure of German ships, closing of naval harbors, construction of 'military camps', Coast Guard prisoners). X1 typed them here because they mention navy yards or the War or Navy Department.",
+   "when": [
+    {
+     "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "out_of_family",
+    "basis_kind": "NONE",
+    "basis": "The order is not a military or naval land reservation; this doctrine has no mechanism for it. It belongs with the civil-service, pay or war families.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Route to the family whose mechanisms fit (PD-CS-RULES, PD-ADMIN or PD-WAR-EMERGENCY). Several Saturday-hours orders were revoked by later Saturday-hours orders in this same list (EO 1962 and EO 4026 revoke 'all Executive or other orders in conflict herewith', except EO 777); whether each earlier order conflicts is a reading question, not a pattern."
+   ]
+  },
+  {
+   "branch_id": "C01",
+   "description": "Members ended by a later held order that names them: EO 2143 of 1915-03-03 revokes EO 1169 (Arizona National Guard rifle range) as a whole.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1169"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 2143 of 1915-03-03, held and read, revokes EO 1169 (Arizona National Guard rifle range) as a whole.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1915-03-03",
+     "basis": "date of EO 2143"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO2143"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C02",
+   "description": "Members ended by a later held order that names them: EO 2405 of 1916-06-19 revokes EO 2136 (Momungan, Mindanao) and re-reserves the tract under its own terms.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2136"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 2405 of 1916-06-19, held and read, revokes EO 2136 (Momungan, Mindanao) and re-reserves the tract under its own terms.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1916-06-19",
+     "basis": "date of EO 2405"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO2405"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C03",
+   "description": "Members ended by a later held order that names them: EO 3067 of 1919-03-25 revokes EO 2978 (tract seaward of Fort DeRussy) and makes a new withdrawal.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2978"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3067 of 1919-03-25, held and read, revokes EO 2978 (tract seaward of Fort DeRussy) and makes a new withdrawal.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1919-03-25",
+     "basis": "date of EO 3067"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO3067"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C04",
+   "description": "Members ended by a later held order that names them: EO 3313-A of 1920-07-24 revokes EO 3293 (Limbones Island) and re-reserves the island under a different statute.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3293"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3313-A of 1920-07-24, held and read, revokes EO 3293 (Limbones Island) and re-reserves the island under a different statute.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1920-07-24",
+     "basis": "date of EO 3313-A"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO3313A"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C05",
+   "description": "Members ended by a later held order that names them: EO 683 of 1907-08-19 revokes EO 666 (enlargement of Malate Barracks parcel B) as a whole.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:666"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 683 of 1907-08-19, held and read, revokes EO 666 (enlargement of Malate Barracks parcel B) as a whole.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1907-08-19",
+     "basis": "date of EO 683"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO683"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C06",
+   "description": "Members ended by a later held order that names them: EO 5254 of 1929-12-31 revokes EO 4393 (New Mexico National Guard target range) as a whole.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4393"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 5254 of 1929-12-31, held and read, revokes EO 4393 (New Mexico National Guard target range) as a whole.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1929-12-31",
+     "basis": "date of EO 5254"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO5254"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C07",
+   "description": "Members ended by a later held order that names them: EO 5240 of 1929-12-14 revokes EO 5174 (an earlier correction of the Pupukea description).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5174"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 5240 of 1929-12-14, held and read, revokes EO 5174 (an earlier correction of the Pupukea description).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1929-12-14",
+     "basis": "date of EO 5240"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO5240"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C08",
+   "description": "Members ended by a later held order that names them: EO 1282 of 1911-01-10 places all the lands reserved by EO 796 (Biliran Island) under the control of the Philippine government.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:796"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 1282 of 1911-01-10, held and read, places all the lands reserved by EO 796 (Biliran Island) under the control of the Philippine government.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1911-01-10",
+     "basis": "date of EO 1282"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO1282"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C09",
+   "description": "Members ended by a later held order that names them: EO 1011 of 1909-01-22 vacates EO 803 (Fort Keogh placed under Interior) before disposal and returns the reservation to the War Department.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:803"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 1011 of 1909-01-22, held and read, vacates EO 803 (Fort Keogh placed under Interior) before disposal and returns the reservation to the War Department.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1909-01-22",
+     "basis": "date of EO 1011"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO1011"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C10",
+   "description": "Members ended by a later held order that names them: EO 3952 of 1924-02-02 recites that the part of Fort Keogh east of the Tongue River went to Interior by the order of July 26, 1922, and places 'all the remaining part' under Interior for disposal, ending the reservation that EO 1011 redeclared.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1011"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3952 of 1924-02-02, held and read, recites that the part of Fort Keogh east of the Tongue River went to Interior by the order of July 26, 1922, and places 'all the remaining part' under Interior for disposal, ending the reservation that EO 1011 redeclared.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1924-02-02",
+     "basis": "date of EO 3952"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO3952"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C11",
+   "description": "Members ended by a later held order that names them: EO 3402 of 1921-02-11 places all public lands in T. 22 S., R. 9 W., N.M.P.M. reserved by EO 2772 (the whole of that order's lands) under Interior for disposal.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2772"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3402 of 1921-02-11, held and read, places all public lands in T. 22 S., R. 9 W., N.M.P.M. reserved by EO 2772 (the whole of that order's lands) under Interior for disposal.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1921-02-11",
+     "basis": "date of EO 3402"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO3402"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C12",
+   "description": "Members ended by a later held order that names them: EO 3497 of 1921-06-15 places the 720 acres reserved by EO 2517 (same legal description) under Interior for disposal.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2517"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3497 of 1921-06-15, held and read, places the 720 acres reserved by EO 2517 (same legal description) under Interior for disposal.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1921-06-15",
+     "basis": "date of EO 3497"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO3497"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C13",
+   "description": "Members ended by a later held order that names them: EO 3514 of 1921-07-14 places sections 19, 30 and 31, T. 14 S., R. 15 E., reserved by EO 1136 (the whole of that order's lands) under Interior for disposal.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1136"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3514 of 1921-07-14, held and read, places sections 19, 30 and 31, T. 14 S., R. 15 E., reserved by EO 1136 (the whole of that order's lands) under Interior for disposal.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1921-07-14",
+     "basis": "date of EO 3514"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO3514"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C14",
+   "description": "Members ended by a later held order that names them: EO 4062 of 1924-08-11 returns the 66.12 acres reserved by EO 2944 (Virginia Key) to the Interior Department.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2944"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 4062 of 1924-08-11, held and read, returns the 66.12 acres reserved by EO 2944 (Virginia Key) to the Interior Department.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1924-08-11",
+     "basis": "date of EO 4062"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO4062"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C15",
+   "description": "Members ended by a later held order that names them: EO 3418 of 1921-03-08 places the Nulato reservation 'as set apart by' the orders of May 4, 1908 and October 24, 1911 (EO 1423) under Interior for disposal.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1423"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3418 of 1921-03-08, held and read, places the Nulato reservation 'as set apart by' the orders of May 4, 1908 and October 24, 1911 (EO 1423) under Interior for disposal.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1921-03-08",
+     "basis": "date of EO 3418"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO3418"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C16",
+   "description": "Members ended by a later held order that names them: EO 636 of 1907-05-16 rescinds the Fort St. Michael transfer order of November 20, 1905 (EO 372-B) as amended June 8, 1906 (EO 456) before it took effect.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:372B",
+      "EO:456"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 636 of 1907-05-16, held and read, rescinds the Fort St. Michael transfer order of November 20, 1905 (EO 372-B) as amended June 8, 1906 (EO 456) before it took effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1907-05-16",
+     "basis": "date of EO 636"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO636"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C17",
+   "description": "Members ended by a later held order that names them: EO 3130 of 1919-07-25 rescinds the order of May 28, 1918 (EO 2869) transferring part of the Balboa radio station reservation to the War Department.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2869"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3130 of 1919-07-25, held and read, rescinds the order of May 28, 1918 (EO 2869) transferring part of the Balboa radio station reservation to the War Department.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1919-07-25",
+     "basis": "date of EO 3130"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO3130"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C18",
+   "description": "Members ended by a later held order that names them: EO 4047 of 1924-07-08 rescinds the Balboa radio station order of May 26, 1914 (EO 1948) and the addition of May 16, 1923 (EO 3848), replacing them with a new naval reservation.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1948",
+      "EO:3848"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 4047 of 1924-07-08, held and read, rescinds the Balboa radio station order of May 26, 1914 (EO 1948) and the addition of May 16, 1923 (EO 3848), replacing them with a new naval reservation.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1924-07-08",
+     "basis": "date of EO 4047"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO4047"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C19",
+   "description": "Members ended by a later held order that names them: EO 7320 of 1936-03-19 revokes EO 2275 and EO 2385 (North Dakota militia target range withdrawals).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2275",
+      "EO:2385"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 7320 of 1936-03-19, held and read, revokes EO 2275 and EO 2385 (North Dakota militia target range withdrawals).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1936-03-19",
+     "basis": "date of EO 7320"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO7320"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C20",
+   "description": "Members ended by a later held order that names them: EO 7387 of 1936-06-15 supersedes EO 4047 (Balboa naval reservation).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4047"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 7387 of 1936-06-15, held and read, supersedes EO 4047 (Balboa naval reservation).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1936-06-15",
+     "basis": "date of EO 7387"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO7387"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C21",
+   "description": "Members ended by a later held order that names them: EO 7407 of 1936-07-06 supersedes EOs 3202, 3386 and 3428 (Quarry Heights) and releases lands not in the new description.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3202",
+      "EO:3386",
+      "EO:3428"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 7407 of 1936-07-06, held and read, supersedes EOs 3202, 3386 and 3428 (Quarry Heights) and releases lands not in the new description.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1936-07-06",
+     "basis": "date of EO 7407"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO7407"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C22",
+   "description": "Members ended by a later held order that names them: EO 9293 of 1943-01-02 supersedes EO 7407 (Quarry Heights, 1936).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:7407"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 9293 of 1943-01-02, held and read, supersedes EO 7407 (Quarry Heights, 1936).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1943-01-02",
+     "basis": "date of EO 9293"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO9293"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C23",
+   "description": "Members ended by a later held order that names them: EO 2563 of 1917-03-27 vacates the order of January 4, 1911 (EO 1279) placing Fort Ringgold under Interior, before disposal.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1279"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 2563 of 1917-03-27, held and read, vacates the order of January 4, 1911 (EO 1279) placing Fort Ringgold under Interior, before disposal.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1917-03-27",
+     "basis": "date of EO 2563"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO2563"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C24",
+   "description": "Members ended by a later held order that names them: EO 2377 of 1916-05-02 vacates the order of October 14, 1911 (EO 1422) placing Fort Brown under Interior, before disposal.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1422"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 2377 of 1916-05-02, held and read, vacates the order of October 14, 1911 (EO 1422) placing Fort Brown under Interior, before disposal.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1916-05-02",
+     "basis": "date of EO 2377"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO2377"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "C25",
+   "description": "Members ended by a later held order that names them: EO 5715 of 1931-09-16 restores the rest of the Barracks Lot to the Territory of Hawaii and removes 'the restrictions as to use imposed by Executive Order No. 1507', the armory-use condition and reversion that were EO 1507's only continuing clause.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1507"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_member_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 5715 of 1931-09-16, held and read, restores the rest of the Barracks Lot to the Territory of Hawaii and removes 'the restrictions as to use imposed by Executive Order No. 1507', the armory-use condition and reversion that were EO 1507's only continuing clause.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1931-09-16",
+     "basis": "date of EO 5715"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S-EO5715"
+    ]
+   },
+   "gaps": [
+    "The acting order's held text is a transcription or page-scan OCR, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B09",
+   "description": "EO 5254 revokes EO 4393 and opens the lands to entry on a stated schedule: a 91-day preference for ex-servicemen beginning on the 63rd day after the order, then general appropriation.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5254"
+     ]
+    },
+    {
+     "text_regex": "for a period of 91 days beginning with the 63rd day"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_by_own_schedule",
+    "basis_kind": "TERM",
+    "basis": "The revocation was performed on issue (December 31, 1929); the order's only other command, the ex-servicemen preference period of 91 days beginning on the 63rd day after the order, ran from March 4, 1930 through June 2, 1930, after which the lands were open under the general land laws and the order commanded nothing further.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1930-06-02",
+     "basis": "last day of the 91-day preference period beginning on the 63rd day after December 31, 1929"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S-ORDER"
+    ]
+   },
+   "gaps": [
+    "Held text is a transcription, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B10",
+   "description": "Orders whose only command revokes, vacates, rescinds or amends an earlier order (for example a corrected land description), with no new reservation of their own.",
+   "when": [
+    {
+     "summary_regex": "^\\W*(\\* ?)?(E\\. ?0\\.|B\\. ?0\\.|Executive Order|E\\. ?Os?\\.?)"
+    },
+    {
+     "summary_regex": "(revoked|amended)"
+    },
+    {
+     "not": {
+      "summary_regex": "(revoked|amended)[^;]{0,60}(and|;)[^;]{0,80}(reserved|(placed|restored|returned) ?(under|to) (the )?(control ?(of )?)?(the )?(War|Navy)|transferred to the (War|Navy|Treasury|Agriculture)|continued)|enlarg|fix(ed)? the boundaries"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "placed under the control of the (War Department|Secretary of War|Navy Department|Secretary of the Navy)|continued in reservation"
+     }
+    },
+    {
+     "not": {
+      "summary_regex": "(reserv\\w+|enlarg\\w+|establish\\w+) [^;]{0,80}; ?E\\. ?0"
+     }
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue_revocation_or_amendment",
+    "basis_kind": "TERM",
+    "basis": "By its own terms the order only revokes or amends another order; that single act was performed when the order issued. Its effect is evidence for the lifecycle of the order it acts on, not a continuing command of its own.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S-ORDER"
+    ]
+   },
+   "gaps": [
+    "The branch reads the WPA 1944 summary; the held text should be checked for a second operative clause (a new reservation or a reserved right) that the summary omits."
+   ]
+  },
+  {
+   "branch_id": "B11",
+   "description": "Restorations, relinquishments and disposals: orders that end a reservation over the lands they name (restored to the public domain or to a territorial or Philippine government, placed under the Secretary of the Interior for disposal under the 1884 Act, abolished, or diminished by exclusion), and that neither redefine the remaining reservation, retain a reversion or other right, nor reserve the lands again for another use.",
+   "when": [
+    {
+     "summary_regex": "revoked|restor|diminish|dimin- ?ished|abolish|abol ?ished|for dis ?pos|eliminated|excluded|placed under (the )?(control ?of )?(the )?Interior|transferred to the In ?terior|control of the Interior|to the Government of (Puerto Rico|the Philippines|the Territory)|amended to (correct|co|include)|amended as to the descrip|amended\\.$"
+    },
+    {
+     "not": {
+      "summary_regex": "enlarg|establish(?!\\w* ?by E)|creat(?!\\w* ?by E)|reestablish|\\bredefined|modified|\\baddition\\b|set apart|assigned to|withdrawn (for|pend)|withdrawn$|(?<!formerly )(?<!previously )(?<!previously)(?<!merly )(?<!viously )(?<!previouslyre )(?<!ously re )(?<!originally )(?<!which were )(?<!heretofore )re ?served (for|as)\\b|(?<!formerly )(?<!previously )(?<!previously)(?<!merly )(?<!viously )(?<!previouslyre )(?<!ously re )(?<!originally )(?<!which were )(?<!heretofore )reserv ?ing|be reserved|be re served|transferred ?(from [A-Za-z' .]+ )?to (the )?(Navy|War|Treasury|Agriculture|Veterans|Justice)|(placed|returned|restored) ?(under|to) (the )?(control ?(of )?)?(the )?(Navy|War)|retransferred|control .{0,40} assumed|for the use of the (Agriculture|Justice|Alaska Road|Reindeer|Treasury)|declared a"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "revert(?!s? to (their|its) (former|previous))|reversion|hereby retained|is retained|are retained|still retained|retained (to|for|and set)|excepted from (said|the|this) restoration|reserved to the United States|there is reserved|authorized to reserve|continued in reservation|right to obtain|subject to the (exception|reversion|condition)|for (road|roadway|park|school|aeronautical|highway|hospital|experimental|cemetery) purposes(, and)? (only|and for no other)|and for no other purpose|so long as|subject to such (reimbursement|reservations)|in the event (that )?(the )?(said )?land|cease[sd]? to be used|for (the )?(road|roadway|park|aeronautical|highway|street|school|armory|hospital|airport|widening)\\b[^.]{0,40}purposes|for the widening of"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "and those only|so that the (said )?reservation (will|shall) include|so as to include (all|only)|shall (hereafter )?(include|embrace|comprise) (all|only)|boundaries (of [^.]{0,80})?(are|is) hereby (re)?defined|redefined as follows|shall be as follows|as (thus|so|hereby) (modified|diminished|reduced)|includes all (public )?lands,? within|(include|embrace) all (public )?lands,? and those only"
+     }
+    },
+    {
+     "not": {
+      "text_regex": "placed under the control of the (War Department|Secretary of War|Navy Department|Secretary of the Navy)|(is|are),? hereby,? (reserved|set apart|set aside)|be,? and the same (is|are),? hereby,? (reserved|set apart|set aside|withdrawn)|hereby (transferred|assigned) to the (United States )?(Veterans|Department of Agriculture|Treasury|Navy|War|Department of Justice)|(is|are) hereby (reserved|set apart|set aside|withdrawn)|hereby reserved for"
+     }
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue_relinquishment",
+    "basis_kind": "TERM",
+    "basis": "By its own terms the order performs one act: it takes the named lands out of a military or naval reservation (restoring them, relinquishing them to a territorial or Philippine government, or placing them under the Interior Department for disposal under the Act of July 5, 1884). The act was complete when the order issued; later disposal of the lands proceeds under the statute and the land laws, not under a continuing command of the order.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2"
+    ],
+    "source_ids": [
+     "S-ORDER",
+     "S-1884"
+    ]
+   },
+   "gaps": [
+    "A later order could vacate a transfer to the Interior Department before disposal (EO 1011, EO 2377, EO 2563 and EO 636 did so for EO 803, EO 1422, EO 1279 and EO 372-B); a vacated transfer is ended by the vacating order (branches C09, C16, C23, C24), and the doctrine detects vacatur only where the vacating order is a member of this family.",
+    "Regex screens on the text decide that no reversion, retained right, redefinition or re-reservation is present; scan-OCR texts may hide such a clause."
+   ]
+  },
+  {
+   "branch_id": "B12",
+   "description": "Restorations and relinquishments outside the Philippines and the Canal Zone that keep a continuing interest: a reversion or purpose restriction if the land stops being used for a stated purpose, a retained tract, water or right-of-way rights, or an authority to reserve parts again. (In the Philippines and the Canal Zone the class event of B20 or B21 ends such interests too.)",
+   "when": [
+    {
+     "summary_regex": "revoked|restor|diminish|dimin- ?ished|abolish|abol ?ished|for dis ?pos|eliminated|excluded|placed under (the )?(control ?of )?(the )?Interior|transferred to the In ?terior|control of the Interior|to the Government of (Puerto Rico|the Philippines|the Territory)|amended to (correct|co|include)|amended as to the descrip|amended\\.$"
+    },
+    {
+     "not": {
+      "summary_regex": "enlarg|establish(?!\\w* ?by E)|creat(?!\\w* ?by E)|reestablish|\\bredefined|modified|\\baddition\\b|set apart|assigned to|withdrawn (for|pend)|withdrawn$|(?<!formerly )(?<!previously )(?<!previously)(?<!merly )(?<!viously )(?<!previouslyre )(?<!ously re )(?<!originally )(?<!which were )(?<!heretofore )re ?served (for|as)\\b|(?<!formerly )(?<!previously )(?<!previously)(?<!merly )(?<!viously )(?<!previouslyre )(?<!ously re )(?<!originally )(?<!which were )(?<!heretofore )reserv ?ing|be reserved|be re served|transferred ?(from [A-Za-z' .]+ )?to (the )?(Navy|War|Treasury|Agriculture|Veterans|Justice)|(placed|returned|restored) ?(under|to) (the )?(control ?(of )?)?(the )?(Navy|War)|retransferred|control .{0,40} assumed|for the use of the (Agriculture|Justice|Alaska Road|Reindeer|Treasury)|declared a"
+     }
+    },
+    {
+     "text_regex": "revert(?!s? to (their|its) (former|previous))|reversion|hereby retained|is retained|are retained|still retained|retained (to|for|and set)|excepted from (said|the|this) restoration|reserved to the United States|there is reserved|authorized to reserve|continued in reservation|right to obtain|subject to the (exception|reversion|condition)|for (road|roadway|park|school|aeronautical|highway|hospital|experimental|cemetery) purposes(, and)? (only|and for no other)|and for no other purpose|so long as|subject to such (reimbursement|reservations)|in the event (that )?(the )?(said )?land|cease[sd]? to be used|for (the )?(road|roadway|park|aeronautical|highway|street|school|armory|hospital|airport|widening)\\b[^.]{0,40}purposes|for the widening of"
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    },
+    {
+     "not": {
+      "any_of": [
+       {
+        "summary_regex": "(^|\\W)(Philippine|P\\. ?I\\b|P\\. ?L\\b|Luzon|Mindanao|Manila|Jolo|Zamboanga|Moro Prov|Sulu|Leyte|Samar|Cebu|Iloilo|Panay|Bataan|Bata\\[a\\]n|Cavite|Corregidor|Subic|Olongapo|Baguio|Benguet|Albay|Sorsogon|Guimar|Laguna|Rizal|Isabela|Cotabato|Lanao|Romblon|Cuyo|Biliran|Bongao|Siassi|Basilan|Polloc|Parang|Malabang|Mariveles|Cacraray|Limbones|Momungan|Monungan|Cauayan)"
+       },
+       {
+        "title_regex": "(^|\\W)(Philippine|P\\. ?I\\b|P\\. ?L\\b|Luzon|Mindanao|Manila|Jolo|Zamboanga|Moro Prov|Sulu|Leyte|Samar|Cebu|Iloilo|Panay|Bataan|Bata\\[a\\]n|Cavite|Corregidor|Subic|Olongapo|Baguio|Benguet|Albay|Sorsogon|Guimar|Laguna|Rizal|Isabela|Cotabato|Lanao|Romblon|Cuyo|Biliran|Bongao|Siassi|Basilan|Polloc|Parang|Malabang|Mariveles|Cacraray|Limbones|Momungan|Monungan|Cauayan)"
+       },
+       {
+        "summary_regex": "C\\. ?Z\\.|Canal Zone|Balboa|Col[oó]n Naval|Coco Solo|Fort Amador|Fort Randolph|France Field|Quarry Heights|Corozal|Fort Clayton|Fort Sherman|Paitilla|Cerro Tigre|Corundu|Republic of Panama"
+       },
+       {
+        "title_regex": "C\\. ?Z\\.|Canal Zone|Balboa|Col[oó]n Naval|Coco Solo|Fort Amador|Fort Randolph|France Field|Quarry Heights|Corozal|Fort Clayton|Fort Sherman|Paitilla|Cerro Tigre|Corundu|Republic of Panama"
+       }
+      ]
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "residual_interest_retained",
+    "basis_kind": "NONE",
+    "basis": "The restoring command was performed on issue, but the order also keeps a reversion, a retained tract or a reserved right that can still operate; whether that interest survives depends on what later happened to the land.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M6"
+    ],
+    "source_ids": [
+     "S-ORDER"
+    ]
+   },
+   "gaps": [
+    "Current title and use of the restored land (state or territorial land records; for Hawaii, Hawaii Admission Act sec. 5 conveyances) to tell whether the reversion or retained right was exercised, released or extinguished."
+   ]
+  },
+  {
+   "branch_id": "B20",
+   "description": "Philippine reservations: orders that reserve, enlarge, redefine or transfer military or naval reservations in the Philippine Islands (any order of this family located there that the earlier branches did not decide).",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "(^|\\W)(Philippine|P\\. ?I\\b|P\\. ?L\\b|Luzon|Mindanao|Manila|Jolo|Zamboanga|Moro Prov|Sulu|Leyte|Samar|Cebu|Iloilo|Panay|Bataan|Bata\\[a\\]n|Cavite|Corregidor|Subic|Olongapo|Baguio|Benguet|Albay|Sorsogon|Guimar|Laguna|Rizal|Isabela|Cotabato|Lanao|Romblon|Cuyo|Biliran|Bongao|Siassi|Basilan|Polloc|Parang|Malabang|Mariveles|Cacraray|Limbones|Momungan|Monungan|Cauayan)"
+      },
+      {
+       "title_regex": "(^|\\W)(Philippine|P\\. ?I\\b|P\\. ?L\\b|Luzon|Mindanao|Manila|Jolo|Zamboanga|Moro Prov|Sulu|Leyte|Samar|Cebu|Iloilo|Panay|Bataan|Bata\\[a\\]n|Cavite|Corregidor|Subic|Olongapo|Baguio|Benguet|Albay|Sorsogon|Guimar|Laguna|Rizal|Isabela|Cotabato|Lanao|Romblon|Cuyo|Biliran|Bongao|Siassi|Basilan|Polloc|Parang|Malabang|Mariveles|Cacraray|Limbones|Momungan|Monungan|Cauayan)"
+      }
+     ]
+    },
+    {
+     "not": {
+      "summary_regex": "C\\. ?Z\\.|Canal Zone|Balboa|Col[oó]n Naval|Coco Solo|Fort Amador|Fort Randolph|France Field|Quarry Heights|Corozal|Fort Clayton|Fort Sherman|Paitilla|Cerro Tigre|Corundu|Republic of Panama"
+     }
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_philippine_independence",
+    "basis_kind": "ACT",
+    "basis": "Section 10(a) of the Philippine Independence Act (48 Stat. 463) required the surrender on July 4, 1946 of all U.S. possession, control and sovereignty over the Islands 'including all military and other reservations', and Proclamation 2695 made that surrender; naval reservations, and bases withheld under the 1944 joint resolution, passed under Article I of the Treaty of General Relations (in force October 22, 1946), which surrendered all remaining U.S. rights except the use of bases by agreement. After that date no U.S. reservation of Philippine land by executive order could operate; any later U.S. use of a base rested on the 1947 Military Bases Agreement.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1946-10-22",
+     "basis": "ended no later than the Treaty of General Relations' entry into force; July 4, 1946 for reservations surrendered by Proclamation 2695; earlier if a later order revoked or restored the lands"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-TM",
+     "S-P2695",
+     "S-TGR"
+    ]
+   },
+   "gaps": [
+    "The Treaty of General Relations (61 Stat. 1174) is read on the web only; acquire it.",
+    "If the owner treats U.S. use of a retained base under the 1947 Military Bases Agreement as a continuation of the reserving order, the upper bound moves to that base's turnover (all before the cutoff); the doctrine takes the agreement as a new basis, as the Jacquard L6 lot card does.",
+    "The place screen reads the title, the WPA summary and the held text; a scan that runs into a neighbouring Philippine order can pull in a member located elsewhere."
+   ]
+  },
+  {
+   "branch_id": "B21",
+   "description": "Canal Zone reservations: orders that set apart, enlarge, redefine or transfer military or naval reservations or radio stations in the Canal Zone or on lands granted by Panama under the 1903 treaty.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "C\\. ?Z\\.|Canal Zone|Balboa|Col[oó]n Naval|Coco Solo|Fort Amador|Fort Randolph|France Field|Quarry Heights|Corozal|Fort Clayton|Fort Sherman|Paitilla|Cerro Tigre|Corundu|Republic of Panama"
+      },
+      {
+       "title_regex": "C\\. ?Z\\.|Canal Zone|Balboa|Col[oó]n Naval|Coco Solo|Fort Amador|Fort Randolph|France Field|Quarry Heights|Corozal|Fort Clayton|Fort Sherman|Paitilla|Cerro Tigre|Corundu|Republic of Panama"
+      }
+     ]
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_with_canal_zone",
+    "basis_kind": "ACT",
+    "basis": "The President set these reservations apart within the Canal Zone, or on adjacent lands whose use the 1903 Isthmian Canal Convention granted. When the Panama Canal Treaty of 1977 entered into force on October 1, 1979, it terminated and superseded the 1903 Convention (art. I(1)(a)) and Panama reassumed plenary jurisdiction over the former Zone (art. XI), and the Panama Canal Act of 1979 (sec. 3(b)(1)) thereafter treats 'Canal Zone' as the areas in the Republic of Panama made available to the United States under the Treaty. Any later U.S. military use rested on the Treaty and its Article IV implementing agreement, and the Treaty terminated at noon on December 31, 1999.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1979-10-01",
+     "basis": "ended no later than the Panama Canal Treaty's entry into force; earlier if a later order superseded or rescinded it"
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S-PCA",
+     "S-PCT"
+    ]
+   },
+   "gaps": [
+    "The Panama Canal Treaty (UNTS 1280, No. 21086) is read on the web only; acquire it.",
+    "If the owner treats U.S. use of a defense site under the Article IV agreement as a continuation of the reserving order, the upper bound moves to 1999-12-31 (Treaty termination), still before the cutoff."
+   ]
+  },
+  {
+   "branch_id": "B30",
+   "description": "Hawaii reservations: orders that reserve, enlarge or redefine military or naval reservations in Hawaii.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "T\\. ?H\\.|Hawaii|Oahu|Kauai|Honolulu|Kure Island"
+      },
+      {
+       "title_regex": "T\\. ?H\\.|Hawaii|Oahu|Kauai|Honolulu|Kure Island"
+      }
+     ]
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "persists_candidate_hawaii",
+    "basis_kind": "NONE",
+    "basis": "Many of these reservations (for example Fort Shafter, Fort DeRussy, Fort Ruger, Schofield-area and Pearl Harbor tracts) may still be federal land. Section 5(c) of the Hawaii Admission Act kept lands set aside by executive order as U.S. property, and section 5(e) required conveyance to the State of lands found no longer needed; neither fixes the status of any one order.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M6",
+     "M7"
+    ],
+    "source_ids": [
+     "S-HAA"
+    ]
+   },
+   "gaps": [
+    "Current federal real property or Army/Navy installation records for each tract, and section 5(e) conveyance records, would decide yes or no; acquire the Hawaii Admission Act text."
+   ]
+  },
+  {
+   "branch_id": "B31",
+   "description": "Alaska reservations: orders that reserve, enlarge or modify military or naval reservations, Signal Corps stations or radio stations in Alaska.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "Alaska"
+      },
+      {
+       "title_regex": "Alaska"
+      }
+     ]
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "open_alaska",
+    "basis_kind": "NONE",
+    "basis": "Many Alaska reservations were later placed under the Interior Department by blanket orders (for example EO 4131 of 1925 and EO 7127 of 1935, both members), often with exceptions for cemeteries, Signal Corps tracts or Alaska Road Commission sites; others passed through statehood selections, ANCSA conveyances or Public Land Orders. Which instrument ended a given reservation is a tract question.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M3",
+     "M7"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Match each reservation's name and the orders' recitals to the blanket relinquishments (EO 4131, EO 7127, EO 7049) and to BLM Alaska Public Land Order records; a whole-reservation match is an ACT end."
+   ]
+  },
+  {
+   "branch_id": "B32",
+   "description": "Puerto Rico reservations: orders that reserve, transfer or modify naval or military lands in Puerto Rico.",
+   "when": [
+    {
+     "any_of": [
+      {
+       "summary_regex": "Puerto Rico|P\\. ?R\\.|Porto Rico"
+      },
+      {
+       "title_regex": "Puerto Rico|P\\. ?R\\.|Porto Rico"
+      }
+     ]
+    },
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "open_puerto_rico",
+    "basis_kind": "NONE",
+    "basis": "Puerto Rico remains a U.S. territory; no class-wide event ended these reservations. Each depends on later transfers to the insular government or federal disposal.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M7"
+    ],
+    "source_ids": []
+   },
+   "gaps": [
+    "Later executive orders, statutes or deeds transferring the named lands, or current federal property records."
+   ]
+  },
+  {
+   "branch_id": "B33",
+   "description": "Continental reservations: orders that reserve, enlarge, redefine or transfer military or naval reservations, target and rifle ranges (including Pickett Act withdrawals for the National Guard), or lands for another department's use in the States.",
+   "when": [
+    {
+     "not": {
+      "any_regex": "Four-hour work ?day|Civil ?Service Rules|Duties of the United States Marine Corps|Seizure of German vessels|Foreign vessels ?prohibited|\\\"military camps,\\\"|imprisonment of Coast Guard prisoners"
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "persists_candidate_until_revoked_or_disposed",
+    "basis_kind": "NONE",
+    "basis": "A reservation for military, naval or departmental use stands until revoked, relinquished, transferred or disposed of. FLPMA sec. 701(c) kept every withdrawal and reservation in effect on October 21, 1976 in full force until modified, and sec. 704(a) repealed only the authority to make new ones; the Engle Act of 1958 is prospective. None of these ends or confirms a member. Many National Guard ranges were later revoked by executive orders or Public Land Orders; some reservations (for example Fort Sill, Fort Bliss ranges) may still be military land.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M3",
+     "M7",
+     "M8"
+    ],
+    "source_ids": [
+     "S-FLPMA",
+     "S-ENGLE"
+    ]
+   },
+   "gaps": [
+    "A yes needs a current predicate: a statute naming the reservation, or current BLM (MLRS/LR2000) withdrawal records or DoD real property records showing the order's lands still reserved under it. A no needs the revoking order, Public Land Order, statute or surplus-property deed naming the order or its lands."
+   ]
+  },
+  {
+   "branch_id": "B99",
+   "description": "Catch-all.",
+   "when": [],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "undecided",
+    "basis_kind": "NONE",
+    "basis": "No branch applies.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Read the order."
+   ]
+  }
+ ],
+ "undecidable": [
+  {
+   "reason": "Continental, Alaska, Hawaii and Puerto Rico reservations still standing on their own terms: no class-wide mechanism ends them and no machine-applicable current predicate is held.",
+   "detected_by": "B30, B31, B32, B33"
+  },
+  {
+   "reason": "Restorations that keep a reversion, retained tract or reserved right.",
+   "detected_by": "B12"
+  },
+  {
+   "reason": "Members that are not land reservations (misclassified by X1).",
+   "detected_by": "B01"
+  }
+ ],
+ "prepared": {
+  "by": "Pothier doctrine author",
+  "date": "2026-11-05"
+ }
+}

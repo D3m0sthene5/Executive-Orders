@@ -137,6 +137,8 @@ def validate(d):
             if s not in src_ids:
                 errs.append(f"mechanism {m.get('id')}: unknown source {s}")
     for s in d["sources"]:
+        if s.get("member_text"):
+            continue  # the member's own held text, recorded per lead (COORDINATOR_RULINGS P6)
         if s.get("held") not in (True, False):
             errs.append(f"source {s.get('id')}: held must be true or false")
         if s.get("held") and not s.get("held_path"):
@@ -367,7 +369,7 @@ def decide(m, d):
                 gaps.append("date rule unresolved: " + date["unresolved"])
             if lead["status_lead"] != "open":
                 for sid in lead.get("source_ids", []):
-                    if not srcs[sid].get("held"):
+                    if not srcs[sid].get("held") and not srcs[sid].get("member_text"):
                         gaps.append(f"source {sid} ({srcs[sid].get('citation', '')}) is not yet held")
             if not m.get("primary_text_path"):
                 gaps.append("no held text of the order")
