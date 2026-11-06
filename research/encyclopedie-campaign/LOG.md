@@ -37,6 +37,11 @@ Recorded as Kean decisions D-20261106-encyclopedie-campaign, -budget, -xfamily, 
 
 ## Repository size (measured 2026-11-06 22:05 UTC)
 
+**What the limit is (read 2026-11-07 from docs.github.com, repository-limits):** "On-disk size: 10 GB" is listed under
+limits GitHub "recommend[s] staying within"; the enforced limits on that page are 2 GB per push and 100 MB per object.
+What GitHub does above 10 GB is not documented. Size at 2026-11-07 00:20 UTC: 9,751,377 KB, still rising from other
+sessions' jobs.
+
 - GitHub API: 9,717,466 KB (about 9.95 GB) against the 10 GB limit.
 - Main's tree at `410a1ffc43`: 186,256 files, 22.94 GiB uncompressed (identical blobs at several paths count once in git).
 - Largest folders in the tree: `jobs/_attempts` 8.2 GiB, `research/excavator` 4.5 GiB, `jobs/ptolemy-custody` 2.6 GiB,
@@ -137,3 +142,9 @@ file over 5 MiB. Per push: at most 25 MiB of new blobs, checked with
   Migration of 3,695 Ptolemy and Selden raw files (3.2 GB, 3,691 unique) to the Release store started: three uploaders
   on disjoint folders under `C:/Users/danie/eo-pergamon-stage/`, about 25 s per file. Fresh Opus check of prior-art
   launched. PRs #188-#193 and #195 opened.
+- 00:20 UTC. Independent Opus check of both prior-art streams: outputs reproduce byte for byte, but it found a NaN bug
+  dropping 75 undated edges, about 70 "Thrower silent" leads that are amending orders revoked with their parent, a
+  confounded lineage 2x2, a wrong EO 12656 diagnosis, 377 vs 372 for EO 12553, two formal-versus-operative wording
+  errors, and a wrong pronoun in the Lowande email. Both workers sent back to fix and record CHECK_2026-11-07.md.
+  Naudé finished (PR #196): govinfo is free for FR 1936-2026, Statutes, Serial Set, bound Congressional Record; LOC's
+  CFR/FR/USC scans are Hein-origin with a no-bulk term (owner decision); static.case.law is robots-disallowed.
