@@ -93,6 +93,10 @@ def internet_archive(pool):
                 # they are not the United States numbered series and would give false range ceilings.
                 if any(re.match(r"govph|philippine", str(c), re.I) for c in coll):
                     continue
+                # A state governor's orders (e.g. Montana's, MontanaStateLibrary) are not the federal series.
+                pub = " ".join(d.get("publisher") if isinstance(d.get("publisher"), list) else [str(d.get("publisher") or "")])
+                if re.search(r"\bstate of\b|governor", pub, re.I) or any(re.search(r"statelibrary", str(c), re.I) for c in coll):
+                    continue
                 flat = lambda v: " ; ".join(v) if isinstance(v, list) else str(v or "")  # noqa: E731
                 out[d["identifier"]] = {"host": "internet_archive", "id": d["identifier"],
                                         "title": flat(d.get("title")) + (" " + flat(d.get("volume")) if d.get("volume") else ""),
