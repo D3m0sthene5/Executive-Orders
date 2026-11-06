@@ -1,0 +1,122 @@
+{
+ "job": "youngstown-courts",
+ "generated_utc": "2026-11-06T23:27:58Z",
+ "mode": "smoke",
+ "complete": false,
+ "bulk_snapshot": "2026-09-30",
+ "bulk": {
+  "opinions": {
+   "key": "bulk-data/opinions-2026-09-30.csv.bz2",
+   "etag": "\"7c4caf053f805946e812728f507fd002-6587\"",
+   "last_modified": "Wed, 30 Sep 2026 09:55:28 GMT",
+   "size": 55252643429,
+   "date": "2026-09-30"
+  },
+  "clusters": {
+   "key": "bulk-data/opinion-clusters-2026-09-30.csv.bz2",
+   "etag": "\"f08e77cc3e5aa5cd12ecb7570e0c338f-295\"",
+   "last_modified": "Wed, 30 Sep 2026 09:40:29 GMT",
+   "size": 2467613433,
+   "date": "2026-09-30"
+  },
+  "dockets": {
+   "key": "bulk-data/dockets-2026-09-30.csv.bz2",
+   "etag": "\"ac69e7b2bf485c3605f6fc10159ba130-614\"",
+   "last_modified": "Wed, 30 Sep 2026 09:03:42 GMT",
+   "size": 5144011100,
+   "date": "2026-09-30"
+  },
+  "citations": {
+   "key": "bulk-data/citations-2026-09-30.csv.bz2",
+   "etag": "\"268d954bc431d2e090bdf200f5a40023-16\"",
+   "last_modified": "Wed, 30 Sep 2026 20:24:07 GMT",
+   "size": 127468518,
+   "date": "2026-09-30"
+  },
+  "courts": {
+   "key": "bulk-data/courts-2026-09-30.csv.bz2",
+   "etag": "\"3408dd2c7196d565d2ac2cc06f7f830b\"",
+   "last_modified": "Wed, 30 Sep 2026 09:00:24 GMT",
+   "size": 81226,
+   "date": "2026-09-30"
+  }
+ },
+ "workers": 2,
+ "opinions_segments_planned": 6,
+ "opinions_segments_done": 6,
+ "opinions_segments_failed": 0,
+ "opinions_segments_not_started": 0,
+ "opinions_segments_from_cache": 0,
+ "compressed_bytes_read": 327050998,
+ "compressed_bytes_planned": 301885164,
+ "fraction_of_opinions_file_read": 0.0055,
+ "decoded_bytes": 2064193094,
+ "rows_with_candidate_text": 2398,
+ "rows_parsed": 2398,
+ "rows_unparsed": 0,
+ "row_start_lost": 0,
+ "rows_unterminated": 0,
+ "opinions_printing_a_register_order": 66,
+ "order_clusters_found": 114,
+ "order_clusters_in_scope": 3,
+ "focus_orders": [
+  "EO:10340",
+  "EO:11246",
+  "EO:12170",
+  "EO:12294",
+  "EO:12954",
+  "EO:13768",
+  "EO:13769",
+  "EO:13780",
+  "EO:13950",
+  "EO:8802",
+  "EO:9066",
+  "EO:9102"
+ ],
+ "clusters_by_class": {
+  "mentioned": 2,
+  "interpreted": 1
+ },
+ "clusters_by_class_with_federal_signal": {
+  "mentioned": 1,
+  "interpreted": 1
+ },
+ "orders_with_a_hit": 2,
+ "dropped": {},
+ "unregistered_numbers_cited_top": {
+  "13A": 11,
+  "12A": 8,
+  "36": 2,
+  "38": 1
+ },
+ "unregistered_number_mentions": 22,
+ "committed": {
+  "court_hits": 2,
+  "opinions_held": 2,
+  "bytes": {
+   "hits": 2234,
+   "fragments": 4639,
+   "sources": 2737
+  }
+ },
+ "omitted": {
+  "no_federal_signal": 1
+ },
+ "integrity_failures_raw_vs_recorded_sha": 0,
+ "held_text_missing_from_cache": 0,
+ "requests": 134,
+ "request_failures": 0,
+ "failed_segments": [],
+ "seconds": 743,
+ "projected_full_run_hours_on_this_machine_class": 1.64,
+ "second_source": {
+  "host": "static.case.law",
+  "url_tested": "https://static.case.law/us/343/cases/0579-01.json",
+  "role": "second source for the planted controls and a recall cross-check (CAP's text is also in CourtListener's bulk rows: its Harvard XML column)",
+  "robots": "blocked",
+  "detail": "blocked_by_robots_txt",
+  "used": false
+ },
+ "token": "COURTLISTENER_TOKEN absent (not needed for the bulk scan)",
+ "limits": "Leads only. A rule class is words in one sentence, not what a court held. No status, census, codebook or count change. Certified: 0."
+}

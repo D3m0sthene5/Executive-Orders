@@ -1,0 +1,501 @@
+{
+ "fixtures": {
+  "locator": {
+   "citations_marked_by_hand": 62,
+   "located": 62,
+   "recall": 1.0,
+   "misses": []
+  },
+  "mention_class": {
+   "n": 62,
+   "correct": 48,
+   "accuracy": 0.7742,
+   "error_rate": 0.2258,
+   "per_class": {
+    "enjoined_vacated_invalidated": {
+     "labelled": 2,
+     "rule_said": 3,
+     "both": 2,
+     "recall": 1.0,
+     "precision": 0.667
+    },
+    "interpreted": {
+     "labelled": 10,
+     "rule_said": 7,
+     "both": 3,
+     "recall": 0.3,
+     "precision": 0.429
+    },
+    "mentioned": {
+     "labelled": 48,
+     "rule_said": 50,
+     "both": 42,
+     "recall": 0.875,
+     "precision": 0.84
+    },
+    "upheld": {
+     "labelled": 2,
+     "rule_said": 2,
+     "both": 1,
+     "recall": 0.5,
+     "precision": 0.5
+    }
+   },
+   "confusion": {
+    "enjoined_vacated_invalidated -> enjoined_vacated_invalidated": 2,
+    "interpreted -> interpreted": 3,
+    "interpreted -> mentioned": 7,
+    "mentioned -> enjoined_vacated_invalidated": 1,
+    "mentioned -> interpreted": 4,
+    "mentioned -> mentioned": 42,
+    "mentioned -> upheld": 1,
+    "upheld -> mentioned": 1,
+    "upheld -> upheld": 1
+   },
+   "errors": [
+    {
+     "case": "korematsu",
+     "i": 0,
+     "number": 9066,
+     "label": "mentioned",
+     "rule": "interpreted",
+     "cue": "applies_to",
+     "cue_text": "applicable to",
+     "argument_frame": false
+    },
+    {
+     "case": "korematsu",
+     "i": 2,
+     "number": 9066,
+     "label": "mentioned",
+     "rule": "interpreted",
+     "cue": "meaning_scope",
+     "cue_text": "define",
+     "argument_frame": false
+    },
+    {
+     "case": "korematsu",
+     "i": 3,
+     "number": 9066,
+     "label": "interpreted",
+     "rule": "mentioned",
+     "cue": "",
+     "cue_text": "",
+     "argument_frame": false
+    },
+    {
+     "case": "endo",
+     "i": 7,
+     "number": 9102,
+     "label": "interpreted",
+     "rule": "mentioned",
+     "cue": "",
+     "cue_text": "",
+     "argument_frame": false
+    },
+    {
+     "case": "endo",
+     "i": 8,
+     "number": 9066,
+     "label": "interpreted",
+     "rule": "mentioned",
+     "cue": "",
+     "cue_text": "",
+     "argument_frame": false
+    },
+    {
+     "case": "endo",
+     "i": 10,
+     "number": 9066,
+     "label": "interpreted",
+     "rule": "mentioned",
+     "cue": "",
+     "cue_text": "",
+     "argument_frame": false
+    },
+    {
+     "case": "endo",
+     "i": 13,
+     "number": 9102,
+     "label": "mentioned",
+     "rule": "interpreted",
+     "cue": "applies_to",
+     "cue_text": "covered by",
+     "argument_frame": false
+    },
+    {
+     "case": "endo",
+     "i": 14,
+     "number": 9066,
+     "label": "mentioned",
+     "rule": "interpreted",
+     "cue": "applies_to",
+     "cue_text": "covered by",
+     "argument_frame": false
+    },
+    {
+     "case": "endo",
+     "i": 15,
+     "number": 9066,
+     "label": "interpreted",
+     "rule": "mentioned",
+     "cue": "",
+     "cue_text": "",
+     "argument_frame": false
+    },
+    {
+     "case": "endo",
+     "i": 18,
+     "number": 9066,
+     "label": "interpreted",
+     "rule": "mentioned",
+     "cue": "",
+     "cue_text": "",
+     "argument_frame": false
+    },
+    {
+     "case": "dames",
+     "i": 5,
+     "number": 12294,
+     "label": "interpreted",
+     "rule": "mentioned",
+     "cue": "",
+     "cue_text": "",
+     "argument_frame": false
+    },
+    {
+     "case": "dames",
+     "i": 6,
+     "number": 12294,
+     "label": "upheld",
+     "rule": "mentioned",
+     "cue": "",
+     "cue_text": "",
+     "argument_frame": false
+    },
+    {
+     "case": "irap",
+     "i": 2,
+     "number": 13780,
+     "label": "mentioned",
+     "rule": "upheld",
+     "cue": "valid",
+     "cue_text": "lawful",
+     "argument_frame": false
+    },
+    {
+     "case": "irap",
+     "i": 8,
+     "number": 13780,
+     "label": "mentioned",
+     "rule": "enjoined_vacated_invalidated",
+     "cue": "injunction",
+     "cue_text": "injunction",
+     "argument_frame": false
+    }
+   ],
+   "note": "Labels were written after the rule set was drafted, on the same opinions: an optimistic figure, not a held-out test."
+  },
+  "opinion_class": {
+   "planted_positives": 8,
+   "agree": 3,
+   "rows": [
+    {
+     "case": "youngstown",
+     "case_name": "Youngstown Sheet & Tube Co. v. Sawyer",
+     "eo": "EO:10340",
+     "expected_by_reading": "enjoined_vacated_invalidated",
+     "rule_class": "enjoined_vacated_invalidated",
+     "agree": true,
+     "located": true,
+     "support_quote": "Such a review would but confirm our holding that this seizure order cannot stand. The judgment of the District Court is affirmed.",
+     "source_url": "https://www.law.cornell.edu/supremecourt/text/343/579"
+    },
+    {
+     "case": "korematsu",
+     "case_name": "Korematsu v. United States",
+     "eo": "EO:9066",
+     "expected_by_reading": "upheld",
+     "rule_class": "interpreted",
+     "agree": false,
+     "located": true,
+     "support_quote": "We uphold the exclusion order as of the time it was made and when the petitioner violated it.",
+     "source_url": "https://www.law.cornell.edu/supremecourt/text/323/214"
+    },
+    {
+     "case": "endo",
+     "case_name": "Ex parte Endo",
+     "eo": "EO:9066",
+     "expected_by_reading": "interpreted",
+     "rule_class": "interpreted",
+     "agree": true,
+     "located": true,
+     "support_quote": "we conclude that, whatever power the War Relocation Authority may have to detain other classes of citizens, it has no authority to subject citizens who are concededly loyal to its leave procedure.",
+     "source_url": "https://www.law.cornell.edu/supremecourt/text/323/283"
+    },
+    {
+     "case": "wash",
+     "case_name": "State of Washington v. Trump (order on emergency stay)",
+     "eo": "EO:13769",
+     "expected_by_reading": "enjoined_vacated_invalidated",
+     "rule_class": "mentioned",
+     "agree": false,
+     "located": true,
+     "support_quote": "a federal district court preliminarily ruled in their favor and temporarily enjoined enforcement of the Executive Order. ... the emergency motion for a stay pending appeal is DENIED.",
+     "source_url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2017/02/09/17-35105.pdf"
+    },
+    {
+     "case": "reich",
+     "case_name": "Chamber of Commerce v. Reich",
+     "eo": "EO:12954",
+     "expected_by_reading": "enjoined_vacated_invalidated",
+     "rule_class": "mentioned",
+     "agree": false,
+     "located": true,
+     "support_quote": "We conclude that judicial review is available and that the Order conflicts with the National Labor Relations Act, and therefore we reverse.",
+     "source_url": "https://law.resource.org/pub/us/case/reporter/F3/074/74.F3d.1322.95-5242.html"
+    },
+    {
+     "case": "contractors",
+     "case_name": "Contractors Association of Eastern Pennsylvania v. Secretary of Labor",
+     "eo": "EO:11246",
+     "expected_by_reading": "upheld",
+     "rule_class": "mentioned",
+     "agree": false,
+     "located": true,
+     "support_quote": "The judgment of the district court will be affirmed.",
+     "source_url": "https://law.resource.org/pub/us/case/reporter/F2/442/442.F2d.159.19027.html"
+    },
+    {
+     "case": "dames",
+     "case_name": "Dames & Moore v. Regan",
+     "eo": "EO:12294",
+     "expected_by_reading": "upheld",
+     "rule_class": "mentioned",
+     "agree": false,
+     "located": true,
+     "support_quote": "we conclude that the President was authorized to suspend pending claims pursuant to Executive Order No. 12294.",
+     "source_url": "https://www.law.cornell.edu/supremecourt/text/453/654"
+    },
+    {
+     "case": "irap",
+     "case_name": "International Refugee Assistance Project v. Trump",
+     "eo": "EO:13780",
+     "expected_by_reading": "enjoined_vacated_invalidated",
+     "rule_class": "enjoined_vacated_invalidated",
+     "agree": true,
+     "located": true,
+     "support_quote": "we affirm in part and vacate in part the preliminary injunction awarded by the district court.",
+     "source_url": "https://www.ca4.uscourts.gov/opinions/171351.P.pdf"
+    }
+   ],
+   "note": "Expected class is what the hand-read opinion holds about the order; the rule class sees only the sentences that print the number. Disagreement is the expected weakness of a sentence rule."
+  }
+ },
+ "negatives": {
+  "negatives": 8,
+  "false_hits": 0,
+  "false_hit_rate": 0.0,
+  "rows": [
+   {
+    "control": "fake_number_99999",
+    "registered_orders_found": [],
+    "unregistered_numbers_seen": {
+     "99999": 1
+    }
+   },
+   {
+    "control": "fake_number_77777",
+    "registered_orders_found": [],
+    "unregistered_numbers_seen": {
+     "77777": 1
+    }
+   },
+   {
+    "control": "fake_number_31337",
+    "registered_orders_found": [],
+    "unregistered_numbers_seen": {
+     "31337": 1
+    }
+   },
+   {
+    "control": "statute_section_digits",
+    "registered_orders_found": [],
+    "unregistered_numbers_seen": {}
+   },
+   {
+    "control": "federal_register_page",
+    "registered_orders_found": [],
+    "unregistered_numbers_seen": {}
+   },
+   {
+    "control": "proclamation_and_board_order",
+    "registered_orders_found": [],
+    "unregistered_numbers_seen": {}
+   },
+   {
+    "control": "year_after_lead",
+    "registered_orders_found": [],
+    "unregistered_numbers_seen": {}
+   },
+   {
+    "control": "order_in_prose",
+    "registered_orders_found": [],
+    "unregistered_numbers_seen": {}
+   }
+  ],
+  "false_hit_rows": []
+ },
+ "structure": {
+  "cases": 9,
+  "wrong": 0,
+  "rows": [
+   {
+    "text": "Executive Order No. 12,954, 60 Fed.Reg. 13,023 (1995), on March 8, 1995",
+    "expected": [
+     12954
+    ],
+    "got": [
+     12954
+    ],
+    "ok": true
+   },
+   {
+    "text": "E.O. 11,246, 3 C.F.R. 339 (1964-65 Compilation) (1965); E.O. 11,141, 3 C.F.R. 179 (1964-65 Compilation)",
+    "expected": [
+     11246,
+     11141
+    ],
+    "got": [
+     11246,
+     11141
+    ],
+    "ok": true
+   },
+   {
+    "text": "Executive Orders 10925 and 11246",
+    "expected": [
+     10925,
+     11246
+    ],
+    "got": [
+     10925,
+     11246
+    ],
+    "ok": true
+   },
+   {
+    "text": "Executive Orders Nos. 10925, 11114 and 11246, 30 Fed. Reg. 12319",
+    "expected": [
+     10925,
+     11114,
+     11246
+    ],
+    "got": [
+     10925,
+     11114,
+     11246
+    ],
+    "ok": true
+   },
+   {
+    "text": "Exec. Orders Nos. 12276-12285, 46 Fed.Reg. 7913 -7932",
+    "expected": [
+     12276,
+     12277,
+     12278,
+     12279,
+     12280,
+     12281,
+     12282,
+     12283,
+     12284,
+     12285
+    ],
+    "got": [
+     12276,
+     12277,
+     12278,
+     12279,
+     12280,
+     12281,
+     12282,
+     12283,
+     12284,
+     12285
+    ],
+    "ok": true
+   },
+   {
+    "text": "Executive Order No. 9066, 7 Fed.Reg. 1407",
+    "expected": [
+     9066
+    ],
+    "got": [
+     9066
+    ],
+    "ok": true
+   },
+   {
+    "text": "Exec. Order No. 10340, 17 Fed. Reg. 2955",
+    "expected": [
+     10340
+    ],
+    "got": [
+     10340
+    ],
+    "ok": true
+   },
+   {
+    "text": "Executive Order 13769, “Protecting the Nation From Foreign Terrorist Entry”, 82 Fed. Reg. 8,977",
+    "expected": [
+     13769
+    ],
+    "got": [
+     13769
+    ],
+    "ok": true
+   },
+   {
+    "text": "EXECUTIVE ORDER 10340",
+    "expected": [
+     10340
+    ],
+    "got": [
+     10340
+    ],
+    "ok": true
+   }
+  ]
+ },
+ "stream": {
+  "segments": 2,
+  "planted_positive_rows": 21,
+  "found": 21,
+  "recall": 1.0,
+  "planted_negative_rows": 37,
+  "false_rows": 0,
+  "missing": {},
+  "false": {},
+  "rows_unparsed": 0,
+  "row_start_lost": 0,
+  "rows_selected": 58
+ },
+ "bulk_stream_recall": {
+  "rows": [],
+  "complete_run": false,
+  "note": "Smoke reads six windows of the file; the planted opinions are not expected in them. Run mode full to test the scan against the real opinions."
+ },
+ "api_crosscheck": {
+  "ran": false,
+  "reason": "COURTLISTENER_TOKEN not set"
+ },
+ "measured_error_rate": {
+  "locator_recall_on_hand_marked_citations": 1.0,
+  "mention_class_error_rate_vs_hand_labels": 0.2258,
+  "opinion_class_agreement": "3 of 8",
+  "false_hit_rate_on_negatives": 0.0,
+  "stream_control_recall": 1.0
+ },
+ "generated_utc": "2026-11-06T23:27:58Z"
+}
