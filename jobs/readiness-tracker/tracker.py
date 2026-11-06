@@ -876,6 +876,39 @@ def pct(n, d):
     return f"{100 * n / d:.1f}%" if d else "n/a"
 
 
+UNNUMBERED_SUMMARY = "jobs/domesday-register/output/UNNUMBERED_SUMMARY.json"
+
+
+def unnumbered_fields(root, numbered_total):
+    """The second denominator (owner ruling R10). The numbered series is the census universe, unchanged. The unnumbered
+    series is reported as a lower-bound count with an interval for its total, read from the domesday-register's
+    committed output when it exists. The domesday-register runs after this job, so this reads the previous run."""
+    out = {"numbered_series_orders": numbered_total, "unnumbered_series_observed": None,
+           "unnumbered_series_estimate_95": None}
+    path = os.path.join(root, UNNUMBERED_SUMMARY)
+    try:
+        with open(path, encoding="utf-8") as fh:
+            u = json.load(fh)
+        est = u.get("unnumbered_series_estimate_95")
+        if isinstance(u.get("unnumbered_series_observed"), int):
+            out["unnumbered_series_observed"] = u["unnumbered_series_observed"]
+            if isinstance(est, list) and len(est) == 2 and all(isinstance(x, (int, float)) for x in est):
+                out["unnumbered_series_estimate_95"] = list(est)
+    except (OSError, ValueError):
+        pass
+    return out
+
+
+def unnumbered_line(s):
+    obs, est = s.get("unnumbered_series_observed"), s.get("unnumbered_series_estimate_95")
+    if obs is None:
+        return ("Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; "
+                f"`{UNNUMBERED_SUMMARY}` is missing.")
+    tail = f"; estimated total {est[0]:,.0f} to {est[1]:,.0f} (95% interval)" if est else ""
+    return (f"Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): "
+            f"{obs:,} identities observed, a lower bound{tail}. Not part of the numbered-series proportion above.")
+
+
 def generation_id():
     """Justinian 2026-11-06: the runner's id for this execution (run token + input manifest sha256).
 
@@ -918,7 +951,9 @@ def write_outputs(out, orders, summary, inputs):
     lines = [
         "# Readiness tracker",
         "",
-        f"**Ready for human review: {s['ready_for_human_review']:,} of {total:,} orders ({pct(s['ready_for_human_review'], total)})**",
+        f"**Numbered series: ready for human review {s['ready_for_human_review']:,} of {total:,} orders ({pct(s['ready_for_human_review'], total)})**",
+        "",
+        unnumbered_line(s),
         "",
         f"Generation: `{generation}` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).",
         "",
@@ -983,6 +1018,7 @@ def main():
     root, out = os.environ.get("REPO_ROOT", "."), os.environ.get("OUTPUT_DIR", "readiness-output")
     orders, problems = build(root)
     summary = summarise(orders, problems)
+    summary.update(unnumbered_fields(root, summary["orders_total"]))
     # The early rangers survey potential *new* identities outside the existing
     # 14,972 working bibliography. They must NEVER be added to order metrics.
     census_file = os.path.join(root, "jobs/census-candidates/output/SUMMARY.json")

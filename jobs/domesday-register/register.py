@@ -199,6 +199,12 @@ def main():
     root = os.environ.get("REPO_ROOT") or os.path.abspath(os.path.join(HERE, "..", ".."))
     out_dir = os.environ.get("OUTPUT_DIR") or os.path.join(HERE, "output")
     s = run(root, out_dir)
+    try:
+        import unnumbered
+        u = unnumbered.run(root, out_dir)
+        print(json.dumps({k: u[k] for k in ("unnumbered_series_observed", "unnumbered_series_estimate_95")}))
+    except OSError as exc:
+        print("catalogued_unnumbered not built:", exc)
     print(json.dumps({k: s[k] for k in ("orders", "by_best_held", "candidates_not_in_register", "problems")}, indent=2))
 
 
