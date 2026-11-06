@@ -1,0 +1,916 @@
+{
+  "generated_by": "research/herschel/project.py",
+  "price_table": {
+    "sonnet": {
+      "input": 3.0,
+      "output": 15.0,
+      "cache_read": 0.3,
+      "cache_write": 3.75
+    },
+    "opus": {
+      "input": 5.0,
+      "output": 25.0,
+      "cache_read": 0.5,
+      "cache_write": 6.25
+    },
+    "source": "assumption: Anthropic API list prices; plan allowances are not published"
+  },
+  "census_orders_open": 13641,
+  "sampled_orders": 238,
+  "reached_orders": 238,
+  "workers": 195,
+  "workers_unpriced": 0,
+  "coordinator_usd": {
+    "H1": 25.41,
+    "H2": 39.58,
+    "H3": 11.54,
+    "H4": 24.71,
+    "H5": 23.6,
+    "H6": 21.47,
+    "integrator": 15.49,
+    "unattributed_worker_telemetry": 0.0
+  },
+  "measured_usd": 332.09,
+  "peak_global_concurrency": 27,
+  "run_window": [
+    "2026-11-05 23:31:43+00:00",
+    "2026-11-06 01:01:54+00:00"
+  ],
+  "limit_events": [
+    {
+      "coordinator": "H2",
+      "worker": "H2-w05",
+      "event": {
+        "pass": "H2-w05p2",
+        "event": "oom_kill",
+        "utc": "2026-11-05T23:54:26Z",
+        "detail": "memory cgroup OOM (claude-code-bash memcg, 6.26 GB limit shared by all coordinators); re-run as H2-w05r",
+        "oom_rerun": true
+      }
+    },
+    {
+      "coordinator": "H2",
+      "worker": "H2-w05",
+      "event": {
+        "pass": "H2-w05r",
+        "event": "oom_kill",
+        "utc": "2026-11-05T23:56:31Z",
+        "detail": "killed 30 s after resume; re-run as H2-w05r2",
+        "oom_rerun": true
+      }
+    },
+    {
+      "coordinator": "H2",
+      "worker": "H2-w07",
+      "event": {
+        "pass": "H2-w07",
+        "event": "oom_kill",
+        "utc": "2026-11-05T23:54Z",
+        "detail": "memory cgroup OOM; re-run as H2-w07r",
+        "oom_rerun": true
+      }
+    },
+    {
+      "coordinator": "H2",
+      "worker": "H2-w08",
+      "event": {
+        "pass": "H2-w08",
+        "event": "oom_kill",
+        "utc": "2026-11-05T23:54:46Z",
+        "detail": "memory cgroup OOM; re-run as H2-w08r",
+        "oom_rerun": true
+      }
+    },
+    {
+      "coordinator": "H2",
+      "worker": "H2-w09",
+      "event": {
+        "pass": "H2-w09",
+        "event": "oom_kill",
+        "utc": "2026-11-05T23:54:21Z",
+        "detail": "memory cgroup OOM; re-run as H2-w09r",
+        "oom_rerun": true
+      }
+    },
+    {
+      "coordinator": "H2",
+      "worker": "H2-w12",
+      "event": {
+        "pass": "H2-w12",
+        "event": "oom_kill",
+        "utc": "2026-11-05T23:55:22Z",
+        "detail": "memory cgroup OOM; re-run as H2-w12r",
+        "oom_rerun": true
+      }
+    },
+    {
+      "coordinator": "H2",
+      "worker": "H2-w14",
+      "event": {
+        "pass": "H2-w14",
+        "event": "memguard_deferral",
+        "utc": "2026-11-06T00:00:22Z",
+        "detail": "launch deferred by the integrator memory guard (claude -p=18); launched 00:01:23Z"
+      }
+    },
+    {
+      "coordinator": "H2",
+      "worker": "H2-w15",
+      "event": {
+        "pass": "H2-w15",
+        "event": "memguard_deferral",
+        "utc": "2026-11-06T00:22:04Z",
+        "detail": "deferred (claude -p=18); launched 00:22:44Z"
+      }
+    },
+    {
+      "coordinator": "H2",
+      "worker": "H2-w16",
+      "event": {
+        "pass": "H2-w16",
+        "event": "memguard_deferral",
+        "utc": "2026-11-06T00:22:24Z",
+        "detail": "deferred (claude -p=18); launched 00:22:44Z"
+      }
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w04",
+      "event": "MEMGUARD 2026-11-06T00:18:34Z -fix h4_busy=0 claude_p_all=18 memavail=4632MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w04",
+      "event": "MEMGUARD 2026-11-06T00:19:35Z -fix h4_busy=5 claude_p_all=18 memavail=3370MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w04",
+      "event": "MEMGUARD 2026-11-06T00:20:35Z -fix h4_busy=5 claude_p_all=20 memavail=3465MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w04",
+      "event": "MEMGUARD 2026-11-06T00:23:08Z -fix2 h4_busy=4 claude_p_all=18 memavail=3823MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w11",
+      "event": "MEMGUARD 2026-11-06T00:05:32Z h4_busy=10 claude_p_all=18 memavail=4505MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w11",
+      "event": "MEMGUARD 2026-11-06T00:06:34Z h4_busy=10 claude_p_all=18 memavail=4246MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w12",
+      "event": "MEMGUARD 2026-11-06T00:05:34Z h4_busy=10 claude_p_all=18 memavail=4431MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w12",
+      "event": "MEMGUARD 2026-11-06T00:06:35Z h4_busy=10 claude_p_all=18 memavail=4230MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w13",
+      "event": "MEMGUARD 2026-11-06T00:05:37Z h4_busy=10 claude_p_all=18 memavail=4437MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w13",
+      "event": "MEMGUARD 2026-11-06T00:06:38Z h4_busy=10 claude_p_all=18 memavail=4283MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w14",
+      "event": "MEMGUARD 2026-11-06T00:05:39Z h4_busy=10 claude_p_all=18 memavail=4304MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w14",
+      "event": "MEMGUARD 2026-11-06T00:06:40Z h4_busy=10 claude_p_all=18 memavail=4369MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w14",
+      "event": "MEMGUARD 2026-11-06T00:07:40Z h4_busy=10 claude_p_all=18 memavail=4407MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w15",
+      "event": "MEMGUARD 2026-11-06T00:05:42Z h4_busy=10 claude_p_all=18 memavail=4493MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w15",
+      "event": "MEMGUARD 2026-11-06T00:06:43Z h4_busy=10 claude_p_all=18 memavail=4532MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w17",
+      "event": "MEMGUARD 2026-11-06T00:13:30Z -reveal h4_busy=6 claude_p_all=18 memavail=3929MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w17",
+      "event": "MEMGUARD 2026-11-06T00:14:30Z -reveal h4_busy=4 claude_p_all=18 memavail=4255MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w17",
+      "event": "MEMGUARD 2026-11-06T00:15:30Z -reveal h4_busy=4 claude_p_all=18 memavail=3431MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w18",
+      "event": "MEMGUARD 2026-11-06T00:13:47Z -reveal h4_busy=6 claude_p_all=19 memavail=3667MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w18",
+      "event": "MEMGUARD 2026-11-06T00:21:34Z -rev2 h4_busy=2 claude_p_all=18 memavail=4258MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w19",
+      "event": "MEMGUARD 2026-11-06T00:13:47Z -reveal h4_busy=6 claude_p_all=19 memavail=3667MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w19",
+      "event": "MEMGUARD 2026-11-06T00:14:48Z -reveal h4_busy=5 claude_p_all=18 memavail=3083MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w19",
+      "event": "MEMGUARD 2026-11-06T00:15:48Z -reveal h4_busy=4 claude_p_all=18 memavail=3182MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w19",
+      "event": "MEMGUARD 2026-11-06T00:21:34Z -rev2 h4_busy=2 claude_p_all=18 memavail=4250MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w20",
+      "event": "MEMGUARD 2026-11-06T00:10:44Z h4_busy=7 claude_p_all=19 memavail=4832MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w20",
+      "event": "MEMGUARD 2026-11-06T00:11:44Z h4_busy=7 claude_p_all=18 memavail=3825MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w21",
+      "event": "MEMGUARD 2026-11-06T00:10:45Z h4_busy=7 claude_p_all=18 memavail=4960MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w21",
+      "event": "MEMGUARD 2026-11-06T00:11:45Z h4_busy=7 claude_p_all=18 memavail=3935MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w21",
+      "event": "MEMGUARD 2026-11-06T00:12:46Z h4_busy=7 claude_p_all=18 memavail=3700MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w22",
+      "event": "MEMGUARD 2026-11-06T00:10:46Z h4_busy=7 claude_p_all=18 memavail=4915MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w22",
+      "event": "MEMGUARD 2026-11-06T00:11:46Z h4_busy=7 claude_p_all=18 memavail=3856MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w22",
+      "event": "MEMGUARD 2026-11-06T00:12:47Z h4_busy=7 claude_p_all=18 memavail=3827MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w22",
+      "event": "MEMGUARD 2026-11-06T00:13:47Z h4_busy=6 claude_p_all=19 memavail=3667MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w22",
+      "event": "MEMGUARD 2026-11-06T00:14:48Z h4_busy=5 claude_p_all=19 memavail=3083MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w22",
+      "event": "MEMGUARD 2026-11-06T00:15:48Z h4_busy=4 claude_p_all=18 memavail=3185MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w24",
+      "event": "MEMGUARD 2026-11-06T00:21:46Z -reveal h4_busy=2 claude_p_all=18 memavail=4216MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w25",
+      "event": "MEMGUARD 2026-11-06T00:21:46Z -reveal h4_busy=2 claude_p_all=18 memavail=4220MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w25",
+      "event": "MEMGUARD 2026-11-06T00:22:47Z -reveal h4_busy=3 claude_p_all=18 memavail=3703MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w26",
+      "event": "MEMGUARD 2026-11-06T00:21:46Z -reveal h4_busy=2 claude_p_all=18 memavail=4220MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w26",
+      "event": "MEMGUARD 2026-11-06T00:22:47Z -reveal h4_busy=3 claude_p_all=18 memavail=3674MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w27",
+      "event": "MEMGUARD 2026-11-06T00:21:47Z -reveal h4_busy=2 claude_p_all=18 memavail=4221MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w27",
+      "event": "MEMGUARD 2026-11-06T00:22:47Z -reveal h4_busy=3 claude_p_all=18 memavail=3653MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w28",
+      "event": "MEMGUARD 2026-11-06T00:21:47Z -reveal h4_busy=2 claude_p_all=18 memavail=4207MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w29",
+      "event": "MEMGUARD 2026-11-06T00:18:56Z h4_busy=5 claude_p_all=18 memavail=4273MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w29",
+      "event": "MEMGUARD 2026-11-06T00:19:58Z h4_busy=5 claude_p_all=18 memavail=3586MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w29",
+      "event": "MEMGUARD 2026-11-06T00:22:47Z -reveal h4_busy=3 claude_p_all=18 memavail=3707MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w30",
+      "event": "MEMGUARD 2026-11-06T00:19:25Z h4_busy=5 claude_p_all=18 memavail=3723MB"
+    },
+    {
+      "coordinator": "H4",
+      "worker": "H4-w30",
+      "event": "MEMGUARD 2026-11-06T00:20:25Z h4_busy=5 claude_p_all=18 memavail=3402MB"
+    },
+    {
+      "coordinator": "H5",
+      "worker": "H5-w18",
+      "event": {
+        "utc": "",
+        "message": "empty result: process killed (host memory cgroup OOM)"
+      }
+    },
+    {
+      "coordinator": "H5",
+      "worker": "H5-w19",
+      "event": {
+        "utc": "",
+        "message": "empty result: process killed (host memory cgroup OOM)"
+      }
+    },
+    {
+      "coordinator": "H5",
+      "worker": "H5-w20",
+      "event": {
+        "utc": "",
+        "message": "empty result: process killed (host memory cgroup OOM)"
+      }
+    },
+    {
+      "coordinator": "H5",
+      "worker": "H5-w12",
+      "event": {
+        "utc": "2026-11-05T23:55Z",
+        "message": "empty results; dmesg shows host memory-cgroup OOM kills of claude processes at that time. Relaunching (launcher now retries killed workers; memory gate 1200 MB)."
+      }
+    },
+    {
+      "coordinator": "H5",
+      "worker": "H5-w13",
+      "event": {
+        "utc": "2026-11-05T23:55Z",
+        "message": "empty results; dmesg shows host memory-cgroup OOM kills of claude processes at that time. Relaunching (launcher now retries killed workers; memory gate 1200 MB)."
+      }
+    },
+    {
+      "coordinator": "H5",
+      "worker": "H5-w16",
+      "event": {
+        "utc": "2026-11-05T23:55Z",
+        "message": "empty results; dmesg shows host memory-cgroup OOM kills of claude processes at that time. Relaunching (launcher now retries killed workers; memory gate 1200 MB)."
+      }
+    },
+    {
+      "coordinator": "H5",
+      "worker": "H5-w17",
+      "event": {
+        "utc": "2026-11-05T23:55Z",
+        "message": "empty results; dmesg shows host memory-cgroup OOM kills of claude processes at that time. Relaunching (launcher now retries killed workers; memory gate 1200 MB)."
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w01",
+      "event": {
+        "worker": "H6-w01",
+        "utc": "2026-11-05T23:53:22Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w02",
+      "event": {
+        "worker": "H6-w02",
+        "utc": "2026-11-05T23:54:18Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w03",
+      "event": {
+        "worker": "H6-w03",
+        "utc": "2026-11-05T23:51:14Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w04",
+      "event": {
+        "worker": "H6-w04",
+        "utc": "2026-11-05T23:54:55Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w09",
+      "event": {
+        "worker": "H6-w09",
+        "utc": "2026-11-05T23:54:33Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w10",
+      "event": {
+        "worker": "H6-w10",
+        "utc": "2026-11-05T23:55:09Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w11",
+      "event": {
+        "worker": "H6-w11",
+        "utc": "2026-11-05T23:55:20Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w15",
+      "event": {
+        "worker": "H6-w15",
+        "utc": "2026-11-05T23:56:02Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w16",
+      "event": {
+        "worker": "H6-w16",
+        "utc": "2026-11-05T23:55:36Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w17",
+      "event": {
+        "worker": "H6-w17",
+        "utc": "2026-11-05T23:56:07Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w19",
+      "event": {
+        "worker": "H6-w19",
+        "utc": "2026-11-05T23:55:44Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    },
+    {
+      "coordinator": "H6",
+      "worker": "H6-w21",
+      "event": {
+        "worker": "H6-w21",
+        "utc": "2026-11-05T23:56:06Z",
+        "text": "Memory cgroup out of memory: Killed process (claude) -- kernel OOM killer (dmesg 'Memory cgroup out of memory: Killed process NNNN (claude)'); worker exited with no output"
+      }
+    }
+  ],
+  "projection": {
+    "usd_total": {
+      "point": 21185.34,
+      "p10": 18878.31,
+      "p90": 23560.43,
+      "round1": 20488.82,
+      "round2": 22291.09
+    },
+    "usd_workers": {
+      "point": 12012.91,
+      "p10": 10682.82,
+      "p90": 13356.95,
+      "round1": 11206.41,
+      "round2": 13368.43
+    },
+    "usd_coordination": {
+      "point": 9172.43,
+      "p10": 8151.62,
+      "p90": 10219.96,
+      "round1": 9282.41,
+      "round2": 8922.66
+    },
+    "worker_hours": {
+      "point": 1037.57,
+      "p10": 912.22,
+      "p90": 1167.35,
+      "round1": 1039.06,
+      "round2": 1032.36
+    },
+    "orders_all_steps_good": {
+      "point": 763.26,
+      "p10": 508.07,
+      "p90": 1016.23,
+      "round1": 705.42,
+      "round2": 827.41
+    },
+    "borrowed_strata": []
+  },
+  "wall_clock_days_at_concurrency": {
+    "4": {
+      "days": 8.5,
+      "slowdown_measured": 0.79,
+      "basis": "measured"
+    },
+    "8": {
+      "days": 6.2,
+      "slowdown_measured": 1.15,
+      "basis": "measured"
+    },
+    "16": {
+      "days": 5.2,
+      "slowdown_measured": 1.92,
+      "basis": "measured"
+    },
+    "32": {
+      "days": 1.7,
+      "slowdown_measured": 1.27,
+      "basis": "measured"
+    },
+    "64": {
+      "days": 0.7,
+      "slowdown_measured": null,
+      "basis": "extrapolated, no workers at this level"
+    }
+  },
+  "human_certification": {
+    "dossiers_read": 6,
+    "mean_minutes": 49.6,
+    "projected_hours_all_orders": 12373
+  },
+  "allowance": null,
+  "notes": [
+    "API-equivalent dollars at list prices, one cache-write price (Bentham's convention).",
+    "Orders not reached are treated as missing at random within their stratum.",
+    "A worker's cost is split equally across its orders.",
+    "Ready orders (1,331) are excluded from token projection; they need human certification."
+  ],
+  "measured_throughput": {
+    "orders_per_hour_one_machine": 158.3,
+    "window_hours": 1.5,
+    "machine": "one 8 GB, 2-CPU cloud session; memory, not API limits, capped parallel workers at about 18",
+    "days_one_machine_for_census": 3.6,
+    "note": "at today's block rates; blocked steps end in minutes, so unblocked work will run slower"
+  },
+  "blockers": [
+    {
+      "blocker_class": "official_original",
+      "label": "official printing or page image of the order not held",
+      "sampled_orders": 110,
+      "projected_orders": 5313,
+      "projected_orders_sole_blocker": 1234
+    },
+    {
+      "blocker_class": "agency_records",
+      "label": "agency execution records (appointments, land status, board reports) not held",
+      "sampled_orders": 76,
+      "projected_orders": 3944,
+      "projected_orders_sole_blocker": 802
+    },
+    {
+      "blocker_class": "legal_sources",
+      "label": "later law, notice or instrument needed for the ending or current basis",
+      "sampled_orders": 36,
+      "projected_orders": 3011,
+      "projected_orders_sole_blocker": 1814
+    },
+    {
+      "blocker_class": "raw_bytes",
+      "label": "source held only as a hash or custody record; bytes must be retained",
+      "sampled_orders": 57,
+      "projected_orders": 2867,
+      "projected_orders_sole_blocker": 852
+    },
+    {
+      "blocker_class": "status_history",
+      "label": "no dated status-history record (claim kit refuses to start the order)",
+      "sampled_orders": 48,
+      "projected_orders": 2288,
+      "projected_orders_sole_blocker": 268
+    },
+    {
+      "blocker_class": "status_adoption",
+      "label": "waits for a reviewed status proposal and owner adoption",
+      "sampled_orders": 23,
+      "projected_orders": 1278,
+      "projected_orders_sole_blocker": 0
+    },
+    {
+      "blocker_class": "none",
+      "label": "none",
+      "sampled_orders": 17,
+      "projected_orders": 889,
+      "projected_orders_sole_blocker": 0
+    },
+    {
+      "blocker_class": "later_search",
+      "label": "no bounded machine search for later sources (undecided dossiers)",
+      "sampled_orders": 7,
+      "projected_orders": 865,
+      "projected_orders_sole_blocker": 738
+    },
+    {
+      "blocker_class": "other",
+      "label": "other",
+      "sampled_orders": 12,
+      "projected_orders": 563,
+      "projected_orders_sole_blocker": 124
+    },
+    {
+      "blocker_class": "tool_rule",
+      "label": "a claim-kit write rule blocks assembly",
+      "sampled_orders": 5,
+      "projected_orders": 545,
+      "projected_orders_sole_blocker": 545
+    },
+    {
+      "blocker_class": "opus_media",
+      "label": "zero-agent refetch of a cited FR issue",
+      "sampled_orders": 6,
+      "projected_orders": 384,
+      "projected_orders_sole_blocker": 0
+    },
+    {
+      "blocker_class": "order_text",
+      "label": "operative text or identification of the order not held",
+      "sampled_orders": 7,
+      "projected_orders": 279,
+      "projected_orders_sole_blocker": 7
+    }
+  ],
+  "by_step": [
+    {
+      "step": "provisional_status",
+      "census_cells_open": 10681,
+      "orders_measured": 163,
+      "good_rate": 0.24,
+      "blocked_rate": 0.76,
+      "failed_or_rejected_rate": 0.0,
+      "projected_good_cells": 2564,
+      "projected_blocked_cells": 8117
+    },
+    {
+      "step": "original_text",
+      "census_cells_open": 6228,
+      "orders_measured": 138,
+      "good_rate": 0.205,
+      "blocked_rate": 0.795,
+      "failed_or_rejected_rate": 0.0,
+      "projected_good_cells": 1274,
+      "projected_blocked_cells": 4954
+    },
+    {
+      "step": "replace_original",
+      "census_cells_open": 1359,
+      "orders_measured": 17,
+      "good_rate": 0.089,
+      "blocked_rate": 0.911,
+      "failed_or_rejected_rate": 0.0,
+      "projected_good_cells": 121,
+      "projected_blocked_cells": 1238
+    },
+    {
+      "step": "clause_inventory",
+      "census_cells_open": 13573,
+      "orders_measured": 238,
+      "good_rate": 0.414,
+      "blocked_rate": 0.586,
+      "failed_or_rejected_rate": 0.0,
+      "projected_good_cells": 5620,
+      "projected_blocked_cells": 7953
+    },
+    {
+      "step": "ending_or_current_basis",
+      "census_cells_open": 13618,
+      "orders_measured": 238,
+      "good_rate": 0.189,
+      "blocked_rate": 0.811,
+      "failed_or_rejected_rate": 0.0,
+      "projected_good_cells": 2569,
+      "projected_blocked_cells": 11049
+    },
+    {
+      "step": "savings_residuals",
+      "census_cells_open": 13585,
+      "orders_measured": 238,
+      "good_rate": 0.199,
+      "blocked_rate": 0.801,
+      "failed_or_rejected_rate": 0.0,
+      "projected_good_cells": 2708,
+      "projected_blocked_cells": 10877
+    },
+    {
+      "step": "counterevidence",
+      "census_cells_open": 12116,
+      "orders_measured": 206,
+      "good_rate": 0.29,
+      "blocked_rate": 0.701,
+      "failed_or_rejected_rate": 0.009,
+      "projected_good_cells": 3511,
+      "projected_blocked_cells": 8493
+    },
+    {
+      "step": "shared_sources",
+      "census_cells_open": 27,
+      "orders_measured": 1,
+      "good_rate": 0.0,
+      "blocked_rate": 1.0,
+      "failed_or_rejected_rate": 0.0,
+      "projected_good_cells": 0,
+      "projected_blocked_cells": 27
+    },
+    {
+      "step": "opus_media",
+      "census_cells_open": 714,
+      "orders_measured": 15,
+      "good_rate": 0.056,
+      "blocked_rate": 0.944,
+      "failed_or_rejected_rate": 0.0,
+      "projected_good_cells": 40,
+      "projected_blocked_cells": 674
+    },
+    {
+      "step": "review_status",
+      "census_cells_open": 0,
+      "orders_measured": 34,
+      "good_rate": 0.399,
+      "blocked_rate": 0.576,
+      "failed_or_rejected_rate": 0.025,
+      "projected_good_cells": null,
+      "projected_blocked_cells": null
+    },
+    {
+      "step": "review_text",
+      "census_cells_open": 0,
+      "orders_measured": 7,
+      "good_rate": 1.0,
+      "blocked_rate": 0.0,
+      "failed_or_rejected_rate": 0.0,
+      "projected_good_cells": null,
+      "projected_blocked_cells": null
+    },
+    {
+      "step": "review_claim",
+      "census_cells_open": 0,
+      "orders_measured": 180,
+      "good_rate": 0.166,
+      "blocked_rate": 0.654,
+      "failed_or_rejected_rate": 0.18,
+      "projected_good_cells": null,
+      "projected_blocked_cells": null
+    }
+  ],
+  "by_cost_group": [
+    {
+      "cost_group": "provisional_status",
+      "orders_measured": 163,
+      "usd_point": 1569.03,
+      "usd_p10": 1491.2,
+      "usd_p90": 1647.88,
+      "usd_round1": 1454.59,
+      "usd_round2": 1757.34,
+      "usd_per_order_where_run": 0.128
+    },
+    {
+      "cost_group": "original_text",
+      "orders_measured": 138,
+      "usd_point": 545.15,
+      "usd_p10": 485.98,
+      "usd_p90": 606.44,
+      "usd_round1": 564.02,
+      "usd_round2": 508.72,
+      "usd_per_order_where_run": 0.08
+    },
+    {
+      "cost_group": "replace_original",
+      "orders_measured": 17,
+      "usd_point": 33.11,
+      "usd_p10": 21.72,
+      "usd_p90": 44.5,
+      "usd_round1": 53.22,
+      "usd_round2": 0.0,
+      "usd_per_order_where_run": 0.037
+    },
+    {
+      "cost_group": "lifecycle_steps",
+      "orders_measured": 238,
+      "usd_point": 4090.9,
+      "usd_p10": 3618.19,
+      "usd_p90": 4566.84,
+      "usd_round1": 2863.99,
+      "usd_round2": 6196.23,
+      "usd_per_order_where_run": 0.283
+    },
+    {
+      "cost_group": "shared_sources",
+      "orders_measured": 1,
+      "usd_point": 0.0,
+      "usd_p10": 0.0,
+      "usd_p90": 0.0,
+      "usd_round1": 0.0,
+      "usd_round2": 0.0,
+      "usd_per_order_where_run": 0.0
+    },
+    {
+      "cost_group": "opus_media",
+      "orders_measured": 16,
+      "usd_point": 34.68,
+      "usd_p10": 14.11,
+      "usd_p90": 60.32,
+      "usd_round1": 0.0,
+      "usd_round2": 104.2,
+      "usd_per_order_where_run": 0.028
+    },
+    {
+      "cost_group": "review",
+      "orders_measured": 238,
+      "usd_point": 5740.03,
+      "usd_p10": 4646.45,
+      "usd_p90": 6891.42,
+      "usd_round1": 6270.58,
+      "usd_round2": 4801.94,
+      "usd_per_order_where_run": 0.359
+    }
+  ],
+  "cost_per_order_once_unblocked": {
+    "orders_fully_good_in_sample": 15,
+    "mean_usd_per_fully_good_order": 3.915,
+    "p10": 3.38,
+    "p90": 4.443,
+    "basis": "mean total cost (workers + allocated coordination) of sampled orders whose every open step succeeded; applies to an order once its blockers are cleared, if it then behaves like them"
+  },
+  "census_undecided_without_dated_history": {
+    "undecided": 10681,
+    "without_history": 5918
+  }
+}

@@ -1,3 +1,12 @@
+## 2026-11-05 (Claude, Herschel: measured cost of all remaining work)
+
+- **Survey:** census of all 96,598 open order-steps plus two independent samples (153 + 85 orders), each run end to end by six Opus coordinators (H1-H6) and 195 workers with blind planted-control review. About $350 API-equivalent, 90 min. Report: `research/herschel/REPORT.md`; numbers: `research/herschel/ATLAS/`. Kean F-20261105-herschel-survey.
+- **Result:** attempting every open step on current holdings would cost $21,200 (80%: $18,900-23,600; the rounds agree at $20,500 and $22,300) and carry about 760 orders through every step. Most steps block on missing sources within minutes. Fully successful orders cost $3.92 each (n=15). Human certification is the largest cost: about 50 min per dossier (Opus estimate, n=6), about 12,400 h overall.
+- **Blockers to fix before any wave (zero or few tokens):** retain bytes of hash-only sources (2,867 orders touched; `astra-source-retention`); the claim-kit overlay write rule (545 orders, sole blocker); machine later-source searches for undecided dossiers (738 sole); a pre-1937 disposition source for the 5,918 undecided orders without a dated history (candidate: WPA Historical Records Survey list of EOs 1-8030, 1944, unchecked).
+- **Filed:** 7 claims (`research/readiness/claims/claude-2026-11-05-herschel-*.jsonl`); status proposals stay proposals in `research/herschel/H*/`. 0 planted-control misses. Certified 0.
+- **Limits:** no API limits; one 8 GB session caps at about 18 workers (OOM kills before the shared guard). More parallelism needs more machines.
+- **@Owner:** A-20261105-1 (may the kit start an undecided order with an explicit empty history?), A-20261105-2 (weekly usage % after the run, for `bentham.py calibrate`). PRs #154, #155, #156 and the Herschel PR await merge. A-20261103-1 and A-20261104-1 remain open.
+
 ## 2026-11-05 (Claude, Theophilus wave: Bentham ranks 8 and 11)
 
 - **Filed 41 reviewed claims** (`research/readiness/claims/claude-2026-11-05-theophilus-{r01,r02,r03}.jsonl`) from the 48 custody-stranded 2026-11-04 claims, plus 1 owner-reviewable replacement proposal (EO 12743, `research/excavator/claude-theophilus-2026-11-05/p01/REPLACEMENT_PROPOSAL.jsonl`). Each filing passed the actual checker and two fresh Opus blind arms; 4 of 4 controls caught by both arms. Certified 0. Kean F-20261105-theophilus.

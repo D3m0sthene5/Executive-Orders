@@ -87,12 +87,68 @@ def norm_outcome(o):
     if not o:
         return "not_reached"
     head = o.split(":", 1)[0].strip().lower()
-    return head if head in {"done", "blocked", "failed", "upheld", "rejected", "not_reached"} else "failed"
+    if head in {"done", "blocked", "failed", "upheld", "rejected", "not_reached"}:
+        return head
+    low = o.lower()
+    if low.startswith(("not_applicable", "n/a", "not applicable")):
+        return "not_applicable"
+    if low.startswith("control_caught"):   # the planted control was caught; the verdict on the genuine item follows
+        return "upheld" if "upheld" in low else "rejected" if "reject" in low else "done"
+    return "failed"
 
 
 def acquisition(o):
     o = o or ""
     return o.split(":", 1)[1].strip() if o.lower().startswith("blocked:") else ""
+
+
+COST_GROUP = {s: "lifecycle_steps" for s in ("clause_inventory", "ending_or_current_basis", "savings_residuals",
+                                              "counterevidence", "lifecycle", "lifecycle_claim")}
+COST_GROUP.update({"review": "review", "review_status": "review", "review_text": "review", "review_lifecycle": "review",
+                   "reveal": "review"})
+GROUP_ORDER = ["admit", "provisional_status", "original_text", "replace_original", "lifecycle_steps", "shared_sources",
+               "opus_media", "review"]
+REVIEW_KIND = {"review": "review_claim", "review_lifecycle": "review_claim", "reveal": "review_claim",
+               "review_status": "review_status", "review_text": "review_text"}
+BLOCKER_LABELS = {
+    "status_history": "no dated status-history record (claim kit refuses to start the order)",
+    "status_adoption": "waits for a reviewed status proposal and owner adoption",
+    "later_search": "no bounded machine search for later sources (undecided dossiers)",
+    "tool_rule": "a claim-kit write rule blocks assembly",
+    "raw_bytes": "source held only as a hash or custody record; bytes must be retained",
+    "official_original": "official printing or page image of the order not held",
+    "agency_records": "agency execution records (appointments, land status, board reports) not held",
+    "legal_sources": "later law, notice or instrument needed for the ending or current basis",
+    "order_text": "operative text or identification of the order not held",
+    "opus_media": "zero-agent refetch of a cited FR issue",
+    "other": "other",
+}
+BLOCKER_RULES = [
+    ("knock_on", r"^depends on|\(depends on|upstream|^no claim|nothing (proposed|to review)|no (claim|approved status|"
+                 r"reviewed status)|no claim or|not producible"),
+    ("status_history", r"dated (status[- ])?history|no dated history|refused freeze|refuses to freeze|kit refused"),
+    ("later_search", r"bounded[_ ](machine )?later|later-source search|machine_searches"),
+    ("tool_rule", r"tool (policy|rule)|overlay-propose writes"),
+    ("status_adoption", r"provisional[_ ]status|status proposal|status decision|status is adopted|owner adoption"),
+    ("opus_media", r"opus[_ ]media|refetch"),
+    ("raw_bytes", r"custody|retain|hash|only a custody|bytes|^fetch |git-lfs|lfs object|not retrieved|re-fetch"),
+    ("official_original", r"nara|rg ?11|official (original|printing|copy|print)|gpo|page image|proquest|scan|"
+                          r"state dep|slip|pamphlet|printing|compilation page|hoover|page check"),
+    ("agency_records", r"appoint|land|blm|board report|csc|opm|execution|reinstatement|personnel|promotion|plat\b|"
+                       r"resurvey|plo \d|public land order|transfer|sale|navy|forest|district records|interment|"
+                       r"exemptions ended|performed|commission report"),
+    ("legal_sources", r"resolution|congress|statute|stat\.|cfr|notice|continuation|revok|supersed|ending|current[- ]law|"
+                      r"current[- ]status|amendment|later order|rules|\bact\b|term record|expir|final report"),
+    ("order_text", r"operative text|identif|no held text|working text|text of eo|clause text"),
+]
+
+
+def blocker_class(text):
+    t = (text or "").lower()
+    for name, rx in BLOCKER_RULES:
+        if re.search(rx, t):
+            return name
+    return "other"
 
 
 def load():
@@ -398,45 +454,66 @@ def main(argv=None):
 
     steps_seen = sorted({s for r in rows for s in r["steps"]} | {s for r in rows for s in r["open_steps"]},
                         key=lambda s: STEPS.index(s) if s in STEPS else 99)
-    def step_key(s, field):
-        return lambda r: r["steps"].get(s, {}).get(field, 0.0)
+    # Cost groups: coordinators split the same work differently (H2 and H3 produced the four lifecycle steps as one
+    # sheet; others ran one worker per step), so per-step dollars are compared at the level of these groups. Every
+    # sampled order was reached at every open step, so totals are order-level Horvitz-Thompson estimates.
+    def group_cost(r, g):
+        return sum(v["usd"] for s, v in r["steps"].items() if COST_GROUP.get(s, s) == g)
 
-    def outcome_is(s, test):
-        return lambda r: 1.0 if test(norm_outcome(r["steps"].get(s, {}).get("outcome"))) else 0.0
-
-    def total(field, extra=None):
-        def fn(rs):
-            t = sum(estimate(rs, N, step_key(s, field), eligible_for(s))[0] for s in steps_seen)
-            return t + (estimate(rs, N, extra)[0] if extra else 0.0)
-        return fn
-    proj = {"usd_total": interval(rows, total("usd", lambda r: r["overhead_usd"]), args.boot),
-            "usd_workers": interval(rows, total("usd"), args.boot),
-            "usd_coordination": interval(rows, lambda rs: estimate(rs, N, lambda r: r["overhead_usd"])[0], args.boot),
-            "worker_hours": interval(rows, lambda rs: total("seconds")(rs) / 3600, args.boot),
+    def order_level(field):
+        return lambda rs: estimate(rs, N, lambda r: r[field])[0]
+    proj = {"usd_total": interval(rows, order_level("usd"), args.boot),
+            "usd_workers": interval(rows, order_level("worker_usd"), args.boot),
+            "usd_coordination": interval(rows, order_level("overhead_usd"), args.boot),
+            "worker_hours": interval(rows, lambda rs: estimate(rs, N, lambda r: r["seconds"] / 3600)[0], args.boot),
             "orders_all_steps_good": interval(
-                rows, lambda rs: estimate(rs, N, lambda r: 1.0 if r["all_steps_good"] else 0.0,
-                                          lambda r: r["reached"] and not any(
-                                              norm_outcome(r["steps"].get(s, {}).get("outcome")) == "not_reached"
-                                              for s in r["open_steps"]))[0], args.boot),
+                rows, lambda rs: estimate(rs, N, lambda r: 1.0 if r["all_steps_good"] else 0.0)[0], args.boot),
             "borrowed_strata": sorted(estimate(rows, N, lambda r: 0.0)[1])}
+    groups = sorted({COST_GROUP.get(s, s) for r in rows for s in r["steps"]},
+                    key=lambda g: GROUP_ORDER.index(g) if g in GROUP_ORDER else 99)
+    by_group = []
+    for g in groups:
+        c = interval(rows, lambda rs, g=g: estimate(rs, N, lambda r: group_cost(r, g))[0], args.boot)
+        users = [r for r in rows if any(COST_GROUP.get(s, s) == g for s in r["steps"])]
+        by_group.append({"cost_group": g, "orders_measured": len(users), "usd_point": c["point"], "usd_p10": c["p10"],
+                         "usd_p90": c["p90"], "usd_round1": c["round1"], "usd_round2": c["round2"],
+                         "usd_per_order_where_run": round(sum(group_cost(r, g) for r in users) / len(users), 3)
+                         if users else None})
+    # Outcome rates per research step (rows in ORDER_OUTCOMES), whatever worker produced them.
     by_step = []
-    for s in steps_seen:
-        el = eligible_for(s)
-        c = interval(rows, lambda rs, s=s, el=el: estimate(rs, N, step_key(s, "usd"), el)[0], args.boot)
-        g = estimate(rows, N, outcome_is(s, lambda o: o in GOOD), el)[0]
-        tr = estimate(rows, N, outcome_is(s, lambda o: o != "not_reached"), el)[0]
-        bl = estimate(rows, N, outcome_is(s, lambda o: o == "blocked"), el)[0]
-        fl = estimate(rows, N, outcome_is(s, lambda o: o in {"failed", "rejected"}), el)[0]
-        measured = sum(1 for r in rows if el(r) and s in r["steps"])
-        mins = [r["steps"][s]["seconds"] / 60 for r in rows if el(r) and s in r["steps"]]
-        by_step.append({"step": s, "census_cells": sum(v for (h, st), v in cells.items() if st == s),
-                        "orders_measured": measured, "usd_point": c["point"], "usd_p10": c["p10"],
-                        "usd_p90": c["p90"], "usd_round1": c["round1"], "usd_round2": c["round2"],
-                        "projected_attempts": round(tr), "projected_good": round(g), "projected_blocked": round(bl),
-                        "projected_failed_or_rejected": round(fl),
+    for s in [x for x in STEPS if x != "review"] + ["review_status", "review_text", "review_claim"]:
+        def oc(r, s=s):
+            v = [norm_outcome(val.get("outcome")) for k, val in r["steps"].items()
+                 if (REVIEW_KIND.get(k, k) if s.startswith("review") else k) == s]
+            v = [x for x in v if x not in {"not_reached", "not_applicable"}]
+            return v[-1] if v else None
+        el = [r for r in rows if r["reached"] and oc(r)]
+        if not el:
+            continue
+
+        def share(test, s=s, oc=oc):
+            return estimate(rows, N, lambda r: 1.0 if test(oc(r)) else 0.0, lambda r: r["reached"] and oc(r))[0]
+        tr = share(lambda o: True)
+        g, bl, fl = share(lambda o: o in GOOD), share(lambda o: o == "blocked"), \
+            share(lambda o: o in {"failed", "rejected"})
+        cc = sum(v for (h, st), v in cells.items() if st == s and h in N)
+        by_step.append({"step": s, "census_cells_open": cc, "orders_measured": len(el),
                         "good_rate": round(g / tr, 3) if tr else None,
-                        "usd_per_attempt": round(c["point"] / tr, 3) if tr else None,
-                        "worker_minutes_per_order": round(sum(mins) / len(mins), 1) if mins else None})
+                        "blocked_rate": round(bl / tr, 3) if tr else None,
+                        "failed_or_rejected_rate": round(fl / tr, 3) if tr else None,
+                        "projected_good_cells": round(cc * g / tr) if tr and cc else None,
+                        "projected_blocked_cells": round(cc * bl / tr) if tr and cc else None})
+    by_group = [b for b in by_group if b["cost_group"] != "human_certification"]
+    good_orders = [r for r in rows if r["all_steps_good"]]
+    rng = random.Random(1789)
+    gm = [r["usd"] for r in good_orders]
+    reps = sorted(sum(rng.choice(gm) for _ in gm) / len(gm) for _ in range(args.boot)) if gm else []
+    finish = {"orders_fully_good_in_sample": len(good_orders),
+              "mean_usd_per_fully_good_order": round(sum(gm) / len(gm), 3) if gm else None,
+              "p10": round(reps[int(0.1 * len(reps))], 3) if reps else None,
+              "p90": round(reps[int(0.9 * len(reps)) - 1], 3) if reps else None,
+              "basis": "mean total cost (workers + allocated coordination) of sampled orders whose every open step "
+                       "succeeded; applies to an order once its blockers are cleared, if it then behaves like them"}
     by_stratum = []
     for h in sorted(N):
         rs = [r for r in rows if r["stratum"] == h]
@@ -452,15 +529,34 @@ def main(argv=None):
     for r in rows:
         if not r["reached"]:
             continue
-        for s, v in r["steps"].items():
-            a = acquisition(v.get("outcome"))
-            if a:
-                acq[re.sub(r"\s+", " ", a.lower())[:160]][r["stratum"]] += 1
+        seen = {re.sub(r"\s+", " ", acquisition(v.get("outcome")).lower())[:160] for v in r["steps"].values()} - {""}
+        for a in seen:
+            acq[a][r["stratum"]] += 1
     reached_n = collections.Counter(r["stratum"] for r in rows if r["reached"])
-    acq_rows = sorted(({"acquisition": a, "sampled_orders": sum(c.values()),
-                        "projected_orders": round(sum(N[h] * k / reached_n[h] for h, k in c.items() if reached_n[h])),
-                        "strata": "|".join(sorted(c))} for a, c in acq.items()),
+
+    def project_counts(c):
+        return round(sum(N[h] * k / reached_n[h] for h, k in c.items() if reached_n[h]))
+    acq_rows = sorted(({"acquisition": a, "sampled_orders": sum(c.values()), "projected_orders": project_counts(c),
+                        "blocker_class": blocker_class(a), "strata": "|".join(sorted(c))} for a, c in acq.items()),
                       key=lambda x: -x["projected_orders"])
+    # Root blockers per order: every class an order is blocked on, ignoring knock-on blocks. "sole" = the only root
+    # class, so fixing it alone would let that order's agent steps proceed (they may still fail on the merits).
+    any_c, sole_c = collections.defaultdict(collections.Counter), collections.defaultdict(collections.Counter)
+    for r in rows:
+        if not r["reached"]:
+            continue
+        classes = {blocker_class(acquisition(v.get("outcome"))) for v in r["steps"].values()
+                   if acquisition(v.get("outcome"))} - {"knock_on"}
+        for c in classes:
+            any_c[c][r["stratum"]] += 1
+        if len(classes) == 1:
+            sole_c[next(iter(classes))][r["stratum"]] += 1
+        if not classes:
+            any_c["none"][r["stratum"]] += 1
+    blockers = sorted(({"blocker_class": c, "label": BLOCKER_LABELS.get(c, c),
+                        "sampled_orders": sum(v.values()), "projected_orders": project_counts(v),
+                        "projected_orders_sole_blocker": project_counts(sole_c.get(c, {}))}
+                       for c, v in any_c.items()), key=lambda x: -x["projected_orders"])
     conc_rows, peak, (t0, t1) = concurrency(workers)
     # Wall time at a given concurrency: projected worker-hours / k, inflated by the slowdown seen at that level.
     base = [r["seconds_per_order"] for r in conc_rows if r["global_concurrency_at_start"] <= 8]
@@ -510,8 +606,28 @@ def main(argv=None):
                          "Orders not reached are treated as missing at random within their stratum.",
                          "A worker's cost is split equally across its orders.",
                          "Ready orders (1,331) are excluded from token projection; they need human certification."]}
+    if t0 and t1:
+        hrs = (t1 - t0).total_seconds() / 3600
+        reached = sum(r["reached"] for r in rows)
+        summary["measured_throughput"] = {
+            "orders_per_hour_one_machine": round(reached / hrs, 1), "window_hours": round(hrs, 2),
+            "machine": "one 8 GB, 2-CPU cloud session; memory, not API limits, capped parallel workers at about 18",
+            "days_one_machine_for_census": round(sum(N.values()) / (reached / hrs) / 24, 1),
+            "note": "at today's block rates; blocked steps end in minutes, so unblocked work will run slower"}
+    summary["blockers"] = blockers
+    summary["by_step"] = by_step
+    summary["by_cost_group"] = by_group
+    summary["cost_per_order_once_unblocked"] = finish
+    # Census fact, not a sample estimate: undecided orders with no dated status history, which the claim kit refuses.
+    idx_p = REPO / "jobs/status-history/output/INDEX.json"
+    if idx_p.is_file() and not args.root:
+        idx = {r["instrument_id"]: r for r in json.loads(idx_p.read_text())}
+        und = [i for i, o in orders.items() if o.get("status") == "none" and o.get("stratum") != "ready"]
+        summary["census_undecided_without_dated_history"] = {
+            "undecided": len(und), "without_history": sum(1 for i in und if idx.get(i, {}).get("history") is None)}
     (OUT / "PROJECTION.json").write_text(json.dumps(summary, indent=2, default=str) + "\n")
-    for name, data in (("BY_STEP.csv", by_step), ("BY_STRATUM.csv", by_stratum), ("ACQUISITIONS.csv", acq_rows),
+    for name, data in (("BY_STEP.csv", by_step), ("BY_COST_GROUP.csv", by_group), ("BY_STRATUM.csv", by_stratum), ("ACQUISITIONS.csv", acq_rows),
+                       ("BLOCKERS.csv", blockers),
                        ("CONCURRENCY.csv", conc_rows)):
         if data:
             with open(OUT / name, "w", newline="", encoding="utf-8") as f:
