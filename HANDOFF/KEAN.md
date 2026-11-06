@@ -10,16 +10,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 ## Waiting for the owner (4)
 
-- **A-20261103-1** (2026-11-03, Codex): Provide Bacon-session.bundle or the original Bacon packet directory from EO Session Report? *Original scratch files are inaccessible, no Bacon publication was located, and the frozen sample/review receipts cannot be reconstructed faithfully*
-- **A-20261104-1** (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1? *Scoped occurrence intervals are usable now. Whole-case legal intervals need a separate scientific contract and fresh legal review. This is a contract proposal, not a request to choose case answers or relax production.*
-- **A-20261105-niebuhr-admit** (2026-11-05, claude): May the 30 orders in research/niebuhr/ADMISSION_QUEUE.csv (APP text held, 26 with the official OFR compilation text and page) be admitted to the census after a person checks each against its official page? Who does that… *They are signed, numbered executive orders the census misses through an ingestion gap; admission changes the census count, which only the owner can authorize, and identity review must be a person, not the machine.*
-- **A-20261106-mabillon-register** (2026-11-06, claude (Mabillon)): Register jobs/mabillon-held-printings in tracker.py (PR #164), so 1,771 orders count their held official printing? *Held GPO slip volumes, 1974 GPO Hoover and 1936 FR pages filed as transcriptions; proved by text, 0 of 6,834 planted negatives accepted.*
+**A-20261103-1**, **A-20261104-1**, **A-20261105-niebuhr-admit**, **A-20261106-mabillon-register**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
 - **Evidence decides; agents work out legal distinctions themselves** (D-20261028-evidence-decides): Record what the evidence establishes, with the best supported date or interval, and separate an exhausted command from surviving consequences. A claim of 'happened within this interval' needs evidence that it happened; otherwise the order stays open on that question. A later general rule ends a command only if something shows it extinguished that command. Disclosure keeps a gap visible but never fills it. Do not ask the owner to choose method answers to unlock rows: apply these distinctions to the supported cases and report the exceptions.
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
-- **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Paid Brave search (BRAVE_SEARCH_KEY): only when free engines find nothing; caps 100/run, 2,500/job, 5,000 total; ask the owner before raising them.
+- **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
 ## Owner decisions not yet carried out by the tools (4)
 
