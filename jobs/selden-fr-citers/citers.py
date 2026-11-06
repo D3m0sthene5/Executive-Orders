@@ -299,7 +299,7 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
             prior_src.setdefault(r.get("source_id", "")[7:], r)
     run = Run(out, cache, workers=int(env.get("JOB_WORKERS") or 12), transport=transport,
               max_requests=int(env.get("JOB_MAX_REQUESTS") or 40000),
-              max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 100),
+              max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 300),
               commit_bytes=int(env.get("SELDEN_COMMIT_BYTES") or 120_000_000), prior=prior_src)
     targets, docnum_to_eo, cat = load_targets(repo)
     limit = int(env.get("JOB_LIMIT") or 0)
