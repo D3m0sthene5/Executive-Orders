@@ -11,7 +11,7 @@ a key and whose terms ask users not to cache or store returned content.
 
 ## Stage 1: census (`census.py`)
 
-Lists the RG 11 chunks, estimates bytes and time before reading (`plan` in the log and `SUMMARY.json`), reads each
+Resolves the record-group folders (RG 11, plus RG 59, 48, 95 and 130 only to rule out other imaged copies; a group too large for the cap is skipped whole and its size reported), lists their chunks, estimates bytes and time before reading (`plan` in the log and `SUMMARY.json`), reads each
 chunk once (cap `JOB_MAX_BYTES`, default 3 GB; 4 workers, 4 in flight, 0.1 s apart, every body hashed), and keeps
 every description whose own or an ancestor's title names executive orders. Order numbers are read from item titles
 ("Executive Order No. 1234", "E.O. 1234", a bare "No. 1234" only under an executive-order series); a file unit's

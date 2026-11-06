@@ -68,6 +68,22 @@ def list_keys(pool, prefix):
             return out
 
 
+def resolve_groups(pool, groups):
+    """Record-group folder names are zero-padded inconsistently (rg_11, rg_010): match them by number."""
+    got = pool.fetch(BUCKET + "/?" + urllib.parse.urlencode(
+        {"list-type": "2", "prefix": "descriptions/record-groups/", "delimiter": "/", "max-keys": "1000"}))
+    root = ET.fromstring(got["body"])
+    names = [p.findtext(S3NS + "Prefix") for p in root.findall(S3NS + "CommonPrefixes")]
+    out = []
+    for g in groups:
+        for n in names:
+            m = re.search(r"rg_0*(\d+)/$", n or "")
+            if m and int(m.group(1)) == int(g):
+                out.append((int(g), n))
+                break
+    return out
+
+
 # --------------------------------------------------------------------------------------------- schema-agnostic reading
 
 def key_paths(obj, prefix="", out=None, depth=0):
@@ -175,7 +191,9 @@ def lean(rec, chunk):
         if k in rec:
             dates[k] = flat_text(rec[k])[:120]
     return {"naId": rec.get("naId"), "level": rec.get("levelOfDescription"), "title": title[:300],
-            "record_group": rec.get("recordGroupNumber"), "dates": dates,
+            "record_group": rec.get("recordGroupNumber") or next(
+                (a.get("recordGroupNumber") for a in (rec.get("ancestors") or []) if isinstance(a, dict)
+                 and a.get("recordGroupNumber")), None), "dates": dates,
             "ancestors": [{"naId": a["naId"], "title": (a["title"] or "")[:200], "level": a["level"]} for a in anc],
             "objects": [{k: v for k, v in o.items() if k in ("url", "url_key", "objectType", "objectFilename",
                                                              "objectFileSize", "objectId", "objectDescription")}
@@ -241,7 +259,7 @@ def main(out=None, pool=None):
     out = Path(out or os.environ.get("OUTPUT_DIR", HERE / "output"))
     out.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
-    prefix = os.environ.get("NARA_PREFIX", "descriptions/record-groups/rg_11/")
+    groups = [g.strip() for g in os.environ.get("NARA_RECORD_GROUPS", "11,59,48,95,130").split(",") if g.strip()]
     max_bytes = int(os.environ.get("JOB_MAX_BYTES", str(3_000_000_000)))
     max_chunks = int(os.environ.get("JOB_MAX_CHUNKS", "5000"))
     if pool is None:
@@ -250,22 +268,23 @@ def main(out=None, pool=None):
                          workers=int(os.environ.get("JOB_WORKERS", "4")), per_host=4,
                          user_agent="EO-Road-System/1.0 (mabillon-nara; executive-order research)",
                          min_interval=0.1, max_bytes=100_000_000)
-    keys = [k for k in list_keys(pool, prefix) if k["key"].endswith((".jsonl", ".json", ".jsonl.gz", ".json.gz"))]
-    total = sum(k["size"] for k in keys)
-    plan = {"prefix": prefix, "chunks": len(keys), "bytes": total, "cap_bytes": max_bytes,
-            "estimate_minutes_at_20MBps": round(total / 20e6 / 60, 1)}
+    # Record groups beyond RG 11 are read only to rule out other imaged copies (State Department RG 59, Interior
+    # RG 48, Forest Service RG 95, White House Office RG 130). A group is read whole or skipped, never cut short, so
+    # its counts are never partial; the plan with every group's size is written before any chunk is read.
+    folders = resolve_groups(pool, groups)
+    plan = {"cap_bytes": max_bytes, "groups": []}
+    keys_run, acc = [], 0
+    for g, prefix in folders:
+        keys = [k for k in list_keys(pool, prefix) if k["key"].endswith((".jsonl", ".json", ".jsonl.gz", ".json.gz"))]
+        size = sum(k["size"] for k in keys)
+        take = acc + size <= max_bytes and len(keys_run) + len(keys) <= max_chunks
+        plan["groups"].append({"record_group": g, "prefix": prefix, "chunks": len(keys), "bytes": size,
+                               "read": take, "estimate_minutes_at_20MBps": round(size / 20e6 / 60, 1)})
+        if take:
+            keys_run += keys
+            acc += size
+    plan["bytes_to_read"] = acc
     print("plan:", json.dumps(plan), flush=True)
-    if total > max_bytes:
-        keys_run = []
-        acc = 0
-        for k in keys:
-            if acc + k["size"] > max_bytes:
-                break
-            keys_run.append(k)
-            acc += k["size"]
-    else:
-        keys_run = keys
-    keys_run = keys_run[:max_chunks]
 
     stats = collections.Counter()
     levels = collections.Counter()
@@ -336,6 +355,7 @@ def main(out=None, pool=None):
         key = (top or {}).get("naId") or r["naId"]
         g = groups[key]
         g["title"] = (top or {}).get("title") or r["title"]
+        g["record_group"] = r["record_group"]
         g["descriptions"] += 1
         g["with_objects"] += bool(r["objects"])
         g["objects"] += len(r["objects"])
@@ -343,7 +363,7 @@ def main(out=None, pool=None):
     series_rows = []
     for k, g in groups.items():
         nums = sorted(g["numbers"])
-        series_rows.append({"series_naId": k, "title": g["title"][:200], "descriptions": g["descriptions"],
+        series_rows.append({"series_naId": k, "record_group": g.get("record_group"), "title": g["title"][:200], "descriptions": g["descriptions"],
                             "with_objects": g["with_objects"], "objects": g["objects"],
                             "numbered_items": len(nums), "min_number": nums[0] if nums else "",
                             "max_number": nums[-1] if nums else ""})
@@ -353,7 +373,7 @@ def main(out=None, pool=None):
         for r in kept:
             f.write(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n")
     with open(out / "SERIES.csv", "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["series_naId", "title", "descriptions", "with_objects", "objects",
+        w = csv.DictWriter(f, fieldnames=["series_naId", "record_group", "title", "descriptions", "with_objects", "objects",
                                           "numbered_items", "min_number", "max_number"])
         w.writeheader()
         w.writerows(series_rows)
@@ -383,7 +403,7 @@ def main(out=None, pool=None):
 
     frame_ids = {o["instrument_id"] for o in frame}
     summary = {
-        "job": "mabillon-nara", "stage": "census", "plan": plan, "chunks_read": len(chunk_receipts),
+        "job": "mabillon-nara", "stage": "census", "plan": plan, "record_groups_requested": groups, "chunks_read": len(chunk_receipts),
         "chunk_errors": len(errors), "records": stats["records"], "eo_records": stats["eo_records"],
         "bad_lines": stats["bad_lines"], "levels": dict(levels.most_common()),
         "eo_with_objects": sum(1 for r in kept if r["objects"]),

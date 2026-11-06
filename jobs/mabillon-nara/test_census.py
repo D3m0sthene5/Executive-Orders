@@ -1,5 +1,6 @@
 """Offline tests for the NARA census: S3 paging, schema-agnostic reading, number parsing, coverage."""
 import io
+import os
 import json
 import sys
 import tempfile
@@ -39,7 +40,12 @@ class FakePool:
 
     def fetch(self, url):
         self.requests += 1
-        if "continuation-token=tok" in url:
+        if "delimiter" in url:
+            body = (b'<?xml version="1.0"?><ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">'
+                    b'<CommonPrefixes><Prefix>descriptions/record-groups/rg_010/</Prefix></CommonPrefixes>'
+                    b'<CommonPrefixes><Prefix>descriptions/record-groups/rg_11/</Prefix></CommonPrefixes>'
+                    b'</ListBucketResult>')
+        elif "continuation-token=tok" in url:
             body = LIST2
         elif "list-type" in url:
             body = LIST1
@@ -56,6 +62,10 @@ class FakePool:
 
 
 class CensusTests(unittest.TestCase):
+    def test_group_folders_match_by_number(self):
+        self.assertEqual(census.resolve_groups(FakePool(), ["11", "10", "59"]),
+                         [(11, "descriptions/record-groups/rg_11/"), (10, "descriptions/record-groups/rg_010/")])
+
     def test_numbers(self):
         self.assertEqual(census.numbers_in("Executive Order No. 1234")[0], [(1234, "")])
         self.assertEqual(census.numbers_in("Executive Order 1234-A")[0], [(1234, "A")])
@@ -78,6 +88,7 @@ class CensusTests(unittest.TestCase):
                              "EO:77,77,00000-00499,x,y\nEO:5050,5050,05000-05499,x,y\nEO:9,9,00000-00499,x,y\n")
             old = census.FRAME
             census.FRAME = frame
+            os.environ["NARA_RECORD_GROUPS"] = "11"
             try:
                 s = census.main(out=Path(d) / "out", pool=FakePool())
             finally:
