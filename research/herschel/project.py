@@ -144,18 +144,29 @@ def match_workers(workers, usage):
             if isinstance(t.get(k), (int, float)):
                 costs[i] = (float(t[k]), "trace")
                 break
+    # A coordinator whose trace prices every worker has its worker telemetry fully accounted for already.
+    for h, rows in usage.items():
+        mine = [i for i, t in enumerate(workers) if t["_h"] == h]
+        if mine and all(i in costs for i in mine):
+            used.update((h, j) for j in range(len(rows)))
+    claims = collections.defaultdict(list)   # (coordinator, telemetry row) -> workers that name it
     for i, t in enumerate(workers):
         if i in costs:
             continue
         rows = usage.get(t["_h"], [])
         name = t.get("worker") or ""
         sids = set(t.get("session_ids") or ([t["session_id"]] if t.get("session_id") else []))
-        hit = [j for j, r in enumerate(rows) if not is_coordination(r) and (
-            r.get("phase") == name or r.get("batch") == name or r.get("agent_id") == name
-            or any(s and (r.get("session_id") or "").startswith(s) for s in sids))]
-        if hit:
-            costs[i] = (sum(row_usd(rows[j]) for j in hit), "telemetry")
-            used.update((t["_h"], j) for j in hit)
+        for j, r in enumerate(rows):
+            if not is_coordination(r) and (
+                    r.get("phase") == name or r.get("batch") == name or r.get("agent_id") == name
+                    or any(s and (r.get("session_id") or "").startswith(s) for s in sids)):
+                claims[(t["_h"], j)].append(i)
+    # A session resumed by several workers (a reveal, a correction) is one telemetry row: split it among them.
+    for (h, j), ws in claims.items():
+        share = row_usd(usage[h][j]) / len(ws)
+        for i in ws:
+            costs[i] = (costs.get(i, (0.0, ""))[0] + share, "telemetry")
+        used.add((h, j))
     for i, t in sorted(((i, t) for i, t in enumerate(workers) if i not in costs),
                        key=lambda it: str(it[1].get("started_utc"))):
         rows = usage.get(t["_h"], [])
@@ -179,13 +190,30 @@ def match_workers(workers, usage):
     for i, t in enumerate(workers):
         if i not in costs:
             waiting[(t["_h"], t.get("step"))].append(i)
-    leftover = 0.0
+    left_by_h = collections.defaultdict(float)
     for key, v in pools.items():
         if waiting.get(key):
             for i in waiting[key]:
                 costs[i] = (v / len(waiting[key]), "telemetry-pool")
         else:
+            left_by_h[key[0]] += v
+    # Conservation: worker telemetry no rule could attach still belongs to that coordinator's workers. It goes to the
+    # coordinator's unpriced workers by duration, or, if none, to all its workers by duration, so no measured dollar
+    # is dropped from the projection.
+    def dur(t):
+        a, b = ts(t.get("started_utc")), ts(t.get("ended_utc"))
+        return max(1.0, (b - a).total_seconds()) if a and b else 1.0
+    leftover = 0.0
+    for h, v in left_by_h.items():
+        mine = [i for i, t in enumerate(workers) if t["_h"] == h]
+        target = [i for i in mine if i not in costs] or mine
+        if not target:
             leftover += v
+            continue
+        tot = sum(dur(workers[i]) for i in target)
+        for i in target:
+            prev = costs.get(i, (0.0, ""))[0]
+            costs[i] = (prev + v * dur(workers[i]) / tot, "telemetry-spread")
     return costs, leftover
 
 
