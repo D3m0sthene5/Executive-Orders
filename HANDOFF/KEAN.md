@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (3)
+## Waiting for the owner (8)
 
-**A-20261106-1**, **A-20261106-dagron-nyu**, **A-20261106-pothier**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261106-1**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -38,13 +38,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 218; `search` finds the rest)
+## Newest results (6 of 221; `search` finds the rest)
 
+- 2026-11-06 F-20261107-ventris-ocr **partly worked**: OCR pilot: 58 passages (28 hard, 30 clean) read by GPO layer, Tesseract x2, Surya 2.5, PaddleOCR v5 (RTX 5080… Lesson: GPO's layer and independent OCR almost never agree exactly even on clean prose (punctuation, hyphen joins), so exact agreement is unusable as a reference rule; a CER threshold or more human reference…
+- 2026-11-06 F-20261107-thesis-measure **analysis**: Fill the blank formal_revocation_after_earlier_cessation measure from held data (later-events, Formulario, 19… Lesson: The held data prove the cleanup pattern exists but currently point against 'often'; the better-supported half of the thesis is orders that ceased and were never revoked. A rate needs the Stage 15 sam…
+- 2026-11-06 F-20261107-bayle-thrower **worked**: Cross-check Thrower's AJPS replication list (doi:10.7910/DVN/LZGQOH, CC0; 6,158 orders 1937-2013) against the… Lesson: Prior-art datasets built from the same OFR notes cannot validate the project's formal layer; use them to find parser artifacts and definitional splits (amenders), and always have a fresh agent re-run…
 - 2026-11-06 F-20261107-bayle-lowande-poznansky **partly worked**: Integrate the Lowande-Poznansky replication deposit (doi:10.7910/DVN/TZ2QKY V1, CC0) and article: replicate,… Lesson: L&P measure formal revocation within the next term only, so their 'most orders are never revoked' is a formal-validity baseline, not evidence about operative force. Their error cases cannot serve as…
 - 2026-11-06 F-20261106-tsiolkovsky **worked**: Measure the project's progress since inception as verified work held (rocket step weights x credit from the t… Lesson: Commit timestamps are not landing order; use first-parent order with a running-maximum landing time, and credit by input channel, with re-checks deferred to the work that landed before.
 - 2026-11-06 F-20261106-selden-supplement-decided-only **analysis**: Route newly held later-instrument texts (Selden) into claim-kit packets with jobs/claim-kit/source_supplement… Lesson: Extending source_supplement (or an equivalent excerpt step) to the overlay route is needed before held acting texts can serve the 10,681 undecided orders; the coordinator has taken it up.
-- 2026-11-06 F-20261106-selden-fr-api-400 **failed**: selden-fr-citers first full runs (lane run and two runner shards) searched 13,138 orders through the Federal… Lesson: Same lesson as F-20261105-tischendorf-2, which this session read and did not apply: smoke-test every live route on a handful of real items before a full run, and make a job fail when most of its requ…
-- 2026-11-06 F-20261106-selden-census **analysis**: Selden census (research/selden/census.py): every (target, acting instrument) lead in later-events, shepard-ci… Lesson: Before acquiring 'later law', classify what the blocked orders actually need: here a bounded search for unnamed later instruments and current-status sources serves far more orders than fetching named…
-- 2026-11-06 F-20261106-ready-drop-26-mabillon-hash **analysis**: Explain the ready drop 1,208 -> 1,185 between tracker generations d029ef3309b1 (15:49 UTC) and 9e850af06e37 (… Lesson: A merge's count-change record must be checked against the next published generation; record the measured change, not the expectation.
 
-Register: 54 owner decisions, 26 answered questions, 218 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 54 owner decisions, 26 answered questions, 221 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
