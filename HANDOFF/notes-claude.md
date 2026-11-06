@@ -1,3 +1,12 @@
+## 2026-11-06 13:10 ET (Claude, cleanup at the owner's request: every open PR merged, branches sorted)
+
+- **Merged:** [PR #167](https://github.com/D3m0sthene5/Executive-Orders/pull/167) (Selden; +8 claims, ready up by at most 8 once checked; Kean F-20261106-merge-167-selden) and [PR #162](https://github.com/D3m0sthene5/Executive-Orders/pull/162) (Pothier family doctrines; leads and asks only, no claim or status change; Kean F-20261106-merge-162-pothier). Each branch first merged main; Kean lines were united and main's outputs restored for jobs that already exist on main. New jobs (selden-*, pothier) kept their branch-run outputs, which the output-branch check flags; main's own runs regenerate them. No open PRs remain.
+- **Notes conflict:** the Pothier 01:30 entry is now in time order between Justinian (05:10) and Gratian (00:45).
+- **Stale run cancelled:** 39316948571 (csc-annual-reports, queued since Oct 19).
+- **Post-merge chain:** "Refresh published progress" started by itself on main (runs 42265936367, 42267267276); it measures the Selden +8.
+- **Branches: 215 of 219 are merged or add nothing over main, but deletion was NOT done.** The session's permission check refused the bulk remote delete; the owner can run it. The list with tip SHAs (for restore) is in `research/dorotheus/cleanup/BRANCHES_TO_DELETE.txt`. Kept on purpose: `claude/justinian-denominator` (DENOMINATOR_DELTA.md cites its `e3/DATE_FIXES.csv`), and three closed-unmerged PRs by other agents with unique content: `astra/unfinished-docket-source-trial` (#146), `codex/machiavelli-modern-undecided-20261105` (#151), `sol/babbage-complete-effort` (#141).
+- Certified: 0. No codebook, census or ProQuest path touched.
+
 ## 2026-11-06 07:10 ET (Claude, Dorotheus: Justinian repairs merged, protected stratum worked)
 
 - **Done (all merged by Dorotheus under the owner's delegation):**
