@@ -18,3 +18,5 @@ cache = pathlib.Path(os.environ.get("JOB_CACHE_DIR") or (out.parent / "selden-fr
 s = citers.main(repo, out, cache)
 if s["targets_searched_this_run"] == 0 and s["targets_searched_total"] < s["targets_total"]:
     sys.exit("no target searched")
+if s["failures"] > max(20, s["targets_searched_this_run"]):
+    sys.exit("most searches failed; previous output kept (see FAILURES.jsonl)")

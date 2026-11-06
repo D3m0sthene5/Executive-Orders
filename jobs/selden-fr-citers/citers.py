@@ -37,7 +37,8 @@ import selden_common as S  # noqa: E402
 
 FR_API = "https://www.federalregister.gov/api/v1/documents.json"
 FIELDS = ["document_number", "title", "type", "publication_date", "signing_date", "citation", "raw_text_url",
-          "pdf_url", "html_url", "executive_order_number", "presidential_document_type", "agencies"]
+          "pdf_url", "html_url", "executive_order_number"]  # every name must be a valid API field: one bad name
+# makes every search an HTTP 400 (first shard run, 2026-11-06)
 FR_START = "1994-01-01"
 UA = "EO-Road-System/1.0 (Selden acting-instrument texts; owner-run research)"
 GRADE = ("fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's "
