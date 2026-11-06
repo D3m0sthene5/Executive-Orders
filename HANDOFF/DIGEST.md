@@ -8,8 +8,6 @@ New York date: 2026-11-06. Generated mechanically; all findings remain provision
 
 **Ready for human review: 1,368 of 14,972 orders (9.1%)**
 
-Generation: `42192104157-1:dd20b2e24e720b0b7d067804b2a8f3a1bc095e9cbe9d3055583c881cf9bd49f2` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
-
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
@@ -23,12 +21,14 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 ## Steps finished (orders with a provisional status)
 
+| Step | Done | Of | Share |
+
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - claim-checker: claim_lines_found: 1466 → 1526; claims_all_checks_passed: 1369 → 1407; claims_checked: 1466 → 1526; claims_gate_passed: 1376 → 1436
 - claim-drafts: orders_with_any_conflict: 434 → 707; orders_with_draft: 4291 → 14919; undecided_orders_with_draft: 0 → 10628
-- gessner-cards: one_step_from_ready: 43 → 40; ready_for_human_review: 1331 → 1384
+- gessner-cards: one_step_from_ready: 43 → 40; ready_for_human_review: 1331 → 1368
 - gratian-niebuhr-leads: date_leads: unavailable → 63; date_leads_in_census: unavailable → 33; network_requests: unavailable → 0; resolved_references: unavailable → 10
 - kean: decisions: 23 → 27; findings: 146 → 167; open_owner_questions: 2 → 4
 - lambertini: counterevidence_records: 1248 → 1245; pool_LAMBC: 64 → 225; pool_LAMBS: 64 → 36
@@ -85,4 +85,4 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42192104157)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42190984454)
