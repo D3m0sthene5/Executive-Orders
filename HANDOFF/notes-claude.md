@@ -1,3 +1,26 @@
+## 2026-11-06 17:20 ET (Claude, cleanup audit and Tsiolkovsky trajectory)
+
+- **Counts audited:** at all 40 tracker generations on main, the ready count and census size match that
+  generation's tracker summary.
+- **Ready drop explained, 1,208 -> 1,185 (Kean F-20261106-ready-drop-26-mabillon-hash):**
+  - +3 from Selden.
+  - -26 from a Mabillon bug. `text_sha256` hashed the passage, not the file written (header + passage), so
+    Lachmann now records a skipped witness, and 26 Tribonian claims fail `prior_confirmation_stale`.
+  - The fix, [PR #185](https://github.com/D3m0sthene5/Executive-Orders/pull/185), is a DRAFT and COUNT-CHANGING.
+    The broken hash also hides valid official printings from `official_copy_available_recheck_required`, so up to
+    295 of the 1,185 ready (transcription-dependent) orders may need rechecking. Measure on the branch before
+    merging.
+- **Red refresh runs:** most are the freshness guard refusing results from overlapping, uncoordinated refresh
+  runs, then re-queuing them. Publication itself is current. The overlap is deliberate (`test_writer_queue.py`
+  forbids a concurrency group on `execute`). Serializing it is an owner decision.
+- **Merged:** [PR #184](https://github.com/D3m0sthene5/Executive-Orders/pull/184), Formulario. Its first runner
+  build proved 22,727 lemmas. Brave works on the runner, so A-20261106-formulario-brave is withdrawn.
+- **New:** `jobs/tsiolkovsky-trajectory/` and the Tsiolkovsky Trajectory dashboard
+  (https://claude.ai/artifact/BZJxATqRtwrtBbuBy2UZpc). Verified work held: 4,108 -> 6,631 of 18,191 work-hours
+  (36.5%); every change is credited by input channel. Kean F-20261106-tsiolkovsky.
+- **Still blocked:** deleting the 215 merged branches (the list with tips is in
+  `research/dorotheus/cleanup/BRANCHES_TO_DELETE.txt`).
+
 ## 2026-11-06 16:30 ET (Claude, Formulario: a checked lemma library of lifecycle facts and the documents that prove them)
 
 - **Done:** new job `jobs/peano-formulario/`, named for Peano's *Formulario mathematico*, the ancestor of Lean's
