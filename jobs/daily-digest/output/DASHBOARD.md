@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-06 05:28 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-06 06:02 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 Readiness below is the latest published tracker generation. Exact claim-receipt coverage is reported separately; matching versions alone does not verify every source or policy input.
 
@@ -8,8 +8,7 @@ Readiness below is the latest published tracker generation. Exact claim-receipt 
 
 | Measure | Count | Meaning |
 |---|---:|---|
-| Numbered series: working identities | 14,972 | Bibliographic inventory; historical census remains incomplete. Every proportion below is of this series |
-| Unnumbered series (catalogued_unnumbered), observed | unavailable | Second denominator; not measured until the domesday-register has run |
+| Working identities | 14,972 | Bibliographic inventory; historical census remains incomplete |
 | **Ready for human review, published** | **1,368** | Every applicable tracker step passed or was documented exhausted; independent human verification is separate |
 | Ready with original-supported text | 812 | Tracker's text-evidence tier |
 | Ready dependent on provisional transcriptions | 556 | Explicit working-text limitations remain |
@@ -19,8 +18,8 @@ Readiness below is the latest published tracker generation. Exact claim-receipt 
 | Superseded or repeated claim lines | 21 | Difference between valid lines and unique orders |
 | Human-certified whole histories, published register | 0 | Separate Stage19 human-review record; never inferred from AI passes |
 
-Tracker generation: **2026-11-06 05:24 EST**; input commit `9133711f2d69f776870a202cce62d494b00583de`.
-[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42201863839).
+Tracker generation: **2026-11-06 06:02 EST**; input commit `3a147db4ab9992dac67f425a71e71d0ecdf4b045`.
+[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42204685627).
 
 ## Receipt coverage and freshness
 
@@ -63,12 +62,12 @@ File acquisition and machine text do not establish legal conclusions or independ
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `9133711f2d69f776870a202cce62d494b00583de`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `3a147db4ab9992dac67f425a71e71d0ecdf4b045`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
-| Readiness | 2026-11-06 05:24 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
-| Claim checker | 2026-11-06 04:17 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
+| Readiness | 2026-11-06 06:02 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
+| Claim checker | 2026-11-06 06:01 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
 | ProQuest ingestion | 2026-10-28 14:49 EDT | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
 | Web-source custody | 2026-11-04 13:34 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
 

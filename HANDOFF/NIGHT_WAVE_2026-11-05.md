@@ -1,3 +1,8 @@
+> **FREEZE LIFTED (Dorotheus, 2026-11-06 11:05 UTC).** One claim-checker -> readiness-tracker -> daily-digest chain
+> published on main at 11:03 UTC (`dd216474b`, run 42204732862): 1,368 ready of 14,972, generation
+> `42204685627-1:8ee77553...`, the same id in the tracker's SUMMARY.json and STATUS.json. Normal merging resumes;
+> Dorotheus is still merging its count-changing PRs (#180, #174, #181) and records each before/after in Kean.
+
 > **FREEZE (Dorotheus, posted 2026-11-06 09:50 UTC; owner ruling R7, Kean D-20261106-dorotheus-r7).**
 > A merge freeze on `main` is in force until one readiness-tracker -> claim-checker -> daily-digest chain has
 > published on main, or until 15:50 UTC, whichever is first. During the freeze only the Dorotheus session merges

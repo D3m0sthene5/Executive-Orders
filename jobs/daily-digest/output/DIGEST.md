@@ -6,11 +6,9 @@ New York date: 2026-11-06. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Numbered series: ready for human review 1,368 of 14,972 orders (9.1%)**
+**Ready for human review: 1,368 of 14,972 orders (9.1%)**
 
-Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
-
-Generation: `42201863839-1:56d07550b742cf4b723e6cdbb536d541668860fcde8e87404108f16609e7acac` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42204685627-1:8ee77553cb8b68f7c877740fd894ed4b679778c9a71c95df7d534ea090e2be48` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -22,6 +20,8 @@ Ready by text evidence: {'original_supported': 812, 'transcription_dependent': 5
 Outstanding original replacement obligations: 1,146; quotation rechecks: 1,146. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 560. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5970}.
+
+## Steps finished (orders with a provisional status)
 
 ## Changes since the previous day
 
@@ -38,7 +38,7 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - mabillon-scan-inventory: commons_category_pages: unavailable → 10; commons_files: unavailable → 67; frame_orders_below_5076_inside_a_listed_range: unavailable → 0; ia_items: unavailable → 151
 - niebuhr-verify: pages_failed: unavailable → 126; pages_fetched: unavailable → 98; requests_used: unavailable → 186; results: unavailable → 301
 - ptolemy-custody: kept_this_run_bytes: unavailable → 929459485; kept_total: unavailable → 1390; legal_conclusions: unavailable → 0; orders_with_a_kept_source: unavailable → 1231
-- readiness-tracker: formal_revocation_after_earlier_cessation: unavailable → 0; numbered_series_orders: unavailable → 14972; original_replacement_obligations: 1886 → 1146; quotation_recheck_obligations: 1886 → 1146
+- readiness-tracker: formal_revocation_after_earlier_cessation: unavailable → 0; original_replacement_obligations: 1886 → 1146; quotation_recheck_obligations: 1886 → 1146; ready_for_human_review: 1331 → 1368
 - shepard-citations: land_targets: 3547 → 3549
 - status-history: printed_snapshot_undecided_identities: 2240 → 2235; undecided_with_history: 4773 → 4763; undecided_with_own_observation: 4596 → 4591
 - theophilus-sources: cfr_targets_planned: unavailable → 609; eligible_yes_orders: unavailable → 364; failures_total: unavailable → 73; orders_named_in_notices: unavailable → 162
@@ -63,4 +63,4 @@ No open ask is recorded in the Kean register.
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42201863839)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42204685627)

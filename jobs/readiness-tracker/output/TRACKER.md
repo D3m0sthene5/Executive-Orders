@@ -6,6 +6,8 @@ Unnumbered series (class catalogued_unnumbered, a separate denominator): not mea
 
 Generation: `42201863839-1:56d07550b742cf4b723e6cdbb536d541668860fcde8e87404108f16609e7acac` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
+Generation: `42204685627-1:8ee77553cb8b68f7c877740fd894ed4b679778c9a71c95df7d534ea090e2be48` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.

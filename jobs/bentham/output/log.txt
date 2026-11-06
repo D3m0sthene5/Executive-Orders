@@ -1,3 +1,6 @@
+test_unmeasured_stratum_becomes_a_ranked_probe (test_bentham.JustinianB6Test.test_unmeasured_stratum_becomes_a_ranked_probe) ... ok
+test_window_rank_flip_detected (test_bentham.JustinianB6Test.test_window_rank_flip_detected) ... ok
+test_window_tokens_both_weightings (test_bentham.JustinianB6Test.test_window_tokens_both_weightings) ... ok
 test_cost_units_price_agent_acquisitions (test_bentham.ScoreTests.test_cost_units_price_agent_acquisitions) ... ok
 test_discount_and_budget (test_bentham.ScoreTests.test_discount_and_budget) ... ok
 test_free_acquisition_with_fecundity_ranks_first (test_bentham.ScoreTests.test_free_acquisition_with_fecundity_ranks_first) ... ok
@@ -45,7 +48,7 @@ test_subagent_attribution_and_counts (test_sessions.SessionsTest.test_subagent_a
 test_totals_by_family_and_phase_map (test_sessions.SessionsTest.test_totals_by_family_and_phase_map) ... ok
 
 ----------------------------------------------------------------------
-Ran 45 tests in 0.398s
+Ran 48 tests in 0.378s
 
 OK
 
@@ -88,17 +91,33 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 4 | acquire.shared.EO_6910 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 5 | acquire.shared.CFR_26_CFR_458.324 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 6 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.3 | free | ∞ | free |
-| 7 | recovery.custody_stranded | recovery | 48 | 30.7 | 0.0 | $19 | 159.9 | $19 |
-| 8 | production.one_step_away | production | 40 | 25.5 | 0.0 | $26 | 98.8 | $45 |
-| 9 | production.claim_ready.yes.fr | production | 359 | 131.6 | 0.0 | $232 | 56.7 | $277 |
-| 10 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 7.4 | $29 | 25.3 | $306 |
-| 11 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | $0.38 | 8.6 | $307 |
-| 12 | production.claim_ready.no.fr | production | 958 | 31.9 | 0.0 | $619 | 5.2 | $926 |
-| 13 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $926 |
-| 14 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $926 |
-| 15 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $926 |
+| 7 | probe.status_assignment.undecided | probe | 30 | 0.0 | 0.0 | $19 | ∞ | $19 |
+| 8 | recovery.custody_stranded | recovery | 48 | 30.7 | 0.0 | $19 | 159.9 | $39 |
+| 9 | production.one_step_away | production | 40 | 25.5 | 0.0 | $26 | 98.8 | $64 |
+| 10 | production.claim_ready.yes.fr | production | 352 | 129.1 | 0.0 | $228 | 56.7 | $292 |
+| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 4.4 | $17 | 26.0 | $309 |
+| 12 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | $0.38 | 8.6 | $309 |
+| 13 | production.claim_ready.no.fr | production | 1002 | 33.4 | 0.0 | $648 | 5.2 | $957 |
+| 14 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
+| 15 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
+| 16 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
 
-The choice of actions within budget does not change between 30- and 180-day discounts.
+Unranked (a yield or cost is not measured; Bentham will not guess). For a production stratum the next step is a 30-order probe, run under the gate, that measures its yield:
+
+- status_assignment.undecided (10681 orders): no measured yield for 'filed_per_attempt.undecided': unranked. Ranked above as `probe.status_assignment.undecided`: 30 orders, about $19; an unmeasured stratum is never left unranked for a second plan.
+
+Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
+
+Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting is not published):
+
+- cache_read_weight_1.0: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK, recovery.custody_stranded ...
+- cache_read_weight_0.1: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK, recovery.custody_stranded ...
+- **Rank flips against the dollar ranking: 8** cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.one_step_away; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.claim_ready.yes.fr; cache_read_weight_1.0: production.claim_ready.no.fr before acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK; cache_read_weight_0.1: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_0.1: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.one_step_away
+
+Budget line moves with the delay discount:
+
+- at 30 days: enters none, leaves ['probe.status_assignment.undecided']
+- at 180 days: enters none, leaves ['probe.status_assignment.undecided']
 
 Each production action runs in batches under `bentham.py gate`, which stops it when its observed yield per dollar falls below the next action's.
 
