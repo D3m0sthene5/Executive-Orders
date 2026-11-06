@@ -24,3 +24,9 @@ The National Archives' own bulk export shows the RG 11 series "Executive Orders"
 descriptions, 27 imaged, covering 3 frame orders. The signed originals are not online. **Default:** no Catalog API
 key is needed for this conclusion. File a Kean ask for the owner to choose between a fee-based reproduction order for
 the orders with no other witness and continuing ProQuest downloads; spend nothing.
+
+## Status (2026-11-06 04:10 UTC)
+
+Q1 to Q3 answered by the coordinator (NIGHT_WAVE Answers, 03:45 and 04:00 UTC). Q3: the owner chose ProQuest and no
+paid NARA reproductions (Kean D-20261105-proquest-not-nara); the fee ask was withdrawn before it was pushed. The
+tracker registration for Q1 goes in a separate count-changing PR.

@@ -34,6 +34,15 @@ IA_QUERIES = ['title:("executive orders") AND mediatype:texts AND date:[1862-01-
               'title:("proclamations and executive orders") AND mediatype:texts']
 RANGE = re.compile(r"(?:executive[_\s]+orders?|nos?\.?|numbers?)[_\s,]*(\d{1,5})\s*[A-Z]?\s*(?:-|–|_to_|\sto\s|through|thru)\s*"
                    r"(\d{1,5})", re.I)
+# Only United States presidential order categories of the period the frame needs, and the National Archives' own
+# upload series. The first run (60 pages) spent its pages on state and photograph categories.
+PRESIDENTS = ("Abraham_Lincoln", "Andrew_Johnson", "Ulysses_S._Grant", "Rutherford_B._Hayes", "James_A._Garfield",
+              "Chester_A._Arthur", "Grover_Cleveland", "Benjamin_Harrison", "William_McKinley", "Theodore_Roosevelt",
+              "William_Howard_Taft", "Woodrow_Wilson", "Warren_G._Harding", "Calvin_Coolidge", "Herbert_Hoover",
+              "Franklin_D._Roosevelt")
+WANTED_CATEGORY = re.compile(r"Category:(?:Executive_orders_of_(?:the_United_States(?:_by_president)?|"
+                             + "|".join(re.escape(p) for p in PRESIDENTS) + r")$|US_National_Archives_series:_Executive)")
+UNWANTED_CATEGORY = re.compile(r"signing|_by_state", re.I)
 LINK = re.compile(r'<a[^>]+href="(/wiki/(?:Category|File):[^"#?]+)"[^>]*>', re.I)
 
 
@@ -62,7 +71,7 @@ def commons(pool, max_pages):
             for href in LINK.findall(body):
                 name = urllib.parse.unquote(href.split("/wiki/", 1)[1])
                 if name.startswith("Category:"):
-                    if re.search(r"executive|order|proclamation|federal_register", name, re.I):
+                    if WANTED_CATEGORY.search(name) and not UNWANTED_CATEGORY.search(name):
                         queue.append(name)
                 elif re.search(r"\.(djvu|pdf)$", name, re.I):
                     files.setdefault(name, {"host": "commons", "id": name, "title": name, "source_page": url})
@@ -101,7 +110,7 @@ def main(out=None, pool=None):
                                     "https://github.com/D3m0sthene5/Executive-Orders)")
     errors = []
     try:
-        cfiles, cpages, cats = commons(pool, int(os.environ.get("JOB_MAX_PAGES", "60")))
+        cfiles, cpages, cats = commons(pool, int(os.environ.get("JOB_MAX_PAGES", "150")))
     except Exception as exc:  # noqa: BLE001 - a refusal is recorded, never worked around
         cfiles, cpages, cats = [], 0, []
         errors.append({"host": "commons", "error": f"{type(exc).__name__}: {exc}"[:300]})
