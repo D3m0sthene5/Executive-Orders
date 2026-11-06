@@ -48,7 +48,7 @@ BRIEF_MAX_BYTES = 8192
 DRIFT_BEGIN, DRIFT_END = "<!-- kean:drift -->", "<!-- /kean:drift -->"
 RULINGS_DIR = "research/readiness/owner_rulings/"
 REPORT_RE = re.compile(r"^research/(excavator|production)/[^/]+/REPORT\.md$")
-ASK_ID_RE = re.compile(r"\bA-\d{8}-\d+\b")
+ASK_ID_RE = re.compile(r"\bA-\d{8}-(?:\d+|[a-z][a-z0-9]*(?:-[a-z0-9]+)*)\b")  # numbered or session-named (A-20261106-mabillon-register)
 ENTRY_RE = re.compile(r"^##\s+(\d{4}-\d{2}-\d{2})")
 NO_ASK_RE = re.compile(r"@owner\W{0,3}(none|no ask|nothing|n/a)\b", re.I)
 

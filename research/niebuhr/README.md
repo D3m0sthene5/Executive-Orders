@@ -29,3 +29,15 @@ under the codebook.
    half-numbered orders the census has by number only, and 226 references to an "Executive order of <date>" that match
    nothing known. Brief: `BRIEF.md`. Raw results: `results/*.jsonl` (one line per target). Every quoted source is then
    fetched by the runner and its bytes held, so a person can check each quote against the page (`jobs/niebuhr-verify/output/VERIFY.csv`).
+
+## Results (2026-11-05)
+
+301 searchable targets in 23 batches (`results/`, `WORKERS.csv`: 2.70 million Sonnet tokens). 258 identified: 50 with
+the order's text, 198 with date and subject but no text, 10 references resolved to orders the census already numbers;
+3 were OCR errors; 40 remain not found or known only from a citing order. `CORROBORATION.csv` checks every result
+against the WPA indexes the project holds: all 40 numbered identifications with a dated WPA entry agree, none disagree.
+Almost every source is secondary (Wikisource, the Presidency Project, later orders that cite the earlier one, Federal
+Register land notices, the BLM Alaska Orders Index). Official printings remain the open step. The 15 census orders
+known only as `EO:UN:executive-orders-*` rows were not searched: nothing but a list row is known about them.
+
+Owner question: Kean ask A-20261105-niebuhr-admit (the 30 orders in `ADMISSION_QUEUE.csv`).

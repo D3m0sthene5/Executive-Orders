@@ -136,7 +136,11 @@ CONFIRMATION_METHODS = frozenset({"machine", "agent"})
 PROVISIONAL_FLAG = "TEXT_PROVISIONAL_WORKING_TEXT"
 # Text-step blockers a confirmation may clear. Any other text blocker (an official copy found but not page-checked,
 # an official URL not yet downloaded, a claim's working-text errors) keeps the step open.
-PROVISIONAL_LEAD_BLOCKERS = frozenset({"ONLY_COMPILED_TRANSCRIPTION_FOUND", "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"})
+# Owner ruling 2026-11-06 (research/readiness/owner_rulings/2026-11-06-provisional-with-unchecked-original.md): an
+# official copy found but not yet page-checked is a lead like the others, so it no longer takes away a provisional
+# working text. It never makes the step an original; the page check is still owed.
+PROVISIONAL_LEAD_BLOCKERS = frozenset({"ONLY_COMPILED_TRANSCRIPTION_FOUND", "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+                                       "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"})
 PROVISIONAL_CLEARABLE_BLOCKERS = PROVISIONAL_LEAD_BLOCKERS | {"NO_OFFICIAL_SOURCE_LOCATED"}
 PINNED_FIELDS = ("instrument_id", "grade", "sha256", "text_sha256", "text_path")
 

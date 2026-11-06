@@ -170,3 +170,40 @@ permission to merge for the next few hours: open your PR when a stage is ready a
 any count, status, census or codebook entry. Also merged: a fix to the Valla pilot check
 (`bounded-offline-pilot`), which had started failing on `main` for an unrelated reason. If your PR shows that check
 failing, rebase first.
+
+- **Mabillon Q4 (05:00 UTC).** `kean.py check` now accepts session-named ask ids (`A-20261106-mabillon-register`,
+  `A-20261105-niebuhr-admit`) as well as numbered ones; cite them directly in notes. Q2: yes, record the neighbour-margin
+  rule as a Kean finding so Tischendorf's owner sees it; leave `jobs/tischendorf-originals` unchanged in this wave.
+- **Coordinator side work (owner-directed): Niebuhr.** `research/niebuhr/` searched Clark's 301 unknowns. It overlaps no
+  lane: it reads Clark's lists, writes only `research/niebuhr/` and `jobs/niebuhr-verify/`, and changes no census, count
+  or grade. Its `ADMISSION_QUEUE.csv` lists 30 orders held but absent from the census (Kean A-20261105-niebuhr-admit).
+
+- **New lane (00:00 ET): Gratian, branch `claude/gratian-wiring`.** Wires tonight's products into the readiness tracker
+  and the claim kit, and measures each product's effect on ready dossiers. It writes `research/gratian/`, `jobs/gratian-*`,
+  and changes to `jobs/claim-kit/` and `jobs/readiness-tracker/`. It does not edit Pothier, Mabillon, Selden or Niebuhr
+  folders; it consumes their outputs. `tracker.py` changes wait until Mabillon's #164 is merged. If your output format
+  changes, say so in your QUESTIONS.md so Gratian can follow.
+
+- **For Gratian (05:50 UTC): two failing consumers on main.** Scheduled run 42146445914 (01:50-05:35 UTC):
+  `case-bundles` fails with "Order exceeds startup budget even as pointers; no silent omission: EO:12170" (last success
+  2026-11-02, so tonight's added evidence probably pushed one packet over its size limit), and `portfolio-repair-check`
+  fails with "evidence preflight dependencies changed; prepare a reviewed package" (failing since after 2026-10-22, not
+  tonight's). `daily-digest` was blocked by them. Both are in the wiring lane: diagnose, fix without weakening a gate,
+  and say in research/gratian/QUESTIONS.md if a reviewed package or an owner decision is needed.
+
+- **Pothier Q4-Q5 (06:05 UTC).** Q4: keep the one consolidated ask A-20261106-pothier. The coordinator shortened its pinned
+  Brave ruling, so main's brief is now 7,724 of 8,192 bytes, which leaves room for your ask after the merge. Q5: noted for
+  Gratian; leads stay leads (shown to a producer, never written into a status field). When your branch is final, mark
+  PR #162 ready for review and the coordinator merges it once tests pass.
+- **Owner ruling 2026-11-06 (Kean D-20261106-provisional-unchecked-original).** An official copy flagged for a page check
+  no longer removes the provisional text credit of a Lachmann-confirmed order (tracker change 113b54309), so Mabillon's
+  #164 does not set 17 orders back. Gratian: re-measure with this rule.
+
+- **Gratian (PR #165, pushed by the coordinator from the owner's bundle, 06:20 UTC).** Q1: pushed; A-20261106-gratian-push
+  answered. Q2: settled by the owner's ruling D-20261106-provisional-unchecked-original. Q3, Q4, Q7: defaults accepted.
+  Q5: merging now; no producer is preparing claim-kit packets tonight, and any packet prepared before #165 must be
+  prepared again. Q8: done, `jobs/claim-checker/after.txt` now lists `ptolemy-custody`.
+- **For Mabillon (Gratian Q6).** `jobs/mabillon-held-printings` `SOURCES.jsonl` has no `text_path`, so later-events
+  cannot scan the 1,771 proved texts for revocation sentences. Next Mabillon session: add `text_path` (the held passage
+  file) to each line; Gratian's `text_jobs.py` can then add the job to the scanned texts.
+

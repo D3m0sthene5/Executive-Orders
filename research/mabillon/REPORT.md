@@ -149,6 +149,9 @@ Three discovery workers (Sonnet tier) used 97,085, 112,312 and 113,908 tokens an
 The jobs spend no tokens. Bytes and time were estimated before each read: the RG 11 census read 231 MB in 63 seconds; the second census planned 1.85 GB over RG 11, 48, 95 and 130 (RG 59's 18 GB skipped) and read it in 181 seconds; the held-printings match
 runs offline in about a minute.
 
+No agent production or review batch was run, so `bentham.py gate` had nothing to gate; the planted controls in each
+job are the stop rule (a single accepted negative turns a run's strong verdicts into leads).
+
 ## What this does not do
 
 No status, codebook, census, identity or certified count changed. Machine locations are not authentication; the
