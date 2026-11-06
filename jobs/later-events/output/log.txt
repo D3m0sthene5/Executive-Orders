@@ -58,7 +58,7 @@ test_default_gains_selden_acting_texts_once (test_text_jobs.TextJobsTests.test_d
 test_explicit_environment_wins (test_text_jobs.TextJobsTests.test_explicit_environment_wins) ... ok
 
 ----------------------------------------------------------------------
-Ran 58 tests in 0.076s
+Ran 58 tests in 0.088s
 
 OK
 later-events: repo=/home/runner/work/Executive-Orders/Executive-Orders output=/home/runner/work/Executive-Orders/Executive-Orders/jobs/later-events/output cache=/home/runner/work/Executive-Orders/Executive-Orders/.job-cache/later-events limit=None
@@ -72,14 +72,14 @@ Step 1: OFR executive-order catalog (federalregister.gov API)
   catalog page 7: 942 records (total so far 6942 of 6942)
 Step 2: saved order texts
   jobs/selden-fr-acting/output/SOURCES.jsonl not present yet (built in parallel); skipped
-  Opus release zip is a Git LFS pointer (not downloaded); skipped
-  16559 text documents to scan: {'order_text_fr_originals': 6497, 'order_text_app_transcriptions': 9902, 'order_text_govinfo_pdf': 160}
+  Opus texts skipped: {'neither the text nor its URL names the acting order': 8, 'near-empty text': 4, 'error page': 2}
+  17521 text documents to scan: {'order_text_fr_originals': 6497, 'order_text_app_transcriptions': 9902, 'order_text_govinfo_pdf': 160, 'order_text_opus_mirror': 931, 'order_text_opus_official_copy': 31}
 Step 3: building edges and fragments
 
 Summary (all items are CANDIDATES for human review, not legal findings):
-  catalog records read: 6941 (5064 with editorial notes); text documents scanned: 16559
-  candidate edges: 23281; by mechanism: {'abolition': 93, 'amendment': 8683, 'authority_repeal': 38, 'ceased_to_function': 2, 'continuation': 614, 'cross_reference': 4861, 'editorial_note': 13, 'expiration': 3, 'extension': 57, 'modification': 206, 'nullification': 38, 'ratification': 10, 'reinstatement': 24, 'repeal': 1, 'rescission': 48, 'revocation': 6275, 'supersession': 2070, 'supersession_or_revocation': 30, 'supplementation': 25, 'suspension': 25, 'termination': 164, 'voiding': 1}
-  by evidence type: {'ofr_note_freetext': 103, 'ofr_note_nested': 31, 'ofr_note_on_acting': 5696, 'ofr_note_on_target': 5320, 'ofr_note_see_reference': 4861, 'order_text_app_transcriptions': 3864, 'order_text_fr_originals': 3287, 'order_text_govinfo_pdf': 119}
+  catalog records read: 6941 (5064 with editorial notes); text documents scanned: 17521
+  candidate edges: 23858; by mechanism: {'abolition': 102, 'amendment': 9010, 'authority_repeal': 38, 'ceased_to_function': 2, 'continuation': 621, 'cross_reference': 4861, 'editorial_note': 13, 'expiration': 3, 'extension': 63, 'modification': 219, 'nullification': 38, 'ratification': 10, 'reinstatement': 24, 'repeal': 1, 'rescission': 49, 'revocation': 6385, 'supersession': 2161, 'supersession_or_revocation': 30, 'supplementation': 25, 'suspension': 26, 'termination': 176, 'voiding': 1}
+  by evidence type: {'ofr_note_freetext': 103, 'ofr_note_nested': 31, 'ofr_note_on_acting': 5696, 'ofr_note_on_target': 5320, 'ofr_note_see_reference': 4861, 'order_text_app_transcriptions': 3864, 'order_text_fr_originals': 3287, 'order_text_govinfo_pdf': 119, 'order_text_opus_mirror': 569, 'order_text_opus_official_copy': 8}
   orders with at least one candidate: 5008; with a full-revocation candidate: 1871
   of the 4298 decided orders: 1901 have a candidate (1618 excluding 'See' pointers); 952 have a full-revocation candidate
   provisional YES orders with a full-revocation candidate (counterevidence leads): 8
