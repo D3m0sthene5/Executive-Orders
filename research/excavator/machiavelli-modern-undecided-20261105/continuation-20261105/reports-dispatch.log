@@ -1,0 +1,111 @@
+{
+  "state": "dispatchable_for_research",
+  "ok": true,
+  "packet_sha256": "cfa0fe8e3aca536ab5c2f8eb103a1c6e0176c923c6ef29a6bc26f293d75452aa",
+  "dispatchable_ids": [
+    "EO:13081",
+    "EO:13102",
+    "EO:13108",
+    "EO:13114",
+    "EO:13255"
+  ],
+  "source_blocked_ids": [],
+  "unique_custody_checks": 8,
+  "wall_seconds": 3.54794,
+  "scientific_approval": false,
+  "exceptions": [
+    {
+      "instrument_id": "EO:13108",
+      "blockers": [],
+      "optional_source_gaps": [
+        "TERM:EO:13108:915993edfe79ea95@6323ba5a3db110f3"
+      ]
+    }
+  ],
+  "research_boundaries": [
+    {
+      "instrument_id": "EO:13081",
+      "tasks": [
+        {
+          "task_id": "TASK:dbcf86d53c9a0e6206418e43",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    },
+    {
+      "instrument_id": "EO:13102",
+      "tasks": [
+        {
+          "task_id": "TASK:dbcf86d53c9a0e6206418e43",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    },
+    {
+      "instrument_id": "EO:13108",
+      "tasks": [
+        {
+          "task_id": "TASK:dbcf86d53c9a0e6206418e43",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    },
+    {
+      "instrument_id": "EO:13114",
+      "tasks": [
+        {
+          "task_id": "TASK:dbcf86d53c9a0e6206418e43",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    },
+    {
+      "instrument_id": "EO:13255",
+      "tasks": [
+        {
+          "task_id": "TASK:f8c193f8a5722a2ea993be2f",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    }
+  ],
+  "source_recovery_tasks": [
+    {
+      "task_id": "SOURCE:475f52907af0041f55eb1e24",
+      "expected_sha256": "5ed8b924c242d68a63773ea5b5c76d643c30f60f62552641951139861b683840",
+      "check_statuses": [
+        "not_held"
+      ],
+      "native_wanted": {
+        "wanted_id": "dispatch-475f52907af0041f55eb1e24",
+        "instrument_ids": [
+          "EO:13108"
+        ],
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-13108-further-amendment-executive-order-13037-commission-study-capital"
+        ],
+        "citation": "",
+        "step": "source_custody",
+        "requested_by": "claim-kit dispatch-check"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient."
+    }
+  ],
+  "legal_requirement_coverage": "unknown",
+  "receipt": "research/excavator/machiavelli-modern-undecided-20261105/b01/packet-v2/dispatch-continuation-reports-v1.json"
+}

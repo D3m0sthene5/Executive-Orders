@@ -1,0 +1,612 @@
+{
+  "schema": "independent-primary-source-examination/v1",
+  "reviewer": "OpenAI Codex report_source_review",
+  "scope": "Fresh primary-source factual examination of three specified held PDFs and selected native pages. No status, lifecycle, canonical finding, legal first-ending determination, registry expansion or accepted Norton record.",
+  "independence": {
+    "producer_conclusions_read": false,
+    "other_researcher_conclusions_read": false,
+    "control_folders_read": false,
+    "REPORT_SUBMISSION_RESEARCH_json_read": false,
+    "same_family_disclosure": "Fresh OpenAI source examination only; not different-family review or human certification. Parent may compare qualified producer findings after this report."
+  },
+  "telemetry": {
+    "configured_model": "Inherited OpenAI Codex model; system describes GPT-6. Exact configured variant is not exposed in worker context.",
+    "tokens": null,
+    "tokens_note": "Unknown; no per-worker token telemetry available.",
+    "start_utc": null,
+    "start_clock_precision": "Turn start not instrumented; first actual UTC clock is separately retained.",
+    "first_recorded_clock_utc": "2026-11-05T17:34:03.057121Z",
+    "end_utc": "2026-11-05T17:37:00.870930+00:00"
+  },
+  "method": {
+    "network_used": false,
+    "manual_fetch_used": false,
+    "source_manifests": [
+      "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/SOURCES.jsonl",
+      "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/RESULTS.json"
+    ],
+    "raw_and_selected_hash_checks": [
+      {
+        "path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+        "expected_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+        "actual_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+        "matches": true
+      },
+      {
+        "path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+        "expected_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+        "actual_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+        "matches": true
+      },
+      {
+        "path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5.pdf",
+        "expected_sha256": "a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5",
+        "actual_sha256": "a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5",
+        "matches": true
+      },
+      {
+        "path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/selected-pages.txt",
+        "expected_sha256": "40673475d564fc1eb6e9b0d8f04df0f59b1678c698a00ba411fd21a8a402f59d",
+        "actual_sha256": "40673475d564fc1eb6e9b0d8f04df0f59b1678c698a00ba411fd21a8a402f59d",
+        "matches": true
+      },
+      {
+        "path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f.pdf",
+        "expected_sha256": "8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f",
+        "actual_sha256": "8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f",
+        "matches": true
+      },
+      {
+        "path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/selected-pages.txt",
+        "expected_sha256": "451e9e411cb6444f14a1775f5392677bef4dafbf7d03dac6a888635212b9c552",
+        "actual_sha256": "451e9e411cb6444f14a1775f5392677bef4dafbf7d03dac6a888635212b9c552",
+        "matches": true
+      }
+    ],
+    "individual_page_hash_checks": "research/excavator/machiavelli-modern-undecided-20261105/b01/packet-v2/report-source-review/HASH_CHECKS.json",
+    "page_images_inspected": {
+      "digital_tv_selected_pdf_pages": [
+        4,
+        153,
+        160,
+        161,
+        162
+      ],
+      "special_education_selected_pdf_pages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "gsa_selected_pdf_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "additional_digital_tv_pdf_pages": [
+        1,
+        158,
+        159
+      ]
+    },
+    "extra_context": "All PDFs extracted locally with pdftotext -raw to own folder. Digital TV text searched for termination/renewal/deadline context, then PDF pages 158-159 rendered and inspected. Full reports were not read page by page.",
+    "guidance": "Read root AGENTS.md, HANDOFF/README.md, HANDOFF/KEAN.md, jobs/claim-kit/AGENT_PROTOCOL.md and jobs/norton/model.py. jobs/norton/README.md does not exist in this checkout. Task-specific output restriction supersedes shared handoff/register/git mutations."
+  },
+  "source_identities": [
+    {
+      "sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "identity": "Charting the Digital Broadcasting Future: Final Report of the Advisory Committee on Public Interest Obligations of Digital Television Broadcasters",
+      "edition_basis": "Cover image PDF 1; signed transmittal PDF 4 / printed iii dated December 18, 1998; historical appendix and charter explicitly printed As amended.",
+      "pages": 178,
+      "edition_limit": "Historical final report copy hosted by NTIA; cover identifies NTIA as secretariat. NTIA hosting/secretariat is not the performing advisory committee, and reprinted EO/charter is not a certification of complete subsequent legal history."
+    },
+    {
+      "sha256": "a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5",
+      "identity": "A New Era: Revitalizing Special Education for Children and Their Families; President’s Commission on Excellence in Special Education",
+      "edition_basis": "Cover, title JULY 1, 2002 and publication page July 2002; printed transmittal page 1 dated July 1, 2002. Retained PDF visibly contains 8/28/02 production marks.",
+      "pages": 96,
+      "edition_limit": "Govinfo-hosted final-report PDF produced for Department of Education under Diskey & Associates contract. August production marks and metadata describe this artifact production, not a change to the letter date or proof of dispatch/receipt."
+    },
+    {
+      "sha256": "8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f",
+      "identity": "2002 Current Fiscal Year Report: Presidents Commission on Excellence in Special Education; Department of Education; GSA Committee No. 11995",
+      "edition_basis": "PDF page 1 fields and report run date; GSA/FACA official export URL retained.",
+      "pages": 9,
+      "edition_limit": "Historical FY2002 data exported in 2026; not a PDF generated contemporaneously in 2002."
+    }
+  ],
+  "findings": [
+    {
+      "id": "digital_tv_submission",
+      "evidence_ids": [
+        "DTV-DATE-ADDRESSEE",
+        "DTV-SUBMIT",
+        "DTV-TRANSMIT-SIGNERS"
+      ],
+      "established": "The held final report contains a signed letter dated December 18, 1998, addressed to The Vice President, White House, Washington DC. Co-chairs Leslie Moonves and Norman Ornstein speak on behalf of the entire Advisory Committee and affirmatively submit/transmit the enclosed final report pursuant to section 2 of EO 13038. This is affirmative documentary support for a dated committee submission/transmittal act, not merely a due date or publication date.",
+      "event_date": "1998-12-18",
+      "date_role": "date borne by committee transmittal letter",
+      "recipient": "Vice President (report history specifies Vice President Gore)",
+      "performing_entity": "Advisory Committee on Public Interest Obligations of Digital Television Broadcasters, through its co-chairs",
+      "not_established": [
+        "Actual arrival or receipt at the White House/Vice President on that day or any exact day.",
+        "Separate mailing, dispatch, delivery or receipt timestamp, proof of prescribed intermediary routing, or receipt acknowledgment.",
+        "Any automatic legal cessation, expiration date or first-ending conclusion."
+      ]
+    },
+    {
+      "id": "digital_tv_charter_terms",
+      "evidence_ids": [
+        "DTV-CHARTER-EDITION",
+        "DTV-CHARTER-REPORT",
+        "DTV-CHARTER-ROUTE",
+        "DTV-CHARTER-DURATION",
+        "DTV-CHARTER-NOTES",
+        "DTV-HISTORY-DEADLINES",
+        "DTV-HISTORY-LIFE",
+        "DTV-REPRINT-EO4",
+        "DTV-REPRINT-AMENDMENT-NOTE"
+      ],
+      "established": "The report reprints an As amended charter with an October 1, 1998 reporting deadline and an October 31, 1998 duration date, expressly conditional on earlier termination or renewal by proper authority by appropriate action. Charter reporting route is to the Vice President through the Assistant Secretary of Communications and Information, who also reports to the Commerce Secretary. Separately, the report history says the reporting deadline was extended first to October 1 and then December 31, 1998 and describes a 15-month life October 1997 to December 1998. The reprinted EO 13038 section 4 says terminate 30 days after submitting its report unless extended by the President.",
+      "material_ambiguities": [
+        "The As amended charter text retained in this report still uses October dates despite the December 31 reporting-deadline history and December 18 transmittal. Those are distinct source assertions, not proof of an authenticated later charter renewal.",
+        "Charter note 1 says June 17, 1998 for the deadline amendment; note 5 visibly says June 17, 1997 for the duration amendment. Preserve the printed difference; it cannot be silently corrected to 1998.",
+        "The renewal/extension exceptions are express. These sources alone do not establish absence of a proper renewal, earlier termination, presidential extension, or a complete intervening-instrument search.",
+        "Narrative life through December and later report performance do not authenticate the legal instrument needed to prove renewal. No legal first-ending date is computed here."
+      ]
+    },
+    {
+      "id": "special_education_submission",
+      "evidence_ids": [
+        "SPECIAL-TITLE-DATE",
+        "SPECIAL-PUBLICATION-IDENTITY",
+        "SPECIAL-DATE-ADDRESSEE",
+        "SPECIAL-SUBMIT",
+        "SPECIAL-SIGNER",
+        "SPECIAL-PRODUCTION-MARK",
+        "GSA-REPORTED-TO-PRESIDENT",
+        "GSA-ISSUED-REMARK"
+      ],
+      "established": "The final report contains a signed letter of transmittal dated July 1, 2002, addressed to The President at the White House, signed by Terry E. Branstad as Chairman of the President’s Commission on Excellence in Special Education. It expressly says the members are pleased to submit this named report and later that the Commission submits this report. This supports a July 1 dated commission submission act affirmatively rather than by inferring performance from the recited July 1 deadline. Independently within the held GSA historical export, section 20a says the Commission reported to the President its findings/recommendations on July 1, 2002; section 21 says the report was issued on July 1, 2002.",
+      "event_date": "2002-07-01",
+      "date_role": "letter date, corroborated by historical administrative assertion of reported-to-President act",
+      "recipient": "President of the United States",
+      "performing_entity": "President’s Commission on Excellence in Special Education, through Chairman Terry E. Branstad",
+      "not_established": [
+        "A contemporaneous receipt acknowledgment or exact physical/electronic delivery date/time from the President/White House.",
+        "The July publication label or August 28 production marks establish actual receipt.",
+        "Any legal termination date or lifecycle status."
+      ]
+    },
+    {
+      "id": "gsa_distinct_fields",
+      "evidence_ids": [
+        "GSA-EDITION-RUN",
+        "GSA-EXPECTED-ACTUAL",
+        "GSA-REPORT-FIELD",
+        "GSA-REPORTED-TO-PRESIDENT",
+        "GSA-ISSUED-REMARK"
+      ],
+      "fields": {
+        "fiscal_year": "2002",
+        "current_charter": "11/19/2001",
+        "expected_renewal_date": "11/19/2003",
+        "expected_term_date": "07/31/2002",
+        "was_terminated_during_fiscal_year": "Yes",
+        "specific_termination_authority": "E.O. 13227",
+        "actual_term_date": "08/01/2002",
+        "report_date": "07/01/2002",
+        "report_title": "A New Era: Revitalizing Special Education for Children and their Families",
+        "report_run_date_literal": "11/05/2026 05:28:57 PM"
+      },
+      "established": "The image table places 07/31/2002 under Expected Term Date and 08/01/2002 under Actual Term Date. These must not be merged, relabeled as submission dates, or resolved by silently choosing an arithmetic calculation. The title/Report Date row separately records July 1, 2002. The Report Run Date is a 2026 generation timestamp for this historical export, not the historical report issuance date.",
+      "material_ambiguities": [
+        "Page 4 remark says terminates as prescribed in the EO, 30 days after its report is issued; it also says report issued July 1. Preserve this language alongside distinct expected and actual date fields. It does not resolve their difference by itself.",
+        "The GSA actual-termination field is an official historical administrative assertion; this bounded source examination does not adjudicate the operative legal date or establish exhaustive legal history.",
+        "Report Run Date literal has no timezone printed. PDF metadata separately gives CreationDate/ModDate Nov 5 17:28:58 2026 GMT; metadata generation is not a 2002 event."
+      ]
+    }
+  ],
+  "spans": [
+    {
+      "id": "DTV-DATE-ADDRESSEE",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 4,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-4.txt",
+      "native_page_text_sha256": "11a93cb9263c03dc0b815ca131721c98efab9e06e777075815756a361ba65dbc",
+      "char_start": 4,
+      "char_end": 103,
+      "text": "December 18, 1998\nThe Vice President\nThe White House\nWashington, DC  20500\nDear Mr. Vice President:",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 23,
+      "selected_char_end": 122,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-SUBMIT",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 4,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-4.txt",
+      "native_page_text_sha256": "11a93cb9263c03dc0b815ca131721c98efab9e06e777075815756a361ba65dbc",
+      "char_start": 104,
+      "char_end": 257,
+      "text": "It is with pleasure that we submit to you the Final Report of  the Advisory Committee on\nPublic Interest Obligations of  Digital Television Broadcasters.",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 123,
+      "selected_char_end": 276,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-TRANSMIT-SIGNERS",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 4,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-4.txt",
+      "native_page_text_sha256": "11a93cb9263c03dc0b815ca131721c98efab9e06e777075815756a361ba65dbc",
+      "char_start": 1732,
+      "char_end": 2189,
+      "text": "On behalf  of  the entire Advisory Committee, we want to thank you and the President for the\nopportunity to serve the public through this Advisory Committee, and for the honor of\ntransmitting to you the Final Report of  the Advisory Committee on Public Interest Obliga-\ntions of  Digital Television Broadcasters, pursuant to Section 2 of  Executive Order No. 13038\nof  March 11, 1997.\nRespectfully submitted,\nLeslie Moonves Norman Ornstein\nCo-Chair Co-Chair",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 1751,
+      "selected_char_end": 2208,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-HISTORY-DEADLINES",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 153,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-153.txt",
+      "native_page_text_sha256": "38316730c901f152dfcaee7779224ea1d95e7d492fd64f638fae1dbeef4f3321",
+      "char_start": 2576,
+      "char_end": 2816,
+      "text": "Initially, the President gave the Advisory Committee a June 1, 1998, deadline for submitting a\nreport and recommendations to Vice President Gore.  The President extended that deadline\nfirst to October 1, 1998, and then to December 31, 1998.",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 4807,
+      "selected_char_end": 5047,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-HISTORY-LIFE",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 153,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-153.txt",
+      "native_page_text_sha256": "38316730c901f152dfcaee7779224ea1d95e7d492fd64f638fae1dbeef4f3321",
+      "char_start": 2817,
+      "char_end": 2898,
+      "text": "During its 15-month lifeOctober 1997 to December 1998the Advisory Committee met",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 5048,
+      "selected_char_end": 5129,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-CHARTER-EDITION",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 160,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-160.txt",
+      "native_page_text_sha256": "0b36c4877cfc52afad9c0973920f23ce81a4524e8df147ec32c929d51702bb06",
+      "char_start": 15,
+      "char_end": 129,
+      "text": "Charter of  the Advisory Committee on Public Interest\nObligations of  Digital Television Broadcasters\n(As amended)",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 5455,
+      "selected_char_end": 5569,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-CHARTER-REPORT",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 160,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-160.txt",
+      "native_page_text_sha256": "0b36c4877cfc52afad9c0973920f23ce81a4524e8df147ec32c929d51702bb06",
+      "char_start": 638,
+      "char_end": 966,
+      "text": "2. The Committee will draw upon the expertise of  its members and other sources to provide\nadvice and make recommendations to the Vice President through the Assistance Secretary\nof  Communications and Information, who also reports to the Secretary of  Commerce.\nThe Committee will submit its report on or before October 1, 1998.",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 6078,
+      "selected_char_end": 6406,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-CHARTER-ROUTE",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 160,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-160.txt",
+      "native_page_text_sha256": "0b36c4877cfc52afad9c0973920f23ce81a4524e8df147ec32c929d51702bb06",
+      "char_start": 2022,
+      "char_end": 2187,
+      "text": "1. The Committee will report to the Vice President through the Assistant Secretary of\nCommunications and Information, who also reports to the Secretary of  Commerce.",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 7462,
+      "selected_char_end": 7627,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-CHARTER-DURATION",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 161,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-161.txt",
+      "native_page_text_sha256": "23bb9b5270ec1eb4fcadbc1ed1774c6490b7fd1fd81f8641965b9c537838c9c3",
+      "char_start": 2347,
+      "char_end": 2487,
+      "text": "DURATION\nThe Committee shall terminate on October 31, 1998, unless earlier terminated or renewed by\nproper authority by appropriate action.5",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 9997,
+      "selected_char_end": 10137,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-CHARTER-NOTES",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 162,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/page-162.txt",
+      "native_page_text_sha256": "90eeb28d48af873b30fa93abad75f44a25735acad00963783d90407f4702f84f",
+      "char_start": 21,
+      "char_end": 561,
+      "text": "1 Paragraph was amended on June 17, 1998, to change the reporting deadline from June 1,\n1998, to Oct. 1, 1998.\n2 Paragraph was altered on Dec. 3, 1997, to change Chairperson to Chairpersons.\n3 Paragraphs 1 and 2 or this section were amended on Dec. 3, 1997, to increase the Commit-\ntee size from 15 to 25 members and to add a co-chair position.\n4 Paragraph amended Dec. 3, 1997, to change Chairperson to Chairpersons.\n5 Paragraph amended on June 17, 1997, to change the Committee termination date from July\n1, 1998, to Oct. 31, 1998.",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015/c6972b317c4238a3233cd79bdc25ec5c99ca302a2aace66e76b62df0177d9bba/selected-pages.txt",
+      "selected_text_sha256": "72927502a2035d7269c545ebcb3a5fe4f87cbd665733e1cd7cece8d739a03079",
+      "selected_char_start": 10278,
+      "selected_char_end": 10818,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "SPECIAL-TITLE-DATE",
+      "source_sha256": "a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5",
+      "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-PR-PURL-LPS25386/pdf/GOVPUB-PR-PURL-LPS25386.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5.pdf",
+      "pdf_page": 2,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/page-2.txt",
+      "native_page_text_sha256": "4a0274c826d580ec3849d01d4de0f047369da8779b2011abfceef5769defd3bd",
+      "char_start": 0,
+      "char_end": 144,
+      "text": "for Children and Their Families\nPRESIDENT’S COMMISSION ON EXCELLENCE IN SPECIAL EDUCATION\nEducation\nA New Era:\nSpecial Revitalizing\nJULY 1, 2002",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/selected-pages.txt",
+      "selected_text_sha256": "40673475d564fc1eb6e9b0d8f04df0f59b1678c698a00ba411fd21a8a402f59d",
+      "selected_char_start": 316,
+      "selected_char_end": 460,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "SPECIAL-PUBLICATION-IDENTITY",
+      "source_sha256": "a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5",
+      "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-PR-PURL-LPS25386/pdf/GOVPUB-PR-PURL-LPS25386.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5.pdf",
+      "pdf_page": 3,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/page-3.txt",
+      "native_page_text_sha256": "4fd928a0ac75509e69d3501a3984adc60c3c5a4a77a7409a1c69c3438d8c607d",
+      "char_start": 0,
+      "char_end": 729,
+      "text": "This report was produced under U.S. Department of Education contract No. ED-02-PO-0791\nwith Diskey & Associates, LLC. C. Todd Jones served as the contracting officer’s technical repre-\nsentative. The views expressed herein do not necessarily represent the positions or policies of the\nDepartment of Education. No official endorsement by the U.S. Department of Education of any\nproduct, commodity , services or enterprise mentioned in this publication is intended or inferred.\nU.S. Department of Education\nRod Paige\nSecretary\nPresident’s Commission on Excellence in Special Education\nC. Todd Jones\nExecutive Director\nOffice of Special Education and Rehabilitative Services\nRobert A. Pasternack, Ph.D.\nAssistant Secretary\nJuly 2002",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/selected-pages.txt",
+      "selected_text_sha256": "40673475d564fc1eb6e9b0d8f04df0f59b1678c698a00ba411fd21a8a402f59d",
+      "selected_char_start": 532,
+      "selected_char_end": 1261,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "SPECIAL-DATE-ADDRESSEE",
+      "source_sha256": "a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5",
+      "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-PR-PURL-LPS25386/pdf/GOVPUB-PR-PURL-LPS25386.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5.pdf",
+      "pdf_page": 5,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/page-5.txt",
+      "native_page_text_sha256": "3238552623b3c57074f38ddebe3c3a858eb5b702e3a57021165dc0e50dfbc2ef",
+      "char_start": 0,
+      "char_end": 83,
+      "text": "July 1, 2002\nThe President\nThe White House\nWashington, DC 20500\nDear Mr. President:",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/selected-pages.txt",
+      "selected_text_sha256": "40673475d564fc1eb6e9b0d8f04df0f59b1678c698a00ba411fd21a8a402f59d",
+      "selected_char_start": 4945,
+      "selected_char_end": 5028,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "SPECIAL-SUBMIT",
+      "source_sha256": "a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5",
+      "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-PR-PURL-LPS25386/pdf/GOVPUB-PR-PURL-LPS25386.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5.pdf",
+      "pdf_page": 5,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/page-5.txt",
+      "native_page_text_sha256": "3238552623b3c57074f38ddebe3c3a858eb5b702e3a57021165dc0e50dfbc2ef",
+      "char_start": 84,
+      "char_end": 548,
+      "text": "On October 2, 2001, you created the President’s Commission on Excellence in Special Education\n(Executive Order 13227) and charged it to prepare and submit a report to you no later than July\n1, 2002. The members of the Commission are pleased to submit this report, A New Era:\nRevitalizing Special Education for Children and Their Families. The report outlines our findings and\nrecommendations for improving the educational performance of children with disabilities.",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/selected-pages.txt",
+      "selected_text_sha256": "40673475d564fc1eb6e9b0d8f04df0f59b1678c698a00ba411fd21a8a402f59d",
+      "selected_char_start": 5029,
+      "selected_char_end": 5493,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "SPECIAL-SIGNER",
+      "source_sha256": "a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5",
+      "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-PR-PURL-LPS25386/pdf/GOVPUB-PR-PURL-LPS25386.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5.pdf",
+      "pdf_page": 5,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/page-5.txt",
+      "native_page_text_sha256": "3238552623b3c57074f38ddebe3c3a858eb5b702e3a57021165dc0e50dfbc2ef",
+      "char_start": 2824,
+      "char_end": 2942,
+      "text": "Sincerely ,\nTerry E. Branstad\nChairman\nPRESIDENT’S COMMISSION ON EXCELLENCE IN SPECIAL EDUCATION\nLETTER OF TRANSMITTAL",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/selected-pages.txt",
+      "selected_text_sha256": "40673475d564fc1eb6e9b0d8f04df0f59b1678c698a00ba411fd21a8a402f59d",
+      "selected_char_start": 7769,
+      "selected_char_end": 7887,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "SPECIAL-PRODUCTION-MARK",
+      "source_sha256": "a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5",
+      "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-PR-PURL-LPS25386/pdf/GOVPUB-PR-PURL-LPS25386.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5.pdf",
+      "pdf_page": 5,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/page-5.txt",
+      "native_page_text_sha256": "3238552623b3c57074f38ddebe3c3a858eb5b702e3a57021165dc0e50dfbc2ef",
+      "char_start": 3045,
+      "char_end": 3095,
+      "text": "4108_JDiskeyPresCommInt  8/28/02  12:12 PM  Page 1",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/a7826c90777c7be5c9b552016b1787ba25f0096309564dcbfebe2d144cf71ec5/77d693d8a6d93403717a603f905b2f1905da766c84eaf20c857c284d10a1b5ba/selected-pages.txt",
+      "selected_text_sha256": "40673475d564fc1eb6e9b0d8f04df0f59b1678c698a00ba411fd21a8a402f59d",
+      "selected_char_start": 7990,
+      "selected_char_end": 8040,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "GSA-EDITION-RUN",
+      "source_sha256": "8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f",
+      "source_url": "https://www.facadatabase.gov/FACA/apex/FACACommitteeLevelReportAsPDF?id=a10t0000001h443AAA",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f.pdf",
+      "pdf_page": 1,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/page-1.txt",
+      "native_page_text_sha256": "cf24a49faab71340d204885087412100ddec3d47dc2827f24e4a19ce64d8f668",
+      "char_start": 6,
+      "char_end": 136,
+      "text": "2002 Current Fiscal Year Report: Presidents Commission on Excellence in\nSpecial Education \nReport Run Date: 11/05/2026 05:28:57 PM",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/selected-pages.txt",
+      "selected_text_sha256": "451e9e411cb6444f14a1775f5392677bef4dafbf7d03dac6a888635212b9c552",
+      "selected_char_start": 25,
+      "selected_char_end": 155,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "GSA-EXPECTED-ACTUAL",
+      "source_sha256": "8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f",
+      "source_url": "https://www.facadatabase.gov/FACA/apex/FACACommitteeLevelReportAsPDF?id=a10t0000001h443AAA",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f.pdf",
+      "pdf_page": 1,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/page-1.txt",
+      "native_page_text_sha256": "cf24a49faab71340d204885087412100ddec3d47dc2827f24e4a19ce64d8f668",
+      "char_start": 359,
+      "char_end": 616,
+      "text": "4. Is this New During\nFiscal Year?\n5. Current\nCharter\n6. Expected\nRenewal Date\n7. Expected\nTerm Date\nYes 11/19/2001 11/19/2003 07/31/2002\n8a. Was Terminated During\nFiscalYear?\n8b. Specific\nTermination\nAuthority\n8c. Actual\nTerm Date\nYes E.O. 13227 08/01/2002",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/selected-pages.txt",
+      "selected_text_sha256": "451e9e411cb6444f14a1775f5392677bef4dafbf7d03dac6a888635212b9c552",
+      "selected_char_start": 378,
+      "selected_char_end": 635,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "GSA-REPORT-FIELD",
+      "source_sha256": "8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f",
+      "source_url": "https://www.facadatabase.gov/FACA/apex/FACACommitteeLevelReportAsPDF?id=a10t0000001h443AAA",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f.pdf",
+      "pdf_page": 1,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/page-1.txt",
+      "native_page_text_sha256": "cf24a49faab71340d204885087412100ddec3d47dc2827f24e4a19ce64d8f668",
+      "char_start": 971,
+      "char_end": 1209,
+      "text": "16a. Total Number of Reports 1                                                    \n16b. Report\nDate Report Title  \n 07/01/2002\nA New Era: Revitalizing Special\nEducation for Children and their\nFamilies\nNumber of Committee Reports Listed: 1",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/selected-pages.txt",
+      "selected_text_sha256": "451e9e411cb6444f14a1775f5392677bef4dafbf7d03dac6a888635212b9c552",
+      "selected_char_start": 990,
+      "selected_char_end": 1228,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "GSA-REPORTED-TO-PRESIDENT",
+      "source_sha256": "8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f",
+      "source_url": "https://www.facadatabase.gov/FACA/apex/FACACommitteeLevelReportAsPDF?id=a10t0000001h443AAA",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f.pdf",
+      "pdf_page": 3,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/page-3.txt",
+      "native_page_text_sha256": "3aa2f0242eff2d32194bc8d46a9e0a528a479327867153ae3c15d0ccc5252639",
+      "char_start": 664,
+      "char_end": 852,
+      "text": "The\nCommission reported to the President its findings\nand recommendations on July 1, 2002 in its report\nentitled, A New Era: Revitalizing Special\nEducation for Children and their Families.",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/selected-pages.txt",
+      "selected_text_sha256": "451e9e411cb6444f14a1775f5392677bef4dafbf7d03dac6a888635212b9c552",
+      "selected_char_start": 3428,
+      "selected_char_end": 3616,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "GSA-ISSUED-REMARK",
+      "source_sha256": "8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f",
+      "source_url": "https://www.facadatabase.gov/FACA/apex/FACACommitteeLevelReportAsPDF?id=a10t0000001h443AAA",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f.pdf",
+      "pdf_page": 4,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/page-4.txt",
+      "native_page_text_sha256": "939a168b0a912635ca2332156e0ad8629f5dfecd7232b64a548e15a9b3a2adf2",
+      "char_start": 497,
+      "char_end": 648,
+      "text": "21. Remarks\nThis Commission terminates as prescribed in the\nExecutive Order, 30 days after its report is issued.\nThe report was issued on July 1, 2002.",
+      "selected_text_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pages/8d6484000b4fff889a460aa0172b0ef72e46fc717ea1ce85fe20de4045c6fe6f/508b7cadc021b8e0274da528ae43784fa5d004440a10fa582be91458f94f1c5c/selected-pages.txt",
+      "selected_text_sha256": "451e9e411cb6444f14a1775f5392677bef4dafbf7d03dac6a888635212b9c552",
+      "selected_char_start": 4785,
+      "selected_char_end": 4936,
+      "offset_convention": "zero-based Unicode characters; end exclusive"
+    },
+    {
+      "id": "DTV-REPRINT-EO4",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 159,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/b01/packet-v2/report-source-review/digital-pdf-page-159.txt",
+      "native_page_text_sha256": "f3e19ce2b04dda85a36dff70eacc489230f2a3de29e096504a485fa621649fa1",
+      "char_start": 1414,
+      "char_end": 1544,
+      "text": "Sec. 4. General. The Committee shall terminate 30 days after submitting its report, unless\n             extended by the President.",
+      "offset_convention": "zero-based Unicode characters; end exclusive",
+      "fresh_extraction": "pdftotext -f PAGE -l PAGE -layout; source page image independently rendered and inspected"
+    },
+    {
+      "id": "DTV-REPRINT-AMENDMENT-NOTE",
+      "source_sha256": "d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015",
+      "source_url": "https://www.ntia.gov/files/ntia/publications/piacreport-orig.pdf",
+      "pdf_path": "research/excavator/machiavelli-modern-undecided-20261105/acquisition/report-native-v1/pdf/d903d0bfec8d86307910d3b228f76bf876d86a62963ef9ab15180527e6700015.pdf",
+      "pdf_page": 158,
+      "native_page_text_path": "research/excavator/machiavelli-modern-undecided-20261105/b01/packet-v2/report-source-review/digital-pdf-page-158.txt",
+      "native_page_text_sha256": "b93bd1188cd6f3ef9f876bc26063c198feeb1af33b42162a5e64829d50ca5b49",
+      "char_start": 3141,
+      "char_end": 3430,
+      "text": "*Executive Order 13038 was amended by Executive Orders Nos. 13065, 13081, and 13102 to, among other things,\n                 extend the reporting deadline of the Advisory Committee on the Public Interest Obligations of Digital Television\n                 Broadcasters to December 31, 1998.",
+      "offset_convention": "zero-based Unicode characters; end exclusive",
+      "fresh_extraction": "pdftotext -f PAGE -l PAGE -layout; source page image independently rendered and inspected"
+    }
+  ],
+  "final_qualification": "Source facts and material limits only. No accepted NORTON record, statutory/current-law predicate, order status, human certificate, different-family validation or legal first-ending conclusion is created.",
+  "verification": {
+    "exact_span_checks": "passed",
+    "span_count": 23,
+    "raw_pdf_and_selected_text_checks": "6 of 6 matched",
+    "native_page_text_and_png_checks": "38 of 38 matched",
+    "no_outside_folder_edits": "All reviewer-created files are inside assigned report-source-review folder."
+  }
+}

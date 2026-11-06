@@ -1,0 +1,42 @@
+{
+  "schema": "independent-comparator-v1",
+  "baseline_sha256": "e350cb4649551ae039511f215e900b4de47f268bbddb00b0732ebf35175fdaa7",
+  "candidate_result_sha256": "0dc91676ca96042340f853b51f1d80ca24a1ca9dab64a44fb4814af79f7dae03",
+  "candidate_confirmation_sha256": "ac31050b630a85a2b0b1cbca233a2e9847ef79eec436d754e0fa7c89791dca1f",
+  "review": "OpenAI model in separate context. Independently examined the actual one-page scans and wrote reference transcriptions before seeing any candidate results or texts. Image inspections at 1,250 px, page edges visible; native-order metadata checked; word/number comparison done only after outputs sealed. Reviewer was not blinded to treatment name during the post-freeze comparison. Not a fresh human, cross-family or whole-case verdict.",
+  "accepted_texts": [
+    {
+      "instrument_id": "EO:1929",
+      "baseline_path": "baseline-pages/EO_1929-working.txt",
+      "baseline_sha256": "aa59aa3b44967b15e9ae56d36820ef0d877d17cfea624b4459ae6563622b8a64",
+      "candidate_path": "jobs/pinakes-proquest-ingest/data/page-reviewed/land-holdout-20261104/EO_1929.txt",
+      "candidate_sha256": "aa59aa3b44967b15e9ae56d36820ef0d877d17cfea624b4459ae6563622b8a64",
+      "original_scan": "ProQuest Pre-1937 Orders/PT1-1914-EO-1929.pdf",
+      "scan_sha256": "059bd49e1bc2687930116ef3dc37769590d7ed24051fbdf999ec459d84cfa028",
+      "verdict": "independently transcribed page agrees on casefolded lexical/punctuation token sequence, including numbers, fractions, closing, and provisos; differences in case/spacing have no substantive effect; suitable as a provisional replica working text only"
+    },
+    {
+      "instrument_id": "EO:3405",
+      "baseline_path": "baseline-pages/EO_3405-working.txt",
+      "baseline_sha256": "35cb599a6ac50a526dc041badbeabd9c592dae8d0c299577ea6b704609470b07",
+      "candidate_path": "jobs/pinakes-proquest-ingest/data/page-reviewed/land-holdout-20261104/EO_3405.txt",
+      "candidate_sha256": "35cb599a6ac50a526dc041badbeabd9c592dae8d0c299577ea6b704609470b07",
+      "original_scan": "ProQuest Pre-1937 Orders/1921-EO-3405.pdf",
+      "scan_sha256": "80c6d74aec7bef5390dae8c24aaf549117404773e5855ff5233fa66fbde296cd",
+      "verdict": "independently transcribed page agrees on casefolded lexical/punctuation token sequence, including numbers, fractions, closing, and provisos; differences in case/spacing have no substantive effect; suitable as a provisional replica working text only"
+    }
+  ],
+  "effect": {
+    "n": 6,
+    "direct_replica_matches_baseline": 3,
+    "direct_replica_matches_candidate": 3,
+    "simple_standalone_replica_texts_reference": 2,
+    "simple_standalone_replica_texts_candidate": 2,
+    "mismatches_in_these_two": 0,
+    "attachment_dependent": 1,
+    "additional_simple_standalone_over_competent_baseline": 0,
+    "no_pinakes_hit": 3
+  },
+  "attachment": "EO:4195: source prose and map separately inspected. Candidate correctly withheld standalone text; reference transcription explicitly requires original map with parcel geometry and road easement. No prosaic equivalent of the map. Both locate the same two leaves.",
+  "note": "No candidate false positives among submitted texts; this is not a universal sensitivity estimate; 3 no hits outside Pinakes need separate routes. No lifecycle, original-authenticated, owner adopted or human-certified result."
+}

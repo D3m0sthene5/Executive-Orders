@@ -1,0 +1,36 @@
+{
+  "schema": "eo-pr141-conflict-resolution/v1",
+  "tree": "828cfa85fe7366f69ec787b564cda1e8a49f2edc",
+  "parents": {
+    "pr141": "654dccb98d81106a66b236dad861022d98bbcd46",
+    "integration": "bf7f4d5bf48d4451821852ec9c2245846050d1d8"
+  },
+  "resolved_sha256": "3b7d872e3d5485d650b1a277d3c391d14e43a7391cf53dba809e7305f5b699a7",
+  "auto_merged_kit_sha256": "eff73da62b6097969e5b10a5edfce34d837f538cd9609a2e2d43acd9b547e8f8",
+  "resolution": [
+    "Preserve PR139 source-context/recovery/readiness/selected-source functions.",
+    "Preserve PR141 keyword-only prerequisite scope and per-member blockers.",
+    "Keep both summary extensions and both auto-merged CLI additions."
+  ],
+  "tests": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s /tmp/eo-pr141-resolution/bounded-checkout/jobs/claim-kit -p 'test_*dispatch*.py' -v",
+      "passed": 26,
+      "seconds": 2.567
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s /tmp/eo-pr141-resolution/bounded-checkout/jobs/claim-kit -p test_apply_selected_sources.py -v",
+      "passed": 3,
+      "seconds": 0.451
+    }
+  ],
+  "scientific_approval": false,
+  "draft_preserved": true,
+  "fixture": "/tmp/eo-pr141-resolution/bounded-checkout",
+  "initial_archive_attempt": "Stopped an overbroad lazy-fetch archive; bounded fixture copied materialized implementation and overlaid exact merged-tree CLI/tests.",
+  "fixture_source_pins": {
+    "path": "/tmp/eo-pr141-resolution/FIXTURE_SOURCE_PINS.json",
+    "sha256": "b0417d02438ca17a0620870ca650f2138b446b5a6e070df0bd197a506c75d199",
+    "files": 374
+  }
+}

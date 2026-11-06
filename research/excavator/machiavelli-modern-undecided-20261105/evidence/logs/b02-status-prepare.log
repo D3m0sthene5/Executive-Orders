@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/83e12152e716/prepare_b02_status_review.py", line 11, in <module>
+    sourcecards[iid]=[source_record(oid,d['evidence'][oid]),source_record(eid,d['evidence'][eid])]
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/83e12152e716/prepare_b02_status_review.py", line 8, in source_record
+    raw=repo/'jobs/astra-source-retention/output/pdf'/(ref['sha256']+'.pdf');assert raw.exists(),str(raw);assert hashlib.sha256(raw.read_bytes()).hexdigest()==ref['sha256'];rp='raw/'+ref['sha256']+'.pdf';dd=r/'sources'/rp;dd.parent.mkdir(exist_ok=True);shutil.copy2(raw,dd);ref['raw_path']=rp;text=textbytes.decode();return {'evidence_id':eid,'source':ref,'text':text,'char_start':0,'char_end':len(text)}
+                                                                                    ^^^^^^^^^^^^
+AssertionError: /workspace/scratch/83e12152e716/Executive-Orders/jobs/astra-source-retention/output/pdf/6c0dd8619376252516f96bea550cd17dfaa4abce4c7a22ee0031ee1b5ab24ec4.pdf

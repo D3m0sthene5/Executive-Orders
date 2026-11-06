@@ -1,0 +1,100 @@
+{
+  "schema": "arm-a-independent-engineering-review/v1",
+  "disposition": "REJECT_BOUNDARY_WORDING",
+  "hash_pins": {
+    "../CONTRACT.md": "4131f46fbf7976a18460d90231fa576a35c7c532680f89a8975ed8a88c6f8d83",
+    "inputs/o25-preflight-only.json": "9293d5f0e75ab4590a607d81a8df3caeb21a87151c9c0f2daf9c33d5a267b27f",
+    "arm-a/baseline_route.py": "b5cae494e121ab058b8d73a718f352ff7d93f12c73f2fd62dede511b8fc224d1",
+    "arm-a/result.json": "90a49da7d571f92a51a023c06dfa2d5a88ac16b95ebe57802397e574e6f0403a"
+  },
+  "mechanical_check": {
+    "input_members": 30,
+    "result_members": 30,
+    "member_order_and_route_exact": true,
+    "expected_matching_task_count": 355,
+    "matching_task_count_by_member": {
+      "EO:10670": 1,
+      "EO:10694": 3,
+      "EO:10717": 5,
+      "EO:10834": 7,
+      "EO:10860": 1,
+      "EO:10979": 2,
+      "EO:11023": 3,
+      "EO:11079": 3,
+      "EO:11085": 4,
+      "EO:11145": 3,
+      "EO:11183": 1,
+      "EO:11203": 5,
+      "EO:11287": 3,
+      "EO:11435": 5,
+      "EO:11448": 3,
+      "EO:11515": 2,
+      "EO:11582": 11,
+      "EO:11609": 49,
+      "EO:11633": 3,
+      "EO:11904": 3,
+      "EO:11926": 3,
+      "EO:11965": 3,
+      "EO:12014": 2,
+      "EO:12019": 3,
+      "EO:12107": 105,
+      "EO:12125": 6,
+      "EO:12138": 33,
+      "EO:12154": 3,
+      "EO:12163": 79,
+      "EO:12268": 1
+    },
+    "exact_matching_task_payloads_and_per_member_order": true,
+    "expected_group_count": 231,
+    "result_group_count": 231,
+    "exact_literal_key_groups_and_complete_payloads": true,
+    "empty_key_groups_are_member_scoped": true,
+    "route_counts": {
+      "route_source_preparation": 30
+    }
+  },
+  "boundary_wording_check": {
+    "mechanical_prerequisite_only": true,
+    "groups_not_source_identity_or_shared_legal_question": true,
+    "explicit_no_source_feasibility_finding": false,
+    "explicit_no_legal_inference": false,
+    "explicit_no_dispatch_approval": false
+  },
+  "findings": [
+    {
+      "severity": "blocking_for_exact_output_acceptance",
+      "finding": "The result scope_note says this is mechanical assignment-prerequisite routing and disclaims group implications for shared source/legal question, but it does not explicitly say the output is not a source-feasibility finding or dispatch approval. The contract requires routing never be represented as either.",
+      "correction": "Add a concise scope sentence to the result stating that routing is not a source-feasibility/legal-readiness finding and does not approve dispatch or completed dossier work; regenerate the result and update the hash pin."
+    },
+    {
+      "severity": "accounting_limit",
+      "finding": "Arm A reports 0.030884 seconds for final reusable-script execution, 4 tool interactions and 4 shell commands, with provider tokens and cash null. Its own scope says earlier bounded input inspection was not timed. The prescribed one-time development/briefing/examiner/setup work is not quantified in these four allowed files, so recurring-cost metadata cannot establish full one-time cost or savings.",
+      "correction": "Keep one-time and recurring costs separate; record unmeasured setup/inspection as unmeasured rather than treating the final script runtime as total Arm A cost."
+    }
+  ],
+  "limits": [
+    "Engineering comparison only; no legal or scientific source examination or certification.",
+    "No claim is made about the truth, sufficiency, currency, custody, identity, or legal effect of any source."
+  ],
+  "reviewer_accounting": {
+    "configured_model": "gpt-6-luna",
+    "provider_tokens": null,
+    "cash_usage": null,
+    "tool_interactions": 8,
+    "shell_command_invocations_attempted": 4,
+    "shell_commands_executed": 3,
+    "elapsed_wall_seconds_approx": 144.0,
+    "elapsed_scope": "Reviewer tool wall time, summed from reported exec/wait durations; approximate and includes transport delay."
+  },
+  "arm_a_reported_accounting": {
+    "configured_model": "gpt-6-luna",
+    "provider_tokens": null,
+    "cash_usage": null,
+    "tool_interactions_total": 4,
+    "shell_command_invocations_total": 4,
+    "monotonic_elapsed_scope": "Final reusable-script execution only; earlier bounded input inspection time was not instrumented."
+  },
+  "arm_a_reported_elapsed_seconds_monotonic": 0.030884,
+  "arm_a_reported_utc_started": "2026-11-04T19:52:31.473809+00:00",
+  "arm_a_reported_utc_completed": "2026-11-04T19:52:31.504774+00:00"
+}
