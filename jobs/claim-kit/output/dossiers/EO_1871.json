@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 221,
+    "generic_refs_excluded": 224,
     "id": "CHAIN:EO:1871",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:1871"
@@ -108,9 +108,42 @@
         "url": "https://archive.org/download/annualreport139commgoog/annualreport139commgoog_djvu.xml"
       },
       "text": "# order: EO:1871  (WPA 1944: 1913 Dec 18)\n# WPA summary: Alfred Freeman made eligiblefor appointment as clerk in the Postal Service without examination. 1914 CSR 122.\n# book: Thirty-first Annual Report of the United States Civil Service Commission, fiscal year ended June 30, 1914\n# scanned image 129, printed page 122; page lines 23-33\n# source: https://archive.org/download/annualreport139commgoog/annualreport139commgoog_djvu.xml  sha256 748145327cc4747e27aefe00b5a3e31f5ebe8eb60b92a78e231aeb0237074ab1\n# found by: date_and_subject; date 1913-12-18; words alfred|freeman\n# Government printed copy (OCR of a compilation or report), not the signed original. A lead for the\n# original_text step: read it against the scan before use. Exact slice of the page OCR follows.\n----- EXACT SLICE -----\nthe Twelfth Census and the statement of the Director of the Census that he would be\nglad to recommend the reinstatement of Mr. Herndon, which the Secretary of Com-\nmerce approves.\nDecember 18, 1913.\nMr. Alfred Freeman, of New Jersey, may be appointed clerk in the postal service\nwithout reference to the requirement of examination under the civil-service rules.\nThis order is issued at the suggestion of the Postmaster General on account of the\ngreat increase in the handling of packages due to the introduction of the parcel post.\nMr. Freeman has had more than 12 years' experience supervising the delivery of small\npackages and the handling of a large force of men.\nDecember 22, 1913.\n"
+    },
+    "TERM:EO:1871:afcfc715ec1dad09@508af13080b6d070": {
+      "actor_id": "EO:1871",
+      "char_end": 3835,
+      "char_start": 3604,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:1871:afcfc715ec1dad09@508af13080b6d070",
+      "instrument_id": "EO:1871",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:1871#whole",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "machine_read_government_printed_copy",
+        "instrument_id": "EO:1871",
+        "location_confidence": "medium",
+        "location_verified": false,
+        "page_or_item": "Annual report (publisher not recorded, 1915), Internet Archive annualreport139commgoog, scan leaves 129-129",
+        "requires_page_check": true,
+        "sha256": "748145327cc4747e27aefe00b5a3e31f5ebe8eb60b92a78e231aeb0237074ab1",
+        "signing_date": "1913-12-18",
+        "text_path": "jobs/tischendorf-originals/output/texts/EO_1871.txt",
+        "text_sha256": "508af13080b6d07086c195c583f1982610c9e9383cd9323f376cb92c75fd8c39",
+        "url": "https://archive.org/details/annualreport139commgoog/page/n128"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Dunn, who was employed in the Secretary's office of the Navy Department for a period of over 23 years, he having resigned March 15, 1909, as clerk at $1,800 per annum, on account of the fact that he was afflicted with tuberculosis."
     }
   },
-  "fingerprint": "1d1d9190b1e25082f6b4edab5e9eef4aab7fae6bec8aa0e58d19ad53628db3bb",
+  "fingerprint": "3a952593124e92fe91eeaad31bb3ac1ceadf7aae38a51687477c99cf12feb55d",
   "instrument_id": "EO:1871",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -120,10 +153,13 @@
       "human_certified": false,
       "instrument_id": "EO:1871",
       "later_actor_evidence_ids": [],
-      "own_term_evidence_ids": [],
+      "own_term_evidence_ids": [
+        "TERM:EO:1871:afcfc715ec1dad09@508af13080b6d070"
+      ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
         "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate.",
         "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
       ],
       "schema": "eo-lifecycle-obligation/v1",
@@ -131,6 +167,7 @@
       "state": "requires_clause_specific_research",
       "wording_features": [
         "actual_performance_lead",
+        "fixed_term",
         "recurring_duty"
       ]
     }
@@ -192,7 +229,9 @@
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:1871",
-  "own_terms": [],
+  "own_terms": [
+    "TERM:EO:1871:afcfc715ec1dad09@508af13080b6d070"
+  ],
   "schema": "eo-claim-kit-dossier/v1",
   "whole_order_status": "no"
 }
