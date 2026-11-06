@@ -1,3 +1,21 @@
+## 2026-11-06 14:30 ET (Claude, Dagron: NYU Film 709 / HeinOnline acquisition manifest; branch only)
+
+- **Done (branch `claude/dagron-nyu-film709-manifest`, not merged, no PR):** `research/dagron/`, built from main
+  `0deba1dd4` by `build_manifest.py`. It holds `NYU_FILM709_MANIFEST.jsonl/.csv` with 6,010 rows:
+  - 5,875 orders in EO 1-7403 with no accepted original witness;
+  - 0 orders with a counted original but no working text;
+  - 81 unnumbered, ambiguous or untracked candidates;
+  - 54 orders numbered EO 7404 and up, dated 1936.
+
+  It also holds a provenance helper, `record_acquisition.py`, which stages files under
+  `research/dagron/acquired/`; nothing in production reads that folder. Kean F-20261106-dagron-nyu-manifest.
+- **Reconciliation:** the earlier 5,305/4,954 figures are not in the repository. The closest current measure is the
+  open original-text step, 5,322 orders (4,926 dated pre-1933). See the README.
+- **Asks:** Kean A-20261106-dagron-nyu. The 2026-10-19 owner decision ("do not plan around the reel set") needs
+  lifting before anyone requests or scans the reels. Hein retrieval must be item by item, never automated bulk.
+- **Do not:** put a microfilm or Hein image into `research/stage21/original_sources/`. The tracker would count it
+  as an original.
+
 ## 2026-11-06 13:10 ET (Claude, cleanup at the owner's request: every open PR merged, branches sorted)
 
 - **Merged:** [PR #167](https://github.com/D3m0sthene5/Executive-Orders/pull/167) (Selden; +8 claims, ready up by at most 8 once checked; Kean F-20261106-merge-167-selden) and [PR #162](https://github.com/D3m0sthene5/Executive-Orders/pull/162) (Pothier family doctrines; leads and asks only, no claim or status change; Kean F-20261106-merge-162-pothier). Each branch first merged main; Kean lines were united and main's outputs restored for jobs that already exist on main. New jobs (selden-*, pothier) kept their branch-run outputs, which the output-branch check flags; main's own runs regenerate them. No open PRs remain.
