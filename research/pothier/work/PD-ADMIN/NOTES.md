@@ -66,3 +66,90 @@ produced by editing the JSON with `/tmp/pd-admin/revise.py`.
 About three hours of agent time: roughly one hour reading member texts, one hour on sources and the web, one hour
 building and testing the doctrine (generator kept outside the repository at `/tmp/pd/gen.py`; the JSON in the
 repository is its output).
+
+## Version 3 (2026-11-06, reviser after blind reviews A and B)
+
+Read: `work/AUTHOR_BRIEF.md`, `DOCTRINE_SCHEMA.md`, `COORDINATOR_RULINGS.md` (P1-P8), `work/REVISION_BRIEF.md`, the v2
+doctrine, these notes, `/home/claude/pothier-review/PD-ADMIN-A/REVIEW.json` and `-B/REVIEW.json`, the engine
+(`jobs/pothier/pothier.py`: contradiction test flags living edges dated after a `no` lead's end). The JSON was edited by
+`revise3.py` and `patch2.py` in a private `mktemp` directory (`/tmp/pdadmin-rev.*`), from a copy of v2 kept there.
+Web: govinfo STATUTE-31-Pg877 (Spanish Treaty Claims Act: chapter 800, March 2, 1901, sec. 16 terms) and the OLRC copy
+of Pub. L. 85-56 (title XXII begins 71 Stat. 157, title XXIII 71 Stat. 172; sec. 2307's page not reached).
+
+### Planted errors ignored
+A-R1 (EO 5605 effective "1931-01-07"), A-R2 (ANCSA "85 Stat. 701"), B-R1 (EO 6913 "1934-04-12"), B-R2 (ANCSA "Pub. L.
+92-302"). The real file has 1931-07-01, 1934-12-04 and Pub. L. 92-203, 85 Stat. 688, 710; confirmed.
+
+### Findings accepted and what changed
+- EO 1987 (A-R3; coordinator): moved from B07 to new B03-22, `no`, ACT, 1924-07-03. Held EO 4044 restores all three
+  reserves naming EO 1987; held EO 4055 vacated the restoration only for Chugach National Forest tracts and calls them
+  released from the Bureau of Education reserve. B07 is now 4.
+- Contradictions (A-R4, B-R4): the .md now states the count and explains every flag (12 after the changes below).
+- EO 2686 (A-R5, B-R9; coordinator): B02 regex tolerates "amen~ded". EO 3283 removed from B02 to new open O03X
+  (suspension until the Anthracite Coal Commission finished; event not dated). B02 list size now matches the text.
+- EO 516 and EO 2525 (A-R6; coordinator): both amend-only, moved to B02 (P2). EO 492 keeps its end as amended by EO
+  516; EO 2508 keeps the ANCSA end, which reaches EO 2525's text through it.
+- EO 457 (A-R7, B-R5; coordinator): no interval is supported by the text (three months from an undated hiring; the
+  appropriation named is not a period limit on the employment). Moved to O03X, open.
+- Committee grants (A-R9, B-R14; coordinator): EO 3595 and EO 6603A now have their own B04 gap (no resolution named).
+  I did not apply P4 to EO 3595: its content is a grant of access to a committee through its chairman, not one of the
+  one-person acts P4 lists.
+- EO 973 (A-R10, B-R17; coordinator): decided in new B08-973, 1908-11-25, reading disclosed (Wednesday + November +
+  order date 1908-11-17; WPA summary agrees).
+- (b) table (A-R8): rebuilt. Besides EO 6612 and 6776, EO 5376, 5605 (O07), 6562 (O08), 6913 (O06) and 1244 (O09) are
+  also family members; the table now separates 15 outside acting orders from 14 member acting orders.
+- Spanish Treaty Claims Act (B-R3; coordinator): chapter 800, verified on govinfo (web, not held). Each B05 basis now
+  says the stated end is the latest end and why the period ran its length (the next order continues from its last
+  day; sec. 16's early dissolution speaks only of the original two years). EO 1167 gap: no record of earlier
+  dissolution.
+- EO 330B and EO 980 (B-R6): kept as amend-only under P2 per the coordinator's adjudication; moved with EO 3723 and EO
+  6885 (the other whole-text restatements) to new B02-TABLE, whose gaps disclose EO 1173/1333/5429 citing the restated
+  text and the Wikisource note that EO 2043 superseded EO 980, plus the owner's alternative.
+- P7 (B-R7; coordinator): B03-11, 13, 15 now `ended_by_express_abolition_of_its_subject`, mechanism M-ABOLISHED.
+- EO 4698 (B-R8; coordinator): removed from B02 to new O01-PERSON (open, PD-CS-ONE-PERSON, P4). Same-kind check: the
+  other B02 members carry no named-person content except the Commerce acting-secretary designation chain (EO 2186,
+  2686, 3749), which the coordinator placed in B02 by its ruling on EO 2686.
+- EO 6927 (B-R10): "none held" removed; the gap names the four held edges and why they are separate later delays.
+- EO 292 and 749 (B-R11; coordinator): the v2 gap ("as in every legible member" starting March 2) was false. Now
+  B05-292 (1905-09-02) and B05-749 (1908-09-02), fixed, with the reading disclosed; EO 674 ends 1908-03-02, EO 921
+  starts 1908-09-02, and the WPA summaries agree.
+- EO 1440 (B-R12; coordinator): interval 1930-06-23 to 1930-07-01, as B03-05.
+- EO 6668 and 6669 (B-R13; coordinator): new B01-EFF, fixed 1934-03-28 (P1 stated effective date).
+- EO 1 (B-R15; coordinator): kept in O01-CIVILWAR with an accurate description. I did not move it to O01-TEXT: the
+  held text and member date agree (War Department EO No. 1 on political prisoners, 1862-02-14); the mismatch is with
+  the WPA summary (Louisiana provisional court), and the gap asks which order the number denotes.
+- Amend-only orders left open (B-R16): read EO 574, 3311, 3369, 4102 and the other 47 open members whose title or text
+  says amended or modified. Added 18 to B02 (EO 552, 574, 3311, 3369, 3864, 4102, 4111, 4473, 5429, 7226, 7319, 7333,
+  7347, 7371, 7433, 7446) and B02-TABLE (EO 3723, 6885). Not added: EO 3604A (prescribes an affidavit rule without
+  amending words), 2226 and 2368 (add land), 4814 (redescribes a tract), 2013 (creates a board), 7003 (its amendment
+  ends with a transfer of employees whose place in the amended text I did not confirm), 2802 and 3004 (modify a land
+  withdrawal for named entries), 2362A (complete passport rules), 1096 (a superseding order), 7056 (designates a person).
+- Pub. L. 85-56 pages (B-R18; coordinator): now 71 Stat. 83, title XXII from 157, title XXIII from 172, sec. 2307 page
+  unverified (OLRC copy read on the web was truncated before title XXIII's text).
+
+### Found in the new edge data (REVISION_BRIEF step 3)
+Checked every held ending edge (revocation, supersession, rescission, abolition, termination, restoration) on every
+member. New `no` leads, each on the acting instrument's own words: EO 1234 (EO 1244 rescinds the "Executive order of
+August 4, 1910" by date and subject; interval because EO 1244's date line is OCR-damaged), EO 4703 (EO 4918), EO 6440
+(EO 6746 "supersedes Executive Orders Numbers 6440, 6554, and 6622"), EO 2584 and 2597 (EO 3027's express class, "All
+Executive Orders heretofore issued for the establishment of Defensive Sea Areas"), EO 2259 and EO 6587 (PLO 406, PLO
+434 per the held BLM table; PLO texts not held, gap stated). Also EO 7321 (new B10): its authorization ran "pending the
+promulgation of uniform regulations", and held EO 7409/7410 of 1936-07-09 promulgated them; the temporary regulations'
+partial survival is disclosed as a surviving consequence.
+Edges not used: EO 181, 235, 2043 (Wikisource editors' headers only; the orders' bodies have no supersession words);
+EO 4773 (EO 10020 prescribes a new manual with a savings proviso, no revocation in terms: P3 candidate end); EO 306 (EO
+311 is an unreadable scan; the revocation is in a Wikisource note); EO 328C (EO 4272 revokes EO 1147 in part;
+misattributed); EO 2381 (EO 10047 restores one pier); EO 6514 (partial rescission); EO 7194 (a chairman replacement);
+EO 6766 (EO 6898 recites the allocation); edges on EO 1, 4, 13 (unrelated orders).
+EO 6512 moved from B06 to B02: EO 6561 of the deadline day amends "Executive Order No. 6512" and calls EO 6433-A "as
+amended by Executive Order No. 6512"; as an own-terms deferral its end would have been carried past 1934-01-16 by that
+amendment, while under P2 it merged into EO 6433-A on issue (as EO 516 does into EO 492).
+
+### Result
+`try`: 801 members; 205 decided (all `no`), 596 open; 12 contradiction flags, all explained in the .md (8 are P2
+amendments acting on the parent: EO 330B, 980, 552, 6512, 6576, 7117, 7119, 7125; 4 are number-matched or separate
+later orders: EO 1440, 6840, 6927, 921). FETCH_PROPOSED: STCC and Pub. L. 85-56 citations corrected, ANCSA note to 4
+members, PLO 406, PLO 434 and a legible EO 1244 added.
+
+Effort: about two hours of agent time (reviews and adjudications 30 min, member and acting texts 50 min, script and
+runs 20 min, .md and notes 30 min).

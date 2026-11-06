@@ -1,0 +1,463 @@
+{
+ "doctrine_id": "PD-CS-ONE-PERSON",
+ "arm": "A",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "(b) S6 and JSON sources.S6.citation",
+   "claim": "Civil Service Retirement Act, Act of May 22, 1920, ch. 195, sec. 1, 41 Stat. 641",
+   "evidence": "The Act begins at 41 Stat. 614 (govinfo STATUTE-41-Pg614.pdf, read on the web: ch. 195, approved May 22, 1920, 'An Act For the retirement of employees in the classified civil service'; sec. 1 sets 70, 65 for mechanics, city and rural letter carriers and post-office clerks, 62 for railway postal clerks). The doctrine's own URL points to Pg614. The held CSC FY1922 print (CSR_1922_pages.jsonl.gz image 150, printed p. 99) contains the pin 'railway postal clerks at sixty-two years of age'.",
+   "severity": "error",
+   "fix": "41 Stat. 614 in both the .md table and the JSON citation."
+  },
+  {
+   "id": "R2",
+   "location": "JSON procedure B06 lead.date_rule",
+   "claim": "fixed date 1925-09-30, basis 'order date plus ten days'",
+   "evidence": "Held text jobs/pinakes-proquest-ingest/output/texts/EO_4300.txt: John H. Guill designated 'for a period of ten days from the date hereof', dated 'September 11, 1925'. Ten days from September 11 is 1925-09-21, which the .md (M4 and table B06) also states; the JSON basis text itself says 'ten days from September 11, 1925'. The engine emits 1925-09-30 on the EO:4300 lead.",
+   "severity": "error",
+   "fix": "date_rule {kind: fixed, date: 1925-09-21}."
+  },
+  {
+   "id": "R3",
+   "location": "M3 ('None of the other nine appointments EO 6179-A revokes is a member of this family'); B02; B99",
+   "claim": "Only EO 4528 among the ten appointments EO 6179-A revokes is a family member.",
+   "evidence": "EO:5058 (Feb. 26, 1929, cs_waiver_individual, held APP text: 'Mrs. Julia Behneke may be appointed to an appropriate position in the Department of Labor without reference to the provisions of the civil service rules') is a member and falls to B99 open. EO 6179-A item (8) (held S4 text): 'The appointment on February 26, 1929, of Mrs. Julia Behake to a classified position in the Department of Labor.' Date and department agree and the name differs by a transcription letter; EO 6179-A's own WPA summary lists 'E. O.s [4528, 5058, ...]' as the orders revoked.",
+   "severity": "error",
+   "fix": "Add EO:5058 to B02 (or a parallel branch) with lead no, ACT, interval (1929-02-26, 1933-06-16], gap noting the name spelling Behake/Behneke and that the match rests on date, department and the WPA list; correct the M3 sentence and the counts (91 no / 924 open)."
+  },
+  {
+   "id": "R4",
+   "location": "B99 description and section (d) ('585 one-person waivers ... whose text fixes no minimum age and no earlier dated presence'); B26",
+   "claim": "No B99 member's held text dates the named person's presence before May 3, 1904; only the four Jacquard messenger holds in B26-type cases have dated service.",
+   "evidence": "Held texts of these open members quote the named person (the WPA-summary person) in service before 1904: EO 2151 ('He was appointed substitute carrier in the Oakland office on September 1, 1902'); EO 2159 (John D. Campbell 'appointed a clerk in the Railway Mail Service on October 29, 1887'; member date empty, text 6 April 1915); EO 2197 (Jett 'employed intermittently since September 9, 1902'); EO 3096 (McMahon 'appointed by President Cleveland second deputy comptroller in 1885'); EO 3677 (Pitts 'appointed in the Railway Mail Service September 27, 1889'); EO 3959 (Marcks carrier in St. Louis 'where he had served since 1887'); EO 4304 (Ida Diamond employed 'from May 7, 1898, to the present time'); EO 4379 (Mabel A. Murphy 'employed ... from July 13, 1899'); EO 4794 (Anna Polk Boush 'her service extending from 1891 to 1905'); EO 4871 ('From 1898 until 1911 Mr. Dudley was in the competitive classified service'); EO 5286 (Dodge 'appointed in the Diplomatic Service on February 16, 1899'); B26 EO 5150 (Mae A. Krigbaum 'appointed ... as printer's assistant, from June, 1902'). Each meets the doctrine's own B13 test (bound at latest 2025 for 1902 dates). EO 4050 (B99) also states Crocker 'was granted an annuity as a mechanic retirable at 65' before his 1922 dismissal, a quoted age fact.",
+   "severity": "error",
+   "fix": "Read and add these members to the checked list B13 (and EO 4050 to B11 if the annuity reading is accepted), or at least restate B99/B26 truthfully; update counts and Appendix A."
+  },
+  {
+   "id": "R5",
+   "location": "B22 (any_of alternative {'field':'named_persons','empty':true}); B22 basis; 'Points for the coordinator' 1",
+   "claim": "B22's 145 members are class orders, lists or general authorities; '202 members in B04, B21, B22 and B25 are not one-person orders'.",
+   "evidence": "About 29 B22 members have an empty named_persons field but a WPA summary and held text for one named person, e.g. EO 346 (Ferdinand Schwarz), 1236 (John J. Scully), 1573 (Mingo Sanders), 1821, 1949, 1976, 2194, 2239, 2315, 2592, 3103 (Aldo Leopold), 3162, 3368, 3512, 3582, 3622, 3625, 3921, 4392, 4452, 4593, 4603, 4717, 4803, 4935, 5051, 5071, 5997, 6360. Four of them quote pre-1904 service of the named person and meet the B13 test: EO 3695 (Paddock 'Appointed Secretary of Legation at Seoul, Korea, April 24, 1901'), EO 4016 (Lay 'appointed in the Consular Service on September 1, 1893'), EO 4039 (Sullivan 'appointed to this position by the Attorney General on July 14, 1897'), EO 4509 (Hubbard 'served as office deputy United States marshal, Indian Territory, from July 1, 1900'). For these, the B22 basis ('The death of a named person cannot end an authority that reaches a class') and the PD-CS-RULES re-typing are wrong.",
+   "severity": "error",
+   "fix": "Drop the named_persons-empty alternative or require it together with a class signal; route one-person orders to B13 (after reading) or B99; correct the B22 count and the coordinator point."
+  },
+  {
+   "id": "R6",
+   "location": "B21 summary_regex; B23 description ('82 designations of named officers without a stated term')",
+   "claim": "B23 holds designations of named officers; B21 catches land districts, bodies established, CCC assignments, naval surgeons.",
+   "evidence": "WPA summaries are OCR-joined ('Land Districtsand Officesabol ished', 'Board establishedunder', 'naval surgeons assigned'), so the \\b-bounded B21 terms miss them and they fall to B23: EO 1027 (internal revenue district), EO 4176 and 4612 (land districts abolished and consolidated), EO 6131A (169 naval surgeons for the CCC), EO 6136 (assignment of emergency conservation workers), EO 6238 (Science Advisory Board established). All stay open, but under the wrong branch and family.",
+   "severity": "minor",
+   "fix": "Loosen the B21 patterns (no trailing \\b, or tolerate joined words) or list these ids; recount B21/B23."
+  },
+  {
+   "id": "R7",
+   "location": "B20 ('11 members whose held text is another order's ...'); B99/B26 descriptions",
+   "claim": "Identity failures are the 11 B20 members.",
+   "evidence": "Further members' held texts belong to neighbouring orders and sit in B99/B26: EO 2190 (WPA Laura F. Richmond; text is Mrs. Enna Wilson Noel's order), EO 3458 and 3459 (texts swapped: 3458 holds Hamilton's order, 3459 McCullough's), EO 1978 (WPA Kullman; text Guttormsen's), EO 1979 (WPA Guttormsen; text Jamieson's), EO 1787, 1828, 1841, 2240, 2391 (texts about Shirley, Robbins, Price, Hinkle, Jackson).",
+   "severity": "minor",
+   "fix": "Disclose that B99/B26 include identity failures, or route them to B20."
+  },
+  {
+   "id": "R8",
+   "location": "Appendix A, EO:3467",
+   "claim": "'Wells had served for approximately 25 years in the navy yard, New York, and was discharged on February 20, 1914' read as alive on 1894-02-20.",
+   "evidence": "Under the appendix's stated rule (end date minus N years) the date is 1889-02-20; 1894-02-20 corresponds to 20 years and is not explained. Either date gives a bound before the cutoff (2011 or 2016), so the lead stands.",
+   "severity": "minor",
+   "fix": "State the conservative reading of 'approximately' (e.g., at least 20 years) or use 1889-02-20 with the bound 2011-08-03."
+  },
+  {
+   "id": "R9",
+   "location": "M1 retirement-age bullet; B09 and B10 basis; S7 establishes",
+   "claim": "'The result holds for any minimum age of 34 or more.'",
+   "evidence": "Arithmetic: a bound before 2026-10-14 needs birth on or before 1904-05-02; for B09's latest order (1933-01-05) any minimum age of 29 suffices, for B10's latest (1927-02-25) 23 suffices. The sentence is true but the stated figure is not the threshold.",
+   "severity": "minor",
+   "fix": "Say 29 or more (B09) and 23 or more (B10)."
+  },
+  {
+   "id": "R10",
+   "location": "B11, B13 text_regex; 'Points for the coordinator' 2",
+   "claim": "Each checked member is anchored by its own quoted sentence, so a changed or replaced text fails the anchor.",
+   "evidence": "Each branch uses one alternation of all quotes; a member passes if its text contains any listed quote, including a neighbouring member's (a real risk for compiled transcriptions that run into neighbouring orders). I confirmed that today each of the 56 members matches exactly its own quote, so no current lead is wrong.",
+   "severity": "minor",
+   "fix": "Anchor per member (one branch per member or all_of instrument_id with its own quote)."
+  },
+  {
+   "id": "R11",
+   "location": "B20 for EO 221, 223, 234, 251",
+   "claim": "Open because identity or command is not in the held text.",
+   "evidence": "EO 221 (1903-07-03, Terry), EO 223 (1903-07-13, ten named persons), EO 234 (1903-08-27, Rawlings, employed from February 12, 1870), and EO 251 (1904-02-08, WPA names McCarthy) are dated before 1904-05-03; the B12 bound needs no identity or age, only that the order concerns named persons, which the Commission narratives (221, 223, 234) state. EO 251's bound would be 2026-07-22.",
+   "severity": "minor",
+   "fix": "Either decide them on the B12 date-only bound with a gap that the order's own words are not held, or state why the narrative is not enough."
+  },
+  {
+   "id": "R12",
+   "location": "B24 gap; B20 (EO 3523)",
+   "claim": "For the patent signers, 'implied supersession by a later designation is not shown by any held text'.",
+   "evidence": "The WPA summary of EO 3523 (July 27, 1921) reads 'E. O. [1692] of Jan. 27, 1913, placing the position of clerk designated to sign land patents in the competitive classified service, revoked. 1921 CSR 123.' This is a candidate express revocation of EO 1692 by number (the held EO 3523 text is a different order, an amendment of EO 3455).",
+   "severity": "minor",
+   "fix": "Record the candidate revocation of EO 1692 and list the 1921 CSC report p. 123 as the source to acquire."
+  },
+  {
+   "id": "R13",
+   "location": "M6",
+   "claim": "EO 3461 'lists 45 orders'.",
+   "evidence": "The held copy (jobs/csc-annual-reports/output/texts/EO_3461.txt, sha256 matches) stops at item 27; the figure 45 is not verifiable from held text. M6 decides nothing.",
+   "severity": "minor",
+   "fix": "Cite the source of the figure 45 or say 'a list of which 27 items are held'."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S1",
+   "verdict": "verified",
+   "note": "Guinness page read 2026-11-05: Jeanne Louise Calment, born 21 February 1875, died 4 August 1997, '122 years 164 days'. Arithmetic checked: 1875-02-21 + 122 y + 164 d = 1997-08-04. Not held."
+  },
+  {
+   "source_id": "S2",
+   "verdict": "verified",
+   "note": "Held EO_209.txt, sha256 matches; pin found; 'Approved, to take effect on and after April 15, 1903. ... March 20, 1903.' EO 250 (Feb. 5, 1904) revoking the special rule of July 3, 1902 also verified."
+  },
+  {
+   "source_id": "S3",
+   "verdict": "verified",
+   "note": "Held EO_3455.txt, sha256 matches; May 10, 1921; 'No person who has passed his sixty-fifth birthday, or who has not actually resided ...' is the only age limit (the other limit is residence). The EO 3523 text (July 27, 1921 amendment) keeps the 65th-birthday bar."
+  },
+  {
+   "source_id": "S4",
+   "verdict": "verified",
+   "note": "Held APP text, sha256 matches; pin found as item (9). Item (8) revokes the Feb. 26, 1929 appointment of 'Mrs. Julia Behake', which is member EO 5058 (finding R3)."
+  },
+  {
+   "source_id": "S5",
+   "verdict": "verified",
+   "note": "Held APP text, sha256 matches; pin found; dated June 19, 1930."
+  },
+  {
+   "source_id": "S6",
+   "verdict": "wrong",
+   "note": "Pin verified in held CSR_1922 image 150 (printed p. 99), sha256 matches; Statutes at Large page is 614, not 641 (govinfo Pg614 read on the web)."
+  },
+  {
+   "source_id": "S7",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-46-Pg468 read on the web: ch. 349, approved May 29, 1930, amending the 1920 Act; railway postal clerks and others 'shall be eligible at sixty-two years of age'; 70 and 65 for other classes. Not held."
+  },
+  {
+   "source_id": "S8",
+   "verdict": "unverifiable",
+   "note": "govinfo STATUTE-47-Pg382 confirms ch. 314, Legislative Branch appropriation act for FY1933, begins at 47 Stat. 382; the page of Part II sec. 204 was not located (Pg404 not found). The member texts quote 'section 204 of Part II of the act' and 'retirement age prescribed for automatic separation' (EO 5896, 5921, 5946, 5954, 5988 read)."
+  },
+  {
+   "source_id": "S9",
+   "verdict": "verified",
+   "note": "Held CSR_1915 image 14 (printed p. 7), sha256 matches; 'These orders are published in full in the appendix'. archive.org URL not checked."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "All 56 Appendix A quotes found in their own member texts; each matches exactly one anchor; each names or concerns the WPA-summary person; all 56 'latest possible death' dates recomputed and correct; B09, B10, B12 bounds recomputed and correct."
+  },
+  {
+   "source_id": "EO 3461 (M6, not in sources)",
+   "verdict": "unverifiable",
+   "note": "Held text sha256 matches; stops at item 27; '45 orders' not verifiable."
+  }
+ ],
+ "members_checked": [
+  "EO:5332",
+  "EO:4528",
+  "EO:6142",
+  "EO:6179A",
+  "EO:7472",
+  "EO:7140",
+  "EO:5058",
+  "EO:1313",
+  "EO:1753",
+  "EO:7281",
+  "EO:7426",
+  "EO:4300",
+  "EO:4639",
+  "EO:6725",
+  "EO:5896",
+  "EO:5921",
+  "EO:5946",
+  "EO:5954",
+  "EO:5988",
+  "EO:3602",
+  "EO:3717",
+  "EO:3730",
+  "EO:3735",
+  "EO:3776",
+  "EO:3780",
+  "EO:3784",
+  "EO:3790",
+  "EO:3792",
+  "EO:3822",
+  "EO:3823",
+  "EO:3835",
+  "EO:3840",
+  "EO:3850",
+  "EO:4595",
+  "EO:3378",
+  "EO:3499",
+  "EO:3856",
+  "EO:4118",
+  "EO:5084",
+  "EO:162",
+  "EO:226",
+  "EO:325",
+  "EO:957",
+  "EO:1863",
+  "EO:1953",
+  "EO:1961",
+  "EO:1983",
+  "EO:2009",
+  "EO:2083",
+  "EO:2140",
+  "EO:2165",
+  "EO:2244",
+  "EO:2447",
+  "EO:2853",
+  "EO:2936",
+  "EO:2951",
+  "EO:3114",
+  "EO:3175",
+  "EO:3343",
+  "EO:3432",
+  "EO:3460",
+  "EO:3467",
+  "EO:3479",
+  "EO:3490",
+  "EO:3516",
+  "EO:3533",
+  "EO:3548",
+  "EO:3587",
+  "EO:3606",
+  "EO:3713",
+  "EO:3937",
+  "EO:4122",
+  "EO:4357",
+  "EO:4367",
+  "EO:4376",
+  "EO:4480",
+  "EO:4541",
+  "EO:4563",
+  "EO:4742",
+  "EO:4743",
+  "EO:4769",
+  "EO:4793",
+  "EO:4906",
+  "EO:5020",
+  "EO:5061",
+  "EO:5075",
+  "EO:5128",
+  "EO:5135",
+  "EO:5269",
+  "EO:5285",
+  "EO:5501",
+  "EO:6058",
+  "EO:221",
+  "EO:223",
+  "EO:234",
+  "EO:251",
+  "EO:1587",
+  "EO:4011",
+  "EO:3523",
+  "EO:154",
+  "EO:174",
+  "EO:185",
+  "EO:222",
+  "EO:225",
+  "EO:60",
+  "EO:95",
+  "EO:2190",
+  "EO:4304",
+  "EO:4379",
+  "EO:4794",
+  "EO:4871",
+  "EO:5286",
+  "EO:3096",
+  "EO:3959",
+  "EO:3458",
+  "EO:3459",
+  "EO:2159",
+  "EO:2151",
+  "EO:2197",
+  "EO:3677",
+  "EO:5150",
+  "EO:1978",
+  "EO:1979",
+  "EO:4050",
+  "EO:3582",
+  "EO:4016",
+  "EO:1573",
+  "EO:346",
+  "EO:1236",
+  "EO:3921",
+  "EO:4509",
+  "EO:4039",
+  "EO:3695",
+  "EO:1692"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:4300",
+   "branch": "B06",
+   "why": "no lead dated 1925-09-30; the order's ten days from September 11, 1925 end 1925-09-21 (R2)."
+  },
+  {
+   "instrument_id": "EO:5058",
+   "branch": "B99",
+   "why": "Left open; its appointment is item (8) of EO 6179-A, so it should take the B02 lead, interval (1929-02-26, 1933-06-16] (R3)."
+  },
+  {
+   "instrument_id": "EO:2151",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1902-09-01, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:2159",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1887-10-29, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:2197",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1902-09-09, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:3096",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1885, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:3677",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1889-09-27, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:3959",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1887, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:4304",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1898-05-07, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:4379",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1899-07-13, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:4794",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1891, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:4871",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1898, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:5286",
+   "branch": "B99",
+   "why": "Left open, but the held text dates the named person's service at 1899-02-16, before 1904-05-03; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:5150",
+   "branch": "B26",
+   "why": "Left open as a possible minor, but the held text says Mrs. Krigbaum was appointed printer's assistant from June 1902; meets the B13 test (R4)."
+  },
+  {
+   "instrument_id": "EO:3695",
+   "branch": "B22",
+   "why": "One-person order routed as a class order because named_persons is empty; held text dates the person's service at 1901-04-24; should be a B13-type no lead (R5)."
+  },
+  {
+   "instrument_id": "EO:4016",
+   "branch": "B22",
+   "why": "One-person order routed as a class order because named_persons is empty; held text dates the person's service at 1893-09-01; should be a B13-type no lead (R5)."
+  },
+  {
+   "instrument_id": "EO:4039",
+   "branch": "B22",
+   "why": "One-person order routed as a class order because named_persons is empty; held text dates the person's service at 1897-07-14; should be a B13-type no lead (R5)."
+  },
+  {
+   "instrument_id": "EO:4509",
+   "branch": "B22",
+   "why": "One-person order routed as a class order because named_persons is empty; held text dates the person's service at 1900-07-01; should be a B13-type no lead (R5)."
+  },
+  {
+   "instrument_id": "EO:346",
+   "branch": "B22",
+   "why": "One-person order given the class-order basis and retype_PD-CS-RULES; belongs on B99 (open, one-person) (R5)."
+  },
+  {
+   "instrument_id": "EO:1236",
+   "branch": "B22",
+   "why": "One-person order given the class-order basis and retype_PD-CS-RULES; belongs on B99 (open, one-person) (R5)."
+  },
+  {
+   "instrument_id": "EO:1573",
+   "branch": "B22",
+   "why": "One-person order given the class-order basis and retype_PD-CS-RULES; belongs on B99 (open, one-person) (R5)."
+  },
+  {
+   "instrument_id": "EO:3103",
+   "branch": "B22",
+   "why": "One-person order given the class-order basis and retype_PD-CS-RULES; belongs on B99 (open, one-person) (R5)."
+  },
+  {
+   "instrument_id": "EO:3368",
+   "branch": "B22",
+   "why": "One-person order given the class-order basis and retype_PD-CS-RULES; belongs on B99 (open, one-person) (R5)."
+  },
+  {
+   "instrument_id": "EO:5071",
+   "branch": "B22",
+   "why": "One-person order given the class-order basis and retype_PD-CS-RULES; belongs on B99 (open, one-person) (R5)."
+  },
+  {
+   "instrument_id": "EO:6360",
+   "branch": "B22",
+   "why": "One-person order given the class-order basis and retype_PD-CS-RULES; belongs on B99 (open, one-person) (R5)."
+  },
+  {
+   "instrument_id": "EO:1027",
+   "branch": "B23",
+   "why": "Not a designation of a named officer (district, land office, CCC or board order); B21 missed it because the WPA summary words are OCR-joined (R6)."
+  },
+  {
+   "instrument_id": "EO:4176",
+   "branch": "B23",
+   "why": "Not a designation of a named officer (district, land office, CCC or board order); B21 missed it because the WPA summary words are OCR-joined (R6)."
+  },
+  {
+   "instrument_id": "EO:4612",
+   "branch": "B23",
+   "why": "Not a designation of a named officer (district, land office, CCC or board order); B21 missed it because the WPA summary words are OCR-joined (R6)."
+  },
+  {
+   "instrument_id": "EO:6131A",
+   "branch": "B23",
+   "why": "Not a designation of a named officer (district, land office, CCC or board order); B21 missed it because the WPA summary words are OCR-joined (R6)."
+  },
+  {
+   "instrument_id": "EO:6136",
+   "branch": "B23",
+   "why": "Not a designation of a named officer (district, land office, CCC or board order); B21 missed it because the WPA summary words are OCR-joined (R6)."
+  },
+  {
+   "instrument_id": "EO:6238",
+   "branch": "B23",
+   "why": "Not a designation of a named officer (district, land office, CCC or board order); B21 missed it because the WPA summary words are OCR-joined (R6)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The life-of-person mechanism is sound and correctly applied: Calment's 122 years 164 days is verified, the May 2, 1904 cut point is right, every Appendix A quote is in its member's own text and concerns the named person, and every bound (Appendix A, B09 a_min 61, B10 a_min 64, B11, B12) recomputes correctly and falls before 2026-10-14. The minimum-age facts hold: EO 3455's only age limit is the 65th-birthday bar, and the 1920 Act (and the 1930 Act) set 62 as the lowest retirement age. No no-lead is wrong in status. Required changes: the 1920 Act is at 41 Stat. 614, not 641; the JSON dates EO 4300's ten-day term to 1925-09-30 instead of 1925-09-21; EO 6179-A also revokes the appointment authorized by member EO 5058, which the doctrine says is not a member and leaves open; and the open list is overstated, because at least 16 members in B99, B26 and B22 quote pre-1904 service of the named person and meet the doctrine's own B13 test, and B22's empty-named_persons clause labels about 29 one-person orders as class orders. Smaller issues: OCR-joined WPA words send six non-person orders to B23; several neighbour-text identity failures sit in B99 rather than B20; the checked-list anchors are one shared alternation rather than per member; EO 3467's date reading departs from the stated rule; the 'minimum age of 34' threshold is really 29 (B09) and 23 (B10); a WPA-reported revocation of EO 1692 by EO 3523 is not disclosed."
+}

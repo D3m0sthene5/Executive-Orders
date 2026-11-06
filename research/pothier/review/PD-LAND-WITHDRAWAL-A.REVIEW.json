@@ -1,0 +1,477 @@
+{
+ "doctrine_id": "PD-LAND-WITHDRAWAL",
+ "arm": "A",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "B20 (spent_on_issue); P1",
+   "claim": "Every B20 member only revokes, restores or eliminates lands and 'takes effect when issued'; lead no, TERM, dated the order's own date.",
+   "evidence": "49 B20 members' own held texts defer their effect to an unrecorded plat filing, e.g. EO 6943 (Jan. 9, 1935): 'is hereby revoked, this revocation to become effective upon the date of the official filing of the plats of resurvey'; EO 7272, 7244, 7153, 7392, 7454 read 'This order shall become effective upon the date of the official filing of the plat(s) of resurvey'. The 49 are EO 6760, 6846, 6943, 6977, 6980, 7066, 7131, 7132, 7133, 7147, 7153, 7175, 7218, 7227, 7240, 7244, 7264, 7269, 7271, 7272, 7275, 7279, 7280A, 7280B, 7282, 7283, 7284, 7284A, 7284B, 7290, 7326, 7327, 7328, 7335, 7344, 7355, 7360, 7362, 7374, 7376, 7392, 7434, 7454, 7506, 7507, 7511, 7527, 7528, 7529 (regex 'become effective upon the date of (the) official filing' over primary_text_path). P1 dates a spent order by 'the order's own date (or its stated effective date)'; the stated effective date here is the plat filing, which the doctrine itself says no held source gives (B29 keeps the 31 parents open for exactly that reason).",
+   "severity": "error",
+   "fix": "Add a branch before B20 that catches texts deferring effect to the plat filing ('(shall|to) become effective upon the date of (the )?(official )?filing') and leads open (kind e.g. spent_on_plat_filing_unproven, gap: plat filing date), consistent with B29; recount B20 (200) and the open total."
+  },
+  {
+   "id": "R2",
+   "location": "B06 / verified_whole_revocations EO:3867; appendix row 'EO 3867 | B06 | EO 4653 | 1927-05-20'",
+   "claim": "EO 4653 revokes EO 3867 as a whole (verified by the 'revoking executive order, cited by number' test, which rejects 'as to').",
+   "evidence": "Held text jobs/pinakes-proquest-ingest/output/texts/EO_4653.txt: 'Executive Order No. 3867 dated June 16, 1923, withdrawing the public lands in Ts. 5 S., Rs. 97, 98 and 99 W.; Ts. 6 S., Rs. 98 and 99 W., and Ts. 7 S., Rs. 97, 98 and 99 W. ... be and the same is hereby revoked, only as to Ts. 6 and 7 S., R. 99 W.' The qualifier follows 'revoked', so it is a partial revocation; EO 4653 is itself on B22 as a revocation with an ex-service opening.",
+   "severity": "error",
+   "fix": "Remove EO:3867 from verified_whole_revocations and from B06's list; it falls to B30/B35 open (standing resurvey withdrawal, partially revoked 1927). B06 becomes 197, revocations 221, EO revocations 89; extend the qualifier test to text after the verb."
+  },
+  {
+   "id": "R3",
+   "location": "B05_5384 date_rule",
+   "claim": "Interval from 1966-03-07 to 1977-04-06; basis 'PLO 3944 (1966) and PLO 4188 (1967) ... it ended no later than PLO 4188'.",
+   "evidence": "PLO_TABLE.csv and BLM text layer plo_2251-4975.txt: '4188 April 6, 1967 .. Alaska; withdrawing for administrative site revoking EO No. 5384 .... 32 FR 5837'. The appendix also gives 1967-04-06. The upper bound is ten years late.",
+   "severity": "error",
+   "fix": "Set the interval 'to' to 1967-04-06."
+  },
+  {
+   "id": "R4",
+   "location": "S12 citation (and M5, B04 basis, part (b) table)",
+   "claim": "Pub. L. 91-476, sec. 8, 84 Stat. 1007 (16 U.S.C. 460y-7).",
+   "evidence": "The slip law (usc-cdn.house.gov/statutes/pl/91/476.pdf) begins at 84 Stat. 1067 (Oct. 21, 1970); sec. 8 (revocation of EO 5237) is printed at 84 Stat. 1070; Justia's 16 U.S.C. 460y source credit reads 'Pub. L. 91-476, sec. 1, Oct. 21, 1970, 84 Stat. 1067' and 460y-6 reads 'sec. 7 ... 84 Stat. 1070'. The pin phrase itself is in the held FRAGMENTS.jsonl.",
+   "severity": "error",
+   "fix": "Cite 'Pub. L. 91-476, sec. 8, Oct. 21, 1970, 84 Stat. 1067, 1070 (16 U.S.C. 460y-7)' in S12, B04 and the md."
+  },
+  {
+   "id": "R5",
+   "location": "B20 negative conditions; members EO:4867, EO:324B, EO:5931",
+   "claim": "B20 members have 'no new reservation'; they are spent on issue under P1.",
+   "evidence": "EO 4867 (held text EO_4867.txt): EO 4758 'is, therefore, revoked and ... it is hereby ordered that the lands described below be withdrawn from settlement, entry or other disposition' (summary 'with drawn', OCR split, defeats the 'withdrawn' exclusion). EO 324B: cancels the order as to one tract 'and that the SE 1/4 of NW 1/4 of same section be withdrawn ... and reserved' (summary 'to reserve certain other lands in lieu thereof'; 'reserve' is not caught by 'reserved'). EO 5931 (ofr-compilations EO_5931.txt) Section II: 'a strip of land, 10 feet wide ... be, and the same is hereby, reserved and set apart as a right of way'. Each makes a new standing reservation, so P1 does not apply.",
+   "severity": "error",
+   "fix": "Exclude these from B20 (add 'reserve\\b', 'with\\s?drawn' and 'in lieu' to the exclusion, or list them) so they fall to B26/B35 open."
+  },
+  {
+   "id": "R6",
+   "location": "B20 member EO:576",
+   "claim": "EO 576 only revokes or restores (spent on issue).",
+   "evidence": "Held text EO_576.txt: 'It was not intended by the exceptions contained in my several proclamations creating forest reserves ... to except from the force and effect of such proclamations lands so withdrawn; and all such lands ... will be held and considered as parts of the reserves created thereby.' It restores nothing; it is a standing construction that keeps coal-withdrawn lands inside forest reserves. It matched B20 only through 'excluded from' in the summary.",
+   "severity": "error",
+   "fix": "Remove from B20; lead open (standing order governing forest-reserve lands, possibly PD-NATIONAL-FOREST)."
+  },
+  {
+   "id": "R7",
+   "location": "B24 description and md part (c) B24 row; member EO:2641",
+   "claim": "B24 holds the listed amending orders, including EO 2641, each merged into the parent (P2) with the P2 disclosure.",
+   "evidence": "EO 2641's held text reads 'is hereby further amended by eliminating therefrom all provisions for the forfeiture of lots'; B24's text_regex ('hereby,? (?:amended|modified)|...') does not match 'hereby further amended', so EO 2641 falls to B20 and gets kind spent_on_issue with the basis 'revokes or restores lands withdrawn by another order', which is false, and without the P2 disclosure. The md lists 11 B24 names but B24 decides 10.",
+   "severity": "error",
+   "fix": "Allow 'hereby,? (?:further )?amended' in B24 (or drop the text condition for listed members) so EO 2641 lands on B24; correct the md list/count."
+  },
+  {
+   "id": "R8",
+   "location": "Conclusions counts",
+   "claim": "270 members had a command exhausted on issue (249 + 10 + 10); 50 ended on their own terms (28 + 22 + EO 465).",
+   "evidence": "249 + 10 + 10 = 269 and 28 + 22 + 1 = 51 (engine run: B20 249, B23 10, B24 10; B21_63 27, B21_28 1, B10_* 22, B11 1). 222 + 269 + 51 = 542 matches the engine's no count; the stated subtotals do not add.",
+   "severity": "error",
+   "fix": "State 269 and 51 (then revise for R1, R2, R5-R7)."
+  },
+  {
+   "id": "R9",
+   "location": "Conclusions and part (c) 'The 62 contradiction flags'",
+   "claim": "The engine flags 62 leads: 11 acted_on_after_lead_end, 1 no_lead_but_current_law_predicate_lead, 50 persistence_lead_but_held_ending_edge; the 32 partial revocations 'keep the plain mechanism revocation' because Shepard marks 'in part' only inside its window.",
+   "evidence": "Running python3 -I jobs/pothier/pothier.py try on this copy gives 'decides 548; contradicted 48': 11 + 1 + 36. Fourteen of the 32 listed members (EO 2905, 3053, 3394, 3748, 4331, 4715, 4798, 4828, 4873, 5276, 5462, 5534, 5790, 6113) now carry only partial_revocation/modification edges in MEMBERS.jsonl and are not flagged, so the stated reason is false for them.",
+   "severity": "error",
+   "fix": "Report 48 flags (36 persistence), list the 18 partial-in-substance members that are still flagged, and drop or re-describe the other 14."
+  },
+  {
+   "id": "R10",
+   "location": "B02 (EO 3529, EO 5136) vs ruling P2 and B24",
+   "claim": "EO 3529 and EO 5136 are yes leads because 43 CFR 2566.0-3 carries the townsite regulations as amended by them.",
+   "evidence": "Both orders' only content amends EO 3489's regulations (summaries: 'amended as to the collection of assessments'; 'amended to authorize the Interior Sec'y to reappraise and sell'). P2 makes such an order 'no, TERM, merged_into_parent_on_issue', and the doctrine itself gives that lead to EO 2579 and EO 2982, which amended the earlier Alaska railroad townsite regulations. P2 states that the alternative (amending order lives while the amended text lives) is an owner choice to be named in the adoption asks, not adopted inside one doctrine.",
+   "severity": "unsupported",
+   "fix": "Give EO 3529 and 5136 the P2 lead (no, merged into EO 3489, with the disclosure and EO 3489's CURRENT predicate noted), or keep yes only as a named owner-choice ask applied consistently to B24."
+  },
+  {
+   "id": "R11",
+   "location": "B23 basis ('Coordinator rulings P1 and 4'), B25 basis ('Coordinator ruling 4'), md B25 row ('coordinator decision 4')",
+   "claim": "A coordinator ruling 4 says a licence, right-of-way or permit for a continuing use lives with that use.",
+   "evidence": "COORDINATOR_RULINGS.md has rulings P1-P8; P4 is 'Named persons' (one act for one named person follows PD-CS-ONE-PERSON). No ruling addresses continuing-use permits.",
+   "severity": "unsupported",
+   "fix": "Cite the actual authority for the continuing-use rule (or state it as the doctrine's own reasoning under D-20261028-evidence-decides) and remove the reference to 'ruling 4'."
+  },
+  {
+   "id": "R12",
+   "location": "B23, B20, B22 vs ruling P4 (named persons)",
+   "claim": "The doctrine decides one-act orders for named persons itself (spent_on_issue) or as land orders.",
+   "evidence": "P4: 'An order whose operative content is one act for one named person (appointment, reinstatement, transfer, retirement or exemption, designation to act) follows PD-CS-ONE-PERSON in every family.' Members here: EO 2501 (homestead entry of Clarence E. Burr), 2551 (entry of Samuel L. Kay), 2712 (reinstatement of entries of James E. Kitchens and Van Hayes), 3178 (George W. Nutter homestead validated), 4015 (reinstate declaratory statement of Ivory Brackett) on B23; EO 975 (allot to Ada McKay) and 1135 (allot to Perry Yukton) on B20; EO 6170 (held text: 'Oscar L. Chapman, Assistant Secretary of the Interior, is authorized and directed to perform the duties of the Secretary') on B22, which reached B22 only because its WPA summary runs into EO 6171.",
+   "severity": "unsupported",
+   "fix": "Route these to PD-CS-ONE-PERSON (an expanded B01_PERSON), or record why P4 does not reach them; at minimum move EO 6170 out of B22."
+  },
+  {
+   "id": "R13",
+   "location": "B08_3264 (and B08 gaps generally)",
+   "claim": "An earlier held revocation edge (EO 9026, 1942-01-16) 'may be partial or may be the true end', so the end lies between 1942-01-16 and 1958-09-04.",
+   "evidence": "The held edge quote of EO 9026 reads 'This order shall take precedence over, but shall not rescind or revoke, Executive Order No. 3264'. It cannot be the end. The other B08 earlier edges are visibly partial in their held quotes: EO 3863 'Eliminating certain lands from Executive Order No. 2538'; EO 5632 'revoked in so far as...'; EO 9109 'revoked so far as it affects said sec. 13'.",
+   "severity": "minor",
+   "fix": "Treat these members as B06-type fixed ends at the PLO date (or keep the interval but state that the earlier edges are partial or non-revoking)."
+  },
+  {
+   "id": "R14",
+   "location": "B21_63 vs B22; B10 vs B35 (OCR misses)",
+   "claim": "B22's 120 members await a plat filing or a Secretary's date; B35's members have no own term.",
+   "evidence": "B22 holds fixed-date openings whose OCR defeats the B21_63 regex: EO 4092 ('the sixty-third day from and after the (late of this order'), EO 4735 ('sixty-third day from.~ ,and after'), EO 4855 ('63r~d' day'), EO 4936 ('sixty- ... third day from and after the date hereof'). B35 holds EO 1878 ('temporarily withdrawvn ... until March 5, 1915') and EO 3651 ('temporarily' withdrawn ... until March 5, 1923'), which are B10-type own-term orders, and EO 4266 (63rd-day opening) and EO 4949 (28th-day opening).",
+   "severity": "minor",
+   "fix": "Loosen the B21 and B10 regexes for OCR (or list these members) so they are decided; correct the statement that all 173 plat-filing members turn on a plat date."
+  },
+  {
+   "id": "R15",
+   "location": "B01_WAR member EO:3077",
+   "claim": "EO 3077 is outside the family (war/emergency subject).",
+   "evidence": "Held text EO_3077.txt: lots 12 and 1 in Block 9 of Wrangell Townsite 'withdrawn from settlement ... and reserved and set aside for the use of the Government ... under the control of the Treasury Department'. It is a land reservation; the 'alien property' match comes from EO 3016-N's text running into the WPA summary.",
+   "severity": "minor",
+   "fix": "Anchor B01 patterns to the start of the summary or list EO 3077 for B35."
+  },
+  {
+   "id": "R16",
+   "location": "B35 members that are executive-order Indian reservations",
+   "claim": "B35 standing withdrawals stay in force 'until revoked by the President (now the Secretary) or by Congress (S1, S2)'.",
+   "evidence": "B35 contains Indian reservation orders such as EO 1538 (Papago), 1681 (Paiute, Shoshone), 1682 (Flathead), 1772, 1903 (Goshute). Changes to executive-order Indian reservation boundaries have required an Act of Congress since Act of Mar. 3, 1927, ch. 299, sec. 4, 44 Stat. 1347 (25 U.S.C. 398d), which FLPMA sec. 704(a) touched only as to its proviso (held FLPMA p. 2792: 'Mar. 3,1927 299 4 44:1347 25 U.S.C. 398d. Only the proviso thereof.'). The B35 basis misstates who can end them, and their subject belongs to PD-INDIAN.",
+   "severity": "minor",
+   "fix": "Route Indian-reservation orders to PD-INDIAN (B01_INDIAN) or give them a separate open branch with the correct basis."
+  },
+  {
+   "id": "R17",
+   "location": "B20/B21/B22 summary regex",
+   "claim": "The alternative 'modified, and the excluded lands restored' is matched.",
+   "evidence": "In the JSON file the alternative is written 'modified,?' + four backslash characters + 's?and the excluded lands restored' (five occurrences), which decodes to a regex with two backslashes before 's', i.e. a literal backslash followed by 's'. The alternative therefore never matches; in B20's last negative lookahead this means summaries reading 'modified, and the excluded lands restored' are excluded from B20 and fall to open branches.",
+   "severity": "minor",
+   "fix": "Write the whitespace class with one JSON escape (two backslash characters in the file), as elsewhere in the doctrine."
+  },
+  {
+   "id": "R18",
+   "location": "B07_1291, B07_2060, B07_4764 date rules",
+   "claim": "The revoking order is dated only to the year, so the date is a year interval.",
+   "evidence": "The held revoking texts print the day: EO 4313 'September 25, 1925'; EO 4968 'September 26, 1928'; EO 2457 '20 September, 1916' (OCR).",
+   "severity": "minor",
+   "fix": "Use fixed dates 1925-09-25, 1928-09-26 and 1916-09-20 (the last checked against a clean copy)."
+  },
+  {
+   "id": "R19",
+   "location": "md part (d) and B99 description",
+   "claim": "13 members have 'no usable text'.",
+   "evidence": "B99 also holds members with usable summaries and texts: EO 121 (Hawaii land sale proceedings discontinued), 1253 (Canal Zone leasing regulations), 4526, 4716, 5722, 5975, 7377, 7424 (transfers between departments). The JSON description names transfers; the md does not.",
+   "severity": "minor",
+   "fix": "Describe B99 as 'no usable text, or a transfer of land between departments or another subject no branch covers'."
+  },
+  {
+   "id": "R20",
+   "location": "Appendix rows EO 4901, 4958, 6774; B06 basis",
+   "claim": "For each member the appendix gives 'the revoking executive order's held text (path and sha256)'.",
+   "evidence": "For EO 4901 (EO 8529), EO 4958 (EO 5877) and EO 6774 (EO 8240) the verified table gives only a URL and an empty sha256; the revoking words are held only as later-events/Shepard edge quotes.",
+   "severity": "minor",
+   "fix": "Cite the held edge ids (or acquire the FR pages) and say so in the appendix."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S0",
+   "verdict": "verified",
+   "note": "member_text per P6; engine records path/sha per lead."
+  },
+  {
+   "source_id": "S1",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-36-Pg847: ch. 421, June 25, 1910, begins p. 847; sec. 1 reads 'shall remain in force until revoked by him or by an Act of Congress'. Not held."
+  },
+  {
+   "source_id": "S2",
+   "verdict": "verified",
+   "note": "236 U.S. 459 (Feb. 23, 1915); LII text contains 'the President had the power to make the order'. Not held."
+  },
+  {
+   "source_id": "S3",
+   "verdict": "verified",
+   "note": "Held page 90 Stat. 2786 (sha e14185c6... matches): sec. 701(c) pin found."
+  },
+  {
+   "source_id": "S4",
+   "verdict": "verified",
+   "note": "Held 90 Stat. 2792: sec. 704(a) pin found; repeal list includes June 25, 1910 ch. 421 secs. 1,2 36:847 and Dec. 29, 1916 ch. 9 sec. 10 39:865."
+  },
+  {
+   "source_id": "S5",
+   "verdict": "verified",
+   "note": "govinfo PDF: sec. 204(l) at 90 Stat. 2754-2755, 'within fifteen years of the date of enactment of this Act, review withdrawals existing on the date of approval', eleven States as listed."
+  },
+  {
+   "source_id": "S6",
+   "verdict": "verified",
+   "note": "Held fr-originals EO_9146.txt (sha 729a941b... matches), 7 FR 3067, pin found; dated April 24, 1942 (confirmed by EO 9337 sec. 2)."
+  },
+  {
+   "source_id": "S7",
+   "verdict": "verified",
+   "note": "Held mirror text (sha 8006154b... matches), pin found, dated April 24, 1943; held FR page header shows 8 FR 5516 (April 28, 1943)."
+  },
+  {
+   "source_id": "S8",
+   "verdict": "verified",
+   "note": "Held 1989 codification (sha ea88e35c... matches): 17 FR 4831, May 26, 1952; pin found. Also restated in 43 CFR 2300.0-3(a)(2)."
+  },
+  {
+   "source_id": "S9",
+   "verdict": "verified",
+   "note": "PLO_TABLE.csv sha matches; all 132 appendix PLO rows match signature date and FR page (PLO 6989's row shows 58 FR 48545 as fr_citation with 58 FR 38083 in the heading; the md uses 38083); spot-checked rows 359, 1562, 4188, 6748, 7840 against BLM text layers."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "EDGES.csv sha matches; pin string present."
+  },
+  {
+   "source_id": "S11",
+   "verdict": "verified",
+   "note": "later-events EDGES.csv sha matches."
+  },
+  {
+   "source_id": "S12",
+   "verdict": "wrong",
+   "note": "Pin found in held FRAGMENTS.jsonl (16 U.S.C. 460y-7), but the Statutes at Large page is wrong: Pub. L. 91-476 is 84 Stat. 1067, sec. 8 at 84 Stat. 1070, not 84 Stat. 1007."
+  },
+  {
+   "source_id": "S13",
+   "verdict": "verified",
+   "note": "govinfo 02-25924: 67 FR 63448-63449, Oct. 11, 2002, BLM Arcata; 'Congress passed the King Range Act (Pub. L. 91–476) creating the KRNCA'; KRMP completed 1974. No establishment date stated."
+  },
+  {
+   "source_id": "S14",
+   "verdict": "verified",
+   "note": "Held fragment contains the pin and 2566.0-7(a) text; LII confirms current 43 CFR 2566.0-7(a). Section text itself not retained, as the doctrine says."
+  },
+  {
+   "source_id": "S15",
+   "verdict": "verified",
+   "note": "WebFetch of the layer-1 query (2026-11-05) returns OROR 019001 EO 5907 disp 5 PW Res 146; OROR 019002A EO 6019 disp 5 PW Res 148; OROR 019005 EO 6618 disp 5 PW Res 154. Not held."
+  },
+  {
+   "source_id": "S16",
+   "verdict": "unverifiable",
+   "note": "Data standard PDF not fetched; the code-5 = Authorized definition rests on the doctrine's reading."
+  },
+  {
+   "source_id": "S17",
+   "verdict": "verified",
+   "note": "LII 16 U.S.C. 818: phrase present; credits 41 Stat. 1075; 49 Stat. 846, 847; 62 Stat. 275."
+  },
+  {
+   "source_id": "S18",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-39-Pg862: sec. 10 contains 'be kept and held open to the public use for such purposes', on p. 865."
+  },
+  {
+   "source_id": "S19",
+   "verdict": "verified",
+   "note": "Held 90 Stat. 2787: sec. 702 table lists Feb. 14,1920 76 41:434; Jan. 21,1922 32 42:358 (OCR '368'); Dec. 28,1922 19 42:1067; June 12,1930 471 46:580; sec. 702 ends on p. 2789."
+  },
+  {
+   "source_id": "S20",
+   "verdict": "verified",
+   "note": "Held cfr-t43-2300.0-3.txt (sha 33342f1e... matches); pin found."
+  }
+ ],
+ "members_checked": [
+  "EO:3867",
+  "EO:4404",
+  "EO:4586",
+  "EO:3918",
+  "EO:4322",
+  "EO:5121",
+  "EO:5548",
+  "EO:4810",
+  "EO:3346",
+  "EO:3815",
+  "EO:760",
+  "EO:3982",
+  "EO:1291",
+  "EO:2060",
+  "EO:3474",
+  "EO:4105",
+  "EO:4222",
+  "EO:4506",
+  "EO:4763",
+  "EO:4764",
+  "EO:4766",
+  "EO:5315",
+  "EO:5483",
+  "EO:5652",
+  "EO:5829",
+  "EO:7357",
+  "EO:4901",
+  "EO:4958",
+  "EO:6774",
+  "EO:1713",
+  "EO:5384",
+  "EO:2220",
+  "EO:2538",
+  "EO:3264",
+  "EO:4559",
+  "EO:5258",
+  "EO:6583",
+  "EO:6040",
+  "EO:6116",
+  "EO:6205",
+  "EO:7112",
+  "EO:1082",
+  "EO:771",
+  "EO:3297",
+  "EO:4097",
+  "EO:5118",
+  "EO:1599",
+  "EO:1858",
+  "EO:2053",
+  "EO:2091",
+  "EO:2145",
+  "EO:2157",
+  "EO:2298",
+  "EO:2603",
+  "EO:2731",
+  "EO:3034",
+  "EO:3451",
+  "EO:3561",
+  "EO:3644",
+  "EO:3649",
+  "EO:3812",
+  "EO:3895",
+  "EO:3981",
+  "EO:3998",
+  "EO:4093",
+  "EO:4184",
+  "EO:4375",
+  "EO:4378",
+  "EO:465",
+  "EO:3758",
+  "EO:4044",
+  "EO:5237",
+  "EO:3489",
+  "EO:3529",
+  "EO:5136",
+  "EO:5907",
+  "EO:6019",
+  "EO:6618",
+  "EO:5931",
+  "EO:324B",
+  "EO:4867",
+  "EO:576",
+  "EO:1135",
+  "EO:975",
+  "EO:2641",
+  "EO:6943",
+  "EO:7272",
+  "EO:7244",
+  "EO:7153",
+  "EO:7392",
+  "EO:7454",
+  "EO:6170",
+  "EO:3077",
+  "EO:4092",
+  "EO:4735",
+  "EO:4855",
+  "EO:4936",
+  "EO:1878",
+  "EO:3651",
+  "EO:2501",
+  "EO:2551",
+  "EO:2712",
+  "EO:3178",
+  "EO:4015",
+  "EO:3189",
+  "EO:4678",
+  "EO:5106"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:3867",
+   "branch": "B06",
+   "why": "EO 4653 revokes it 'only as to Ts. 6 and 7 S., R. 99 W.': partial; should be open."
+  },
+  {
+   "instrument_id": "EO:5384",
+   "branch": "B05_5384",
+   "why": "Interval upper bound 1977-04-06; PLO 4188 is dated 1967-04-06."
+  },
+  {
+   "instrument_id": "EO:4867",
+   "branch": "B20",
+   "why": "Revokes EO 4758 and withdraws other described lands: new standing withdrawal, not spent."
+  },
+  {
+   "instrument_id": "EO:324B",
+   "branch": "B20",
+   "why": "Cancels one tract and withdraws and reserves another in lieu: new reservation, not spent."
+  },
+  {
+   "instrument_id": "EO:5931",
+   "branch": "B20",
+   "why": "Section II reserves a new 10-foot right of way: not only a restoration."
+  },
+  {
+   "instrument_id": "EO:576",
+   "branch": "B20",
+   "why": "Standing construction keeping coal-withdrawn lands within forest reserves; restores nothing."
+  },
+  {
+   "instrument_id": "EO:2641",
+   "branch": "B20",
+   "why": "Amending order ('hereby further amended'); should be B24 merged_into_parent with the P2 disclosure, not spent_on_issue on a restoration basis."
+  },
+  {
+   "instrument_id": "EO:6943",
+   "branch": "B20",
+   "why": "Revocation 'to become effective upon the date of the official filing of the plats of resurvey'; effective date unproven, so not spent on its own date. Same for the other 48 members listed in R1."
+  },
+  {
+   "instrument_id": "EO:7272",
+   "branch": "B20",
+   "why": "'This order shall become effective upon the date of the official filing of the plats of resurvey' (see R1)."
+  },
+  {
+   "instrument_id": "EO:6170",
+   "branch": "B22",
+   "why": "Designation of Oscar L. Chapman to act as Secretary (P4 named person); not a land order; summary bleed from EO 6171."
+  },
+  {
+   "instrument_id": "EO:4092",
+   "branch": "B22",
+   "why": "Fixed opening beginning the 63rd day after the order (OCR '(late'); belongs on B21_63 (no, order date + 154)."
+  },
+  {
+   "instrument_id": "EO:4855",
+   "branch": "B22",
+   "why": "Fixed 63rd-day opening (OCR '63r~d''); belongs on B21_63."
+  },
+  {
+   "instrument_id": "EO:4735",
+   "branch": "B22",
+   "why": "Fixed 63rd-day opening; belongs on B21_63."
+  },
+  {
+   "instrument_id": "EO:4936",
+   "branch": "B22",
+   "why": "Fixed 63rd-day opening; belongs on B21_63."
+  },
+  {
+   "instrument_id": "EO:1878",
+   "branch": "B35",
+   "why": "Withdrawn 'until March 5, 1915' (OCR 'withdrawvn'); belongs on B10_1915."
+  },
+  {
+   "instrument_id": "EO:3651",
+   "branch": "B35",
+   "why": "Withdrawn 'until March 5, 1923' (OCR quote mark); belongs on B10_1923."
+  },
+  {
+   "instrument_id": "EO:3077",
+   "branch": "B01_WAR",
+   "why": "A Wrangell townsite lot reservation for the Treasury; WAR match comes from a neighbouring order's summary."
+  },
+  {
+   "instrument_id": "EO:3264",
+   "branch": "B08_3264",
+   "why": "Interval lower bound rests on EO 9026, which says it 'shall not rescind or revoke' EO 3264; the end is PLO 1727 (1958-09-04)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's architecture is sound and most of its evidence checks out: all 132 PLO rows in the appendix match BLM's held table for date and FR page, the 90 revoking-EO texts and dates are held and match except one, the FLPMA, Pickett Act, Midwest Oil, EO 9146/9337/10355, King Range notice, FPA and Stock-Raising Act citations are right, and the B03 BLM layer was confirmed on the web. It needs required changes before adoption. Branch B20 gives a spent-on-issue 'no' dated the order date to 49 revocations whose own texts defer their effect to an unrecorded plat filing, which contradicts ruling P1 and the doctrine's own B29 reasoning. B20 also decides four orders that make new reservations or are not restorations (EO 4867, 324B, 5931, 576) and misfiles the amending EO 2641. B06 treats EO 3867 as wholly revoked when EO 4653 revoked it 'only as to' two townships. B05_5384 dates PLO 4188 in 1977 instead of 1967. S12 cites 84 Stat. 1007 for Pub. L. 91-476, which is at 84 Stat. 1067, 1070. The Conclusions' subtotals (270, 50) and the contradiction count (62; the engine gives 48) are wrong. B23 and B25 cite a nonexistent 'coordinator ruling 4'. Named-person orders are decided here contrary to P4, B02's yes leads for two amending orders conflict with P2, and several OCR misses leave decidable members open. The open list is otherwise honest about its gaps."
+}

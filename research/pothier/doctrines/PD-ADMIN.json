@@ -2,7 +2,7 @@
  "schema": "pothier-family-doctrine/v1",
  "doctrine_id": "PD-ADMIN",
  "family": "Administrative orders: organization, regulations, pay and allowances, fund allotments, territories, property transfers, own-terms expiry, tax return inspection, closings",
- "version": 2,
+ "version": 3,
  "members": {
   "field": "x1_type",
   "in": [
@@ -22,8 +22,8 @@
    "id": "M-SPENT",
    "kind": "own_terms",
    "effect": "ends",
-   "description": "P1: an order whose only operative content revokes, rescinds or cancels another order does one thing and does it on issue; its consequence belongs to the other order's lifecycle. P2: an order whose only operative content amends or modifies another order merges into the parent on issue; its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
-   "effective_date_rule": "The order's date.",
+   "description": "P1: an order whose only operative content revokes, rescinds or cancels another order does one thing and does it on issue; its consequence belongs to the other order's lifecycle. P2: an order whose only operative content amends or modifies another order merges into the parent on issue; its text continues as part of the parent until the parent ends; the parent's lifecycle carries it. P1 dates a revoke-only order by its own date or the effective date it states.",
+   "effective_date_rule": "The order's date; for a revoke-only order that states an effective date, that date (P1).",
    "source_ids": [
     "S-MEMBER"
    ]
@@ -32,14 +32,18 @@
    "id": "M-REVOKED",
    "kind": "later_instrument",
    "effect": "ends",
-   "description": "A later executive order that by its terms revokes, supersedes, cancels or abolishes this order (or the body it created or continued) as a whole ends it.",
+   "description": "A later instrument whose held text names the member (by number, or by its date and subject) and revokes, rescinds or supersedes it as a whole ends it (COORDINATOR_RULINGS P3). A Public Land Order is taken as BLM's official table states it, with the gap that the PLO text is not held.",
    "effective_date_rule": "The revoking order's date, or the effective date it states.",
    "source_ids": [
+    "S-BLM-1-694",
+    "S-EO1244",
     "S-EO1706",
     "S-EO3261",
     "S-EO3583",
     "S-EO4021",
+    "S-EO4044",
     "S-EO4158",
+    "S-EO4918",
     "S-EO5376",
     "S-EO5605",
     "S-EO5952",
@@ -48,14 +52,36 @@
     "S-EO6562",
     "S-EO6612",
     "S-EO6724",
+    "S-EO6746",
     "S-EO6776",
-    "S-EO6777",
-    "S-EO6858",
     "S-EO6913",
     "S-EO7005",
     "S-EO7044",
     "S-EO8714",
-    "S-EO9461"
+    "S-PLO-406",
+    "S-PLO-434"
+   ]
+  },
+  {
+   "id": "M-ABOLISHED",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "COORDINATOR_RULINGS P7: a later order abolishes by name the one body that is the member's only subject (a committee or board the member created or continued); the member has nothing left to govern.",
+   "effective_date_rule": "The abolishing order's date.",
+   "source_ids": [
+    "S-EO9461",
+    "S-EO6777",
+    "S-EO6858"
+   ]
+  },
+  {
+   "id": "M-CLASS-EO",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "COORDINATOR_RULINGS P3, express class: EO 3027 revokes 'All Executive Orders heretofore issued for the establishment of Defensive Sea Areas'; a member is in the class when its own text establishes a defensive sea area and it predates EO 3027.",
+   "effective_date_rule": "The date of EO 3027, 1919-01-25.",
+   "source_ids": [
+    "S-EO3027"
    ]
   },
   {
@@ -74,14 +100,15 @@
    "id": "M-OWNDATE",
    "kind": "own_terms",
    "effect": "ends",
-   "description": "The order states its own end: a period ('for and during six months ... and for no longer time'), a date to which something is deferred or continued, a named day or days, or a fiscal year or other stated period for which rates apply.",
+   "description": "The order states its own end: a period ('for and during six months ... and for no longer time'), a date to which something is deferred or continued, a named day or days, or a fiscal year or other stated period for which rates apply. It also covers an authorization granted only 'pending' a stated later act, when a held instrument performs that act and fixes its date (EO 7321).",
    "effective_date_rule": "The stated last day; where the order lets an earlier event end it (a proviso or 'unless otherwise directed'), the interval from the order's date to that stated day.",
    "source_ids": [
-    "S-MEMBER",
     "S-EO1120",
-    "S-EO516",
     "S-EO7090",
-    "S-EO7121"
+    "S-EO7121",
+    "S-EO7409",
+    "S-EO7410",
+    "S-MEMBER"
    ]
   },
   {
@@ -150,15 +177,15 @@
   },
   {
    "id": "S-STCC-ACT",
-   "citation": "Act of March 2, 1901, ch. 804, sec. 16, 31 Stat. 877 (Spanish Treaty Claims Commission)",
+   "citation": "Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (Spanish Treaty Claims Commission)",
    "title": "Act to carry into effect Article VII of the Treaty of Paris (1898)",
    "url": "https://www.govinfo.gov/content/pkg/STATUTE-31/pdf/STATUTE-31-Pg877.pdf",
    "held": false,
    "held_path": "",
    "sha256": "",
    "pin": "",
-   "establishes": "Authority for the President to extend the two-year period of the Commission; every member order recites it. Context only: the members end by their own stated period, not by this Act.",
-   "note": "Page and chapter as recited in the member orders and standard citation; not yet opened by the project (unverified page)."
+   "establishes": "Sec. 16: the Commission's powers continue for two years from the Act's approval 'and for no longer time'; the President may extend the period from time to time, by not more than six months at a time, when he judges it necessary for the Commission to complete its work; and he may dissolve the Commission if it finishes its work before the two years expire. Context only: the members end by their own stated periods.",
+   "note": "Chapter 800, date and page read on the web (govinfo STATUTE-31-Pg877, which begins 'CHAP. 800.'); not yet held."
   },
   {
    "id": "S-EO1120",
@@ -434,6 +461,125 @@
    "sha256": "1b157d8c8555fa20208fa112097752eeea3f1e795bb7a7b68b530467899bd6c7",
    "pin": "creating the Southwestern Alaska Fisheries Reservation, is hereby revoked",
    "establishes": "Revokes the order creating the Southwestern Alaska Fisheries Reservation (EO 3752)."
+  },
+  {
+   "id": "S-EO4044",
+   "citation": "Executive Order 4044 (July 3, 1924), held text (archival_replica_scan_pending_codebook)",
+   "title": "Executive Order 4044 (July 3, 1924), held text (archival_replica_scan_pending_codebook)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4044.txt",
+   "sha256": "f6a1f4bd9a86727c378eda018e7aebdd48a7465b485212b306287fa86cf82659",
+   "pin": "Order No. 1987, dated July 9, 1914, for use of the Bureau of Education and the",
+   "establishes": "Restores to the public domain the lands 'withdrawn from disposal and reserved by Executive Order No. 1987, dated July 9, 1914, for use of the Bureau of Education and the natives', describing all three of its reserves (Gravina, Fish Bay, Long Bay)."
+  },
+  {
+   "id": "S-EO4055",
+   "citation": "Executive Order 4055 (July 30, 1924), held text (archival_replica_scan_pending_codebook)",
+   "title": "Executive Order 4055 (July 30, 1924), held text (archival_replica_scan_pending_codebook)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4055.txt",
+   "sha256": "2f60d55d788eea45ac267fbdcd824c98419c73bb8a928cb09aca6f45fcc22727",
+   "pin": "thereby released from reserva- tion for use of the Bureau of Education",
+   "establishes": "Amends EO 4044 to vacate the restoration only for the tracts inside the Chugach National Forest, which remain national forest land and are 'thereby released from reservation for use of the Bureau of Education'."
+  },
+  {
+   "id": "S-EO1244",
+   "citation": "Executive Order 1244 (September 1910; date line OCR 'Sy5/. 2, 1910'), held text (archival_replica_scan_pending_codebook)",
+   "title": "Executive Order 1244 (September 1910; date line OCR 'Sy5/. 2, 1910'), held text (archival_replica_scan_pending_codebook)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_1244.txt",
+   "sha256": "2c27225dbe217c3accf1afa43c242b6171898e855d883b7005e08aee687b8ae7",
+   "pin": "of said Lincoln land district is hereby rescinded.",
+   "establishes": "Redefines the Lincoln land district and rescinds the 'Executive order of August 4, 1910, reestablishing the boundary lines of said Lincoln land district' (EO 1234)."
+  },
+  {
+   "id": "S-EO4918",
+   "citation": "Executive Order 4918 (June 23, 1928), held text (archival_replica_scan_pending_codebook)",
+   "title": "Executive Order 4918 (June 23, 1928), held text (archival_replica_scan_pending_codebook)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4918.txt",
+   "sha256": "a9bc78040a4dc00c2155c9a765dc9653987019fec82439151fa45adf04bc0b64",
+   "pin": "it is hereby ordered that Executive Order No. 4703,",
+   "establishes": "Revokes 'Executive Order No. 4703, of August 10, 1927' as a whole and retransfers Government Island to the Department of Agriculture."
+  },
+  {
+   "id": "S-EO6746",
+   "citation": "Executive Order 6746 (June 21, 1934), held text (mirror_transcription)",
+   "title": "Executive Order 6746 (June 21, 1934), held text (mirror_transcription)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6746-rates-compensation-government-employees-emergency-agencies-etc-not.txt",
+   "sha256": "ee9b1ec1d7277f1f2e068efcc7c01805e2d4a19e5bd88c89635ee531e30e377d",
+   "pin": "This order supersedes Executive Orders Numbers 6440, 6554, and 6622",
+   "establishes": "Supersedes EO 6440 and its two amending orders by number."
+  },
+  {
+   "id": "S-EO3027",
+   "citation": "Executive Order 3027 (January 25, 1919), held text (mirror_transcription, Wikisource)",
+   "title": "Executive Order 3027 (January 25, 1919), held text (mirror_transcription, Wikisource)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_3027.txt",
+   "sha256": "0bc00bca349787ff93381179f75fc48bd9fdc7a61b0ce3b5ba2be161dda0433e",
+   "pin": "All Executive Orders heretofore issued for the establishment of Defensive Sea Areas are hereby revoked.",
+   "establishes": "Revokes an expressly described class: every executive order issued for the establishment of defensive sea areas."
+  },
+  {
+   "id": "S-EO7409",
+   "citation": "Executive Order 7409 (July 9, 1936), held text (mirror_transcription)",
+   "title": "Executive Order 7409 (July 9, 1936), held text (mirror_transcription)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7409-prescribing-regulations-relating-annual-leave-government-employees.txt",
+   "sha256": "56b72d40da2880475435ff3bf4b152874d8b4a99bd2117ec4a1aa6bd9da03283",
+   "pin": "under authority of Executive Order No. 7321 of March 21, 1936, are hereby ratified",
+   "establishes": "Prescribes the uniform annual leave regulations (effective as of July 1, 1936) and ratifies the temporary regulations issued under EO 7321."
+  },
+  {
+   "id": "S-EO7410",
+   "citation": "Executive Order 7410 (July 9, 1936), held text (mirror_transcription)",
+   "title": "Executive Order 7410 (July 9, 1936), held text (mirror_transcription)",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7410-prescribing-regulations-relating-sick-leave-government-employees.txt",
+   "sha256": "7eee51883f8417af56993fe724d509d2f9095ec4bd09ca137be494677c73c2d2",
+   "pin": "under authority of Executive Order No. 7321 of March 21, 1936, are hereby ratified",
+   "establishes": "Prescribes the uniform sick leave regulations (effective as of July 1, 1936) and ratifies the temporary regulations issued under EO 7321."
+  },
+  {
+   "id": "S-BLM-1-694",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 1-694 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 1-694",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_1-694.pdf",
+   "held": true,
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_1-694.txt",
+   "sha256": "d8a6e9b1da9f4c6a22973f7a6d8a5a88f3cee5b00c1460e14f0e6d878e9d4ec0",
+   "pin": "Alaska; revoking of EO No. 2259; withdrawing for Alaskan Road",
+   "establishes": "Official BLM finding aid listing each Public Land Order with its date, subject and Federal Register citation; it describes, but is not, the order. Rows: PLO 406 (Sept. 11, 1947) 'revoking of EO No. 2259'; PLO 434 (Jan. 6, 1948) 'revoking EO No. 6587 of Feb. 6, 1934'.",
+   "row_pins": {
+    "PLO 406": "Alaska; revoking of EO No. 2259; withdrawing for Alaskan Road",
+    "PLO 434": "Utah; revoking EO No. 6587 of Feb. 6, 1934; withdrawing public"
+   }
+  },
+  {
+   "id": "S-PLO-406",
+   "citation": "Public Land Order No. 406, signed 1947-09-11, 12 FR 6259",
+   "title": "PLO 406",
+   "url": "https://www.govinfo.gov/link/fr/12/6259?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: 'Alaska; revoking of EO No. 2259; withdrawing for Alaskan Road Commission.' The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-434",
+   "citation": "Public Land Order No. 434, signed 1948-01-06, 13 FR 199",
+   "title": "PLO 434",
+   "url": "https://www.govinfo.gov/link/fr/13/199?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: 'Utah; revoking EO No. 6587 of Feb. 6, 1934; withdrawing public lands for classification in aid of legislation ...; Public Land Grazing Withdrawal No. 4.' The PLO text itself is not held."
   }
  ],
  "procedure": [
@@ -457,8 +603,6 @@
       "EO:6612",
       "EO:4020",
       "EO:4021",
-      "EO:6668",
-      "EO:6669",
       "EO:6776"
      ]
     },
@@ -470,7 +614,7 @@
     "status_lead": "no",
     "lead_kind": "spent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order's only operative content revokes, rescinds or cancels another order; it did that one thing on issue (P1). Its consequence, the other order's end, belongs to that order's lifecycle. Date: the order's own date (EO 6668 and 6669 state a cancellation effective March 28, 1934, before their own date of April 6, 1934; the command was performed on issue).",
+    "basis": "The order's only operative content revokes, rescinds or cancels another order; it did that one thing on issue (P1). Its consequence, the other order's end, belongs to that order's lifecycle. Date: the order's own date.",
     "date_rule": {
      "kind": "order_date"
     },
@@ -486,8 +630,83 @@
    ]
   },
   {
+   "branch_id": "B01-EFF",
+   "description": "Revoke-only orders that state their own effective date (EO 6668 and 6669 cancel Veterans Regulations No. 1(d) and No. 12(a) 'effective March 28, 1934').",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6668",
+      "EO:6669"
+     ]
+    },
+    {
+     "text_regex": "canceled effective March 28, 1934"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content cancels a Veterans Regulation 'effective March 28, 1934' (P1). P1 dates a revoke-only order by its stated effective date; the order itself is dated April 6, 1934, so the cancellation reaches back nine days.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-03-28",
+     "basis": "effective date stated in the order (signed 1934-04-06)"
+    },
+    "mechanism_ids": [
+     "M-SPENT"
+    ],
+    "source_ids": [
+     "S-MEMBER"
+    ]
+   },
+   "gaps": [
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B02-TABLE",
+   "description": "Amend-only orders that restate the whole operative text of the parent ('amended so as to prescribe as follows', 'amended to read as follows', 'the following amendments are hereby made'), which later orders then cite as the regulation itself.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:330B",
+      "EO:980",
+      "EO:3723",
+      "EO:6885"
+     ]
+    },
+    {
+     "text_regex": "amend"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's own text presents it as an amendment of the parent order (EO 330B and EO 980: the Army punishment limits of 1901 'amended so as to prescribe as follows'; EO 3723: 'the following amendments ... are hereby made' to the Hot Springs hospital rules of 1892; EO 6885: the order of August 25, 1892 'is hereby amended to read as follows'). Replacing a whole table or the whole text is still an amendment of the parent (P2, coordinator adjudication), so the member merges into the parent on issue and the parent's lifecycle carries the restated text.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-SPENT"
+    ],
+    "source_ids": [
+     "S-MEMBER"
+    ]
+   },
+   "gaps": [
+    "Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "Later orders cite the restated text by the amending order's own number or date: EO 1173 and EO 1333 amend 'the Executive order dated Nov. 25, 1908' (EO 980); EO 5429 amends paragraphs 'provided ... by Executive Order No. 3723'; the Wikisource notes to EO 2043 (Sept. 5, 1914) say it supersedes EO 980, 1173 and 1333, an editor's note, not words of EO 2043. Under P2 these act on the parent; they are disclosed, and they are why the engine flags EO 330B (amended by EO 980) and EO 980.",
+    "If the owner treats a whole-text restatement as a new standing regulation, these four leads become open pending the instrument that ended the restated regulation (for EO 980, EO 2043).",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
    "branch_id": "B02",
-   "description": "Amend-only orders: the member's own text shows that amending, modifying or restating another order or regulation is its only operative content (list fixed after reading each held text).",
+   "description": "Amend-only orders: the member's own text shows that amending, modifying or restating part of another order or regulation, or substituting a date in it, is its only operative content (list fixed after reading each held text).",
    "when": [
     {
      "field": "instrument_id",
@@ -509,8 +728,6 @@
       "EO:2812",
       "EO:3010A",
       "EO:3024B",
-      "EO:3283",
-      "EO:330B",
       "EO:3690",
       "EO:3750",
       "EO:3935",
@@ -519,12 +736,10 @@
       "EO:459",
       "EO:4619",
       "EO:4647",
-      "EO:4698",
       "EO:5067",
       "EO:757",
       "EO:759",
       "EO:918",
-      "EO:980",
       "EO:6159",
       "EO:6175",
       "EO:6265",
@@ -568,18 +783,37 @@
       "EO:4459",
       "EO:5471",
       "EO:6352",
-      "EO:7209"
+      "EO:7209",
+      "EO:516",
+      "EO:2525",
+      "EO:6512",
+      "EO:552",
+      "EO:574",
+      "EO:3311",
+      "EO:3369",
+      "EO:4102",
+      "EO:3864",
+      "EO:4111",
+      "EO:4473",
+      "EO:5429",
+      "EO:7226",
+      "EO:7319",
+      "EO:7333",
+      "EO:7347",
+      "EO:7371",
+      "EO:7433",
+      "EO:7446"
      ]
     },
     {
-     "text_regex": "amend|modif|substitut|rescinded and the following|extended to include"
+     "text_regex": "amen\\W?d|modif|substitut|rescinded and the following|extended to include|instead of January 1|deferred to January 16, 1934"
     }
    ],
    "lead": {
     "status_lead": "no",
     "lead_kind": "merged_into_parent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order's only operative content amends, modifies or restates another order or regulation; under P2 (D-20261021-strike-and-insert) it merges into the parent on issue: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "basis": "The order's only operative content amends, modifies or restates part of another order or regulation, or substitutes a date in it; under P2 (D-20261021-strike-and-insert) it merges into the parent on issue: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it. A later order that amends or supersedes the amended text acts on the parent, so held amendment edges dated after the order's date do not keep the member alive.",
     "date_rule": {
      "kind": "order_date"
     },
@@ -593,6 +827,8 @@
    "gaps": [
     "Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
     "If the owner treats an amending order as living as long as the amended text lives, these leads become open pending the parent (P2 adoption choice).",
+    "Several members state an effective date different from their signing date (EO 552 from July 1, 1907; EO 3864 from September 1, 1923; EO 4473 from July 1, 1926; EO 3024B as of the parent's date); P2 dates the merger by the amending order's own date, and the stated date governs when the amended text operated within the parent.",
+    "Held amendment edges dated after the order act on the parent, not on the member: EO 574 restates EO 552's amendment of the Hot Springs rules; EO 6561 defers again the abolition date that EO 6512 set in EO 6433-A; EO 6683 and EO 6788 amend EO 6474 as amended by EO 6576; EO 7164 recites Regulations No. 1 and No. 2 'as amended' by EO 7117, 7119 and 7125. The engine flags these six members; the flags do not change the leads.",
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
    ]
   },
@@ -613,9 +849,10 @@
     "basis_kind": "ACT",
     "basis": "EO 5376 revoked EO 1440 in terms.",
     "date_rule": {
-     "kind": "fixed",
-     "date": "1930-06-23",
-     "basis": "date of EO 5376"
+     "kind": "interval",
+     "from": "1930-06-23",
+     "to": "1930-07-01",
+     "basis": "EO 5376, signed 1930-06-23, revokes EO 1440 and fixes the new salary 'beginning July 1, 1930', so the revocation took effect on one of those dates"
     },
     "mechanism_ids": [
      "M-REVOKED"
@@ -625,7 +862,8 @@
     ]
    },
    "gaps": [
-    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+    "The acting order's text is a mirror or machine-read copy; confirm against an authenticated copy.",
+    "The held amendment edge from EO 10666 (1956, a Hawaii land order) is misattributed to EO 1440 by number matching and does not act on it."
    ]
   },
   {
@@ -921,7 +1159,7 @@
   },
   {
    "branch_id": "B03-11",
-   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "description": "Only subject abolished by name by a later order (P7).",
    "when": [
     {
      "field": "instrument_id",
@@ -933,16 +1171,16 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_named_later_instrument",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
     "basis_kind": "ACT",
-    "basis": "EO 9461 abolished the Executive Committee on Commercial Policy, naming EO 6656 and EO 7260 as the orders that continued it; those orders have no object after the abolition.",
+    "basis": "EO 9461 abolished the Executive Committee on Commercial Policy, naming EO 6656 and EO 7260 as the orders that continued it; those orders have no object after the abolition. The Executive Committee on Commercial Policy is the member's only operative subject, so the abolition by name ends it (P7).",
     "date_rule": {
      "kind": "fixed",
      "date": "1944-08-07",
      "basis": "date of EO 9461"
     },
     "mechanism_ids": [
-     "M-REVOKED"
+     "M-ABOLISHED"
     ],
     "source_ids": [
      "S-EO9461"
@@ -986,7 +1224,7 @@
   },
   {
    "branch_id": "B03-13",
-   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "description": "Only subject abolished by name by a later order (P7).",
    "when": [
     {
      "field": "instrument_id",
@@ -997,16 +1235,16 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_named_later_instrument",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
     "basis_kind": "ACT",
-    "basis": "EO 6777 abolished the Committee on National Land Problems that EO 6693 created.",
+    "basis": "EO 6777 abolished the Committee on National Land Problems that EO 6693 created. The Committee on National Land Problems is the member's only operative subject, so the abolition by name ends it (P7).",
     "date_rule": {
      "kind": "fixed",
      "date": "1934-06-30",
      "basis": "date of EO 6777"
     },
     "mechanism_ids": [
-     "M-REVOKED"
+     "M-ABOLISHED"
     ],
     "source_ids": [
      "S-EO6777"
@@ -1050,7 +1288,7 @@
   },
   {
    "branch_id": "B03-15",
-   "description": "Revoked, superseded or abolished as a whole by a later order whose held text names it.",
+   "description": "Only subject abolished by name by a later order (P7).",
    "when": [
     {
      "field": "instrument_id",
@@ -1061,23 +1299,24 @@
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "ended_by_named_later_instrument",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
     "basis_kind": "ACT",
-    "basis": "EO 6858 section 9 abolished the Board of Inquiry that EO 6840 created.",
+    "basis": "EO 6858 section 9 abolished the Board of Inquiry that EO 6840 created. The Board of Inquiry for the Cotton Textile Industry is the member's only operative subject, so the abolition by name ends it (P7).",
     "date_rule": {
      "kind": "fixed",
      "date": "1934-09-26",
      "basis": "date of EO 6858"
     },
     "mechanism_ids": [
-     "M-REVOKED"
+     "M-ABOLISHED"
     ],
     "source_ids": [
      "S-EO6858"
     ]
    },
    "gaps": [
-    "The revoking order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+    "The acting order's text is a mirror or machine-read copy; confirm against an authenticated copy.",
+    "Held amendment edges from EO 6875 and EO 6876 (NRA code orders of October 1934) recite the board's report under EO 6840 after its abolition; they do not act on EO 6840."
    ]
   },
   {
@@ -1273,6 +1512,267 @@
    ]
   },
   {
+   "branch_id": "B03-22",
+   "description": "Alaska reserve restored to the public domain by a later order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1987"
+     ]
+    },
+    {
+     "text_regex": "natives? of Alaska"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_named_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "EO 4044 restored to the public domain the lands 'withdrawn from disposal and reserved by Executive Order No. 1987, dated July 9, 1914, for use of the Bureau of Education and the natives', describing all three reserves. EO 4055 vacated the restoration only for tracts inside the Chugach National Forest, which stayed national forest land and were 'released from reservation for use of the Bureau of Education'. Nothing of the EO 1987 reserve remained in 1971 for ANCSA sec. 19(a) to revoke.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1924-07-03",
+     "basis": "date of EO 4044"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO4044",
+     "S-EO4055"
+    ]
+   },
+   "gaps": [
+    "The acting order's text is a mirror or machine-read copy; confirm against an authenticated copy.",
+    "The Chugach tracts stayed in the national forest under EO 4055; their later history belongs to the forest, not to this order."
+   ]
+  },
+  {
+   "branch_id": "B03-23",
+   "description": "Land-district boundary order rescinded by a later order that names it by date and subject.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1234"
+     ]
+    },
+    {
+     "text_regex": "Lincoln land district"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_named_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "EO 1244 redefined the Lincoln land district and provides that the 'Executive order of August 4, 1910, reestablishing the boundary lines of said Lincoln land district is hereby rescinded'; EO 1234 is that order and its only content is those boundaries.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "1910-08-24",
+     "to": "1910-09-16",
+     "basis": "EO 1244's date line reads 'Sy5/. 2, 1910' in the held OCR, most likely September 2, 1910; the neighbouring numbered orders EO 1243 (1910-08-24) and EO 1246 (1910-09-16) bound it"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO1244"
+    ]
+   },
+   "gaps": [
+    "The acting order's text is a mirror or machine-read copy; confirm against an authenticated copy.",
+    "EO 1244's exact date needs a legible copy; the interval rests on the order numbers of its neighbours."
+   ]
+  },
+  {
+   "branch_id": "B03-24",
+   "description": "Transfer of administrative control revoked by a later order that names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4703"
+     ]
+    },
+    {
+     "text_regex": "Government Island"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_named_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "EO 4918 revoked 'Executive Order No. 4703, of August 10, 1927' and retransferred Government Island to the Department of Agriculture.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1928-06-23",
+     "basis": "date of EO 4918"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO4918"
+    ]
+   },
+   "gaps": [
+    "The acting order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-25",
+   "description": "Pay-rate order superseded by a later order that names it by number.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6440"
+     ]
+    },
+    {
+     "text_regex": "rates? of compensation"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_named_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "EO 6746 provides: 'This order supersedes Executive Orders Numbers 6440, 6554, and 6622'.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-06-21",
+     "basis": "date of EO 6746, whose supersession clause states no later effective date"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO6746"
+    ]
+   },
+   "gaps": [
+    "The acting order's text is a mirror or machine-read copy; confirm against an authenticated copy.",
+    "Adjustments under EO 6746 took effect from the first day of the month after each report, so pay at EO 6440 rates may have continued briefly in practice; the order's words supersede on signing.",
+    "Accrued effect: pay already fixed under EO 6440 is not undone."
+   ]
+  },
+  {
+   "branch_id": "B03-26",
+   "description": "Defensive sea area orders revoked as an expressly described class.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2584",
+      "EO:2597"
+     ]
+    },
+    {
+     "text_regex": "defensive sea area"
+    },
+    {
+     "field": "date",
+     "lt": "1919-01-25"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_class_instrument",
+    "basis_kind": "ACT",
+    "basis": "EO 3027 provides: 'All Executive Orders heretofore issued for the establishment of Defensive Sea Areas are hereby revoked.' Member test: the member's own text establishes defensive sea areas (EO 2584, twenty-nine areas with the regulations governing them; EO 2597, the additional area at the mouth of the York River) and it predates EO 3027. The Wikisource notes to EO 3027 also list both orders.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1919-01-25",
+     "basis": "date of EO 3027"
+    },
+    "mechanism_ids": [
+     "M-CLASS-EO"
+    ],
+    "source_ids": [
+     "S-EO3027",
+     "S-MEMBER"
+    ]
+   },
+   "gaps": [
+    "The acting order's text is a mirror or machine-read copy; confirm against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B03-27",
+   "description": "Alaska timber reserve revoked by a Public Land Order, as BLM's official table states it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2259"
+     ]
+    },
+    {
+     "text_regex": "Timber Reserve No\\. 2"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_named_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "BLM's table of Public Land Orders lists PLO 406 of September 11, 1947: 'Alaska; revoking of EO No. 2259; withdrawing for Alaskan Road Commission.'",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1947-09-11",
+     "basis": "date of PLO 406 per the BLM table"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-406"
+    ]
+   },
+   "gaps": [
+    "The PLO 406 text (12 FR 6259) is not held; the lead rests on BLM's official table, which describes the order but is not it.",
+    "PLO 406 re-withdrew land for the Alaska Road Commission; that withdrawal is PLO 406's own lifecycle."
+   ]
+  },
+  {
+   "branch_id": "B03-28",
+   "description": "Grazing withdrawal revoked by a Public Land Order, as BLM's official table states it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6587"
+     ]
+    },
+    {
+     "text_regex": "Public Grazing Withdrawal No\\. 4"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_named_later_instrument",
+    "basis_kind": "ACT",
+    "basis": "BLM's table of Public Land Orders lists PLO 434 of January 6, 1948: 'Utah; revoking EO No. 6587 of Feb. 6, 1934; withdrawing public lands for classification in aid of legislation, and for other purposes'.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1948-01-06",
+     "basis": "date of PLO 434 per the BLM table"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-434"
+    ]
+   },
+   "gaps": [
+    "The PLO 434 text (13 FR 199) is not held; the lead rests on BLM's official table, which describes the order but is not it.",
+    "PLO 434 made a new withdrawal of the same lands; that withdrawal is PLO 434's own lifecycle."
+   ]
+  },
+  {
    "branch_id": "B04",
    "description": "Tax-return inspection orders: the order opens returns to inspection by its own force; none of the held texts states an end date, period or Congress after which inspection stops.",
    "when": [
@@ -1310,7 +1810,8 @@
    },
    "gaps": [
     "Disclosed earlier candidate end: 1977-01-01, when Tax Reform Act of 1976 sec. 1202 (90 Stat. 1667, 1672, 1688; held) made returns confidential except as Title 26 authorizes and left no inspection upon order of the President; under P3 it does not end the member because it does not name it or an expressly described class that includes it.",
-    "For grants to a congressional committee (EO 6241, 6603A, 6712, 6742, 7039, 7097, 7115, 7158, 7322, 7350, 7411, 7483, 3595): the end of the committee's authority under its resolution (Senate or House resolution named in the text) from the Journal or Congressional Record; a House resolution's authority ending with its Congress would need a held source (House rules or precedents).",
+    "For grants to a congressional committee under a resolution named in the text (EO 6241, 6712, 6742, 7039, 7097, 7115, 7158, 7322, 7350, 7411, 7483): the end of the committee's authority under its resolution, from the Journal or Congressional Record; a House resolution's authority ending with its Congress would need a held source (House rules or precedents).",
+    "EO 3595 (two firms' returns opened to 'Honorable Joseph W. Fordney, Chairman of the Ways & Means Committee', or a member he designates) and EO 6603A (returns opened to the House Committee on Naval Affairs) name no resolution: each grant runs to a standing committee, or its named chairman, and its end depends on that committee's inquiry or the chairman's tenure, which no held source fixes.",
     "For general orders under Treasury rules and standing orders for State officers (EO 1999, 2882A, 2934A, 3212, 3624, 3971A, 4078, 4416, 4940, 5321, 5647, 5824, 5970, 2130): a later order that supersedes them by number or by express class.",
     "TR-TAX-RETURN-INSPECTION was checked: no member's own text limits inspection to a stated period or date."
    ]
@@ -1336,7 +1837,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1909-09-02.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1909-09-02. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1909-09-02",
@@ -1352,7 +1853,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
@@ -1376,7 +1877,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1909-03-02.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1909-03-02. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1909-03-02",
@@ -1392,7 +1893,8 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words.",
+    "The held edge from EO 9556 is a 1945 Federal Register contents entry matched by number; it does not act on EO 921."
    ]
   },
   {
@@ -1416,7 +1918,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1910-03-02.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1910-03-02. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1910-03-02",
@@ -1432,7 +1934,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
@@ -1456,7 +1958,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1910-05-02.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1910-05-02. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1910-05-02",
@@ -1472,7 +1974,8 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words.",
+    "No held record shows the Commission dissolved before May 2, 1910; the end is the period's last day."
    ]
   },
   {
@@ -1496,7 +1999,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1904-03-02.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1904-03-02. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1904-03-02",
@@ -1512,7 +2015,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
@@ -1536,7 +2039,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1904-09-02.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1904-09-02. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1904-09-02",
@@ -1552,7 +2055,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
@@ -1576,7 +2079,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1906-09-02.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1906-09-02. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1906-09-02",
@@ -1592,7 +2095,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
@@ -1616,7 +2119,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1907-09-02.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1907-09-02. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1907-09-02",
@@ -1632,7 +2135,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
@@ -1656,7 +2159,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1908-03-02.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1908-03-02. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1908-03-02",
@@ -1672,7 +2175,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
@@ -1696,7 +2199,7 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1907-03-02. EO 492 stated January 1, 1907; EO 516 substituted March 2, 1907 before that day, so EO 492 as amended ran to March 2, 1907.",
+    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1907-03-02. EO 492 stated January 1, 1907; EO 516 (itself an amend-only order, B02) substituted March 2, 1907 before that day, so EO 492 as amended ran to March 2, 1907. The stated end is the latest end. Sec. 16 lets the President dissolve the Commission early only if it finishes before the original two years expire; for every member but the last (EO 1167), the next order of the series continues the Commission from the day this period ends, so the period ran its full length.",
     "date_rule": {
      "kind": "fixed",
      "date": "1907-03-02",
@@ -1713,21 +2216,21 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
-   "branch_id": "B05-516",
-   "description": "Spanish Treaty Claims Commission extension with a legible stated period.",
+   "branch_id": "B05-292",
+   "description": "Spanish Treaty Claims Commission extension whose starting year is garbled by OCR (EO 292).",
    "when": [
     {
      "field": "instrument_id",
      "in": [
-      "EO:516"
+      "EO:292"
      ]
     },
     {
-     "text_regex": "extended to March 2, 1907, instead of January 1"
+     "text_regex": "six months from and after the second day of'? M\\w*rc"
     },
     {
      "text_regex": "longer time"
@@ -1737,11 +2240,11 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission's powers for a stated period 'and for no longer time'; the period ended on 1907-03-02.",
+    "basis": "The order (January 31, 1905) extends the Commission's powers 'for and during six months from and after the second day of March' of a year the OCR garbles ('nineteen' ... 'n fv'), 'and for no longer time'. Read with the order's date, the start is March 2, 1905, the next March 2; every legible member's period starts on the first March 2 or September 2 after its date. The period ended on 1905-09-02. The stated end is the latest end.",
     "date_rule": {
      "kind": "fixed",
-     "date": "1907-03-02",
-     "basis": "stated period in the order's text"
+     "date": "1905-09-02",
+     "basis": "six months from March 2, 1905; starting year read with the order's date"
     },
     "mechanism_ids": [
      "M-OWNDATE"
@@ -1752,23 +2255,23 @@
     ]
    },
    "gaps": [
+    "The starting year is garbled in the held OCR and is read from the order's date (the same reading standard as EO 625's '1G08'); the WPA 1944 summary independently gives 'until Sept. 2, 1905'.",
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "Authority (Act of March 2, 1901, sec. 16) not yet held; the end rests on the order's own words."
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
-   "branch_id": "B05-ZZ",
-   "description": "Spanish Treaty Claims Commission extension whose period and 'no longer time' clause are legible but whose starting date is partly illegible.",
+   "branch_id": "B05-749",
+   "description": "Spanish Treaty Claims Commission extension whose starting year is misread by OCR (EO 749).",
    "when": [
     {
      "field": "instrument_id",
      "in": [
-      "EO:292",
       "EO:749"
      ]
     },
     {
-     "text_regex": "months from and after the second d"
+     "text_regex": "six months from and after the second dayr? of March, 1 ?9 ?0 ?[38]"
     },
     {
      "text_regex": "longer time"
@@ -1778,12 +2281,11 @@
     "status_lead": "no",
     "lead_kind": "own_terms_stated_period",
     "basis_kind": "TERM",
-    "basis": "The order extends the Commission for a stated number of months from a second day of March 'and for no longer time'; the last order of the series (EO 1167) ran only to May 2, 1910, so this one ended no later than that.",
+    "basis": "The order (February 5, 1908) extends the Commission's powers 'for and during six months from and after the second day of March, 1 903 [OCR for 1908], and for no longer time'. Read with the order's date, the start is March 2, 1908, the day EO 674's period ended. The period ended on 1908-09-02. The stated end is the latest end; EO 921 continued the Commission from September 2, 1908, so the period ran its full length.",
     "date_rule": {
-     "kind": "interval",
-     "from": "order_date",
-     "to": "1910-05-02",
-     "basis": "stated period, starting-year digits illegible in the held text"
+     "kind": "fixed",
+     "date": "1908-09-02",
+     "basis": "six months from March 2, 1908; starting year read with the order's date"
     },
     "mechanism_ids": [
      "M-OWNDATE"
@@ -1794,8 +2296,10 @@
     ]
    },
    "gaps": [
-    "The year of the starting date is illegible in the held text; the bound assumes the March 2 next after the order's date, as in every legible member.",
-    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+    "The held OCR prints the starting year as '1 903'; a start in 1903 would precede the order by five years, so the year is read from the order's date and the series (EO 674 ran to 1908-03-02); the WPA 1944 summary independently gives 'until Sept. 2, 1908'.",
+    "The held restoration edge from EO 10414 (1952, a Hawaii military reservation) is misattributed by number matching and does not act on EO 749.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
+    "Authority: Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877 (read on the web, not held); the end rests on the order's own words."
    ]
   },
   {
@@ -1831,7 +2335,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+    "Only the held later-event edges were searched for an order amending this order's date before it passed."
    ]
   },
   {
@@ -1867,43 +2371,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
-   ]
-  },
-  {
-   "branch_id": "B06-6512",
-   "description": "Order that defers or continues something to a stated date.",
-   "when": [
-    {
-     "field": "instrument_id",
-     "in": [
-      "EO:6512"
-     ]
-    },
-    {
-     "text_regex": "deferred to January 16, 1934"
-    }
-   ],
-   "lead": {
-    "status_lead": "no",
-    "lead_kind": "own_terms_stated_date",
-    "basis_kind": "TERM",
-    "basis": "The order's only command defers an effective date or continues a body or status until a stated day; after that day the command has nothing left to do (the deferred measure then operates, or a later order carries the subject forward).",
-    "date_rule": {
-     "kind": "fixed",
-     "date": "1934-01-16",
-     "basis": "stated date"
-    },
-    "mechanism_ids": [
-     "M-OWNDATE"
-    ],
-    "source_ids": [
-     "S-MEMBER"
-    ]
-   },
-   "gaps": [
-    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+    "Only the held later-event edges were searched for an order amending this order's date before it passed."
    ]
   },
   {
@@ -1939,7 +2407,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+    "Only the held later-event edges were searched for an order amending this order's date before it passed."
    ]
   },
   {
@@ -1976,7 +2444,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+    "Only the held later-event edges were searched for an order amending this order's date before it passed."
    ]
   },
   {
@@ -2013,7 +2481,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+    "Only the held later-event edges were searched for an order amending this order's date before it passed."
    ]
   },
   {
@@ -2050,7 +2518,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+    "Only the held later-event edges were searched for an order amending this order's date before it passed."
    ]
   },
   {
@@ -2087,7 +2555,8 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+    "Only the held later-event edges were searched for an order amending this order's date before it passed.",
+    "Four amendment edges are held (EO 7077 of 1935-06-15, EO 7261, EO 7390, EO 7526). EO 7077 names EO 6927 only as an order under which transfers had been made and itself delays the remaining EO 6166 sec. 4 transfers to December 31, 1935, under sec. 22 of EO 6166; the later three repeat that pattern. They are separate later delays and do not amend EO 6927's own date, which stays 1935-06-30."
    ]
   },
   {
@@ -2124,7 +2593,7 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held)."
+    "Only the held later-event edges were searched for an order amending this order's date before it passed."
    ]
   },
   {
@@ -2162,7 +2631,8 @@
    },
    "gaps": [
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy.",
-    "No later amendment beyond EO 7121 is held; one would move the date."
+    "No later amendment beyond EO 7121 is held; one would move the date.",
+    "Only the held later-event edges were searched for an order amending this order's date before it passed."
    ]
   },
   {
@@ -2173,9 +2643,7 @@
      "field": "instrument_id",
      "in": [
       "EO:1896",
-      "EO:1987",
       "EO:2508",
-      "EO:2525",
       "EO:2757",
       "EO:3673"
      ]
@@ -2188,7 +2656,7 @@
     "status_lead": "no",
     "lead_kind": "ended_by_express_class_instrument",
     "basis_kind": "ACT",
-    "basis": "ANCSA sec. 19(a) provides that \"the various reserves set aside by legislation or by Executive or Secretarial Order for Native use or for administration of Native affairs, including those created under the Act of May 31, 1938 ... are hereby revoked subject to any valid existing rights of non-Natives\" (Annette Island excepted). Member test: the order's own text reserves the land for the use of the Bureau of Education and the natives of Alaska of indigenous race (EO 1896, 1987, 2508, 2525, 2757) or for the natives residing at the village of Klukwan (EO 3673), so each is a reserve set aside by Executive order for Native use or for administration of Native affairs.",
+    "basis": "ANCSA sec. 19(a) provides that \"the various reserves set aside by legislation or by Executive or Secretarial Order for Native use or for administration of Native affairs, including those created under the Act of May 31, 1938 ... are hereby revoked subject to any valid existing rights of non-Natives\" (Annette Island excepted). Member test: the order's own text reserves the land for the use of the Bureau of Education and the natives of Alaska of indigenous race (EO 1896, 2508, 2757) or for the natives residing at the village of Klukwan (EO 3673), so each is a reserve set aside by Executive order for Native use or for administration of Native affairs.",
     "date_rule": {
      "kind": "fixed",
      "date": "1971-12-18",
@@ -2202,7 +2670,7 @@
     ]
    },
    "gaps": [
-    "Parts of some reserves ended earlier (EO 5207 of 1929 revoked part of the Norton Bay reserve of EO 2508 as amended by EO 2525); the fixed date is the end of what remained.",
+    "Parts of some reserves ended earlier: EO 5207 of 1929 revoked the Norton Bay reserve of EO 2508 (as restated by the amend-only EO 2525, B02) 'as to the tract described'; the fixed date is the end of what remained. EO 1987's reserves were restored in 1924 by EO 4044 and are decided on that ground (B03-22).",
     "Valid existing rights of non-Natives survive as accrued effects.",
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
    ]
@@ -2741,6 +3209,42 @@
    },
    "gaps": [
     "The exact end (stated last day plus travel time) is not fixed by the text; the year-end bound is an inference.",
+    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+   ]
+  },
+  {
+   "branch_id": "B08-973",
+   "description": "Excusal for the afternoon of a named day whose date digits are damaged by OCR (EO 973).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:973"
+     ]
+    },
+    {
+     "text_regex": "statue of General Philip.{0,30}Sheridan on .{0,6}e\\w*nesda\\w*, November 2,?5"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "own_terms_named_day",
+    "basis_kind": "TERM",
+    "basis": "The order excuses veterans and members of named organizations from duty to attend the unveiling of the Sheridan statue 'on Wednesday, November 2,5, 10,[8]' at one o'clock. Read with the order's date (November 17, 1908), the day is Wednesday, November 25, 1908, which was a Wednesday. The command ended at the close of that day.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1908-11-25",
+     "basis": "named day, read with the order's date"
+    },
+    "mechanism_ids": [
+     "M-OWNDATE"
+    ],
+    "source_ids": [
+     "S-MEMBER"
+    ]
+   },
+   "gaps": [
+    "The year digits and the hour are damaged in the held OCR; the day is read from the legible weekday and month and the order's date (the same reading standard as EO 625's '1G08'); the WPA 1944 summary independently gives 'Nov. 25, 1908, at 1 p. m.'.",
     "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
    ]
   },
@@ -3449,39 +3953,42 @@
    ]
   },
   {
-   "branch_id": "B09-457",
-   "description": "Authority to employ a copyist for not more than three months.",
+   "branch_id": "B10-7321",
+   "description": "Authorization to issue temporary regulations 'pending the promulgation of uniform regulations', which held later orders promulgated.",
    "when": [
     {
      "field": "instrument_id",
      "in": [
-      "EO:457"
+      "EO:7321"
      ]
     },
     {
-     "text_regex": "not to exceed three months"
+     "text_regex": "pending the promulgation of uniform regulations"
     }
    ],
    "lead": {
     "status_lead": "no",
-    "lead_kind": "own_terms_stated_period",
+    "lead_kind": "own_terms_condition_performed",
     "basis_kind": "TERM",
-    "basis": "The order authorizes one temporary employment 'not to exceed three months' from its date of June 13, 1906.",
+    "basis": "The order authorizes department heads to issue temporary annual and sick leave regulations 'pending the promulgation of uniform regulations as provided for by the said acts'. EO 7409 and EO 7410 of July 9, 1936 promulgated the uniform annual and sick leave regulations under those acts and ratified the temporary regulations issued 'under authority of Executive Order No. 7321'. The authorization's own condition was then met and it had nothing left to authorize.",
     "date_rule": {
-     "kind": "interval",
-     "from": "order_date",
-     "to": "1906-09-13",
-     "basis": "three months from the order's date"
+     "kind": "fixed",
+     "date": "1936-07-09",
+     "basis": "date EO 7409 and EO 7410 promulgated the uniform regulations (effective as of July 1, 1936)"
     },
     "mechanism_ids": [
      "M-OWNDATE"
     ],
     "source_ids": [
-     "S-MEMBER"
+     "S-MEMBER",
+     "S-EO7409",
+     "S-EO7410"
     ]
    },
    "gaps": [
-    "Machine-read or mirror text: a reviewer must confirm the operative clause against an authenticated copy."
+    "Surviving consequence: the temporary regulations issued under the order were ratified and were revoked only 'insofar as they are inconsistent' with the uniform regulations; their remaining life is their own, not the order's.",
+    "The uniform regulations are retroactive to July 1, 1936; the authorization ended when they were promulgated on July 9, 1936.",
+    "The acting order's text is a mirror or machine-read copy; confirm against an authenticated copy."
    ]
   },
   {
@@ -3596,7 +4103,7 @@
   },
   {
    "branch_id": "O01-CIVILWAR",
-   "description": "Misfiled or mismatched member: Civil War orders (Louisiana provisional court, 1862; Virginia, 1865) typed as pay orders; no Pothier family covers them, and their held later-event edges point to unrelated later orders.",
+   "description": "Misfiled or mismatched member: Civil War orders typed as pay orders; no Pothier family covers them. EO 1's held text and member date are the War Department's Executive Order No. 1 relating to political prisoners (February 14, 1862), while its WPA 1944 summary describes the Louisiana provisional court order of 1862; EO 4 is a Virginia order of 1865.",
    "when": [
     {
      "field": "instrument_id",
@@ -3610,7 +4117,7 @@
     "status_lead": "open",
     "lead_kind": "misfiled_family_named",
     "basis_kind": "NONE",
-    "basis": "Civil War orders (Louisiana provisional court, 1862; Virginia, 1865) typed as pay orders; no Pothier family covers them, and their held later-event edges point to unrelated later orders.",
+    "basis": "Civil War orders typed as pay orders; no Pothier family covers them. EO 1's held text and member date are the War Department's Executive Order No. 1 relating to political prisoners (February 14, 1862), while its WPA 1944 summary describes the Louisiana provisional court order of 1862; EO 4 is a Virginia order of 1865.",
     "date_rule": {
      "kind": "none"
     },
@@ -3618,7 +4125,35 @@
     "source_ids": []
    },
    "gaps": [
+    "Settle which order the number EO 1 denotes (the held text, the political-prisoners order of February 14, 1862, or the WPA's Louisiana provisional court order), then acquire a legible text of that order.",
+    "Their held later-event edges come from number matching against unrelated twentieth-century orders and do not act on them.",
     "Reassign to the named family or acquire a legible text of the order."
+   ]
+  },
+  {
+   "branch_id": "O01-PERSON",
+   "description": "Misfiled member: its only content is compensation for one named person.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4698"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misfiled_family_named",
+    "basis_kind": "NONE",
+    "basis": "EO 4698 amends the order designating L. M. Parker custodian of the Railroad Labor Board records so that he receives $5,000 a year, effective as of the original order. Its only content is one named person's pay, so it follows PD-CS-ONE-PERSON (COORDINATOR_RULINGS P4).",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Decide under PD-CS-ONE-PERSON (P4)."
    ]
   },
   {
@@ -3687,6 +4222,36 @@
    },
    "gaps": [
     "For Labor Day orders without 'hereafter' (EO 677, 926, 1122, 1243): evidence that each covered only that year's Labor Day; for funeral-day orders: the funeral date from an official record; the Jacquard L3 review rejected these on the same ground."
+   ]
+  },
+  {
+   "branch_id": "O03X",
+   "description": "Own-terms orders whose end runs from an undated act or an outside event that the held sources do not date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:457",
+      "EO:3283"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "own_terms_event_date_not_held",
+    "basis_kind": "NONE",
+    "basis": "EO 457 authorizes the hire of a copyist, 'the employment to continue for such length of time as may be necessary, but not to exceed three months'; the three months run from the hiring, which the text does not date. EO 3283 suspends provision 3 of the order of March 24, 1920 'until the conclusion of the work of the United States Anthracite Coal Commission', an outside event whose date is not held.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": [
+     "S-MEMBER"
+    ]
+   },
+   "gaps": [
+    "EO 457: the copyist's hiring date or last payment (Executive Mansion appropriation accounts for fiscal years 1906-1907).",
+    "EO 3283: the date the Anthracite Coal Commission finished its work (its report or a later order transferring its records)."
    ]
   },
   {
@@ -3843,7 +4408,8 @@
    },
    "gaps": [
     "Career Compensation Act of 1949 (63 Stat. 802) and Pay Readjustment Act of 1942 (56 Stat. 359) texts, checked for terms reaching presidential pay orders; the end of each named commission.",
-    "Orders whose only content is compensation or a designation for one named person follow PD-CS-ONE-PERSON (COORDINATOR_RULINGS P4); they are left open here."
+    "Orders whose only content is compensation or a designation for one named person follow PD-CS-ONE-PERSON (COORDINATOR_RULINGS P4); they are left open here.",
+    "Held ending edge not used: EO 328C carries a revocation edge from EO 4272 (1925), whose words revoke EO 1147 'as to' one subdivision of public land; the edge is misattributed by number matching."
    ]
   },
   {
@@ -3869,7 +4435,8 @@
     "source_ids": []
    },
    "gaps": [
-    "Veterans' Benefits Act of 1957, Pub. L. 85-56, titles XXII-XXIII, 71 Stat. 157-172; later passport and Army ration orders that state they supersede earlier ones."
+    "Veterans' Benefits Act of 1957, Pub. L. 85-56, 71 Stat. 83 (June 17, 1957), title XXII (beginning 71 Stat. 157) and title XXIII (beginning 71 Stat. 172), sec. 2307 'Outstanding rules, regulations, and orders' (page of sec. 2307 unverified); later passport and Army ration orders that state they supersede earlier ones.",
+    "Held ending edges not used (P3): EO 181 and EO 235 (passport rules) are said to be superseded by EO 235 and EO 654 only in Wikisource editors' headers, not in the orders' words; EO 2043 (Army punishment limits) likewise by EO 2498; EO 4773 (Manual for Courts-Martial, 1928) was replaced by the 1949 Manual (EO 10020), whose text prescribes a new manual and saves proceedings begun under the 1928 one but does not revoke EO 4773 in terms. Each is a disclosed earlier candidate end."
    ]
   },
   {
@@ -3895,7 +4462,8 @@
     "source_ids": []
    },
    "gaps": [
-    "Reorganization Plan No. 3 of 1946, sec. 403, 60 Stat. 1097, 1100; the abolition instrument of each named board or committee."
+    "Reorganization Plan No. 3 of 1946, sec. 403, 60 Stat. 1097, 1100; the abolition instrument of each named board or committee.",
+    "Held ending edges not used: EO 306 (Consultative Board of Architects) is said to be revoked by EO 311 only in a Wikisource note, and EO 311's held text is an unreadable scan (O01-TEXT); EO 6514's rescission by EO 7139 reaches one direction only; EO 2381's restoration by EO 10047 covers one pier."
    ]
   },
   {
@@ -3924,12 +4492,16 @@
    "detected_by": "B04, O03T"
   },
   {
-   "reason": "Misfiled member (family named) or held text that is not a legible copy of the order",
-   "detected_by": "O01-INDIAN, O01-MILRES, O01-WAR, O01-ORG, O01-CIVILWAR, O01-TEXT"
+   "reason": "Misfiled member (family named, including one named-person pay order for PD-CS-ONE-PERSON) or held text that is not a legible copy of the order",
+   "detected_by": "O01-INDIAN, O01-MILRES, O01-WAR, O01-ORG, O01-CIVILWAR, O01-PERSON, O01-TEXT"
   },
   {
    "reason": "Closing or mourning order with no fixed calendar day in the text, or a standing holiday rule",
    "detected_by": "O02"
+  },
+  {
+   "reason": "Own-terms order whose end runs from an undated hiring or an outside event that no held source dates",
+   "detected_by": "O03X"
   },
   {
    "reason": "Own-terms order whose end depends on an outside event, a later order or an illegible period",
@@ -3952,7 +4524,7 @@
    "detected_by": "O07"
   },
   {
-   "reason": "Standing regulation without a held superseding instrument",
+   "reason": "Standing regulation without a held instrument whose words reach it",
    "detected_by": "O08"
   },
   {

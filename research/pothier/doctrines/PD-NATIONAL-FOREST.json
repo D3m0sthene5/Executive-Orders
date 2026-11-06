@@ -2,7 +2,7 @@
  "schema": "pothier-family-doctrine/v1",
  "doctrine_id": "PD-NATIONAL-FOREST",
  "family": "National forest boundary, consolidation, transfer, name and administrative-site orders (X1 type national_forest_boundary)",
- "version": 2,
+ "version": 3,
  "members": {
   "field": "x1_type",
   "in": [
@@ -14,7 +14,7 @@
    "id": "M-REVOKED",
    "kind": "later_instrument",
    "effect": "ends",
-   "description": "A later executive order revoked or rescinded the member in full. Forty-six members are revoked in full by forty-two later members of this same family whose held texts name them by number and date.",
+   "description": "A later executive order revoked, rescinded or expressly superseded the member in full, naming it by number. The revoking order may belong to any family; the project holds each revoking text used here, and none qualifies the revocation by tract, section or \"in part\".",
    "effective_date_rule": "The date of the revoking order (fixed per branch).",
    "source_ids": [
     "S-EO-1417",
@@ -59,14 +59,22 @@
     "S-EO-5147",
     "S-EO-5422",
     "S-EO-6197",
-    "S-EO-7078"
+    "S-EO-7078",
+    "S-EO-1895",
+    "S-EO-1934",
+    "S-EO-6140",
+    "S-EO-6154",
+    "S-EO-4208",
+    "S-EO-3679",
+    "S-EO-4272",
+    "S-EO-2789"
    ]
   },
   {
    "id": "M-OWN-DATE",
    "kind": "own_terms",
    "effect": "ends",
-   "description": "The order withdrew lands 'until' a stated date in aid of pending legislation and said the lands would then become subject to disposal without further order.",
+   "description": "The order withdrew lands \"until\" a stated date in aid of pending legislation. Eight of the nine orders also say the lands would then become subject to disposal without further order; Executive Order 2542-A states only the date, and the clause appears in its extension, Executive Order 2896.",
    "effective_date_rule": "The stated date in the order (or in a held extension order), fixed per branch.",
    "source_ids": [
     "S-MEMBER-TEXT"
@@ -117,6 +125,86 @@
     "S-1907-PROVISO",
     "S-FS-CHRONOLOGY",
     "S-FS-LAR"
+   ]
+  },
+  {
+   "id": "M-REVOKED-PLO",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "A Public Land Order of the Secretary of the Interior (1942 on) revoked the member in full, as the official BLM Table of Public Land Orders states it: the row names the member by number and says \"revoking\" with no \"in part\" qualifier for that order. The PLO texts are not held.",
+   "effective_date_rule": "The PLO signature date as the BLM table gives it (fixed per branch); the Federal Register publication date may be the effective date.",
+   "source_ids": [
+    "S-BLM-695-2250",
+    "S-PLO-1953",
+    "S-BLM-2251-4975",
+    "S-PLO-4623",
+    "S-PLO-1246",
+    "S-BLM-1-694",
+    "S-PLO-428",
+    "S-PLO-415",
+    "S-BLM-5807-6825",
+    "S-PLO-6734",
+    "S-PLO-1294",
+    "S-PLO-864",
+    "S-PLO-1287",
+    "S-PLO-5902",
+    "S-PLO-1047",
+    "S-PLO-1103",
+    "S-PLO-3771",
+    "S-PLO-1280",
+    "S-PLO-2885",
+    "S-PLO-1267",
+    "S-PLO-3539",
+    "S-PLO-2865",
+    "S-PLO-1669",
+    "S-PLO-1131",
+    "S-PLO-427",
+    "S-PLO-3542",
+    "S-PLO-1097",
+    "S-PLO-376",
+    "S-PLO-1372",
+    "S-PLO-351",
+    "S-PLO-6660",
+    "S-BLM-4976-5806",
+    "S-PLO-5016",
+    "S-PLO-420",
+    "S-PLO-2167",
+    "S-PLO-1289",
+    "S-PLO-1407",
+    "S-PLO-6410",
+    "S-PLO-421",
+    "S-PLO-982",
+    "S-PLO-4219",
+    "S-PLO-2611",
+    "S-PLO-6716",
+    "S-PLO-3115",
+    "S-PLO-1690",
+    "S-PLO-1466",
+    "S-PLO-2511",
+    "S-PLO-6571",
+    "S-PLO-1132",
+    "S-PLO-3808",
+    "S-PLO-3266",
+    "S-BLM-6826-7342",
+    "S-PLO-7289",
+    "S-PLO-5079",
+    "S-PLO-5480",
+    "S-PLO-1947"
+   ]
+  },
+  {
+   "id": "M-ABOLISHED-SUBJECT",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "Coordinator ruling P7: a later instrument abolished by name, or merged by name all the lands of, the one national forest that the member constituted or named, and constituting or naming that forest was the member's only operative content.",
+   "effective_date_rule": "The date the abolishing or merging instrument fixes (fixed per branch).",
+   "source_ids": [
+    "S-BLM-1-694",
+    "S-PLO-307",
+    "S-BLM-1-694",
+    "S-PLO-618",
+    "S-EO-3317",
+    "S-EO-2153"
    ]
   }
  ],
@@ -172,7 +260,7 @@
   },
   {
    "id": "S-1907-PROVISO",
-   "citation": "Act of March 4, 1907, ch. 2907, 34 Stat. 1256, 1271 (Agricultural Appropriation Act for fiscal year 1908, proviso; 16 U.S.C. 471 note)",
+   "citation": "Act of March 4, 1907, ch. 2907, 34 Stat. 1256, 1271 (Agricultural Appropriation Act for fiscal year 1908, proviso)",
    "title": "Bar on new national forests or additions in six western states except by Act of Congress",
    "url": "https://www.govinfo.gov/content/pkg/STATUTE-34/pdf/STATUTE-34-Pg1256.pdf",
    "held": false,
@@ -190,7 +278,7 @@
   },
   {
    "id": "S-FS-LAR",
-   "citation": "USDA Forest Service, Land Areas of the National Forest System, as of September 30, 2024 (FY2024 Land Areas Report)",
+   "citation": "USDA Forest Service, Land Areas of the National Forest System, FY2024 Land Areas Report (as-of date unverified)",
    "title": "Forest Service Land Areas Report",
    "url": "https://www.fs.usda.gov/land/staff/lar/LAR2024/lar2024index.html",
    "held": false,
@@ -397,8 +485,8 @@
   },
   {
    "id": "S-EO-3194",
-   "citation": "Executive Order , 1919-12-04 (date read from the held text)",
-   "title": "Executive Order ",
+   "citation": "Executive Order 3194, 1919-12-04 (date read from the held text)",
+   "title": "Executive Order 3194 (revoking Executive Order 1401)",
    "url": "",
    "held": true,
    "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3194.txt",
@@ -687,6 +775,662 @@
    "sha256": "c9bae6de7df0a22f08c0bda97bf7e2896b70991c4eaf49cd81b7a6a1263d4040",
    "pin": "be extended to March 5, 1919, in so far as it affects the hereinafter",
    "establishes": "Extends the withdrawal of Executive Order 2542-A, for described lands only, from July 1, 1918 to March 5, 1919."
+  },
+  {
+   "id": "S-EO-1895",
+   "citation": "Executive Order 1895, 1914-02-17",
+   "title": "Bear Valley Administrative Site,Calif.,establishedfor use as a ranger stationin the administrationof the CaliforniaNational Forest.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_1895.txt",
+   "sha256": "0ea543fcafe1e7ff911b7d7f4adbebbee8807568f91def97abab606c760a4023",
+   "pin": "The Executive Order (1378) of June 28, 1911,",
+   "establishes": "Its operative sentence revokes in full, by number and date, Executive Order(s) 1378, without exception or qualification (member of this family). Held text grade: archival_replica_scan_pending_codebook."
+  },
+  {
+   "id": "S-EO-1934",
+   "citation": "Executive Order 1934, 1914-05-09",
+   "title": "Spring Valley Administrative Site,Nev., created for use as a ranger station in connection with the administration of the Nevada National Forest; E. 0. 1849 of O",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_1934.txt",
+   "sha256": "58f1093f60e981341eb56a3f0fe69771148bfbe72eba3c7adb3823330076d6e5",
+   "pin": "The Executive Order (1849) of October 29, 1913,",
+   "establishes": "Its operative sentence revokes in full, by number and date, Executive Order(s) 1849, without exception or qualification (member of this family). Held text grade: archival_replica_scan_pending_codebook."
+  },
+  {
+   "id": "S-EO-6140",
+   "citation": "Executive Order 6140, 1933-05-22",
+   "title": "Executive Order 6140—Revocation of Administrative-Site Withdrawals",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6140-revocation-administrative-site-withdrawals.txt",
+   "sha256": "25eb409ae1f30f8baa0bb1afbf6bb2a7780a397dd77ee95de406227bc8b0eb3b",
+   "pin": "for use by the Forest Service as ranger stations, be, and the same are hereby, revoked",
+   "establishes": "Its operative sentence revokes in full, by number and date, Executive Order(s) 2586, 2848, without exception or qualification (family PD-LAND-WITHDRAWAL). Held text grade: mirror_transcription."
+  },
+  {
+   "id": "S-EO-6154",
+   "citation": "Executive Order 6154, 1933-06-05",
+   "title": "Executive Order 6154—Revocation of Administrative-Site Withdrawals",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6154-revocation-administrative-site-withdrawals.txt",
+   "sha256": "56d2413c208055eec5e06572ce449b4ad5a692ce8cf419205a9447bfc22c5e03",
+   "pin": "for use by the Forest Service as administrative sites, be, and the same are hereby, revoked",
+   "establishes": "Its operative sentence revokes in full, by number and date, Executive Order(s) 3832, 3896, without exception or qualification (family PD-LAND-WITHDRAWAL). Held text grade: mirror_transcription."
+  },
+  {
+   "id": "S-EO-4208",
+   "citation": "Executive Order 4208, 1925-04-20",
+   "title": "Zuni Districtof Manzano National Forest created from certain excluded portion of the Fort Wingate Military Reservation, N. Mex., subject to continued use by the",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4208.txt",
+   "sha256": "9984ddc5f0c5f490951ee1e76d2a25393bcebe52ea2458d14124ca1b7c469acc",
+   "pin": "the Executive Order Number 1367 dated May 31, 1911, is hereby - revoked",
+   "establishes": "Its operative sentence revokes in full, by number and date, Executive Order(s) 1367, without exception or qualification (member of this family). Held text grade: archival_replica_scan_pending_codebook."
+  },
+  {
+   "id": "S-EO-3679",
+   "citation": "Executive Order 3679, 1922-05-24",
+   "title": "E. 0. 3043 of Feb. 26, 1919, reserving certain lands in Montana for townsite purposes,revoked.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3679.txt",
+   "sha256": "c6e66700e7c9af0c1af2f5ffa4c0db64b35c9bfa4dd2423e25bc9c92e85a3560",
+   "pin": "It is hereby ordered that Executive Order Number 3043, dated February 26, 19 19,",
+   "establishes": "Its operative sentence revokes in full, by number and date, Executive Order(s) 3043, without exception or qualification (family PD-LAND-WITHDRAWAL). Held text grade: archival_replica_scan_pending_codebook."
+  },
+  {
+   "id": "S-EO-4272",
+   "citation": "Executive Order 4272, 1925-07-21",
+   "title": "B. 0. 1147 of Dec. 15, 1909, reserving certain lands in Oklahoma for protectionof the water supply of the Fort SillMilitaryRes ervation,revoked.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4272.txt",
+   "sha256": "7ade5188ec306db4cb1807260a86e868548be6224da7330f4bcf3702fc452698",
+   "pin": "no longer required for the purpose for which reserved by said -Executive Order No. 1147",
+   "establishes": "It revokes Executive Order 1147 by number and date as to the lands it then lists, which repeat the whole of Executive Order 1147's description, \"Area about 16,420 acres\" (family PD-MILITARY-RESERVATION). Held text grade: archival_replica_scan_pending_codebook."
+  },
+  {
+   "id": "S-EO-2789",
+   "citation": "Executive Order 2789, 1918-01-19",
+   "title": "Executive Order 2789—Military Reservation for the National Guard",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-2789-military-reservation-for-the-national-guard.txt",
+   "sha256": "0854bb458eab079818c1913de778d964246facd7710ef02578f63ee49533494d",
+   "pin": "This order supersedes and takes the place of order number 2612, dated May 7, 1917",
+   "establishes": "Its last sentence expressly supersedes, by number and date, Executive Order 2612 and redescribes the same Navajo withdrawal. Held text grade: mirror_transcription."
+  },
+  {
+   "id": "S-BLM-695-2250",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 695-2250 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 695-2250",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_695-2250.pdf",
+   "held": true,
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_695-2250.txt",
+   "sha256": "1ce79fcd2011978c3f4b9399b8ddc7a26b302c4cdfd4e1f79640edbb680ea0dc",
+   "pin": "revoking EO No. 1326 of Mar. 29, 1911",
+   "establishes": "Official BLM finding aid listing each Public Land Order with its signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "row_pins": {
+    "PLO 1953": "revoking EO No. 1326 of Mar. 29, 1911",
+    "PLO 1246": "revoking EO No. 1432 of Nov. 13, 1911",
+    "PLO 1294": "revoking EO Nos. 1503 of Mar. 23, 1912 and 2427 of July 24, 1916",
+    "PLO 864": "revoking EO 1537 of May 28, 1912",
+    "PLO 1287": "revoking EO No. 1560 of July 10, 1912",
+    "PLO 1047": "revoking EO No. 1572 of July 30, 1912",
+    "PLO 1103": "revoking EO No. 1585 of Aug. 24, 1912",
+    "PLO 1280": "revoking EO No. 1673 of Dec. 31, 1912",
+    "PLO 1267": "revoking EO No. 1742 of Mar. 3, 1913",
+    "PLO 1669": "revoking EO No. 1799 of July 18, 1913",
+    "PLO 1131": "revoking EO No. 1830 of Sept. 24, 1913",
+    "PLO 1097": "revoking EO Nos. 2106 of Dec. 15, 1914 and 5654 of June 20, 1931",
+    "PLO 1372": "revoking EO No. 3242 of Mar. 6, 1920",
+    "PLO 2167": "revoking EO Nos. 3465 of May 19, 1921 and 5036 of Jan. 24, 1929",
+    "PLO 1289": "revoking EO No. 3661 of Apr. 13, 1922",
+    "PLO 1407": "revoking EO No. 3783 of Feb. 8, 1923",
+    "PLO 982": "revoking EO No. 4247 of June 5, 1925",
+    "PLO 1690": "revoking EO No. 4700 of Aug. 5, 1927",
+    "PLO 1466": "revoking EO No. 4889 of May 26, 1928",
+    "PLO 1132": "revoking EO No. 5278 of Feb. 7, 1930",
+    "PLO 1947": "revoking EO No. 7386 of June 8, 1936"
+   }
+  },
+  {
+   "id": "S-PLO-1953",
+   "citation": "Public Land Order No. 1953, signed 1959-08-21, 24 FR 6978",
+   "title": "PLO 1953",
+   "url": "https://www.govinfo.gov/link/fr/24/6978?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1326 of Mar. 29, 1911\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-BLM-2251-4975",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 2251-4975 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 2251-4975",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_2251-4975.pdf",
+   "held": true,
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_2251-4975.txt",
+   "sha256": "b7c9d636b93f96287f7649204c0359bac5165805d12ea3bfe65580e25e277e61",
+   "pin": "revoking EO No. 1357 of May 22, 1911",
+   "establishes": "Official BLM finding aid listing each Public Land Order with its signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "row_pins": {
+    "PLO 4623": "revoking EO No. 1357 of May 22, 1911",
+    "PLO 3771": "revoking EO No. 1597 and certain departmental orders",
+    "PLO 2885": "revoking EO No. 1677 of Jan. 8, 1913",
+    "PLO 3539": "revocation EO No. 1747 of March 17, 1913",
+    "PLO 2865": "revoking EO No. 1793 of July 3, 1913",
+    "PLO 3542": "revoking EO No. 1956 of June 6, 1914",
+    "PLO 4219": "revoking EO No. 4294 of Aug. 25, 1925",
+    "PLO 2611": "revoking EO Nos. 4397 of March 17, 1926 and 8691 of Feb. 20, 1941",
+    "PLO 3115": "revoking EO No. 4491 of Aug. 3, 1926",
+    "PLO 2511": "revoking EO No. 4953 of Aug. 20, 1928",
+    "PLO 3808": "Nevada; revoking EO No. 5799",
+    "PLO 3266": "revoking EO No. 5936 of Oct. 18, 1932"
+   }
+  },
+  {
+   "id": "S-PLO-4623",
+   "citation": "Public Land Order No. 4623, signed 1969-04-14, 34 FR 6689",
+   "title": "PLO 4623",
+   "url": "https://www.govinfo.gov/link/fr/34/6689?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1357 of May 22, 1911\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1246",
+   "citation": "Public Land Order No. 1246, signed 1955-11-03, 20 FR 8423",
+   "title": "PLO 1246",
+   "url": "https://www.govinfo.gov/link/fr/20/8423?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1432 of Nov. 13, 1911\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-BLM-1-694",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 1-694 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 1-694",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_1-694.pdf",
+   "held": true,
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_1-694.txt",
+   "sha256": "d8a6e9b1da9f4c6a22973f7a6d8a5a88f3cee5b00c1460e14f0e6d878e9d4ec0",
+   "pin": "revoking EO No. 1441; withdrawing public lands for the Bell Mountain",
+   "establishes": "Official BLM finding aid listing each Public Land Order with its signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "row_pins": {
+    "PLO 428": "revoking EO No. 1441; withdrawing public lands for the Bell Mountain",
+    "PLO 415": "revoking EO Nos. 1452 and 2522",
+    "PLO 427": "revoking EO No. 1934; withdrawing public lands for Forest Service administrative site",
+    "PLO 376": "revoking EO No. 2495; withdrawing lands for Forest",
+    "PLO 351": "revoking EO No. 3263; withdrawing lands in connection with forest fire patrol",
+    "PLO 420": "revoking EO No. 3405; withdrawing for sheep",
+    "PLO 421": "revoking EO No. 3999; withdrawing lands for classification in aid of legislation",
+    "PLO 307": "abolishing Mono National Forest",
+    "PLO 618": "abolishing the La Sal National Forest"
+   }
+  },
+  {
+   "id": "S-PLO-428",
+   "citation": "Public Land Order No. 428, signed 1947-12-01, 12 FR 8243",
+   "title": "PLO 428",
+   "url": "https://www.govinfo.gov/link/fr/12/8243?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1441; withdrawing public lands for the Bell Mountain\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-415",
+   "citation": "Public Land Order No. 415, signed 1947-10-10, 12 FR 6926",
+   "title": "PLO 415",
+   "url": "https://www.govinfo.gov/link/fr/12/6926?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO Nos. 1452 and 2522\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-BLM-5807-6825",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 5807-6825 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 5807-6825",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_5807-6825.pdf",
+   "held": true,
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_5807-6825.txt",
+   "sha256": "4bff6e1558a69b2b9851e54260d6bc1d131ccea18112222c2cceaa067ffbb351",
+   "pin": "Montana; revoking EO No. 1500",
+   "establishes": "Official BLM finding aid listing each Public Land Order with its signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "row_pins": {
+    "PLO 6734": "Montana; revoking EO No. 1500",
+    "PLO 5902": "revoking EO No. 1568, Baker Ranger Station",
+    "PLO 6660": "revoking EO No. 3305 and revoking in part PLO Nos. 1143 and 2394",
+    "PLO 6410": "Montana; revoking EO No. 3948",
+    "PLO 6716": "Revocation of EO No. 4415; see PLO No. 552",
+    "PLO 6571": "revoking EO No. 4963"
+   }
+  },
+  {
+   "id": "S-PLO-6734",
+   "citation": "Public Land Order No. 6734, signed 1989-07-12, 54 FR 30215",
+   "title": "PLO 6734",
+   "url": "https://www.govinfo.gov/link/fr/54/30215?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Montana; revoking EO No. 1500\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1294",
+   "citation": "Public Land Order No. 1294, signed 1956-04-24, 21 FR 2818",
+   "title": "PLO 1294",
+   "url": "https://www.govinfo.gov/link/fr/21/2818?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO Nos. 1503 of Mar. 23, 1912 and 2427 of July 24, 1916\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-864",
+   "citation": "Public Land Order No. 864, signed 1952-09-11, 17 FR 8364",
+   "title": "PLO 864",
+   "url": "https://www.govinfo.gov/link/fr/17/8364?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO 1537 of May 28, 1912\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1287",
+   "citation": "Public Land Order No. 1287, signed 1956-04-19, 21 FR 2658",
+   "title": "PLO 1287",
+   "url": "https://www.govinfo.gov/link/fr/21/2658?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1560 of July 10, 1912\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-5902",
+   "citation": "Public Land Order No. 5902, signed 1981-05-18, 46 FR 28417",
+   "title": "PLO 5902",
+   "url": "https://www.govinfo.gov/link/fr/46/28417?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1568, Baker Ranger Station\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1047",
+   "citation": "Public Land Order No. 1047, signed 1954-12-30, 19 FR 155",
+   "title": "PLO 1047",
+   "url": "https://www.govinfo.gov/link/fr/19/155?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1572 of July 30, 1912\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1103",
+   "citation": "Public Land Order No. 1103, signed 1955-03-23, 20 FR 1890",
+   "title": "PLO 1103",
+   "url": "https://www.govinfo.gov/link/fr/20/1890?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1585 of Aug. 24, 1912\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-3771",
+   "citation": "Public Land Order No. 3771, signed 1965-08-10, 30 FR 10192",
+   "title": "PLO 3771",
+   "url": "https://www.govinfo.gov/link/fr/30/10192?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1597 and certain departmental orders\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1280",
+   "citation": "Public Land Order No. 1280, signed 1956-04-02, 21 FR 2245",
+   "title": "PLO 1280",
+   "url": "https://www.govinfo.gov/link/fr/21/2245?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1673 of Dec. 31, 1912\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2885",
+   "citation": "Public Land Order No. 2885, signed 1963-01-18, 28 FR 695",
+   "title": "PLO 2885",
+   "url": "https://www.govinfo.gov/link/fr/28/695?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1677 of Jan. 8, 1913\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1267",
+   "citation": "Public Land Order No. 1267, signed 1956-02-27, 21 FR 1383",
+   "title": "PLO 1267",
+   "url": "https://www.govinfo.gov/link/fr/21/1383?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1742 of Mar. 3, 1913\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-3539",
+   "citation": "Public Land Order No. 3539, signed 1965-02-11, 30 FR 2214",
+   "title": "PLO 3539",
+   "url": "https://www.govinfo.gov/link/fr/30/2214?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revocation EO No. 1747 of March 17, 1913\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2865",
+   "citation": "Public Land Order No. 2865, signed 1963-01-24, 28 FR 640",
+   "title": "PLO 2865",
+   "url": "https://www.govinfo.gov/link/fr/28/640?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1793 of July 3, 1913\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1669",
+   "citation": "Public Land Order No. 1669, signed 1958-06-27, 23 FR 5087",
+   "title": "PLO 1669",
+   "url": "https://www.govinfo.gov/link/fr/23/5087?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1799 of July 18, 1913\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1131",
+   "citation": "Public Land Order No. 1131, signed 1955-04-15, 20 FR 2665",
+   "title": "PLO 1131",
+   "url": "https://www.govinfo.gov/link/fr/20/2665?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1830 of Sept. 24, 1913\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-427",
+   "citation": "Public Land Order No. 427, signed 1947-12-01, 12 FR 8242",
+   "title": "PLO 427",
+   "url": "https://www.govinfo.gov/link/fr/12/8242?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1934; withdrawing public lands for Forest Service administrative site\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-3542",
+   "citation": "Public Land Order No. 3542, signed 1965-02-11, 30 FR 2215",
+   "title": "PLO 3542",
+   "url": "https://www.govinfo.gov/link/fr/30/2215?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1956 of June 6, 1914\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1097",
+   "citation": "Public Land Order No. 1097, signed 1955-03-15, 20 FR 1662",
+   "title": "PLO 1097",
+   "url": "https://www.govinfo.gov/link/fr/20/1662?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO Nos. 2106 of Dec. 15, 1914 and 5654 of June 20, 1931\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-376",
+   "citation": "Public Land Order No. 376, signed 1947-06-05, 12 FR 3863",
+   "title": "PLO 376",
+   "url": "https://www.govinfo.gov/link/fr/12/3863?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 2495; withdrawing lands for Forest\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1372",
+   "citation": "Public Land Order No. 1372, signed 1956-12-07, 21 FR 9947",
+   "title": "PLO 1372",
+   "url": "https://www.govinfo.gov/link/fr/21/9947?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3242 of Mar. 6, 1920\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-351",
+   "citation": "Public Land Order No. 351, signed 1947-02-17, 12 FR 1393",
+   "title": "PLO 351",
+   "url": "https://www.govinfo.gov/link/fr/12/1393?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3263; withdrawing lands in connection with forest fire patrol\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-6660",
+   "citation": "Public Land Order No. 6660, signed 1987-11-10, 52 FR 44893",
+   "title": "PLO 6660",
+   "url": "https://www.govinfo.gov/link/fr/52/44893?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3305 and revoking in part PLO Nos. 1143 and 2394\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-BLM-4976-5806",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 4976-5806 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 4976-5806",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_4976-5806.pdf",
+   "held": true,
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_4976-5806.txt",
+   "sha256": "4833c0a53a91cbcca280c3d52a1ff168baf669c9afa923c67bf066a373f74d1c",
+   "pin": "revoking EO No. 3373",
+   "establishes": "Official BLM finding aid listing each Public Land Order with its signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "row_pins": {
+    "PLO 5016": "revoking EO No. 3373",
+    "PLO 5079": "Washington; revoking EO No. 6704",
+    "PLO 5480": "California; revoking EO No. 6844"
+   }
+  },
+  {
+   "id": "S-PLO-5016",
+   "citation": "Public Land Order No. 5016, signed 1971-02-10, 36 FR 2784",
+   "title": "PLO 5016",
+   "url": "https://www.govinfo.gov/link/fr/36/2784?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3373\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-420",
+   "citation": "Public Land Order No. 420, signed 1947-10-21, 12 FR 6975",
+   "title": "PLO 420",
+   "url": "https://www.govinfo.gov/link/fr/12/6975?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3405; withdrawing for sheep\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2167",
+   "citation": "Public Land Order No. 2167, signed 1960-07-22, 25 FR 7152",
+   "title": "PLO 2167",
+   "url": "https://www.govinfo.gov/link/fr/25/7152?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO Nos. 3465 of May 19, 1921 and 5036 of Jan. 24, 1929\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1289",
+   "citation": "Public Land Order No. 1289, signed 1956-04-24, 21 FR 2790",
+   "title": "PLO 1289",
+   "url": "https://www.govinfo.gov/link/fr/21/2790?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3661 of Apr. 13, 1922\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1407",
+   "citation": "Public Land Order No. 1407, signed 1957-04-05, 22 FR 2506",
+   "title": "PLO 1407",
+   "url": "https://www.govinfo.gov/link/fr/22/2506?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3783 of Feb. 8, 1923\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-6410",
+   "citation": "Public Land Order No. 6410, signed 1983-07-11, 48 FR 32828",
+   "title": "PLO 6410",
+   "url": "https://www.govinfo.gov/link/fr/48/32828?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Montana; revoking EO No. 3948\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-421",
+   "citation": "Public Land Order No. 421, signed 1947-10-21, 12 FR 6976",
+   "title": "PLO 421",
+   "url": "https://www.govinfo.gov/link/fr/12/6976?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3999; withdrawing lands for classification in aid of legislation\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-982",
+   "citation": "Public Land Order No. 982, signed 1954-07-15, 19 FR 4499",
+   "title": "PLO 982",
+   "url": "https://www.govinfo.gov/link/fr/19/4499?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4247 of June 5, 1925\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-4219",
+   "citation": "Public Land Order No. 4219, signed 1967-04-24, 32 FR 6646",
+   "title": "PLO 4219",
+   "url": "https://www.govinfo.gov/link/fr/32/6646?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4294 of Aug. 25, 1925\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2611",
+   "citation": "Public Land Order No. 2611, signed 1962-02-12, 27 FR 1492",
+   "title": "PLO 2611",
+   "url": "https://www.govinfo.gov/link/fr/27/1492?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO Nos. 4397 of March 17, 1926 and 8691 of Feb. 20, 1941\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-6716",
+   "citation": "Public Land Order No. 6716, signed 1989-03-29, 54 FR 13524",
+   "title": "PLO 6716",
+   "url": "https://www.govinfo.gov/link/fr/54/13524?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Revocation of EO No. 4415; see PLO No. 552\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-3115",
+   "citation": "Public Land Order No. 3115, signed 1963-06-28, 28 FR 6876",
+   "title": "PLO 3115",
+   "url": "https://www.govinfo.gov/link/fr/28/6876?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4491 of Aug. 3, 1926\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1690",
+   "citation": "Public Land Order No. 1690, signed 1958-07-22, 23 FR 5672",
+   "title": "PLO 1690",
+   "url": "https://www.govinfo.gov/link/fr/23/5672?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4700 of Aug. 5, 1927\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1466",
+   "citation": "Public Land Order No. 1466, signed 1957-08-07, 22 FR 6511",
+   "title": "PLO 1466",
+   "url": "https://www.govinfo.gov/link/fr/22/6511?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4889 of May 26, 1928\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2511",
+   "citation": "Public Land Order No. 2511, signed 1961-09-25, 26 FR 9228",
+   "title": "PLO 2511",
+   "url": "https://www.govinfo.gov/link/fr/26/9228?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4953 of Aug. 20, 1928\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-6571",
+   "citation": "Public Land Order No. 6571, signed 1984-09-17, 49 FR 37760",
+   "title": "PLO 6571",
+   "url": "https://www.govinfo.gov/link/fr/49/37760?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4963\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1132",
+   "citation": "Public Land Order No. 1132, signed 1955-04-15, 20 FR 2666",
+   "title": "PLO 1132",
+   "url": "https://www.govinfo.gov/link/fr/20/2666?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 5278 of Feb. 7, 1930\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-3808",
+   "citation": "Public Land Order No. 3808, signed 1965-08-31, 30 FR 11354",
+   "title": "PLO 3808",
+   "url": "https://www.govinfo.gov/link/fr/30/11354?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Nevada; revoking EO No. 5799\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-3266",
+   "citation": "Public Land Order No. 3266, signed 1963-10-29, 28 FR 11733",
+   "title": "PLO 3266",
+   "url": "https://www.govinfo.gov/link/fr/28/11733?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 5936 of Oct. 18, 1932\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-BLM-6826-7342",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 6826-7342 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 6826-7342",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_6826-7342.pdf",
+   "held": true,
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_6826-7342.txt",
+   "sha256": "701bb038081fad00a8cc3f4107730238b75c6c905b66561d778193aa5505c3db",
+   "pin": "Revoking EO No. 6544 and PLO No. 2618 and 4845",
+   "establishes": "Official BLM finding aid listing each Public Land Order with its signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "row_pins": {
+    "PLO 7289": "Revoking EO No. 6544 and PLO No. 2618 and 4845"
+   }
+  },
+  {
+   "id": "S-PLO-7289",
+   "citation": "Public Land Order No. 7289, signed 1997-09-26, 62 FR 52766",
+   "title": "PLO 7289",
+   "url": "https://www.govinfo.gov/link/fr/62/52766?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Revoking EO No. 6544 and PLO No. 2618 and 4845\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-5079",
+   "citation": "Public Land Order No. 5079, signed 1971-06-18, 36 FR 11733",
+   "title": "PLO 5079",
+   "url": "https://www.govinfo.gov/link/fr/36/11733?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Washington; revoking EO No. 6704\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-5480",
+   "citation": "Public Land Order No. 5480, signed 1975-02-04, 40 FR 6342",
+   "title": "PLO 5480",
+   "url": "https://www.govinfo.gov/link/fr/40/6342?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"California; revoking EO No. 6844\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1947",
+   "citation": "Public Land Order No. 1947, signed 1959-08-18, 24 FR 6844",
+   "title": "PLO 1947",
+   "url": "https://www.govinfo.gov/link/fr/24/6844?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 7386 of June 8, 1936\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-307",
+   "citation": "Public Land Order No. 307, signed 1945-12-18, 11 FR 250",
+   "title": "PLO 307",
+   "url": "https://www.govinfo.gov/link/fr/11/250?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"California and Nevada; abolishing Mono National Forest and trans- ferring lands to Toiyabe and Inyo National Forests\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-618",
+   "citation": "Public Land Order No. 618, signed 1949-11-28, 14 FR 7271",
+   "title": "PLO 618",
+   "url": "https://www.govinfo.gov/link/fr/14/7271?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Colorado and Utah; abolishing the La Sal National Forest and trans- ferring its lands to the Manti National Forest\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-EO-3317",
+   "citation": "Executive Order 3317, 1920-08-07",
+   "title": "Holy Cross National Forest, Colo.,enlarged by the addi tion of alllands of the Sopris National Forest.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/wikisource-texts/output/texts/EO_3317.txt",
+   "sha256": "ffcdeaa1405bc5076851c1d073a1833e620592e3b2b0c48d753e5f4b9b7f7891",
+   "pin": "to merge into one National Forest, thereafter to be known as the Holy Cross National Forest",
+   "establishes": "It transfers \"all the lands included within the boundaries of the Sopris National Forest\" to the Holy Cross National Forest and merges the two into one forest known as the Holy Cross (member of this family). Held text grade: mirror_transcription."
+  },
+  {
+   "id": "S-EO-2153",
+   "citation": "Executive Order 2153, 1915-03-24",
+   "title": "Manti National Forest, Utah, enlarged by the addition of alllands of the Nebo National Forest.",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2153.txt",
+   "sha256": "8a226465389933a0d634d10001fcebb76b4b00036ecd4bf659261e114765362d",
+   "pin": "all the lands included within the boundaries of the Nebo National Forest",
+   "establishes": "It transfers, on and after July 1, 1915, all the lands of the Nebo National Forest to the Manti National Forest and merges the two into one forest known as the Manti (member of this family). Held text grade: archival_replica_scan_pending_codebook."
   }
  ],
  "procedure": [
@@ -979,7 +1723,8 @@
     ]
    },
    "gaps": [
-    "The revoking order's text is a archival_replica_scan_pending_codebook copy, not an authenticated original."
+    "The revoking order's text is a archival_replica_scan_pending_codebook copy, not an authenticated original.",
+    "Executive Order 2485 cites its target as \"Executive Order (No. 1589) of August 21, 1912\"; Executive Order 1589's held text is signed August 24, 1912. The number and the Rainy Creek lands agree, so the identification stands."
    ]
   },
   {
@@ -1397,7 +2142,8 @@
    },
    "gaps": [
     "The revoking order's text is a archival_replica_scan_pending_codebook copy, not an authenticated original.",
-    "The member record gives only the year; the date is read from the signature line of the held text (\"September 28, 1922\")."
+    "The member record gives only the year; the date is read from the signature line of the held text (\"September 28, 1922\").",
+    "Executive Order 3740 cites \"Executive Order of March 1, 1915 (No. 2148)\"; Executive Order 2148's held signature reads \"z8 March, 1915\" (OCR) and the member record dates it 1915-03-18. The number and the lands agree, so the identification stands."
    ]
   },
   {
@@ -2079,6 +2825,2132 @@
    ]
   },
   {
+   "branch_id": "B02-REVOKED-BY-1895",
+   "description": "Revoked in full by Executive Order 1895 of 1914-02-17.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1378"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 1895 (1914-02-17), a held text, revokes Executive Order 1378 in full by number and date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1914-02-17",
+     "basis": "date of Executive Order 1895"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO-1895"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a archival_replica_scan_pending_codebook copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-REVOKED-BY-1934",
+   "description": "Revoked in full by Executive Order 1934 of 1914-05-09.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1849"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 1934 (1914-05-09), a held text, revokes Executive Order 1849 in full by number and date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1914-05-09",
+     "basis": "date of Executive Order 1934"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO-1934"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a archival_replica_scan_pending_codebook copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-REVOKED-BY-6140",
+   "description": "Revoked in full by Executive Order 6140 of 1933-05-22.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2586",
+      "EO:2848"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 6140 (1933-05-22), a held text, revokes Executive Order 2586 and Executive Order 2848 in full by number and date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-05-22",
+     "basis": "date of Executive Order 6140"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO-6140"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror_transcription copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-REVOKED-BY-6154",
+   "description": "Revoked in full by Executive Order 6154 of 1933-06-05.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3832",
+      "EO:3896"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 6154 (1933-06-05), a held text, revokes Executive Order 3832 and Executive Order 3896 in full by number and date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-06-05",
+     "basis": "date of Executive Order 6154"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO-6154"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror_transcription copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-REVOKED-BY-4208",
+   "description": "Revoked in full by Executive Order 4208 of 1925-04-20.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1367"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 4208 (1925-04-20), a held text, revokes Executive Order 1367 in full by number and date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1925-04-20",
+     "basis": "date of Executive Order 4208"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO-4208"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a archival_replica_scan_pending_codebook copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-REVOKED-BY-3679",
+   "description": "Revoked in full by Executive Order 3679 of 1922-05-24.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3043"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3679 (1922-05-24), a held text, revokes Executive Order 3043 in full by number and date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1922-05-24",
+     "basis": "date of Executive Order 3679"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO-3679"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a archival_replica_scan_pending_codebook copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B02-REVOKED-BY-4272",
+   "description": "Revoked by Executive Order 4272 of 1925-07-21 as to all the lands it reserved.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1147"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 4272 (1925-07-21), a held text, orders that \"Executive Order No. 1147, dated December 15, 1909, be and is hereby revoked\" as to the lands it lists because they are \"no longer required for the purpose for which reserved by said Executive Order No. 1147\"; the list repeats the whole of Executive Order 1147's description and the same total, \"Area about 16,420 acres\", so the revocation reaches the whole order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1925-07-21",
+     "basis": "date of Executive Order 4272"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO-4272"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a archival_replica_scan_pending_codebook copy, not an authenticated original.",
+    "The held scan of Executive Order 4272 lists \"Sections 4, 5, 6, 7, 8, 9, 16,18, 19\" in T. 3 N., R. 14 W., where Executive Order 1147 lists \"16, 17, 18\"; the stated total area is the same, so the omission is read as OCR loss. If Section 17 was in fact left reserved, the revocation is partial and the lead becomes open."
+   ]
+  },
+  {
+   "branch_id": "B02-SUPERSEDED-BY-2789",
+   "description": "Superseded in full, by number, by Executive Order 2789 of 1918-01-19.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2612"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "superseded_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 2789 (1918-01-19), a held text, states: \"This order supersedes and takes the place of order number 2612, dated May 7, 1917, and is made for the sole purpose of correctly describing the lands intended to be withdrawn by that order.\" Its words reach the member by number (ruling P3).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1918-01-19",
+     "basis": "date of Executive Order 2789"
+    },
+    "mechanism_ids": [
+     "M-REVOKED"
+    ],
+    "source_ids": [
+     "S-EO-2789"
+    ]
+   },
+   "gaps": [
+    "The revoking order's text is a mirror_transcription copy, not an authenticated original.",
+    "The withdrawal for the Navajo continued under Executive Order 2789, which belongs to its own family; this lead ends only Executive Order 2612 as an instrument."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1953",
+   "description": "Revoked in full by Public Land Order 1953 (1959-08-21, 24 FR 6978) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1326"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1953, signed 1959-08-21 (24 FR 6978); the held BLM table row reads \"revoking EO No. 1326 of Mar. 29, 1911\", which revokes Executive Order 1326 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1959-08-21",
+     "basis": "PLO 1953 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1953"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-4623",
+   "description": "Revoked in full by Public Land Order 4623 (1969-04-14, 34 FR 6689) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1357"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 4623, signed 1969-04-14 (34 FR 6689); the held BLM table row reads \"revoking EO No. 1357 of May 22, 1911\", which revokes Executive Order 1357 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1969-04-14",
+     "basis": "PLO 4623 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-4623"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1246",
+   "description": "Revoked in full by Public Land Order 1246 (1955-11-03, 20 FR 8423) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1432"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1246, signed 1955-11-03 (20 FR 8423); the held BLM table row reads \"revoking EO No. 1432 of Nov. 13, 1911\", which revokes Executive Order 1432 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1955-11-03",
+     "basis": "PLO 1246 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1246"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The held edge from PLO 399 (1947) concerns \"EO No. 1432 1/2\" (Alaska hot springs), a different order, and is not used."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-428",
+   "description": "Revoked in full by Public Land Order 428 (1947-12-01, 12 FR 8243) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1441"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 428, signed 1947-12-01 (12 FR 8243); the held BLM table row reads \"revoking EO No. 1441; withdrawing public lands for the Bell Mountain\", which revokes Executive Order 1441 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1947-12-01",
+     "basis": "PLO 428 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-428"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-415",
+   "description": "Revoked in full by Public Land Order 415 (1947-10-10, 12 FR 6926) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1452",
+      "EO:2522"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 415, signed 1947-10-10 (12 FR 6926); the held BLM table row reads \"revoking EO Nos. 1452 and 2522\", which revokes Executive Order 1452 and Executive Order 2522 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1947-10-10",
+     "basis": "PLO 415 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-415"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the orders by number without their dates; the identification rests on the numbers and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-6734",
+   "description": "Revoked in full by Public Land Order 6734 (1989-07-12, 54 FR 30215) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1500"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 6734, signed 1989-07-12 (54 FR 30215); the held BLM table row reads \"Montana; revoking EO No. 1500\", which revokes Executive Order 1500 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1989-07-12",
+     "basis": "PLO 6734 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-5807-6825",
+     "S-PLO-6734"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1294",
+   "description": "Revoked in full by Public Land Order 1294 (1956-04-24, 21 FR 2818) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1503"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1294, signed 1956-04-24 (21 FR 2818); the held BLM table row reads \"revoking EO Nos. 1503 of Mar. 23, 1912 and 2427 of July 24, 1916\", which revokes Executive Order 1503 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1956-04-24",
+     "basis": "PLO 1294 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1294"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-864",
+   "description": "Revoked in full by Public Land Order 864 (1952-09-11, 17 FR 8364) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1537"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 864, signed 1952-09-11 (17 FR 8364); the held BLM table row reads \"revoking EO 1537 of May 28, 1912\", which revokes Executive Order 1537 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1952-09-11",
+     "basis": "PLO 864 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-864"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1287",
+   "description": "Revoked in full by Public Land Order 1287 (1956-04-19, 21 FR 2658) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1560"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1287, signed 1956-04-19 (21 FR 2658); the held BLM table row reads \"revoking EO No. 1560 of July 10, 1912\", which revokes Executive Order 1560 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1956-04-19",
+     "basis": "PLO 1287 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1287"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-5902",
+   "description": "Revoked in full by Public Land Order 5902 (1981-05-18, 46 FR 28417) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1568"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 5902, signed 1981-05-18 (46 FR 28417); the held BLM table row reads \"revoking EO No. 1568, Baker Ranger Station\", which revokes Executive Order 1568 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1981-05-18",
+     "basis": "PLO 5902 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-5807-6825",
+     "S-PLO-5902"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1047",
+   "description": "Revoked in full by Public Land Order 1047 (1954-12-30, 19 FR 155) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1572"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1047, signed 1954-12-30 (19 FR 155); the held BLM table row reads \"revoking EO No. 1572 of July 30, 1912\", which revokes Executive Order 1572 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1954-12-30",
+     "basis": "PLO 1047 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1047"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1103",
+   "description": "Revoked in full by Public Land Order 1103 (1955-03-23, 20 FR 1890) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1585"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1103, signed 1955-03-23 (20 FR 1890); the held BLM table row reads \"revoking EO No. 1585 of Aug. 24, 1912\", which revokes Executive Order 1585 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1955-03-23",
+     "basis": "PLO 1103 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1103"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-3771",
+   "description": "Revoked in full by Public Land Order 3771 (1965-08-10, 30 FR 10192) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1597"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 3771, signed 1965-08-10 (30 FR 10192); the held BLM table row reads \"revoking EO No. 1597 and certain departmental orders\", which revokes Executive Order 1597 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1965-08-10",
+     "basis": "PLO 3771 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-3771"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1280",
+   "description": "Revoked in full by Public Land Order 1280 (1956-04-02, 21 FR 2245) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1673"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1280, signed 1956-04-02 (21 FR 2245); the held BLM table row reads \"revoking EO No. 1673 of Dec. 31, 1912\", which revokes Executive Order 1673 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1956-04-02",
+     "basis": "PLO 1280 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1280"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-2885",
+   "description": "Revoked in full by Public Land Order 2885 (1963-01-18, 28 FR 695) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1677"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2885, signed 1963-01-18 (28 FR 695); the held BLM table row reads \"revoking EO No. 1677 of Jan. 8, 1913\", which revokes Executive Order 1677 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1963-01-18",
+     "basis": "PLO 2885 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-2885"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1267",
+   "description": "Revoked in full by Public Land Order 1267 (1956-02-27, 21 FR 1383) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1742"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1267, signed 1956-02-27 (21 FR 1383); the held BLM table row reads \"revoking EO No. 1742 of Mar. 3, 1913\", which revokes Executive Order 1742 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1956-02-27",
+     "basis": "PLO 1267 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1267"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-3539",
+   "description": "Revoked in full by Public Land Order 3539 (1965-02-11, 30 FR 2214) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1747"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 3539, signed 1965-02-11 (30 FR 2214); the held BLM table row reads \"revocation EO No. 1747 of March 17, 1913\", which revokes Executive Order 1747 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1965-02-11",
+     "basis": "PLO 3539 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-3539"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "PLO 1981 (1959-09-11) had earlier revoked Executive Order 1747 in part; PLO 3539 is the full revocation."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-2865",
+   "description": "Revoked in full by Public Land Order 2865 (1963-01-24, 28 FR 640) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1793"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2865, signed 1963-01-24 (28 FR 640); the held BLM table row reads \"revoking EO No. 1793 of July 3, 1913\", which revokes Executive Order 1793 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1963-01-24",
+     "basis": "PLO 2865 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-2865"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1669",
+   "description": "Revoked in full by Public Land Order 1669 (1958-06-27, 23 FR 5087) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1799"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1669, signed 1958-06-27 (23 FR 5087); the held BLM table row reads \"revoking EO No. 1799 of July 18, 1913\", which revokes Executive Order 1799 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1958-06-27",
+     "basis": "PLO 1669 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1669"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1131",
+   "description": "Revoked in full by Public Land Order 1131 (1955-04-15, 20 FR 2665) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1830"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1131, signed 1955-04-15 (20 FR 2665); the held BLM table row reads \"revoking EO No. 1830 of Sept. 24, 1913\", which revokes Executive Order 1830 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1955-04-15",
+     "basis": "PLO 1131 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1131"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-427",
+   "description": "Revoked in full by Public Land Order 427 (1947-12-01, 12 FR 8242) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1934"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 427, signed 1947-12-01 (12 FR 8242); the held BLM table row reads \"revoking EO No. 1934; withdrawing public lands for Forest Service administrative site\", which revokes Executive Order 1934 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1947-12-01",
+     "basis": "PLO 427 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-427"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state.",
+    "Executive Order 1934 itself revoked Executive Order 1849 and created the Spring Valley site; PLO 427 revokes Executive Order 1934 as a whole."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-3542",
+   "description": "Revoked in full by Public Land Order 3542 (1965-02-11, 30 FR 2215) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1956"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 3542, signed 1965-02-11 (30 FR 2215); the held BLM table row reads \"revoking EO No. 1956 of June 6, 1914\", which revokes Executive Order 1956 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1965-02-11",
+     "basis": "PLO 3542 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-3542"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1097",
+   "description": "Revoked in full by Public Land Order 1097 (1955-03-15, 20 FR 1662) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2106"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1097, signed 1955-03-15 (20 FR 1662); the held BLM table row reads \"revoking EO Nos. 2106 of Dec. 15, 1914 and 5654 of June 20, 1931\", which revokes Executive Order 2106 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1955-03-15",
+     "basis": "PLO 1097 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1097"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-376",
+   "description": "Revoked in full by Public Land Order 376 (1947-06-05, 12 FR 3863) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2495"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 376, signed 1947-06-05 (12 FR 3863); the held BLM table row reads \"revoking EO No. 2495; withdrawing lands for Forest\", which revokes Executive Order 2495 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1947-06-05",
+     "basis": "PLO 376 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-376"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1372",
+   "description": "Revoked in full by Public Land Order 1372 (1956-12-07, 21 FR 9947) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3242"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1372, signed 1956-12-07 (21 FR 9947); the held BLM table row reads \"revoking EO No. 3242 of Mar. 6, 1920\", which revokes Executive Order 3242 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1956-12-07",
+     "basis": "PLO 1372 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1372"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-351",
+   "description": "Revoked in full by Public Land Order 351 (1947-02-17, 12 FR 1393) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3263"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 351, signed 1947-02-17 (12 FR 1393); the held BLM table row reads \"revoking EO No. 3263; withdrawing lands in connection with forest fire patrol\", which revokes Executive Order 3263 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1947-02-17",
+     "basis": "PLO 351 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-351"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-6660",
+   "description": "Revoked in full by Public Land Order 6660 (1987-11-10, 52 FR 44893) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3305"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 6660, signed 1987-11-10 (52 FR 44893); the held BLM table row reads \"revoking EO No. 3305 and revoking in part PLO Nos. 1143 and 2394\", which revokes Executive Order 3305 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1987-11-10",
+     "basis": "PLO 6660 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-5807-6825",
+     "S-PLO-6660"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-5016",
+   "description": "Revoked in full by Public Land Order 5016 (1971-02-10, 36 FR 2784) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3373"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 5016, signed 1971-02-10 (36 FR 2784); the held BLM table row reads \"revoking EO No. 3373\", which revokes Executive Order 3373 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1971-02-10",
+     "basis": "PLO 5016 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-4976-5806",
+     "S-PLO-5016"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-420",
+   "description": "Revoked in full by Public Land Order 420 (1947-10-21, 12 FR 6975) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3405"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 420, signed 1947-10-21 (12 FR 6975); the held BLM table row reads \"revoking EO No. 3405; withdrawing for sheep\", which revokes Executive Order 3405 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1947-10-21",
+     "basis": "PLO 420 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-420"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-2167",
+   "description": "Revoked in full by Public Land Order 2167 (1960-07-22, 25 FR 7152) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3465"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2167, signed 1960-07-22 (25 FR 7152); the held BLM table row reads \"revoking EO Nos. 3465 of May 19, 1921 and 5036 of Jan. 24, 1929\", which revokes Executive Order 3465 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1960-07-22",
+     "basis": "PLO 2167 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-2167"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1289",
+   "description": "Revoked in full by Public Land Order 1289 (1956-04-24, 21 FR 2790) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3661"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1289, signed 1956-04-24 (21 FR 2790); the held BLM table row reads \"revoking EO No. 3661 of Apr. 13, 1922\", which revokes Executive Order 3661 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1956-04-24",
+     "basis": "PLO 1289 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1289"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1407",
+   "description": "Revoked in full by Public Land Order 1407 (1957-04-05, 22 FR 2506) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3783"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1407, signed 1957-04-05 (22 FR 2506); the held BLM table row reads \"revoking EO No. 3783 of Feb. 8, 1923\", which revokes Executive Order 3783 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1957-04-05",
+     "basis": "PLO 1407 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1407"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The held edges from Executive Order 5597 (1931) concern a different order of the same date (Public Water Reserve No. 86, New Mexico) and are not used."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-6410",
+   "description": "Revoked in full by Public Land Order 6410 (1983-07-11, 48 FR 32828) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3948"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 6410, signed 1983-07-11 (48 FR 32828); the held BLM table row reads \"Montana; revoking EO No. 3948\", which revokes Executive Order 3948 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1983-07-11",
+     "basis": "PLO 6410 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-5807-6825",
+     "S-PLO-6410"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-421",
+   "description": "Revoked in full by Public Land Order 421 (1947-10-21, 12 FR 6976) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3999"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 421, signed 1947-10-21 (12 FR 6976); the held BLM table row reads \"revoking EO No. 3999; withdrawing lands for classification in aid of legislation\", which revokes Executive Order 3999 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1947-10-21",
+     "basis": "PLO 421 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-421"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-982",
+   "description": "Revoked in full by Public Land Order 982 (1954-07-15, 19 FR 4499) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4247"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 982, signed 1954-07-15 (19 FR 4499); the held BLM table row reads \"revoking EO No. 4247 of June 5, 1925\", which revokes Executive Order 4247 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1954-07-15",
+     "basis": "PLO 982 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-982"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-4219",
+   "description": "Revoked in full by Public Land Order 4219 (1967-04-24, 32 FR 6646) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4294"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 4219, signed 1967-04-24 (32 FR 6646); the held BLM table row reads \"revoking EO No. 4294 of Aug. 25, 1925\", which revokes Executive Order 4294 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1967-04-24",
+     "basis": "PLO 4219 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-4219"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-2611",
+   "description": "Revoked in full by Public Land Order 2611 (1962-02-12, 27 FR 1492) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4397"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2611, signed 1962-02-12 (27 FR 1492); the held BLM table row reads \"revoking EO Nos. 4397 of March 17, 1926 and 8691 of Feb. 20, 1941\", which revokes Executive Order 4397 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1962-02-12",
+     "basis": "PLO 2611 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-2611"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-6716",
+   "description": "Revoked in full by Public Land Order 6716 (1989-03-29, 54 FR 13524) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4415"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 6716, signed 1989-03-29 (54 FR 13524); the held BLM table row reads \"Revocation of EO No. 4415; see PLO No. 552\", which revokes Executive Order 4415 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1989-03-29",
+     "basis": "PLO 6716 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-5807-6825",
+     "S-PLO-6716"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names no state; the identification rests on the order number alone.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-3115",
+   "description": "Revoked in full by Public Land Order 3115 (1963-06-28, 28 FR 6876) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4491"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 3115, signed 1963-06-28 (28 FR 6876); the held BLM table row reads \"revoking EO No. 4491 of Aug. 3, 1926\", which revokes Executive Order 4491 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1963-06-28",
+     "basis": "PLO 3115 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-3115"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1690",
+   "description": "Revoked in full by Public Land Order 1690 (1958-07-22, 23 FR 5672) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4700"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1690, signed 1958-07-22 (23 FR 5672); the held BLM table row reads \"revoking EO No. 4700 of Aug. 5, 1927\", which revokes Executive Order 4700 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1958-07-22",
+     "basis": "PLO 1690 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1690"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1466",
+   "description": "Revoked in full by Public Land Order 1466 (1957-08-07, 22 FR 6511) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4889"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1466, signed 1957-08-07 (22 FR 6511); the held BLM table row reads \"revoking EO No. 4889 of May 26, 1928\", which revokes Executive Order 4889 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1957-08-07",
+     "basis": "PLO 1466 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1466"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "Executive Order 5651 (1931-06-18) had earlier revoked Executive Order 4889 only \"as to such of the lands not reserved by the act of Congress approved July 10, 1930\"; that partial edge is not the end."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-2511",
+   "description": "Revoked in full by Public Land Order 2511 (1961-09-25, 26 FR 9228) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4953"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2511, signed 1961-09-25 (26 FR 9228); the held BLM table row reads \"revoking EO No. 4953 of Aug. 20, 1928\", which revokes Executive Order 4953 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1961-09-25",
+     "basis": "PLO 2511 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-2511"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-6571",
+   "description": "Revoked in full by Public Land Order 6571 (1984-09-17, 49 FR 37760) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4963"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 6571, signed 1984-09-17 (49 FR 37760); the held BLM table row reads \"revoking EO No. 4963\", which revokes Executive Order 4963 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1984-09-17",
+     "basis": "PLO 6571 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-5807-6825",
+     "S-PLO-6571"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1132",
+   "description": "Revoked in full by Public Land Order 1132 (1955-04-15, 20 FR 2666) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5278"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1132, signed 1955-04-15 (20 FR 2666); the held BLM table row reads \"revoking EO No. 5278 of Feb. 7, 1930\", which revokes Executive Order 5278 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1955-04-15",
+     "basis": "PLO 1132 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1132"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-3808",
+   "description": "Revoked in full by Public Land Order 3808 (1965-08-31, 30 FR 11354) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5799"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 3808, signed 1965-08-31 (30 FR 11354); the held BLM table row reads \"Nevada; revoking EO No. 5799\", which revokes Executive Order 5799 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1965-08-31",
+     "basis": "PLO 3808 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-3808"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-3266",
+   "description": "Revoked in full by Public Land Order 3266 (1963-10-29, 28 FR 11733) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5936"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 3266, signed 1963-10-29 (28 FR 11733); the held BLM table row reads \"revoking EO No. 5936 of Oct. 18, 1932\", which revokes Executive Order 5936 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1963-10-29",
+     "basis": "PLO 3266 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-3266"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-7289",
+   "description": "Revoked in full by Public Land Order 7289 (1997-09-26, 62 FR 52766) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6544"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 7289, signed 1997-09-26 (62 FR 52766); the held BLM table row reads \"Revoking EO No. 6544 and PLO No. 2618 and 4845\", which revokes Executive Order 6544 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1997-09-26",
+     "basis": "PLO 7289 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-6826-7342",
+     "S-PLO-7289"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state.",
+    "PLOs 308 (1946), 3745 (1965) and 3984 (1966) had earlier reduced or revoked Executive Order 6544 in part; PLO 7289 is the full revocation."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-5079",
+   "description": "Revoked in full by Public Land Order 5079 (1971-06-18, 36 FR 11733) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6704"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 5079, signed 1971-06-18 (36 FR 11733); the held BLM table row reads \"Washington; revoking EO No. 6704\", which revokes Executive Order 6704 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1971-06-18",
+     "basis": "PLO 5079 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-4976-5806",
+     "S-PLO-5079"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-5480",
+   "description": "Revoked in full by Public Land Order 5480 (1975-02-04, 40 FR 6342) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6844"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 5480, signed 1975-02-04 (40 FR 6342); the held BLM table row reads \"California; revoking EO No. 6844\", which revokes Executive Order 6844 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1975-02-04",
+     "basis": "PLO 5480 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-4976-5806",
+     "S-PLO-5480"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date.",
+    "The BLM row names the order by number without its date; the identification rests on the number and the state."
+   ]
+  },
+  {
+   "branch_id": "B02-PLO-1947",
+   "description": "Revoked in full by Public Land Order 1947 (1959-08-18, 24 FR 6844) per the BLM table.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:7386"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "revoked_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1947, signed 1959-08-18 (24 FR 6844); the held BLM table row reads \"revoking EO No. 7386 of June 8, 1936\", which revokes Executive Order 7386 by number with no \"in part\" qualifier.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1959-08-18",
+     "basis": "PLO 1947 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-REVOKED-PLO"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1947"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, a finding aid, and the revocation's scope (the whole order, not part) is as that table states it.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-ABOLISHED-898",
+   "description": "Mono National Forest, which this order only named, abolished by PLO 307.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:898"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
+    "basis_kind": "ACT",
+    "basis": "The order's only operative content is that described land already in four forests \"shall be known as the Mono National Forest\"; it releases and reserves no land. Public Land Order No. 307 (signed 1945-12-18, 11 FR 250), per the held BLM table, is \"abolishing Mono National Forest and trans- ferring lands to Toiyabe and Inyo National Forests\". Under ruling P7 the abolition by name of the member's only subject ends it.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1945-12-18",
+     "basis": "PLO 307 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-ABOLISHED-SUBJECT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT",
+     "S-BLM-1-694",
+     "S-PLO-307"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the abolition rests on BLM's official Table of Public Land Orders, a finding aid.",
+    "A Wikisource note in the member's held text says the division took effect July 1, 1945; that date is unverified, and if correct the end is earlier than the date given."
+   ]
+  },
+  {
+   "branch_id": "B02-ABOLISHED-1051",
+   "description": "La Sal National Forest, which this order only renamed, abolished by PLO 618.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1051"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
+    "basis_kind": "ACT",
+    "basis": "The order's only operative content is that \"the name of the La Salle National Forest ... shall be the La Sal National Forest\". Public Land Order No. 618 (signed 1949-11-28, 14 FR 7271), per the held BLM table, is \"abolishing the La Sal National Forest and trans- ferring its lands to the Manti National Forest\". Under ruling P7 the abolition by name of the member's only subject ends it.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1949-11-28",
+     "basis": "PLO 618 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M-ABOLISHED-SUBJECT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT",
+     "S-BLM-1-694",
+     "S-PLO-618"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the abolition rests on BLM's official Table of Public Land Orders, a finding aid.",
+    "The effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B02-ABOLISHED-1069",
+   "description": "Sopris National Forest, which this order only named, merged by name into the Holy Cross by EO 3317.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1069"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
+    "basis_kind": "ACT",
+    "basis": "The order's only operative content is that described Holy Cross land \"shall be known as the Sopris National Forest\"; it releases and reserves no land. Executive Order 3317 (1920-08-07), a held member text, transfers \"all the lands included within the boundaries of the Sopris National Forest\" to the Holy Cross and merges them \"into one National Forest, thereafter to be known as the Holy Cross National Forest\". Its words reach the Sopris by name and leave it no land and no name, so under ruling P7 the member ends.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1920-08-07",
+     "basis": "date of Executive Order 3317"
+    },
+    "mechanism_ids": [
+     "M-ABOLISHED-SUBJECT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT",
+     "S-EO-3317"
+    ]
+   },
+   "gaps": [
+    "The merging order's text is a mirror_transcription copy, not an authenticated original.",
+    "Ruling P7 speaks of abolition; this lead treats an express merger of all of a named forest's lands into another named forest as abolition of the first by name. The adoption question names this reading."
+   ]
+  },
+  {
+   "branch_id": "B02-ABOLISHED-827",
+   "description": "Nebo National Forest, which this order only constituted, merged by name into the Manti by EO 2153.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:827"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
+    "basis_kind": "ACT",
+    "basis": "The order's only operative content is that described forest land \"shall be known as the Nebo National Forest\" (the rest of the Fillmore stays the Fillmore); it releases and reserves no land. Executive Order 2153 (1915-03-24), a held member text, transfers on and after July 1, 1915 \"all the lands included within the boundaries of the Nebo National Forest\" to the Manti and merges them into one forest \"to be known as the Manti National Forest\". Under ruling P7 the member ends on the date that order fixes.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1915-07-01",
+     "basis": "effective date fixed by Executive Order 2153 (\"on and after July 1, 1915\")"
+    },
+    "mechanism_ids": [
+     "M-ABOLISHED-SUBJECT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT",
+     "S-EO-2153"
+    ]
+   },
+   "gaps": [
+    "The merging order's text is a archival_replica_scan_pending_codebook copy, not an authenticated original.",
+    "The held scan of Executive Order 2153 misreads the year once as \"July 1, 1913\"; the same text repeats \"July 1, 1915\" twice.",
+    "Ruling P7 speaks of abolition; this lead treats an express merger of all of a named forest's lands into another named forest as abolition of the first by name. The adoption question names this reading."
+   ]
+  },
+  {
    "branch_id": "B03-OWN-DATE-2443",
    "description": "Withdrawal in aid of pending legislation until March 5, 1917 (the year is misread \"tgtz\" in the held scan; the same sentence repeats \"on March 5, 1917\").",
    "when": [
@@ -2150,7 +5022,7 @@
   },
   {
    "branch_id": "B03-OWN-DATE-2542A",
-   "description": "Withdrawal in aid of pending legislation until July 1, 1918, extended to March 5, 1919 for the lands described in held Executive Order 2896 (June 26, 1918).",
+   "description": "Withdrawal in aid of legislation until July 1, 1918; Executive Order 2896 extended it to March 5, 1919 for the lands it lists and added a disposal clause.",
    "when": [
     {
      "field": "instrument_id",
@@ -2166,7 +5038,7 @@
     "status_lead": "no",
     "lead_kind": "own_stated_end_date",
     "basis_kind": "TERM",
-    "basis": "The order withdrew the lands until July 1, 1918, extended to March 5, 1919 for the lands described in held Executive Order 2896 (June 26, 1918), and provided that if the legislation was not enacted and no other direction was given the lands would then become subject to disposal without further order.",
+    "basis": "By its own terms the order withdrew the lands only \"until July 1, 1918, in aid of legislation\"; it has no disposal clause. Held Executive Order 2896 extended the withdrawal to March 5, 1919 \"in so far as it affects the hereinafter described lands\" and provided that those lands would then \"become subject to disposal under any law then applicable thereto without further order\". The tracts EO 2896 does not list (in T. 2 N., Rs. 3 and 4 E., and T. 5 N., R. 6 E., among others) left the withdrawal on July 1, 1918; the order as a whole ended on March 5, 1919.",
     "date_rule": {
      "kind": "fixed",
      "date": "1919-03-05",
@@ -2181,7 +5053,8 @@
     ]
    },
    "gaps": [
-    "Only the family's held texts were searched for extensions; an extension order outside the held corpus would move the end later, and an earlier revocation would move it earlier."
+    "Only the family's held texts were searched for extensions; an extension order outside the held corpus would move the end later, and an earlier revocation would move it earlier.",
+    "Executive Order 2896's held signature reads \"28 June, 1918\" against the member date 1918-06-26; either date precedes July 1, 1918, so the end is unaffected."
    ]
   },
   {
@@ -2409,7 +5282,7 @@
     "status_lead": "no",
     "lead_kind": "merged_into_parent_on_issue",
     "basis_kind": "TERM",
-    "basis": "The order's only operative content amends the Secretary of the Interior's order of April 1, 1907 withdrawing ranger stations in the Yellowstone (now Palisade) National Forest, as to Station \"B\"; under ruling P2 its text merged into that parent on issue. Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "basis": "The order's only operative content corrects the description of Station \"B\" in the Secretary of the Interior's ranger-station withdrawal of April 1, 1907 (Yellowstone, now Palisade, National Forest); under ruling P2 its text merged into that parent on issue. Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it. The parent ended as to Station B on 1919-01-25, when held Executive Order 3025 revoked \"Executive Order of October 17, 1912 (No. 1626)\" and with it the Station B withdrawal as corrected.",
     "date_rule": {
      "kind": "order_date"
     },
@@ -2422,7 +5295,9 @@
     ]
    },
    "gaps": [
-    "Executive Order 3025 (1919-01-25) revoked \"Executive Order of October 17, 1912 (No. 1626)\" and so ended the Station B withdrawal that this order corrected; that is the parent's end as to Station B."
+    "Executive Order 3025 (1919-01-25), a held member text, revokes this order by number; under ruling P2 that act is recorded as the end of the parent withdrawal as to Station B. If the owner treats that revocation as the member's own end (basis ACT), the lead keeps status no and its date becomes 1919-01-25.",
+    "The correction substitutes a different tract (Sec. 18, T. 4 N., R. 44 E. for Sec. 12, T. 4 N., R. 43 E.), so in substance it withdrew new land in the form of a correction; the P2 adoption question names this order.",
+    "If the owner prefers to treat an amending order as living as long as the amended text lives, this lead becomes open pending the parent (ruling P2)."
    ]
   },
   {
@@ -2453,7 +5328,165 @@
     ]
    },
    "gaps": [
-    "Executive Order 5147 (1929-07-01) revoked \"Executive Order ... (No. 4246), as amended by the Executive Order dated July 31, 1925 (No. 4278)\"; that is the parent's end."
+    "Executive Order 5147 (1929-07-01) revoked \"Executive Order ... (No. 4246), as amended by the Executive Order dated July 31, 1925 (No. 4278)\"; that is the parent's end.",
+    "If the owner prefers to treat an amending order as living as long as the amended text lives, this lead becomes open pending the parent (ruling P2)."
+   ]
+  },
+  {
+   "branch_id": "B04-MERGED-2470",
+   "description": "Executive Order 2470 only amends Executive Order 2449's opening dates.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2470"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content amends Executive Order 2449 (1916-09-05) \"so as to change the date of settlement to November 14 and that of entry to December 12, 1916\". Under ruling P2 its text merged into that parent on issue. Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-MERGED-INTO-PARENT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT"
+    ]
+   },
+   "gaps": [
+    "Executive Order 2449's lead (B05) uses the amended dates; it ended on 1916-12-12.",
+    "The held signature line reads \"it October, 1916\" (OCR); the member date 1916-10-14 is used.",
+    "If the owner prefers to treat an amending order as living as long as the amended text lives, this lead becomes open pending the parent (ruling P2)."
+   ]
+  },
+  {
+   "branch_id": "B04-MERGED-2223",
+   "description": "Executive Order 2223 only narrows the Siletz classification withdrawal of Executive Order 1228.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2223"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content modifies Executive Order 1228 (1910-07-13) \"to exclude from the operation thereof\" the lands within the Siuslaw National Forest, with a proviso that the forest's proclamation and Executive Order 860 are not altered. Under ruling P2 its text merged into that parent on issue. Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-MERGED-INTO-PARENT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT"
+    ]
+   },
+   "gaps": [
+    "The parent, Executive Order 1228, belongs to another family; its own lifecycle decides the remainder of the withdrawal.",
+    "If the owner prefers to treat an amending order as living as long as the amended text lives, this lead becomes open pending the parent (ruling P2)."
+   ]
+  },
+  {
+   "branch_id": "B04-MERGED-6045",
+   "description": "Executive Order 6045 only restates the description of the Sitka Dock Site of Executive Order 3333.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6045"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content modifies the description of the Sitka Dock Site reserved by Executive Order 3333 (1920-10-03) \"to read as follows\", giving new metes and bounds. Under ruling P2 its text merged into that parent on issue. Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-MERGED-INTO-PARENT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT"
+    ]
+   },
+   "gaps": [
+    "The parent, Executive Order 3333, is open on B10 in this doctrine.",
+    "If the owner prefers to treat an amending order as living as long as the amended text lives, this lead becomes open pending the parent (ruling P2)."
+   ]
+  },
+  {
+   "branch_id": "B04-MERGED-2896",
+   "description": "Executive Order 2896 only extends Executive Order 2542-A's withdrawal period for listed lands.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2896"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content extends the withdrawal made by Executive Order 2542-A to March 5, 1919 for the lands it lists, with a disposal-without-further-order clause for that date (an extension of a withdrawal period is an amendment of the parent). Under ruling P2 its text merged into that parent on issue. Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-MERGED-INTO-PARENT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT"
+    ]
+   },
+   "gaps": [
+    "Signature-date conflict: the held signature reads \"28 June, 1918\"; the member date 1918-06-26 is used. The lead date may be two days later.",
+    "The parent, Executive Order 2542-A, ended on 1919-03-05 (B03).",
+    "If the owner prefers to treat an amending order as living as long as the amended text lives, this lead becomes open pending the parent (ruling P2)."
+   ]
+  },
+  {
+   "branch_id": "B04-MERGED-7361",
+   "description": "Executive Order 7361 only amends Executive Order 4929, enlarging its watershed withdrawal.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:7361"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content amends Executive Order 4929 so that its withdrawal embraces additional land (about 37,000 acres). Under ruling P2 its text merged into that parent on issue. Disclosure: its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-MERGED-INTO-PARENT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT"
+    ]
+   },
+   "gaps": [
+    "The amendment adds land, so in substance it is a new withdrawal in the form of an amendment; the P2 adoption question names this order. The parent, Executive Order 4929, is open on B12.",
+    "If the owner prefers to treat an amending order as living as long as the amended text lives, this lead becomes open pending the parent (ruling P2)."
    ]
   },
   {
@@ -2724,6 +5757,42 @@
    ]
   },
   {
+   "branch_id": "B05-SCHEDULED-1924",
+   "description": "Strikes Executive Order 1622's classification-withdrawal clause and opens the land to entry and selection only for 20 days from May 8, 1914, then to general disposition.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1924"
+     ]
+    },
+    {
+     "text_regex": "modified by striking therefrom"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only commands strike from an earlier exclusion order the clause that withdrew the excluded land for classification, and open the land on a schedule its own terms fix (entry and selection only for twenty days from and including May 8, 1914, and thereafter disposition under the public land laws); under ruling P1 the command was exhausted when the last scheduled step took effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1914-05-28",
+     "basis": "last opening step fixed by the order's own terms; order dated 1914-04-27"
+    },
+    "mechanism_ids": [
+     "M-SPENT-ON-ISSUE"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT",
+     "S-ORGANIC"
+    ]
+   },
+   "gaps": [
+    "Day counts are read as calendar days after the order date; the end may differ by a day under the Land Office's counting convention."
+   ]
+  },
+  {
    "branch_id": "B05-SCHEDULED-1928",
    "description": "Revocation or exclusion order whose own terms fix the opening of the land: settlement only for 28 days from the 56th day after the order, and thereafter entry and disposition under the general land laws.",
    "when": [
@@ -2902,6 +5971,42 @@
    ]
   },
   {
+   "branch_id": "B05-SCHEDULED-1973",
+   "description": "Strikes Executive Order 1818's classification-withdrawal clause and opens the land to entry only for 28 days from the 56th day, then to general disposition.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1973"
+     ]
+    },
+    {
+     "text_regex": "modified by striking therefrom"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only commands strike from an earlier exclusion order the clause that withdrew the excluded land for classification, and open the land on a schedule its own terms fix (entry only for twenty-eight days from and including the fifty-sixth day after the order, and thereafter disposition under the public land laws); under ruling P1 the command was exhausted when the last scheduled step took effect.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1914-09-24",
+     "basis": "last opening step fixed by the order's own terms; order dated 1914-07-02"
+    },
+    "mechanism_ids": [
+     "M-SPENT-ON-ISSUE"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT",
+     "S-ORGANIC"
+    ]
+   },
+   "gaps": [
+    "Day counts are read as calendar days after the order date; the end may differ by a day under the Land Office's counting convention."
+   ]
+  },
+  {
    "branch_id": "B05-SCHEDULED-1986",
    "description": "Revocation or exclusion order whose own terms fix the opening of the land: settlement only for 28 days from the 56th day after the order, and thereafter entry and disposition under the general land laws.",
    "when": [
@@ -3076,7 +6181,8 @@
    },
    "gaps": [
     "Day counts are read as calendar days after the order date; the end may differ by a day under the Land Office's counting convention.",
-    "A preference the State held under the Act of March 3, 1893 (school-land selection) runs from the general law, not from the order, and does not extend this date."
+    "A preference the State held under the Act of March 3, 1893 (school-land selection) runs from the general law, not from the order, and does not extend this date.",
+    "Signature-date conflict: the held signature reads \"28 July, 1914\" against the member date 1914-07-29; on the signature date the last step falls on 1914-10-20, one day earlier than the date given."
    ]
   },
   {
@@ -3165,7 +6271,9 @@
    },
    "gaps": [
     "Day counts are read as calendar days after the order date; the end may differ by a day under the Land Office's counting convention.",
-    "A preference the State held under the Act of March 3, 1893 (school-land selection) runs from the general law, not from the order, and does not extend this date."
+    "A preference the State held under the Act of March 3, 1893 (school-land selection) runs from the general law, not from the order, and does not extend this date.",
+    "Signature-date conflict: the held signature reads \"21 A ugust, 1914\" against the member date 1914-08-24; on the signature date the last step falls on 1914-11-13, three days earlier than the date given.",
+    "The held scan begins with an unrelated Canal Zone order before this forest order; the forest text decides the lead, but its identity should be confirmed."
    ]
   },
   {
@@ -7797,11 +10905,195 @@
    ]
   },
   {
-   "branch_id": "B06-SPENT-REVOKE",
-   "description": "Revokes, rescinds or abolishes another order or a site it reserved, and at most restores the released land to entry at once; no new reservation follows the revocation.",
+   "branch_id": "B05-DEFERRED-OPENING",
+   "description": "Exclusion whose restoration takes effect only on a date the Secretary of the Interior fixes by published notice (EOs 787 and 1125).",
    "when": [
     {
-     "text_regex": "(?<!not )(?<!now )(?<!shall )\\b(is|are|be)\\b\\s*,?(\\s*and (the same|it) (is|are)\\s*,?)?(\\s*hereby)?\\s*,?\\s*(revoked|rescinded|vacated|abolished)\\b"
+     "field": "instrument_id",
+     "in": [
+      "EO:787",
+      "EO:1125"
+     ]
+    },
+    {
+     "text_regex": "Secretary (of|as) the Interior may prescribe"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "restoration_pending_secretary_notice",
+    "basis_kind": "NONE",
+    "basis": "The order excludes land and provides that it \"shall be restored to the public domain and become subject to settlement ... on such date and after such notice by publication as the Secretary of the Interior may prescribe\", with entry thirty days later. The restoration takes effect only on that future event, so the order is not spent on its signing date, and the date of the Secretary's notice is not held.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M-SPENT-ON-ISSUE"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT",
+     "S-ORGANIC"
+    ]
+   },
+   "gaps": [
+    "The Secretary of the Interior's restoration notice (General Land Office order or local land office notice) fixing the settlement date; the end would be thirty days after that date."
+   ]
+  },
+  {
+   "branch_id": "B08-MIXED-3155",
+   "description": "Excludes land from the Flathead National Forest and also amends Proclamation 1500 to add land the State of Montana may select.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3155"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "mixed_exclusion_and_amendment",
+    "basis_kind": "NONE",
+    "basis": "The order does two things: it amends Proclamation 1500 (1918-11-27) \"so as to add to the areas listed therein, which may be selected by the State of Montana\" further lands, and it excludes land from the Flathead National Forest. Ruling P1 requires restoration to be the only content and ruling P2 requires amendment to be the only content, so neither applies to the order as a whole.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M-SPENT-ON-ISSUE",
+     "M-MERGED-INTO-PARENT"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT"
+    ]
+   },
+   "gaps": [
+    "The lifecycle of Proclamation 1500 and of the State of Montana's selections under it."
+   ]
+  },
+  {
+   "branch_id": "B06-SPENT-4204",
+   "description": "Rescinds the naval reservation of Executive Order 1237 on land that stayed within the Chugach National Forest.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4204"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only command rescinds Executive Order 1237 (1910-08-15), a naval reservation of land that \"was previously reserved and set aside as a part of the Chugach National Forest\"; its words that the area \"is hereby restored to its former National Forest status\" state the consequence, since the forest reservation was never released. Under ruling P1 the command was exhausted on issue.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-SPENT-ON-ISSUE"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B06-SPENT-5670",
+   "description": "Releases land from a War Department reservation; by the forest proclamation's own terms it becomes part of the Siuslaw National Forest.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5670"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only command releases a lot \"from said reservation\" made by the Executive order of November 24, 1903 for the War Department; the land then \"becomes a part of the Siuslaw National Forest\" \"in accordance with proclamation of March 2, 1907\", that is, by the proclamation's terms and not by a command of this order. Under ruling P1 the relinquishment was exhausted on issue.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-SPENT-ON-ISSUE"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B08-SPENT-EXCLUSION-LANDMARK",
+   "description": "Plain exclusion and restoration whose only outlier word is a boundary landmark (an \"Indian graveyard\"; the \"Hyder town-site elimination\").",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3798",
+      "EO:5409"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order excludes described land \"heretofore occupied for fish cannery purposes\" (or as home sites) from the Tongass National Forest and restores it \"to entry under the applicable public land laws\", with a proviso leaving other withdrawals unchanged. The words that kept it off branch B08 are survey landmarks in the boundary description. Under ruling P1 that single act was exhausted on issue.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M-SPENT-ON-ISSUE"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT",
+     "S-ORGANIC"
+    ]
+   },
+   "gaps": [
+    "The proviso that \"no other withdrawal or reservation affecting said lands shall be vacated or modified hereby\" saves other instruments and retains nothing for this order."
+   ]
+  },
+  {
+   "branch_id": "B09-RESTRICTED-RESTORATION",
+   "description": "Excludes land for a particular disposition that the order names, and does not return it to the general land laws: adjustment of a claim, a named color-of-title application, or disposal under a named Act or sections.",
+   "when": [
+    {
+     "text_regex": "(exclu|occlu|elimi)[\\w\\-' ]{0,8}?\\W{0,3}(therefrom|from (the|said))|reduce the area|(modi|mod)[\\w\\- ]{0,10}?\\W.{0,300}?\\b(by|byv|so as to|to)\\W{1,3}(exclu|elimi|reduc)|\\bhereby\\s*,?\\W{0,3}(excluded|eliminated)\\b|be excluded from"
+    },
+    {
+     "text_regex": "to permit (the )?adjustment|only for (the )?adjustment|restored to entry only under the provisions of the act|in order to permit the Secretary of the Interior to dispose|in order to admit of the disposition|colou?r of title application"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "restoration_with_retained_restriction",
+    "basis_kind": "NONE",
+    "basis": "Under ruling P1 a restoration that keeps a purpose restriction is not only a restoration. The test applied: an exclusion whose own words tie the land to one named disposition (a claim's adjustment, a named color-of-title application, or disposal under a named Act or Revised Statutes sections) is restricted, because the order's purpose is fulfilled only when that disposition occurs and the order fixes no date for it; an exclusion that returns the land to the general land laws, with at most general-law preferences or a dated opening schedule, is not. No held instrument shows the named disposition.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M-SPENT-ON-ISSUE"
+    ],
+    "source_ids": [
+     "S-MEMBER-TEXT"
+    ]
+   },
+   "gaps": [
+    "The General Land Office or BLM record of the named disposition (adjustment, color-of-title patent, or sale under the named Act)."
+   ]
+  },
+  {
+   "branch_id": "B06-SPENT-REVOKE",
+   "description": "Revokes, rescinds or abolishes another order or a site it reserved, and at most restores the released land to entry at once. The text must not re-reserve or rewithdraw the land, add it to or declare it part of a forest, or reserve it for a townsite or pending legislation; a statement that the land already lies within a forest is allowed.",
+   "when": [
+    {
+     "text_regex": "(?<!not )(?<!now )(?<!shall )\\b(is|are|be)\\b\\s*,?(\\s*and (the same|it) (is|are)\\s*,?)?(\\s*here\\s*by)?\\s*,?\\s*(revoked|rescinded|vacated|abolished)\\b"
     },
     {
      "not": {
@@ -7875,7 +11167,7 @@
   },
   {
    "branch_id": "B08-SPENT-EXCLUSION",
-   "description": "Excludes described land from a forest (or opens to entry land an earlier order or proclamation excluded) and restores it at once to the general land laws, or relinquishes it for disposal under a general statute; no addition, transfer, townsite, Indian, military, classification or other reservation, and no purpose restriction.",
+   "description": "Excludes described land from a forest (or opens to entry land an earlier order or proclamation excluded) and restores it at once to the general land laws; no addition, transfer, townsite, Indian, military, classification or other reservation, and no named disposition or purpose restriction.",
    "when": [
     {
      "any_of": [
@@ -7922,46 +11214,15 @@
     ]
    },
    "gaps": [
-    "Where the order leaves the opening date to the Secretary of the Interior (EOs 787 and 1125), the restoration took effect on the order and the Secretary's notice is not held.",
     "A later proclamation or order that re-added the same land to a forest would be a new reservation, not a revival of this order; it does not change this lead."
    ]
   },
   {
-   "branch_id": "B09-RESTRICTED-RESTORATION",
-   "description": "Excludes land but restores it only for a stated purpose (adjustment of a particular claim under a named Act).",
-   "when": [
-    {
-     "text_regex": "(exclu|occlu|elimi)[\\w\\-' ]{0,8}?\\W{0,3}(therefrom|from (the|said))|reduce the area|(modi|mod)[\\w\\- ]{0,10}?\\W.{0,300}?\\b(by|byv|so as to|to)\\W{1,3}(exclu|elimi|reduc)|\\bhereby\\s*,?\\W{0,3}(excluded|eliminated)\\b|be excluded from"
-    },
-    {
-     "text_regex": "to permit (the )?adjustment|only for (the )?adjustment"
-    }
-   ],
-   "lead": {
-    "status_lead": "open",
-    "lead_kind": "restoration_with_retained_restriction",
-    "basis_kind": "NONE",
-    "basis": "Under ruling P1 a restoration that keeps a purpose restriction is not only a restoration; the restriction's end (the claim's adjustment) is not shown by any held instrument.",
-    "date_rule": {
-     "kind": "none"
-    },
-    "mechanism_ids": [
-     "M-SPENT-ON-ISSUE"
-    ],
-    "source_ids": [
-     "S-MEMBER-TEXT"
-    ]
-   },
-   "gaps": [
-    "The General Land Office record of the claim's adjustment or patent."
-   ]
-  },
-  {
    "branch_id": "B10-ADMIN-SITE",
-   "description": "Withdraws land for a ranger station, administrative site, lookout, dock or boathouse site, road material or similar Forest Service use (not revoked by a held member order).",
+   "description": "Withdraws land for a ranger station, administrative or dock site, lookout, road material or similar Forest Service use (a site lying within a townsite included), not revoked in full by a held order.",
    "when": [
     {
-     "any_regex": "ranger station|ranger-station|administrative site|administrative-site|administration site|lookout|dock site|boathouse|right of way|right-of-way|road (construction|material)|for use (by|of) the Forest Service"
+     "any_regex": "ranger station|ranger-station|(?<!withdrawals for )administrative sites?\\b|administration site|lookout (station|site|tower|point)s?|fire ?look ?out|lookout\\W{0,3}station|dock site|boathouse|right of way|right-of-way|road (construction|material)|for use (by|of) the Forest Service"
     },
     {
      "not": {
@@ -7970,15 +11231,21 @@
     },
     {
      "not": {
-      "text_regex": "townsite|town site|Army|military|naval"
+      "text_regex": "(reserved|withdrawn|withdrawal) for town-?\\s?site|townsite purposes|town-?site laws|Army|military|naval"
      }
+    },
+    {
+     "not": {
+      "text_regex": "w\\s?i\\s?t\\s?h\\s?d\\s?r\\s?a\\s?w\\s?a\\s?l\\s?s for administrative sites for use in the man"
+     },
+     "note": "1908 reorganization boilerplate (\"not embraced in withdrawals for administrative sites\"): those orders go to B15"
     }
    ],
    "lead": {
     "status_lead": "open",
     "lead_kind": "persists_until_revoked_withdrawal",
     "basis_kind": "NONE",
-    "basis": "A Pickett Act withdrawal stays in force until revoked by the President or Congress and survived FLPMA's repeal of the authority; no held instrument revokes this one, and no current land record has been read.",
+    "basis": "A Pickett Act withdrawal stays in force until revoked by the President or Congress and survived FLPMA's repeal of the authority; no held instrument revokes this withdrawal in full, and no current land record has been read.",
     "date_rule": {
      "kind": "none"
     },
@@ -8006,6 +11273,13 @@
      "not": {
       "text_regex": "included in and made a part of|hereby (added to|included in) the"
      }
+    },
+    {
+     "field": "instrument_id",
+     "not_in": [
+      "EO:3041"
+     ],
+     "note": "reserves excluded land for townsite purposes: B14"
     }
    ],
    "lead": {
@@ -8030,17 +11304,30 @@
   },
   {
    "branch_id": "B12-OVERLAP-INDIAN",
-   "description": "Creates or continues a reservation for Indian or Alaska native use, or excludes forest land into such a reservation.",
+   "description": "The text concerns Indian or Alaska native use or occupation of the land: a reservation for their use, a restoration to an Indian reservation, a withdrawal pending allotment to them, or an exclusion of land they occupy.",
    "when": [
     {
-     "any_regex": "Indian|natives"
+     "any_regex": "Indians?\\b(?!\\s*(Meridian|Creek|Grave|Gulch|Peak|trail|graveyard))|natives"
+    },
+    {
+     "field": "instrument_id",
+     "not_in": [
+      "EO:5758",
+      "EO:6333",
+      "EO:6334",
+      "EO:6882",
+      "EO:6889",
+      "EO:7087",
+      "EO:7059"
+     ],
+     "note": "Indian words only in boundary descriptions or place names: the transfers and EO 7059 go to B15"
     }
    ],
    "lead": {
     "status_lead": "open",
     "lead_kind": "other_reservation_overlap",
     "basis_kind": "NONE",
-    "basis": "The order makes a continuing reservation of land for Indian or Alaska native use; its end depends on later instruments for that land, none held. The member's subject also falls within the PD-INDIAN family doctrine.",
+    "basis": "The order reserves, restores or excludes land for, or subject to the rights of, Indian or Alaska native occupants; its end depends on later instruments for that land, none held. The member's subject also falls within the PD-INDIAN family doctrine.",
     "date_rule": {
      "kind": "none"
     },
@@ -8057,10 +11344,20 @@
   },
   {
    "branch_id": "B13-OVERLAP-MILITARY",
-   "description": "Creates or continues a reservation for a military post, its water supply, or another military or naval purpose, or excludes forest land into such a reservation.",
+   "description": "Creates or continues a reservation for a military post, its water supply, or another military or naval purpose, or creates a forest district from military land subject to War Department use.",
    "when": [
     {
      "any_regex": "water supply|military|naval|War Department|Army"
+    },
+    {
+     "field": "instrument_id",
+     "not_in": [
+      "EO:1887",
+      "EO:1911",
+      "EO:3793",
+      "EO:4737"
+     ],
+     "note": "municipal water-supply reservations go to B14; EO 4737 keeps land in the Tongass (B15)"
     }
    ],
    "lead": {
@@ -8084,17 +11381,39 @@
   },
   {
    "branch_id": "B14-OVERLAP-LAND",
-   "description": "Creates or continues a reservation for a townsite, railroad terminal, school, or hot or medicinal springs, or excludes forest land into such a reservation.",
+   "description": "Creates or continues a reservation for a townsite, railroad terminal, school, hot or medicinal springs, or a municipal water supply, or excludes forest land into such a reservation.",
    "when": [
     {
-     "any_regex": "townsite|town site|town-site|railroad|terminal|school|hot springs|medicinal springs"
+     "any_of": [
+      {
+       "any_regex": "townsite|town site|town-site|railroad|terminal|school|hot springs|medicinal springs"
+      },
+      {
+       "field": "instrument_id",
+       "in": [
+        "EO:1887",
+        "EO:1911",
+        "EO:3793",
+        "EO:3041"
+       ]
+      }
+     ]
+    },
+    {
+     "field": "instrument_id",
+     "not_in": [
+      "EO:4757",
+      "EO:6806",
+      "EO:6882"
+     ],
+     "note": "railroad named only in the boundary: B15"
     }
    ],
    "lead": {
     "status_lead": "open",
     "lead_kind": "other_reservation_overlap",
     "basis_kind": "NONE",
-    "basis": "The order makes a continuing reservation of land for a townsite, railroad terminal, school, or hot or medicinal springs; its end depends on later instruments for that land, none held. The member's subject also falls within the PD-LAND-WITHDRAWAL family doctrine.",
+    "basis": "The order makes a continuing reservation of land for a townsite, railroad terminal, school, springs or municipal water supply; its end depends on later instruments for that land, none held. The member's subject also falls within the PD-LAND-WITHDRAWAL family doctrine.",
     "date_rule": {
      "kind": "none"
     },
@@ -8136,7 +11455,8 @@
    },
    "gaps": [
     "The Forest Service chronological record mapping this order to the named forest's later actions (consolidation, renaming, redescription), with the text of each later instrument to test whether it names this order or expressly redescribes the whole boundary while revoking prior descriptions.",
-    "For a persistence lead: the current Land Areas Report showing the forest or name on 2026-10-14. 16 U.S.C. 1609(a) is context only."
+    "For a persistence lead: the current Land Areas Report showing the forest or name on 2026-10-14. 16 U.S.C. 1609(a) is context only.",
+    "Where the forest the order constituted was later abolished or merged by name but the order also assigned land to another forest (for example EO 870, Holy Cross and Leadville, Holy Cross abolished by PLO 263; EO 801, Pocatello and Cache, Pocatello merged by EO 2179), ruling P7 does not reach it and the lead stays open."
    ]
   },
   {
@@ -8165,7 +11485,7 @@
    "detected_by": "B15-FOREST-DESIGNATION"
   },
   {
-   "reason": "Administrative-site and similar Forest Service withdrawals not revoked by a held order: need a public land order search or BLM land-status record.",
+   "reason": "Administrative-site and similar Forest Service withdrawals not revoked in full by a held order or a BLM table row: need a public land order search beyond the table or the BLM land-status record.",
    "detected_by": "B10-ADMIN-SITE"
   },
   {
@@ -8177,8 +11497,16 @@
    "detected_by": "B12-OVERLAP-INDIAN, B13-OVERLAP-MILITARY, B14-OVERLAP-LAND"
   },
   {
-   "reason": "Restoration kept a purpose restriction (claim adjustment).",
+   "reason": "Exclusions tied to one named disposition (claim adjustment, color-of-title application, disposal under a named Act).",
    "detected_by": "B09-RESTRICTED-RESTORATION"
+  },
+  {
+   "reason": "Restorations that take effect only on a date the Secretary of the Interior fixes by notice, which is not held.",
+   "detected_by": "B05-DEFERRED-OPENING"
+  },
+  {
+   "reason": "An exclusion combined with an amendment of a proclamation (two operative acts).",
+   "detected_by": "B08-MIXED-3155"
   },
   {
    "reason": "Held text is another order's.",

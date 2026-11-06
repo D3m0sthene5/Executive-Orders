@@ -57,3 +57,46 @@ Applied `research/pothier/COORDINATOR_RULINGS.md` (P1-P6) and the coordinator's 
 - B01 now names the family each member belongs to.
 - Added source S0 (`member_text`).
 - Result: 263 members, 43 decided, 220 open, 0 contradicted.
+
+## Revision after blind review (2026-11-06, reviser taking over from the author)
+
+### Read
+
+- `research/pothier/work/AUTHOR_BRIEF.md`, `DOCTRINE_SCHEMA.md`, `COORDINATOR_RULINGS.md` (P1-P8), `work/REVISION_BRIEF.md`, the doctrine .md and .json, this file, and both reviews (`/home/claude/pothier-review/PD-WAR-EMERGENCY-A/REVIEW.json`, `-B/REVIEW.json`).
+- `jobs/pothier/pothier.py` (conditions, date rules, contradiction check: it flags only `yes` or `persists` leads with ending edges, `no` leads with living edges dated after the lead's end, named-person hits and current-law predicates; it does not check pins).
+- Every family member's `later_edges` in `jobs/pothier/output/MEMBERS.jsonl`: 29 members carry edges. The non-cross-reference ones are listed in the .md section (e).
+- Member texts read for this revision: EO 3259, 3265, 3227, 3183, 3016C, 3016K, 3016L, 3019-A, 3161, 3248-A, 3249, 3091, 3222, 3283, 3059, 3086-A, 3087-A, 2868, 2929, 2652, 2967, 2743-A, 2663, 2678, 3320, 3087, 2884, 3100, 2736, 3143, 2679-A, 2888, 3018, 3064, 2687, 3549, 2645 (and the Wikisource notes on EO 2645, 2770, 2729-A, 2687), 3923, 4224, 5427, 3247, 3240, 3173, 3235, 3094-B, 3132, 3374. Machine search of all family texts for recitals of completed sales (only EO 3265 records the sale its parent authorized), for "any and all other" or "other powers" recitals in every P7 and P8 member, and for printed dates against census dates on every decided member.
+- The held 41 Stat. 1359-1360 text, re-read for its operative words.
+- Web (WebFetch): govinfo 37 Stat. 137 (sec. 2 of the 1912 eight-hour Act, on p. 138: "during time of war or a time when war is imminent"); govinfo link 40/535 (Act of Apr. 22, 1918, ch. 62: amends the 1917 section "by adding a new provision", no termination of its own); govinfo link 40/374 (Oct. 6, 1917 shipping fund section: raises cost limits only; page not verified); govinfo STATUTE-40-Pg276 (Lever Act sec. 24, confirming the proclamation clause); NARA RG 131 (EO 9095, EO 9142, EO 6694, EO 9788, EO 11281). The govinfo FR link service did not resolve 12 FR 2038 (PLO 369); a web search did not find the issue.
+- `held.py`: no treaty, Overman Act, Lever Act, 1912 Act, 42 Stat. 105, PLO 369 or EO 2687-A text is held.
+
+### Changes and why
+
+- **EO 4224-A out of P2 (now B18 open).** Coordinator adjudication and both reviews: its only operative clause is a quit-claim authorization; "amend" appears only in its stated reasons. The P2 branch condition was also anchored on operative amending words, because the bare regex "amend" matched the Trading with the Enemy Act recital ("the amendment to such Act") present in every sale order.
+- **EO 3259 decided (B03E, `no`, TERM, `exhausted_by_performance`, interval 1920-04-16 to 1920-04-29).** Coordinator adjudication; EO 3265 records "the actual sale made by the Alien Property Custodian". EO 3227 and the Polk orders checked the same way: EO 3227's "in the case of sales heretofore made" is conditional and names no property, so EO 3016C, 3016K and 3227 stay open. EO 3183 (rejection authorization for the same shares) stays open with the evidence disclosed and flagged for the coordinator.
+- **Overman branch split.** EO 3019-A, 3161, 3248-A invoke "any and all other Acts of Congress" and EO 3249 "all other powers thereto me enabling": moved to new open branch B15X. EO 2868 rests on the 1916 Council of National Defense provisions: B16 is now open. EO 3019-A's own cap ("in no event longer than the proclamation of peace") covers only its first exception and the treaty texts are not held, so it decides nothing. B15 keeps EO 3059, 3086-A and 3091, which rest on the Overman Act alone (EO 3222, which amends EO 3091, also rests on it alone), and the branch now requires the absence of "any and all other / all other powers / Chief Executive" in the text.
+- **Same defect found in the Lever Act branch.** EO 3235 ("and other powers vested in me by law") and EO 3240 ("all other powers me hereto enabling") moved from B13 to the open branch B13X, applying the coordinator's Overman ruling to the identical P8 question. B13 now has 4 members and carries the same "not other powers" condition.
+- **EO 2888 vs EO 3018.** The Act of Apr. 22, 1918 inserts its provisions into the 1917 section, so EO 2888 (resting on it alone) joins B14 with the reading disclosed. EO 3018 and EO 3064 also delegate powers under the July 1 and Nov. 4, 1918 shipping fund sections, which have not been read, so both moved to new open branch B14X. This is a decided-to-open change for EO 3018 and 3064, made because the "herein" reach for those sections is unverified.
+- **B07/B08 lead kind** set to `ended_by_express_abolition_of_its_subject` (P7). The B07 basis now quotes EO 3320's liquidation-only clause and explains that EO 3087's Grain Corporation authority ran "with the approval of the United States Wheat Director", its other parts being completed acts. The B08 basis quotes EO 2884's "subject to the control and direction of the United States Food Administrator" and EO 3100's "under the direction of the United States Wheat Director".
+- **B20 basis corrected.** Sec. 2 of the 1912 Act is war-contingent. The 1921 resolution's words govern how Acts are construed and do not reach a waiver already granted for a specific contract (an exercise of the power, not a delegation), so EO 2663 stays open with March 3, 1921 as a candidate end. Whether the resolution reaches the 39 Stat. 1192 proviso is now stated as unsettled.
+- **EO 9095 vs EO 9142** corrected in M12, B18 and B19 (EO 9142 moved the Alien Property Division; source S27, NARA RG 131).
+- **Census-date conflicts.** B17 (EO 2652) now runs from 1917-07-03, B06 (EO 2929) from 1918-07-31, and EO 2967 has its own branch B03D fixed at 1918-09-26.
+- **B02 (EO 3087-A)** now quotes the transcription's "There is no record in Archives or State Department of any Executive Order bearing this number. See No. 3086-A", and its gap is a census question.
+- **B01 (EO 4224)**: the held text is EO 4224½; EO 5427's supersession names "4224½", so the edge belongs to the visa-fee order, not to the sale order.
+- **Held later edges disclosed** on their branches and in .md section (e): EO 3923 (PLO 369 number collision), EO 2645 (EO 2687-A supersession, editor's note only), EO 3091 (EO 3222), EO 3249 (EO 3283), EO 3233 (EO 3247 edges misread its exception), EO 3017 (spurious EO 3800 edge), EO 2729-A (partial revocations), EO 3016 (Polk orders reciting it), EO 2664, 2679-A, 2744, 4001, 2604, 3259.
+- **Smaller fixes**: count of the "later order" group (now split into P7 abolition 6 and revocation 2); B19's reference to the nonexistent B12 replaced by the War Trade Board candidate end; EO 3086-A's own pin; Lever Act sec. 24's proclamation clause quoted, with the 1921 resolution's displacement of it; the RG 63 finding aid described as weak evidence of the CPI transfer; EO 2687 described as a mixed order; EO 3173 added to the EO 3247 suspension gap; EO 3549's quotation of Merchant Marine Act sec. 17 cited in B14's gap.
+- `FETCH_PROPOSED.jsonl` rewritten (21 lines): branch counts and references corrected, and new lines for the 1912 Act, the Act of Apr. 22, 1918, the Oct. 6, 1917, July 1, 1918 and Nov. 4, 1918 shipping fund sections (the last two pages unverified), NARA RG 131, PLO 369, and EO 2687-A.
+
+### Findings ignored or not adopted
+
+- Planted errors, ignored as instructed: A R1 (Overman Act at "40 Stat. 565"), A R2 (B13 bound 1921-07-02), B R1 (joint resolution at "41 Stat. 1395"), B R2 (EO 2952 dated 1918-06-09). The real file had none of these.
+- B R3's statement that 39 Stat. 1192 is settled as not war-tied (citing a 1939 use, EO 8198) was not adopted as settled. EO 8198 is not held, and A R9 is right that the question is one of construction. B20 is open either way.
+- B R7's alternative of resting EO 2884 and 3100 on the Lever Act's cessation was not used. P7 decides them on held text, and the coordinator chose P7.
+- B R13's option of keeping EO 4224-A under P2 was rejected, per the coordinator.
+- No other finding was rejected.
+
+### Result
+
+263 members; 35 decided (18 TERM, 17 ACT), 228 open, 0 contradicted (`python3 -I jobs/pothier/pothier.py try`). Branch counts: B01 5, B02 1, B03 4, B03D 1, B03B 7, B03C 1, B03E 1, B04 1, B05 1, B06 1, B11 5, B07 2, B08 4, B09 4, B10 1, B10A 1, B13 4, B13X 5, B14 2, B14X 2, B15 3, B15X 4, B16 1, B17 1, B18 153, B19 8, B20 7, B21 19, B99 14.
+
+Effort: about 2 hours of agent time; roughly 50 member texts read, 7 web fetches and 3 searches, 6 `try` runs.

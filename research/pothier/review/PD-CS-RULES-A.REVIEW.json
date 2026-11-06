@@ -1,0 +1,282 @@
+{
+ "doctrine_id": "PD-CS-RULES",
+ "arm": "A",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "M3 effective_date_rule; B09, B12, B12b conditions (date lt) and B09/B12b interval 'to'; B13 condition (date gte); md lines 98, 187, 190-192, 300",
+   "claim": "EO 89's cut-off and end date is 1897-05-06 ('1897-05-06, approval date of EO 89'); B12 = before 1897-05-06, B13 = 1897-05-06 to 1903-04-14; B09/B12b intervals end 1897-05-06; owner-adoption point: 'EO 89's revocation on 1897-05-06'.",
+   "evidence": "S1 held text (jobs/richardson-volumes/output/texts/RICH_IX/EO_89.txt) ends 'Approved , May 6 , 1896 . GROVER CLEVELAND'; the file header gives 'date 1896-05-06 (approval)'. The doctrine itself says May 6, 1896 in the conclusions, the B13 description ('May 6, 1896 to April 14, 1903') and the B12 basis. Running the copy gives B12 35 and B13 49, not the 31 and 53 the md table reports; replacing 1897-05-06 by 1896-05-06 reproduces 31 and 53.",
+   "severity": "error",
+   "fix": "Use 1896-05-06 everywhere: M3 date rule, B09/B12/B12b 'lt 1896-05-06', B13 'gte 1896-05-06', B09/B12b interval to 1896-05-06, md M3 text, table rows and owner-adoption point."
+  },
+  {
+   "id": "R2",
+   "location": "B12 (members EO 90, EO 93, EO 94, EO 96)",
+   "claim": "Under the copy these four orders are B12 pure amendments of the pre-1896 rules, whose 'parent rules were expressly revoked by EO 89 ... on May 6, 1896'.",
+   "evidence": "They are dated 1896-05-13, 1896-12-23, 1897-01-02 and 1897-01-27, after EO 89. EO 90's held text (RICH_IX/EO_90.txt) amends 'Rule III, clause 2 (a)' of the 1896 rules; EO 94's text amends 'Rule V, section 4'; held edge EO 128 reads 'Amends Executive Order 89, May 6, 1896, and Executive Order 94, January 2, 1897.' Their parent is EO 89, which ended 1903-04-15 (B01), not the pre-1896 rules.",
+   "severity": "error",
+   "fix": "Follows from R1: with the 1896-05-06 cut-off they fall to B13 with the EO 89 parent. The `no` TERM lead on the order date is unchanged, but the basis and the owner-alternative end date (1903-04-15, not EO 89's issue) were wrong."
+  },
+  {
+   "id": "R3",
+   "location": "S3 citation (JSON sources S3, md source table) and B02 gaps",
+   "claim": "Executive Order 7915, June 24, 1938, 2 FR 1519 (June 28, 1938).",
+   "evidence": "Held text jobs/fr-originals/output/texts/EO_7915.txt: 'Location: 3 FR 1519'; masthead 'VOLUME 3 ... NUMBER 125 Washington, Tuesday, June 28, 1938'; the contents line lists 'Civil Service Rules, amendment. 1519'. Volume 2 is 1937.",
+   "severity": "error",
+   "fix": "3 FR 1519 (June 28, 1938) in S3 and in the B02 gap text."
+  },
+  {
+   "id": "R4",
+   "location": "md (c) 'Contradiction flag' paragraph and opening of (c) ('406 decided, 1 contradiction flag')",
+   "claim": "One contradiction flag: EO 119, whose three edges from EO 12680 are OCR false matches that do not concern EO 119.",
+   "evidence": "`pothier.py try ... --hints` on the copy reports 'contradicted 37' (B14 21, B13 12, B09 2, B12 2); the count is the same once R1 is fixed. EO 119 alone carries 14 genuine 'amendment' edges from EO 120, 123-125, 131, 133, 137, 144, 146, 150, 157-159 and 166 (1899-1902), for example 'Amends Executive Order 119, May 29, 1899.' Other genuine edges include EO 1268 (amended by EO 1289, 1328, 1697), EO 740 (EO 1196, 1443, 1470, 1527), EO 94 (EO 128, 140, 156) and EO 4948 (EO 4982 deferring its effect to 1929-04-01). False matches: EO 8 and EO 11 (FR page cites '8 F.R.', '11 F. R.'), EO 56 (Hawaii Arsenal parcel text), EO 105 ('105Ô1' = EO 10501), EO 129 (EO 12340), EO 2054 (EO 3641) and EO 119's EO 12680 edges. MEMBERS.jsonl was rebuilt shortly before this copy was made, which may explain the stale count, but the disclosure is false against the data the engine reads.",
+   "severity": "error",
+   "fix": "Report 37 flagged members and sort them into false matches and genuine later amendments. Disclose that later orders amending an amending order are consistent with ruling P2, because they amend the parent text that order inserted. Give EO 4948 as a genuine contradiction (see R5)."
+  },
+  {
+   "id": "R5",
+   "location": "B14 purity test (text 'not' markers); members EO 4948, EO 5248, EO 2460, EO 2780",
+   "claim": "B14 members have amending as their only operative content (the purity test catches further provisions).",
+   "evidence": "EO 4948 (csc-annual-reports/texts/EO_4948.txt): 'Those Indians now in the service under the provisions of the paragraphs which are hereby amended or revoked ... may ... be treated as classified. Indians separated without delinquency ... may be reinstated ... without time limit'. EO 4982 (held) amended EO 4948 'so as to become effective April 1, 1929', so a lead dated 1928-08-14 precedes its effect. EO 5248: 'It is further ordered ... that such board will secure from the Personnel Classification Board ... an advisory opinion'. EO 2460: 'It is further ordered that persons already employed in these capacities must establish before the Civil Service Commission that they have the requisite qualifications'. EO 2780: 'The amendment herein provided for shall not be construed to require any person now holding the office of shipping commissioner to pass an examination in order to retain such office.' Ruling P2 applies only when the order's own text shows amending is its only operative content.",
+   "severity": "error",
+   "fix": "Add markers such as 'it is further ordered|now holding|already employed|now in the service under' to the B12-B15 exclusion and to the B15x condition, so these four members go to B15x (open). Recount B14 and B15x."
+  },
+  {
+   "id": "R6",
+   "location": "B12-B15 gap 'an unmarked further provision would escape the test (14 of 14 sampled texts were pure)'; md (c) gaps",
+   "claim": "In a random sample of 14 B14 texts, all were pure amendments.",
+   "evidence": "A pattern scan of B12-B15 texts found at least four B14 members with further provisions (R5). The sample claim understates the error rate of the test.",
+   "severity": "unsupported",
+   "fix": "State the scan result and the corrected markers. Do not present the 14-text sample as the measure of the test's reliability."
+  },
+  {
+   "id": "R7",
+   "location": "B14 member EO 740",
+   "claim": "EO 740 is a pure amendment, decided by its own text.",
+   "evidence": "The held text (wikisource-texts/EO_740.txt) says: 'This executive order entirely rewrote Civil Service Rule VII. The following is the rule as rewritten, but not the full order text.' So the held text cannot show that amending is the order's only content.",
+   "severity": "minor",
+   "fix": "Move EO 740 to B18 (text does not confirm) or add a member-specific gap."
+  },
+  {
+   "id": "R8",
+   "location": "md 'Terms used', Schedule A and Schedule B",
+   "claim": "Schedules A and B were lists that formed part of the rules from 1903.",
+   "evidence": "The held EO 209 (S2) contains only 'Schedule A. CLASSIFIED POSITIONS EXCEPTED FROM EXAMINATION UNDER RULE II, CLAUSE 3'. EO 1180's WPA summary refers to 'new Schedule B ... now prescribed', and the EO 209 Wikisource note says the order was 'Later replaced by an entire Schedule B by Executive Order 1180, March 23, 1910'.",
+   "severity": "minor",
+   "fix": "Schedule A from 1903; Schedule B from EO 1180 of March 23, 1910."
+  },
+  {
+   "id": "R9",
+   "location": "md (d), Special rules, EO 191",
+   "claim": "EO 191 lasts as long as the work on the Government Printing Office building.",
+   "evidence": "Held text (wikisource-texts/EO_191.txt): the engineer in charge of the GPO building 'may retain his present force ... during the continuance of the work at the War College and Washington Barracks. The authority herein granted shall lapse upon the completion of said work'.",
+   "severity": "minor",
+   "fix": "Name the War College and Washington Barracks work. State that the order carries its own lapse clause, so it has an own-terms (TERM) end that needs only the completion date."
+  },
+  {
+   "id": "R10",
+   "location": "S4 pin",
+   "claim": "Pin 'Schedules A and B of the Civil Service Rules are hereby amended to read as follows' appears in the held text.",
+   "evidence": "The held EO_8043.txt reads 'Sched­ ules A and B of the Civil Service Rules are hereby amended to read as follows' (OCR soft hyphen), so the pin is not found verbatim even with whitespace collapsed. The substance is verified, along with 'This order shall be effective February 1, 1939.' before '[No. 8 0 4 3 ]'.",
+   "severity": "minor",
+   "fix": "Use a pin that matches the text exactly, such as 'of the Civil Service Rules are hereby amended to read as follows', or quote the OCR form."
+  },
+  {
+   "id": "R11",
+   "location": "B12, B13, B14 gaps (P2 disclosure)",
+   "claim": "'its text continues as part of the parent rules until the parent ends; the parent's lifecycle carries it'",
+   "evidence": "Ruling P2 requires the disclosure 'its text continues as part of the parent until the parent ends; the parent's lifecycle carries it'.",
+   "severity": "minor",
+   "fix": "Use the ruling's exact words on every P2 branch (B15 already does)."
+  },
+  {
+   "id": "R12",
+   "location": "B16 and B99 membership lists",
+   "claim": "B16 catches class orders, plus loosely matched EO 633, 91, 984, 178 and 416.",
+   "evidence": "EO 5662 (official OFR text) is a pure Schedule A amendment ('Schedule A ... is hereby amended ... by the addition ... of a new clause (i)'). It lands in B16 only because its WPA summary begins 'July . Civil Service Rules'. EO 2384 places five specified postmasters in the classified service, which is closer to PD-CS-ONE-PERSON. EO 739, listed in the EO 209 notes as amending the rules, sits in B99. All of these are open, so nothing is decided wrongly, but the md lists are incomplete.",
+   "severity": "minor",
+   "fix": "Name these members in the loose-match and retype notes, or route EO 5662 to B14 by id."
+  },
+  {
+   "id": "R13",
+   "location": "B14 lead dates (order_date rule) for EO 253, EO 689, EO 933",
+   "claim": "The lead date is the amending order's own date.",
+   "evidence": "EO 253's held text is signed 'White House, January 27, 1904', but the member date (and so the lead date) is 1904-02-17. EO 689 and EO 933 have year-only dates ('1907', '1908'); EO 689's held text gives Monday, September 23, 1907.",
+   "severity": "minor",
+   "fix": "Carry a date-discrepancy gap for EO 253, and full dates where the held text gives them."
+  },
+  {
+   "id": "R14",
+   "location": "S8 url",
+   "claim": "url https://www.govinfo.gov/app/collection/serialset",
+   "evidence": "jobs/csc-annual-reports/output/CITATION_RESULTS.csv gives the package SERIALSET-07742_00_00-002-0416-0000, pdf page 140, for EO 3014 (1919 CSR 104).",
+   "severity": "minor",
+   "fix": "Cite the package PDF URL and page."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S0",
+   "verdict": "verified",
+   "note": "Member texts read for the members listed. See R5, R7 and R13 for texts that do not support the lead."
+  },
+  {
+   "source_id": "S1",
+   "verdict": "verified",
+   "note": "sha256 matches. Pin present. Recites R.S. 1753 ('seventeen hundred and fifty-third section') and the Act of January 16, 1883. 'Approved , May 6 , 1896'. Richardson IX printed pp. 701-711 per header. The doctrine misuses the date as 1897-05-06 (R1)."
+  },
+  {
+   "source_id": "S2",
+   "verdict": "verified",
+   "note": "sha256 matches. Pins 'in lieu of those promulgated May 6, 1896, and the amendments thereof' and 'Approved, to take effect on and after April 15, 1903.' present. Wikisource oldid 13537757 present. Mirror transcription only. 20th CSC report = FY1903 is consistent with numbering from FY1884."
+  },
+  {
+   "source_id": "S3",
+   "verdict": "wrong",
+   "note": "Text, sha256 and pins verified, including Rule II sec. 1 'executive orders covering groups of employees' and Rule II sec. 3(a) 'continued as a part of the said rules'. The citation volume is wrong: 3 FR 1519, not 2 FR 1519. EO 7915 contains no revocation clause and does not name EO 209."
+  },
+  {
+   "source_id": "S4",
+   "verdict": "verified",
+   "note": "4 FR 493 (Feb. 2, 1939), effective Feb. 1, 1939, verified. The pin does not match verbatim because of an OCR soft hyphen (R10). EO 8043 names and revokes no earlier order."
+  },
+  {
+   "source_id": "S5",
+   "verdict": "verified",
+   "note": "12 FR 1259. 'it is hereby ordered as follows, effective May 1, 1947'. Part III revokes EO 279, 283, 294, 314, 458, 715, 983, 1065, 1153, 2357, 3108, 4523, 5924, 7915, 7916 and later orders by number. None of these is in MEMBERS.jsonl as a family member, and EO 209 is not named."
+  },
+  {
+   "source_id": "S6",
+   "verdict": "verified",
+   "note": "19 FR 7521. Sec. 401 'first Sunday after the sixtieth day after the date hereof'. Nov. 22, 1954 + 60 days = Fri. Jan. 21, 1955, so the effective date is Sun. Jan. 23, 1955, as stated. Sec. 301 proviso 'unless and until they are removed therefrom by the Commission' and sec. 6.2 verified."
+  },
+  {
+   "source_id": "S7",
+   "verdict": "verified",
+   "note": "Pin present. Signed February 5, 1904. Wikisource oldid 1814821 matches."
+  },
+  {
+   "source_id": "S8",
+   "verdict": "verified",
+   "note": "Pin present ('Commis- sion' hyphenation as held). 'is hereby rescinded'. FY1919 report p. 104 per CITATION_RESULTS.csv. The URL is generic (R14). The held text says EO 2985 was 'a war measure'; the WPA summary says influenza epidemic."
+  },
+  {
+   "source_id": "S9",
+   "verdict": "verified",
+   "note": "'This order supersedes Executive Order No. 3807 of March 15, 1923.' October 4, 1930."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "'[47 FR 28902, July 2, 1982]' and the authority line with E.O. 12364, 47 FR 22931 present. Chaplains and presidential appointees without Senate confirmation at (a) and (c)."
+  },
+  {
+   "source_id": "EO 7916/8044/8743 (md M5 side claims)",
+   "verdict": "verified",
+   "note": "EO 7916 sec. 9 says Schedules A and B 'will be superseded by schedules ... set forth in subsequent Executive orders'. EO 8044 suspends EO 7916 in part. EO 8743 sec. 7 revokes EO 8044 in part."
+  },
+  {
+   "source_id": "R.S. 1753 / 22 Stat. 403 / 5 U.S.C. 3301-3302",
+   "verdict": "verified",
+   "note": "22 Stat. 403 verified in the held texts. Cornell LII derivation table for 5 U.S.C. 3302: Act of Jan. 16, 1883, ch. 27, sec. 2, 22 Stat. 403, 404. Section 3301's derivation from R.S. 1753 is standard; not separately fetched."
+  }
+ ],
+ "members_checked": [
+  "EO:8",
+  "EO:11",
+  "EO:17",
+  "EO:56",
+  "EO:61",
+  "EO:62",
+  "EO:67",
+  "EO:68",
+  "EO:90",
+  "EO:94",
+  "EO:97",
+  "EO:104",
+  "EO:119",
+  "EO:147",
+  "EO:160",
+  "EO:191",
+  "EO:250",
+  "EO:253",
+  "EO:367",
+  "EO:687",
+  "EO:689",
+  "EO:740",
+  "EO:785",
+  "EO:1004",
+  "EO:1180",
+  "EO:1268",
+  "EO:1444",
+  "EO:2054",
+  "EO:2260",
+  "EO:2460",
+  "EO:2780",
+  "EO:2785",
+  "EO:3014",
+  "EO:3170",
+  "EO:3341",
+  "EO:3797",
+  "EO:4822",
+  "EO:4948",
+  "EO:4982",
+  "EO:5248",
+  "EO:5459",
+  "EO:5662",
+  "EO:6144",
+  "EO:7372",
+  "EO:7459"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:4948",
+   "branch": "B14",
+   "why": "Not a pure amendment: it treats incumbent Indians as classified and allows reinstatement without time limit. Its effect was deferred to 1929-04-01 by EO 4982, so a lead dated 1928-08-14 precedes its effect. Should be B15x (open)."
+  },
+  {
+   "instrument_id": "EO:5248",
+   "branch": "B14",
+   "why": "'It is further ordered' that the Federal Farm Board obtain advisory salary opinions: a further operative provision. Should be B15x (open)."
+  },
+  {
+   "instrument_id": "EO:2460",
+   "branch": "B14",
+   "why": "'It is further ordered that persons already employed ... must establish ... qualifications': an incumbents provision. Should be B15x (open)."
+  },
+  {
+   "instrument_id": "EO:2780",
+   "branch": "B14",
+   "why": "A saving provision for the 'person now holding the office of shipping commissioner'. Should be B15x (open)."
+  },
+  {
+   "instrument_id": "EO:90",
+   "branch": "B12",
+   "why": "Amends the 1896 rules (EO 89), not the pre-1896 rules. Wrong parent and basis because of the 1897-05-06 cut-off; belongs on B13."
+  },
+  {
+   "instrument_id": "EO:93",
+   "branch": "B12",
+   "why": "Dated 1896-12-23, after EO 89. Same as EO 90."
+  },
+  {
+   "instrument_id": "EO:94",
+   "branch": "B12",
+   "why": "Dated 1897-01-02. Amends Rule V sec. 4 of the 1896 rules (held edge EO 128 'Amends Executive Order 89 ... and Executive Order 94'). Belongs on B13."
+  },
+  {
+   "instrument_id": "EO:96",
+   "branch": "B12",
+   "why": "Dated 1897-01-27, after EO 89. Same as EO 90."
+  },
+  {
+   "instrument_id": "EO:740",
+   "branch": "B14",
+   "why": "The held text is only the rewritten rule, 'not the full order text', so purity is unconfirmed. Should be B18 or carry a gap."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's structure follows rulings P1-P4 and P6. The express-class ends hold up against the held texts: EO 89 'revokes all others' for the pre-1896 rules, and EO 209 replaces the rules of May 6, 1896 'and the amendments thereof'. EO 209 is honestly left open, since no held restatement names it. The named revocations by EO 250, EO 3014 and EO 5459 are verified. Three errors need correction. First, EO 89's date is given as 1897-05-06 throughout the machine form and in parts of the md, when the held text says May 6, 1896; this misassigns EO 90, 93, 94 and 96 to the pre-1896 parent, puts the B09 and B12b interval ends a year late, and leaves the md counts out of step with the engine. Second, EO 7915 is cited at 2 FR 1519 instead of 3 FR 1519. Third, the contradiction disclosure reports 1 flag where the engine reports 37, many of them genuine later amendments. The purity test also lets through at least four B14 orders with further provisions (EO 4948, 5248, 2460, 2780), which should be open. The remaining findings are minor accuracy fixes. No `yes` lead is proposed, and the open branches and gaps are otherwise stated truthfully."
+}

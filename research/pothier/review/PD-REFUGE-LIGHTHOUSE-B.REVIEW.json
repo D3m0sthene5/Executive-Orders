@@ -1,0 +1,369 @@
+{
+ "doctrine_id": "PD-REFUGE-LIGHTHOUSE",
+ "arm": "B",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "B13 lead.date_rule (JSON)",
+   "claim": "EO 1041 ended on the fixed date 1923-02-27, 'date of EO 3642'.",
+   "evidence": "The held text of EO 3642 (jobs/pinakes-proquest-ingest/output/texts/EO_3642.txt) is signed 'February 27, 1922. [No. 3642.]'; the member record of EO 3642 is dated 1922-02-27; the doctrine's own B13 basis, description and the .md all say 1922-02-27. Only the JSON date rule says 1923, so the engine writes a lead dated one year late.",
+   "severity": "error",
+   "fix": "Set B13 date_rule.date to 1922-02-27."
+  },
+  {
+   "id": "R2",
+   "location": "B75 (EO 375A); section (d); B63 (EO 5750)",
+   "claim": "EO 375A is a lighthouse reservation with no held full revocation, left open under B75.",
+   "evidence": "EO 375A (jobs/pinakes-proquest-ingest/output/texts/EO_375A.txt) reserves 'lots 8 and 9 of fractional section 36, township 29 south, range 10 east, Mount Diablo Meridian, California ... for lighthouse purposes', November 27, 1905. EO 5750 of November 23, 1931, a member of this family whose held text the doctrine itself decides under B63, orders that 'Executive order of November 27, 1905, which withdrew lots 8 and 9, fractional sec. 36, township 29 south, range 10 east of the Mount Diablo meridian, California, for lighthouse purposes be, and are hereby, revoked.' The revocation covers the whole of EO 375A's land, describes the order by date and by its exact tract, and is held.",
+   "severity": "error",
+   "fix": "Add a branch before B75: EO 375A `no`, basis ACT, kind ended_by_later_order, fixed date 1931-11-23 (EO 5750), with EO 5750's held text as a source and the pin 'Executive order of November 27, 1905 , which withdrew lots 8 and 9'. Update the counts: decides 88, `no` 74 (13 by later EO), open 155, B75 50. Correct section (d) and the conclusions to match."
+  },
+  {
+   "id": "R3",
+   "location": "S05 citation (JSON and .md table)",
+   "claim": "Reorganization Plan No. II of 1939 is at 53 Stat. 1413.",
+   "evidence": "The U.S. Code appendix citation line reads 'Eff. July 1, 1939, 4 F.R. 2731, 53 Stat. 1431, by act June 7, 1939, ch. 193, 53 Stat. 813' (chanrobles.com reproduction of 5 U.S.C. App., Reorganization Plan No. II of 1939). The held Federal Register issue confirms 4 F.R. 2731 and the texts of secs. 2(a) and 4(f). 53 Stat. 1413 is wrong.",
+   "severity": "error",
+   "fix": "Cite 53 Stat. 1431 and drop the 'page not checked' caveat, or keep the caveat with the correct page."
+  },
+  {
+   "id": "R4",
+   "location": "B61, B62 date_rule.to; .md B61/B62 versus M2",
+   "claim": "The 91-day preference periods ran out by 1927-01-04 (EO 4490) and 1929-04-26 (EO 5000).",
+   "evidence": "EO 4490 (August 3, 1926) and EO 5000 (November 23, 1928) open the lands 'for a period of 91 days, beginning with the 63rd day from and after the date hereof'. Day 63 after August 3, 1926 is October 5, 1926, and the 91st day of the period is January 3, 1927; day 63 after November 23, 1928 is January 25, 1929, and the 91st day is April 25, 1929. The JSON basis texts and .md M2 give January 3, 1927 and April 25, 1929; the JSON 'to' dates and .md B61/B62 give the following day.",
+   "severity": "minor",
+   "fix": "Set the interval ends to 1927-01-03 and 1929-04-25, or state in the basis that the 'to' date is the first day after the period. Make M2 and B61/B62 agree."
+  },
+  {
+   "id": "R5",
+   "location": "S11 (ANILCA sec. 305): page and quotation",
+   "claim": "Sec. 305 is at 94 Stat. 2394-2395, and S11 says sec. 305 'reads:' followed by two sentences.",
+   "evidence": "A scan of the original Statutes at Large print of Pub. L. 96-487 (ambleraccess.org, '1980_Alaska_National_Interest_Lands_Conservation_Act_(ANILCA)_Original.pdf') puts all of sec. 305 on 94 Stat. 2395. It also has a third sentence: 'All funds available on such date of enactment for administration of any refuge shall remain available for the administration of such refuge.' The two sentences the doctrine quotes match that print word for word. Secs. 303(1) at 94 Stat. 2389 and 303(7) at 94 Stat. 2392 are confirmed, including 'the existing Bering Sea and Pribilof (Walrus and Otter Islands) National Wildlife Refuges' and 'Nunivak National Wildlife Refuge'.",
+   "severity": "minor",
+   "fix": "Cite 94 Stat. 2395 (confirm when ANILCA is held), and mark the quotation as partial or add the third sentence."
+  },
+  {
+   "id": "R6",
+   "location": "B60 gaps (EO 3658)",
+   "claim": "The only held later edge is PLO 1300, a date collision.",
+   "evidence": "EO 3658 also carries a held partial_revocation edge from EO 7836 (March 11, 1938). EO 7836's text (jobs/app-executive-orders/output/texts/executive-order-7836-public-water-restoration-no-80.txt) revokes in part the 'Executive Orders of May 25, 1921, April 4, 1922, November 27, 1922, and December 5, 1913, creating ... Public Water Reserves Nos. 77, 82, 85, and 12' in New Mexico and Wyoming. This is another order of April 4, 1922, not EO 3658. The engine did not flag it because partial_revocation is in neither of its edge lists.",
+   "severity": "minor",
+   "fix": "Disclose the EO 7836 edge in B60's gaps as a second date collision (Public Water Reserve No. 82). The lead stands."
+  },
+  {
+   "id": "R7",
+   "location": "M5 description; B73 and B74 basis",
+   "claim": "Under 668dd(a)(6), each area in the System on or after 1975-01-01 'shall continue to be a part of the System until otherwise specified by Act of Congress'.",
+   "evidence": "The held 16 U.S.C. 668dd(a)(6) text goes on: 'except that nothing in this paragraph shall be construed as precluding (i) the transfer or disposal of acquired lands within any such area pursuant to paragraph (5) ...; (ii) the exchange of lands ...; or (iii) the disposal of any lands ... pursuant to the terms of any cooperative agreement'. These exceptions bear directly on the B73 refuges, which reserve acquired lands. Separately, 43 U.S.C. 1714(j) bars the Secretary from revoking refuge withdrawals made before October 21, 1976, yet PLO 6287 (1982) revoked EO 4364 and 5702 (Oregon bird islands withdrawn pending legislation). The B59 lead is sound because the BLM row shows the same lands re-withdrawn into Oregon Islands NWR, but the doctrine does not explain how the PLO is consistent with sec. 204(j).",
+   "severity": "unsupported",
+   "fix": "State the (a)(6) exceptions in M5 and B73. In B59, add a gap: the revocation re-withdrew the lands into the refuge, and sec. 204(j) is to be checked when the PLO text is held."
+  },
+  {
+   "id": "R8",
+   "location": "B04 basis and gaps (EO 5095); B01 and B04 gap 'no record naming the order'",
+   "claim": "EO 5095's link to the Nunivak Island Reservation 'rests on the island name alone', and no current FWS record naming the orders is held.",
+   "evidence": "EO 5470 (held; a member decided in B04) adds islands that 'are hereby added to and made part of the Nunivak Island Reservation', and EO 5470's held edges point to EO 5095. The link therefore rests on a held instrument as well as the island name. A Federal Register refuge-description notice on the FWS site (fws.gov/r7/nwr/Realty/data/LegalDocuments/FR/Alaska-Maritime-NWR.pdf) describes the current Alaska Maritime subunits by EO 1037, 1039, 1040, 1044, 1049, 1458, 1459, 1658, 1733 and 5318. That is an acquirable official current record naming these orders.",
+   "severity": "minor",
+   "fix": "Cite EO 5470 for the EO 5095 link. List the FWS/Federal Register refuge-description notice as an acquisition that would close the 'no record naming the order' gap for B02 and B04 (and look for the Yukon Delta equivalent for 5095 and 5470)."
+  },
+  {
+   "id": "R9",
+   "location": "B01 basis",
+   "claim": "Pub. L. 100-226 sec. 3 directs that the refuges 'established ... by Executive orders dated October 23, 1907, as amended' be administered as refuges.",
+   "evidence": "The enacted text (usc-cdn.house.gov/statutes/pl/100/226.pdf, 101 Stat. 1550) reads 'land and waters in the Quillayute Needles National Wildlife Refuge and Flattery Rocks National Wildlife Refuge established as preserves for native birds and animals by Executive orders dated October 23, 1907, as amended, which are within the boundaries of Olympic National Park, shall be administered by the United States Fish and Wildlife Service for refuge purposes'. The ellipsis drops the Olympic National Park qualifier, which limits what the section covers.",
+   "severity": "minor",
+   "fix": "Quote the qualifier. The lead stands, because the section names both refuges and their 1907 orders and the 668dd note lists EO 703 and 705."
+  },
+  {
+   "id": "R10",
+   "location": "Conclusions (.md)",
+   "claim": "Ten Alaska orders 'created refuges that ANILCA sec. 303 names'.",
+   "evidence": "EO 5318 (held text) adds Amak Island and other islands to the existing Aleutian Islands Reservation, and EO 5470 adds islands to the Nunivak Island Reservation. Neither created a refuge.",
+   "severity": "minor",
+   "fix": "Say that eight orders created the reservations and two enlarged them."
+  },
+  {
+   "id": "R11",
+   "location": "B70 routing (.md versus JSON)",
+   "claim": "EO 2012 routes to PD-WAR-EMERGENCY (.md); the JSON gap says 'PD-WAR-EMERGENCY or PD-ADMIN (2012, 2670, 6724, 7345)'.",
+   "evidence": "The two files disagree. The engine also assigns each member to one doctrine, so these seven stay open under this doctrine until the class engine retypes them. The text should say that rather than imply another doctrine will decide them.",
+   "severity": "minor",
+   "fix": "Make the routing consistent, and state that the members stay open here until they are reclassified."
+  },
+  {
+   "id": "R12",
+   "location": "B63 (EO 1304)",
+   "claim": "EO 1304 is spent on issue, its order date.",
+   "evidence": "EO 1311 (March 1, 1911, held) restores the same two tracts 'in lieu of Executive Order No. 1304, dated February 18, 1911', so EO 1304 was replaced twelve days after issue. A `no` lead on the order date is still defensible, but the replacement is a held event the lead does not mention.",
+   "severity": "minor",
+   "fix": "Add a gap to B63: EO 1304 was replaced by EO 1311 on 1911-03-01."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S01",
+   "verdict": "verified",
+   "note": "Held 668dd text: sha256 and pin match; (a)(6) at 1976 Pub. L. 94-223 (90 Stat. 199), renumbered from (3) to (6) by Pub. L. 105-57 sec. 4(1); 1966 Act Pub. L. 89-669 sec. 4, 80 Stat. 927; (a)(5) Commission approval confirmed. (a)(6) exceptions omitted (R7)."
+  },
+  {
+   "source_id": "S02",
+   "verdict": "verified",
+   "note": "668dd note lists 'Ex. Ord. No. 703, Oct. 23, 1907; Proc. No. 2416 ...; Pub. L. 100-226, sec. 3, Dec. 31, 1987, 101 Stat. 1550' and the same for EO 705."
+  },
+  {
+   "source_id": "S03",
+   "verdict": "verified",
+   "note": "43 U.S.C. 1714(j) held text: 'modify, or revoke any withdrawal which added lands to the National Wildlife Refuge System prior to October 21, 1976'; (l)(1) eleven-State review; source credit Pub. L. 94-579, title II, sec. 204, 90 Stat. 2751."
+  },
+  {
+   "source_id": "S04",
+   "verdict": "verified",
+   "note": "Held 54 Stat. 2717-2723: 'Changing the Names of Certain Federal Wildlife Refuges', July 25, 1940, No. 2416; the Alaska old and new names are as stated. 5 F.R. 2677 not checked."
+  },
+  {
+   "source_id": "S05",
+   "verdict": "wrong",
+   "note": "4 F.R. 2731, secs. 2(a) and 4(f), Pub. Res. No. 20 and the July 1, 1939 effective date are confirmed in the held FR; the Statutes at Large page is 53 Stat. 1431, not 1413 (R3)."
+  },
+  {
+   "source_id": "S06",
+   "verdict": "verified",
+   "note": "Pub. L. 100-226, Dec. 31, 1987, 101 Stat. 1550, sec. 3 read on the web (house.gov PDF); Olympic National Park qualifier omitted (R9)."
+  },
+  {
+   "source_id": "S07",
+   "verdict": "verified",
+   "note": "MENTIONS.csv holds both an eCFR section_text row and a search-excerpt row for 50 CFR 216.85 as of 2026-10-14; pin present."
+  },
+  {
+   "source_id": "S08",
+   "verdict": "verified",
+   "note": "MENTIONS.csv: '(ii) Executive Order No. 4254 (June 12, 1925)'; Cornell confirms Pub. L. 110-229, title II, sec. 202, May 8, 2008, 122 Stat. 763."
+  },
+  {
+   "source_id": "S09",
+   "verdict": "verified",
+   "note": "Cornell 43 U.S.C. 1787(b)(4)(A) and (B): withdrawal subject to existing withdrawals under the 1854 EO, EO 4254 and PLO 7202."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "Original-print scan: 303(1) at 94 Stat. 2389 (includes Bering Sea and Pribilof (Walrus and Otter Islands), Aleutian Islands, Bogoslof, Chamisso, Forrester Island, Hazy Islands, Saint Lazaria, Tuxedni), 303(7) at 94 Stat. 2392 (includes Nunivak). govinfo was blocked by the proxy."
+  },
+  {
+   "source_id": "S11",
+   "verdict": "wrong",
+   "note": "The quoted text matches the original print, but the page is 94 Stat. 2395 and a third sentence is omitted (R5)."
+  },
+  {
+   "source_id": "S20",
+   "verdict": "verified",
+   "note": "EO 4832 held: EOs 763 and 1057 'are hereby revoked', March 17, 1928."
+  },
+  {
+   "source_id": "S21",
+   "verdict": "verified",
+   "note": "EO 3470 held: EO 961, Loch Katrine Reservation, 'is hereby revoked', May 20, 1921."
+  },
+  {
+   "source_id": "S22",
+   "verdict": "verified",
+   "note": "EO 3469 held: EO 2438, Goat Island, revoked, May 20, 1921."
+  },
+  {
+   "source_id": "S23",
+   "verdict": "verified",
+   "note": "EO 3642 held: EO 1041 revoked, February 27, 1922 (the B13 JSON date is wrong, R1)."
+  },
+  {
+   "source_id": "S24",
+   "verdict": "verified",
+   "note": "EO 4490 held: EO 1763 revoked; 91-day preference beginning on the 63rd day."
+  },
+  {
+   "source_id": "S25",
+   "verdict": "verified",
+   "note": "EO 5515 held: EO 5349 revoked, December 15, 1930."
+  },
+  {
+   "source_id": "S26",
+   "verdict": "verified",
+   "note": "EO 5748 held: EO 4626 revoked; land reserved anew."
+  },
+  {
+   "source_id": "S27",
+   "verdict": "verified",
+   "note": "EO 5945 held: 'This order supersedes Executive Order No. 4975, of October 4, 1928'."
+  },
+  {
+   "source_id": "S28",
+   "verdict": "verified",
+   "note": "EO 7485 held: EO 2124 revoked, November 6, 1936."
+  },
+  {
+   "source_id": "S29",
+   "verdict": "verified",
+   "note": "EO 7537 held: supersedes EO 5097."
+  },
+  {
+   "source_id": "S30",
+   "verdict": "verified",
+   "note": "EO 7983 held: revokes the EOs of October 4, 1904 and November 11, 1905 (Breton Island Reservation)."
+  },
+  {
+   "source_id": "S32",
+   "verdict": "verified",
+   "note": "EO 3957 held: 'is hereby restored in its original area and for the original purpose'; the verb applied to the May 25, 1915 order is illegible, as stated."
+  },
+  {
+   "source_id": "S-BLM-1-694",
+   "verdict": "verified",
+   "note": "Rows for PLOs 378, 446, 501, 521, 650, 484 and 121 match the stated dates, FR cites and subjects."
+  },
+  {
+   "source_id": "S-BLM-695-2250",
+   "verdict": "verified",
+   "note": "Rows for PLOs 732, 892, 912, 954, 1352, 1423, 1511, 1561, 1584, 1636, 1733, 1765, 2196, 1177, 1300, 1724 and 988 match."
+  },
+  {
+   "source_id": "S-BLM-2251-4975",
+   "verdict": "verified",
+   "note": "Rows for PLOs 2306, 2358, 2494, 2933, 2960, 3463, 4371, 4466, 4597, 4911, 2291, 3385 and 4641 match."
+  },
+  {
+   "source_id": "S-BLM-4976-5806",
+   "verdict": "verified",
+   "note": "PLO 5515 row: Aug. 27, 1975, 40 FR 40811, revoking EO Nos. 1959, 7594, 7595."
+  },
+  {
+   "source_id": "S-BLM-5807-6825",
+   "verdict": "verified",
+   "note": "PLO 6287 row: June 16, 1982, 47 FR 27292."
+  },
+  {
+   "source_id": "S-BLM-6826-7342",
+   "verdict": "verified",
+   "note": "PLO 7202 row: May 29, 1996, 61 FR 29758, revoking in part the Oct. 22, 1854 EO and EO 4254; PLO 7165 row (EO 4410 in part) confirmed."
+  },
+  {
+   "source_id": "S-PLO-*",
+   "verdict": "verified",
+   "note": "All 30 signature dates and FR citations match the held BLM rows. The PLO texts themselves are not held, so whole-order scope rests on the tables, as the doctrine discloses."
+  },
+  {
+   "source_id": "S40",
+   "verdict": "unverifiable",
+   "note": "FLPMA secs. 701 and 704(a) at 90 Stat. 2786 and 2792 not checked: govinfo and house.gov were blocked by the proxy. The doctrine already marks them unverified."
+  },
+  {
+   "source_id": "S41",
+   "verdict": "verified",
+   "note": "Search results identify STATUTE-114-Pg1385 as Pub. L. 106-355, the National Historic Lighthouse Preservation Act of 2000."
+  },
+  {
+   "source_id": "S42",
+   "verdict": "unverifiable",
+   "note": "63 Stat. 377 (FPASA, ch. 288) not fetched; this is the standard citation and is used only for a lead-only mechanism."
+  },
+  {
+   "source_id": "S43",
+   "verdict": "unverifiable",
+   "note": "45 Stat. 1222 not fetched; EO 7983's held text cites 'the Migratory Bird Conservation Act, 45 Stat. 1222', which corroborates it."
+  },
+  {
+   "source_id": "S44",
+   "verdict": "unverifiable",
+   "note": "FWS Annual Report of Lands FY2024 not fetched; it is used only in open branches."
+  },
+  {
+   "source_id": "SM",
+   "verdict": "verified",
+   "note": "Member texts were read for the members listed in members_checked."
+  }
+ ],
+ "members_checked": [
+  "EO:703",
+  "EO:705",
+  "EO:1044",
+  "EO:4254",
+  "EO:1037",
+  "EO:1039",
+  "EO:1040",
+  "EO:1049",
+  "EO:1458",
+  "EO:1459",
+  "EO:1658",
+  "EO:5095",
+  "EO:5318",
+  "EO:5470",
+  "EO:1041",
+  "EO:3642",
+  "EO:3658",
+  "EO:4490",
+  "EO:5000",
+  "EO:5457",
+  "EO:5458",
+  "EO:1304",
+  "EO:1311",
+  "EO:1464",
+  "EO:2200",
+  "EO:2872",
+  "EO:3187",
+  "EO:3422",
+  "EO:347A",
+  "EO:3540",
+  "EO:4076",
+  "EO:4904",
+  "EO:5750",
+  "EO:6891",
+  "EO:701",
+  "EO:793",
+  "EO:1485",
+  "EO:2012",
+  "EO:2670",
+  "EO:3036",
+  "EO:3237",
+  "EO:6724",
+  "EO:7345",
+  "EO:1993",
+  "EO:2203",
+  "EO:3957",
+  "EO:375A",
+  "EO:366A",
+  "EO:347B",
+  "EO:431",
+  "EO:2755",
+  "EO:5419",
+  "EO:6896",
+  "EO:5630",
+  "EO:4386",
+  "EO:2646",
+  "EO:1261",
+  "EO:4364",
+  "EO:5702",
+  "EO:1959",
+  "EO:5522",
+  "EO:675",
+  "EO:942",
+  "EO:4939",
+  "EO:1814",
+  "EO:2047",
+  "EO:4975",
+  "EO:369A"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:375A",
+   "branch": "B75",
+   "why": "Left open, but EO 5750 (1931-11-23, held, a member of this family) revokes in full the 'Executive order of November 27, 1905, which withdrew lots 8 and 9, fractional sec. 36, township 29 south, range 10 east of the Mount Diablo meridian, California, for lighthouse purposes', which is EO 375A's own tract and date. The lead should be `no`, basis ACT, dated 1931-11-23."
+  },
+  {
+   "instrument_id": "EO:1041",
+   "branch": "B13",
+   "why": "The lead is correct, but the date is wrong: the JSON fixes 1923-02-27, while EO 3642 is dated 1922-02-27."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's structure, counts and most citations hold up against the sources. All 25 held sources match their sha256 values and pins. All 30 PLO dates and FR citations match the held BLM tables. The eleven revoking executive orders say what the doctrine says. The yes leads have real current-law predicates: Pub. L. 100-226 sec. 3 and the 668dd note name the 1907 orders; 50 CFR 216.85 names EO 1044; 43 U.S.C. 1787(b)(4) lists EO 4254; and ANILCA secs. 303(1), 303(7) and 305 read as quoted, checked against a scan of the original print. Three changes are required. First, B13 dates EO 1041's revocation 1923-02-27, but EO 3642 is dated 1922-02-27. Second, EO 375A is left open although the held text of EO 5750, a member decided in this same doctrine, revokes it in full by its date and tract, so it should be `no`, basis ACT, 1931-11-23. Third, S05 cites Reorganization Plan No. II at 53 Stat. 1413, but the correct page is 53 Stat. 1431. The minor findings are these: the B61 and B62 interval ends are one day later than the computed end of the 91-day periods; ANILCA sec. 305 is on 94 Stat. 2395 and has an omitted third sentence; B60 does not disclose a second held date-collision edge (EO 7836); M5 omits the (a)(6) exceptions for acquired lands; and some wording overstates or understates the evidence (EO 5095's link to the Nunivak reservation, the 'ten orders created refuges' line, the Olympic National Park qualifier, the B70 routing). The open branches and gaps are otherwise stated truthfully. Searches of the held BLM tables by number and by date found no other full revocation of an open member. govinfo.gov and uscode.house.gov could not be reached through the proxy, so FLPMA secs. 701 and 704 were not checked."
+}

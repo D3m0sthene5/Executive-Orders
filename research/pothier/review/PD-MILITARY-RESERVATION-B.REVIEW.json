@@ -1,0 +1,520 @@
+{
+ "doctrine_id": "PD-MILITARY-RESERVATION",
+ "arm": "B",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "sources S-P2695 (citation); md (a) M4 bullet and (b) held-sources table; JSON B20 gap 4",
+   "claim": "Proclamation 2695 is cited as 60 Stat. 1325, 1353, and the B20 gap calls the held page of the preceding July 3 proclamation 'the held 60 Stat. 1325 page'.",
+   "evidence": "The held file (jobs/astra-source-retention/output/pages/c493d8ef.../selected-pages.txt, sha256 5fdd7738...) is headed '1352 PROCLAMATIONS—JULY 3, 4, 1946 [60 Stat.' and '60 Stat.] PROCLAMATIONS—JULY 4, 1946 1353'; Proclamation 2695 begins on 1352 ('July 4,1946 [No. 2695]') and its operative words are on 1353. The source's own URL is STATUTE-60-Pg1352.pdf.",
+   "severity": "error",
+   "fix": "Cite Proclamation 2695 as 60 Stat. 1352, 1353 everywhere (md line on M4, held-sources table, JSON citation) and say the July 3 proclamation's closing part is on the held 60 Stat. 1352 page."
+  },
+  {
+   "id": "R2",
+   "location": "procedure C22 lead.date_rule",
+   "claim": "C22 dates the end of EO 7407 by a fixed date of 1942-01-02, 'date of EO 9293'.",
+   "evidence": "The held text of EO 9293 (jobs/app-executive-orders/output/texts/executive-order-9293-quarry-heights-military-reservation-canal-zone.txt) is signed 'The White House, January 2, 1943.' The doctrine's own source citation, branch description, basis and md table all say 1943-01-02.",
+   "severity": "error",
+   "fix": "Set C22 date_rule to {kind: fixed, date: 1943-01-02, basis: date of EO 9293}."
+  },
+  {
+   "id": "R3",
+   "location": "md Conclusions, paragraph after the branch table",
+   "claim": "'The engine reports no contradiction between any lead and a held later-event edge.'",
+   "evidence": "Running python3 -I jobs/pothier/pothier.py try on this copy prints 'decides 143; contradicted 23'. Seventeen open leads (B33) are flagged persistence_lead_but_held_ending_edge, and six no leads are flagged acted_on_after_lead_end (EO 2978 C03, EO 3080 B11, EO 3418 B11, EO 341A B11, EO 3574 B11, EO 985 B20).",
+   "severity": "error",
+   "fix": "Report the 23 flagged leads truthfully and say for each whether the edge is a real later act (and what it changes) or a false match (EO 985: EO 10069 refers to a different 'Executive Order No. 985 of November 25, 1946'; EO 2281: EO 5590 concerns a Montana petroleum reserve order of the same date)."
+  },
+  {
+   "id": "R4",
+   "location": "procedure B33 and M3/M7; md (a) M3 and M7 paragraphs and (d) first bullet",
+   "claim": "Only 25 held later orders are used as ends; for the continental reservations 'many others were ended later by Public Land Orders or conveyances. Neither can be shown from the fields held.'",
+   "evidence": "MEMBERS.jsonl holds later_edges that revoke B33 members by number and date: EO 1238 (PLO 3728, 1965-07-06), EO 1262 (PLO 2454, 1961-08-08), EO 1315 (PLO 1326, 1956-08-21), EO 1450 (PLO 833, 1952-05-21), EO 2131 (PLO 2504, 1961-09-25, after partial PLO 976), EO 2233 (PLO 1411, 1957-04-22), EO 2295 (PLO 5052, 1971-05-13), EO 2353 (PLO 143, 1943-06-18), EO 3684 (PLO 1303, 1956-05-28), EO 439 (PLO 1636, 1958-05-14, 'entirely'), EO 4682 (PLO 1320, 1956-08-15), EO 4962 (PLO 4803, 1970-04-17), EO 5251 (PLO 2252, 1961-01-11), EO 6851 (PLO 1271, 1956-03-14). EO 330A (Grass Island, B33 open) is placed wholly under Interior by EO 432 of 1906-03-28, a member whose held text (jobs/wikisource-texts/output/texts/EO_432.txt) names 'the military reservation of Grass Island ... as reserved by Executive Order, dated June 12, 1905'. Under ruling P3 a later instrument that names the member by number ends it.",
+   "severity": "error",
+   "fix": "Add a branch (edge-driven, mechanism_in revocation, or by instrument_id with the PLO quoted) that gives these members no, basis ACT, dated by the PLO, with a gap that the PLO index entry is not the PLO text; add a C branch for EO 330A ended by EO 432 on 1906-03-28 (as C11-C15 do); correct the (d) sentence that says no such end can be shown from the fields held."
+  },
+  {
+   "id": "R5",
+   "location": "md (d) first bullet; B33 basis",
+   "claim": "The Fort Bliss target ranges, EO 1450 and EO 2280, are given as examples of reservations that 'may still be federal military land'.",
+   "evidence": "MEMBERS.jsonl holds a revocation edge on EO 1450: PLO 833 of May 21, 1952 (17 FR 4822), 'withdrawing lands for use of Army Department for military purposes; and revoking EO Nos. 1450 and 9029'. Any later military use of those lands rests on PLO 833, not on EO 1450.",
+   "severity": "error",
+   "fix": "Drop EO 1450 from the persistence examples (treat it under R4 as ended 1952-05-21); keep EO 2280 only if no held edge ends it."
+  },
+  {
+   "id": "R6",
+   "location": "procedure B20 (basis, date_rule, member test); md (a) M4 consequences and (c) item 9; sources S-MBA1947",
+   "claim": "The 1947 Military Bases Agreement 'retains only the use of the bases in the Philippines listed in Annex A (and Annex B on necessity)'; the surrender reached Army reservations on July 4, 1946; every non-listed reservation ended no later than 1947-03-26.",
+   "evidence": "Article XXI of the agreement (43 U.N.T.S. No. 673, UNTS copy at the doctrine's own URL) provides in para. 1 that 'the United States shall retain the right to occupy temporary quarters and installations now existing outside the bases mentioned in Annex A and Annex B, for such reasonable time, not exceeding two years', extendable by agreement (not for Manila) up to three years, and in para. 2 that 'the Port of Manila reservation with boundaries as of 1941 will be available for use to the United States armed forces until such time as other arrangements can be made'. So U.S. forces still held Army installations outside the listed bases after July 4, 1946, and the agreement itself kept the Port of Manila reservation in U.S. use after March 26, 1947. B20 members that set up or enlarged the Manila Port Reservation (EO 348A, EO 1298, EO 2838, EO 3344, EO 3500, and probably EO 5736, reclaimed blocks in Manila Harbor) are decided no by 1947-03-26 against the words of the source the branch cites. The doctrine's B20r reasoning (use retained by agreement keeps the member open) applies equally to them.",
+   "severity": "error",
+   "fix": "Cite Article XXI; move the Port Reservation members to an open branch (instrument that ended the Article XXI(2) availability not held); state that the July 4, 1946 date for Army reservations does not hold for installations kept as temporary quarters, and either raise the B20 upper bound to the latest date Article XXI(1) allows (March 26, 1950 on the three-year reading, March 26, 1949 for quarters in the City of Manila) or keep the 1947 bound only for members shown not to have been occupied under Article XXI."
+  },
+  {
+   "id": "R7",
+   "location": "md (a) M4 consequences; JSON B20 gap 2; S-MBA1947 establishes",
+   "claim": "Note V 'reserved \"adjustment of U.S. rights and titles to real property\" for later settlement', a property question only; naval reservations at non-retained places were surrendered no later than 1947-03-26.",
+   "evidence": "The U.S. note (Exchange of Notes V, UNTS copy) says 'the question of the adjustment of any rights and titles held by the United States to real property in any of the bases covered by the aforementioned Agreement or any naval reservations or fueling stations not so covered is reserved' and 'will be settled subsequently in accordance with the terms of the Acts and Joint Resolution'. With sec. 10(b) of the 1934 Act ('shall remain in its present status' pending settlement), this expressly held over naval reservations outside the bases; the doctrine's quotation omits those words. No B20 member's summary names a naval reservation, so the effect on current leads is small, but the stated rule is unsupported.",
+   "severity": "unsupported",
+   "fix": "Quote Note V in full and state that non-retained naval reservations are open pending the settlement Note V reserves, not ended by 1947-03-26."
+  },
+  {
+   "id": "R8",
+   "location": "sources S-MBA1947 and S-PCT citations",
+   "claim": "S-MBA1947 cites arts. I, XVII, XXIX only; S-PCT in JSON cites arts. II, IV, XI while the md cites arts. I, II, IV, XI and relies on art. I(1)(a).",
+   "evidence": "Article XXI is material (R6); the B21 basis relies on Treaty art. I(1)(a).",
+   "severity": "minor",
+   "fix": "Add art. XXI to S-MBA1947 and art. I to S-PCT."
+  },
+  {
+   "id": "R9",
+   "location": "JSON B20 gap 4; md (c) item 9",
+   "claim": "The July 3, 1946 proclamation dealing with Manila properties has 'its number and opening page not verified'.",
+   "evidence": "It is Proclamation 2694, 'Designating Properties Suitable for Diplomatic and Consular Establishments of the United States in the Philippine Islands', July 3, 1946, under sec. 10(c)(2) of the 1934 Act as added by the Act of Aug. 7, 1939 (53 Stat. 1230) (American Presidency Project text; its item 9 is the Block 355 parcel whose description ends on the held 60 Stat. 1352 page). Its opening page was not verified here.",
+   "severity": "minor",
+   "fix": "Name Proclamation 2694 and its authority; keep the opening page as unverified."
+  },
+  {
+   "id": "R10",
+   "location": "procedure B11 summary negative screen; members EO 3402, EO 5157",
+   "claim": "B11 excludes only new reservations; 'verbs describing an earlier reservation, such as \"formerly reserved\", are excluded from that test'.",
+   "evidence": "EO 3402 (held text EO_3402.txt) only places lands reserved by EO 2772 and EO 2879 under Interior under the 1884 Act, but its summary 'reserved for militarypurposes by E. 0.s 2772 and 2879' trips the new-reservation pattern, so it falls to B33 open. EO 5157 (B12 open) only restores Punchbowl Hill and removes EO 1531's 'solely for park purposes' restriction; its 'retained' match describes the part EO 1531 retained, not a retention by EO 5157. EO 3402 is also a partial relinquishment of EO 2879 (it omits T. 21 S.) that the partial-actions list omits; EO 5157 is an action on EO 1531 that the doctrine does not record.",
+   "severity": "minor",
+   "fix": "Add '(?<!, )reserved ... by E\\.' style exclusions or route EO 3402 to B11 and EO 5157 to B11; list EO 3402 (on EO 2879) and EO 5157 (on EO 1531) among partial or related actions."
+  },
+  {
+   "id": "R11",
+   "location": "procedure B11; member EO 1397",
+   "claim": "B11 orders perform one act and keep no continuing clause.",
+   "evidence": "EO 1397 (jobs/wikisource-texts/output/texts/EO_1397.txt) relinquishes Fort Grant but also commands: 'The portion included in the said Forest Reserve ... shall be held in reservation and administered as forest reserve lands, being no longer subject to the limitations, respecting military use, prescribed in said Executive Order' (it amends EO 515). The text screen missed 'shall be held in reservation'.",
+   "severity": "minor",
+   "fix": "Disclose the second clause and either treat it under P2 as merged into EO 515 (then the no lead may stand with the P2 disclosure) or route EO 1397 to an open branch."
+  },
+  {
+   "id": "R12",
+   "location": "procedure C07 (EO 5174) and C16 (EO 456)",
+   "claim": "These amendment-only orders are ended on the date of the later revoking or rescinding order.",
+   "evidence": "Ruling P2 gives an order whose only content amends another a no lead dated by its own date, kind merged_into_parent_on_issue, with the stated disclosure; EO 5174 only amends EO 4679's description and EO 456 only amends EO 372-B. The doctrine applies P2 to EO 5240 (B10m) but not to these two.",
+   "severity": "minor",
+   "fix": "Either apply P2 to EO 5174 and EO 456 (date 1929-08-21 and 1906-06-08) with the P2 disclosure, or state why the revocation date is used instead."
+  },
+  {
+   "id": "R13",
+   "location": "date rules order_date and interval from order_date",
+   "claim": "Each decided lead takes the order's date.",
+   "evidence": "Eight decided members have only a year in MEMBERS.jsonl, so the lead date is a bare year: EO 1411 (1911), EO 2038 (1914), EO 3167 (1919), EO 3171 (1919), EO 4077 (1924), EO 502 (1906), and interval starts for EO 3322 (1920) and EO 693 (1907).",
+   "severity": "minor",
+   "fix": "Disclose the year-only dates as a gap or take the day from the held text."
+  },
+  {
+   "id": "R14",
+   "location": "procedure B11; members EO 3574, EO 1437",
+   "claim": "B11 orders are spent on issue; B20 interval ends are the earliest dates the sources support.",
+   "evidence": "EO 3574 (Fort Davis, Alaska, to Interior 1921) carries a held edge: PLO 1712 of Aug. 7, 1958 revoked 'EO Nos. 3574 of Nov. 4, 1921, ... 4449 ..., 4546 ... and 5219 ..., entirely', and EO 4449 reserved a tract within it in 1926; the government treated the order as operative until 1958. EO 1437 (Regan Barracks target range, B20) was placed under the Philippine government by EO 3086 (held member text: 'reserved by Executive orders of November 10, 1904 and November 23, 1911') in 1919, so its end is known more precisely than the 1947 interval.",
+   "severity": "minor",
+   "fix": "Disclose the PLO 1712 revocation on the EO 3574 lead; add EO 1437 to the C branches (ended by EO 3086, subject to the reimbursement-and-reservations proviso, which keeps it a B20 interval if the proviso is treated as continuing)."
+  },
+  {
+   "id": "R15",
+   "location": "sources S-ENGLE pin",
+   "claim": "Pin 'on and after February 28, 1958 the provisions hereof shall apply'.",
+   "evidence": "The Statutes at Large text (72 Stat. 27) reads 'on and after the date of enactment of this Act the provisions hereof shall apply'; the doctrine's pin is the U.S. Code's editorial substitution (43 U.S.C. 155).",
+   "severity": "minor",
+   "fix": "Mark the pin as the 43 U.S.C. 155 wording or quote the statute's words."
+  },
+  {
+   "id": "R16",
+   "location": "procedure B31; md (d) first bullet",
+   "claim": "The 18 Alaska members are military reservations.",
+   "evidence": "EO 1920 (B31) establishes the Klawak Reservation in the Tongass Forest 'for the use of the Bureau of Education and the natives of Alaska'; it is not a military reservation and its end (EO 4421 partial) belongs to another family's mechanisms.",
+   "severity": "minor",
+   "fix": "Route EO 1920 out of family (with the B01 orders) or disclose it."
+  },
+  {
+   "id": "R17",
+   "location": "procedure B20 lead.source_ids",
+   "claim": "B20 basis relies on the joint resolution of June 29, 1944 for withheld bases.",
+   "evidence": "S-JR1944 is not in B20's source_ids, so the engine does not attach it or its 'not yet held' gap to the lead.",
+   "severity": "minor",
+   "fix": "Add S-JR1944 to B20 source_ids."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S-ORDER",
+   "verdict": "verified",
+   "note": "Member text placeholder per ruling P6."
+  },
+  {
+   "source_id": "S-TM",
+   "verdict": "verified",
+   "note": "Held; sha256 matches; pin found; sec. 5 on 48 Stat. 459 and sec. 10(a)-(b) on 48 Stat. 463 as cited; quotations accurate."
+  },
+  {
+   "source_id": "S-P2695",
+   "verdict": "wrong",
+   "note": "Held; sha256 and pin match, but the proclamation starts at 60 Stat. 1352, not 1325 (R1)."
+  },
+  {
+   "source_id": "S-TGR",
+   "verdict": "verified",
+   "note": "Web: govinfo 61 Stat. 1174 page shows the treaty; ratifications exchanged and effective Oct. 22, 1946; Art. I text matches (chanrobles copy reads 'the right incident thereto')."
+  },
+  {
+   "source_id": "S-JR1944",
+   "verdict": "verified",
+   "note": "Web: 22 U.S.C. 1392 source credit 'June 29, 1944, ch. 322, § 2, 58 Stat. 626'; quoted words match."
+  },
+  {
+   "source_id": "S-PCA",
+   "verdict": "verified",
+   "note": "Held; sha256 and pin match; sec. 3(b)(1) on 93 Stat. 455, sec. 1504 on 488, sec. 3304 on 500 as cited. The 'establishes' sentence that the Zone 'ceased' on that date is an inference from the Treaty, not words of the Act."
+  },
+  {
+   "source_id": "S-PCT",
+   "verdict": "verified",
+   "note": "Web (UNTS copy and a full-text copy): No. 21086, vol. 1280, in force Oct. 1, 1979; art. I(1)(a), art. II(2) termination at noon Dec. 31, 1999, art. XI(1) plenary jurisdiction as quoted. 33 U.S.T. 39 and the starting page 3 not independently confirmed."
+  },
+  {
+   "source_id": "S-1884",
+   "verdict": "verified",
+   "note": "Web: 23 Stat. 103 is ch. 214, Act of July 5, 1884; sec. 1 words 'placed under the control of the Secretary of the Interior for disposition' confirmed."
+  },
+  {
+   "source_id": "S-FLPMA",
+   "verdict": "verified",
+   "note": "Held; sha256 and pin match; sec. 701(c) on 90 Stat. 2786; sec. 704(a) on 2792 repeals implied authority and Pickett Act secs. 1, 2 (except the second and third provisos)."
+  },
+  {
+   "source_id": "S-ENGLE",
+   "verdict": "verified",
+   "note": "Web: Pub. L. 85-337, Feb. 28, 1958, at 72 Stat. 27; pin is the U.S. Code wording, not the statute's (R15)."
+  },
+  {
+   "source_id": "S-HAA",
+   "verdict": "verified",
+   "note": "Web: sec. 5(c) on 73 Stat. 5 and sec. 5(e) on 73 Stat. 6; pin phrase present."
+  },
+  {
+   "source_id": "S-MBA1947",
+   "verdict": "verified",
+   "note": "Web (UNTS vol. 43, No. 673, text from p. 272): signed Mar. 14, 1947, in force Mar. 26, 1947; art. I(1), art. XXIX and Annexes A and B as described. But art. XXI and the full words of Note V contradict the doctrine's use of it (R6, R7)."
+  },
+  {
+   "source_id": "S-EO2143",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1915-03-03; revokes EO 1169 of Feb. 15, 1910 (pin OCR '1 169')."
+  },
+  {
+   "source_id": "S-EO2405",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1916-06-19; revokes EO 2136 of Feb. 10, 1915 and re-reserves the same 57,421 m2 tract (OCR prints the year as 1926)."
+  },
+  {
+   "source_id": "S-EO3067",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1919-03-25; revokes EO 2978 of Oct. 21, 1918 and withdraws a new tract."
+  },
+  {
+   "source_id": "S-EO3313A",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1920-07-24; revokes the order of June 26, 1920 (EO 3293) and re-reserves Limbones under sec. 9 of the 1916 Act (EO 3293 used sec. 12 of the 1902 Act)."
+  },
+  {
+   "source_id": "S-EO683",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1907-08-19; revokes the order of July 15, 1907 (EO 666)."
+  },
+  {
+   "source_id": "S-EO5254",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1929-12-31; revokes EO 4393 of Mar. 15, 1926; 91-day schedule ends 1930-06-02 as computed."
+  },
+  {
+   "source_id": "S-EO5240",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1929-12-14; revokes EO 5174 and amends EO 4679."
+  },
+  {
+   "source_id": "S-EO1282",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1911-01-10; places Biliran lands reserved May 13, 1908 (EO 796) under the Philippine government."
+  },
+  {
+   "source_id": "S-EO1011",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1909-01-22; vacates EO 803 and re-places Fort Keogh under the War Department."
+  },
+  {
+   "source_id": "S-EO3952",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1924-02-02; places the remaining part of Fort Keogh under Interior."
+  },
+  {
+   "source_id": "S-EO3402",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1921-02-11; places all EO 2772 lands under Interior (and part of EO 2879's)."
+  },
+  {
+   "source_id": "S-EO3497",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1921-06-15; places EO 2517 lands under Interior."
+  },
+  {
+   "source_id": "S-EO3514",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1921-07-14; places sections 19, 30, 31 reserved by EO 1136 under Interior (OCR '9')."
+  },
+  {
+   "source_id": "S-EO4062",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1924-08-11; returns the EO 2944 Virginia Key lands to Interior; same lots and 66.12 acres."
+  },
+  {
+   "source_id": "S-EO3418",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1921-03-08; places the Nulato reservation as set apart May 4, 1908 and Oct. 24, 1911 (EO 1423) under Interior."
+  },
+  {
+   "source_id": "S-EO636",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1907-05-16; rescinds EO 372-B as amended by EO 456, before its Nov. 1, 1907 effective date."
+  },
+  {
+   "source_id": "S-EO3130",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1919-07-25; rescinds the May 28, 1918 order (EO 2869)."
+  },
+  {
+   "source_id": "S-EO4047",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1924-07-08; rescinds the orders of May 26, 1914 and May 16, 1923 (EO 1948, EO 3848)."
+  },
+  {
+   "source_id": "S-EO7320",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1936-03-19; revokes EO 2275 and EO 2385."
+  },
+  {
+   "source_id": "S-EO7387",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1936-06-15; supersedes EO 4047 (and non-member EO 4105)."
+  },
+  {
+   "source_id": "S-EO7407",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1936-07-06; supersedes EO 3202, 3386, 3428."
+  },
+  {
+   "source_id": "S-EO9293",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1943-01-02; supersedes EO 7407; the doctrine's C22 date of 1942-01-02 is wrong (R2)."
+  },
+  {
+   "source_id": "S-EO2563",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1917-03-27; vacates the Jan. 4, 1911 order (EO 1279)."
+  },
+  {
+   "source_id": "S-EO2377",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1916-05-02; vacates EO 1422."
+  },
+  {
+   "source_id": "S-EO5715",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; signed 1931-09-16; removes 'the restrictions as to use imposed by Executive Order No. 1507'; EO 1507's text shows the armory proviso."
+  }
+ ],
+ "members_checked": [
+  "EO:1080",
+  "EO:1097",
+  "EO:3171",
+  "EO:5044",
+  "EO:5119",
+  "EO:5240",
+  "EO:5254",
+  "EO:2143",
+  "EO:683",
+  "EO:6493",
+  "EO:4052",
+  "EO:1397",
+  "EO:7049",
+  "EO:512",
+  "EO:2534",
+  "EO:3402",
+  "EO:3497",
+  "EO:3514",
+  "EO:3952",
+  "EO:4062",
+  "EO:3418",
+  "EO:1282",
+  "EO:432",
+  "EO:3086",
+  "EO:483",
+  "EO:1437",
+  "EO:4560",
+  "EO:1298",
+  "EO:3344",
+  "EO:3500",
+  "EO:348A",
+  "EO:5736",
+  "EO:2405",
+  "EO:2136",
+  "EO:3293",
+  "EO:3313A",
+  "EO:2825",
+  "EO:5849",
+  "EO:4047",
+  "EO:3130",
+  "EO:7387",
+  "EO:7407",
+  "EO:5157",
+  "EO:1507",
+  "EO:5715",
+  "EO:636",
+  "EO:2377",
+  "EO:2563",
+  "EO:1011",
+  "EO:3067",
+  "EO:330A",
+  "EO:1070",
+  "EO:1129",
+  "EO:4640",
+  "EO:2879",
+  "EO:2772",
+  "EO:1136",
+  "EO:2944",
+  "EO:1423"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:348A",
+   "branch": "B20",
+   "why": "Port Reservation (reclaimed harbor land, Manila); MBA art. XXI(2) kept the Port of Manila reservation in U.S. use after 1947-03-26; should be open."
+  },
+  {
+   "instrument_id": "EO:1298",
+   "branch": "B20",
+   "why": "Creates/modifies the Manila Port Reservation; same as above."
+  },
+  {
+   "instrument_id": "EO:2838",
+   "branch": "B20",
+   "why": "Enlarges the Port Reservation; same as above."
+  },
+  {
+   "instrument_id": "EO:3344",
+   "branch": "B20",
+   "why": "Adds Tract D to the Port Reservation; same as above."
+  },
+  {
+   "instrument_id": "EO:3500",
+   "branch": "B20",
+   "why": "Adds to tracts A and B of the Port Reservation; same as above."
+  },
+  {
+   "instrument_id": "EO:5736",
+   "branch": "B20",
+   "why": "Reclamation No. 1 blocks in Manila Harbor with pipe-line rights; probably within the 1941 Port reservation; needs a reading before a no lead."
+  },
+  {
+   "instrument_id": "EO:7407",
+   "branch": "C22",
+   "why": "Correct branch but wrong date: EO 9293 is 1943-01-02, not 1942-01-02."
+  },
+  {
+   "instrument_id": "EO:330A",
+   "branch": "B33",
+   "why": "Wholly placed under Interior by member EO 432 of 1906-03-28 (held text names the June 12, 1905 order); should be no, ACT, 1906-03-28."
+  },
+  {
+   "instrument_id": "EO:1450",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 833, 1952-05-21; also wrongly cited as a likely surviving reservation."
+  },
+  {
+   "instrument_id": "EO:1238",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 3728, 1965-07-06."
+  },
+  {
+   "instrument_id": "EO:1262",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 2454, 1961-08-08."
+  },
+  {
+   "instrument_id": "EO:1315",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 1326, 1956-08-21."
+  },
+  {
+   "instrument_id": "EO:2131",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 2504, 1961-09-25 (after partial PLO 976)."
+  },
+  {
+   "instrument_id": "EO:2233",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 1411, 1957-04-22."
+  },
+  {
+   "instrument_id": "EO:2295",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 5052, 1971-05-13."
+  },
+  {
+   "instrument_id": "EO:2353",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 143, 1943-06-18."
+  },
+  {
+   "instrument_id": "EO:3684",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 1303, 1956-05-28."
+  },
+  {
+   "instrument_id": "EO:439",
+   "branch": "B33",
+   "why": "Held edge: revoked 'entirely' by PLO 1636, 1958-05-14."
+  },
+  {
+   "instrument_id": "EO:4682",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 1320, 1956-08-15."
+  },
+  {
+   "instrument_id": "EO:4962",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 4803, 1970-04-17."
+  },
+  {
+   "instrument_id": "EO:5251",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 2252, 1961-01-11."
+  },
+  {
+   "instrument_id": "EO:6851",
+   "branch": "B33",
+   "why": "Held edge: revoked by PLO 1271, 1956-03-14."
+  },
+  {
+   "instrument_id": "EO:3402",
+   "branch": "B33",
+   "why": "Pure relinquishment under the 1884 Act; P1 gives no, TERM, 1921-02-11 (conservative error)."
+  },
+  {
+   "instrument_id": "EO:5157",
+   "branch": "B12",
+   "why": "Pure restoration that removes EO 1531's park restriction; its 'retained' match describes EO 1531 (conservative error)."
+  },
+  {
+   "instrument_id": "EO:1397",
+   "branch": "B11",
+   "why": "Has a second operative clause holding the forest-reserve portion 'in reservation' free of military limitations; needs P2 disclosure or open."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's structure follows the coordinator rulings, and most citations check out: every held file's sha256 and pin match, and 24 of the 25 C-branch dates match the later orders' held texts. Six errors need fixing before adoption. Proclamation 2695 is cited at 60 Stat. 1325 when the held page and the URL show 1352. C22 dates EO 9293 to 1942-01-02 when the order is dated January 2, 1943. The doctrine says the engine reports no contradictions, but the engine flags 23. The doctrine also ignores held revocation edges that name 14 B33 members by number (Public Land Orders, 1943-1971), and it misses that member EO 432 placed EO 330A's reservation wholly under Interior. It offers EO 1450 as a possibly surviving reservation although a held edge shows PLO 833 revoked it in 1952. The most serious substantive error is in B20. Article XXI of the 1947 Military Bases Agreement, the source the branch itself relies on, kept the Port of Manila reservation and temporary installations outside the listed bases in U.S. use after March 26, 1947. The five or six Manila Port Reservation members are therefore wrongly decided no, and the July 4, 1946 and March 26, 1947 dates are unsupported for any installation kept under that article. The doctrine also quotes Note V of the agreement only in part; the omitted words reserve the question of naval reservations outside the bases. The minor items are narrow screen misses (EO 3402, EO 5157, EO 1397), the P2 dating of EO 5174 and EO 456, year-only lead dates, a misclassified Alaska member (EO 1920), and citation tidying. The open branches and the out-of-family routing are otherwise stated truthfully."
+}

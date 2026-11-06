@@ -1,0 +1,448 @@
+{
+ "doctrine_id": "PD-CLASS-EVENTS",
+ "arm": "A",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "procedure N6 lead.date_rule (JSON)",
+   "claim": "N6 dates its 42 leads as the interval (order date, 1935-06-16]; the .md (section (c) N6, mechanism M2) and the branch's own basis say the interval runs to April 1, 1936.",
+   "evidence": "EO 7076 (S4, held APP text jobs/app-executive-orders/output/texts/executive-order-7076-extending-the-activities-the-nra.txt) amended all existing Title I orders 'so as to continue them in effect and to extend their operation ... until April 1, 1936'. S.J. Res. 113 sec. 1 (held, 49 Stat. 375) replaced the June 16, 1935 expiry with 'on April 1, 1936' before June 16 arrived. The doctrine's own M1 says June 16, 1935 'is not an end date'. The JSON upper bound contradicts the instrument it cites and the .md.",
+   "severity": "error",
+   "fix": "Set N6 date_rule to {\"kind\": \"interval\", \"from\": \"order_date\", \"to\": \"1936-04-01\", ...}; re-run the engine so all 42 N6 leads carry the April 1, 1936 bound."
+  },
+  {
+   "id": "R2",
+   "location": "sources S2 and S3 (JSON citation); .md section (b) table row S2, S3",
+   "claim": "S.J. Res. 113 is cited at '49 Stat. 357'.",
+   "evidence": "The held page (jobs/astra-source-retention/output/pages/98e35c56.../selected-pages.txt) carries the running head '74th CONGRESS. SESS. I. CHS. 244-246. JUNE 14, 1935. 375' and prints chapter 246 (S.J. Res. 113, Pub. Res. No. 26) on that page. The doctrine's own URL is STATUTE-49-Pg375.pdf.",
+   "severity": "error",
+   "fix": "Cite 'S.J. Res. 113, Pub. Res. No. 26, 74th Cong., ch. 246, secs. 1-2, 49 Stat. 375 (June 14, 1935)' in S2, S3 and the .md table."
+  },
+  {
+   "id": "R3",
+   "location": "O1 (EO 7192); mechanism M1; .md header ('applies ... P1 to P6') and section (d)",
+   "claim": "EO 7192 stays open because 'its end would rest only on the Title's lapse, which ruling P3 does not count as an end'; M1 says the lapse of Title I 'does not by itself end any order'.",
+   "evidence": "Coordinator ruling P8 governs this case: when a member's only content is a delegation of powers a statute conferred and the statute's words say those provisions cease, the lead is no, basis ACT, kind ended_with_delegated_statutory_power, and P8 expressly distinguishes this from a repeal of authority to make new orders. EO 7192's held text (APP mirror) is only a delegation to the Federal Trade Commission of authority under 'section 2(a) and section 2(b) of Title I' and S.J. Res. 113. NIRA sec. 2(c) as amended (S1, S2) says 'This title shall cease to be in effect ... on April 1, 1936'. The doctrine does not mention rulings P7 or P8 at all.",
+   "severity": "error",
+   "fix": "Add a branch for EO 7192: no, ACT, ended_with_delegated_statutory_power, interval (1935-09-26, 1936-04-01], sources S0, S1, S2. Qualify M1 to say that a lapse of Title I ends an order whose only content is a delegation of Title I powers (ruling P8). State in the header that rulings P1 to P8 are applied."
+  },
+  {
+   "id": "R4",
+   "location": "O1 (EO 6993); .md section (d)",
+   "claim": "EO 6993 stays open because 'EO 7075 names only EO 6859, so neither instrument's words reach it'.",
+   "evidence": "Coordinator ruling P7 holds that a later instrument abolishing by name the one thing a member created or governed reaches the member through its subject. EO 6993's held text has one subject: it 'reconstitute[s] the National Industrial Recovery Board created by Executive Order no. 6859' and sets that Board's membership. EO 7075 sec. 1 (S7, held): 'The National Industrial Recovery Board created by Executive Order No. 6859 of September 27, 1934, is hereby terminated'. The appointments are of several persons, so P4 (one act for one named person) does not take the order out of P7.",
+   "severity": "error",
+   "fix": "Decide EO 6993 no, ACT, ended_by_express_abolition_of_its_subject, fixed 1935-06-15, sources S7 and S0; remove it from the O1 list and the O1 gap."
+  },
+  {
+   "id": "R5",
+   "location": "O2 (EO 2692); C2b gap (parent of EO 2737); .md section (d)",
+   "claim": "EO 2692 (defensive sea areas, Aug. 27, 1917) stays open as an order 'whose subject is not Zone government alone'; C2b describes it as the open parent of EO 2737.",
+   "evidence": "The project holds EO 3027 (Jan. 25, 1919; member text, Wikisource, also jobs/wikisource-texts/output/texts/EO_3027.txt): 'All Executive Orders heretofore issued for the establishment of Defensive Sea Areas are hereby revoked.' That is an express class description (ruling P3) that EO 2692's own text ('Establishing Defensive Sea Areas for Terminal Ports of the Panama Canal') places it in. MEMBERS.jsonl carries held revocation edges by EO:3027 dated 1919-01-25 on both EO:2692 and EO:2737.",
+   "severity": "error",
+   "fix": "Add a branch: EO 2692 no, ACT, ended_by_express_class_instrument, fixed 1919-01-25, quoting EO 3027 and the member's title words. Update the C2b disclosure for EO 2737 (parent ended 1919-01-25) and the O2 list (36)."
+  },
+  {
+   "id": "R6",
+   "location": "O1a (EO 6237)",
+   "claim": "EO 6237 (Great Smoky Mountains land allotment) stays open for PD-ADMIN's fund-allotment rule.",
+   "evidence": "EO 6575 (Jan. 24, 1934), held as an APP mirror text in MEMBERS.jsonl: 'It is hereby ordered that Executive Order No. 6237, of July 28, 1933, allocating funds for the purchase of lands necessary for the completion of the Great Smoky Mountains National Park, be, and it is hereby, revoked.' EO:6237 carries a held revocation edge by EO:6575 dated 1934-01-24. The doctrine decides the same pattern (R1 to R3) for other members.",
+   "severity": "error",
+   "fix": "Add an R branch: EO 6237 no, ACT, revoked_by_later_order, fixed 1934-01-24, source EO 6575 (held path to be added)."
+  },
+  {
+   "id": "R7",
+   "location": "C1 (EO 3985)",
+   "claim": "EO 3985 (designation of Major L. M. Smith as special judge) stays open; the C1 gap itself cites 'EO 4006's revocation of EO 3985' as an example of what PD-CS-ONE-PERSON would need.",
+   "evidence": "EO 4006 (May 7, 1924; held scan, a C1 member): 'The Executive Order No. 3985, dated April 3, 1924, designating Major Lucius Meriwether Smith to be Special Judge for the Canal zone ... is hereby rescinded'. EO:3985 carries a held rescission edge by EO:4006 dated 1924-05-07. An express rescission by number is an ACT end whatever family governs the appointment.",
+   "severity": "error",
+   "fix": "Add an R branch before C1: EO 3985 no, ACT, revoked_by_later_order, fixed 1924-05-07."
+  },
+  {
+   "id": "R8",
+   "location": "O2a (EO 370)",
+   "claim": "EO 370 (temporary appointments on the Isthmus, Nov. 15, 1905) stays open for PD-CS-RULES.",
+   "evidence": "EO 393 (Jan. 12, 1906), held as jobs/wikisource-texts/output/texts/EO_393.txt: 'Executive Order of November 15, 1905, as to appointments to positions in the service of the Isthmian Canal Commission upon the Isthmus of Panama, is hereby repealed.' The order is identified by its date and subject; EO:370 carries a held revocation edge by EO:393 dated 1906-01-12.",
+   "severity": "error",
+   "fix": "Decide EO 370 no, ACT, revoked_by_later_order, fixed 1906-01-12, with the gap that EO 393 is held only as a Wikisource transcription."
+  },
+  {
+   "id": "R9",
+   "location": "O2 (EO 2867); .md section (d) 'truncated, scanned or mismatched texts'",
+   "claim": "EO 2867 stays open as a truncated, scanned or mismatched text.",
+   "evidence": "EO 2867's held scan is complete (it is signed 'THE WHITE HOUSE, 28 May, 1918. [No. 2867.]'). EO 2907 (held, decided in C3) ends: 'This order supersedes Executive Order Number 2867 dated May 28, 1918.' EO:2867 carries a held supersession edge by EO:2907 dated 1918-07-09. The doctrine accepts 'supersedes Executive Order No. 6223 ... which is hereby revoked' in R3; a supersession that names the member by number replaces it.",
+   "severity": "error",
+   "fix": "Decide EO 2867 no, ACT, superseded_by_named_order, fixed 1918-07-09. If the owner does not accept supersession without the word 'revoked' as an end, keep it open but state that reason instead of 'truncated'."
+  },
+  {
+   "id": "R10",
+   "location": "O1 (EO 6551); N6 exclusion regex; .md section (d)",
+   "claim": "EO 6551 rests on 'the Agricultural Adjustment Act' and stays open.",
+   "evidence": "EO 6551's held text cites one authority: 'By virtue of the authority vested in me by Title I of the National Industrial Recovery Act'. It amends EO 6182 (an N6 member). The Agricultural Adjustment Act appears only in a descriptive clause ('may be dealt with by the Secretary of Agriculture under Section 8 (2) and/or (3) of the Agricultural Adjustment Act'). The N6 exclusion pattern 'Agricultural Adjustment' is not anchored to the authority clause.",
+   "severity": "error",
+   "fix": "Move EO 6551 to N6 (or N7) and anchor the N6 exclusions to the authority clause, or list EO 6551 by id in N6."
+  },
+  {
+   "id": "R11",
+   "location": "O1 (EO 6651)",
+   "claim": "EO 6651 (Special Adviser on Foreign Trade) is listed among orders 'resting on other authority or not reached' with no stated reason.",
+   "evidence": "EO 6651's authority clause is 'title I of the National Industrial Recovery Act ... and otherwise', the same form as N6 members EO 6304, 6407, 6424, 6463 and 6515. It is excluded from N6 only because its text asks departments, 'including the export-import banks', to supply information, which the exclusion pattern 'Export-Import Bank' catches.",
+   "severity": "unsupported",
+   "fix": "Either put EO 6651 in N6 (EO 7076 reaches it by its authority clause and date) or state the reason it differs from the N6 'and otherwise' orders."
+  },
+  {
+   "id": "R12",
+   "location": "O1 (EO 6858); mechanism M2 (use of EO 7084)",
+   "claim": "EO 6858 (Textile Labor Relations Board) rests on Public Resolution 44 and stays open; M2 cites EO 7084 as showing 'the government read [EO 7076] as reaching each order'.",
+   "evidence": "EO 6858's held authority clause cites 'title I of the National Industrial Recovery Act ... and ... Public Resolution 44'. EO 7084 (June 24, 1935, held in MEMBERS.jsonl): 'The Textile Labor Relations Board created under Executive Order No. 6858 ... and continued by Executive Order No. 7076 of June 15, 1935, is hereby further continued in existence until July 1, 1935'. The order the doctrine uses to prove EO 7076's reach is EO 6858 itself, and the same instrument names EO 6858 and fixes an end for its Board. The doctrine discloses neither point for EO 6858.",
+   "severity": "unsupported",
+   "fix": "Disclose on EO 6858 that EO 7084 names it, treats it as continued by EO 7076, and continued its Board only until July 1, 1935; decide it if the owner accepts EO 7076 reaching orders issued under Title I together with another statute, or keep it open with that stated reason."
+  },
+  {
+   "id": "R13",
+   "location": "N5 (EO 7075) gap; 'Choices left to the owner' item 2; .md N5",
+   "claim": "EO 7252 does not name EO 7075, so N5 rests only on EO 7252's description of the office and on the statute's words; EO 7075 establishes the Administrator's office and the Divisions of Review and of Business Cooperation.",
+   "evidence": "EO 7252 sec. 2 (S9/S10 held text) names the member: 'The Division of Review, the Division of Business Cooperation, and the Advisory Council, as constituted by Executive Order No. 7075 of June 15, 1935 ... are hereby transferred to the Department of Commerce' and directs the Secretary 'to terminate the functions and duties of the said agencies not later than April 1, 1936'. The .md omits the Advisory Council. The held EO 7075 text is abridged (it has '. . .' elisions in secs. 2 and 5 and no section 6), so 'only operative content' was not checked on a whole text. Ruling P7 prescribes the lead kind ended_by_express_abolition_of_its_subject for an order whose subject is abolished by name.",
+   "severity": "unsupported",
+   "fix": "Restate the N5 basis and gap: EO 7252 names EO 7075 in sec. 2 and terminates by name the office sec. 1 created; add the Advisory Council; disclose that the held EO 7075 text is abridged; use the P7 lead kind; drop or rewrite owner choice 2."
+  },
+  {
+   "id": "R14",
+   "location": "N2, N3 lead_kind",
+   "claim": "N2 (EO 6859) and N3 (EO 6632) use lead kind ended_by_named_instrument.",
+   "evidence": "Both members' only subject is a board that a later order abolished by name (EO 7075 sec. 1; EO 6771). Coordinator ruling P7 fixes the kind ended_by_express_abolition_of_its_subject for this case. EO 6771 fixes the day: the Board 'shall cease to exist on that date' (July 1, 1934), so N3 could be fixed 1934-07-01 rather than an interval.",
+   "severity": "minor",
+   "fix": "Use lead kind ended_by_express_abolition_of_its_subject for N2 and N3 and cite ruling P7; consider a fixed 1934-07-01 date for N3."
+  },
+  {
+   "id": "R15",
+   "location": "N4 (EO 7076 itself)",
+   "claim": "EO 7076's own lead is own_stated_period, fixed 1936-04-01.",
+   "evidence": "EO 7076's operative words are that the existing Title I orders 'are hereby amended so as to continue them in effect'. Ruling P2 treats an order whose only operative content amends other orders as merged_into_parent_on_issue on its own date (1935-06-15). The doctrine applies P2 to N7 and C2b but not to EO 7076 and does not say why.",
+   "severity": "minor",
+   "fix": "Either apply P2 (no, TERM, merged_into_parent_on_issue, 1935-06-15, with the P2 disclosure) or explain why EO 7076's extension of agency authority is a command of its own that ran to April 1, 1936."
+  },
+  {
+   "id": "R16",
+   "location": "N6 members EO 6637 and EO 6771",
+   "claim": "Both are decided by N6 under EO 7076 with the April 1, 1936 bound.",
+   "evidence": "EO 6637 is a $50,000 fund allotment to the National Recovery Review Board; O1a sends fund allotments to PD-ADMIN. EO 6771's only content discontinues that Board, which 'shall cease to exist on' July 1, 1934 (rulings P1 and P7). The leads are no either way, but the basis is inconsistent with O1a and with the doctrine's single-act rule.",
+   "severity": "minor",
+   "fix": "Route EO 6637 with the other allotments (or explain the difference) and decide EO 6771 as spent on issue or ended July 1, 1934."
+  },
+  {
+   "id": "R17",
+   "location": "C2b (EO 595) and N7 (EO 6836)",
+   "claim": "Both are amending orders merged into their parents under ruling P2.",
+   "evidence": "EO 595's only content gives Lt. Col. Goethals a furnished dwelling and travel expenses; EO 6836's only content appoints Donald R. Richberg Director and fixes his leave until October 1, 1934. Ruling P4 says an order whose operative content is one act for one named person follows PD-CS-ONE-PERSON in every family.",
+   "severity": "minor",
+   "fix": "Disclose the P4 alternative for EO 595 and EO 6836, or route them to PD-CS-ONE-PERSON."
+  },
+  {
+   "id": "R18",
+   "location": "C1 (EO 4087, 4567, 4767)",
+   "claim": "C1 says the appointment is spent when the person takes office and the tenure is a surviving consequence.",
+   "evidence": "The WPA summaries state own end dates: Blackburn designated special judge 'until Jan. 1, 1926' (EO 4087), 'until Jan. 1, 1928' (EO 4567) and 'until Jan. 1, 1929' (EO 4767). Deferral to PD-CS-ONE-PERSON is allowed, but the own-terms ends are not disclosed.",
+   "severity": "minor",
+   "fix": "Disclose the stated end dates in the C1 gap for these three members."
+  },
+  {
+   "id": "R19",
+   "location": "C2b JSON gap",
+   "claim": "The JSON gap names 'EO 348-C (open, O2)' as the parent of EO 373-A and EO 412.",
+   "evidence": "The engine places EO 348-C in O2b, and the .md says 'EO 348-C (open, O2b)'.",
+   "severity": "minor",
+   "fix": "Change '(open, O2)' to '(open, O2b)' in the JSON gap."
+  },
+  {
+   "id": "R20",
+   "location": "M11 and C3 basis (quotation of Panama Canal Act sec. 3(b)(1))",
+   "claim": "Quotes '\"Canal Zone\" shall be deemed to refer to the areas and installations in the Republic of Panama made available to the United States pursuant to the Panama Canal Treaty of 1977'.",
+   "evidence": "The held text (93 Stat. 455) continues 'and related agreements;' and the subsection opens 'Subject to the provisions of subsection (c) of this section'. The quotation stops mid-clause without an ellipsis.",
+   "severity": "minor",
+   "fix": "End the quotation with '... and related agreements' or mark the omission."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S0",
+   "verdict": "verified",
+   "note": "Member texts read for every deciding branch (see members_checked)."
+  },
+  {
+   "source_id": "S1",
+   "verdict": "verified",
+   "note": "Held sha256 matches; pin found; sec. 2(c) printed on 48 Stat. 196 (running head '196 73d CONGRESS ... JUNE 16, 1933'); Title II begins after sec. 10 on p. 200-201."
+  },
+  {
+   "source_id": "S2",
+   "verdict": "wrong",
+   "note": "Text, sha256 and pin correct, but the page is 49 Stat. 375, not 357 (held running head; the doctrine's own URL is Pg375). See R1/R2."
+  },
+  {
+   "source_id": "S3",
+   "verdict": "wrong",
+   "note": "Same page error as S2 (49 Stat. 375); sec. 2 text and pin verified."
+  },
+  {
+   "source_id": "S4",
+   "verdict": "verified",
+   "note": "APP mirror text sha256 matches; pin found; date June 15, 1935 confirmed by the Wikisource copy; 'June 26, 1935' recital present in both copies as disclosed."
+  },
+  {
+   "source_id": "S5",
+   "verdict": "verified",
+   "note": "Held sha256 matches; pin printed on 295 U.S. 542; decided May 27, 1935 per held syllabus."
+  },
+  {
+   "source_id": "S6",
+   "verdict": "verified",
+   "note": "Not held; citation 293 U.S. 388 (1935) and the govinfo URL confirmed by web search; decision date January 7, 1935 is the standard date. Used only as a validity note."
+  },
+  {
+   "source_id": "S7",
+   "verdict": "verified",
+   "note": "APP mirror sha256 matches; pin found; held text is abridged ('. . .', no section 6), see R13."
+  },
+  {
+   "source_id": "S8",
+   "verdict": "verified",
+   "note": "APP mirror sha256 matches; pin found; dated June 30, 1934; identifies 'Executive Order of March 7, 1934' (EO 6632's date)."
+  },
+  {
+   "source_id": "S9",
+   "verdict": "verified",
+   "note": "Pin found; sec. 2 also names EO 7075 by number (R13)."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "Pin found; dated December 21, 1935; effective January 1, 1936."
+  },
+  {
+   "source_id": "S11",
+   "verdict": "verified",
+   "note": "Pin found; sec. 7 revokes EO 2040 (Sept. 5, 1914), 2479, 3761 and 6608; dated November 25, 1935."
+  },
+  {
+   "source_id": "S12",
+   "verdict": "verified",
+   "note": "Pin found; 'hereby is rescinded'; dated March 3, 1933."
+  },
+  {
+   "source_id": "S13",
+   "verdict": "verified",
+   "note": "Pin found; dated October 20, 1933."
+  },
+  {
+   "source_id": "S14",
+   "verdict": "verified",
+   "note": "Held machine text of 93 Stat. 452; sec. 2101 on 93 Stat. 493 with margin note 22 USC 3831; pin found."
+  },
+  {
+   "source_id": "S15",
+   "verdict": "verified",
+   "note": "Sec. 3(b) begins on 93 Stat. 455 (margin 22 USC 3602); pin found; quotation truncated (R20)."
+  },
+  {
+   "source_id": "S16",
+   "verdict": "verified",
+   "note": "Sec. 3304 on 93 Stat. 500; pin found; effective on Treaty entry into force with listed exceptions."
+  },
+  {
+   "source_id": "S17",
+   "verdict": "verified",
+   "note": "Not held. UN treaty PDF exists (treaties.un.org vol. 1280, I-21086). State Department archived text checked: art. II(2) 'This Treaty shall terminate at noon, Panama time, December 31, 1999'; art. III(10) Canal Zone Government 'shall cease to operate'; art. XI(1) plenary jurisdiction and thirty calendar months; art. XIII(1) confirmed."
+  },
+  {
+   "source_id": "S18",
+   "verdict": "verified",
+   "note": "Not held. Cornell LII 22 U.S.C. 3602(d): 'Canal Transfer Date' means December 31, 1999; added by Pub. L. 105-85, div. C, title XXXV, sec. 3512, Nov. 18, 1997, credit '111 Stat. 2063, 2074' (sec. 3512 at 2063 not independently confirmed from the Statutes at Large page)."
+  },
+  {
+   "source_id": "S19",
+   "verdict": "verified",
+   "note": "Held sha256 matches; sec. 10(a) on 48 Stat. 463 and sec. 7(4) on 48 Stat. 461 per running heads; pin found; approved March 24, 1934, ch. 84."
+  },
+  {
+   "source_id": "S20",
+   "verdict": "verified",
+   "note": "Held sha256 matches; Proclamation 2695 heading on 60 Stat. 1352, operative words on 1353; pin found."
+  }
+ ],
+ "members_checked": [
+  "EO:2040",
+  "EO:3761",
+  "EO:5143",
+  "EO:6223",
+  "EO:6920A",
+  "EO:6920B",
+  "EO:6973A",
+  "EO:6988",
+  "EO:7010H",
+  "EO:6859",
+  "EO:6632",
+  "EO:7076",
+  "EO:7075",
+  "EO:6173",
+  "EO:6182",
+  "EO:6199",
+  "EO:6204",
+  "EO:6205A",
+  "EO:6205B",
+  "EO:6207",
+  "EO:6221C",
+  "EO:6221D",
+  "EO:6227A",
+  "EO:6304",
+  "EO:6337",
+  "EO:6345",
+  "EO:6348",
+  "EO:6353",
+  "EO:6354",
+  "EO:6407",
+  "EO:6424",
+  "EO:6439",
+  "EO:6463",
+  "EO:6464",
+  "EO:6476",
+  "EO:6511",
+  "EO:6515",
+  "EO:6527",
+  "EO:6527A",
+  "EO:6580",
+  "EO:6590B",
+  "EO:6595",
+  "EO:6637",
+  "EO:6678A",
+  "EO:6684A",
+  "EO:6710",
+  "EO:6750A",
+  "EO:6764",
+  "EO:6771",
+  "EO:6785",
+  "EO:6829",
+  "EO:6878",
+  "EO:6930",
+  "EO:6949",
+  "EO:6955A",
+  "EO:6612A",
+  "EO:6836",
+  "EO:6298",
+  "EO:6537",
+  "EO:6538",
+  "EO:6731A",
+  "EO:7025",
+  "EO:7159",
+  "EO:7192",
+  "EO:6993",
+  "EO:7120",
+  "EO:7252",
+  "EO:7323",
+  "EO:6749",
+  "EO:6237",
+  "EO:6296A",
+  "EO:6718",
+  "EO:6202A",
+  "EO:6225",
+  "EO:6433A",
+  "EO:6513",
+  "EO:6551",
+  "EO:6561",
+  "EO:6569",
+  "EO:6651",
+  "EO:6660",
+  "EO:6700",
+  "EO:6770",
+  "EO:6860",
+  "EO:6889A",
+  "EO:6858",
+  "EO:6340",
+  "EO:6581",
+  "EO:6638",
+  "EO:6209",
+  "EO:6343",
+  "EO:7064",
+  "EO:6929",
+  "EO:6786A",
+  "EO:7010P",
+  "EO:2456",
+  "EO:7447",
+  "EO:1231",
+  "EO:1860",
+  "EO:2907",
+  "EO:673",
+  "EO:373A",
+  "EO:412",
+  "EO:595",
+  "EO:2737",
+  "EO:2692",
+  "EO:2867",
+  "EO:3985",
+  "EO:4006",
+  "EO:370",
+  "EO:394",
+  "EO:418",
+  "EO:474",
+  "EO:3255",
+  "EO:3332",
+  "EO:1295",
+  "EO:2185",
+  "EO:3917"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "N6 (all 42 members)",
+   "branch": "N6",
+   "why": "JSON date rule ends the interval at 1935-06-16 instead of 1936-04-01 (R1)."
+  },
+  {
+   "instrument_id": "EO:7192",
+   "branch": "O1",
+   "why": "Only content is a delegation of Title I powers; ruling P8 gives no, ACT, interval to 1936-04-01 (R3)."
+  },
+  {
+   "instrument_id": "EO:6993",
+   "branch": "O1",
+   "why": "Only subject is the National Industrial Recovery Board, which EO 7075 sec. 1 terminated by name; ruling P7 gives no, ACT, 1935-06-15 (R4)."
+  },
+  {
+   "instrument_id": "EO:2692",
+   "branch": "O2",
+   "why": "Revoked by EO 3027's express class words 'All Executive Orders heretofore issued for the establishment of Defensive Sea Areas'; held edge; no, ACT, 1919-01-25 (R5)."
+  },
+  {
+   "instrument_id": "EO:6237",
+   "branch": "O1a",
+   "why": "Expressly revoked by number by EO 6575 (held); no, ACT, 1934-01-24 (R6)."
+  },
+  {
+   "instrument_id": "EO:3985",
+   "branch": "C1",
+   "why": "Expressly rescinded by number by EO 4006 (held); no, ACT, 1924-05-07 (R7)."
+  },
+  {
+   "instrument_id": "EO:370",
+   "branch": "O2a",
+   "why": "Repealed by EO 393, which identifies it by date and subject (Wikisource copy held); no, ACT, 1906-01-12 (R8)."
+  },
+  {
+   "instrument_id": "EO:2867",
+   "branch": "O2",
+   "why": "EO 2907 'supersedes Executive Order Number 2867'; held text is complete, not truncated; no, ACT, 1918-07-09 (R9)."
+  },
+  {
+   "instrument_id": "EO:6551",
+   "branch": "O1",
+   "why": "Issued under Title I alone; the Agricultural Adjustment Act mention is descriptive; belongs in N6 (R10)."
+  },
+  {
+   "instrument_id": "EO:6651",
+   "branch": "O1",
+   "why": "Authority clause is Title I 'and otherwise' like N6 members; excluded only by an incidental mention of the export-import banks (R11)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's structure is sound. EO 7076 is an express class instrument reaching Title I orders issued before June 15, 1935; the Canal Zone and Philippine class events are applied as rulings P3 and P5 require; and 18 of the 20 sources check out against the held texts or the web. Two specific errors must be fixed. The JSON dates all 42 N6 leads to June 16, 1935, which is the expiry the joint resolution displaced, instead of April 1, 1936. S.J. Res. 113 is cited at 49 Stat. 357 when it is printed at 49 Stat. 375. The doctrine says it applies rulings P1 to P6 and ignores P7 and P8, so EO 7192 (a pure Title I delegation, P8) and EO 6993 (whose only subject, the National Industrial Recovery Board, EO 7075 abolished by name, P7) are wrongly left open. Held later-event edges that expressly end members are not used for EO 2692 (EO 3027's class revocation of defensive sea area orders), EO 6237 (EO 6575), EO 3985 (EO 4006), EO 370 (EO 393) and EO 2867 (superseded by number by EO 2907), so the undecided list overstates what cannot be decided. EO 6551 and EO 6651 are excluded from N6 by an exclusion pattern that matches incidental mentions rather than authority clauses. The N5 gap misstates that EO 7252 does not name EO 7075, and the held EO 7075 text is abridged. These fixes would move about nine members from open to no and correct 42 dates."
+}

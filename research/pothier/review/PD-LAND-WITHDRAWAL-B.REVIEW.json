@@ -1,0 +1,720 @@
+{
+ "doctrine_id": "PD-LAND-WITHDRAWAL",
+ "arm": "B",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "B20 (spent_on_issue)",
+   "claim": "Every order whose summary shows only a revocation or restoration is spent on issue and ends on its order date.",
+   "evidence": "50 B20 members are revocations whose own text says the revocation becomes effective only 'upon the date of the official filing of the plat(s) of resurvey' (e.g. EO 7283 of 1936-02-03, EO 7240, EO 6943, EO 7335, EO 6760; held texts at each member's primary_text_path). The doctrine's own M8 lists exactly these revocations as lead-only, and B29 keeps the orders they revoke (EO 5682, 5958, 5172, 5287, 2665 ...) open because the revocation is 'not shown to have taken effect'. Ruling P1 dates a spent order at 'the order's own date (or its stated effective date)'; here the stated effective date is an unknown plat filing, so the order date is not a valid date and the command was not exhausted on issue. The doctrine therefore says the revoking order ended in 1935-36 while saying the revocation it carried may never have operated.",
+   "severity": "error",
+   "fix": "Before B20, add a branch (or a B20 exclusion) on text_regex 'effective upon the date of the official filing|shall become effective upon the date of the official filing|effective upon the (?:official )?filing of the plat' that leads open (kind e.g. revocation_effective_on_plat_filing_unproven), with the plat-filing gap; update the counts (B20 249 -> 199, decided 548 -> 498)."
+  },
+  {
+   "id": "R2",
+   "location": "verified_whole_revocations EO:6774; B06; appendix row EO 6774",
+   "claim": "EO 6774 was revoked as a whole by EO 8240 on 1939-09-06 (web FR page).",
+   "evidence": "The held text jobs/fr-originals/output/texts/EO_8240.txt (4 FR 3836-3837, Sept. 8, 1939) shows that the revocation of EO 6774 is a separate order numbered '[No. 8241]' (EO 8240 is the Fort Meade construction order), and it says: 'This order shall become effective upon the date of the official filing of the plat of the resurvey of the lands involved.' The doctrine's own verification test excludes revocations deferred to a plat filing.",
+   "severity": "error",
+   "fix": "Remove EO 6774 from B06 and the verified list; place it on B29 (open, revoked effective on plat filing, acting instrument EO 8241); correct the appendix."
+  },
+  {
+   "id": "R3",
+   "location": "verified_whole_revocations EO:3867; B06",
+   "claim": "EO 4653 (1927-05-20) revoked EO 3867 as a whole.",
+   "evidence": "jobs/pinakes-proquest-ingest/output/texts/EO_4653.txt: EO 3867 withdrew Ts. 5 S., Rs. 97-99 W.; Ts. 6 S., Rs. 98-99 W.; Ts. 7 S., Rs. 97-99 W., and EO 4653 says it 'be and the same is hereby revoked, only as to Ts. 6 and 7 S., R. 99 W.' That is a partial revocation; the doctrine's test ('as to' after the verb) should have rejected it.",
+   "severity": "error",
+   "fix": "Remove EO 3867 from B06 and the verified list; it falls to B35 (open), and the EO 4653 edge should be recorded as partial."
+  },
+  {
+   "id": "R4",
+   "location": "B05_1713 date_rule",
+   "claim": "Interval 1955-05-27 to 1981-07-15; 'ended no later than PLO 5815'.",
+   "evidence": "jobs/shepard-citations/output/PLO_TABLE.csv row 5815 and the raw BLM text (plo_5807-6825.txt): PLO 5815 is dated Jan. 15, 1981 (46 FR 6945). The side table and the appendix also give 1981-01-15.",
+   "severity": "error",
+   "fix": "Set the interval's upper bound to 1981-01-15."
+  },
+  {
+   "id": "R5",
+   "location": "Source S3 citation (JSON)",
+   "claim": "FLPMA sec. 701(c) is at 90 Stat. 2743, 2768.",
+   "evidence": "The held pages (selected-pages.txt, sha256 e14185c6...) print sec. 701 under the running head '90 STAT. 2786'. The .md table gives 2786-2792 for S3/S4/S19, so the JSON contradicts the .md.",
+   "severity": "error",
+   "fix": "Cite 'Pub. L. 94-579, sec. 701(c), 90 Stat. 2743, 2786'."
+  },
+  {
+   "id": "R6",
+   "location": "B09_4044; Conclusions ('EO 4044, whose restoration EO 4055 vacated'); count of 222 whole revocations",
+   "claim": "EO 4055 undid EO 4044's restoration, so nothing of EO 4044 remained after 1924-07-30 (ACT).",
+   "evidence": "jobs/pinakes-proquest-ingest/output/texts/EO_4055.txt: 'Executive Order No. 4044 of July 3, 1924, is hereby amended so as to vacate the restoration to the public domain therein prescribed for the described tracts of land within the Chugach National Forest'. The WPA summary of EO 4055 says the same ('revoked as to such of said lands as lie within the Chugach National Forest'). The lead's quote stops before the limiting words; the restoration of the other tracts stood. EO 4044 is a pure restoration, spent on issue under P1.",
+   "severity": "error",
+   "fix": "Decide EO 4044 under P1: no, TERM, spent_on_issue, dated 1924-07-03; record EO 4055 as a partial later event; remove it from the 'revoked as a whole' count (221 + 1 more spent-on-issue)."
+  },
+  {
+   "id": "R7",
+   "location": "B02 (EO 3529, EO 5136)",
+   "claim": "The amending orders EO 3529 and EO 5136 are in force (yes, CURRENT) because 43 CFR 2566.0-3 prints the regulations as amended by them.",
+   "evidence": "Ruling P2: an order whose only operative content amends another order merges into the parent on issue (no, TERM, merged_into_parent_on_issue, with the disclosure). EO 3529's and EO 5136's WPA summaries show only amendments of the Alaska Railroad Townsite Regulations of EO 3489, and the doctrine itself applies P2 to EO 2579, 2982 and 2641, which amended the earlier townsite regulations of EO 2214. Giving the parent's current-law predicate to the amending orders contradicts P2.",
+   "severity": "error",
+   "fix": "Move EO 3529 and EO 5136 to B24 (merged_into_parent_on_issue, order date) and keep only EO 3489 on B02; or, if the owner prefers the alternative named in P2, mark them open pending the parent. Do not give them yes."
+  },
+  {
+   "id": "R8",
+   "location": "B20 exclusion regexes",
+   "claim": "Members on B20 contain no new reservation, retained right or continuing command.",
+   "evidence": "EO 576 (1907-03-02) declares that coal-withdrawn lands inside forest-reserve proclamations 'will be held and considered as parts of the reserves': a standing rule, not a revocation. EO 4867 (1928-04-28) revokes EO 4758 and then orders 'that the lands described below be withdrawn from settlement' (summary OCR 'with drawn' defeats the exclusion). EO 5931 (1932-10-08) restores one strip and reserves 'a certain other strip' (summary OCR 'islandreserved'). EO 324B (1905-05-17) cancels part of an order and orders another tract 'be withdrawn from sale ... and reserved'. All four keep or create a reservation and are not spent on issue.",
+   "severity": "error",
+   "fix": "Exclude these four from B20 (send EO 4867, 5931, 324B to B26/B35 open; EO 576 to B35 or B99 open) and harden the exclusion with text_regex on 'be withdrawn from|hereby reserved|will be held and considered'."
+  },
+  {
+   "id": "R9",
+   "location": "verified_whole_revocations EO:4901; B06 date",
+   "claim": "EO 4901 ended on 1940-08-27, the date of EO 8529.",
+   "evidence": "Held jobs/fr-originals/output/texts/EO_8529.txt (5 FR 3403): EO 4901 'is hereby revoked. This order shall become effective on the sixtieth day from the date hereof' (Aug. 27, 1940), i.e. 1940-10-26. M4 itself says a stated later effective date controls.",
+   "severity": "minor",
+   "fix": "Give EO 4901 its own fixed date 1940-10-26 (a B07-style branch) and cite the held FR text instead of the web URL."
+  },
+  {
+   "id": "R10",
+   "location": "B24 list vs. engine; .md table row B24",
+   "claim": "EO 2641 is decided on B24 as merged into its parent.",
+   "evidence": "EO 2641's text says EO 2214 'is hereby further amended'; B24's text_regex does not match 'further amended', so the engine sends EO 2641 to B20 (spent_on_issue with the P1 'revokes or restores lands' basis), which misdescribes an amendment of townsite regulations and omits the P2 disclosure. The engine gives B24 10 members: the 11 listed minus EO 2641.",
+   "severity": "minor",
+   "fix": "Allow 'hereby,? (?:further )?amended' in B24's regex so EO 2641 gets the P2 lead; correct the .md."
+  },
+  {
+   "id": "R11",
+   "location": "B24 members EO 1584, EO 6734, EO 6016, EO 7038",
+   "claim": "Amending is each order's only operative content.",
+   "evidence": "EO 1584 restates Alaskan Withdrawal No. 1 'to read as follows' and itself withdraws and reserves a described area; EO 6734 eliminates tracts and adds 'lot 7 and NW1/4SE1/4NW1/4 sec. 24' to the reservation, which the doctrine's B26 treats as 'adds lands of its own' (open); EO 6016 and EO 7038 authorize oil-and-gas and sodium permits and leases on EO 5327 lands, which B25 treats as permission for a continuing use that 'lives with the use' (open). P2 applies only where amending is the only operative content.",
+   "severity": "unsupported",
+   "fix": "Move EO 1584 and EO 6734 to B26 and EO 6016 and EO 7038 to B25 (open), or state why P2 governs them despite B25/B26."
+  },
+  {
+   "id": "R12",
+   "location": "(c) 'The 62 contradiction flags'; Conclusions",
+   "claim": "The engine flags 62 leads (50 persistence_lead_but_held_ending_edge).",
+   "evidence": "Running python3 -I jobs/pothier/pothier.py try on this copy against the current MEMBERS.jsonl gives 'contradicted 48' (36 persistence, 11 acted_on_after_lead_end, 1 no_lead_but_current_law_predicate_lead). Fourteen of the 32 'partial in substance' members (EO 2905, 3053, 3394, 3748, 4331, 4715, 4798, 4828, 4873, 5276, 5462, 5534, 5790, 6113) now carry partial_revocation edges and are not flagged, contrary to the statement that these 'keep the plain mechanism revocation'.",
+   "severity": "minor",
+   "fix": "Restate the counts from the run (48; 36) and drop or re-describe the 14 members."
+  },
+  {
+   "id": "R13",
+   "location": "Conclusions counts",
+   "claim": "270 members spent on issue; 50 ended on their own terms.",
+   "evidence": "The listed parts sum to 249 + 10 + 10 = 269 and 28 + 22 + 1 = 51 (engine: B20 249, B23 10, B24 10; B21 28, B10 22, B11 1). The totals offset, so 542 is right.",
+   "severity": "minor",
+   "fix": "Say 269 and 51."
+  },
+  {
+   "id": "R14",
+   "location": "Appendix FR citations for PLO 1296 (EO 1133), PLO 5976 (EO 5339), PLO 6333 (EO 6762)",
+   "claim": "21 FR 3148; 46 FR 38079; 47 FR 46505.",
+   "evidence": "The raw BLM tables (jobs/shepard-citations/output/texts/blm/plo_695-2250.txt and plo_5807-6825.txt) print the PLO at 21 FR 2946, 46 FR 35504 and 47 FR 39824; the pages given are the later 'Correction' entries, which the PLO_TABLE.csv parser took as the PLO's page.",
+   "severity": "minor",
+   "fix": "Correct the three FR pages (and the FETCH list built from them)."
+  },
+  {
+   "id": "R15",
+   "location": "B23 and B25 basis",
+   "claim": "'Coordinator rulings P1 and 4' / 'Coordinator ruling 4': a licence, right-of-way or permit for a continuing use lives with that use.",
+   "evidence": "COORDINATOR_RULINGS.md ruling P4 concerns named persons; no ruling P1-P8 says that permissions for continuing uses live with the use.",
+   "severity": "unsupported",
+   "fix": "Cite the actual source of the rule (an owner decision id) or state it as this doctrine's own reasoning; do not cite P4."
+  },
+  {
+   "id": "R16",
+   "location": "B10 vs. its own example EO 2220",
+   "claim": "Withdrawals 'until March 5, 19xx' ended on that date (TERM, fixed).",
+   "evidence": "Each order makes the end conditional: the land becomes subject to disposal on March 5 only if the bill was not enacted 'and no other direction is given'. The doctrine's own EO 2220, of the same form (held text), was revoked by PLO 384 in 1947 under a heading that also withdrew the lands again, which shows BLM treating such an order as alive 30 years after its stated date. B05_2220 accordingly uses an interval, but the 22 B10 members get a fixed date with no check for a later direction.",
+   "severity": "unsupported",
+   "fix": "Either check each B10 member for a later 'direction' (PLO table, Shepard edges) and state the result, or date B10 as an interval from March 5 to an upper bound, as for EO 2220."
+  },
+  {
+   "id": "R17",
+   "location": "OCR misses across branches",
+   "claim": "Branch conditions catch the orders they mean.",
+   "evidence": "EO 4092 ('after the (late of this order') and EO 4735 ('sixty-third day from.~ ,and after') are fixed 63rd-day openings but land on B22 (open); EO 1878 ('temporarily withdrawvn') and EO 3651 ('temporarily' withdrawn, subject') are 'until March 5' withdrawals but land on B35 (open); EO 3077 (a land reservation near Wrangell) goes to B01_WAR because its WPA summary runs into the next entry; EO 413 (land-district boundaries) goes to B26 instead of B34; EO 6171 (a revocation with a plat-filing opening, empty summary) is labelled a standing withdrawal on B35.",
+   "severity": "minor",
+   "fix": "Widen the regexes for these OCR forms or list the members; at least list them in part (d)."
+  },
+  {
+   "id": "R18",
+   "location": "Regex in B19, B20, B21, B22 summary_regex",
+   "claim": "Alternative 'modified, and the excluded lands restored'.",
+   "evidence": "The JSON string is 'modified,?\\\\s?and ...', which compiles to a literal backslash followed by 's'; re.search returns False on 'modified, and the excluded lands restored'.",
+   "severity": "minor",
+   "fix": "Use 'modified,?\\s?and' (single escape in JSON)."
+  },
+  {
+   "id": "R19",
+   "location": "verified_whole_revocations 'where' for EO 8529, EO 8240/8241, EO 5877",
+   "claim": "Read on the web (govinfo FR, presidency.ucsb.edu).",
+   "evidence": "Held copies exist: jobs/fr-originals/output/texts/EO_8529.txt, jobs/fr-originals/output/texts/EO_8240.txt (which also carries EO 8241), jobs/app-executive-orders/output/texts/executive-order-5877-...txt and jobs/ofr-compilations/output/texts/EO_5877.txt.",
+   "severity": "minor",
+   "fix": "Cite the held paths and sha256."
+  },
+  {
+   "id": "R20",
+   "location": "B05_1713, B05_5384 mechanism_ids/source_ids",
+   "claim": "M1 (own terms) and S0 support these leads.",
+   "evidence": "EO 1713 (islands reserved for public purposes) and EO 5384 have no own term; only EO 2220 has one.",
+   "severity": "minor",
+   "fix": "Drop M1/S0 from B05_1713 and B05_5384."
+  },
+  {
+   "id": "R21",
+   "location": "B20 member EO 3192",
+   "claim": "Spent on issue, dated the order date.",
+   "evidence": "EO 3192 (1919-12-02) opens the restored land to homestead entry from the 63rd day and to other disposition from the 70th day after the order; by the doctrine's own B21 practice its last command falls on day 70 (1920-02-10).",
+   "severity": "minor",
+   "fix": "Date EO 3192 at order date plus 70 days, or state why B20's order-date rule governs fixed later openings."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S0",
+   "verdict": "verified",
+   "note": "member_text per P6; about 60 member texts read across B01-B35."
+  },
+  {
+   "source_id": "S1",
+   "verdict": "verified",
+   "note": "Pickett Act, ch. 421, 36 Stat. 847 confirmed by EO 9146/9337 recitals and FLPMA 704(a) table ('June25,1910 421 1,2 36:847 141, 142'); pin wording matches the statute's known text; PDF not fetched."
+  },
+  {
+   "source_id": "S2",
+   "verdict": "verified",
+   "note": "236 U.S. 459 (1915); pin 'the President had the power to make the order' found in the opinion (Cornell LII)."
+  },
+  {
+   "source_id": "S3",
+   "verdict": "wrong",
+   "note": "Pin present in held pages, but sec. 701(c) is at 90 Stat. 2786, not 2768 (R5)."
+  },
+  {
+   "source_id": "S4",
+   "verdict": "verified",
+   "note": "Sec. 704(a) at 90 Stat. 2792; pin present; table repeals Pickett Act secs. 1-2 and SRHA sec. 10 (39:865)."
+  },
+  {
+   "source_id": "S5",
+   "verdict": "verified",
+   "note": "Web: sec. 204(l) begins at 90 Stat. 2754, continues to 2755 (govinfo PDF)."
+  },
+  {
+   "source_id": "S6",
+   "verdict": "verified",
+   "note": "Held EO_9146.txt: 7 FR 3067, Apr. 24, 1942; pin present."
+  },
+  {
+   "source_id": "S7",
+   "verdict": "verified",
+   "note": "Held mirror text; pin present; fr-originals header confirms 8 FR 5516; date Apr. 24, 1943; supersedes EO 9146."
+  },
+  {
+   "source_id": "S8",
+   "verdict": "verified",
+   "note": "Held 1989 codification: May 26, 1952, 17 FR 4831; pin present."
+  },
+  {
+   "source_id": "S9",
+   "verdict": "verified",
+   "note": "sha256 matches; rows checked for all 132 PLO entries (dates match), but the parser takes 'Correction' pages as FR pages for several rows (R14)."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "sha256 matches; edges used as leads only."
+  },
+  {
+   "source_id": "S11",
+   "verdict": "verified",
+   "note": "sha256 matches."
+  },
+  {
+   "source_id": "S12",
+   "verdict": "verified",
+   "note": "Fragment pin present; web (usc-cdn PL 91-476 PDF): Oct. 21, 1970, 84 Stat. 1067-1070, sec. 8 at 1070."
+  },
+  {
+   "source_id": "S13",
+   "verdict": "verified",
+   "note": "67 FR 63448-63449 (Oct. 11, 2002), BLM Arcata NOI for King Range RMP; mentions Pub. L. 91-476 and 1974 management program. Pin wording 'Congress passed the King Range Act (Pub. L. 91-476) creating the KRNCA' matches (en dash)."
+  },
+  {
+   "source_id": "S14",
+   "verdict": "verified",
+   "note": "Fragment pin present in FRAGMENTS.jsonl (EO:3529/5136 entries); section itself not retained, as disclosed."
+  },
+  {
+   "source_id": "S15",
+   "verdict": "unverifiable",
+   "note": "BLM OR/WA layer not fetched (web fetch permission unavailable); not held."
+  },
+  {
+   "source_id": "S16",
+   "verdict": "unverifiable",
+   "note": "Not fetched."
+  },
+  {
+   "source_id": "S17",
+   "verdict": "unverifiable",
+   "note": "16 U.S.C. 818 and pin wording consistent with known text; 41 Stat. 1075 and amendment pages not checked."
+  },
+  {
+   "source_id": "S18",
+   "verdict": "verified",
+   "note": "39 Stat. 862 (secs. 1-8) and sec. 10 at 39 Stat. 865 confirmed by the held FLPMA 702/704 tables; pin not checked against the statute PDF."
+  },
+  {
+   "source_id": "S19",
+   "verdict": "verified",
+   "note": "Sec. 702 at 90 Stat. 2787-2789; pin present; 41:434, 42:358 (OCR '42:368'), 42:1067, 46:580 listed; Alaska ten-year delay confirmed."
+  },
+  {
+   "source_id": "S20",
+   "verdict": "verified",
+   "note": "Held eCFR text; pin present."
+  }
+ ],
+ "members_checked": [
+  "EO:465",
+  "EO:576",
+  "EO:782",
+  "EO:1082",
+  "EO:1135",
+  "EO:1205",
+  "EO:1291",
+  "EO:1584",
+  "EO:1599",
+  "EO:1713",
+  "EO:1858",
+  "EO:1878",
+  "EO:2053",
+  "EO:2220",
+  "EO:2354",
+  "EO:2442",
+  "EO:2501",
+  "EO:2551",
+  "EO:2579",
+  "EO:2641",
+  "EO:2710",
+  "EO:2712",
+  "EO:2823A",
+  "EO:2982",
+  "EO:3105",
+  "EO:3178",
+  "EO:3192",
+  "EO:3384",
+  "EO:3474",
+  "EO:3481",
+  "EO:3651",
+  "EO:3758",
+  "EO:3867",
+  "EO:3895",
+  "EO:3913",
+  "EO:4015",
+  "EO:4044",
+  "EO:4092",
+  "EO:4105",
+  "EO:4266",
+  "EO:4404",
+  "EO:4427",
+  "EO:4469",
+  "EO:4586",
+  "EO:4735",
+  "EO:4867",
+  "EO:4901",
+  "EO:4918",
+  "EO:4944",
+  "EO:4949",
+  "EO:4958",
+  "EO:4998",
+  "EO:5237",
+  "EO:5528",
+  "EO:5567",
+  "EO:5653",
+  "EO:5732",
+  "EO:5744",
+  "EO:5926",
+  "EO:5931",
+  "EO:5983",
+  "EO:6016",
+  "EO:6053",
+  "EO:6110",
+  "EO:6116",
+  "EO:6171",
+  "EO:6734",
+  "EO:6762",
+  "EO:6774",
+  "EO:7038",
+  "EO:7047",
+  "EO:7105",
+  "EO:7126A",
+  "EO:7131",
+  "EO:7240",
+  "EO:7283",
+  "EO:7416"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:6760",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:6846",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:6943",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:6977",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:6980",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7066",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7131",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7132",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7133",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7147",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7153",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7175",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7218",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7227",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7240",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7244",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7264",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7269",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7271",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7272",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7275",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7279",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7280A",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7280B",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7282",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7283",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7284",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7284A",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7284B",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7290",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7326",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7327",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7328",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7335",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7344",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7355",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7360",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7362",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7374",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7376",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7392",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7434",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7454",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7486",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7506",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7507",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7511",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7527",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7528",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:7529",
+   "branch": "B20",
+   "why": "Revocation effective only on the official filing of the plat of resurvey (own text); not shown to have taken effect, so not spent on the order date (R1)."
+  },
+  {
+   "instrument_id": "EO:6774",
+   "branch": "B06",
+   "why": "Revoked by EO 8241 (not 8240) effective only on plat filing; belongs on B29 (R2)."
+  },
+  {
+   "instrument_id": "EO:3867",
+   "branch": "B06",
+   "why": "EO 4653 revoked it 'only as to Ts. 6 and 7 S., R. 99 W.'; partial (R3)."
+  },
+  {
+   "instrument_id": "EO:576",
+   "branch": "B20",
+   "why": "Standing rule that coal-withdrawn lands stay part of forest reserves; not a revocation (R8)."
+  },
+  {
+   "instrument_id": "EO:4867",
+   "branch": "B20",
+   "why": "Revokes EO 4758 and withdraws other described lands (R8)."
+  },
+  {
+   "instrument_id": "EO:5931",
+   "branch": "B20",
+   "why": "Restores one strip and reserves another strip for defensive works (R8)."
+  },
+  {
+   "instrument_id": "EO:324B",
+   "branch": "B20",
+   "why": "Cancels part of EO 310-C and withdraws and reserves another tract (R8)."
+  },
+  {
+   "instrument_id": "EO:4044",
+   "branch": "B09_4044",
+   "why": "EO 4055 vacated the restoration only for tracts within Chugach NF; should be P1 spent_on_issue dated 1924-07-03 (R6)."
+  },
+  {
+   "instrument_id": "EO:3529",
+   "branch": "B02",
+   "why": "Amending order: P2 merged_into_parent, not yes (R7)."
+  },
+  {
+   "instrument_id": "EO:5136",
+   "branch": "B02",
+   "why": "Amending order: P2 merged_into_parent, not yes (R7)."
+  },
+  {
+   "instrument_id": "EO:4901",
+   "branch": "B06",
+   "why": "Right outcome, wrong date: EO 8529 effective on its 60th day, 1940-10-26 (R9)."
+  },
+  {
+   "instrument_id": "EO:2641",
+   "branch": "B20",
+   "why": "Amendment of townsite regulations; should be B24 (P2), not P1 spent_on_issue (R10)."
+  },
+  {
+   "instrument_id": "EO:6734",
+   "branch": "B24",
+   "why": "Adds lands to the reservation; B26 (open) by the doctrine's own rule (R11)."
+  },
+  {
+   "instrument_id": "EO:1584",
+   "branch": "B24",
+   "why": "'Amended to read as follows' and itself withdraws a described area (R11)."
+  },
+  {
+   "instrument_id": "EO:6016",
+   "branch": "B24",
+   "why": "Authorizes permits and leases: continuing use under B25 (R11)."
+  },
+  {
+   "instrument_id": "EO:7038",
+   "branch": "B24",
+   "why": "Authorizes sodium permits and leases: continuing use under B25 (R11)."
+  },
+  {
+   "instrument_id": "EO:4092",
+   "branch": "B22",
+   "why": "Fixed 63rd-day opening (OCR '(late'); should be B21_63 (R17)."
+  },
+  {
+   "instrument_id": "EO:4735",
+   "branch": "B22",
+   "why": "Fixed 63rd-day opening (OCR); should be B21_63 (R17)."
+  },
+  {
+   "instrument_id": "EO:1878",
+   "branch": "B35",
+   "why": "'until March 5, 1915' withdrawal missed by B10 regex (R17)."
+  },
+  {
+   "instrument_id": "EO:3651",
+   "branch": "B35",
+   "why": "'until March 5, 1923' withdrawal missed by B10 regex (R17)."
+  },
+  {
+   "instrument_id": "EO:3077",
+   "branch": "B01_WAR",
+   "why": "A land reservation near Wrangell, Alaska; WPA summary runs into the next entry (R17)."
+  },
+  {
+   "instrument_id": "EO:3192",
+   "branch": "B20",
+   "why": "Last command (general opening) on day 70, not the order date (R21)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's structure follows the coordinator rulings, and most decided leads check out: every B06 date equals the earliest verified edge, all 132 PLO dates match BLM's table, the EO revocation texts sampled name the member and revoke it, the ex-service day arithmetic (days 154 and 119) and EO 465's 90 days are right, and the held statutory pins are present. It cannot be adopted as written. B20 dates 50 revoking orders to their issue although their own texts defer the revocation to an unrecorded plat filing, which contradicts the doctrine's M8 and B29 and ruling P1's effective-date rule. Two B06 members are wrongly ended: EO 6774, whose revocation is EO 8241 (not 8240) and deferred to a plat filing, and EO 3867, revoked only as to two townships. B05_1713 has a wrong PLO date (1981-07-15 for 1981-01-15), S3 has a wrong Statutes at Large page (2768 for 2786), EO 4044's ending misquotes EO 4055, and B02 gives yes leads to two amending orders contrary to P2. Several other leads go wrong through OCR gaps in the regexes. The stated contradiction counts (62 and 50) and the cited 'coordinator ruling 4' are also wrong. The open list is broadly honest, but it should add the plat-deferred revocations now wrongly decided."
+}
