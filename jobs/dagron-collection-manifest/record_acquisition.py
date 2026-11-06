@@ -1,20 +1,22 @@
-"""Record one image or PDF downloaded from the NYU collection, with provenance, in a STAGING folder.
+"""Record one image or PDF downloaded from a collection, with provenance, in the collection's STAGING folder.
 
-    python3 -I research/dagron/record_acquisition.py FILE --id EO:708 --collection hein \
+    python3 -I jobs/dagron-collection-manifest/record_acquisition.py FILE --spec nyu-film709 --id EO:708 --collection hein \
         --hein-volume 2 --hein-image 14 --url "https://heinonline.org/..." \
         --witness-kind official_printed_copy --observed-number 708 --observed-date 1907-11-02 \
         --signature-visible no --retrieved-by "browser agent (name/model)" [--note "..."]
-    python3 -I research/dagron/record_acquisition.py --check
+    python3 -I jobs/dagron-collection-manifest/record_acquisition.py --spec nyu-film709 --check
 
-It copies FILE to research/dagron/acquired/<collection>/<EO id>__<sha12>.<ext> and appends one line to
-research/dagron/acquired/PROVENANCE.jsonl. Nothing in production reads this folder: no job, the tracker or the
-claim checker globs research/dagron/, and the file is not named SOURCES*.jsonl. Every record is graded
-`nyu_collection_image_pending_codebook` with acceptable_as_original false and needs_page_check true; wiring the
+It copies FILE to <staging_dir>/<collection>/<EO id>__<sha12>.<ext> (staging_dir from collections/<spec>.json, e.g.
+research/acquisitions/nyu-film709) and appends one line to <staging_dir>/PROVENANCE.jsonl. Only Dagron reads that
+file, to mark the order as staged; the tracker, the claim checker and the other jobs read jobs/*/output/SOURCES.jsonl,
+jobs/*/data/** and jobs/*/output/FRAGMENTS*.jsonl, never research/acquisitions/. Every record is graded
+`collection_image_pending_codebook` with acceptable_as_original false and needs_page_check true; wiring the
 images into the tracker is a separate, owner-approved step (see README.md). The script refuses an id that is not
 in the manifest, a duplicate SHA-256, and a file that is not a PDF/JPEG/PNG/TIFF by its magic bytes.
 """
 import argparse
 import datetime
+import gzip
 import hashlib
 import json
 import os
@@ -22,13 +24,20 @@ import shutil
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ACQ = os.path.join(HERE, "acquired")
-PROV = os.path.join(ACQ, "PROVENANCE.jsonl")
-MANIFEST = os.path.join(HERE, "NYU_FILM709_MANIFEST.jsonl")
-CATALOG = {
-    "hein": "https://search.library.nyu.edu/discovery/fulldisplay?docid=alma9998673098807871&vid=01NYU_INST:NYU&context=L",
-    "film709": "https://search.library.nyu.edu/discovery/fulldisplay?docid=alma990007538410107876&vid=01NYU_INST:NYU&context=L",
-}
+REPO = os.path.normpath(os.path.join(HERE, "..", ".."))
+ACQ = PROV = MANIFEST = ""
+CATALOG = {}
+
+
+def use_spec(name):
+    global ACQ, PROV, MANIFEST, CATALOG
+    with open(os.path.join(HERE, "collections", f"{name}.json"), encoding="utf-8") as fh:
+        spec = json.load(fh)
+    ACQ = os.path.join(REPO, spec["staging_dir"])
+    PROV = os.path.join(ACQ, "PROVENANCE.jsonl")
+    MANIFEST = os.path.join(HERE, "output", spec["id"], "MANIFEST.jsonl.gz")
+    CATALOG = {k: v for k, v in spec["catalog_records"].items() if k in spec.get("staging_collections", spec["catalog_records"])}
+    return spec
 WITNESS_KINDS = ("signed_original", "official_printed_copy", "typescript_or_file_copy", "transcription",
                  "index_or_register_entry", "not_at_expected_position", "different_order_at_position", "unclear")
 MAGIC = {b"%PDF-": ("pdf", "application/pdf"), b"\xff\xd8\xff": ("jpg", "image/jpeg"),
@@ -37,7 +46,9 @@ MAGIC = {b"%PDF-": ("pdf", "application/pdf"), b"\xff\xd8\xff": ("jpg", "image/j
 
 def manifest_ids():
     ids = {}
-    with open(MANIFEST, encoding="utf-8") as fh:
+    if not os.path.exists(MANIFEST):
+        sys.exit(f"{MANIFEST} not found: the job has not run on this branch yet")
+    with gzip.open(MANIFEST, "rt", encoding="utf-8") as fh:
         for line in fh:
             r = json.loads(line)
             ids[r["instrument_id"] or r.get("proposed_id_not_in_census", "")] = r
@@ -54,7 +65,7 @@ def records():
 def check():
     ids, seen, bad = manifest_ids(), set(), 0
     for n, r in enumerate(records(), 1):
-        path = os.path.join(os.path.dirname(HERE), "..", r["file"])
+        path = os.path.join(REPO, r["file"])
         problems = []
         if r["instrument_id"] not in ids:
             problems.append("id not in manifest")
@@ -79,9 +90,10 @@ def check():
 def main(argv):
     ap = argparse.ArgumentParser()
     ap.add_argument("file", nargs="?")
+    ap.add_argument("--spec", required=True, help="collection spec name, e.g. nyu-film709")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--id")
-    ap.add_argument("--collection", choices=sorted(CATALOG))
+    ap.add_argument("--collection")
     ap.add_argument("--url", default="", help="exact page/image URL or citation as shown by the viewer")
     ap.add_argument("--hein-volume", default="")
     ap.add_argument("--hein-image", default="", help="image/page sequence the viewer shows")
@@ -95,8 +107,11 @@ def main(argv):
     ap.add_argument("--retrieved-by", default="")
     ap.add_argument("--note", default="")
     a = ap.parse_args(argv)
+    use_spec(a.spec)
     if a.check:
         return check()
+    if a.collection not in CATALOG:
+        ap.error(f"--collection must be one of {sorted(CATALOG)}")
     if not (a.file and a.id and a.collection and a.witness_kind and a.retrieved_by):
         ap.error("FILE, --id, --collection, --witness-kind and --retrieved-by are required")
     ids = manifest_ids()
@@ -111,8 +126,8 @@ def main(argv):
     if any(r["sha256"] == sha for r in records()):
         sys.exit(f"already recorded: {sha}")
     safe = a.id.replace(":", "_").replace("/", "_")
-    rel = f"research/dagron/acquired/{a.collection}/{safe}__{sha[:12]}.{kind[0]}"
-    dest = os.path.join(HERE, "acquired", a.collection, os.path.basename(rel))
+    rel = os.path.relpath(os.path.join(ACQ, a.collection, f"{safe}__{sha[:12]}.{kind[0]}"), REPO).replace(os.sep, "/")
+    dest = os.path.join(REPO, rel)
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     shutil.copyfile(a.file, dest)
     m = ids[a.id]
@@ -120,14 +135,14 @@ def main(argv):
         "schema": "dagron-nyu-acquisition/v1", "instrument_id": a.id, "eo_designation": m["eo_designation"],
         "manifest_group": m["manifest_group"], "collection": a.collection, "catalog_record": CATALOG[a.collection],
         "url": a.url, "hein_volume": a.hein_volume, "hein_image": a.hein_image, "reel": a.reel, "frame": a.frame,
-        "manifest_likely_reel": m.get("likely_reel"), "file": rel, "sha256": sha, "bytes": len(data),
+        "manifest_likely_unit": m.get("likely_unit"), "file": rel, "sha256": sha, "bytes": len(data),
         "content_type": kind[1], "original_filename": os.path.basename(a.file),
         "retrieved_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "retrieved_by": a.retrieved_by, "access_route": "NYU Libraries authenticated access",
         "witness_kind_observed": a.witness_kind, "observed_number": a.observed_number,
         "observed_date": a.observed_date, "observed_title": a.observed_title,
         "signature_visible": a.signature_visible, "note": a.note,
-        "grade": "nyu_collection_image_pending_codebook", "acceptable_as_original": False, "needs_page_check": True,
+        "grade": "collection_image_pending_codebook", "acceptable_as_original": False, "needs_page_check": True,
         "what_this_is_not": "Not an authenticated original, identity finding, custody grade or legal conclusion.",
     }
     os.makedirs(ACQ, exist_ok=True)

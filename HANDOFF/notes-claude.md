@@ -1,20 +1,23 @@
-## 2026-11-06 14:30 ET (Claude, Dagron: NYU Film 709 / HeinOnline acquisition manifest; branch only)
+## 2026-11-06 15:00 ET (Claude, Dagron: daily acquisition manifests for outside collections; NYU Film 709 first)
 
-- **Done (branch `claude/dagron-nyu-film709-manifest`, not merged, no PR):** `research/dagron/`, built from main
-  `0deba1dd4` by `build_manifest.py`. It holds `NYU_FILM709_MANIFEST.jsonl/.csv` with 6,010 rows:
-  - 5,875 orders in EO 1-7403 with no accepted original witness;
-  - 0 orders with a counted original but no working text;
-  - 81 unnumbered, ambiguous or untracked candidates;
-  - 54 orders numbered EO 7404 and up, dated 1936.
-
-  It also holds a provenance helper, `record_acquisition.py`, which stages files under
-  `research/dagron/acquired/`; nothing in production reads that folder. Kean F-20261106-dagron-nyu-manifest.
-- **Reconciliation:** the earlier 5,305/4,954 figures are not in the repository. The closest current measure is the
-  open original-text step, 5,322 orders (4,926 dated pre-1933). See the README.
-- **Asks:** Kean A-20261106-dagron-nyu. The 2026-10-19 owner decision ("do not plan around the reel set") needs
-  lifting before anyone requests or scans the reels. Hein retrieval must be item by item, never automated bulk.
-- **Do not:** put a microfilm or Hein image into `research/stage21/original_sources/`. The tracker would count it
-  as an original.
+- **Done:** new job `jobs/dagron-collection-manifest/`. It runs daily, and after the tracker, Domesday and Lewis.
+  - One spec per collection: `collections/nyu-film709.json` (11 reels, EO 1-7403; HeinOnline 1845-1936).
+  - Output per collection: a gzipped JSONL and CSV manifest, plus a summary, a report and a sample.
+  - First build at main `0deba1dd4`: 6,010 rows, as follows.
+    - Group 1: 5,875 orders in range with no accepted original witness (P1 2,196, P2 1,435, P3 2,244).
+    - Group 2: 0 (original counted but no working text).
+    - Group 3: 81 unnumbered, ambiguous or untracked candidates.
+    - Group 4: 54 orders numbered above 7403 and dated 1936.
+  - `record_acquisition.py` stages downloaded images, with provenance, in `research/acquisitions/<collection>/`.
+    Only Dagron reads that folder, to mark orders as staged.
+  - The first build's report and reconciliation are in `research/dagron/README.md`. The earlier 5,305/4,954
+    figures are not in the repository; the closest current measure is the open original-text step, 5,322
+    (4,926 dated pre-1933).
+  - Kean: F-20261106-dagron-nyu-manifest, F-20261106-dagron-job.
+- **Asks:** Kean A-20261106-dagron-nyu. The 2026-10-19 owner rule ("do not plan around the reel set") must be lifted
+  before anyone requests or scans the reels. Hein retrieval stays item by item.
+- **Do not:** put a microfilm or Hein image into `research/stage21/original_sources/`. The tracker would count it as
+  an original. Stage it with the helper instead.
 
 ## 2026-11-06 13:10 ET (Claude, cleanup at the owner's request: every open PR merged, branches sorted)
 
