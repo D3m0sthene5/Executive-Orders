@@ -102,7 +102,9 @@ def main():
             assert all(not path.exists() for path, _ in new_paths), "Sources changed during baseline"
             cursor, batches = None, []
             for n in range(3):
-                receipt = proquest_inputs.materialize(ROOT, OUT / f"batch-{n+1}",
+                # Replay only the five frozen orders, so later claims that cite other ProQuest scans
+                # (for example the 2026-11-05 waves) do not change the batch arithmetic below.
+                receipt = proquest_inputs.materialize(ROOT, OUT / f"batch-{n+1}", sorted(IDS),
                                                        max_artifacts=2, resume=cursor)
                 assert not receipt["errors"], receipt
                 batches.append(receipt)
