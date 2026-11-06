@@ -35,16 +35,19 @@ def build(root,day,old):
     if p.exists():
         with p.open(encoding='utf-8',newline='') as f:
             for row in list(csv.DictReader(f))[:7]:lines.append('- '+'; '.join(f'{k}: {v}' for k,v in row.items()))
-    lines+=['','## Open asks from the newest handoff entries','']
-    for p in sorted((root/'HANDOFF').glob('notes-*.md')):
-        text=p.read_text(encoding='utf-8');parts=text.split('\n## ')
-        newest=parts[1] if len(parts)>1 else text
-        asks=[];inside=False
-        for line in newest.splitlines():
-            if '**Asks:**' in line:inside=True
-            elif line.startswith('- **'):inside=False
-            if inside:asks.append(line.strip())
-        lines.append(f'- {p.name}: '+(' '.join(asks)[:1100] or 'No open ask recorded in newest entry.'))
+    lines+=['','## Open asks for the owner (Kean register)','']
+    # Justinian 2026-11-06: asks are recorded in Kean (CLAUDE.md, AGENTS.md), so the digest
+    # reads the register instead of HANDOFF notes; a note edit no longer discards this job.
+    asks={}
+    reg=root/'jobs/kean/register/asks.jsonl'
+    if reg.exists():
+        for raw in reg.read_text(encoding='utf-8').splitlines():
+            try:rec=json.loads(raw)
+            except ValueError:continue
+            if isinstance(rec,dict) and isinstance(rec.get('id'),str):asks[rec['id']]=rec  # later revision wins
+    open_asks=sorted((a for a in asks.values() if a.get('status')=='open'),key=lambda a:(str(a.get('date')),a['id']))
+    for a in open_asks:lines.append(f"- {a['id']} ({a.get('date','')}, {a.get('asked_by','')}): {str(a.get('question',''))[:300]}")
+    if not open_asks:lines.append('No open ask is recorded in the Kean register.')
     lines+=['','## Published output status','',
         'A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.']
     failed=[]

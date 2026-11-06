@@ -1,0 +1,13 @@
+# Justinian 2026-11-06: provider records whose research/, releases/ and jobs/ path strings name the
+# files the checker opens. result_freshness.py versions each named path (not whole trees), so an
+# unrelated commit under research/ or another job's output no longer discards a finished check.
+# needs.txt still declares the checkout. Measured against a full traced run on 2026-11-06:
+# research/justinian/FRESHNESS_SCOPES.md.
+research/readiness/claims/*.jsonl
+research/readiness/factual/**/*
+jobs/*/output/SOURCES*.jsonl
+jobs/*/output/FRAGMENTS*.jsonl
+jobs/*/data/**/FRAGMENTS*.jsonl
+jobs/*/data/PROVENANCE.json
+jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl
+jobs/official-fixity/output/MATCHED_BY_SHA256.json
