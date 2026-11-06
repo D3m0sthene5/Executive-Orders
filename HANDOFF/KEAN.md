@@ -19,7 +19,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 - **Evidence decides; agents work out legal distinctions themselves** (D-20261028-evidence-decides): Record what the evidence establishes, with the best supported date or interval, and separate an exhausted command from surviving consequences. A claim of 'happened within this interval' needs evidence that it happened; otherwise the order stays open on that question. A later general rule ends a command only if something shows it extinguished that command. Disclosure keeps a gap visible but never fills it. Do not ask the owner to choose method answers to unlock rows: apply these distinctions to the supported cases and report the exceptions.
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
-- **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
+- **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Paid Brave search (BRAVE_SEARCH_KEY): only when free engines find nothing; caps 100/run, 2,500/job, 5,000 total; ask the owner before raising them.
 
 ## Owner decisions not yet carried out by the tools (4)
 
@@ -31,13 +31,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 163; `search` finds the rest)
+## Newest results (6 of 165; `search` finds the rest)
 
 - 2026-11-06 F-20261106-mabillon-volumes **worked**: Locate every order inside the committed OCR page dumps of the Commons GPO volumes 5800-8027, which hathi-gpo-… Lesson: A job's committed intermediate data (page dumps, OCR) can serve orders outside its original target list; look before refetching
 - 2026-11-06 F-20261106-mabillon-neighbours **analysis**: Apply Tischendorf's fingerprint rule unchanged to whole printed pages of GPO volumes, with neighbour negatives Lesson: A text fingerprint needs neighbour negatives and a uniqueness margin wherever pages hold several orders; Tischendorf's page-reading routes may carry the same risk
 - 2026-11-06 F-20261106-mabillon-nara **worked**: Read NARA's keyless AWS Open Data catalog export for Record Group 11 in full (400 chunks, 231 MB, 63 s on a r… Lesson: Read the archive's own bulk export before asking for an API key: it answers what is digitized for free, and the answer here was no
 - 2026-11-06 F-20261106-mabillon-held **worked**: Prove by text the government-printed passages hathi-gpo-orders already holds (GPO bound volumes, 1974 GPO Hoo… Lesson: Check what an existing job already holds under the wrong class before fetching: the biggest bulk source was in the repository
-- 2026-11-06 F-20261106-arsenale-parallel-runner **worked**: Arsenale: split Run jobs into plan, parallel execute stations (after.txt chains share a station; no lock, rea… Lesson: Serialize only the commit: execute on one pinned input commit without a lock, then let the existing freshness guard decide per job on the latest tip. Cross-station declared reads (e.g. daily-digest's…
-- 2026-11-05 F-20261105-tischendorf-2 **partly worked**: Tischendorf first live run: one network request at a time with a single shared request budget Lesson: For any network job: follow jobs/README.md's parallel-workers rule from the start, give each route its own budget, and smoke-test each route on a handful of orders before a full run
+- 2026-11-06 F-20261106-job-wiring-audit **partly worked**: Scripted audit of all 79 jobs: last status, newer failed attempts, triggers/DAILY, and every reader of each j… Lesson: A job's STATUS date is not a liveness signal for deterministic jobs (record-only runs are not committed); check jobs/_attempts for newer failures instead. Keep jobs that refuse by design out of after…
+- 2026-11-06 F-20261106-daily-cron-silent **analysis**: Checked every scheduled run-jobs.yml run since 2026-10-18 for the schedule string GitHub delivered. Lesson: Do not rely on one cron line for daily freshness; check delivered schedules (SCHEDULE in the run log), not configured ones.
 
-Register: 26 owner decisions, 15 answered questions, 163 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 27 owner decisions, 15 answered questions, 165 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

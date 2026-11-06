@@ -106,9 +106,11 @@ class PlanTests(unittest.TestCase):
         for station in result["stations"]:
             positions = [result["check_order"].index(j) for j in station["jobs"]]
             self.assertEqual(positions, sorted(positions))
-        if "ptolemy-custody" in order:
-            self.assertEqual(next(s["jobs"] for s in result["stations"] if "ptolemy-custody" in s["jobs"]),
-                             ["ptolemy-custody"])
+        # Only declared edges join stations: a job no selected job depends on runs alone.
+        for name in order:
+            linked = any(name in (p, c) for p, c in result["after_edges"])
+            if not linked and not any(name in merged for merged in result["merged_for_order"]):
+                self.assertIn([name], [s["jobs"] for s in result["stations"]])
 
 
 class RequeueTests(unittest.TestCase):

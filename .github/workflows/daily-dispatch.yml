@@ -1,0 +1,49 @@
+# Angelus: ring the daily jobs once a day, every day.
+#
+# run-jobs.yml selects every job with a DAILY file only when GitHub delivers its "17 9 * * *" schedule. Between
+# 2026-10-18 and 2026-11-06 GitHub delivered that schedule zero times (all 46 scheduled runs carried the
+# three-hourly sweep), so DAILY jobs ran only when a push happened to touch them (source-ladder last ran
+# 2026-10-24 with 1,818 queued items). This workflow keeps an independent schedule and asks run-jobs.yml to run
+# the DAILY jobs by name, through its normal writer queue, freshness checks and publication. It runs nothing
+# itself and changes no job, count or output.
+name: Daily jobs (Angelus)
+
+on:
+  schedule:
+    - cron: "41 10 * * *" # 10:41 UTC, away from the top of the hour when GitHub drops scheduled events
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: angelus-daily-dispatch
+  cancel-in-progress: false
+
+jobs:
+  ring:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # only the marker files: jobs/ outputs are many GB
+          filter: blob:none
+          sparse-checkout: |
+            /jobs/*/DAILY
+            /jobs/*/job.py
+            /jobs/*/job.sh
+          sparse-checkout-cone-mode: false
+      - name: Ask run-jobs to run every DAILY job
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          jobs="$(for f in jobs/*/DAILY; do d="${f%/DAILY}"; n="${d#jobs/}"; case "$n" in _*) continue;; esac; \
+                  { [ -f "$d/job.py" ] || [ -f "$d/job.sh" ]; } && printf '%s ' "$n"; done)"
+          jobs="${jobs% }"
+          if [ -z "$jobs" ]; then echo "No DAILY jobs found."; exit 0; fi
+          echo "DAILY jobs: $jobs"
+          gh workflow run run-jobs.yml --ref main -f job="$jobs"
+          echo "Dispatched run-jobs.yml for: $jobs" >> "$GITHUB_STEP_SUMMARY"
