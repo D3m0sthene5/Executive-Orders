@@ -69,7 +69,40 @@ def main():
             reason = SKIP_REASONS.get(host) or ("larger than the per-file cap" if size > MAX_FILE_BYTES
                                                 else "no URL" if not url else "host not on the live list")
             skipped[reason] += 1
-    rows.sort(key=lambda r: (r["route"] != "archive", urllib.parse.urlparse(r["url"]).netloc, r["sha256"]))
+    # Retained files that reached the repository only as salvage (research/salvage/*/*/retained-sources/): the
+    # checker index does not know them, so import them under the same exact-hash rule.
+    queue = collections.defaultdict(set)
+    for qpath in REPO.glob("research/salvage/*/*/FETCH_QUEUE_ADDITIONS.jsonl"):
+        for line in qpath.read_text(encoding="utf-8").splitlines():
+            try:
+                q = json.loads(line)
+            except ValueError:
+                continue
+            if isinstance(q, dict) and q.get("url") and q.get("instrument_id"):
+                queue[q["url"]].add(q["instrument_id"])
+    seen = {r["sha256"] for r in rows}
+    for spath in sorted(REPO.glob("research/salvage/*/*/retained-sources/SOURCES.jsonl")):
+        for line in spath.read_text(encoding="utf-8").splitlines():
+            try:
+                rec = json.loads(line)
+            except ValueError:
+                continue
+            sha = str(rec.get("sha256") or "").lower()
+            held = index.by_sha.get(sha)
+            if len(sha) != 64 or (held and any(c.bytes_kept for c in held)):
+                continue
+            path = spath.parent / str(rec.get("cache_path") or "")
+            if not rec.get("cache_path") or not path.is_file():
+                continue
+            ids = sorted(set(rec.get("instrument_ids") or []) | queue.get(rec.get("url"), set()))
+            if sha in seen:  # already wanted from the live web: the repository copy is surer and costs nothing
+                rows = [r for r in rows if r["sha256"] != sha]
+            rows.append({"sha256": sha, "url": rec.get("url", ""), "bytes": path.stat().st_size,
+                         "instrument_ids": ids[:25], "route": "import",
+                         "path": str(path.relative_to(REPO)), "recorded_in": [str(spath.relative_to(REPO))]})
+            seen.add(sha)
+    order = {"import": 0, "archive": 1, "live": 2}
+    rows.sort(key=lambda r: (order[r["route"]], urllib.parse.urlparse(r["url"]).netloc, r["sha256"]))
     with open(HERE / "REQUESTS.jsonl", "w", encoding="utf-8") as fh:
         for r in rows:
             fh.write(json.dumps(r, sort_keys=True, ensure_ascii=False) + "\n")
