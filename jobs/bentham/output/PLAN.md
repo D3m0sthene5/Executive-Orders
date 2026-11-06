@@ -6,26 +6,39 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 
 | # | Action | Kind | Orders | Dossiers now | Later (fecundity) | Cost | Dossiers per $100 | Cumulative cost |
 |---:|---|---|---:|---:|---:|---:|---:|---:|
-| 1 | acquire.shared.EO_4314 | acquisition | 0 | 0.0 | 3.7 | free | ∞ | free |
-| 2 | acquire.shared.EO_6868 | acquisition | 0 | 0.0 | 2.8 | free | ∞ | free |
-| 3 | acquire.shared.EO_6964 | acquisition | 0 | 0.0 | 0.9 | free | ∞ | free |
-| 4 | acquire.shared.EO_6910 | acquisition | 0 | 0.0 | 1.4 | free | ∞ | free |
-| 5 | acquire.shared.CFR_26_CFR_458.324 | acquisition | 0 | 0.0 | 0.9 | free | ∞ | free |
-| 6 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 30.3 | free | ∞ | free |
-| 7 | recovery.custody_stranded | recovery | 48 | 30.7 | 0.0 | $19 | 159.9 | $19 |
-| 8 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.5 | $0.38 | 122.3 | $20 |
-| 9 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 16.7 | $17 | 99.0 | $36 |
-| 10 | production.one_step_away | production | 40 | 25.5 | 0.0 | $26 | 98.8 | $62 |
-| 11 | production.claim_ready.no.fr | production | 944 | 449.2 | 0.0 | $610 | 73.6 | $672 |
-| 12 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $672 |
-| 13 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $672 |
-| 14 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $672 |
+| 1 | acquire.shared.EO_4314 | acquisition | 0 | 0.0 | 0.3 | free | ∞ | free |
+| 2 | acquire.shared.EO_6868 | acquisition | 0 | 0.0 | 0.2 | free | ∞ | free |
+| 3 | acquire.shared.EO_6964 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
+| 4 | acquire.shared.EO_6910 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
+| 5 | acquire.shared.CFR_26_CFR_458.324 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
+| 6 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.3 | free | ∞ | free |
+| 7 | probe.status_assignment.undecided | probe | 30 | 0.0 | 0.0 | $19 | ∞ | $19 |
+| 8 | recovery.custody_stranded | recovery | 48 | 30.7 | 0.0 | $19 | 159.9 | $39 |
+| 9 | production.one_step_away | production | 40 | 25.5 | 0.0 | $26 | 98.8 | $64 |
+| 10 | production.claim_ready.yes.fr | production | 352 | 129.1 | 0.0 | $228 | 56.7 | $292 |
+| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 4.4 | $17 | 26.0 | $309 |
+| 12 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | $0.38 | 8.6 | $309 |
+| 13 | production.claim_ready.no.fr | production | 1002 | 33.4 | 0.0 | $648 | 5.2 | $957 |
+| 14 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
+| 15 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
+| 16 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $957 |
 
 Unranked (a yield or cost is not measured; Bentham will not guess). For a production stratum the next step is a 30-order probe, run under the gate, that measures its yield:
 
-- production.claim_ready.yes.fr (365 orders): yield 'filed_per_attempt.yes.fr' rests on 0/7 attempts, fewer than 30: too thin to rank. Probe: 30 orders, about $19.
+- status_assignment.undecided (10681 orders): no measured yield for 'filed_per_attempt.undecided': unranked. Ranked above as `probe.status_assignment.undecided`: 30 orders, about $19; an unmeasured stratum is never left unranked for a second plan.
 
-The choice of actions within budget does not change between 30- and 180-day discounts.
+Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
+
+Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting is not published):
+
+- cache_read_weight_1.0: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK, recovery.custody_stranded ...
+- cache_read_weight_0.1: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK, recovery.custody_stranded ...
+- **Rank flips against the dollar ranking: 8** cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.one_step_away; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.claim_ready.yes.fr; cache_read_weight_1.0: production.claim_ready.no.fr before acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK; cache_read_weight_0.1: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_0.1: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.one_step_away
+
+Budget line moves with the delay discount:
+
+- at 30 days: enters none, leaves ['probe.status_assignment.undecided']
+- at 180 days: enters none, leaves ['probe.status_assignment.undecided']
 
 Each production action runs in batches under `bentham.py gate`, which stops it when its observed yield per dollar falls below the next action's.
 

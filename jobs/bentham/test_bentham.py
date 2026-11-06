@@ -51,3 +51,30 @@ class ScoreTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class JustinianB6Test(unittest.TestCase):
+    """Window-token costs, probes for unmeasured strata, and rank flips (Justinian, 2026-11-06)."""
+
+    def test_window_tokens_both_weightings(self):
+        import measure as M
+        w = M.window_tokens({"fresh_input": 10, "cache_read": 1000, "cache_write": 20, "output": 70}, 10)
+        self.assertEqual(w["cache_read_weight_1.0"], 110.0)
+        self.assertEqual(w["cache_read_weight_0.1"], 20.0)
+
+    def test_unmeasured_stratum_becomes_a_ranked_probe(self):
+        probes = B.probes_for([{"id": "status_assignment.undecided", "kind": "status_assignment", "orders": 500,
+                                "probe_cost_usd": 19.0, "notes": ["no measured yield"]},
+                               {"id": "zero_agent.x", "kind": "zero_agent", "orders": 0, "probe_cost_usd": None}])
+        self.assertEqual([p["id"] for p in probes], ["probe.status_assignment.undecided"])
+        self.assertEqual(probes[0]["orders"], B.PROBE_ORDERS)
+        ranked, _ = B.order_plan(probes)
+        self.assertEqual(ranked[0]["id"], "probe.status_assignment.undecided")
+
+    def test_window_rank_flip_detected(self):
+        measured = {"costs": {"cheap_usd": {"window_tokens": {"cache_read_weight_1.0": 1000.0, "cache_read_weight_0.1": 1000.0}},
+                              "cheap_tokens": {"window_tokens": {"cache_read_weight_1.0": 10.0, "cache_read_weight_0.1": 10.0}}}}
+        ranked = [{"id": "a", "cost_key": "cheap_usd", "orders": 1, "value": 2.0, "cost_usd": 1.0},
+                  {"id": "b", "cost_key": "cheap_tokens", "orders": 1, "value": 1.0, "cost_usd": 1.0}]
+        flips = B.window_rank_flips(measured, ranked)["flips"]
+        self.assertTrue(any(f["window_order"] == ["b", "a"] for f in flips))

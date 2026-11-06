@@ -1,8 +1,8 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `765aa0ccce1e53000b0925c46f3f3417dcca5f93dc8cf1774d05c9c74e9fb19b`.
+Legal cutoff: 2026-10-14. Inputs: `35135047eafb0e3720392264fb6fafa0e0106fa33b4c33fefc2cd90c53c753be`.
 
-Verified committed tracker: 14,972 identities; 10,681 undecided; 784 ready for human review.
+Verified committed tracker: 14,972 identities; 10,681 undecided; 1323 ready for human review.
 
 ## Ranked bounded source pass
 
@@ -11,7 +11,7 @@ Verified committed tracker: 14,972 identities; 10,681 undecided; 784 ready for h
 | 1 | opus-refetch:c8295dd77095f9eee36c0622c13c85169f2aee9ced5c8f76afd08fe69fe2fb37 | 1 | 0 |
 | 2 | opus-refetch:cb67d30ebca7b85e3d5c28d056e38a6901e4f3179d53dd62356248677cc999f5 | 1 | 0 |
 | 3 | opus-refetch:7b418d69527a803abc2a760f1ac80881a8e2cc4e27de0ae6e24a3061d1c86fbf | 47 | 145 |
-| 4 | EO::4314 | 10 | 43 |
+| 4 | EO::4314 | 10 | 42 |
 | 5 | opus-refetch:ee87f6027e6f3902a09e1907d991c5d40fab8b3931446ccf7d8a558325636ebb | 9 | 34 |
 | 6 | opus-refetch:dd8e15a058ab705228e569370ae5ebe3596bd92e932f7340be666eddcb915e5a | 6 | 18 |
 | 7 | EO::6868 | 6 | 25 |

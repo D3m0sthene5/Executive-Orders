@@ -7,14 +7,15 @@
       "description": "Retrieve shared source EO::4314 (tracker reach 10 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "expected_now": 0.0,
-      "fecundity": 3.7,
-      "value": 3.7,
+      "fecundity": 0.3,
+      "value": 0.3,
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": Infinity,
+      "cost_key": null,
       "within_budget": true,
       "cumulative_usd": 0.0,
-      "cumulative_value": 3.7,
+      "cumulative_value": 0.3,
       "share_of_week": null
     },
     {
@@ -24,14 +25,15 @@
       "description": "Retrieve shared source EO::6868 (tracker reach 6 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "expected_now": 0.0,
-      "fecundity": 2.8,
-      "value": 2.8,
+      "fecundity": 0.2,
+      "value": 0.2,
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": Infinity,
+      "cost_key": null,
       "within_budget": true,
       "cumulative_usd": 0.0,
-      "cumulative_value": 6.5,
+      "cumulative_value": 0.5,
       "share_of_week": null
     },
     {
@@ -41,14 +43,15 @@
       "description": "Retrieve shared source EO::6964 (tracker reach 3 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "expected_now": 0.0,
-      "fecundity": 0.9,
-      "value": 0.9,
+      "fecundity": 0.1,
+      "value": 0.1,
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": Infinity,
+      "cost_key": null,
       "within_budget": true,
       "cumulative_usd": 0.0,
-      "cumulative_value": 7.4,
+      "cumulative_value": 0.6,
       "share_of_week": null
     },
     {
@@ -58,14 +61,15 @@
       "description": "Retrieve shared source EO::6910 (tracker reach 3 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "expected_now": 0.0,
-      "fecundity": 1.4,
-      "value": 1.4,
+      "fecundity": 0.1,
+      "value": 0.1,
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": Infinity,
+      "cost_key": null,
       "within_budget": true,
       "cumulative_usd": 0.0,
-      "cumulative_value": 8.8,
+      "cumulative_value": 0.7,
       "share_of_week": null
     },
     {
@@ -75,31 +79,53 @@
       "description": "Retrieve shared source CFR::26 CFR 458.324 (tracker reach 2 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "expected_now": 0.0,
-      "fecundity": 0.9,
-      "value": 0.9,
+      "fecundity": 0.1,
+      "value": 0.1,
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": Infinity,
+      "cost_key": null,
       "within_budget": true,
       "cumulative_usd": 0.0,
-      "cumulative_value": 9.7,
+      "cumulative_value": 0.8,
       "share_of_week": null
     },
     {
       "id": "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
       "kind": "acquisition",
       "orders": 0,
-      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 3461 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2735 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "expected_now": 0.0,
-      "fecundity": 30.3,
-      "value": 30.3,
+      "fecundity": 0.3,
+      "value": 0.3,
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": Infinity,
+      "cost_key": null,
       "within_budget": true,
       "cumulative_usd": 0.0,
-      "cumulative_value": 40.0,
+      "cumulative_value": 1.1,
+      "share_of_week": null
+    },
+    {
+      "id": "probe.status_assignment.undecided",
+      "kind": "probe",
+      "orders": 30,
+      "description": "30-order probe that measures the yield of status_assignment.undecided (10681 orders)",
+      "notes": [
+        "no measured yield for 'filed_per_attempt.undecided': unranked"
+      ],
+      "expected_now": 0.0,
+      "fecundity": 0.0,
+      "value": 0.0,
+      "cost_usd": 19.39,
+      "cost_basis": "probe of status_assignment.undecided",
+      "per_usd": Infinity,
+      "information_value": true,
+      "within_budget": true,
+      "cumulative_usd": 19.39,
+      "cumulative_value": 1.1,
       "share_of_week": null
     },
     {
@@ -122,45 +148,10 @@
       "cost_usd": 19.17,
       "cost_basis": "48 x 0.40 USD (submitted_claim)",
       "per_usd": 1.59856310412235,
+      "cost_key": "review.per_submitted",
       "within_budget": true,
-      "cumulative_usd": 19.17,
-      "cumulative_value": 70.7,
-      "share_of_week": null
-    },
-    {
-      "id": "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
-      "kind": "acquisition",
-      "orders": 0,
-      "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 2558 includes undecided orders, which unlock nothing until they have a provisional status)",
-      "notes": [],
-      "probe_cost_usd": 0.0,
-      "expected_now": 0.0,
-      "fecundity": 0.5,
-      "value": 0.5,
-      "cost_usd": 0.38,
-      "cost_basis": "1 x 0.38 USD (attempted_order)",
-      "per_usd": 1.222801637457627,
-      "within_budget": true,
-      "cumulative_usd": 19.55,
-      "cumulative_value": 71.2,
-      "share_of_week": null
-    },
-    {
-      "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
-      "kind": "acquisition",
-      "orders": 0,
-      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 174 includes undecided orders, which unlock nothing until they have a provisional status)",
-      "notes": [],
-      "probe_cost_usd": 0.0,
-      "expected_now": 0.0,
-      "fecundity": 16.7,
-      "value": 16.7,
-      "cost_usd": 16.91,
-      "cost_basis": "45 x 0.38 USD (attempted_order)",
-      "per_usd": 0.989607926468127,
-      "within_budget": true,
-      "cumulative_usd": 36.46,
-      "cumulative_value": 87.9,
+      "cumulative_usd": 38.56,
+      "cumulative_value": 31.8,
       "share_of_week": null
     },
     {
@@ -183,34 +174,100 @@
       "cost_usd": 25.85,
       "cost_basis": "40 x 0.65 USD (attempted_order)",
       "per_usd": 0.9879957440674151,
+      "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 62.31,
-      "cumulative_value": 113.4,
+      "cumulative_usd": 64.41,
+      "cumulative_value": 57.3,
+      "share_of_week": null
+    },
+    {
+      "id": "production.claim_ready.yes.fr",
+      "kind": "production",
+      "orders": 352,
+      "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
+      "notes": [],
+      "rate": {
+        "key": "filed_per_attempt.yes.fr",
+        "value": 0.36666666666666664,
+        "num": 11,
+        "den": 30,
+        "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
+      },
+      "probe_cost_usd": 19.39,
+      "expected_now": 129.1,
+      "fecundity": 0.0,
+      "value": 129.1,
+      "cost_usd": 227.5,
+      "cost_basis": "352 x 0.65 USD (attempted_order)",
+      "per_usd": 0.5673208266248743,
+      "cost_key": "wave.per_attempt",
+      "within_budget": true,
+      "cumulative_usd": 291.91,
+      "cumulative_value": 186.4,
+      "share_of_week": null
+    },
+    {
+      "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+      "kind": "acquisition",
+      "orders": 0,
+      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 535 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "notes": [],
+      "probe_cost_usd": 0.0,
+      "expected_now": 0.0,
+      "fecundity": 4.4,
+      "value": 4.4,
+      "cost_usd": 16.91,
+      "cost_basis": "45 x 0.38 USD (attempted_order)",
+      "per_usd": 0.2599732205203361,
+      "cost_key": "production.per_attempt",
+      "within_budget": true,
+      "cumulative_usd": 308.82,
+      "cumulative_value": 190.8,
+      "share_of_week": null
+    },
+    {
+      "id": "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+      "kind": "acquisition",
+      "orders": 0,
+      "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 2557 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "notes": [],
+      "probe_cost_usd": 0.0,
+      "expected_now": 0.0,
+      "fecundity": 0.0,
+      "value": 0.0,
+      "cost_usd": 0.38,
+      "cost_basis": "1 x 0.38 USD (attempted_order)",
+      "per_usd": 0.0856623911335492,
+      "cost_key": "production.per_attempt",
+      "within_budget": true,
+      "cumulative_usd": 309.2,
+      "cumulative_value": 190.8,
       "share_of_week": null
     },
     {
       "id": "production.claim_ready.no.fr",
       "kind": "production",
-      "orders": 944,
+      "orders": 1002,
       "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
       "notes": [],
       "rate": {
         "key": "filed_per_attempt.no.fr",
-        "value": 0.4758220502901354,
-        "num": 492,
-        "den": 1034,
+        "value": 0.03333333333333333,
+        "num": 1,
+        "den": 30,
         "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 19.39,
-      "expected_now": 449.2,
+      "expected_now": 33.4,
       "fecundity": 0.0,
-      "value": 449.2,
-      "cost_usd": 610.12,
-      "cost_basis": "944 x 0.65 USD (attempted_order)",
-      "per_usd": 0.736210251537115,
+      "value": 33.4,
+      "cost_usd": 647.61,
+      "cost_basis": "1002 x 0.65 USD (attempted_order)",
+      "per_usd": 0.0515746206022613,
+      "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 672.43,
-      "cumulative_value": 562.6,
+      "cumulative_usd": 956.81,
+      "cumulative_value": 224.2,
       "share_of_week": null
     },
     {
@@ -225,9 +282,10 @@
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": 0.0,
+      "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 672.43,
-      "cumulative_value": 562.6,
+      "cumulative_usd": 956.81,
+      "cumulative_value": 224.2,
       "share_of_week": null
     },
     {
@@ -242,9 +300,10 @@
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": 0.0,
+      "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 672.43,
-      "cumulative_value": 562.6,
+      "cumulative_usd": 956.81,
+      "cumulative_value": 224.2,
       "share_of_week": null
     },
     {
@@ -259,33 +318,185 @@
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": 0.0,
+      "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 672.43,
-      "cumulative_value": 562.6,
+      "cumulative_usd": 956.81,
+      "cumulative_value": 224.2,
       "share_of_week": null
     }
   ],
   "unranked": [
     {
-      "id": "production.claim_ready.yes.fr",
-      "kind": "production",
-      "orders": 365,
-      "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
+      "id": "status_assignment.undecided",
+      "kind": "status_assignment",
+      "orders": 10681,
+      "description": "Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided (claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such.",
       "notes": [
-        "yield 'filed_per_attempt.yes.fr' rests on 0/7 attempts, fewer than 30: too thin to rank"
+        "no measured yield for 'filed_per_attempt.undecided': unranked"
       ],
       "unranked": true,
       "probe_cost_usd": 19.39,
       "expected_now": 0.0,
       "fecundity": 0.0,
       "value": 0.0,
-      "cost_usd": 235.9,
-      "cost_basis": "365 x 0.65 USD (attempted_order)"
+      "cost_usd": 6903.27,
+      "cost_basis": "10681 x 0.65 USD (attempted_order)",
+      "cost_key": "wave.per_attempt"
     }
   ],
   "budget_usd": null,
+  "window_token_rankings": {
+    "orders": {
+      "cache_read_weight_1.0": [
+        "acquire.shared.EO_4314",
+        "acquire.shared.EO_6868",
+        "acquire.shared.EO_6964",
+        "acquire.shared.EO_6910",
+        "acquire.shared.CFR_26_CFR_458.324",
+        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+        "recovery.custody_stranded",
+        "production.one_step_away",
+        "production.claim_ready.yes.fr",
+        "production.claim_ready.no.fr",
+        "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+        "zero_agent.opus_media_refetch",
+        "acquire.nea_continuation_notices",
+        "acquire.current_law_sections"
+      ],
+      "cache_read_weight_0.1": [
+        "acquire.shared.EO_4314",
+        "acquire.shared.EO_6868",
+        "acquire.shared.EO_6964",
+        "acquire.shared.EO_6910",
+        "acquire.shared.CFR_26_CFR_458.324",
+        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+        "recovery.custody_stranded",
+        "production.one_step_away",
+        "production.claim_ready.yes.fr",
+        "production.claim_ready.no.fr",
+        "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+        "zero_agent.opus_media_refetch",
+        "acquire.nea_continuation_notices",
+        "acquire.current_law_sections"
+      ]
+    },
+    "flips": [
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "recovery.custody_stranded",
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+        ],
+        "window_order": [
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+          "recovery.custody_stranded"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "production.one_step_away",
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+        ],
+        "window_order": [
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+          "production.one_step_away"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "production.claim_ready.yes.fr",
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+        ],
+        "window_order": [
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+          "production.claim_ready.yes.fr"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+          "production.claim_ready.no.fr"
+        ],
+        "window_order": [
+          "production.claim_ready.no.fr",
+          "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "recovery.custody_stranded",
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+        ],
+        "window_order": [
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+          "recovery.custody_stranded"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "production.one_step_away",
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+        ],
+        "window_order": [
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+          "production.one_step_away"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "production.claim_ready.yes.fr",
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+        ],
+        "window_order": [
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+          "production.claim_ready.yes.fr"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+          "production.claim_ready.no.fr"
+        ],
+        "window_order": [
+          "production.claim_ready.no.fr",
+          "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
+        ]
+      }
+    ]
+  },
+  "context": {
+    "context_tokens_per_attempt": 751016.7934678195,
+    "cache_read_tokens_per_attempt": 723972.808837656,
+    "turns_per_attempt": 3.568683957732949,
+    "attempts": 1041,
+    "basis": "Production-phase agents of the tallied batches: (fresh input + cache read + cache write) and model calls ('calls' column) divided by orders attempted. A turn is one model call."
+  },
   "discount_half_life_days": 60,
-  "sensitivity": [],
+  "sensitivity": [
+    {
+      "half_life_days": 30,
+      "enters": [],
+      "leaves": [
+        "probe.status_assignment.undecided"
+      ]
+    },
+    {
+      "half_life_days": 180,
+      "enters": [],
+      "leaves": [
+        "probe.status_assignment.undecided"
+      ]
+    }
+  ],
   "allowance": {
     "usd_per_week": null,
     "note": "not recorded; see README"
@@ -312,7 +523,16 @@
       "filed": 545,
       "production_attempted": 1041,
       "production_filed": 492,
-      "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
+      "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json",
+      "pooled_into_rates": true
+    },
+    {
+      "wave": "claude-icecore-2026-11-05",
+      "attempted": 60,
+      "filed": 12,
+      "source": "research/excavator/claude-icecore-2026-11-05/evidence/DISPOSITION.json",
+      "pooled_into_rates": true,
+      "sample_of_remaining": true
     }
   ],
   "what_this_is_not": "A ranking of expected yield per API-equivalent dollar from measured past waves. It changes no status, claim or count and authorizes no dispatch by itself."

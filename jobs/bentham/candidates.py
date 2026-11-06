@@ -93,6 +93,12 @@ def load_orders(repo):
     return rows
 
 
+def undecided_ids(repo):
+    """Orders the provisional ledger has not decided (blank provisional_status), for status assignment."""
+    with open(Path(repo) / TRACKER_CSV, encoding="utf-8", newline="") as fh:
+        return [r["instrument_id"] for r in csv.DictReader(fh) if r["provisional_status"] not in ("yes", "no")]
+
+
 def gating(blockers):
     return {b for b in blockers if not b.startswith(NON_GATING)}
 
@@ -247,6 +253,19 @@ def build(repo, write_ids=True):
         "rate_key": "filed_per_attempt.correction", "cost_key": "wave.per_attempt",
         "unlocks": [], "prerequisites": [],
         "basis": "Computed from %s: claim_present=yes and exactly one step_* column equal to open (n/a steps ignored)." % TRACKER_CSV,
+        "evidence": csv_ev})
+
+    # A2. status assignment for the undecided population (Justinian B6): orders with no provisional status.
+    undecided = undecided_ids(repo)
+    aid = "status_assignment.undecided"
+    actions.append({
+        "id": aid, "kind": "status_assignment",
+        "description": ("Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided "
+                        "(claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such."),
+        "orders": len(undecided), "order_ids_path": save_ids(aid, undecided),
+        "rate_key": "filed_per_attempt.undecided", "cost_key": "wave.per_attempt",
+        "unlocks": [], "prerequisites": [],
+        "basis": "Computed from %s: provisional_status blank. Yield unmeasured until a probe of this population is pooled." % TRACKER_CSV,
         "evidence": csv_ev})
 
     # B. recovery

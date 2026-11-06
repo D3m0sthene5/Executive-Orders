@@ -28,6 +28,9 @@ def main():
     errors, warnings = kean.check(repo)
     with open(os.path.join(out, "KEAN.md"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(kean.render_brief(repo))
+    # Justinian B1: the newest entry of every HANDOFF/notes-*.md, regenerated on every run.
+    with open(os.path.join(out, "NEWEST.md"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(kean.render_newest(repo))
     summary = {"errors": errors, "warnings": warnings,
                "open_owner_questions": sum(1 for a in kean.current(kean.load(repo, "asks")) if a["status"] == "open"),
                "decisions": len(kean.current(kean.load(repo, "decisions"))),
