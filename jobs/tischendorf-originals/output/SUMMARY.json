@@ -1,24 +1,26 @@
 {
   "job": "tischendorf-originals",
-  "targets": 5180,
+  "targets": 5335,
   "targets_by_route": {
-    "corroborate": 172,
-    "fr_by_date": 592,
-    "ia_fulltext": 4416
+    "corroborate": 285,
+    "fr_by_date": 637,
+    "ia_fulltext": 4413
   },
-  "replacement_targets": 1719,
+  "replacement_targets": 1661,
   "replacement_targets_ready": 523,
-  "replacement_strong": 34,
-  "strong": 37,
-  "leads": 277,
+  "replacement_strong": 27,
+  "strong": 239,
+  "leads": 473,
   "by_route_and_verdict": {
     "corroborate/fr-originals|lead": 80,
+    "corroborate/fr-originals|strong": 112,
     "corroborate/isthmian-canal-1911|lead": 4,
-    "lead/ia_fulltext|lead": 166,
-    "official/fr_issue_by_date|lead": 9,
-    "official/fr_issue_by_date|strong": 33,
-    "official/ia_fulltext|lead": 18,
-    "official/ia_fulltext|strong": 4
+    "corroborate/ofr-compilations|strong": 1,
+    "lead/ia_fulltext|lead": 357,
+    "official/fr_issue_by_date|lead": 10,
+    "official/fr_issue_by_date|strong": 112,
+    "official/ia_fulltext|lead": 22,
+    "official/ia_fulltext|strong": 14
   },
   "controls": {
     "positives": 60,
@@ -29,10 +31,10 @@
     "passed": true
   },
   "strong_rules": "own number heading or closing tag on the pages (an OCR-damaged or mid-line heading only with a text score >= 0.6; in a compilation that prints no numbers, the signing date), text fingerprint score >= 0.5, distinctive fingerprint (>= 8 rare shingles), government-printed source, and no planted control failed this run",
-  "requests": 9006,
+  "requests": 9011,
   "requests_by_route": {
-    "fr_by_date": 1540,
-    "ia_fulltext": 6211
+    "fr_by_date": 1321,
+    "ia_fulltext": 6204
   },
   "order_errors": 0,
   "request_caps": {
@@ -41,16 +43,16 @@
     "ia_fulltext": 7500
   },
   "workers": 24,
-  "bytes_downloaded": 14152261921,
-  "seconds": 4736,
+  "bytes_downloaded": 24461375943,
+  "seconds": 4887,
   "prior_state_from": "git_head",
   "run_counts": {
-    "attempted_corroborate": 172,
+    "attempted_corroborate": 285,
+    "carried_strong": 1,
     "ia_not_distinctive": 77,
-    "attempted_fr_by_date": 251,
-    "deferred_fr_by_date": 198,
-    "attempted_ia_fulltext": 712,
-    "deferred_ia_fulltext": 3627
+    "attempted_fr_by_date": 276,
+    "attempted_ia_fulltext": 1442,
+    "deferred_ia_fulltext": 2893
   },
   "counted_by_tracker": false,
   "what_this_is_not": "No status, identity, census, codebook or readiness change. Strong finds are machine locations; the tracker counts them only after this job is registered there."

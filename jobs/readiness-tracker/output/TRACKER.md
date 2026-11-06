@@ -1,6 +1,6 @@
 # Readiness tracker
 
-**Ready for human review: 1,309 of 14,972 orders (8.7%)**
+**Ready for human review: 1,323 of 14,972 orders (8.8%)**
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -8,20 +8,20 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 4,291. The other 10,681 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 782, 'transcription_dependent': 527}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 1,912; quotation rechecks: 1,912. These remain work after readiness.
+Ready by text evidence: {'original_supported': 796, 'transcription_dependent': 527}. Provisional working texts do not authenticate originals.
+Outstanding original replacement obligations: 1,855; quotation rechecks: 1,855. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 1,357. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5970}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 1,286. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5970}.
 
 ## Steps finished (orders with a provisional status)
 
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 4,291 | 4,291 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 2,975 | 4,291 | 69.3% |
-| Complete inventory of the order's operative clauses | 1,373 | 4,291 | 32.0% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,332 | 4,291 | 31.0% |
-| Savings clauses and surviving effects closed | 1,362 | 4,291 | 31.7% |
+| Original or explicitly reviewed provisional working text saved | 2,935 | 4,291 | 68.4% |
+| Complete inventory of the order's operative clauses | 1,388 | 4,291 | 32.3% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,346 | 4,291 | 31.4% |
+| Savings clauses and surviving effects closed | 1,376 | 4,291 | 32.1% |
 | Search for later contrary sources recorded, no open conflicts | 2,856 | 4,291 | 66.6% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 839 | 14.9% |
@@ -30,10 +30,11 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 3,461 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 3,702 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
 | 2,558 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
-| 174 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 379 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 60 | machine job | Run claim-checker on the newest claims (it reruns on every claims change and daily) |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source EO::6964 |
@@ -46,25 +47,26 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 10,681 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 1,072 | 5,848 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 969 | 3,461 |
-| `NO_CLAUSE_INVENTORY` | 2,846 | 2,846 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,846 | 2,846 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 1,020 | 5,884 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 1,044 | 3,702 |
+| `NO_CLAUSE_INVENTORY` | 2,786 | 2,786 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,786 | 2,786 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 127 | 2,558 |
-| `FIRST_END_UNPROVED` | 2,455 | 2,455 |
-| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,248 | 1,248 |
+| `FIRST_END_UNPROVED` | 2,408 | 2,408 |
+| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,245 | 1,245 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
-| `CURRENT_BASIS_UNPROVED` | 391 | 391 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 175 | 379 |
+| `CURRENT_BASIS_UNPROVED` | 378 | 378 |
 | `OPUS_MEDIA_NONE_CITED` | 212 | 212 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 48 | 174 |
-| `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
+| `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 137 | 137 |
 | `CLAIM_INCOMPLETE` | 88 | 88 |
+| `CLAIM_NOT_YET_CHECKED` | 60 | 60 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
-| `CLAIM_CHECK_FAILED` | 33 | 33 |
-| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 28 | 28 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 24 | 24 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 18 | 18 |
+| `CLAIM_CHECK_FAILED` | 18 | 18 |
+| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 13 | 13 |
 | `OPEN_SOURCE_AUDIT` | 10 | 10 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 
@@ -86,7 +88,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - ofr-compilations: 500
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
-- tischendorf-originals: 292
+- tischendorf-originals: 314
 - richardson-volumes (lead only, never counted as the original): 68
 - app-executive-orders (lead only, never counted as the original): 9,902
 - hathi-gpo-orders (lead only, never counted as the original): 1,531
