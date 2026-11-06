@@ -9,7 +9,8 @@
     144,
     147,
     148,
-    149
+    149,
+    150
   ],
   "preserved_drafts": [
     141,
@@ -229,24 +230,34 @@
   "drafts": [
     {
       "pr": 141,
-      "sha": "33f63e0d372d70e7213ab26bd2df3f4721da7704",
-      "tree": "79e605eb94fe4d71990e81a9cca607ab26fe2fff",
-      "base": "81ebb186f8cba72ef4fcf4866cd34ef32a59c463",
+      "sha": "7c7e4d5338c4b11199b6f235639ec9b6c348f38e",
+      "tree": "4285ae91f696b908ea29f7ef82b48845a88bf14f",
+      "base": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
       "branch": "sol/babbage-complete-effort",
       "paths": 26,
+      "doc_resolution": {
+        "path": "jobs/claim-kit/BATCH.md",
+        "git_blob": "f41d95164898bd98b168bee9659085eca79ef9bb",
+        "entire_original_draft_prefix_preserved": true,
+        "exact_pr150_append_only": true
+      },
       "draft": true,
-      "mergeable": true,
       "scientific_adoption": false
     },
     {
       "pr": 146,
-      "sha": "aa5b7a6577a9a8f7c5832dd01558e801326a9b27",
-      "tree": "77cab5923ce08eadd61209643b45179706c8c51d",
-      "base": "81ebb186f8cba72ef4fcf4866cd34ef32a59c463",
+      "sha": "e531ed5a886fc9b24ab6fd39422dbe83c9a730d6",
+      "tree": "2a899692484b52744e5c46f520dd4b4ed7d2f316",
+      "base": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
       "branch": "astra/unfinished-docket-source-trial",
       "paths": 195,
+      "doc_resolution": {
+        "path": "jobs/lachmann/README.md",
+        "git_blob": "d80efb8bd6261f34a230ca58f2e2d7b33b606601",
+        "entire_original_draft_prefix_preserved": true,
+        "exact_pr150_append_only": true
+      },
       "draft": true,
-      "mergeable": true,
       "scientific_adoption": false
     }
   ],
@@ -301,12 +312,12 @@
     }
   ],
   "reporting": {
-    "run_id": 41955554786,
+    "run_id": 41966416230,
     "state": "completed",
     "conclusion": "success",
     "receipt_acceptance": "ready_source_bound",
-    "output_commit": "c7ebe6a46c730ee8b0cdd3f592f1de7852b019a0",
-    "acceptance": "HANDOFF/FINAL_STABLE_REPORTING_ACCEPTANCE.json"
+    "output_commit": "cd7a7e373150744badfb22250d280e1a1bab5559",
+    "acceptance": "HANDOFF/WRITER_QUEUE_FINAL_REPORTING_ACCEPTANCE.json"
   },
   "ordinary_main_production": {
     "run_id": 41955554793,
@@ -316,9 +327,10 @@
     "publication": "refused_stale_concurrent_reporting",
     "observed_utc": "2026-11-05T03:01:23.297Z",
     "scientific_outputs_overwritten": false,
-    "repair": "In progress: serialize trusted production writers and reporting without canceling queued production or weakening freshness."
+    "repair": "In progress: serialize trusted production writers and reporting without canceling queued production or weakening freshness.",
+    "interpretation": "Historical baseline failure, superseded by the verified recovery and final reporting records; retained rather than relabeled."
   },
-  "verified_utc": "2026-11-05T02:56:40.269Z",
+  "verified_utc": "2026-11-05T04:39:35.704Z",
   "main_road": {
     "run_id": 41955554794,
     "linux": "success",
@@ -326,5 +338,127 @@
   },
   "independent_review": "HANDOFF/FINAL_STABLE_INTEGRATION_REVIEW.json",
   "durability_note": "Final receipts are stored outside research/ to avoid invalidating expensive broad research-input snapshots already running. Source reports remain historical evidence.",
-  "final_orchestration_acceptance": "pending_postmerge_race_repair"
+  "final_orchestration_acceptance": "verified",
+  "current_source": {
+    "pr150_merge": "dfb8fc430649b56d736caa33f650d5060c46a34b",
+    "accepted_head": "330b0f12854b92eeeb5de058548d29c83c807535",
+    "accepted_tree": "3c2533fcd5abd15d2f62223da6d2982639f726da",
+    "code_and_all_native_checks": "passed",
+    "tests_each_platform_before_and_after_merge": 1202,
+    "suites": 29
+  },
+  "queue_recovery": {
+    "schema": "eo-queued-production-recovery/v1",
+    "verified_utc": "2026-11-05T04:13:11.815Z",
+    "trigger_commit": "dfb8fc430649b56d736caa33f650d5060c46a34b",
+    "actual_input_commit": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+    "output_commit": "860ddfca0bff6a4366b5402f91b42f924d2f7292",
+    "run_id": 41963111698,
+    "publisher": {
+      "name": "Commit results to the branch",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-05T04:12:12Z",
+      "completed_at": "2026-11-05T04:12:24Z"
+    },
+    "preceding_report_publication": {
+      "name": "Publish successful generations with the existing freshness guard",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-05T04:04:41Z",
+      "completed_at": "2026-11-05T04:04:52Z"
+    },
+    "queued_recovery_checkout": {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-05T04:04:58Z",
+      "completed_at": "2026-11-05T04:05:07Z"
+    },
+    "checks": {
+      "publisher_succeeded": true,
+      "reporter_finished_before_recovery_checkout": true,
+      "trigger_and_actual_input_are_distinct": true,
+      "all_four_saved_native_statuses_bound_to_actual_input": true
+    },
+    "jobs": {
+      "example-hello": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+        "exit_code": 0,
+        "finished_utc": "2026-11-05T04:08:31Z",
+        "job": "example-hello",
+        "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111698",
+        "started_utc": "2026-11-05T04:08:25Z",
+        "trigger": "push by D3m0sthene5"
+      },
+      "claim-kit": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+        "exit_code": 0,
+        "finished_utc": "2026-11-05T04:11:43Z",
+        "job": "claim-kit",
+        "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111698",
+        "started_utc": "2026-11-05T04:08:31Z",
+        "trigger": "push by D3m0sthene5"
+      },
+      "kean": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+        "exit_code": 0,
+        "finished_utc": "2026-11-05T04:11:52Z",
+        "job": "kean",
+        "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111698",
+        "started_utc": "2026-11-05T04:11:45Z",
+        "trigger": "push by D3m0sthene5"
+      },
+      "lachmann": {
+        "blocked_by": [],
+        "branch": "main",
+        "commit_run": "4df722c8c6827a76fdc5591ec4b8bf118cdfaf57",
+        "exit_code": 0,
+        "finished_utc": "2026-11-05T04:12:10Z",
+        "job": "lachmann",
+        "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+        "max_output_file_bytes": 99614720,
+        "oversized_files_moved_to_run_download": [],
+        "result": "succeeded",
+        "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/41963111698",
+        "started_utc": "2026-11-05T04:11:52Z",
+        "trigger": "push by D3m0sthene5"
+      }
+    }
+  },
+  "current_acceptance_record": "HANDOFF/WRITER_QUEUE_ACCEPTANCE.json",
+  "worker_accounting": {
+    "coordinator": "Codex",
+    "bounded_workers": [
+      "workflow_audit",
+      "pr_integration_audit",
+      "final_engineering_review"
+    ],
+    "families": "same OpenAI family; not different-family scientific certification",
+    "exact_deployment_variants": null,
+    "model_tokens": null,
+    "cash": null,
+    "whole_session_active_labor": null
+  }
 }
