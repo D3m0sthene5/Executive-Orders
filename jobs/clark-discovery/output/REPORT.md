@@ -1,14 +1,14 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-06T10:25:35Z. Leads only; no census, count or identity changes.
+Generated 2026-11-06T04:54:04Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
 | Numbers with no census row (1 to 14435) | 46 | NUMBER_GAPS.csv |
-| Numbers cited in texts or OFR notes but absent from the census | 146 ids (60 plausible) | CITED_BUT_UNKNOWN.csv |
-| Census orders known by number only | 28 | IDENTITY_UNKNOWN.csv |
-| Dated unnumbered references matching nothing known | 214 | DATED_UNNUMBERED.csv |
-| Handed to Lewis with identity evidence | 49 | HANDOFF_TO_LEWIS.jsonl |
+| Numbers cited in texts or OFR notes but absent from the census | 145 ids (60 plausible) | CITED_BUT_UNKNOWN.csv |
+| Census orders known by number only | 61 | IDENTITY_UNKNOWN.csv |
+| Dated unnumbered references matching nothing known | 226 | DATED_UNNUMBERED.csv |
+| Handed to Lewis with identity evidence | 55 | HANDOFF_TO_LEWIS.jsonl |
 
 ## Number gaps
 
@@ -32,7 +32,7 @@ Generated 2026-11-06T10:25:35Z. Leads only; no census, count or identity changes
 | EO:52 | EO:50 1894-11-02 -> EO:54 1894-11-02 | number_only |  |
 | EO:53 | EO:50 1894-11-02 -> EO:54 1894-11-02 | cited |  |
 | EO:92 | EO:91 1896-11-02 -> EO:93 1896-12-23 | strong | cited_with_date:1896-11-02 |
-| EO:2103 | EO:2102 1914-12-07 -> EO:2104 1914-12-09 | number_only |  |
+| EO:2103 | EO:2102 1914-12-07 -> EO:2105 1914-12-11 | number_only |  |
 | EO:2539 | EO:2538 1917-02-26 -> EO:2540 1917-02-27 | strong | cited_with_date:1917-02-26 |
 | EO:2703 | EO:2702 1917 -> EO:2704 1917 | number_only |  |
 | EO:3493 | EO:3492 1921-06-14 -> EO:3495 1921-06-14 | number_only |  |
@@ -63,7 +63,7 @@ Generated 2026-11-06T10:25:35Z. Leads only; no census, count or identity changes
 
 ## Cited but unknown (plausible rows first)
 
-296 (cited id, citing document) pairs from 30725 saved texts and 5064 OFR notes. By plausibility: exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 213, likely_ocr_letter_for_digit 18, plausible 60, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
+295 (cited id, citing document) pairs from 30725 saved texts and 5063 OFR notes. By plausibility: exceeds_numbers_issued_by_citing_date 1, likely_ocr_footnote_digit 212, likely_ocr_letter_for_digit 18, plausible 60, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
 
 | Cited | Stated date | Cited by | Plausibility | Quote |
 |---|---|---|---|---|
@@ -110,12 +110,12 @@ Generated 2026-11-06T10:25:35Z. Leads only; no census, count or identity changes
 
 ## Identity unknown
 
-28 census orders have an open original_text step, no transcription lead and no date or title in any index. 7 are on the owner's ProQuest link list (year known from the accession) and 0 already have a ProQuest PDF in the repository; 21 are a number and nothing else. By census era: 1862–1906 1, Unknown date 27.
+61 census orders have an open original_text step, no transcription lead and no date or title in any index. 13 are on the owner's ProQuest link list (year known from the accession) and 0 already have a ProQuest PDF in the repository; 48 are a number and nothing else. By census era: 1862–1906 1, Unknown date 60.
 
 
 ## Web search (online stage)
 
-63 of 63 unknowns advanced this run (0 never searched yet); 394 of 1100 requests used. 3092 hits on file, 107 pages confirmed to name the order (41 unknowns): `WEB_LEADS.csv`. 46 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+80 of 96 unknowns advanced this run (0 never searched yet); 436 of 1100 requests used. 3029 hits on file, 106 pages confirmed to name the order (41 unknowns): `WEB_LEADS.csv`. 46 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
 List pages: 60 read, 236 order numbers named, **3 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 

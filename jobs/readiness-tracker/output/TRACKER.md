@@ -1,10 +1,6 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,368 of 14,972 orders (9.1%)**
-
-Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
-
-Generation: `42201863839-1:56d07550b742cf4b723e6cdbb536d541668860fcde8e87404108f16609e7acac` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+**Ready for human review: 1,368 of 14,972 orders (9.1%)**
 
 Generation: `42204685627-1:8ee77553cb8b68f7c877740fd894ed4b679778c9a71c95df7d534ea090e2be48` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
