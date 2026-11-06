@@ -12,6 +12,18 @@ Use the custom API/GitHub Actions automation below **only if** native GitHub par
 
 **Status (2026-10-17):** asynchronous shared-repository handoffs are already usable. Repository instructions are in `AGENTS.md`, `.github/copilot-instructions.md`, `CLAUDE.md` and `HANDOFF/README.md`. Direct automatic agent invocations are **not configured** by these files; a separate GitHub App integration, credential and workflow may be required for each service.
 
+## Current division of labor (as it is, 2026-11-06)
+
+Since 2026-11-05 every pull request merged into `main` (#152-#166) came from a Claude session; the coordinator
+session merges count-neutral pull requests on green and leaves count-changing ones to the owner. Codex works as
+"Sol" sessions on `sol/*` and `codex/*` branches; its last merged pull request is #150 (2026-11-05, the production
+writer queue) and its newest note is the 2026-11-05 stable-main integration. Astra's last merged pull request is #144
+(Mission refresh, merged 2026-11-05 through Sol's integration), and its newest note is dated 2026-11-04; no Astra
+queue is assigned. The ChatGPT Site is therefore a snapshot, not the control center. Coordination runs through
+`HANDOFF/KEAN.md` (asks, decisions, results), the newest note of each agent (`HANDOFF/NEWEST.md`) and
+`jobs/bentham/output/PLAN.md` (where tokens go). Whether to revive Astra with a named queue or retire the
+three-way split is the owner's choice (Kean A-20261106-justinian-astra).
+
 ## Default: GitHub as evidence repository and communication channel
 
 1. Each agent begins by reading `HANDOFF/README.md`, newest other-agent notes, the immutable legal codebook, the task's source manifest, and `main` HEAD.

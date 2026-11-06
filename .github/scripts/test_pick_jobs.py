@@ -132,6 +132,22 @@ class SchedulerTest(unittest.TestCase):
             out = self.run_main(EVENT='schedule', SCHEDULE='47 */3 * * *')
         self.assertEqual(out, {'direct': 'producer', 'jobs': 'producer consumer', 'downstream': 'consumer'})
 
+    def test_sweep_adds_daily_jobs_without_a_recent_receipt(self):
+        # Justinian 2026-11-06 (B4): GitHub delivers only the sweep, so each sweep runs a DAILY job
+        # whose newest receipt is older than DAILY_STALE_HOURS (or missing), at full strength.
+        for name in ('stale', 'fresh', 'never'):
+            self.job(name)
+            Path(f'jobs/{name}/DAILY').touch()
+        self.job('consumer', after=['stale'])
+        ages = {'stale': picker.DAILY_STALE_HOURS + 1, 'fresh': 2, 'never': None}
+        with patch.object(picker, 'recent_changes', return_value=[]), \
+                patch.object(picker, 'receipt_age_hours', side_effect=lambda name, now=None: ages[name]):
+            out = self.run_main(EVENT='schedule', SCHEDULE='47 */3 * * *')
+        jobs = out['jobs'].split()
+        self.assertEqual(set(jobs), {'never', 'stale', 'consumer'})
+        self.assertLess(jobs.index('stale'), jobs.index('consumer'))
+        self.assertEqual(out.get('downstream'), 'consumer')
+
     def test_daily_run_runs_daily_jobs_with_consumers_at_full_strength(self):
         self.job('producer')
         Path('jobs/producer/DAILY').touch()
