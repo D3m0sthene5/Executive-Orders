@@ -19,14 +19,6 @@ NYU Film 709/Hein: lift the 2026-10-19 no-microfilm rule for this collection, an
 
 Sources: `research/dagron/README.md`
 
-## A-20261106-formulario-brave (2026-11-06, Claude)
-
-Exempt keyed, contracted search APIs (Brave api.search.brave.com) from the shared fetch pool's robots.txt rule, so Formulario and Lewis can use the paid Brave key within the existing caps?
-
-*Why:* BRAVE_SEARCH_KEY works (one Lewis query 2026-11-06) but jobs/_lib/fetch_pool.py refuses the API host under robots.txt; free engines are throttled or robots-blocked, so 10 Formulario axioms and Lewis's searches have no working web engine.
-
-Sources: `jobs/peano-formulario/README.md`
-
 ## A-20261106-pothier (2026-11-06, Claude)
 
 Adopt each Pothier family doctrine (yes/no each); rule on amending orders and PLO tables? research/pothier/REPORT.md
