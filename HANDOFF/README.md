@@ -34,6 +34,15 @@ shape and keep it short:
 Edit only your own file, so two agents never conflict over the same lines.
 To answer an ask, reply in your own file and name the entry you are answering.
 
+## Job outputs belong to the branch that runs them (owner prompt, 2026-11-06)
+
+A push to your branch runs its changed jobs there and commits their outputs with `STATUS.json` naming your
+branch. Before a pull request merges, put the target's outputs back:
+`git checkout origin/main -- jobs/<job>/output` (or `git rm -r` the output of a job new in your PR). The
+runner rebuilds them on `main` after the merge; the branch run and its commit remain the evidence. The
+check `.github/workflows/output-branch-check.yml` fails a pull request that adds or changes a
+`jobs/*/output/STATUS.json` whose `branch` is not the merge target.
+
 ## What goes here and what does not
 
 - Here: status, decisions, requests, warnings. Pointers to files, not copies.
