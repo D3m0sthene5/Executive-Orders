@@ -1,0 +1,77 @@
+# Draft CITATION.cff for the Bodley release. Not for the repository root until the owner approves (OWNER_DECISIONS.md).
+# If .zenodo.json is also present, Zenodo's GitHub integration ignores this file for the archive record
+# (help.zenodo.org/docs/github/describe-software/); GitHub still uses it for the "Cite this repository" box.
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below. All statuses and claims in it are provisional, AI-produced and uncertified (human-certified count: 0)."
+type: dataset
+title: "Bodley: a provisional register of United States executive orders, their working statuses and source-hashed lifecycle claims (version 1)"
+version: "1.0.0"
+# OWNER: set to the publication date of the Zenodo version (YYYY-MM-DD). This is a draft date.
+date-released: "2026-11-06"
+authors:
+  - family-names: Kind
+    given-names: Danny
+    affiliation: "NYU School of Law"
+    # orcid: left blank on purpose; add "https://orcid.org/0000-0000-0000-0000" when the owner supplies it
+# OWNER: licence for the data. Recommendation CC-BY-4.0; alternative CC0-1.0 (decision D1).
+# Code goes in LICENSE-CODE.txt (recommendation MIT; alternative Apache-2.0).
+license: CC-BY-4.0
+repository-code: "https://github.com/D3m0sthene5/Executive-Orders"
+abstract: >-
+  A register of 14,998 working bibliographic identities for United States executive orders (legal cutoff
+  14 October 2026) with, for each, the source documents held, a provisional yes/no status for surviving
+  operative effect, and for 1,527 orders a filed lifecycle claim with the source hashes and character spans
+  it rests on. The number of orders certified by an independent human reviewer is 0; every status and claim
+  is an AI-produced working hypothesis. No licensed text or bulk source bytes are included; sources are cited
+  by URL and SHA-256.
+keywords:
+  - executive orders
+  - presidential power
+  - legal history
+  - United States
+  - executive order revocation
+  - executive order longevity
+  - provenance
+  - provisional data
+references:
+  - type: data
+    authors:
+      - family-names: Thrower
+        given-names: Sharece
+    title: "Replication Data for: To Revoke or Not Revoke? The Political Determinants of Executive Order Longevity"
+    year: 2016
+    version: "1.1"
+    doi: "10.7910/DVN/LZGQOH"
+    publisher:
+      name: Harvard Dataverse
+  - type: data
+    authors:
+      - family-names: Lowande
+        given-names: Kenneth
+    title: "Replication Data for: Executive Action that Lasts"
+    year: 2023
+    version: "1.0"
+    doi: "10.7910/DVN/TZ2QKY"
+    publisher:
+      name: Harvard Dataverse
+  - type: article
+    authors:
+      - family-names: Thrower
+        given-names: Sharece
+    title: "To Revoke or Not Revoke? The Political Determinants of Executive Order Longevity"
+    journal: "American Journal of Political Science"
+    volume: 61
+    year: 2017
+    doi: "10.1111/ajps.12294"
+  - type: article
+    authors:
+      - family-names: Lowande
+        given-names: Kenneth
+      - family-names: Poznansky
+        given-names: Michael
+    title: "Executive action that lasts"
+    journal: "Journal of Public Policy"
+    volume: 44
+    issue: 2
+    year: 2024
+    doi: "10.1017/S0143814X23000442"
