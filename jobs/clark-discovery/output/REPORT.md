@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-02T07:24:14Z. Leads only; no census, count or identity changes.
+Generated 2026-11-06T04:54:04Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -115,15 +115,15 @@ Generated 2026-11-02T07:24:14Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-80 of 96 unknowns advanced this run (0 never searched yet); 494 of 1100 requests used. 2941 hits on file, 103 pages confirmed to name the order (41 unknowns): `WEB_LEADS.csv`. 46 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+80 of 96 unknowns advanced this run (0 never searched yet); 436 of 1100 requests used. 3029 hits on file, 106 pages confirmed to name the order (41 unknowns): `WEB_LEADS.csv`. 46 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
-List pages: 60 read, 234 order numbers named, **0 absent from the census**: `WEB_LISTED_ORDERS.csv`.
+List pages: 60 read, 236 order numbers named, **3 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
 | Engine | Status |
 |---|---|
 | bing_api | needs_key |
 | bing_rss | blocked_by_robots_txt |
-| brave_api | needs_key |
+| brave_api | blocked_by_robots_txt |
 | brave_html | blocked_by_robots_txt |
 | duckduckgo_html | http_403 |
 | duckduckgo_lite | http_403 |
