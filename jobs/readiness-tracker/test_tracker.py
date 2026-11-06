@@ -648,6 +648,24 @@ class TrackerTest(unittest.TestCase):
         for step in tracker.STEP_NAMES[2:]:
             self.assertEqual(o[f"step_{step}"], base["EO:3"][f"step_{step}"])
 
+    def test_unchecked_official_find_keeps_the_provisional_working_text(self):
+        """Owner ruling 2026-11-06: an official copy that still needs a page check does not remove the provisional credit."""
+        frag_path, frag, conf = self.confirmation_fixture()
+        official = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "ofr-compilations",
+                               "data": {"url": "https://hdl.handle.net/2027/x", "sha256": "e" * 64, "page_or_item": "p. 1",
+                                        "location_confidence": "medium", "needs_page_check": True}}) + "\n"
+        files = {frag_path: frag, self.CONFIRMED: self.jsonl(conf), tracker.J["official_compilation_fragments"][0]: official}
+        orders, s = self.run_tracker(files=files)
+        o = orders["EO:3"]
+        self.assertEqual(o["step_original_text"], "provisional")
+        self.assertNotIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", o["blockers"])
+        self.assertEqual(s["step_done_among_decided"]["original_text"]["provisional"], 1)
+        self.assertEqual(o["ready_for_human_review"], "no")
+        # without a confirmation the unchecked find still blocks the step
+        orders2, _ = self.run_tracker(files={frag_path: frag, self.CONFIRMED: "",
+                                             tracker.J["official_compilation_fragments"][0]: official})
+        self.assertIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", orders2["EO:3"]["blockers"])
+
     def test_archival_replica_with_page_check_needs_pages_confirmed(self):
         frag_path, frag, conf = self.confirmation_fixture(lane="replica", needs_page_check=True)
         self.assertIs(conf["pages_confirmed"], True)
@@ -724,13 +742,14 @@ class TrackerTest(unittest.TestCase):
 
     def test_other_text_blockers_and_existing_claims_keep_the_step_open(self):
         frag_path, frag, conf = self.confirmation_fixture()
-        # an official copy found but not page-checked still needs its own check
+        # owner ruling 2026-11-06: an official copy found but not page-checked no longer takes the provisional
+        # credit away (it is a lead like the others); its page check is still owed and it never counts as original
         fr = json.dumps({"instrument_id": "EO:3", "kind": "original_representation",
                          "data": {"url": "https://www.govinfo.gov/x.pdf", "needs_page_check": True}})
         orders, _ = self.run_tracker(files={frag_path: frag, self.CONFIRMED: self.jsonl(conf),
                                             tracker.J["fr_fragments"][1]: fr + "\n"})
-        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
-        self.assertIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
+        self.assertEqual(orders["EO:3"]["step_original_text"], "provisional")
+        self.assertNotIn("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", orders["EO:3"]["blockers"])
         # once a claim exists the claim's own checks decide the text step
         claim = dict(copy.deepcopy(COMPLETE_NO_CLAIM), instrument_id="EO:3")
         orders, _ = self.run_tracker([claim], checked=None,

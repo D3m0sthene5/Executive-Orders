@@ -40,4 +40,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-05 F-20261105-tischendorf-2 **partly worked**: Tischendorf first live run: one network request at a time with a single shared request budget Lesson: For any network job: follow jobs/README.md's parallel-workers rule from the start, give each route its own budget, and smoke-test each route on a handful of orders before a full run
 - 2026-11-05 F-20261105-tischendorf-1 **partly worked**: Tischendorf (jobs/tischendorf-originals): prove official printings for transcription-only orders by comparing… Lesson: A held transcription is evidence for locating its own original: comparing wording turns a number-only location into a measured match
 
-Register: 26 owner decisions, 15 answered questions, 162 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 27 owner decisions, 15 answered questions, 162 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
