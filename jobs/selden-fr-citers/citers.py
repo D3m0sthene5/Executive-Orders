@@ -289,13 +289,13 @@ def controls(run: Run, pairs):
 def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
     out.mkdir(parents=True, exist_ok=True)
     prior_dir = Path(env.get("JOB_PRIOR_OUTPUT_DIR") or (HERE / "output"))
-    prior_state = {}
-    if (prior_dir / "STATE.json").is_file():
-        try:
-            prior_state = json.loads((prior_dir / "STATE.json").read_text(encoding="utf-8"))
-        except ValueError:
-            prior_state = {}
-    prior_src = {r.get("source_id", "")[7:]: r for r in S.read_jsonl(prior_dir / "SOURCES.jsonl")}
+    # Earlier outputs to carry forward: this job's previous output, then any runner-shard outputs copied into
+    # data/shards/<k>/ (parallel runner branches; see README). Later directories add what earlier ones lack.
+    priors = [prior_dir] + sorted(p for p in (HERE / "data" / "shards").glob("*") if p.is_dir())
+    prior_src = {}
+    for d in priors:
+        for r in S.read_jsonl(d / "SOURCES.jsonl"):
+            prior_src.setdefault(r.get("source_id", "")[7:], r)
     run = Run(out, cache, workers=int(env.get("JOB_WORKERS") or 12), transport=transport,
               max_requests=int(env.get("JOB_MAX_REQUESTS") or 40000),
               max_minutes=float(env.get("JOB_TIME_BUDGET_MIN") or 100),
@@ -306,39 +306,61 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
     (out / "CONTROLS.json").write_text(json.dumps(ctl, indent=1) + "\n", encoding="utf-8")
     if not ctl["passed"]:
         print("controls failed: every acting fragment is downgraded to cross_reference", flush=True)
-    done_before = set(prior_state.get("searched") or [])
-    # Carry earlier runs' results forward (their texts are re-copied so the output stays self-contained).
-    carried = 0
-    prior_frags = S.read_jsonl(prior_dir / "FRAGMENTS.jsonl")
-    for r in S.read_jsonl(prior_dir / "SOURCES.jsonl"):
-        p = prior_dir / r.get("cache_path", "")
-        if r.get("cache_path") and p.is_file() and S.sha256(p.read_bytes()) == r["sha256"]:
-            (out / r["cache_path"]).parent.mkdir(parents=True, exist_ok=True)
-            (out / r["cache_path"]).write_bytes(p.read_bytes())
-            run.sources[r["source_id"][7:]] = r
-            run.committed += r.get("bytes") or 0
-            carried += 1
-    relocated = 0
-    for f in prior_frags:
-        row = f["data"][0]
-        if row.get("located_by") != S.LOCATOR_VERSION and row.get("text_path") and (out / row["text_path"]).is_file():
-            # A new locator version re-reads the kept text: no request.
-            text = plain((out / row["text_path"]).read_bytes())
-            b = S.best_hit(S.find_citations(text, f["instrument_id"]))
-            if not b:
+    done_before = set()
+    carried, relocated = 0, 0
+    seen_frag, seen_search, seen_cite = set(), set(), set()
+    for d in priors:
+        if (d / "STATE.json").is_file():
+            try:
+                done_before |= set(json.loads((d / "STATE.json").read_text(encoding="utf-8")).get("searched") or [])
+            except ValueError:
+                pass
+        # Carry earlier results forward (texts re-copied so the output stays self-contained).
+        for r in S.read_jsonl(d / "SOURCES.jsonl"):
+            key = r["source_id"][7:]
+            p = d / r.get("cache_path", "")
+            if key in run.sources:
+                run.sources[key]["instrument_ids"] = sorted(set(run.sources[key]["instrument_ids"]) |
+                                                           set(r.get("instrument_ids") or []),
+                                                           key=lambda x: (x != r["instrument_ids"][0], x))
                 continue
-            src = {"source_id": row["source_id"], "url": row["source_url"], "sha256": row["source_sha256"],
-                   "page_or_item": row.get("page_or_item"), "text_path": row["text_path"]}
-            keep = {k: row[k] for k in ("fr_document_type", "publication_date") if k in row}
-            f = S.fragment(f["instrument_id"], row["acting_id"], row["acting_label"], b, src, "selden-fr-citers",
-                           row["date_candidate"], row["date_basis"], row["evidence_type"],
-                           flags=[x for x in row.get("flags", []) if x == "agency_document_not_presidential"], extra=keep)
-            relocated += 1
-        run.fragments.append(f)
-    for name in ("SEARCHES.jsonl",):
-        run.searches += S.read_jsonl(prior_dir / name)
-    if (prior_dir / "CITATIONS.csv").is_file():
-        run.citations += read_csv(prior_dir / "CITATIONS.csv")
+            if r.get("cache_path") and p.is_file() and S.sha256(p.read_bytes()) == r["sha256"]:
+                (out / r["cache_path"]).parent.mkdir(parents=True, exist_ok=True)
+                (out / r["cache_path"]).write_bytes(p.read_bytes())
+                run.sources[key] = r
+                run.committed += r.get("bytes") or 0
+                carried += 1
+        for f in S.read_jsonl(d / "FRAGMENTS.jsonl"):
+            row = f["data"][0]
+            fk = (f["instrument_id"], row["source_id"])
+            if fk in seen_frag:
+                continue
+            seen_frag.add(fk)
+            if row.get("located_by") != S.LOCATOR_VERSION and row.get("text_path") and (out / row["text_path"]).is_file():
+                # A new locator version re-reads the kept text: no request.
+                text = plain((out / row["text_path"]).read_bytes())
+                b = S.best_hit(S.find_citations(text, f["instrument_id"]))
+                if not b:
+                    continue
+                src = {"source_id": row["source_id"], "url": row["source_url"], "sha256": row["source_sha256"],
+                       "page_or_item": row.get("page_or_item"), "text_path": row["text_path"]}
+                keep = {k: row[k] for k in ("fr_document_type", "publication_date") if k in row}
+                f = S.fragment(f["instrument_id"], row["acting_id"], row["acting_label"], b, src, "selden-fr-citers",
+                               row["date_candidate"], row["date_basis"], row["evidence_type"],
+                               flags=[x for x in row.get("flags", []) if x == "agency_document_not_presidential"],
+                               extra=keep)
+                relocated += 1
+            run.fragments.append(f)
+        for r in S.read_jsonl(d / "SEARCHES.jsonl"):
+            if r["instrument_id"] not in seen_search:
+                seen_search.add(r["instrument_id"])
+                run.searches.append(r)
+        if (d / "CITATIONS.csv").is_file():
+            for r in read_csv(d / "CITATIONS.csv"):
+                ck = (r["target_id"], r["document_number"])
+                if ck not in seen_cite:
+                    seen_cite.add(ck)
+                    run.citations.append(r)
     todo = [t for t in targets if t["id"] not in done_before]
     if limit:
         todo = todo[:limit]
