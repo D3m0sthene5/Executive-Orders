@@ -219,10 +219,6 @@
         "output": 3974411
       },
       "per": "attempted_order",
-      "window_tokens": {
-        "cache_read_weight_1.0": 754834.6714697407,
-        "cache_read_weight_0.1": 103259.14351585016
-      },
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
       "basis": "Production-phase agents of 34 batches with a tally, divided by 1041 orders attempted in those non-correction batches. Producer batches without a tally (o25) are excluded from numerator and denominator. Model family taken from each agent's recorded model."
     },
@@ -237,10 +233,6 @@
         "output": 2396227
       },
       "per": "submitted_claim",
-      "window_tokens": {
-        "cache_read_weight_1.0": 460664.41800643085,
-        "cache_read_weight_0.1": 61232.76720257235
-      },
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
       "basis": "Review-phase agents whose batches are all tallied production batches, divided by 622 blind-review verdicts (upheld + rejected, summed from blind_review_verdicts in DISPOSITION); one verdict is one claim version judged, so re-reviews of revised versions and planted controls count. Excluded review agents (paired trial arms, re-review, untallied batches): lind-a03-A, lind-a03-B, lind-c01-A, lind-c01-B, lind-c02-A, lind-c02-B, lind-c03-A, lind-c03-B, rereview-n01. Model family taken from each agent's recorded model."
     },
@@ -255,10 +247,6 @@
         "output": 115927
       },
       "per": "attempted_order",
-      "window_tokens": {
-        "cache_read_weight_1.0": 52665.91930835735,
-        "cache_read_weight_0.1": 5790.531988472623
-      },
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
       "basis": "Coordinator agent, divided by 1041 production orders attempted. Lower bound: the coordinator transcript covers only the period after a context compaction. Model family taken from each agent's recorded model."
     },
@@ -274,10 +262,6 @@
       },
       "per": "attempted_order",
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
-      "window_tokens": {
-        "cache_read_weight_1.0": 1082748.6868395773,
-        "cache_read_weight_0.1": 145636.4009606148
-      },
       "basis": "production.per_attempt + review.per_submitted x submit share (622/1041 = 0.5975 verdicts per attempted order) + coordination.per_attempt."
     },
     "wave.per_filed_dossier": {
@@ -289,10 +273,6 @@
         "cache_read": 1083926544,
         "cache_write": 36716950,
         "output": 6486565
-      },
-      "window_tokens": {
-        "cache_read_weight_1.0": 2290937.7703252034,
-        "cache_read_weight_0.1": 308145.3117886179
       },
       "per": "filed_dossier",
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
@@ -309,20 +289,9 @@
         "output": 429750
       },
       "per": "attempted_order",
-      "window_tokens": {
-        "cache_read_weight_1.0": 1162912.4216867469,
-        "cache_read_weight_0.1": 152912.37228915663
-      },
       "source": "research/excavator/claude-tribonian-2026-11-04/telemetry/AGENT_USAGE.csv",
       "basis": "Correction-production agents (3), divided by 83 orders attempted in c01-c03. Their review is not separated from the review phase above. Model family taken from each agent's recorded model."
     }
-  },
-  "context": {
-    "context_tokens_per_attempt": 751016.7934678195,
-    "cache_read_tokens_per_attempt": 723972.808837656,
-    "turns_per_attempt": 3.568683957732949,
-    "attempts": 1041,
-    "basis": "Production-phase agents of the tallied batches: (fresh input + cache read + cache write) and model calls ('calls' column) divided by orders attempted. A turn is one model call."
   },
   "price_table": {
     "sonnet": {
