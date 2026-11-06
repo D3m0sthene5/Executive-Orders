@@ -16,6 +16,18 @@ What the numbers mean
 * ``filed_per_attempt.all`` and the stratified rates use production batches only. The
   correction batches (c01-c03) re-attempt orders that earlier batches already failed, so they
   are measured separately as ``filed_per_attempt.correction`` and kept out of the others.
+* Other waves pool into the rates only when their ``evidence/DISPOSITION.json`` says
+  ``"pool_into_rates": true`` and the wave folder holds ``tools/batches.json`` with one order list per
+  tallied batch (the same shape as the Tribonian files). A pooled batch marked ``"kind": "correction"``
+  counts in ``filed_per_attempt.correction`` only. Pooling is opt-in because a wave of recoveries or
+  one-step orders is selected for ease and would bias a stratum's yield; a sample drawn to measure a
+  stratum (such as the 2026-11-05 ice core) is the intended case. Costs are not pooled: they stay the
+  Tribonian measurements, and a pooled wave reports its own cost in its REPORT.md.
+* A pooled wave that also says ``"sample_of_remaining": true`` is a random sample of the orders still
+  left in each stratum. Earlier waves attempted other orders, which are no longer in the pool, so mixing
+  them in would describe a population that no longer exists. For a yes/no stratum in which such a sample
+  has at least ``MIN_SAMPLE`` attempts, the rate is the sample's alone; the pooled figure stays in the
+  row's ``pooled_alternative`` and note. With fewer attempts the stratum is pooled as usual.
 * Costs are API-equivalent dollars computed from recorded token counts and an assumed list
   price table. They are not an invoice, and plan allowances are not published.
   The coordinator figure is a lower bound (its transcript starts after a context compaction).
@@ -42,6 +54,7 @@ SUMMARY = f"{WAVE_DIR}/telemetry/SUMMARY.json"
 READINESS = "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
 FR_FIRST = 7532
 CORRECTION_BATCHES = ("c01", "c02", "c03")
+MIN_SAMPLE = 30  # Bentham's own threshold for ranking a stratum
 
 PRICE_TABLE = {
     "sonnet": {"input": 3.0, "output": 15.0, "cache_read": 0.30, "cache_write": 3.75},
@@ -116,8 +129,8 @@ def _is_disposition(doc) -> bool:
             and all(isinstance(b, dict) and "batch" in b for b in doc["batches"]))
 
 
-def wave_orders(repo: Path, doc: dict, batch_lists: dict) -> list[dict]:
-    """One row per attempted order: batch, instrument_id, filed (bool), outcome."""
+def wave_orders(repo: Path, doc: dict, batch_lists: dict, wave: str = WAVE) -> list[dict]:
+    """One row per attempted order: batch, instrument_id, filed (bool), outcome, wave, correction (bool)."""
     rows = []
     for b in doc["batches"]:
         att = b.get("attempted")
@@ -135,23 +148,30 @@ def wave_orders(repo: Path, doc: dict, batch_lists: dict) -> list[dict]:
         if "claims_filed" in b and filed != b["claims_filed"]:
             raise MeasureError(f"batch {b['batch']}: attempted-minus-not_filed={filed} "
                                f"but claims_filed={b['claims_filed']}")
+        corr = b.get("kind") == "correction" or (wave == WAVE and b["batch"] in CORRECTION_BATCHES)
         for i in ids:
             rows.append({"batch": b["batch"], "id": i, "filed": i not in nf,
-                         "outcome": nf.get(i, "filed")})
+                         "outcome": nf.get(i, "filed"), "wave": wave, "correction": corr})
     return rows
 
 
-def _rate_row(key, num, den, source, evidence, pool, note):
+def _rate_row(key, num, den, source, evidence, pool, note, sel=()):
+    waves = sorted({r["wave"] for r in sel}) or [WAVE]
+    by_wave = {w: [sum(1 for r in sel if r["wave"] == w and r["filed"]),
+                   sum(1 for r in sel if r["wave"] == w)] for w in waves}
     return {"key": key, "value": (num / den) if den else None, "num": num, "den": den,
             "unit": "share", "source": source, "evidence": evidence,
-            "population": WAVE, "pool": pool, "n_studies": 1, "note": note}
+            "population": "+".join(waves), "pool": pool, "n_studies": len(waves),
+            "by_wave": by_wave, "note": note}
 
 
-def compute_rates(repo: Path, rows: list[dict], status: dict[str, str]) -> list[dict]:
-    prod = [r for r in rows if r["batch"] not in CORRECTION_BATCHES]
-    corr = [r for r in rows if r["batch"] in CORRECTION_BATCHES]
+def compute_rates(repo: Path, rows: list[dict], status: dict[str, str], pooled_sources=(),
+                  remaining_samples=()) -> list[dict]:
+    prod = [r for r in rows if not r["correction"]]
+    corr = [r for r in rows if r["correction"]]
     ev = _quotes(repo, [('"schema": "tribonian-disposition/v1"', DISPOSITION),
-                        ("instrument_id,provisional_status", READINESS)])
+                        ("instrument_id,provisional_status", READINESS)]
+                 + [('"pool_into_rates": true', src) for src in pooled_sources])
 
     def count(sel):
         return sum(1 for r in sel if r["filed"]), len(sel)
@@ -160,25 +180,37 @@ def compute_rates(repo: Path, rows: list[dict], status: dict[str, str]) -> list[
     for st in ("yes", "no"):
         for era in ("fr", "prefr"):
             sel = [r for r in prod if status.get(r["id"]) == st and era_of(r["id"]) == era]
+            alt = None
+            for w in remaining_samples:
+                smp = [r for r in sel if r["wave"] == w]
+                if len(smp) >= MIN_SAMPLE:
+                    alt = count(sel)
+                    sel = smp
+                    break
             n, d = count(sel)
             out.append(_rate_row(
                 f"filed_per_attempt.{st}.{era}", n, d, DISPOSITION, ev,
-                f"orders attempted in non-correction batches of {WAVE} whose readiness-tracker "
+                f"orders attempted in non-correction batches of {'+'.join(sorted({r['wave'] for r in prod}))} whose readiness-tracker "
                 f"provisional_status is '{st}' and whose EO number is {'>= ' if era == 'fr' else '< '}{FR_FIRST} "
                 f"({'Federal Register index era' if era == 'fr' else 'pre-index era'})",
                 "Share of attempted orders with a claim filed after review and the completion checker. "
-                "Status joined from the tracker as it stands now, not as it stood at attempt time."))
+                "Status joined from the tracker as it stands now, not as it stood at attempt time."
+                + (f" Rate from a random sample of the orders remaining in this stratum ({sel[0]['wave']}); "
+                   f"pooled with earlier waves it would be {alt[0]}/{alt[1]}, but those orders are no longer in the pool."
+                   if alt else ""), sel))
+            if alt:
+                out[-1]["pooled_alternative"] = {"num": alt[0], "den": alt[1], "value": alt[0] / alt[1] if alt[1] else None}
     n, d = count(prod)
     unstrat = sum(1 for r in prod if status.get(r["id"]) not in ("yes", "no"))
     out.append(_rate_row("filed_per_attempt.all", n, d, DISPOSITION, ev,
-                         f"all orders attempted in non-correction batches of {WAVE}",
+                         f"all orders attempted in non-correction batches of {'+'.join(sorted({r['wave'] for r in prod}))}",
                          f"Includes {unstrat} attempted orders whose tracker status is blank or absent, "
-                         "which belong to no yes/no stratum. Correction batches excluded."))
+                         "which belong to no yes/no stratum. Correction batches excluded.", prod))
     n, d = count(corr)
     out.append(_rate_row("filed_per_attempt.correction", n, d, DISPOSITION, ev,
                          f"orders attempted in correction batches {', '.join(CORRECTION_BATCHES)} of {WAVE}",
                          "Correction batches re-attempt orders that earlier batches blocked or rejected, "
-                         "so this rate is conditional on a prior failure and is not comparable to the others."))
+                         "so this rate is conditional on a prior failure and is not comparable to the others.", corr))
     return out
 
 
@@ -292,7 +324,7 @@ def compute_costs(repo: Path, doc: dict, rows: list[dict], usage: list[dict]) ->
         "tokens": wt, "per": "attempted_order", "source": USAGE,
         "basis": f"production.per_attempt + review.per_submitted x submit share ({submitted}/{attempts} = "
                  f"{share:.4f} verdicts per attempted order) + coordination.per_attempt."}
-    filed = sum(1 for x in rows if x["filed"] and x["batch"] not in CORRECTION_BATCHES)
+    filed = sum(1 for x in rows if x["filed"] and not x["correction"] and x["wave"] == WAVE)
     if filed:
         costs["wave.per_filed_dossier"] = {
             "usd": wave_total / filed, "total_usd": wave_total, "denominator": filed, "tokens": wt,
@@ -328,10 +360,23 @@ def scan_other_waves(repo: Path) -> tuple[list[dict], list[dict]]:
             if not _is_disposition(doc) or not all("attempted" in b or "claims_filed" in b for b in doc["batches"]):
                 skipped.append({"source": rel, "reason": "shape differs from tribonian-disposition/v1"})
                 continue
-            waves.append({"wave": d.name,
-                          "attempted": sum(b.get("attempted") or 0 for b in doc["batches"]),
-                          "filed": sum(b.get("claims_filed") or 0 for b in doc["batches"]),
-                          "source": rel, "pooled_into_rates": False})
+            pool = doc.get("pool_into_rates") is True
+            entry = {"wave": d.name,
+                     "attempted": sum(b.get("attempted") or 0 for b in doc["batches"]),
+                     "filed": sum(b.get("claims_filed") or 0 for b in doc["batches"]),
+                     "source": rel, "pooled_into_rates": False}
+            if pool:
+                bl = d / "tools" / "batches.json"
+                if not bl.is_file():
+                    raise MeasureError(f"{rel} asks to pool into rates but {bl.relative_to(repo).as_posix()} is missing")
+                try:
+                    lists = json.loads(bl.read_text(encoding="utf-8"))
+                except json.JSONDecodeError as e:
+                    raise MeasureError(f"{bl.relative_to(repo).as_posix()} is not valid JSON: {e}") from e
+                entry["rows"] = wave_orders(repo, doc, lists, d.name)
+                entry["pooled_into_rates"] = True
+                entry["sample_of_remaining"] = doc.get("sample_of_remaining") is True
+            waves.append(entry)
     return waves, skipped
 
 
@@ -344,13 +389,16 @@ def measure(repo: Path | None = None) -> dict:
     status = load_status(repo)
     rows = wave_orders(repo, doc, batch_lists)
     usage = load_usage(repo)
-    rates = compute_rates(repo, rows, status)
     costs = compute_costs(repo, doc, rows, usage)
-    prod = [r for r in rows if r["batch"] not in CORRECTION_BATCHES]
+    prod = [r for r in rows if not r["correction"]]
     waves = [{"wave": WAVE, "attempted": len(rows), "filed": sum(r["filed"] for r in rows),
               "production_attempted": len(prod), "production_filed": sum(r["filed"] for r in prod),
-              "source": DISPOSITION}]
+              "source": DISPOSITION, "pooled_into_rates": True}]
     more, skipped = scan_other_waves(repo)
+    pooled = [w for w in more if w.get("pooled_into_rates")]
+    all_rows = rows + [r for w in pooled for r in w.pop("rows")]
+    rates = compute_rates(repo, all_rows, status, [w["source"] for w in pooled],
+                          [w["wave"] for w in pooled if w.get("sample_of_remaining")])
     return {"rates": rates, "costs": costs,
             "price_table": PRICE_TABLE, "waves": waves + more, "skipped": skipped}
 

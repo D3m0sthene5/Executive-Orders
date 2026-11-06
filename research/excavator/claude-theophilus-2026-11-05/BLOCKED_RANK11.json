@@ -1,0 +1,334 @@
+{
+ "schema": "theophilus-blocked/v1",
+ "action": "production.one_step_away",
+ "orders": [
+  {
+   "instrument_id": "EO:8399",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b2.jsonl:4",
+   "outcome": "blocked",
+   "reason": "The source the gap names was found by the source ladder but only its hash is held (custody_record_only), so a claim citing it fails the checker.",
+   "first_executable_step": "Retain the exact bytes of https://www.govinfo.gov/content/pkg/STATUTE-59/pdf/STATUTE-59-Pg613.pdf; https://www.govinfo.gov/content/pkg/STATUTE-67/pdf/STATUTE-67-Pg631.pdf; https://www.govinfo.gov/content/pkg/STATUTE-60/pdf/STATUTE-60-Pg1095.pdf (listed in RETENTION_CANDIDATES.json), then a correction producer reads them against the disclosed gap."
+  },
+  {
+   "instrument_id": "EO:9303",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b1.jsonl:20",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: 22 CFR 105. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:9591",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b2.jsonl:19",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: 22 CFR 105.23. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:9922",
+   "blocker": "OPEN_SOURCE_AUDIT:c6b47a03d474",
+   "filed_claim": "claude-mansfield-b03-2026-10-22.jsonl:5",
+   "outcome": "blocked",
+   "reason": "An unresolved independent source-audit hold on the exact filed version (research/readiness/SOURCE_AUDIT_HOLDS.jsonl); it needs clause-specific correction and fresh whole-case review, which the held evidence does not yet support.",
+   "first_executable_step": "Page-image verification of the FR issue (OCR does not pair number and subject columns) and the acting provision; then rebuild under the report-deadline ruling."
+  },
+  {
+   "instrument_id": "EO:10110",
+   "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
+   "filed_claim": "claude-lamm-s03-2026-10-20.jsonl:2",
+   "outcome": "blocked",
+   "reason": "The Opus media step depends on media files the historical Opus records cite but the project has not retrieved or matched; no claim change closes it.",
+   "first_executable_step": "Machine job: refetch the cited Opus media (jobs/opus-media-match / source ladder) and rerun the tracker; no agent work."
+  },
+  {
+   "instrument_id": "EO:10145",
+   "blocker": "OPUS_MEDIA_PARTLY_RESOLVED",
+   "filed_claim": "claude-lamm-s03-2026-10-20.jsonl:3",
+   "outcome": "blocked",
+   "reason": "The Opus media step depends on media files the historical Opus records cite but the project has not retrieved or matched; no claim change closes it.",
+   "first_executable_step": "Machine job: refetch the cited Opus media (jobs/opus-media-match / source ladder) and rerun the tracker; no agent work."
+  },
+  {
+   "instrument_id": "EO:10440",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b7.jsonl:5",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: 5 CFR 6. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:10494",
+   "blocker": "CLAIM_CHECK_FAILED:clause_inventory",
+   "filed_claim": "claude-lambertini-iv01-2026-10-20.jsonl:4",
+   "outcome": "blocked",
+   "reason": "The claim quotes jobs/fr-originals/data/full_run/texts/EO_10494.recheck.txt (text_sha256 759d9370...), where its spans are exact, but the checker's source index does not register that text as a copy of FR hash 88dc5a0d...; it searches only the registered extractions (clause-drafts and fr-originals output texts), whose OCR spacing ('S ection  1.') defeats the match.",
+   "first_executable_step": "Register the recheck text as an extraction of FR-1953-10-16 hash 88dc5a0d in a job SOURCES.jsonl (or have the checker honour the claim's own text_path when its text_sha256 matches); the existing claim then needs no change. A claim-checker or fr-originals change, not production."
+  },
+  {
+   "instrument_id": "EO:10926",
+   "blocker": "CLAIM_CHECK_FAILED:clause_inventory",
+   "filed_claim": "claude-mansfield-b01-2026-10-22.jsonl:2",
+   "outcome": "blocked",
+   "reason": "The cited later event (PEB 135 report, NMB copy) is held only as a hash.",
+   "first_executable_step": "Retain PEB-135-Report.pdf bytes (RETENTION_CANDIDATES.json); the claim then passes unchanged."
+  },
+  {
+   "instrument_id": "EO:10957",
+   "blocker": "OPUS_MEDIA_PARTLY_RESOLVED",
+   "filed_claim": "claude-lamm-s03-2026-10-20.jsonl:6",
+   "outcome": "blocked",
+   "reason": "The Opus media step depends on media files the historical Opus records cite but the project has not retrieved or matched; no claim change closes it.",
+   "first_executable_step": "Machine job: refetch the cited Opus media (jobs/opus-media-match / source ladder) and rerun the tracker; no agent work."
+  },
+  {
+   "instrument_id": "EO:11040",
+   "blocker": "OPEN_SOURCE_AUDIT:07b095eae389",
+   "filed_claim": "claude-mansfield-b03-2026-10-22.jsonl:1",
+   "outcome": "blocked",
+   "reason": "An unresolved independent source-audit hold on the exact filed version (research/readiness/SOURCE_AUDIT_HOLDS.jsonl); it needs clause-specific correction and fresh whole-case review, which the held evidence does not yet support.",
+   "first_executable_step": "Retain PEB-150-Report.pdf bytes (RETENTION_CANDIDATES.json), record the report date as a later_event under the report-deadline ruling, and reconcile the cover/transmittal order-number disagreement on the page image."
+  },
+  {
+   "instrument_id": "EO:11078",
+   "blocker": "OPEN_SOURCE_AUDIT:cf322071f653",
+   "filed_claim": "claude-mansfield-b03-2026-10-22.jsonl:2",
+   "outcome": "blocked",
+   "reason": "An unresolved independent source-audit hold on the exact filed version (research/readiness/SOURCE_AUDIT_HOLDS.jsonl); it needs clause-specific correction and fresh whole-case review, which the held evidence does not yet support.",
+   "first_executable_step": "Acquire the emergency board's report (actual submission date), then record it as a later_event under the report-deadline ruling with a disclosed functionally-spent note."
+  },
+  {
+   "instrument_id": "EO:11262",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b0.jsonl:1",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: Final report presentation date and termination record of the President's Commission on Law. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:11293",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b0.jsonl:3",
+   "outcome": "blocked",
+   "reason": "The source the gap names was found by the source ladder but only its hash is held (custody_record_only), so a claim citing it fails the checker.",
+   "first_executable_step": "Retain the exact bytes of https://www.govinfo.gov/content/pkg/STATUTE-84/pdf/STATUTE-84-Pg2086.pdf; https://www.govinfo.gov/content/pkg/STATUTE-80/pdf/STATUTE-80-Pg1608.pdf; https://www.govinfo.gov/content/pkg/STATUTE-84/pdf/STATUTE-84-Pg2086.pdf; https://www.govinfo.gov/content/pkg/STATUTE-84/pdf/STATUTE-84-Pg91.pdf (listed in RETENTION_CANDIDATES.json), then a correction producer reads them against the disclosed gap."
+  },
+  {
+   "instrument_id": "EO:11299",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b2.jsonl:20",
+   "outcome": "blocked",
+   "reason": "The source the gap names was found by the source ladder but only its hash is held (custody_record_only), so a claim citing it fails the checker.",
+   "first_executable_step": "Retain the exact bytes of https://www.govinfo.gov/content/pkg/STATUTE-82/pdf/STATUTE-82-Pg1369.pdf; https://www.govinfo.gov/content/pkg/STATUTE-82/pdf/STATUTE-82-Pg1369.pdf (listed in RETENTION_CANDIDATES.json), then a correction producer reads them against the disclosed gap."
+  },
+  {
+   "instrument_id": "EO:11367",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b2.jsonl:21",
+   "outcome": "blocked",
+   "reason": "The source the gap names was found by the source ladder but only its hash is held (custody_record_only), so a claim citing it fails the checker.",
+   "first_executable_step": "Retain the exact bytes of https://www.govinfo.gov/content/pkg/STATUTE-84/pdf/STATUTE-84-Pg2085.pdf (listed in RETENTION_CANDIDATES.json), then a correction producer reads them against the disclosed gap."
+  },
+  {
+   "instrument_id": "EO:11409",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b0.jsonl:13",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: Establishing and discontinuing documents of the Cabinet Committee on Price Stability and i. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:11468",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b0.jsonl:16",
+   "outcome": "blocked",
+   "reason": "The source the gap names was found by the source ladder but only its hash is held (custody_record_only), so a claim citing it fails the checker.",
+   "first_executable_step": "Retain the exact bytes of https://www.govinfo.gov/content/pkg/STATUTE-84/pdf/STATUTE-84-Pg719.pdf; https://www.govinfo.gov/content/pkg/STATUTE-84/pdf/STATUTE-84-Pg719.pdf (listed in RETENTION_CANDIDATES.json), then a correction producer reads them against the disclosed gap."
+  },
+  {
+   "instrument_id": "EO:11499",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b0.jsonl:18",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: General Services Administration order or Federal Register organization notice abolishing, . The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:11708",
+   "blocker": "QUARANTINED_RELATIONSHIP_CONFLICT",
+   "filed_claim": "claude-2026-10-18-codif-b6.jsonl:5",
+   "outcome": "blocked",
+   "reason": "Stage 19 causal queue holds quarantined relationship conflicts for this order (research/stage19/output/CAUSAL_QUEUE.csv); no existing ruling resolves them, and the queue is a machine output a production agent may not edit.",
+   "first_executable_step": "Resolve the quarantined relationships in the Stage 19 causal queue (independent relationship review), then the counterevidence step can close on the existing claim."
+  },
+  {
+   "instrument_id": "EO:11812",
+   "blocker": "QUARANTINED_RELATIONSHIP_CONFLICT",
+   "filed_claim": "claude-2026-10-18-codif-b4.jsonl:20",
+   "outcome": "blocked",
+   "reason": "Stage 19 causal queue holds quarantined relationship conflicts for this order (research/stage19/output/CAUSAL_QUEUE.csv); no existing ruling resolves them, and the queue is a machine output a production agent may not edit.",
+   "first_executable_step": "Resolve the quarantined relationships in the Stage 19 causal queue (independent relationship review), then the counterevidence step can close on the existing claim."
+  },
+  {
+   "instrument_id": "EO:11849",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b7.jsonl:15",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: Record of the actual termination (or any renewal) of the Collective Bargaining Committee i. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:11931",
+   "blocker": "OPUS_MEDIA_REFETCH_NEEDED",
+   "filed_claim": "claude-y2lead-02-2026-10-20.jsonl:1",
+   "outcome": "blocked",
+   "reason": "The Opus media step depends on media files the historical Opus records cite but the project has not retrieved or matched; no claim change closes it.",
+   "first_executable_step": "Machine job: refetch the cited Opus media (jobs/opus-media-match / source ladder) and rerun the tracker; no agent work."
+  },
+  {
+   "instrument_id": "EO:11941",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b2.jsonl:22",
+   "outcome": "blocked",
+   "reason": "The source the gap names was found by the source ladder but only its hash is held (custody_record_only), so a claim citing it fails the checker.",
+   "first_executable_step": "Retain the exact bytes of https://www.govinfo.gov/content/pkg/STATUTE-89/pdf/STATUTE-89-Pg419.pdf (listed in RETENTION_CANDIDATES.json), then a correction producer reads them against the disclosed gap."
+  },
+  {
+   "instrument_id": "EO:11971",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b7.jsonl:16",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: no fetch-ladder route recorded. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:11973",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b7.jsonl:17",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: no fetch-ladder route recorded. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:11998",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b7.jsonl:18",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: no fetch-ladder route recorded. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:12076",
+   "blocker": "QUARANTINED_RELATIONSHIP_CONFLICT",
+   "filed_claim": "claude-lambertini-i08-2026-10-20.jsonl:2",
+   "outcome": "blocked",
+   "reason": "Stage 19 causal queue holds quarantined relationship conflicts for this order (research/stage19/output/CAUSAL_QUEUE.csv); no existing ruling resolves them, and the queue is a machine output a production agent may not edit.",
+   "first_executable_step": "Resolve the quarantined relationships in the Stage 19 causal queue (independent relationship review), then the counterevidence step can close on the existing claim."
+  },
+  {
+   "instrument_id": "EO:12335",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b1.jsonl:14",
+   "outcome": "blocked",
+   "reason": "The source the gap names was found by the source ladder but only its hash is held (custody_record_only), so a claim citing it fails the checker.",
+   "first_executable_step": "Retain the exact bytes of https://web.archive.org/web/20261011070632id_/https://www.ssa.gov/history/reports/gspan.html (listed in RETENTION_CANDIDATES.json), then a correction producer reads them against the disclosed gap."
+  },
+  {
+   "instrument_id": "EO:12401",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b1.jsonl:15",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: no fetch-ladder route recorded. The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:12433",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b1.jsonl:16",
+   "outcome": "blocked",
+   "reason": "The report receipt is recorded in held text (EO 12439: statement dated January 10, 1984) but the source is custody_record_only.",
+   "first_executable_step": "The Public Papers 1984 volume text (range read) records the report date, but its bytes are not held (895 MB volume, range-read only); the checker needs a byte-range custody route for PPP-1984-book1 (or a held Weekly Compilation page) before a claim can cite it."
+  },
+  {
+   "instrument_id": "EO:12439",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b1.jsonl:17",
+   "outcome": "blocked",
+   "reason": "The report receipt is recorded in held text (EO 12439: statement dated January 10, 1984) but the source is custody_record_only.",
+   "first_executable_step": "The Public Papers 1984 volume text (range read) records the report date, but its bytes are not held (895 MB volume, range-read only); the checker needs a byte-range custody route for PPP-1984-book1 (or a held Weekly Compilation page) before a claim can cite it."
+  },
+  {
+   "instrument_id": "EO:12487",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b2.jsonl:23",
+   "outcome": "blocked",
+   "reason": "No held source establishes the date the claim leaves open; a deadline or outer limit is not evidence of the event (2026-10-28 ruling).",
+   "first_executable_step": "Acquire the record the gap names: Judicial-salary pay period that began on or after 1985-01-01 (first applicable pay period . The source ladder built no route; it needs a hand-specified official locator (Weekly Compilation, Public Papers page, agency organization order or the commission report) added to FETCH_QUEUE.jsonl."
+  },
+  {
+   "instrument_id": "EO:12499",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b1.jsonl:19",
+   "outcome": "blocked",
+   "reason": "The source the gap names was found by the source ladder but only its hash is held (custody_record_only), so a claim citing it fails the checker.",
+   "first_executable_step": "Retain the exact bytes of https://www.govinfo.gov/content/pkg/STATUTE-98/pdf/STATUTE-98-Pg2492.pdf (listed in RETENTION_CANDIDATES.json), then a correction producer reads them against the disclosed gap."
+  },
+  {
+   "instrument_id": "EO:12502",
+   "blocker": "CLAIM_INCOMPLETE:ending_or_current_basis",
+   "filed_claim": "claude-2026-10-18-codif-b1.jsonl:18",
+   "outcome": "blocked",
+   "reason": "The source the gap names was found by the source ladder but only its hash is held (custody_record_only), so a claim citing it fails the checker.",
+   "first_executable_step": "Retain the exact bytes of https://www.govinfo.gov/content/pkg/STATUTE-98/pdf/STATUTE-98-Pg2492.pdf (listed in RETENTION_CANDIDATES.json), then a correction producer reads them against the disclosed gap."
+  },
+  {
+   "instrument_id": "EO:13101",
+   "blocker": "OPEN_SOURCE_AUDIT:25b1b285a4bd",
+   "filed_claim": "claude-lambertini-i06-2026-10-20.jsonl:2",
+   "outcome": "blocked",
+   "reason": "An unresolved independent source-audit hold on the exact filed version (research/readiness/SOURCE_AUDIT_HOLDS.jsonl); it needs clause-specific correction and fresh whole-case review, which the held evidence does not yet support.",
+   "first_executable_step": "Correct the flagged clause-specific first-cessation reasoning (Valla method review) with performance evidence per clause; no held performance source is identified yet."
+  },
+  {
+   "instrument_id": "EO:13148",
+   "blocker": "OPEN_SOURCE_AUDIT:52d55ba81e65",
+   "filed_claim": "claude-lambertini-i06-2026-10-20.jsonl:3",
+   "outcome": "blocked",
+   "reason": "An unresolved independent source-audit hold on the exact filed version (research/readiness/SOURCE_AUDIT_HOLDS.jsonl); it needs clause-specific correction and fresh whole-case review, which the held evidence does not yet support.",
+   "first_executable_step": "Correct the flagged clause-specific first-cessation reasoning (Valla method review) with performance evidence per clause; no held performance source is identified yet."
+  },
+  {
+   "instrument_id": "EO:13783",
+   "blocker": "OPEN_SOURCE_AUDIT:86fff0118845",
+   "filed_claim": "claude-lambertini-i07-2026-10-20.jsonl:1",
+   "outcome": "blocked",
+   "reason": "An unresolved independent source-audit hold on the exact filed version (research/readiness/SOURCE_AUDIT_HOLDS.jsonl); it needs clause-specific correction and fresh whole-case review, which the held evidence does not yet support.",
+   "first_executable_step": "Correct the flagged clause-specific first-cessation reasoning (Valla method review) with performance evidence per clause; no held performance source is identified yet."
+  },
+  {
+   "instrument_id": "EO:13792",
+   "blocker": "OPEN_SOURCE_AUDIT:06a353a3f28f",
+   "filed_claim": "claude-lambertini-s02-2026-10-20.jsonl:3",
+   "outcome": "blocked",
+   "reason": "An unresolved independent source-audit hold on the exact filed version (research/readiness/SOURCE_AUDIT_HOLDS.jsonl); it needs clause-specific correction and fresh whole-case review, which the held evidence does not yet support.",
+   "first_executable_step": "Retain the cited report bytes (RETENTION_CANDIDATES.json) and redo the report-command first ends clause by clause (Valla hold)."
+  },
+  {
+   "instrument_id": "EO:13807",
+   "blocker": "OPEN_SOURCE_AUDIT:e5976fcb8d00",
+   "filed_claim": "claude-lambertini-i07-2026-10-20.jsonl:2",
+   "outcome": "blocked",
+   "reason": "An unresolved independent source-audit hold on the exact filed version (research/readiness/SOURCE_AUDIT_HOLDS.jsonl); it needs clause-specific correction and fresh whole-case review, which the held evidence does not yet support.",
+   "first_executable_step": "Retain M-18-25 bytes (RETENTION_CANDIDATES.json) and redo the initial-task first ends clause by clause (Valla hold)."
+  },
+  {
+   "instrument_id": "EO:14006",
+   "blocker": "QUARANTINED_RELATIONSHIP_CONFLICT",
+   "filed_claim": "claude-lambertini-b02-2026-10-20.jsonl:3",
+   "outcome": "blocked",
+   "reason": "Stage 19 causal queue holds quarantined relationship conflicts for this order (research/stage19/output/CAUSAL_QUEUE.csv); no existing ruling resolves them, and the queue is a machine output a production agent may not edit.",
+   "first_executable_step": "Resolve the quarantined relationships in the Stage 19 causal queue (independent relationship review), then the counterevidence step can close on the existing claim."
+  }
+ ]
+}

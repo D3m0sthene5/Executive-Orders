@@ -1,3 +1,23 @@
+## 2026-11-05 (Claude, Theophilus wave: Bentham ranks 8 and 11)
+
+- **Filed 41 reviewed claims** (`research/readiness/claims/claude-2026-11-05-theophilus-{r01,r02,r03}.jsonl`) from the 48 custody-stranded 2026-11-04 claims, plus 1 owner-reviewable replacement proposal (EO 12743, `research/excavator/claude-theophilus-2026-11-05/p01/REPLACEMENT_PROPOSAL.jsonl`). Each filing passed the actual checker and two fresh Opus blind arms; 4 of 4 controls caught by both arms. Certified 0. Kean F-20261105-theophilus.
+- **Method:** the actual checker ran offline on the 48 exact reviewed lines (from `claude/tribonian-state`) before any model: 32 clean, 12 hidden `too_short_to_verify` quotes, 4 OCR or text-registration failures. The clean 32 were reapplied unchanged (dossier fingerprints equal) and reviewed fresh; the other 16 went to a Sonnet correction producer.
+- **Not filed:** EO 13900, 13965 (both arms: "section 5(d)" not in the held texts); EO 14012 (sec. 6 revocation exhausted on issuance); EO 8341, 8613, 8639 (OCR order-number tokens in the only ending source); EO 10570 and (rank 11) EO 10494 (the recheck text is not registered for the FR hash, a checker or fr-originals fix); EO 9789 (EO 9818 OCR garbles; audit still open).
+- **Rank 11:** 2 of 43 were closable from held bytes. The other 41 are recorded in `BLOCKED_RANK11.json` with first steps. Next: one bounded retention run over the 15 hash-only ladder finds in `RETENTION_CANDIDATES.json` (statutes, reorganization plans, PEB reports), then a correction batch for those orders.
+- **Gate:** CONTINUE, then PILOT. $73.46 API-equivalent (`sessions.py`; coordination $40.16). Workers ran as headless `claude -p` sessions (`tools/launch.sh`).
+- **@Owner:** adopt or reject the EO 12743 replacement proposal (its canonical filename would be shadowed by `claude-lambertini-iv01-2026-10-20.jsonl`). A-20261103-1 and A-20261104-1 remain open.
+- **Error:** disk cleanup deleted r02 `complete-v1`'s bulky receipts. TALLY, EXCEPTIONS, PUBLICATION and the log survive, and the claims file's hash matches.
+
+## 2026-11-05 (Claude, ice core probe of the remaining claim-ready orders)
+
+- **Sampled:** 30 orders by decade from each remaining claim-ready stratum (886 NO, 359 YES), one batch each, no substitutions; Sonnet producers, two independent blind Opus reviewers with planted controls, filed only when both upheld. Report: `research/excavator/claude-icecore-2026-11-05/REPORT.md`; Kean F-20261105-icecore.
+- **Filed 12** (`research/readiness/claims/claude-2026-11-05-icecore-{no,yes}.jsonl`): NO 1 of 30, YES 11 of 30. Controls 2 of 2 caught by both arms. Certified 0.
+- **NO stratum is mostly unworkable as drafted:** 25 of 26 assigned orders lack a held ending source (unrevoked land withdrawals, First War Powers Act and IRC return-inspection expiry texts, report-dated boards). Tribonian's 47.6% came from orders it had already drawn off the top of the stratum.
+- **YES works on the `original_plus_bounded_search` route.** Blocks: NEA continuation notices (EO 12957, 13553, 13611), later orders held only as mirrors (EO 13286, 11051, 11610), PLO 326, current 33 CFR Part 6. Three upheld claims (EO 12019, 12293, 12748) failed completion on custody-only later-event sources; seven sampled originals are custody-only (listed in the report).
+- **Bentham:** `measure.py` now pools waves that opt in (`pool_into_rates`) and takes a stratum's rate from a sample of the remaining orders (`sample_of_remaining`, at least 30 attempts). NO falls to 5.2 dossiers per $100 (rank 13) and YES enters at 56.7 (rank 10). Gate STOP. Cost $59.25 API-equivalent, from `sessions.py`.
+- **Next:** do not run the NO wave; retain the custody-only bytes named in the report (10 sampled orders); acquire the NEA notices (Theophilus sources job) and register official FR texts for mirror-only later orders; screen producer-added later-event sources for custody before review.
+- **@Owner:** EO 9717, 9555 and 13472 have incomplete Astra claims and need an owner route or a replacement proposal. A-20261103-1 and A-20261104-1 remain open.
+
 ## 2026-11-05 (Claude, Gessner cards: one card per executive order)
 
 - **Built** `jobs/gessner-cards/`: joins `readiness-tracker/output/READINESS_BY_ORDER.csv` with `domesday-register/output/REGISTER.csv` into `output/CARDS.html`, a self-contained page with one card per order (number, date, president, title, provisional status, segmented step bar, ready flag; detail panel with blockers in plain English, best document held, transcription-replacement obligation), pipeline counts, and a per-president mosaic. Runs `DAILY` and after both inputs (`after.txt`); tests first. Owner's copy: https://claude.ai/artifact/3dFdZuMP4Yg5cTVbe9VYhS (private until shared). Kean F-20261105-1.
