@@ -1,0 +1,823 @@
+{
+ "batches": [
+  {
+   "batch": "y01",
+   "plants": [
+    {
+     "instrument_id": "EO:10153",
+     "planted_claim_sha256": "f19c79f4dc24533cc160f7e29401c6d19613acaaa3887264e8178bae3b5fee67",
+     "type": "date_shift_end",
+     "defect": "every first_end and whole_order_end date moved back three years"
+    },
+    {
+     "instrument_id": "EO:9667",
+     "planted_claim_sha256": "eae30016c7c6ad929c58707739414757ffedb82bc6ab5ada49b51f8aeee4f5aa",
+     "type": "mountweazel_D3",
+     "defect": "Mountweazel D3 (D3.0) on field operative_clauses[0].first_end.source.quote; locus terms ['quote', 'first_end', 'operative']; the real text says: ' revoked under proper authority.\\n6. All provisions of prior Executive \\norders in conflict with this order are \\namended accordingly.\\n7. This order shall be effective as of the \\nOpening of business Janu'"
+    }
+   ],
+   "reviews": [
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:10057",
+     "claim_sha256": "6dcc836a2ecb10140edd6a72993464fbd1aba023a534e4ba3015eb537d695c88",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hashes and all quoted spans verified. Three-paragraph inventory complete. Para 3 use window 'prior to July 1, 1949' ends 1949-06-30 by own terms; EO 10087 (signed 1949-12-03, takes effect on signing, no delayed date) rewrites paras 1 and 3 and is correctly a later event, not an end. Para 2 never amended. Current predicate: 36 U.S.C. 2111(b)(1)(A) and note set out EO 10057 as amended by EO 10087; no revocation found in cruden number search (EO 10087, 10088 same page, 1989 OFR snapshot, Code). Minor: the 1989 OFR snapshot also bracket-notes a technical Bureau-of-the-Budget->OMB amendment of para 3 by EO 12608 (1987), not recorded as a later event, but it concerns an already-terminated clause and does not change any outcome."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:10057",
+     "claim_sha256": "6dcc836a2ecb10140edd6a72993464fbd1aba023a534e4ba3015eb537d695c88",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "The three numbered commands are represented. EO 10087 amends paragraphs 1 and 3 on December 3, 1949; the original and renewed fund-use windows are correctly distinguished. Paragraphs 1 and 2 continue as amended or reserved; 36 U.S.C. 2111 recognizes the transfer. No held-number hit supplies an earlier revocation. Searches and custody limits are described."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:10057",
+     "claim_sha256": "6dcc836a2ecb10140edd6a72993464fbd1aba023a534e4ba3015eb537d695c88",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Quotes and hashes verified. Three paragraphs complete. EO 10087 (signed 1949-12-03, no effective-date wording) amends paras 1 and 3 as stated (checked text: 'prior to July 1, 1950'). Para 3 own-terms lapse 1949-06-30 correct (inclusive, exclusive alt stated). 36 U.S.C. 2111(b)(1)(A) and notes in held usc-t36-s2111.txt cite EO 10057 as amended by 10087; cruden hits are only 10087, 10088 (same page), 1989 OFR, Code. Searches honestly described. Note: first_end source quote is a truncated prefix of the whole-order span, but span and held text support the date."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:10057",
+     "claim_sha256": "6dcc836a2ecb10140edd6a72993464fbd1aba023a534e4ba3015eb537d695c88",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hashes and spans match. Three paragraphs, complete. EO 10087 (signed Dec 3, 1949, no delayed effective date) amends paras 1 and 3 (window to before July 1, 1950); para 3 own-terms end 1949-06-30 inclusive is accurate and the re-grant is disclosed. Para 1 outer date Dec 31, 1951 confirmed; 36 U.S.C. 2111(b)(1)(A) held and refers to EO 10057 as amended; cruden finds only EO 10087, 10088 (page overlap), OFR 1989, Code. No revocation found; predicate to 2026-10-14 honestly bounded."
+    },
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:10104",
+     "claim_sha256": "fb03ad49c7b8ab5de1c5cb19a4f63626bbc82abf90e1cea7f30e005ea267cb62",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hashes and spans verified; order read in full: lead, item 1(a)-(f), items 2 and 3, supersession of EO 8381 sits in item 3 span; inventory complete. No own-terms end. Number search finds only EO 10102/10103 page-overlap hits, 1989 OFR snapshot, 36 CFR 902.51, DoD regulation; 18 U.S.C. 795 note prints the order with no ending. Original_plus_bounded_search route honestly described with edition limits."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:10104",
+     "claim_sha256": "fb03ad49c7b8ab5de1c5cb19a4f63626bbc82abf90e1cea7f30e005ea267cb62",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses",
+       "claim_says": "Ten operative scopes; the supersession of EO 8381 is included in the continuing item 3 scope without a first end.",
+       "source_says": "The order separately commands that it supersedes EO 8381 on February 1, 1950. This executed command needs its own terminated lifecycle, distinct from the continuing item 3 definition."
+      }
+     ],
+     "reasoning": "The standing definitions have no shown sunset and the bounded search found no ending. The closing sentence nevertheless performs a separate supersession of EO 8381. Bundling that spent command into an operative item 3 scope omits its terminated lifecycle from the asserted complete inventory."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:10104",
+     "claim_sha256": "fb03ad49c7b8ab5de1c5cb19a4f63626bbc82abf90e1cea7f30e005ea267cb62",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Quotes and hashes verified; ten clauses cover lead, items 1(a)-(f), 2, 3 with supersession of EO 8381 in item 3 span; no own-terms end. Cruden number search: only EO 10102/10103 page overlaps (TOC/page text), 1989 OFR, DoD reg, 36 CFR 902.51; the 18 U.S.C. 795 note in held usc-t18-s795.txt prints the order as a note with no ending. Other 10104 digit hits are page/doc numbers. Continuing predicate honestly bounded."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:10104",
+     "claim_sha256": "fb03ad49c7b8ab5de1c5cb19a4f63626bbc82abf90e1cea7f30e005ea267cb62",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hashes and all spans match. Order read in full: lead, items 1 (a)-(f), 2, 3 and closing supersession of EO 8381 (inside item 3 span, signing-date act) all covered. Cruden number search: only EO 10102/10103 page overlaps, 1989 OFR snapshot and 36 CFR 902.51 cite it; no amendment or revocation. Original_plus_bounded_search route honestly described with edition limits."
+    },
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:10153",
+     "claim_sha256": "f19c79f4dc24533cc160f7e29401c6d19613acaaa3887264e8178bae3b5fee67",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:10153#s2].first_end.date",
+       "claim_says": "1986-07-21",
+       "source_says": "EO 12683 is dated July 21, 1989 (54 FR 31162, published July 26, 1989); the claim's own judgment_reason and later_events say 1989-07-21"
+      },
+      {
+       "field": "operative_clauses[EO:10153#s4].first_end.date",
+       "claim_says": "1947-09-01",
+       "source_says": "Section 4 makes the order effective September 1, 1950; the date should be 1950-09-01, as the judgment_reason and rationale imply"
+      }
+     ],
+     "reasoning": "Hashes and quoted spans verified, inventory of four sections complete, EO 10649 and EO 12683 correctly treated as amendments of section 1 and renumbering of section 3, and section 2 deleted by EO 12683. But two first_end dates are wrong and internally inconsistent with the claim's own reasons: s2 end dated 1986 instead of 1989-07-21, and s4 end dated 1947 instead of 1950-09-01. Rejected on dates despite the YES outcome being plausible."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:10153",
+     "claim_sha256": "f19c79f4dc24533cc160f7e29401c6d19613acaaa3887264e8178bae3b5fee67",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[1].first_end.date",
+       "claim_says": "1986-07-21",
+       "source_says": "EO 12683 deletes section 2 and is dated July 21, 1989; no delayed effective date appears."
+      },
+      {
+       "field": "operative_clauses[3].first_end.date",
+       "claim_says": "1947-09-01",
+       "source_says": "Section 4 of EO 10153 states that the order becomes effective September 1, 1950."
+      }
+     ],
+     "reasoning": "The source texts and hashes support the amendment sequence, but two structured first-end dates are demonstrably wrong. The prose itself gives the correct 1989 and 1950 years, making the claim internally inconsistent."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:10153",
+     "claim_sha256": "f19c79f4dc24533cc160f7e29401c6d19613acaaa3887264e8178bae3b5fee67",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:10153#s2].first_end.date",
+       "claim_says": "1986-07-21",
+       "source_says": "EO 12683 is 'of July 21, 1989' (54 FR 31162, signed July 21, 1989); the claim's own judgment_reason and later_events say 1989-07-21"
+      },
+      {
+       "field": "operative_clauses[EO:10153#s4].first_end.date",
+       "claim_says": "1947-09-01",
+       "source_says": "Section 4: 'This order shall become effective on September 1, 1950'; judgment_reason and rationale say 1950-09-01"
+      }
+     ],
+     "reasoning": "Two first_end dates contradict the cited sources and the claim's own reasons (s2 1986 vs 1989; s4 1947 vs 1950). Otherwise hashes/quotes verified, EO 12683 deletion of section 2 confirmed, EO 10649 effective 1956-01-01 confirmed."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:10153",
+     "claim_sha256": "f19c79f4dc24533cc160f7e29401c6d19613acaaa3887264e8178bae3b5fee67",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:10153#s2].first_end.date",
+       "claim_says": "1986-07-21",
+       "source_says": "EO 12683 is of July 21, 1989 (FR 1989-07-26); the claim's own judgment_reason says July 21, 1989"
+      },
+      {
+       "field": "operative_clauses[EO:10153#s4].first_end.date",
+       "claim_says": "1947-09-01",
+       "source_says": "EO 10153 section 4: effective September 1, 1950; the claim's own reason and rationale say 1950-09-01"
+      }
+     ],
+     "reasoning": "Hashes and spans verified. Order has four sections; inventory complete. Two first_end dates are wrong and contradict the claim's own reasoning: s2 deletion by EO 12683 dated 1986 instead of 1989; s4 effective date 1947 instead of 1950. Sections 1 and 3 continuing analysis otherwise plausible."
+    },
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:6825",
+     "claim_sha256": "aec7b972d1d5ce41b9e7bdfaef4261bd97b2b61a92d3b2d10132685e5f64ca15",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hash of held APP text re-verified; MIRROR_DOCUMENTS row with same sha256 names EO 6825, date 1934-08-20, subject agrees, text_sha256 equals held file. Quotes match. Single time-limited exemption 'until September 1, 1935' ends by own terms, recorded inclusive 1935-09-01 with exclusive alternative stated. Cruden number search: 0 hits for EO:6825, so no earlier end or later order. Savings reasoning consistent."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:6825",
+     "claim_sha256": "aec7b972d1d5ce41b9e7bdfaef4261bd97b2b61a92d3b2d10132685e5f64ca15",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "The held transcription and matching APP mirror record agree on number, date, subject and hash. The sole operative exemption runs until September 1, 1935; the inclusive endpoint and accrued-service treatment are supported. The held-number search returned no later citing order. The transcription limitation is disclosed."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:6825",
+     "claim_sha256": "aec7b972d1d5ce41b9e7bdfaef4261bd97b2b61a92d3b2d10132685e5f64ca15",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "APP mirror text hash and page record (MIRROR_DOCUMENTS sha 31a38260..., node 373181, date 1934-08-20, text_sha256 matches) verified; quotes verified; 'until September 1, 1935' own-terms end, inclusive with exclusive alt stated. Cruden number search: 0 hits; Wittenauer appears only in EO 6610 and 6825, so 'no later order names it' holds. EO 7725 (1937-10-12, sec 204, to Nov 1, 1938) corroboration verified."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:6825",
+     "claim_sha256": "aec7b972d1d5ce41b9e7bdfaef4261bd97b2b61a92d3b2d10132685e5f64ca15",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hash and spans match APP text; text identical to the held GPO printing (mabillon EO_6825). Single time-limited exemption until September 1, 1935, own terms, inclusive reading with exclusive alternative stated. Cruden number search: 0 hits; name search finds only EO 6610 (earlier grant) and 6825. EO 7725 (Oct 1937, to Nov 1, 1938) confirmed as a sec. 204 corroboration. Savings reasonable."
+    },
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:9667",
+     "claim_sha256": "eae30016c7c6ad929c58707739414757ffedb82bc6ab5ada49b51f8aeee4f5aa",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:9667#whole].first_end.source.quote (and whole_order_end.source.quote)",
+       "claim_says": "First-end/whole-order-end source is a quote (1707 chars) offered to show the revocation on December 28, 1945, with char_start 0, char_end 8304",
+       "source_says": "The 1707-character quote is only the opening of the held text (tail of the preceding order, ends mid-sentence 'or'); it contains neither 'hereby revoked' nor the 'December 28, 1945' signature date. Quote length 1707 does not match span 0-8304. The ending is at about chars 2285-2700 of the file, outside the quoted words."
+      }
+     ],
+     "reasoning": "Hash of EO_9667.txt verified; revocation of EO 9074, signed Dec 28, 1945, filed Dec 29, is correct and substance of the date/mechanism is right; original_operative_text quote matches. No later or earlier end found (cruden: only EO_9666 contents cross-reference). However the cited ending source quote does not say what the claim says (no revocation words, no date) and is inconsistent with its own char range, so the ending evidence is defective; rejected for the quote/source mismatch."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:9667",
+     "claim_sha256": "eae30016c7c6ad929c58707739414757ffedb82bc6ab5ada49b51f8aeee4f5aa",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[0].first_end.source; whole_order_end.source",
+       "claim_says": "char_start 0, char_end 8304, with a 1,707-character quote ending mid-sentence in the preceding order.",
+       "source_says": "The cited 0–8304 span is the full held text layer. The supplied quote stops before EO 9667 and omits the revocation and December 28, 1945 date; it does not match its declared span or support the claimed ending."
+      }
+     ],
+     "reasoning": "The order itself revokes EO 9074 on its December 28, 1945 signature date, and the one-command inventory is substantively plausible. Both structured ending citations, however, give a truncated quote from the preceding order while claiming the full-file span; the quoted source does not contain the ending relied on."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:9667",
+     "claim_sha256": "eae30016c7c6ad929c58707739414757ffedb82bc6ab5ada49b51f8aeee4f5aa",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hash verified; quote in text (prefix quote of whole span, truncated, does not itself show the revocation sentence, but the clause source quote and held text do). Order text: revokes EO 9074; signed Dec 28, 1945, filed Dec 29. Self-executing, no effective-date wording. Cruden: only EO_9666 TOC cross-reference. Rationale facts match source (preceding order's effective-January-28-1946 section precedes heading)."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:9667",
+     "claim_sha256": "eae30016c7c6ad929c58707739414757ffedb82bc6ab5ada49b51f8aeee4f5aa",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:9667#whole].first_end.source.quote",
+       "claim_says": "quote (1707 chars) with char range 0-8304 of EO_9667.txt",
+       "source_says": "The quote is only a prefix excerpt of the text (the preceding order's paragraphs 3-5); it contains neither the revoking words \"hereby revoked\" nor the date \"December 28, 1945\", and does not equal the bytes at the stated range (which are the 8304-char whole text). The cited ending source as quoted does not show the ending."
+      }
+     ],
+     "reasoning": "Hashes match. Substance checked: single sentence revokes EO 9074, signed December 28, 1945, no effective-date wording; cruden number search finds only EO_9666 cross-reference; date, actor and mechanism are right, and original_source quote (2285-2630) is exact. Rejected only because the first_end source quote does not match its stated span and omits the ending words."
+    }
+   ]
+  },
+  {
+   "batch": "y02",
+   "plants": [
+    {
+     "instrument_id": "EO:11219",
+     "planted_claim_sha256": "f36c4f4d1dd6b5c8e1267b1f99308118f9f32a77c32df86cffe320477ab1e9a5",
+     "type": "date_shift_event",
+     "defect": "every later_events effective date moved back three years"
+    },
+    {
+     "instrument_id": "EO:12295",
+     "planted_claim_sha256": "38ec7c8ee510af82674c7dd795a49f37cb6ce8258d53a1d23a57a81b7b761ad3",
+     "type": "mountweazel_D6",
+     "defect": "Mountweazel D6 (D6.0.1) on field operative_clauses[0].later_events[1]; locus terms ['later_events', 'EO:12608', '12608', '1987-09-09']; the real text says: \"express_revocation (formal; the order's extension had expired on March 10, 1982)\""
+    }
+   ],
+   "reviews": [
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:11219",
+     "claim_sha256": "f36c4f4d1dd6b5c8e1267b1f99308118f9f32a77c32df86cffe320477ab1e9a5",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[1].later_events[0].effective_date",
+       "claim_says": "1976-01-01 for EO 12107 substitution of OPM",
+       "source_says": "EO 12107 was signed 1978-12-28; section 2-404 makes it effective 1979-01-01."
+      },
+      {
+       "field": "operative_clauses[1,3,13].later_events.effective_date",
+       "claim_says": "1978-02-15 for EO 12292 amendments",
+       "source_says": "EO 12292 was signed 1981-02-23; section 11 makes it effective as of 1981-02-15."
+      },
+      {
+       "field": "operative_clauses[0].state_at_cutoff",
+       "claim_says": "The lead recital and ordering formula are a separately operative clause.",
+       "source_says": "The lead states authority and introduces sections 1–5; it contains no independent operative command."
+      }
+     ],
+     "reasoning": "The original continues to support a current appointment route, and the later instruments amend it rather than revoke it. However, the claim gives impossible effective dates for both amendments, despite correctly naming their real dates in its rationale. The separately operative lead is also an inventory error. These factual defects require rejection regardless of the likely YES outcome."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:11219",
+     "claim_sha256": "f36c4f4d1dd6b5c8e1267b1f99308118f9f32a77c32df86cffe320477ab1e9a5",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:11219#s1].later_events[EO:12107].effective_date",
+       "claim_says": "1976-01-01",
+       "source_says": "EO 12107 sec. 2-404: effective January 1, 1979 (the claim's own prose says 1979-01-01)"
+      },
+      {
+       "field": "operative_clauses[s1,s1b,s5].later_events[EO:12292].effective_date",
+       "claim_says": "1978-02-15",
+       "source_says": "EO 12292 sec. 11: effective as of February 15, 1981 (the claim's own prose says 1981-02-15)"
+      }
+     ],
+     "reasoning": "Outcome (YES, no revocation; EO 12292 sec.10 omits 11219; 12107/12292 only amend) appears right, but the structured later-event effective dates are wrong and contradict the claim's own judgment_reason text. Rejected for wrong dates and internal inconsistency."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:11219",
+     "claim_sha256": "f36c4f4d1dd6b5c8e1267b1f99308118f9f32a77c32df86cffe320477ab1e9a5",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[1].later_events[0].effective_date (EO:12107)",
+       "claim_says": "1976-01-01",
+       "source_says": "EO 12107 (signed 1978-12-28) states provisions effective on January 1, 1979; the claim's own rationale also says effective 1979-01-01. 1976 predates the order."
+      },
+      {
+       "field": "operative_clauses[1,3,13].later_events (EO:12292) effective_date",
+       "claim_says": "1978-02-15",
+       "source_says": "EO 12292 of February 23, 1981, Sec. 11: effective as of February 15, 1981; the claim's own rationale says 1981-02-15. 1978 predates the order."
+      }
+     ],
+     "reasoning": "Quotes, inventory and the YES predicate reasoning look sound, but the structured later-event effective dates for EO 12107 and EO 12292 are wrong by three years and contradict both the sources and the claim's own rationale. Every later event requires an accurate effective date, so the claim is rejected."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:11219",
+     "claim_sha256": "f36c4f4d1dd6b5c8e1267b1f99308118f9f32a77c32df86cffe320477ab1e9a5",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[1].later_events[0].effective_date (EO:12107)",
+       "claim_says": "1976-01-01",
+       "source_says": "EO 12107 sec. 2-404 / text: effective January 1, 1979 (claim's own rationale says 1979-01-01)"
+      },
+      {
+       "field": "operative_clauses[1,3,13].later_events (EO:12292).effective_date",
+       "claim_says": "1978-02-15",
+       "source_says": "EO 12292 sec. 11: effective as of February 15, 1981 (claim's own rationale says 1981-02-15)"
+      }
+     ],
+     "reasoning": "All hashes/quotes verified, inventory complete, no revocation found (cruden: only EO 12292 amendment and CFR references), 5 CFR 315.606/315.201 support continuing predicate. But the structured later-event effective dates are wrong and contradict the rationale; rejected as internally inconsistent."
+    },
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:12295",
+     "claim_sha256": "38ec7c8ee510af82674c7dd795a49f37cb6ce8258d53a1d23a57a81b7b761ad3",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[0].first_end; whole_order_end",
+       "claim_says": "First end 1982-03-10 by expiry of EO 12295’s own term; EO 12351 did not alter its extension.",
+       "source_says": "EO 12351, signed 1982-03-09, extended the same statutory cooperation period from the period extended by EO 12193 and EO 12295 to 1983-03-10. It superseded the March 1982 endpoint before that endpoint arrived; EO 12608’s 1987 revocation was later formal cleanup."
+      }
+     ],
+     "reasoning": "The claim accurately quotes EO 12295’s stated 1982 date and EO 12351’s 1982-03-09 successor action. But EO 12351 changed the duration of the very statutory period EO 12295 had extended, one day before the claimed own-terms end. The assertion that the earlier extension was unaltered, and thus the claimed first-end mechanism and date, is internally inconsistent with that held source."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:12295",
+     "claim_sha256": "38ec7c8ee510af82674c7dd795a49f37cb6ce8258d53a1d23a57a81b7b761ad3",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "One-sentence extension order; single clause complete. 'to March 10, 1982' is an own-terms end; EO 12351 (new separate extension, signed 1982-03-09) and EO 12608 (1987 revocation) correctly recorded as later events, not the end. Quotes, hashes, dates and searches check out. Minor: exclusive reading of 'to' date not stated, not a factual defect."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:12295",
+     "claim_sha256": "38ec7c8ee510af82674c7dd795a49f37cb6ce8258d53a1d23a57a81b7b761ad3",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "One operative sentence extends the statutory period 'to March 10, 1982'; own-terms expiry, later 12351 is a separate extension, 12608 is the later formal revocation, as the claim says. Minor: the claim does not state the inclusive/exclusive reading of 'to March 10, 1982' required by the until-date ruling; not a factual error."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:12295",
+     "claim_sha256": "38ec7c8ee510af82674c7dd795a49f37cb6ce8258d53a1d23a57a81b7b761ad3",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "whole_order_end / first_end / research_rationale",
+       "claim_says": "Ended March 10, 1982 by expiry, recorded as the stated date with no statement of the alternative reading",
+       "source_says": "Order extends the period 'to March 10, 1982'. Owner ruling 2026-10-21 requires recording an until-date inclusive AND stating in the claim that the exclusive reading (ends when that day begins) is the alternative; the claim states neither inclusive nor the exclusive alternative."
+      }
+     ],
+     "reasoning": "Quotes, hashes and later event EO 12351 (signed/effective 1982-03-09, to 1983-03-10) and EO 12608 sec.1 revocation verified against held texts; clause inventory complete (single sentence). Rejected only on the omitted inclusive/exclusive statement required by the until-date ruling; otherwise sound."
+    },
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:7018",
+     "claim_sha256": "a6ca2fbbd0f29ba5dca29ee07698fa0585166c46761525af8d96e2555627796f",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "The full order contains one operative approval of amendments and the code as amended, with no own-terms end or independent command. Earlier held orders amend the code but do not end this later approval. Section 2 of S.J. Res. 113 repealed the code-approval and enforcement provisions on 1935-06-14, ending prospective effect; Schechter is correctly treated as a validity characterization. The claim distinguishes accrued consequences from continued approval. All held cited text hashes, quotations and APP page metadata match; a custody-only issue is not treated as a substantive defect."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:7018",
+     "claim_sha256": "a6ca2fbbd0f29ba5dca29ee07698fa0585166c46761525af8d96e2555627796f",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Single approval clause; S.J. Res. 113 sec. 2 (approved 1935-06-14) is the shared-analysis end; Schechter and June 16 correctly not ends; no earlier cancellation found; savings honest."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:7018",
+     "claim_sha256": "a6ca2fbbd0f29ba5dca29ee07698fa0585166c46761525af8d96e2555627796f",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Single operative sentence approving amendments and restating code approval under NIRA Title I; no own-terms end; no earlier cancellation in held orders. Ending by S.J.Res.113 sec.2 (approved 1935-06-14) is stated accurately; Schechter treated as validity characterization, 6/16 correctly not an end; savings honest, including proviso uncertainty. Note: WPA p.610 entry not independently re-opened; text is a mirror transcription, replacement noted by the claim."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:7018",
+     "claim_sha256": "a6ca2fbbd0f29ba5dca29ee07698fa0585166c46761525af8d96e2555627796f",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hashes of all cited texts/PDFs re-verified and every quoted span matches bytes (APP node 376490 text, S.J. Res. 113 PDF, Schechter). Single operative sentence = NIRA code approval; no own-terms end; cruden number search finds no other order naming EO 7018; end 1935-06-14 by S.J. Res. 113 sec. 2 matches shared analysis; Schechter recorded only as validity characterization; savings honest; searches honest. Custody of APP common-crawl capture is a separate matter."
+    }
+   ]
+  },
+  {
+   "batch": "y03",
+   "plants": [
+    {
+     "instrument_id": "EO:12046",
+     "planted_claim_sha256": "9dc78c7adacac4aa909337bb4a5c82110b41935144636e617335af85eff9304e",
+     "type": "date_shift_end",
+     "defect": "every first_end and whole_order_end date moved back three years"
+    },
+    {
+     "instrument_id": "EO:11135",
+     "planted_claim_sha256": "2eb292621a173abb3034aee08a4f26710a57f84065946e186897b03792c6cdee",
+     "type": "mountweazel_D7",
+     "defect": "Mountweazel D7 (D7.0:1986-03-03) on field operative_clauses[0].first_end.date; locus terms ['first_end', 'date', '1986-02-25', '1986-03-03', 'effective']; the real text says: \"express revocation by EO 12553 of February 25, 1986 (51 FR 7237, printed March 3, 1986): 'it is hereby ordered that the following Executive Orders, and any amendments thereto, are revoked:' (held text jobs/fr-originals/data/full_run/texts/EO_12553.txt, offsets 691-966), followed by the table entry '11135 Creating an emergency board to investigate railroad labor disputes' (offsets 19627-19699). EO \""
+    }
+   ],
+   "reviews": [
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:11135",
+     "claim_sha256": "2eb292621a173abb3034aee08a4f26710a57f84065946e186897b03792c6cdee",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[0].first_end.date and whole_order_end.date",
+       "claim_says": "1986-03-03 (while the same mechanism text and judgment_reason say the revocation took effect on signing 1986-02-25; research_rationale says 'effective on signing 1986-03-03')",
+       "source_says": "EO 12553 is dated February 25, 1986, states no effective date (sec. only the operative sentence), published March 3, 1986 (51 FR 7237); effective date therefore 1986-02-25, not the printing date 1986-03-03. Claim is internally inconsistent."
+      }
+     ],
+     "reasoning": "Hashes and quotes verified; EO 12553 does revoke EO 11135 (table entry line 423) with no effective-date or savings wording, and the report-deadline treatment is consistent with the ruling. But the recorded end date is the Federal Register printing date, contradicting the claim's own stated mechanism (effective on signing 1986-02-25) and the instrument. Reject for wrong/inconsistent date."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:11135",
+     "claim_sha256": "2eb292621a173abb3034aee08a4f26710a57f84065946e186897b03792c6cdee",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:11135#whole].first_end.date",
+       "claim_says": "1986-03-03",
+       "source_says": "EO 12553 was signed February 25, 1986 and specifies no later effective date; March 3 is the publication date."
+      },
+      {
+       "field": "whole_order_end.date",
+       "claim_says": "1986-03-03",
+       "source_says": "EO 12553 was signed February 25, 1986 and specifies no later effective date; March 3 is the publication date."
+      },
+      {
+       "field": "research_rationale",
+       "claim_says": "EO 12553 effective on signing 1986-03-03",
+       "source_says": "The source dates the signing February 25, 1986; the claim judgment_reason itself gives 1986-02-25."
+      }
+     ],
+     "reasoning": "The held text hashes and cited quotes match, and EO 12553 expressly includes EO 11135. The revoking order is dated and signed February 25, 1986, with no later effective-date provision; March 3 is the Federal Register publication date. The claim puts March 3 in both end-date fields while its own mechanism and judgment reason say the revocation took effect February 25. The board report date is unheld, so the evidence does not establish a precise earlier performance end; that gap does not cure the false formal end date."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:11135",
+     "claim_sha256": "2eb292621a173abb3034aee08a4f26710a57f84065946e186897b03792c6cdee",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "whole_order_end.date / first_end.date",
+       "claim_says": "1986-03-03 (the Federal Register printing date), while the same mechanism text says the revocation took effect on signing 1986-02-25",
+       "source_says": "EO_12553.txt: 'Executive Order 12553 of February 25, 1986', printed March 3, 1986 (51 FR 7237); no effective-date wording, so effective on signing 1986-02-25. The claim is internally inconsistent and its date is the publication date."
+      }
+     ],
+     "reasoning": "Hashes and spans verified; EO 12553 revokes 11135 (table entry), but the end date given is the printing date, contradicting the claim's own mechanism text (1986-02-25) and rationale ('effective on signing 1986-03-03')."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:11600",
+     "claim_sha256": "e470f9dfd22a9651540a5ba8ef67bad14d152e0867533b92ead65ad3fd3f7183",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hash and quotes verified; single approval clause, inventory complete. Cruden by-number search finds only the order's own copies; no later instrument, no own-terms end. YES supported by the established original_plus_bounded_search route; searches described with their coverage limits (USC through 2026-10-09, eCFR as of 2026-10-14). Savings none."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:11600",
+     "claim_sha256": "e470f9dfd22a9651540a5ba8ef67bad14d152e0867533b92ead65ad3fd3f7183",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "The held official text hashes and quoted spans match the printed order identity and page record. Its design description and single approval form the complete command: the seal is designated the official OMB seal without a term. The held by-number search found no later ending order, and the bounded searches are described with their limits. The formal designation remains the supported current predicate."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:11600",
+     "claim_sha256": "e470f9dfd22a9651540a5ba8ef67bad14d152e0867533b92ead65ad3fd3f7183",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Single approval of OMB seal; no own-terms end; cruden finds only the 1989 codification citing it; YES via original_plus_bounded_search is honestly described."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:11961",
+     "claim_sha256": "a29927c91ac185e5aaadd819eb611b9ef41aa8b15e07873d50b918cb1a498d86",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hashes and quotes verified (reason quotes found in text). Four sections inventoried completely. Later events verified: EO 12013 sec. 4 amends sec. 4, effective Oct 9, 1977 (sec. 10); EO 12318 sec. 4(a) revokes 12013, 4(b) re-amends sec. 4, effective Aug 23, 1981 (sec. 8); EO 12518 (June 3, 1985, no stated effective date) amends secs 2-3 and statute name. Cruden number search shows only these amendments plus codification/CFR/USC citations; none ends the order. Current predicate and bounded searches honestly described."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:11961",
+     "claim_sha256": "a29927c91ac185e5aaadd819eb611b9ef41aa8b15e07873d50b918cb1a498d86",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "All cited held files hash and quoted spans match. The four original sections form the complete inventory. EO 12013 took effect October 9, 1977; EO 12318 took effect August 23, 1981; EO 12518 amended the order on June 3, 1985. Their section-specific amendments are correctly treated as events, and current CFR authority citations corroborate continued delegations through the stated cutoff. No held earlier end appeared."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:11961",
+     "claim_sha256": "a29927c91ac185e5aaadd819eb611b9ef41aa8b15e07873d50b918cb1a498d86",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Four sections complete. Later events verified: EO 12013 sec 4 (effective Oct 9, 1977, sec 10), EO 12318 sec 4 (effective Aug 23, 1981, sec 8; revokes 12013 and re-amends sec 4), EO 12518 (June 3, 1985, no effective-date wording). Cruden finds no revocation; USC note and CFR citations show continuing; searches honestly described."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:12046",
+     "claim_sha256": "9dc78c7adacac4aa909337bb4a5c82110b41935144636e617335af85eff9304e",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:12046#s2-414,s4-102,s4-103,s4-202,s4-302,s5-3,s6-101].first_end.date",
+       "claim_says": "1981-04-05",
+       "source_says": "EO 12472 (signed 1984-04-03, sec. 5 'effective upon publication in the Federal Register', published 1984-04-05; 49 FR 13471): revocation effective 1984-04-05. The claim's own judgment_reason says 1984-04-05; the structured date has the wrong year."
+      },
+      {
+       "field": "operative_clauses[EO:12046#s1-1,s6-2].first_end.date",
+       "claim_says": "1975-03-26",
+       "source_says": "EO 12046 sec. 6-304: 'This Order shall be effective March 26, 1978.' (signed March 27, 1978); the claim's own reason says 1978-03-26."
+      }
+     ],
+     "reasoning": "Hash and quoted-span checks pass (55 sources). But structured first_end dates contradict the sources and the claim's own reasons: seven EO 12472 revocations dated 1981-04-05 (true effective 1984-04-05, publication) and two performance ends dated 1975-03-26 (true 1978-03-26). EO 12472 sec 4(b)(1) list, 4(b)(3) amendment of 2-411 and supersession of the Memorandum (4-201 kept operative) read correctly; 12148 effective 1979-07-15 plausible. Wrong dates/internal inconsistency require rejection despite the YES outcome being plausible."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:12046",
+     "claim_sha256": "9dc78c7adacac4aa909337bb4a5c82110b41935144636e617335af85eff9304e",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:12046#s1-1].first_end.date",
+       "claim_says": "1975-03-26",
+       "source_says": "EO 12046 section 6-304: effective March 26, 1978 (1978-03-26)."
+      },
+      {
+       "field": "operative_clauses[EO:12046#s6-2].first_end.date",
+       "claim_says": "1975-03-26",
+       "source_says": "EO 12046 section 6-304: effective March 26, 1978 (1978-03-26)."
+      },
+      {
+       "field": "operative_clauses[EO:12046#s2-414].first_end.date",
+       "claim_says": "1981-04-05",
+       "source_says": "EO 12472 sections 4(b)(1), 5: revocation effective on Federal Register publication, April 5, 1984 (1984-04-05)."
+      },
+      {
+       "field": "operative_clauses[EO:12046#s4-102].first_end.date",
+       "claim_says": "1981-04-05",
+       "source_says": "EO 12472 sections 4(b)(1), 5: revocation effective on Federal Register publication, April 5, 1984 (1984-04-05)."
+      },
+      {
+       "field": "operative_clauses[EO:12046#s4-103].first_end.date",
+       "claim_says": "1981-04-05",
+       "source_says": "EO 12472 sections 4(b)(1), 5: revocation effective on Federal Register publication, April 5, 1984 (1984-04-05)."
+      },
+      {
+       "field": "operative_clauses[EO:12046#s4-202].first_end.date",
+       "claim_says": "1981-04-05",
+       "source_says": "EO 12472 sections 4(b)(1), 5: revocation effective on Federal Register publication, April 5, 1984 (1984-04-05)."
+      },
+      {
+       "field": "operative_clauses[EO:12046#s4-302].first_end.date",
+       "claim_says": "1981-04-05",
+       "source_says": "EO 12472 sections 4(b)(1), 5: revocation effective on Federal Register publication, April 5, 1984 (1984-04-05)."
+      },
+      {
+       "field": "operative_clauses[EO:12046#s5-3].first_end.date",
+       "claim_says": "1981-04-05",
+       "source_says": "EO 12472 sections 4(b)(1), 5: revocation effective on Federal Register publication, April 5, 1984 (1984-04-05)."
+      },
+      {
+       "field": "operative_clauses[EO:12046#s6-101].first_end.date",
+       "claim_says": "1981-04-05",
+       "source_says": "EO 12472 sections 4(b)(1), 5: revocation effective on Federal Register publication, April 5, 1984 (1984-04-05)."
+      }
+     ],
+     "reasoning": "The held original and later source quotes hash and match; the 25 scopes cover the printed sections. The order expressly took effect March 26, 1978, so the two claimed 1975 performance ends are impossible. EO 12472 lists seven revocations and makes them effective upon its April 5, 1984 Federal Register publication, so every claimed 1981 revocation date is false. Other continuing sections support a YES outcome, but the clause dates invalidate this claim."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:12046",
+     "claim_sha256": "9dc78c7adacac4aa909337bb4a5c82110b41935144636e617335af85eff9304e",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:12046#s1-1 and #s6-2].first_end.date",
+       "claim_says": "1975-03-26",
+       "source_says": "Order says 'This Order shall be effective March 26, 1978' (claim's own judgment_reason); the date should be 1978-03-26"
+      },
+      {
+       "field": "operative_clauses[s2-414,s4-102,s4-103,s4-202,s4-302,s5-3,s6-101].first_end.date",
+       "claim_says": "1981-04-05",
+       "source_says": "EO 12472 of April 3, 1984, 'effective upon publication in the Federal Register', published April 5, 1984 (49 FR 13471); the claim's own later events give 1984-04-05"
+      }
+     ],
+     "reasoning": "Hashes and spans verified, EO 12472 revocation and amendments confirmed, but nine terminated clauses carry wrong first_end dates (1975 and 1981 instead of 1978 and 1984), inconsistent with the claim's own text."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:9202",
+     "claim_sha256": "9715c3a9956d02b9946cf226aebaa552c7d673cab48a3128b80c45fec4f00456",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hashes and quote verified; APP page record (sha c80675d5...) names EO 9202, 1942-07-17, text_sha256 matches. One operative command, a one-year exemption 'ending September 30, 1943': own-terms end recorded inclusive 1943-09-30 with exclusive alternative stated, per 2026-10-21 ruling. Cruden by-number search: 0 hits; name search of held texts finds only this order (other 'Moritz' hits are unrelated vesting-order indexes); EO 9530 cites sec. 204 as claimed. Savings (accrued service/pay) appropriate."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:9202",
+     "claim_sha256": "9715c3a9956d02b9946cf226aebaa552c7d673cab48a3128b80c45fec4f00456",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "The held APP text hashes and its quoted offsets match. The same-hash mirror page record confirms number, date, subject and Common Crawl custody. One operative exemption has its own fixed end on September 30, 1943; no earlier ending instrument appeared in the held by-number search. The inclusive date and accrued-service analysis are supportable. Original-copy custody remains a separately disclosed gap."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:9202",
+     "claim_sha256": "9715c3a9956d02b9946cf226aebaa552c7d673cab48a3128b80c45fec4f00456",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "APP page record (MIRROR_DOCUMENTS) sha matches, heading/date agree; single operative exemption; own-terms end 'one year ending September 30, 1943' recorded inclusive with exclusive alternative stated; no other held text cites the order or names the employee."
+    }
+   ]
+  },
+  {
+   "batch": "y05",
+   "plants": [
+    {
+     "instrument_id": "EO:14131",
+     "planted_claim_sha256": "53cd2611e829e2e95e8b5b642408196b54939f6cf35df9092ba2f3e7f1ef1b76",
+     "type": "date_shift_signing",
+     "defect": "every signing_date of the order moved back three years"
+    },
+    {
+     "instrument_id": "EO:11868",
+     "planted_claim_sha256": "242acfa0da775dffa13e82b50dacd48e8f75ce5881112d2b7f30b6abacf72d87",
+     "type": "mountweazel_D5",
+     "defect": "Mountweazel D5 (D5.3:EO:11948) on field operative_clauses[3].first_end; locus terms ['first_end', '1975-07-21', '1977-01-16', 'EO:11948', 'EO:11873']; the real text says: '=== PDF page 15 of 192 ===\\nTHE PRESIDENT 30617\\nExecutive Order 11873 July 21,1975\\nAmending Executive Order No. 11868,1  on the President’s Commission\\non Olympic Sports\\nBy virtue of the authority vested in me as President of the United  \\nStates, Section 2 of Executive Order No. 11868 of June 19, 1975, is  \\nhereby amended to read as follows:\\n“ Se c. 2.'"
+    }
+   ],
+   "reviews": [
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:11868",
+     "claim_sha256": "242acfa0da775dffa13e82b50dacd48e8f75ce5881112d2b7f30b6abacf72d87",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:11868#sec2].first_end",
+       "claim_says": "date 1977-01-16, actor EO:11948 (revocation); research_rationale says 'EO 11948 (1977-01-16) replaces sec. 2 in full ... on signing'",
+       "source_says": "Sec. 2 was replaced in full by EO 11873 (signed 1975-07-21, held APP text); EO 11948 sec. 3 only revokes the order. The clause's own judgment_reason says it first ends 1975-07-21, contradicting its first_end. Rationale also says 'twelve other original clauses' but 14 of 16 remain."
+      }
+     ],
+     "reasoning": "Hashes and all quoted spans verified; EO 11948 sec. 3 revocation effective 1977-01-16 (own date governs over sec. 5) correct; sec4-c first end 1976-09-08 by EO 11936 correct. But sec. 2 clause first_end is wrong (should be 1975-07-21, EO 11873), and rationale misattributes the sec. 2 replacement to EO 11948. Internally inconsistent; rejected."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:11868",
+     "claim_sha256": "242acfa0da775dffa13e82b50dacd48e8f75ce5881112d2b7f30b6abacf72d87",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:11868#sec2].first_end",
+       "claim_says": "1977-01-16, actor EO 11948, express revocation of EO 11868 as amended",
+       "source_says": "EO 11873, signed July 21, 1975 (40 FR 30617), expressly amends section 2 of EO 11868 to read as a replacement text, changing the requested House and Senate membership from two each to four each. The original section 2 first ends on 1975-07-21; EO 11948 later revokes the order as amended effective 1977-01-16."
+      },
+      {
+       "field": "operative_clauses[EO:11868#sec2].later_events; research_rationale",
+       "claim_says": "Only a 1977-01-16 revocation is entered for section 2, while the rationale says its original wording first ends when EO 11948 replaces it.",
+       "source_says": "The 1975-07-21 EO 11873 replacement is missing from the clause events and the rationale misidentifies EO 11948 as the replacing actor. EO 11948 section 2 concerns FACA functions for listed committees; section 3 revokes EO 11868 on 1977-01-16."
+      },
+      {
+       "field": "operative_clauses inventory",
+       "claim_says": "Recitals and the introductory issuing formula are listed as terminated operative clauses.",
+       "source_says": "The recitals state background and the issuing formula introduces the order; neither is an independent operative command in EO 11868."
+      }
+     ],
+     "reasoning": "The whole-order revocation date is supported, but it is not the first end of original section 2. EO 11873 replaced that clause in 1975. The claim omits this event, gives the wrong actor and date for the clause, and contradicts itself about the replacement. Its inclusion of background and issuing words as operative clauses also overstates the inventory."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:11868",
+     "claim_sha256": "242acfa0da775dffa13e82b50dacd48e8f75ce5881112d2b7f30b6abacf72d87",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:11868#sec2].first_end / research_rationale",
+       "claim_says": "sec2 first ends 1977-01-16 by EO 11948 revocation; rationale says 'EO 11948 (1977-01-16) replaces sec. 2 in full' and later_events lists only EO 11948",
+       "source_says": "EO 11873 (signed 1975-07-21, 40 FR 30617) amends 'Section 2 of Executive Order No. 11868 ... to read as follows' (new membership text), so the original sec. 2 wording first ended 1975-07-21 on the claim's own replacement convention (as used for sec4-c/EO 11936); EO 11948 sec. 3 only revokes the order and does not replace sec. 2 (EO 11948 was signed 1976-12-20, not 1977-01-16). The claim lists no EO 11873 event for sec2 and misattributes the replacement."
+      }
+     ],
+     "reasoning": "All 37 quoted spans and hashes match held texts. Other 15 clauses and the 1977-01-16 revocation (EO 11948 sec. 3 'effective January 16, 1977') verified; EO 11936 sec4-c 1976-09-08 verified; whole-order end 1977-01-16 correct. But the sec2 clause first end is wrong/inconsistent with EO 11873 text, and the rationale misstates that EO 11948 replaces sec. 2 and dates EO 11948 as 1977-01-16. Rejected for wrong actor/mechanism/date on sec2 and internal inconsistency."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:11868",
+     "claim_sha256": "242acfa0da775dffa13e82b50dacd48e8f75ce5881112d2b7f30b6abacf72d87",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "operative_clauses[EO:11868#sec2].first_end",
+       "claim_says": "actor EO:11948, date 1977-01-16 (revocation of the order as amended), with EO 11948 attached as later event; research_rationale also says 'EO 11948 (1977-01-16) replaces sec. 2 in full'",
+       "source_says": "EO 11873 (signed 1975-07-21, 40 FR 30617) amends Section 2 of EO 11868 'to read as follows' with no delayed effect, so the original sec. 2 wording first ended 1975-07-21 by EO 11873; EO 11948 does not touch sec. 2. The clause's own judgment_reason says 1975-07-21 by EO 11873, contradicting its first_end; EO 11873 is missing as the first_end actor/source."
+      }
+     ],
+     "reasoning": "Hashes and all quotes verified; identity, 16-clause inventory, EO 11948 sec 3 revocation effective 1977-01-16 (sec 3's own date governs over sec 5's 1976-12-31) and the sec 4(c) clause ending by EO 11936 on 1976-09-08 are correct; whole-order end 1977-01-16 is sound. But clause sec2 is internally inconsistent and wrong: judgment_reason says EO 11873 replaced sec. 2 on 1975-07-21 (as the source confirms), yet first_end names EO 11948/1977-01-16 and the rationale misattributes the sec. 2 replacement to EO 11948 dated 1977-01-16 (also says 'twelve other original clauses', inconsistent with the inventory). Rejected for the sec2 first_end actor, date and source."
+    },
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:14131",
+     "claim_sha256": "53cd2611e829e2e95e8b5b642408196b54939f6cf35df9092ba2f3e7f1ef1b76",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "original_representation.signing_date",
+       "claim_says": "2021-12-20",
+       "source_says": "Order text: 'Executive Order 14131 of December 20, 2024' (89 FR 105377, Dec 27, 2024); packet records 2024-12-20; claim's own rationale says signed December 20, 2024"
+      }
+     ],
+     "reasoning": "Text hash and all quoted spans verify; 13-clause inventory complete; no own-terms end; cruden number search for 14131, 12793 and 11926 shows only EO 13286, 13373 (earlier) and the order itself, so YES predicate looks supportable. But the original-representation signing_date is wrong (2021 vs 2024) and inconsistent with the claim's rationale; rejected on the date defect."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:14131",
+     "claim_sha256": "53cd2611e829e2e95e8b5b642408196b54939f6cf35df9092ba2f3e7f1ef1b76",
+     "verdict": "rejected",
+     "defects": [
+      {
+       "field": "original_representation.signing_date; operative_clauses[*].original_source.signing_date and current_predicate.source.signing_date",
+       "claim_says": "2021-12-20",
+       "source_says": "The held 89 FR 105377-105379 order heading and signature both date EO 14131 December 20, 2024; the claim rationale itself also says 2024."
+      }
+     ],
+     "reasoning": "The current predicate and clause inventory are otherwise supported by the held original and bounded searches, but the claim repeatedly assigns the original source a false 2021 signing date. The official printed heading and signature give December 20, 2024. This identity error contradicts the claim’s own rationale and requires rejection."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:14131",
+     "claim_sha256": "53cd2611e829e2e95e8b5b642408196b54939f6cf35df9092ba2f3e7f1ef1b76",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Held FR text hash and all 28 spans match. Full read: Sec.1(a),(b), Sec.2(a)-(d), Sec.3 (a)(i),(ii),(b),(c) plus two headers = 13 clauses, complete; recital is authority statement. No own-terms end/sunset. cruden number search: EO:14131 matches only itself; EO 12793 and EO 11926 hits are only EO 13286/13373/14131 amendments and CFR notes, no revocation or later amendment; claim correctly treats 13286/13373 as earlier context. Predicate checked through 2026-10-14 on original_plus_bounded_search; searches honestly described; no savings issue; limitation about unheld parent texts disclosed."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:14131",
+     "claim_sha256": "53cd2611e829e2e95e8b5b642408196b54939f6cf35df9092ba2f3e7f1ef1b76",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hashes and all 26 quoted spans verified against EO_14131.txt (slices match). Identity: EO 14131 of 2024-12-20, 89 FR 105377-9. Read in full; 13-clause inventory complete (sec 1, 1(a),(b); sec 2, 2(a)-(d); sec 3 lead-in, (a)(i),(ii),(b),(c)); no sunset or own-terms end. cruden number search finds only the order itself; searches for 12793/11926 find only earlier orders 13286 and 13373, the parent orders, and 6 U.S.C. 111 table entries (statute text, not a later instrument; the claim's wording 'only other held texts' slightly understates this but it does not change the result). Held corpus runs to EO 14435 with no later amendment/revocation. Original_plus_bounded_search route honestly described; checked_through 2026-10-14; no first_end/whole_order_end asserted; savings accurate."
+    },
+    {
+     "reviewer": "R1",
+     "instrument_id": "EO:8452",
+     "claim_sha256": "a41f7b745c00e13bafb3863e9a036e04bd8f742c9a962705c7d4cbd185b54f52",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "APP text hash 1c2bf768... verified, quote spans match; mirror record has same sha aa894c1e..., text_sha256 equals held file, heading number 8452, date 1940-06-20 agree. One-clause inventory complete. Order exempts for 'a period of one year ending July 31, 1941'; end recorded inclusive 1941-07-31 by own terms, actor EO:8452 correct. cruden number search EO:8452: 0 hits, so no earlier revocation/supersession; separation/death not evidenced. Savings (accrued service effects) reasonable; searches honestly described; original not yet held is a disclosed custody limit."
+    },
+    {
+     "reviewer": "R2",
+     "instrument_id": "EO:8452",
+     "claim_sha256": "a41f7b745c00e13bafb3863e9a036e04bd8f742c9a962705c7d4cbd185b54f52",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "The single exemption has an express term ending July 31, 1941, and no held source shows an earlier revocation or separate continuing command. The claim discloses that its APP mirror transcription is not an official original; its page record and held text support the stated identity and term. Accrued service does not continue the exemption."
+    },
+    {
+     "reviewer": "R3",
+     "instrument_id": "EO:8452",
+     "claim_sha256": "a41f7b745c00e13bafb3863e9a036e04bd8f742c9a962705c7d4cbd185b54f52",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hash of held APP text and all 3 quoted spans match; mirror record (same sha256) names EO 8452, date 1940-06-20, subject agrees, text_sha256 equal. Single operative sentence exempts for 'a period of one year ending July 31, 1941'; inventory of one clause complete. Own-terms end 1941-07-31, inclusive with exclusive reading disclosed, no separation/death date asserted. cruden number search for EO:8452 found 0 matches in 37,319 held files; no earlier end. Savings (accrued service effects) reasonable; searches honestly described incl. coverage limits."
+    },
+    {
+     "reviewer": "R4",
+     "instrument_id": "EO:8452",
+     "claim_sha256": "a41f7b745c00e13bafb3863e9a036e04bd8f742c9a962705c7d4cbd185b54f52",
+     "verdict": "upheld",
+     "defects": [],
+     "reasoning": "Hashes and all quoted spans verified (APP text, 744 chars incl. final newline). Page record in MIRROR_DOCUMENTS (same sha256) names EO 8452, 1940-06-20, heading matches, text_sha256 equals held file. Single operative command: one-year exemption 'ending July 31, 1941' under 47 Stat. 382, 404. End is own-terms expiry on stated date, recorded inclusive with exclusive reading disclosed; cruden number search EO:8452 returns 0 hits, so no earlier revocation/supersession held. Death/separation not claimed. Savings (accrued service) reasonable. Searches honestly described, including name search limits."
+    }
+   ]
+  }
+ ]
+}
