@@ -1,0 +1,88 @@
+{
+ "orders": {
+  "EO:1834": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:830": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:5917": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:2655": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:276": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:351": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:11665": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:11305": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:13282": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:11485": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:12163": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:13661": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:1911": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:2543": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:3652": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:4559": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:5466": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:6595": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:3865": "upheld",
+  "EO:4843": "rejected:B: rejected:decision_row.outcome/unresolved_material_gaps; status_decision.approved vs decision_row.approved/outcome; original_pages_confirmed / material_gaps",
+  "EO:2280": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:2491": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:3804": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:4155": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:660": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:6798": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:4309": "upheld",
+  "EO:5615": "upheld",
+  "EO:130": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:2858": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:6131A": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:819½": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:4114": "upheld",
+  "EO:5454": "upheld",
+  "EO:5757": "rejected:A: rejected:decision_row.unresolved_material_gaps (block); decision_row.unresolved_material_gaps vs search_ids",
+  "EO:29": "rejected:A: rejected:status_decision.proposed_intervals / material_gaps; status_decision vs decision_row; original_text.other_copies[0].notes (minor) | B: rejected:status_decision.proposed_intervals[0] / material_gaps / rationale",
+  "EO:12896": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:13821": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:8667": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:9431": "not_applicable:nothing_proposed (all steps blocked or no status proposed)",
+  "EO:11929": "rejected:A: rejected:clause_rows[*].reason (earlier-end check list); clause_rows[*].reason; decision_row block | B: rejected:decision_row.working_text.confirmations; clause_rows[corrected-1,2].reason (earlier-end list); clause_rows[corrected-1,2].reason; decision_row.savings_reason (minor)",
+  "EO:11350": "rejected:A: rejected:decision_row outcome blocked / unresolved_material_gaps; decision_row.scope_check"
+ },
+ "controls": [
+  {
+   "batch": "U1",
+   "instrument_id": "EO:3865",
+   "defect": "every end date moved back three years",
+   "caught_by_both_arms": true,
+   "arm_verdicts": {
+    "A": "rejected:status_decision.proposed_intervals[0].to; clause_rows[0].effective_date; decision_row.original_pages_confirmed vs status_decision",
+    "B": "rejected:status_decision.proposed_intervals[0].to; clause_rows[0].effective_date; original_pages_confirmed / material_gaps"
+   }
+  },
+  {
+   "batch": "U2",
+   "instrument_id": "EO:5615",
+   "defect": "every end date moved back three years",
+   "caught_by_both_arms": true,
+   "arm_verdicts": {
+    "A": "rejected:status_decision.proposed_intervals[0].to; clause_rows[0].effective_date (EO:5615#a); clause_rows[0].reason / earlier_end_check",
+    "B": "rejected:status_decision.proposed_intervals[0].to; clause_rows[EO:5615#a].effective_date; decision_row.original_pages_confirmed; clause_rows[EO:5615#a].reason / earlier_end_check"
+   }
+  },
+  {
+   "batch": "U3",
+   "instrument_id": "EO:5757",
+   "defect": "every end date moved back three years",
+   "caught_by_both_arms": true,
+   "arm_verdicts": {
+    "A": "rejected:status_decision.proposed_intervals[0].to; clause_rows[*].effective_date (both clauses); decision_row.unresolved_material_gaps vs search_ids (minor)",
+    "B": "rejected:status_decision.proposed_intervals[0].to; clause_rows[*].effective_date (both clauses, effective_date_confirmed true); clause_rows[no-change-of-national-forest-status].end_id"
+   }
+  },
+  {
+   "batch": "U4",
+   "instrument_id": "EO:11350",
+   "defect": "every end date moved back three years",
+   "caught_by_both_arms": true,
+   "arm_verdicts": {
+    "A": "rejected:clause_rows corrected-1,2,3,6,7,8,9,10,11,12,14,15 effective_date; clause_rows corrected-4,5 effective_date; clause_rows corrected-13 effective_date; effective_date_confirmed",
+    "B": "rejected:clause_rows[corrected-1,2,3,6,7,8,9,10,11,12,14,15].effective_date; clause_rows[corrected-4,5].effective_date; clause_rows[corrected-13].effective_date; independent_command_check / earlier_end_check; status_decision.rationale (minor, not decisive)"
+   }
+  }
+ ]
+}

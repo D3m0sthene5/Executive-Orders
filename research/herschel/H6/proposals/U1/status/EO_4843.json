@@ -1,0 +1,68 @@
+{
+ "instrument_id": "EO:4843",
+ "route": "manual_no_status_history",
+ "agent": "claude",
+ "recommended_provisional_status": "no",
+ "basis": [
+  {
+   "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4843.txt",
+   "sha256": "a71938832760e635359d70050b1312c7319262348c287f53786010e22a337b90",
+   "char_start": 275,
+   "char_end": 325,
+   "quote": "Ts. 20 N., Rs. 1 and 2 E., N. M. P. M., New Mexico",
+   "role": "scope_of_withdrawal"
+  },
+  {
+   "text_path": "jobs/hathi-gpo-orders/output/texts/EO_5809.txt",
+   "sha256": "a32dff9ead174a5fc3e3af8de9ff71bd9344f90381203972b2aa12f0e89d2032",
+   "char_start": 614,
+   "char_end": 641,
+   "quote": "revoked as to said\ntownship",
+   "role": "partial_end_R1E_EO5809_1932-02-27"
+  },
+  {
+   "text_path": "jobs/hathi-gpo-orders/output/texts/EO_5840.txt",
+   "sha256": "913524c97dbe193a5d9c00df048a1a7b72dcf1b5f4232ea1ea38a79bbe0eedc7",
+   "char_start": 671,
+   "char_end": 698,
+   "quote": "revoked as to said\ntownship",
+   "role": "partial_end_R2E_EO5840_1932-04-21"
+  },
+  {
+   "text_path": "jobs/hathi-gpo-orders/output/texts/EO_5809.txt",
+   "sha256": "a32dff9ead174a5fc3e3af8de9ff71bd9344f90381203972b2aa12f0e89d2032",
+   "char_start": 414,
+   "char_end": 460,
+   "quote": "Executive Order No. 4843, dated March 23, 1928",
+   "role": "identifies_order"
+  }
+ ],
+ "identity_confirmed": true,
+ "earlier_endings_checked": true,
+ "partial_scope_checked": true,
+ "savings_checked": true,
+ "original_pages_confirmed": false,
+ "current_predicate_checked_through": null,
+ "proposed_intervals": [
+  {
+   "scope": "T. 20 N., R. 1 E.",
+   "from": "1928-03-23",
+   "to": "1932-02-27",
+   "end_basis": "revoked by EO 5809"
+  },
+  {
+   "scope": "T. 20 N., R. 2 E.",
+   "from": "1928-03-23",
+   "to": "1932-04-21",
+   "end_basis": "revoked by EO 5840"
+  }
+ ],
+ "searches_run": [
+  "cruden.py number EO:4843 --write /tmp/claude-0/herschel-H6-work/H6-w01/cruden-EO_4843.json -> 6 hits (EO 5809 and 5840, in app, hathi and ofr copies)"
+ ],
+ "material_gaps": [
+  "Original page images not inspected; ProQuest text is OCR."
+ ],
+ "rationale": "EO 4843 (23 Mar 1928, Coolidge) withdrew the public lands in Ts. 20 N., Rs. 1 and 2 E., N.M.P.M., pending resurvey, continuing until revoked. Two townships only. EO 5809 (27 Feb 1932, Hoover) revoked it as to R. 1 E.; EO 5840 (21 Apr 1932, Hoover) revoked it as to R. 2 E.; both held in the GPO printed copy and name EO 4843 and its date. Together they cover every township withdrawn, so the whole withdrawal ended by 1932-04-21. The own-terms 'unless and until revoked' clause is satisfied by those revocations.",
+ "approved": true
+}
