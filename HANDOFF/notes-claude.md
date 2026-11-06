@@ -1,3 +1,24 @@
+## 2026-11-06 15:00 ET (Claude, Dagron: daily acquisition manifests for outside collections; NYU Film 709 first)
+
+- **Done:** new job `jobs/dagron-collection-manifest/`. It runs daily, and after the tracker, Domesday and Lewis.
+  - One spec per collection: `collections/nyu-film709.json` (11 reels, EO 1-7403; HeinOnline 1845-1936).
+  - Output per collection: a gzipped JSONL and CSV manifest, plus a summary, a report and a sample.
+  - First build at main `0deba1dd4`: 6,010 rows, as follows.
+    - Group 1: 5,875 orders in range with no accepted original witness (P1 2,196, P2 1,435, P3 2,244).
+    - Group 2: 0 (original counted but no working text).
+    - Group 3: 81 unnumbered, ambiguous or untracked candidates.
+    - Group 4: 54 orders numbered above 7403 and dated 1936.
+  - `record_acquisition.py` stages downloaded images, with provenance, in `research/acquisitions/<collection>/`.
+    Only Dagron reads that folder, to mark orders as staged.
+  - The first build's report and reconciliation are in `research/dagron/README.md`. The earlier 5,305/4,954
+    figures are not in the repository; the closest current measure is the open original-text step, 5,322
+    (4,926 dated pre-1933).
+  - Kean: F-20261106-dagron-nyu-manifest, F-20261106-dagron-job.
+- **Asks:** Kean A-20261106-dagron-nyu. The 2026-10-19 owner rule ("do not plan around the reel set") must be lifted
+  before anyone requests or scans the reels. Hein retrieval stays item by item.
+- **Do not:** put a microfilm or Hein image into `research/stage21/original_sources/`. The tracker would count it as
+  an original. Stage it with the helper instead.
+
 ## 2026-11-06 13:10 ET (Claude, cleanup at the owner's request: every open PR merged, branches sorted)
 
 - **Merged:** [PR #167](https://github.com/D3m0sthene5/Executive-Orders/pull/167) (Selden; +8 claims, ready up by at most 8 once checked; Kean F-20261106-merge-167-selden) and [PR #162](https://github.com/D3m0sthene5/Executive-Orders/pull/162) (Pothier family doctrines; leads and asks only, no claim or status change; Kean F-20261106-merge-162-pothier). Each branch first merged main; Kean lines were united and main's outputs restored for jobs that already exist on main. New jobs (selden-*, pothier) kept their branch-run outputs, which the output-branch check flags; main's own runs regenerate them. No open PRs remain.

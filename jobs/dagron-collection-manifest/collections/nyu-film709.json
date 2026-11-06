@@ -1,0 +1,36 @@
+{
+  "id": "nyu-film709",
+  "name": "NYU Libraries: Presidential executive orders (Trans-Media microfilm, Film 709) and HeinOnline Presidential Executive Orders",
+  "holder": "New York University Libraries (Bobst)",
+  "catalog_records": {
+    "film709": "https://search.library.nyu.edu/discovery/fulldisplay?docid=alma990007538410107876&vid=01NYU_INST:NYU&context=L",
+    "hein": "https://search.library.nyu.edu/discovery/fulldisplay?docid=alma9998673098807871&vid=01NYU_INST:NYU&context=L"
+  },
+  "description": "Film 709: 11 reels of 35 mm microfilm, offsite in two boxes, both listed as available (verified by the owner's browser agent, 2026-11-06). HeinOnline: 11 digitized volumes covering 1845-1936; a browser agent opened the scanned image of EO 708.",
+  "unit_label": "reel",
+  "secondary_unit_label": "hein_volume",
+  "secondary_unit_note": "Assumed equal to the reel number (11 reels, 11 volumes). Unverified: confirm with EO 707/708 and 1348/1349 in Hein before relying on it.",
+  "units": [
+    {"unit": 1, "first": "1", "last": "707"},
+    {"unit": 2, "first": "708", "last": "1348"},
+    {"unit": 3, "first": "1349", "last": "2125"},
+    {"unit": 4, "first": "2126", "last": "2891"},
+    {"unit": 5, "first": "2892", "last": "3579"},
+    {"unit": 6, "first": "3580", "last": "4304"},
+    {"unit": 7, "first": "4305", "last": "5075"},
+    {"unit": 8, "first": "5076", "last": "5760"},
+    {"unit": 9, "first": "5761", "last": "6336"},
+    {"unit": 10, "first": "6337", "last": "6925"},
+    {"unit": 11, "first": "6925A", "last": "7403"}
+  ],
+  "date_coverage": ["1845-01-01", "1936-12-31"],
+  "date_coverage_source": "HeinOnline's stated range; the numbered reels end at EO 7403 (June 1936)",
+  "staging_dir": "research/acquisitions/nyu-film709",
+  "staging_collections": ["hein", "film709"],
+  "restrictions": [
+    "Owner 2026-10-19 (HANDOFF/notes-claude.md): no paid reproduction and no hand-scanning of microfilm; do not plan around the reel set. Requesting or scanning Film 709 reels needs the owner's explicit go-ahead (Kean A-20261106-dagron-nyu).",
+    "Do not scrape or bulk-download HeinOnline through an automated job (HANDOFF/astra-history-through-20261029.md). Retrieve item by item at a human pace, within NYU's HeinOnline licence; stop on any systematic-download warning.",
+    "Do not run a bulk harvest through the owner's NYU session without NYU's written approval (HANDOFF/notes-claude.md, 2026-10-19); the NYU bulk-access request was not sent (research/readiness/owner_rulings/2026-10-21-proquest-request.md).",
+    "A microfilm or HeinOnline image is graded nyu_collection_image_pending_codebook: acceptable_as_original false, needs_page_check true. It never counts as the original without a page check and a codebook grade, and it must not be placed in research/stage21/original_sources/ (the tracker counts PDF_BYTES_CAPTURED custody rows there)."
+  ]
+}
