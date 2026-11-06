@@ -1,0 +1,39 @@
+test_groups_and_evidence (test_dagron.EndToEnd.test_groups_and_evidence) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/dagron-collection-manifest/test_dagron.py:86: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp_gvw61e2/jobs/wikisource-texts/output/texts/EO_20.txt' mode='w' encoding='UTF-8'>
+  open(f"{root}/jobs/wikisource-texts/output/texts/EO_20.txt", "w").write("x")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/dagron-collection-manifest/test_dagron.py:91: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp_gvw61e2/jobs/ofr-compilations/output/texts/EO_20.txt' mode='w' encoding='UTF-8'>
+  open(f"{root}/jobs/ofr-compilations/output/texts/EO_20.txt", "w").write("x")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/dagron-collection-manifest/test_dagron.py:114: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpxdxc2i95/nyu-film709/SUMMARY.json' mode='r' encoding='UTF-8'>
+  s = json.load(open(f"{out}/nyu-film709/SUMMARY.json"))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_boundary_notes (test_dagron.Units.test_boundary_notes) ... ok
+test_designation_keeps_suffix (test_dagron.Units.test_designation_keeps_suffix) ... ok
+test_lfs_pointer (test_dagron.Units.test_lfs_pointer) ... ok
+test_reel_bounds (test_dagron.Units.test_reel_bounds) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.027s
+
+OK
+{
+ "nyu-film709": {
+  "rows": 5,
+  "by_group": {
+   "1_missing_accepted_original_witness": 1,
+   "3_unnumbered_or_ambiguous_identity": 3,
+   "4_edge_numbered_after_last_unit_within_dates": 1
+  }
+ }
+}
+{
+ "nyu-film709": {
+  "rows": 6010,
+  "by_group": {
+   "1_missing_accepted_original_witness": 5875,
+   "3_unnumbered_or_ambiguous_identity": 81,
+   "4_edge_numbered_after_last_unit_within_dates": 54
+  }
+ }
+}
