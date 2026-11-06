@@ -1,0 +1,574 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#">
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta charset="utf-8"><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"dee899de70",applicationID:"80106271"};;/*! For license information please see nr-loader-rum-1.298.0.min.js.LICENSE.txt */
+(()=>{var e,t,r={122:(e,t,r)=>{"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),a=0===Object.keys(r).length?e:r;for(let s in a)if(void 0!==e[s])try{if(null===e[s]){r[s]=null;continue}Array.isArray(e[s])&&Array.isArray(t[s])?r[s]=Array.from(new Set([...e[s],...t[s]])):"object"==typeof e[s]&&"object"==typeof t[s]?r[s]=i(e[s],t[s]):r[s]=e[s]}catch(e){r[s]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},555:(e,t,r)=>{"use strict";r.d(t,{D:()=>o,f:()=>s});var n=r(384),i=r(122);const a={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function s(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}const o=e=>(0,i.a)(e,a)},699:(e,t,r)=>{"use strict";r.d(t,{It:()=>i,No:()=>n,qh:()=>s,uh:()=>a});const n=16e3,i=1e6,a="NR_CONTAINER_AGENT",s="SESSION_ERROR"},324:(e,t,r)=>{"use strict";r.d(t,{F3:()=>i,Xs:()=>a,xv:()=>n});const n="1.298.0",i="PROD",a="CDN"},154:(e,t,r)=>{"use strict";r.d(t,{OF:()=>c,RI:()=>i,WN:()=>d,bv:()=>a,gm:()=>s,mw:()=>o,sb:()=>u});var n=r(863);const i="undefined"!=typeof window&&!!window.document,a="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),s=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),o=Boolean("hidden"===s?.document?.visibilityState),c=/iPad|iPhone|iPod/.test(s.navigator?.userAgent),u=c&&"undefined"==typeof SharedWorker,d=((()=>{const e=s.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)())},241:(e,t,r)=>{"use strict";r.d(t,{W:()=>a});var n=r(154);const i="newrelic";function a(e={}){try{n.gm.dispatchEvent(new CustomEvent(i,{detail:e}))}catch(e){}}},687:(e,t,r)=>{"use strict";r.d(t,{Ak:()=>u,Ze:()=>f,x3:()=>d});var n=r(241),i=r(836),a=r(606),s=r(860),o=r(646);const c={};function u(e,t){const r={staged:!1,priority:s.P3[t]||0};l(e),c[e].get(t)||c[e].set(t,r)}function d(e,t){e&&c[e]&&(c[e].get(t)&&c[e].delete(t),p(e,t,!1),c[e].size&&g(e))}function l(e){if(!e)throw new Error("agentIdentifier required");c[e]||(c[e]=new Map)}function f(e="",t="feature",r=!1){if(l(e),!e||!c[e].get(t)||r)return p(e,t);c[e].get(t).staged=!0,g(e)}function g(e){const t=Array.from(c[e]);t.every((([e,t])=>t.staged))&&(t.sort(((e,t)=>e[1].priority-t[1].priority)),t.forEach((([t])=>{c[e].delete(t),p(e,t)})))}function p(e,t,r=!0){const s=e?i.ee.get(e):i.ee,c=a.i.handlers;if(!s.aborted&&s.backlog&&c){if((0,n.W)({agentIdentifier:e,type:"lifecycle",name:"drain",feature:t}),r){const e=s.backlog[t],r=c[t];if(r){for(let t=0;e&&t<e.length;++t)m(e[t],r);Object.entries(r).forEach((([e,t])=>{Object.values(t||{}).forEach((t=>{t[0]?.on&&t[0]?.context()instanceof o.y&&t[0].on(e,t[1])}))}))}}s.isolatedBacklog||delete c[t],s.backlog[t]=null,s.emit("drain-"+t,[])}}function m(e,t){var r=e[1];Object.values(t[r]||{}).forEach((t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],a=e[2];n.apply(i,a)}}))}},836:(e,t,r)=>{"use strict";r.d(t,{P:()=>o,ee:()=>c});var n=r(384),i=r(990),a=r(646),s=r(607);const o="nr@context:".concat(s.W),c=function e(t,r){var n={},s={},d={},l=!1;try{l=16===r.length&&u.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,a){!1!==a&&(a=!0);if(c.aborted&&!i)return;t&&a&&t.emit(e,r,n);var o=g(n);m(e).forEach((e=>{e.apply(o,r)}));var u=v()[s[e]];u&&u.push([f,e,r,o]);return o},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach((([e,n])=>{s[n]=t,t in r||(r[t]=[])}))},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach((e=>{delete f.backlog[e]}))},isBuffering:function(e){return!!v()[s[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof a.y?e:e?(0,i.I)(e,o,(()=>new a.y(o))):new a.y(o)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return d[t]=d[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),u=(0,n.Zm)();u.ee||(u.ee=c)},646:(e,t,r)=>{"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},908:(e,t,r)=>{"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(836).ee.get("handle");function i(e,t,r,i,a){a?(a.buffer([e],i),a.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},606:(e,t,r)=>{"use strict";r.d(t,{i:()=>a});var n=r(908);a.on=s;var i=a.handlers={};function a(e,t,r,a){s(a||n.d,i,e,t,r)}function s(e,t,r,i,a){a||(a="feature"),e||(e=n.d);var s=t[a]=t[a]||{};(s[r]=s[r]||[]).push([e,i])}},878:(e,t,r)=>{"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function a(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>a,jT:()=>n,sp:()=>i})},607:(e,t,r)=>{"use strict";r.d(t,{W:()=>n});const n=(0,r(566).bz)()},566:(e,t,r)=>{"use strict";r.d(t,{LA:()=>o,bz:()=>s});var n=r(154);const i="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";function a(e,t){return e?15&e[t]:16*Math.random()|0}function s(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),i.split("").map((e=>"x"===e?a(t,r++).toString(16):"y"===e?(3&a()|8).toString(16):e)).join("")}function o(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,i=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const s=[];for(var o=0;o<e;o++)s.push(a(r,i++).toString(16));return s.join("")}},614:(e,t,r)=>{"use strict";r.d(t,{BB:()=>s,H3:()=>n,g:()=>u,iL:()=>c,tS:()=>o,uh:()=>i,wk:()=>a});const n="NRBA",i="SESSION",a=144e5,s=18e5,o={STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},c={SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},u={OFF:0,FULL:1,ERROR:2}},863:(e,t,r)=>{"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944:(e,t,r)=>{"use strict";r.d(t,{R:()=>i});var n=r(241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({agentIdentifier:null,drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},701:(e,t,r)=>{"use strict";r.d(t,{B:()=>a,t:()=>s});var n=r(241);const i=new Set,a={};function s(e,t){const r=t.agentIdentifier;a[r]??={},e&&"object"==typeof e&&(i.has(r)||(t.ee.emit("rumresp",[e]),a[r]=e,i.add(r),(0,n.W)({agentIdentifier:r,loaded:!0,drained:!0,type:"lifecycle",name:"load",feature:void 0,data:e})))}},990:(e,t,r)=>{"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},389:(e,t,r)=>{"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout((()=>{i=clearTimeout(i)}),t)),n||(clearTimeout(i),i=setTimeout((()=>{e.apply(this,r)}),t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},910:(e,t,r)=>{"use strict";r.d(t,{i:()=>a});var n=r(944);const i=new Map;function a(...e){return e.every((e=>{if(i.has(e))return i.get(e);const t="function"==typeof e&&e.toString().includes("[native code]");return t||(0,n.R)(64,e?.name||e?.toString()),i.set(e,t),t}))}},289:(e,t,r)=>{"use strict";r.d(t,{GG:()=>a,Qr:()=>o,sB:()=>s});var n=r(878);function i(){return"undefined"==typeof document||"complete"===document.readyState}function a(e,t){if(i())return e();(0,n.sp)("load",e,t)}function s(e){if(i())return e();(0,n.DD)("DOMContentLoaded",e)}function o(e){if(i())return e();(0,n.sp)("popstate",e)}},384:(e,t,r)=>{"use strict";r.d(t,{NT:()=>s,US:()=>d,Zm:()=>o,bQ:()=>u,dV:()=>c,pV:()=>l});var n=r(154),i=r(863),a=r(910);const s={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function o(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function c(){let e=o();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,a.i)(...Object.values(e.o))),e}function u(e,t){let r=o();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t}function d(e,t){o()[e]=t}function l(){return function(){let e=o();const t=e.info||{};e.info={beacon:s.beacon,errorBeacon:s.errorBeacon,...t}}(),function(){let e=o();const t=e.init||{};e.init={...t}}(),c(),function(){let e=o();const t=e.loader_config||{};e.loader_config={...t}}(),o()}},843:(e,t,r)=>{"use strict";r.d(t,{u:()=>i});var n=r(878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",(function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)}),r,i)}},773:(e,t,r)=>{"use strict";r.d(t,{z_:()=>a,XG:()=>o,TZ:()=>n,rs:()=>i,xV:()=>s});r(154),r(566),r(384);const n=r(860).K7.metrics,i="sm",a="cm",s="storeSupportabilityMetrics",o="storeEventMetrics"},630:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.pageViewEvent},782:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.pageViewTiming},234:(e,t,r)=>{"use strict";r.d(t,{W:()=>a});var n=r(836),i=r(687);class a{constructor(e,t){this.agentIdentifier=e,this.ee=n.ee.get(e),this.featureName=t,this.blocked=!1}deregisterDrain(){(0,i.x3)(this.agentIdentifier,this.featureName)}}},741:(e,t,r)=>{"use strict";r.d(t,{W:()=>a});var n=r(944),i=r(261);class a{#e(e,...t){if(this[e]!==a.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e){return this.#e(i.Dl,e)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e(i.$9,e,t)}start(){return this.#e(i.d3)}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(){return this.#e(i.dT)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}}},261:(e,t,r)=>{"use strict";r.d(t,{$9:()=>u,BL:()=>o,CH:()=>g,Dl:()=>_,Fw:()=>y,PA:()=>h,Pl:()=>n,Tb:()=>l,U2:()=>a,V1:()=>k,Wb:()=>x,bt:()=>b,cD:()=>v,d3:()=>w,dT:()=>c,eY:()=>p,fF:()=>f,hG:()=>i,k6:()=>s,nb:()=>m,o5:()=>d});const n="api-",i="addPageAction",a="addToTrace",s="addRelease",o="finished",c="interaction",u="log",d="noticeError",l="pauseReplay",f="recordCustomEvent",g="recordReplay",p="register",m="setApplicationVersion",h="setCurrentRouteName",v="setCustomAttribute",b="setErrorHandler",y="setPageViewName",_="setUserId",w="start",x="wrapLogger",k="measure"},163:(e,t,r)=>{"use strict";r.d(t,{j:()=>E});var n=r(384),i=r(741);var a=r(555);r(860).K7.genericEvents;const s="experimental.marks",o="experimental.measures",c="experimental.resources",u=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var d=r(614),l=r(944),f=r(122);const g="[data-nr-mask]",p=e=>(0,f.a)(e,(()=>{const e={feature_flags:[],experimental:{marks:!1,measures:!1,resources:!1},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0},api:{allow_registered_children:!0,duplicate_registered_data:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{get capture_marks(){return e.feature_flags.includes(s)||e.experimental.marks},set capture_marks(t){e.experimental.marks=t},get capture_measures(){return e.feature_flags.includes(o)||e.experimental.measures},set capture_measures(t){e.experimental.measures=t},capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(c)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:d.wk,inactiveMs:d.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){u(t)?e.mask_selector="".concat(t,",").concat(g):""===t||null===t?e.mask_selector=g:(0,l.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){u(t)?e.block_selector+=",".concat(t):""!==t&&(0,l.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,l.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},spa:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]}}})());var m=r(154),h=r(324);let v=0;const b={buildEnv:h.F3,distMethod:h.Xs,version:h.xv,originTime:m.WN},y={appMetadata:{},customTransaction:void 0,denyList:void 0,disabled:!1,entityManager:void 0,harvester:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,jsAttributesMetadata:{bytes:0},get harvestCount(){return++v}},_=e=>{const t=(0,f.a)(e,y),r=Object.keys(b).reduce(((e,t)=>(e[t]={value:b[t],writable:!1,configurable:!0,enumerable:!0},e)),{});return Object.defineProperties(t,r)};var w=r(701);const x=e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e};var k=r(836),S=r(241);const A={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0},R=e=>(0,f.a)(e,A),T=new Set;function E(e,t={},r,s){let{init:o,info:c,loader_config:u,runtime:d={},exposed:l=!0}=t;if(!c){const e=(0,n.pV)();o=e.init,c=e.info,u=e.loader_config}e.init=p(o||{}),e.loader_config=R(u||{}),c.jsAttributes??={},m.bv&&(c.jsAttributes.isWorker=!0),e.info=(0,a.D)(c);const f=e.init,g=[c.beacon,c.errorBeacon];T.has(e.agentIdentifier)||(f.proxy.assets&&(x(f.proxy.assets),g.push(f.proxy.assets)),f.proxy.beacon&&g.push(f.proxy.beacon),function(e){const t=(0,n.pV)();Object.getOwnPropertyNames(i.W.prototype).forEach((r=>{const n=i.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let a=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return a?a(...t):n})}))}(e),(0,n.US)("activatedFeatures",w.B),e.runSoftNavOverSpa&&=!0===f.soft_navigations.enabled&&f.feature_flags.includes("soft_nav")),d.denyList=[...f.ajax.deny_list||[],...f.ajax.block_internal?g:[]],d.ptid=e.agentIdentifier,d.loaderType=r,e.runtime=_(d),T.has(e.agentIdentifier)||(e.ee=k.ee.get(e.agentIdentifier),e.exposed=l,(0,S.W)({agentIdentifier:e.agentIdentifier,drained:!!w.B?.[e.agentIdentifier],type:"lifecycle",name:"initialize",feature:void 0,data:e.config})),T.add(e.agentIdentifier)}},374:(e,t,r)=>{r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860:(e,t,r)=>{"use strict";r.d(t,{$J:()=>d,K7:()=>c,P3:()=>u,XX:()=>i,Yy:()=>o,df:()=>a,qY:()=>n,v4:()=>s});const n="events",i="jserrors",a="browser/blobs",s="rum",o="browser/logs",c={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations",spa:"spa"},u={[c.pageViewEvent]:1,[c.pageViewTiming]:2,[c.metrics]:3,[c.jserrors]:4,[c.spa]:5,[c.ajax]:6,[c.sessionTrace]:7,[c.softNav]:8,[c.sessionReplay]:9,[c.logging]:10,[c.genericEvents]:11},d={[c.pageViewEvent]:s,[c.pageViewTiming]:n,[c.ajax]:n,[c.spa]:n,[c.softNav]:n,[c.metrics]:i,[c.jserrors]:i,[c.sessionTrace]:a,[c.sessionReplay]:a,[c.logging]:o,[c.genericEvents]:"ins"}}},n={};function i(e){var t=n[e];if(void 0!==t)return t.exports;var a=n[e]={exports:{}};return r[e](a,a.exports,i),a.exports}i.m=r,i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce(((t,r)=>(i.f[r](e,t),t)),[])),i.u=e=>"nr-rum-1.298.0.min.js",i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},t="NRBA-1.298.0.PROD:",i.l=(r,n,a,s)=>{if(e[r])e[r].push(n);else{var o,c;if(void 0!==a)for(var u=document.getElementsByTagName("script"),d=0;d<u.length;d++){var l=u[d];if(l.getAttribute("src")==r||l.getAttribute("data-webpack")==t+a){o=l;break}}if(!o){c=!0;var f={296:"sha512-7r59xFei/wYH/qDe7AmsUKR7NqbaD4hdacClEUAHBqKIhkH+j3LpuCNDcJ6TJ5mHwqOg0To3xAGIeaCDdga6dQ=="};(o=document.createElement("script")).charset="utf-8",o.timeout=120,i.nc&&o.setAttribute("nonce",i.nc),o.setAttribute("data-webpack",t+a),o.src=r,0!==o.src.indexOf(window.location.origin+"/")&&(o.crossOrigin="anonymous"),f[s]&&(o.integrity=f[s])}e[r]=[n];var g=(t,n)=>{o.onerror=o.onload=null,clearTimeout(p);var i=e[r];if(delete e[r],o.parentNode&&o.parentNode.removeChild(o),i&&i.forEach((e=>e(n))),t)return t(n)},p=setTimeout(g.bind(null,void 0,{type:"timeout",target:o}),12e4);o.onerror=g.bind(null,o.onerror),o.onload=g.bind(null,o.onload),c&&document.head.appendChild(o)}},i.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.p="https://js-agent.newrelic.com/",(()=>{var e={374:0,840:0};i.f.j=(t,r)=>{var n=i.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var a=new Promise(((r,i)=>n=e[t]=[r,i]));r.push(n[2]=a);var s=i.p+i.u(t),o=new Error;i.l(s,(r=>{if(i.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var a=r&&("load"===r.type?"missing":r.type),s=r&&r.target&&r.target.src;o.message="Loading chunk "+t+" failed.\n("+a+": "+s+")",o.name="ChunkLoadError",o.type=a,o.request=s,n[1](o)}}),"chunk-"+t,t)}};var t=(t,r)=>{var n,a,[s,o,c]=r,u=0;if(s.some((t=>0!==e[t]))){for(n in o)i.o(o,n)&&(i.m[n]=o[n]);if(c)c(i)}for(t&&t(r);u<s.length;u++)a=s[u],i.o(e,a)&&e[a]&&e[a][0](),e[a]=0},r=self["webpackChunk:NRBA-1.298.0.PROD"]=self["webpackChunk:NRBA-1.298.0.PROD"]||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})(),(()=>{"use strict";i(374);var e=i(566),t=i(741);class r extends t.W{agentIdentifier=(0,e.LA)(16)}var n=i(860);const a=Object.values(n.K7);var s=i(163);var o=i(908),c=i(863),u=i(261),d=i(241),l=i(944),f=i(701),g=i(773);function p(e,t,i,a){const s=a||i;!s||s[e]&&s[e]!==r.prototype[e]||(s[e]=function(){(0,o.p)(g.xV,["API/"+e+"/called"],void 0,n.K7.metrics,i.ee),(0,d.W)({agentIdentifier:i.agentIdentifier,drained:!!f.B?.[i.agentIdentifier],type:"data",name:"api",feature:u.Pl+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,l.R)(23,e)}})}function m(e,t,r,n,i){const a=e.info;null===r?delete a.jsAttributes[t]:a.jsAttributes[t]=r,(i||null===r)&&(0,o.p)(u.Pl+n,[(0,c.t)(),t,r],void 0,"session",e.ee)}var h=i(687),v=i(234),b=i(289),y=i(154),_=i(384);const w=e=>y.RI&&!0===e?.privacy.cookies_enabled;function x(e){return!!(0,_.dV)().o.MO&&w(e)&&!0===e?.session_trace.enabled}var k=i(389),S=i(699);class A extends v.W{constructor(e,t){super(e.agentIdentifier,t),this.agentRef=e,this.abortHandler=void 0,this.featAggregate=void 0,this.onAggregateImported=void 0,this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise(((t,r)=>{this.ee.on("manual-start-all",(0,k.J)((()=>{(0,h.Ak)(e.agentIdentifier,this.featureName),t()})))})):(0,h.Ak)(e.agentIdentifier,t)}importAggregator(e,t,r={}){if(this.featAggregate)return;let n;this.onAggregateImported=new Promise((e=>{n=e}));const a=async()=>{let a;await this.deferred;try{if(w(e.init)){const{setupAgentSession:t}=await i.e(296).then(i.bind(i,305));a=t(e)}}catch(e){(0,l.R)(20,e),this.ee.emit("internal-error",[e]),(0,o.p)(S.qh,[e],void 0,this.featureName,this.ee)}try{if(!this.#t(this.featureName,a,e.init))return(0,h.Ze)(this.agentIdentifier,this.featureName),void n(!1);const{Aggregate:i}=await t();this.featAggregate=new i(e,r),e.runtime.harvester.initializedAggregates.push(this.featAggregate),n(!0)}catch(e){(0,l.R)(34,e),this.abortHandler?.(),(0,h.Ze)(this.agentIdentifier,this.featureName,!0),n(!1),this.ee&&this.ee.abort()}};y.RI?(0,b.GG)((()=>a()),!0):a()}#t(e,t,r){if(this.blocked)return!1;switch(e){case n.K7.sessionReplay:return x(r)&&!!t;case n.K7.sessionTrace:return!!t;default:return!0}}}var R=i(630),T=i(614);class E extends A{static featureName=R.T;constructor(e){var t;super(e,R.T),this.setupInspectionEvents(e.agentIdentifier),t=e,p(u.Fw,(function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,o.p)(u.Pl+u.Fw,[(0,c.t)()],void 0,void 0,t.ee))}),t),this.ee.on("api-send-rum",((e,t)=>(0,o.p)("send-rum",[e,t],void 0,this.featureName,this.ee))),this.importAggregator(e,(()=>i.e(296).then(i.bind(i,108))))}setupInspectionEvents(e){const t=(t,r)=>{t&&(0,d.W)({agentIdentifier:e,timeStamp:t.timeStamp,loaded:"complete"===t.target.readyState,type:"window",name:r,data:t.target.location+""})};(0,b.sB)((e=>{t(e,"DOMContentLoaded")})),(0,b.GG)((e=>{t(e,"load")})),(0,b.Qr)((e=>{t(e,"navigate")})),this.ee.on(T.tS.UPDATE,((t,r)=>{(0,d.W)({agentIdentifier:e,type:"lifecycle",name:"session",data:r})}))}}var N=i(843),I=i(878),j=i(782);class O extends A{static featureName=j.T;constructor(e){super(e,j.T),y.RI&&((0,N.u)((()=>(0,o.p)("docHidden",[(0,c.t)()],void 0,j.T,this.ee)),!0),(0,I.sp)("pagehide",(()=>(0,o.p)("winPagehide",[(0,c.t)()],void 0,j.T,this.ee))),this.importAggregator(e,(()=>i.e(296).then(i.bind(i,350)))))}}class P extends A{static featureName=g.TZ;constructor(e){super(e,g.TZ),y.RI&&document.addEventListener("securitypolicyviolation",(e=>{(0,o.p)(g.xV,["Generic/CSPViolation/Detected"],void 0,this.featureName,this.ee)})),this.importAggregator(e,(()=>i.e(296).then(i.bind(i,373))))}}new class extends r{constructor(e){var t;(super(),y.gm)?(this.features={},(0,_.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(E),this.runSoftNavOverSpa=[...this.desiredFeatures].some((e=>e.featureName===n.K7.softNav)),(0,s.j)(this,e,e.loaderType||"agent"),t=this,p(u.cD,(function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return m(t,e,r,u.cD,n);(0,l.R)(40,typeof r)}else(0,l.R)(39,typeof e)}),t),function(e){p(u.Dl,(function(t){if("string"==typeof t||null===t)return m(e,"enduser.id",t,u.Dl,!0);(0,l.R)(41,typeof t)}),e)}(this),function(e){p(u.nb,(function(t){if("string"==typeof t||null===t)return m(e,"application.version",t,u.nb,!1);(0,l.R)(42,typeof t)}),e)}(this),function(e){p(u.d3,(function(){e.ee.emit("manual-start-all")}),e)}(this),this.run()):(0,l.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return a.forEach((r=>{t[r]=!!e[r]?.enabled})),t}(this.init),t=[...this.desiredFeatures];t.sort(((e,t)=>n.P3[e.featureName]-n.P3[t.featureName])),t.forEach((t=>{if(!e[t.featureName]&&t.featureName!==n.K7.pageViewEvent)return;if(this.runSoftNavOverSpa&&t.featureName===n.K7.spa)return;if(!this.runSoftNavOverSpa&&t.featureName===n.K7.softNav)return;const r=function(e){switch(e){case n.K7.ajax:return[n.K7.jserrors];case n.K7.sessionTrace:return[n.K7.ajax,n.K7.pageViewEvent];case n.K7.sessionReplay:return[n.K7.sessionTrace];case n.K7.pageViewTiming:return[n.K7.pageViewEvent];default:return[]}}(t.featureName).filter((e=>!(e in this.features)));r.length>0&&(0,l.R)(36,{targetFeature:t.featureName,missingDependencies:r}),this.features[t.featureName]=new t(this)}))}catch(e){(0,l.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,_.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}({features:[E,O,P],loaderType:"lite"})})()})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="/documents/executive-order-11081-amending-the-manual-for-courts-martial-united-states-1951-implement" />
+<link rel="shortlink" href="/node/236038" />
+<link rel="shortcut icon" href="https://www.presidency.ucsb.edu/sites/default/files/favicon-app_0.png" type="image/png" />
+  <title>Executive Order 11081—Amending the Manual for Courts-Martial, United States, 1951, to Implement Section 815 of Title 10, United States Code, Relating to Nonjudicial Punishment | The American Presidency Project</title>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,800,700,600,300|Dosis:400,200,300,500,600,700,800' rel='stylesheet' type='text/css'>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_lQaZfjVpwP_oGNqdtWCSpJT1EMqXdMiU84ekLLxQnc4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_uuQd0L7qawhKpY0MHO8pVG2W6LSQqS5w9XHZMk3vO2U.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_vbEgx2XLR7Zv4cooqCR003JQm8ctJxS8MDvX_FsFGUs.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_oeHWMYUNGpyVpvA5OI5WFwKyBOcHdcrAoQuKZFMe0ng.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_95w1P56cK6XaxiF_CEwhZAgmNWjkIGFRauUF_xNVpzE.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.presidency.ucsb.edu/sites/default/files/css/css_DW59q6nX-P3-D4cA08_V2iLlMJIaFdPFYT8X6nSFpV8.css" media="print" />
+  <!-- HTML5 element support for IE6-8 -->
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+<script>window.jQuery || document.write("<script src='/sites/default/modules/contrib/jquery_update/replace/jquery/1.12/jquery.min.js'>\x3C/script>")</script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_GOikDsJOX04Aww72M-XK1hkq4qiL_1XgGsRdkL0XlDo.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.13.3/jquery-ui.min.js"></script>
+<script>window.jQuery.ui || document.write("<script src='/sites/default/modules/contrib/jquery_update/replace/ui/ui/minified/jquery-ui.min.js'>\x3C/script>")</script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_onbE0n0cQY6KTDQtHO_E27UBymFC-RuqypZZ6Zxez-o.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_gHk2gWJ_Qw_jU2qRiUmSl7d8oly1Cx7lQFrqcp3RXcI.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_OnsvYlQ_LTosJ-SxmHIq3Rw7eH2XmXi69Q68wgclccA.js"></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-86410002-1"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "UA-86410002-1", {"groups":"default","linker":{"domains":["dev-wwwpresidencyucsbedu.pantheonsite.io","www.presidency.ucsb.edu"]},"anonymize_ip":true});gtag("config", "G-86B9KEYGFJ", {"groups":"default","linker":{"domains":["dev-wwwpresidencyucsbedu.pantheonsite.io","www.presidency.ucsb.edu"]},"anonymize_ip":true});</script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_lcTf447kIisJfwJMjtPrAFuGvKNH6t_RbNx-yD768P0.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_gvpxcPEErmaiJn8qGSGx2O87lReivTR09hs10gIG3Yg.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","setHasJsCookie":0,"ajaxPageState":{"theme":"app","theme_token":"mxKXFB9y4k3suDa-R16_zJ9Quz_Z-r5V79tma24Ccro","js":{"sites\/default\/libraries\/jquery-ui-multiselect-widget\/src\/jquery.multiselect.js":1,"sites\/default\/libraries\/jquery-ui-multiselect-widget\/src\/jquery.multiselect.filter.js":1,"sites\/default\/modules\/contrib\/jquery_ui_multiselect_widget\/jquery_ui_multiselect_widget.js":1,"modules\/statistics\/statistics.js":1,"sites\/default\/themes\/bootstrap\/js\/bootstrap.js":1,"\/\/ajax.aspnetcdn.com\/ajax\/jQuery\/jquery-1.12.4.min.js":1,"0":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/default\/modules\/contrib\/jquery_update\/js\/jquery_browser.js":1,"\/\/ajax.aspnetcdn.com\/ajax\/jquery.ui\/1.13.3\/jquery-ui.min.js":1,"1":1,"misc\/form-single-submit.js":1,"sites\/default\/modules\/contrib\/entityreference\/js\/entityreference.js":1,"sites\/default\/modules\/contrib\/better_exposed_filters\/better_exposed_filters.js":1,"sites\/default\/modules\/contrib\/google_analytics\/googleanalytics.js":1,"https:\/\/www.googletagmanager.com\/gtag\/js?id=UA-86410002-1":1,"2":1,"sites\/default\/modules\/contrib\/field_group\/field_group.js":1,"sites\/default\/modules\/contrib\/rrssb\/rrssb.init.js":1,"sites\/default\/libraries\/rrssb-plus\/js\/rrssb.min.js":1,"sites\/default\/modules\/contrib\/extlink\/js\/extlink.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/affix.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/alert.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/button.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/carousel.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/collapse.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/dropdown.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/modal.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/tooltip.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/popover.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/scrollspy.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/tab.js":1,"sites\/default\/themes\/app\/bootstrap\/js\/transition.js":1,"sites\/default\/themes\/app\/scripts\/scripts.js":1},"css":{"modules\/system\/system.base.css":1,"misc\/ui\/jquery.ui.core.css":1,"misc\/ui\/jquery.ui.theme.css":1,"misc\/ui\/jquery.ui.accordion.css":1,"sites\/default\/modules\/contrib\/date\/date_repeat_field\/date_repeat_field.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"sites\/default\/modules\/contrib\/extlink\/css\/extlink.css":1,"sites\/default\/modules\/contrib\/views\/css\/views.css":1,"sites\/default\/modules\/contrib\/ctools\/css\/ctools.css":1,"sites\/default\/libraries\/jquery-ui-multiselect-widget\/jquery.multiselect.css":1,"sites\/default\/libraries\/jquery-ui-multiselect-widget\/jquery.multiselect.filter.css":1,"sites\/default\/modules\/contrib\/jquery_ui_multiselect_widget\/jquery_ui_multiselect_widget.css":1,"sites\/default\/modules\/contrib\/vefl\/css\/vefl-layouts.css":1,"sites\/default\/modules\/contrib\/date\/date_api\/date.css":1,"public:\/\/rrssb\/rrssb.2d486dfe.css":1,"sites\/default\/libraries\/rrssb-plus\/css\/rrssb.css":1,"sites\/default\/themes\/app\/css\/style.css":1,"sites\/default\/themes\/app\/css\/oog.css":1,"sites\/default\/themes\/app\/css\/print.css":1}},"jquery_ui_multiselect_widget":{"module_path":"sites\/default\/modules\/contrib\/jquery_ui_multiselect_widget","multiple":1,"filter":1,"subselector":"#edit-category2","selectedlist":"4","autoOpen":0,"header":1,"height":"auto","classes":"app-uberselect","filter_auto_reset":1,"filter_width":"auto","jquery_ui_multiselect_widget_path_match_exclude":"admin\/*\r\nmedia\/*\r\nfile\/*\r\nsystem\/ajax"},"better_exposed_filters":{"datepicker":false,"slider":false,"settings":[],"autosubmit":false,"views":{"dpg_docs_media":{"displays":{"block_2":{"filters":[]}}},"report_a_typo":{"displays":{"block":{"filters":[]}}},"document_attached_files":{"displays":{"block":{"filters":[]},"block_1":{"filters":[]}}}}},"urlIsAjaxTrusted":{"\/advanced-search":true},"googleanalytics":{"account":["UA-86410002-1","G-86B9KEYGFJ"],"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackDomainMode":2,"trackCrossDomains":["dev-wwwpresidencyucsbedu.pantheonsite.io","www.presidency.ucsb.edu"]},"statistics":{"data":{"nid":"236038"},"url":"\/modules\/statistics\/statistics.php"},"field_group":{"div":"full"},"rrssb":{"size":"1","shrink":"1","regrow":"","minRows":"1","maxRows":"1","prefixReserve":"1em","prefixHide":"1em","alignRight":0},"extlink":{"extTarget":"_blank","extClass":0,"extLabel":"(link is external)","extImgClass":0,"extIconPlacement":"append","extSubdomains":1,"extExclude":"","extInclude":"","extCssExclude":"","extCssExplicit":"","extAlert":0,"extAlertText":"This link will take you to an external web site.","mailtoClass":0,"mailtoLabel":"(link sends e-mail)","extUseFontAwesome":false},"bootstrap":{"anchorsFix":1,"anchorsSmoothScrolling":1,"formHasError":1,"popoverEnabled":0,"popoverOptions":{"animation":1,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":1,"html":0,"placement":"auto left","selector":"","trigger":"hover focus","delay":0,"container":"body"}}});</script>
+</head>
+<body class="html not-front not-logged-in one-sidebar sidebar-first page-node page-node- page-node-236038 node-type-documents" >
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <div class="wrapper"> <!-- Wrapper for Sticky Footer -->
+
+      <div class="branding-region">
+      <div class="container">
+                  <div class="region region-branding">
+    <section id="block-block-1" class="block block-block site-title-block clearfix">
+
+      
+  <div class="site-title"><a href="https://www.presidency.ucsb.edu/">The American Presidency Project</a></div>
+
+</section>
+<section id="block-block-2" class="block block-block top-link-buttons clearfix">
+
+      
+  <p><a class="btn btn-default" href="https://www.presidency.ucsb.edu/about">About</a><a class="btn btn-default" href="/advanced-search"><span class="glyphicon glyphicon-search"></span> Search</a></p>
+<p id="ucScript"><a href="https://www.ucsb.edu/" target="_blank"><img alt="ucsb wordmark black" src="https://www.presidency.ucsb.edu/sites/default/files/pictures/uc_santa_barbara_wordmark_black_rgb.svg" style="width: 175px; height: 13px;" /></a></p>
+
+</section>
+  </div>
+      </div>
+    </div>
+  
+  <div id="navbar" role="banner" class="navbar navbar-default"><!-- Only way to remove "container" class -->
+    <div class="container">
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+              <div class="navbar-collapse collapse">
+          <nav role="navigation">
+                          <ul class="menu nav navbar-nav"><li class="first expanded active-trail active dropdown"><a href="/documents" class="active-trail dropdown-toggle" data-toggle="dropdown">Documents <span class="caret"></span></a><ul class="dropdown-menu"><li class="first leaf"><a href="/documents/presidential-documents-archive-guidebook">Guidebook</a></li>
+<li class="last leaf"><a href="/documents/category-attributes">Category Attributes</a></li>
+</ul></li>
+<li class="collapsed"><a href="/statistics">Statistics</a></li>
+<li class="leaf"><a href="/media" title="">Media Archive</a></li>
+<li class="leaf"><a href="/presidents" title="">Presidents</a></li>
+<li class="leaf"><a href="/analyses" title="">Analyses</a></li>
+<li class="last leaf"><a href="https://give.ucsb.edu/campaigns/58728/donations/new" title="">GIVE</a></li>
+</ul>                                              </nav>
+        </div>
+          </div>
+  </div>
+
+  <div role="banner" id="page-header" class="site-header">
+      </div>
+
+  <div class="main-container container">
+    <div class="row">
+
+          <aside class="col-sm-3 no-print" role="complementary">
+            <div class="region region-sidebar-first well">
+    <section id="block-menu-block-8" class="block block-menu-block doc-sub clearfix">
+
+        <h2 class="block-title">Documents</h2>
+    
+  <div class="menu-block-wrapper menu-block-8 menu-name-menu-documents parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-10329"><a href="/documents/presidential-documents-archive-guidebook" title="">Archive Guidebook</a></li>
+<li class="leaf active-trail menu-mlid-10330 active"><a href="/documents" title="" class="active-trail">Categories</a></li>
+<li class="last leaf menu-mlid-10791"><a href="/documents/category-attributes" title="">Attributes</a></li>
+</ul></div>
+
+</section>
+<section id="block-menu-block-7" class="block block-menu-block dropdown clearfix">
+
+        <h2 class="block-title">Categories</h2>
+    
+  <div class="menu-block-wrapper menu-block-7 menu-name-menu-doc-cat-menu parent-mlid-0 menu-level-1">
+    <ul class="menu nav"><li class="first expanded menu-mlid-10954 dropdown"><a href="/documents/app-categories/presidential" title="Presidential (73842)" class="dropdown-toggle" data-toggle="dropdown">Presidential (246495) <span class="caret"></span></a><ul class="dropdown-menu"><li class="first leaf menu-mlid-10910"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/eulogies" title="Eulogies (55)">Eulogies (69)</a></li>
+<li class="leaf menu-mlid-10930"><a href="/documents/app-categories/written-presidential-orders/presidential/executive-orders" title="Executive Orders (5885)">Executive Orders (10796)</a></li>
+<li class="leaf menu-mlid-10912"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/fireside-chats" title="Fireside Chats (27)">Fireside Chats (27)</a></li>
+<li class="leaf menu-mlid-10906"><a href="/documents/app-categories/presidential/interviews" title="Interviews (950)">Interviews (1031)</a></li>
+<li class="leaf menu-mlid-10894"><a href="/documents/app-categories/presidential/letters" title="Letters (4363)">Letters (4786)</a></li>
+<li class="leaf menu-mlid-10899"><a href="/documents/app-categories/presidential/miscellaneous-written" title="Miscellaneous Written (741)">Miscellaneous Written (112)</a></li>
+<li class="leaf menu-mlid-10907"><a href="/documents/app-categories/presidential/news-conferences" title="News Conferences (2096)">News Conferences (2522)</a></li>
+<li class="collapsed menu-mlid-10909"><a href="/documents/app-categories/presidential/spoken-addresses-and-remarks" title="Spoken Addresses and Remarks (5428)">Spoken Addresses and Remarks (35199)</a></li>
+<li class="leaf menu-mlid-10911"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/farewell-addresses" title="Farewell Address (10)">Farewell Addresses (12)</a></li>
+<li class="leaf menu-mlid-10913"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/inaugural-addresses" title="Inaugural Addresses (61)">Inaugural Addresses (63)</a></li>
+<li class="leaf menu-mlid-10895"><a href="/documents/app-categories/presidential/memoranda" title="Memoranda (1828)">Memoranda (3455)</a></li>
+<li class="leaf menu-mlid-10927"><a href="/documents/app-categories/citations/presidential/messages" title="Messages (11049)">Messages (12670)</a></li>
+<li class="leaf menu-mlid-10931"><a href="/documents/app-categories/written-presidential-orders/presidential/proclamations" title="Proclamations (7974)">Proclamations (9616)</a></li>
+<li class="leaf menu-mlid-10919"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/saturday-weekly-addresses" title="Saturday Addresses (Radio and Webcast) (1629)">Saturday Weekly Addresses (1639)</a></li>
+<li class="leaf menu-mlid-10920"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/state-dinners" title="State Dinners (953)">State Dinners (263)</a></li>
+<li class="leaf menu-mlid-10921"><a href="/documents/app-categories/spoken-addresses-and-remarks/presidential/state-the-union-addresses" title="State of the Union Addresses (98)">State of the Union Addresses (100)</a></li>
+<li class="leaf menu-mlid-10928"><a href="/documents/app-categories/citations/presidential/state-the-union-written-messages" title="State of the Union Messages (1)">State of the Union Written Messages (140)</a></li>
+<li class="expanded menu-mlid-10934"><a href="/documents/app-categories/statements" title="Statements (8647)">Statements (14667)</a></li>
+<li class="leaf menu-mlid-10924"><a href="/documents/app-categories/presidential/vetoes" title="Vetoes (266)">Vetoes (1228)</a></li>
+<li class="collapsed menu-mlid-10925"><a href="/documents/app-categories/presidential/citations" title="Written Messages (11021)">Citations (13038)</a></li>
+<li class="last expanded menu-mlid-10929"><a href="/documents/app-categories/presidential/written-presidential-orders" title="Written Presidential Orders (13858)">Written Presidential Orders (47077)</a></li>
+</ul></li>
+<li class="leaf menu-mlid-10897"><a href="/documents/app-categories/remarks-administration-officials" title="Miscellaneous Press Secretary (23298)">Remarks by Administration Officials (186)</a></li>
+<li class="expanded menu-mlid-10887 dropdown"><a href="/documents/app-categories/elections-and-transitions" title="Elections and Transitions (16448)" class="dropdown-toggle" data-toggle="dropdown">Elections and Transitions (50265) <span class="caret"></span></a><ul class="dropdown-menu"><li class="first leaf menu-mlid-10888"><a href="/documents/app-categories/elections-and-transitions/campaign-documents" title="Campaign Documents (2747)">Campaign Documents (23621)</a></li>
+<li class="expanded menu-mlid-10889"><a href="/documents/app-categories/elections-and-transitions/convention-speeches" title="Convention Speeches (50)">Convention Speeches (128)</a></li>
+<li class="expanded menu-mlid-10890"><a href="/documents/app-categories/elections-and-transitions/debates" title="Debates (152)">Debates (191)</a></li>
+<li class="leaf menu-mlid-10892"><a href="/documents/app-categories/elections-and-transitions/party-platforms" title="Party Platforms (98)">Party Platforms (105)</a></li>
+<li class="last leaf menu-mlid-10893"><a href="/documents/app-categories/elections-and-transitions/transition-documents" title="Transition Documents (346)">Transition Documents (744)</a></li>
+</ul></li>
+<li class="last leaf menu-mlid-10883"><a href="/documents/app-categories/congressional" title="Congressional (3)">Congressional (11)</a></li>
+</ul></div>
+
+</section>
+  </div>
+        </aside>  <!-- /#sidebar-first -->
+      
+      <section class="col-sm-9">
+                        <a id="main-content"></a>
+                
+                          
+                          <div class="region region-content">
+    <section id="block-system-main" class="block block-system clearfix">
+
+      
+  
+
+<div  about="/documents/executive-order-11081-amending-the-manual-for-courts-martial-united-states-1951-implement" typeof="sioc:Item foaf:Document" class="node node-documents view-mode-full ">
+    <div class="row">
+    <div class="col-sm-8 ">
+      
+  <div class="field-docs-person">
+    <div  about="/people/president/john-f-kennedy" typeof="sioc:Item foaf:Document" class="ds-1col node node-prez-diet view-mode-for_documents  clearfix">
+
+  
+  
+  <div class="field-diet-pictures">
+    <img typeof="foaf:Image" class="img-responsive" src="https://www.presidency.ucsb.edu/sites/default/files/styles/doc_img/public/people/john-f-kennedy_2.jpg?itok=e-RkRZKR" width="170" height="230" alt="John F. Kennedy photo" />  </div>
+
+  <div class="field-title">
+    <h3 class="diet-title"><a href="/people/president/john-f-kennedy">John F. Kennedy</a></h3>  </div>
+
+  <div class="field-ds-byline">
+    
+  <div class="field-resuable-byline">
+    <div class="diet-by-line president"><span class="presidential-ordinal-number">35th</span> <span class="job-position">President of the United States:</span> <span class="dates">1961 ‐ 1963</span></div>
+  </div>
+  </div>
+
+  <div class="field-ds-doc-title">
+    <h1>Executive Order 11081—Amending the Manual for Courts-Martial, United States, 1951, to Implement Section 815 of Title 10, United States Code, Relating to Nonjudicial Punishment</h1>
+  </div>
+</div>
+
+  </div>
+
+  <div class="field-docs-start-date-time">
+    <span  property="dc:date" datatype="xsd:dateTime" content="1963-01-29T00:00:00+00:00" class="date-display-single">January 29, 1963</span>  </div>
+
+  <div class="field-docs-content">
+    <p>By virtue of the authority vested in me by chapter 47 (Uniform Code of Military Justice) of title 10, United States Code, and as President of the United States, I hereby prescribe the following amendments of the Manual for Courts-Martial, United States, 1951 (prescribed by Executive Order No. 10214 of February 8, 1951).</p>
+<p>The amendments made by this order become effective on February 1, 1963. However, no person may impose any kind or amount of nonjudicial punishment after January 31, 1963, for an offense committed before February 1, 1963, which he could not have imposed before that date.</p>
+<p>1. The table of contents is amended by amending the analysis of chapter XXVI to read as follows:</p>
+<p>"Chapter XXVI. Nonjudicial punishment ........<br /><br />
+"Authority ...........<br /><br />
+"Policies applicable .......<br /><br />
+"Effect of errors ......<br /><br />
+"Punishments .......<br /><br />
+"Right to demand trial .......<br /><br />
+"Procedure; records of punishment ......<br /><br />
+"Suspension, mitigation, remission, and setting aside ............<br /><br />
+"Appeals ...... "</p>
+<p>2. Paragraph 16b is amended by striking out the words "noncommissioned or petty officers" in the first sentence and inserting the words "enlisted persons" in place thereof.</p>
+<p>3. Paragraph 32e is amended by striking out the next to the last sentence and inserting the following in place thereof:</p>
+<p>"When reduction in pay grade is considered a proper punishment and he is not authorized to impose such punishment, he should forward the charges or report to a commander who has such authority under Article 15."</p>
+<p>4. Paragraph 33g is amended by striking out the last sentence and inserting the following in place thereof:</p>
+<p>"In the case of warrant officers and commissioned officers, he may, unless his disciplinary authority has been limited or withheld (128), impose such punishment. If his authority has been limited or withheld, or if he believes a greater punishment is appropriate in the interest of justice and discipline, he should forward the charges and allied papers or the report of preliminary inquiry (if charges have not been preferred) to the officer exercising general court-martial jurisdiction or the general or flag officer in command."</p>
+<p>5. Paragraph 35a is amended as follows:</p>
+<p>(a) By striking out the words "to impose forfeitures of pay in appropriate cases upon officers and warrant officers of his command under the provisions of Article 15" in the third sentence and inserting the words "to impose any of the punishments authorized in Article 15(b) (1)(B) upon officers and warrant officers of his command (see 131b ( 1 ) )" in place thereof.</p>
+<p>(b) By striking out the words "--none of which may be delegated-" in the fourth sentence and inserting the words "--of which only the power under Article 15 may be delegated (128a)--" in place thereof.</p>
+<p>6. Paragraph 68g is amended by striking out the words "Article 15e" in the last sentence and inserting the words "Article 15 (f)" in place thereof.</p>
+<p>7. Paragraph 125 is amended by striking out the third sentence of the fourth subparagraph thereof, which begins with the words "Formal military duties".</p>
+<p>8. Paragraph 126c(2) is amended by striking out the words "noncommissioned or petty officers" in the second sentence and inserting the words "enlisted persons" in place thereof.</p>
+<p>9. The Table of Maximum Punishments, contained in paragraph 127c, is amended by inserting the following new item:</p>
+<table border="5" cellpadding="3">
+<tr>
+<th>Article</th>
+<th>Offenses</th>
+<th>Punishments</th>
+</tr>
+<tr>
+<td>134</td>
+<td>Correctional custody:</td>
+<td>Dishonorable discharge, forfeiture of all pay</td>
+</tr>
+<tr>
+<td></td>
+<td>Escape from.</td>
+<td>and allowances, and confinement at hard</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>labor not to exceed one year.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Breach of restraint</td>
+<td>Bad conduct discharge, forfeiture of all pay</td>
+</tr>
+<tr>
+<td></td>
+<td>during.</td>
+<td>and allowances, and confinement at hard labor</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>not to exceed six months."</td>
+</tr>
+</table>
+<p>10. Chapter XXVI is amended to read as follows:</p>
+<p align="center">"Chapter XXVI</p>
+<p align="center">"NONJUDICIAL PUNISHMENT</p>
+<p align="center">"AUTHORITY--POLICIES APPLICABLE--EFFECT OF ERRORS-PUNISHMENTS-RIGHT TO DEMAND TRIAL-PROCEDURE; RECORDS OF PUNISHMENT--SUSPENSION, MITIGATION, REMISSION, AND SETTING ASIDE--APPEALS</p>
+<p>"128. AUTHORITY.--a. Who may impose nonjudicial punishment.--Unless otherwise provided by this chapter or regulations of the Secretary concerned, a commanding officer may, under Article 15, impose disciplinary punishments for minor offenses, without the intervention of a court-martial, upon commissioned officers, warrant officers, and other military personnel of his command. As used in this chapter, the term "commanding officer" or "commander' includes a warrant officer exercising command.</p>
+<p>"Under such regulations as may be prescribed by the Secretary concerned, a commanding officer exercising general court-martial jurisdiction or an officer of general or flag rank in command may delegate his powers under Article 15 to an officer who is one of his principal assistants. Such regulations shall define what officers may be considered as principal assistants for these purposes. Unless otherwise prescribed by those regulations or the terms of the delegation, the officer to whom such powers are delegated has the same authority under Article 15 as the officer who delegated the powers. Subject to regulations of the Secretary concerned, a commanding officer having disciplinary authority under Article 15 may limit or withhold the exercise by a subordinate commander of any disciplinary authority that subordinate commander would otherwise have under that article.</p>
+<p>"In the Army and Air Force, authority under Article 15 may be exercised only by commanding officers and officers to whom this authority has been delegated. In the Navy, Marine Corps, and Coast Guard, that authority may be exercised by commanding officers and officers to whom this authority has been delegated. In addition, an officer in charge of any unit of the Navy, Marine Corps, or Coast Guard may impose upon enlisted members assigned to the unit of which he is in charge, and take action under 134 concerning, such of the punishments authorized to be imposed by a commanding officer who is below the grade of lieutenant commander or major as the Secretary concerned may specifically prescribe by regulation. For the purposes of Article 15, the term 'assigned', as used in the preceding sentence, has the same meaning as the term "of his command'. In matters within the authority of an officer in charge, the term 'commanding officer' or 'commander', as used in this chapter, includes an officer in charge. The rmy and Air Force have no 'officer in charge' as that term is used in Article 15 (c).</p>
+<p>"b. Minor offences.--The term 'offenses' as used in connection with the authority to impose disciplinary punishment under Article 15 for minor offenses, includes only those acts or omissions constituting offenses under the punitive articles of the Uniform Code of Military Justice. The nature of an offense, and the circumstances surrounding its commission, are among the factors which must be considered in determining whether or not it is minor in nature. Generally, the term includes misconduct not involving any greater degree of criminality than is involved in the average offense tried by summary court-martial. The term 'minor' ordinarily does not include misconduct of a kind which, if tried by general court-martial, could be punished by dishonorable discharge or confinement for more than one year. The imposition and enforcement of disciplinary punishment under this article for an act or omission is not a bar to trial by courtmartial for a serious crime or offense which grew out of the same act or omission and which is not properly punishable under this article. See 68g and Article 15 (f) . However, the accused may show at the trial that he has been punished under Article 15 and, if he does, this fact must be considered in determining the measure of punishment to be adjudged if a finding of guilty results.</p>
+<p>"e. Nonpunitive measures.--Article 15 and this chapter do not apply to, include, or limit the use of those nonpunitive measures that a commanding officer or an officer in charge is authorized and expected to use to further the efficiency of his command or unit, such-as administrative admonitions, reprimands, exhortations, disapprovals, criticisms, censures, reproofs, and rebukes, written or oral, not imposed as punishment for a military offense. These nonpunitive measures may also include, subject to any applicable regulations, administrative withholding of privileges.</p>
+<p>"d. Double punishment and increase in punishment prohibited'When punishment has been imposed upon a person under Article 15 for an offense, punishment may not again be imposed upon him for the same offense under Article 15 either by the commanding officer who imposed the punishment or by any other commanding officer. But see l28b.</p>
+<p>"Once punishment has been imposed it may not be increased, upon appeal or otherwise.</p>
+<p>"129. POLICIES APPLICABLE.--a. General.--Commanders are responsible for the maintenance of discipline within their commands. In the great majority of instances, discipline can be maintained through effective leadership including, when required, the use of those nonpunitive measures which a commander is expected to use to further the efficiency of his command or unit and which are not imposed under Article 15. See 128c. When a minor offense has been committed and nonpunitive measures are considered insufficient, authority under Article 15 should ordinarily be used unless it is clear that only trial by court-martial will meet the needs of justice and discipline.</p>
+<p>"If a commanding officer determines that his authority under Article 15 is insufficient to make a proper disposition of the case, or if his authority to impose punishment under that article has been withheld (see 128a), he may refer the case to a superior commander for appropriate disposition.</p>
+<p>"Before exercising authority under Article 15, the officer who is to exercise it must thoroughly evaluate each case on an individual basis. No policy may be established whereby certain categories of offenses must be disposed of under Article 15 regardless of the circumstances, or predetermined kinds or amounts of punishments must be imposed for certain classifications of offenses that are proper for disposition under Article 15.</p>
+<p>"b. Purpose and nature of action under Article 15.--Punishments under Article 15 are primarily corrective in nature. In determining the appropriate kind and amount of punishment to be administered, commanding officers should consider the age, experience, intelligence, and prior disciplinary and military record of the offender, as well as all the other facts and circumstances of the case. When selecting the appropriate kind or combination of punishments to be imposed, commanders should consider the nature and characteristics of the various forms of authorized punishment discussed in 131c. This information should also be used by superior authority to whom appeals from punishments imposed under this article are directed when he takes action on those appeals.</p>
+<p>"In determining an appropriate punishment, commanders should consider the desirability of suspending probationally all or a portion of the punishment selected. Probational suspension of punishment normally is warranted in the case of first offenders or when persuasive extenuating or mitigating matters are present. Suspension not only provides a behavioral incentive to the offender but also affords the commander an excellent opportunity to evaluate the offender during the period of suspension.</p>
+<p>"130. EFFECT OF ERRORS.--A failure to comply with any of the procedural provisions of this chapter will not. invalidate a punishment imposed under Article 15, except to the extent that may be required by a clear and affirmative showing of injury to a substantial right of the person on whom the punishment was imposed, which right was neither expressly nor impliedly waived.</p>
+<p>"131. PUNISHMENTS.--a. General limitations.--The Secretary concerned may, by regulations, place limitations on the powers granted by Article 15 with respect to the kind and amount of the punishment authorized (Art. 15(a)). Subject to 128a, and any limitations contained in regulations of the Secretary concerned, the kinds and amounts of punishment authorized by Article 15 (b) may be imposed upon military personnel of any armed force as provided in this paragraph ( 131 ).</p>
+<p>"b. Authorized maximum punishments.--In addition to or in lieu of admonition or reprimand, one or more of the following disciplinary punishments may, subject to the limitations of 131d, be imposed upon military personnel of their commands by the categories of commanding officers designated herein:</p>
+<p>"(1) Upon offcers and warrant officers of his eommand--</p>
+<p>"(A) by any commanding officer, restriction to certain specified limits, with or without suspension from duty, for not more than 30 consecutive days;</p>
+<p>"(B) if imposed by an officer exercising general court-martial jurisdiction or an officer of general or flag rank in command--</p>
+<p>" (i) arrest in quarters for not more than 30 consecutive days;</p>
+<p>"(ii) forfeiture of not more than one-half of one month's pay per month for two months;</p>
+<p>"(iii) restriction to certain specified limits, with or without suspension from duty, for not more than 60 consecutive days;</p>
+<p>" (iv) detention of not more than one-half of one month's pay per month for three months.</p>
+<p>"(2) Upon other military personnel of his command-"(A) by any commanding officer--</p>
+<p>"(i) if imposed upon a person attached to or embarked in a vessel, confinement on bread and water or diminished rations for not more than three consecutive days;</p>
+<p>"(ii) correctional custody for not more than seven consecutive days; " (iii) forfeiture of not more than seven days' pay;</p>
+<p>"(iv) reduction to the next inferior pay grade, if the grade from which demoted is within the promotion authority of the officer imposing the reduction or any officer subordinate to the one who imposes the reduction ;</p>
+<p>"(v) extra duties, including fatigue or other duties, for not more than 14 consecutive days;</p>
+<p>"(vi) restriction to certain specified limits, with or without suspension from duty, for not more than 14 consecutive days;</p>
+<p>"(vii) detention of not more than 14 days' pay;</p>
+<p>"(B) if imposed by a commanding officer of the grade of major or lieutenant commander or above-</p>
+<p>"(i) if imposed upon a person attached to or embarked in a vessel, confinement on bread and water or diminished rations for not more than three consecutive days;</p>
+<p>"(ii) correctional custody for not more than 30 consecutive days;</p>
+<p>"(iii) forfeiture of not more than one-half of one month's pay per month for two months;</p>
+<p>"(iv) reduction to the lowest or any intermediate pay grade, if the grade from which demoted is within the promotion authority of the officer imposing the reduction or any officer subordinate to the one who imposes the reduction, but enlisted members in pay grades above E--4 may not be reduced more than one pay grade, except that during time of war or national emergency hereafter declared by the Congress, this category of persons may be reduced two grades if the Secretary concerned determines that circumstances require the removal of this limitation;</p>
+<p>"(v) extra duties, including fatigue or other duties, for not more than 45 consecutive days;</p>
+<p>"(vi) restriction to certain specified limits, with or without suspension from duty, for not more than 60 consecutive days;</p>
+<p>"(vii) detention of not more than one-half of one month's pay per month for three months.</p>
+<p>"c. Nature of punishments.-- ( 1 ) Admonition and reprimand.-When an .admonition or reprimand is imposed as punishment under Article 15, it should be clearly indicated that it is imposed as as a punishment under that article. See 128c as to admonitions and reprimands imposed as purely administrative measures.</p>
+<p>"In the case of officers and warrant officers, admonitions and reprimands given as punishment under Article 15 must be administered in writing. In other cases, unless otherwise prescribed by regulations of the Secretary concerned, they may be administered either orally or in writing.</p>
+<p>"An admonition or reprimand may be imposed in lieu of or combined with other Article 15 punishments.</p>
+<p>"(2) Restriction.--This form of punishment is the least severe form of deprivation of liberty. Restriction involves moral rather than physical restraint. The severity of this type of restraint is dependent not only upon its duration but also upon the geographical limits specified when the punishment is imposed. A person undergoing restriction may be required to report to a designated place at specified times if it is considered reasonably necessary to insure that the punishment is being properly executed. Unless otherwise specified by the commanding officer imposing this form of punishment, a person in restriction may be required to perform any military duty.</p>
+<p>"(3) Arrest in quarters.--The authority to impose arrest in quarters a.s punishment under Article 15 may be exercised only by an officer exercising general court-martial jurisdiction or by a general or flag officer in command. Arrest in quarters as a punishment under Article 15 may be imposed only upon commissioned officers and warrant officers.</p>
+<p>"As in the case of restriction, the restraint involved in this punishment is enforced by a moral obligation rather than by physical means. An officer undergoing this punishment may be required to perform such duties as may be prescribed by regulations of the Secretary concerned. However, an officer so punished is required to remain within his quarters during the period of punishment unless the limits of his arrest are otherwise extended by appropriate authority. The quarters of an officer may consist of his military residence, whether a tent, stateroom, or other quarters assigned to him, or a private residence occupied by him when he has not been furnished Government quarters.</p>
+<p>"(4) Correctional custody.--Correctional custody is the physical restraint of a person during duty or nonduty hours, or both, imposed as a punishment under Article 15, and may include extra duties, fatigue duties, or hard labor. If practicable, this form of restraint will not be served in immediate association with persons awaiting trial or held in confinement pursuant to trial by court-martial. A person undergoing correctional custody may be required to perform such regular military duties, extra duties, fatigue duties, and hard. labor as may be assigned .by the authority charged with the administration of the punishment. The conditions under which correctional custody is served shall be prescribed by regulations of the Secretary concerned. In addition, the Secretary concerned may, by regulations, limit the categories of enlisted members upon whom this kind of punishment may be imposed. A person undergoing the punishment of correctional custody who, before being set at liberty by proper authority, casts off any physical restraint imposed by his custodian or by the place or conditions of custody commits the offense of escape from correctional custody in violation of Article 134. If a person is undergoing the punishment of correctional custody and there is an absence of physical restraint imposed by a custodian or by the place or conditions of custody, a breach by that person of any form of restraint imposed during this period shall constitute .the offense of breach of that restraint in violation of Article 134. The authority competent to order the release of a person from correctional custody shall be as designated by regulations of the Secretary concerned.</p>
+<p>"(5) Confinement on bread and water or diminished rations.--This punishment may be imposed only upon an enlisted person attached to or embarked in a vessel. See 132. Confinement on bread and water or diminished rations involves confinement in a place where the person so confined may communicate only with authorized personnel. The ration to be furnished a person undergoing a punishment of confinement on diminished rations is that specified by the authority charged with the administration of the punishment, but such ration may not consist solely of bread and water unless this punishment has been specificaIIy imposed. Whenever punishment on bread and water or diminished rations is imposed, a signed certificate of a medical officer (see 125), containing his opinion that no serious injury to the health of the person to be confined will be caused by that punishment, must be obtained before the punishment is executed. The categories of enlisted personnel upon whom this type of punishment may be imposed may be limited by regulations of the Secretary concerned.</p>
+<p>"(6) Extra duties.--This punishment involves the performance of duties in addition to those normally assigned to the person undergoing the punishment. Extra duties may include fatigue duties. Military duties of any kind may be assigned as extra duty (but see 125). Extra duties assigned as punishment of noncommissioned officers, petty officers, or such other enlisted persons of assimilative positions as may be designated by regulations of the Secretary concerned, may not be of a kind which demeans their grades or positions.</p>
+<p>"(7) Reduction in grade.--Reduction in grade is one of the most severe forms of nonjudicial punishment which may be imposed as a penalty for misconduct. Accordingly, a commander's authority to effect a reduction should be utilized with discretion.</p>
+<p>"As used in Article 15, the phrase 'if the grade from which demoted is within the promotion authority of the officer imposing the reduction or any officer subordinate to the one who imposes the reduction' does not refer to the authority to promote the individual concerned but to the general authority to promote to the grade held by the individual to be punished.</p>
+<p>"(8) Forfeiture of pay.--Forfeiture involves a permanent loss of entitlement to the pay forfeited. The word 'pay', as used with respect to forfeiture of pay under Article 15, refers only to the basic pay of the individual plus any sea or foreign duty pay. 'Basic pay' comprehends no element of pay other than the basic pay fixed by statute for the grade and length of service of the individual concerned and does not include special pay for a special qualification, incentive pay for the performance of hazardous duties, proficiency pay, subsistence and quarters allowances, and similar types of compensation. If the punishment includes both reduction, unsuspended, and forfeiture of pay, the forfeiture must be based on the grade to which reduced. Also, any monthly contribution from his pay that an enlisted person with dependents is required by law to make to entitle him to a basic allowance for quarters must be deducted before the net amount of pay subject to forfeiture.is computed. The amount to be forfeited will be expressed in dollar amounts only (not in dollars and cents) and not in a number of days' pay or fractions of monthly pay. If the forfeiture is to be applied for more than one month, the amount to be forfeited per month and the number of months should be stated. Forfeiture of pay may not extend to any pay accrued before the date of its imposition.</p>
+<p>"(9) Detention of pay.--Unlike a forfeiture of pay, a detention of pay involves only a temporary withholding of pay. The period for which the pay is to be detained, which may not be for more than one year, must be specified at the time the punishment of detention is imposed. As in the case of a forfeiture of pay, only basic pay plus sea or foreign duty pay may be detained. The amount to be detained will be expressed in dollar amounts only (not in dollars and cents) and not in a number of days' pay or fractions of monthly pay. If the detention is to be applied for more than one month, the amount to be detained per month and the number of months should be stated. If the punishment includes both reduction, unsuspended, and detention of pay, the detention must be based on the grade to which reduced. Any monthly contribution that an enlisted person with dependents is required by law to make to entitle him to a basic allowance for quarters must be deducted before the net amount of pay subject to detention is computed. The amount of pay detained is returned to the offender at the expiration of the specified period of detention or the offender's term of service, whichever is earlier. Detention of pay may not extend to any pay accrued before the date of its imposition.</p>
+<p>"d. Combination and apportionment.--The punishments of restriction and extra duties may be combined to run concurrently, but the combination may not exceed the maximum duration imposable for extra duties. Neither restriction nor extra duties may be combined to run concurrently with correctional custody beyond the maximum duration imposable for correctional custody. The punishment. of restriction in the case of an officer may not. be combined to run concurrently with arrest in quarters beyond the maximum duration imposable for arrest in quarters. The punishment of correctional custody inherently includes a form of restriction and may include extra duties.</p>
+<p>"As provided by Article 15 (b) , neither the punishments of arrest in quarters and restriction in the case of an officer, nor two or more of the punishments of correctional custody, extra duties. and restriction in the case of an enlisted person, may be combined to run consecutively in the maximum amount imposable for each. All of these punishments are in the nature of deprivation of liberty, and whenever they are combined to run consecutively there must be an apportionment in accordance with the provisions of this subparagraph (131d). Forfeiture of pay and detention of pay may not be combined to run either consecutively or concurrently without an apportionment. Both punishments amount to a deprivation of entitlement to pay, either permanently or temporarily. See example (2), below, for an illustration of a properly apportioned combination.</p>
+<p>"Confinement on bread and water or diminished rations may not be imposed in combination with correctional custody, extra duties, or restriction.</p>
+<p>"In those instances in which an apportionment is required when combining certain punishments, the following Table of Equivalent Nonjudicial Punishments, derived from the statutory maximum authorized punishments, will be used in substituting one form of punishment for another:</p>
+<p align="center">TABLE OF EQUIVALENT NON JUDICIAL PUNISHMENTS<br /></p>
+<table border="5" cellpadding="3">
+<tr>
+<td>"Kind of punishment"</td>
+<td>Upon officers and warrant officers (To be used only</td>
+<td>Upon other personnel</td>
+</tr>
+<tr>
+<td></td>
+<td>by an officer with GCM jurisdiction, or by a general</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>or flag officer in command or his delegate)</td>
+<td></td>
+</tr>
+<tr>
+<td>Arrest in quarters</td>
+<td>1 day</td>
+<td>2 days</td>
+</tr>
+<tr>
+<td>Restrictions</td>
+<td>2 days</td>
+<td>2 days</td>
+</tr>
+<tr>
+<td>Correctional custody</td>
+<td></td>
+<td>1 day</td>
+</tr>
+<tr>
+<td>Forfeiture of pay</td>
+<td>1 day's pay</td>
+<td>1 day's pay*</td>
+</tr>
+<tr>
+<td>Detention of pay</td>
+<td>1 1/2 day's pay</td>
+<td>1 1/2 day's pay*</td>
+</tr>
+</table>
+<p>*The factors designated by asterisks in the Table above are 2 instead of 11/2 when the punishment is imposed by a commanding officer below the grade of major or lieutenant commander. The punishment of forfeiture or detention of pay may not be substituted for the other punishments listed in the Table, nor may those other punishments be substituted for forfeiture or detention of pay. "The use of the foregoing table is illustrated by the following examples:</p>
+<p>"(1) A commanding officer in the grade of major or lieutenant commander, or above, may impose punishment consisting of correctional custody for 10 days, extra duties for 15 days, and restriction to limits for 20 days to run consecutively, using the following calculation: the authorized maximum correctional custody imposable is 30 days, of which only 10 days have been imposed; 15 days of extra duties can be substituted for 10 of the unused days of correctional custody (11/2 for 1); and 20 days of restriction to limits can be substituted for the remaining 10 days of unused correctional custody (2 for 1). Additionally, the commanding officer may impose a forfeiture or detention of pay, or a properly apportioned combination of those punishments, a reduction, and an admonition or reprimand.</p>
+<p>"(2) A commanding officer in the grade of major or lieutenant commander, or above, may impose upon an enlisted person a forfeiture of 5 days' pay and a detention of 10 days' pay for the first month, the same forfeiture and detention for the next month, and a detention of 10 days' pay for the third month. This is calculated as follows: the total amount that may be forfeited is one-half of one month's pay per month for two months, or 30 days' pay. However, a total of only 10 days' pay has been forfeited, leaving a total permissible detention of 30 days' pay (20 x 1«). The monthly allocation of forfeitures and detentions, shown in the example, has been made because (A) the combination of punishments may not operate so as to deprive the offender of more than one-half of his monthly pay in any one month, and (B) the forfeitures may not be imposed beyond the second month. Other allocations, equally within the above principles, could be made.</p>
+<p>"The Table of Equivalent Nonjudicial Punishments may be used only when punishment is initially imposed. It may not be used in mitigating punishments or at the time of vacation of suspension of punishments. For example, a punishment of 20 days' correctional custody may not, at the end of 10 days, be mitigated to restriction for more than 10 days since only 10 days of the original punishment remains unserved. Also, a punishment of 20 days' correctional custody which has been suspended may not at the time of the vacation of the suspension be mitigated to restriction for more than 20 days.</p>
+<p>"e. Effective date and execution of punishments.--The punishments of reduction, forfeiture of pay, and detention of pay, if unsuspended, take effect on the date the commanding officer imposes the punishments. Other punishments, if unsuspended, will take effect and be carried into execution as prescribed by regulations of the Secretary concerned.</p>
+<p>"132. RIGHT TO DEMAND TRIAL.--Except in the case of a person attached to or embarked in a vessel, punishment may not be imposed under Article 15 upon any member of the armed forces who has, before the imposition of such punishment, demanded trial by court-martial in lieu of such punishment. A person is attached to or embarked in a vessel if, at the time the nonjudicial punishment is imposed, he. is assigned or attached to the vessel, is on board for passage, or is assigned or attached to an embarked staff, unit, detachment, squadron, team, air group, or other regularly organized body. If the member is attached to or embarked in a vessel, he does not have the right to demand trial by court-martial in lieu of punishment under this article unless this right shall have been specifically granted by regulations of the Secretary concerned.</p>
+<p>"133. PROCEDURE; RECORDS OF PUNISHMENT.--a. Procedure for Army and Air Force.--The commanding officer, upon ascertaining to his satisfaction after such inquiry as he considers necessary that an offense punishable under Article 15 has been committed by a member of his command, will, if he determines to exercise his Article 15 authority, notify the member of the nature of the alleged misconduct by a concise statement of the offense in such terms that a specific violation of the code is clearly stated and inform him that he intends to impose punishment under Article 15 for such misconduct unless, if such right exists (132), trial by court-martial is demanded. Also, unless prohibited by regulations of the Secretary concerned, the commander may notify the member concerned of his intention to recommend to a superior commander that such member be punished under Article 15 for his alleged misconduct unless, if such right exists (132), trial by court-martial is demanded. The notification will also inform the member that he may submit any matter desired in mitigation, extenuation, or defense. In every case, the member will be notified that he is not required to make any statement regarding the offense or offenses of which he is accused or suspected and that any statement made by him may be used against him in a trial by court-martial. An election to accept nonjudicial punishment constitutes a waiver of the right to demand trial. A demand for trial does not require that charges be preferred, transmitted, or forwarded, but punishment may not be imposed under Article 15 while the demand is in effect.</p>
+<p>"The member will be given a reasonable time to reply to the notification of intent to impose or recommend the imposition of Article 15 punishment, state whether he demands trial by court-martial, if such right exists (132), and submit any matter in extenuation, mitigation, or defense he desires to be considered. With respect to an offense or offenses as to which a right to trial by court-martial exists but has not expressly been demanded, punishment may be imposed immediately by the commander indicated in the notice as the commander who is to impose the punishment. Punishment may be imposed only by the personal action of the commander or officer delegated such authority in accordance with 128a. The member will be notified of the punishment imposed, informed of his right to appeal to the next superior .authority, and directed to acknowledge receipt of the notification of punishment and to state his election regarding an appeal.</p>
+<p>"The proceedings will be conducted in writing in all cases involving officers and warrant officers and in all cases in which the punishment includes reduction in grade, confinement on bread and water or diminished rations, correctional custody, restriction or extra duties for more than 14 days, or forfeiture or detention of pay. In other cases the proceedings may be in writing or may be conducted orally, following the same sequence. However, in any case the member may be permitted to appear in person before the officer authorized to impose the punishment, and that officer may personally interview witnesses. Any written statements or other documentary evidence pertaining to the case which have been considered by the officer authorized to impose the punishment shall be attached to the file in any event. When oral proceedings are conducted, the commander will cause a summarized record to be made and filed.</p>
+<p>"b, Procedure for Navy, Marine Corps, and Coast Guard.--Unless in appropriate cases (132), the accused has demanded trial by courtmartial in lieu of nonjudicial punishment, the commanding officer will ordinarily inquire at the mast, or office hours, into the facts as to any minor offenses allegedly committed by a member of his command. If, where permitted under 132, the accused has demanded trial by court-martial, the commanding officer may proceed in accordance with 33 without a mast or office hours hearing, except that, he may not impose nonjudicial punishment while the demand is in effect. An accused who does not demand trial by court-martial in lieu of nonjudicial punislunent may nevertheless be tried by court-martial if the circumstances of the case so warrant.</p>
+<p>"Subject to the foregoing, when the mast or office hours procedure is followed, the accused will be accorded a hearing which shall include the following elemental requirements:</p>
+<p>"(1) Presence of the accused before the officer conducting the mast. " (2) Advice to the accused of the offenses of which he is suspected.</p>
+<p>" (3) Explanation to the accused of his rights under Article 31 (b) of the Uniform Code of Military Justice.</p>
+<p>"(4) Presentation of the information against the accused, either by the testimony of witnesses in person or by the receipt of their written statements, copies of the latter being furnished to the accused.</p>
+<p>"(5) Availability to the accused for his inspection of all items of information in the nature of physical or documentary evidence which will be considered.</p>
+<p>"(6) Full opportunity to the accused to present any matters in mitigation, extenuation, or defense of the suspected offenses. At the completion of such a hearing, the commanding officer may impose punishment under Article 15.</p>
+<p>"Under extraordinary circumstances, the commanding officer may designate an officer to conduct the hearing, described above, and that officer shall thereafter promptly provide him with a summary transcript of all information presented at such hearing and having any beating on the guilt or innocence of the accused and the quantum of punishment to be imposed. Upon the receipt of that transcript, punishment under Article 15 may be imposed without further hearing.</p>
+<p>"The record of a court of inquiry or other fact-finding body, in which proceeding the accused was accorded the rights of a party. with respect to an act or omission for which nonjudicial punishment is contemplated, may be substituted for the impartial hearing required above.</p>
+<p>"A summary transcript of all information presented at a hearing and having any bearing on the guilt or innocence of the accused and the quantum of punishment to be imposed, or a copy of the report of a court of inquiry or other fact-finding body, together with any additional information presented by the accused, shall be forwarded with any reference of a breach of discipline to a superior competent authority when that reference is made under the policy set forth in 129. If such superior competent authority imposes punishment under Article 15, the accused shall be notified personally or in writing as soon as practicable of the punishment imposed.</p>
+<p>"The officer imposing punishment shall cause the accused to be promptly and fully informed of his right to appeal from the punishment so imposed, Receipt of all written communications by an accused must be by written indorsement through proper channels.</p>
+<p>"Admonitions and reprimands imposed as punishments under Article 15 shall be by written communication through proper channels in 'the case of an officer or warrant officer, and may be by written communication in any case. All such letters of censure addressed to an officer or warrant officer shall be in the form prescribed by pertinent regulations.</p>
+<p>"c. Records of punishment...-Consistent with the requirements of this chapter, records of nonjudicial pumshment shall be in such form and contain such matter as may be prescribed by regulations of the Secretary ,concerned. These regulations will also provide for the disposition. of records of nonjudicial punishment.</p>
+<p>"134. SUSPENSION, MITIGATION, REMISSION, AND SETTING ASIDE.--Under Article 15(d), the officer who imposes the punishment or his successor in command may, at any time, remit or mitigate any part or amount of the unexecuted portion of the punishment imposed and may set aside in whole or in part the punishment, whether executed or unexecuted, and restore all rights, privileges, and property affected. He may also mitigate reduction in grade, whether executed or unexecuted, to forfeiture or detention of pay. In addition, he may, at any time, suspend probationally any part or amount of the unexecuted portion of the punishment imposed and may suspend probationally a reduction in grade or a forfeiture, whether or not executed. An uncollected forfeiture of pay shall be considered as unexecuted. A 'successor in command', within the meaning of Article 15, shall be as prescribed by regulations of the Secretary concerned.</p>
+<p>"Pursuant to Article 15(a), relating to the promulgation of rules concerning the suspension of punishments, the following rules are prescribed.</p>
+<p>"(1) An executed punishment of reduction or forfeiture may be suspended only within a period of four months after the date of its imposition.</p>
+<p>"(2) Suspension of a punishment may not be for a period longer than six months from the date of the suspension, and the expiration of the current enlistment or term of service of the person involved automatically terminates the period of suspension.</p>
+<p>"(3) Unless the suspension is sooner vacated, suspended portions of the punishment are remitted, without further action, upon the termination of the period of suspension.</p>
+<p>"(4) Vacation of suspension may be effected by any commanding officer or officer in charge competent to impose upon the offender concerned punishment of the kind involved in the vacation of suspension.</p>
+<p>"Although a formal hearing is not necessary to vacate a suspension, if the punishment suspended is of the kind set forth in Article 15 (e) (1)-(7), the probationer should, unless impracticable, be given an opportunity to appear before the officer authorized to vacate suspension of the punishment to rebut any derogatory or adverse information upon which the proposed vacation is based, and may be given the opportunity so to appear in any case.</p>
+<p>"When mitigating--</p>
+<p>"(1) arrest in quarters to restriction;</p>
+<p>"(2) confinement on bread and water or diminished rations to correctional custody;</p>
+<p>"(3) correctional custody or confinement on bread and water or diminished rations to extra duties or restriction, or both; or</p>
+<p>"(4) extra duties to restriction; the mitigated punishment may not be for a greater period than the punishment mitigated. For example, if a punishment of arrest in -quarters for 15 days is to be mitigated to restriction to specified limits, the duration of the restriction may not exceed 15 days. Similarly, when mitigating forfeiture of pay to detention of pay, the amount of the detention may not be greater than the amount of the forfeiture. When mitigating reduction in grade to forfeiture or detention of pay, the amount of the forfeiture or detention may not be greater than the amount that could have been imposed initially under Article 15 by the officer who imposed the punishment mitigated. Thus, if a commander in a grade below major or lieutenant commander imposes a reduction and it is later mitigated by him or superior authority, the maximum mitigated punishment would be 7 days' forfeiture of pay or 14 days' detention of pay (131). Restriction may not be mitigated to a lesser period of other punishments in the nature of deprivation of liberty, such as correctional custody or extra duties, for restriction is the least severe form of deprivation of liberty.</p>
+<p>"The power to set aside punishments and restore rights, privileges, and property affected by the executed portion of a punishment should ordinarily be exercised only when the authority considering the. case believes that, under all the circumstances of the case, the punishment has resulted in a clear injustice. Also, the power to set aside an executed punishment and mitigate a reduction in grade to a forfeiture or detention of pay should ordinarily be "exercised only within a reasonable time after the punishment has become executed. In this connection, four months is a reasonable time in the absence of unusual circumstances.</p>
+<p>"An application for suspension, mitigation, remission, or setting aside of the punishment in whole or in part not made within a reasonable time may be rejected by the authority to whom the application is made. In the absence of unusual or special circumstances, such an application made more than 15 days after the punishment was imposed may be considered as not having been made within a reasonable time.</p>
+<p>"135. APPEALS.--A person punished under the authority of Article 15 who considers his punishment unjust or disproportionate to the offense may, through the proper channels, appeal to the next superior authority. The appeal shall be promptly forwarded and decided, but the person punished may, in the meantime, be required to undergo the punishment adjudged (Article 15(e)). An appeal not made within a reasonable time may be rejected by the superior authority. In the absence of unusual circumstances, an appeal made more than 15 days after the punishment was imposed may be considered as not having been made within a reasonable time. Authority 'superior' to a particular commanding officer is the authority normally superior in the chain of command or such other authority as may be designated as a superior for the purposes of. Article 15 under such regulations as the Secretary concerned may prescribe. However, when the punishment has been imposed under a delegation of a commander's power to impose nonjudicial punishment (see 128), the appeal will not be directed to that commander.</p>
+<p>"Appeals will be made in writing and may include the appellant's reasons for regarding the punishment as unjust or disproportionate. Before acting on an appeal from any punishment of the kind set forth in Article 15 (e) (1)-(7),the authority who is to act on the appeal shall refer the case to a judge advocate of the Army or Air Force, a law specialist of the Navy, or a law specialist or lawyer of the Marine Corps, Coast Guard, or Treasury Department for consideration and advice, and may so refer the case upon appeal from any punishment imposed under Article 15. When a case is referred to a judge advocate, law specialist, or lawyer for consideration, he is not limited to an examination of any written matter comprising the record of proceedings and may make such inquiries as he determines to be desirable. If the authority to whom an appeal is made' has no legal personnel of the categories mentioned above serving on his staff or otherwise available to him, he may either ( 1 ) refer the case for consideration and advice by appropriate legal personnel of one of those categories. serving on the staff of another commander, or (2) refer the case for action to a superior authority who has appropriate legal personnel available to him for this purpose.</p>
+<p>"In acting upon an appeal, the superior authority may exercise the same powers with respect to the punishment imposed as may be exercised under Article 15 (d) b.y the officer who imposed the punishment or his successor in command. Thus, under the conditions set forth in 134, he may suspend, remit, mitigate, or set aside in whole or in part the punishment imposed. After having considered an appeal, the superior authority will transmit to the appellant, through channels, a written statement of his disposition of the case. Under Article 15 (e), any superior authority may exercise the same powers as may be exercised by the officer who imposed the punishment or his successor in command under 134 and Article 15(d), whether or not an appeal has been made from the punishment. If authorized by regulations of the Secretary concerned, a superior authority who is a. commanding officer exercising general court-martial jurisdiction, or is an officer of general or flag rank in command, may, under Article 15(a), delegate those powers he has as-a superior authority under Article 15 (e) and this chapter to a principal assistant."</p>
+<p>11. Appendix 3 is stricken.</p>
+<p>12. Appendix 6c is amended by inserting the-following new Form for Specification after Form No. 129:</p>
+
+<table border="5" cellpadding="3">
+<tr>
+<td>"Correctional custody:</td>
+<td>129a. In that ..................., while undergoing the</td>
+</tr>
+<tr>
+<td>--escape from</td>
+<td>punishment of correctional custody, did, (at) (on board)</td>
+</tr>
+<tr>
+<td></td>
+<td>............... on or about ......... 19__, escape</td>
+</tr>
+<tr>
+<td></td>
+<td>from correctional custody.</td>
+</tr>
+<tr>
+<td>--breach of restraint</td>
+<td>In that , while undergoing the punishment</td>
+</tr>
+<tr>
+<td>during</td>
+<td>of correctional custody, did, (at) (on board) ...............</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>........ on or about ........ , 19__, breach the restraint</td>
+</tr>
+<tr>
+<td></td>
+<td>board) ........ on or about ........ , 19__, breach the</td>
+</tr>
+<tr>
+<td></td>
+<td>restraint imposed thereunder."</td>
+</tr>
+</table>
+<p>JOHN F. KENNEDY<br /><br />
+THE WHITE HOUSE,<br /><br />
+January 29, 1963</p>
+  </div>
+
+  <div class="field-prez-document-citation">
+    <p class="ucsbapp_citation">John F. Kennedy, Executive Order 11081—Amending the Manual for Courts-Martial, United States, 1951, to Implement Section 815 of Title 10, United States Code, Relating to Nonjudicial Punishment Online by Gerhard Peters and John T. Woolley, The American Presidency Project https://www.presidency.ucsb.edu/node/236038</p>  </div>
+    </div>
+    <div class="col-sm-4 ">
+      <div class="group-meta">
+  <div class="field-ds-filed-under-">
+    <h3 class="oog-label">Filed Under</h3>  </div>
+<h3 class="label-above oog-label ds ">Categories</h3><div><a href="/documents/app-categories/presidential" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Presidential</a></div><div><a href="/documents/app-categories/presidential/written-presidential-orders" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Written Presidential Orders</a></div><div><a href="/documents/app-categories/written-presidential-orders/presidential/executive-orders" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Executive Orders</a></div><h3 class="label-above oog-label ds">Attributes</h3><div><a href="/documents/app-attributes/executive-orders" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Executive Orders</a></div><div class="jump"><div class="view view-dpg-docs-media view-id-dpg_docs_media view-display-id-block_2 view-dom-id-234311536e3879669b090af61cb5b562">
+        
+    
+      <div class="view-content">
+        <div>
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div></div></div><div class="rrssb"><ul class="rrssb-buttons"><li class="rrssb-twitter"><a href="https://twitter.com/intent/tweet?text=Executive%20Order%2011081%E2%80%94Amending%20the%20Manual%20for%20Courts-Martial%2C%20United%20States%2C%201951%2C%20to%20Implement%20Section%20815%20of%20Title%2010%2C%20United%20States%20Code%2C%20Relating%20to%20Nonjudicial%20Punishment&url=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-11081-amending-the-manual-for-courts-martial-united-states-1951-implement" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">twitter</span></a></li><li class="rrssb-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-11081-amending-the-manual-for-courts-martial-united-states-1951-implement" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">facebook</span></a></li><li class="rrssb-linkedin"><a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-11081-amending-the-manual-for-courts-martial-united-states-1951-implement&title=Executive%20Order%2011081%E2%80%94Amending%20the%20Manual%20for%20Courts-Martial%2C%20United%20States%2C%201951%2C%20to%20Implement%20Section%20815%20of%20Title%2010%2C%20United%20States%20Code%2C%20Relating%20to%20Nonjudicial%20Punishment" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">linkedin</span></a></li><li class="rrssb-googleplus"><a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-11081-amending-the-manual-for-courts-martial-united-states-1951-implement" class="popup"><span class="rrssb-icon"></span><span class="rrssb-text">google+</span></a></li><li class="rrssb-email"><a href="mailto:?subject=Executive%20Order%2011081%E2%80%94Amending%20the%20Manual%20for%20Courts-Martial%2C%20United%20States%2C%201951%2C%20to%20Implement%20Section%20815%20of%20Title%2010%2C%20United%20States%20Code%2C%20Relating%20to%20Nonjudicial%20Punishment&body=https%3A%2F%2Fwww.presidency.ucsb.edu%2Fdocuments%2Fexecutive-order-11081-amending-the-manual-for-courts-martial-united-states-1951-implement" ><span class="rrssb-icon"></span><span class="rrssb-text">email</span></a></li></ul></div>
+  <div class="field-ds-big-search-block">
+    <section id="block-views-5c12edf56060306972111336e0789cf4" class="block block-views other-frontpage-block clearfix">
+
+        <h2 class="block-title">Simple Search of Our Archives</h2>
+    
+  <form action="/advanced-search" method="get" id="views-exposed-form-prez-documents-archive-search2-page-1" accept-charset="UTF-8"><div>  <div class="views-exposed-form vefl-layout bootstrap-6-6-stacked">
+    <div class="views-exposed-widgets clearfix">
+              <div class="vefl-region vefl-region-top">
+                      
+<div id="edit-field-keywords-wrapper" class="views-exposed-widget views-widget-edit-field-keywords">
+    
+  <div class="views-widget">    <div class="form-item form-item-field-keywords form-type-textfield form-group"><input class="form-control form-text" type="text" id="edit-field-keywords" name="field-keywords" value="" size="30" maxlength="128" /></div>  </div>
+  </div>
+                  </div>
+              <div class="vefl-region vefl-region-left">
+                  </div>
+              <div class="vefl-region vefl-region-right">
+                  </div>
+              <div class="vefl-region vefl-region-bottom">
+                      
+<div id="items-per-page-wrapper" class="views-exposed-widget views-widget-items-per-page">
+    
+      <div class="form-item form-item-items-per-page form-type-select form-group"> <label class="control-label" for="edit-items-per-page"># per page</label>
+<select class="form-control form-select" id="edit-items-per-page" name="items_per_page"><option value="5">5</option><option value="10">10</option><option value="25" selected="selected">25</option><option value="50">50</option><option value="100">100</option></select></div>  
+  </div>
+                      
+<div id="button-wrapper" class="views-exposed-widget views-widget-button views-submit-button">
+    
+      <button type="submit" id="edit-submit-prez-documents-archive-search2" name="" value="Apply" class="btn btn-default form-submit">Apply</button>
+  
+  </div>
+                  </div>
+          </div>
+  </div>
+</div></form>
+</section>
+  </div>
+
+  <div class="field-ds-typo">
+    <div class="view view-report-a-typo view-id-report_a_typo view-display-id-block view-dom-id-5effb39b5e61a2bd86b4a5e101883e76">
+        
+    
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field views-field-title">        <span class="field-content"><a href="/report-a-typo?content_id=236038&amp;title=Executive%20Order%2011081%E2%80%94Amending%20the%20Manual%20for%20Courts-Martial%2C%20United%20States%2C%201951%2C%20to%20Implement%20Section%20815%20of%20Title%2010%2C%20United%20States%20Code%2C%20Relating%20to%20Nonjudicial%20Punishment" class="report-typo" target="_blank"><h3>Report a Typo</h3></a></span>  </div>  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Needed to activate display suite support on forms -->
+
+</section>
+  </div>
+<!-- Content -->
+      </section>
+
+      
+    </div>
+  </div>
+  
+  
+</div>
+<footer class="site-footer no-print">
+  <div class="container">
+      <div class="region region-footer">
+    <section id="block-block-4" class="block block-block attribution clearfix">
+
+      
+  <p><span>The American Presidency Project</span><br />John Woolley and Gerhard Peters<br /><strong><a href="https://www.presidency.ucsb.edu/contact">Contact</a></strong></p>
+
+</section>
+<section id="block-block-6" class="block block-block foot ucsb clearfix">
+
+      
+  <p style="text-align: center;display:inline-block;"><a class="twitter" href="https://twitter.com/presidency_proj" target="_blank">Twitter</a> <a class="facebook" href="https://www.facebook.com/pg/american.presidency.project/" target="_blank">Facebook</a></p>
+
+</section>
+<section id="block-block-5" class="block block-block copyright clearfix">
+
+      
+  <p>Copyright &copy; The American Presidency Project<br /><a href="http://www.ucsb.edu/terms-of-use" target="_blank">Terms of Service</a> | <a href="https://www.privacy.ucsb.edu/information-privacy/website-privacy" target="_blank">Privacy</a> | <a href="/accessibility">Accessibility</a></p><p><img alt="uc santa barbara logo" src="/sites/default/files/pictures/uc-santa-barbara-wordmark-white1x.svg" style="width: 197px; min-width: 150px; height: 14px;object-fit:cover;" /></p>
+</section>
+  </div>
+  </div>
+  </footer>
+  <script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_NKBfN5q_T2fdeVG6tE3pdNU7glYkyzgPuDTc4K3Ne1w.js"></script>
+<script src="https://www.presidency.ucsb.edu/sites/default/files/js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"dee899de70","applicationID":"80106271","transactionName":"bl1XYxNYWkVYVxFdWVcXYEUIFhtfV1AATBhJUEU=","queueTime":0,"applicationTime":539,"atts":"QhpUFVtCSUs=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
+
+
