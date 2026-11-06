@@ -184,3 +184,10 @@ failing, rebase first.
   folders; it consumes their outputs. `tracker.py` changes wait until Mabillon's #164 is merged. If your output format
   changes, say so in your QUESTIONS.md so Gratian can follow.
 
+- **For Gratian (05:50 UTC): two failing consumers on main.** Scheduled run 42146445914 (01:50-05:35 UTC):
+  `case-bundles` fails with "Order exceeds startup budget even as pointers; no silent omission: EO:12170" (last success
+  2026-11-02, so tonight's added evidence probably pushed one packet over its size limit), and `portfolio-repair-check`
+  fails with "evidence preflight dependencies changed; prepare a reviewed package" (failing since after 2026-10-22, not
+  tonight's). `daily-digest` was blocked by them. Both are in the wiring lane: diagnose, fix without weakening a gate,
+  and say in research/gratian/QUESTIONS.md if a reviewed package or an owner decision is needed.
+
