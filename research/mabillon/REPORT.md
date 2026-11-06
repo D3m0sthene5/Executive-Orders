@@ -49,7 +49,54 @@ The frame is every order whose tracker blockers include NO_OFFICIAL_SOURCE_LOCAT
 from Herschel's outcomes, and the projected columns below apply Herschel's stratum weights to the same orders.
 Each order is counted once, under its best route. Regenerate with `python3 -I research/mabillon/coverage.py`.
 
-COVERAGE_TABLE
+| Best route | Grade | Frame orders (census) | Of Herschel's 5,313 (projected) | Of the 1,234 sole-blocked (projected) |
+|---|---|---:|---:|---:|
+| `held_printing_strong` | official printing, machine-located (Tischendorf rule plus segment and margin); counts only after the owner registers the job | 492 | 322 | 54 |
+| `tischendorf_strong` | official printing, machine-located (Tischendorf); counts only after registration | 3 | 0 | 0 |
+| `nara_signed_original_image` | image of the signed original in RG 11; codebook grade pending; page check | 3 | 0 | 0 |
+| `proquest_archival_replica` | archival replica of the signed original; stays pending a page check | 2,558 | 1,613 | 319 |
+| `held_printing_lead` | official printing held, lead (a check failed or no independent text) | 59 | 54 | 0 |
+| `tischendorf_lead` | official-printing or reprint lead; page check | 82 | 221 | 123 |
+| `csc_report_reprint` | reprint in a Civil Service Commission annual report; lead only, never the original | 774 | 661 | 0 |
+| `official_find_page_check_pending` | official find already on file (fr-originals, ofr-compilations), flagged for a page check; Tischendorf corroborates | 0 | 127 | 0 |
+| `listed_volume_range` | a digitized volume's title range includes the number; ceiling only | 1,576 | 1,648 | 437 |
+| `none` | no route found; signed original at NARA (RG 11, not digitized) is the only known witness | 396 | 669 | 301 |
+| **Total** | | **5,943** | **5,313** | **1,234** |
+
+Orders outside the frame whose working text is a transcription that must be replaced by the official original (1,911; Herschel's replace step):
+
+| Best route | Orders |
+|---|---:|
+| `held_printing_strong` | 540 |
+| `tischendorf_strong` | 34 |
+| `proquest_archival_replica` | 192 |
+| `held_printing_lead` | 36 |
+| `tischendorf_lead` | 109 |
+| `listed_volume_range` | 796 |
+| `none` | 204 |
+
+Selden's acting orders without an official text (1,386; `research/selden/ACTING_EO_TEXTS_NEEDED.csv`, copied to `frame/`):
+
+| Best route | Acting orders | Orders they act on (leads, as Selden counts them) |
+|---|---:|---:|
+| `held_printing_strong` | 240 | 278 |
+| `tischendorf_strong` | 21 | 29 |
+| `proquest_archival_replica` | 277 | 317 |
+| `held_printing_lead` | 12 | 16 |
+| `tischendorf_lead` | 70 | 115 |
+| `csc_report_reprint` | 47 | 56 |
+| `official_find_page_check_pending` | 48 | 111 |
+| `listed_volume_range` | 468 | 608 |
+| `none` | 203 | 248 |
+
+By era (census):
+
+| Era | held_printing_strong | tischendorf_strong | nara_signed_original_image | proquest_archival_replica | held_printing_lead | tischendorf_lead | csc_report_reprint | official_find_page_check_pending | listed_volume_range | none |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1862–1906 | 0 | 0 | 0 | 101 | 0 | 8 | 11 | 0 | 453 | 1 |
+| 1907–1936 | 489 | 3 | 3 | 2,426 | 58 | 74 | 762 | 0 | 981 | 354 |
+| 1937–1989 | 0 | 0 | 0 | 4 | 0 | 0 | 0 | 0 | 110 | 14 |
+| Unknown date | 3 | 0 | 0 | 27 | 1 | 0 | 1 | 0 | 32 | 27 |
 
 The projected columns rest on 110 sampled orders (94 of them in the census frame), so their uncertainty is wide;
 the census column is exact. The held printings are all 1929-38 orders (numbers 5076-8027), which Herschel's sample
@@ -60,7 +107,7 @@ under-weights relative to the census.
 | Source | Orders it could cover | Grade | Access, robots and terms | Outcome |
 |---|---:|---|---|---|
 | NARA RG 11 "Executive Orders" (NAID 299999), Catalog bulk export | 3 frame orders imaged | image of the signed original; codebook grade not yet assigned | AWS Open Data bucket, anonymous HTTPS, no key; the dataset is published for bulk use. The Catalog API needs a key and asks users not to cache returned content; not used | job `mabillon-nara`, verified run |
-| Other NARA record groups (State RG 59, Interior RG 48, Forest Service RG 95, White House Office RG 130) | NARA_OTHER_RGS | as above | same bucket | job `mabillon-nara`, second run |
+| Other NARA record groups (State RG 59, Interior RG 48, Forest Service RG 95, White House Office RG 130) | 0 imaged; RG 48, 95 and 130 have executive-order series described at series level only, and RG 59 (18 GB) was skipped whole by the cap rule | as above | same bucket | job `mabillon-nara`, second run |
 | GPO bound volumes, 1974 GPO Hoover compilation, 1936 FR, already held | 492 strong, 59 leads | official printing, machine-located | already in the repository; no network | job `mabillon-held-printings`, verified run |
 | Commons and Internet Archive volumes of numbered orders | SCAN_SUMMARY | official printing if GPO | Commons category HTML and IA advanced search, robots obeyed, 1 request a second | job `mabillon-scan-inventory` |
 | HathiTrust bound sets | not measurable | official printing | catalogue and full-text answer automated requests with a challenge; not bypassed | none |
@@ -87,8 +134,8 @@ have an independent transcription to compare.
 ## Costs
 
 Three discovery workers (Sonnet tier) used 97,085, 112,312 and 113,908 tokens and 4.2, 7.1 and 7.3 minutes
-(`telemetry/WORKERS.csv`). The coordinator was Opus; its usage is in `telemetry/` from `jobs/bentham/sessions.py`.
-The jobs spend no tokens: the RG 11 census read 231 MB in 63 seconds on a GitHub runner; the held-printings match
+(`telemetry/WORKERS.csv`). The coordinator was Opus 5.5; `jobs/bentham/sessions.py` found no usage records in this environment's local transcript, so its tokens are unmeasured (`telemetry/AGENT_USAGE.csv` records the gap rather than a zero).
+The jobs spend no tokens. Bytes and time were estimated before each read: the RG 11 census read 231 MB in 63 seconds; the second census planned 1.85 GB over RG 11, 48, 95 and 130 (RG 59's 18 GB skipped) and read it in 181 seconds; the held-printings match
 runs offline in about 15 seconds.
 
 ## What this does not do

@@ -10,8 +10,8 @@ import inventory as I  # noqa: E402
 CAT = (b'<a href="/wiki/Category:Executive_orders_of_Woodrow_Wilson">x</a>'
        b'<a href="/wiki/File:Executive_Orders_6071-6250.djvu">f</a><a href="/wiki/File:Map.png">m</a>')
 SUB = b'<a href="/wiki/File:Executive_Orders_2000-2200.pdf">g</a>'
-IA = json.dumps({"response": {"docs": [{"identifier": "eo1", "title": "Executive orders nos. 100-300",
-                                         "date": "1910"}]}}).encode()
+IA = json.dumps({"response": {"docs": [{"identifier": "eo1", "title": "Executive orders nos. 100-300", "date": "1910"},
+                                        {"identifier": "ph1", "title": "Executive Orders Nos. 1-109", "collection": ["govph"]}]}}).encode()
 
 
 class Pool:

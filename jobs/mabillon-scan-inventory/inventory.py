@@ -87,6 +87,12 @@ def internet_archive(pool):
             got = pool.fetch(IA_SEARCH.format(q=urllib.parse.quote(q), page=page))
             docs = (json.loads(got["body"].decode("utf-8", "replace")).get("response") or {}).get("docs") or []
             for d in docs:
+                coll = d.get("collection") or []
+                coll = coll if isinstance(coll, list) else [coll]
+                # The Philippine government's annual "Executive Orders" (collection govph) restart at 1 each year;
+                # they are not the United States numbered series and would give false range ceilings.
+                if any(re.match(r"govph|philippine", str(c), re.I) for c in coll):
+                    continue
                 flat = lambda v: " ; ".join(v) if isinstance(v, list) else str(v or "")  # noqa: E731
                 out[d["identifier"]] = {"host": "internet_archive", "id": d["identifier"],
                                         "title": flat(d.get("title")) + (" " + flat(d.get("volume")) if d.get("volume") else ""),
@@ -125,6 +131,8 @@ def main(out=None, pool=None):
             frame = [int(r["number"]) for r in csv.DictReader(f) if r["number"]]
     rows, covered = [], set()
     for v in cfiles + ia:
+        if v["host"] == "commons" and not re.search(r"Executive[_ ]Orders?|EOCompilation|Title_3_CFR", v["id"], re.I):
+            continue  # Commons category pages also list unrelated files (CFR titles, state orders)
         for a, b in ranges_in(v["title"]) or [(None, None)]:
             inside = [n for n in frame if a is not None and a <= n <= b]
             if a is not None and a < 5076:
