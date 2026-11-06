@@ -12,6 +12,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[4]
+sys.path.insert(0, str(ROOT / "jobs/selden-common"))
+import selden_common as S  # noqa: E402
 OUT = ROOT / "research/selden/proof/packets"
 JOBS = {k: ROOT / "jobs" / k / "output" for k in ("selden-fr-citers", "selden-fr-acting", "selden-statutes")}
 PER_ORDER = 10
@@ -100,6 +102,10 @@ def main(batch, *ids):
                     n += 1
             brief.append(line + "\n")
         for b in basis.get(iid, []):
+            otext = (ROOT / b["order_text_path"]).read_text(encoding="utf-8", errors="replace")
+            olo, ohi, _ = S.own_span(otext, iid)
+            if not olo <= int(b["quote_span"].split("-")[0]) < ohi:
+                continue  # cited by a neighbouring document printed on the same pages, not by this order
             rec = next((r for (j, h), r in src.items() if j == "selden-statutes" and h == b["statute_sha256"]), None)
             tp = JOBS["selden-statutes"] / b["statute_text_path"]
             line = (f"- [selden-statutes] the order's own text cites {b['statute']} in: \"{b['quote'][:240]}\"; statute "

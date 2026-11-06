@@ -100,7 +100,8 @@ def wanted(repo: Path):
     for iid, paths in texts.items():
         for rel, sha, url in paths[:2]:
             text = (repo / rel).read_text(encoding="utf-8", errors="replace")
-            for m in STAT.finditer(text):
+            olo, ohi, _ = S.own_span(text, iid)  # an FR page text may also print neighbouring documents
+            for m in STAT.finditer(text, olo, ohi):
                 vol, page = int(m.group(1)), int(m.group(2))
                 if not 1 <= vol <= 140:
                     continue
