@@ -68,6 +68,10 @@ def read_csv(path):
         return list(csv.DictReader(f))
 
 
+def text_of(h):
+    return h["text"] if "text" in h else passage(h["path"])
+
+
 def passage(path):
     raw = Path(path).read_text(encoding="utf-8", errors="replace")
     return raw.split(SEP, 1)[1] if SEP in raw else T.body_of(raw)
@@ -82,6 +86,55 @@ def wilson_upper(k, n):
     z = 1.645
     p = k / n
     return round((p + z * z / (2 * n) + z * ((p * (1 - p) + z * z / (4 * n)) / n) ** 0.5) / (1 + z * z / n), 4)
+
+
+VOLUME_RE = re.compile(r"^Executive_Orders_(\d+)-(\d+)\.djvu$")
+VOLUME_ROUTE = "commons_gpo_volume"
+GOV_ROUTES[VOLUME_ROUTE] = ("GPO bound volume of executive orders (Wikimedia Commons scan, OCR committed by "
+                            "hathi-gpo-orders), located here by the order's own number")
+
+
+def volume_passages(root, register, skip):
+    """Passages for orders inside the committed Commons GPO volumes that hathi-gpo-orders did not extract.
+
+    hathi-gpo-orders OCRed whole volumes (output/books/*_ocr.jsonl.gz) but saved passages only for its 1,712 target
+    orders, which had no text at all. Every other order in each volume's range is located here by its own closing
+    number tag or heading in the page text (the marker page and its neighbours), then judged by the same rules."""
+    books = root / HATHI / "books"
+    out = {}
+    if not books.is_dir():
+        return out
+    by_number = collections.defaultdict(list)
+    for iid in register:
+        p = ident.parse_eo_id(iid)
+        if p:
+            by_number[p[0]].append(iid)
+    for meta_path in sorted(books.glob("Executive_Orders_*.djvu.json")):
+        name = meta_path.name[:-5]
+        m = VOLUME_RE.match(name)
+        ocr = books / f"{name}_ocr.jsonl.gz"
+        if not m or not ocr.is_file():
+            continue
+        meta = json.loads(meta_path.read_text())
+        import gzip
+        pages = [json.loads(x).get("text", "") for x in gzip.open(ocr, "rt", encoding="utf-8")]
+        lo, hi = int(m.group(1)), int(m.group(2))
+        for n in range(lo, hi + 1):
+            for iid in by_number.get(n, []):
+                if iid in skip:
+                    continue
+                num = T.order_number(iid, register.get(iid, {}))
+                marker, _ = T.fr_pages.find_marker(pages, num, range(len(pages)))
+                if not marker or marker[0] not in ("closing_number_tag", "heading"):
+                    continue
+                i = marker[1]
+                span = (max(0, i - 1), i) if marker[0] == "closing_number_tag" else (i, min(len(pages) - 1, i + 1))
+                text = "\n".join(pages[span[0]:span[1] + 1])
+                loc = f"{name}; scanned pages {span[0] + 1}-{span[1] + 1}; {marker[0].replace('_', ' ')} {num}"
+                out[iid] = {"route": VOLUME_ROUTE, "text": text, "instrument_id": iid,
+                            "data": {"url": meta.get("url"), "sha256": meta.get("sha256"), "page_or_item": loc,
+                                     "source_id": f"{JOB}:volume:{iid}"}}
+    return out
 
 
 def load(root=REPO):
@@ -105,6 +158,9 @@ def load(root=REPO):
                       and f.get("text_path") and os.path.isfile(f["text_path"])] for iid, fs in frags.items()}
     register = {r["instrument_id"]: r for r in read_csv(root / "jobs/domesday-register/output/REGISTER.csv")}
     frame = {r["instrument_id"] for r in read_csv(FRAME)} if FRAME.is_file() else set()
+    hathi_ids = {json.loads(x)["instrument_id"] for x in (root / HATHI / "FRAGMENTS.jsonl").read_text(
+        encoding="utf-8").splitlines() if x.strip()}
+    hathi.update(volume_passages(root, register, skip=hathi_ids))
     return hathi, refs, texts, {k: v for k, v in official.items() if v}, register, frame
 
 
@@ -202,7 +258,7 @@ def controls(hathi, refs, official, register, df, n_docs):
             continue
         # Label check: the passage must also agree with the counted official text, else its label is uncertain.
         off = T.body_of(Path(official[iid][0]["text_path"]).read_text(encoding="utf-8", errors="replace"))
-        text = passage(hathi[iid]["path"])
+        text = text_of(hathi[iid])
         if fp.Fingerprint(off, df, n_docs).score(text) < T.STRONG_SCORE:
             continue
         F = fp.Fingerprint(refs[iid], df, n_docs)
@@ -222,7 +278,7 @@ def controls(hathi, refs, official, register, df, n_docs):
         by_route[hathi[iid]["route"]].append(iid)
     for route, ids in by_route.items():
         for k, iid in enumerate(ids):
-            text = passage(hathi[iid]["path"])
+            text = text_of(hathi[iid])
             num = T.order_number(iid, register.get(iid, {}))
             F = fp.Fingerprint(refs[iid], df, n_docs)
             if F.distinctive and num and num.isdigit():
@@ -276,7 +332,7 @@ def main(out=None, root=REPO):
         h = hathi[iid]
         reg = register.get(iid, {})
         num = T.order_number(iid, reg)
-        text = passage(h["path"])
+        text = text_of(h)
         in_frame = iid in frame
         if iid not in refs:
             v, score, marker = None, None, T.marker_in([text], num, [0])

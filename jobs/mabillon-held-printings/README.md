@@ -10,6 +10,11 @@ the orders in Mabillon's frame (`research/mabillon/frame/FRAME.csv`, orders with
 no official source although their official printing is held. This job proves, offline and without tokens, which
 saved passages are the order, so the owner can decide whether to count them under the rule Tischendorf already uses.
 
+**Volume route.** `hathi-gpo-orders` OCRed whole Commons volumes (5800-8027; page dumps committed under its
+`output/books/`) but saved passages only for its 1,712 target orders, which had no text at all. For every other order
+in a volume's range, this job finds the order's own closing number tag or heading in the page text, takes the marker
+page and its neighbour, and judges it by the same rules and controls (route `commons_gpo_volume`).
+
 ## Rule
 
 A passage is a **strong** machine location when all of Tischendorf's checks pass (imported unchanged from
@@ -35,8 +40,10 @@ these scans; it is not a second official printing.
   with the transcriptions of the orders one and two places away in the same volume. The neighbour's text under its
   own number is counted apart, as a true neighbour printed on the same page.
 
-A single accepted negative turns every strong verdict in the run into a lead. On 2026-11-05: 75 of 77 positives
-confirmed, 0 of 4,382 negatives accepted (95% upper bound on the false-accept rate 0.07%).
+A single accepted negative turns every strong verdict in the run into a lead. On 2026-11-06, with the volume route:
+86 of 88 positives confirmed, 0 of 6,834 negatives accepted (2,452 of them on volume-route passages; 95% upper bound
+on the false-accept rate 0.04%). Result: 1,771 strong (762 frame orders, 1,009 orders whose transcription must be
+replaced), 244 leads.
 
 ## Outputs (`output/`)
 
