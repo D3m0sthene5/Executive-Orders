@@ -177,6 +177,57 @@ class T(unittest.TestCase):
         self.assertEqual(len(m["skipped"]), 1)
         self.assertIn("odd", m["skipped"][0]["source"])
 
+    def test_pooling_is_opt_in(self):
+        disp = {"schema": "tribonian-disposition/v1", "batches": [
+            {"batch": "no", "attempted": 2, "claims_filed": 1, "state": "completed",
+             "blind_review_verdicts": {"upheld": 1},
+             "not_filed": [{"instrument_id": "EO:9000", "outcome": "blocked", "reason": "z"}]},
+            {"batch": "rc", "kind": "correction", "attempted": 1, "claims_filed": 1, "state": "completed",
+             "not_filed": []}]}
+        write(self.root, "research/excavator/core/evidence/DISPOSITION.json", json.dumps(disp))
+        write(self.root, "research/excavator/core/tools/batches.json",
+              json.dumps({"no": ["EO:8000", "EO:9000"], "rc": ["EO:8001"]}))
+        r = {x["key"]: x for x in M.measure(self.root)["rates"]}
+        self.assertEqual(r["filed_per_attempt.no.fr"]["den"], 3)  # not pooled: fixture's 3 only
+        self.assertEqual(r["filed_per_attempt.no.fr"]["n_studies"], 1)
+        disp["pool_into_rates"] = True
+        write(self.root, "research/excavator/core/evidence/DISPOSITION.json", json.dumps(disp, indent=1))
+        m = M.measure(self.root)
+        r = {x["key"]: x for x in m["rates"]}
+        no = r["filed_per_attempt.no.fr"]
+        self.assertEqual((no["num"], no["den"]), (3, 5))
+        self.assertEqual(no["by_wave"], {M.WAVE: [2, 3], "core": [1, 2]})
+        self.assertEqual(no["n_studies"], 2)
+        self.assertEqual((r["filed_per_attempt.correction"]["num"], r["filed_per_attempt.correction"]["den"]), (2, 3))
+        self.assertTrue(any(w["wave"] == "core" and w["pooled_into_rates"] for w in m["waves"]))
+        self.assertAlmostEqual(m["costs"]["wave.per_filed_dossier"]["denominator"], 5)  # costs stay Tribonian
+        for e in no["evidence"]:
+            self.assertIn(re.sub(r"\s+", "", e["quote"]),
+                          re.sub(r"\s+", "", (self.root / e["source"]).read_text(encoding="utf-8")))
+        (self.root / "research/excavator/core/tools/batches.json").unlink()
+        with self.assertRaises(M.MeasureError):
+            M.measure(self.root)
+
+    def test_sample_of_remaining_sets_stratum_rate(self):
+        ids = ["EO:%d" % (8100 + i) for i in range(30)]
+        disp = {"schema": "tribonian-disposition/v1", "pool_into_rates": True, "sample_of_remaining": True,
+                "batches": [{"batch": "no", "attempted": 30, "claims_filed": 3, "state": "completed",
+                             "not_filed": [{"instrument_id": i, "outcome": "blocked", "reason": "r"} for i in ids[3:]]}]}
+        write(self.root, "research/excavator/core/evidence/DISPOSITION.json", json.dumps(disp, indent=1))
+        write(self.root, "research/excavator/core/tools/batches.json", json.dumps({"no": ids}))
+        p = self.root / M.READINESS
+        with p.open("a", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            for i in ids:
+                w.writerow([i, "no", ""])
+        r = {x["key"]: x for x in M.measure(self.root)["rates"]}
+        no = r["filed_per_attempt.no.fr"]
+        self.assertEqual((no["num"], no["den"]), (3, 30))
+        self.assertEqual(no["pooled_alternative"]["den"], 33)
+        self.assertIn("no longer in the pool", no["note"])
+        self.assertNotIn("pooled_alternative", r["filed_per_attempt.yes.fr"])  # below MIN_SAMPLE: pooled
+        self.assertEqual(r["filed_per_attempt.all"]["den"], 37)  # .all stays pooled
+
 
 if __name__ == "__main__":
     unittest.main()

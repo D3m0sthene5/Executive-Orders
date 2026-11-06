@@ -1,0 +1,68 @@
+{
+ "schema": "theophilus-usage/v1",
+ "wave": "theophilus-2026-11-05",
+ "source": "jobs/bentham/sessions.py over this machine's Claude Code transcripts (sanitized AGENT_USAGE.csv here); API-equivalent at jobs/bentham/measure.py PRICE_TABLE list prices, not an invoice",
+ "by_phase": {
+  "coordination": {
+   "agents": 1,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "calls": 206,
+   "fresh_input": 412,
+   "cache_read": 57194901,
+   "cache_write": 576565,
+   "output": 318259,
+   "usd_api_equivalent": 40.16,
+   "active_seconds": 5192
+  },
+  "review": {
+   "agents": 8,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "calls": 244,
+   "fresh_input": 504,
+   "cache_read": 25949085,
+   "cache_write": 893945,
+   "output": 157005,
+   "usd_api_equivalent": 22.49,
+   "active_seconds": 3611
+  },
+  "production": {
+   "agents": 2,
+   "model": [
+    "claude-sonnet-5-5"
+   ],
+   "calls": 144,
+   "fresh_input": 288,
+   "cache_read": 23411010,
+   "cache_write": 442635,
+   "output": 141797,
+   "usd_api_equivalent": 10.81,
+   "active_seconds": 1665
+  }
+ },
+ "total_usd_api_equivalent": 73.46,
+ "worker_cli_reported_cost_usd": {
+  "rev-p01-A": 0.808,
+  "rev-r01-A": 1.731,
+  "rev-r03-B": 2.803,
+  "rev-p01-B": 0.807,
+  "rev-p01-A-blind": 0.681,
+  "rev-r02-B": 1.894,
+  "rev-p01-B-blind": 0.601,
+  "producer-p01": 2.367,
+  "producer-r03": 3.163,
+  "rev-r02-A": 1.838,
+  "rev-r03-B-blind": 2.43,
+  "rev-r02-A-blind": 1.681,
+  "rev-r01-B-blind": 1.626,
+  "rev-r03-A": 3.822,
+  "rev-r01-A-blind": 1.546,
+  "rev-r03-A-blind": 3.349,
+  "rev-r01-B": 1.781,
+  "rev-r02-B-blind": 1.697
+ },
+ "note": "Coordinator row covers the whole coordinator transcript from 21:00Z, including reading and integration. Worker rows are the headless claude -p sessions (fresh contexts) launched by tools/launch.sh; CLI total_cost_usd is the harness's own figure per invocation (blind and after-reveal turns of one reviewer are one session)."
+}

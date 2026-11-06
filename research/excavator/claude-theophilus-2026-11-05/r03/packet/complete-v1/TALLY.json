@@ -1,0 +1,179 @@
+{
+  "attempted": 16,
+  "claims_published": 11,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:14082",
+      "planted_claim_sha256": "c8d2593e86dbe87dc029dbb8a47c3b8994e0335c852676e20a8cb4c10ebc0be9",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 5,
+    "eligible": 11
+  },
+  "eligible": [
+    "EO:12323",
+    "EO:12546",
+    "EO:12771",
+    "EO:12864",
+    "EO:12914",
+    "EO:12922",
+    "EO:12944",
+    "EO:14013",
+    "EO:14052",
+    "EO:14075",
+    "EO:14082"
+  ],
+  "eligible_per_attempt": 0.6875,
+  "exceptions": 0,
+  "finished_utc": "2026-11-05T22:28:59.314944+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:8341",
+      "outcome": "blocked",
+      "reason": "[\"Source gap (custody and checker mechanics): the dossier holds one registered text for this order, the machine-extracted Federal Register text layer (jobs/fr-originals/data/full_run/texts/EO_8341.txt), whose whole-page span also carries garbled neighbouring-order numbers from the same page (for example the text layer reads 'Executive Order No. 83231'), which the actual claim checker's order_exists test rejects when that span is quoted as the first-end source; the narrower clause or override spans that avoid the token carry no actor, so the assembler cannot attach them as a first end (clause_0_first_end gate error). No held text of this order without those tokens and with an actor-bearing record exists, so the claim cannot reach all_checks_passed. The legal reading (one-time command performed on its own stated date, no later instrument held) is unchanged and remains in the prior reviewed claim.\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:8613",
+      "outcome": "blocked",
+      "reason": "[\"Source gap (custody and checker mechanics): the dossier holds one registered text for this order, the machine-extracted Federal Register text layer (jobs/fr-originals/data/full_run/texts/EO_8613.txt), whose whole-page span also carries garbled neighbouring-order numbers from the same page (for example the text layer reads 'Executive Order No. 85721'), which the actual claim checker's order_exists test rejects when that span is quoted as the first-end source; the narrower clause or override spans that avoid the token carry no actor, so the assembler cannot attach them as a first end (clause_0_first_end gate error). No held text of this order without those tokens and with an actor-bearing record exists, so the claim cannot reach all_checks_passed. The legal reading (one-time command performed on its own stated date, no later instrument held) is unchanged and remains in the prior reviewed claim.\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:8639",
+      "outcome": "blocked",
+      "reason": "[\"Source gap (custody and checker mechanics): the dossier holds one registered text for this order, the machine-extracted Federal Register text layer (jobs/fr-originals/data/full_run/texts/EO_8639.txt), whose whole-page span also carries garbled neighbouring-order numbers from the same page (for example the text layer reads 'Executive Order No. 74581'), which the actual claim checker's order_exists test rejects when that span is quoted as the first-end source; the narrower clause or override spans that avoid the token carry no actor, so the assembler cannot attach them as a first end (clause_0_first_end gate error). No held text of this order without those tokens and with an actor-bearing record exists, so the claim cannot reach all_checks_passed. The legal reading (one-time command performed on its own stated date, no later instrument held) is unchanged and remains in the prior reviewed claim.\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:10570",
+      "outcome": "blocked",
+      "reason": "[\"Source custody gap, not a legal gap: the dossier's only registered original text for EO 10570 is jobs/fr-originals/data/full_run/texts/EO_10570.recheck.txt (pdfplumber reading-order text of the 19 FR 6687 page in the FR-1954-10-19 issue, PDF sha256 a8edb23032c98ee2a1c98f1851ce996b701eda1109ec256e3d56e3c3e1ef9d06). The claim kit must quote it as the original representation, but the actual claim checker can match quotations for that sha256 only against the OCR copies (jobs/clause-drafts text and jobs/fr-originals EO_10570.txt) whose words, spacing and line order differ, so original_representation.quote and the clause quote fail quote_verbatim (not_found; first 0 of 344 and 5 of 252 words found in order) and the claim cannot reach all_checks_passed. No registered text of the same page that the checker can match is held; a registered text identical to the checker-held OCR copy (or a checker-held copy of the recheck text) is the missing source. The legal analysis (revocation by EO 12553 on 1986-02-25 for the report-deadline order, with the report deadline and section 10 standstill recorded as spent facts under the 2026-10-21 owner ruling) is unchanged and remains available in the prior reviewed claim.\"]"
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "511e3049c309ff5b8bcb10b2cfedeeac6ce0d92c257afd65c17a88cbe919f9a7",
+      "gate_errors": [],
+      "instrument_id": "EO:12323",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "7099892ed8733c152d74323b8d7b4cfff07dcfb6804fa3e380d3f9f86e9f4ba6",
+      "gate_errors": [],
+      "instrument_id": "EO:12546",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "d64a46510b1a48e934535d9a418d473c19178d7479b60ce927c58157de97ef82",
+      "gate_errors": [],
+      "instrument_id": "EO:12771",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "f075232904040176ec77d1e865776e9113209c3b50e68dd1b6097056dce5276a",
+      "gate_errors": [],
+      "instrument_id": "EO:12864",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "6a61c0911c4b8f47e5e87a7e762533bbbd85a92bf411271c60bb563131dba0c4",
+      "gate_errors": [],
+      "instrument_id": "EO:12914",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "947aa89d2cf86d00461d689b438956c6abb3239e850a55853f60b37f2ca016b7",
+      "gate_errors": [],
+      "instrument_id": "EO:12922",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "4c24929351c8d4bfda4279ec0bef6f416adc6492caca1eb12d0fdf377e16b54b",
+      "gate_errors": [],
+      "instrument_id": "EO:12944",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:14012",
+      "outcome": "blocked",
+      "reason": "Second independent blind reviewer (arm B) did not uphold this exact version: [{\"field\": \"operative_clauses[EO:14012#sec6].judgment_reason\", \"claim_says\": \"had no fixed end in its own held text and no earlier revocation, supersession or exhausting act is shown for it\", \"source_says\": \"Sec. 6 opens with a present-tense, self-executing act: 'The Presidential Memorandum of May 23, 2019 (Enforcing the Legal Responsibilities of Sponsors of Aliens), is revoked.' That command was performed and exhausted on issuance, 2021-02-02. The same packet's 14013 claim treats such sentences as performed on issuance.\"}, {\"field\": \"savings_residuals\", \"claim_says\": \"generic statement that actions taken under EO 14012 stood until rescinded; no surviving effect identified\", \"source_says\": \"The revocation of the 2019 memorandum is a surviving consequence that EO 14148 sec. 2 (which revokes EO 14012 without reviving instruments it revoked) does not undo. Owner ruling 2026-10-28 point 1 requires separating the exhausted command from the surviving consequence; the claim does neither.\"}]"
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "512461bca5573391770cd8bf6f61eb79fee507def5ce8110f1fe7a0de61b16dc",
+      "gate_errors": [],
+      "instrument_id": "EO:14013",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "deecfc9e908052a37152943e7efb9729e60f447f07163a327e1c57cc9bb67b63",
+      "gate_errors": [],
+      "instrument_id": "EO:14052",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "a61096f4854d5688f901f5ed175dc325a4f54be5596c9713ef2c869213c54cfa",
+      "gate_errors": [],
+      "instrument_id": "EO:14075",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": true,
+      "claim_sha256": "161d2c8abe7189e5ee22c711b76b1a9fa3e10b5a9e383b16497a5b248d67808b",
+      "gate_errors": [],
+      "instrument_id": "EO:14082",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    }
+  ],
+  "packet_loads": {
+    "research/excavator/claude-theophilus-2026-11-05/r03/packet": 2
+  },
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 11,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-05T22:27:39.788433+00:00",
+  "submitted": 11,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 79.52652855600172
+}
