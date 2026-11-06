@@ -34,16 +34,17 @@ codebook or count. Certified: 0.
   OAuth with a CourtListener account, tools for search, citation verification, alerts, and generic endpoint calls). It wraps the
   same API, so the same limits; bulk data is not part of it (Free Law Project's own post says so). It adds nothing for this
   job; it is useful in a session to read one opinion or confirm one citation by hand.
-- **Harvard Caselaw Access Project (case.law, static.case.law).** Coverage from `ReportersMetadata.json` and
-  `VolumesMetadata.json`: federal reporters U.S. (572 volumes), F. (300), F.2d (999), F.3d (935), F. Supp. (997), F. Supp. 2d
-  (999), F. Supp. 3d (386), F. App'x (714), Fed. Cl. (109), 40,622 volumes in all; per-volume zips (`us/343.zip` is 4.1 MB),
-  per-case JSON and HTML, through about 2018. **`https://static.case.law/robots.txt` is `User-agent: * / Disallow: /`
-  (last modified 2024-03-04), so the fetch pool would refuse every request and this job makes none.** The job checks the
-  robots file on each run (`SUMMARY.json` -> `second_source`) and says what it found. CAP is also largely redundant: in the
-  first 30 MB of the CourtListener opinions file 7,494 of 7,701 rows carry the Harvard XML column (`xml_harvard`), i.e.
-  CourtListener already holds CAP's text. Every hit records its `source` (`courtlistener_bulk`) and `text_origin` (the
-  column); a Harvard-origin text shows as `xml_harvard` or `html_with_citations`. Open owner question: ask Harvard LIL whether
-  bulk reading of `static.case.law` is welcome despite its robots file, or rely on CourtListener alone.
+- **Harvard Caselaw Access Project (CAP): not used.** `https://static.case.law/robots.txt` is `User-agent: *` / `Disallow: /`
+  (last modified 2024-03-04), so the fetch pool would refuse every request and this job makes none. The job makes no request to that host
+  (`SUMMARY.json` -> `second_source` records this). Before
+  the robots file was weighed, the author (a research session, not the job) made one-off requests to static.case.law from the
+  owner's PC to look at coverage: `ReportersMetadata.json`, `VolumesMetadata.json` (30 MB, deleted), one case JSON and HTML,
+  one volume zip, and two more case JSON files; nothing from it is in this job, its fixtures or its outputs, and the
+  downloaded files are deleted. CAP's federal reporters run through about 2018, and CourtListener already holds that text:
+  in the first 30 MB of its opinions file 7,494 of 7,701 rows carry the Harvard XML column (`xml_harvard`). Every hit records
+  its `source` (`courtlistener_bulk`) and `text_origin` (the column; a Harvard-origin text shows as `xml_harvard` or
+  `html_with_citations`). **Option, not used and awaiting an owner decision:** the CAP mirror on Hugging Face
+  (`common-pile`, 22.6 GiB), third-party repackaging.
 - **eyecite** (Free Law Project, also checked in a scratch venv): finds case, `U.S.C.` and `Fed. Reg.` citations (it read
   "17 Fed. Reg. 2955" beside EO 10340) but **not** "Executive Order No. N", so it cannot find order numbers. Not used. Kean
   F-20261017-4 (eyecite pilot, 54 citation leads, no accuracy scoring) is consistent with this.
@@ -86,14 +87,14 @@ Regan* (EO 12294). 62 citations were marked and labelled by hand.
 | Control | Result |
 | --- | --- |
 | Locator: order number found at each hand-marked citation | 62 of 62 |
-| Mention class vs hand labels | 48 of 62 correct, error rate 22.6% (holding words: 2 of 2 enjoined and 1 of 2 upheld found; interpreted recall 3 of 10) |
+| Mention class vs hand labels | 51 of 62 correct, error rate 17.7% (enjoined: 2 of 2 found, 3 said; upheld: 1 of 2 found, 2 said; interpreted: 3 of 10 found, 4 said; mentioned: 45 of 48 found, 53 said) |
 | Opinion class vs what the hand-read opinion holds | 3 of 8 agree (Youngstown, Endo, IRAP agree; Korematsu, Reich, Washington, Contractors, Dames & Moore are `mentioned` or `interpreted` because the sentences that print the number carry no holding word) |
 | Negatives (invented numbers, statute and Federal Register digits, Proclamation or board "Order No.", a year after the lead) | 0 false hits in 8 |
 | Citation shapes (12,954 beside a Fed. Reg. page; E.O. lists with C.F.R. cites; ranges) | 9 of 9 exact |
 | Stream control: the planted text inside a synthetic bzip2 CSV, read through the real segment decoder, scanner and analysis | 21 of 21 found, 0 false rows, 0 rows lost at segment edges |
 | Dated-before-the-order and Governor's-order cases | dropped or left out of the commit (tested in `test_courts.py`) |
 
-The labels were written after the rules were drafted, on the same opinions, so the 22.6% is optimistic. The sentence rule's
+The labels were written after the rules were drafted, and two weak cues ("defined", "covered by") were dropped after the first smoke run showed them firing on plain description, all on the same opinions, so the 17.7% is optimistic, not a held-out figure. The sentence rule's
 weakness is plain: a court's holding about an order often sits in sentences that say "the Order" and not its number
 (Reich, Korematsu). The class is a sort key for a reader, not a finding. A full run adds `bulk_stream_recall`: each planted
 opinion must appear among the real hits (matched by case name and order id); with `complete: true` a miss means the bulk scan

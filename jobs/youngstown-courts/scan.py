@@ -194,9 +194,9 @@ UPHOLD = [
 INTERPRET = [
     ("construe", _rx(r"\bconstru(?:e|es|ed|ing)\b|\bconstruction\s+of\b")),
     ("interpret", _rx(r"\binterpret(?:s|ed|ing|ation|ations)?\b")),
-    ("meaning_scope", _rx(r"\bmeaning\s+of\b|\bscope\s+of\b|\bterms?\s+of\b|\bdefin(?:e|es|ed|ition)\b")),
+    ("meaning_scope", _rx(r"\bmeaning\s+of\b|\bscope\s+of\b|\bdefinition\s+of\b")),
     ("no_authority", _rx(r"\b(?:does|did|do)\s+not\s+(?:authorize|confer|permit|grant|require|provide)\b|\boffers?\s+no\s+support\b|\bnothing\s+in\b")),
-    ("applies_to", _rx(r"\bappl(?:y|ies|ied|icable|ication)\s+to\b|\bcovered\s+by\b|\bdoes\s+not\s+(?:apply|cover)\b|\bextend(?:s|ed)?\s+to\b")),
+    ("applies_to", _rx(r"\bappl(?:y|ies|ied|icable|ication)\s+to\b|\bdoes\s+not\s+(?:apply|cover)\b|\bextend(?:s|ed)?\s+to\b")),
 ]
 FAMILIES = (("enjoined_vacated_invalidated", INVALIDATE), ("upheld", UPHOLD), ("interpreted", INTERPRET))
 ARGUMENT_RE = _rx(r"\bargu(?:e|es|ed|ing|ment|ments)\b|\bcontend(?:s|ed|ing)?\b|\bclaim(?:s|ed|ing)?\b|\balleg(?:e|es|ed|ing|ation|ations)\b|"

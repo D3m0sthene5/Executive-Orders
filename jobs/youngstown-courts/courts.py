@@ -39,7 +39,6 @@ EST = {"hits": 1150, "fragments": 2900, "sources": 1250}
 TABLES = {"opinions": "opinions", "clusters": "opinion-clusters", "dockets": "dockets", "citations": "citations",
           "courts": "courts"}
 SOURCE_TAG = "courtlistener_bulk"
-CAP_PROBE_URL = "https://static.case.law/us/343/cases/0579-01.json"
 API_SEARCH = "https://www.courtlistener.com/api/rest/v4/search/"
 
 
@@ -270,20 +269,14 @@ def tasks_for(kind, obj, src, level, header, segs, extra=None):
 
 # ---- optional routes ----------------------------------------------------------------------------------------------
 
-def cap_probe(pool):
-    """Harvard's Caselaw Access Project static host as a second source. Its robots.txt is read through the fetch pool;
-    a Disallow means no request to it is made. Nothing here fetches CAP data unless robots allow it."""
-    info = {"host": "static.case.law", "url_tested": CAP_PROBE_URL, "role": "second source for the planted controls "
-            "and a recall cross-check (CAP's text is also in CourtListener's bulk rows: its Harvard XML column)"}
-    try:
-        delay = pool.allowed(CAP_PROBE_URL)
-        info.update(robots="allowed", crawl_delay=delay)
-    except FetchError as e:
-        info.update(robots="blocked" if "robots" in str(e) else "unreachable", detail=str(e)[:160], used=False)
-        return info
-    info["used"] = False
-    info["note"] = "robots allow it now; the CAP cross-check is not implemented in this version of the job"
-    return info
+def cap_probe(pool=None):
+    """Harvard's Caselaw Access Project static host is NOT used and is not contacted, not even for its robots file.
+    Recorded for the reader: its robots.txt was found to read "User-agent: * / Disallow: /" on 2026-11-06, and its
+    federal text is already in CourtListener's opinion rows (xml_harvard). The Hugging Face mirror is an option the owner
+    has not decided on; it is not used."""
+    return {"host": "static.case.law", "used": False, "contacted_by_this_job": False, "robots": "disallow_all (found 2026-11-06)",
+            "reason": "robots.txt disallows every path; CourtListener already carries CAP's text",
+            "huggingface_mirror": "option only, awaiting an owner decision; not used"}
 
 
 def api_crosscheck(pool, token, orders, limit, transport, sleep=time.sleep):
@@ -374,7 +367,7 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None):
     date, chosen = pick_snapshot(objs, cfg["snapshot"])
     log("snapshot " + date + ": " + ", ".join(f"{t} {chosen[t][2] / 1e9:.2f} GB" for t in TABLES))
     cap = cap_probe(pool)
-    log("CAP probe: " + json.dumps({k: cap[k] for k in ("robots", "used")}))
+    log("second source CAP: not used (robots disallow all)")
 
     g = {"keys": keys, "cache": str(cache), "transport": None if workers > 1 else transport}
     srcs = {t: bulk.HttpSource(bulk.BUCKET + "/" + chosen[t][0], transport, UA, stats=stats) for t in TABLES}

@@ -355,7 +355,7 @@ def whole_job_offline():
         s = courts.main(HERE.parent.parent, out, cache, env=env, transport=t)
         assert s["complete"] and s["opinions_segments_done"] >= 2, s
         assert s["opinions_printing_a_register_order"] >= len(expected) * 0.9
-        assert s["second_source"]["robots"] in ("allowed", "unreachable", "blocked")
+        assert s["second_source"]["used"] is False and not any("case.law" in c[0] and "case.law/" in c[0] for c in t.calls)
         for name in ("SOURCES.jsonl", "FRAGMENTS.jsonl", "COURT_HITS.csv", "ORDER_TALLY.csv", "CONTROLS.json", "SUMMARY.json", "BUDGET.json"):
             assert (out / name).is_file(), name
         b = json.loads((out / "BUDGET.json").read_text(encoding="utf-8"))
