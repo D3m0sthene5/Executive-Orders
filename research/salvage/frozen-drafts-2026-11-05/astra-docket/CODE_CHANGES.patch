@@ -1,0 +1,321 @@
+diff --git a/jobs/isthmian-canal-1911/README.md b/jobs/isthmian-canal-1911/README.md
+index 8268773a3..a1cd84a6a 100644
+--- a/jobs/isthmian-canal-1911/README.md
++++ b/jobs/isthmian-canal-1911/README.md
+@@ -98,3 +98,25 @@ readiness tracker does not read these fragments yet; wiring it to do so is a sep
+ Tests whose counts depend on the census or the readiness output run only while those files still
+ match the hashes recorded in `PROVENANCE.json`. After those files change, the job reports the new
+ counts instead of failing.
++
++### Pinned visual page examinations
++
++When an exact page check exists in `data/checked_pages/REVIEWS.json`, the job
++matches the PDF and WPA crosswalk digests, original OCR segment, single-page
++boundaries, sequence, EO number and date. It verifies the reviewed body,
++contents-leaf and adjacent-leaf image bytes and the normalized body text. A
++changed input refuses the check; the unreviewed path continues to use the
++existing OCR and its original flags. The exact official printing remains
++the source; confirmed locations in this small reviewed subset emit
++`location_verified: true` and `needs_page_check: false`. No human review or
++signed-original status is implied. The original machine date-check category
++is preserved independently so OCR damage remains visible.
++
++To reproduce the three visual checks, render one-based pages 9, 11 and 13
++of the exact tracked PDF with Poppler at `-scale-to 1750 -gray -png`; render
++the three body pages (128, 187, 238) and each preceding and following page
++with `-scale-to 1550 -gray -png`. Pass `-f N -l N -singlefile` for each.
++Renderer versions can produce different PNG encodings; the committed page
++bytes identify the images actually read. The body leaves carry no EO numbers:
++the existing crosswalk supplies them, and the receipt explains which date
++elements come from the contents rather than the damaged body datelines.
+diff --git a/jobs/isthmian-canal-1911/canal.py b/jobs/isthmian-canal-1911/canal.py
+index 5808bae41..ad77a4f65 100644
+--- a/jobs/isthmian-canal-1911/canal.py
++++ b/jobs/isthmian-canal-1911/canal.py
+@@ -603,6 +603,35 @@ def affected_rows(docs: list[dict], ids_by_seq: dict) -> list[dict]:
+     return rows
+ 
+ 
++def load_page_checks(job_dir, vol, by_seq, ids_by_seq):
++    """Read only exact page examinations tied to the pre-review source, text and identity."""
++    folder = job_dir / "data" / "checked_pages"
++    if not (folder / "REVIEWS.json").is_file():
++        return {}
++    checked = {}
++    for r in json.loads((folder / "REVIEWS.json").read_text(encoding="utf-8")):
++        seq, iid = r["sequence"], r["instrument_id"]
++        d = by_seq.get(seq)
++        if (not d or seq in checked or ids_by_seq.get(seq) != [iid]
++                or vol["pdf_sha256"] != r["source_sha256"]
++                or vol["crosswalk_sha256"] != r["crosswalk_sha256"]
++                or d["date"] != r["date"] or not d["needs_page_check"]
++                or d["pdf_pages"] != (r["body_pdf_page"], r["body_pdf_page"])
++                or r["ocr_body_sha256"] != sha256_bytes(("\n".join(d["lines"]).strip() + "\n").encode())
++                or r["body_file"] != file_id(iid) + ".txt"
++                or not r["date_evidence"] or not r["boundary_evidence"] or not r["examination"]):
++            raise ValueError(f"Stale or conflicting visual page check for {iid}")
++        body, contents = r["body_pdf_page"], r["contents_pdf_page"]
++        files = {f"p{n}.png" for n in [body - 1, body, body + 1, contents]}
++        if not 6 <= contents <= 13 or set(r["page_images"]) != files:
++            raise ValueError(f"Incomplete page evidence for {iid}")
++        for name, digest in {**r["page_images"], r["body_file"]: r["body_sha256"]}.items():
++            if sha256_bytes((folder / name).read_bytes()) != digest:
++                raise ValueError(f"Changed page-check evidence: {iid}: {name}")
++        checked[seq] = r
++    return checked
++
++
+ def run(repo_root, job_dir, out_dir):
+     repo, job_dir, out = pathlib.Path(repo_root), pathlib.Path(job_dir), pathlib.Path(out_dir)
+     out.mkdir(parents=True, exist_ok=True)
+@@ -646,12 +675,17 @@ def run(repo_root, job_dir, out_dir):
+         if x["lord_seq"]:
+             lord_by_seq[s] = x
+ 
++    checks = load_page_checks(job_dir, vol, by_seq, ids_by_seq)
+     texts = out / "texts"
+     texts.mkdir(parents=True, exist_ok=True)
+     doc_rows, order_rows, fragments, leads, match_rows = [], [], [], [], []
+     short = vol["short"]
+     for d in docs:
+         body_text = "\n".join(d["lines"]).strip() + "\n"
++        review = checks.get(d["seq"])
++        if review:
++            body_text = (job_dir / "data/checked_pages" / review["body_file"]).read_text(encoding="utf-8")
++            d["needs_page_check"], d["confidence"] = False, "high"
+         body_sha = sha256_bytes(body_text.encode("utf-8"))
+         ids = ids_by_seq.get(d["seq"], [])
+         lord = lord_by_seq.get(d["seq"])
+@@ -674,6 +708,9 @@ def run(repo_root, job_dir, out_dir):
+                       + (". This printed entry holds both orders; the text is the whole entry" if len(ids) > 1 else "") + "\n"
+                       f"# Text: OCR text layer of the scan ({vol['extractor']}), running heads and GPO footers removed. "
+                       f"Not human-verified. Body sha256 {body_sha}\n\n")
++            if review:
++                header = (header.split("# Text:", 1)[0] + "# Text: Page-checked transcription of the official compilation. "
++                          + review["date_evidence"] + " " + review["examination"] + f" Body sha256 {body_sha}\n\n")
+             (out / fname).write_text(header + body_text, encoding="utf-8", newline="\n")
+             file_hashes[fname] = sha256_bytes((out / fname).read_bytes())
+         doc_rows.append({
+@@ -722,6 +759,12 @@ def run(repo_root, job_dir, out_dir):
+                                  "text_path": fname, "text_sha256": file_hashes[fname], "body_sha256": body_sha,
+                                  "source_id": f"{JOB_NAME}:{iid}:{vol['pdf_sha256'][:12]}"},
+                         "sources": [{"url": vol["handle_url"], "sha256": vol["pdf_sha256"], "page_or_item": evidence}]})
++                    if review:
++                        f = fragments[-1]
++                        f["confidence_note"] = " ".join([review["date_evidence"], review["boundary_evidence"], review["examination"]])
++                        f["data"].update(location_verified=True, page_check_receipt="data/checked_pages/REVIEWS.json",
++                                         page_check_body_sha256=body_sha, pdf_page=review["body_pdf_page"],
++                                         contents_pdf_page=review["contents_pdf_page"])
+                 if iid and state in ("NOT_IN_CENSUS", "census_date_blank", "YEAR_CONFLICT", "DATE_CONFLICT"):
+                     leads.append({"lead": state, "instrument_id": iid, "seq": d["seq"], "date_in_volume": d["date"],
+                                   "census_date_effective": de, "evidence": evidence, "text_path": fname,
+@@ -831,6 +874,7 @@ def run(repo_root, job_dir, out_dir):
+         "readiness_provisional_status": {k or "blank": v for k, v in count(numbered, "provisional_status").items()},
+         "original_text_step_before": count(numbered, "original_text_step_before"),
+         "decided_orders_original_text_step_open": [r["instrument_id"] for r in decided if r["original_text_step_before"] != "done"],
++        "visual_page_checks": sorted(r["instrument_id"] for r in checks.values()),
+         "fragments": len(fragments), "texts_written": sum(len(d["_names"]) for d in docs),
+         "census_leads": count(leads, "lead"),
+         "affected_document_leads": len(affected),
+diff --git a/jobs/isthmian-canal-1911/test_canal.py b/jobs/isthmian-canal-1911/test_canal.py
+index dc68f5587..05a3223a0 100644
+--- a/jobs/isthmian-canal-1911/test_canal.py
++++ b/jobs/isthmian-canal-1911/test_canal.py
+@@ -453,3 +453,29 @@ class CensusSnapshot(unittest.TestCase):
+ 
+ if __name__ == "__main__":
+     unittest.main()
++
++class CheckedPages(unittest.TestCase):
++    """Reviewed evidence must match the original segment as well as the book and image bytes."""
++
++    def test_pinned_sources_and_repair_scope(self):
++        vol = json.loads((HERE / 'data/PROVENANCE.json').read_text())['volume']
++        docs, _ = canal.build_documents(canal.load_pages(HERE / vol['text']))
++        by_seq = {d['seq']: d for d in docs}
++        ids = {}
++        for x in canal.load_csv(HERE / vol['crosswalk']):
++            if x['instrument_id']:
++                ids.setdefault(int(x['seq']), []).append(x['instrument_id'])
++        self.assertEqual(set(canal.load_page_checks(HERE, vol, by_seq, ids)), {78, 129, 171})
++        stale = {**vol, 'pdf_sha256': '0' * 64}
++        with self.assertRaisesRegex(ValueError, 'Stale'):
++            canal.load_page_checks(HERE, stale, by_seq, ids)
++        with self.assertRaisesRegex(ValueError, 'Stale'):
++            canal.load_page_checks(HERE, vol, by_seq, {**ids, 78: ['EO:666']})
++        import shutil
++        with tempfile.TemporaryDirectory() as tmp:
++            folder = pathlib.Path(tmp) / 'data' / 'checked_pages'
++            shutil.copytree(HERE / 'data' / 'checked_pages', folder)
++            with (folder / 'p128.png').open('ab') as fp:
++                fp.write(b'changed')
++            with self.assertRaisesRegex(ValueError, 'Changed page-check'):
++                canal.load_page_checks(pathlib.Path(tmp), vol, by_seq, ids)
+diff --git a/jobs/lachmann/README.md b/jobs/lachmann/README.md
+index f92467ebc..d80efb8bd 100644
+--- a/jobs/lachmann/README.md
++++ b/jobs/lachmann/README.md
+@@ -17,11 +17,12 @@ Tracker rows (`jobs/readiness-tracker/output/READINESS_BY_ORDER.csv`) with `step
+ `ORIGINAL_FOUND_NEEDS_PAGE_CHECK`. Identity references: `jobs/domesday-register/output/REGISTER.csv` and the Pinakes
+ `ORDERS.csv` / `INVENTORY.csv`.
+ 
+-Rows already marked provisional by a machine confirmation are reassessed from
+-the current declarations and held text on every pass. The previous approval is
+-never copied forward. This preserves successful confirmations across repeated
+-Lachmann → tracker runs while changed or missing witnesses fail normally.
+-Agent confirmations remain in their separate file and retain tracker precedence.
++Previously counted provisional texts and filed claims that depend on working
++texts are reassessed from the current declarations and held witnesses on every
++rebuild. The previous approval is never copied forward. This preserves
++successful confirmations across repeated Lachmann → tracker runs while changed
++or missing witnesses fail normally. Exact agent-reviewed records remain in their
++separate override file and retain tracker precedence, including refusals.
+ 
+ ## Method
+ 
+@@ -67,6 +68,8 @@ compiled_transcription_lead; ties go to the longest text.
+ `CONFIRMATIONS.jsonl` (one line per in-scope order, schema `eo-lachmann-confirmation/v1`), `RESIDUAL.csv` (orders not
+ confirmed, with reasons, for agent review), `SUMMARY.json`, `tests.txt`.
+ 
++Store page-reviewed agent records in `data/AGENT_CONFIRMATIONS.jsonl`. The job reproduces the tracker’s native agent override file from these records. Each affirmative record must pin the reviewed text and its declared source and point to the independent review. The tracker rechecks the fragment, grade and text bytes. Keep earlier negative or superseded versions in the research receipt.
++
+ ## Blinded audit sample
+ 
+ ```
+diff --git a/jobs/lachmann/lachmann.py b/jobs/lachmann/lachmann.py
+index 2722b6316..116ae6ec3 100644
+--- a/jobs/lachmann/lachmann.py
++++ b/jobs/lachmann/lachmann.py
+@@ -377,13 +377,13 @@ def read_csv(path):
+ 
+ 
+ def load_scope(repo):
+-    """Open working-text leads plus machine-confirmed texts needing revalidation.
++    """Freshly reassess open leads, provisional texts and dependent filed claims.
+ 
+-    A successful pass clears the lead blocker and makes the next tracker row
+-    provisional. Keep those machine-derived rows in scope so a repeat does not
+-    erase its own successful confirmations. Filed transcription-dependent
+-    claims may pin those same records even when their text step reads done.
+-    Both pass through current-witness assessment; no old approval is copied.
++    A successful pass clears lead blockers and makes the next tracker row
++    provisional. Keep those members in scope so repetition does not erase its
++    own confirmations. Rebuild dependent filed-claim confirmations from current
++    witnesses as well. No prior approval is copied forward; the current source
++    checks and separate exact agent-review overrides remain authoritative.
+     """
+     rows = read_csv(Path(repo) / TRACKER_CSV)
+     scope = OrderedDict()
+@@ -391,15 +391,22 @@ def load_scope(repo):
+         blockers = [b for b in (r.get('blockers') or '').split('|') if b]
+         if OUT_OF_SCOPE_BLOCKER in blockers:
+             continue
+-        mine = [b for b in blockers if b in SCOPE_BLOCKERS]
+-        if (r.get('claim_present') == 'yes'
+-                and r.get('text_evidence_tier') == 'transcription_dependent'):
+-            scope[r['instrument_id']] = mine
+-        elif r.get('step_original_text') == 'open' and mine:
++        step = r.get('step_original_text')
++        if r.get('claim_present') == 'yes' and r.get('text_evidence_tier') == 'transcription_dependent':
++            # Filed claims may pin the whole machine confirmation. Recompute it
++            # from the witnesses even though the tracker already counted the claim.
++            mine = ['EXISTING_CLAIM_DEPENDS_ON_WORKING_TEXT']
++        elif step == 'open':
++            mine = [b for b in blockers if b in SCOPE_BLOCKERS]
++        elif step == 'provisional' and r.get('provisional_text_grade') in W.GRADES:
++            # The tracker cleared the lead blocker when it counted this text. Re-examine
++            # its current witnesses on rebuild, or the next generation loses the step.
++            replica = r['provisional_text_grade'] == 'archival_replica_scan_pending_codebook'
++            mine = ['ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK' if replica else 'ONLY_COMPILED_TRANSCRIPTION_FOUND']
++        else:
++            continue
++        if mine:
+             scope[r['instrument_id']] = mine
+-        elif (r.get('step_original_text') == 'provisional'
+-              and r.get('provisional_text_method') == 'machine'):
+-            scope[r['instrument_id']] = []
+     return OrderedDict(sorted(scope.items()))
+ 
+ 
+@@ -873,6 +880,10 @@ def run(repo, out):
+                             rec['text_path'] or '', order['number'] + order['suffix'], order['date'], rec['identity_confirmed'],
+                             rec['complete_text_confirmed'], '' if rec['pages_confirmed'] is None else rec['pages_confirmed'],
+                             '|'.join(rec['reasons']), order['title'][:120]])
++    # Agent readings are reviewed inputs. Emit the native override file on every rebuild.
++    agent_input = repo / 'jobs/lachmann/data/AGENT_CONFIRMATIONS.jsonl'
++    if agent_input.is_file():
++        (out / 'AGENT_CONFIRMATIONS.jsonl').write_bytes(agent_input.read_bytes())
+     summary = summarize(results, skipped, missing_register, scope)
+     (out / 'SUMMARY.json').write_text(json.dumps(summary, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+     return summary
+diff --git a/jobs/lachmann/test_lachmann.py b/jobs/lachmann/test_lachmann.py
+index a16daef51..57a1fe274 100644
+--- a/jobs/lachmann/test_lachmann.py
++++ b/jobs/lachmann/test_lachmann.py
+@@ -28,6 +28,24 @@ class StubIndex:
+         return []
+ 
+ 
++class ScopeRebuild(unittest.TestCase):
++    def test_rechecks_counted_working_texts_and_excludes_official_holds(self):
++        with tempfile.TemporaryDirectory() as tmp:
++            path = pathlib.Path(tmp) / L.TRACKER_CSV
++            path.parent.mkdir(parents=True)
++            path.write_text("instrument_id,step_original_text,provisional_text_grade,blockers,claim_present,text_evidence_tier\n"
++                            "EO:1,provisional,archival_replica_scan_pending_codebook,NO_PROVISIONAL_STATUS\n"
++                            "EO:2,provisional,mirror_transcription,NO_PROVISIONAL_STATUS\n"
++                            "EO:3,provisional,mirror_transcription,ORIGINAL_FOUND_NEEDS_PAGE_CHECK\n"
++                            "EO:4,done,,\n"
++                            "EO:5,done,,,yes,transcription_dependent\n")
++            self.assertEqual(L.load_scope(tmp), {
++                "EO:1": ["ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"],
++                "EO:2": ["ONLY_COMPILED_TRANSCRIPTION_FOUND"],
++                "EO:5": ["EXISTING_CLAIM_DEPENDS_ON_WORKING_TEXT"],
++            })
++
++
+ class NumberAndDate(unittest.TestCase):
+     def test_number_forms(self):
+         for text in ('Executive Order 5077.', 'EXECUTIVE ORDER NO. 5077', '[No. 5077]', 'Order No. 5077', 'Executive Order No 5077'):
+diff --git a/jobs/readiness-tracker/test_tracker.py b/jobs/readiness-tracker/test_tracker.py
+index 1235ba4e2..dd7f13a41 100644
+--- a/jobs/readiness-tracker/test_tracker.py
++++ b/jobs/readiness-tracker/test_tracker.py
+@@ -615,6 +615,18 @@ class TrackerTest(unittest.TestCase):
+     def jsonl(self, *rows):
+         return "".join(json.dumps(r) + "\n" for r in rows)
+ 
++    def test_agent_checked_new_fragment_without_preexisting_lead(self):
++        _, fragment, confirmation = self.confirmation_fixture(needs_page_check=True)
++        path = "jobs/hathi-gpo-orders/data/checked/FRAGMENTS.jsonl"
++        confirmation["method"] = "agent"
++        orders, _ = self.run_tracker(files={path: fragment})
++        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
++        orders, _ = self.run_tracker(files={path: fragment, self.AGENT_CONFIRMED: self.jsonl(confirmation)})
++        self.assertEqual(orders["EO:3"]["step_original_text"], "provisional")
++        confirmation["text_sha256"] = "0" * 64
++        orders, _ = self.run_tracker(files={path: fragment, self.AGENT_CONFIRMED: self.jsonl(confirmation)})
++        self.assertEqual(orders["EO:3"]["step_original_text"], "open")
++
+     def test_valid_confirmation_makes_the_text_step_provisional_not_done(self):
+         frag_path, frag, conf = self.confirmation_fixture()
+         base, base_s = self.run_tracker(files={frag_path: frag})
+diff --git a/jobs/readiness-tracker/tracker.py b/jobs/readiness-tracker/tracker.py
+index 29f2537a5..d5522516b 100644
+--- a/jobs/readiness-tracker/tracker.py
++++ b/jobs/readiness-tracker/tracker.py
+@@ -544,9 +544,13 @@ def build(root, *, planning_closures=None):
+                 blockers["original_text"].append("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK")
+             # Owner ruling 2026-10-31: before any claim exists, a counting standalone confirmation of a working
+             # text lets the step be provisional when only the lead blockers stand in the way. It is not an original.
++            # A reviewer can bring the first registered working text for an order.
++            # Its exact fragment and bytes already passed counting_confirmations, even
++            # when no earlier producer index had listed a lead for this identity.
+             if (claim is None and i in confirmed_texts
+                     and set(blockers["original_text"]) <= PROVISIONAL_CLEARABLE_BLOCKERS
+-                    and set(blockers["original_text"]) & PROVISIONAL_LEAD_BLOCKERS):
++                    and (set(blockers["original_text"]) & PROVISIONAL_LEAD_BLOCKERS
++                         or confirmed_texts[i].get("method") == "agent")):
+                 text_provisional = confirmed_texts[i]
+                 steps["original_text"] = True  # satisfied for readiness and step counts; shown as `provisional`
+                 blockers.pop("original_text", None)

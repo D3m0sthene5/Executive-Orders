@@ -1,0 +1,102 @@
+{
+  "state": "dispatchable_for_research",
+  "ok": true,
+  "packet_sha256": "cfa0fe8e3aca536ab5c2f8eb103a1c6e0176c923c6ef29a6bc26f293d75452aa",
+  "dispatchable_ids": [
+    "EO:12965",
+    "EO:12980",
+    "EO:13053"
+  ],
+  "source_blocked_ids": [],
+  "unique_custody_checks": 6,
+  "wall_seconds": 3.826457,
+  "scientific_approval": false,
+  "exceptions": [
+    {
+      "instrument_id": "EO:12965",
+      "blockers": [],
+      "optional_source_gaps": [
+        "TERM:EO:12965:1d62624519d740e1@d6b15a6be9e447af",
+        "TERM:EO:12965:53285a889e507c4b@d6b15a6be9e447af",
+        "TERM:EO:12965:ea9adf87bc38eed4@d6b15a6be9e447af"
+      ]
+    }
+  ],
+  "research_boundaries": [
+    {
+      "instrument_id": "EO:12965",
+      "tasks": [
+        {
+          "task_id": "TASK:dbcf86d53c9a0e6206418e43",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        },
+        {
+          "task_id": "TASK:b67d8433fa82c1a2dd2070f2",
+          "kind": "actual_event_fact",
+          "availability": "research_required"
+        },
+        {
+          "task_id": "TASK:c4d2579e7d5e19257827fe49",
+          "kind": "actual_event_fact",
+          "availability": "research_required"
+        },
+        {
+          "task_id": "TASK:3d3089f3e8fb901d466307b6",
+          "kind": "actual_event_fact",
+          "availability": "research_required"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    },
+    {
+      "instrument_id": "EO:12980",
+      "tasks": [
+        {
+          "task_id": "TASK:dbcf86d53c9a0e6206418e43",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    },
+    {
+      "instrument_id": "EO:13053",
+      "tasks": [
+        {
+          "task_id": "TASK:dbcf86d53c9a0e6206418e43",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    }
+  ],
+  "source_recovery_tasks": [
+    {
+      "task_id": "SOURCE:621ea8272ac6b180512f81c1",
+      "expected_sha256": "98fe521afff3fa4217cc36cba56d5666488a02d48b3f4774c8057301ae9299d1",
+      "check_statuses": [
+        "not_held"
+      ],
+      "native_wanted": {
+        "wanted_id": "dispatch-621ea8272ac6b180512f81c1",
+        "instrument_ids": [
+          "EO:12965"
+        ],
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-12965-further-amendment-executive-order-no-12852"
+        ],
+        "citation": "",
+        "step": "source_custody",
+        "requested_by": "claim-kit dispatch-check"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient."
+    }
+  ],
+  "legal_requirement_coverage": "unknown",
+  "receipt": "research/excavator/machiavelli-modern-undecided-20261105/b01/packet-v2/dispatch-continuation-amendments-v1.json"
+}

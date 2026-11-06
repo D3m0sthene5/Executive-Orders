@@ -1,0 +1,114 @@
+{
+  "schema": "eo-independent-campaign-boundary-review/v1",
+  "reviewed_utc": "2026-11-05T17:04:44.431031+00:00",
+  "baseline_commit": "e1c9ef90dadeb780470cc076af7334487d77bd97",
+  "input_pins": [
+    {
+      "path": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv",
+      "git_blob": "b4f8e5ffa03944dfd074a99c7b3f72d41cd9d583",
+      "sha256": "df320eaa1ea576247708aeb93c9dff5b308445ce1e2573c84664c2dbc2aacfa6",
+      "byte_count": 2700985
+    },
+    {
+      "path": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
+      "git_blob": "c7619e67c77d9b8558d70d52889432f58e7347c6",
+      "sha256": "b931c9eb45ef8750c1e39ea7dd4a7c83d3a53dd049a464764a9fb29da5abcf8f",
+      "byte_count": 2357636
+    }
+  ],
+  "artifact_hashes": {
+    "CAMPAIGN_A_BASELINE_EXCLUSION_IDS.json": "3ca74c2524495fdf18b1556d9588f2257f40b6a34159edd09b3f2c721ddf6e7b",
+    "CAMPAIGN_B_RAW_IDS.json": "acb668c40daf91be88ebbed7cdf98adf98c3992a2b5127461ecc6883d2c72440",
+    "BOUNDARY.json": "37e5659330d64f034731cd6ad6b12b0e21b51fb9e040ed26433496fd2c4e72d9"
+  },
+  "independent_criteria": {
+    "A": "tracker ready_for_human_review != yes and provisional_status.lower() in {yes,no}; all census years",
+    "B": "tracker ready_for_human_review != yes; provisional_status empty; text_evidence_tier original_supported; joined census date_effective lexically 1937 through 2026-10-14"
+  },
+  "checks": {
+    "tracker_rows": 14972,
+    "census_rows": 14972,
+    "tracker_census_ids_equal": true,
+    "A_count": 2960,
+    "B_count": 3908,
+    "intersection": [],
+    "A_symmetric_difference": [],
+    "B_symmetric_difference": [],
+    "A_duplicates": 0,
+    "B_duplicates": 0,
+    "A_sorted": true,
+    "B_sorted": true,
+    "boundary_identity_blob_matches": true,
+    "boundary_tracker_blob_matches": true,
+    "safe123_count": 123,
+    "safe123_outside_B": [],
+    "safe123_canonical_lock_intersection": []
+  },
+  "boundary_verdict": "PASS: exact common-baseline ID freezes, counts, no duplicates, stable ordering and zero overlap. Does not establish live Campaign A ownership acceptance.",
+  "live_A_status": "unlocated; no A acceptance or status adoption inferred",
+  "upstream_pilot_freeze": {
+    "path": "research/production/claim-kit-pilot-2026-10-18/FREEZE_MANIFEST.json",
+    "git_blob": "19a87105add4bdf405e58ef8051fbf41e92ffabc",
+    "sha256": "bb5d37594e0c6e42705c334a7c980b27c34291e92e3a2643b770ea000ecbc147",
+    "read_method": "Exact baseline tree blob via GitHub fetch_blob because local partial clone lacked object; no source/control/reveal content read",
+    "accepted_ids": [
+      "EO:11868",
+      "EO:12720",
+      "EO:12734",
+      "EO:12813",
+      "EO:12817",
+      "EO:13028",
+      "EO:13050",
+      "EO:13131",
+      "EO:13263",
+      "EO:13283",
+      "EO:12687",
+      "EO:12757"
+    ],
+    "B_owned_proposal_intersection": [],
+    "safe123_intersection": []
+  },
+  "safe123_priorwork": {
+    "historical_unapproved_producer_decisions": {
+      "EO:10355": {
+        "agent": "claude-bowditch-y1-01-producer",
+        "approved": false,
+        "recommended_provisional_status": null,
+        "decision_path": "research/excavator/bowditch-2026-10-20/y1_01/overlay/EO_10355/STATUS_DECISION.json",
+        "git_blob": "f375663c6e004aabbedc003f28a927a07ff6c2b9"
+      },
+      "EO:9522": {
+        "agent": "claude-bowditch-y1-02-producer",
+        "approved": false,
+        "recommended_provisional_status": null,
+        "decision_path": "research/excavator/bowditch-2026-10-20/y1_02/overlay/EO_9522/STATUS_DECISION.json",
+        "git_blob": "cd076598d927116ea7babfd3c74adbba7b68eab0"
+      }
+    },
+    "other_named_rule_or_reading_ids": [
+      "EO:12379",
+      "EO:14148",
+      "EO:14154",
+      "EO:9830",
+      "EO:13423",
+      "EO:13345",
+      "EO:13637",
+      "EO:13867",
+      "EO:14111",
+      "EO:13294"
+    ],
+    "source_or_actor_artifact_only_ids": [
+      "EO:10931",
+      "EO:11074",
+      "EO:11258",
+      "EO:14005",
+      "EO:13081",
+      "EO:13102",
+      "EO:13108",
+      "EO:9526"
+    ],
+    "path_index": "safe123-named-paths.json",
+    "interpretation": "Retained prior research must be carried forward; named pages or actor readings do not establish assignment ownership. Historical unapproved decisions do not by themselves establish an active exclusive lock. No active lock among safe123. Inventory is path-based outside the exact inspected decisions; no absence-of-prior-work proof."
+  },
+  "limits": "No controls, reveal keys or privileged evaluation contents read. No scientific conclusions independently adjudicated, no statuses adopted, no shared files changed. Only boundary-audit outputs. Exact runtime model suffix, tokens and active-labor time unavailable."
+}

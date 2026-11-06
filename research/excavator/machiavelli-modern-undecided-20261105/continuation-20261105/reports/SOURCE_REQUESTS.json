@@ -1,0 +1,40 @@
+{
+  "schema": "eo-source-request-manifest/v1",
+  "producer": "continuation_reports",
+  "requests": [
+    {
+      "url": "https://clintonwhitehouse5.archives.gov/pcscb/contact.html",
+      "instrument_ids": [
+        "EO:13108"
+      ],
+      "source_role": "official-termination-history",
+      "reason": "Primary White House page expressly calls Emery executive director before termination September30 1999; new direct occurrence evidence, not inference from due date."
+    },
+    {
+      "url": "https://clintonwhitehouse3.archives.gov/pcscb/report.html",
+      "instrument_ids": [
+        "EO:13108"
+      ],
+      "source_role": "report-submission-and-parent-chain",
+      "reason": "February1 1999 dated letter submits report to President; full report plus EO13037/13066/13108 appended. Report act is separate from fixed end."
+    },
+    {
+      "url": "https://clintonwhitehouse5.archives.gov/textonly/pcscb/eo13037.html",
+      "instrument_ids": [
+        "EO:13108"
+      ],
+      "source_role": "parent-and-amendment-chain",
+      "reason": "Complete White House official text of EO13037/13066/13108; September30 substitution expressly replaces report-relative termination. Check existing raw custody before acquire."
+    },
+    {
+      "url": "https://govinfo.library.unt.edu/piac/pubint.htm",
+      "instrument_ids": [
+        "EO:13081",
+        "EO:13102"
+      ],
+      "source_role": "archived-agency-report-release-and-charter-counterevidence",
+      "reason": "NTIA agency site archived by UNT: release December18 1998 but older Oct1/Oct31 assertions remain on same updated Jan4 1999 page; inspect about committee links for later renewal."
+    }
+  ],
+  "dedup_note": "PCSD Charter/index.html and history.html already requested by continuation_amendments; reuse coordinator acquisition. Existing three report PDFs, EO13108 raw cache and NARA12852 are held; no repeat request."
+}

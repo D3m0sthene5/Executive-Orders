@@ -28,13 +28,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 148; `search` finds the rest)
+## Newest results (6 of 153; `search` finds the rest)
 
 - 2026-11-05 F-20261105-theophilus **worked**: Theophilus wave (Bentham ranks 8 and 11): recover 48 custody-stranded reviewed claims by fresh prepare plus u… Lesson: Run the actual checker on the exact reviewed lines before buying review: it sorts recoverable claims from mechanically blocked ones for free. One-step-away is a source-acquisition queue, not a produc…
 - 2026-11-05 F-20261105-stable-main-publication **worked**: Integrate completed EO work and remove production/reporting publication races Lesson: Successful computation is not publication. Queue automatic writers before checkout, bind receipts to actual inputs, and keep shared inputs stable.
-- 2026-11-05 F-20261105-icecore **stopped at gate**: Ice core probe: 30 orders drawn by decade from each remaining claim-ready stratum (886 NO, 359 YES), run as o… Lesson: A finished wave's yield describes the orders it drew, not the ones left: Tribonian skimmed the NO stratum, so its 47.6% overstated the remaining NO yield about fourteenfold (47.6% against 3.3%). Meas…
-- 2026-11-05 F-20261105-2 **worked**: Bentham (jobs/bentham): joined Hamilton, wave dispositions, Polya, the tracker's shared unlocks and Llull's m… Lesson: A tool that needs a person to feed it is not wired in: Hamilton, Llull, Neyman and Polya each worked but none ran before a wave because each needed manual input and no protocol step required it
-- 2026-11-05 F-20261105-1 **worked**: Gessner cards: a daily job joining READINESS_BY_ORDER.csv and the Domesday REGISTER.csv into one self-contain… Lesson: Derive display-only fields from committed outputs in a job, never in a chat; a disagreement between a date rule and a recorded name is a data-quality lead, not a correction
-- 2026-11-04 F-20261104-tribonian-finalization-recovery **worked**: Reconcile current Tribonian claims with the combined tracker and refresh retained Capcom history Lesson: Use exact current hashes and a successful combined generation; campaign filings and batch-local totals cannot replace a project-wide recount.
+- 2026-11-05 F-20261105-machiavelli-source-questions **worked**: Examine actual report submission and judicial/collective-bargaining source questions Lesson: Distinguish submission from receipt, source-export time from event time, and a court judgment from the mandate making it effective. New source evidence requires scoped legal application and fresh rel…
+- 2026-11-05 F-20261105-machiavelli-production **partly worked**: Run a disjoint modern undecided EO research and production swarm Lesson: Freeze exact case ownership and distinguish research/status-source approval from first-cessation history and owner adoption; carry cumulative analysis across the gate.
+- 2026-11-05 F-20261105-machiavelli-custody **worked**: Recover exact raw source bytes through the existing bounded queued retention route Lesson: Use exact URL/hash/source-role manifests and existing native retention; a file path or tracker tier is not custody and a whole issue can have a smaller official alternate witness.
+- 2026-11-05 F-20261105-machiavelli-continuation-custody **worked**: Retained85requested representations via9boundednative-acquisition jobs; packagedlargebytes forboundedGithub t… Lesson: Byte custody is not automatic original grade, admission, or legal acceptance. Restore exact original paths before native checks. OptionalNortonpilot cap is not universal gate; ordinary reviewed sourc…
 
-Register: 23 owner decisions, 13 answered questions, 148 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 23 owner decisions, 13 answered questions, 153 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
