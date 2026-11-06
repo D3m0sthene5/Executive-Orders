@@ -28,4 +28,4 @@ under the codebook.
 4. **Agent searchers** for what neither route reaches: the 1894 run (EO 36–53), the scattered gaps, lettered and
    half-numbered orders the census has by number only, and 226 references to an "Executive order of <date>" that match
    nothing known. Brief: `BRIEF.md`. Raw results: `results/*.jsonl` (one line per target). Every quoted source is then
-   fetched by the runner and its bytes held, so a person can check each quote against the page (`VERIFY.md`).
+   fetched by the runner and its bytes held, so a person can check each quote against the page (`jobs/niebuhr-verify/output/VERIFY.csv`).
