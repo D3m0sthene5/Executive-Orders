@@ -1,0 +1,9 @@
+{
+ "population": "decided census orders (provisional status yes/no) with no claim on file, whose ending/current-basis step is open and whose own official text is held (text_evidence_tier original_supported); research/selden/census/ORDER_NEEDS.csv and the readiness tracker at commit c6c38ac8a0",
+ "population_size": 1531,
+ "seed": 1584,
+ "method": "random.Random(1584).sample(sorted population, 30)",
+ "drawn_before_any_selden_job_output": true,
+ "why_decided_only": "jobs/claim-kit/source_supplement.py adds held excerpts only to decided dossiers; undecided orders need the status-overlay route",
+ "redraw_note": "A first draw from the same population without the no-claim condition included EO 12944, which already has a claim (the kit routes it to replacement); the population was corrected and redrawn with the same seed before any Selden output existed."
+}
