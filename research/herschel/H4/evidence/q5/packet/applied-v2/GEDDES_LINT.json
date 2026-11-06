@@ -1,0 +1,37 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/executive-orders/research/herschel/H4/packets/q5/packet/PACKET.json",
+  "seconds": 42.234,
+  "files_read": 39776,
+  "file_reads": 79615,
+  "packet_fingerprint": "fc3fc41170a51195af6ba39ed8b3f199f24fa10d706b341d54fcb563f99b3619",
+  "claims_checked": 1,
+  "defect_flags": 0,
+  "coverage_gaps": 2,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:12724",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

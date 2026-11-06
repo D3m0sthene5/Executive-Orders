@@ -1,0 +1,49 @@
+{
+ "schema": "eo-status-history-decision/v1-manual",
+ "instrument_id": "EO:4309",
+ "agent": "claude",
+ "route": "manual_no_status_history",
+ "recommended_provisional_status": "no",
+ "basis": [
+  {
+   "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4643.txt",
+   "sha256": "f75d2c094dd22acbad4e009c0ac6112e1a2ff3b145f694423a04eb826f9c8140",
+   "char_start": 28,
+   "char_end": 256,
+   "quote": "It is hereby ordered that Executive Order No. 4309 dated September 24,1925,-\nwithdrawing the public lands in Ts. 4 and 5 S., R. 24 E., N.M.P.M., New Mexico,\npending a resurvey of said townships be and the same is hereby revoked.",
+   "role": "ending: express revocation by EO 4643 (Coolidge, 1927-05-05)"
+  },
+  {
+   "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4309.txt",
+   "sha256": "78768edccaeb6481375ae021f4fc5030e545cbc9280153bc3d54c8001f3425bc",
+   "char_start": 354,
+   "char_end": 572,
+   "quote": "the public lands in Ts. 4 and 5 S., R. 24 E., N. M. P. M., New Mexico, be and\nthe same are hereby' withdrawn from settlement, location, sale, entry and all forms\nof appropriation, pending the resurvey of said townships",
+   "role": "identity/scope: withdrawal of the same townships pending resurvey"
+  }
+ ],
+ "identity_confirmed": true,
+ "earlier_endings_checked": true,
+ "partial_scope_checked": true,
+ "savings_checked": true,
+ "original_pages_confirmed": false,
+ "current_predicate_checked_through": null,
+ "proposed_intervals": [
+  {
+   "scope": "whole order (withdrawal of public lands in Ts. 4 and 5 S., R. 24 E., N.M.P.M., New Mexico)",
+   "from": "1925-09-24",
+   "to": "1927-05-05",
+   "end_basis": "EO 4643, signed May 5, 1927, revokes EO 4309 by number, date and lands. Inclusive end on date signed; exclusive reading ends when the day begins. Earlier candidate end: the order's own resurvey-approval/plat-filing clause; no event of that kind is held."
+  }
+ ],
+ "searches_run": [
+  "cruden.py number EO:4309: 1 hits (/tmp/claude-0/herschel-H6-work/H6-w02/cruden-EO_4309.json) - sole hit is EO_4643, which revokes it",
+  "bundle cruden list reviewed"
+ ],
+ "material_gaps": [
+  "Register date '1925' is year only; the ProQuest OCR of EO 4309 reads 'September 24, 1926' but EO 4643 states 'September 24,1925' (OCR error in 4309 signature line); both texts are archival_replica scans pending page check, PDF/page images not inspected.",
+  "Exact signing date of EO 4643 taken from OCR 'May 5, 1927' and its [No. 4643]; page images not inspected."
+ ],
+ "rationale": "EO 4309 withdrew the public lands in Ts. 4 and 5 S., R. 24 E., N.M.P.M., New Mexico, pending resurvey, until plats were filed or the Commissioner fixed another date. Held EO 4643 (Coolidge, May 5, 1927) names Executive Order No. 4309, its date (Sept 24, 1925) and the identical townships, and orders it revoked. That is an express revocation by a later order whose text is held, so the order was not in effect on 2026-10-14. Identity agrees on number, subject (resurvey withdrawal, New Mexico), president Coolidge; the 1926 vs 1925 discrepancy is an OCR defect resolved by the register year and EO 4643's recital. EO 4643's homestead-entry provisions are its own commands, not this order's.",
+ "approved": true
+}

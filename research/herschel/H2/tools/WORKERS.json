@@ -1,0 +1,185 @@
+{
+ "H2-w01": {
+  "step": "original_text",
+  "model": "sonnet",
+  "stratum": "no.1907-36",
+  "result": "steps/H2-w01/RESULT.jsonl"
+ },
+ "H2-w02": {
+  "step": "original_text",
+  "model": "sonnet",
+  "stratum": "no.1907-36",
+  "result": "steps/H2-w02/RESULT.jsonl"
+ },
+ "H2-w03": {
+  "step": "original_text",
+  "model": "sonnet",
+  "stratum": "none.1907-36",
+  "result": "steps/H2-w03/RESULT.jsonl"
+ },
+ "H2-w04": {
+  "step": "replace_original",
+  "model": "sonnet",
+  "stratum": "no.1907-36+none.1907-36",
+  "result": "steps/H2-w04/RESULT.jsonl"
+ },
+ "H2-w05": {
+  "step": "lifecycle",
+  "model": "sonnet",
+  "stratum": "yes.1937-89",
+  "packet": "packets/yes/packet",
+  "orders": [
+   "EO:11298",
+   "EO:12598",
+   "EO:10863",
+   "EO:7724",
+   "EO:8854",
+   "EO:12137"
+  ],
+  "passes": [
+   "H2-w05",
+   "H2-w05p2"
+  ],
+  "note": "pass 1 (H2-w05) blocked all 6 YES on a blanket 'no current-law text' premise; resumed with the original_plus_bounded_search precedent (H2-w05p2); OOM-killed twice and re-run (H2-w05r, H2-w05r2); final applied-v4"
+ },
+ "H2-w06": {
+  "step": "lifecycle",
+  "model": "sonnet",
+  "stratum": "no.1907-36",
+  "packet": "packets/noA/packet",
+  "orders": [
+   "EO:5930",
+   "EO:6249",
+   "EO:6606E",
+   "EO:4262",
+   "EO:578"
+  ],
+  "note": "EO:6249 and EO:6606E blocked here because the coordinator had not attached the NIRA source supplement; re-produced by H2-w12"
+ },
+ "H2-w07": {
+  "step": "lifecycle",
+  "model": "sonnet",
+  "stratum": "no.1907-36",
+  "packet": "packets/noB/packet",
+  "orders": [
+   "EO:799",
+   "EO:1087",
+   "EO:1278",
+   "EO:1095"
+  ],
+  "note": "EO:799's reviewed claim was filed from fresh packet noB2 (dossier fingerprint equal, rows reapplied byte-for-byte, claim canonical-identical) after noB went stale"
+ },
+ "H2-w08": {
+  "step": "provisional_status",
+  "model": "sonnet",
+  "stratum": "none.1907-36",
+  "result": "steps/H2-w08/RESULT.jsonl"
+ },
+ "H2-w09": {
+  "step": "provisional_status",
+  "model": "sonnet",
+  "stratum": "none.1907-36",
+  "result": "steps/H2-w09/RESULT.jsonl"
+ },
+ "H2-w10": {
+  "step": "review_text",
+  "model": "opus",
+  "stratum": "no.1907-36+none.1907-36",
+  "review": "reviews/rt1",
+  "arm": "A",
+  "passes": [
+   "H2-w10",
+   "H2-w10rv"
+  ]
+ },
+ "H2-w11": {
+  "step": "review_text",
+  "model": "opus",
+  "stratum": "no.1907-36+none.1907-36",
+  "review": "reviews/rt1",
+  "arm": "B",
+  "passes": [
+   "H2-w11",
+   "H2-w11rv"
+  ]
+ },
+ "H2-w12": {
+  "step": "lifecycle",
+  "model": "sonnet",
+  "stratum": "no.1907-36",
+  "packet": "packets/nira/packet",
+  "orders": [
+   "EO:6249",
+   "EO:6606E"
+  ],
+  "note": "NIRA source-supplement packet; second lifecycle attempt for these two after H2-w06 blocked them for want of the supplement the coordinator had not attached"
+ },
+ "H2-w13": {
+  "step": "review_status",
+  "model": "opus",
+  "stratum": "none.1907-36",
+  "review": "reviews/rs1",
+  "arm": "A",
+  "passes": [
+   "H2-w13",
+   "H2-w13rv"
+  ]
+ },
+ "H2-w14": {
+  "step": "review_status",
+  "model": "opus",
+  "stratum": "none.1907-36",
+  "review": "reviews/rs1",
+  "arm": "B",
+  "passes": [
+   "H2-w14",
+   "H2-w14rv"
+  ]
+ },
+ "H2-w15": {
+  "step": "review_lifecycle",
+  "model": "opus",
+  "stratum": "yes.1937-89+no.1907-36",
+  "review": "reviews/rl1",
+  "arm": "A",
+  "passes": [
+   "H2-w15",
+   "H2-w15rv"
+  ]
+ },
+ "H2-w16": {
+  "step": "review_lifecycle",
+  "model": "opus",
+  "stratum": "yes.1937-89+no.1907-36",
+  "review": "reviews/rl1",
+  "arm": "B",
+  "passes": [
+   "H2-w16",
+   "H2-w16rv"
+  ]
+ },
+ "H2-w17": {
+  "step": "review_lifecycle",
+  "model": "opus",
+  "stratum": "yes.1937-89+no.1907-36",
+  "review": "reviews/rl2",
+  "arm": "A",
+  "passes": [
+   "H2-w17",
+   "H2-w17rv"
+  ],
+  "note": "control round for kit completion: blind review of the planted EO:12598 (yes packet) and EO:5930 (noA packet) only, then the genuine versions after reveal; other members keep their rl1 records"
+ },
+ "H2-w18": {
+  "step": "review_lifecycle",
+  "model": "opus",
+  "stratum": "yes.1937-89+no.1907-36",
+  "review": "reviews/rl2",
+  "arm": "B",
+  "passes": [
+   "H2-w18",
+   "H2-w18rv"
+  ],
+  "note": "control round for kit completion: blind review of the planted EO:12598 (yes packet) and EO:5930 (noA packet) only, then the genuine versions after reveal; other members keep their rl1 records"
+ }
+}

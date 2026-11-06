@@ -1,0 +1,53 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/executive-orders/research/herschel/H2/packets/noB/packet/PACKET.json",
+  "seconds": 103.715,
+  "files_read": 39777,
+  "file_reads": 79582,
+  "packet_fingerprint": "2d51fc031cb91611058d9cdae7b2d1ed7fa40f7255637a9dde38e0a5b3a88830",
+  "claims_checked": 2,
+  "defect_flags": 0,
+  "coverage_gaps": 4,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:799",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:1087",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_boundary_clause_conflict"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

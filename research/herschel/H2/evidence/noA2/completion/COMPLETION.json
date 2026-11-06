@@ -1,0 +1,69 @@
+{
+ "schema": "eo-claim-kit-completion/v1",
+ "agent": "claude",
+ "producer_model_family": "Anthropic",
+ "independence_requirement": "same_family_separate_context",
+ "publication": {
+  "mode": "own_claims",
+  "path": "research/readiness/claims/claude-2026-11-05-herschel-H2-rl2-noA2.jsonl"
+ },
+ "members": [
+  {
+   "instrument_id": "EO:5930",
+   "outcome": "submit",
+   "claim_sha256": "07cfadd3f87fa0f0c72a4493a69c915496d5740225d85319fcb427eee434a341",
+   "claim": {
+    "path": "research/herschel/H2/packets/noA2/packet/applied-v1/CLAIMS.proposed.jsonl",
+    "sha256": "97a1789eb4ec6e63f1acb97691518ff75dbd6f929ed94e4c1cac5eccfcc2886c",
+    "line": 1
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/herschel/H2/packets/noA2/packet/PACKET.json",
+    "sha256": "0238df7c7363e682cd6b3146db5f4cc5f0c7f2de4a069826bc47128bf7435fa7"
+   },
+   "after_reveal_review": {
+    "path": "research/herschel/H2/packets/noA2/packet/reviews/rl2/AFTER_REVEAL_A.jsonl",
+    "sha256": "755abcd8884d327c36ccdad8234b6f3948777379e465967ce77531b2609148b0",
+    "line": 1
+   }
+  }
+ ],
+ "controls": [
+  {
+   "instrument_id": "EO:5930",
+   "planted_claim_sha256": "5be10e1099e15335a152377d14799a4f3cb57edd271f559ce2dbe69ecaec737b",
+   "seed": {
+    "path": "research/herschel/H2/packets/noA2/packet/completion/SEED_RECEIPT_EO_5930.json",
+    "sha256": "d7c812e9f6eb31ddd76e36d12207e7a8cfc7088a134d10fb70f242d5bc8fb549"
+   },
+   "review": {
+    "path": "research/herschel/H2/packets/noA2/packet/reviews/rl2/BLIND_REVIEW_A.jsonl",
+    "sha256": "016c22c0065932bb56084128f9578493ea08ee714764af8e7d4a6ed13e3112eb",
+    "line": 1
+   },
+   "adjudication": {
+    "path": "research/herschel/H2/packets/noA2/packet/completion/CONTROL_ADJUDICATION_EO_5930.json",
+    "sha256": "0e45d66f54d3316617ea8d7470c42d84c1ccb270c03d5d635fed9669c91bcf72"
+   }
+  }
+ ],
+ "receipts": [
+  {
+   "path": "research/herschel/H2/packets/noA2/packet/reviews/BLIND_REVIEW_B.kit.jsonl",
+   "sha256": "46a32d067e315595dbf763914600fd50cc1e9090d41f97caebf0ad5fd075c77c"
+  },
+  {
+   "path": "research/herschel/H2/packets/noA2/packet/reviews/rl2/BLIND_REVIEW_B.jsonl",
+   "sha256": "98c3b12c51e0b6c42d22ae699c124e1d65aaa5091e472218e9762d24b3083adc"
+  },
+  {
+   "path": "research/herschel/H2/packets/noA2/packet/reviews/rl2/AFTER_REVEAL_B.jsonl",
+   "sha256": "ccead148b31d6b3e018f952ea2582fd6b7eaa651078c660570c54ad6db7a0187"
+  },
+  {
+   "path": "research/herschel/H2/packets/noA2/packet/completion/TWO_REVIEWER_RULE.json",
+   "sha256": "736655cc31863830cc6fd4fcddcc455806a322c8ad7556ccf56c8ce19f57ec68"
+  }
+ ]
+}

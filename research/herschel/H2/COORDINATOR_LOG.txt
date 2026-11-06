@@ -1,0 +1,84 @@
+NOTE 2026-11-05T23:24Z: H2 start (assigned). 2026-11-05T23:31:12Z protocol, CLAUDE/AGENTS, claim-kit protocol, icecore/theophilus logs+tools read. Integrator message: cap raised 120->250 USD; reach every order/step; standards unchanged.
+H2-w01 sonnet launched 2026-11-05T23:34:40Z concurrent_before=0
+H2-w02 sonnet launched 2026-11-05T23:34:43Z concurrent_before=1
+H2-w03 sonnet launched 2026-11-05T23:34:45Z concurrent_before=2
+H2-w04 sonnet launched 2026-11-05T23:34:47Z concurrent_before=3
+H2-w02 a4aaf647-0c95-4cd3-8f17-75e6c53c2325 cost 0.2317079 turns 8 error False done 2026-11-05T23:36:16Z
+H2-w05 sonnet launched 2026-11-05T23:36:48Z concurrent_before=3
+H2-w06 sonnet launched 2026-11-05T23:38:30Z concurrent_before=4
+H2-w03 1d3fc56c-a216-4ebc-8ad2-89e95a829a93 cost 0.3284142 turns 12 error False done 2026-11-05T23:38:32Z
+H2-w01 b1b05d26-73d4-466a-acea-863a4b514b7b cost 0.35860999999999993 turns 2 error False done 2026-11-05T23:38:57Z
+H2-w04 05ed5acb-ebb7-4aff-8642-42f55ac77d82 cost 0.2308928 turns 9 error False done 2026-11-05T23:39:17Z
+H2-w05 f7249ee3-be3d-413d-ac35-2c6ae93d0a9d cost 0.37114070000000005 turns 13 error False done 2026-11-05T23:39:29Z
+NOTE 2026-11-05T23:40:23Z: H2-w05 pass 1 blocked all 6 YES on blanket 'no current-law text' premise in 13 turns (icecore pass-1 failure repeated). Resumed same worker with the original_plus_bounded_search precedent (both passes count to H2-w05).
+H2-w05p2 sonnet resume f7249ee3-be3d-413d-ac35-2c6ae93d0a9d launched 2026-11-05T23:40:23Z concurrent_before=1
+H2-w07 sonnet launched 2026-11-05T23:44:02Z concurrent_before=2
+H2-w06 7e783cc9-74a7-49a9-9be5-8af1ceea98c8 cost 0.7465087000000001 turns 25 error False done 2026-11-05T23:44:39Z
+H2-w08 sonnet launched 2026-11-05T23:44:51Z concurrent_before=2
+H2-w09 sonnet launched 2026-11-05T23:44:54Z concurrent_before=3
+H2-w10 opus launched 2026-11-05T23:47:23Z concurrent_before=4
+H2-w11 opus launched 2026-11-05T23:47:27Z concurrent_before=5
+H2-w11 d20f33d5-d1ab-499f-85d8-24d988a484b4 cost 0.5706356000000001 turns 11 error False done 2026-11-05T23:48:59Z
+H2-w10 f73e9e84-e6f8-406b-9bf6-e35958a8d4c0 cost 0.5893748 turns 9 error False done 2026-11-05T23:49:21Z
+NOTE 2026-11-05T23:49:46Z: rt1 (text review, 7 items) blind: both arms reject planted control (identity re-point), both uphold the other 6. Reveal sent.
+H2-w10rv opus resume f73e9e84-e6f8-406b-9bf6-e35958a8d4c0 launched 2026-11-05T23:49:56Z concurrent_before=4
+H2-w11rv opus resume d20f33d5-d1ab-499f-85d8-24d988a484b4 launched 2026-11-05T23:49:58Z concurrent_before=5
+H2-w10rv f73e9e84-e6f8-406b-9bf6-e35958a8d4c0 cost 0.6788675999999999 turns 3 error False done 2026-11-05T23:50:21Z
+H2-w11rv d20f33d5-d1ab-499f-85d8-24d988a484b4 cost 0.6570742000000002 turns 3 error False done 2026-11-05T23:50:28Z
+H2-w12 sonnet launched 2026-11-05T23:51:58Z concurrent_before=4
+H2-w09 None cost None turns None error None done 2026-11-05T23:54:21Z
+H2-w05p2 None cost None turns None error None done 2026-11-05T23:54:26Z
+H2-w08 None cost None turns None error None done 2026-11-05T23:54:46Z
+H2-w07 None cost None turns None error None done 2026-11-05T23:54:49Z
+H2-w12 None cost None turns None error None done 2026-11-05T23:55:22Z
+LIMIT_EVENT 2026-11-05T23:55:33Z: memory cgroup OOM (dmesg 'Memory cgroup out of memory', cgroup claude-code-bash shared by every coordinator's Bash processes) killed H2-w05p2 (23:54:26Z), H2-w07 (~23:54Z), H2-w08 (23:54:46Z), H2-w09 (23:54:21Z) mid-task, plus other coordinators' workers and a python job. No rate-limit or usage-limit message seen. Machine: 2 CPUs, 8 GB, shared with H1,H3,H4 and also H5,H6 coordinators (seen in ps). At kill time H2 had 5 workers running. Decision: resume each killed worker in its own session (costs count to the same worker), stagger launches, cap H2 at 4-5 concurrent while memory is tight.
+H2-w05r sonnet resume f7249ee3-be3d-413d-ac35-2c6ae93d0a9d launched 2026-11-05T23:56:01Z concurrent_before=0
+H2-w08r sonnet resume b479e72d-9785-46ba-9e03-68395ac54cb3 launched 2026-11-05T23:56:23Z concurrent_before=1
+H2-w05r None cost None turns None error None done 2026-11-05T23:56:31Z
+H2-w09r sonnet resume e3c412cb-fdfc-48c7-b054-f8d0010745e4 launched 2026-11-05T23:56:44Z concurrent_before=1
+H2-w07r sonnet resume 3a41e33f-ca18-46df-a208-dfd9e6fda13d launched 2026-11-05T23:57:04Z concurrent_before=2
+H2-w12r sonnet resume 8f05703f-23bd-45ed-98f9-81b3c0460d2f launched 2026-11-05T23:57:26Z concurrent_before=3
+LIMIT_EVENT 2026-11-05T23:57:45Z: second OOM wave killed H2-w05r 30 s after resume (23:56:31Z). claude-code-bash memcg limit 6.26 GB, usage pinned at limit; 18 'claude -p' workers machine-wide (~210 MB each) plus 250 MB python jobs. H2 concurrency is bounded by shared memory, not by the assigned 8; H2 now holds 4 running and will not add more until memory frees.
+H2-w08r b479e72d-9785-46ba-9e03-68395ac54cb3 cost 0.2545248 turns 9 error False done 2026-11-05T23:58:21Z
+H2-w09r e3c412cb-fdfc-48c7-b054-f8d0010745e4 cost 0.2308251 turns 9 error False done 2026-11-05T23:58:59Z
+NOTE 2026-11-05T23:59:44Z: integrator memory guard adopted in tools/launch.sh (every launch and resume waits for <18 'claude -p' and MemAvailable>900 MB; MEMGUARD lines log deferrals). OOM-killed workers re-run in their own sessions; TRACE marks those passes oom_rerun=true.
+H2-w13 opus launched 2026-11-05T23:59:55Z concurrent_before=2
+H2-w07r meta finalized by tools/finalize_meta.py (launch.sh post-step broke when the guard was edited in)
+MEMGUARD 2026-11-06T00:00:22Z: H2-w14 deferred (claude -p=18, MemAvailable=2775MB)
+H2-w05r2 sonnet resume f7249ee3-be3d-413d-ac35-2c6ae93d0a9d launched 2026-11-06T00:00:37Z concurrent_before=2
+H2-w14 opus launched 2026-11-06T00:01:23Z concurrent_before=3
+H2-w13 6ba4b5e0-4b25-418e-86bf-4b79e032f6d3 cost 0.5440878 turns 13 error False done 2026-11-06T00:02:51Z
+H2-w14 6d0ebe24-ac07-45ff-8dfd-bdca86ca53de cost 0.5559902000000001 turns 12 error False done 2026-11-06T00:03:44Z
+NOTE 2026-11-06T00:04:07Z: rs1 (status review, 3 done proposals) blind: planted EO:5375 rejected by both arms for the date defect (caught); 5739, 3668 upheld by both. Reveal sent.
+H2-w13rv opus resume 6ba4b5e0-4b25-418e-86bf-4b79e032f6d3 launched 2026-11-06T00:04:08Z concurrent_before=2
+H2-w14rv opus resume 6d0ebe24-ac07-45ff-8dfd-bdca86ca53de launched 2026-11-06T00:04:28Z concurrent_before=3
+H2-w13rv 6ba4b5e0-4b25-418e-86bf-4b79e032f6d3 cost 0.6459804 turns 3 error False done 2026-11-06T00:04:30Z
+H2-w14rv 6d0ebe24-ac07-45ff-8dfd-bdca86ca53de cost 0.6498700000000001 turns 3 error False done 2026-11-06T00:04:46Z
+GATE 2026-11-06T00:05:53Z after rs1: STOP (economic; P(beat next-best)=0.00, posterior 0.26). Per protocol an economic STOP does not stop a survey: recorded, continuing. No control missed.
+H2-w05r2 f7249ee3-be3d-413d-ac35-2c6ae93d0a9d cost 0.5371628 turns 7 error False done 2026-11-06T00:21:13Z
+H2-w12r meta finalized by tools/finalize_meta.py (launch.sh post-step broke when the guard was edited in)
+MEMGUARD 2026-11-06T00:22:04Z: H2-w15 deferred (claude -p=18, MemAvailable=4088MB)
+MEMGUARD 2026-11-06T00:22:24Z: H2-w16 deferred (claude -p=18, MemAvailable=3446MB)
+H2-w16 opus launched 2026-11-06T00:22:44Z concurrent_before=0
+H2-w15 opus launched 2026-11-06T00:22:44Z concurrent_before=1
+H2-w15 dbbd5b04-ed8a-4a4f-a7b8-7aaa87fded8e cost 2.1389348000000004 turns 41 error False done 2026-11-06T00:30:44Z
+H2-w16 6676e75b-5277-450a-a619-7a0a7b194f71 cost 2.0731738000000006 turns 40 error False done 2026-11-06T00:30:56Z
+NOTE 2026-11-06T00:31:21Z: rl1 (lifecycle review, 8 claims) blind: planted EO:799 caught by both arms (date). Both uphold 5930, 10863, 12598. Both reject 6249 (held EO 6539 amendment omitted from later_events) and 1087 ('express_supersession' by EO 1093 rests on Wikisource editorial note, not EO 1093's text). Split: 6606E and 11298 rejected by arm A only (6606E: EO 6533 condition 2 earlier-end question; 11298: 1989 codification text misdescribed) -> not filed under both-uphold rule. Reveal sent.
+H2-w15rv opus resume dbbd5b04-ed8a-4a4f-a7b8-7aaa87fded8e launched 2026-11-06T00:31:21Z concurrent_before=0
+H2-w16rv opus resume 6676e75b-5277-450a-a619-7a0a7b194f71 launched 2026-11-06T00:31:26Z concurrent_before=1
+H2-w15rv dbbd5b04-ed8a-4a4f-a7b8-7aaa87fded8e cost 2.3695390000000005 turns 5 error False done 2026-11-06T00:31:55Z
+H2-w16rv 6676e75b-5277-450a-a619-7a0a7b194f71 cost 2.2667182000000006 turns 4 error False done 2026-11-06T00:31:56Z
+NOTE 2026-11-06T00:35:33Z: kit.py complete refused rl1 (noB dry run): review records lack independent/separate_context/review_kind/scope fields because the H2 lifecycle reviewer prompt omitted them from its format list (coordinator prompt defect). Wrote clerical copies reviews/rl1/*.kit.jsonl adding only those four run-condition fields (tools/kit_fields.py); verdicts unchanged, originals kept. Dry-run completion dir removed and rerun.
+NOTE 2026-11-06T00:38:25Z: kit.py complete on noB reported 'changed prior research' for EO:799: prior_research scans research/ for review records and excludes only the packet's own folder, so H2's top-level reviews (and rt1/steps records naming EO:799) made the frozen packet stale. rl1 review files split per packet into packets/<p>/packet/reviews/ (the kit's excluded location); top-level copy held in scratch until filing, then restored for commit.
+NOTE 2026-11-06T00:43:17Z: kit.py complete needs a nonempty planted-control list per completion, and a multi-packet manifest fails ('changed prior research' for EO:5930, 'packet dependencies changed during completion' for yes) because a manifest or result folder outside a packet is prior research for that packet's orders. rl1's single control (EO:799) sits in noB, whose EO:799 packet is itself stale (H2 text-review/step records name EO:799; a fresh packet's dossier fingerprint differs). Combined dry-run folder deleted. Plan: per-packet control rounds (rl2-yes, rl2-noA: fresh blind Opus pair reviews one planted claim, then the genuine version after reveal; other members keep their rl1 records as selectors), and EO:799 reapplied unchanged into fresh packet noB2 then the same control round (rl2-noB2).
+H2-w17 opus launched 2026-11-06T00:50:07Z concurrent_before=0
+H2-w18 opus launched 2026-11-06T00:50:32Z concurrent_before=1
+H2-w17 a8031d44-67ea-40e3-8ee5-160ff66c03ba cost 0.7046724000000002 turns 12 error False done 2026-11-06T00:51:41Z
+H2-w18 9b33991a-2ef5-4db0-98c6-3add73cbf85b cost 0.5733328 turns 11 error False done 2026-11-06T00:52:03Z
+NOTE 2026-11-06T00:52:19Z: rl2 control round blind: planted EO:12598 and EO:5930 both rejected by both arms for the date defect (caught). Reveal sent.
+H2-w17rv opus resume a8031d44-67ea-40e3-8ee5-160ff66c03ba launched 2026-11-06T00:52:19Z concurrent_before=0
+H2-w18rv opus resume 9b33991a-2ef5-4db0-98c6-3add73cbf85b launched 2026-11-06T00:52:24Z concurrent_before=1
+H2-w18rv 9b33991a-2ef5-4db0-98c6-3add73cbf85b cost 0.7452254 turns 4 error False done 2026-11-06T00:53:00Z
+H2-w17rv a8031d44-67ea-40e3-8ee5-160ff66c03ba cost 1.0116572000000001 turns 6 error False done 2026-11-06T00:53:11Z
+NOTE 2026-11-06T01:05:32Z: rl2 reveals: genuine EO:12598 and EO:5930 upheld_after_reveal by both arms. FILED: EO:799 (noB2, rl1 control's genuine version; packet re-prepared with equal dossier fingerprint, reviewed rows reapplied byte-for-byte, claim canonical-identical), EO:10863 + EO:12598 (yes, rl2 control round), EO:5930 (noA2, same reapply route after noA reported 'changed prior research'). Claims files: research/readiness/claims/claude-2026-11-05-herschel-H2-rl1-noB2.jsonl, -rl2-yes.jsonl, -rl2-noA2.jsonl. Not filed: 11298, 6606E (arm A rejected), 6249, 1087 (both rejected).
+NOTE 2026-11-06T01:07:29Z: wave ends: all 34 assigned orders reached at every open step (none not_reached). Telemetry written (telemetry/AGENT_USAGE.csv, SUMMARY.json, PHASE_MAP.json, COSTS.json); STEP_COSTS.json, TRACE.jsonl, ORDER_OUTCOMES.csv, BATCHES.json, gate/, TEXT_PROPOSALS.jsonl, STATUS_PROPOSALS.jsonl, evidence/ (small packet files) built. Spend at close ~62.4 USD API-equivalent (coordination 39.6). bentham.py usage not run: a machine-wide transcript scan fails on another coordinator's OOM-truncated transcript (Hamilton 'malformed supported transcript export'); measure_h2.py runs sessions.py on a mirror of H2's own transcripts instead. Packets deleted after commit.

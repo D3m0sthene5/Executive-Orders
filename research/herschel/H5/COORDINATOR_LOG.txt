@@ -1,0 +1,281 @@
+START 2026-11-05T23:28:40Z H5 coordinator (round 2)
+NOTE 2026-11-05T23:31:05Z: 7 packets (d1 d2 decided; u1-u5 undecided). Prepare chain started (d1 d2 u4 u1 u2 u3 u5). Machine: 2 CPUs, load 5.5 at start.
+H5-w04 sonnet launched 2026-11-05T23:32:23Z concurrent_at_start=0
+H5-w01 sonnet launched 2026-11-05T23:32:23Z concurrent_at_start=0
+H5-w05 sonnet launched 2026-11-05T23:32:23Z concurrent_at_start=0
+H5-w02 sonnet launched 2026-11-05T23:32:23Z concurrent_at_start=0
+H5-w03 sonnet launched 2026-11-05T23:32:23Z concurrent_at_start=0
+H5-w05 d87513f3-5a6a-44b8-8c5c-1fc9a1167d6e cost 0.1514172 turns 7 is_error False
+H5-w05 done 2026-11-05T23:33:25Z
+H5-w01 467756aa-13f2-4d26-85c4-e35e5e7937df cost 0.22895259999999998 turns 11 is_error False
+H5-w01 done 2026-11-05T23:33:59Z
+H5-w03 61d867d3-af7a-479c-8904-5017b6344c03 cost 0.2266958 turns 14 is_error False
+H5-w03 done 2026-11-05T23:34:09Z
+NOTE 2026-11-05T23:34:11Z: packets are frozen at prepare, so a newly located official copy cannot enter a packet without a re-prepare; clause_inventory therefore runs on the frozen packet text in parallel with original_text (original_text outcomes are recorded separately). d1 dispatchable 324 6320 649 6723; source-blocked 1909 2265 (prepare exit 1, research-only packet).
+dispatch-check H5-w06 d1 exit=0 2026-11-05T23:34:49Z
+H5-w06 sonnet launched 2026-11-05T23:34:49Z concurrent_at_start=2
+NOTE 2026-11-05T23:34:52Z: d2 dispatchable 8902 13409 10978; source-blocked 13709 13902 13995 (custody copies of govinfo FR PDFs). Early workers w01/w03/w05 finished in 1-2 min each ($0.15-0.23).
+H5-w02 83d8165b-9a2b-4509-b40a-fa215ceb4319 cost 0.25980289999999995 turns 19 is_error False
+H5-w02 done 2026-11-05T23:35:04Z
+H5-w04 ee34de1f-827c-4ece-9f43-50c2c0d2c4b9 cost 0.3467469000000001 turns 21 is_error False
+H5-w04 done 2026-11-05T23:35:10Z
+dispatch-check H5-w07 d2 exit=0 2026-11-05T23:35:43Z
+H5-w07 sonnet launched 2026-11-05T23:35:43Z concurrent_at_start=1
+NOTE 2026-11-05T23:36:04Z: u4 dispatchable 11925 12221 9248 9699 9866; blocked 13672 14331 (govinfo FR PDF custody). Decision: for undecided packets clause_inventory runs in parallel with provisional_status (disjoint files: STATUS_DECISION vs sheets); ending onward waits for both.
+dispatch-check H5-w08 u4 exit=1 2026-11-05T23:36:39Z
+H5-w08 sonnet launched 2026-11-05T23:36:39Z concurrent_at_start=2
+dispatch-check H5-w09 u4 exit=0 2026-11-05T23:36:46Z
+H5-w09 sonnet launched 2026-11-05T23:36:46Z concurrent_at_start=3
+H5-w06 8eef7c0d-18ac-4258-acad-c370cfe360b7 cost 0.4919748 turns 18 is_error False
+H5-w06 done 2026-11-05T23:37:11Z
+H5-w07 9beb2157-b17b-4061-90b4-f4e79f66ab05 cost 0.3523641 turns 14 is_error False
+H5-w07 done 2026-11-05T23:37:28Z
+NOTE 2026-11-05T23:38:35Z: prompt placeholder bug (STEP_NOTES rendered as <step>_NOTES) in w06-w09; notes relocated to STEP_NOTES by coordinator; fixed from w10. EO:324 clause_inventory blocked (Wikisource text without page record) so later claim steps for 324 are blocked on the same acquisition.
+H5-w09 37c0be5d-8f02-4c7c-b4d6-0638cfa235bf cost 0.36211720000000003 turns 12 is_error False
+H5-w09 done 2026-11-05T23:38:52Z
+dispatch-check H5-w10 d1 exit=0 2026-11-05T23:39:45Z
+H5-w10 sonnet launched 2026-11-05T23:39:46Z concurrent_at_start=1
+dispatch-check H5-w11 d2 exit=0 2026-11-05T23:39:50Z
+H5-w11 sonnet launched 2026-11-05T23:39:50Z concurrent_at_start=2
+H5-w08 d1662e78-d502-4b24-96f3-75b803397c2f cost 0.8626982000000001 turns 30 is_error False
+H5-w08 done 2026-11-05T23:41:47Z
+H5-w10 9b1d171b-c5ee-4aaf-8d88-e4499492d0b9 cost 0.35532270000000005 turns 14 is_error False
+H5-w10 done 2026-11-05T23:42:26Z
+H5-w11 bd4bdbe9-aae6-4ed2-899e-3629286047e2 cost 0.3223784 turns 12 is_error False
+H5-w11 done 2026-11-05T23:44:12Z
+NOTE 2026-11-05T23:45:44Z: 21 of 24 undecided pre-1937/undated orders refused by the kit (jobs/status-history/history.py: 'no dated history located'; no status-history INDEX record), so no packet or dossier can be frozen for them (tools/DROPPED.tsv). Decision: their provisional_status step runs kit-free as research-only status proposals (batches n1-n3, kept in H5/proposals, two blind Opus reviewers + planted control); their claim-route steps are recorded blocked on a dated status-history record. Remaining kit-preparable undecided pre-1937 orders 2489 6111 4220 merged into packet u6.
+LIMIT-ENV 2026-11-05T23:49:47Z: host memory pressure: 8 GB RAM no swap, load avg 36; OOM killer killed cruden.py lookups twice (exit 137) during u6 prepare. Not an API limit; recorded as an environment limit.
+status-plant u4 {"batch": "u4", "orders": 5, "with_status": 5, "controls": ["EO:11925"]}
+H5-w17 opus launched 2026-11-05T23:52:32Z concurrent_at_start=0
+H5-w16 opus launched 2026-11-05T23:52:32Z concurrent_at_start=0
+H5-w18 sonnet launched 2026-11-05T23:52:58Z concurrent_at_start=2
+H5-w19 sonnet launched 2026-11-05T23:52:59Z concurrent_at_start=3
+H5-w20 sonnet launched 2026-11-05T23:53:01Z concurrent_at_start=4
+dispatch-check H5-w14 d1 exit=137 2026-11-05T23:54:16Z
+H5-w14 sonnet launched 2026-11-05T23:54:17Z concurrent_at_start=5
+dispatch-check H5-w12 u6 exit=1 2026-11-05T23:54:18Z
+dispatch-check H5-w13 u6 exit=0 2026-11-05T23:54:19Z
+H5-w12 sonnet launched 2026-11-05T23:54:19Z concurrent_at_start=6
+H5-w13 sonnet launched 2026-11-05T23:54:19Z concurrent_at_start=7
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json;d=json.load(open('/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H5/run/H5-w16.json'));print('H5-w16', d.get('session_id'), 'cost', d.get('total_cost_usd'), 'turns', d.get('num_turns'), 'is_error', d.get('is_error'))
+                  ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/json/__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/local/lib/python3.13/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+H5-w16 RESULT_UNREADABLE 
+H5-w16 done 2026-11-05T23:55:29Z
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json;d=json.load(open('/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H5/run/H5-w17.json'));print('H5-w17', d.get('session_id'), 'cost', d.get('total_cost_usd'), 'turns', d.get('num_turns'), 'is_error', d.get('is_error'))
+                  ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/json/__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/local/lib/python3.13/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+H5-w17 RESULT_UNREADABLE 
+H5-w17 done 2026-11-05T23:55:49Z
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json;d=json.load(open('/tmp/claude-0/-home-claude/1b28d9a2-1935-5c00-acfa-76feacb7b775/scratchpad/herschel-H5/run/H5-w12.json'));print('H5-w12', d.get('session_id'), 'cost', d.get('total_cost_usd'), 'turns', d.get('num_turns'), 'is_error', d.get('is_error'))
+                  ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/json/__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/local/lib/python3.13/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+H5-w12 RESULT_UNREADABLE 
+H5-w12 done 2026-11-05T23:56:05Z
+KILLED H5-w12 H5-w13 H5-w16 H5-w17 2026-11-05T23:55Z: empty results; dmesg shows host memory-cgroup OOM kills of claude processes at that time. Relaunching (launcher now retries killed workers; memory gate 1200 MB).
+H5-w12 sonnet launched 2026-11-05T23:56:38Z concurrent_at_start=4
+dispatch-check H5-w15 u4 exit=0 2026-11-05T23:56:56Z
+H5-w15 sonnet launched 2026-11-05T23:56:57Z concurrent_at_start=5
+H5-w13 sonnet launched 2026-11-05T23:56:58Z concurrent_at_start=6
+status-plant u4 {"batch": "u4", "orders": 5, "with_status": 5, "controls": ["EO:11925"]}
+H5-w16 opus launched 2026-11-05T23:57:38Z concurrent_at_start=7
+H5-w17 opus launched 2026-11-05T23:57:38Z concurrent_at_start=8
+H5-w13 c9c50969-c559-4a3d-a941-ac5f081bd45f cost 0.1420652 turns 7 is_error False
+H5-w13 done 2026-11-05T23:58:15Z
+NOTE 2026-11-05T23:58:51Z: H5-w13 (u6 clause_inventory, 41 s) blocked 2489 and 4220 for want of page images, but the ProQuest replica PDFs are held and original_text workers w02/w04 page-checked them (done). Coordinator judges w13's blocks a worker defect (outcome failed:missed held replica); redo as H5-w21 with the ot results and ProQuest path added to the clause_inventory rules (applies to all later CI workers).
+NOTE 2026-11-05T23:59:30Z: integrator memory guard adopted in launch.sh (launch only if pgrep -fc 'claude -p' < 18 and MemAvailable > 900 MB, else wait 20 s, MEMGUARD logged at most once a minute); heavy helpers serialized; concurrency 12 is a ceiling; OOM-stopped workers re-run and flagged oom_rerun in TRACE.
+NOTE 2026-11-05T23:59:57Z: launch.sh was rewritten in place twice while workers launched earlier were running (bash reads scripts incrementally), so their end-of-run log lines may be missing or garbled; their results are recovered from run/<worker>.json. Later edits use copy-and-rename.
+dispatch-check H5-w21 u6 exit=0 2026-11-06T00:00:23Z
+MEMGUARD H5-w21 2026-11-06T00:00:23Z claude_p=18 avail=2757MB
+H5-w21 sonnet launched 2026-11-06T00:01:24Z concurrent_at_start=8
+dispatch-check H5-w22 d1 exit=0 2026-11-06T00:01:33Z
+H5-w22 sonnet launched 2026-11-06T00:01:34Z concurrent_at_start=9
+H5-w21 047292a8-fe57-4941-b2d8-3bb82095bd1a cost 0.1861055 turns 10 is_error False
+H5-w21 done 2026-11-06T00:02:19Z
+H5-w22 41c1b9b1-a9fb-49ab-bc60-84d96ec0191a cost 0.5536225000000001 turns 31 is_error False
+H5-w22 done 2026-11-06T00:09:07Z
+NOTE 2026-11-06T00:11:05Z: u4 status review: control EO:11925 (status flipped) rejected by both arms; 9248 9866 12221 13672 accepted by both. d1 finalize (w22): EO:649 submitted, applied-v3, batch-check 1/1 pass, Geddes 0 flags. u6 status (w12) blocked 2489 on page images although the ProQuest scan is held and page-checked (same defect as w13): redo 2489 as w23 with the hint; 6111 block (APP mirror only) and 4220 block (land-status source) stand.
+claim-plant d1 {"batch": "d1", "claims": 1, "controls": ["EO:649"]}
+MEMGUARD H5-w25 2026-11-06T00:11:06Z claude_p=19 avail=4766MB
+MEMGUARD H5-w26 2026-11-06T00:11:06Z claude_p=19 avail=4754MB
+dispatch-check H5-w23 u6 exit=0 2026-11-06T00:11:18Z
+MEMGUARD H5-w23 2026-11-06T00:11:18Z claude_p=19 avail=4093MB
+nokit-plant {"set": "nrev1", "n": 3, "controls": ["EO:3421"]}
+MEMGUARD H5-w27 2026-11-06T00:11:50Z claude_p=18 avail=3640MB
+MEMGUARD H5-w28 2026-11-06T00:11:50Z claude_p=18 avail=3612MB
+dispatch-check H5-w24 u4 exit=0 2026-11-06T00:12:02Z
+MEMGUARD H5-w24 2026-11-06T00:12:03Z claude_p=18 avail=3229MB
+MEMGUARD H5-w25 2026-11-06T00:12:06Z claude_p=18 avail=3237MB
+MEMGUARD H5-w26 2026-11-06T00:12:07Z claude_p=18 avail=3206MB
+MEMGUARD H5-w23 2026-11-06T00:12:19Z claude_p=18 avail=3258MB
+MEMGUARD H5-w27 2026-11-06T00:12:51Z claude_p=18 avail=3942MB
+MEMGUARD H5-w28 2026-11-06T00:12:51Z claude_p=18 avail=3942MB
+H5-w23 sonnet launched 2026-11-06T00:12:59Z concurrent_at_start=8
+MEMGUARD H5-w24 2026-11-06T00:13:03Z claude_p=18 avail=3449MB
+MEMGUARD H5-w25 2026-11-06T00:13:07Z claude_p=18 avail=3675MB
+MEMGUARD H5-w26 2026-11-06T00:13:07Z claude_p=18 avail=3664MB
+MEMGUARD H5-w27 2026-11-06T00:13:51Z claude_p=19 avail=3654MB
+MEMGUARD H5-w28 2026-11-06T00:13:51Z claude_p=19 avail=3657MB
+H5-w23 6a5bcab0-67b2-4576-a4bd-082c2a7cc493 cost 0.1556678 turns 7 is_error False
+H5-w23 done 2026-11-06T00:13:58Z
+MEMGUARD H5-w24 2026-11-06T00:14:04Z claude_p=18 avail=3635MB
+MEMGUARD H5-w25 2026-11-06T00:14:07Z claude_p=18 avail=3503MB
+MEMGUARD H5-w26 2026-11-06T00:14:07Z claude_p=19 avail=3505MB
+H5-w16-reveal opus resume 56599810-8d73-406c-8df9-57044bbdad37 launched 2026-11-06T00:14:23Z
+H5-w16-reveal 56599810-8d73-406c-8df9-57044bbdad37 cost 1.097232 turns 3
+H5-w16-reveal done 2026-11-06T00:14:48Z
+H5-w26 opus launched 2026-11-06T00:14:48Z concurrent_at_start=8
+MEMGUARD H5-w27 2026-11-06T00:14:51Z claude_p=19 avail=3000MB
+MEMGUARD H5-w28 2026-11-06T00:14:52Z claude_p=19 avail=3053MB
+MEMGUARD H5-w24 2026-11-06T00:15:04Z claude_p=19 avail=2959MB
+MEMGUARD H5-w25 2026-11-06T00:15:07Z claude_p=19 avail=2792MB
+H5-w25 opus launched 2026-11-06T00:15:47Z concurrent_at_start=9
+MEMGUARD H5-w27 2026-11-06T00:15:52Z claude_p=18 avail=2731MB
+MEMGUARD H5-w28 2026-11-06T00:15:52Z claude_p=18 avail=2692MB
+H5-w17-reveal opus resume 912f8fc9-4816-4889-a5a2-90e00140eb5a launched 2026-11-06T00:16:04Z
+MEMGUARD H5-w24 2026-11-06T00:16:04Z claude_p=18 avail=2643MB
+H5-w26 0cf623de-0b58-48d3-a13e-ac7677a9807f cost 0.39067940000000007 turns 7 is_error False
+H5-w26 done 2026-11-06T00:16:08Z
+H5-w17-reveal 912f8fc9-4816-4889-a5a2-90e00140eb5a cost 1.2766771999999997 turns 3
+H5-w17-reveal done 2026-11-06T00:16:29Z
+H5-w24 sonnet launched 2026-11-06T00:16:44Z concurrent_at_start=9
+MEMGUARD H5-w27 2026-11-06T00:16:52Z claude_p=18 avail=3990MB
+MEMGUARD H5-w28 2026-11-06T00:16:52Z claude_p=18 avail=3990MB
+status-plant u6 {"batch": "u6", "orders": 1, "with_status": 1, "controls": ["EO:2489"]}
+NOTE 2026-11-06T00:17:03Z: u4 status: control 11925 caught by both arms, genuine accepted by both after reveal; all five reviewed proposals accepted (STATUS_REVIEWS.json). w23 redo: EO:2489 status done. d1 claim review arm B caught the planted control on EO:649 (only claim).
+H5-w29 opus launched 2026-11-06T00:17:03Z concurrent_at_start=10
+H5-w30 opus launched 2026-11-06T00:17:03Z concurrent_at_start=10
+H5-w25 2e65b556-8e6d-466e-b6a0-862eb499a782 cost 0.4377968 turns 10 is_error False
+H5-w25 done 2026-11-06T00:17:15Z
+H5-w25-reveal opus resume 2e65b556-8e6d-466e-b6a0-862eb499a782 launched 2026-11-06T00:17:20Z
+H5-w26-reveal opus resume 0cf623de-0b58-48d3-a13e-ac7677a9807f launched 2026-11-06T00:17:20Z
+MEMGUARD H5-w27 2026-11-06T00:17:52Z claude_p=18 avail=3874MB
+MEMGUARD H5-w28 2026-11-06T00:17:52Z claude_p=18 avail=3821MB
+dispatch-check H5-w31 u6 exit=0 2026-11-06T00:17:55Z
+MEMGUARD H5-w31 2026-11-06T00:17:55Z claude_p=18 avail=3797MB
+H5-w25-reveal 2e65b556-8e6d-466e-b6a0-862eb499a782 cost 0.5411536 turns 3
+H5-w25-reveal done 2026-11-06T00:18:01Z
+H5-w26-reveal 0cf623de-0b58-48d3-a13e-ac7677a9807f cost 0.4990804000000001 turns 3
+H5-w26-reveal done 2026-11-06T00:18:06Z
+H5-w27 opus launched 2026-11-06T00:18:12Z concurrent_at_start=11
+H5-w28 opus launched 2026-11-06T00:18:13Z concurrent_at_start=12
+H5-w30 7781e5da-207f-41f2-aa0e-95b5909dad8b cost 0.45098020000000005 turns 11 is_error False
+H5-w30 done 2026-11-06T00:18:42Z
+H5-w24 4012fdbb-816b-4c29-8253-04f0fde0a414 cost 0.28130010000000005 turns 12 is_error False
+H5-w24 done 2026-11-06T00:18:42Z
+H5-w29 27194082-1031-42f1-8be1-b783623b495b cost 0.5426744 turns 13 is_error False
+H5-w29 done 2026-11-06T00:18:50Z
+MEMGUARD H5-w31 2026-11-06T00:18:55Z claude_p=18 avail=4181MB
+dispatch-check H5-w32 u4 exit=0 2026-11-06T00:19:41Z
+MEMGUARD H5-w32 2026-11-06T00:19:41Z claude_p=18 avail=3231MB
+MEMGUARD H5-w31 2026-11-06T00:19:56Z claude_p=18 avail=3670MB
+H5-w31 sonnet launched 2026-11-06T00:20:16Z concurrent_at_start=10
+MEMGUARD H5-w32 2026-11-06T00:20:41Z claude_p=20 avail=3791MB
+H5-w28 9a15edd3-dc2e-4206-ba4c-33d3167e6a01 cost 0.40798120000000004 turns 7 is_error False
+H5-w28 done 2026-11-06T00:20:43Z
+H5-w27 439cdf0c-71fe-4d93-ad5b-f8c7a24f4fdf cost 0.4808828 turns 9 is_error False
+H5-w27 done 2026-11-06T00:20:51Z
+H5-w28-reveal opus resume 9a15edd3-dc2e-4206-ba4c-33d3167e6a01 launched 2026-11-06T00:21:20Z
+H5-w27-reveal opus resume 439cdf0c-71fe-4d93-ad5b-f8c7a24f4fdf launched 2026-11-06T00:21:20Z
+NOTE 2026-11-06T00:21:21Z: d1 EO:649 control caught by both arms; genuine upheld by both after reveal. nrev1 (kit-free): control 3421 caught by both; 3637 3918 accepted by both. u6 status: control 2489 caught by both. Reveals sent.
+H5-w29-reveal opus resume 27194082-1031-42f1-8be1-b783623b495b launched 2026-11-06T00:21:21Z
+H5-w30-reveal opus resume 7781e5da-207f-41f2-aa0e-95b5909dad8b launched 2026-11-06T00:21:21Z
+MEMGUARD H5-w32 2026-11-06T00:21:41Z claude_p=18 avail=4492MB
+H5-w28-reveal 9a15edd3-dc2e-4206-ba4c-33d3167e6a01 cost 0.48531180000000007 turns 3
+H5-w28-reveal done 2026-11-06T00:21:42Z
+H5-w27-reveal 439cdf0c-71fe-4d93-ad5b-f8c7a24f4fdf cost 0.56976 turns 3
+H5-w27-reveal done 2026-11-06T00:21:48Z
+H5-w29-reveal 27194082-1031-42f1-8be1-b783623b495b cost 0.6356617999999999 turns 3
+H5-w29-reveal done 2026-11-06T00:21:49Z
+H5-w30-reveal 7781e5da-207f-41f2-aa0e-95b5909dad8b cost 0.5644800000000002 turns 4
+H5-w30-reveal done 2026-11-06T00:21:56Z
+H5-w32 sonnet launched 2026-11-06T00:22:02Z concurrent_at_start=9
+H5-w31 4e1c926b-10c0-42bf-985b-10b8f6871f36 cost 0.3676570000000001 turns 16 is_error False
+H5-w31 done 2026-11-06T00:22:42Z
+H5-w32 623e291a-67b0-4eb8-8b9b-5723a19dd764 cost 0.5886542 turns 26 is_error False
+H5-w32 done 2026-11-06T00:25:05Z
+NOTE 2026-11-06T00:27:22Z: d1 completion v1 blocked EO:649 because both after-reveal records said verdict 'upheld' instead of the kit vocabulary 'upheld_after_reveal' (after_reveal true, genuine hash matches key). Coordinator normalized the label only (originals kept as AFTER_REVEAL_*.orig.jsonl) and re-ran completion.
+GATE d1 PILOT: only 6 of 30 attempts; too few to judge yield. Across 6 attempts the wave filed 1 ($2.64 spent). The posterior yield is 26.9% with an 80% interval of 16.3% to 38.3%, against a break-even yield of 100.0%; the probability that the wave beats the next-best action is 0.00. 
+H5-w17-fix opus resume 912f8fc9-4816-4889-a5a2-90e00140eb5a launched 2026-11-06T00:31:48Z
+H5-w29-fix opus resume 27194082-1031-42f1-8be1-b783623b495b launched 2026-11-06T00:31:48Z
+H5-w30-fix opus resume 7781e5da-207f-41f2-aa0e-95b5909dad8b launched 2026-11-06T00:31:48Z
+H5-w29-fix 27194082-1031-42f1-8be1-b783623b495b cost 0.6782393999999999 turns 2
+H5-w29-fix done 2026-11-06T00:31:58Z
+NOTE 2026-11-06T00:31:59Z: u4 finalize (w32): applied-v2 awaiting_status_review 4; overlay-propose refused all four reviews (arm A omitted ORIGINAL:EO:N; both arms listed history observation ids that are not evidence ids). Reviewers w16 w17 w29 w30 resumed for a format-only correction of checked_evidence_ids; w32 to be resumed afterwards. nrev1 3421 genuine accepted by both after reveal; u6 2489 genuine status accepted by both after reveal. u6 ending: 2489 done, 4220 blocked (land-status record).
+H5-w17-fix 912f8fc9-4816-4889-a5a2-90e00140eb5a cost 1.3568329999999997 turns 2
+H5-w17-fix done 2026-11-06T00:32:03Z
+H5-w30-fix 7781e5da-207f-41f2-aa0e-95b5909dad8b cost 0.6397790000000002 turns 3
+H5-w30-fix done 2026-11-06T00:32:06Z
+dispatch-check H5-w33 u6 exit=0 2026-11-06T00:32:07Z
+H5-w33 sonnet launched 2026-11-06T00:32:07Z concurrent_at_start=8
+H5-w16-fix opus resume 56599810-8d73-406c-8df9-57044bbdad37 launched 2026-11-06T00:32:21Z
+H5-w16-fix 56599810-8d73-406c-8df9-57044bbdad37 cost 1.2590002000000002 turns 4
+H5-w16-fix done 2026-11-06T00:32:54Z
+H5-w33 1f6b9973-693e-494f-ab11-6e073d4c8007 cost 0.30085080000000003 turns 11 is_error False
+H5-w33 done 2026-11-06T00:33:03Z
+H5-w32-resume opus resume 623e291a-67b0-4eb8-8b9b-5723a19dd764 launched 2026-11-06T00:33:04Z
+H5-w32-resume 623e291a-67b0-4eb8-8b9b-5723a19dd764 cost 0.6542149 turns 4
+H5-w32-resume done 2026-11-06T00:33:28Z
+NOTE 2026-11-06T00:33:46Z: u4 w32 resume: overlay-propose refuses all four with overlay_destination_must_be_isolated_from_authoritative_inputs (status_overlay._destination allows only jobs/claim-kit/output/overlays or research/excavator; Herschel may write only under research/herschel/H5). Coordinator does not work around it: the lifecycle claims of undecided orders cannot be assembled, so their review step is recorded blocked:tool-policy (overlay destination). Lifecycle sheets awaiting_status_review are in u4 applied-v2. finalize_undecided rules changed to skip overlay-propose.
+dispatch-check H5-w34 u6 exit=0 2026-11-06T00:33:57Z
+H5-w34 sonnet launched 2026-11-06T00:33:57Z concurrent_at_start=8
+NOTE 2026-11-06T00:35:47Z: d1 6320/6723 endings were blocked only because the held S.J. Res. 113 (49 Stat. 375) was not registered in the packet. The d1 parent is now stale for supplementing ('changed Valla review context'), so the coordinator prepared a fresh parent d3 (6320 6723) and a source-supplement packet d3/packet/supp (alias d3s) with the reviewed NIRA-sweep excerpt SJRES113 (deterministic, no legal judgment). Steps clause_inventory (carry-over), ending, savings, counterevidence and review rerun there as second attempts.
+dispatch-check H5-w35 d3s exit=0 2026-11-06T00:35:56Z
+H5-w35 sonnet launched 2026-11-06T00:35:56Z concurrent_at_start=9
+H5-w35 f05764bb-1ca9-4f7b-ba7f-10c0c6886dbf cost 0.2586009 turns 10 is_error False
+H5-w35 done 2026-11-06T00:36:50Z
+H5-w34 bb5fde87-b37a-4ab4-a990-890e56fe58aa cost 0.36737879999999995 turns 19 is_error False
+H5-w34 done 2026-11-06T00:37:13Z
+NOTE 2026-11-06T00:37:22Z: u6 finalize (w34): EO:2489 awaiting_status_review in applied-v2 (overlay-propose not run: destination policy). Third worker hitting the same apply failure (prose in source_notes): rule text now states the JSON-list format.
+dispatch-check H5-w36 d3s exit=0 2026-11-06T00:37:31Z
+H5-w36 sonnet launched 2026-11-06T00:37:31Z concurrent_at_start=8
+H5-w36 d97d5e12-42c3-41fa-90fc-5dd70ef1a99d cost 0.34333490000000005 turns 12 is_error False
+H5-w36 done 2026-11-06T00:39:12Z
+NOTE 2026-11-06T00:41:49Z: three LIMITS records for w18-w20 with empty time were artifacts of the in-place launch.sh rewrite (each worker ran one session and returned a valid result); removed from the limit list. No API rate-limit, usage-limit or overload message was seen by any H5 worker or the coordinator; the only limit events were host memory (OOM kills of w12 w13 w16 w17 first attempts at ~23:55Z, cruden.py kills at ~23:47-23:49Z, and MEMGUARD deferrals).
+NOTE 2026-11-06T00:42:20Z: work ends: every assigned order reached; all reachable steps run. Filed 1 claim (EO:649, research/readiness/claims/claude-2026-11-05-herschel-H5-d1.jsonl). Status proposals reviewed: 9 upheld by both arms (u4 5, u6 2489, kit-free 3421 3637 3918); 4 planted controls (status u4 11925, u6 2489, kit-free 3421; claim d1 649) all caught by both arms. Copies of small evidence in results/ and proposals/ before packets are deleted.
+END 2026-11-06T00:42:30Z H5 coordinator; total 50.35 USD API-equivalent at last measurement (coordinator 23.60); wall time 23:28:40Z to end.

@@ -1,0 +1,290 @@
+{
+ "schema": "herschel-h3-costs/v1",
+ "price_table": {
+  "sonnet": {
+   "input": 3.0,
+   "output": 15.0,
+   "cache_read": 0.3,
+   "cache_write": 3.75
+  },
+  "opus": {
+   "input": 5.0,
+   "output": 25.0,
+   "cache_read": 0.5,
+   "cache_write": 6.25
+  },
+  "source": "assumption: Anthropic API list prices; plan allowances are not published"
+ },
+ "pricing": "jobs/bentham/measure.py usd(); cache_write = 5m + 1h + unclassified writes",
+ "since": "2026-11-05T23:24:00Z",
+ "by_step": {
+  "coordination": {
+   "agents": 1,
+   "usd": 11.5393,
+   "fresh_input": 178,
+   "cache_read": 15599371,
+   "cache_write": 325149,
+   "output": 68261,
+   "wall_seconds": 1773.136,
+   "orders_worked": null,
+   "usd_per_order": null,
+   "tokens_per_order": null
+  },
+  "certification_reading": {
+   "agents": 1,
+   "usd": 2.2916,
+   "fresh_input": 48,
+   "cache_read": 2070700,
+   "cache_write": 101876,
+   "output": 24771,
+   "wall_seconds": 298.442,
+   "orders_worked": 6,
+   "usd_per_order": 0.3819,
+   "tokens_per_order": {
+    "fresh_input": 8,
+    "cache_read": 345117,
+    "cache_write": 16979,
+    "output": 4128
+   }
+  },
+  "original_text": {
+   "agents": 4,
+   "usd": 1.3012,
+   "fresh_input": 74,
+   "cache_read": 1803364,
+   "cache_write": 128028,
+   "output": 18655,
+   "wall_seconds": 352.546,
+   "orders_worked": 22,
+   "usd_per_order": 0.0591,
+   "tokens_per_order": {
+    "fresh_input": 3,
+    "cache_read": 81971,
+    "cache_write": 5819,
+    "output": 848
+   }
+  },
+  "lifecycle_claim": {
+   "agents": 2,
+   "usd": 1.2626,
+   "fresh_input": 62,
+   "cache_read": 2064529,
+   "cache_write": 116602,
+   "output": 13717,
+   "wall_seconds": 500.27,
+   "orders_worked": 8,
+   "usd_per_order": 0.1578,
+   "tokens_per_order": {
+    "fresh_input": 8,
+    "cache_read": 258066,
+    "cache_write": 14575,
+    "output": 1715
+   }
+  },
+  "provisional_status": {
+   "agents": 4,
+   "usd": 2.6019,
+   "fresh_input": 140,
+   "cache_read": 4407837,
+   "cache_write": 208963,
+   "output": 33035,
+   "wall_seconds": 1085.926,
+   "orders_worked": 24,
+   "usd_per_order": 0.1084,
+   "tokens_per_order": {
+    "fresh_input": 6,
+    "cache_read": 183660,
+    "cache_write": 8707,
+    "output": 1376
+   }
+  },
+  "review": {
+   "agents": 2,
+   "usd": 1.0578,
+   "fresh_input": 36,
+   "cache_read": 783863,
+   "cache_write": 58533,
+   "output": 11996,
+   "wall_seconds": 432.238,
+   "orders_worked": 1,
+   "usd_per_order": 1.0578,
+   "tokens_per_order": {
+    "fresh_input": 36,
+    "cache_read": 783863,
+    "cache_write": 58533,
+    "output": 11996
+   }
+  }
+ },
+ "per_worker": {
+  "H3-coordinator": {
+   "phase": "coordination",
+   "model": "claude-opus-5-5",
+   "usd": 11.5393,
+   "tokens": {
+    "fresh_input": 178,
+    "cache_read": 15599371,
+    "output": 68261,
+    "cache_write": 325149
+   },
+   "wall_seconds": 1773.136
+  },
+  "H3-w01": {
+   "phase": "certification_reading",
+   "model": "claude-opus-5-5",
+   "usd": 2.2916,
+   "tokens": {
+    "fresh_input": 48,
+    "cache_read": 2070700,
+    "output": 24771,
+    "cache_write": 101876
+   },
+   "wall_seconds": 298.442
+  },
+  "H3-w02": {
+   "phase": "original_text",
+   "model": "claude-sonnet-5-5",
+   "usd": 0.4108,
+   "tokens": {
+    "fresh_input": 20,
+    "cache_read": 532552,
+    "output": 6586,
+    "cache_write": 40587
+   },
+   "wall_seconds": 133.414
+  },
+  "H3-w03": {
+   "phase": "original_text",
+   "model": "claude-sonnet-5-5",
+   "usd": 0.3739,
+   "tokens": {
+    "fresh_input": 22,
+    "cache_read": 563718,
+    "output": 5705,
+    "cache_write": 31776
+   },
+   "wall_seconds": 80.552
+  },
+  "H3-w04": {
+   "phase": "original_text",
+   "model": "claude-sonnet-5-5",
+   "usd": 0.317,
+   "tokens": {
+    "fresh_input": 18,
+    "cache_read": 445641,
+    "output": 3845,
+    "cache_write": 33477
+   },
+   "wall_seconds": 99.866
+  },
+  "H3-w05": {
+   "phase": "lifecycle_claim",
+   "model": "claude-sonnet-5-5",
+   "usd": 0.5762,
+   "tokens": {
+    "fresh_input": 28,
+    "cache_read": 913670,
+    "output": 6421,
+    "cache_write": 54864
+   },
+   "wall_seconds": 211.6
+  },
+  "H3-w06": {
+   "phase": "lifecycle_claim",
+   "model": "claude-sonnet-5-5",
+   "usd": 0.6863,
+   "tokens": {
+    "fresh_input": 34,
+    "cache_read": 1150859,
+    "output": 7296,
+    "cache_write": 61738
+   },
+   "wall_seconds": 288.67
+  },
+  "H3-w07": {
+   "phase": "provisional_status",
+   "model": "claude-sonnet-5-5",
+   "usd": 1.1343,
+   "tokens": {
+    "fresh_input": 50,
+    "cache_read": 2027411,
+    "output": 12388,
+    "cache_write": 90705
+   },
+   "wall_seconds": 266.485
+  },
+  "H3-w08": {
+   "phase": "provisional_status",
+   "model": "claude-sonnet-5-5",
+   "usd": 0.5109,
+   "tokens": {
+    "fresh_input": 32,
+    "cache_read": 852949,
+    "output": 6263,
+    "cache_write": 42934
+   },
+   "wall_seconds": 305.101
+  },
+  "H3-w09": {
+   "phase": "provisional_status",
+   "model": "claude-sonnet-5-5",
+   "usd": 0.5934,
+   "tokens": {
+    "fresh_input": 32,
+    "cache_read": 888929,
+    "output": 10156,
+    "cache_write": 46468
+   },
+   "wall_seconds": 323.409
+  },
+  "H3-w10": {
+   "phase": "provisional_status",
+   "model": "claude-sonnet-5-5",
+   "usd": 0.3633,
+   "tokens": {
+    "fresh_input": 26,
+    "cache_read": 638548,
+    "output": 4228,
+    "cache_write": 28856
+   },
+   "wall_seconds": 190.931
+  },
+  "H3-w11": {
+   "phase": "original_text",
+   "model": "claude-sonnet-5-5",
+   "usd": 0.1995,
+   "tokens": {
+    "fresh_input": 14,
+    "cache_read": 261453,
+    "output": 2519,
+    "cache_write": 22188
+   },
+   "wall_seconds": 38.714
+  },
+  "H3-w12": {
+   "phase": "review",
+   "model": "claude-opus-5-5",
+   "usd": 0.5259,
+   "tokens": {
+    "fresh_input": 18,
+    "cache_read": 390708,
+    "output": 5956,
+    "cache_write": 29055
+   },
+   "wall_seconds": 217.251
+  },
+  "H3-w13": {
+   "phase": "review",
+   "model": "claude-opus-5-5",
+   "usd": 0.5319,
+   "tokens": {
+    "fresh_input": 18,
+    "cache_read": 393155,
+    "output": 6040,
+    "cache_write": 29478
+   },
+   "wall_seconds": 214.987
+  }
+ },
+ "total_usd": 20.0543
+}
