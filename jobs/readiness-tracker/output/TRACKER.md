@@ -2,6 +2,8 @@
 
 **Ready for human review: 1,368 of 14,972 orders (9.1%)**
 
+Generation: `42201511817-1:007fd76d8ef420ed0f9f058dc6f6d9f0c65707cea5be7685da00a0a1f8e014db` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.

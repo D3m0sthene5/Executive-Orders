@@ -1,16 +1,16 @@
 {
   "generated_from": {
-    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "85f04fda0bb41e04edbd2c9b824c146778ccb5e76e5acd880b2059e3c1b6c7d4",
-    "jobs/readiness-tracker/output/TRACKER.md": "29fed1ba0e1543e0e605f57d935caa415f80a91de147a4be57ef0ef9152af387",
-    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "2b6c62d0a39c0fb84d50507e17d467135aae2ddbdd4cfb00948c49fa0b15b16f",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "34931ff150224b62e2f86de3de940964915c3a64fb33f82850b1b5fc9451eeef",
+    "jobs/readiness-tracker/output/TRACKER.md": "c0708caca6d08b466910dd157c87f06f4fa983f727068afcfad5fd278c2cd4b5",
+    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "1b6442640539a72dc86c70b7ae0890f103cf3e7c76fa3be35a29572b1d972a3f",
     "jobs/polya/output/CANDIDATE_ACTIONS.json": "29cf22d5522b6ced73085419c8438c150b4a948ffb54617b38fc1d82601481b0",
     "jobs/polya/output/COMPARE.json": "8ec65cab87bd0ffdfaef4b98fec5f53a6bf66876cfa1b69d9b601d9195272dd3",
     "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json": "688bd3c450081288a998382e30e330ed0b51e8bfc6ce712090a6c46f9eeeee4d",
     "research/excavator/claude-tribonian-2026-11-04/REPORT.md": "6ae4b9e7ebfda4b74f02dc670f483fcea4b1874528c378448786641bcc073fd8"
   },
   "pool": {
-    "decided_not_ready_orders": 2968,
-    "held_by_unretrieved_source_or_quarantine": 20
+    "decided_not_ready_orders": 2923,
+    "held_by_unretrieved_source_or_quarantine": 21
   },
   "notes": [
     "Unlock counts are additive across acquisition actions (one assignment per order); orders needing two acquisitions are uncounted.",
@@ -22,7 +22,7 @@
       "id": "production.claim_ready.no.fr",
       "kind": "production",
       "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "orders": 958,
+      "orders": 1002,
       "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.no.fr.txt",
       "rate_key": "filed_per_attempt.no.fr",
       "cost_key": "wave.per_attempt",
@@ -40,7 +40,7 @@
       "id": "production.claim_ready.yes.fr",
       "kind": "production",
       "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "orders": 359,
+      "orders": 352,
       "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.yes.fr.txt",
       "rate_key": "filed_per_attempt.yes.fr",
       "cost_key": "wave.per_attempt",
@@ -73,6 +73,24 @@
       ]
     },
     {
+      "id": "status_assignment.undecided",
+      "kind": "status_assignment",
+      "description": "Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided (claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such.",
+      "orders": 10681,
+      "order_ids_path": "jobs/bentham/output/strata/status_assignment.undecided.txt",
+      "rate_key": "filed_per_attempt.undecided",
+      "cost_key": "wave.per_attempt",
+      "unlocks": [],
+      "prerequisites": [],
+      "basis": "Computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: provisional_status blank. Yield unmeasured until a probe of this population is pooled.",
+      "evidence": [
+        {
+          "quote": "instrument_id,provisional_status,decision_origin,steps_applicable",
+          "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        }
+      ]
+    },
+    {
       "id": "recovery.custody_stranded",
       "kind": "recovery",
       "description": "Reviewed claims that passed blind review but failed the checker at completion, almost always because a cited source was held only as a hash (custody_record_only). They need re-preparation and fresh review, not new drafting, so the cost is review.per_submitted. DISPOSITION.json lists 48 distinct orders with outcome rejected_mechanical; the REPORT text says 47 (a one-order difference left unexplained).",
@@ -85,7 +103,7 @@
         "source bytes held for the cited sources (jobs/cotton-capture-custody, jobs/astra-source-retention)",
         "kit.py prepare for exactly these ids, then fresh blind review or owner-approved reuse"
       ],
-      "basis": "Computed from research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json: orders with outcome rejected_mechanical, de-duplicated. 20 of them also sit in a claim-ready stratum and were removed from it.",
+      "basis": "Computed from research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json: orders with outcome rejected_mechanical, de-duplicated. 8 of them also sit in a claim-ready stratum and were removed from it.",
       "evidence": [
         {
           "quote": "\"outcome\": \"rejected_mechanical\"",
@@ -142,7 +160,7 @@
       "cost_units": null,
       "unlocks": [
         {
-          "orders": 5,
+          "orders": 6,
           "rate_key": "filed_per_attempt.no.fr",
           "delay_days": 2,
           "delay_basis": "estimate: one machine fetch of a single source plus a tracker re-run (no measured run time)",
@@ -270,22 +288,22 @@
     {
       "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
-      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 545 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 535 includes undecided orders, which unlock nothing until they have a provisional status)",
       "orders": 0,
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "production.per_attempt",
       "cost_override_usd": null,
-      "cost_units": 78,
+      "cost_units": 45,
       "unlocks": [
         {
-          "orders": 63,
+          "orders": 36,
           "rate_key": "filed_per_attempt.no.fr",
           "delay_days": 2,
           "delay_basis": "estimate: agent page check of a located original, then tracker re-run",
           "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {ONLY_COMPILED_TRANSCRIPTION_FOUND, ORIGINAL_FOUND_NEEDS_PAGE_CHECK}, with clause inventory, ending and savings open; assigned to this action only."
         },
         {
-          "orders": 15,
+          "orders": 9,
           "rate_key": "filed_per_attempt.yes.fr",
           "delay_days": 2,
           "delay_basis": "estimate: agent page check of a located original, then tracker re-run",
@@ -296,12 +314,12 @@
       "prerequisites": [
         "agent time to check pages, one order at a time (cost_units orders)"
       ],
-      "tracker_reach_orders": 545,
+      "tracker_reach_orders": 535,
       "tracker_kind": "agent_check",
       "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
       "evidence": [
         {
-          "quote": "| 545 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |",
+          "quote": "| 535 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |",
           "source": "jobs/readiness-tracker/output/TRACKER.md"
         },
         {
@@ -313,7 +331,7 @@
     {
       "id": "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
-      "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 2558 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 2557 includes undecided orders, which unlock nothing until they have a provisional status)",
       "orders": 0,
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "production.per_attempt",
@@ -332,12 +350,12 @@
       "prerequisites": [
         "agent time to check pages, one order at a time (cost_units orders)"
       ],
-      "tracker_reach_orders": 2558,
+      "tracker_reach_orders": 2557,
       "tracker_kind": "agent_check",
       "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
       "evidence": [
         {
-          "quote": "| 2,558 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |",
+          "quote": "| 2,557 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |",
           "source": "jobs/readiness-tracker/output/TRACKER.md"
         },
         {
@@ -349,7 +367,7 @@
     {
       "id": "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
       "kind": "acquisition",
-      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2998 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2735 includes undecided orders, which unlock nothing until they have a provisional status)",
       "orders": 0,
       "rate_key": "filed_per_attempt.correction",
       "cost_key": null,
@@ -357,7 +375,7 @@
       "cost_units": null,
       "unlocks": [
         {
-          "orders": 10,
+          "orders": 8,
           "rate_key": "filed_per_attempt.no.fr",
           "delay_days": 3,
           "delay_basis": "estimate: GitHub Actions fetch job (fr-originals route) and tracker re-run; era fr only because the tracker text says orders from 1936 on were printed in the Federal Register",
@@ -366,12 +384,12 @@
       ],
       "overlaps_with": [],
       "prerequisites": [],
-      "tracker_reach_orders": 2998,
+      "tracker_reach_orders": 2735,
       "tracker_kind": "machine_job",
       "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
       "evidence": [
         {
-          "quote": "| 2,998 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |",
+          "quote": "| 2,735 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |",
           "source": "jobs/readiness-tracker/output/TRACKER.md"
         },
         {
@@ -413,7 +431,7 @@
         "acquire.current_law_sections"
       ],
       "yield_lift_not_counted": {
-        "orders": 342,
+        "orders": 348,
         "applies_to": [
           "production.claim_ready.yes.fr"
         ],
