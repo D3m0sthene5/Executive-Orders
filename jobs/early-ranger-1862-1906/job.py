@@ -34,6 +34,9 @@ def row_date(r):
 
 def main():
     frame=load(FRAME)
+    # Owner ruling R9 (2026-11-06): the census gained admitted_numbered_2026_11_06 rows (all 1931+); this
+    # frozen 1862-1906 study keeps its original 14,972-row frame.
+    frame=[r for r in frame if r.get("bibliographic_class")!="admitted_numbered_2026_11_06"]
     lord=load(LORD)
     if len(frame)!=14972 or len(lord)!=1023:
         raise ValueError("Historic frozen source population changed")

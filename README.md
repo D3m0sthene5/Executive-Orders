@@ -6,6 +6,8 @@
 
 **Current dashboard:** [Research progress and recent work](research/progress/README.md) · [Generated counts, receipt freshness, and source generations](jobs/daily-digest/output/DASHBOARD.md).
 
+**Two denominators:** the *numbered series* (the census universe the tracker counts, 14,972 before the 2026-11-06 admissions; every readiness proportion is of this series) and the *unnumbered series* (class `catalogued_unnumbered`, owner ruling R10), reported as a lower-bound count of identities with a 95% interval for its total in [`jobs/domesday-register/output/UNNUMBERED_SUMMARY.json`](jobs/domesday-register/output/UNNUMBERED_SUMMARY.json); the two are never added together.
+
 **Population estimate (provisional, AI-reviewed, uncertified, n=120):** [`research/dorotheus/SAMPLE_ESTIMATE.md`](research/dorotheus/SAMPLE_ESTIMATE.md), the weighted share of orders with operative force on 2026-10-14 from the Stage 15 stratified sample, with its interval, nonresponse and sensitivity.
 
 **The one authoritative generated number:** `ready_for_human_review` in [`jobs/readiness-tracker/output/SUMMARY.json`](jobs/readiness-tracker/output/SUMMARY.json), read together with its `generation_id` (the runner's run id and input-manifest sha256, also in that job's `STATUS.json`); any other figure is derived from it or is a different tier.

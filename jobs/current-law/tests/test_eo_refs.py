@@ -48,10 +48,10 @@ class FindRefs(unittest.TestCase):
         self.assertEqual(eo_refs.caution(text, h["start"], h["end"]), "")
 
     def test_universe_mapping(self):
-        u = eo_refs.Universe(["EO:10450", "EO:10026A", "EO:7933a"], {"EO:10450": "no"})
+        u = eo_refs.Universe(["EO:10450", "EO:10026A", "EO:7933A"], {"EO:10450": "no"})
         self.assertEqual(u.map(10450), ("EO:10450", "exact"))
         self.assertEqual(u.map(10026, "A")[0], "EO:10026A")
-        self.assertEqual(u.map(7933, "a")[0], "EO:7933a")
+        self.assertEqual(u.map(7933, "a")[0], "EO:7933A")
         self.assertEqual(u.map(99999)[0], "")
         self.assertEqual(u.status("EO:10450"), "no")
 

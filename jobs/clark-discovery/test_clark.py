@@ -43,10 +43,10 @@ class SyntheticRepo(unittest.TestCase):
         self.root = tempfile.mkdtemp(prefix="clark-")
         self.out = os.path.join(self.root, "_out")
         r = self.root
-        # universe: 5850, 5851, 5852, 5857 (so 5853-5856 are gaps), 6000, 6852, 7543, 7933a, 10860, 11060
+        # universe: 5850, 5851, 5852, 5857 (so 5853-5856 are gaps), 6000, 6852, 7543, 7933A, 10860, 11060
         write_csv(os.path.join(r, ident.UNIVERSE), [
             census_row("EO:5850", 1932), census_row("EO:5851", 1932), census_row("EO:5852", 1932), census_row("EO:5857", 1932),
-            census_row("EO:6000", 1932), census_row("EO:6852", 1934), census_row("EO:7543", 1937), census_row("EO:7933a", 1938),
+            census_row("EO:6000", 1932), census_row("EO:6852", 1934), census_row("EO:7543", 1937), census_row("EO:7933A", 1938),
             census_row("EO:8640", 1940), census_row("EO:10860", 1959), census_row("EO:11060", 1962)])
         write_csv(os.path.join(r, ident.READINESS), [
             readiness_row("EO:5850", "NO_OFFICIAL_SOURCE_LOCATED"),                                   # number only
@@ -54,7 +54,7 @@ class SyntheticRepo(unittest.TestCase):
             readiness_row("EO:5852", "NO_OFFICIAL_SOURCE_LOCATED|ONLY_COMPILED_TRANSCRIPTION_FOUND"),  # Lewis's
             readiness_row("EO:5857", "NO_OFFICIAL_SOURCE_LOCATED"),                                   # APP index knows it
             readiness_row("EO:6000", "", step="done"), readiness_row("EO:6852", "", step="done"),
-            readiness_row("EO:7543", "", step="done"), readiness_row("EO:7933a", "NO_OFFICIAL_SOURCE_LOCATED"),
+            readiness_row("EO:7543", "", step="done"), readiness_row("EO:7933A", "NO_OFFICIAL_SOURCE_LOCATED"),
             readiness_row("EO:8640", "", step="done"), readiness_row("EO:10860", "", step="done"),
             readiness_row("EO:11060", "", step="done")])
         texts = os.path.join(r, "jobs/app-executive-orders/output/texts")
@@ -118,7 +118,7 @@ class SyntheticRepo(unittest.TestCase):
         self.assertEqual(len(gaps), 11060 - 10, "every integer up to the highest number, less the 10 numbered census rows")
         for known in ("EO:5852", "EO:5857", "EO:6000", "EO:11060"):
             self.assertFalse(known in gaps, known)
-        self.assertTrue("EO:7933" in gaps, "7933 is in the census only as 7933a, so the bare number is a gap")
+        self.assertTrue("EO:7933" in gaps, "7933 is in the census only as 7933A, so the bare number is a gap")
         self.assertEqual(gaps["EO:5853"]["strength"], "strong", "APP index names it with a date and title")
         self.assertIn("app_index:1932-06-03", gaps["EO:5853"]["identity_evidence"])
         self.assertEqual(gaps["EO:5854"]["strength"], "cited", "named in a saved text, no index entry")
@@ -148,7 +148,7 @@ class SyntheticRepo(unittest.TestCase):
                          "a 1962 order cannot cite a 1993 number")
         self.assertNotIn("EO:8640E", by, "spaced small-caps title letter is not a suffix")
         self.assertNotIn("EO:8", by, "the 8 in '8 F.R.' is a volume, not an order")
-        self.assertNotIn("EO:7933A", by, "EO:7933a is in the census under a lower-case letter")
+        self.assertNotIn("EO:7933A", by, "EO:7933A (the census spelling since owner ruling R9) is in the census under the canonical upper-case letter")
         self.assertNotIn("EO:8640", by, "a document's own number is not a citation of an unknown")
         ids = [r["cited_id"] for r in rows]
         self.assertLess(ids.index("EO:5862"), ids.index("EO:86402"), "plausible rows sort first")
@@ -163,7 +163,7 @@ class SyntheticRepo(unittest.TestCase):
         self.assertNotIn("EO:5852", rows, "transcription-only orders are Lewis's")
         self.assertNotIn("EO:5857", rows, "the APP index gives it a date and title")
         self.assertNotIn("EO:6000", rows, "original already saved")
-        self.assertEqual(s["identity_unknown"]["number_only"], 2, "EO:5850 and EO:7933a")
+        self.assertEqual(s["identity_unknown"]["number_only"], 2, "EO:5850 and EO:7933A")
         self.assertEqual(s["identity_unknown"]["with_proquest_link"], 1)
 
     def test_dated_unnumbered_reference_without_a_match(self):
