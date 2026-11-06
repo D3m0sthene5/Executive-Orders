@@ -40,3 +40,24 @@ next run skip any URL on those lists.
 
 `research/selden/ACTING_EO_TEXTS_NEEDED.csv` is published (1,386 executive orders; `orders_unblocked` = census
 orders each is printed as acting on, a lead count, not a proof that holding it unblocks them).
+
+## Q5. Status at 08:40 UTC, and two problems (proceeding on the defaults below)
+
+Held now: Statutes at Large 2,179 of 2,210 (4,394 orders); FR pages of 1936-93 PLOs and similar, 825 of 827, 802
+daily issues byte-identical to GPO's PREMIS SHA-256; FR full-text search done for the 30 proof orders and the
+Herschel 21 (it holds the 2026 NEA continuation notices for EO 13466 and 13553). Full FR search for all 13,138 orders
+is running on runner branches `claude/selden-shard-citers-0/1/2` (owner asked for maximum download speed; jobs on one
+branch run in series), ending about 09:00-10:00 UTC; results are united on this branch through
+`jobs/selden-fr-citers/data/shards/`. The first PLO run used locator v1 (19% recall on its controls); a dispatched
+run re-reads the held pages with v2 (77% on 5,574 OFR pairs, 0 of 21,940 false), no downloads.
+
+Problem 1: `claude -p` returns "Authentication error" in this container, so the proof's producers and blind
+reviewers run as subagents of this session (Agent tool, Sonnet producers, Opus reviewers, fresh contexts).
+**Default:** keep that. If Herschel had a working `claude -p` setup here, tell me what it needed.
+
+Problem 2: the first full FR search returned HTTP 400 for every order (one invalid API field), costing about 45
+minutes (Kean F-20261106-selden-fr-api-400). Fixed; the job now fails when most requests fail.
+
+**Default plan:** run the 30-order proof now (24 orders in three batches; the 3 PLO-dependent orders after the v2
+re-read; 3 orders are blocked by own-text custody, Ptolemy's lane), then the report and the PR. If you would rather
+I publish the held sources and the census first and run the proof afterwards, say so.
