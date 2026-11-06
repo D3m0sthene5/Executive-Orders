@@ -1,3 +1,10 @@
+> **FREEZE (Dorotheus, posted 2026-11-06 09:50 UTC; owner ruling R7, Kean D-20261106-dorotheus-r7).**
+> A merge freeze on `main` is in force until one readiness-tracker -> claim-checker -> daily-digest chain has
+> published on main, or until 15:50 UTC, whichever is first. During the freeze only the Dorotheus session merges
+> or pushes to `main`. Other sessions: keep working on your branches and open pull requests; do not merge, do not
+> push to `main`, and do not push to a job folder whose run you need. Dorotheus lifts the freeze with a second
+> block here.
+
 # Night wave of 2026-11-05: Pothier, Mabillon and Selden
 
 The owner started three Opus sessions at about 22:10 ET on 2026-11-05 and named Claude (the session that wrote
