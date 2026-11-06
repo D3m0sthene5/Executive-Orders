@@ -267,6 +267,73 @@ def hathi_read_check(pool, rows):
                 "note": "not read. HathiTrust's Data API also needs OAuth credentials the owner has not issued."}
 
 
+# Bibliographic record numbers of the HathiTrust LSA / codification series, found 2026-11-06 by reading the
+# 2026-11-01 hathifile (1,304 matching lines) from the owner's PC. Used when the hathifile cannot be read from the runner
+# (www.hathitrust.org answers it with a Cloudflare challenge, which this job does not answer or evade): the
+# Bibliographic API on catalog.hathitrust.org lists each record's items and their rights.
+HATHI_SEED_RECORDS = {
+    "003125798": ("lsa", "LSA, list of CFR sections affected (monthly, serial)"),
+    "008867430": ("lsa", "List of sections affected (serial)"),
+    "003842879": ("lsa", "List of CFR sections affected, 1986-2000"),
+    "002229089": ("lsa", "List of CFR sections affected, 1973-1985 (compilation)"),
+    "102775301": ("lsa", "List of CFR sections affected, 1973-1985"),
+    "102225281": ("lsa", "List of CFR sections affected, 1973-1985"),
+    "102775299": ("lsa", "List of CFR sections affected, 1964-1972 (compilation)"),
+    "008319661": ("lsa", "List of sections affected, 1964-1972 (compilation)"),
+    "102775330": ("lsa", "List of sections affected, 1949-1963 (compilation)"),
+    "102515996": ("lsa", "List of sections affected, 1949-1963"),
+    "003781646": ("codification", "Codification of Presidential proclamations and executive orders"),
+}
+
+# Leads from the Naude free-source survey (branch enc/naude, relayed by the coordinator 2026-11-06). Not verified
+# by this job; recorded so the manifest carries them.
+SURVEY_LEADS = [
+    {"id": "loc_lsa_samples_1971_1982", "kind": "listed_not_fetched",
+     "text": "The Library of Congress holds sample LSA items for 1971-1982. The LOC CFR and LSA scans come from "
+             "HeinOnline under a stated term against bulk download; the owner has not decided on them. Listed, never "
+             "bulk-fetched by this job."},
+    {"id": "internet_archive_lsa_1973_1985", "kind": "held_in_manifest",
+     "text": "The Internet Archive has the 1973-1985 LSA volumes (see the internet_archive rows). No complete pre-1997 "
+             "LSA run was found by the survey."},
+    {"id": "fr_codification_guide", "kind": "lead_not_read",
+     "text": "The Federal Register's own Codification Guide (the CFR Parts Affected tables) sits inside the FR issues; "
+             "govinfo has the Federal Register for 1936-2026 with no key (sitemaps and issue PDFs). Not read here."},
+    {"id": "hathitrust_babel_pages", "kind": "robots_disallowed",
+     "text": "HathiTrust babel /cgi/ pages are robots-disallowed for generic agents: no page text is scraped."},
+    {"id": "heinonline", "kind": "never_touched", "text": "HeinOnline is never touched."},
+]
+
+
+def hathi_via_bib_api(pool, log=print, limit_year=1997):
+    """Rows for the seed records from the Bibliographic API. Returns (rows, stats)."""
+    rows, stats = [], {"records": 0, "failed": 0, "items": 0, "full_view": 0}
+    for key, (series, label) in HATHI_SEED_RECORDS.items():
+        try:
+            d = json.loads(pool.fetch(BIB_API.format(key=key))["body"].decode("utf-8", "replace"))
+        except Exception as e:  # noqa: BLE001
+            stats["failed"] += 1
+            log(f"bib api {key}: {type(e).__name__}: {e}"[:160])
+            continue
+        stats["records"] += 1
+        rec = (d.get("records") or {}).get(key, {})
+        title = (rec.get("titles") or [label])[0]
+        for it in d.get("items", []):
+            enum = it.get("enumcron") or ""
+            year = year_of(enum, (rec.get("publishDates") or [""])[0] if not enum else "")
+            if year is not None and year >= limit_year:
+                continue
+            full = str(it.get("usRightsString", "")).lower().startswith("full")
+            stats["items"] += 1
+            stats["full_view"] += int(full)
+            rows.append({"source": "hathitrust", "id": it.get("htid", ""), "series": series,
+                         "access": "allow" if full else "deny", "rights": it.get("rightsCode", ""),
+                         "title": title[:200], "description": str(enum)[:120], "year": year or "",
+                         "oclc": ";".join(rec.get("oclcs", []))[:40], "lccn": ";".join(rec.get("lccns", []))[:30],
+                         "us_gov_doc": "", "bib_key": key, "bib_api_rights": it.get("usRightsString", ""),
+                         "rights_stated": "", "url": it.get("itemURL", "")})
+    return rows, stats
+
+
 def polite_retry(pool, url, fn, tries=3, wait=30, log=print):
     """Run fn(); if the host answers a robots.txt or page request with a 403 (hathitrust.org sits behind a
     Cloudflare challenge that is answered at random to non-browser clients), forget the cached robots verdict and try
@@ -313,6 +380,11 @@ def build(pool, ua, opener=open_stream, log=print, skip_hathi=False, wait=30):
             rows += hrows
         except Exception as e:  # noqa: BLE001
             summary["hathi"] = {"error": f"{type(e).__name__}: {e}"[:300]}
+        if "error" in summary["hathi"] or not summary["hathi"].get("scan"):
+            brows, bst = hathi_via_bib_api(pool, log)
+            summary["hathi"]["fallback"] = {"route": "catalog.hathitrust.org Bibliographic API on seed records "
+                                            "(hathifile unreadable from this host)", **bst}
+            rows += brows
     try:
         irows, ist = ia_manifest(pool, log)
         summary["internet_archive"] = ist
@@ -326,6 +398,7 @@ def build(pool, ua, opener=open_stream, log=print, skip_hathi=False, wait=30):
     for r in rows:
         key = f"{r['source']}:{r['series']}:{'full_view' if r['access'] in ('allow', 'open (IA item)') else 'not_full_view'}"
         by[key] += 1
+    summary["survey_leads"] = SURVEY_LEADS
     summary["manifest_rows"] = len(rows)
     summary["manifest_by_source_series_access"] = dict(sorted(by.items()))
     years = Counter(r["year"] for r in rows if r["series"] == "lsa" and r["access"] in ("allow", "open (IA item)") and r["year"])

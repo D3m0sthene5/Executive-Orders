@@ -386,6 +386,26 @@ class PreWarTests(unittest.TestCase):
         with self.assertRaises(Exception):
             prewar.scan_hathifile(lambda u, ua: R(gz), "u", "ua")
 
+    def test_hathifile_blocked_falls_back_to_bib_api_and_records_survey_leads(self):
+        bib = json.dumps({"records": {"x": {"titles": ["LSA, list of CFR sections affected"], "oclcs": ["1"], "lccns": ["sn1"], "publishDates": ["1977"]}},
+                          "items": [{"htid": "inu.1", "itemURL": "https://babel.hathitrust.org/cgi/pt?id=inu.1", "rightsCode": "pd", "enumcron": "1985", "usRightsString": "Full view"},
+                                    {"htid": "inu.2", "itemURL": "u2", "rightsCode": "ic", "enumcron": "1990", "usRightsString": "Limited (search-only)"},
+                                    {"htid": "inu.3", "itemURL": "u3", "rightsCode": "pd", "enumcron": "1999", "usRightsString": "Full view"}]}).encode()
+        routes = {"https://catalog.hathitrust.org/api/volumes/brief/recordnumber/*": (200, bib),
+                  prewar.IA_SEARCH + "*": (200, json.dumps({"response": {"docs": []}}).encode())}
+        # the hathifile list is answered with a challenge page (403): robots cannot be read and nothing is evaded
+        routes[prewar.HATHI_LIST] = (403, b"challenge")
+        with tempfile.TemporaryDirectory() as tmp:
+            pool = FetchPool(Path(tmp), transport=Net(routes), min_interval=0)
+            rows, summ = prewar.build(pool, "ua", log=lambda *a: None, wait=0)
+        self.assertIn("error", summ["hathi"])
+        self.assertEqual(summ["hathi"]["fallback"]["failed"], 0)
+        ids = {r["id"]: r for r in rows}
+        self.assertEqual(sorted(ids), ["inu.1", "inu.2"])  # 1999 is not pre-1997
+        self.assertEqual((ids["inu.1"]["access"], ids["inu.2"]["access"]), ("allow", "deny"))
+        self.assertIn("heinonline", [x["id"] for x in summ["survey_leads"]])
+        self.assertTrue(summ["hathi_read_check"]["attempted"])  # robots verdict recorded, page never read
+
     def test_build_with_fake_hosts(self):
         gz = self.hathi_gz()
         ia = json.dumps({"response": {"docs": [
