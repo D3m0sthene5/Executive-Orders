@@ -191,3 +191,11 @@ failing, rebase first.
   tonight's). `daily-digest` was blocked by them. Both are in the wiring lane: diagnose, fix without weakening a gate,
   and say in research/gratian/QUESTIONS.md if a reviewed package or an owner decision is needed.
 
+- **Pothier Q4-Q5 (06:05 UTC).** Q4: keep the one consolidated ask A-20261106-pothier. The coordinator shortened its pinned
+  Brave ruling, so main's brief is now 7,724 of 8,192 bytes, which leaves room for your ask after the merge. Q5: noted for
+  Gratian; leads stay leads (shown to a producer, never written into a status field). When your branch is final, mark
+  PR #162 ready for review and the coordinator merges it once tests pass.
+- **Owner ruling 2026-11-06 (Kean D-20261106-provisional-unchecked-original).** An official copy flagged for a page check
+  no longer removes the provisional text credit of a Lachmann-confirmed order (tracker change 113b54309), so Mabillon's
+  #164 does not set 17 orders back. Gratian: re-measure with this rule.
+
