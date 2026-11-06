@@ -3,30 +3,37 @@ test_missing_register_row_reported (test_build_cards.Build.test_missing_register
 test_full_dates (test_build_cards.PresidentFromDate.test_full_dates) ... ok
 test_partial_dates (test_build_cards.PresidentFromDate.test_partial_dates) ... ok
 test_transition_day_left_uncertain (test_build_cards.PresidentFromDate.test_transition_day_left_uncertain) ... ok
+test_second_denominator_is_read_when_present_and_never_changes_the_counts (test_build_cards.Unnumbered.test_second_denominator_is_read_when_present_and_never_changes_the_counts) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.001s
+Ran 6 tests in 0.003s
 
 OK
 {
-  "orders": 14972,
-  "ready_for_human_review": 1368,
-  "with_provisional_status": 4291,
-  "not_researched": 10681,
-  "one_step_from_ready": 40,
+  "orders": 14998,
+  "numbered_series_orders": 14998,
+  "ready_for_human_review": 1208,
+  "with_provisional_status": 4298,
+  "not_researched": 10700,
+  "one_step_from_ready": 214,
   "human_certified": 0,
-  "presidents_from_register": 9927,
-  "presidents_derived_from_date": 4933,
+  "presidents_from_register": 9987,
+  "presidents_derived_from_date": 4947,
   "president_left_uncertain_transition_day": 1,
-  "president_unknown_no_date": 111,
+  "president_unknown_no_date": 63,
   "date_rule_check_against_register": {
-    "agree": 9887,
-    "disagree": 2
+    "agree": 9949,
+    "disagree": 0
   },
-  "tracker_finished_utc": "2026-11-06T11:02:33Z",
+  "tracker_finished_utc": "2026-11-06T13:23:37Z",
   "tracker_result": "succeeded",
-  "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42204685627",
-  "tracker_commit": "3a147db4ab9992dac67f425a71e71d0ecdf4b045",
-  "register_generated_utc": "2026-11-06T06:11:55Z"
+  "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42215147102",
+  "tracker_commit": "ea00cd606236169d93db5b1681676730e6c5feb5",
+  "register_generated_utc": "2026-11-06T13:27:24Z",
+  "unnumbered_series_observed": 2334,
+  "unnumbered_series_estimate_95": [
+    4101,
+    5095
+  ]
 }
-CARDS.html: 2,704,459 bytes
+CARDS.html: 2,713,540 bytes

@@ -20,7 +20,7 @@ test_number_gaps_with_windows_and_index_evidence (test_clark.SyntheticRepo.test_
 test_outputs_are_deterministic (test_clark.SyntheticRepo.test_outputs_are_deterministic) ... ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 5.563s
+Ran 20 tests in 5.514s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
@@ -41,63 +41,64 @@ test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLay
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 23.381s
+Ran 16 tests in 23.152s
 
 OK
 {
   "number_gaps": {
-    "total": 46,
+    "total": 24,
     "by_strength": {
       "cited": 8,
       "number_only": 12,
-      "strong": 26
+      "strong": 4
     },
     "highest_numbered_order": 14435
   },
   "cited_but_unknown": {
-    "distinct_ids": 145,
-    "rows": 295,
+    "distinct_ids": 136,
+    "rows": 267,
     "by_plausibility": {
-      "plausible": 60,
+      "plausible": 32,
       "rare_suffix_letter": 4,
-      "exceeds_numbers_issued_by_citing_date": 1,
       "likely_ocr_letter_for_digit": 18,
-      "likely_ocr_footnote_digit": 212
+      "likely_ocr_footnote_digit": 213
     },
-    "mentions_raw": 527,
+    "mentions_raw": 497,
     "texts_scanned": 30725,
-    "ofr_notes_scanned": 5063
+    "ofr_notes_scanned": 5064
   },
   "identity_unknown": {
-    "orders": 61,
+    "orders": 28,
     "by_year_group": {
-      "Unknown date": 60,
-      "1862\u20131906": 1
+      "1862\u20131906": 10,
+      "1907\u20131936": 7,
+      "1937\u20131989": 2,
+      "Unknown date": 9
     },
-    "with_proquest_link": 13,
+    "with_proquest_link": 7,
     "with_proquest_pdf": 0,
-    "number_only": 48
+    "number_only": 21
   },
   "dated_unnumbered": {
-    "rows": 226,
-    "distinct_dates": 127
+    "rows": 192,
+    "distinct_dates": 116
   },
   "handoff_to_lewis": {
-    "rows": 55,
+    "rows": 24,
     "by_class": {
-      "cited_but_unknown": 8,
-      "number_gap": 34,
-      "identity_unknown": 13
+      "cited_but_unknown": 5,
+      "number_gap": 12,
+      "identity_unknown": 7
     }
   },
   "problems": []
 }
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 80,
-  "requests_used": 436,
-  "hits_total": 3029,
-  "leads_page_confirmed": 106,
+  "advanced_this_run": 38,
+  "requests_used": 269,
+  "hits_total": 3076,
+  "leads_page_confirmed": 107,
   "engines": {
     "duckduckgo_html": "http_403",
     "duckduckgo_lite": "http_403",
