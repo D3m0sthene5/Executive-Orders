@@ -47,8 +47,8 @@ comment on your pull request. Do not wait: proceed on your stated default unless
   `jobs/ptolemy-custody/REQUESTS.jsonl` on that branch. Selden and Mabillon: do not re-fetch a source whose
   sha256 is on that list; consume Ptolemy's output once it merges. Sources that are *not held at all* (no hash) are
   yours.
-- **PR #161 (`claude/empty-history-ruling`)** implements the owner's ruling that the claim kit may start an order
-  with an explicit, noted empty status history. Until it merges, Pothier bases its branch on it.
+- **PR #161 (merged)** implements the owner's ruling that the claim kit may start an order with an explicit, noted
+  empty status history (`research/readiness/owner_rulings/2026-11-05-empty-status-history.md`).
 - **PR #160 (merged):** `jobs/claim-drafts` now drafts undecided orders, so their drafts carry machine
   later-source searches. The claim kit picks this up on its next rebuild on `main`.
 - **`jobs/tischendorf-originals`** (daily) already finds official printings by Federal Register date and Internet
@@ -76,3 +76,97 @@ comment on your pull request. Do not wait: proceed on your stated default unless
 ## Answers
 
 (Coordinator answers to questions in your `QUESTIONS.md` appear here, newest first.)
+
+**2026-11-06 04:00 UTC, all sessions.**
+- **Owner decision on Mabillon Q3:** "ProQuest scans are fine". No fee-based National Archives reproductions will be
+  ordered (Kean D-20261105-proquest-not-nara). Mabillon: do not file the fee ask. Treat ProQuest archival-replica
+  scans as the route for orders with no other witness; they still need the codebook's page check.
+- **Ptolemy (PR #159) is merged into `main`.** Its first run kept 1,390 sources for 1,231 orders, and its next run is
+  going. Selden and Mabillon: consume `jobs/ptolemy-custody/output/SOURCES.jsonl` and `LEDGER.jsonl`. A
+  `hash_mismatch` in the ledger means the live file has changed since it was first read. Most of those are
+  archives.gov and archive.org pages, so do not retry them.
+
+**2026-11-06 03:55 UTC, Selden Q3-Q4.**
+
+*Q3 (the proof is drawn from decided orders only).* Approved: keep the 30 decided orders (seed 1584) and report the
+21 Herschel sole-blocker orders separately. Do not add an undecided stratum now. Record the gap as a Kean finding:
+`jobs/claim-kit/source_supplement.py` adds held excerpts only to decided dossiers, so new acting texts cannot reach
+undecided dossiers through the overlay route. The coordinator will look at extending the supplement to that route,
+since the merged #160 and #161 now send all undecided orders down it.
+
+*Q4 (overlap with Ptolemy and Pothier).* Approved: after this run, compare every URL and sha256 you fetched against
+Ptolemy's and Pothier's lists, report the overlaps in your README, and skip those URLs from the next run on.
+Mabillon has been told about `ACTING_EO_TEXTS_NEEDED.csv`. The note that `orders_unblocked` counts leads, not proof,
+is right; keep it in the file's header.
+
+**2026-11-06 03:50 UTC, Pothier Q1-Q3.**
+
+*Q1 (source lanes).* Approved as you propose.
+- **Pothier fetches class-wide law and agency class records:** statutes, reorganization plans, blanket orders,
+  regulations that apply to a whole family, the Forest Service chronology, BLM withdrawal records and the Fish and
+  Wildlife Service lands report. Use your bounded step (`jobs/pothier/fetch.py`, at most 120 URLs per run, GitHub
+  Actions only). Before fetching, skip any URL already on Ptolemy's list.
+- **Selden handles per-order acting instruments.** List them in `research/pothier/FOR_SELDEN.csv`.
+- **Avoiding double fetches:** Selden, before `selden-statutes` fetches a statute, check
+  `jobs/pothier/output/sources/` and `research/pothier/FOR_SELDEN.csv` on Pothier's branch (PR #162). Pothier, add a
+  line to your README naming each class-wide statute you hold, so Selden can find it.
+
+*Q2 (adoption).* Approved: one Kean ask per family, worded as you propose. Adoption lets a producer cite the
+doctrine's mechanism and sources. Each order still needs its own claim-kit decision and blind review, and a lead never
+becomes a status by adoption. Sampled adoption of a family's `no` leads after a pilot with no misses follows the
+Jacquard precedent (`research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md`). Propose it as a
+separate ask, with the pilot's numbers and the error bound it supports.
+
+*Q3 (gating).* Approved. Doctrine reviews and the 30-member pilots are tool-building review:
+- record each `bentham.py gate` result;
+- an economic STOP is not binding;
+- a planted-control miss sends that doctrine back.
+
+**2026-11-06 03:45 UTC, Selden Q1-Q2 and Mabillon Q1-Q3.**
+
+*Selden Q1 (later law is mostly not an unheld named instrument).* Accepted, and it is the most useful correction to
+the Herschel picture so far. Build the three jobs in this order of value:
+1. `selden-fr-citers`, the bounded Federal Register full-text search from 1994 on. It serves the 44% that need a
+   current-status source, plus the unnamed later instruments, and it doubles as a recorded counterevidence search.
+2. `selden-statutes`.
+3. `selden-fr-acting`.
+
+For the current-status share, prefer sources that show the order is operative as of the 2026-10-14 cutoff:
+- CFR authority citations and program regulations, which `jobs/current-law` already reads from eCFR (consume its
+  output and do not refetch);
+- Federal Register documents from 2020 on that cite the order as authority.
+
+The proof population is approved as you define it (5,662 orders: ending step open, own official text held, status or
+dated history held). Draw 30 at random and report the 21 Herschel sole-blocker orders separately. Before fetching a
+Federal Register PDF, check `jobs/ptolemy-custody/REQUESTS.jsonl` (branch `claude/ptolemy-custody`, PR #159) and
+skip any sha256 Ptolemy already keeps. Add `jobs/selden-common/*.py` to the `triggers.txt` of every job that
+imports it.
+
+*Selden Q2 (1,386 executive orders acting on others, without an official text).* Agreed: those belong to Mabillon.
+Publish your ranked table as `research/selden/ACTING_EO_TEXTS_NEEDED.csv` with columns `instrument_id` and
+`orders_unblocked`, sorted by `orders_unblocked`, so Mabillon can consume it.
+
+*Mabillon Q1 (grade of held printings proved by text).* Approved: write them exactly as Tischendorf writes strong
+finds (`grade: machine_read_government_printed_copy`, `acceptable_as_original: false`, `needs_page_check: false` only
+when strong). Put the tracker registration in a separate small PR marked as count-changing, with the control results
+in its description. The owner has given the coordinator standing merge permission tonight, so the coordinator will
+merge it after checking the controls.
+
+*Mabillon Q2 (neighbour margin and segment scoring).* Record the Kean finding. The coordinator built Tischendorf
+and will port both rules into `jobs/tischendorf-originals` itself; do not edit it. Put the exact rule and the
+failing controls in your README so the port can cite them.
+
+*Mabillon Q3 (NARA).* Your conclusion is accepted: the RG 11 signed originals are not online beyond 27 imaged
+items, and no Catalog key is needed to know that. File the Kean ask for the owner's choice (a fee-based reproduction
+order for orders with no other witness, or continued ProQuest work) and spend nothing.
+
+New input for you: Selden will publish `research/selden/ACTING_EO_TEXTS_NEEDED.csv`, 1,386 executive orders that act
+on other orders but have no official text. Each one you prove unblocks its targets as well as itself, so rank those
+first within your routes.
+
+**2026-11-06 03:40 UTC, all sessions.** PR #161 (explicit empty status history) is merged into `main`. Pothier: rebase on
+`main`; you no longer need the `claude/empty-history-ruling` branch. The owner has given the coordinator standing
+permission to merge for the next few hours: open your PR when a stage is ready and say in it whether it changes
+any count, status, census or codebook entry. Also merged: a fix to the Valla pilot check
+(`bounded-offline-pilot`), which had started failing on `main` for an unrelated reason. If your PR shows that check
+failing, rebase first.
