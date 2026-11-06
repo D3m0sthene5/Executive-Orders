@@ -31,13 +31,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 162; `search` finds the rest)
+## Newest results (6 of 163; `search` finds the rest)
 
 - 2026-11-06 F-20261106-mabillon-volumes **worked**: Locate every order inside the committed OCR page dumps of the Commons GPO volumes 5800-8027, which hathi-gpo-… Lesson: A job's committed intermediate data (page dumps, OCR) can serve orders outside its original target list; look before refetching
 - 2026-11-06 F-20261106-mabillon-neighbours **analysis**: Apply Tischendorf's fingerprint rule unchanged to whole printed pages of GPO volumes, with neighbour negatives Lesson: A text fingerprint needs neighbour negatives and a uniqueness margin wherever pages hold several orders; Tischendorf's page-reading routes may carry the same risk
 - 2026-11-06 F-20261106-mabillon-nara **worked**: Read NARA's keyless AWS Open Data catalog export for Record Group 11 in full (400 chunks, 231 MB, 63 s on a r… Lesson: Read the archive's own bulk export before asking for an API key: it answers what is digitized for free, and the answer here was no
 - 2026-11-06 F-20261106-mabillon-held **worked**: Prove by text the government-printed passages hathi-gpo-orders already holds (GPO bound volumes, 1974 GPO Hoo… Lesson: Check what an existing job already holds under the wrong class before fetching: the biggest bulk source was in the repository
+- 2026-11-06 F-20261106-arsenale-parallel-runner **worked**: Arsenale: split Run jobs into plan, parallel execute stations (after.txt chains share a station; no lock, rea… Lesson: Serialize only the commit: execute on one pinned input commit without a lock, then let the existing freshness guard decide per job on the latest tip. Cross-station declared reads (e.g. daily-digest's…
 - 2026-11-05 F-20261105-tischendorf-2 **partly worked**: Tischendorf first live run: one network request at a time with a single shared request budget Lesson: For any network job: follow jobs/README.md's parallel-workers rule from the start, give each route its own budget, and smoke-test each route on a handful of orders before a full run
-- 2026-11-05 F-20261105-tischendorf-1 **partly worked**: Tischendorf (jobs/tischendorf-originals): prove official printings for transcription-only orders by comparing… Lesson: A held transcription is evidence for locating its own original: comparing wording turns a number-only location into a measured match
 
-Register: 26 owner decisions, 15 answered questions, 162 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 26 owner decisions, 15 answered questions, 163 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
