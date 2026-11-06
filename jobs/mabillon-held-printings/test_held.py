@@ -59,6 +59,11 @@ class HeldTests(unittest.TestCase):
             self.assertEqual(s["controls"]["negatives_accepted"], 0)
             frags = [json.loads(x) for x in (Path(d) / "FRAGMENTS.jsonl").read_text().splitlines()]
             self.assertTrue(all(f["acceptable_as_original"] is False for f in frags))
+            # every fragment's text_sha256 is the hash of the text file it names (consumers verify it)
+            import hashlib
+            for f in frags:
+                body = (Path(d) / f["data"]["text_path"]).read_bytes()
+                self.assertEqual(hashlib.sha256(body).hexdigest(), f["data"]["text_sha256"], f["instrument_id"])
             self.assertTrue(all(f["data"]["needs_page_check"] == (f["confidence_note"].find("Every strong") < 0)
                                 for f in frags))
 
