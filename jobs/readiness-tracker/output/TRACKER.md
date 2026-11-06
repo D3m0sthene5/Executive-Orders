@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42284983713-1:dac0eab7c112bb319f416fe5c8046a40159cf6a123f5bba7f4d8e9e0bef3aa4c` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42296525131-1:857f8d4bd855a43cd33731d77cfe2c5011925924e86657b87796f9ef7e9e3e7f` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -13,9 +13,9 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 Orders with a provisional YES/NO status: 4,298. The other 10,700 have not been researched yet.
 
 Ready by text evidence: {'original_supported': 660, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 1,146; quotation rechecks: 1,146. These remain work after readiness.
+Outstanding original replacement obligations: 1,088; quotation rechecks: 1,088. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 560. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 4818}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 502. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 5092}.
 
 ## Steps finished (orders with a provisional status)
 
@@ -34,9 +34,9 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 2,762 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 2,820 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
 | 2,557 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
-| 535 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 593 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
@@ -51,13 +51,13 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 10,700 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 766 | 4,787 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 837 | 2,820 |
 | `NO_CLAUSE_INVENTORY` | 2,771 | 2,771 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,771 | 2,771 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 820 | 2,762 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 126 | 2,557 |
 | `FIRST_END_UNPROVED` | 2,401 | 2,401 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,244 | 1,244 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 204 | 535 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 221 | 593 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 370 | 370 |
 | `OPUS_MEDIA_NONE_CITED` | 198 | 198 |
