@@ -4,22 +4,22 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 1466 (parse errors: 0)
-- Orders with a claim (latest claim per order): 1445
-- All checks passed: 1369
-- Mechanical checks passed: 1459; with unverifiable items: 4; failed: 3
-- Structural gate passed: 1376
+- Claims checked: 1526 (parse errors: 0)
+- Orders with a claim (latest claim per order): 1505
+- All checks passed: 1423
+- Mechanical checks passed: 1510; with unverifiable items: 2; failed: 14
+- Structural gate passed: 1436
 
 ## Source references
 
-- custody_record_only: 7
-- gpo_published_hash_match: 7865
-- held_bytes_in_release_or_repo: 85
-- held_bytes_verified: 10472
+- custody_record_only: 3
+- gpo_published_hash_match: 8274
+- held_bytes_in_release_or_repo: 98
+- held_bytes_verified: 11290
 
 ## Quotations
 
-- exact: 23571
+- exact: 25317
 - normalised: 11
 - not_found: 7
 
@@ -78,9 +78,9 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:13` | EO:11409 | structural_gate:clause_3_first_end@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:16` | EO:11468 | structural_gate:clause_1_first_end@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b0.jsonl:18` | EO:11499 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
-| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:14` | EO:12335 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
-| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:15` | EO:12401 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
-| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:16` | EO:12433 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:14` | EO:12335 | working_text_policy:invalid_working_text@operative_clauses[3].later_events[1].source; working_text_policy:invalid_working_text@operative_clauses[3].later_events[1].source; working_text_policy:invalid_working_text@working_text; structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:15` | EO:12401 | working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[1].original_source; working_text_policy:invalid_working_text@operative_clauses[1].original_source ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:16` | EO:12433 | working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[1].original_source; working_text_policy:invalid_working_text@operative_clauses[1].original_source ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:17` | EO:12439 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:18` | EO:12502 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b1.jsonl:19` | EO:12499 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
@@ -101,6 +101,7 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:10` | EO:11691 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:11` | EO:11739 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b5.jsonl:12` | EO:12087 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:11` | EO:7600 | working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0]; working_text_policy:invalid_working_text@working_text |
 | `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:20` | EO:11525 | structural_gate:clause_0_state@-; structural_gate:clause_1_state@-; structural_gate:clause_2_state@-; structural_gate:clause_3_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:21` | EO:8744 | structural_gate:clause_0_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:22` | EO:11911 | structural_gate:clause_0_state@-; structural_gate:clause_1_state@-; structural_gate:clause_2_state@-; structural_gate:clause_3_state@-; structural_gate:clause_4_state@-; structural_gate:clause_5_state@- ... |
@@ -118,15 +119,17 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:23` | EO:9261 | structural_gate:clause_0_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:24` | EO:9449 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:whole_order_end_evidence@-; structural_gate:savings_residuals_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1` | EO:1547 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@whole_order_end.source |
+| `research/readiness/claims/claude-2026-11-02-erasmus-r2.jsonl:1` | EO:9538 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@whole_order_end.source; working_text_policy:invalid_working_text@whole_order_end.source ... |
+| `research/readiness/claims/claude-2026-11-04-tribonian-a05.jsonl:1` | EO:12462 | working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@working_text |
+| `research/readiness/claims/claude-2026-11-04-tribonian-a05.jsonl:2` | EO:12592 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[1].first_end.source; working_text_policy:invalid_working_text@operative_clauses[1].first_end.source; working_text_policy:invalid_working_text@operative_clauses[2].first_end.source; working_text_policy:invalid_working_text@operative_clauses[2].first_end.source ... |
+| `research/readiness/claims/claude-2026-11-04-tribonian-a05.jsonl:3` | EO:12601 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[1].first_end.source; working_text_policy:invalid_working_text@operative_clauses[1].first_end.source; working_text_policy:invalid_working_text@operative_clauses[2].first_end.source; working_text_policy:invalid_working_text@operative_clauses[2].first_end.source ... |
+| `research/readiness/claims/claude-2026-11-04-tribonian-a05.jsonl:4` | EO:12668 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[1].first_end.source; working_text_policy:invalid_working_text@operative_clauses[1].first_end.source; working_text_policy:invalid_working_text@operative_clauses[2].first_end.source; working_text_policy:invalid_working_text@operative_clauses[2].first_end.source ... |
+| `research/readiness/claims/claude-2026-11-04-tribonian-f01.jsonl:2` | EO:9731 | working_text_policy:invalid_working_text@source_notes[0].source; working_text_policy:invalid_working_text@source_notes[0].source; working_text_policy:invalid_working_text@working_text |
 | `research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl:2` | EO:12743 | unverifiable items |
 | `research/readiness/claims/claude-lambertini-iv01-2026-10-20.jsonl:4` | EO:10494 | quote_verbatim:not_found@operative_clauses[1].original_operative_text; quote_verbatim:not_found@operative_clauses[1].original_source.quote; quote_verbatim:not_found@operative_clauses[2].original_operative_text; quote_verbatim:not_found@operative_clauses[2].original_source.quote; quote_verbatim:not_found@operative_clauses[3].original_operative_text; quote_verbatim:not_found@operative_clauses[3].original_source.quote ... |
-| `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:1` | EO:10390 | working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@operative_clauses[0].first_end.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@savings_residuals.source; working_text_policy:invalid_working_text@whole_order_end.source; working_text_policy:invalid_working_text@whole_order_end.source ... |
-| `research/readiness/claims/claude-mansfield-b01-2026-10-22.jsonl:2` | EO:10926 | unverifiable items |
-| `research/readiness/claims/claude-mansfield-b02-2026-10-22.jsonl:1` | EO:10622 | unverifiable items |
-| `research/readiness/claims/claude-y2lead-01-2026-10-20.jsonl:1` | EO:10631 | unverifiable items |
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 7467
+- recorded_for_this_order: 8037
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.

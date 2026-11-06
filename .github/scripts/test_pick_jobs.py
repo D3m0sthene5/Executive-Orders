@@ -270,7 +270,7 @@ class RepositoryWiringTest(unittest.TestCase):
     def test_runtime_ci_runs_tests_without_the_production_job(self):
         workflow = (ROOT / '.github/workflows/run-jobs.yml').read_text()
         section = workflow.split('      - name: Materialize claim-kit test fixtures', 1)[1].split(
-            "      - name: Restore each job's bounded download cache", 1)[0]
+            "      - name: Plan parallel stations", 1)[0]
         self.assertIn("steps.pick.outputs.runtime_tests == 'claim-kit'", section)
         self.assertIn("unittest.defaultTestLoader.discover('jobs/claim-kit'", section)
         self.assertIn("'/research/stage19/code/**' '/research/plans/claim_kit_contract/**'", section)

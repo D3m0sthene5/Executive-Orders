@@ -186,3 +186,11 @@ class KeanTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AskIdPattern(unittest.TestCase):
+    def test_numbered_and_session_named_ids(self):
+        import kean as k
+        line = "@Owner: see A-20261105-1, A-20261106-mabillon-register and A-20261105-niebuhr-admit."
+        self.assertEqual(k.ASK_ID_RE.findall(line), ["A-20261105-1", "A-20261106-mabillon-register", "A-20261105-niebuhr-admit"])
+        self.assertEqual(k.ASK_ID_RE.findall("D-20261105-brave-paid-search F-20261105-x"), [])

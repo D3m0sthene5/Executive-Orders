@@ -61,3 +61,21 @@ so work survives an interruption):
 
 Use `""` for unknown fields. When done, reply with a short summary: counts by outcome, the best single find, and any
 source that would unlock many targets at once (for example a HathiTrust volume id for the Lord index).
+
+## Lessons from the pilot (read these)
+
+- **HathiTrust, archive.org downloads and en.wikipedia.org are blocked from this machine** (403). Do not use curl or
+  Bash for fetching; use WebFetch and WebSearch only. WebFetch rate-limits when you hit one site in parallel: go one at a time.
+- **The project already holds the WPA numbered list (1944) and the New Jersey unnumbered list (1943) as OCR text.** Where
+  a target has `wpa_numbered_index_entry` or `wpa_unnumbered_entries_same_date`, that is the official index's entry
+  (OCR runs neighbouring entries together, so read it carefully). Your job is then to (a) confirm which entry is the target,
+  and (b) find a printing of the order itself or a source that quotes it. Put the index entry in `notes`, not in `sources`.
+- Good unlocks for numbered orders: Wikipedia "List of executive actions by <President>" (the "Absolute No." column has
+  ½ and lettered numbers), read via WebFetch; the Wikisource mirror
+  `https://kwx.liehendr.com/content/wikisource_en_all_maxi_2022-09/A/Executive_Order_<n>` (and `Author:<President>/Executive_orders`);
+  the American Presidency Project document pages.
+- Good unlocks for unnumbered land orders: Federal Register notices of Public Land Orders that list old withdrawals by date
+  (federalregister.gov and govinfo.gov), Fish and Wildlife Service and Bureau of Land Management histories, the General Land
+  Office annual reports, and "Executive Orders Relating to Indian Reservations".
+- WebFetch summarizes pages. When you copy a quote, ask WebFetch for "the exact sentence containing X, verbatim". If it
+  will not give verbatim text, set `seen_only_in_snippet: true`.

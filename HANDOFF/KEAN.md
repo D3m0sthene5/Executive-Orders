@@ -8,16 +8,18 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (2)
+## Waiting for the owner (4)
 
 - **A-20261103-1** (2026-11-03, Codex): Provide Bacon-session.bundle or the original Bacon packet directory from EO Session Report? *Original scratch files are inaccessible, no Bacon publication was located, and the frozen sample/review receipts cannot be reconstructed faithfully*
 - **A-20261104-1** (2026-11-04, Codex): Authorize versioned adoption of the reviewed legal first-ending interval contract, separately from immutable v1? *Scoped occurrence intervals are usable now. Whole-case legal intervals need a separate scientific contract and fresh legal review. This is a contract proposal, not a request to choose case answers or relax production.*
+- **A-20261105-niebuhr-admit** (2026-11-05, claude): May the 30 orders in research/niebuhr/ADMISSION_QUEUE.csv (APP text held, 26 with the official OFR compilation text and page) be admitted to the census after a person checks each against its official page? Who does that… *They are signed, numbered executive orders the census misses through an ingestion gap; admission changes the census count, which only the owner can authorize, and identity review must be a person, not the machine.*
+- **A-20261106-mabillon-register** (2026-11-06, claude (Mabillon)): Register jobs/mabillon-held-printings in tracker.py (PR #164), so 1,771 orders count their held official printing? *Held GPO slip volumes, 1974 GPO Hoover and 1936 FR pages filed as transcriptions; proved by text, 0 of 6,834 planted negatives accepted.*
 
 ## Standing owner requirements
 
 - **Evidence decides; agents work out legal distinctions themselves** (D-20261028-evidence-decides): Record what the evidence establishes, with the best supported date or interval, and separate an exhausted command from surviving consequences. A claim of 'happened within this interval' needs evidence that it happened; otherwise the order stays open on that question. A later general rule ends a command only if something shows it extinguished that command. Disclosure keeps a gap visible but never fills it. Do not ask the owner to choose method answers to unlock rows: apply these distinctions to the supported cases and report the exceptions.
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
-- **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
+- **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Paid Brave search (BRAVE_SEARCH_KEY): only when free engines find nothing; caps 100/run, 2,500/job, 5,000 total; ask the owner before raising them.
 
 ## Owner decisions not yet carried out by the tools (4)
 
@@ -29,13 +31,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 160; `search` finds the rest)
+## Newest results (6 of 170; `search` finds the rest)
 
 - 2026-11-06 F-20261106-selden-supplement-decided-only **analysis**: Route newly held later-instrument texts (Selden) into claim-kit packets with jobs/claim-kit/source_supplement… Lesson: Extending source_supplement (or an equivalent excerpt step) to the overlay route is needed before held acting texts can serve the 10,681 undecided orders; the coordinator has taken it up.
 - 2026-11-06 F-20261106-selden-fr-api-400 **failed**: selden-fr-citers first full runs (lane run and two runner shards) searched 13,138 orders through the Federal… Lesson: Same lesson as F-20261105-tischendorf-2, which this session read and did not apply: smoke-test every live route on a handful of real items before a full run, and make a job fail when most of its requ…
 - 2026-11-06 F-20261106-selden-census **analysis**: Selden census (research/selden/census.py): every (target, acting instrument) lead in later-events, shepard-ci… Lesson: Before acquiring 'later law', classify what the blocked orders actually need: here a bounded search for unnamed later instruments and current-status sources serves far more orders than fetching named…
-- 2026-11-05 F-20261105-tischendorf-2 **partly worked**: Tischendorf first live run: one network request at a time with a single shared request budget Lesson: For any network job: follow jobs/README.md's parallel-workers rule from the start, give each route its own budget, and smoke-test each route on a handful of orders before a full run
-- 2026-11-05 F-20261105-tischendorf-1 **partly worked**: Tischendorf (jobs/tischendorf-originals): prove official printings for transcription-only orders by comparing… Lesson: A held transcription is evidence for locating its own original: comparing wording turns a number-only location into a measured match
-- 2026-11-05 F-20261105-theophilus **worked**: Theophilus wave (Bentham ranks 8 and 11): recover 48 custody-stranded reviewed claims by fresh prepare plus u… Lesson: Run the actual checker on the exact reviewed lines before buying review: it sorts recoverable claims from mechanically blocked ones for free. One-step-away is a source-acquisition queue, not a produc…
+- 2026-11-06 F-20261106-mabillon-volumes **worked**: Locate every order inside the committed OCR page dumps of the Commons GPO volumes 5800-8027, which hathi-gpo-… Lesson: A job's committed intermediate data (page dumps, OCR) can serve orders outside its original target list; look before refetching
+- 2026-11-06 F-20261106-mabillon-neighbours **analysis**: Apply Tischendorf's fingerprint rule unchanged to whole printed pages of GPO volumes, with neighbour negatives Lesson: A text fingerprint needs neighbour negatives and a uniqueness margin wherever pages hold several orders; Tischendorf's page-reading routes may carry the same risk
+- 2026-11-06 F-20261106-mabillon-nara **worked**: Read NARA's keyless AWS Open Data catalog export for Record Group 11 in full (400 chunks, 231 MB, 63 s on a r… Lesson: Read the archive's own bulk export before asking for an API key: it answers what is digitized for free, and the answer here was no
 
-Register: 26 owner decisions, 15 answered questions, 160 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 27 owner decisions, 16 answered questions, 170 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

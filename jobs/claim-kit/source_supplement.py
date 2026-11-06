@@ -2,6 +2,13 @@
 
 This is preparation only. A producer explicitly supplies any legal mechanism
 and date; every member still needs ordinary source checks and independent review.
+
+Undecided members (no provisional status) keep their status-overlay route: the
+excerpt is added inside a new sealed copy of the parent packet's frozen overlay
+evidence, so the status decision, its independent review and owner adoption run
+on exactly the dossier the producer reads. The status gates are unchanged: a
+supplement excerpt is citable held evidence, but a NO still needs an ACT:, TERM:
+or ACTOR_TEXT: basis and a YES a CURRENT: basis.
 """
 import argparse
 from copy import deepcopy
@@ -16,6 +23,7 @@ import fragment_cache
 import working_text as W
 
 SCHEMA = 'eo-source-excerpt-declarations/v1'
+EVIDENCE_SUPPLEMENT_SCHEMA = 'eo-status-overlay-evidence-supplement/v1'
 SOURCE_KEYS = {'url', 'sha256', 'text_path', 'text_sha256', 'page_or_item', 'local_path'}
 ENTRY_KEYS = {'alias', 'instrument_ids', 'actor_id', 'reason', 'source', 'char_start', 'char_end'}
 
@@ -62,7 +70,8 @@ def registered(repo, source, index=None):
     return form
 
 
-def derive(repo, dossiers, declaration, provenance):
+def derive(repo, dossiers, declaration, provenance, undecided=None):
+    """``undecided``: {instrument_id: frozen parent overlay evidence} for members without a status."""
     if not isinstance(declaration, dict) or set(declaration) != {'schema', 'sources'} or declaration['schema'] != SCHEMA:
         raise ValueError('invalid source declaration schema')
     entries = declaration['sources']
@@ -73,7 +82,10 @@ def derive(repo, dossiers, declaration, provenance):
         if d.get('fingerprint') != A.canonical_sha(d) or d.get('source_supplement'):
             raise ValueError('stale or already supplemented parent dossier: ' + iid)
         if d.get('whole_order_status') is None:
-            raise ValueError('undecided dossiers require their existing status-overlay route')
+            frozen = (undecided or {}).get(iid)
+            if frozen is None or frozen.get('base_dossier') != dossiers[iid]:
+                raise ValueError('undecided dossiers require their existing status-overlay route: '
+                                 'frozen parent evidence missing or mismatched for ' + iid)
     aliases = set()
     index = fragment_cache.shared(repo)
     for entry in entries:
@@ -123,6 +135,51 @@ def derive(repo, dossiers, declaration, provenance):
     return result
 
 
+def parent_evidence(repo, packet, dossiers):
+    """The parent packet's frozen overlay evidence for its undecided members, checked against the packet pins."""
+    found = {}
+    for iid, entry in (packet.get('undecided_evidence') or {}).items():
+        path = B.safe(repo, entry['path'])
+        if B.file_sha(path) != entry['file_sha256']:
+            raise ValueError('changed frozen undecided evidence: ' + iid)
+        evidence = json.loads(path.read_bytes())
+        if evidence.get('fingerprint') != entry['evidence_sha256'] or evidence.get('base_dossier') != dossiers.get(iid):
+            raise ValueError('parent undecided evidence does not match its dossier: ' + iid)
+        found[iid] = evidence
+    return found
+
+
+def supplemented_evidence(repo, parent, dossier):
+    """A new sealed overlay evidence whose base dossier is the supplemented dossier.
+
+    Everything else (authority snapshot, status history, compiled generation) is the parent's, unchanged; the
+    supplement's held files are added to the source pins so ordinary overlay validation rechecks them."""
+    import status_overlay as O
+    O._sealed(parent, O.EVIDENCE_SCHEMA)
+    base = parent['base_dossier']
+    meta = dossier.get('source_supplement')
+    if (not isinstance(meta, dict) or meta.get('parent_dossier_sha256') != base.get('fingerprint')
+            or dossier.get('instrument_id') != parent['instrument_id'] or dossier.get('whole_order_status') is not None
+            or base.get('whole_order_status') is not None or parent.get('source_supplement')):
+        raise ValueError('supplemented undecided dossier does not descend from its frozen evidence')
+    added = {}
+    O._source_pins(repo, {'evidence': {k: dossier['evidence'][k] for k in meta['added_evidence_ids']}}, added)
+    pins = dict(parent['source_fingerprints'])
+    for rel, digest in added.items():
+        if pins.setdefault(rel, digest) != digest:
+            raise ValueError('supplement source conflicts with frozen source pin: ' + rel)
+    evidence = {k: deepcopy(v) for k, v in parent.items() if k != 'fingerprint'}
+    evidence['base_dossier'] = deepcopy(dossier)
+    evidence['source_fingerprints'] = dict(sorted(pins.items()))
+    evidence['source_supplement'] = {
+        'schema': EVIDENCE_SUPPLEMENT_SCHEMA, 'parent_evidence_sha256': parent['fingerprint'],
+        'added_evidence_ids': list(meta['added_evidence_ids']),
+        'notice': 'Held excerpts added for preparation only; status history, authority and compiled records are '
+                  'the parent evidence unchanged. No status, grade or review is implied.'}
+    evidence['fingerprint'] = A.canonical_sha(evidence)
+    return evidence
+
+
 def prepare(repo, parent, declaration_file, agent, dest):
     started = time.monotonic()
     repo, parent, declaration_file, dest = [Path(p).resolve() for p in (repo, parent, declaration_file, dest)]
@@ -132,7 +189,10 @@ def prepare(repo, parent, declaration_file, agent, dest):
     provenance = {'parent_packet': pin(repo, parent / 'PACKET.json'),
                   'declarations': pin(repo, declaration_file),
                   'preparation_code': pin(repo, Path(__file__))}
-    derived = derive(repo, dossiers, json.loads(declaration_file.read_bytes()), provenance)
+    frozen = parent_evidence(repo, packet, dossiers)
+    derived = derive(repo, dossiers, json.loads(declaration_file.read_bytes()), provenance, frozen)
+    evidences = {iid: supplemented_evidence(repo, frozen[iid], d) for iid, d in derived.items()
+                 if d.get('whole_order_status') is None}
     folder = dest.with_name(dest.name + '-source-dossiers')
     if folder.exists():
         raise ValueError('derived dossier destination exists')
@@ -144,9 +204,10 @@ def prepare(repo, parent, declaration_file, agent, dest):
     replacement = any(r.get('route') == 'owner_reviewable_replacement_proposal'
                       for r in packet.get('ownership', {}).values() if isinstance(r, dict))
     stats = B.prepare(repo, parent, dest, list(derived), agent, dossier_paths=paths,
-                      replacement_proposal=replacement)
+                      replacement_proposal=replacement, frozen_evidence=evidences or None)
     receipt = {'schema': 'eo-source-excerpt-prepare-receipt/v1', **provenance,
                'instrument_ids': list(derived), 'native_prepare': stats,
+               'undecided_overlay_members': sorted(evidences),
                'wall_seconds': time.monotonic() - started,
                'producer_approval': False, 'independent_review': False}
     B.dump(dest / 'SOURCE_SUPPLEMENT.json', receipt)
@@ -169,9 +230,20 @@ def verify(repo, folder):
     for rel, sha in parent['held_text_file_pins'].items():
         if B.file_sha(B.safe(repo, rel)) != sha:
             raise ValueError('changed parent held source: ' + rel)
-    expected = derive(repo, dossiers, json.loads(paths['declarations'].read_bytes()), provenance)
+    frozen = parent_evidence(repo, parent, dossiers)
+    expected = derive(repo, dossiers, json.loads(paths['declarations'].read_bytes()), provenance, frozen)
     if actual != expected:
         raise ValueError('changed supplemented dossier or inherited field')
+    undecided = {iid for iid, d in expected.items() if d.get('whole_order_status') is None}
+    if set(packet.get('undecided_evidence') or {}) != undecided:
+        raise ValueError('undecided supplement members must keep frozen overlay evidence')
+    for iid in sorted(undecided):
+        entry = packet['undecided_evidence'][iid]
+        path = B.safe(repo, entry['path'])
+        if B.file_sha(path) != entry['file_sha256']:
+            raise ValueError('changed frozen undecided evidence: ' + iid)
+        if json.loads(path.read_bytes()) != supplemented_evidence(repo, frozen[iid], expected[iid]):
+            raise ValueError('supplemented overlay evidence does not match its parent: ' + iid)
     return {'orders': len(actual), 'exact_lineage_and_source_bytes': True, 'legal_approval': False}
 
 

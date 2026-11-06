@@ -10,15 +10,34 @@ under the codebook.
 
 ## Routes, cheapest first
 
-1. **Already held, never admitted (no agents).** All 22 census gaps in the June 1932 run (EO 5853–5879) are held twice: the
-   American Presidency Project text and the official text from the 1974 Office of the Federal Register compilation of Hoover's
-   orders (vol. II, HathiTrust 2027/uc1.c025504761), with the PDF page and hash. `ADMISSION_QUEUE_1932.csv` lists them for
-   the person who admits census entries. The dates agree for 21. For EO 5877, the official printing says July 5, 1932, and
-   the Presidency Project says July 6.
-2. **Clark's web stage with the paid Brave engine.** On GitHub's runners every keyless general web engine refuses the
+1. **Already held, never admitted (no agents).** 30 orders in the project's own American Presidency Project index, each
+   with its text held, have no census row (one more, EO 7933-A, is in the census as `EO:7933a`). They are the 22 census gaps
+   in the June 1932 run (EO 5853–5879) and EO 5151-A, 5605-A, 5638-A, 5855-A, 6005-A, 6585, 7010-F and 8606-A. For 26 of
+   them the project also holds the official text from the Office of the Federal Register's compilations (for Hoover, the
+   1974 volume II, HathiTrust 2027/uc1.c025504761), with the PDF page and hash. `ADMISSION_QUEUE.csv` lists all 30 for the
+   person who admits census entries. The two dates agree for every order with both texts except EO 5877, for which the
+   official printing says July 5, 1932, and the Presidency Project says July 6.
+2. **Joins against indexes the project already holds (no agents).** `WPA_JOIN.json` matches every target to the WPA
+   numbered list (1944) and the New Jersey unnumbered list (1943), both held as OCR text in `jobs/x1-class-engine/data/`;
+   the WPA numbered list identifies the whole 1894 run (EO 36–53) and EO 92. `APP_UNNUMBERED_JOIN.csv` pairs dated
+   references with the Presidency Project's unnumbered orders of the same date (31 of 226 references; a pairing is a
+   candidate until a person checks the subject).
+3. **Clark's web stage with the paid Brave engine.** On GitHub's runners every keyless general web engine refuses the
    requests (969 queries deferred on 2026-11-02). Brave is now the one general engine that answers there. It is used only
    when the free engines found nothing, within the caps in `research/readiness/owner_rulings/2026-11-05-brave-paid-search.md`.
-3. **Agent searchers** for what neither route reaches: the 1894 run (EO 36–53), the scattered gaps, lettered and
+4. **Agent searchers** for what neither route reaches: the 1894 run (EO 36–53), the scattered gaps, lettered and
    half-numbered orders the census has by number only, and 226 references to an "Executive order of <date>" that match
    nothing known. Brief: `BRIEF.md`. Raw results: `results/*.jsonl` (one line per target). Every quoted source is then
-   fetched by the runner and its bytes held, so a person can check each quote against the page (`VERIFY.md`).
+   fetched by the runner and its bytes held, so a person can check each quote against the page (`jobs/niebuhr-verify/output/VERIFY.csv`).
+
+## Results (2026-11-05)
+
+301 searchable targets in 23 batches (`results/`, `WORKERS.csv`: 2.70 million Sonnet tokens). 258 identified: 50 with
+the order's text, 198 with date and subject but no text, 10 references resolved to orders the census already numbers;
+3 were OCR errors; 40 remain not found or known only from a citing order. `CORROBORATION.csv` checks every result
+against the WPA indexes the project holds: all 40 numbered identifications with a dated WPA entry agree, none disagree.
+Almost every source is secondary (Wikisource, the Presidency Project, later orders that cite the earlier one, Federal
+Register land notices, the BLM Alaska Orders Index). Official printings remain the open step. The 15 census orders
+known only as `EO:UN:executive-orders-*` rows were not searched: nothing but a list row is known about them.
+
+Owner question: Kean ask A-20261105-niebuhr-admit (the 30 orders in `ADMISSION_QUEUE.csv`).
