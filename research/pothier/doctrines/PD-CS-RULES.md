@@ -6,14 +6,14 @@ It applies the coordinator rulings in `research/pothier/COORDINATOR_RULINGS.md` 
 
 ## Conclusions
 
-The doctrine proposes a `no` lead for 397 of the 540 members and leaves 143 `open`. It proposes no `yes` lead. On
+The doctrine proposes a `no` lead for 396 of the 540 members and leaves 144 `open`. It proposes no `yes` lead. On
 the branches the held sources support, no member's own command was in force on 2026-10-14. The present Civil
 Service Rules (5 CFR parts 1-10, from Executive Order 10577 as amended) and the excepted-position schedules (5 CFR
 part 213, regulations of the Office of Personnel Management, OPM) rest on later instruments.
 
-The 397 `no` leads rest on three grounds.
+The 396 `no` leads rest on three grounds.
 
-1. **Pure amendments: 378 members (branches B12, B13, B14a, B14, B14s, B15).** In each of these orders, amending is
+1. **Pure amendments: 377 members (branches B12, B13, B14a, B14, B14s, B15).** In each of these orders, amending is
    the only operative content. The order changes the text of the Civil Service Rules, of Schedule A or B, of
    another executive order, or of regulations the President prescribed. Under ruling P2, the amending text merges
    into the amended instrument (the parent) when the order issues, and the order keeps no command of its own. The
@@ -33,14 +33,14 @@ The 397 `no` leads rest on three grounds.
      names them by number or by date: EO 179, 2985, 3807, 2570, 3471, 163 and 1142.
    - **Three members only revoke another order**, so they are spent on issue under ruling P1 (B10).
 
-The 143 `open` members fall into these groups:
+The 144 `open` members fall into these groups:
 
 | Group | Members | Branch |
 |---|---|---|
 | EO 209, the 1903 rules | 1 | B02 |
 | Special rules of 1897-1902 | 3 | B07 |
 | Classification and covering-in orders | 35 | B08, B16 |
-| Amendments whose own text adds a further provision | 20 | B15x |
+| Amendments whose own text adds a further provision | 21 | B15x |
 | Amendments whose text does not confirm the amendment | 11 | B18 |
 | Separate regulation sets | 9 | B17 |
 | Members of other families | 64 | B06p, B11, B19, B97, B99 |
@@ -200,7 +200,7 @@ No held 1938-1939 Federal Register order postpones EO 7915 or EO 8043. EO 8044 p
 ## (c) Decision procedure
 
 Branches are tried in order, and the first branch whose conditions all hold decides. The counts come from
-`python3 -I jobs/pothier/pothier.py try research/pothier/doctrines/PD-CS-RULES.json`: 540 members, 397 decided, 34
+`python3 -I jobs/pothier/pothier.py try research/pothier/doctrines/PD-CS-RULES.json`: 540 members, 396 decided, 34
 contradicted.
 
 Three tests recur in the table:
@@ -229,10 +229,10 @@ Three tests recur in the table:
 | B12b | before 1896-05-06: text shows a rule promulgated or replaced, not a pure amendment | 1 | no | `ended_by_express_class_instrument`; ACT: EO 89 | interval from order date to 1896-05-06 |
 | B13 | 1896-05-06 to 1903-03-19: CSR_START, AMEND_SUM, purity screen | 53 | no | `merged_into_parent_on_issue`; TERM; parent EO 89 ended 1903-04-15 | order date |
 | B14a | EO 253 (signed January 27, 1904; census date 1904-02-17) | 1 | no | `merged_into_parent_on_issue`; TERM; parent EO 209 open | fixed 1904-01-27 |
-| B14 | 1903-04-15 to 1938-06-23: CSR_START, AMEND_SUM, purity screen | 265 | no | `merged_into_parent_on_issue`; TERM; parent EO 209 open | order date |
+| B14 | 1903-04-15 to 1938-06-23: CSR_START, AMEND_SUM, purity screen | 264 | no | `merged_into_parent_on_issue`; TERM; parent EO 209 open | order date |
 | B14s | EO 5657 and EO 5662: WPA summaries run together with neighbouring entries; official texts are pure amendments | 2 | no | `merged_into_parent_on_issue`; TERM; parent EO 209 open | order date |
 | B15 | pure amendments of another EO or of presidential regulations | 26 | no | `merged_into_parent_on_issue`; TERM | order date |
-| B15x | amendments whose text shows a further provision | 20 | open | `amendment_with_further_provision` | none |
+| B15x | amendments whose text shows a further provision | 21 | open | `amendment_with_further_provision` | none |
 | B16 | class orders: positions classified, covered in, placed outside or excepted | 32 | open | `class_order_coverage` | none |
 | B17 | separate regulation sets prescribed, extended or approved | 9 | open | `separate_regulation_set` (PD-ADMIN) | none |
 | B18 | amendment or construction not confirmed by the operative text, or dated between EO 209's signing and its effect | 11 | open | `amendment_text_unconfirmed` | none |
@@ -358,7 +358,7 @@ on it. EO 76 and EO 689 carry `partial_` edges that are false matches (a 2011 Pu
   4. for orders placing positions outside the classified service, the end of the commission or office concerned.
 
   B16 also catches a few loosely matched orders (EO 633, 91, 984, 178, 416). They are open either way.
-- **Amendments with a further provision (B15x, 20).** The text of each also does something besides amend:
+- **Amendments with a further provision (B15x, 21).** EO 4754 is among them: besides adding paragraph 16 to Schedule A it directs that Army hospital appointments "will hereafter be made in accordance with the civil service act and rules", a standing classification direction. The text of each also does something besides amend:
   - incumbents are included, continued or saved: EO 2780, 4221, 4720, 5817, 5901, 6047, 6141, 7427, 6134, 3455;
   - EO 2460 and EO 5248 add "It is further ordered" provisions;
   - EO 4948 treats Indians "now in the service" as classified and allows reinstatement without time limit (its

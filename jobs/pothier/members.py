@@ -195,9 +195,10 @@ def build():
         w = wpa.get(iid) or []
         t = types.get(iid) or {}
         texts = best_texts(iid, fragments, t)
-        text, text_sha = ("", "")
+        text, text_sha, text_chars = ("", "", 0)
         if texts:
             text, text_sha = read_text(texts[0]["path"])
+            text_chars = len((REPO / texts[0]["path"]).read_text(encoding="utf-8", errors="replace"))
         summary = " ".join(x.get("text", "") for x in w)
         f_text = features(text)
         f_sum = features(summary + " " + (t.get("app_title") or ""))
@@ -221,6 +222,7 @@ def build():
             "primary_text_path": texts[0]["path"] if texts else "",
             "primary_text_sha256": text_sha,
             "primary_text_grade": texts[0]["grade"] if texts else "",
+            "primary_text_chars": text_chars,
             "text_features": f_text,
             "summary_features": f_sum,
             "named_persons": n.get("names", []),

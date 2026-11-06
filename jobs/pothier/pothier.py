@@ -376,6 +376,10 @@ def decide(m, d):
                 for sid in lead.get("source_ids", []):
                     if not srcs[sid].get("held") and not srcs[sid].get("member_text"):
                         gaps.append(f"source {sid} ({srcs[sid].get('citation', '')}) is not yet held")
+            if (m.get("primary_text_chars") or 0) > TEXT_LIMIT and lead["status_lead"] != "open":
+                gaps.append(f"held text is {m['primary_text_chars']} characters; the doctrine's text tests read only the "
+                            f"first {TEXT_LIMIT}, so a later clause (a second operative act, a saving clause) was not "
+                            "checked by machine: read the whole text")
             if not m.get("primary_text_path"):
                 gaps.append("no held text of the order")
             elif m.get("primary_text_grade") in {"compiled_transcription_lead", "archival_replica_scan_pending_codebook",
