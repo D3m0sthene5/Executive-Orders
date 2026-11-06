@@ -1,0 +1,389 @@
+{
+ "doctrine_id": "PD-NATIONAL-FOREST",
+ "arm": "A",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "procedure B02-REVOKED-BY-2146 (lead.date_rule)",
+   "claim": "EO 1336 ended on the date of revoking EO 2146, fixed as 1915-03-01.",
+   "evidence": "The held text of EO 2146 (jobs/pinakes-proquest-ingest/output/texts/EO_2146.txt) is signed 'THE WHITE HOUSE, 10 March, 1915. [No. 2146.]'. The member record date is 1915-03-10, and EO 2146's own B06 lead is dated 1915-03-10. The branch's own basis text and the .md revoker table both say 1915-03-10. Only the date_rule says 1915-03-01.",
+   "severity": "error",
+   "fix": "Set the date_rule date to 1915-03-10."
+  },
+  {
+   "id": "R2",
+   "location": "sources S-ORGANIC (citation); .md section (b) table",
+   "claim": "Act of June 4, 1897, ch. 2, 30 Stat. 11, 43-46 (forest reserve provisions; 16 U.S.C. 473).",
+   "evidence": "The forest reserve provisions of the Sundry Civil Appropriations Act run from 30 Stat. 34 to 36. The source credit of 16 U.S.C. 473 is 'June 4, 1897, ch. 2, sec. 1, 30 Stat. 34, 36' (law.cornell.edu/uscode/text/16/473). NFMA sec. 9 (90 Stat. 2957) cites the Act as '30 Stat. 34'. The members themselves cite '30 Stat., 11, 34-36' (EOs 3483, 3494, 4363, 1973 and others). The doctrine's own phrase 'modification power ... at p. 36' does not fit a 43-46 page range.",
+   "severity": "error",
+   "fix": "Act of June 4, 1897, ch. 2, 30 Stat. 11, 34-36 (16 U.S.C. 473); the modification power is at p. 36."
+  },
+  {
+   "id": "R3",
+   "location": "B10-ADMIN-SITE; M-REVOKED (limited to revokers within this family); .md (d) B10",
+   "claim": "B10 members are not revoked by any held order ('no held instrument revokes this one'). M-REVOKED counts only revoking orders that belong to this family.",
+   "evidence": "Two held member texts in another family (x1_type land_withdrawal_general) revoke four B10 members in full, by number and date. EO 6140 (1933-05-22, jobs/app-executive-orders/output/texts/executive-order-6140-revocation-administrative-site-withdrawals.txt): 'Executive Order No. 2586, dated April 6, 1917, ... and Executive Order No. 2848, dated April 24, 1918, ... be, and the same are hereby, revoked.' EO 6154 (1933-06-05, ...executive-order-6154-revocation-administrative-site-withdrawals.txt) uses the same words for 'Executive Order No. 3832, dated May 4, 1923, ... and Executive Order No. 3896, dated August 31, 1923'. Both appear as held later_edges on those members.",
+   "severity": "error",
+   "fix": "Add branches that give EOs 2586 and 2848 a no lead (ACT, fixed date 1933-05-22) and EOs 3832 and 3896 a no lead (ACT, fixed date 1933-06-05), with EO 6140 and EO 6154 as held sources. Widen M-REVOKED to cover held revoking orders from any family."
+  },
+  {
+   "id": "R4",
+   "location": ".md Conclusions ('contradicted 1'), section (c) closing paragraph on EO 4889, section (d) B10 and B11; lead basis of B10 and B11",
+   "claim": "The engine reports one contradiction, EO 4889, explained by EO 5048's partial revocation. For B10, 'a no lead needs a revoking executive order or public land order. Neither is held.'",
+   "evidence": "Running 'python3 -I jobs/pothier/pothier.py try <copy> --hints' on the current MEMBERS.jsonl (modified 2026-11-05 22:58) reports 'contradicted 57': 48 on B10, 8 on B11 and 1 on B08 (EO 1523). The contradicting edges are held BLM public land order (PLO) table entries that name the member by number and date as revoked in full. Examples: 'Aug. 21, 1959 California; revoking EO No. 1326 of Mar. 29, 1911' (PLO 1953); 'Nov. 3, 1955 South Dakota; revoking EO No. 1432 of Nov. 13, 1911' (PLO 1246); EO 1560 by PLO 1287 (1956); EO 1572 by PLO 1047 (1954); EO 3242 by PLO 1372 (1956); EO 3783 by PLO 1407 (1957); EO 3263 by PLO 351 (1947); EO 3999 by PLO 421 (1947); EO 4491 by PLO 3115 (1963); EO 5278 by PLO 1132 (1955); EO 5936 by PLO 3266 (1963); EO 4247 (on B13) by PLO 982 (1954). EO 4889 is revoked by PLO 1466 ('revoking EO No. 4889 of May 26, 1928', 22 FR 6511, 1957-08-07), and EO 5651 (1931) also revoked part of it. The doctrine's explanation addresses only EO 5048. In all, about 40 open members carry an ending edge that names their own number. Some edges are mismatches and must not be used: EO 1432's PLO 399 edge is for 'EO No. 1432 1/2'; EO 3783's EO 5597 edges concern a different order of the same date (Public Water Reserve No. 86); EO 860's EO 2223 edge concerns EO 1228. These edges may postdate the draft, but the doctrine as it now runs states its contradictions and gaps wrongly.",
+   "severity": "error",
+   "fix": "Rerun the engine and state the true contradiction count. Add a branch, or per-order branches, for members whose held revocation edge quotes the member's own number (and date where given) with no 'in part' qualifier. Such a branch would give a no lead (ACT, edge_date), with the gap that the PLO's own text is not held and that the PLO table is a secondary listing. If the owner will not accept a PLO-table entry as a basis, state that in (d) instead of saying no revocation is held. Rewrite the EO 4889 paragraph to cover PLO 1466 and EO 5651."
+  },
+  {
+   "id": "R5",
+   "location": "B08-SPENT-EXCLUSION, members EO 787 and EO 1125 (date rule and gap)",
+   "claim": "The lead is dated at the order date. The gap says that for EOs 787 and 1125 'the restoration took effect on the order'.",
+   "evidence": "Both texts provide that the excluded lands 'shall be restored to the public domain and become subject to settlement ... on such date and after such notice by publication as the Secretary of the Interior may prescribe, but shall not become subject to entry, filing, selection, or other form of appropriation until the expiration of thirty days from the date so fixed'. The restoration therefore did not take effect on the order. M-SPENT-ON-ISSUE's own rule dates the end at the last step the order's terms fix, and here that step falls at an unknown date 30 days after the Secretary's date.",
+   "severity": "error",
+   "fix": "Give EOs 787 and 1125 a separate branch with an interval date rule: from the order date to an unknown upper bound, which the Secretary's notice would fix. Alternatively leave them open pending that notice. Correct the gap sentence."
+  },
+  {
+   "id": "R6",
+   "location": "B03-OWN-DATE-2542A (basis); .md M-OWN-DATE ('Each provides that ...')",
+   "claim": "EO 2542-A provided that if the legislation was not enacted the lands would then become subject to disposal without further order. The extension in EO 2896 makes March 5, 1919 the end.",
+   "evidence": "EO 2542-A's held text withdraws the lands only 'until July 1, 1918, in aid of legislation' and has no self-executing disposal clause; that clause is in EO 2896. EO 2896 extends the withdrawal only 'in so far as it affects the hereinafter described lands', and its list omits some EO 2542-A tracts (T. 2 N., R. 3 E. and R. 4 E., and T. 5 N., R. 6 E.). Those tracts were released on July 1, 1918. A whole-order end of 1919-03-05 is still supportable.",
+   "severity": "unsupported",
+   "fix": "Rewrite the basis: the withdrawal ran until July 1, 1918 by its own terms, EO 2896 extended it to March 5, 1919 for part of the land and added the disposal clause, and the order as a whole ended 1919-03-05. Qualify the .md claim that all nine orders contain the clause."
+  },
+  {
+   "id": "R7",
+   "location": "B11-PENDING-WITHDRAWAL and B06 regex coverage: EOs 4938, 1924, 1973",
+   "claim": "These orders are continuing withdrawals with no stated end (persists_until_revoked_withdrawal).",
+   "evidence": "EO 4938 (1928) only revokes EO 4232's pending-resurvey withdrawal and notes the lands remain in the Santa Fe National Forest. It has the same form as EOs 4663, 4665, 4675 and 4837, which B06 decides no. It falls through only because the OCR reads 'here by revoked'. EO 1924 (1914-04-27) strikes EO 1622's classification-withdrawal clause and opens the land for 20 days from May 8, 1914, then to general disposition. EO 1973 (1914-07-02) strikes EO 1818's clause and opens the land for 28 days from the 56th day, then to general disposition. These orders end withdrawals and do not continue them.",
+   "severity": "error",
+   "fix": "Give EO 4938 a no lead (TERM, spent_on_issue) dated by its order date (the scan carries no date line; the member date is 1928-07-23). Give EO 1924 a no lead dated 1914-05-28 and EO 1973 a no lead dated 1914-09-24 (spent_on_issue / merged_into_parent under P1 and P2). Alternatively keep them open with a correct lead kind and basis."
+  },
+  {
+   "id": "R8",
+   "location": "B10-ADMIN-SITE condition (any_regex) and lead kind",
+   "claim": "B10 catches administrative-site and similar Forest Service withdrawals made under the Pickett Act.",
+   "evidence": "EO 860 (1908, Siuslaw National Forest created from the Tillamook and Umpqua) and EO 881 (1908, Helena enlarged by adding the Elkhorn) match only on the boilerplate 'withdrawals for administrative sites'. EO 5646 (1931, transfer of land from the Selway to the Bitterroot) matches only on the place name 'Lookout ... Creeks'. All three are forest designation orders (B15) and predate or do not use the Pickett Act. The B10 lead kind gives EO 860 a spurious persistence contradiction.",
+   "severity": "minor",
+   "fix": "Anchor the B10 pattern in the operative clause, for example 'reserved for use ... as a ranger station'. Exclude 'not embraced in withdrawals for administrative sites' and place names. Route these three to B15."
+  },
+  {
+   "id": "R9",
+   "location": "B12-OVERLAP-INDIAN (any_regex 'Indian|natives'); .md (c) item 12",
+   "claim": "Only a few exclusions sit on B12 because boundary descriptions mention an 'Indian graveyard' or 'Indian settlement'. B12 members make a continuing reservation for Indian or native use.",
+   "evidence": "EO 1147 matches only on 'Indian Meridian' (Oklahoma survey base). It is a water-supply reservation for Fort Sill and belongs on B13. EOs 5758, 6333, 6334, 6882, 6889 and 7087 are forest transfers that match only on 'Indian Reservation' boundaries or the place names 'Indian Creek' and 'Indian Grave'. EO 7059 revokes a hatchery reservation and declares the land part of the Tongass, matching only on 'old Indian trail'. Their B12 basis ('continuing reservation of land for Indian or Alaska native use ... falls within PD-INDIAN') is false.",
+   "severity": "minor",
+   "fix": "Anchor B12 on an operative purpose such as 'for the use of the ... Indians' or 'restored to the ... Indian Reservation'. Exclude 'Indian Meridian' and boundary or place-name mentions. Route the listed members to B13 or B15 and correct the .md count."
+  },
+  {
+   "id": "R10",
+   "location": "B08-SPENT-EXCLUSION, EO 3155; B07 coverage of EO 2470",
+   "claim": "B08 members do one thing: they exclude land and restore it. EO 2470 is described as an amendment that merged into EO 2449.",
+   "evidence": "EO 3155 also amends Proclamation 1500 'so as to add to the areas listed therein, which may be selected by the State of Montana'. That amendment is a second operative act which the B08 basis does not disclose. EO 2470 is a pure amendment changing EO 2449's opening dates, but it lands on B15 (forest_designation_persists) because 'is hereby so amended' falls more than 300 characters after 'Executive Order'. The .md treats it as merged into EO 2449.",
+   "severity": "minor",
+   "fix": "Give EO 3155 a lead that carries the P2 disclosure for its amendment of Proclamation 1500, or leave it open. Widen B07's window or add EO 2470 by id to B07."
+  },
+  {
+   "id": "R11",
+   "location": ".md (b) 'Every pair was checked ... the number and date it cites ... agree with the target'; .md (a) on EO 2242",
+   "claim": "Each revoker's cited date agrees with its target. EO 2242 is revoked only in part (by EO 7053 and EO 7448).",
+   "evidence": "EO 2485 cites 'Executive Order (No. 1589) of August 21, 1912', but EO 1589 is signed 'August 24, 1912'. EO 3740 cites 'Executive Order of March 1, 1915 (No. 2148)', but EO 2148 is signed '18 March, 1915'. The numbers and land descriptions match, so the ends stand. EO 2242 also carries a held PLO-table edge reading 'Apr. 19, 1961 Alaska; revoking EO No. 2242 of Aug. 31, 1915; see PLO No. 262' (PLO 2337). Later partial revocations (PLO 3345 in 1964, PLO 3848 in 1965) suggest that entry was not a complete end, but the doctrine does not mention it.",
+   "severity": "minor",
+   "fix": "Disclose the two date mismatches in the B02 gaps for EOs 1589 and 2148. Mention the PLO 2337 edge for EO 2242 and explain why it stays open."
+  },
+  {
+   "id": "R12",
+   "location": "B08 vs B09 consistency (EO 7033 vs EO 4363)",
+   "claim": "A restoration limited to a stated purpose under a named Act stays open (B09). Relinquishment for disposal under a general statute is spent (B08).",
+   "evidence": "EO 7033 (1935) excludes a lot from the Cibola 'in order to permit the Secretary of the Interior to dispose of the said land under the provisions of the act of March 1, 1907 (34 Stat. 1052)'. EO 4363 restores land 'to permit adjustment of an equitable claim' and 'only under the provisions of the act of January 27, 1922'. The doctrine decides EO 7033 no on B08 and leaves EO 4363 open on B09 without saying why one named-Act purpose is a restriction and the other is not.",
+   "severity": "minor",
+   "fix": "State the test: a restoration limited by 'only' to a named Act is restricted, while a release to disposal under a general Act is not. Apply it explicitly to EO 7033."
+  },
+  {
+   "id": "R13",
+   "location": "sources S-EO-3194 (citation, title); S-1907-PROVISO ('16 U.S.C. 471 note'); S-FS-LAR ('as of September 30, 2024')",
+   "claim": "Source citations.",
+   "evidence": "S-EO-3194's citation reads 'Executive Order , 1919-12-04' and its title is 'Executive Order ', so the number is missing although the held text ends '[No. 3194.]'. The '16 U.S.C. 471 note' codification of the 1907 proviso and the FY2024 'as of' date of the Land Areas Report could not be confirmed. The LAR page exists but does not show the as-of date.",
+   "severity": "minor",
+   "fix": "Write 'Executive Order 3194, 1919-12-04'. Mark the two unconfirmed details as unverified or drop them."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S-ORGANIC",
+   "verdict": "wrong",
+   "note": "The pages are 30 Stat. 34-36, not 43-46 (16 U.S.C. 473 source credit at law.cornell.edu; NFMA sec. 9 cites 30 Stat. 34). The chapter (ch. 2), the U.S. Code section and the pin language are right."
+  },
+  {
+   "source_id": "S-PICKETT",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-36-Pg847: Chap. 421, approved June 25, 1910, p. 847. The pin 'and such withdrawals or reservations shall remain in force until revoked by him or by an Act of Congress' is present. The FLPMA 704(a) table confirms 43 U.S.C. 141, 142. The 1912 amendment (37 Stat. 497) was not read, as the doctrine itself says."
+  },
+  {
+   "source_id": "S-FLPMA-701C",
+   "verdict": "verified",
+   "note": "The held file's sha256 matches. 90 Stat. 2786 contains sec. 701(c): 'All withdrawals, reservations, classifications, and designations in effect as of the date of approval of this Act shall remain in full force and effect until modified ...'."
+  },
+  {
+   "source_id": "S-FLPMA-704A",
+   "verdict": "verified",
+   "note": "In the held file, 90 Stat. 2792, sec. 704(a) is effective on the date of approval. Its table lists 'Mar. 3,1891 561 24 26:1103 16 U.S.C. 471.' and 'June25,1910 421 1,2 36:847 141, 142' ('All except the second and third provisos', a nuance the doctrine does not mention)."
+  },
+  {
+   "source_id": "S-NFMA-1609",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-90-Pg2949: sec. 9 at 90 Stat. 2957 amends sec. 11(a) of the 1974 Act 'as redesignated by section 2'. The quoted sentence is exact. Approved October 22, 1976."
+  },
+  {
+   "source_id": "S-1907-PROVISO",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-34-Pg1256: ch. 2907, proviso at 34 Stat. 1271, wording matches the pin. The '16 U.S.C. 471 note' codification was not confirmed."
+  },
+  {
+   "source_id": "S-FS-CHRONOLOGY",
+   "verdict": "verified",
+   "note": "foresthistory.org PDF, read through a summarizing fetch: the title, Lands Staff and November 1997 date match, and the entry 'Malheur OR EO 814 JUN 13, 1908 * Established.' is present. EO 814's member date is 1908-06-13."
+  },
+  {
+   "source_id": "S-FS-LAR",
+   "verdict": "unverifiable",
+   "note": "The URL resolves to the Forest Service Land Areas Reports page. It does not show the as-of date, and the doctrine marks it not read."
+  },
+  {
+   "source_id": "S-EO-2896",
+   "verdict": "verified",
+   "note": "The pin is present in the held text. It extends EO 2542-A to March 5, 1919 only for the listed lands (see R6)."
+  },
+  {
+   "source_id": "S-EO-1417 .. S-EO-7078 (42 B02 revokers) and S-EO-3025",
+   "verdict": "verified",
+   "note": "All 43 held_path files exist. Each sha256 equals the file hash and the member's primary_text_sha256, and every pin phrase occurs in the whitespace-collapsed text. I read each revoking text. Every one names its target by number and revokes it with no partial qualifier (EO 4776 and EO 4852 rescind four and two orders). Each fixed date equals the signature date or member date, except B02-REVOKED-BY-2146 (R1). The disclosed scan conflicts for EO 4133 (scan '1926') and EO 4916 (scan 'June 28, 1928'; Wikipedia's Lee National Forest article gives June 23, 1928) are stated accurately."
+  },
+  {
+   "source_id": "S-MEMBER-TEXT",
+   "verdict": "verified",
+   "note": "Member texts were read for the B03, B05, B06, B07 and B08 samples listed under members_checked."
+  }
+ ],
+ "members_checked": [
+  "EO:1337",
+  "EO:1957",
+  "EO:1336",
+  "EO:2146",
+  "EO:1589",
+  "EO:2485",
+  "EO:2148",
+  "EO:3740",
+  "EO:2530",
+  "EO:2887",
+  "EO:2168",
+  "EO:2945",
+  "EO:4196",
+  "EO:4916",
+  "EO:1646",
+  "EO:4133",
+  "EO:2443",
+  "EO:2445",
+  "EO:2542A",
+  "EO:2896",
+  "EO:2930",
+  "EO:2937",
+  "EO:2939",
+  "EO:3269",
+  "EO:4028",
+  "EO:1626",
+  "EO:3025",
+  "EO:4278",
+  "EO:5147",
+  "EO:1899",
+  "EO:1900",
+  "EO:1908",
+  "EO:1928",
+  "EO:1946",
+  "EO:1986",
+  "EO:2004",
+  "EO:2027",
+  "EO:2028",
+  "EO:2055",
+  "EO:2069",
+  "EO:2086",
+  "EO:2176",
+  "EO:2212",
+  "EO:2302",
+  "EO:2338",
+  "EO:2367",
+  "EO:2449",
+  "EO:2470",
+  "EO:2492",
+  "EO:2507",
+  "EO:2542",
+  "EO:2739",
+  "EO:2925",
+  "EO:2989",
+  "EO:3009",
+  "EO:3010",
+  "EO:3039",
+  "EO:3191",
+  "EO:3262",
+  "EO:3444",
+  "EO:3486",
+  "EO:3569",
+  "EO:3738",
+  "EO:3739",
+  "EO:3872",
+  "EO:3933",
+  "EO:3955",
+  "EO:4053",
+  "EO:4088",
+  "EO:4264",
+  "EO:4533",
+  "EO:4534",
+  "EO:4566",
+  "EO:4750",
+  "EO:4966",
+  "EO:4984",
+  "EO:5002",
+  "EO:5422",
+  "EO:5619",
+  "EO:6197",
+  "EO:4663",
+  "EO:4665",
+  "EO:4675",
+  "EO:4837",
+  "EO:3098",
+  "EO:3778",
+  "EO:7313",
+  "EO:6181",
+  "EO:7412",
+  "EO:7361",
+  "EO:3055",
+  "EO:1955",
+  "EO:787",
+  "EO:1125",
+  "EO:3155",
+  "EO:3483",
+  "EO:3494",
+  "EO:4866",
+  "EO:7033",
+  "EO:5102",
+  "EO:1276",
+  "EO:4363",
+  "EO:1326",
+  "EO:4294",
+  "EO:2093",
+  "EO:860",
+  "EO:881",
+  "EO:5646",
+  "EO:2586",
+  "EO:2848",
+  "EO:3832",
+  "EO:3896",
+  "EO:1550",
+  "EO:1924",
+  "EO:1973",
+  "EO:4938",
+  "EO:2223",
+  "EO:4889",
+  "EO:1147",
+  "EO:3915",
+  "EO:7059",
+  "EO:4421",
+  "EO:1555",
+  "EO:2242",
+  "EO:1051",
+  "EO:3317",
+  "EO:2045",
+  "EO:3537",
+  "EO:4613",
+  "EO:1523"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:2586",
+   "branch": "B10-ADMIN-SITE",
+   "why": "Revoked in full by name and date by held EO 6140 (1933-05-22). The lead should be no, ACT, 1933-05-22."
+  },
+  {
+   "instrument_id": "EO:2848",
+   "branch": "B10-ADMIN-SITE",
+   "why": "Revoked in full by name and date by held EO 6140 (1933-05-22). The lead should be no, ACT, 1933-05-22."
+  },
+  {
+   "instrument_id": "EO:3832",
+   "branch": "B10-ADMIN-SITE",
+   "why": "Revoked in full by name and date by held EO 6154 (1933-06-05). The lead should be no, ACT, 1933-06-05."
+  },
+  {
+   "instrument_id": "EO:3896",
+   "branch": "B10-ADMIN-SITE",
+   "why": "Revoked in full by name and date by held EO 6154 (1933-06-05). The lead should be no, ACT, 1933-06-05."
+  },
+  {
+   "instrument_id": "EO:1336",
+   "branch": "B02-REVOKED-BY-2146",
+   "why": "The status is right but the date is wrong: 1915-03-01 should be 1915-03-10."
+  },
+  {
+   "instrument_id": "EO:787",
+   "branch": "B08-SPENT-EXCLUSION",
+   "why": "Dated at the order date, but the restoration date was left to the Secretary of the Interior, with entry 30 days later. The end is after the order date and unknown."
+  },
+  {
+   "instrument_id": "EO:1125",
+   "branch": "B08-SPENT-EXCLUSION",
+   "why": "Same as EO 787."
+  },
+  {
+   "instrument_id": "EO:4938",
+   "branch": "B11-PENDING-WITHDRAWAL",
+   "why": "A pure revocation of EO 4232, identical in form to B06 members. OCR ('here by revoked') defeats the B06 pattern, so it is mislabeled a persisting withdrawal."
+  },
+  {
+   "instrument_id": "EO:1924",
+   "branch": "B11-PENDING-WITHDRAWAL",
+   "why": "It strikes EO 1622's classification withdrawal and opens the land on a schedule, which ends a withdrawal. Spent by 1914-05-28."
+  },
+  {
+   "instrument_id": "EO:1973",
+   "branch": "B11-PENDING-WITHDRAWAL",
+   "why": "It strikes EO 1818's classification withdrawal and opens the land on a schedule. Spent by 1914-09-24."
+  },
+  {
+   "instrument_id": "EO:860",
+   "branch": "B10-ADMIN-SITE",
+   "why": "A forest creation order caught by boilerplate 'withdrawals for administrative sites'. It belongs on B15, and its Pickett Act persistence basis is wrong."
+  },
+  {
+   "instrument_id": "EO:881",
+   "branch": "B10-ADMIN-SITE",
+   "why": "A forest merger order caught by the same boilerplate. It belongs on B15."
+  },
+  {
+   "instrument_id": "EO:5646",
+   "branch": "B10-ADMIN-SITE",
+   "why": "A forest transfer caught by the place name 'Lookout ... Creeks'. It belongs on B15."
+  },
+  {
+   "instrument_id": "EO:1147",
+   "branch": "B12-OVERLAP-INDIAN",
+   "why": "Matches only on 'Indian Meridian'. It is a Fort Sill water-supply reservation and belongs on B13 (PD-MILITARY-RESERVATION)."
+  },
+  {
+   "instrument_id": "EO:7059",
+   "branch": "B12-OVERLAP-INDIAN",
+   "why": "It revokes a hatchery reservation and adds the land to the Tongass, matching only on 'old Indian trail'. The B12 Indian-reservation basis is false."
+  },
+  {
+   "instrument_id": "EO:3155",
+   "branch": "B08-SPENT-EXCLUSION",
+   "why": "It also amends Proclamation 1500 to add land the State of Montana may select. The B08 basis does not disclose this second act or the P2 disclosure."
+  },
+  {
+   "instrument_id": "EO:2470",
+   "branch": "B15-FOREST-DESIGNATION",
+   "why": "A pure amendment of EO 2449's opening dates. It should be on B07 (merged_into_parent), which is how the doctrine's own text treats it."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine is clear and conservative, its counts match the engine, and its statutory framework checks out against the sources: the Pickett Act's 'remain in force until revoked', FLPMA secs. 701(c) and 704(a), NFMA sec. 9 at 90 Stat. 2957, and the 1907 proviso at 34 Stat. 1271. All 43 held revoking texts exist, their hashes match, their pins occur, and each names its target by number and revokes it in full. Every B05 schedule date sampled (about 45 of 60) and every B03 stated date agree with the member texts. Several errors must be fixed. B02-REVOKED-BY-2146 dates EO 1336's end 1915-03-01, but EO 2146 was signed 10 March 1915. S-ORGANIC cites 30 Stat. 11, 43-46, but the forest provisions are at 30 Stat. 34-36. Held EOs 6140 and 6154 (1933) revoke EOs 2586, 2848, 3832 and 3896 in full by number, yet those members stay open on B10 under a basis that says no held instrument revokes them. On the current MEMBERS.jsonl the engine reports 57 contradictions, not 1, because held BLM public land order table edges name about 40 open B10 and B11 members as revoked; the undecided list and the EO 4889 explanation are therefore no longer true. EOs 787 and 1125 are dated at signing, although their restoration date was left to the Secretary of the Interior. EO 2542-A's basis attributes to it a disposal clause that only EO 2896 contains. Pattern leaks route forest designation orders to B10 and B12, and three withdrawal-ending orders (EOs 4938, 1924, 1973) to B11 as persisting withdrawals."
+}

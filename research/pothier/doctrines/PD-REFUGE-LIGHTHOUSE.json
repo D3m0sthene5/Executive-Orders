@@ -1,0 +1,3031 @@
+{
+ "schema": "pothier-family-doctrine/v1",
+ "doctrine_id": "PD-REFUGE-LIGHTHOUSE",
+ "family": "Bird and wildlife refuges and lighthouse reservations",
+ "version": 2,
+ "members": {
+  "field": "x1_type",
+  "in": [
+   "bird_refuge",
+   "lighthouse_reservation"
+  ]
+ },
+ "mechanisms": [
+  {
+   "id": "M1",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "An order that only revokes, restores, reduces or redescribes another reservation is spent on issue: its command is executed the day it is signed, and its effect is evidence for the other order's lifecycle.",
+   "effective_date_rule": "order date",
+   "source_ids": []
+  },
+  {
+   "id": "M2",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "An order that states its own end date or a fixed preference period ends by its own terms on that date: EO 3658 on 1923-03-05; EO 4490 and EO 5000 on the last day of their 91-day preference periods (1927-01-03 and 1929-04-25).",
+   "effective_date_rule": "stated date, or order date plus the stated period",
+   "source_ids": [
+    "SM"
+   ]
+  },
+  {
+   "id": "M3",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "A later executive order whose held text revokes, supersedes or replaces the member in full, citing it by number or by its date and tract, ends it.",
+   "effective_date_rule": "date of the revoking order",
+   "source_ids": [
+    "S20",
+    "S21",
+    "S22",
+    "S23",
+    "S24",
+    "S25",
+    "S26",
+    "S27",
+    "S28",
+    "S29",
+    "S30",
+    "S31",
+    "S33"
+   ]
+  },
+  {
+   "id": "M4",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "A later Public Land Order of the Secretary of the Interior revoking the member in full, identified by the official BLM Table of Public Land Orders, ends it.",
+   "effective_date_rule": "PLO signature date from the BLM table (the Federal Register publication may be a few days later)",
+   "source_ids": [
+    "S-BLM-1-694",
+    "S-BLM-695-2250",
+    "S-BLM-2251-4975",
+    "S-BLM-4976-5806",
+    "S-BLM-5807-6825",
+    "S-BLM-6826-7342",
+    "S-BLM-7679-7715"
+   ]
+  },
+  {
+   "id": "M5",
+   "kind": "statute",
+   "effect": "persists",
+   "description": "Refuge System statute: an area included in the National Wildlife Refuge System on January 1, 1975 or later, whether designated by Executive order or included by public land withdrawal, 'shall continue to be a part of the System until otherwise specified by Act of Congress', except that the statute does not preclude (i) transfer or disposal of acquired lands under 668dd(a)(5) (with Migratory Bird Conservation Commission approval), (ii) exchanges under 668dd(b)(3), or (iii) disposal under the terms of a cooperative agreement; and the Secretary may not modify or revoke a withdrawal that added lands to the System before October 21, 1976 (43 U.S.C. 1714(j)).",
+   "effective_date_rule": "persistence from the date the area is shown in the System (no earlier than 1975-01-01) to the cutoff",
+   "source_ids": [
+    "S01",
+    "S03"
+   ]
+  },
+  {
+   "id": "M6",
+   "kind": "statute",
+   "effect": "persists",
+   "description": "Statutes and a regulation in force on the cutoff that name the member or its refuge and keep its reservation in operation (Pub. L. 100-226 sec. 3, for refuge lands within Olympic National Park; 50 CFR 216.85; 43 U.S.C. 1787(b)(4); ANILCA secs. 303 and 305), with the 1983 FWS boundary notice as the record naming the Alaska orders.",
+   "effective_date_rule": "in force on 2026-10-14",
+   "source_ids": [
+    "S02",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S45"
+   ]
+  },
+  {
+   "id": "M7",
+   "kind": "continuity_only",
+   "effect": "continuity_only",
+   "description": "Transfers of administration and renaming (Biological Survey to Interior and Lighthouses to the Coast Guard in 1939; renaming as National Wildlife Refuges in 1940), the FLPMA savings clause and the repeal of withdrawal authority continue the reservations and never end them.",
+   "effective_date_rule": "none",
+   "source_ids": [
+    "S04",
+    "S05",
+    "S40"
+   ]
+  },
+  {
+   "id": "M8",
+   "kind": "review_program",
+   "effect": "lead_only",
+   "description": "Station-by-station disposal of light stations (surplus property, National Historic Lighthouse Preservation Act) and the FLPMA withdrawal review end a reservation only through a PLO or deed that names it.",
+   "effective_date_rule": "date of the PLO or deed, when found",
+   "source_ids": [
+    "S03",
+    "S41",
+    "S42"
+   ]
+  },
+  {
+   "id": "M9",
+   "kind": "continuity_only",
+   "effect": "lead_only",
+   "description": "Lands acquired under the Migratory Bird Conservation Act are federal by title; the order reserves them, and their disposal needs Migratory Bird Conservation Commission approval.",
+   "effective_date_rule": "none",
+   "source_ids": [
+    "S43",
+    "S01"
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S01",
+   "citation": "16 U.S.C. 668dd (2024 ed.), incl. subsec. (a)(1), (a)(5), (a)(6), amendment notes and the statutory note \"National Wildlife Refuges\"; Pub. L. 89-669, sec. 4, 80 Stat. 927 (1966), as amended by Pub. L. 94-223, 90 Stat. 199 (1976), and Pub. L. 105-57, 111 Stat. 1252 (1997)",
+   "title": "National Wildlife Refuge System Administration Act, as amended",
+   "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title16/pdf/USCODE-2024-title16-chap5A-subchapIII-sec668dd.pdf",
+   "held": true,
+   "establishes": "Areas included in the National Wildlife Refuge System on or after January 1, 1975, including areas designated by Executive order or included by public land withdrawal, continue in the System until an Act of Congress provides otherwise; acquired refuge lands may be disposed of only with Migratory Bird Conservation Commission approval.",
+   "held_path": "jobs/source-ladder/output/texts/USC_16_U.S.C._668dd_a_6_cd9a4906a8.txt",
+   "sha256": "a6e557a00e6600a0224da7917efc3ae62b2cd6ce139e3b3e7f004b4401909d08",
+   "pin": "shall continue to be a part of the System until otherwise specified by Act of Congress"
+  },
+  {
+   "id": "S02",
+   "citation": "16 U.S.C. 668dd note \"National Wildlife Refuges\" (2024 ed.), entries for Flattery Rocks and Quillayute Needles National Wildlife Refuges",
+   "title": "U.S. Code statutory note listing provisions relating to national wildlife refuges",
+   "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title16/pdf/USCODE-2024-title16-chap5A-subchapIII-sec668dd.pdf",
+   "held": true,
+   "establishes": "The current U.S. Code lists EO 703 and EO 705 (Oct. 23, 1907), Proclamation 2416 and Pub. L. 100-226 sec. 3 as the provisions relating to the Flattery Rocks and Quillayute Needles National Wildlife Refuges.",
+   "held_path": "jobs/source-ladder/output/texts/USC_16_U.S.C._668dd_a_6_cd9a4906a8.txt",
+   "sha256": "a6e557a00e6600a0224da7917efc3ae62b2cd6ce139e3b3e7f004b4401909d08",
+   "pin": "Ex. Ord. No. 703, Oct. 23, 1907"
+  },
+  {
+   "id": "S03",
+   "citation": "43 U.S.C. 1714(j) and (l) (2024 ed.); Pub. L. 94-579, title II, sec. 204, 90 Stat. 2751 (1976) (FLPMA sec. 204)",
+   "title": "Federal Land Policy and Management Act, withdrawals",
+   "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title43/pdf/USCODE-2024-title43-chap35-subchapII-sec1714.pdf",
+   "held": true,
+   "establishes": "The Secretary of the Interior may not modify or revoke any withdrawal which added lands to the National Wildlife Refuge System before October 21, 1976; withdrawals of other federal lands in eleven western States were to be reviewed (a review program, not an end).",
+   "held_path": "jobs/source-ladder/output/texts/USC_43_U.S.C._1714_j_._7ba3070691.txt",
+   "sha256": "235ef530b1a1899774452cfe0f37961d2dc185121ad5bd5ab4e608a6a17bdfd9",
+   "pin": "revoke any withdrawal which added lands to the National Wildlife Refuge System prior to October 21, 1976"
+  },
+  {
+   "id": "S04",
+   "citation": "Proclamation No. 2416, July 25, 1940, 54 Stat. 2717, 5 F.R. 2677",
+   "title": "Changing the Names of Certain Federal Wildlife Refuges",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-54/pdf/STATUTE-54-Pg2717.pdf",
+   "held": true,
+   "establishes": "Renamed the federal bird and wildlife reservations as National Wildlife Refuges, listing old and new names (in Alaska: Aleutian Islands, Bering Sea, Bogoslof, Chamisso Island, Forrester Island, Hazy Islands, Nunivak Island, Saint Lazaria and Tuxedni Reservations); a change of name only, which continues the reservations.",
+   "held_path": "jobs/astra-source-retention/output/pages/15e01816ebc165ff00f747861704bae240f51f4f7578f1c14f53a942e5fa96de/attributed-derivatives/fab36cf01a256ec30f4ba8de5d4e4b60feaf67c1e7d3f3501a9a7dca6dafe455.txt",
+   "sha256": "fab36cf01a256ec30f4ba8de5d4e4b60feaf67c1e7d3f3501a9a7dca6dafe455",
+   "pin": "do proclaim that the names",
+   "row_pins": {
+    "Aleutian Islands Reservation": "Aleutian Islands Reservation",
+    "Bering Sea Reservation": "Bering Sea Reservation",
+    "Bogoslof Reservation": "Bogoslof Reservation",
+    "Chamisso Island Reservation": "Chamisso Island Reservation",
+    "Forrester Island Reservation": "Forrester Island Reservation",
+    "Hazy Islands Reservation": "Hazy Islands Reservation",
+    "Nunivak Island Reservation": "Nunivak Island Reservation",
+    "Saint Lazaria Reservation": "Saint Lazaria Reservation",
+    "Tuxedni Reservation": "Tuxedni Reservation",
+    "Bering Sea National Wildlife": "Bering Sea National Wildlife",
+    "Bogoslof National Wildlife": "Bogoslof National Wildlife",
+    "Chamisso National Wildlife": "Chamisso National Wildlife",
+    "Hazy Islands National Wildlife": "Hazy Islands National Wildlife",
+    "Nunivak National Wildlife": "Nunivak National Wildlife",
+    "Saint Lazaria National Wildlife": "Saint Lazaria National Wildlife",
+    "Tuxedni National Wildlife": "Tuxedni National Wildlife",
+    "Aleutian Islands National Wild": "Aleutian Islands National Wild",
+    "Forrester Island National Wild": "Forrester Island National Wild"
+   }
+  },
+  {
+   "id": "S05",
+   "citation": "Reorganization Plan No. II of 1939, secs. 2(a) and 4(f), 4 F.R. 2731 (July 1, 1939), 53 Stat. 1431 (Statutes at Large page from the U.S. Code appendix credit line, not checked in a held copy); effective July 1, 1939 by Pub. Res. No. 20, 76th Cong.",
+   "title": "Reorganization Plan No. II of 1939",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1939-07-01/pdf/FR-1939-07-01.pdf",
+   "held": true,
+   "establishes": "Transferred the Bureau of Lighthouses to the Coast Guard (sec. 2(a)) and the Bureau of Biological Survey to the Department of the Interior (sec. 4(f)); transfers of administration that continue, not end, the reservations.",
+   "held_path": "jobs/astra-source-retention/output/pages/5437e663677371c8db1016ea81a834f6cca735ff9fa988e08397fb99c73ccd36/attributed-derivatives/c1ca82e037a2d1404b6be6cc6c38fc88cc064007bfe4164254c5cd11b47d3d0b.txt",
+   "sha256": "c1ca82e037a2d1404b6be6cc6c38fc88cc064007bfe4164254c5cd11b47d3d0b",
+   "pin": "(f) Bureau of Biological Survey"
+  },
+  {
+   "id": "S06",
+   "citation": "Pub. L. 100-226, sec. 3, Dec. 31, 1987, 101 Stat. 1550",
+   "title": "Quillayute Needles and Flattery Rocks National Wildlife Refuges",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-101/pdf/STATUTE-101-Pg1550.pdf",
+   "held": false,
+   "establishes": "Sec. 3(a): \"Notwithstanding any other provision of Public Law 99-635, land and waters in the Quillayute Needles National Wildlife Refuge and Flattery Rocks National Wildlife Refuge established as preserves for native birds and animals by Executive orders dated October 23, 1907, as amended, which are within the boundaries of Olympic National Park, shall be administered by the United States Fish and Wildlife Service for refuge purposes under laws and regulations applicable to the national wildlife refuge system\". The direction reaches only refuge lands and waters within the park; the section recognizes that the 1907 orders established both refuges (read at https://usc-cdn.house.gov/statutes/pl/100/226.pdf, not held)."
+  },
+  {
+   "id": "S07",
+   "citation": "50 CFR 216.85 (eCFR as of 2026-10-14)",
+   "title": "Walrus and Otter Islands",
+   "url": "https://www.ecfr.gov/on/2026-10-14/title-50/section-216.85",
+   "held": true,
+   "establishes": "A regulation in force on the cutoff states that EO 1044 set aside Walrus and Otter Islands as bird reservations and prohibits landing on them except as authorized.",
+   "held_path": "jobs/current-law/output/MENTIONS.csv",
+   "sha256": "0af2d6b227dee12f2925791b78a28657a70090898bc091d5b84c2f0b755aeb74",
+   "pin": "By Executive Order 1044, dated February 27, 1909, Walrus and Otter Islands were set aside as bird reservations"
+  },
+  {
+   "id": "S08",
+   "citation": "43 U.S.C. 1787(b)(4)(B)(ii) (U.S. Code release point 119-121); Pub. L. 110-229, title II, sec. 202, May 8, 2008, 122 Stat. 763",
+   "title": "Jupiter Inlet Lighthouse Outstanding Natural Area",
+   "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title43-section1787&num=0&edition=prelim",
+   "held": true,
+   "establishes": "Current statute lists Executive Order No. 4254 (June 12, 1925) among the orders under which existing withdrawals of the Jupiter Inlet lands are made.",
+   "held_path": "jobs/current-law/output/MENTIONS.csv",
+   "sha256": "0af2d6b227dee12f2925791b78a28657a70090898bc091d5b84c2f0b755aeb74",
+   "pin": "(ii) Executive Order No. 4254 (June 12, 1925)"
+  },
+  {
+   "id": "S09",
+   "citation": "43 U.S.C. 1787(b)(4)(A); Pub. L. 110-229, sec. 202, 122 Stat. 763 (2008)",
+   "title": "Jupiter Inlet withdrawal \"subject to ... any existing withdrawals under the Executive orders\"",
+   "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title43-section1787&num=0&edition=prelim",
+   "held": false,
+   "establishes": "The new 2008 withdrawal is made \"Subject to valid existing rights, subsection (e), and any existing withdrawals under the Executive orders and public land order described in subparagraph (B)\", that is, it treats the EO 4254 withdrawal as existing (read on the web, not held)."
+  },
+  {
+   "id": "S10",
+   "citation": "Pub. L. 96-487 (ANILCA), title III, sec. 303(1)(A), 94 Stat. 2389, and sec. 303(7)(A), 94 Stat. 2392, Dec. 2, 1980 (pages as given in the held 16 U.S.C. 668dd note, which misprints the Yukon Delta entry as Pub. L. 96-498, and in the NPS print of the Act)",
+   "title": "Alaska National Interest Lands Conservation Act: Alaska Maritime and Yukon Delta National Wildlife Refuges",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-94/pdf/STATUTE-94-Pg2371.pdf",
+   "held": false,
+   "establishes": "Sec. 303(1)(A): the Alaska Maritime NWR \"shall consist of eleven existing refuges\", among them Chamisso, Bering Sea, Pribilof (Walrus and Otter Islands), Aleutian Islands, Bogoslof, Forrester Island, Hazy Islands, Saint Lazaria and Tuxedni (the other two are Simeonof and Semidi). Sec. 303(7)(A): \"The Yukon Delta National Wildlife Refuge shall consist of the existing Clarence Rhode National Wildlife Range, Hazen Bay National Wildlife Refuge, and Nunivak National Wildlife Refuge\" and other lands. Read in the NPS print, https://www.nps.gov/subjects/wilderness/upload/ANILCA_508.pdf; not held."
+  },
+  {
+   "id": "S11",
+   "citation": "Pub. L. 96-487 (ANILCA), sec. 305, 94 Stat. 2395 (1980) (page from the 94 STAT. markers of the NPS print; confirm against the Statutes at Large when held)",
+   "title": "ANILCA sec. 305, Prior authorities",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-94/pdf/STATUTE-94-Pg2371.pdf",
+   "held": false,
+   "establishes": "Sec. 305 (Prior authorities) reads in full: \"All proclamations, Executive orders, public land orders, and other administrative actions in effect on the day before the date of the enactment of this Act with respect to units of the National Wildlife Refuge System in the State shall remain in force and effect except to the extent that they are inconsistent with this Act or the Alaska Native Claims Settlement Act and, in any such case, the provisions of such Acts shall prevail. All land within the boundaries described or depicted in any such action shall, if the unit of the National Wildlife Refuge System concerned is incorporated within any refuge established or redesignated by or described in section 302 or 303, be included within such refuge. All funds available on such date of enactment for administration of any refuge shall remain available for the administration of such refuge.\" Read in the NPS print; not held."
+  },
+  {
+   "id": "S20",
+   "citation": "Executive Order 4832, March 17, 1928",
+   "title": "EO 4832 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes EO 763 (Feb. 24, 1908) and EO 1057 (Apr. 2, 1909), the Mosquito Inlet bird reservation orders, in full (\"are hereby revoked\").",
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4832.txt",
+   "sha256": "61366fcff4adfc48ed2124a951f63ad427f1f5b2fdf7fcb9be9ecef0b8a55a30",
+   "pin": "(No. 763), and April 2, 1909 (No. 1057)"
+  },
+  {
+   "id": "S21",
+   "citation": "Executive Order 3470, May 20, 1921",
+   "title": "EO 3470 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes EO 961 (Oct. 26, 1908), Loch Katrine Reservation, in full.",
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3470.txt",
+   "sha256": "0b11a4e5ec7f71fd9ebea04bda6ec54acb34b4d05ad59f2bc0eedf9090a1bea4",
+   "pin": "Loch Katrine Reservation, is hereby revoked"
+  },
+  {
+   "id": "S22",
+   "citation": "Executive Order 3469, May 20, 1921",
+   "title": "EO 3469 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes EO 2438 (Aug. 9, 1916), San Francisco Bay Reservation on Goat Island, in full (\"is hereby revoked\").",
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3469.txt",
+   "sha256": "d14fe62bcc684a103dde6a92de08e02f29d20584a251682a71d793df3dfb1fe1",
+   "pin": "Executive Order No, 2438, dated August 9"
+  },
+  {
+   "id": "S23",
+   "citation": "Executive Order 3642, February 27, 1922",
+   "title": "EO 3642 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes EO 1041 (Feb. 27, 1909), Yukon Delta Reservation, in full.",
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3642.txt",
+   "sha256": "4a7e2b51c4dbb65e21bee00dde421cb2dc885b69d364ca7bdbca691e3428ce8c",
+   "pin": "Yukon Delta Reservation, is hereby revoked"
+  },
+  {
+   "id": "S24",
+   "citation": "Executive Order 4490, August 3, 1926",
+   "title": "EO 4490 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes EO 1763 (Apr. 21, 1913), Walker Lake bird reservation, in full (\"is hereby revoked\"), and opens the lands to ex-service homestead entry for 91 days beginning on the 63rd day, then to general appropriation.",
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4490.txt",
+   "sha256": "777f9a5d3e1ab35c53c6b8f0c215a86dafdd06bac1bf38a5ebc148931a8c7bc4",
+   "pin": "(No. 1763)"
+  },
+  {
+   "id": "S25",
+   "citation": "Executive Order 5515, December 15, 1930",
+   "title": "EO 5515 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes EO 5349 (May 12, 1930), Bird Island Wild Life Refuge, Utah, in full (\"is hereby revoked\").",
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5515-revocation-bird-island-wild-life-refuge.txt",
+   "sha256": "af0e0144574d80194b516b89594172b42fe06ca66e5a2a66c9fbc6e6cbec7fdc",
+   "pin": "Executive Order No. 5349 of May 12, 1930"
+  },
+  {
+   "id": "S26",
+   "citation": "Executive Order 5748, November 12, 1931",
+   "title": "EO 5748 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes EO 4626 (Apr. 6, 1927) in full and reserves the Savannah River Wild Life Refuge anew.",
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5748-savannah-river-wild-life-refuge-georgia-and-south-carolina.txt",
+   "sha256": "71571ff3f8efece5183b95b798c6231ecc297a028ca354c2cfbd5af2677f523f",
+   "pin": "Executive Order No. 4626, dated April 6, 1927, creating the Savannah River Bird Refuge in South Carolina, for the protection of native birds, be, and the same is hereby, revoked"
+  },
+  {
+   "id": "S27",
+   "citation": "Executive Order 5945, November 3, 1932",
+   "title": "EO 5945 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Supersedes EO 4975 (Oct. 4, 1928), Tule Lake Bird Refuge, and reserves the Tule Lake Wild Life Refuge anew.",
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5945-establishing-the-tule-lake-wild-life-refuge-california.txt",
+   "sha256": "c0a888e81a9729781c40fcdb97e98ce42714ad35be8489374f4964d5ccf903c5",
+   "pin": "This order supersedes Executive Order No. 4975, of October 4, 1928"
+  },
+  {
+   "id": "S28",
+   "citation": "Executive Order 7485, November 6, 1936",
+   "title": "EO 7485 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes EO 2124 (Jan. 20, 1915), Ediz Hook Reservation, in full.",
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7485-revocation-executive-order-no-2124-january-20-1915-establishing-ediz.txt",
+   "sha256": "ba592c4ac48d3286c7b765af159cca8d747eb20cbeef6e12ec69d6a0a8f5dcde",
+   "pin": "Executive Order No. 2124 of January 20, 1915"
+  },
+  {
+   "id": "S29",
+   "citation": "Executive Order 7537, January 14, 1937",
+   "title": "EO 7537 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Supersedes EO 5097 (Apr. 20, 1929), authority to lease Alaska lighthouse reserves for fur farming.",
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7537-authorizing-the-leasing-certain-reserved-lands.txt",
+   "sha256": "1bd501f882b9c811b32836b1d7042c4618dbad529f3862e11c78f27d16846b48",
+   "pin": "This order supersedes Executive Order No. 5097 of April 20, 1929"
+  },
+  {
+   "id": "S30",
+   "citation": "Executive Order 7983, October 4, 1938",
+   "title": "EO 7983 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes the Executive orders of Oct. 4, 1904 and Nov. 11, 1905 (EO 369-A) that reserved the Breton Island Reservation, and reserves the Breton Bird Refuge anew.",
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7983-establishing-the-breton-bird-refuge.txt",
+   "sha256": "376adbbd59359ea6062e41b096062b53fe72918d629b51ae7bf9087072501fbb",
+   "pin": "November 11, 1905, reserving certain of these islands as the Breton Island Reservation, are hereby revoked"
+  },
+  {
+   "id": "SM",
+   "member_text": true,
+   "citation": "The member's own order text (held text path, sha256 and grade recorded on each lead)",
+   "title": "Member's own text",
+   "establishes": "The order's own operative words: what it reserves, revokes, restores, reduces or amends, and any period it states."
+  },
+  {
+   "id": "S32",
+   "citation": "Executive Order 3957, February 15, 1924 (own text)",
+   "title": "EO 3957 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Restores the Blackbeard Island reservation of July 17, 1914 (EO 1993) \"in its original area and for the original purpose\"; the verb applied to EO 2203 is illegible in the held OCR.",
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3957.txt",
+   "sha256": "e28731883881f4cece5a26fd22dcd3287ee8b2554339ac624b2f8d5a22ea15a7",
+   "pin": "is hereby restored in its original area and for the original purpose"
+  },
+  {
+   "id": "S-BLM-1-694",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 1-694 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 1-694",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_1-694.pdf",
+   "held": true,
+   "establishes": "Official BLM finding aid listing each Public Land Order with signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_1-694.txt",
+   "sha256": "d8a6e9b1da9f4c6a22973f7a6d8a5a88f3cee5b00c1460e14f0e6d878e9d4ec0",
+   "pin": "revoking EO No. 6086; establishing the Rio Grande Wildlife Refuge",
+   "row_pins": {
+    "PLO 378": "revoking EO No. 6086; establishing the Rio Grande Wildlife Refuge",
+    "PLO 446": "revoking EO No. 942 of Sept. 26, 1908",
+    "PLO 501": "revoking EO No. 6065 of Mar. 3, 1933, as amended, covering Boulder Canyon National Wildlife Refuge",
+    "PLO 521": "revoking EO No. 2759 of Nov. 22, 1917",
+    "PLO 650": "revoking EOs of Feb. 10, 1906 and No. 3502 of June 25, 1921; establishing and enlarging Indian Key Reservation"
+   }
+  },
+  {
+   "id": "S-BLM-695-2250",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 695-2250 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 695-2250",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_695-2250.pdf",
+   "held": true,
+   "establishes": "Official BLM finding aid listing each Public Land Order with signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_695-2250.txt",
+   "sha256": "1ce79fcd2011978c3f4b9399b8ddc7a26b302c4cdfd4e1f79640edbb680ea0dc",
+   "pin": "revoking EO No. 5522 of Dec. 31, 1930",
+   "row_pins": {
+    "PLO 732": "revoking EO No. 5522 of Dec. 31, 1930",
+    "PLO 892": "Louisiana; revoking EO of Aug. 8, 1907",
+    "PLO 912": "revoking EO No. 5122 of May 18, 1929",
+    "PLO 954": "revoking EO No. 6912 of Dec. 3, 1934",
+    "PLO 1352": "revoking EO No. 1292 of Jan. 30, 1911",
+    "PLO 1423": "revoking EO No. 4501 of Aug. 28, 1926",
+    "PLO 1511": "revoking EO No. 929 of Aug. 18, 1908, establishing Lake Malheur Reserva- tion; and 5891 of July 16, 1932 and 6152 of June 1, 1933",
+    "PLO 1561": "revoking EO No. 3671 of May 8, 1922",
+    "PLO 1584": "revoking EO No. 1775 of May 6, 1913",
+    "PLO 1636": "revoking EOs of Apr. 12, 1906 and No. 5562 of Feb. 20, 1931, entirely",
+    "PLO 1733": "revoking EO No. 2638 of June 12, 1917",
+    "PLO 1765": "revoking EO No. 3079 of Apr. 22, 1919",
+    "PLO 2196": "revoking EO No. 6761 of June 29, 1934"
+   }
+  },
+  {
+   "id": "S-BLM-2251-4975",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 2251-4975 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 2251-4975",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_2251-4975.pdf",
+   "held": true,
+   "establishes": "Official BLM finding aid listing each Public Land Order with signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_2251-4975.txt",
+   "sha256": "b7c9d636b93f96287f7649204c0359bac5165805d12ea3bfe65580e25e277e61",
+   "pin": "revoking EO No. 4391 of Mar. 11, 1926",
+   "row_pins": {
+    "PLO 2306": "revoking EO No. 4391 of Mar. 11, 1926",
+    "PLO 2358": "revoking EO No. 6673 of Apr. 9, 1934",
+    "PLO 2494": "revoking EO No. 7476 of Oct. 23, 1936",
+    "PLO 2933": "California; revoking EO of July 3, 1905 and No. 936",
+    "PLO 2960": "Nevada; revoking EO No. 4387",
+    "PLO 3463": "revoking EO No. 4328 of Oct. 21, 1925",
+    "PLO 4371": "revoking EO Nos. 5903 and 6697",
+    "PLO 4466": "Montana; revoking EO No. 1664",
+    "PLO 4597": "Louisiana; revoking EO No. 718",
+    "PLO 4911": "revoking EO No. 5727 of Sept. 29, 1931"
+   }
+  },
+  {
+   "id": "S-BLM-4976-5806",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 4976-5806 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 4976-5806",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_4976-5806.pdf",
+   "held": true,
+   "establishes": "Official BLM finding aid listing each Public Land Order with signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_4976-5806.txt",
+   "sha256": "4833c0a53a91cbcca280c3d52a1ff168baf669c9afa923c67bf066a373f74d1c",
+   "pin": "revoking EO Nos. 1959, 7594, 7595",
+   "row_pins": {
+    "PLO 5515": "revoking EO Nos. 1959, 7594, 7595"
+   }
+  },
+  {
+   "id": "S-BLM-5807-6825",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 5807-6825 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 5807-6825",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_5807-6825.pdf",
+   "held": true,
+   "establishes": "Official BLM finding aid listing each Public Land Order with signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_5807-6825.txt",
+   "sha256": "4bff6e1558a69b2b9851e54260d6bc1d131ccea18112222c2cceaa067ffbb351",
+   "pin": "revoking EO Nos. 4082, 4364, 4774 and 5702",
+   "row_pins": {
+    "PLO 6287": "revoking EO Nos. 4082, 4364, 4774 and 5702"
+   }
+  },
+  {
+   "id": "S-BLM-6826-7342",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 6826-7342 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 6826-7342",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_6826-7342.pdf",
+   "held": true,
+   "establishes": "Official BLM finding aid listing each Public Land Order with signature date, subject heading and Federal Register citation; it describes, but is not, the order.",
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_6826-7342.txt",
+   "sha256": "701bb038081fad00a8cc3f4107730238b75c6c905b66561d778193aa5505c3db",
+   "pin": "revoking in part EO dated Oct. 22, 1854, and EO No. 4254 of June 12, 1925",
+   "row_pins": {}
+  },
+  {
+   "id": "S40",
+   "citation": "Federal Land Policy and Management Act of 1976, Pub. L. 94-579, secs. 701 and 704(a), 90 Stat. 2743, 2786, 2792 (Statutes at Large pages for secs. 701 and 704 not verified in a held copy)",
+   "title": "FLPMA savings and repeal provisions",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-90/pdf/STATUTE-90-Pg2743.pdf",
+   "held": false,
+   "establishes": "Repeals the implied withdrawal authority and the Pickett Act prospectively (sec. 704(a)) and saves existing withdrawals (sec. 701): continuity, never an end."
+  },
+  {
+   "id": "S41",
+   "citation": "National Historic Lighthouse Preservation Act of 2000, Pub. L. 106-355, Oct. 24, 2000, 114 Stat. 1385 (54 U.S.C. 305101-305106)",
+   "title": "National Historic Lighthouse Preservation Act",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-114/pdf/STATUTE-114-Pg1385.pdf",
+   "held": false,
+   "establishes": "Provides for conveyance of historic light stations by the Administrator of General Services by quitclaim deed, station by station; it does not itself revoke any reservation."
+  },
+  {
+   "id": "S42",
+   "citation": "Federal Property and Administrative Services Act of 1949, ch. 288, 63 Stat. 377",
+   "title": "Surplus property disposal",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-63/pdf/STATUTE-63-Pg377.pdf",
+   "held": false,
+   "establishes": "General authority for disposal of surplus federal property, applied station by station; not a class-wide end."
+  },
+  {
+   "id": "S43",
+   "citation": "Migratory Bird Conservation Act, Feb. 18, 1929, ch. 257, 45 Stat. 1222 (16 U.S.C. 715 et seq.)",
+   "title": "Migratory Bird Conservation Act",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-45/pdf/STATUTE-45-Pg1222.pdf",
+   "held": false,
+   "establishes": "Authority for acquiring refuge lands, cited by the 1934-1936 orders that reserve lands \"acquired or to be acquired\"; their federal status rests on title as well as on the order."
+  },
+  {
+   "id": "S44",
+   "citation": "U.S. Fish and Wildlife Service, Annual Report of Lands, data tables as of Sept. 30, 2024, Table 3 (National Wildlife Refuges, acres by State and unit)",
+   "title": "FWS Annual Report of Lands FY2024",
+   "url": "https://www.fws.gov/sites/default/files/documents/2025-05/2024_annual_report_of_lands_data_tables.pdf",
+   "held": false,
+   "establishes": "Official current list of refuge units with acreage by interest type, including \"Reserved from Public Domain\"; it names refuges, not executive orders, so it supports a current predicate only through a reviewed refuge-to-order crosswalk."
+  },
+  {
+   "id": "S-PLO-378",
+   "citation": "Public Land Order No. 378, signed 1947-07-01, 12 FR 4588",
+   "title": "PLO 378",
+   "url": "https://www.govinfo.gov/link/fr/12/4588?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 6086; establishing the Rio Grande Wildlife Refuge\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-446",
+   "citation": "Public Land Order No. 446, signed 1948-02-06, 13 FR 657",
+   "title": "PLO 446",
+   "url": "https://www.govinfo.gov/link/fr/13/657?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 942 of Sept. 26, 1908\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-501",
+   "citation": "Public Land Order No. 501, signed 1948-07-22, 13 FR 4443",
+   "title": "PLO 501",
+   "url": "https://www.govinfo.gov/link/fr/13/4443?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 6065 of Mar. 3, 1933, as amended, covering Boulder Canyon National Wildlife Refuge\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-521",
+   "citation": "Public Land Order No. 521, signed 1948-09-09, 13 FR 5440",
+   "title": "PLO 521",
+   "url": "https://www.govinfo.gov/link/fr/13/5440?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 2759 of Nov. 22, 1917\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-650",
+   "citation": "Public Land Order No. 650, signed 1950-06-26, 15 FR 4193",
+   "title": "PLO 650",
+   "url": "https://www.govinfo.gov/link/fr/15/4193?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EOs of Feb. 10, 1906 and No. 3502 of June 25, 1921; establishing and enlarging Indian Key Reservation\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-732",
+   "citation": "Public Land Order No. 732, signed 1951-07-13, 16 FR 6948",
+   "title": "PLO 732",
+   "url": "https://www.govinfo.gov/link/fr/16/6948?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 5522 of Dec. 31, 1930\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-892",
+   "citation": "Public Land Order No. 892, signed 1953-04-15, 18 FR 2342",
+   "title": "PLO 892",
+   "url": "https://www.govinfo.gov/link/fr/18/2342?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Louisiana; revoking EO of Aug. 8, 1907\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-912",
+   "citation": "Public Land Order No. 912, signed 1953-08-10, 18 FR 4856",
+   "title": "PLO 912",
+   "url": "https://www.govinfo.gov/link/fr/18/4856?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 5122 of May 18, 1929\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-954",
+   "citation": "Public Land Order No. 954, signed 1954-04-13, 19 FR 2260",
+   "title": "PLO 954",
+   "url": "https://www.govinfo.gov/link/fr/19/2260?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 6912 of Dec. 3, 1934\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1352",
+   "citation": "Public Land Order No. 1352, signed 1956-10-25, 21 FR 8321",
+   "title": "PLO 1352",
+   "url": "https://www.govinfo.gov/link/fr/21/8321?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1292 of Jan. 30, 1911\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1423",
+   "citation": "Public Land Order No. 1423, signed 1957-05-24, 22 FR 3791",
+   "title": "PLO 1423",
+   "url": "https://www.govinfo.gov/link/fr/22/3791?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4501 of Aug. 28, 1926\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1511",
+   "citation": "Public Land Order No. 1511, signed 1957-09-24, 22 FR 7743",
+   "title": "PLO 1511",
+   "url": "https://www.govinfo.gov/link/fr/22/7743?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 929 of Aug. 18, 1908, establishing Lake Malheur Reserva- tion; and 5891 of July 16, 1932 and 6152 of June 1, 1933\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1561",
+   "citation": "Public Land Order No. 1561, signed 1957-12-06, 22 FR 9938",
+   "title": "PLO 1561",
+   "url": "https://www.govinfo.gov/link/fr/22/9938?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3671 of May 8, 1922\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1584",
+   "citation": "Public Land Order No. 1584, signed 1958-02-07, 23 FR 941",
+   "title": "PLO 1584",
+   "url": "https://www.govinfo.gov/link/fr/23/941?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 1775 of May 6, 1913\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1636",
+   "citation": "Public Land Order No. 1636, signed 1958-05-14, 23 FR 3388",
+   "title": "PLO 1636",
+   "url": "https://www.govinfo.gov/link/fr/23/3388?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EOs of Apr. 12, 1906 and No. 5562 of Feb. 20, 1931, entirely\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1733",
+   "citation": "Public Land Order No. 1733, signed 1958-09-17, 23 FR 7384",
+   "title": "PLO 1733",
+   "url": "https://www.govinfo.gov/link/fr/23/7384?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 2638 of June 12, 1917\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-1765",
+   "citation": "Public Land Order No. 1765, signed 1958-12-11, 23 FR 9711",
+   "title": "PLO 1765",
+   "url": "https://www.govinfo.gov/link/fr/23/9711?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 3079 of Apr. 22, 1919\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2196",
+   "citation": "Public Land Order No. 2196, signed 1960-08-26, 25 FR 8485",
+   "title": "PLO 2196",
+   "url": "https://www.govinfo.gov/link/fr/25/8485?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 6761 of June 29, 1934\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2306",
+   "citation": "Public Land Order No. 2306, signed 1961-03-16, 26 FR 2467",
+   "title": "PLO 2306",
+   "url": "https://www.govinfo.gov/link/fr/26/2467?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4391 of Mar. 11, 1926\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2358",
+   "citation": "Public Land Order No. 2358, signed 1961-05-04, 26 FR 4015",
+   "title": "PLO 2358",
+   "url": "https://www.govinfo.gov/link/fr/26/4015?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 6673 of Apr. 9, 1934\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2494",
+   "citation": "Public Land Order No. 2494, signed 1961-09-13, 26 FR 8811",
+   "title": "PLO 2494",
+   "url": "https://www.govinfo.gov/link/fr/26/8811?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 7476 of Oct. 23, 1936\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2933",
+   "citation": "Public Land Order No. 2933, signed 1963-02-11, 28 FR 1476",
+   "title": "PLO 2933",
+   "url": "https://www.govinfo.gov/link/fr/28/1476?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"California; revoking EO of July 3, 1905 and No. 936\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-2960",
+   "citation": "Public Land Order No. 2960, signed 1963-03-04, 28 FR 2280",
+   "title": "PLO 2960",
+   "url": "https://www.govinfo.gov/link/fr/28/2280?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Nevada; revoking EO No. 4387\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-3463",
+   "citation": "Public Land Order No. 3463, signed 1964-11-23, 29 FR 15925",
+   "title": "PLO 3463",
+   "url": "https://www.govinfo.gov/link/fr/29/15925?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 4328 of Oct. 21, 1925\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-4371",
+   "citation": "Public Land Order No. 4371, signed 1968-02-26, 33 FR 3636",
+   "title": "PLO 4371",
+   "url": "https://www.govinfo.gov/link/fr/33/3636?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO Nos. 5903 and 6697\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-4466",
+   "citation": "Public Land Order No. 4466, signed 1968-06-25, 33 FR 9618",
+   "title": "PLO 4466",
+   "url": "https://www.govinfo.gov/link/fr/33/9618?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Montana; revoking EO No. 1664\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-4597",
+   "citation": "Public Land Order No. 4597, signed 1969-04-10, 34 FR 6584",
+   "title": "PLO 4597",
+   "url": "https://www.govinfo.gov/link/fr/34/6584?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"Louisiana; revoking EO No. 718\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-4911",
+   "citation": "Public Land Order No. 4911, signed 1970-09-22, 35 FR 14988",
+   "title": "PLO 4911",
+   "url": "https://www.govinfo.gov/link/fr/35/14988?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO No. 5727 of Sept. 29, 1931\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-5515",
+   "citation": "Public Land Order No. 5515, signed 1975-08-27, 40 FR 40811",
+   "title": "PLO 5515",
+   "url": "https://www.govinfo.gov/link/fr/40/40811?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO Nos. 1959, 7594, 7595\". The PLO text itself is not held."
+  },
+  {
+   "id": "S-PLO-6287",
+   "citation": "Public Land Order No. 6287, signed 1982-06-16, 47 FR 27292",
+   "title": "PLO 6287",
+   "url": "https://www.govinfo.gov/link/fr/47/27292?link-type=pdf",
+   "held": false,
+   "establishes": "Per the held BLM table: \"revoking EO Nos. 4082, 4364, 4774 and 5702\". The PLO text itself is not held."
+  },
+  {
+   "id": "S31",
+   "citation": "Executive Order 5750, November 23, 1931",
+   "title": "EO 5750 (held text, OFR 1974 Hoover compilation)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes the \"Executive order of November 27, 1905, which withdrew lots 8 and 9, fractional sec. 36, township 29 south, range 10 east of the Mount Diablo meridian, California, for lighthouse purposes\", that is, the whole of EO 375-A, which reserved exactly those two lots on that date.",
+   "held_path": "jobs/ofr-compilations/output/texts/EO_5750.txt",
+   "sha256": "8d5ad6066d95a6a9071eb8eec61aca3546d73c39f85b901ee9e5c84a7b21a0cd",
+   "pin": "Executive order of November 27, 1905 , which withdrew lots 8 and 9"
+  },
+  {
+   "id": "S33",
+   "citation": "Executive Order 1311, March 1, 1911",
+   "title": "EO 1311 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Restores the same two Florida tracts \"in lieu of Executive Order No. 1304, dated February 18, 1911\": EO 1304 is replaced by number twelve days after issue.",
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_1311.txt",
+   "sha256": "efb96ffbc6b57f9353eb38637cede1625d29dbe7f3e4b58a4d3dfff018ec8497",
+   "pin": "in lieu of Executive Order No. 1304"
+  },
+  {
+   "id": "S45",
+   "citation": "U.S. Fish and Wildlife Service, National Wildlife Refuges in Alaska; Description of Boundaries, 48 FR 7890 (Feb. 24, 1983)",
+   "title": "FWS notice describing the boundaries of the Alaska refuges after ANILCA",
+   "url": "https://www.govinfo.gov/link/fr/48/7890?link-type=pdf",
+   "held": false,
+   "establishes": "Describes the Alaska Maritime NWR subunits by their establishing orders, naming EO 1037 (Bering Sea), 1039 (Tuxedni), 1040 (Saint Lazaria), 1044 (Pribilof), 1049 (Bogoslof), 1458 (Forrester Island), 1459 (Hazy Islands), 1658 (Chamisso), 1733 and 5318 (Aleutian Islands, Amak segment); its Yukon Delta part names the former Nunivak refuge but no executive order. Read on the web in the FWS copy, https://www.fws.gov/r7/nwr/Realty/data/LegalDocuments/FR/Alaska-Maritime-NWR.pdf; not held."
+  },
+  {
+   "id": "S46",
+   "citation": "Proclamation No. 2112, January 4, 1935, Fort Jefferson National Monument (Statutes at Large page unverified)",
+   "title": "Proclamation 2112",
+   "url": "https://www.presidency.ucsb.edu/documents/proclamation-2112-fort-jefferson-national-monument-florida",
+   "held": false,
+   "establishes": "States \"do hereby revoke the aforesaid Executive Order No. 779, of April 6, 1908\" (read on the web at the American Presidency Project; no copy is held in the repository)."
+  },
+  {
+   "id": "S-BLM-7679-7715",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 7679-7715 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 7679-7715",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_7679-7715.pdf",
+   "held": true,
+   "establishes": "Official BLM finding aid: PLO 7693, signed Mar. 14, 2008, 73 FR 15773, \"Minnesota; Revocation of Withdrawal Established by Executive Order Dated February 4, 1909 for the Pigeon Point Lighthouse Reservation\".",
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_7679-7715.txt",
+   "sha256": "d738f0cb5730d08ab673839447289b5c13429b1b634b836d7a96842441cd3541",
+   "pin": "Executive Order Dated February 4, 1909 for the P igeon Point Lighthouse Reservation"
+  },
+  {
+   "id": "S-BLM-7753-7787",
+   "citation": "Bureau of Land Management, Table of Public Land Orders 7753-7787 (official finding aid)",
+   "title": "BLM Table of Public Land Orders 7753-7787",
+   "url": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_7753-7787.pdf",
+   "held": true,
+   "establishes": "Official BLM finding aid: PLO 7765, Apr. 20, 2011, 76 FR 24513, \"Florida; Partial Revocation Jupiter Inlet Lighthouse\" (a partial revocation only).",
+   "held_path": "jobs/shepard-citations/output/texts/blm/plo_7753-7787.txt",
+   "sha256": "cedd1044b7c1ece046e2786bb84b0dc78496cdf68e9d620215ea2cbe73299186",
+   "pin": "Partial Revocation Jupiter Inlet Lighthouse"
+  },
+  {
+   "id": "S-PLO-7693",
+   "citation": "Public Land Order No. 7693, signed 2008-03-14, effective 2008-03-25, 73 FR 15773",
+   "title": "PLO 7693",
+   "url": "https://www.govinfo.gov/content/pkg/FR-2008-03-25/pdf/E8-5995.pdf",
+   "held": false,
+   "establishes": "Revokes in its entirety \"the withdrawal established by Executive Order No. 1020 dated February 4, 1909\" as to lots 1 and 2, fractional sec. 25, and lots 1-4, fractional sec. 26, T. 64 N., R. 7 E., Fourth Principal Meridian, Minnesota (204.09 acres), the whole of EO 1020's land (read on the web, https://regulations.justia.com/regulations/fedreg/2008/03/25/E8-5995.html; not held)."
+  },
+  {
+   "id": "S34",
+   "citation": "Executive Order 7836, March 11, 1938 (Public Water Restoration No. 80)",
+   "title": "EO 7836 (held text)",
+   "url": null,
+   "held": true,
+   "establishes": "Revokes in part the \"Executive Orders of May 25, 1921, April 4, 1922, November 27, 1922, and December 5, 1913, creating, respectively, Public Water Reserves Nos. 77, 82, 85, and 12\" in New Mexico and Wyoming; its order of April 4, 1922 is Public Water Reserve No. 82, not EO 3658.",
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7836-public-water-restoration-no-80.txt",
+   "sha256": "421ada7a669c7454064dee42d013886c48d2072c38f1ef38c2462c9df3c596b1",
+   "pin": "Public Water Reserves Nos. 77, 82, 85, and 12"
+  }
+ ],
+ "procedure": [
+  {
+   "branch_id": "B01",
+   "description": "Flattery Rocks (EO 703) and Quillayute Needles (EO 705) reservations, named by Pub. L. 100-226 sec. 3 and the current 16 U.S.C. 668dd note.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:703",
+      "EO:705"
+     ]
+    },
+    {
+     "text_regex": "Flattery Rocks|uill.?ayute Needles|Quillayute"
+    }
+   ],
+   "lead": {
+    "status_lead": "yes",
+    "lead_kind": "persists_current_statute",
+    "basis_kind": "CURRENT",
+    "basis": "Pub. L. 100-226 sec. 3(a) (1987) directs that the lands and waters of the Quillayute Needles and Flattery Rocks refuges \"established as preserves for native birds and animals by Executive orders dated October 23, 1907, as amended, which are within the boundaries of Olympic National Park\" be administered by the Fish and Wildlife Service for refuge purposes; the current 16 U.S.C. 668dd note lists EO 703 and EO 705 as provisions relating to these refuges; under 16 U.S.C. 668dd(a)(6) an area in the System on or after 1975 continues until an Act of Congress provides otherwise, and none is shown.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M5",
+     "M6",
+     "M7"
+    ],
+    "source_ids": [
+     "S01",
+     "S02",
+     "S06"
+    ]
+   },
+   "gaps": [
+    "Pub. L. 100-226 is read on the web, not held.",
+    "Sec. 3(a) speaks only to refuge lands and waters within Olympic National Park; refuge lands outside the park rest on the 668dd note and 668dd(a)(6), not on sec. 3.",
+    "No Fish and Wildlife Service record naming this order as a current establishing document is held."
+   ]
+  },
+  {
+   "branch_id": "B02",
+   "description": "Pribilof Reservation, Walrus and Otter Islands (EO 1044), named in a current regulation.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1044"
+     ]
+    },
+    {
+     "text_regex": "Walrus island and Otter island|Walrus and Otter"
+    }
+   ],
+   "lead": {
+    "status_lead": "yes",
+    "lead_kind": "persists_current_regulation",
+    "basis_kind": "CURRENT",
+    "basis": "50 CFR 216.85, in force on 2026-10-14, states that EO 1044 set aside Walrus and Otter Islands as bird reservations and prohibits landing on them except as authorized; ANILCA sec. 303(1)(A) makes the existing Pribilof (Walrus and Otter Islands) refuge part of the Alaska Maritime NWR, and sec. 305 keeps in force the Executive orders in effect for Alaska refuge units.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M6",
+     "M5"
+    ],
+    "source_ids": [
+     "S07",
+     "S10",
+     "S11",
+     "S45",
+     "S01"
+    ]
+   },
+   "gaps": [
+    "Only the eCFR search excerpt and section text line of 50 CFR 216.85 are held (current-law MENTIONS.csv); the full section should be retained.",
+    "The 1983 FWS boundary notice (48 FR 7890), which describes the Pribilof subunit by EO 1044, is read on the web and not held."
+   ]
+  },
+  {
+   "branch_id": "B03",
+   "description": "Jupiter Inlet lighthouse reservation adjustment (EO 4254), named by a current statute as an existing withdrawal.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4254"
+     ]
+    },
+    {
+     "text_regex": "October 22,? ?\\.?:?1854|Jupiter Inlet"
+    }
+   ],
+   "lead": {
+    "status_lead": "yes",
+    "lead_kind": "persists_current_statute",
+    "basis_kind": "CURRENT",
+    "basis": "43 U.S.C. 1787(b)(4) (2008, in the current U.S. Code) makes the Jupiter Inlet withdrawal subject to \"any existing withdrawals under the Executive orders\" it lists, including \"Executive Order No. 4254 (June 12, 1925)\"; PLO 7202 (1996) revoked EO 4254 only in part.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": [
+     "S08",
+     "S09",
+     "S-BLM-6826-7342",
+     "S-BLM-7753-7787"
+    ]
+   },
+   "gaps": [
+    "The phrase treating the EO 4254 withdrawal as existing (subsec. (b)(4)(A)) is read on the web; only the listing in (b)(4)(B) is held.",
+    "PLO 7202 (61 FR 29758), which revoked EO 4254 in part in 1996, is known only from the held BLM table; the lands it left withdrawn are not identified in a held copy.",
+    "The held BLM table also lists PLO 7765 (2011, 76 FR 24513), \"Partial Revocation Jupiter Inlet Lighthouse\"; a partial revocation, it does not end the order, and the lands it released are not identified in a held copy."
+   ]
+  },
+  {
+   "branch_id": "B04",
+   "description": "Alaska bird reservations that ANILCA sec. 303 names as existing refuges and sec. 305 keeps in force: Bering Sea (1037), Tuxedni (1039), Saint Lazaria (1040), Bogoslof (1049), Forrester Island (1458), Hazy Islands (1459), Chamisso Island (1658), Nunivak (5095, 5470) and the Amak Island addition to the Aleutian Islands Reservation (5318).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1037",
+      "EO:1039",
+      "EO:1040",
+      "EO:1049",
+      "EO:1458",
+      "EO:1459",
+      "EO:1658",
+      "EO:5095",
+      "EO:5470",
+      "EO:5318"
+     ]
+    },
+    {
+     "text_regex": "Bering Sea Reservation|Tuxedni|Lazaria|Bogoslof|Forrester|Hazy Islands|Chamisso|Nunivak|Aleutian Islands Reservation"
+    }
+   ],
+   "lead": {
+    "status_lead": "yes",
+    "lead_kind": "persists_current_statute",
+    "basis_kind": "CURRENT",
+    "basis": "ANILCA sec. 305 (94 Stat. 2395) provides that \"All proclamations, Executive orders, public land orders, and other administrative actions in effect on the day before the date of the enactment of this Act with respect to units of the National Wildlife Refuge System in the State shall remain in force and effect\" except where inconsistent with ANILCA or ANCSA, and that land within the boundaries of any such action is included in the refuge into which sec. 303 incorporates the unit. Sec. 303(1)(A) makes the Alaska Maritime NWR \"consist of eleven existing refuges\", among them Bering Sea, Tuxedni, Saint Lazaria, Bogoslof, Forrester Island, Hazy Islands, Chamisso and Aleutian Islands, and sec. 303(7)(A) makes the Yukon Delta NWR \"consist of the existing\" Clarence Rhode range and Hazen Bay and Nunivak refuges; 16 U.S.C. 668dd(a)(6) keeps those areas in the System until Congress acts. The member maps to its sec. 303 refuge through held text: seven orders name the reservation they create (\"This reservation to be known as Bering Sea Reservation\"); EO 5095's title reads \"for Establishment of Nunivak Island Reservation\"; EO 5318 and EO 5470 add lands \"to and made part of\" the Aleutian Islands Reservation and the Nunivak Island Reservation; and Proclamation 2416 (held) renamed each of those reservations as the National Wildlife Refuge of the name sec. 303 uses. Eight of the ten orders created a reservation; EO 5318 and EO 5470 enlarged one.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M6",
+     "M5",
+     "M7"
+    ],
+    "source_ids": [
+     "S10",
+     "S11",
+     "S04",
+     "S45",
+     "S01",
+     "SM"
+    ]
+   },
+   "gaps": [
+    "ANILCA (secs. 303 and 305) is read on the web (NPS print), not held; these yes leads wait on its acquisition, and sec. 305's Statutes at Large page is taken from that print.",
+    "Sec. 305 reaches the member as an Executive order in effect on December 1, 1980 for an Alaska refuge unit. For EO 1037, 1039, 1040, 1049, 1458, 1459, 1658 and 5318 the 1983 FWS boundary notice (48 FR 7890, read on the web, not held) describes the current Alaska Maritime subunits by these orders; for EO 5095 and 5470 the Yukon Delta part of that notice names the former Nunivak refuge but no order, so their being in effect in 1980 is inferred from sec. 303(7)(A)'s naming the Nunivak refuge as existing.",
+    "EO 5095 also set Nunivak Island apart for Department of Agriculture reindeer, caribou and musk-ox experiments; sec. 305 continues actions 'with respect to units of the National Wildlife Refuge System', and whether that keeps the order's non-refuge purposes in force is not settled. The lead is that the order is in force at least as to its refuge reservation.",
+    "Parts may have been conveyed under ANCSA or revoked in part (EO 1039 in part by PLO 484, 1948; EO 5095 in part by PLO 1177, 1955); a partial end leaves the order in force as amended."
+   ]
+  },
+  {
+   "branch_id": "B10",
+   "description": "Member revoked in full by EO 4832 (1928-03-17), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:763",
+      "EO:1057"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 4832 of 1928-03-17, held, revoked the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1928-03-17",
+     "basis": "date of EO 4832"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S20"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B11",
+   "description": "Member revoked in full by EO 3470 (1921-05-20), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:961"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3470 of 1921-05-20, held, revoked the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1921-05-20",
+     "basis": "date of EO 3470"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S21"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B12",
+   "description": "Member revoked in full by EO 3469 (1921-05-20), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2438"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3469 of 1921-05-20, held, revoked the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1921-05-20",
+     "basis": "date of EO 3469"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S22"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B13",
+   "description": "Member revoked in full by EO 3642 (1922-02-27), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1041"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 3642 of 1922-02-27, held, revoked the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1922-02-27",
+     "basis": "date of EO 3642"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S23"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B14",
+   "description": "Member revoked in full by EO 4490 (1926-08-03), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1763"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 4490 of 1926-08-03, held, revoked the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1926-08-03",
+     "basis": "date of EO 4490"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S24"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B15",
+   "description": "Member revoked in full by EO 5515 (1930-12-15), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5349"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 5515 of 1930-12-15, held, revoked the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1930-12-15",
+     "basis": "date of EO 5515"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S25"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B16",
+   "description": "Member revoked in full by EO 5748 (1931-11-12), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4626"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 5748 of 1931-11-12, held, revoked the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1931-11-12",
+     "basis": "date of EO 5748"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S26"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original.",
+    "The area continues under the later order; only this order ended."
+   ]
+  },
+  {
+   "branch_id": "B17",
+   "description": "Member superseded in full by EO 5945 (1932-11-03), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4975"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 5945 of 1932-11-03, held, superseded the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1932-11-03",
+     "basis": "date of EO 5945"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S27"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original.",
+    "The area continues under the later order; only this order ended.",
+    "The held later edge EO 7341 (1936) enlarges the Tule Lake Wildlife Refuge established by EO 5945; it is an event of EO 5945, not an act on EO 4975."
+   ]
+  },
+  {
+   "branch_id": "B18",
+   "description": "Member revoked in full by EO 7485 (1936-11-06), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2124"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 7485 of 1936-11-06, held, revoked the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1936-11-06",
+     "basis": "date of EO 7485"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S28"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B19",
+   "description": "Member superseded in full by EO 7537 (1937-01-14), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5097"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 7537 of 1937-01-14, held, superseded the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1937-01-14",
+     "basis": "date of EO 7537"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S29"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original."
+   ]
+  },
+  {
+   "branch_id": "B20",
+   "description": "Member revoked in full by EO 7983 (1938-10-04), whose held text names it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:369A"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 7983 of 1938-10-04, held, revoked the member in full by number or date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1938-10-04",
+     "basis": "date of EO 7983"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S30"
+    ]
+   },
+   "gaps": [
+    "The revoking order's held text is a machine-read copy, not an authenticated original.",
+    "The area continues under the later order; only this order ended."
+   ]
+  },
+  {
+   "branch_id": "B21",
+   "description": "EO 375-A (lots 8 and 9, fractional sec. 36, T. 29 S., R. 10 E., Mount Diablo Meridian, California, reserved for lighthouse purposes on November 27, 1905), revoked in full by EO 5750 (1931-11-23), whose held text describes it by date and tract.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:375A"
+     ]
+    },
+    {
+     "text_regex": "lots 8 and 9"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "Executive Order 5750 of 1931-11-23 (held, official compilation) orders that the \"Executive order of November 27, 1905, which withdrew lots 8 and 9, fractional sec. 36, township 29 south, range 10 east of the Mount Diablo meridian, California, for lighthouse purposes\" be revoked; the member's own text reserves exactly those lots on that date and nothing else.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1931-11-23",
+     "basis": "date of EO 5750"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S31",
+     "SM"
+    ]
+   },
+   "gaps": [
+    "EO 5750 describes the member by date and tract, not by number; the match rests on the identical tract, State, date and purpose.",
+    "The held texts are OCR copies (the EO 5750 text is the OFR 1974 compilation's OCR layer), not human-verified.",
+    "The BLM table row for PLO 541 (1948) revokes an Alaska order of Nov. 27, 1905; it is a date collision with a different order, not an act on this member."
+   ]
+  },
+  {
+   "branch_id": "B22",
+   "description": "EO 1304 (restoration of two Florida lighthouse tracts, 1911-02-18), replaced by number by EO 1311 (1911-03-01), issued \"in lieu of\" it.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1304"
+     ]
+    },
+    {
+     "text_regex": "restored to the public domain"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "replaced_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 1311 (held) restores the same two tracts \"in lieu of Executive Order No. 1304, dated February 18, 1911\". Whether EO 1304's restoration took effect on its date (and was spent on issue, ruling P1) or was displaced before taking effect, the order had no command left once EO 1311 issued.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1911-03-01",
+     "basis": "EO 1304's own date (spent on issue) to the date of EO 1311, which replaced it"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M3"
+    ],
+    "source_ids": [
+     "S33",
+     "SM"
+    ]
+   },
+   "gaps": [
+    "The held texts are machine-read copies; neither says why EO 1304 was replaced (the replacement corrects the section description)."
+   ]
+  },
+  {
+   "branch_id": "B30",
+   "description": "Member revoked in full by PLO 378 (1947-07-01, 12 FR 4588) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6086"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 378, signed 1947-07-01 (12 FR 4588); the held BLM table row reads \"revoking EO No. 6086; establishing the Rio Grande Wildlife Refuge\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1947-07-01",
+     "basis": "PLO 378 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-378"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B31",
+   "description": "Member revoked in full by PLO 446 (1948-02-06, 13 FR 657) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:942"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 446, signed 1948-02-06 (13 FR 657); the held BLM table row reads \"revoking EO No. 942 of Sept. 26, 1908\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1948-02-06",
+     "basis": "PLO 446 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-446"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B32",
+   "description": "Member revoked in full by PLO 501 (1948-07-22, 13 FR 4443) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6065"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 501, signed 1948-07-22 (13 FR 4443); the held BLM table row reads \"revoking EO No. 6065 of Mar. 3, 1933, as amended, covering Boulder Canyon National Wildlife Refuge\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1948-07-22",
+     "basis": "PLO 501 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-501"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date.",
+    "Held edges from EO 8821 (1941) labelled as revocations quote a precedence clause that \"shall not rescind or revoke\" the EO 6065 reservation; they do not end it and do not change this lead."
+   ]
+  },
+  {
+   "branch_id": "B33",
+   "description": "Member revoked in full by PLO 521 (1948-09-09, 13 FR 5440) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2759"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 521, signed 1948-09-09 (13 FR 5440); the held BLM table row reads \"revoking EO No. 2759 of Nov. 22, 1917\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1948-09-09",
+     "basis": "PLO 521 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-521"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B34",
+   "description": "Member revoked in full by PLO 650 (1950-06-26, 15 FR 4193) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:409",
+      "EO:3502"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 650, signed 1950-06-26 (15 FR 4193); the held BLM table row reads \"revoking EOs of Feb. 10, 1906 and No. 3502 of June 25, 1921; establishing and enlarging Indian Key Reservation\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1950-06-26",
+     "basis": "PLO 650 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-1-694",
+     "S-PLO-650"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "The BLM row cites EO 409 by date (\"EOs of Feb. 10, 1906\"), which matches EO 409's date and the Indian Key Reservation it created.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B35",
+   "description": "Member revoked in full by PLO 732 (1951-07-13, 16 FR 6948) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5522"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 732, signed 1951-07-13 (16 FR 6948); the held BLM table row reads \"revoking EO No. 5522 of Dec. 31, 1930\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1951-07-13",
+     "basis": "PLO 732 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-732"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B36",
+   "description": "Member revoked in full by PLO 892 (1953-04-15, 18 FR 2342) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:675"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 892, signed 1953-04-15 (18 FR 2342); the held BLM table row reads \"Louisiana; revoking EO of Aug. 8, 1907\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1953-04-15",
+     "basis": "PLO 892 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-892"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "The BLM row cites the order by date only (\"EO of Aug. 8, 1907\", Louisiana); the match to EO 675 rests on date and State.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B37",
+   "description": "Member revoked in full by PLO 912 (1953-08-10, 18 FR 4856) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5122"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 912, signed 1953-08-10 (18 FR 4856); the held BLM table row reads \"revoking EO No. 5122 of May 18, 1929\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1953-08-10",
+     "basis": "PLO 912 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-912"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B38",
+   "description": "Member revoked in full by PLO 954 (1954-04-13, 19 FR 2260) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6912"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 954, signed 1954-04-13 (19 FR 2260); the held BLM table row reads \"revoking EO No. 6912 of Dec. 3, 1934\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1954-04-13",
+     "basis": "PLO 954 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-954"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B39",
+   "description": "Member revoked in full by PLO 1352 (1956-10-25, 21 FR 8321) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1292"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1352, signed 1956-10-25 (21 FR 8321); the held BLM table row reads \"revoking EO No. 1292 of Jan. 30, 1911\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1956-10-25",
+     "basis": "PLO 1352 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1352"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B40",
+   "description": "Member revoked in full by PLO 1423 (1957-05-24, 22 FR 3791) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4501"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1423, signed 1957-05-24 (22 FR 3791); the held BLM table row reads \"revoking EO No. 4501 of Aug. 28, 1926\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1957-05-24",
+     "basis": "PLO 1423 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1423"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B41",
+   "description": "Member revoked in full by PLO 1511 (1957-09-24, 22 FR 7743) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:929",
+      "EO:5891",
+      "EO:6152"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1511, signed 1957-09-24 (22 FR 7743); the held BLM table row reads \"revoking EO No. 929 of Aug. 18, 1908, establishing Lake Malheur Reserva- tion; and 5891 of July 16, 1932 and 6152 of June 1, 1933\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1957-09-24",
+     "basis": "PLO 1511 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1511"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B42",
+   "description": "Member revoked in full by PLO 1561 (1957-12-06, 22 FR 9938) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3671"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1561, signed 1957-12-06 (22 FR 9938); the held BLM table row reads \"revoking EO No. 3671 of May 8, 1922\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1957-12-06",
+     "basis": "PLO 1561 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1561"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B43",
+   "description": "Member revoked in full by PLO 1584 (1958-02-07, 23 FR 941) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1775"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1584, signed 1958-02-07 (23 FR 941); the held BLM table row reads \"revoking EO No. 1775 of May 6, 1913\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1958-02-07",
+     "basis": "PLO 1584 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1584"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B44",
+   "description": "Member revoked in full by PLO 1636 (1958-05-14, 23 FR 3388) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5562"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1636, signed 1958-05-14 (23 FR 3388); the held BLM table row reads \"revoking EOs of Apr. 12, 1906 and No. 5562 of Feb. 20, 1931, entirely\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1958-05-14",
+     "basis": "PLO 1636 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1636"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B45",
+   "description": "Member revoked in full by PLO 1733 (1958-09-17, 23 FR 7384) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2638"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1733, signed 1958-09-17 (23 FR 7384); the held BLM table row reads \"revoking EO No. 2638 of June 12, 1917\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1958-09-17",
+     "basis": "PLO 1733 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1733"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B46",
+   "description": "Member revoked in full by PLO 1765 (1958-12-11, 23 FR 9711) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3079"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 1765, signed 1958-12-11 (23 FR 9711); the held BLM table row reads \"revoking EO No. 3079 of Apr. 22, 1919\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1958-12-11",
+     "basis": "PLO 1765 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-1765"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B47",
+   "description": "Member revoked in full by PLO 2196 (1960-08-26, 25 FR 8485) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6761"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2196, signed 1960-08-26 (25 FR 8485); the held BLM table row reads \"revoking EO No. 6761 of June 29, 1934\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1960-08-26",
+     "basis": "PLO 2196 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-695-2250",
+     "S-PLO-2196"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B48",
+   "description": "Member revoked in full by PLO 2306 (1961-03-16, 26 FR 2467) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4391"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2306, signed 1961-03-16 (26 FR 2467); the held BLM table row reads \"revoking EO No. 4391 of Mar. 11, 1926\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1961-03-16",
+     "basis": "PLO 2306 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-2306"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B49",
+   "description": "Member revoked in full by PLO 2358 (1961-05-04, 26 FR 4015) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6673"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2358, signed 1961-05-04 (26 FR 4015); the held BLM table row reads \"revoking EO No. 6673 of Apr. 9, 1934\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1961-05-04",
+     "basis": "PLO 2358 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-2358"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B50",
+   "description": "Member revoked in full by PLO 2494 (1961-09-13, 26 FR 8811) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:7476"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2494, signed 1961-09-13 (26 FR 8811); the held BLM table row reads \"revoking EO No. 7476 of Oct. 23, 1936\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1961-09-13",
+     "basis": "PLO 2494 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-2494"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B51",
+   "description": "Member revoked in full by PLO 2933 (1963-02-11, 28 FR 1476) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:936"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2933, signed 1963-02-11 (28 FR 1476); the held BLM table row reads \"California; revoking EO of July 3, 1905 and No. 936\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1963-02-11",
+     "basis": "PLO 2933 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-2933"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B52",
+   "description": "Member revoked in full by PLO 2960 (1963-03-04, 28 FR 2280) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4387"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 2960, signed 1963-03-04 (28 FR 2280); the held BLM table row reads \"Nevada; revoking EO No. 4387\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1963-03-04",
+     "basis": "PLO 2960 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-2960"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B53",
+   "description": "Member revoked in full by PLO 3463 (1964-11-23, 29 FR 15925) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4328"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 3463, signed 1964-11-23 (29 FR 15925); the held BLM table row reads \"revoking EO No. 4328 of Oct. 21, 1925\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1964-11-23",
+     "basis": "PLO 3463 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-3463"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B54",
+   "description": "Member revoked in full by PLO 4371 (1968-02-26, 33 FR 3636) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5903",
+      "EO:6697"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 4371, signed 1968-02-26 (33 FR 3636); the held BLM table row reads \"revoking EO Nos. 5903 and 6697\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1968-02-26",
+     "basis": "PLO 4371 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-4371"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B55",
+   "description": "Member revoked in full by PLO 4466 (1968-06-25, 33 FR 9618) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1664"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 4466, signed 1968-06-25 (33 FR 9618); the held BLM table row reads \"Montana; revoking EO No. 1664\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1968-06-25",
+     "basis": "PLO 4466 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-4466"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B56",
+   "description": "Member revoked in full by PLO 4597 (1969-04-10, 34 FR 6584) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:718"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 4597, signed 1969-04-10 (34 FR 6584); the held BLM table row reads \"Louisiana; revoking EO No. 718\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1969-04-10",
+     "basis": "PLO 4597 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-4597"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B57",
+   "description": "Member revoked in full by PLO 4911 (1970-09-22, 35 FR 14988) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5727"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 4911, signed 1970-09-22 (35 FR 14988); the held BLM table row reads \"revoking EO No. 5727 of Sept. 29, 1931\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1970-09-22",
+     "basis": "PLO 4911 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-2251-4975",
+     "S-PLO-4911"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B58",
+   "description": "Member revoked in full by PLO 5515 (1975-08-27, 40 FR 40811) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1959"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 5515, signed 1975-08-27 (40 FR 40811); the held BLM table row reads \"revoking EO Nos. 1959, 7594, 7595\".",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1975-08-27",
+     "basis": "PLO 5515 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-4976-5806",
+     "S-PLO-5515"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the end rests on BLM's official Table of Public Land Orders, and the revocation's scope (the whole order, not part) is as that table states.",
+    "Effective date may be the Federal Register publication date rather than the signature date."
+   ]
+  },
+  {
+   "branch_id": "B59",
+   "description": "EO 1020 (Minnesota lighthouse lands, February 4, 1909; Pigeon Point), revoked in full by PLO 7693 (signed 2008-03-14, 73 FR 15773) according to the official BLM Table of Public Land Orders.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1020"
+     ]
+    },
+    {
+     "text_regex": "Minnesota"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_public_land_order",
+    "basis_kind": "ACT",
+    "basis": "Public Land Order No. 7693, signed 2008-03-14 (73 FR 15773); the held BLM table row reads \"Minnesota; Revocation of Withdrawal Established by Executive Order Dated February 4, 1909 for the Pigeon Point Lighthouse Reservation\". EO 1020 is the only Minnesota lighthouse order of that date; the PLO text, read on the web, names \"Executive Order No. 1020 dated February 4, 1909\" and revokes the withdrawal \"in its entirety\" as to the lots EO 1020 reserved.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "2008-03-14",
+     "basis": "PLO 7693 signature date (BLM table)"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S-BLM-7679-7715",
+     "S-PLO-7693",
+     "SM"
+    ]
+   },
+   "gaps": [
+    "The PLO text is not held; the held BLM table names the order by date, State and reservation name, and the number and full scope are read on the web.",
+    "The PLO states an effective date of 2008-03-25 (its Federal Register date); the lead uses the signature date held in the table.",
+    "The PLO notes that most of the land had already been conveyed out of federal ownership and that 9.18 acres stay withdrawn under the Shipstead-Newton-Nolan Act; that withdrawal is by statute, not by this order."
+   ]
+  },
+  {
+   "branch_id": "B60",
+   "description": "EO 3658 withdrew Isle Royale islands \"until March 5, 1923\": ends by its own stated date.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3658"
+     ]
+    },
+    {
+     "text_regex": "until March 5, ?1923"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_own_stated_date",
+    "basis_kind": "TERM",
+    "basis": "The order withdraws the islands \"until March 5, 1923, in aid of pending legislation\"; no held order extends it.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1923-03-05",
+     "basis": "date stated in the order"
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "SM",
+     "S34"
+    ]
+   },
+   "gaps": [
+    "An extension order, if one exists, is not held; a later Isle Royale withdrawal (EO 3976, 1924) is a separate order.",
+    "Two held later edges are date collisions with Public Water Reserve No. 82, a different order of April 4, 1922: PLO 1300 (1956, 'modifying the EO of Apr. 4, 1922; creating Public Water Reserve No. 82', Utah), which the engine flags, and EO 7836 (1938-03-11, partial revocation of the orders creating Public Water Reserves Nos. 77, 82, 85 and 12, New Mexico and Wyoming). Neither acts on EO 3658."
+   ]
+  },
+  {
+   "branch_id": "B61",
+   "description": "EO 4490: revokes EO 1763 and opens the lands for a 91-day ex-service preference beginning on the 63rd day; spent when that period ran out.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4490"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_own_terms_preference_period",
+    "basis_kind": "TERM",
+    "basis": "The revocation was executed on signature; the only continuing command, the 91-day preference period beginning on the 63rd day after August 3, 1926 (October 5, 1926), ran out by its own terms at the end of January 3, 1927, after which the lands were open under the general public land laws.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1927-01-03",
+     "basis": "last day of the 91-day period beginning on the 63rd day after the order date (1926-10-05 to 1927-01-03)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2"
+    ],
+    "source_ids": [
+     "SM"
+    ]
+   },
+   "gaps": [
+    "The preference period restricts entry for a stated time only; after it the lands pass to the general public land laws, so no reversion, retained tract or lasting purpose restriction remains."
+   ]
+  },
+  {
+   "branch_id": "B62",
+   "description": "EO 5000: revokes EO 1733 as to six Aleutian islands and opens them for a 91-day ex-service preference beginning on the 63rd day; spent when that period ran out.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5000"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_own_terms_preference_period",
+    "basis_kind": "TERM",
+    "basis": "The partial revocation was executed on signature; the 91-day preference period beginning on the 63rd day after November 23, 1928 (January 25, 1929) ran out by its own terms at the end of April 25, 1929, after which the lands were open under the public land laws subject to existing withdrawals.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1929-04-25",
+     "basis": "last day of the 91-day period beginning on the 63rd day after the order date (1929-01-25 to 1929-04-25)"
+    },
+    "mechanism_ids": [
+     "M1",
+     "M2"
+    ],
+    "source_ids": [
+     "SM"
+    ]
+   },
+   "gaps": [
+    "The preference period restricts entry for a stated time only; after it the lands pass to the public land laws subject to existing withdrawals."
+   ]
+  },
+  {
+   "branch_id": "B63",
+   "description": "Orders whose only operative content revokes another reservation in whole or in part, restores land, or eliminates described land from a reservation (P1); the text check reads the member's own text only (OCR form 'Ganeele' for 'cancelled' included).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1311",
+      "EO:3187",
+      "EO:3422",
+      "EO:3469",
+      "EO:3470",
+      "EO:347A",
+      "EO:3540",
+      "EO:3642",
+      "EO:4076",
+      "EO:4832",
+      "EO:4904",
+      "EO:5515",
+      "EO:5750",
+      "EO:6891",
+      "EO:701",
+      "EO:7485",
+      "EO:793"
+     ]
+    },
+    {
+     "text_regex": "revok|restor|reduc|eliminat|exclud|diminish|vacat|cancel|ganeel"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's own text shows one operative act, a revocation, restoration or reduction of another reservation, executed on its date; the consequence belongs to the other order's lifecycle and the land's history (coordinator ruling P1).",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "SM"
+    ]
+   },
+   "gaps": [
+    "None of these orders adds land, keeps a reversion, retains a tract, reserves a right, restricts the restored land's use or restates the parent's terms; orders that do (enlargements, boundary rewrites) are on other branches.",
+    "EO 1311 restores its tracts \"in lieu of\" EO 1304 (see B22); EO 3671 (1922) later reserved one of the restored tracts anew, a new reservation (decided on B42), not an act on EO 1311's spent command.",
+    "A held edge on EO 701 (PLO 1705, 1958, 'revoked in part') comes from a codification table entry for Power Site Reserve No. 701, not this order; partial edges do not affect a lead."
+   ]
+  },
+  {
+   "branch_id": "B64",
+   "description": "Orders whose only operative content rewrites another order's terms without adding land: EO 5458 redescribes the EO 4410 lighthouse tract by official survey; EO 5457 amends restoration order EO 5243 to revoke a 1901 withdrawal and exclude reserved lighthouse and naval lands; EO 1464 reduces the Clear Lake Reservation (EO 1332) and restates its hunting prohibition for the reduced reservation; EO 2200 reduces the Klamath Lake Reservation (EO 924) by fixing its new boundary; EO 2872 modifies the Big Lake Reservation (EO 2230) and restates the lands of the reduced reservation (P2).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5457",
+      "EO:5458",
+      "EO:1464",
+      "EO:2200",
+      "EO:2872"
+     ]
+    },
+    {
+     "text_regex": "hereby,? amended|reduced in area|modified so as to exclude"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's own text shows that rewriting another order's terms (its land description, boundary or restated prohibition) is its only operative content; under the strike-and-insert ruling its text merges into the parent on issue (coordinator ruling P2). Its text continues as part of the parent until the parent ends; the parent's lifecycle carries it.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "SM"
+    ]
+   },
+   "gaps": [
+    "Its text continues as part of the parent until the parent ends; the parent's lifecycle carries it (parents: EO 4410, revoked in part by PLO 7165, 1995; EO 5243; EO 1332; EO 924; EO 2230).",
+    "If the owner treats an amending order as living as long as the amended text lives, these leads become open pending the parent.",
+    "Held later edges on EO 2872 (EO 3964, 1924; EO 5747, 1931), which the engine flags as acts after the lead's date, modify the Big Lake Reservation of EO 2230 'as reduced' and cite EO 2872 for that reason; under ruling P2 they are events of the parent, which carries EO 2872's text, and do not change this lead."
+   ]
+  },
+  {
+   "branch_id": "B68",
+   "description": "EO 779 (Tortugas Keys Reservation, Florida, 1908), revoked by number by Proclamation 2112 (1935-01-04), which the project does not hold.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:779"
+     ]
+    },
+    {
+     "text_regex": "Dry Tortugas"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "revoked_by_unheld_instrument",
+    "basis_kind": "NONE",
+    "basis": "Proclamation 2112 of January 4, 1935 (Fort Jefferson National Monument), read on the web, states \"do hereby revoke the aforesaid Executive Order No. 779, of April 6, 1908\". No copy is held, so the machine cannot rely on it; once a copy is held and the phrase pinned, the lead is no, basis ACT, fixed date 1935-01-04.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S46",
+     "SM"
+    ]
+   },
+   "gaps": [
+    "Acquire Proclamation 2112 (Statutes at Large page unverified; American Presidency Project text at the URL given) and pin the revoking phrase."
+   ]
+  },
+  {
+   "branch_id": "B69",
+   "description": "EO 4364 and EO 5702 (Oregon coastal islands and reefs), listed in the BLM table as revoked by PLO 6287 (1982-06-16), a secretarial revocation that 43 U.S.C. 1714(j) appears to bar.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4364",
+      "EO:5702"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "plo_revocation_conflicts_with_statute",
+    "basis_kind": "NONE",
+    "basis": "The held BLM table row for PLO 6287, signed 1982-06-16 (47 FR 27292), reads \"withdrawing lands for addition to Oregon Islands National Wildlife Refuge; revoking EO Nos. 4082, 4364, 4774 and 5702\". But 43 U.S.C. 1714(j) (held) provides that the Secretary shall not \"modify, or revoke any withdrawal which added lands to the National Wildlife Refuge System prior to October 21, 1976\", and EO 5702 reserved the Port Orford, Blanco and Rogue River reefs as a refuge for sea lions, while EO 4364 withdrew Oregon bird rocks pending legislation for permanent refuge or recreational reservation. Whether these withdrawals had added lands to the System, and on what authority PLO 6287 revoked them, cannot be settled without the PLO text.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M4",
+     "M5"
+    ],
+    "source_ids": [
+     "S-BLM-5807-6825",
+     "S-PLO-6287",
+     "S03",
+     "SM"
+    ]
+   },
+   "gaps": [
+    "The PLO 6287 text (47 FR 27292) is not held; it would show whether the revocation is valid against 43 U.S.C. 1714(j) (for example, if the lands were not in the System, or if the revocation only replaces the withdrawal by a new withdrawal for the same refuge) and its effective date.",
+    "If the PLO is valid, the lead is no, basis ACT, 1982-06-16 (or its Federal Register date); if 1714(j) bars it, the order's area stays in the System under 16 U.S.C. 668dd(a)(6) and the question becomes the order's own persistence."
+   ]
+  },
+  {
+   "branch_id": "B70",
+   "description": "Members typed into this family whose own texts show another kind of order: EO 1485 (Indian-reservation restoration; PD-INDIAN), EO 2012 (relief of Americans abroad, 1914; PD-WAR-EMERGENCY), EO 3036 (civil service schedule; PD-CS-RULES), EO 2670 (Virgin Islands lighthouse administration; PD-ADMIN), EO 6724 and EO 7345 (fund and acquisition authorizations; PD-ADMIN), EO 3237 (Canal Zone naval radio site; PD-CLASS-EVENTS, canal_zone).",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1485",
+      "EO:2012",
+      "EO:3036",
+      "EO:2670",
+      "EO:6724",
+      "EO:7345",
+      "EO:3237"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "misclassified_route_to_other_family",
+    "basis_kind": "NONE",
+    "basis": "The member's own text shows the order is not a refuge or lighthouse reservation. The engine assigns each member to one doctrine by its class type, so the member stays open here until the class engine retypes it; the doctrine named for it is the one that should then decide it.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": [
+     "SM"
+    ]
+   },
+   "gaps": [
+    "Route to PD-INDIAN (1485), PD-WAR-EMERGENCY (2012), PD-ADMIN (2670, 6724, 7345), PD-CS-RULES (3036), PD-CLASS-EVENTS canal_zone (3237); until retyped, no doctrine decides these members."
+   ]
+  },
+  {
+   "branch_id": "B71",
+   "description": "Blackbeard Island chain: EO 1993 (reservation, 1914) was vacated by EO 2203 (1915) and restored by EO 3957 (1924); EO 2203 also gave a standing direction against hunting permits.",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1993",
+      "EO:2203"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "chain_vacated_and_restored",
+    "basis_kind": "NONE",
+    "basis": "EO 3957 (held) restores the 1914 reservation \"in its original area and for the original purpose\"; whether that revives EO 1993 or reserves anew, and whether it revokes EO 2203 (the verb is illegible in the held OCR), is not established.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S32"
+    ]
+   },
+   "gaps": [
+    "A legible copy of EO 3957 (Federal Register did not yet exist; National Archives or the 1924 State Department slip) is needed.",
+    "Blackbeard Island National Wildlife Refuge exists today, but no held record ties it to EO 1993 rather than EO 3957."
+   ]
+  },
+  {
+   "branch_id": "B72",
+   "description": "Temporary withdrawals (pending legislation, classification, selection, or \"temporarily withdrawn\" for refuge or lighthouse use) with no held revocation.",
+   "when": [
+    {
+     "any_regex": "(be|hereby,?) temporarily with-? ?drawn|Temporarily Withdrawing|withdrawn for classification|for classification as to|in aid of (pending )?legislation|pending (determination|legislation|classification)|for possible use"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "temporary_withdrawal_no_end_found",
+    "basis_kind": "NONE",
+    "basis": "A withdrawal \"pending\" a purpose does not end when the purpose is met or abandoned; it ends only when revoked. No held order or PLO revokes this member in full, and the FLPMA savings clause continues withdrawals in existence in 1976.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M7",
+     "M8"
+    ],
+    "source_ids": [
+     "S40",
+     "S03"
+    ]
+   },
+   "gaps": [
+    "Search the BLM PLO tables and the Federal Register for a PLO naming the order by number or date (several members of this kind were revoked by PLOs; partial revocations, such as EO 4939 by PLO 121, 1943, do not end the order).",
+    "A temporary withdrawal later absorbed into a refuge reservation of the same lands is superseded in fact but stays open unless an order says so.",
+    "The held BLM table lists PLO 7486 (2001), \"Partial Revocation of Sanak Harbor Lighthouse Withdrawal\", which may reach EO 7032's Sanak lands; it is partial and does not end the order."
+   ]
+  },
+  {
+   "branch_id": "B73",
+   "description": "Refuge reservations reserving lands \"acquired or to be acquired\" under the Migratory Bird Conservation Act, with no held revocation.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "bird_refuge"
+     ]
+    },
+    {
+     "text_regex": "acquired or to be acquired|acquired by the United States"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "persists_refuge_unconfirmed",
+    "basis_kind": "NONE",
+    "basis": "If the refuge was in the National Wildlife Refuge System on or after January 1, 1975, 16 U.S.C. 668dd(a)(6) keeps the area in the System until Congress acts; but (a)(6) expressly does not preclude transfer or disposal of acquired lands under 668dd(a)(5) (which needs Migratory Bird Conservation Commission approval), exchanges, or disposal under a cooperative agreement, and these orders reserve acquired lands. Persistence of the order therefore needs both a link from the order to a current refuge unit and evidence that its lands were not transferred, exchanged or disposed of under those exceptions; neither is held.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M5",
+     "M9",
+     "M7"
+    ],
+    "source_ids": [
+     "S01",
+     "S03",
+     "S43",
+     "S44"
+    ]
+   },
+   "gaps": [
+    "Needed: a reviewed crosswalk from each order to a current refuge unit in the FWS Annual Report of Lands (FY2024 Table 3 lists refuge names and acreage, not executive orders) or the refuge's FWS establishing-document file.",
+    "Needed: evidence that the order's acquired lands were not transferred, exchanged or disposed of under 668dd(a)(5), (b)(3) or a cooperative agreement, none of which needs an Act of Congress.",
+    "No held search shows a full revocation; absence of a found revocation is not evidence of persistence."
+   ]
+  },
+  {
+   "branch_id": "B74",
+   "description": "Other bird and wildlife refuge reservations (establishments, re-establishments, enlargements, transfers for refuge use) with no held full revocation.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "bird_refuge"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "persists_refuge_unconfirmed",
+    "basis_kind": "NONE",
+    "basis": "A refuge reservation continues until revoked; renaming (1940) and transfer to Interior (1939) continue it; if the area was in the Refuge System on or after January 1, 1975, 16 U.S.C. 668dd(a)(6) keeps it until Congress acts (subject to the statute's exceptions for acquired-land disposals, exchanges and cooperative agreements), and 43 U.S.C. 1714(j) bars the Secretary from revoking a withdrawal that added lands to the System before October 21, 1976. Whether the order's lands were still reserved in 1975 is not shown by the fields held.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M5",
+     "M7"
+    ],
+    "source_ids": [
+     "S01",
+     "S03",
+     "S04",
+     "S05",
+     "S44"
+    ]
+   },
+   "gaps": [
+    "Needed: evidence that the order's area was in the Refuge System on or after 1975-01-01 (FWS Annual Report of Lands for 1975 and the current year, matched to the order by a reviewed crosswalk) or a PLO revoking it.",
+    "Several such orders were revoked in part by PLOs (EO 2446 by PLO 2291, EO 4519 by PLO 988, EO 7106 by PLO 4641 and amended by PLO 1511, EO 7489 by PLO 3385); a partial revocation leaves the order in force as amended.",
+    "A held edge on EO 923 (Key West Reservation, 1908) from EO 10383 (1952) is a misresolution: EO 10383 restores lands set aside by 'Executive Order No. 923 of January 30, 1941, of the Governor of the Territory of Hawaii', not this order."
+   ]
+  },
+  {
+   "branch_id": "B75",
+   "description": "Lighthouse reservations and transfers of land for lighthouse purposes with no held full revocation.",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "lighthouse_reservation"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "persists_lighthouse_unconfirmed",
+    "basis_kind": "NONE",
+    "basis": "A lighthouse reservation continues until revoked by order or PLO, or until the station is conveyed; the 1939 transfer of the Bureau of Lighthouses to the Coast Guard and transfers of jurisdiction (for example EO 6896 moving San Miguel and Prince Islands to the Navy) continue it. Many such reservations were revoked by PLOs after 1947, station by station; none is held for this member.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M7",
+     "M8"
+    ],
+    "source_ids": [
+     "S05",
+     "S40",
+     "S41",
+     "S42",
+     "S03"
+    ]
+   },
+   "gaps": [
+    "Two held later edges are flagged by the engine as ending edges on this persistence-kind open lead; neither is a full end: PLO 1724 (1958) revokes EO 431 (\"EOs of ... Mar. 27, 1906\") only \"in part\" per the BLM table; PLO 7391 (1999) revokes an Oregon power-site order of November 14, 1917 (Power Site Reserve No. 658), a date collision with EO 2755, not EO 2755 itself.",
+    "Search the BLM PLO tables (held) and Federal Register for a PLO naming the order by number or date; the 1867-1906 and Alaska multi-site orders (for example EO 4257, revoked in part by six PLOs 1960-1994) need site-by-site review.",
+    "Later held BLM headings show partial revocations only: PLO 7583 (2003) of the Ediz Hook Lighthouse Reservation (reduced by EO 2646), and PLO 7723 (2008) of lighthouse withdrawals for Channel Islands National Park, which may reach the San Miguel, Prince and Santa Barbara Island orders (EO 1066, 2750, 347B, 6896); which lands they released is not identified in a held copy.",
+    "Light stations conveyed under the National Historic Lighthouse Preservation Act (2000) or surplus-property law end by deed; GSA and NPS conveyance lists are not held."
+   ]
+  },
+  {
+   "branch_id": "B99",
+   "description": "Catch-all.",
+   "when": [],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "undetermined",
+    "basis_kind": "NONE",
+    "basis": "No branch applies; the member needs individual review.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "No rule of this doctrine reaches this member."
+   ]
+  }
+ ],
+ "undecidable": [
+  {
+   "reason": "Refuge reservations with no held revocation and no held record tying the order to a current refuge unit (and, for acquired lands, showing no disposal under the 668dd(a)(6) exceptions); decidable once a reviewed order-to-refuge crosswalk against the FWS Annual Report of Lands (and the 1975 edition) exists.",
+   "detected_by": "B73, B74"
+  },
+  {
+   "reason": "Lighthouse reservations with no held full revocation; decidable by a PLO or deed naming the order.",
+   "detected_by": "B75"
+  },
+  {
+   "reason": "Temporary withdrawals with no held revocation.",
+   "detected_by": "B72"
+  },
+  {
+   "reason": "Oregon withdrawals revoked by a 1982 PLO that 43 U.S.C. 1714(j) appears to bar; decidable from the PLO text.",
+   "detected_by": "B69"
+  },
+  {
+   "reason": "EO 779, revoked by number by Proclamation 2112, which is not held.",
+   "detected_by": "B68"
+  },
+  {
+   "reason": "Blackbeard Island chain with an illegible revoking verb.",
+   "detected_by": "B71"
+  },
+  {
+   "reason": "Members whose held text shows another type.",
+   "detected_by": "B70"
+  }
+ ],
+ "notes": "Version 2, 2026-11-06. Members' later_edges now carry the shepard-citations edges; the revocation branches still list members explicitly because several revoking instruments cite a member by date or tract only. Pins are matched after collapsing whitespace."
+}

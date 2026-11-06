@@ -1,0 +1,427 @@
+{
+ "doctrine_id": "PD-MILITARY-RESERVATION",
+ "arm": "A",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "sources S-1884 (citation); .md (a) M2 'Section 1 of that Act (23 Stat. 130)'; .md (b) table row S-1884",
+   "claim": "Act of July 5, 1884, ch. 214, sec. 1, 23 Stat. 130.",
+   "evidence": "The Act is at 23 Stat. 103. Source credit of former 43 U.S.C. 1071: 'act July 5, 1884, ch. 214, sec. 1, 23 Stat. 103' (law.justia.com 1999 U.S. Code, 43 U.S.C. 1071). The held member texts cite it the same way: EO 3952 'Section i of the Act of July 5, 1884, (23 Stat. 103)' (jobs/pinakes-proquest-ingest/output/texts/EO_3952.txt), EO 3497, EO 2563, EO 2377, EO 7049, EO 432. The doctrine's own URL is STATUTE-23-Pg103.pdf, which contradicts its citation.",
+   "severity": "error",
+   "fix": "Cite 23 Stat. 103 in the JSON citation and in both places in the .md."
+  },
+  {
+   "id": "R2",
+   "location": "procedure B09 lead.date_rule",
+   "claim": "date_rule fixed 1930-04-01, 'last day of the 91-day preference period beginning on the 63rd day after December 31, 1929'.",
+   "evidence": "EO 5254 (held, jobs/app-executive-orders/output/texts/executive-order-5254-...txt) opens the land to ex-servicemen 'for a period of 91 days beginning with the 63rd day from and after the date hereof' (December 31, 1929). The 63rd day after Dec. 31, 1929 is March 4, 1930 (31 days of January + 28 of February = 59; March 4 = 63rd); 91 days beginning March 4 end June 2, 1930. The branch's own basis sentence and the .md both say June 2, 1930; only the machine date is wrong, so every lead the engine writes for EO 5254 carries 1930-04-01.",
+   "severity": "error",
+   "fix": "Set the B09 fixed date to 1930-06-02."
+  },
+  {
+   "id": "R3",
+   "location": "procedure B20 (lead.basis, date_rule.to 1947-03-26); mechanism M4; source S-MBA1947 'establishes'; .md (a) M4 'the agreement retained only the listed bases'",
+   "claim": "A Philippine reservation at a place not listed in Annex A or B was surrendered on July 4, 1946 (Army) or no later than March 26, 1947, because the 1947 agreement retained only the listed bases.",
+   "evidence": "Military Bases Agreement of March 14, 1947 (UNTS No. 673, read on the web at treaties.un.org) art. XXI(1): 'the United States shall retain the right to occupy temporary quarters and installations now existing outside the bases mentioned in Annex A and Annex B for such reasonable time, not exceeding two years' (extension by mutual agreement, excluded for the City of Manila, 'shall in no case exceed a period of three years'); art. XXI(2): 'the Port of Manila reservation with boundaries as of 1941 will be available for use to the United States armed forces until such time as other arrangements can be made'; art. XXI(3) gives the United States 'full use and full control' of those quarters while occupied. So the agreement, which Art. I of the Treaty of General Relations makes the measure of what was retained, kept U.S. use of non-listed installations beyond March 26, 1947 and of the Manila Port Reservation with no fixed end. Under ruling P5 such members need the instrument disposing of the excepted property or the upper bound the last instrument fixes. B20 decides as `no` by 1947-03-26 the Port Reservation orders EO 1298 (Manila, incl. the Port Reservation), EO 2838 (enlarging the Port Reservation), EO 3344 and EO 3500 ('Port Reservation' modified/enlarged), EO 348A (reclaimed harbor land, Manila) and probably EO 5736 (lands in Manila Harbor) and EO 4787 (Manila lands).",
+   "severity": "error",
+   "fix": "Quote art. XXI in S-MBA1947 and M4. Move Port of Manila reservation members (at least EO 1298, 2838, 3344, 3500, 348A; check EO 5736, 4787, 964) to an open branch (need the instrument ending U.S. use of the Port reservation). For the remaining B20 members either show from a source that the installation was not occupied as temporary quarters after March 26, 1947, or widen the interval's upper bound to the art. XXI limit (1949-03-26, or at most three years, 1950-03-26) and disclose that the exact date depends on occupation. Drop 'retained only the listed bases' and the flat 'July 4, 1946 for Army reservations'."
+  },
+  {
+   "id": "R4",
+   "location": ".md Conclusions 'The engine reports no contradiction between any lead and a held later-event edge'",
+   "claim": "No lead contradicts a held later-event edge.",
+   "evidence": "Running python3 -I jobs/pothier/pothier.py try on this copy prints 'decides 143; contradicted 23'. Contradictions: 17 B33 members flagged persistence_lead_but_held_ending_edge (EO 1238, 1262, 1315, 1450, 2131, 2233, 2281, 2295, 2353, 330A, 3684, 439, 4671, 4682, 4962, 5251, 6851) and 6 `no` leads flagged acted_on_after_lead_end (EO 2978 C03, EO 3080, 3418, 341A, 3574 on B11, EO 985 on B20).",
+   "severity": "error",
+   "fix": "Report the 23 contradictions and resolve each (see R5, R7, R8)."
+  },
+  {
+   "id": "R5",
+   "location": "branches B33 and B31; .md (d) 'Neither can be shown from the fields held'; .md (d) example 'the Fort Bliss target ranges, EO 1450'; undecidable entry for B30-B33",
+   "claim": "Continental and Alaska reservations have no end that can be shown from the fields held; EO 1450 is an example of a reservation that may still stand.",
+   "evidence": "MEMBERS.jsonl later_edges hold revocations that name these members by number: PLO 3728 (1965-07-06) 'revoking EO No. 1238'; PLO 2454 (1961-08-08) EO 1262; PLO 1326 (1956-08-21) EO 1315; PLO 833 (1952-05-21) 'revoking EO Nos. 1450 and 9029'; PLO 2504 (1961-09-25) EO 2131; PLO 1411 (1957-04-22) EO 2233; PLO 5052 (1971-05-13) EO 2295; PLO 143 (1943-06-18) EO 2353; PLO 1303 (1956-05-28) EO 3684; PLO 1636 (1958-05-14) EO of Apr. 12, 1906 (EO 439); PLO 1320 (1956-08-15) EO 4682; PLO 4803 (1970-04-17) EO 4962; PLO 2252 (1961-01-11) EO 5251; PLO 1271 (1956-03-14) EO 6851 (all evidence_type shepard_blm_plo_table, BLM PLO index). EO 432 (a family member, held at jobs/wikisource-texts/output/texts/EO_432.txt) places 'Grass Island ... as reserved by Executive Order, dated June 12, 1905' (EO 330-A) under Interior, yet EO 330-A stays open on B33 while EO 432 is `no` on B11. EO 4671 is recited as superseded by EO 4716 (edge quote from EO 4814). In Alaska (B31): EO 4204 (1925) rescinds 'The Executive Order (No. 1237)'; PLO 359 (1947) revokes EO 1248; PLO 6688 (1988) EO 1557; PLO 984 (1954) EO 1920 (the .md mentions only the partial EO 4421); PLO 1224 (1955) EO of Dec. 9, 1903 (EO 241); PLO 410 (1947) EO 2533; PLO 2510 (1961) EO 4762. A PLO that revokes an EO by number and re-withdraws the land under the PLO ends the EO (ruling P3: words that name the member).",
+   "severity": "error",
+   "fix": "Add branches (or an edge-driven branch with date_rule edge_date) that decide these members `no`, basis ACT, from the named revocations, after confirming each PLO text or index entry; or, if the author holds the PLO index insufficient, keep them open but state in (d) that held edges name revocations for these members and what is missing. Remove EO 1450 from the list of reservations that may still stand (PLO 833 revoked the order in 1952 even though the land was re-withdrawn)."
+  },
+  {
+   "id": "R6",
+   "location": "branch B11 negative summary screen; member EO 3402 (B33) and EO 2879 (B33)",
+   "claim": "B33 holds only reservations, ranges and transfers; relinquishments under the 1884 Act go to B11.",
+   "evidence": "EO 3402 (held, jobs/pinakes-proquest-ingest/output/texts/EO_3402.txt) only places the lands of EO 2772 and EO 2879 'under the control of the Secretary of the Interior for disposition' under sec. 1 of the 1884 Act, the same kind of order as EO 3497 and EO 3514 that B11 decides. It falls to B33 because its WPA summary says 'reserved for military purposes by E. O.s 2772 and 2879' without 'previously', which the B11 exclusion 're ?served (for|as)' catches. EO 2879 (held, EO_2879.txt) reserved T. 20 S., R. 9 W.; Ts. 21 S., Rs. 8, 9, 10 W.; Ts. 22 S., Rs. 8, 10 W.; EO 3078 (1919-04-22) relinquished T. 21 S., Rs. 8 and 9 W., and EO 3402 (1921-02-11) relinquished T. 20 S., R. 9 W., a township read by OCR as 'T. 208. R, 10 W' (probably T. 21 S., R. 10 W.) and Ts. 22 S., Rs. 8 and 10 W., which together appear to cover all of EO 2879's lands.",
+   "severity": "minor",
+   "fix": "Add EO 3402 to B11 (or exclude 'reserved for ... by E. O.' from the B11 summary exclusion). Add a branch ending EO 2879 on 1921-02-11 (EO 3078 plus EO 3402), after checking the OCR township against a better copy of EO 3402."
+  },
+  {
+   "id": "R7",
+   "location": "later_edges used in contradictions: EO 2281 (B33) and EO 985 (B20)",
+   "claim": "(not addressed)",
+   "evidence": "The ending edge on EO 2281 (Alabama military lands, 1915-12-06) comes from EO 5590, which revokes in part 'Executive order of December 6, 1915, creating Petroleum Reserve No. 40, Montana No. 1', a different order of the same date. The 'amendment' edge on EO 985 (Camp Overton, 1908) comes from EO 10069, which amends 'Executive Order No. 985 of November 25, 1946' on travel expenses, plainly a different order (OCR or numbering error). Both are false matches.",
+   "severity": "minor",
+   "fix": "Disclose both edges as misattributed so the contradiction flags are explained, and do not treat EO 2281 as revoked."
+  },
+  {
+   "id": "R8",
+   "location": "branch C03 (EO 2978)",
+   "claim": "EO 3067 of 1919-03-25 revokes EO 2978; date 1919-03-25.",
+   "evidence": "The revocation is verified: EO 3067 (held) 'This executive order is promulgated in lieu of Executive Order No. 2978 ... which said Executive Order No. 2978 is hereby revoked.' But EO 5155 of 1929-07-11 (edge quote) withdraws part of 'the Fort De Russy Military Reservation ... set apart by Executive Order (No. 2978) of October 21, 1918', i.e., a later order acts on EO 2978 as if it still stood (probably a misdescription of EO 3067's tract).",
+   "severity": "minor",
+   "fix": "Keep C03 but disclose the 1929 recital and that EO 5155 acts on the EO 3067 tract."
+  },
+  {
+   "id": "R9",
+   "location": "branches C07 (EO 5174) and C16 (EO 456) versus ruling P2 and branch B10m",
+   "claim": "EO 5174 and EO 456 end on the date of the later order that revoked or rescinded them (1929-12-14; 1907-05-16).",
+   "evidence": "EO 5174 only amends EO 4679 (WPA summary 'E. O. 4679 ... amended to correct description') and EO 456 only amends EO 372-B. Ruling P2 says an order whose only content is an amendment merges into the parent on issue, kind merged_into_parent_on_issue, dated by the amending order's own date, with the stated disclosure. The doctrine applies P2 to six other amending orders (B10m) but not to these two.",
+   "severity": "minor",
+   "fix": "Either apply P2 to EO 5174 and EO 456 (date 1929-08-21 and 1906-06-08, with the P2 disclosure) and record the later revocation as a later event of the parent, or state why the later revocation governs for these two."
+  },
+  {
+   "id": "R10",
+   "location": "source S-PCA 'establishes'; .md M5",
+   "claim": "Sec. 3(b)(1) shows that 'the Zone as U.S.-controlled territory in which the President set apart reservations ceased on that date'; the Act 'contains no words that end these reservations earlier'.",
+   "evidence": "Held text (jobs/source-ladder/output/texts/queue_EO_9293_...txt, 93 Stat. 455) sec. 3(b) is a rule of construction 'for purposes of applying the Canal Zone Code or other laws'; it does not itself say the Zone ceased (that is Treaty art. XI). Sec. 1504(a)(1) (93 Stat. 488) authorizes the Secretary of State, on the Treaty's entry into force, to convey to Panama property in the former Zone 'which is not within the land and water areas the use of which is made available to the United States', which bears on the B21 members whose land passed to Panama in 1979.",
+   "severity": "minor",
+   "fix": "Narrow the S-PCA 'establishes' sentence to what sec. 3(b)(1) says, and cite sec. 1504(a)(1) in the B21 gap about members whose land passed to Panama on October 1, 1979."
+  },
+  {
+   "id": "R11",
+   "location": "branch B20r description and .md (c) item 8",
+   "claim": "B20r catches members naming a place listed in Annex A or B.",
+   "evidence": "The regex also contains 'Limbones' (EO 3313-A), which is not an Annex A or B place (Annex lists read on the UNTS copy). Holding it open is the safe error, but the description is inaccurate.",
+   "severity": "minor",
+   "fix": "Say that Limbones Island is held open by choice (nearness to Manila Bay defences), not because the Annex lists it."
+  },
+  {
+   "id": "R12",
+   "location": "mechanism M3 description",
+   "claim": "'Version 1 uses 25 such orders'.",
+   "evidence": "The doctrine is version 2 (JSON 'version': 2; .md header).",
+   "severity": "minor",
+   "fix": "Say 'This version uses 25 such orders'."
+  },
+  {
+   "id": "R13",
+   "location": "member EO 341A (B11)",
+   "claim": "EO 341-A is spent on issue (1905-07-15).",
+   "evidence": "Held edge: EO 477 of 1906-07-14 'Amends Executive Order of April 19, 1869, and Executive Order 341-A, July 15, 1905.' An order amended a year after it was supposedly spent; the engine flags acted_on_after_lead_end.",
+   "severity": "minor",
+   "fix": "Disclose the 1906 amendment in the B11 gaps for EO 341-A and say why the lead stands (the amendment acts on the Fort Bayard reservation, the parent)."
+  },
+  {
+   "id": "R14",
+   "location": "mechanism M2 / source S-1884",
+   "claim": "Relinquishment under the 1884 Act (no statement of the Act's later history).",
+   "evidence": "43 U.S.C. 1071-1073 (sec. 1 of the 1884 Act) were repealed Oct. 31, 1951, ch. 654, sec. 1(114), 65 Stat. 706 (law.justia.com, 1999 U.S. Code). Under ruling P3 a repeal of the authority does not end an order, and relinquishment orders are spent on issue anyway, so no lead changes.",
+   "severity": "minor",
+   "fix": "Add the 1951 repeal to M2 as a continuity note."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S-ORDER",
+   "verdict": "verified",
+   "note": "Member-text source under ruling P6; texts read for the members listed in members_checked."
+  },
+  {
+   "source_id": "S-TM",
+   "verdict": "verified",
+   "note": "Held file sha256 matches; pin found. Sec. 5 is on 48 Stat. 459 and sec. 10(a)-(b) on 48 Stat. 463, as cited; quotations of sec. 5, 10(a) and 10(b) match the held text."
+  },
+  {
+   "source_id": "S-P2695",
+   "verdict": "verified",
+   "note": "Held; sha256 and pin match; 'subject to the reservations provided for in the applicable statutes' on 60 Stat. 1352 and 'hereby withdraws and surrenders' on 1353. The held 1352 page also shows the end of a July 3, 1946 proclamation on Manila properties, as the B20 gap says."
+  },
+  {
+   "source_id": "S-TGR",
+   "verdict": "verified",
+   "note": "Not held. Art. I text checked on chanrobles.com (Philippine treaty compilation); 61 Stat. 1174 and entry into force on October 22, 1946 checked on Wikipedia (Treaty of Manila (1946)), which also gives 7 UNTS 3. Pin phrase matches the article."
+  },
+  {
+   "source_id": "S-JR1944",
+   "verdict": "verified",
+   "note": "Not held. 22 U.S.C. 1392 source credit '(June 29, 1944, ch. 322, sec. 2, 58 Stat. 626)' checked on law.cornell.edu. Exact pin wording not seen (Cornell would not quote it in full), but the summary there matches."
+  },
+  {
+   "source_id": "S-PCA",
+   "verdict": "verified",
+   "note": "Held; sha256 and pin match. Sec. 3(b)(1) on 93 Stat. 455, sec. 1504 on 93 Stat. 488, sec. 3304 on 93 Stat. 500, as cited. The 'establishes' sentence overstates sec. 3(b)(1) (finding R10)."
+  },
+  {
+   "source_id": "S-PCT",
+   "verdict": "verified",
+   "note": "Not held. UNTS vol. 1280 No. 21086 read on the web: entry into force on 1 October 1979; art. I(1) terminates and supersedes the 1903 Convention; art. II(2) 'This Treaty shall terminate at noon, Panama time, December 31, 1999'; art. IV(2) refers to the Agreement in Implementation of Article IV; the reassumption of plenary jurisdiction is in the introductory sentence of art. XI. Could not check the 33 U.S.T. 39 / T.I.A.S. 10030 parallel citations or that the treaty begins at p. 3 of the volume."
+  },
+  {
+   "source_id": "S-1884",
+   "verdict": "wrong",
+   "note": "The page is 23 Stat. 103, not 130 (finding R1). The pin wording matches held orders made under the Act ('placed under the control of the Secretary of the Interior for disposition'); the statute text itself was not fetched (the wikisource page failed)."
+  },
+  {
+   "source_id": "S-FLPMA",
+   "verdict": "verified",
+   "note": "Held; sha256 and pin match. Sec. 701(c) on 90 Stat. 2786; sec. 704(a) on 90 Stat. 2792 repeals the implied authority and the Act of June 25, 1910, ch. 421, secs. 1, 2 (36 Stat. 847) 'All except the second and third provisos'."
+  },
+  {
+   "source_id": "S-ENGLE",
+   "verdict": "verified",
+   "note": "Not held. 43 U.S.C. 155 on law.cornell.edu contains 'on and after February 28, 1958 the provisions hereof shall apply'; source credit Pub. L. 85-337, sec. 1, Feb. 28, 1958, 72 Stat. 27; the 5,000-acre threshold is in sec. 156."
+  },
+  {
+   "source_id": "S-HAA",
+   "verdict": "verified",
+   "note": "Not held. Secs. 5(c) and 5(e) text checked in the Hawaii Revised Statutes copy of the Admission Act (data.capitol.hawaii.gov); the pin matches. Did not check the 73 Stat. 5-6 page numbers."
+  },
+  {
+   "source_id": "S-MBA1947",
+   "verdict": "verified",
+   "note": "Not held. UNTS No. 673, signed 14 March 1947, in force 26 March 1947; art. I(1), art. XXIX (99 years) and Annex A and B lists match the doctrine. But the source omits art. XXI (temporary quarters, Port of Manila reservation), which defeats the B20 bound (finding R3). The Statutes at Large citation was not checked."
+  },
+  {
+   "source_id": "S-EO2143",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO2405",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO3067",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO3313A",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO683",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO5254",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO5240",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO1282",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO1011",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO3952",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO3402",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch). EO 3402 also relinquishes EO 2879 lands; EO 2879 is left open (R6)."
+  },
+  {
+   "source_id": "S-EO3497",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO3514",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO4062",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO3418",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO636",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO3130",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO4047",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch). EO 4047 also rescinds the 1918 order EO 2869 (already rescinded by EO 3130 under C17) and part of EO 3130."
+  },
+  {
+   "source_id": "S-EO7320",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO7387",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch). EO 7387 also supersedes EO 4105, which is not a member of this family."
+  },
+  {
+   "source_id": "S-EO7407",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO9293",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO2563",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO2377",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  },
+  {
+   "source_id": "S-EO5715",
+   "verdict": "verified",
+   "note": "Held; sha256 recomputed and matches; pin found; text read and names the target order by number or by date as the branch says; the order date matches the branch date (OCR date lines such as '19 June, 1926' for EO 2405 and '41 July, 1920' for EO 3313-A are scan errors; the order dates in MEMBERS agree with the branch)."
+  }
+ ],
+ "members_checked": [
+  "EO:2143",
+  "EO:4128",
+  "EO:4272",
+  "EO:683",
+  "EO:1080",
+  "EO:1097",
+  "EO:3171",
+  "EO:5044",
+  "EO:5119",
+  "EO:5240",
+  "EO:5254",
+  "EO:6493",
+  "EO:4607",
+  "EO:4052",
+  "EO:5265",
+  "EO:5266",
+  "EO:3080",
+  "EO:7049",
+  "EO:2534",
+  "EO:432",
+  "EO:330A",
+  "EO:3402",
+  "EO:2879",
+  "EO:3078",
+  "EO:4671",
+  "EO:1298",
+  "EO:5736",
+  "EO:3344",
+  "EO:3500",
+  "EO:348A",
+  "EO:3086",
+  "EO:1105",
+  "EO:2772",
+  "EO:2517",
+  "EO:1136",
+  "EO:1423",
+  "EO:1507",
+  "EO:2944",
+  "EO:796",
+  "EO:3067",
+  "EO:2978",
+  "EO:2825",
+  "EO:5849",
+  "EO:5139",
+  "EO:1215"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:1298",
+   "branch": "B20",
+   "why": "Created the Manila 'Port Reservation'; MBA art. XXI(2) kept the Port of Manila reservation (1941 boundaries) available to U.S. forces until other arrangements, so 1947-03-26 is not an upper bound; should be open."
+  },
+  {
+   "instrument_id": "EO:2838",
+   "branch": "B20",
+   "why": "Enlarges the Port Reservation (WPA summary); same as EO 1298."
+  },
+  {
+   "instrument_id": "EO:3344",
+   "branch": "B20",
+   "why": "Modifies the 'Port Reservation' (held text); same as EO 1298."
+  },
+  {
+   "instrument_id": "EO:3500",
+   "branch": "B20",
+   "why": "Enlarges tracts A and B of the 'Port Reservation' (held text); same as EO 1298."
+  },
+  {
+   "instrument_id": "EO:348A",
+   "branch": "B20",
+   "why": "Reserves reclaimed harbor land at Manila (the Port Area); likely within the 1941 Port reservation; same as EO 1298."
+  },
+  {
+   "instrument_id": "EO:5736",
+   "branch": "B20",
+   "why": "Lands in Manila Harbor; needs a check against the Port of Manila reservation of 1941 before a `no` lead."
+  },
+  {
+   "instrument_id": "EO:5254",
+   "branch": "B09",
+   "why": "Correct branch, wrong date: engine writes 1930-04-01; the order's schedule ends 1930-06-02."
+  },
+  {
+   "instrument_id": "EO:3402",
+   "branch": "B33",
+   "why": "A pure relinquishment under the 1884 Act (like EO 3497 on B11); should be `no`, spent on issue, 1921-02-11."
+  },
+  {
+   "instrument_id": "EO:2879",
+   "branch": "B33",
+   "why": "Its lands appear to have been relinquished in full by EO 3078 (1919) and EO 3402 (1921), both held; could be `no`, subject to the OCR township reading."
+  },
+  {
+   "instrument_id": "EO:330A",
+   "branch": "B33",
+   "why": "The held text of EO 432 (a member decided `no` on B11) places all of Grass Island 'as reserved by Executive Order, dated June 12, 1905' under Interior; EO 330-A ended 1906-03-28."
+  },
+  {
+   "instrument_id": "EO:4671",
+   "branch": "B33",
+   "why": "A held edge (EO 4814 recital) says EO 4716 of 1927-09-12 superseded it; it should be decided or the edge disclosed."
+  },
+  {
+   "instrument_id": "EO:1450",
+   "branch": "B33",
+   "why": "Revoked by name by PLO 833 of 1952-05-21 (held edge); the .md cites it as possibly still standing."
+  },
+  {
+   "instrument_id": "EO:1238, EO:1262, EO:1315, EO:2131, EO:2233, EO:2295, EO:2353, EO:3684, EO:439, EO:4682, EO:4962, EO:5251, EO:6851",
+   "branch": "B33",
+   "why": "Each is revoked by number by a Public Land Order in a held edge (BLM PLO index); left open with a 'persists' lead kind, which the engine flags."
+  },
+  {
+   "instrument_id": "EO:1237, EO:1248, EO:1557, EO:1920, EO:241, EO:2533, EO:4762",
+   "branch": "B31",
+   "why": "Each is rescinded or revoked by number in a held edge (EO 4204; PLO 359; PLO 6688; PLO 984; PLO 1224; PLO 410; PLO 2510); left open with no disclosure."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's structure and most of its sources hold up. All 29 held sources match their sha256 and pin, and each of the 25 later orders behind branches C01-C25 names its target as the branch says. The 1934 Act, Proclamation 2695, FLPMA and the Panama Canal Act pages are cited correctly, and the branch counts (143 no, 173 open) reproduce. Five errors need fixing. The 1884 Act is cited as 23 Stat. 130 instead of 23 Stat. 103. The B09 machine date for EO 5254 is 1930-04-01; the order's 91-day period ends 1930-06-02. The B20 upper bound of 1947-03-26 ignores art. XXI of the 1947 Military Bases Agreement, which let U.S. forces keep temporary installations for up to two or three years and keep the Port of Manila reservation until other arrangements were made, so the Port Reservation members (EO 1298, 2838, 3344, 3500, 348A) are wrongly decided `no`. The .md says the engine reports no contradictions, but the engine reports 23. And the undecided list says no end can be shown from the fields held, while held edges name revocations for about 23 open members (14 PLO revocations on B33, EO 432 for EO 330-A, EO 4716 for EO 4671, seven on B31), including EO 1450, which the doctrine cites as possibly still standing. The minor points are a misrouted relinquishment (EO 3402), EO 2879 left open although it appears fully relinquished, two false edges to disclose, P2 applied inconsistently to EO 5174 and EO 456, and an overstated PCA 'establishes' sentence."
+}

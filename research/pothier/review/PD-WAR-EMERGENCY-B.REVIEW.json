@@ -1,0 +1,378 @@
+{
+ "doctrine_id": "PD-WAR-EMERGENCY",
+ "arm": "B",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "S1 citation; MD (b) table; M5; M11 usage; B13, B14, B15, B17 basis/gaps; undecidable B19 reason",
+   "claim": "The joint resolution of March 3, 1921 is cited as '41 Stat. 1395-1360' and throughout as '41 Stat. 1395'.",
+   "evidence": "The held text (jobs/astra-source-retention/output/pages/d811bcf2.../selected-pages.txt, sha256 881d541d...) prints the resolution as CHAP. 136 beginning on page 1359 (page heading '1359', 'March 3,1921 ... [Pub. Res., No. 64.]') and continuing on page 1360. The source's own URL is STATUTE-41-Pg1359.pdf. 41 Stat. 1395 is a different page; '1395-1360' is not even a valid range.",
+   "severity": "error",
+   "fix": "Cite 'Joint Resolution of Mar. 3, 1921, ch. 136, Pub. Res. No. 64, 41 Stat. 1359, 1359-1360' and replace every '41 Stat. 1395' in the .md and .json (M5, B13, B14, B15, B17 gap, undecidable B19 reason) with '41 Stat. 1359'."
+  },
+  {
+   "id": "R2",
+   "location": "B10 date_rule (JSON)",
+   "claim": "date_rule fixed '1918-06-09', basis 'date printed on EO 2952'.",
+   "evidence": "Held EO 2952 (jobs/pinakes-proquest-ingest/output/texts/EO_2952.txt) is signed 'THE WHITE HOUSE, September 6, 1918'. The B10 basis text, M9 and the MD table all say Sept. 6, 1918. June 9, 1918 also precedes EO 2913 itself (July 15, 1918), so the lead would date the revocation before the revoked order existed.",
+   "severity": "error",
+   "fix": "Set the B10 date_rule to {\"kind\":\"fixed\",\"date\":\"1918-09-06\",\"basis\":\"date printed on EO 2952\"}."
+  },
+  {
+   "id": "R3",
+   "location": "B20 basis; M14",
+   "claim": "The authority for the eight-hour suspensions '(39 Stat. 1192, or sec. 2 of the Act of June 19, 1912) is not contingent on the 1917 war, so the 1921 resolution does not reach it'.",
+   "evidence": "Sec. 2 of the Act of June 19, 1912, ch. 174, 37 Stat. 137 (govinfo statute/37/137) lets the President waive the Act 'as to any specific contract or contracts during time of war or a time when war is imminent': a war-contingent power. EO 2663 rests only on that section ('by virtue of authority contained in section two of ... (37 Stat., 137)'), and EO 2678 rests on it together with 39 Stat. 1192. 39 Stat. 1192 ('in case of national emergency') is correctly described as not war-tied (it was still used in 1939, e.g. EO 8198). The statement is therefore wrong for EO 2663 and in part for EO 2678.",
+   "severity": "error",
+   "fix": "Split the statement: 39 Stat. 1192 is a standing national-emergency power; sec. 2 of the 1912 Act is a 'during time of war' power, so the 1921 resolution (41 Stat. 1359) does reach that authority, and the cessation of the 1912 waiver power is a disclosed candidate end for EO 2663 (and the 1912 part of EO 2678) under P3/P8. The lead can stay open because these waivers are for specific contracts whose completion is unrecorded, but M14 and the B20 basis must not claim the 1912 authority is war-independent."
+  },
+  {
+   "id": "R4",
+   "location": "B18 basis and gaps; members EO 3259 (and EO 3016-series Polk orders)",
+   "claim": "'It is spent when the sale ... is made, but no held record shows that it was made'; the Custodian's reports are needed for every one of the 153 orders.",
+   "evidence": "Held family member EO 3265 (jobs/pinakes-proquest-ingest/output/texts/EO_3265.txt, Apr. 29, 1920) amends EO 3259 so that it 'shall correspond with the offer made by The Security Trust Company as Syndicate Manager, and with the terms of the actual sale made by the Alien Property Custodian'. That is held evidence that the sale EO 3259 authorized had been made by Apr. 29, 1920. Held EO 3227 (Feb. 13, 1920) also recites 'sales heretofore made' under the Polk orders of Feb. 26, 1919 and Apr. 5, 1919 (EO 3016 series) to the Chemical Foundation, evidence of at least partial performance.",
+   "severity": "unsupported",
+   "fix": "Add a branch before B18 for EO 3259: lead no, basis TERM (authorization exhausted by performance), date interval 1920-04-16 to 1920-04-29, citing EO 3265's recital; or at least state in B18 that a held member text shows EO 3259 performed. In B18's gaps, note that EO 3227 shows sales were made under the Feb. 26 and Apr. 5, 1919 Polk orders, and identify which EO 3016 members those are."
+  },
+  {
+   "id": "R5",
+   "location": "B02 (EO 3087-A)",
+   "claim": "The held text 'carries EO 3086-A's wording and number; the order's own text is not securely held'; gap: acquire an official printing of EO 3087-A (May 14, 1919).",
+   "evidence": "The held NARA transcription (jobs/pinakes-proquest-ingest/output/texts/EO_3087A.txt) says: 'There is no record in Archives or State Department of any Executive Order bearing this number. See No. 3086-A'. The archive's statement is that no separate order is known, which the doctrine does not report.",
+   "severity": "unsupported",
+   "fix": "Quote the NARA statement in B02 and add as the first gap that the number may not designate a distinct order (a census question about a duplicate or phantom number), before any search for an official printing."
+  },
+  {
+   "id": "R6",
+   "location": "B15 and B16 (Overman Act branch), M6, M8",
+   "claim": "Each B15 order's 'only operative content is a redistribution of functions authorized by the Act of May 20, 1918', so the Overman Act's end ends it; the War Industries Board's winding-up 'rest[s] on Overman Act authority'.",
+   "evidence": "The Overman Act's termination paragraph (40 Stat. 557, verified on govinfo) overrides only 'any authorization of the President under this Act'. Several B15/B16 orders also invoke other authority: EO 3019-A ('by virtue of the authority vested in me as Chief Executive ... as well as by virtue of any and all other Acts of Congress'), EO 3161 and EO 3248-A ('as well as by virtue of any and all other acts of Congress'; EO 3248-A directs payment from named appropriation acts), EO 2929 ('as Chief Executive'). EO 2868, the B16 member, created the War Industries Board under the Council of National Defense provisions of the Act of Aug. 29, 1916, not under the Overman Act. EO 3019-A's own text also caps its exception 1 continuation 'in no event longer than the proclamation of peace', which the doctrine does not use.",
+   "severity": "unsupported",
+   "fix": "State why the Overman termination clause ends orders that also rest on other authority (for example, that the named appropriations lapsed or that the functions reassigned exist only by Overman authority), or move the orders whose other authority is not shown to be spent (at least EO 3248-A, EO 3161, and EO 2868's winding-up) to open with the Overman end as a disclosed candidate. Cite EO 3019-A's 'in no event longer than the proclamation of peace' as its own-terms bound for exception 1."
+  },
+  {
+   "id": "R7",
+   "location": "B08 (EO 2884, EO 3100); B07 and B08 lead kinds",
+   "claim": "EO 2884 and EO 3100 'command only through' offices EO 3320 abolished; lead_kind 'ended_with_abolished_office'; B07 uses 'ended_by_later_instrument' for both EO 2679-A and EO 3087.",
+   "evidence": "EO 3320 (held, S8) did not abolish the Grain Corporation; it continued it 'as a governmental agency for this purpose only' (liquidation). EO 2884 designates the Grain Corporation as the wheat-buying agency, and EO 3100 authorizes the Corporation's purchases 'under the direction of the United States Wheat Director'. Their reach by EO 3320 depends on reading 'for this purpose only' as an express end of the buying designation, which the basis does not argue. EO 3320 reaches EO 3087 by its date ('Executive Order of May 14, 1919'), but reaches EO 2679-A only by abolishing its subject by name; COORDINATOR_RULINGS P7 prescribes the kind 'ended_by_express_abolition_of_its_subject' for that reach.",
+   "severity": "minor",
+   "fix": "Use the P7 lead kind for EO 2679-A, EO 2736 and EO 3143. For EO 2884 and EO 3100, quote 'continuing to act as a governmental agency for this purpose only' as the words that end the purchasing designation and explain the reach, or rest them on the Lever Act's cessation (interval to 1921-03-03; EO 3100 also needs the Act of Mar. 4, 1919's own term)."
+  },
+  {
+   "id": "R8",
+   "location": "MD Conclusions, item 3",
+   "claim": "'A later order whose words reach the member (8 members)'.",
+   "evidence": "The item lists nine members: EO 2679-A, 3087, 2736, 2884, 3100, 3143, 2913, 2837 and 2868. With 14 + 4 + 16 in the other items, nine makes the stated total of 43; eight would make 42.",
+   "severity": "minor",
+   "fix": "Change '(8 members)' to '(9 members)'."
+  },
+  {
+   "id": "R9",
+   "location": "MD (c), sentence after the branch table",
+   "claim": "'No member has a held later-event edge.'",
+   "evidence": "MEMBERS.jsonl holds later_edges on several family members: EO 3091 (amendment by EO 3222, 1920-02-03), EO 3249 (cross_reference by EO 3283, 1920-06-16, which modified it), EO 3259 (modification by EO 3265), EO 3233 (restoration/suspension edges from EO 3247), EO 2664 (extension by EO 3018), EO 2679-A (partial_modification by EO 2694-A), EO 4224 (supersession by EO 5427), EO 3017 (amendment by EO 3800, a spurious Mount McKinley edge). The engine reports 0 contradictions, but edges exist.",
+   "severity": "minor",
+   "fix": "Replace with 'No held later-event edge contradicts a lead'. Disclose EO 3222 (amends B15 member EO 3091) and EO 3283 (modifies B15 member EO 3249) in B15's gaps, and note that EO 3017's EO 3800 edge is spurious."
+  },
+  {
+   "id": "R10",
+   "location": "B13 gaps",
+   "claim": "'EO 3247 suspended EOs 3235 and 3240 from Apr. 1, 1920.'",
+   "evidence": "Held EO 3247 (Wikisource) suspends, from 12:01 a.m. Apr. 1, 1920, the order of Oct. 30, 1919 and 'all other Executive orders subsequent thereto issued by me, except the Executive order of February 25, 1920' (EO 3233). That also covers B13 member EO 3173 (Nov. 5, 1919).",
+   "severity": "minor",
+   "fix": "Add EO 3173 to that gap."
+  },
+  {
+   "id": "R11",
+   "location": "B99 gap (EO 2888); B14 gap (Merchant Marine Act)",
+   "claim": "'the Act of Apr. 22, 1918's text (EO 2888, which may fall under B14)'; MD: 'EO 2888 would fall under B14 if that Act amended the shipping fund section'; B14: the Merchant Marine Act of 1920 'has not been checked'.",
+   "evidence": "EO 2888's held text names its authority as 'An Act to Amend the emergency shipping fund provisions of the Urgent Deficiency Appropriation Act, approved June fifteenth, nineteen hundred and seventeen', and held EO 3018 recites 'Public Act No. 133 ... approved April 22, 1918, amending said section of said Act of June 15, 1917'. The condition the doctrine states is therefore met in held texts. What remains open is whether the amending Act's powers fall within 'herein' in the June 15, 1917 cessation sentence. Held member EO 3549 quotes sec. 17 of the Merchant Marine Act of June 5, 1920, which directed the Shipping Board to take over piers acquired under the emergency shipping fund, so the 1920 Act is partly in hand.",
+   "severity": "minor",
+   "fix": "Restate the EO 2888 gap: the Act of Apr. 22, 1918 amended the June 15, 1917 section (held EO 2888, EO 3018). Then either move EO 2888 to B14 with the same 'herein' caveat as EO 3018, or keep it open and name that caveat as the only gap. In B14, cite EO 3549's quotation of MMA 1920 sec. 17 and say what remains unchecked."
+  },
+  {
+   "id": "R12",
+   "location": "B19 gaps",
+   "claim": "EO 2729-A's 'War Trade Board part ended with the Board (B11-B12)'.",
+   "evidence": "No branch B12 exists. M10 and B15 say the War Trade Board's abolition date (NARA RG 182, June 30, 1919) is not held and 'no lead rests on it', so 'ended with the Board' asserts an end the doctrine itself does not support.",
+   "severity": "minor",
+   "fix": "Say instead that the War Trade Board part has a disclosed candidate end (NARA RG 182, June 30, 1919, not held; transfer under EO 3059 and 3086-A), and drop the reference to B11-B12."
+  },
+  {
+   "id": "R13",
+   "location": "B03B condition and EO 4224-A",
+   "claim": "EO 4224-A 'only amends' sale order EO 4073-A; branch condition text_regex 'amend'.",
+   "evidence": "EO 4224-A's operative sentence is a new authorization: 'The Alien Property Custodian is hereby authorized to execute and deliver a quit-claim deed conveying certain interests in real estate' in Cook County, Ill. Amending EO 4073-A appears only in the stated reasons ('(a) To amend the Executive Order of September 9, 1924 ... to cover the real estate'). The regex 'amend' also matches the authority recital 'the amendment to such Act embodied in ...' found in every TWEA sale order, so it does not anchor the operative clause.",
+   "severity": "minor",
+   "fix": "Either keep EO 4224-A under P2 and say that its authorization is supplementary and merges into EO 4073-A (open under B18), or treat it as its own unexercised authorization under B18. Anchor B03B's regex on operative amending words (for example 'is hereby amended|hereby amend|amended to read')."
+  },
+  {
+   "id": "R14",
+   "location": "M5, S2 establishes, B13 basis",
+   "claim": "Lever Act sec. 24 is quoted as ending the Act when the war 'shall have terminated', and the 1921 resolution fixes that date.",
+   "evidence": "Sec. 24 (40 Stat. 283, verified on govinfo) continues: 'and the fact and date of such termination shall be ascertained and proclaimed by the President'. The 1921 resolution's clause 'notwithstanding any provision ... providing any other mode of determining the date' (held S1, p. 1360) overrides that mode, but the doctrine never discloses it.",
+   "severity": "minor",
+   "fix": "Quote the proclamation clause in S2 and M5, and state that 41 Stat. 1359-1360 displaces it by its 'any other mode of determining the date' words."
+  },
+  {
+   "id": "R15",
+   "location": "Date rules using order_date (B17, B06)",
+   "claim": "Intervals run 'from order_date'.",
+   "evidence": "The census dates differ from the held texts: EO 2652 is dated 1917-06-03 in MEMBERS.jsonl, but its text says 'The White House, July 3, 1917'; EO 2929 is dated 1918-07-30, but its text says '31 July, 1918'. The lower bounds of the intervals are therefore off.",
+   "severity": "minor",
+   "fix": "Disclose the census date conflicts in the B17 and B06 gaps, or use fixed 'from' dates taken from the texts."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S0",
+   "verdict": "verified",
+   "note": "Member-text source under P6; no held_path required."
+  },
+  {
+   "source_id": "S1",
+   "verdict": "wrong",
+   "note": "Held text, sha256 and all three pins confirmed, and the content claims are right (exceptions, 'Acts of Congress, joint resolutions, or proclamations'). The page citation '41 Stat. 1395-1360' is wrong; the resolution is at 41 Stat. 1359-1360 (R1)."
+  },
+  {
+   "source_id": "S2",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-40-Pg276: ch. 53, approved Aug. 10, 1917; sec. 24 begins on p. 283; pin matches. The omitted proclamation clause is noted in R14."
+  },
+  {
+   "source_id": "S3",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-40-Pg556: ch. 78, May 20, 1918; duration proviso in sec. 1; 'Upon the termination of this Act ...' paragraph in sec. 6 on p. 557; pin matches."
+  },
+  {
+   "source_id": "S4",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-40-Pg182: ch. 29, June 15, 1917; the cessation sentence is on p. 183 and matches the pin."
+  },
+  {
+   "source_id": "S5",
+   "verdict": "verified",
+   "note": "govinfo statute/42/1939: Treaty with Germany, signed Berlin Aug. 25, 1921, ratifications exchanged Nov. 11, proclaimed Nov. 14, 1921."
+  },
+  {
+   "source_id": "S6",
+   "verdict": "verified",
+   "note": "govinfo statute/42/1951: Treaty with Hungary, signed Budapest Aug. 29, 1921, proclaimed Dec. 20, 1921."
+  },
+  {
+   "source_id": "S7",
+   "verdict": "verified",
+   "note": "govinfo statute/42/105: ch. 40, July 2, 1921; secs. 1 and 3 declare the war at an end; sec. 5 (pp. 106-107) retains enemy property."
+  },
+  {
+   "source_id": "S8",
+   "verdict": "verified",
+   "note": "Held APP text, sha256 matches; all four pins present; dated Aug. 21, 1920."
+  },
+  {
+   "source_id": "S9",
+   "verdict": "verified",
+   "note": "Held Wikisource text, sha256 matches; pin present; dated Aug. 21, 1919."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "archives.gov RG 63: 'Abolished: By EO 3154, August 21, 1919'; Council of National Defense as liquidator. Not held."
+  },
+  {
+   "source_id": "S11",
+   "verdict": "verified",
+   "note": "archives.gov RG 182: abolished effective June 30, 1919 by EO 3059 and EO 3086-A as amended by EO 3099; the State Department section was abolished by the Act of May 27, 1921 (42 Stat. 9). Not held."
+  },
+  {
+   "source_id": "S12",
+   "verdict": "verified",
+   "note": "Held OCR, sha256 matches; both pins present (OCR spacing); effective Dec. 31, 1918; recites EO 2868."
+  },
+  {
+   "source_id": "S13",
+   "verdict": "verified",
+   "note": "Held OCR, sha256 matches; pin present; dated Sept. 6, 1918. The source is right, but B10's date rule misdates it (R2)."
+  },
+  {
+   "source_id": "S14",
+   "verdict": "verified",
+   "note": "Held OCR for EO 3059 (Mar. 3, 1919) and EO 3086-A (May 12, 1919); both sha256 match; pin present in EO 3059 (EO 3086-A's OCR reads 'Department ox State')."
+  },
+  {
+   "source_id": "S15",
+   "verdict": "verified",
+   "note": "Held FR extract, sha256 matches; EO 9788 of Oct. 14, 1946 at 11 FR 11981; pin present; it terminates the office and vests its functions and property in the Attorney General."
+  },
+  {
+   "source_id": "S16",
+   "verdict": "verified",
+   "note": "archives.gov codification page: EO 11281, May 13, 1966, 31 FR 7215; it recites that the Office of Alien Property 'will be abolished on or before June 30, 1966' and moves the EO 8389 blocking controls."
+  },
+  {
+   "source_id": "S17",
+   "verdict": "verified",
+   "note": "HathiTrust record 001756793 exists: 'Alien Custodian report', covering 1918 to Feb. 15, 1919. Contents not examined; not held."
+  },
+  {
+   "source_id": "S18",
+   "verdict": "unverifiable",
+   "note": "uscode.house.gov and law.cornell.edu are blocked from this session. A web search confirms that 50 U.S.C. 4312 is the current location of TWEA sec. 12, and the member texts recite the Act of Oct. 6, 1917 and the amendment of Mar. 28, 1918. The section text itself was not read."
+  },
+  {
+   "source_id": "S19",
+   "verdict": "verified",
+   "note": "govinfo statute/39/1192: ch. 180, approved Mar. 4, 1917; the national-emergency eight-hour suspension proviso is on p. 1192. The sec. 2 of the 1912 Act that B20 also relies on is war-contingent (R3)."
+  },
+  {
+   "source_id": "S20",
+   "verdict": "verified",
+   "note": "Held OCR, sha256 matches; pin present; dated 25 Nov. 1919; rescinds the order of April 11, 1918 (EO 2837)."
+  },
+  {
+   "source_id": "EO 9095 context",
+   "verdict": "verified",
+   "note": "Held FR extract: EO 9095 of Mar. 11, 1942 at 7 FR 1971."
+  },
+  {
+   "source_id": "Settlement of War Claims Act 1928 (45 Stat. 254)",
+   "verdict": "unverifiable",
+   "note": "Not checked; the doctrine itself marks the page unverified."
+  }
+ ],
+ "members_checked": [
+  "EO:3320",
+  "EO:3154",
+  "EO:3019A",
+  "EO:2952",
+  "EO:3180",
+  "EO:3059",
+  "EO:3086A",
+  "EO:2913",
+  "EO:2912",
+  "EO:2837",
+  "EO:3087",
+  "EO:2679A",
+  "EO:2736",
+  "EO:2884",
+  "EO:3100",
+  "EO:3143",
+  "EO:2929",
+  "EO:2652",
+  "EO:3233",
+  "EO:6023",
+  "EO:3176",
+  "EO:3094B",
+  "EO:3132",
+  "EO:3374",
+  "EO:2743A",
+  "EO:2801",
+  "EO:2940",
+  "EO:2967",
+  "EO:3030",
+  "EO:3049",
+  "EO:3099",
+  "EO:3265",
+  "EO:4224A",
+  "EO:3259",
+  "EO:4073A",
+  "EO:3227",
+  "EO:2956",
+  "EO:2690",
+  "EO:2694A",
+  "EO:2765",
+  "EO:3173",
+  "EO:3235",
+  "EO:3240",
+  "EO:3247",
+  "EO:2664",
+  "EO:3018",
+  "EO:3064",
+  "EO:3063",
+  "EO:2825A",
+  "EO:3091",
+  "EO:3161",
+  "EO:3248A",
+  "EO:3249",
+  "EO:2868",
+  "EO:2907A",
+  "EO:2997",
+  "EO:3024A",
+  "EO:3024C",
+  "EO:3057",
+  "EO:2594",
+  "EO:2708",
+  "EO:2774A",
+  "EO:2822A",
+  "EO:3042",
+  "EO:3060A",
+  "EO:3085",
+  "EO:3097",
+  "EO:4224",
+  "EO:3087A",
+  "EO:2656",
+  "EO:2663",
+  "EO:2678",
+  "EO:2769",
+  "EO:2864",
+  "EO:2928",
+  "EO:3015",
+  "EO:2832",
+  "EO:5263",
+  "EO:4905",
+  "EO:4881",
+  "EO:3016G",
+  "EO:3016Q",
+  "EO:3281",
+  "EO:3420",
+  "EO:3113",
+  "EO:3396",
+  "EO:3549",
+  "EO:3580",
+  "EO:3296",
+  "EO:2888",
+  "EO:2687",
+  "EO:3017",
+  "EO:9788"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:2913",
+   "branch": "B10",
+   "why": "The outcome (no, revoked by EO 2952) is right, but the lead's date is 1918-06-09. EO 2952 is dated Sept. 6, 1918, and June 9, 1918 precedes EO 2913's own date (July 15, 1918)."
+  },
+  {
+   "instrument_id": "EO:3259",
+   "branch": "B18",
+   "why": "Left open because 'no held record shows that [the sale] was made', but held member EO 3265 recites 'the actual sale made by the Alien Property Custodian' under EO 3259 by Apr. 29, 1920. Decidable as exhausted by performance (interval 1920-04-16 to 1920-04-29), or the gap must say so."
+  },
+  {
+   "instrument_id": "EO:2663",
+   "branch": "B20",
+   "why": "The lead stays open, but its basis is wrong for this member: EO 2663 rests solely on sec. 2 of the 1912 eight-hour Act, a 'during time of war or a time when war is imminent' power that the 1921 resolution does reach (candidate end, not 'not contingent on the 1917 war')."
+  },
+  {
+   "instrument_id": "EO:2678",
+   "branch": "B20",
+   "why": "Rests on both sec. 2 of the 1912 Act (war-contingent) and 39 Stat. 1192. The basis wrongly treats both as war-independent."
+  },
+  {
+   "instrument_id": "EO:3248A",
+   "branch": "B15",
+   "why": "Decided no on the Overman Act's end, but the order also invokes 'any and all other acts of Congress' and directs payment from named appropriation acts. Without a showing that those other authorities are spent, the Overman termination clause ('any authorization of the President under this Act') does not reach the whole command (R6)."
+  },
+  {
+   "instrument_id": "EO:2868",
+   "branch": "B16",
+   "why": "The War Industries Board was established under the Council of National Defense provisions of the 1916 Act, not the Overman Act. The claim that the Board's winding-up continuation ended with the Overman Act needs the argument in R6, or the lead should cite EO 3019-A's own cap ('in no event longer than the proclamation of peace') as far as it reaches."
+  },
+  {
+   "instrument_id": "EO:4224A",
+   "branch": "B03B",
+   "why": "The operative words are a new quit-claim authorization. Amending EO 4073-A is only the stated reason, and the branch's 'amend' regex is satisfied by the TWEA authority recital, not by an operative amending clause (R13)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The engine run reproduces the doctrine's counts: 263 members, 43 decided (18 TERM, 25 ACT), 220 open, 0 contradicted. Most of the structure is sound. The held pins and hashes all match. The statute and treaty texts read on govinfo support the Lever Act, Overman Act and emergency shipping fund mechanisms, and the peace-treaty dates (Nov. 14 and Dec. 20, 1921) and the date bounds derived from them (Sept. 3, 1921; May 14 and June 20, 1922) are right. The undecided list is broadly honest. Three errors must be fixed. First, the 1921 joint resolution is cited throughout at 41 Stat. 1395, but it is at 41 Stat. 1359-1360. Second, B10 dates EO 2913's revocation 1918-06-09, but EO 2952 is dated Sept. 6, 1918, and the wrong date precedes EO 2913 itself. Third, B20 says the eight-hour suspension authority is not war-contingent, but sec. 2 of the 1912 Act (relied on by EO 2663 and 2678) is a 'during time of war' power. Three claims are unsupported. B18's claim that no held record shows performance is false for EO 3259 (EO 3265 recites the actual sale). B02 omits NARA's statement that no EO 3087-A is on record. The Overman Act branches do not address orders that also rest on other authority, or EO 2868's non-Overman origin. The minor findings are that B08's reach to EO 2884 and 3100 through EO 3320 is thinly argued, and a wrong count, the false statement that no member has a held later edge, incomplete or stale gaps, a nonexistent branch reference, lead kinds that are not the coordinator's, and order-date bounds inherited from wrong census dates."
+}

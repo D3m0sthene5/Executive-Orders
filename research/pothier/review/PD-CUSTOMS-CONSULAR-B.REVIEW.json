@@ -1,0 +1,173 @@
+{
+  "doctrine_id": "PD-CUSTOMS-CONSULAR",
+  "arm": "B",
+  "reviewer_model": "claude-opus-5-5",
+  "findings": [
+    {
+      "id": "R1",
+      "location": "S11 citation; branch B10 basis and date_rule basis; md Conclusions, M2, (b) table row S11, (c) table row B10, (d) O6 list",
+      "claim": "The order of September 2, 1930 that supersedes EO 4210 is 'Executive Order 5345'.",
+      "evidence": "The held text named in S11 is jobs/app-executive-orders/output/texts/executive-order-5435-diplomatic-visas-for-reentry-into-the-united-states.txt, and S11's own url is .../executive-order-5435-.... MEMBERS.jsonl has EO:5435 (1930-09-02, 'Executive Order 5435—Diplomatic Visas for Reentry into the United States') and no EO:5345. The JSON O6 list itself uses EO:5435. Hoover's September 1930 orders are numbered in the 5430s-5450s (EO 5444, 5445 of Sept. 16, 1930; EO 5453 of Sept. 25, 1930).",
+      "severity": "error",
+      "fix": "Replace 'EO 5345' with 'EO 5435' in S11's citation, the B10 basis and date_rule basis, and every place in the md (Conclusions, M2, sources table, procedure table, the O6 list in section (d))."
+    },
+    {
+      "id": "R2",
+      "location": "Branch B09 date_rule",
+      "claim": "date_rule {kind: fixed, date: 1931-06-08}, with basis \"EO 5644: 'such cancellation to be effective July 1, 1931'\".",
+      "evidence": "jobs/ofr-compilations/output/texts/EO_5644.txt: 'which Executive orders are hereby canceled , such cancellation to be effective July 1, 1931' and 'This order shall become effective July 1, 1931'. The md table also gives 1931-07-01. The JSON date (the signing date) contradicts its own basis, the source and the md, and it is the date the engine writes on the four leads.",
+      "severity": "error",
+      "fix": "Set B09 date_rule to {kind: fixed, date: 1931-07-01}."
+    },
+    {
+      "id": "R3",
+      "location": "S8 citation; md (b) table row S8",
+      "claim": "Executive Order 7463 of September 29, 1936 is at 1 FR 1502.",
+      "evidence": "Federal Register vol. I, no. 143, Thursday, October 1, 1936 (https://www.govinfo.gov/content/pkg/FR-1936-10-01/pdf/FR-1936-10-01.pdf, read on the web) prints 'Abolishing Fort Pierce, Florida, as a Customs Port of Entry', signed September 29, 1936, [No. 7463], F.R. Doc. 2645 filed September 30, 1936, on page 1737 (the issue runs pp. 1737-1742). No FR text of EO 7463 is held in the repository.",
+      "severity": "error",
+      "fix": "Cite 1 FR 1737 (Oct. 1, 1936). The B07 lead does not change because it rests on the held APP transcription, whose pin is verified."
+    },
+    {
+      "id": "R4",
+      "location": "md (c) final counts paragraph",
+      "claim": "'0 contradictions with held later-event edges.'",
+      "evidence": "Running 'python3 -I jobs/pothier/pothier.py try <copy>.json --hints' prints 'decides 146; contradicted 2'. Both contradictions are of kind acted_on_after_lead_end. EO:610 (B21, no, 1907-04-06) has edge SH-bdbb6b2087da: EO 2022 of 1914-08-14 'Amends Executive Order 496 ... and Executive Order 610' (a Wikisource note). EO:7062 (B20, no, 1935-06-05) has edges SH-3647e071d203 (EO 10000, 1948, adding posts to the list 'established by Executive Order No. 5644 ... and by Executive Order No. 7062') and SH-117996891a66 / SH-99fb1b72ba35 (1961 FR entries). Under P2 these later acts are events of the parent, so the contradictions can be explained, but the doctrine reports that there are none.",
+      "severity": "error",
+      "fix": "Report 'contradicted 2' and state for EO 610 and EO 7062 why each later amendment is a later event of the parent (the Consular Regulations and Instructions; the EO 5644 list) under P2, rather than evidence that the amending order still commands."
+    },
+    {
+      "id": "R5",
+      "location": "Branch B21, member EO:2022",
+      "claim": "EO 2022 only amends the Consular Regulations, the Instructions or the Tariff, so it merges into the parent on issue (P2).",
+      "evidence": "The held text (jobs/app-executive-orders/output/texts/executive-order-2022-temporarily-abolishing-fees-for-passports-and-providing-for.txt) also contains standing commands of its own outside the amended paragraphs: 'This order shall have no effect as to fees collected by diplomatic or consular officers before they shall have actually received notice of its contents. The Secretary of State may, when he sees fit, without further authorization, terminate the waiver of fees hereby put into effect, and restore the tariff of fees to the condition existing prior to the amendments made herein.' The fee waivers run 'until further notice'. P2 applies 'only when the member's own text shows that amending is its only operative content.' The doctrine itself keeps EO 2730 ('during the continuance of the war and until further orders') open in O5.",
+      "severity": "error",
+      "fix": "Remove EO:2022 from B21 and leave it open (for example in O5, as a standing fee directive with a delegated power to end the waiver), with the gap that the instrument or Secretary of State action ending the waiver is not held. Counts become 113 no, 145 decided, 118 open."
+    },
+    {
+      "id": "R6",
+      "location": "S23 (sha256, establishes); md header ('applies the coordinator rulings P1-P6'); branches B03-B07 lead_kind",
+      "claim": "The governing rulings are P1-P6, and S23 has sha256 a3d56826...",
+      "evidence": "research/pothier/COORDINATOR_RULINGS.md now hashes to 9624df16488133ae2e1de2b16508b44000c4be9316bc8d6ed76ecfb34ca19266 and contains P7 and P8. P7 governs exactly the B03-B07 situation: a later instrument that abolishes by name the one thing the member created ('the port of entry at X is abolished'). Under P7 the lead is no, basis ACT, dated by the abolishing instrument, with kind 'ended_by_express_abolition_of_its_subject'. B03-B07 reach the same result but rely on P3 and use the kind 'ended_port_abolished_by_later_order'.",
+      "severity": "minor",
+      "fix": "Update S23's sha256 and establishes text. Cite P7 for B03-B07 and use the lead kind ended_by_express_abolition_of_its_subject. Check P8 against the open branches; it does not appear to decide any member here."
+    },
+    {
+      "id": "R7",
+      "location": "md (d), O1 paragraph; O1 gaps",
+      "claim": "'EO 4284 also sits here [O1]: EO 4299 suspended it, and no later act is held.'",
+      "evidence": "EO:4284 is in the O3 instrument list and the engine decides it at O3 (customs district orders), not O1. The O1 gap entries about EO 4284 and about the suspensions EO 4299 and EO 5317 describe members that never reach O1 (EO 4299 and EO 5317 are caught at O0, EO 4284 at O3).",
+      "severity": "minor",
+      "fix": "Move the EO 4284 sentence to the O3 paragraph and drop the O1 gaps that concern members O1 never decides."
+    },
+    {
+      "id": "R8",
+      "location": "md (b) opening sentence",
+      "claim": "'The project holds every source on which a no or yes lead rests.'",
+      "evidence": "B01 (32 yes leads) lists S2 (the eCFR versioner) among its sources, and S2 is held: false. The engine adds 'source S2 ... is not yet held' to each B01 lead. I confirmed S2's content on the web: the latest amendment of 101.3 is dated 2023-11-16, with an issue date of 2024-06-24.",
+      "severity": "minor",
+      "fix": "Say that every no lead rests on held sources, and that the yes leads rest on held S1 plus S2, which was read on the web and is not held."
+    },
+    {
+      "id": "R9",
+      "location": "Branch O6p basis; M5",
+      "claim": "Under P4 (PD-CS-ONE-PERSON), a one-person order gets a no lead only when its own terms fix the end or a quoted fact bounds the person's life. Disability retirements without a stated effective date (EO 4279-A, EO 4285) therefore stay open.",
+      "evidence": "The doctrine cites no held text for this rule (PD-CS-ONE-PERSON lives in research/pothier/doctrines/, which this review may not open). The held S16 (TR-CANAL-ZONE) pin says one-person orders are 'spent on issue rather than swept'. The texts of EO 4279-A and EO 4285 order the retirement with no future date and no condition, so on the S16 convention each would take effect on issue. Keeping them open is conservative, but the stated rule is unsupported by any held source, and it sits uneasily beside B17, which treats a dated retirement as an act performed on its date.",
+      "severity": "unsupported",
+      "fix": "Quote the PD-CS-ONE-PERSON rule that keeps an undated one-person retirement open. Otherwise decide EO 4279-A and EO 4285 as no, TERM, spent on issue, with order_date, and keep only EO 7358 (effective on unheld Senate confirmation) open."
+    },
+    {
+      "id": "R10",
+      "location": "Branch B19, member EO:5577",
+      "claim": "EO 5577's only operative content is a revocation, so it is spent on issue (P1).",
+      "evidence": "S3 (EO_5577.txt): EO 5011 'is hereby revoked, and, effective immediately, the said places are restored to and included within the port limits of San Francisco'. The second clause fixes the limits of a continuing port. The doctrine keeps other port-limit orders open in O1 (for example EO 5578 of the same day, which changes the designation of the San Francisco port and extends its limits). P1 counts a restoration as single-act only when it keeps no continuing condition. A redrawing of a port's limits is closer to a limits order than to a restoration of land to the public domain.",
+      "severity": "minor",
+      "fix": "Either justify the treatment (for example, that the San Francisco-Oakland limits now rest on CBP Dec. 06-23 under 19 CFR 101.3, which is not an end of EO 5577 under P3) and leave EO 5577 open in O1, or explain why restoring places to port limits counts as a pure restoration under P1."
+    },
+    {
+      "id": "R11",
+      "location": "Branch B18 basis and mechanism M3",
+      "claim": "Under P1, an order that only abolishes ports of entry is spent on issue.",
+      "evidence": "P1 names orders that only 'revoke another order, restore land to the public domain, or relinquish a reservation'. Abolishing a port is not among them. P7 covers the abolition of a member's subject by a later instrument, not the abolishing order itself. The extension is reasonable: I read all 38 B18 texts, and each only abolishes or discontinues named ports, with an effective date at most about a month after the order. It is still the author's extension and not the coordinator's ruling.",
+      "severity": "minor",
+      "fix": "Label B18 as an extension of P1 to port abolitions and list it as an adoption question for the owner."
+    },
+    {
+      "id": "R12",
+      "location": "Branch O3 basis",
+      "claim": "'Reorganization Plan No. 1 of 1965 abolished collector offices, not districts.'",
+      "evidence": "No source entry exists for Reorganization Plan No. 1 of 1965, and the md does not mention it. The statement appears true (the 1965 plan abolished the offices of collector of customs and related offices), but the doctrine cites nothing for it.",
+      "severity": "minor",
+      "fix": "Add a source entry for Reorganization Plan No. 1 of 1965, marked not held, or delete the clause."
+    },
+    {
+      "id": "R13",
+      "location": "JSON undecidable list",
+      "claim": "The undecidable list includes 'detected_by: O7' and covers O1-O8.",
+      "evidence": "No branch O7 exists (the branches are O7a and O7b). The open branches O6p (3 members) and O0 (2 members) have no undecidable entry.",
+      "severity": "minor",
+      "fix": "Use O7a/O7b, and add entries for O6p (no stated effective date) and O0 (indefinite suspensions)."
+    },
+    {
+      "id": "R14",
+      "location": "Branch B16 date_rule",
+      "claim": "Interval to 1922-06-04, with basis 'Two years from the last possible issue date (June 3, 1920)'.",
+      "evidence": "EO_3535.txt: passports 'issued prior to June 4, 1920' may be extended to be valid 'for a period not to exceed two years from the date of issuance'. By the doctrine's own basis, the last possible day is 1922-06-03.",
+      "severity": "minor",
+      "fix": "Set 'to' to 1922-06-03, or state why the end of the interval is the day after."
+    },
+    {
+      "id": "R15",
+      "location": "Branches B20, B21 gaps (P2 disclosure)",
+      "claim": "Disclosure: 'its text continues as part of the parent (the regulations or order amended) until the parent ends; the parent's lifecycle carries it'.",
+      "evidence": "P2 prescribes the disclosure 'its text continues as part of the parent until the parent ends; the parent's lifecycle carries it'. The doctrine inserts a parenthetical, which harms nothing, but any check that looks for the exact text will miss it.",
+      "severity": "minor",
+      "fix": "Use the verbatim P2 sentence and put the gloss in a separate gap."
+    },
+    {
+      "id": "R16",
+      "location": "M4 (md and B21 basis)",
+      "claim": "'For two amending members the parent's later history is held' (EO 5126, EO 5127 via EO 5642).",
+      "evidence": "The held EO_5642.txt also cancels and replaces Article I ('The Consular Branch of the Foreign Service'), Article II and Article XXV ('Compensation of Consular Officers', starting at section 491) of the Consular Regulations. It also cancels EO 5189 'and amendments thereto' and revokes inconsistent orders. Those parents include paragraphs that B21 members amended, for example EO 3354 (paragraphs 1-15) and EO 3902 (paragraph 491). The leads do not change, but the statement that the parent's history is held for only two members is incomplete.",
+      "severity": "minor",
+      "fix": "Extend the disclosure to every B21 member whose amended paragraphs EO 5642 cancels, or say that the list of two is not exhaustive."
+    }
+  ],
+  "citations_checked": [
+    {"source_id": "S0", "verdict": "verified", "note": "Member texts read for B02-B21 and the open branches. The engine records each lead's text path."},
+    {"source_id": "S1", "verdict": "verified", "note": "sha256 matches. The pin is in the text. The 2025 CFR, pp. 634-642, has 101.3(b) with the March 3, 1913 message and the Act of Aug. 24, 1912 (37 Stat. 434). All 32 B01 numbers are cited in the port list. EO 5770 is cited as Dec. 31, 1931 and EO 6284 as Sept. 13, 1933, which differ from the member dates of 1931-12-30 and 1933-09-18, as B01 discloses."},
+    {"source_id": "S2", "verdict": "verified", "note": "Not held. eCFR versioner read on the web: latest versions dated 2023-11-16 (issue dates 2023-11-16 and 2024-06-24)."},
+    {"source_id": "S3", "verdict": "verified", "note": "OFR 1974 Hoover vol. II, printed p. 802. Revokes EO 5011 of Dec. 15, 1928 and restores the named places to the San Francisco port limits effective immediately. sha256 and pin match."},
+    {"source_id": "S4", "verdict": "verified", "note": "EO 4572 of Jan. 27, 1927: abolishes Ellsworth, Bar Harbor and South West Harbor, effective thirty days from the date, and creates a new Bar Harbor port. sha256 and pin match."},
+    {"source_id": "S5", "verdict": "verified", "note": "EO 6282 of Sept. 13, 1933: abolishes Lincoln, effective 30 days from the date, citing ch. 223, 38 Stat. 609, 623; 19 U.S.C. 2."},
+    {"source_id": "S6", "verdict": "verified", "note": "EO 6635 of Mar. 7, 1934: abolishes Wichita, effective 30 days from the date."},
+    {"source_id": "S7", "verdict": "verified", "note": "EO 7236 of Nov. 27, 1935: abolishes Charlotte, Little Rock and Dubuque, effective 30 days from the date."},
+    {"source_id": "S8", "verdict": "wrong", "note": "The held text and pin are correct, but the FR cite is wrong: the order is printed at 1 FR 1737 (Oct. 1, 1936), not 1 FR 1502."},
+    {"source_id": "S9", "verdict": "verified", "note": "EO 4709 of Aug. 19, 1927 (OCR): revokes the order of Nov. 10, 1925 on Coos County and places the county in District No. 2, effective thirty days from the date."},
+    {"source_id": "S10", "verdict": "verified", "note": "OFR pp. 932-934: cancels the orders of Apr. 1, 1925, Oct. 20, 1927, Nov. 28, 1927 and Apr. 10, 1930, effective July 1, 1931. B09's JSON date contradicts this (R2)."},
+    {"source_id": "S11", "verdict": "wrong", "note": "The order is EO 5435, not EO 5345. The text, the pin ('shall supersede Executive Order No. 4210, of April 23, 1925') and 'take effect immediately' are verified."},
+    {"source_id": "S12", "verdict": "verified", "note": "OFR pp. 902-929: cancels sections 465-473 and the parts of the Instructions covering the same subjects. 'This order shall take effect on July 1, 1931.'"},
+    {"source_id": "S13", "verdict": "verified", "note": "EO 7061 of June 5, 1935 recites EO 6066 of Mar. 3, 1933. Retirement effective Dec. 31, 1935."},
+    {"source_id": "S14", "verdict": "verified", "note": "AUTHOR_BRIEF.md line 70 contains the pin."},
+    {"source_id": "S15", "verdict": "verified", "note": "The strike-and-insert ruling contains the pin."},
+    {"source_id": "S16", "verdict": "verified", "note": "The TR-CANAL-ZONE pin is present. It supports spent on issue for one-person orders (see R9)."},
+    {"source_id": "S17", "verdict": "verified", "note": "3 FR 2185 (FR of Sept. 8, 1938), signed Sept. 3, 1938. Section V-15 is the Tariff of United States Foreign Service Fees. 'No fee ... will be collected for any service not covered by this tariff.' The supersession list has 22 orders (3973 ... 7600), and none of them is a family member."},
+    {"source_id": "S18", "verdict": "verified", "note": "22 FR 4632 (FR of July 2, 1957), June 27, 1957. Sec. 2 'shall not operate to amend, supersede, or terminate any rates or tariffs of fees'."},
+    {"source_id": "S19", "verdict": "verified", "note": "Not held. Read on govinfo: T.D. 95-77, 'Technical Corrections Regarding Customs Organization', 60 FR 50008-50020, Sept. 27, 1995, effective 11:59 p.m. Sept. 30, 1995. Quoted: 'Districts and regions will, for the most part, be eliminated' and 'will still exist as geographical descriptions for limited purposes'."},
+    {"source_id": "S20", "verdict": "verified", "note": "Not held. Ch. 223, sec. 1, 38 Stat. 609, 623 and 19 U.S.C. 2 confirmed by the held texts of EO 6282, 6635, 6284 and others. govinfo was not reachable from the shell."},
+    {"source_id": "S21", "verdict": "verified", "note": "Not held. May 24, 1924, ch. 182, 43 Stat. 140 and Feb. 23, 1931, ch. 276, 46 Stat. 1207 confirmed in the 22 U.S.C. 1 notes (Justia). Sec. 18 at 43 Stat. 144 confirmed by EO 5519. Sec. 26 at 46 Stat. 1212 confirmed by EO 5644 and EO 7062."},
+    {"source_id": "S22", "verdict": "unverifiable", "note": "Citation verified: 66 Stat. 823, 17 FR 2243, effective Mar. 14, 1952. I did not read the plan text abolishing the offices of collector of internal revenue. The doctrine discloses that the plan was not read."},
+    {"source_id": "S23", "verdict": "wrong", "note": "The pin is present, but the sha256 is stale: the file now hashes to 9624df16... and adds P7 and P8 (R6)."}
+  ],
+  "members_checked": ["EO:5011", "EO:5577", "EO:2878", "EO:4572", "EO:5078", "EO:6282", "EO:5453", "EO:6635", "EO:4265", "EO:4899", "EO:7236", "EO:5284", "EO:7463", "EO:4337", "EO:4709", "EO:4187", "EO:4744", "EO:4772", "EO:5324", "EO:5644", "EO:4210", "EO:5435", "EO:6066", "EO:7061", "EO:4043", "EO:5247", "EO:5519", "EO:3535", "EO:4477A", "EO:6564A", "EO:6994", "EO:4279A", "EO:4285", "EO:7358", "EO:2274", "EO:2303", "EO:2320", "EO:2488", "EO:2504", "EO:2519", "EO:3241", "EO:3742", "EO:3830", "EO:3831", "EO:4292", "EO:4319", "EO:4400", "EO:4581", "EO:4730", "EO:4823", "EO:4825", "EO:4995", "EO:5035", "EO:5081", "EO:5169", "EO:5192", "EO:5385", "EO:5507", "EO:5530", "EO:6279", "EO:6281", "EO:6283", "EO:6300", "EO:6339", "EO:6365", "EO:6674", "EO:6934", "EO:7067", "EO:6737", "EO:530", "EO:617", "EO:659", "EO:1083", "EO:1145", "EO:1824", "EO:2173", "EO:3065", "EO:3122", "EO:3156", "EO:3476", "EO:698", "EO:7062", "EO:108", "EO:135", "EO:138", "EO:180", "EO:610", "EO:1161", "EO:1926", "EO:2022", "EO:2461", "EO:2462", "EO:2619", "EO:3354", "EO:3902", "EO:5126", "EO:5127", "EO:538", "EO:2702", "EO:4094", "EO:4156", "EO:4205", "EO:4780", "EO:5193", "EO:5445", "EO:5770", "EO:6284", "EO:6754", "EO:100", "EO:132", "EO:496", "EO:4472", "EO:99", "EO:2139", "EO:2341", "EO:2357A", "EO:4299", "EO:5317"],
+  "wrong_member_decisions": [
+    {"instrument_id": "EO:2022", "branch": "B21", "why": "The text has operative content beyond amending: fee waivers 'until further notice', a clause tying the order's effect to notice, and a delegation letting the Secretary of State terminate the waiver. P2 does not apply, and the member should be open (R5)."},
+    {"instrument_id": "EO:4187", "branch": "B09", "why": "The lead is right, but its date is wrong: the JSON fixes 1931-06-08 although EO 5644 makes the cancellation effective July 1, 1931 (R2)."},
+    {"instrument_id": "EO:4744", "branch": "B09", "why": "Same date error as EO 4187 (R2)."},
+    {"instrument_id": "EO:4772", "branch": "B09", "why": "Same date error as EO 4187 (R2)."},
+    {"instrument_id": "EO:5324", "branch": "B09", "why": "Same date error as EO 4187 (R2)."},
+    {"instrument_id": "EO:4210", "branch": "B10", "why": "The lead and date are right, but the basis names the superseding order as EO 5345; it is EO 5435 (R1)."},
+    {"instrument_id": "EO:5577", "branch": "B19", "why": "Questionable: besides revoking EO 5011, it restores named places to the San Francisco port limits, a continuing limits provision. That is not clearly a pure revocation or restoration under P1. The doctrine keeps comparable limits orders, such as EO 5578 of the same day, open (R10)."}
+  ],
+  "verdict": "approve_with_required_changes",
+  "summary": "The doctrine's structure is sound. The 32 yes leads rest on a verified current-law predicate: every member number in B01 is cited in the held April 2025 text of 19 CFR 101.3(b)(1), and the eCFR history shows no amendment after 2023-11-16. The later-instrument ends in B02-B12 are verified against held texts that reach each member by number, by date and subject, or by abolishing the member's only port. Pins and hashes match for every held source except S23. Five errors must be fixed before adoption. The superseding visa order is EO 5435, not EO 5345. B09's JSON dates the EO 5644 cancellation to 1931-06-08 instead of its stated effective date, 1931-07-01. S8's Federal Register page is 1 FR 1737, not 1502. The engine reports 2 contradictions with held edges (EO 610, EO 7062), but the md says there are none. EO 2022 carries operative commands beyond amendment and should be open, not merged into its parent under P2. Smaller corrections: update S23 and use P7 for the port-abolition branches; fix the location of EO 4284 in section (d); correct the statement that all yes/no sources are held; support or revise the O6p rule for undated one-person retirements; reconsider EO 5577's limits clause; tidy the undecidable list and the B16 end date."
+}

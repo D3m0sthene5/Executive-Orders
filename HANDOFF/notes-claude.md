@@ -87,6 +87,14 @@
   - Re-tag the 192 cleanup-actor claims in `research/justinian/c3/NOT_RETAGGED.csv` without the owner's answer to A-20261106-justinian-r3-scope.
   - Merge any `jobs/*/output` that a branch run produced; #170 enforces this.
 
+## 2026-11-06 01:30 ET: Pothier, family doctrines for the 5,918 undecided orders with no dated history (night wave)
+
+- **Done:** eleven source-grounded family doctrines (`research/pothier/doctrines/`), coordinator rulings P1-P8 (`research/pothier/COORDINATOR_RULINGS.md`), and the zero-token job `jobs/pothier` (member table, doctrine engine, tests, bounded class-wide source fetch). Report: `research/pothier/REPORT.md`. PR #162 changes no status, codebook, census or count.
+- **Result:** doctrines cover 5,834 members and decide 2,139 status leads (2,088 `no`, 51 `yes`); 3,695 stay `open` with stated reasons. Two blind Opus reviews per doctrine caught 44 of 44 planted errors; a blind 30-member pilot per doctrine caught 22 of 22 controls and found 1 wrong status in 129 decided leads (fixed; 95% upper bound 4.2%) and 10 of 201 open leads decidable. About 15M Opus subagent tokens, 4 h. Kean F-20261106-pothier plus one finding per family. Certified 0.
+- **Next:** after #162 merges, the runner fetches the 128 class-wide sources (`fetch.py`); mark them held in the doctrines and rerun. Selden takes the 237 per-order acting instruments in `research/pothier/FOR_SELDEN.csv` (mostly Public Land Order texts). Biggest unlocks: BLM MLRS withdrawal cases, the Forest Service chronology, plat filing dates. After the owner answers, propose Jacquard-style sampled adoption of each family's `no` leads.
+- **Asks:** @Owner: A-20261106-pothier (adopt each family doctrine, yes/no per family; are amending orders spent on issue or alive with their text, 601 leads; may `no` leads rest on BLM's PLO tables, about 400 leads; listed in REPORT.md). @Coordinator: research/pothier/QUESTIONS.md Q4-Q5 (the Kean brief is at 8,181 of 8,192 bytes).
+- **Do not:** treat a lead as a status or write it into a status field.
+
 ## 2026-11-06 00:45 ET (Claude, Gratian: wiring tonight's products into the tracker and the claim kit)
 
 - **Done:** branch `claude/gratian-wiring` (not pushed; see Asks). `48da66f7`: `source_supplement.py` now adds held excerpts to undecided dossiers by sealing a new copy of their frozen status-overlay evidence; status gates are unchanged, and `batch.py`'s codec pin changes. `fd403d5b`: new job `gratian-niebuhr-leads` types Niebuhr's results as date leads that `eo_identity.load_dates` reads last; 56 numbered orders gain a routable date for Lewis. `ed397bda`: later-events `job.py` adds `selden-fr-acting` texts without touching the kit-pinned `later_events.py`. `c32a59a2`: `research/gratian/` holds CONCORDANCE, IMPACT (tracker ablation on `b561d57a`) and the NEXT_DOSSIER queue. Kean F-20261106-gratian-wiring and F-20261106-gratian-ablation.

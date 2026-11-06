@@ -1,0 +1,2038 @@
+{
+ "schema": "pothier-family-doctrine/v1",
+ "doctrine_id": "PD-CUSTOMS-CONSULAR",
+ "family": "Customs, tariff and consular/foreign service orders, 1873-1936",
+ "version": 1,
+ "members": {
+  "field": "x1_type",
+  "in": [
+   "tariff_customs",
+   "consular_foreign_service"
+  ]
+ },
+ "mechanisms": [
+  {
+   "id": "M1",
+   "kind": "continuity_only",
+   "effect": "persists",
+   "description": "A port-of-entry order cited by name in the current customs regulation's list of ports (19 CFR 101.3(b)(1)) keeps operative effect: the regulation relies on it for the existence or the limits of a port that exists today.",
+   "effective_date_rule": "In force on the cutoff; the predicate is the April 1, 2025 CFR edition, with the eCFR amendment history showing no later change.",
+   "source_ids": [
+    "S1",
+    "S2"
+   ]
+  },
+  {
+   "id": "M2",
+   "kind": "later_instrument",
+   "effect": "ends",
+   "description": "A later executive order whose words reach the member (coordinator rulings P3 and P7): it revokes, supersedes or cancels the member by number or by date and subject, or it abolishes by name the one port that was the member's only operative content.",
+   "effective_date_rule": "The later order's effective date as stated in it (immediately, a fixed date, or thirty days after its date).",
+   "source_ids": [
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "S7",
+    "S8",
+    "S9",
+    "S10",
+    "S11",
+    "S12",
+    "S13"
+   ]
+  },
+  {
+   "id": "M3",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "Spent on issue (coordinator ruling P1): an order whose only operative content abolishes or discontinues named ports of entry, or revokes or cancels another instrument, does one thing on its effective date; the consequence (the port's absence, the other instrument's end) belongs to the other instrument's or the port's history.",
+   "effective_date_rule": "Order date; the held texts state effective dates up to about two months later, most often thirty days.",
+   "source_ids": [
+    "S0",
+    "S23"
+   ]
+  },
+  {
+   "id": "M4",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "Merged into the parent on issue (coordinator ruling P2, from the owner's strike-and-insert ruling): an order that only amends or adds to another presidential instrument (an executive order, the Tariff of Consular Fees, the Consular Regulations of 1896, the Instructions to Diplomatic Officers) has no command of its own after issue; its text continues as part of the parent until the parent ends.",
+   "effective_date_rule": "Order date.",
+   "source_ids": [
+    "S0",
+    "S14",
+    "S15",
+    "S23"
+   ]
+  },
+  {
+   "id": "M5",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "One-person Foreign Service orders (coordinator ruling P4, following PD-CS-ONE-PERSON): a retirement whose own text fixes the date it takes effect ends on that date; a retirement or reinstatement without a stated date stays open.",
+   "effective_date_rule": "The effective date stated in the order.",
+   "source_ids": [
+    "S0",
+    "S16",
+    "S23"
+   ]
+  },
+  {
+   "id": "M6",
+   "kind": "own_terms",
+   "effect": "ends",
+   "description": "Stated maximum period: a retention on active duty for one year or for not more than five years from a stated day, or an authority to extend passports so that they are valid not more than two years from issuance, ends by its own terms when the stated period runs out.",
+   "effective_date_rule": "Interval from the order date to the last day the stated period allows.",
+   "source_ids": [
+    "S0",
+    "S21"
+   ]
+  },
+  {
+   "id": "M7",
+   "kind": "lead_only",
+   "effect": "lead_only",
+   "description": "Candidate class events examined and not applied: T.D. 95-77 (1995) eliminated customs districts only 'for the most part'; EO 7968 (1938) prescribed a complete new fee tariff without naming the earlier tariff orders; EO 10718 (1957) preserved existing tariffs; Reorganization Plan No. 1 of 1952 abolished collector offices, not shown to have extinguished district orders.",
+   "effective_date_rule": "None; these leave members open.",
+   "source_ids": [
+    "S17",
+    "S18",
+    "S19",
+    "S22"
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S0",
+   "member_text": true,
+   "citation": "The member's own order text (path, sha256 and grade recorded on each lead)",
+   "title": "Member text",
+   "establishes": "The order's own operative words: its single act, its stated period or effective date, or the instrument it amends or revokes."
+  },
+  {
+   "id": "S23",
+   "citation": "Pothier coordinator rulings P1-P8 (research/pothier/COORDINATOR_RULINGS.md)",
+   "title": "Coordinator rulings",
+   "url": "",
+   "held": true,
+   "held_path": "research/pothier/COORDINATOR_RULINGS.md",
+   "sha256": "9624df16488133ae2e1de2b16508b44000c4be9316bc8d6ed76ecfb34ca19266",
+   "pin": "its text merges into the parent",
+   "establishes": "One rule for every family: orders that only revoke are spent on issue (P1); orders that only amend merge into the parent on issue (P2); unnamed later instruments end a member only by number or express class description (P3); one-person orders follow PD-CS-ONE-PERSON (P4); a later instrument abolishing by name the member's only subject ends it (P7); delegations of a ceased statutory power end with it (P8)."
+  },
+  {
+   "id": "S1",
+   "citation": "19 CFR 101.3 (Customs service ports and ports of entry), 19 CFR Ch. I (4-1-25 Edition), pp. 634-642",
+   "title": "List of Customs ports of entry and the limits of each port, revised as of April 1, 2025",
+   "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title19-vol1/pdf/CFR-2025-title19-vol1-sec101-3.pdf",
+   "held": true,
+   "held_path": "jobs/source-ladder/output/texts/queue_EO_8238_19_CFR_101.3_Baltimore_Maryland_port_limits_and_any_Treasury_Decision_re-defining_them_2ada2b03ae.txt",
+   "sha256": "ad857e9de6c79ea5bf6981cd53859f544305e861ec412159caa0614c037e06e1",
+   "pin": "Subsequent orders of the President or of the Secretary of the Treasury which affected these ports",
+   "establishes": "The current customs regulation lists each port of entry and cites, beside the port's name, the presidential or Treasury orders that created it or fixed its limits; a member cited there is an order whose operative effect the current regulation relies on."
+  },
+  {
+   "id": "S2",
+   "citation": "eCFR point-in-time versions of 19 CFR 101.3 (eCFR Versioner API)",
+   "title": "Amendment history of 19 CFR 101.3",
+   "url": "https://www.ecfr.gov/api/versioner/v1/versions/title-19.json?section=101.3",
+   "held": false,
+   "establishes": "Read on the web 2026-11-05: the latest amendment of 101.3 listed is dated 2023-11-16 (latest issue 2024-06-24), so the April 1, 2025 edition held as S1 reflects the section's text in force through the 2026-10-14 cutoff unless a later amendment is found."
+  },
+  {
+   "id": "S3",
+   "citation": "Executive Order 5577 of March 13, 1931 (Oakland, California, Abolished as a Customs Port of Entry), OFR 1974 Hoover compilation vol. II, printed p. 802",
+   "title": "EO 5577",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/ofr-compilations/output/texts/EO_5577.txt",
+   "sha256": "3d34486750f2a46db2d7c62780269c984a6ba7a60fd530c7e7950f1e606c289f",
+   "pin": "is hereby revoked",
+   "establishes": "EO 5577 expressly revokes EO 5011 (designation of Oakland as a port of entry), effective immediately on March 13, 1931."
+  },
+  {
+   "id": "S4",
+   "citation": "Executive Order 4572 of January 27, 1927 (Ellsworth, Bar Harbor and South West Harbor abolished as ports of entry; new port of Bar Harbor created)",
+   "title": "EO 4572",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4572.txt",
+   "sha256": "159e4507d0ebcb8ac5a4df181053f82271650494287d23ed59fcdab0255d2c6b",
+   "pin": "are hereby abolished, effective thirty days from the date of this Order",
+   "establishes": "EO 4572 abolished the port of Bar Harbor that EO 2878 (1918) had created, effective thirty days after January 27, 1927, and created a new, differently bounded port of Bar Harbor."
+  },
+  {
+   "id": "S5",
+   "citation": "Executive Order 6282 of September 13, 1933 (Lincoln, Nebraska, Abolished as a Customs Port of Entry)",
+   "title": "EO 6282",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-6282-lincoln-nebraska-abolished-customs-port-entry",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6282-lincoln-nebraska-abolished-customs-port-entry.txt",
+   "sha256": "5fbc6a851956bd576352b95a0ecfcf5a607c630e76fd6909634ea3537f85c7af",
+   "pin": "Lincoln, Nebraska, is hereby abolished as a customs port of entry",
+   "establishes": "EO 6282 abolished the port of Lincoln created by EO 5078, effective 30 days after September 13, 1933."
+  },
+  {
+   "id": "S6",
+   "citation": "Executive Order 6635 of March 7, 1934 (Wichita, Kansas, Abolished as a Customs Port of Entry)",
+   "title": "EO 6635",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-6635-wichita-kansas-abolished-customs-port-entry",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-6635-wichita-kansas-abolished-customs-port-entry.txt",
+   "sha256": "8348059ca6c4f7a71ea8d50484555026ce022f6437c8cc8af99c70256b459ba3",
+   "pin": "Wichita, Kansas, is hereby abolished as a customs port of entry",
+   "establishes": "EO 6635 abolished the port of Wichita designated by EO 5453, effective 30 days after March 7, 1934."
+  },
+  {
+   "id": "S7",
+   "citation": "Executive Order 7236 of November 27, 1935 (Charlotte, N.C., Little Rock, Ark., and Dubuque, Iowa, abolished as customs ports of entry)",
+   "title": "EO 7236",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-7236-charlotte-north-carolina-little-rock-arkansas-and-dubuque-iowa",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7236-charlotte-north-carolina-little-rock-arkansas-and-dubuque-iowa.txt",
+   "sha256": "77f9845b68b28b1fdf49f730b431691137727b7dff5130a038ee21b6d9d28b68",
+   "pin": "are hereby abolished effective 30 days from the date of this order",
+   "establishes": "EO 7236 abolished the ports of Charlotte (created by EO 4899) and Little Rock (created by EO 4265), effective 30 days after November 27, 1935."
+  },
+  {
+   "id": "S8",
+   "citation": "Executive Order 7463 of September 29, 1936 (Abolishing Fort Pierce, Florida, as a Customs Port of Entry), 1 FR 1737 (Oct. 1, 1936)",
+   "title": "EO 7463",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-7463-abolishing-fort-pierce-florida-customs-port-entry",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7463-abolishing-fort-pierce-florida-customs-port-entry.txt",
+   "sha256": "1042cf4556f4312c70a32c87066e1d3d03fe5f23c349793c9a8ddad14c2f9043",
+   "pin": "it is hereby abolished as a customs port of entry",
+   "establishes": "EO 7463 abolished the port of Fort Pierce designated by EO 5284, effective thirty days after September 29, 1936."
+  },
+  {
+   "id": "S9",
+   "citation": "Executive Order 4709 of August 19, 1927 (revoking the order of November 10, 1925 attaching Coos County, N.H., to Customs Collection District No. 1)",
+   "title": "EO 4709",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/pinakes-proquest-ingest/output/texts/EO_4709.txt",
+   "sha256": "08f9c3bdabeddcb81f415c9ed7d26a631781fe749c5f860b8e6abffcd6d4828e",
+   "pin": "is hereby revoked; and in lieu thereof",
+   "establishes": "EO 4709 revokes the Executive Order of November 10, 1925 (EO 4337) and places Coos County in District No. 2, effective thirty days after August 19, 1927."
+  },
+  {
+   "id": "S10",
+   "citation": "Executive Order 5644 of June 8, 1931 (Designation of Unhealthful Posts in the Foreign Service), OFR 1974 Hoover compilation vol. II, printed pp. 932-934",
+   "title": "EO 5644",
+   "url": "",
+   "held": true,
+   "held_path": "jobs/ofr-compilations/output/texts/EO_5644.txt",
+   "sha256": "0fd46a07e221369a44043f1c20a86944fbe265b1748e59e8a44e354d4ecd49ad",
+   "pin": "which Executive orders are hereby canceled , such cancellation to be effective July 1, 1931",
+   "establishes": "EO 5644 cancels the unhealthful-post Executive orders dated April 1, 1925, October 20, 1927, November 28, 1927 and April 10, 1930 (EO 4187, 4744, 4772, 5324), effective July 1, 1931."
+  },
+  {
+   "id": "S11",
+   "citation": "Executive Order 5435 of September 2, 1930 (Diplomatic Visas for Reentry into the United States)",
+   "title": "EO 5435",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-5435-diplomatic-visas-for-reentry-into-the-united-states",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-5435-diplomatic-visas-for-reentry-into-the-united-states.txt",
+   "sha256": "f781f053f73a1d37d89670ebd3606a4b0f267e027285417ab3198f9e7364f935",
+   "pin": "shall supersede Executive Order No. 4210, of April 23, 1925",
+   "establishes": "EO 5435 takes effect immediately and supersedes EO 4210."
+  },
+  {
+   "id": "S12",
+   "citation": "Executive Order 5642 of June 8, 1931 (Administration of the Foreign Service), OFR 1974 Hoover compilation vol. II, printed pp. 902-929",
+   "title": "EO 5642",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-5642-administration-the-foreign-service",
+   "held": true,
+   "held_path": "jobs/ofr-compilations/output/texts/EO_5642.txt",
+   "sha256": "455f2a408d158cb4174da6203d11cbf39f50275541cd23edf00b9dbc06d34863",
+   "pin": "Sections 465 to 473 , inclusive , of the Consular Regulations , 1896, are hereby canceled",
+   "establishes": "EO 5642, effective July 1, 1931, cancels sections 465-473 (leave of absence) of the Consular Regulations of 1896 and all parts of the Instructions to Diplomatic Officers that cover the same subjects as its regulations, replacing them with new leave-of-absence rules."
+  },
+  {
+   "id": "S13",
+   "citation": "Executive Order 7061 of June 5, 1935 (Retirement of Edwin Sheddan Cunningham, Foreign Service Officer)",
+   "title": "EO 7061",
+   "url": "https://www.presidency.ucsb.edu/documents/executive-order-7061-retirement-edwin-sheddan-cunningham-foreign-service-officer",
+   "held": true,
+   "held_path": "jobs/app-executive-orders/output/texts/executive-order-7061-retirement-edwin-sheddan-cunningham-foreign-service-officer.txt",
+   "sha256": "fb91c65de3c9936fb2a660e7a9e878cd71ce3a2f1f842b7c3897931b6311266f",
+   "pin": "become effective on December 31, 1935",
+   "establishes": "EO 7061 recites EO 6066's retention of Cunningham and orders his retirement effective December 31, 1935, ending the retention."
+  },
+  {
+   "id": "S14",
+   "citation": "Author brief for Pothier family doctrines, 2026-11-05 (owner decision restated: an order that only revokes, restores or amends another order is spent on issue as a command)",
+   "title": "Pothier author brief",
+   "url": "",
+   "held": true,
+   "held_path": "research/pothier/work/AUTHOR_BRIEF.md",
+   "sha256": "9382f11828309a457bca04a7b5a11b36867a3126acd190f6399bc5087af1a431",
+   "pin": "is spent on issue as a command",
+   "establishes": "Project rule: an order that only revokes, restores or amends another order is spent on issue as a command; its effect is evidence for the other instrument's lifecycle."
+  },
+  {
+   "id": "S15",
+   "citation": "Owner ruling, strike-and-insert amendments, 2026-10-21",
+   "title": "Strike-and-insert ruling",
+   "url": "",
+   "held": true,
+   "held_path": "research/readiness/owner_rulings/2026-10-21-strike-and-insert.md",
+   "sha256": "8a6fd5b502fa1305440c45381283bcdf3df0cb705448609915e1311a70758c3e",
+   "pin": "the clause continues, amended, until the parent order ends",
+   "establishes": "An amended clause lives on inside the parent instrument until the parent ends; the amendment is recorded as a later event of the parent."
+  },
+  {
+   "id": "S16",
+   "citation": "Pothier family doctrine PD-CS-ONE-PERSON (one-person orders), research/pothier/doctrines/PD-CS-ONE-PERSON.md, the rule coordinator ruling P4 applies in every family",
+   "title": "PD-CS-ONE-PERSON",
+   "url": "",
+   "held": true,
+   "held_path": "research/pothier/doctrines/PD-CS-ONE-PERSON.md",
+   "sha256": "9ee3365be9cf720e981f97b7f430ccd971ae07d893e6e89e761a124d1e7838af",
+   "pin": "with a stated end date end on their own terms",
+   "establishes": "Under the one-person doctrine a one-person order ends on its own terms when its text states the end date; otherwise a no lead needs a quoted fact bounding the person's life, and without one the order stays open."
+  },
+  {
+   "id": "S17",
+   "citation": "Executive Order 7968 of September 3, 1938 (Amending the Foreign Service Regulations: Chapter V, Foreign Service Accounts, including section V-15, Tariff of United States Foreign Service Fees), 3 FR 2185",
+   "title": "EO 7968",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1938-09-08/pdf/FR-1938-09-08.pdf",
+   "held": true,
+   "held_path": "jobs/fr-originals/data/full_run/texts/EO_7968.txt",
+   "sha256": "8b7c7056b202f8ea801c517ef1850d78eddd8c672e0892275bae4ca62f75cac0",
+   "pin": "will be collected for any service not covered by this tariff.",
+   "establishes": "A complete new Tariff of United States Foreign Service Fees was prescribed in 1938; its express supersession list names only 22 other orders (none of them members), so it does not expressly reach the earlier tariff orders in this family."
+  },
+  {
+   "id": "S18",
+   "citation": "Executive Order 10718 of June 27, 1957 (delegating to the Secretary of State authority to prescribe rates or tariffs of fees), 22 FR 4632",
+   "title": "EO 10718",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1957-07-02/pdf/FR-1957-07-02.pdf",
+   "held": true,
+   "held_path": "jobs/fr-originals/output/texts/EO_10718.txt",
+   "sha256": "bd32d52ee73f6aad4d71cc1e3cd8dde880c3d8f1d4cf6535b550dea2df2e7ae8",
+   "pin": "This order shall not operate to amend, supersede, or terminate any rates or tariffs of fees",
+   "establishes": "The 1957 delegation preserved every tariff of fees then in force and left their supersession to the Secretary of State; it ends no tariff order itself."
+  },
+  {
+   "id": "S19",
+   "citation": "T.D. 95-77, Technical Corrections Regarding Customs Organization, 60 FR 50008-50020 (Sept. 27, 1995), effective Sept. 30, 1995",
+   "title": "T.D. 95-77",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1995-09-27/pdf/95-23728.pdf",
+   "held": false,
+   "establishes": "Read on the web 2026-11-05: districts and regions were 'for the most part' eliminated but 'will still exist as geographical descriptions for limited purposes'; the rule therefore does not show that the district-boundary orders were extinguished."
+  },
+  {
+   "id": "S20",
+   "citation": "Act of August 1, 1914, ch. 223, sec. 1, 38 Stat. 609, 623 (19 U.S.C. 2)",
+   "title": "Sundry Civil Appropriations Act for FY 1915, customs districts and ports clause",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-38/pdf/STATUTE-38-Pg609.pdf",
+   "held": false,
+   "establishes": "Authority cited by the port and district orders for the President to change, rearrange or consolidate customs collection districts and ports of entry; context only, decides no member."
+  },
+  {
+   "id": "S21",
+   "citation": "Act of May 24, 1924, ch. 182, sec. 18, 43 Stat. 140, 144 (Rogers Act), and Act of Feb. 23, 1931, ch. 276, sec. 26, 46 Stat. 1207, 1212",
+   "title": "Foreign Service retirement, retention and unhealthful-post authority",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-43/pdf/STATUTE-43-Pg140.pdf",
+   "held": false,
+   "establishes": "Authority cited by the retention, retirement and unhealthful-post orders; context for the own-terms branches, decides no member by itself."
+  },
+  {
+   "id": "S22",
+   "citation": "Reorganization Plan No. 1 of 1952, 66 Stat. 823 (abolishing the offices of collector of internal revenue)",
+   "title": "Reorganization Plan No. 1 of 1952",
+   "url": "https://www.govinfo.gov/content/pkg/STATUTE-66/pdf/STATUTE-66-Pg823.pdf",
+   "held": false,
+   "establishes": "Candidate class event for the internal revenue collection district orders; not read; whether it or a Treasury order extinguished the presidentially drawn districts is unverified."
+  }
+ ],
+ "procedure": [
+  {
+   "branch_id": "B01",
+   "description": "Port order cited in the current list of ports of entry (19 CFR 101.3(b)(1))",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2702",
+      "EO:3888",
+      "EO:3919",
+      "EO:4094",
+      "EO:4156",
+      "EO:4205",
+      "EO:4236",
+      "EO:4296",
+      "EO:4324",
+      "EO:4356",
+      "EO:4385",
+      "EO:4422",
+      "EO:4572",
+      "EO:4780",
+      "EO:4830",
+      "EO:4869",
+      "EO:4876",
+      "EO:5130",
+      "EO:5137",
+      "EO:5159",
+      "EO:5193",
+      "EO:5206",
+      "EO:5322",
+      "EO:5444",
+      "EO:5445",
+      "EO:5475",
+      "EO:5608",
+      "EO:5770",
+      "EO:5835",
+      "EO:5993",
+      "EO:6284",
+      "EO:6754"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "yes",
+    "lead_kind": "persists_cited_in_current_cfr_port_list",
+    "basis_kind": "CURRENT",
+    "basis": "19 CFR 101.3(b)(1) (April 1, 2025 edition) cites this executive order beside a port that exists today, as the order that created the port or fixed its limits; the regulation thus relies on the order's operative effect. Where the order also abolished other ports, those provisions were single acts already performed; the lead is that the order is in force at least in the provision the regulation cites.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S1",
+     "S2"
+    ]
+   },
+   "gaps": [
+    "The held CFR edition is revised as of April 1, 2025, 18 months before the cutoff; the eCFR amendment history (S2, read on the web, not held) shows no amendment of 101.3 after 2023-11-16. Acquire the eCFR text as of 2026-10-14 to close the gap.",
+    "A citation shows the regulation relies on the order; it does not show that every clause of a multi-clause order survives. Later Treasury Decisions cited beside the same port (for example T.D. 78-130 for Bar Harbor) may have redrawn part of the limits.",
+    "The match to 19 CFR 101.3 is by executive order number; for EO 5770 and EO 6284 the regulation's date (Dec. 31, 1931; Sept. 13, 1933) differs by a few days from the member date (1931-12-30; 1933-09-18) and should be checked against the order's official text."
+   ]
+  },
+  {
+   "branch_id": "B02",
+   "description": "Oakland port order expressly revoked by EO 5577",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5011"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_revoked_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 5577 of March 13, 1931 expressly revokes EO 5011 and restores Oakland and the other named places to the port of San Francisco, effective immediately.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1931-03-13",
+     "basis": "EO 5577 takes effect immediately on its date."
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S3"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B03",
+   "description": "Bar Harbor port created by EO 2878, abolished by EO 4572",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2878"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
+    "basis_kind": "ACT",
+    "basis": "Coordinator ruling P7 (abolition by name of the member's only subject): EO 2878 (1918) did one thing, create the port of Bar Harbor; EO 4572 abolished the port of Bar Harbor effective thirty days after January 27, 1927 and created a new port of the same name with different limits under its own authority.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1927-02-26",
+     "basis": "EO 4572 is effective thirty days from January 27, 1927 (February 26, 1927)."
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S4",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "Assumes no order between 1918 and 1927 re-created Bar Harbor; none is held."
+   ]
+  },
+  {
+   "branch_id": "B04",
+   "description": "Lincoln port created by EO 5078, abolished by EO 6282",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5078"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
+    "basis_kind": "ACT",
+    "basis": "Coordinator ruling P7: EO 5078 (1929) only created the port of Lincoln, Nebraska; EO 6282 abolished that port effective 30 days after September 13, 1933.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1933-10-13",
+     "basis": "EO 6282 is effective as of 30 days from September 13, 1933 (October 13, 1933)."
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S5",
+     "S23"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B05",
+   "description": "Wichita port designated by EO 5453, abolished by EO 6635",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5453"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
+    "basis_kind": "ACT",
+    "basis": "Coordinator ruling P7: EO 5453 (1930) only designated Wichita, Kansas, a port of entry; EO 6635 abolished that port effective 30 days after March 7, 1934. (The present port of Wichita rests on T.D. 74-93, not on EO 5453.)",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-04-06",
+     "basis": "EO 6635 is effective as of 30 days from March 7, 1934 (April 6, 1934)."
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S6",
+     "S23"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B06",
+   "description": "Little Rock and Charlotte ports created by EO 4265 and EO 4899, abolished by EO 7236",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4265",
+      "EO:4899"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
+    "basis_kind": "ACT",
+    "basis": "Coordinator ruling P7: EO 4265 (1925) only created the port of Little Rock and EO 4899 (1928) only created the port of Charlotte; EO 7236 abolished both ports effective 30 days after November 27, 1935. The present ports of those names rest on later Treasury Decisions (T.D. 70-146; T.D. 56079).",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-12-27",
+     "basis": "EO 7236 is effective 30 days from November 27, 1935 (December 27, 1935)."
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S7",
+     "S23"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B07",
+   "description": "Fort Pierce port designated by EO 5284, abolished by EO 7463",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5284"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_express_abolition_of_its_subject",
+    "basis_kind": "ACT",
+    "basis": "Coordinator ruling P7: EO 5284 (1930) only designated Fort Pierce, Florida, a port of entry; EO 7463 abolished that port effective thirty days after September 29, 1936.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1936-10-29",
+     "basis": "EO 7463 is effective thirty days from September 29, 1936 (October 29, 1936)."
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S8",
+     "S23"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B08",
+   "description": "Coos County district order EO 4337, revoked by EO 4709",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4337"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_revoked_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 4709 expressly revokes the Executive Order of November 10, 1925 (EO 4337) attaching Coos County, N.H., to Customs Collection District No. 1, effective thirty days after August 19, 1927.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1927-09-18",
+     "basis": "EO 4709 is effective thirty days from August 19, 1927 (September 18, 1927)."
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S9"
+    ]
+   },
+   "gaps": [
+    "EO 4709's held text is an OCR scan; the revoked order is identified by its date (November 10, 1925) and subject, which match EO 4337."
+   ]
+  },
+  {
+   "branch_id": "B09",
+   "description": "Unhealthful-post orders of 1925-1930 canceled by EO 5644",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4187",
+      "EO:4744",
+      "EO:4772",
+      "EO:5324"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_canceled_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 5644 of June 8, 1931 cancels the unhealthful-post Executive orders dated April 1, 1925, October 20, 1927, November 28, 1927 and April 10, 1930, effective July 1, 1931, and re-establishes the list under the act of February 23, 1931.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1931-07-01",
+     "basis": "EO 5644: 'such cancellation to be effective July 1, 1931'."
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S10"
+    ]
+   },
+   "gaps": [
+    "EO 5644 identifies the canceled orders by date only; the dates match these four members."
+   ]
+  },
+  {
+   "branch_id": "B10",
+   "description": "Diplomatic-visa order EO 4210, superseded by EO 5435",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4210"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_superseded_by_later_order",
+    "basis_kind": "ACT",
+    "basis": "EO 5435 of September 2, 1930 takes effect immediately and supersedes EO 4210 by number and date.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1930-09-02",
+     "basis": "EO 5435 takes effect immediately."
+    },
+    "mechanism_ids": [
+     "M2"
+    ],
+    "source_ids": [
+     "S11"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B12",
+   "description": "Retention of Cunningham (EO 6066) ended by his retirement under EO 7061",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6066"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_by_later_order_retirement",
+    "basis_kind": "ACT",
+    "basis": "EO 6066 retained Edwin Sheddan Cunningham on active duty for not more than five years from July 6, 1933; EO 7061 recites EO 6066 and orders his retirement effective December 31, 1935.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-12-31",
+     "basis": "EO 7061 makes the retirement effective December 31, 1935."
+    },
+    "mechanism_ids": [
+     "M2",
+     "M6"
+    ],
+    "source_ids": [
+     "S13"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B13",
+   "description": "Retention on active duty for a stated maximum period (EO 4043)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4043"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_own_terms_period",
+    "basis_kind": "TERM",
+    "basis": "EO 4043 retains John G. Foster on active duty 'for a period of one year from July 1, 1924'; the retention ended by its own terms when that year ran out.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1925-07-01",
+     "basis": "One year from July 1, 1924."
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": [
+     "S0"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B14",
+   "description": "Retention on active duty not in excess of five years (EO 5247)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5247"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_own_terms_period",
+    "basis_kind": "TERM",
+    "basis": "EO 5247 retains Edwin V. Morgan 'for such time as may be deemed necessary not in excess of five years from February 22, 1930'; the retention could not outlast February 22, 1935.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1935-02-22",
+     "basis": "Not in excess of five years from February 22, 1930."
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": [
+     "S0"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B15",
+   "description": "Retention on active duty not in excess of five years (EO 5519)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5519"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_own_terms_period",
+    "basis_kind": "TERM",
+    "basis": "EO 5519 retains Robert Peet Skinner 'for such time as may be deemed necessary not in excess of five years from February 24, 1931'; the retention could not outlast February 24, 1936.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1936-02-24",
+     "basis": "Not in excess of five years from February 24, 1931."
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": [
+     "S0"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B16",
+   "description": "Passport-extension authority limited to passports issued before June 4, 1920 (EO 3535)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3535"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "ended_own_terms_period",
+    "basis_kind": "TERM",
+    "basis": "EO 3535 authorizes extending passports issued before June 4, 1920 so that they are valid 'for a period not to exceed two years from the date of issuance'; no extension under it could run past June 3, 1922, so the authority was exhausted by then.",
+    "date_rule": {
+     "kind": "interval",
+     "from": "order_date",
+     "to": "1922-06-03",
+     "basis": "Two years from the last possible issue date (June 3, 1920)."
+    },
+    "mechanism_ids": [
+     "M6"
+    ],
+    "source_ids": [
+     "S0"
+    ]
+   },
+   "gaps": [
+    "The held text is an OCR scan; the operative words were read in it."
+   ]
+  },
+  {
+   "branch_id": "B17a",
+   "description": "One-person retirement of a Foreign Service officer on a date the order states",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4477A"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "term_expired_stated_date",
+    "basis_kind": "TERM",
+    "basis": "EO 4477-A makes Henry H. Morgan's retirement effective July 31, 1926. Under coordinator ruling P4 (PD-CS-ONE-PERSON) the order's own terms fix the end: the single act took effect on that date, and the annuity that followed is a consequence, not a continuing command.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1926-07-31",
+     "basis": "EO 4477-A: retirement effective July 31, 1926."
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S0",
+     "S16",
+     "S23"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B17b",
+   "description": "One-person retirement of a Foreign Service officer on a date the order states",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6564A"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "term_expired_stated_date",
+    "basis_kind": "TERM",
+    "basis": "EO 6564-A retires Alfred T. Burri effective February 1, 1934. Under coordinator ruling P4 (PD-CS-ONE-PERSON) the order's own terms fix the end: the single act took effect on that date, and the annuity that followed is a consequence, not a continuing command.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1934-02-01",
+     "basis": "EO 6564-A: retirement effective February 1, 1934."
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S0",
+     "S16",
+     "S23"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B17c",
+   "description": "One-person retirement of a Foreign Service officer on a date the order states",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6994"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "term_expired_stated_date",
+    "basis_kind": "TERM",
+    "basis": "EO 6994 retires John A. Gamon effective June 30, 1935. Under coordinator ruling P4 (PD-CS-ONE-PERSON) the order's own terms fix the end: the single act took effect on that date, and the annuity that followed is a consequence, not a continuing command.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-06-30",
+     "basis": "EO 6994: retirement effective June 30, 1935."
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S0",
+     "S16",
+     "S23"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B17d",
+   "description": "One-person retirement of a Foreign Service officer on a date the order states",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:7061"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "term_expired_stated_date",
+    "basis_kind": "TERM",
+    "basis": "EO 7061 makes Edwin Sheddan Cunningham's retirement effective December 31, 1935. Under coordinator ruling P4 (PD-CS-ONE-PERSON) the order's own terms fix the end: the single act took effect on that date, and the annuity that followed is a consequence, not a continuing command.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1935-12-31",
+     "basis": "EO 7061: retirement effective December 31, 1935."
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S0",
+     "S16",
+     "S23"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B18a",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: no later effective date stated",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2504",
+      "EO:2519",
+      "EO:3241",
+      "EO:3830",
+      "EO:3831",
+      "EO:4825"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed.",
+    "EO 4825 states 'effective this date'; the others state no effective date, so the act took effect on issue."
+   ]
+  },
+  {
+   "branch_id": "B18b",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: effective thirty days from the order's date",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4400",
+      "EO:4581",
+      "EO:4823",
+      "EO:4995",
+      "EO:5035",
+      "EO:5081",
+      "EO:5169",
+      "EO:5192",
+      "EO:5507",
+      "EO:5530",
+      "EO:6279",
+      "EO:6281",
+      "EO:6282",
+      "EO:6283",
+      "EO:6300",
+      "EO:6339",
+      "EO:6365",
+      "EO:6635",
+      "EO:6674",
+      "EO:6934",
+      "EO:7067",
+      "EO:7236",
+      "EO:7463"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "order_date_plus_days",
+     "days": 30
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed.",
+    "EO 4400's held scan shows the signing date as March 28, 1926, against the member date 1926-03-23; the end date follows the member date."
+   ]
+  },
+  {
+   "branch_id": "B18c",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: stated effective date (EO 2274)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2274"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1916-01-01",
+     "basis": "EO 2274: 'will become effective on January 1, 1916'."
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed."
+   ]
+  },
+  {
+   "branch_id": "B18d",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: stated effective date (EO 2303)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2303"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1916-02-01",
+     "basis": "EO 2303: 'effective on and after February 1, 1916'."
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed."
+   ]
+  },
+  {
+   "branch_id": "B18e",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: stated effective date (EO 2320)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2320"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1916-03-01",
+     "basis": "EO 2320: 'effective on and after March 1, 1916'."
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed."
+   ]
+  },
+  {
+   "branch_id": "B18f",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: stated effective date (EO 2488)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2488"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1916-12-01",
+     "basis": "EO 2488: 'effective on and after December 1, 1916'."
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed."
+   ]
+  },
+  {
+   "branch_id": "B18g",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: stated effective date (EO 3742)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:3742"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1922-09-30",
+     "basis": "EO 3742: 'effective at the close of business September 30, 1922'."
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed."
+   ]
+  },
+  {
+   "branch_id": "B18h",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: stated effective date (EO 4292)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4292"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1925-09-01",
+     "basis": "EO 4292: 'effective September 1, 1925'."
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed."
+   ]
+  },
+  {
+   "branch_id": "B18i",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: stated effective date (EO 4319)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4319"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1925-11-01",
+     "basis": "EO 4319: 'effective November 1, 1925'."
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed."
+   ]
+  },
+  {
+   "branch_id": "B18j",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: stated effective date (EO 5385)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:5385"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1930-07-01",
+     "basis": "EO 5385: 'effective July 1, 1930'."
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed."
+   ]
+  },
+  {
+   "branch_id": "B18k",
+   "description": "Order whose only operative content abolishes or discontinues ports of entry: stated effective date (EO 4730)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4730"
+     ]
+    },
+    {
+     "text_regex": "abolish|discontinu"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "Coordinator ruling P1 (as adjudicated for port abolitions): the order only abolishes (or discontinues) one or more named ports of entry; the act was performed on the effective date the order states and nothing in it continues to command. A later re-designation of the same place (for example Orange, Texas by EO 7495, Mahukona by EO 6831) is a new act and does not revive this order.",
+    "date_rule": {
+     "kind": "fixed",
+     "date": "1927-10-30",
+     "basis": "EO 4730: 'effective thirty days from the date of this order (signed September 30, 1927; the member's date is year-only)'."
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held edge shows a suspension before the effective date (as EO 5317 suspended EO 5291, which is therefore excluded); such a suspension would leave the abolition unperformed."
+   ]
+  },
+  {
+   "branch_id": "B19",
+   "description": "Order that only cancels part of another presidential instrument",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6737"
+     ]
+    },
+    {
+     "text_regex": "revoke|cancel"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "spent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content cancels: EO 6737 cancels the part of chapter I of the Instructions to Diplomatic Officers headed 'Organization of the Department of State'. Under coordinator ruling P1 the command is exhausted on issue; its consequence belongs to the revoked instrument's lifecycle.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": []
+  },
+  {
+   "branch_id": "B20",
+   "description": "Order that only amends another executive order",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:530",
+      "EO:617",
+      "EO:659",
+      "EO:1145",
+      "EO:3156",
+      "EO:3476",
+      "EO:1824",
+      "EO:2173",
+      "EO:3065",
+      "EO:1083",
+      "EO:698",
+      "EO:7062",
+      "EO:3122"
+     ]
+    },
+    {
+     "text_regex": "amend|amne|revoke|added to the list"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order's only operative content amends or adds to an earlier executive order: the consular appointment regulations of June 27, 1906 (EO 469), the diplomatic appointment regulations of November 26, 1909, the 1906 Tariff of Consular Fees (EO 496), the unhealthful-post list of EO 5644, or EO 3104 (EO 3122 revokes clauses of EO 3104 and amends it accordingly). Under coordinator ruling P2 it merges into the parent on issue.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S0",
+     "S14",
+     "S15",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "its text continues as part of the parent (the regulations or order amended) until the parent ends; the parent's lifecycle carries it",
+    "EO 7062 is flagged by the engine (acted_on_after_lead_end): EO 10000 (1948, edge SH-3647e071d203) and EO 10904 (1961, edges SH-117996891a66, SH-99fb1b72ba35) add places to the unhealthful-post list established by EO 5644 and EO 7062. Under P2 those are later events of the parent list (EO 5644 as amended), which stays open in O6; they show the list operating, not a command of EO 7062 after issue."
+   ]
+  },
+  {
+   "branch_id": "B21",
+   "description": "Order that only amends the Consular Regulations, the Instructions to Diplomatic Officers or the Tariff of Consular Fees",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:108",
+      "EO:135",
+      "EO:138",
+      "EO:167",
+      "EO:180",
+      "EO:217",
+      "EO:422",
+      "EO:423",
+      "EO:610",
+      "EO:611",
+      "EO:1113",
+      "EO:1161",
+      "EO:1217",
+      "EO:1695",
+      "EO:1926",
+      "EO:2100",
+      "EO:2193",
+      "EO:2301",
+      "EO:2461",
+      "EO:2462",
+      "EO:2493",
+      "EO:2619",
+      "EO:3002",
+      "EO:3115",
+      "EO:3174",
+      "EO:3354",
+      "EO:3431",
+      "EO:3438",
+      "EO:3544",
+      "EO:3678A",
+      "EO:3902",
+      "EO:4615",
+      "EO:5016",
+      "EO:5017",
+      "EO:5045",
+      "EO:5126",
+      "EO:5127"
+     ]
+    },
+    {
+     "text_regex": "amend|repeal|cancel|stricken|struck"
+    }
+   ],
+   "lead": {
+    "status_lead": "no",
+    "lead_kind": "merged_into_parent_on_issue",
+    "basis_kind": "TERM",
+    "basis": "The order only amends or adds to paragraphs of presidentially prescribed regulations (the Consular Regulations of 1896, the Instructions to Diplomatic Officers of 1897 or 1927, the Tariff of Consular Fees). Coordinator ruling P2 covers amendments of such regulations as well as of numbered orders: the order merges into the parent on issue. The parent's later history is held at least in part: EO 5642, effective July 1, 1931, cancels and replaces Article I ('The Consular Branch of the Foreign Service'), Article II ('Retirement of Foreign Service Officers'), sections 465-473 (leave of absence) and Article XXV ('Compensation of Consular Officers') of the Consular Regulations, and the parts of the Instructions to Diplomatic Officers covering the same subjects. That reaches the text inserted by at least EO 5127 (sections 465, 467), EO 5126 (Instructions VI-5) and parts of EO 3354 (Article I paragraphs) and EO 3902 and EO 1926 (paragraphs 491-492); the list is not exhaustive and changes no lead.",
+    "date_rule": {
+     "kind": "order_date"
+    },
+    "mechanism_ids": [
+     "M4"
+    ],
+    "source_ids": [
+     "S0",
+     "S14",
+     "S15",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "its text continues as part of the parent (the regulations or order amended) until the parent ends; the parent's lifecycle carries it",
+    "EO 610 is flagged by the engine (acted_on_after_lead_end): edge SH-bdbb6b2087da records that EO 2022 (1914) amends EO 610, i.e. it rewrites paragraphs 159-160 of the Consular Regulations and the Instructions that EO 610 had amended. Under P2 that is a later event of the parent regulations, not a command of EO 610.",
+    "Other held edges on B21 members are number collisions with different orders and are not used: EO 1161 (PLO 5757 revokes a Nevada land order of Feb. 17, 1903), EO 1926 (PLO 1178, partial), EO 2462 (EO 9804, partial: an order of Sept. 29, 1916 on the Employees' Compensation Act), EO 422 (EO 9951: a Hawaii order of July 23, 1930)."
+   ]
+  },
+  {
+   "branch_id": "O3",
+   "description": "Customs collection district orders",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:2031",
+      "EO:2090",
+      "EO:2307",
+      "EO:3220",
+      "EO:3234",
+      "EO:3779",
+      "EO:3879",
+      "EO:4284",
+      "EO:4543",
+      "EO:5350",
+      "EO:5392",
+      "EO:5455",
+      "EO:4709"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "customs_district_open",
+    "basis_kind": "NONE",
+    "basis": "Orders numbering, drawing or consolidating customs collection districts. T.D. 95-77 (1995) eliminated districts only 'for the most part' and kept them as geographical descriptions for limited purposes, so it does not show these orders extinguished. EO 4284 (abolishing District No. 33) was suspended indefinitely by EO 4299, and no later act on it is held; EO 4709 revokes EO 4337 but itself places Coos County in District No. 2, a standing assignment.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M7"
+    ],
+    "source_ids": [
+     "S19"
+    ]
+   },
+   "gaps": [
+    "Acquire T.D. 95-77 (60 FR 50008) and any later rule abolishing customs districts outright."
+   ]
+  },
+  {
+   "branch_id": "O4",
+   "description": "Tariff Board and Tariff Commission orders",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1132",
+      "EO:1199",
+      "EO:1200",
+      "EO:1201",
+      "EO:1208",
+      "EO:1272",
+      "EO:1312",
+      "EO:2922",
+      "EO:3746"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "tariff_board_open",
+    "basis_kind": "NONE",
+    "basis": "Orders organizing or funding the Tariff Board of 1909-1912 or detailing Tariff Commission staff. The Board lapsed when appropriations stopped, but no held instrument ends these orders; a lapse of funding is not an express end.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Acquire the appropriation acts of 1912 and Title VII of the Revenue Act of September 8, 1916 creating the Tariff Commission (39 Stat. 756; page of Title VII unverified) and check whether either reaches these orders."
+   ]
+  },
+  {
+   "branch_id": "O5",
+   "description": "Complete consular fee tariffs and standing fee directives",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:100",
+      "EO:496",
+      "EO:132",
+      "EO:2730",
+      "EO:3685A",
+      "EO:4472",
+      "EO:2022"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "consular_fee_tariff_open",
+    "basis_kind": "NONE",
+    "basis": "Complete tariffs of consular fees (EO 100 of 1897, EO 496 of 1906) and standing fee directives (EO 132, 2022, 2730, 3685A, 4472). EO 2022 waives passport and visa fees 'until further notice' and lets the Secretary of State terminate the waiver and restore the tariff: a standing effect, not only an amendment. No held later instrument names them by number or by an express class description (coordinator ruling P3). Disclosed earlier candidate ends, not applied: for EO 100, the complete revised tariff of EO 496, effective November 1, 1906; for EO 496 and the fee directives, the complete Tariff of United States Foreign Service Fees in EO 7968 (September 3, 1938, 3 FR 2185), which says that no fee 'will be collected for any service not covered by this tariff' but supersedes by number only 22 other orders. EO 10718 (1957) expressly preserved the tariffs then in force.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M7"
+    ],
+    "source_ids": [
+     "S17",
+     "S18",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "A complete replacement tariff is implied displacement under P3; an instrument naming these orders, or their class in express words, is needed.",
+    "EO 496's held text is a State Department description, not the order; EO 2730 runs 'during the continuance of the war and until further orders'.",
+    "For EO 2022, the instrument or Secretary of State action ending the waiver is not held."
+   ]
+  },
+  {
+   "branch_id": "O6p",
+   "description": "One- or two-person retirement or reinstatement without a stated date",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4279A",
+      "EO:4285",
+      "EO:7358"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "one_person_no_stated_end",
+    "basis_kind": "NONE",
+    "basis": "EO 4279-A and EO 4285 order named officers retired on annuity for disability without stating an effective date, and EO 7358 is a two-person order reinstating Earl L. Packer and Vinton Chapin effective on Senate confirmation, whose dates are not held. Under coordinator ruling P4 (PD-CS-ONE-PERSON) a one-person order gets a `no` lead only when its own terms fix the end or a quoted fact bounds the person's life; neither is held here.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M5"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "For EO 7358, the Senate confirmation dates; for EO 4279-A and 4285, a dated fact in the order fixing when the retirement took effect or bounding the officer's life."
+   ]
+  },
+  {
+   "branch_id": "O6",
+   "description": "Standing Foreign Service regulations and directives",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:368",
+      "EO:469",
+      "EO:829",
+      "EO:240",
+      "EO:2357A",
+      "EO:4696",
+      "EO:5400",
+      "EO:5644",
+      "EO:2139",
+      "EO:2341",
+      "EO:5435"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "foreign_service_standing_open",
+    "basis_kind": "NONE",
+    "basis": "Standing regulations or directives for the consular and diplomatic services (appointment rules, unhealthful-post list of 1931, representation allowances, retirement-system rules, passport and visa directives). No held instrument names them by number or express class description; the Foreign Service Acts of 1946 and 1980 have not been read for provisions reaching them.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Acquire the Foreign Service Act of 1946 (60 Stat. 999) and of 1980 (94 Stat. 2071), and the Foreign Service Regulations revisions of 1941-1946, and check for express supersession of these orders."
+   ]
+  },
+  {
+   "branch_id": "O7a",
+   "description": "Members of the administrative-orders family (PD-ADMIN)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:6778",
+      "EO:5966",
+      "EO:2620",
+      "EO:4353"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "other_family_pd_admin",
+    "basis_kind": "NONE",
+    "basis": "These members belong to PD-ADMIN (organization of agencies, regulations, territories): EO 6778 (Federal Alcohol Control Administration acting officers, a delegation under section 2(b) of title I of the National Industrial Recovery Act; a candidate for P8 through the Act's own cessation clause, sec. 2(c), which is not held here); EO 5966 (Hoover's 1932 transfer of the border patrols to the Coast Guard, taking effect only if not disapproved under section 407 of the act of June 30, 1932); EO 2620 (Virgin Islands customs administration); EO 4353 (regulations for the Dominican customs receivership under the convention of December 27, 1924). They stay open here.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Not decided by any doctrine unless the coordinator reassigns them: the other families select members by X1 type, and these members are typed tariff_customs or consular_foreign_service.",
+    "Decide under PD-ADMIN; for EO 5966, the congressional disapproval record of January 1933 (citation unverified); for EO 4353, the 1940 convention with the Dominican Republic."
+   ]
+  },
+  {
+   "branch_id": "O7b",
+   "description": "Members of the war and emergency family (PD-WAR-EMERGENCY)",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:1960",
+      "EO:2017"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "other_family_pd_war_emergency",
+    "basis_kind": "NONE",
+    "basis": "EO 1960 (1914 jurisdiction over arms exports to Mexico) and EO 2017 (1914 authority of customs officers in enforcing neutrality) are war and emergency orders and belong to PD-WAR-EMERGENCY. They stay open here.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Not decided by any doctrine unless the coordinator reassigns them: the other families select members by X1 type, and these members are typed tariff_customs or consular_foreign_service.",
+    "Decide under PD-WAR-EMERGENCY."
+   ]
+  },
+  {
+   "branch_id": "O8",
+   "description": "Member whose held text is unreadable or is a different document",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:10",
+      "EO:12",
+      "EO:14",
+      "EO:99",
+      "EO:538"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "text_unusable_open",
+    "basis_kind": "NONE",
+    "basis": "The held scan is illegible (EO 10, 12, 14), holds a covering letter instead of the order (EO 99), or is the State Department's description of the change rather than the order (EO 538); the summary or a description alone cannot ground a lead.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Acquire a legible copy of the order."
+   ]
+  },
+  {
+   "branch_id": "O0",
+   "description": "Indefinite suspensions of a port or district order",
+   "when": [
+    {
+     "field": "instrument_id",
+     "in": [
+      "EO:4299",
+      "EO:5317"
+     ]
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "suspension_standing_effect_open",
+    "basis_kind": "NONE",
+    "basis": "EO 4299 suspends EO 4284 (abolition of Customs District No. 33) and EO 5317 suspends EO 5291 (abolition of New Bern and Manteo as ports), each indefinitely. A suspension keeps a standing effect while it lasts, so it is not a pure revocation (P1); its end depends on the suspended order's lifecycle (EO 6283 later abolished New Bern and Manteo afresh without naming EO 5291 or EO 5317).",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M3"
+    ],
+    "source_ids": [
+     "S0",
+     "S23"
+    ]
+   },
+   "gaps": [
+    "No held instrument lifts or revokes either suspension or ends the suspended order by number."
+   ]
+  },
+  {
+   "branch_id": "O1",
+   "description": "Port-of-entry order (creation, limits, renaming or mixed) not cited in the current port list",
+   "when": [
+    {
+     "field": "x1_type",
+     "in": [
+      "tariff_customs"
+     ]
+    },
+    {
+     "any_regex": "\\bports?\\b|port of entry|port limits"
+    },
+    {
+     "not": {
+      "any_regex": "internal ?revenue"
+     }
+    },
+    {
+     "not": {
+      "field": "instrument_id",
+      "in": [
+       "EO:2031",
+       "EO:2090",
+       "EO:2307",
+       "EO:3220",
+       "EO:3234",
+       "EO:3779",
+       "EO:3879",
+       "EO:4284",
+       "EO:4543",
+       "EO:5350",
+       "EO:5392",
+       "EO:5455",
+       "EO:4709",
+       "EO:1132",
+       "EO:1199",
+       "EO:1200",
+       "EO:1201",
+       "EO:1208",
+       "EO:1272",
+       "EO:1312",
+       "EO:2922",
+       "EO:3746",
+       "EO:6778",
+       "EO:5966",
+       "EO:2620",
+       "EO:4353",
+       "EO:1960",
+       "EO:2017"
+      ]
+     }
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "port_order_not_in_current_list",
+    "basis_kind": "NONE",
+    "basis": "The order created, bounded, renamed or partly abolished ports. The current list of ports (19 CFR 101.3) does not cite it; the port may survive under limits redrawn by a later Treasury Decision, or may have been abolished by an order outside this family. Absence from the citation column is not evidence that the order ended.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M1"
+    ],
+    "source_ids": [
+     "S1"
+    ]
+   },
+   "gaps": [
+    "For each port, the instrument that last fixed its limits (the T.D. cited in 101.3) or that abolished it; Treasury Decisions are not held.",
+    "EO 5291 was suspended indefinitely by EO 5317 before taking effect and the ports were abolished afresh by EO 6283, which does not name it.",
+    "EO 5577 revokes EO 5011 by number but also includes Oakland, Alameda, Berkeley, Emeryville and San Leandro within the port limits of San Francisco, a continuing port-limits provision (the San Francisco-Oakland limits now rest on CBP Dec. 06-23 under 19 CFR 101.3, which does not name EO 5577)."
+   ]
+  },
+  {
+   "branch_id": "O2",
+   "description": "Internal revenue collection district orders",
+   "when": [
+    {
+     "any_regex": "internal ?revenue"
+    }
+   ],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "internal_revenue_district_open",
+    "basis_kind": "NONE",
+    "basis": "Orders drawing, consolidating or renaming internal revenue collection districts under R.S. 3141-3142, often designating a named collector. No held instrument shows that a later reorganization extinguished these orders; Reorganization Plan No. 1 of 1952 abolished the collector offices, which may end the collector designations but has not been read.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [
+     "M7"
+    ],
+    "source_ids": [
+     "S22"
+    ]
+   },
+   "gaps": [
+    "Acquire Reorganization Plan No. 1 of 1952 (66 Stat. 823) and the Treasury orders that redrew internal revenue districts after 1952; check whether 26 U.S.C. 7621 delegations superseded the presidential district orders by their terms."
+   ]
+  },
+  {
+   "branch_id": "Z",
+   "description": "Catch-all",
+   "when": [],
+   "lead": {
+    "status_lead": "open",
+    "lead_kind": "undecided",
+    "basis_kind": "NONE",
+    "basis": "No branch of this doctrine decides the member.",
+    "date_rule": {
+     "kind": "none"
+    },
+    "mechanism_ids": [],
+    "source_ids": []
+   },
+   "gaps": [
+    "Read the order and classify it."
+   ]
+  }
+ ],
+ "undecidable": [
+  {
+   "reason": "Indefinite suspensions (EO 4299, 5317): standing effect while they last; the suspended orders' ends are not held.",
+   "detected_by": "O0"
+  },
+  {
+   "reason": "Port orders not cited in 19 CFR 101.3: the port's later history (Treasury Decisions, abolitions outside the family) is not held; EO 5577 also redraws San Francisco's limits.",
+   "detected_by": "O1"
+  },
+  {
+   "reason": "Internal revenue district orders: no held instrument shows a class-wide end.",
+   "detected_by": "O2"
+  },
+  {
+   "reason": "Customs district orders: T.D. 95-77 kept districts as geographical descriptions; EO 4284 suspended by EO 4299.",
+   "detected_by": "O3"
+  },
+  {
+   "reason": "Tariff Board orders: lapse of appropriations is not an express end.",
+   "detected_by": "O4"
+  },
+  {
+   "reason": "Complete fee tariffs and standing fee directives: later complete tariffs do not name them (P3); EO 2022's waiver runs until further notice.",
+   "detected_by": "O5"
+  },
+  {
+   "reason": "One- or two-person orders without a stated effective date (P4).",
+   "detected_by": "O6p"
+  },
+  {
+   "reason": "Standing Foreign Service regulations: no instrument names them; the Foreign Service Acts of 1946 and 1980 not read.",
+   "detected_by": "O6"
+  },
+  {
+   "reason": "Members of PD-ADMIN's subject, typed into this family.",
+   "detected_by": "O7a"
+  },
+  {
+   "reason": "Members of PD-WAR-EMERGENCY's subject, typed into this family.",
+   "detected_by": "O7b"
+  },
+  {
+   "reason": "Held text illegible, a different document, or a departmental description.",
+   "detected_by": "O8"
+  }
+ ]
+}

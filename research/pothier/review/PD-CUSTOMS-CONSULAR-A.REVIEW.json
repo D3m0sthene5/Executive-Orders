@@ -1,0 +1,416 @@
+{
+ "doctrine_id": "PD-CUSTOMS-CONSULAR",
+ "arm": "A",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "Throughout: Conclusions, M1, S1 citation and title, S2 citation and title, B01 description/basis/gaps, O1 basis, undecidable[0]",
+   "claim": "The current list of ports of entry is 19 CFR 101.4 (101.4(b)(1)).",
+   "evidence": "The held CFR text (S1 held_path, printed pp. 634-642, 4-1-25 ed.) has the list under '§ 101.3 Customs service ports and ports of entry', paragraph (b)(1) 'Customs ports of entry'; § 101.4 in the same text is 'Entry and clearance of vessels'. The doctrine's own S1 URL (CFR-2025-title19-vol1-sec101-3.pdf), S2 URL (section=101.3), the B01 gap and the O1 gap already say 101.3, so the document contradicts itself. The eCFR versioner for section 101.3 (read 2026-11-05) names the section '§ 101.3 Customs service ports and ports of entry'.",
+   "severity": "error",
+   "fix": "Replace every '19 CFR 101.4' with '19 CFR 101.3' (the list is 101.3(b)(1)), including S1 and S2 citations/titles, M1, B01 description and basis, O1 basis, the .md conclusions, (a), (b), (d) and the undecidable reason."
+  },
+  {
+   "id": "R2",
+   "location": "B03 (EO 2878) lead.date_rule",
+   "claim": "date_rule {kind: fixed, date: 1927-01-27, basis: 'EO 4572 takes effect on its date.'}",
+   "evidence": "EO 4572 (S4, jobs/pinakes-proquest-ingest/output/texts/EO_4572.txt) abolishes Ellsworth, Bar Harbor and South West Harbor 'effective thirty days from the date of this Order' (January 27, 1927); the B03 basis itself says 'effective thirty days after January 27, 1927', and the .md table gives the interval 1927-01-27 to 02-26. The JSON date rule contradicts the source, its own basis and the .md.",
+   "severity": "error",
+   "fix": "Use {kind: interval, from: 1927-01-27, to: 1927-02-26, basis: 'EO 4572 is effective thirty days from January 27, 1927.'}, as for B04-B07."
+  },
+  {
+   "id": "R3",
+   "location": "S8 citation (EO 7463)",
+   "claim": "Executive Order 7463 of September 29, 1936 ... 1 FR 1502.",
+   "evidence": "The Federal Register issue of Thursday, October 1, 1936 (https://www.govinfo.gov/content/pkg/FR-1936-10-01/pdf/FR-1936-10-01.pdf, read 2026-11-05) prints 'Abolishing Fort Pierce, Florida, as a Customs Port of Entry', dated September 29, 1936, [No. 7463], on page 1737, the first page of that issue; 1502 does not appear in it. The held S8 text is the APP transcription and carries no FR citation.",
+   "severity": "error",
+   "fix": "Cite EO 7463 as 1 FR 1737 (Oct. 1, 1936), or drop the FR citation; the held text is an APP mirror transcription."
+  },
+  {
+   "id": "R4",
+   "location": "Section (c) final counts paragraph ('0 contradictions with held later-event edges')",
+   "claim": "The try run gives 0 contradictions with held later-event edges.",
+   "evidence": "Running `python3 -I jobs/pothier/pothier.py try <copy>.json --hints` prints '263 members; decides 146; contradicted 2'. The flagged leads are EO 610 (B21; acted_on_after_lead_end, edge SH-bdbb6b2087da: EO 2022 of 1914-08-14 'Amends Executive Order 496 ... and Executive Order 610') and EO 7062 (B20; edges SH-117996891a66, SH-3647e071d203, SH-99fb1b72ba35: EO 10000 of 1948 and EO 10904 of 1961 adding places to the unhealthful-post list).",
+   "severity": "error",
+   "fix": "Report 'contradicted 2' and name EO 610 and EO 7062 with the edges. Explain that under P2 a later amendment of an amending order's text is a later event of the parent, so the flags do not change the leads, or route the two members to open if the doctrine cannot show this."
+  },
+  {
+   "id": "R5",
+   "location": "O3 basis",
+   "claim": "'Reorganization Plan No. 1 of 1965 abolished collector offices, not districts.'",
+   "evidence": "No source in the doctrine covers Reorganization Plan No. 1 of 1965 (it is not in sources, M7 or the .md). T.D. 95-77 (S19, read on govinfo) mentions the 1965 and 1973 reorganization plans only as background.",
+   "severity": "unsupported",
+   "fix": "Either add Reorganization Plan No. 1 of 1965 as a not-held source with its citation and URL, or delete the clause from the O3 basis."
+  },
+  {
+   "id": "R6",
+   "location": "S16 and B17a-d, M5 (one-person retirements)",
+   "claim": "S16 (TR-CANAL-ZONE) establishes the 'project convention: an order acting on one named person is spent on issue once its single act is performed', and the B17 leads cite it.",
+   "evidence": "TR-CANAL-ZONE.json is a Canal Zone type rule. Its review_state is 'drafted_awaiting_independent_review', and its legal_effect says 'A type rule never fills a judgment field, establishes an end, a date, a status or savings for any order'. The pinned line is an outlier condition for Canal Zone orders, not a general rule. Coordinator ruling P4 makes PD-CS-ONE-PERSON the governing rule, but the doctrine cites no source for it. The B17 leads stand on the member's own stated effective dates (S0) and P4 (S23); S16 adds no support.",
+   "severity": "unsupported",
+   "fix": "Drop S16 from M5 and the B17 leads, or restate what it establishes as 'outlier condition in one type rule (draft)'. Rest the one-person branches on S0 plus P4 (S23), and cite PD-CS-ONE-PERSON if the coordinator allows citing it."
+  },
+  {
+   "id": "R7",
+   "location": "B19 (EO 5577), ruling P1",
+   "claim": "EO 5577's only operative content revokes EO 5011, so it is spent on issue.",
+   "evidence": "EO 5577 (jobs/ofr-compilations/output/texts/EO_5577.txt) revokes EO 5011 'and, effective immediately, the said places are restored to and included within the port limits of San Francisco'. The second clause redraws a port's limits. The doctrine treats that kind of act as continuing elsewhere: port-limit extension orders get 'yes' in B01 (EO 4205, 5193, 5445, 6754) or 'open' in O1 (EO 4161, 4343, 4496, 5096, 5320, 5578, 7474). P1 covers restorations to the public domain, and it keeps open any restoration that carries a continuing effect. The doctrine gives no reason why the San Francisco inclusion is exhausted on issue.",
+   "severity": "unsupported",
+   "fix": "Route EO 5577 to open with the port-limit orders (O1), or argue in the basis why including the places in San Francisco's limits has no continuing effect (for example, that it restored the limits that stood before EO 5011, which an unheld instrument would have to show)."
+  },
+  {
+   "id": "R8",
+   "location": "B21 (EO 538)",
+   "claim": "EO 538 merges into the parent on issue; gap: 'EO 538's held text is the State Department's description of the amendment, not the order.'",
+   "evidence": "The held EO 538 text (Wikisource mirror) opens: 'The following is a description by the Department of State of the change defined in the order, not the actual order text.' The doctrine sends EO 99 (covering letter) to O8 and keeps EO 496 (also a State Department description, per the O5 gap) open. A `no` TERM lead needs the order's own operative words, and for EO 538 none are held.",
+   "severity": "unsupported",
+   "fix": "Route EO 538 to O8 (text unusable) until the order's text is held, or explain why a departmental description of the change is enough for a TERM lead when it is not enough for EO 496."
+  },
+  {
+   "id": "R9",
+   "location": "O7a, O7b",
+   "claim": "These members 'belong to' PD-ADMIN and PD-WAR-EMERGENCY and are to be decided there.",
+   "evidence": "All six members have x1_type tariff_customs or consular_foreign_service (they are members here by the doctrine's own filter). The doctrine gives no evidence that the PD-ADMIN or PD-WAR-EMERGENCY member filters include them; if those filters are by x1_type, no doctrine will decide them. I could not check this because research/pothier/doctrines/ is closed to the reviewer.",
+   "severity": "minor",
+   "fix": "State the gap plainly: 'not decided by any doctrine unless the coordinator reassigns them'. Or ask the coordinator to confirm that the other doctrines' filters reach these instrument ids."
+  },
+  {
+   "id": "R10",
+   "location": "B16 (EO 3535) date_rule.to",
+   "claim": "Interval to 1922-06-04; basis 'Two years from the last possible issue date (June 3, 1920)'; the .md says no extension could run past June 3, 1922.",
+   "evidence": "EO 3535 (held OCR text) covers passports 'issued prior to June 4, 1920' and allows validity 'for a period not to exceed two years from the date of issuance'. The last issue date is June 3, 1920, so the latest validity is June 3, 1922. The 'to' date is one day later than the doctrine's own reasoning gives.",
+   "severity": "minor",
+   "fix": "Set to: 1922-06-03."
+  },
+  {
+   "id": "R11",
+   "location": "B18 date_rule and gaps; M3 effective_date_rule; .md M3",
+   "claim": "Date recorded is the order date; 'the held texts state effective dates up to about two months later, most often thirty days.'",
+   "evidence": "P1 dates a spent order by 'the order's own date (or its stated effective date)'. Many B18 texts state a later effective date: EO 2274 (Nov. 30, 1915) is effective Jan. 1, 1916; EO 2303 Feb. 1, 1916; EO 2320 Mar. 1, 1916; EO 4292 Sept. 1, 1925; EO 4319 Nov. 1, 1925; and most 1926-1936 orders are effective 30 days after their date. The longest gap among the 38 held texts is about 32 days (EO 2274), not 'about two months'. Recording the order date puts the end before the abolition took effect.",
+   "severity": "minor",
+   "fix": "Use the stated effective date where the text states one. If the machine cannot parse it, use an interval from the order date to the order date plus 32 days. Correct 'up to about two months' to 'up to about one month (32 days, EO 2274)'."
+  },
+  {
+   "id": "R12",
+   "location": "Header, M3/M4/S23, B03-B07 lead_kind",
+   "claim": "The doctrine applies coordinator rulings P1-P6. S23 sha256 a3d56826...; B03-B07 lead_kind 'ended_port_abolished_by_later_order'.",
+   "evidence": "The held research/pothier/COORDINATOR_RULINGS.md now hashes to 9624df16488133ae2e1de2b16508b44000c4be9316bc8d6ed76ecfb34ca19266 (not a3d56826...) and contains P7 and P8. P7 ('Abolition by name of the member's only subject: ... the port of entry at X is abolished') covers B03-B07 exactly and prescribes lead kind `ended_by_express_abolition_of_its_subject`, basis ACT, dated by the abolishing instrument.",
+   "severity": "minor",
+   "fix": "Update S23's sha256 and pin, cite P1-P8, and rename the B03-B07 lead kind to ended_by_express_abolition_of_its_subject, citing P7. The substance of B03-B07 already matches P7."
+  },
+  {
+   "id": "R13",
+   "location": ".md section (d) O1 bullet; O1 gaps",
+   "claim": "EO 4284 'also sits here' (O1); O1 gap 'EO 4284 (District 33) was suspended indefinitely by EO 4299; no later act is held.'",
+   "evidence": "The JSON puts EO:4284 in the O3 instrument list, and O3 is tried before O1, so the engine decides EO 4284 at O3 (try output: O3 13 members including EO:4284). The O1 gap about EO 4299/EO 5317 also repeats O0.",
+   "severity": "minor",
+   "fix": "Move the EO 4284 sentence to the O3 bullet and gaps, and remove the EO 4284 and EO 4299 lines from O1's gaps."
+  },
+  {
+   "id": "R14",
+   "location": "undecidable list",
+   "claim": "Eight undecidable entries, detected_by O1-O8.",
+   "evidence": "No branch is named 'O7' (the branches are O7a and O7b). There are no entries for O0 (indefinite suspensions), O6p (one-person orders without a stated date) or the O7b war-emergency pair, although the .md lists them as open groups.",
+   "severity": "minor",
+   "fix": "Add entries for O0, O6p and O7b, and change 'O7' to 'O7a, O7b'."
+  },
+  {
+   "id": "R15",
+   "location": "M4 (.md 'For two amending members the parent's later history is held'); B21 basis",
+   "claim": "Only EO 5127 and EO 5126 have held parent history (EO 5642).",
+   "evidence": "EO 5642 (S12) also cancels and replaces Article I of the Consular Regulations ('The Consular Branch of the Foreign Service'), Article II ('Retirement of Foreign Service Officers') and Article XXV ('Compensation of Consular Officers'). These reach other B21 members' amended paragraphs, for example EO 3354 (paragraphs 1-2, classification) and EO 3902 and EO 1926 (paragraphs 491-492, compensation). EO 5642 also supersedes EO 5189 and its amendments.",
+   "severity": "minor",
+   "fix": "Say 'at least two', or list the other B21 members whose amended paragraphs EO 5642 cancels. This changes no lead under P2."
+  },
+  {
+   "id": "R16",
+   "location": "O6p (EO 7358)",
+   "claim": "EO 7358 is a one-person order under ruling P4.",
+   "evidence": "EO 7358 reinstates two named officers (Earl L. Packer and Vinton Chapin), effective on Senate confirmation. P4 covers 'one act for one named person'.",
+   "severity": "minor",
+   "fix": "Describe EO 7358 as a two-person order that stays open, either for the same reason as P4 or by its own condition (Senate confirmation dates not held)."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S0",
+   "verdict": "verified",
+   "note": "Member texts read for 70+ members across all deciding branches."
+  },
+  {
+   "source_id": "S1",
+   "verdict": "wrong",
+   "note": "Held file sha256 and pin match; pages 634-642 match. But the section is 19 CFR 101.3, not 101.4 (R1). All 32 B01 members are cited by number in 101.3(b)(1) (EO 3925 is cited too but is not a member); the CFR gives Dec. 31, 1931 for EO 5770 (official text: Dec. 30) and Sept. 13, 1933 for EO 6284 (text: Sept. 18), as the doctrine's gap says."
+  },
+  {
+   "source_id": "S2",
+   "verdict": "verified",
+   "note": "WebFetch of the eCFR versioner, section=101.3: latest_amendment_date 2023-11-16, latest_issue_date 2024-06-24. The citation and title name 101.4 wrongly (R1). Not held."
+  },
+  {
+   "source_id": "S3",
+   "verdict": "verified",
+   "note": "EO 5577, Mar. 13, 1931, printed p. 802; revokes EO 5011; pin found."
+  },
+  {
+   "source_id": "S4",
+   "verdict": "verified",
+   "note": "EO 4572, Jan. 27, 1927; abolishes Bar Harbor effective thirty days later and creates a new Bar Harbor; pin found. B03's date rule misreads it (R2)."
+  },
+  {
+   "source_id": "S5",
+   "verdict": "verified",
+   "note": "EO 6282, Sept. 13, 1933; abolishes Lincoln, effective 30 days later."
+  },
+  {
+   "source_id": "S6",
+   "verdict": "verified",
+   "note": "EO 6635, Mar. 7, 1934; abolishes Wichita, effective 30 days later."
+  },
+  {
+   "source_id": "S7",
+   "verdict": "verified",
+   "note": "EO 7236, Nov. 27, 1935; abolishes Charlotte, Little Rock and Dubuque, effective 30 days later."
+  },
+  {
+   "source_id": "S8",
+   "verdict": "wrong",
+   "note": "The held text supports the point, but the FR citation 1 FR 1502 is wrong: the order is at 1 FR 1737 (Oct. 1, 1936) (R3)."
+  },
+  {
+   "source_id": "S9",
+   "verdict": "verified",
+   "note": "EO 4709, Aug. 19, 1927; revokes the order of Nov. 10, 1925 (EO 4337, which matches by date and subject); Coos County moves to District No. 2; thirty days."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "EO 5644, June 8, 1931, printed pp. 932-934; cancels the orders of Apr. 1, 1925, Oct. 20, 1927, Nov. 28, 1927 and Apr. 10, 1930, effective July 1, 1931; these match EO 4187, 4744, 4772 and 5324."
+  },
+  {
+   "source_id": "S11",
+   "verdict": "verified",
+   "note": "EO 5435, Sept. 2, 1930; 'take effect immediately and shall supersede Executive Order No. 4210, of April 23, 1925'."
+  },
+  {
+   "source_id": "S12",
+   "verdict": "verified",
+   "note": "EO 5642, June 8, 1931, printed pp. 902-929, effective July 1, 1931; cancels sections 465-473 and the parts of the Instructions covering the same subjects. It also cancels Articles I, II and XXV (R15)."
+  },
+  {
+   "source_id": "S13",
+   "verdict": "verified",
+   "note": "EO 7061, June 5, 1935; recites EO 6066; retirement effective Dec. 31, 1935."
+  },
+  {
+   "source_id": "S14",
+   "verdict": "verified",
+   "note": "research/pothier/work/AUTHOR_BRIEF.md; sha256 matches; pin 'is spent on issue as a command' found."
+  },
+  {
+   "source_id": "S15",
+   "verdict": "verified",
+   "note": "Strike-and-insert ruling; sha256 matches; pin found."
+  },
+  {
+   "source_id": "S16",
+   "verdict": "verified",
+   "note": "Sha256 and pin match. It is a draft Canal Zone type rule that by its own terms establishes no end, so it does not support what the doctrine says it establishes (R6)."
+  },
+  {
+   "source_id": "S17",
+   "verdict": "verified",
+   "note": "EO 7968, Sept. 3, 1938, 3 FR 2185; pin found; the supersession list names exactly 22 orders, none of them a family member."
+  },
+  {
+   "source_id": "S18",
+   "verdict": "verified",
+   "note": "EO 10718, June 27, 1957, 22 FR 4632; sec. 2 'shall not operate to amend, supersede, or terminate any rates or tariffs of fees ... in force immediately prior to the issuance of this order'."
+  },
+  {
+   "source_id": "S19",
+   "verdict": "verified",
+   "note": "Read on govinfo HTML: T.D. 95-77, 60 FR 50008, Sept. 27, 1995, effective 11:59 p.m. Sept. 30, 1995; 'Districts and regions will, for the most part, be eliminated' and 'They will still exist as geographical descriptions for limited purposes'. End page 50020 not checked. Not held."
+  },
+  {
+   "source_id": "S20",
+   "verdict": "verified",
+   "note": "Not held. The citation (sec. 1 of the act of Aug. 1, 1914, ch. 223, 38 Stat. 609, 623; 19 U.S.C. 2) matches the authority recitals in the held texts of EO 6282, 6635, 7236 and 7463; context only."
+  },
+  {
+   "source_id": "S21",
+   "verdict": "verified",
+   "note": "Not held. govinfo STATUTE-43-Pg140: ch. 182, May 24, 1924; sec. 18 on p. 144 with (d), (j), (k). STATUTE-46-Pg1207: ch. 276, Feb. 23, 1931; sec. 26 begins on p. 1211, and the held EO 5644 and EO 6564-A cite 46 Stat. 1212 for subsections (k) and (j)."
+  },
+  {
+   "source_id": "S22",
+   "verdict": "verified",
+   "note": "Not held. 5 U.S.C. App. note (chanrobles mirror): 'Effective Mar. 14, 1952, 17 F.R. 2243, 66 Stat. 823'; govinfo statute/66/823, sec. 1 abolishes the office of Collector of internal revenue. Its effect on the district orders has not been read, as the doctrine says."
+  },
+  {
+   "source_id": "S23",
+   "verdict": "wrong",
+   "note": "The pin is found, but the file's sha256 is now 9624df16... (not a3d56826...), and the rulings now include P7 and P8, which bear on B03-B07 (R12)."
+  }
+ ],
+ "members_checked": [
+  "EO:2702",
+  "EO:4156",
+  "EO:4205",
+  "EO:5770",
+  "EO:6284",
+  "EO:5011",
+  "EO:2878",
+  "EO:5078",
+  "EO:5453",
+  "EO:4265",
+  "EO:4899",
+  "EO:5284",
+  "EO:4337",
+  "EO:4187",
+  "EO:4744",
+  "EO:4772",
+  "EO:5324",
+  "EO:4210",
+  "EO:6066",
+  "EO:4043",
+  "EO:5247",
+  "EO:5519",
+  "EO:3535",
+  "EO:4477A",
+  "EO:6564A",
+  "EO:6994",
+  "EO:7061",
+  "EO:2274",
+  "EO:2303",
+  "EO:2320",
+  "EO:2488",
+  "EO:2504",
+  "EO:2519",
+  "EO:3241",
+  "EO:3742",
+  "EO:3830",
+  "EO:3831",
+  "EO:4292",
+  "EO:4319",
+  "EO:4400",
+  "EO:4581",
+  "EO:4730",
+  "EO:4823",
+  "EO:4825",
+  "EO:4995",
+  "EO:5035",
+  "EO:5081",
+  "EO:5169",
+  "EO:5192",
+  "EO:5385",
+  "EO:5507",
+  "EO:5530",
+  "EO:6279",
+  "EO:6281",
+  "EO:6282",
+  "EO:6283",
+  "EO:6300",
+  "EO:6339",
+  "EO:6365",
+  "EO:6635",
+  "EO:6674",
+  "EO:6934",
+  "EO:7067",
+  "EO:7236",
+  "EO:7463",
+  "EO:5577",
+  "EO:6737",
+  "EO:530",
+  "EO:617",
+  "EO:659",
+  "EO:1083",
+  "EO:1145",
+  "EO:1824",
+  "EO:2173",
+  "EO:3065",
+  "EO:3122",
+  "EO:3156",
+  "EO:3476",
+  "EO:698",
+  "EO:7062",
+  "EO:108",
+  "EO:135",
+  "EO:138",
+  "EO:167",
+  "EO:180",
+  "EO:217",
+  "EO:422",
+  "EO:423",
+  "EO:538",
+  "EO:610",
+  "EO:611",
+  "EO:1113",
+  "EO:1161",
+  "EO:1217",
+  "EO:1695",
+  "EO:1926",
+  "EO:2022",
+  "EO:2100",
+  "EO:2193",
+  "EO:2301",
+  "EO:2461",
+  "EO:2462",
+  "EO:2493",
+  "EO:2619",
+  "EO:3002",
+  "EO:3115",
+  "EO:3174",
+  "EO:3354",
+  "EO:3431",
+  "EO:3438",
+  "EO:3544",
+  "EO:3678A",
+  "EO:3902",
+  "EO:4615",
+  "EO:5016",
+  "EO:5017",
+  "EO:5045",
+  "EO:5126",
+  "EO:5127",
+  "EO:4279A",
+  "EO:4285",
+  "EO:7358",
+  "EO:10",
+  "EO:12",
+  "EO:14",
+  "EO:99",
+  "EO:2139",
+  "EO:4299",
+  "EO:5317",
+  "EO:2730",
+  "EO:3609",
+  "EO:2629",
+  "EO:4709"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:2878",
+   "branch": "B03",
+   "why": "The lead is correct, but its date is fixed on 1927-01-27; EO 4572 took effect thirty days later, so the interval should run to 1927-02-26 (R2)."
+  },
+  {
+   "instrument_id": "EO:5577",
+   "branch": "B19",
+   "why": "Not only a revocation: it also includes Oakland, Alameda, Berkeley, Emeryville and San Leandro within San Francisco's port limits, a port-limits act that the doctrine treats as continuing elsewhere. P1 'spent on issue' is unsupported; it should be open with O1 or justified (R7)."
+  },
+  {
+   "instrument_id": "EO:538",
+   "branch": "B21",
+   "why": "The only held text is a State Department description, not the order. A TERM lead needs the order's own words; EO 496 and EO 99 stay open on the same kind of text (R8)."
+  },
+  {
+   "instrument_id": "EO:3535",
+   "branch": "B16",
+   "why": "The lead is correct, but the interval end is 1922-06-04, one day after the June 3, 1922 limit the basis itself derives (R10)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's structure is sound. Its ACT ends (B02-B12) rest on later orders whose held texts name the member by number or by date and subject, or abolish by name the one port the member created. Its TERM ends match the members' own texts: stated periods, stated retirement dates, pure port abolitions, and pure amendments under P1/P2. Its 32 yes leads match the EO numbers cited in the held CFR port list, and its open groups are stated truthfully. Four errors must be fixed. (1) The port list is 19 CFR 101.3(b)(1), not 101.4; 101.4 is 'Entry and clearance of vessels', and the doctrine contradicts itself because its URLs and gaps say 101.3. (2) B03's date rule fixes EO 2878's end on EO 4572's date, but EO 4572 took effect thirty days later, as the doctrine's own basis and .md say. (3) EO 7463 is at 1 FR 1737, not 1 FR 1502. (4) The .md reports 0 contradictions, but the engine reports 2 (EO 610 and EO 7062, both later amended), which are not disclosed. Further changes: EO 5577's P1 treatment ignores its San Francisco port-limits clause, and EO 538 is decided on a departmental description. The O3 basis cites an unsourced 1965 reorganization plan. S16 is cited for a rule it disclaims. P7 (now in the rulings, whose hash has changed) prescribes a different lead kind for B03-B07. B18 dates ends by order date though the texts state later effective dates, and its 'about two months' overstates the gap, which is at most about one month."
+}

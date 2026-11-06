@@ -1,0 +1,270 @@
+{
+ "doctrine_id": "PD-CS-RULES",
+ "arm": "B",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "JSON procedure B01 lead.date_rule",
+   "claim": "date_rule {kind: fixed, date: 1903-03-20, basis: \"EO 209's stated effective date\"}; the .md (Conclusions, M4, B01 row) says 1903-04-15.",
+   "evidence": "EO 209 (jobs/wikisource-texts/output/texts/EO_209.txt): signed 'White House, March 20, 1903' but 'Approved, to take effect on and after April 15, 1903.' March 20 is the signing date, not the stated effective date. The engine emits date 1903-03-20 for EO:89, which also contradicts B13's own basis that EO 89 ended on April 15, 1903.",
+   "severity": "error",
+   "fix": "Set B01 date_rule to {kind: fixed, date: 1903-04-15, basis: \"EO 209's stated effective date ('to take effect on and after April 15, 1903')\"}."
+  },
+  {
+   "id": "R2",
+   "location": "M6, S9 (citation, title, establishes), B05 description/basis/date basis, .md M6, table (b) S9 and (c) B05",
+   "claim": "EO 3807 was superseded by 'EO 5495 (October 4, 1930)'.",
+   "evidence": "The held text S9 is jobs/app-executive-orders/output/texts/executive-order-5459-placing-the-position-shipping-commissioner-the-classified-service.txt and its URL slug is executive-order-5459. MEMBERS.jsonl: EO:5459 is dated 1930-10-04, summary 'Position of shipping commissioner ... placed in the competitive classified service; E. O. 3807 of Mar. 15, 1923, superseded. 1930 CSR 57.'; EO 3807's held supersession edge is acting_id EO:5459. EO:5495 is 'Public Water Reserve No. 136, Wyo., established' (1930-11-22, type public_water_reserve). The superseding order is EO 5459. It is itself a member of this family, on B16.",
+   "severity": "error",
+   "fix": "Replace 'EO 5495' with 'EO 5459' throughout (M6, S9 citation and title, B05 description, basis and date basis, .md). Keep date 1930-10-04. Note that EO 5459 is a member, on B16 (open)."
+  },
+  {
+   "id": "R3",
+   "location": "Purity test of M1, used by B12-B15 (the not-text_regex marker list), and the B12-B15 gap '14 of 14 sampled texts were pure'",
+   "claim": "The only-content test sends to B15x every amendment whose text also gives status to persons, directs how incumbents are treated, or states a further effect. B12-B15 hold only pure amendments.",
+   "evidence": "The marker regex misses singular and variant wordings. These B14 members are decided `no` (merged_into_parent_on_issue) even though their held text has a further operative provision of the same kind the doctrine sends to B15x (EO 3303, 5775): EO 6047 'The present incumbent of this position is included in the classified service with the position'; EO 5817 'are hereby included, with their incumbents, in the classified competitive service'; EO 5901 'The effect of this amendment will be to include the position of one assistant with its incumbent in the classified competitive service'; EO 4720 'The effect of the above amendment is to bring the positions named with their present occupants within the competitive classified service'; EO 4948 'Those Indians now in the service ... may ... be treated as classified', plus freestanding reinstatement and first-grade-status provisions; EO 2780 'shall not be construed to require any person now holding the office of shipping commissioner to pass an examination in order to retain such office'; EO 4221 'Special agents so employed shall be continued in office, without examination, so long as their services are efficient'. Separately, EO 1451's operative text ('Hereafter paragraphs (a) and (b) of section 1 of Civil Rule VII shall apply to the appointment of rural carriers ... No inquiry shall be made as to the political or religious opinions') has no amending words. It passes prong 2 only because the Wikisource title and apparatus say 'Amending'.",
+   "severity": "error",
+   "fix": "Widen the marker list, for example: present incumbent(s)?|present occupants|with (its|their) (present )?(incumbents?|occupants)|effect of (this|the above|the foregoing) (order|amendment)|now holding|now in the service|shall be continued in office|be treated as classified. Run the amending-word test on the operative body, with Wikisource and Richardson headers stripped. Move EO 2780, 4221, 4720, 4948, 5817, 5901 and 6047 to B15x and EO 1451 to B18. Restate the B12-B15 count (391 becomes at most 383) and the totals. Replace the '14 of 14 sampled texts were pure' gap with the observed leak rate."
+  },
+  {
+   "id": "R4",
+   "location": ".md (c) intro ('406 decided, 1 contradiction flag') and 'Contradiction flag' paragraph",
+   "claim": "One contradiction flag: EO 119, with three edges from EO 12680 that are OCR splits of EO 11958.",
+   "evidence": "`python3 -I jobs/pothier/pothier.py try <copy> --hints` reports 'decides 406; contradicted 37' (B14 21, B13 13, B09 2, B12 1), all of kind acted_on_after_lead_end. EO 119 alone also carries 15 held amendment edges from EO 120-166 (1899-1902), 'Amends Executive Order 119, May 29, 1899'. Other examples: EO 94 (amended by EO 128, 140, 156), EO 1004 (EO 1467), EO 785 (EO 1180), EO 689 (EO 1246), EO 253 (EO 1163). Many others are number-split false matches: EO 8 against 'E.O. 9280 ... 8 F.R.', EO 11 against EO 11423 and 11615, EO 56 against EO 5607, EO 94 against EO 9440. Most real ones are later amendments of the text that the member had inserted, which under ruling P2 are events of the parent. They still have to be reported.",
+   "severity": "error",
+   "fix": "State the true count (37) and classify it: later amendments of the merged text (consistent with P2, to be disclosed as parent events) and OCR or number-split false matches. List the members, or say how the owner can regenerate the list."
+  },
+  {
+   "id": "R5",
+   "location": "B13 and B14 date windows",
+   "claim": "B13 covers 1896-05-06 to 1903-04-14 (amendments of the 1896 rules). B14 covers 1903-03-20 to 1938-06-23 (amendments of the 1903 rules).",
+   "evidence": "The windows overlap from 1903-03-20 to 1903-04-14. Because B13 is tried first, an amendment of EO 209 issued in that window would be decided as an amendment of EO 89, with the wrong parent named in the basis. No current member falls in the window: EO 210, 213 and 214 go to B17, B18 and B99.",
+   "severity": "minor",
+   "fix": "Either start B14 at 1903-04-15 and route the overlap window to a text test (whether it amends the rules 'of March 20, 1903'), or state the overlap and the routing rule."
+  },
+  {
+   "id": "R6",
+   "location": "S4 pin",
+   "claim": "pin 'Schedules A and B of the Civil Service Rules are hereby amended to read as follows'",
+   "evidence": "The held text jobs/fr-originals/output/texts/EO_8043.txt (sha256 matches) reads 'Sched­ ules A and B of the Civil Service Rules are hereby amended to read as follows' (OCR soft hyphen). The pin as written is not a substring of the held text even after whitespace is collapsed. The substance is verified, as is 'This order shall be effective February 1, 1939.' immediately before '[No. 8 0 4 3 ]'.",
+   "severity": "minor",
+   "fix": "Use a pin that appears verbatim, for example 'of the Civil Service Rules are hereby amended to read as follows', or 'This order shall be effective February 1, 1939.'"
+  },
+  {
+   "id": "R7",
+   "location": ".md 'Terms used', Schedule A and Schedule B",
+   "claim": "Schedules A and B were 'Lists that formed part of the rules from 1903'.",
+   "evidence": "EO 209 as promulgated (held Wikisource text) contains only Schedule A. Its notes say a part of it was 'Later replaced by an entire Schedule B by Executive Order 1180, March 23, 1910'. The EO 1180 text adds '(b) appointment to the positions named in Schedule B of these rules', and its WPA summary reads 'new Schedule B ... now prescribed'.",
+   "severity": "minor",
+   "fix": "Schedule A formed part of the rules from 1903. Schedule B (positions filled by noncompetitive examination) was added by EO 1180 of March 23, 1910."
+  },
+  {
+   "id": "R8",
+   "location": "B06 basis and gaps; .md (d) 'No date (B06, 2: EO 3050, 3051)'",
+   "claim": "Both members have no date, and their text is an unread scan, so what they do is unknown.",
+   "evidence": "Both held texts are readable. EO 3050: 'Mr. Robert L. Stancill ... may be appointed to the position of Assistant to the Director of the Bureau of Standards ... without regard to the requirements of the Civil Service rules ... WOODROW WILSON ... February, 1919 [No. 3050.]'. EO 3051: 'Miss Bert M. Williams may be appointed to the position of clerk at $900 per annum in the Coast and Geodetic Survey ... without reference to the civil service rules ... [No. 3051.]'. EO 3051 has date 1919 in MEMBERS. It reaches B06 only because its summary is empty.",
+   "severity": "minor",
+   "fix": "Describe both as one-person appointment waivers that belong to PD-CS-ONE-PERSON (ruling P4), for example by adding them to B06p. Correct the 'no date' and 'unread scan' statements. The lead stays open."
+  },
+  {
+   "id": "R9",
+   "location": ".md (d) B18 bullet for EO 5657",
+   "claim": "EO 5657's held text does not show the amendment.",
+   "evidence": "The held official text reads 'Schedule A of the civil-service rules, Subdivision II-State Department, paragraph 2, is hereby amended to read: \"Assistants to the Legal Adviser.\" THE WHITE HOUSE, June 24, 1931. [No. 5657]', which is a pure amendment. It misses B14 because its WPA summary has the next entries (5758 'prescribed; ... revoked', 5759 'without regard to Civil Service Rules') run into it, which trips B14's not-summary exclusion.",
+   "severity": "minor",
+   "fix": "Give the true reason: the summary runs into EO 5758 and 5759. Either let the text decide (move EO 5657 to B14) or keep it open with the correct reason."
+  },
+  {
+   "id": "R10",
+   "location": "B15 gap 'each parent's lifecycle is decided under the parent's own family' and the owner adoption point",
+   "claim": "Under the owner's alternative reading, B14 and B15 become open pending their parents.",
+   "evidence": "B15 includes EO 61 (1895-04-15), which amends Departmental, Customs, Postal and Railway Mail rules of November 2, 1894. Those parents were revoked by EO 89 on 1896-05-06, so under the alternative reading EO 61 takes EO 89's express-class end, as B12 members do, and does not become open.",
+   "severity": "minor",
+   "fix": "In the adoption point, note that B15 members dated before 1896-05-06 (EO 61) follow B12."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S0",
+   "verdict": "verified",
+   "note": "member_text per ruling P6; the engine records path, sha256 and grade."
+  },
+  {
+   "source_id": "S1",
+   "verdict": "verified",
+   "note": "sha256 matches. The header gives Richardson IX, printed pp. 701-711, HathiTrust pst.000024803533. Pin 'the President hereby makes and promulgates the following rules and revokes all others' is present, as are 'Approved , May 6 , 1896' and the recital of R.S. 1753 and the Act of January 16, 1883."
+  },
+  {
+   "source_id": "S2",
+   "verdict": "verified",
+   "note": "sha256 matches; Wikisource oldid 13537757. Pin present. 'Approved, to take effect on and after April 15, 1903. ... March 20, 1903.' The listing in the 20th CSC Report (FY1903) was not verified (not held). The text supports 1903-04-15, not the 1903-03-20 used in B01 (R1)."
+  },
+  {
+   "source_id": "S3",
+   "verdict": "verified",
+   "note": "3 FR 1519, FR of June 28, 1938, sha256 matches. The pin and the Rule II sec. 1 and sec. 3(a) quotations are present; dated June 24, 1938 [No. 7915]."
+  },
+  {
+   "source_id": "S4",
+   "verdict": "verified",
+   "note": "4 FR 493, FR of February 2, 1939; dated January 31, 1939; effective February 1, 1939. The pin is not verbatim because of an OCR soft hyphen (R6)."
+  },
+  {
+   "source_id": "S5",
+   "verdict": "verified",
+   "note": "12 FR 1259, February 25, 1947; 'effective May 1, 1947'. Part III revokes 'No. 7915 of June 24, 1938'. I checked the whole revocation list (EO 279 ... 9733): it names no member of this family and does not name EO 209."
+  },
+  {
+   "source_id": "S6",
+   "verdict": "verified",
+   "note": "19 FR 7521, November 23, 1954. Section 101 pin present. Sec. 401: 'first Sunday after the sixtieth day after the date hereof'. Nov 22 + 60 days = Fri Jan 21, 1955, so the order took effect Sun Jan 23, 1955. Sec. 6.2 and the sec. 301 proviso 'unless and until they are removed therefrom by the Commission' are verified."
+  },
+  {
+   "source_id": "S7",
+   "verdict": "verified",
+   "note": "EO 250, February 5, 1904, Wikisource oldid 1814821, 1904 CSR 79; the pin is present and the text reads 'is hereby revoked'."
+  },
+  {
+   "source_id": "S8",
+   "verdict": "verified",
+   "note": "The CSC report slice is dated November 30, 1918; the pin is present and the text reads 'is hereby rescinded'. The WPA cite '1919 CSR 104' agrees with the 36th Report, p. 104. I could not see the report page itself."
+  },
+  {
+   "source_id": "S9",
+   "verdict": "wrong",
+   "note": "The held text and pin are correct, but the order is EO 5459, not EO 5495. EO 5495 is Public Water Reserve No. 136 (R2)."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "Held eCFR text: '[47 FR 28902, July 2, 1982]', the authority line with E.O. 12364 and 47 FR 22931, and (a) Chaplain and (c) Presidential appointments without Senate confirmation. The held EO_12364.txt header confirms 47 FR 22931, May 26, 1982. A web check confirms that 5 U.S.C. 3301 derives from R.S. 1753 (law.cornell.edu derivation table)."
+  }
+ ],
+ "members_checked": [
+  "EO:89",
+  "EO:209",
+  "EO:179",
+  "EO:250",
+  "EO:2985",
+  "EO:3014",
+  "EO:3807",
+  "EO:5459",
+  "EO:8",
+  "EO:11",
+  "EO:15",
+  "EO:16",
+  "EO:17",
+  "EO:62",
+  "EO:67",
+  "EO:68",
+  "EO:30",
+  "EO:56",
+  "EO:90",
+  "EO:94",
+  "EO:119",
+  "EO:160",
+  "EO:61",
+  "EO:367",
+  "EO:2785",
+  "EO:3170",
+  "EO:4919",
+  "EO:5111",
+  "EO:6916",
+  "EO:7372",
+  "EO:3303",
+  "EO:5775",
+  "EO:6134",
+  "EO:1004",
+  "EO:689",
+  "EO:687",
+  "EO:785",
+  "EO:1121",
+  "EO:1451",
+  "EO:1769",
+  "EO:2260",
+  "EO:2780",
+  "EO:4221",
+  "EO:4720",
+  "EO:4822",
+  "EO:4948",
+  "EO:5817",
+  "EO:5901",
+  "EO:6047",
+  "EO:7459",
+  "EO:97",
+  "EO:191",
+  "EO:3425",
+  "EO:3797",
+  "EO:72",
+  "EO:79",
+  "EO:1180",
+  "EO:5657",
+  "EO:3050",
+  "EO:3051"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:89",
+   "branch": "B01",
+   "why": "The lead is right but the date is wrong: 1903-03-20 is the signing date of EO 209, and the stated effective date is 1903-04-15 (R1)."
+  },
+  {
+   "instrument_id": "EO:6047",
+   "branch": "B14",
+   "why": "The text also includes the present incumbent in the classified service, a further provision (R3). Should be B15x."
+  },
+  {
+   "instrument_id": "EO:5817",
+   "branch": "B14",
+   "why": "The text also includes Bureau of Foreign and Domestic Commerce positions 'with their incumbents' in the classified competitive service (R3). Should be B15x."
+  },
+  {
+   "instrument_id": "EO:5901",
+   "branch": "B14",
+   "why": "The text states that its effect is to include a position 'with its incumbent' in the classified service, the same kind of provision as EO 3303 on B15x (R3)."
+  },
+  {
+   "instrument_id": "EO:4720",
+   "branch": "B14",
+   "why": "'The effect of the above amendment is to bring the positions named with their present occupants within the competitive classified service', the same kind of provision as EO 3303 on B15x (R3)."
+  },
+  {
+   "instrument_id": "EO:4948",
+   "branch": "B14",
+   "why": "Freestanding provisions: Indians now in the service may be treated as classified; reinstatement without time limit; first-grade clerical status (R3)."
+  },
+  {
+   "instrument_id": "EO:2780",
+   "branch": "B14",
+   "why": "A provision for incumbents: present shipping commissioners are not required to pass an examination to keep their office (R3)."
+  },
+  {
+   "instrument_id": "EO:4221",
+   "branch": "B14",
+   "why": "A provision for incumbents: special agents 'shall be continued in office, without examination' (R3)."
+  },
+  {
+   "instrument_id": "EO:1451",
+   "branch": "B14",
+   "why": "The operative text has no amending words. It is a freestanding direction on rural-carrier certification and a ban on political inquiry, and it passes the amendment test only on the Wikisource title (R3). Should be B18."
+  },
+  {
+   "instrument_id": "EO:5657",
+   "branch": "B18",
+   "why": "The held text is a pure Schedule A amendment. It is excluded only because its WPA summary runs into EO 5758 and 5759 (R9). Under the doctrine's rules it belongs on B14."
+  },
+  {
+   "instrument_id": "EO:3050",
+   "branch": "B06",
+   "why": "The held text is readable: a one-person appointment waiver (Stancill, 1919). It belongs to PD-CS-ONE-PERSON (R8)."
+  },
+  {
+   "instrument_id": "EO:3051",
+   "branch": "B06",
+   "why": "The held text is readable: a one-person appointment waiver (Bert M. Williams, 1919). Its date of 1919 is held (R8)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's structure follows the coordinator rulings. Ruling P2 governs pure amendments; EO 89's 'revokes all others' and EO 209's 'in lieu of those promulgated May 6, 1896, and the amendments thereof' are correctly treated as express class ends; EO 209 is correctly held open under P3; savings clauses are not treated as ends. All held pins and FR, Stat. and CFR citations check out against the held texts, except for a soft-hyphen pin mismatch in S4. Four errors need fixing. (1) B01 dates EO 89's end at 1903-03-20, the signing date of EO 209, instead of its stated effective date 1903-04-15. (2) The order that superseded EO 3807 is EO 5459, not EO 5495, which is a Wyoming public water reserve. (3) The purity test leaks: at least seven B14 members carry incumbent or status provisions of the same kind the doctrine sends to B15x (EO 2780, 4221, 4720, 4948, 5817, 5901, 6047), and EO 1451 passes only on Wikisource title words; all eight are wrongly decided `no`. (4) The .md reports one contradiction flag, but the engine reports 37; EO 119 alone has 15 later amendment edges besides the EO 12680 OCR splits. Minor issues: the B13 and B14 date windows overlap; Schedule B dates from 1910 (EO 1180), not 1903; the two B06 members are readable one-person waivers, not unread scans; the stated reason EO 5657 is open is wrong. The open list is otherwise honest. No `yes` lead is proposed."
+}

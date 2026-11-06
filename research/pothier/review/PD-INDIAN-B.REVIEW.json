@@ -1,0 +1,337 @@
+{
+ "doctrine_id": "PD-INDIAN",
+ "arm": "B",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "sources/S-1906 (JSON citation and .md table row (b))",
+   "claim": "The 1906 Act is cited as \"Act of June 21, 1906, ch. 3504, 34 Stat. 352, 326\".",
+   "evidence": "The held Kappler III page (KAPPLER_III_pages.jsonl.gz, image 201, printed p. 193) prints the act's caption with the margin note \"34 Stat., 325\" and the trust-continuation proviso beside the margin note \"34 Stat., 326\". The member orders that rely on it cite the same pages: EO 6498, 6926, 6939, 7206 and 7464 (held texts) all cite \"ch. 3504, 34 Stat. 325, 326\", and EO 2066, 2109, 3994 cite \"34 Stat. L., 325-326\". Page 352 is wrong, and a first page after the pinpoint page is impossible.",
+   "severity": "error",
+   "fix": "Act of June 21, 1906, ch. 3504, 34 Stat. 325, 326."
+  },
+  {
+   "id": "R2",
+   "location": "procedure/B02-ACT-1529 date_rule",
+   "claim": "date_rule fixed 1932-08-28, with basis \"date of EO 5843\".",
+   "evidence": "The held text of EO 5843 (jobs/ofr-compilations/output/texts/EO_5843.txt, sha256 2e679ade...bf30d, OFR 1974 Hoover compilation printed p. 1133) is headed \"Executive Order 5843. April 28, 1932\"; MEMBERS.jsonl dates EO 5843 1932-04-28; the same lead's basis sentence and the .md (M5) both say April 28, 1932. The engine will therefore emit an end date four months after the revoking order.",
+   "severity": "error",
+   "fix": "date_rule {\"kind\": \"fixed\", \"date\": \"1932-04-28\", \"basis\": \"date of EO 5843\"}."
+  },
+  {
+   "id": "R3",
+   "location": "M2, B07-TRUST-OPEN-CERTAIN, B07-TRUST-OPEN-UNCERTAIN, B06-TRUST-OPEN-6498 (basis and lead_kind trust_period_running_on_1934_06_18_continued_by_statute)",
+   "claim": "For every trust member whose period was running on 1934-06-18, IRA sec. 2 \"extended and continued\" the period the order fixed, so the stated end is not a sound TERM end; tribes outside the IRA are covered by M3 (the 1935 Act and later blanket orders).",
+   "evidence": "IRA sec. 13 (48 Stat. 986-987, read on govinfo STATUTE-48-Pg984.pdf) provides that sections 2, 4, 7, 16, 17 and 18 \"shall not apply\" to the listed tribes and affiliated tribes located in Oklahoma (Cheyenne, Arapaho, Apache, Comanche, Kiowa, Caddo, Delaware, Wichita, Osage, Kaw, Otoe, Tonkawa, Pawnee, Ponca, Shawnee, Ottawa, Quapaw, Seneca, Wyandotte, Iowa, Sac and Fox, Kickapoo, Pottawatomi, Cherokee, Chickasaw, Choctaw, Creek, Seminole). The member texts or WPA summaries put 19 open trust members in Oklahoma: EO 2317 (Eastern Shawnee), 3363 (Ponca, Okla.), 4029 (Mexican Kickapoo), 4281 (Otoe), 4384 (Eastern Shawnee), 4398 (Kiowa, Comanche, Apache, Wichita), 4435 (Iowa, Sac and Fox), 4470 (Modoc of Oklahoma; within the 'affiliated' clause only if affiliated, to be confirmed), 4557 (Absentee Shawnee, Citizen Potawatomi), 4587 (Cheyenne and Arapaho), 4588 (Ottawa, Seneca, Wyandotte), 4816 (Oakland reservation, Tonkawa), 4898 (Pawnee), 5306 (Seneca), 5539 (Ponca), 5728 (Otoe and Missouria), 5955 (Wichita), 6926 (all Oklahoma reservations), 7206 (all Oklahoma lands); EO 6498 also reaches Oklahoma lands. For these, sec. 2 continued nothing, so the stated basis is contrary to the statute the doctrine cites. M3 does not cover them either: the Act of June 15, 1935, sec. 3 (49 Stat. 378) reaches only reservations that voted to exclude themselves under sec. 18, which sec. 13 also makes inapplicable to these tribes. The doctrine itself notes (Other points) that EO 3363 is the Ponca (Oklahoma) period. The gap line \"whether the tribe came under the IRA: the sec. 13 list\" treats as unknown a fact the held texts already show.",
+   "severity": "error",
+   "fix": "Add a branch before B07-TRUST-OPEN for sec. 13 Oklahoma members (text/summary 'Oklahoma|Okla' plus the trust condition), with a basis stating that IRA sec. 2 does not reach them. By the doctrine's own M1 reasoning their stated periods (ending 1934-1946) are TERM ends unless a statute continuing those periods is found; either lead them `no`, TERM, interval = stated end, with the gap 'no later Oklahoma statute continuing these periods is held', or keep them `open` with that gap as the reason. Do not cite IRA sec. 2 continuation for them; correct M2 ('for tribes outside the IRA, M3 applies') to distinguish sec. 13 tribes from sec. 18 exclusions."
+  },
+  {
+   "id": "R4",
+   "location": "B07-TRUST-OPEN-CERTAIN members issued after 1934-06-18 (EO 6926, 6939, 6940, 6961, 6962, 6968, 7001, 7009, 7036, 7206, 7464); M2; appendix",
+   "claim": "Each of these orders \"fixed a trust period that was still running (or may have been running) on 1934-06-18\" and IRA sec. 2 continued the period the order fixed.",
+   "evidence": "These orders were issued between 1934-12-20 and 1936-09-30, after the IRA. IRA sec. 2 continued \"the existing periods of trust\" on 1934-06-18; the extension each of these orders grants did not exist then, so sec. 2 cannot have continued it (for an IRA reservation sec. 2 had already continued the prior period indefinitely; the White Earth Act sec. 3(i), 100 Stat. 62, read on govinfo, likewise describes the IRA as extending indefinitely periods that would otherwise have expired on or after 1934-06-18). Four of the orders say so in their own terms: EO 6939 (Spokane) 'shall be subject to the provisions of the act of June 18, 1934 ... and if the provisions of said Act are made applicable to the said Reservation by the election provided for in said Act, this order shall thereafter cease to be of force and effect'; EO 6961 (Klamath), 6962 (Colville) and 7001 (Crow) contain the same cessation clause tied to a favourable sec. 18 vote (held texts in jobs/app-executive-orders/output/texts/). The doctrine never mentions this own-terms end. For a reservation that rejected the IRA, the order's own period ran to 1945 (EO 7464: 1961-12-31 to 1962-12-31); EO 6926 and 7206 are Oklahoma orders (see R3). So in each alternative the order's own terms end it before the cutoff unless a reservation-specific statute continued that period (the 25 CFR ch. I appendix lists, e.g., an Act of Dec. 24, 1942, 56 Stat. 1081, for Klamath and a 1940 Act for Crow).",
+   "severity": "error",
+   "fix": "Give the post-1934-06-18 orders their own branch. For EO 6939, 6961, 6962, 7001, state the cessation condition as a TERM mechanism (ends at the IRA election if accepted; otherwise at the stated end ten years from expiry). For all eleven, replace the IRA-continuation basis with the alternatives above, and keep the lead `open` only where a statute continuing that reservation's period (named in the gaps) leaves the end undecided; otherwise lead `no`, TERM, with an interval from the election date (or order date) to the stated end."
+  },
+  {
+   "id": "R5",
+   "location": "B07-TRUST-OPEN-UNCERTAIN (EO 1916, 2066, 2317, 2374, 2376, 2966, 3994, 5383); .md (c) item 11, (d) and appendix",
+   "claim": "These eight orders \"state no expiry year and whose end no held source fixes\", so they may have been running on 1934-06-18.",
+   "evidence": "Held later member orders for the same tribes fix or bound the ends, by the same reasoning the doctrine uses for EO 2109 and EO 4382: EO 3994 (1924-04-19) extends 'the trust period on all allotments of the Sisseton and Wahpeton Band ... for a further period of fifteen years', the same allotments EO 1916 (1914, ten years) covered (the 25 CFR ch. I appendix lists EO 1916 and then EO 3994 for Sisseton); EO 4464 extends the Papago period 'expiring during 1926 or 1927' (EO 2066, 1914, ten years); EO 4384 extends Eastern Shawnee allotments expiring in 1926 (EO 2317, 1916, ten years); EO 4407 extends the Ponca (Nebraska) allotments expiring in 1926 (EO 2374, 1916, ten years); EO 4408 extends Grande Ronde allotments 'for a further period of ten years, from present date of expiration', expiring during 1926 (EO 2376, 1916, ten years); EO 5023 extends the Iowa (Kansas and Nebraska) period expiring during 1929 (EO 2966, 1918, ten years; a weaker match). Conversely EO 3994 (1924 + 15) and EO 5383 (1930 + 10, 'from the date of expiration') cannot end before 1939 and 1940 if the period was unexpired when the order issued, so they are certainly running and belong in B07-TRUST-OPEN-CERTAIN. The branch's own gap says the lead 'would become TERM no' if a held source fixed the end before 1934-06-18.",
+   "severity": "unsupported",
+   "fix": "Decide EO 1916, 2066, 2374, 2376 (and 2966 with a weaker-match disclosure) as `no`, TERM, with intervals ending 1924-1929 taken from the later held orders, as for EO 2109 (EO 2317 falls under R3 in any case). Move EO 3994 and 5383 to the certain branch. Correct the counts (82 + 12, 98 open, 45 no) throughout."
+  },
+  {
+   "id": "R6",
+   "location": "Appendix rows EO 4157, 5474, 6341, 4382, 3348; M1 list of date-naming orders",
+   "claim": "EO 4157: expiring 1925, end 1935-01-01 to 1935-12-31. EO 5474: expiring 1930 (WPA), end 1940-01-01 to 1940-12-31. EO 6341: end 1943-01-01 to 1943-12-31. EO 4382: end 1936-01-01 to 1936-12-31. EO 3348: end 1930-12-18 to 1930-12-28. M1: orders that name a date are EO 2856, 2866, 3348, 4816.",
+   "evidence": "EO 4157's text: 'which period expires during the calendar years 1925 and 1926 ... extended for a period of ten years from date of expiration', so 1935-01-01 to 1936-12-31. EO 5474: 'which trust expires December 28, 1930, be ... extended for a period of 10 years' (no 'from expiration'), so 1940-10-31 to 1940-12-28, and it is a date-naming order omitted from M1. EO 6341: 'expires on December 13, 1933 ... 10 years from the date of the expiration thereof', so 1943-12-13. EO 4382: 'from March 8, 1926', so 1936-03-08. EO 5474 (Santee homesteads expiring December 28, 1930, after a ten-year extension) corroborates the scan's December 28, 1920 for EO 3348 against the WPA's December 18. No lead changes.",
+   "severity": "minor",
+   "fix": "Correct the appendix rows and add EO 5474 and 6341 to the M1 list of orders that name a date; EO 3348 may be fixed at 1930-12-28 with the WPA variant disclosed."
+  },
+  {
+   "id": "R7",
+   "location": "M4 and B03 basis for EO 4041",
+   "claim": "EO 3307, 3637 and 4041 withdraw lands \"until\" March 5 of a stated year \"in aid of proposed legislation\".",
+   "evidence": "EO 4041's held text (jobs/pinakes-proquest-ingest/output/texts/EO_4041.txt) withdraws the lands 'until March 5, 1925, for the use and benefit of the Indians of the Walker River Reservation'; legislation appears only in the lapse clause ('If legislation be not enacted before March 5, 1925, to withdraw these lands permanently'). EO 3307 and 3351/3637 do use 'in aid of proposed legislation' or the equivalent. The TERM end is unaffected.",
+   "severity": "minor",
+   "fix": "Describe EO 4041 as a temporary withdrawal for the use of the Walker River Indians pending legislation, with the same lapse clause."
+  },
+  {
+   "id": "R8",
+   "location": "mechanisms/M8 kind",
+   "claim": "M8 is kind \"review_program\".",
+   "evidence": "M8 is a regulation in force on the cutoff (40 CFR 49.10198(b), 84 FR 34313, July 18, 2019, verified on law.cornell.edu), not a review program; the schema's kinds offer later_instrument (or statute) for a later instrument relied on as current law.",
+   "severity": "minor",
+   "fix": "kind later_instrument (effect persists)."
+  },
+  {
+   "id": "R9",
+   "location": "B05-P1-SPENT (EO 1284) versus B05-OPEN-RESTORATION-WITH-RESERVATION (EO 1000)",
+   "claim": "EO 1284 restores lands with no retained tract and is spent on issue; EO 1000 keeps a retained tract and is open.",
+   "evidence": "Both orders restore the unallotted lands of the same 1907 and 1908 Navajo additions (EO 709 and 744): EO 1000 'except the following described lands embracing one hundred and ten unapproved allotments'; EO 1284 'all lands not allotted to Indians or otherwise reserved'. The distinction (EO 1000 names pending, unapproved allotments that remain reserved for a later act; EO 1284 only defines the restored class) is defensible but is not stated, and EO 1284 was later 'eliminated from the operation of' by EO 1483 and amended by EO 1359 (held edges).",
+   "severity": "minor",
+   "fix": "State the distinction in B05-P1-SPENT's basis, or treat EO 1284 like EO 1000 if the exclusion of allotted and otherwise reserved lands is a retained tract under P1."
+  },
+  {
+   "id": "R10",
+   "location": "M7 and S-SIOUX establishes",
+   "claim": "\"Before 1927 such reservations were revocable at will\" (Sioux Tribe v. United States, 316 U.S. 317, 331 (1942)).",
+   "evidence": "The quoted words are at 316 U.S. 331 (verified on justia.com: 'But the interest which the Indians received was subject to termination at the will of either the executive or Congress and without obligation to the United States'). The Court said this of the 1875-1879 Sioux orders; the 'before 1927' limit is the doctrine's inference from the 1927 Act, not the Court's holding.",
+   "severity": "minor",
+   "fix": "Say that Sioux Tribe held the interest under the orders before it revocable at will, and that the 1927 Act thereafter confined boundary changes to Congress."
+  },
+  {
+   "id": "R11",
+   "location": "sources/S-1919 pinpoint",
+   "claim": "\"sec. 27 reportedly p. 34; pinpoint unverified\".",
+   "evidence": "Held Kappler IV prints sec. 27 at printed p. 225 (image 235) under the running head 'SIXTY-SIXTH CONGRESS. SESS. I. CH. 4. 1919.', confirming ch. 4; held Kappler IV printed p. 1062 (image 736) quotes an opinion citing the act as '41 Stat. 3-34' for this sentence. That supports p. 34 (secondary evidence).",
+   "severity": "minor",
+   "fix": "Record the pinpoint as 41 Stat. 3, 34, supported by the held Kappler IV p. 1062 citation, pending the Statutes at Large page."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S-MEMBER",
+   "verdict": "verified",
+   "note": "Member texts read for 60+ members; see members_checked."
+  },
+  {
+   "source_id": "S-GAA",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-24-Pg388.pdf: sec. 5 trust language and proviso 'the President of the United States may in any case in his discretion extend the period' on p. 389."
+  },
+  {
+   "source_id": "S-1906",
+   "verdict": "wrong",
+   "note": "Pin found and sha256 matches, but the citation's page is wrong: 34 Stat. 325, 326, not 352 (R1)."
+  },
+  {
+   "source_id": "S-IRA",
+   "verdict": "verified",
+   "note": "govinfo: sec. 2 on p. 984, sec. 13 pp. 986-987 (Oklahoma list; secs. 2, 4, 7, 16, 17, 18 inapplicable), sec. 18 p. 988 (election within one year). Citation correct; the doctrine misapplies sec. 13 (R3) and sec. 2 to post-IRA orders (R4)."
+  },
+  {
+   "source_id": "S-5102",
+   "verdict": "verified",
+   "note": "law.cornell.edu: heading 'Existing periods of trust and restrictions on alienation extended', source credit June 18, 1934, ch. 576, sec. 2, 48 Stat. 984; formerly 25 U.S.C. 462."
+  },
+  {
+   "source_id": "S-1935",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-49-Pg378.pdf: ch. 260, approved June 15, 1935; sec. 3 extends to December 31, 1936 trust periods on reservations that voted to exclude themselves, if not already extended past that date."
+  },
+  {
+   "source_id": "S-EO7464",
+   "verdict": "verified",
+   "note": "Held text sha256 matches; pin found; 1 FR 1507 supported by the WPA summary in MEMBERS.jsonl. Date September 30, 1936 confirmed."
+  },
+  {
+   "source_id": "S-CFRAPP",
+   "verdict": "verified",
+   "note": "law.cornell.edu appendix to 25 CFR ch. I: asterisk marks IRA reservations 'extended indefinitely'; general orders 6498, 6926, 7206, 7464 to 10191 and Interior orders to 53 FR 30674 (1988) listed. Also lists EO 1916 then 3994 for Sisseton, and reservation-specific Acts (Klamath 1942, Crow 1940) not mentioned in the doctrine."
+  },
+  {
+   "source_id": "S-1919",
+   "verdict": "verified",
+   "note": "Held Kappler IV image 235 (printed 225): pin found, sha256 matches, ch. 4 confirmed by running head; p. 34 supported by Kappler IV p. 1062 citation '41 Stat. 3-34' (R11)."
+  },
+  {
+   "source_id": "S-1927",
+   "verdict": "verified",
+   "note": "Held Kappler IV image 610 (printed 936): 'Chap. 299 ... 44 Stat., 1347', sec. 4 text and proviso for temporary withdrawals by the Secretary; approved March 3, 1927 (image 611)."
+  },
+  {
+   "source_id": "S-398d",
+   "verdict": "verified",
+   "note": "law.cornell.edu: current text; source credit includes Pub. L. 94-579, title VII, sec. 704(a), 90 Stat. 2792, which struck the temporary-withdrawal proviso."
+  },
+  {
+   "source_id": "S-SIOUX",
+   "verdict": "verified",
+   "note": "justia: quoted phrase at 316 U.S. 331; framing 'before 1927' is the doctrine's own (R10)."
+  },
+  {
+   "source_id": "S-KALISPEL",
+   "verdict": "verified",
+   "note": "MENTIONS.csv rows (sha256 matches, pin found) and law.cornell.edu: 40 CFR 49.10198(b) designates 'the original Kalispel Reservation, as established by Executive Order No. 1904, signed by President Woodrow Wilson on March 23, 1914' a Class I area; 84 FR 34313, July 18, 2019."
+  },
+  {
+   "source_id": "S-WHITEEARTH",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-100-Pg61.pdf: Pub. L. 99-264, approved March 24, 1986, sec. 3(i) on 100 Stat. 62 names EO 4642 of May 5, 1927, EO 5768 of December 10, 1931, EO 5953 of November 23, 1932, 'deemed to have extended trust periods on all allotments' that 'would otherwise have expired in 1927, 1932, or 1933'."
+  },
+  {
+   "source_id": "S-KENAI",
+   "verdict": "verified",
+   "note": "MENTIONS.csv pin found; law.cornell.edu 43 U.S.C. 1784 note 'Kenai Natives Association Land Exchange' (Pub. L. 104-333, sec. 311) mentions 'Executive Order [2943]'; member EO 2943 is a Klamath River (California) trust extension, so not this member. Identity of the Kenai instrument not verified."
+  },
+  {
+   "source_id": "S-EO4382",
+   "verdict": "verified",
+   "note": "Held text sha256 matches; pin 'extended for a further period of ten years, from March 8, 1926' found; same 'ten year period of trust on all allotments made to members of the Chief Moses Band' wording as EO 2109."
+  },
+  {
+   "source_id": "S-EO324A",
+   "verdict": "verified",
+   "note": "Held text: 'The Executive order of March 10, 1905 ... is hereby canceled' (dated 'May IB, 1905' in OCR); EO 302-A is dated 1905-03-10."
+  },
+  {
+   "source_id": "S-EO1296",
+   "verdict": "verified",
+   "note": "Held text dated February 2, 1911, cancels EO 1267 of December 1, 1910."
+  },
+  {
+   "source_id": "S-EO1649",
+   "verdict": "verified",
+   "note": "Held text dated November 26, 1912, names EO 1632 of October 28, 1912."
+  },
+  {
+   "source_id": "S-EO2524",
+   "verdict": "verified",
+   "note": "Held text dated February 1, 1917; revokes orders of June 16, 1911, December 5, 1912 (EO 1655's date) and January 14, 1916."
+  },
+  {
+   "source_id": "S-EO2332",
+   "verdict": "verified",
+   "note": "Held text dated February 29, 1916; revokes EO 1228 of July 13, 1910 as modified by EO 2223; entry on and after April 1, 1916."
+  },
+  {
+   "source_id": "S-EO3637",
+   "verdict": "verified",
+   "note": "Held text dated February 16, 1922; 'supersedes and takes the place of Executive Order No. 3351, dated November 6, 1920'; until March 5, 1924."
+  },
+  {
+   "source_id": "S-EO5843",
+   "verdict": "verified",
+   "note": "Held text dated April 28, 1932, revokes EO 1529 of May 9, 1912. The B02-ACT-1529 date rule (1932-08-28) contradicts it (R2)."
+  },
+  {
+   "source_id": "S-EO6147",
+   "verdict": "verified",
+   "note": "Held text dated May 26, 1933; 'Executive Order No. 6131, dated May 12, 1933, is hereby revoked'."
+  }
+ ],
+ "members_checked": [
+  "EO:1904",
+  "EO:302A",
+  "EO:324A",
+  "EO:1267",
+  "EO:1296",
+  "EO:1632",
+  "EO:1655",
+  "EO:1228",
+  "EO:1529",
+  "EO:3351",
+  "EO:6131",
+  "EO:6147",
+  "EO:3307",
+  "EO:3637",
+  "EO:4041",
+  "EO:4177",
+  "EO:628",
+  "EO:1090",
+  "EO:1172",
+  "EO:1284",
+  "EO:3759",
+  "EO:2332",
+  "EO:743",
+  "EO:744",
+  "EO:1322",
+  "EO:1349",
+  "EO:1406",
+  "EO:1598",
+  "EO:1621",
+  "EO:2030",
+  "EO:1000",
+  "EO:1483",
+  "EO:2109",
+  "EO:2943",
+  "EO:2133",
+  "EO:2363",
+  "EO:2494",
+  "EO:2623",
+  "EO:2778",
+  "EO:2816",
+  "EO:2856",
+  "EO:3047",
+  "EO:3048",
+  "EO:3223",
+  "EO:3302",
+  "EO:3327",
+  "EO:3348",
+  "EO:3805",
+  "EO:3853",
+  "EO:1916",
+  "EO:2066",
+  "EO:2317",
+  "EO:2374",
+  "EO:2376",
+  "EO:2966",
+  "EO:3994",
+  "EO:5383",
+  "EO:3363",
+  "EO:3383",
+  "EO:3722",
+  "EO:3995",
+  "EO:4157",
+  "EO:4382",
+  "EO:5474",
+  "EO:6498",
+  "EO:6926",
+  "EO:6939",
+  "EO:6940",
+  "EO:6961",
+  "EO:6962",
+  "EO:6968",
+  "EO:7001",
+  "EO:7009",
+  "EO:7036",
+  "EO:7206",
+  "EO:7464",
+  "EO:2222",
+  "EO:2225",
+  "EO:2549",
+  "EO:2550",
+  "EO:344B",
+  "EO:1256",
+  "EO:1271",
+  "EO:4628"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:1529",
+   "branch": "B02-ACT-1529",
+   "why": "Lead no/ACT is right, but the date rule gives 1932-08-28; EO 5843 is dated 1932-04-28 (R2)."
+  },
+  {
+   "instrument_id": "EO:3363",
+   "branch": "B07-TRUST-OPEN-CERTAIN",
+   "why": "Ponca (Oklahoma): IRA sec. 13 makes sec. 2 inapplicable, so the basis 'continued by statute' is false; its stated end (1946) is a TERM end unless a continuing Oklahoma statute is found (R3). Same for EO 4281, 4384, 4398, 4435, 4470, 4557, 4587, 4588, 4816, 4898, 5306, 5539, 5728, 5955."
+  },
+  {
+   "instrument_id": "EO:4029",
+   "branch": "B07-TRUST-OPEN-UNCERTAIN",
+   "why": "Mexican Kickapoo (Oklahoma): sec. 2 does not apply, so the straddle of 1934-06-18 is irrelevant; the period ended by its terms in 1934 (R3)."
+  },
+  {
+   "instrument_id": "EO:6939",
+   "branch": "B07-TRUST-OPEN-CERTAIN",
+   "why": "Issued 1935-01-07; its own text says it ceases if the IRA is applied to the reservation at the sec. 18 election, otherwise its period runs to 1945; IRA sec. 2 did not continue a period that did not exist on 1934-06-18 (R4). Same for EO 6961, 6962, 7001; and the IRA basis is equally wrong for EO 6926, 6940, 6968, 7009, 7036, 7206, 7464."
+  },
+  {
+   "instrument_id": "EO:1916",
+   "branch": "B07-TRUST-OPEN-UNCERTAIN",
+   "why": "Held EO 3994 (1924) extends the same Sisseton-Wahpeton period 'for a further period'; the 25 CFR appendix lists 1916 then 3994; the end (about 1924) is fixed before 1934-06-18 by the doctrine's own EO 2109 method (R5). Similarly EO 2066 (EO 4464), 2374 (EO 4407), 2376 (EO 4408), 2966 (EO 5023, weaker), 2317 (EO 4384; also R3)."
+  },
+  {
+   "instrument_id": "EO:3994",
+   "branch": "B07-TRUST-OPEN-UNCERTAIN",
+   "why": "Minimum end 1939 (order date 1924 + 15), so it was certainly running; belongs in the certain branch (R5). Same for EO 5383 (minimum 1940)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The engine run matches the doctrine's counts (230 members, 71 decided, 6 flags, each explained). All 15 held sources have matching sha256 and their pins; the IRA, the 1935 Act, the General Allotment Act, 25 U.S.C. 5102 and 398d, Sioux Tribe, 40 CFR 49.10198(b) and the White Earth Act say what the doctrine says. The trust-period arithmetic is correct for all 45 `no` members: each order's stated expiry and period, read from the held text, gives an end before 1934-06-18. Two planted-type errors need correction: the 1906 Act is cited at 34 Stat. 352 instead of 325, and the B02-ACT-1529 date rule says 1932-08-28 although EO 5843 is dated 1932-04-28. The main legal defect is the handling of IRA sec. 2. The doctrine gives every open trust member the basis 'IRA sec. 2 continued the period the order fixed', but sec. 13 makes sec. 2 inapplicable to the listed Oklahoma tribes, which covers 19 members whose held texts show they are Oklahoma tribes. Eleven members were issued after 1934-06-18, so sec. 2 cannot have continued their periods, and four of them (EO 6939, 6961, 6962, 7001) state that they cease if the reservation accepts the IRA. Those leads stay open, so no wrong `no` or `yes` results from this, but their stated basis is false and several are decidable from their own terms. The uncertain trust branch also says no held source fixes the end of six orders whose ends are fixed by held later orders for the same tribes, the method the doctrine uses for EO 2109. The P1, P2, B02, B03, B09 and B10 branches catch the members they mean. Remaining findings are small appendix arithmetic slips and wording points."
+}

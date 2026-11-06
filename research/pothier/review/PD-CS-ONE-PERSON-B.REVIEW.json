@@ -1,0 +1,295 @@
+{
+ "doctrine_id": "PD-CS-ONE-PERSON",
+ "arm": "B",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "JSON procedure B01, lead.date_rule",
+   "claim": "B01 dates the end of EO 5332 as fixed 1930-06-29, 'date of EO 5371'.",
+   "evidence": "The held S5 text (jobs/app-executive-orders/output/texts/executive-order-5371-order-precedence-the-assistant-secretaries-war.txt, sha256 e7cd7547... verified) is signed 'The White House, June 19, 1930.' The member record for EO 5371 is dated 1930-06-19, and the doctrine's own .md (M3 and the B01 table row) says 1930-06-19. The engine emits date 1930-06-29 for EO:5332.",
+   "severity": "error",
+   "fix": "Set date_rule {\"kind\":\"fixed\",\"date\":\"1930-06-19\",\"basis\":\"date of EO 5371\"}."
+  },
+  {
+   "id": "R2",
+   "location": "Source S6 (JSON citation; .md table and M1 'Retirement age' bullet)",
+   "claim": "S6 cites the Civil Service Retirement Act as the 'Act of May 22, 1922, ch. 195, sec. 1, 41 Stat. 614'. M1 says 'The Civil Service Retirement Act of May 22, 1922 sets 70, 65 ... and 62'.",
+   "evidence": "The held page (CSR_1922_pages.jsonl.gz, image 150, printed p. 99, sha256 verified) is headed 'RETIREMENT ACT OF MAY 22, 1920, AND AMENDMENTS THERETO' and quotes 'the civil service retirement act approved May 22, 1920'. govinfo STATUTE-41-Pg614 shows ch. 195 approved May 22, 1920. 41 Stat. is the 66th Congress (1919-1921) and could not hold a 1922 act. The JSON's own S6 title says 'Retirement ages under the 1920 Act', so the record contradicts itself. The ages (70; 65 for mechanics, city and rural carriers and post-office clerks; 62 for railway postal clerks) and the pin are correct.",
+   "severity": "error",
+   "fix": "Cite 'Civil Service Retirement Act, Act of May 22, 1920, ch. 195, sec. 1, 41 Stat. 614'. Change M1 to 'the Civil Service Retirement Act of May 22, 1920'."
+  },
+  {
+   "id": "R3",
+   "location": "M3 (.md and JSON), B02 and B03b; Conclusions counts",
+   "claim": "'None of the other nine appointments EO 6179-A revokes is a member of this family.' Only EO 4528 is ended by EO 6179-A.",
+   "evidence": "EO 6179-A item (8), in the held S4 text: 'The appointment on February 26, 1929, of Mrs. Julia Behake to a classified position in the Department of Labor.' Member EO:5058 (1929-02-26, x1_type cs_waiver_individual) has held text 'Mrs. Julia Behneke may be appointed to an appropriate position in the Department of Labor without reference to the provisions of the civil service rules ... February 26, 1929.' The WPA summary of EO 6179-A lists EO 5058 among the orders whose appointments it revokes. Date, department and person agree; only the transcription spells the name differently. This is the same three-way match B02 accepts for EO 4528. The procedure currently sends EO 5058 to the B99 catch-all as open.",
+   "severity": "error",
+   "fix": "Add a branch like B02 for EO:5058 (text_regex 'Behneke'): no, ACT, interval (1929-02-26, 1933-06-16], with a gap noting the spelling Behake/Behneke. Delete the 'none of the other nine' sentence and update the counts (91 no, 924 open, B99 584)."
+  },
+  {
+   "id": "R4",
+   "location": "B22 (conditions and basis); Conclusions; section (d); Points for the coordinator 1",
+   "claim": "B22 holds '145 class orders, lists and general authorities typed as one-person waivers'. All are 'X1 misclassifications' for PD-CS-RULES, because 'the death of a named person cannot end an authority over a class, a list, a position or future persons'.",
+   "evidence": "78 of the 145 B22 members match only the any_of arm {named_persons empty}. That arm catches X1 failures to extract a name, not class orders. Many of these are plain one-person orders whose held text names the person: EO 1573 (Mingo Sanders), 3103 (Aldo Leopold), 3368, 3512, 3582, 3622, 3625, 3695, 3921, 4016, 4039, 4392, 4603, 4717, 4803 (Reberta Estell Jacobs), 4908 (John Charles Steinberg), 4935, 5051, 5071, 5599, 5997, 6003, 6360, 1236, 1821, 1949, 1976, 2194, 2239, 2315, 2592, 346, 4509. Others name two or three people (EO 1148, 3940, 4789, 938). Several of these have ends the doctrine's own mechanisms cover. EO 4452 orders John G. Foster's retention 'for a period of one year from July 1, 1926' (own terms, 1927-07-01). EO 3940 makes two named persons eligible 'for a period of five years from March 31, 1922' (own terms, 1927-03-31). EO 3855 is a postmaster age-limit waiver (see R5). Every lead stays open, so no wrong 'no' results, but the lead kind retype_PD-CS-RULES and the undecided list describe these members falsely and send one-person orders to the wrong family.",
+   "severity": "unsupported",
+   "fix": "Remove {named_persons empty} as a stand-alone B22 trigger. Require class or list language in the summary or text, or no personal name in the operative sentence. Route named one-person orders to the one-person branches (B05 or own-term handling for EO 4452 and EO 3940, B10 for EO 3855, B99 otherwise). Restate the B22 count and description."
+  },
+  {
+   "id": "R5",
+   "location": "B10 text_regex; B99 basis",
+   "claim": "B10 catches the EO 3455 age-limit waivers (15 members). B99 members have 'no quoted fact' that bounds the person's death.",
+   "evidence": "EO 3855 (May 28, 1923): 'The papers of the examination of Mr. George W. Sisler for postmaster at Stanwood, Iowa, may be rated by the Civil Service Commission, waiving the age limit.' It falls to B22. EO 4807 (Feb. 13, 1928): 'The maximum age limit for entrance to the open competitive examination for postmaster at the post office at The Dalles, Oreg., is hereby waived to permit Mr. Albert S. Roberts'. It falls to B99. When EO 4807 issued, the presidential-postmaster rule was EO 4538 of Nov. 5, 1926 (held, executive-order-4538-presidential-postmasterships.txt), which keeps 'No person who has passed his sixty-fifth birthday'. EO 4919 raised the bar to the 68th birthday only on June 22, 1928. With a_min 64, both bounds fall before the cutoff (about 1981-11 and 1986-07).",
+   "severity": "minor",
+   "fix": "Widen the B10 pattern, or add EO 3855 and EO 4807 as checked members. For EO 4807, cite EO 4538."
+  },
+  {
+   "id": "R6",
+   "location": "M1 'Postmaster examination age bar'; S3 'establishes'",
+   "claim": "EO 3455 'has no other age limit', and every B10 waiver is read against the May 10, 1921 text alone.",
+   "evidence": "EO 3455 was amended on July 27, 1921. The amendment changed only the residence date ('such vacancy' became 'the date of examination') and kept the 65th-birthday bar. It is held, but filed as jobs/csc-annual-reports/output/texts/EO_3523.txt: the WPA summaries show EO 3521 and EO 3523 swapped. EO 4538 (Nov. 5, 1926) restates the rule with the same 65th-birthday bar and no minimum age. Every B10 member post-dates the July 1921 amendment, and EO 4595 (Feb. 25, 1927) post-dates EO 4538. The conclusion holds, but the doctrine checks only the unamended text.",
+   "severity": "minor",
+   "fix": "Cite the July 27, 1921 amendment (and note the text-swap with EO 3523) and EO 4538 as the age rule in force for the later members."
+  },
+  {
+   "id": "R7",
+   "location": "B09 and B10 basis; S7 'establishes'; M1 retirement bullet",
+   "claim": "'The result holds for any minimum age of 34 or more' (said for both B09 and B10).",
+   "evidence": "Recomputed with the doctrine's rule (order date - a + 122 y + 164 d < 2026-10-14): the B09 latest member (1933-01-05) needs a >= 29, the B10 latest member (1927-02-25) needs a >= 23, and the earliest B10 member (1921-12-29) needs a >= 18. The statement is true but gives the wrong threshold.",
+   "severity": "minor",
+   "fix": "State 29 for B09 and 23 for B10."
+  },
+  {
+   "id": "R8",
+   "location": "Appendix A, EO:3467",
+   "claim": "From 'served for approximately 25 years in the navy yard ... discharged on February 20, 1914', the reading is 'alive on 1894-02-20' (bound 2016-08-02).",
+   "evidence": "The appendix rule ('for a period of N years ending on a date, that date minus N years') gives 1889-02-20 (bound 2011-08-03). 1894 amounts to a silent 5-year allowance for 'approximately'. Either reading falls well before the cutoff.",
+   "severity": "minor",
+   "fix": "Say that 20 years is used as an allowance for 'approximately', or use 1889-02-20 and 2011-08-03."
+  },
+  {
+   "id": "R9",
+   "location": "Section (d), first bullet, item 1",
+   "claim": "'Rule V, sec. 5 of the rules, printed in the held Commission reports (FY1914 p. 76, FY1915 p. 69, FY1918 p. 51, FY1922 p. 49)'.",
+   "evidence": "FY1914 printed p. 76 and FY1915 printed p. 69 show the provision as sec. 5. The FY1922 printed p. 49 (image 100) shows it as '6. The commission may, with the approval of the proper appointing officer, change by regulation the existing age limits'. The FY1918 p. 111 quote ('under 18 years of age or over 50 years of age') is confirmed at image 150.",
+   "severity": "minor",
+   "fix": "Cite 'Rule V, sec. 5 (sec. 6 in the FY1922 printing)'."
+  },
+  {
+   "id": "R10",
+   "location": "B26 description and section (d)",
+   "claim": "B26 holds '28 possible minors (messengers, boys, girls, apprentices)'.",
+   "evidence": "The any_regex matches on the title, summary or full text, including neighbouring orders' text. For example, EO 400 (Mrs. Charles Broady, temporary GPO appointment) and EO 2180 (two unclassified laborers) are not minors on their own facts. The leads stay open, so nothing is decided wrongly, but the description overstates what the branch catches.",
+   "severity": "minor",
+   "fix": "Describe B26 as members whose texts mention messenger, boy, girl or apprentice (possible minors among them), or anchor the pattern to the operative sentence."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S1",
+   "verdict": "verified",
+   "note": "Guinness page read 2026-11-05: Jeanne Louise Calment, born 21 Feb 1875, died 4 Aug 1997, '122 years 164 days'. Arithmetic checked: 44,724 days. The calendar method (add 122 years, then 164 days) and the day-count method agree for the 1904-05-02 edge (both give 2026-10-13). Not held."
+  },
+  {
+   "source_id": "S2",
+   "verdict": "verified",
+   "note": "Held sha256 matches. Both pins are present verbatim. Signed March 20, 1903. 'Approved, to take effect on and after April 15, 1903.' The EO 250 claim is verified: held EO_250.txt (Feb. 5, 1904) revokes the special rule of July 3, 1902."
+  },
+  {
+   "source_id": "S3",
+   "verdict": "verified",
+   "note": "Held sha256 matches and the pin is present. Signed May 10, 1921. The only age bar is the 65th birthday; the other bar is residence. Amendments of July 27, 1921 (held under EO_3523.txt) and EO 4538 (Nov. 5, 1926) keep that bar; see R6."
+  },
+  {
+   "source_id": "S4",
+   "verdict": "verified",
+   "note": "Held sha256 matches and the pin is present. Dated June 16, 1933. Ten items; item (8) reaches member EO 5058, which the doctrine misses (R3)."
+  },
+  {
+   "source_id": "S5",
+   "verdict": "verified",
+   "note": "Held sha256 matches and the pin is present. Dated June 19, 1930. The B01 JSON date 1930-06-29 is wrong (R1)."
+  },
+  {
+   "source_id": "S6",
+   "verdict": "wrong",
+   "note": "The pin is on the held page (image 150, printed p. 99) and 41 Stat. 614 / ch. 195 are right, but the act is dated May 22, 1920, not 1922 (R2). govinfo confirms ch. 195, approved May 22, 1920."
+  },
+  {
+   "source_id": "S7",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-46-Pg468: ch. 349, approved May 29, 1930. Ages are 70, 65 and 62 (railway postal clerks, navy-yard mechanics and others). The pin phrase 'shall be eligible at sixty-two years of age' appears, though in the Tropics-service clause. Not held."
+  },
+  {
+   "source_id": "S8",
+   "verdict": "unverifiable",
+   "note": "47 Stat. 382 is ch. 314, the Legislative Branch Appropriation Act for FY1933, approved June 30, 1932 (govinfo first page). The page carrying sec. 204 was not reached; the doctrine says so. The member texts quote the authority."
+  },
+  {
+   "source_id": "S9",
+   "verdict": "verified",
+   "note": "Held sha256 matches. Image 14 is printed p. 7: 'These orders are published in full in the appendix'."
+  },
+  {
+   "source_id": "S10",
+   "verdict": "verified",
+   "note": "All 56 Appendix A quotes were found verbatim in the held texts and read in context. Each names, or is the operative sentence about, the person in the WPA summary. Born-no-later-than and latest-death arithmetic was recomputed for every row and matches, apart from the EO 3467 reading choice (R8). B09, B10 and B12 bounds also recomputed and correct."
+  },
+  {
+   "source_id": "EO 3461 (M6, held)",
+   "verdict": "verified",
+   "note": "Held sha256 matches. The general clause is quoted correctly and the text stops at item 27. The '45 orders' total cannot be checked from the held copy."
+  },
+  {
+   "source_id": "M5 report citations",
+   "verdict": "unverifiable",
+   "note": "The Act of March 27, 1922 and EO 9830 sec. 1.1(b) are repeated from the 2026-10-28 report (lines 23, 164); the primary texts were not checked. M5 ends no member."
+  },
+  {
+   "source_id": "Rev. Stat. sec. 179 and 450 (section (d))",
+   "verdict": "unverifiable",
+   "note": "R.S. 177 and 179 are cited in the held EO 5332 text. R.S. 450 (patent-signing secretary) was not confirmed on the web. Current law is 43 U.S.C. 15 (the Secretary of the Interior signs patents), which may bear on B24 under ruling P8. Neither ends a member here."
+  }
+ ],
+ "members_checked": [
+  "EO:5332",
+  "EO:4528",
+  "EO:6142",
+  "EO:6179A",
+  "EO:7472",
+  "EO:1313",
+  "EO:1753",
+  "EO:7281",
+  "EO:7426",
+  "EO:4300",
+  "EO:4639",
+  "EO:6725",
+  "EO:5896",
+  "EO:5921",
+  "EO:3602",
+  "EO:3717",
+  "EO:3735",
+  "EO:3790",
+  "EO:4595",
+  "EO:3378",
+  "EO:3499",
+  "EO:3856",
+  "EO:4118",
+  "EO:5084",
+  "EO:162",
+  "EO:226",
+  "EO:325",
+  "EO:957",
+  "EO:1863",
+  "EO:1953",
+  "EO:1961",
+  "EO:1983",
+  "EO:2009",
+  "EO:2083",
+  "EO:2140",
+  "EO:2165",
+  "EO:2244",
+  "EO:2447",
+  "EO:2853",
+  "EO:2936",
+  "EO:2951",
+  "EO:3114",
+  "EO:3175",
+  "EO:3343",
+  "EO:3432",
+  "EO:3460",
+  "EO:3467",
+  "EO:3479",
+  "EO:3490",
+  "EO:3516",
+  "EO:3533",
+  "EO:3548",
+  "EO:3587",
+  "EO:3606",
+  "EO:3713",
+  "EO:3937",
+  "EO:4122",
+  "EO:4357",
+  "EO:4367",
+  "EO:4376",
+  "EO:4480",
+  "EO:4541",
+  "EO:4563",
+  "EO:4742",
+  "EO:4743",
+  "EO:4769",
+  "EO:4793",
+  "EO:4906",
+  "EO:5020",
+  "EO:5061",
+  "EO:5075",
+  "EO:5128",
+  "EO:5135",
+  "EO:5269",
+  "EO:5285",
+  "EO:5501",
+  "EO:6058",
+  "EO:4011",
+  "EO:1912",
+  "EO:3433",
+  "EO:3523",
+  "EO:221",
+  "EO:223",
+  "EO:234",
+  "EO:251",
+  "EO:1587",
+  "EO:154",
+  "EO:174",
+  "EO:185",
+  "EO:222",
+  "EO:225",
+  "EO:60",
+  "EO:95",
+  "EO:194A",
+  "EO:5058",
+  "EO:7140",
+  "EO:3855",
+  "EO:4807",
+  "EO:5821",
+  "EO:4452",
+  "EO:3940",
+  "EO:4803",
+  "EO:3103",
+  "EO:1573",
+  "EO:4908"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:5332",
+   "branch": "B01",
+   "why": "The lead is right but its date is wrong: fixed 1930-06-29 instead of 1930-06-19, the date of EO 5371 (R1)."
+  },
+  {
+   "instrument_id": "EO:5058",
+   "branch": "B99",
+   "why": "Open, but EO 6179-A item (8) expressly revokes the Feb. 26, 1929 appointment of Mrs. Julia Behneke ('Behake') in the Department of Labor. It should get no/ACT, interval (1929-02-26, 1933-06-16], as B02 does for EO 4528 (R3)."
+  },
+  {
+   "instrument_id": "EO:3855",
+   "branch": "B22",
+   "why": "A one-person postmaster age-limit waiver under EO 3455 (Sisler, 1923), labelled a class order for PD-CS-RULES. It is a B10 case: a_min 64, bound before the cutoff (R4, R5)."
+  },
+  {
+   "instrument_id": "EO:4807",
+   "branch": "B99",
+   "why": "The text waives the maximum age limit (65th birthday under EO 4538) of the postmaster examination for Albert S. Roberts. That is an age fact, so the B99 basis 'no quoted fact' is false. It would be a no with a_min 64 (R5)."
+  },
+  {
+   "instrument_id": "EO:4452",
+   "branch": "B22",
+   "why": "A one-person retention order 'for a period of one year from July 1, 1926', labelled a class order. It ends on its own terms on 1927-07-01 (R4)."
+  },
+  {
+   "instrument_id": "EO:3940",
+   "branch": "B22",
+   "why": "Two named persons made eligible 'for a period of five years from March 31, 1922', labelled a class order. It ends on its own terms on 1927-03-31 (R4)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The engine run reproduces the doctrine's counts: 1,015 members, 90 decided, 0 contradicted. Every held source's sha256 and pin was checked, and every life-of-person bound was recomputed. The longest-life figure (Calment, 122 years 164 days) is right. The minimum-age facts hold: the 65th-birthday bar of EO 3455 (kept by its 1921 and 1926 amendments), the lowest retirement age of 62 under the 1920 and 1930 Acts, and the stated ages. All 51 dated-presence quotes are verbatim and attach to the right person. No 'no' lead puts a death bound after the cutoff, and none rests on an assumed adult age. Three errors need correction. B01 dates EO 5371 as 1930-06-29 instead of 1930-06-19. S6 cites the Civil Service Retirement Act as the Act of May 22, 1922; it is May 22, 1920, at 41 Stat. 614. The doctrine says no other EO 6179-A revocation reaches the family, but item (8) revokes the Feb. 26, 1929 appointment that member EO 5058 (Julia Behneke) authorized, so EO 5058 should be a no/ACT lead. The undecided list is not fully truthful. B22's 'named_persons empty' trigger sends dozens of plain one-person waivers, some with own-term ends (EO 4452, EO 3940), into a 'class order, retype to PD-CS-RULES' bucket. B10's pattern misses two postmaster age-limit waivers (EO 3855, EO 4807). Minor points: the 'minimum age of 34 or more' robustness threshold should be 29 for B09 and 23 for B10, the EO 3467 reading departs from the stated rule, a Rule V section number is off in the FY1922 printing, and the B26 description overstates what the branch catches."
+}

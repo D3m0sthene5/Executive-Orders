@@ -1,0 +1,499 @@
+{
+ "doctrine_id": "PD-ADMIN",
+ "arm": "B",
+ "reviewer_model": "claude-opus-5-5",
+ "findings": [
+  {
+   "id": "R1",
+   "location": "procedure B03-07 (EO 5502), date_rule",
+   "claim": "EO 5502 ended on 1934-04-12, 'date of EO 6913'.",
+   "evidence": "The held text of EO 6913 (jobs/app-executive-orders/output/texts/executive-order-6913-rules-governing-the-obtaining-narcotic-drugs-and-preparations.txt) is signed 'The White House, Dec. 4, 1934' and says 'This order supersedes Executive Order No. 5502, of December 2, 1930.' The doctrine's own source entry S-EO6913 and the .md table give December 4, 1934. 1934-04-12 is not the date of EO 6913.",
+   "severity": "error",
+   "fix": "date_rule fixed 1934-12-04, basis 'date of EO 6913'."
+  },
+  {
+   "id": "R2",
+   "location": "sources S-ANCSA; .md M-ANCSA and table (b); B07 lead (engine copies the citation into every B07 gap)",
+   "claim": "ANCSA is 'Pub. L. 92-302, sec. 19(a), 85 Stat. 688, 710 (Dec. 18, 1971)'.",
+   "evidence": "ANCSA is Pub. L. 92-203. The govinfo PDF STATUTE-85-Pg688 reads 'Public Law 92-203, December 18, 1971'; sec. 19(a) is on 85 Stat. 710. Cornell LII source credit for 43 U.S.C. 1618: 'Pub. L. 92-203, sec. 19, Dec. 18, 1971, 85 Stat. 710'. Pub. L. 92-302 is a different 1972 law. The quoted text of sec. 19(a), the page, the date and the Annette Island exception are otherwise correct (the quote omits the opening 'Notwithstanding any other provision of law, and except where inconsistent with the provisions of this Act,' and '(52 Stat. 593)', both elided acceptably).",
+   "severity": "error",
+   "fix": "Pub. L. 92-203, sec. 19(a), 85 Stat. 688, 710 (Dec. 18, 1971); 43 U.S.C. 1618(a), in the JSON source, the .md mechanism text and table (b)."
+  },
+  {
+   "id": "R3",
+   "location": "sources S-STCC-ACT; .md table (b); B05 gaps",
+   "claim": "Spanish Treaty Claims Commission Act is 'Act of March 2, 1901, ch. 804, sec. 16, 31 Stat. 877'.",
+   "evidence": "The govinfo page STATUTE-31-Pg877 begins 'CHAP. 800.—An Act To carry into effect the stipulations of article seven of the treaty between the United States and Spain', dated March 2, 1901; section 16 gives the two-year period 'and for no longer time' with presidential extension. The page 877 and date are right; the chapter is 800, not 804. The .md itself says the chapter was 'not verified'.",
+   "severity": "error",
+   "fix": "Act of March 2, 1901, ch. 800, sec. 16, 31 Stat. 877. Section 16 also lets the President dissolve the Commission earlier if its work is done; the B05 leads should say each stated end is the latest end."
+  },
+  {
+   "id": "R4",
+   "location": ".md Conclusions (lines 12-13) and section (c) (lines 236-237)",
+   "claim": "'No decided lead contradicts a held later-event edge (try reports 0 contradictions).'",
+   "evidence": "Running python3 -I jobs/pothier/pothier.py try on the copy prints 'decides 179; contradicted 10'. The flagged leads are EO 1440 (B03-01), 330B, 980, 6576, 7117, 7119, 7125 (B02), 6840 (B03-15), 6927 (B06-6927) and 921 (B05-921), all 'acted_on_after_lead_end'. Most edges are noise (EO 10666 Hawaii land quoting text for EO 1440; a 1945 Federal Register contents page for EO 921; EO 6875 citing EO 6840's board report) or amendments of the parent, but EO 980 carries held amendment edges from EO 1173 and EO 1333 and a supersession edge from EO 2043 that treat EO 980 as a standing regulation (see R6), and EO 6927 carries four held edges (see R10).",
+   "severity": "error",
+   "fix": "Report the 10 contradictions, say for each why it does or does not disturb the lead, and change the leads in R6."
+  },
+  {
+   "id": "R5",
+   "location": "procedure B09-457 (EO 457)",
+   "claim": "The order authorizes employment 'not to exceed three months' from its date of June 13, 1906; interval order_date to 1906-09-13.",
+   "evidence": "Held text (jobs/pinakes-proquest-ingest/output/texts/EO_457.txt): the officer 'is hereby authorized to employ a copyist ... the employment to continue for such length of time as may be necessary, but not to exceed three months.' The three months limit how long the employment lasts and are not counted from the order's date. The text sets no date by which the copyist must be hired, so the order says nothing that makes 1906-09-13 the latest end.",
+   "severity": "unsupported",
+   "fix": "Either keep the lead open, or state the upper bound as an inference with its own basis (for example the fiscal-year limit of the 'Care, repair and refurnishing of the Executive Mansion' appropriation, if a held source fixes it) and say in the basis that the text does not fix it."
+  },
+  {
+   "id": "R6",
+   "location": "procedure B02 for EO 330B and EO 980",
+   "claim": "Both orders only amend another order and merge into the parent on issue (P2).",
+   "evidence": "EO 330B (jobs/wikisource-texts/output/texts/EO_330B.txt) says the 1901 order 'is amended so as to prescribe as follows' and then sets out the complete limits-of-punishment table; EO 980 (EO_980.txt) does the same to EO 330B 'for time of peace'. Later orders treat EO 980 as the regulation itself: EO 1173 and EO 1333 amend 'the Executive order dated Nov. 25, 1908', and the held Wikisource edge says EO 2043 (Sept. 5, 1914) superseded EO 980. COORDINATOR_RULINGS P3 classes a whole-text restatement 'to read as follows' as implied displacement, and P2 applies only when amending is the member's only operative content. A full replacement table makes the order the operative regulation. The engine flags both leads.",
+   "severity": "unsupported",
+   "fix": "Move EO 330B and EO 980 to O08 (open) with a gap naming EO 2043 and the question whether its words reach them, or state why P2 still applies and disclose the edges."
+  },
+  {
+   "id": "R7",
+   "location": "procedure B03-11 (EO 6656, 7260), B03-13 (EO 6693), B03-15 (EO 6840); .md line 5 ('applies P1 to P6')",
+   "claim": "These members end by a 'named later instrument' (lead_kind ended_by_named_later_instrument); the doctrine says it applies rulings P1 to P6.",
+   "evidence": "Each acting order abolishes the body that is the member's only subject: EO 9461 abolishes the Executive Committee on Commercial Policy; EO 6777 abolishes the Committee on National Land Problems; EO 6858 sec. 9 abolishes the Board of Inquiry. The held texts confirm this. COORDINATOR_RULINGS P7 governs exactly this case and prescribes lead kind 'ended_by_express_abolition_of_its_subject'. The outcome ('no', ACT, dated by the abolishing order) is right; the kind and the stated rule are not.",
+   "severity": "minor",
+   "fix": "Set lead_kind ended_by_express_abolition_of_its_subject on these branches, cite P7, and say that the doctrine applies P1 to P8."
+  },
+  {
+   "id": "R8",
+   "location": "procedure B02 for EO 4698",
+   "claim": "EO 4698 is an amend-only order that merges into its parent.",
+   "evidence": "EO 4698 amends the order designating Mr. L. M. Parker custodian of the Railroad Labor Board records 'effective as of the date of the original order so as to provide that he shall receive compensation ... at the rate of $5000 per annum'. Its only content is compensation for one named person. P4 sends such orders to PD-CS-ONE-PERSON. The doctrine's own O07 lead says these orders 'follow PD-CS-ONE-PERSON (P4); they are left open here', but B02 decides EO 4698 anyway.",
+   "severity": "unsupported",
+   "fix": "Remove EO 4698 from the B02 list and leave it to PD-CS-ONE-PERSON (P4)."
+  },
+  {
+   "id": "R9",
+   "location": "procedure B02 member list; .md (a) 'a fixed list of 91 orders'",
+   "claim": "The B01 and B02 lists hold 91 orders, each verified to contain a revoke or amend verb.",
+   "evidence": "The B02 list has 77 entries (B01 has 16, so 93 in all). Two entries fail the branch's own regex and drop silently to O09: EO 2686, whose OCR text reads 'amen~ded', so a plainly amend-only order is left open; and EO 3283, which 'suspended' a provision of EO 3249 and does not amend it. The decided count of 91 is therefore right, but the list does not match the description.",
+   "severity": "minor",
+   "fix": "Delete EO 3283 from the list (or treat it as a deferral in B06 if its condition is fixed). For EO 2686, either widen the regex to the OCR form or move it to O01-TEXT, and correct the list size in the .md."
+  },
+  {
+   "id": "R10",
+   "location": "procedure B06 gaps (all B06 branches), especially B06-6927",
+   "claim": "'No search was made for an order amending this order's date before it passed, beyond the held later-event edges (none held).'",
+   "evidence": "MEMBERS.jsonl holds four amendment edges on EO 6927: EO 7077 (1935-06-15), EO 7390, EO 7261 and EO 7526. The held text of EO 7077 names EO 6927, but only as an order under which transfers had been made. It separately delays the same EO 6166 sec. 4 transfers 'until December 31, 1935' and does not amend EO 6927's date. The lead survives under the doctrine's own rule (a separate later extension does not change the earlier order's end), but 'none held' is false.",
+   "severity": "minor",
+   "fix": "For EO 6927, replace '(none held)' with a statement that four edges are held, that EO 7077 names EO 6927 but makes a separate further delay, and that the end therefore stays 1935-06-30."
+  },
+  {
+   "id": "R11",
+   "location": "procedure B05-ZZ (EO 292, 749), lead basis and gap",
+   "claim": "The bound 'assumes the March 2 next after the order's date, as in every legible member'; interval order_date to 1910-05-02.",
+   "evidence": "Four legible members (EO 228, 674, 921, 1120) start their periods on September 2, not March 2, so 'as in every legible member' is false. For these two members the held texts both read 'six months from and after the second day of March'. Their dates (1905-01-31 and 1908-02-05) and their titles ('extended until Sept. 2, 1905' and 'until Sept. 2, 1908') fix the start as the next March 2, which is the same inference the doctrine accepts for EO 625's '1G08'. The interval to 1910-05-02 is safe but needlessly loose.",
+   "severity": "minor",
+   "fix": "Fix the ends at 1905-09-02 (EO 292) and 1908-09-02 (EO 749), or keep the interval and correct the gap wording to 'the March 2 next after the order's date, as in every legible member dated January or February'."
+  },
+  {
+   "id": "R12",
+   "location": "procedure B03-01 (EO 1440)",
+   "claim": "EO 1440 ended 1930-06-23, the date of EO 5376.",
+   "evidence": "EO 5376 (held) fixes the new salary 'beginning July 1, 1930' and in the same order revokes EO 1440, without stating an effective date for the revocation. B03-05 treats the same pattern (EO 5952, whose replacement ration takes effect 1933-04-01) as an interval. B03-01 should be dated the same way.",
+   "severity": "minor",
+   "fix": "Interval 1930-06-23 to 1930-07-01, with the same basis wording as B03-05."
+  },
+  {
+   "id": "R13",
+   "location": "procedure B01 for EO 6668 and 6669",
+   "claim": "Date is the order's own date, April 6, 1934, although each cancels a regulation 'effective March 28, 1934'.",
+   "evidence": "P1 sets the date as 'the order's own date (or its stated effective date)'. The held texts say 'Veterans Regulation No. 1 (d) [No. 12 (a)] is hereby canceled effective March 28, 1934.' The doctrine does not explain why it uses the order's own date when the order states an effective date.",
+   "severity": "minor",
+   "fix": "Use an interval from 1934-03-28 to 1934-04-06, or state why P1's parenthesis does not apply to a retroactive effective date."
+  },
+  {
+   "id": "R14",
+   "location": "procedure B04 gaps; .md (c) B04",
+   "claim": "The 13 committee grants (including EO 3595 and EO 6603A) tie inspection to a committee authorized by a named resolution of a named Congress.",
+   "evidence": "EO 3595 opens two firms' returns to 'Honorable Joseph W. Fordney, Chairman of the Ways & Means Committee ... or such other member of the Committee as he may designate', which is a standing committee acting through a named person, and no resolution is named. EO 6603A opens returns to the standing House Committee on Naval Affairs, again with no resolution. The other eleven do name resolutions.",
+   "severity": "minor",
+   "fix": "Name EO 3595 and EO 6603A separately: for EO 3595, the named chairman's tenure (P4 may bear on it); for EO 6603A, the standing committee and the end of the inquiry it was granted for."
+  },
+  {
+   "id": "R15",
+   "location": "procedure O01-CIVILWAR (EO 1)",
+   "claim": "EO 1 is the Louisiana provisional court order of 1862.",
+   "evidence": "The member's primary held text is 'Executive Order No. 1—Relating to Political Prisoners' (War Department, February 14, 1862), and its member date is 1862-02-14. The WPA summary describes the Louisiana Provisional Court, which was a different order. The doctrine's description matches neither the held text nor the member date.",
+   "severity": "minor",
+   "fix": "Move EO 1 to O01-TEXT (held text and date are another order's) or add a gap saying so; the open lead is unaffected."
+  },
+  {
+   "id": "R16",
+   "location": "procedure B02 list versus O08 and O06; O08 basis",
+   "claim": "Open regulation orders stand 'until revoked or superseded'; amend-only orders were all placed in B02.",
+   "evidence": "Several orders whose held text only amends a regulation are left in O08 or O06 under a basis that does not describe them. Examples: EO 574 and EO 3311 (amendments to the Hot Springs hospital regulations, while the similar EO 1407, 2441 and 2779 are in B02), and EO 3369 and EO 4102 (amendments to Rule 5(a) of the 1920 passport rules, while the similar EO 3690 is in B02). Leaving them open is not wrong, but the coverage is inconsistent and the O08 basis misdescribes them.",
+   "severity": "minor",
+   "fix": "Add the amend-only orders to B02 after reading each, or add a gap to O08 and O06 listing the amend-only members left open and the reason."
+  },
+  {
+   "id": "R17",
+   "location": "procedure O02 (EO 973); .md (d) O02",
+   "claim": "EO 973's day is damaged by OCR and cannot be fixed.",
+   "evidence": "The held text reads 'on \\X'ecnesdav, November 2,5, 10,'. The order is dated November 17, 1908, the WPA summary gives 'Nov. 25, 1908, at 1 p.m.', and November 25, 1908 was a Wednesday. The doctrine accepts the same kind of reading for EO 625 ('1G08').",
+   "severity": "minor",
+   "fix": "Decide EO 973 in B08 as a named day (1908-11-25) with the reading disclosed, or explain why the EO 625 reading standard does not apply."
+  },
+  {
+   "id": "R18",
+   "location": "procedure O08 gaps",
+   "claim": "Veterans' Benefits Act of 1957, Pub. L. 85-56, titles XXII-XXIII, 71 Stat. 157-172.",
+   "evidence": "The House OLRC copy of Pub. L. 85-56 (June 17, 1957, 71 Stat. 83) lists 'Sec. 2307. Outstanding rules, regulations, and orders' in Title XXIII. Title XXII begins at 71 Stat. 157 and Title XXIII begins at 71 Stat. 172, so '157-172' does not cover Title XXIII. The exact page of sec. 2307 could not be confirmed.",
+   "severity": "minor",
+   "fix": "Cite Pub. L. 85-56, 71 Stat. 83, titles XXII-XXIII (beginning 71 Stat. 157 and 172), sec. 2307."
+  }
+ ],
+ "citations_checked": [
+  {
+   "source_id": "S-MEMBER",
+   "verdict": "verified",
+   "note": "Member texts read for the members listed in members_checked; P6 form is correct."
+  },
+  {
+   "source_id": "S-TRA76-A",
+   "verdict": "verified",
+   "note": "sha256 matches; the pin is at text line 8659, before the '90 STAT. 1668' header, so it is on 90 Stat. 1667; 'SEC. 1202' and the rewritten 6103 begin on 1667; Pub. L. 94-455, Oct. 4, 1976."
+  },
+  {
+   "source_id": "S-TRA76-G",
+   "verdict": "verified",
+   "note": "Pin at line 8948, between the 1672 and 1673 headers; 6103(g) is disclosure to the President on written request; no other presidential inspection provision was found in sec. 1202."
+  },
+  {
+   "source_id": "S-TRA76-I",
+   "verdict": "verified",
+   "note": "Pin at line 9914, on 90 Stat. 1688; the next line reads 'effect January 1, 1977.'"
+  },
+  {
+   "source_id": "S-ANCSA",
+   "verdict": "wrong",
+   "note": "Pub. L. number wrong (92-203, not 92-302); 85 Stat. 688, 710, Dec. 18, 1971 and the sec. 19(a) text verified on govinfo and Cornell LII."
+  },
+  {
+   "source_id": "S-STCC-ACT",
+   "verdict": "wrong",
+   "note": "Chapter is 800, not 804 (govinfo STATUTE-31-Pg877); date March 2, 1901 and page 877 verified."
+  },
+  {
+   "source_id": "S-EO1120",
+   "verdict": "verified",
+   "note": "Pin present; signed August 6, 1909. The held transcription misreads the Act's year as 'March second, 1909' (should be 1901), which does not affect the point."
+  },
+  {
+   "source_id": "S-EO516",
+   "verdict": "verified",
+   "note": "Pin present; it also refers to EO 492 as 'the Executive order of August 9, 1906', while the member date is Aug. 8, 1906, a harmless discrepancy."
+  },
+  {
+   "source_id": "S-EO7090",
+   "verdict": "verified",
+   "note": "Pin present; June 29, 1935."
+  },
+  {
+   "source_id": "S-EO7121",
+   "verdict": "verified",
+   "note": "Pin present; July 31, 1935."
+  },
+  {
+   "source_id": "S-EO5376",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes EO 1440; June 23, 1930; new salary from July 1, 1930 (see R12)."
+  },
+  {
+   "source_id": "S-EO6005A",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes EO 3360 (Nov. 28, 1920); Jan. 21, 1933."
+  },
+  {
+   "source_id": "S-EO6612",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes EO 3870; Feb. 22, 1934."
+  },
+  {
+   "source_id": "S-EO6562",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Supersedes EO 3962; Jan. 18, 1934."
+  },
+  {
+   "source_id": "S-EO5952",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes EO 4580 and 5337; new ration effective April 1, 1933; Nov. 23, 1932."
+  },
+  {
+   "source_id": "S-EO5605",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes EO 5014 effective July 1, 1931; April 21, 1931."
+  },
+  {
+   "source_id": "S-EO6913",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Supersedes EO 5502; signed Dec. 4, 1934. The source is right; the branch B03-07 date is wrong (R1)."
+  },
+  {
+   "source_id": "S-EO6776",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Cancels EO 6096 (Veterans Regulation No. 8, March 31, 1933) 'as of the date thereof'; June 30, 1934."
+  },
+  {
+   "source_id": "S-EO8714",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes EO 6202-B; March 18, 1941."
+  },
+  {
+   "source_id": "S-EO6550",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes and rescinds EO 6548; Jan. 6, 1934."
+  },
+  {
+   "source_id": "S-EO9461",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Abolishes the committee continued by EO 6656 and 7260; Aug. 7, 1944."
+  },
+  {
+   "source_id": "S-EO6724",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Rescinds EO 6684; May 28, 1934."
+  },
+  {
+   "source_id": "S-EO6777",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Abolishes the Committee on National Land Problems (EO 6693); June 30, 1934."
+  },
+  {
+   "source_id": "S-EO6858",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Sec. 9 abolishes the Board of Inquiry created by EO 6840; Sept. 26, 1934."
+  },
+  {
+   "source_id": "S-EO7005",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes EO 6832; April 10, 1935."
+  },
+  {
+   "source_id": "S-EO7044",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes EO 7004; May 15, 1935."
+  },
+  {
+   "source_id": "S-EO1706",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes the order of Nov. 23, 1912 discontinuing the Vernal office (EO 1648); Feb. 20, 1913."
+  },
+  {
+   "source_id": "S-EO3583",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes the order of March 26, 1920 (EO 3251); Nov. 29, 1921."
+  },
+  {
+   "source_id": "S-EO4158",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes the order of Feb. 6, 1925 (EO 4147); Feb. 19, 1925."
+  },
+  {
+   "source_id": "S-EO3261",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Cancels EO 3166 (Hermes); April 23, 1920."
+  },
+  {
+   "source_id": "S-EO4021",
+   "verdict": "verified",
+   "note": "sha256 and pin match. Revokes the order of Nov. 3, 1922 creating the Southwestern Alaska Fisheries Reservation (EO 3752, dated 1922-11-03); saves the Aleutian Islands Reservation; June 7, 1924."
+  },
+  {
+   "source_id": "gap: Reorganization Plan No. 3 of 1946, sec. 403, 60 Stat. 1097, 1100",
+   "verdict": "verified",
+   "note": "govinfo STATUTE-60-Pg1097: sec. 403 'Bureau of Land Management' is on 60 Stat. 1100."
+  },
+  {
+   "source_id": "gap: Veterans' Benefits Act of 1957, Pub. L. 85-56, 71 Stat. 157-172, sec. 2307",
+   "verdict": "verified",
+   "note": "Pub. L. 85-56, June 17, 1957, 71 Stat. 83; sec. 2307 exists in Title XXIII; the page range is incomplete (R18)."
+  },
+  {
+   "source_id": "gap: Hawaiian Organic Act, April 30, 1900, 31 Stat. 141; Career Compensation Act 1949, 63 Stat. 802; Pay Readjustment Act 1942, 56 Stat. 359; Rev. Stat. 3690; 31 U.S.C. 1502(a), 1552; Revenue Act of 1928 sec. 710; Cuban provisional government end January 28, 1909",
+   "verdict": "unverifiable",
+   "note": "Not checked against a primary text in this review. They are cited only in open-branch gaps and agree with standard citations, but they were not opened."
+  }
+ ],
+ "members_checked": [
+  "EO:1074",
+  "EO:1182",
+  "EO:446",
+  "EO:4020",
+  "EO:6575",
+  "EO:6668",
+  "EO:6669",
+  "EO:1081",
+  "EO:1088",
+  "EO:1173",
+  "EO:1333",
+  "EO:330B",
+  "EO:980",
+  "EO:2186",
+  "EO:2686",
+  "EO:3283",
+  "EO:3010A",
+  "EO:3024B",
+  "EO:4698",
+  "EO:6159",
+  "EO:6547",
+  "EO:6576",
+  "EO:6963",
+  "EO:7089",
+  "EO:7090",
+  "EO:7121",
+  "EO:4459",
+  "EO:5471",
+  "EO:6352",
+  "EO:7209",
+  "EO:459",
+  "EO:1440",
+  "EO:3360",
+  "EO:3870",
+  "EO:3962",
+  "EO:4580",
+  "EO:5014",
+  "EO:5502",
+  "EO:6096",
+  "EO:6656",
+  "EO:7260",
+  "EO:6693",
+  "EO:6832",
+  "EO:6840",
+  "EO:7004",
+  "EO:1648",
+  "EO:3251",
+  "EO:4147",
+  "EO:3166",
+  "EO:3752",
+  "EO:2130",
+  "EO:3595",
+  "EO:6603A",
+  "EO:5079",
+  "EO:228",
+  "EO:246",
+  "EO:292",
+  "EO:407",
+  "EO:492",
+  "EO:516",
+  "EO:557",
+  "EO:674",
+  "EO:749",
+  "EO:921",
+  "EO:1022",
+  "EO:1120",
+  "EO:1167",
+  "EO:6222",
+  "EO:6244",
+  "EO:6245",
+  "EO:625",
+  "EO:6512",
+  "EO:6690",
+  "EO:6731",
+  "EO:6927",
+  "EO:7074",
+  "EO:7100",
+  "EO:1896",
+  "EO:1987",
+  "EO:2508",
+  "EO:2525",
+  "EO:2757",
+  "EO:3673",
+  "EO:1728",
+  "EO:2540",
+  "EO:2237",
+  "EO:2423",
+  "EO:2669",
+  "EO:2882",
+  "EO:2890",
+  "EO:3112",
+  "EO:3205",
+  "EO:3665",
+  "EO:457",
+  "EO:6176",
+  "EO:6332",
+  "EO:6675",
+  "EO:3865",
+  "EO:6085",
+  "EO:2968A",
+  "EO:1",
+  "EO:4",
+  "EO:190",
+  "EO:973",
+  "EO:677",
+  "EO:1404",
+  "EO:6221",
+  "EO:6624",
+  "EO:7084",
+  "EO:3885",
+  "EO:3292",
+  "EO:3311",
+  "EO:574",
+  "EO:4102",
+  "EO:3369"
+ ],
+ "wrong_member_decisions": [
+  {
+   "instrument_id": "EO:5502",
+   "branch": "B03-07",
+   "why": "Lead date 1934-04-12; EO 6913 is dated 1934-12-04 (R1)."
+  },
+  {
+   "instrument_id": "EO:457",
+   "branch": "B09-457",
+   "why": "The three months limit how long the employment lasts and do not run from the order's date, so the 1906-09-13 upper bound is not supported (R5)."
+  },
+  {
+   "instrument_id": "EO:330B",
+   "branch": "B02",
+   "why": "Whole-table replacement treated as amend-only; later orders and a held edge treat the restated regulation as standing (R6)."
+  },
+  {
+   "instrument_id": "EO:980",
+   "branch": "B02",
+   "why": "Whole-table replacement, later amended by number (EO 1173, 1333) and, per a held edge, superseded by EO 2043; not merged on issue (R6)."
+  },
+  {
+   "instrument_id": "EO:4698",
+   "branch": "B02",
+   "why": "Its only content is compensation for one named person, so P4 sends it to PD-CS-ONE-PERSON (R8)."
+  },
+  {
+   "instrument_id": "EO:2686",
+   "branch": "O09",
+   "why": "Listed in B02 and amend-only, but OCR 'amen~ded' fails the regex, so it falls to open (R9)."
+  },
+  {
+   "instrument_id": "EO:1440",
+   "branch": "B03-01",
+   "why": "Fixed date should be an interval to 1930-07-01, consistent with B03-05 (R12)."
+  },
+  {
+   "instrument_id": "EO:6656",
+   "branch": "B03-11",
+   "why": "Correct 'no', wrong lead_kind; P7 applies (R7)."
+  },
+  {
+   "instrument_id": "EO:7260",
+   "branch": "B03-11",
+   "why": "Correct 'no', wrong lead_kind; P7 applies (R7)."
+  },
+  {
+   "instrument_id": "EO:6693",
+   "branch": "B03-13",
+   "why": "Correct 'no', wrong lead_kind; P7 applies (R7)."
+  },
+  {
+   "instrument_id": "EO:6840",
+   "branch": "B03-15",
+   "why": "Correct 'no', wrong lead_kind; P7 applies (R7)."
+  }
+ ],
+ "verdict": "approve_with_required_changes",
+ "summary": "The doctrine's structure follows the schema and the coordinator rulings. Its 179 'no' leads rest mostly on held texts that say what the doctrine says, and every held pin and sha256 checks out. Four errors must be fixed before adoption. Branch B03-07 dates EO 5502's end to 1934-04-12, but the superseding EO 6913 is dated December 4, 1934. The Alaska Native Claims Settlement Act is cited as Pub. L. 92-302; it is Pub. L. 92-203. The Spanish Treaty Claims Act is cited as chapter 804; it is chapter 800 at 31 Stat. 877. The .md says the engine reports 0 contradictions; it reports 10. Three leads lack support: EO 457 (the three-month limit on the employment is read as running from the order's date), EO 330B and EO 980 (whole-table regulation replacements treated as amend-only, against later orders and a held supersession edge), and EO 4698 (compensation for one named person, which P4 sends to PD-CS-ONE-PERSON). The remaining findings are consistency and disclosure fixes: the P7 lead kind for abolished bodies, the 'none held' edge statement for EO 6927, a loose bound for EO 292 and EO 749, two list entries that silently fail their regex, and amend-only orders left open under a basis that does not describe them. The open branches are stated honestly. The tax-return orders correctly stay open under P3, and the 1976 Tax Reform Act citations (90 Stat. 1667, 1672, 1688) are verified."
+}
