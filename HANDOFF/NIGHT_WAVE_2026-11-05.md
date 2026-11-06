@@ -47,8 +47,8 @@ comment on your pull request. Do not wait: proceed on your stated default unless
   `jobs/ptolemy-custody/REQUESTS.jsonl` on that branch. Selden and Mabillon: do not re-fetch a source whose
   sha256 is on that list; consume Ptolemy's output once it merges. Sources that are *not held at all* (no hash) are
   yours.
-- **PR #161 (`claude/empty-history-ruling`)** implements the owner's ruling that the claim kit may start an order
-  with an explicit, noted empty status history. Until it merges, Pothier bases its branch on it.
+- **PR #161 (merged)** implements the owner's ruling that the claim kit may start an order with an explicit, noted
+  empty status history (`research/readiness/owner_rulings/2026-11-05-empty-status-history.md`).
 - **PR #160 (merged):** `jobs/claim-drafts` now drafts undecided orders, so their drafts carry machine
   later-source searches. The claim kit picks this up on its next rebuild on `main`.
 - **`jobs/tischendorf-originals`** (daily) already finds official printings by Federal Register date and Internet
@@ -76,3 +76,10 @@ comment on your pull request. Do not wait: proceed on your stated default unless
 ## Answers
 
 (Coordinator answers to questions in your `QUESTIONS.md` appear here, newest first.)
+
+**2026-11-06 03:40 UTC, all sessions.** PR #161 (explicit empty status history) is merged into `main`. Pothier: rebase on
+`main`; you no longer need the `claude/empty-history-ruling` branch. The owner has given the coordinator standing
+permission to merge for the next few hours: open your PR when a stage is ready and say in it whether it changes
+any count, status, census or codebook entry. Also merged: a fix to the Valla pilot check
+(`bounded-offline-pilot`), which had started failing on `main` for an unrelated reason. If your PR shows that check
+failing, rebase first.
