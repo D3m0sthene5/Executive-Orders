@@ -121,6 +121,7 @@ def validate_inputs(repo, contract=None):
         "universe": len(identities), "decided": len(statuses),
         "identity_sha256": canonical_sha(sorted(identities)),
         "status_sha256": canonical_sha(statuses), "statuses": statuses,
+        "id_aliases": aliases,
     }
 
 
@@ -155,7 +156,9 @@ def validate_derived(population, drafts=None, dossiers=None):
                     for line in fh:
                         if line.strip():
                             record = json.loads(line)
-                            yield {"instrument_id": record.get("instrument_id"),
+                            iid = record.get("instrument_id")
+                            # Owner ruling R9: drafts may still carry a historical id spelling.
+                            yield {"instrument_id": population.get("id_aliases", {}).get(iid, iid),
                                    "status": record.get("_draft", {}).get("provisional_status")}
         check_membership(records(), statuses, "status", "Draft")
         report["drafts"] = "exact coverage and statuses passed"
