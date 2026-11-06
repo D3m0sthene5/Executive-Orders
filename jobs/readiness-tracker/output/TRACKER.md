@@ -1,6 +1,10 @@
 # Readiness tracker
 
-**Ready for human review: 1,368 of 14,972 orders (9.1%)**
+**Numbered series: ready for human review 1,368 of 14,972 orders (9.1%)**
+
+Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
+
+Generation: `42201863839-1:56d07550b742cf4b723e6cdbb536d541668860fcde8e87404108f16609e7acac` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in

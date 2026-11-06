@@ -6,7 +6,11 @@ New York date: 2026-11-06. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Ready for human review: 1,368 of 14,972 orders (9.1%)**
+**Numbered series: ready for human review 1,368 of 14,972 orders (9.1%)**
+
+Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
+
+Generation: `42201863839-1:56d07550b742cf4b723e6cdbb536d541668860fcde8e87404108f16609e7acac` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -19,10 +23,6 @@ Outstanding original replacement obligations: 1,146; quotation rechecks: 1,146. 
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 560. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5970}.
 
-## Steps finished (orders with a provisional status)
-
-| Step | Done | Of | Share |
-
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-05; intervening runs may be absent.
@@ -30,7 +30,7 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - claim-drafts: orders_with_any_conflict: 434 → 707; orders_with_draft: 4291 → 14919; undecided_orders_with_draft: 0 → 10628
 - gessner-cards: one_step_from_ready: 43 → 40; ready_for_human_review: 1331 → 1368
 - gratian-niebuhr-leads: date_leads: unavailable → 63; date_leads_in_census: unavailable → 33; network_requests: unavailable → 0; resolved_references: unavailable → 10
-- kean: decisions: 23 → 27; findings: 146 → 167; open_owner_questions: 2 → 4
+- kean: decisions: 23 → 45; findings: 146 → 179; open_owner_questions: 2 → 0
 - lambertini: counterevidence_records: 1248 → 1245; pool_LAMBC: 64 → 225; pool_LAMBS: 64 → 36
 - later-events: catalog_records_post_cutoff_ignored: 0 → 3; catalog_records_used: 6938 → 6941; catalog_records_with_notes: 5063 → 5064; decided_no_with_full_revocation_candidate: 909 → 942
 - mabillon-held-printings: frame_lead: unavailable → 108; frame_orders: unavailable → 5943; frame_strong: unavailable → 762; frame_targets: unavailable → 870
@@ -38,7 +38,7 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - mabillon-scan-inventory: commons_category_pages: unavailable → 10; commons_files: unavailable → 67; frame_orders_below_5076_inside_a_listed_range: unavailable → 0; ia_items: unavailable → 151
 - niebuhr-verify: pages_failed: unavailable → 126; pages_fetched: unavailable → 98; requests_used: unavailable → 186; results: unavailable → 301
 - ptolemy-custody: kept_this_run_bytes: unavailable → 929459485; kept_total: unavailable → 1390; legal_conclusions: unavailable → 0; orders_with_a_kept_source: unavailable → 1231
-- readiness-tracker: original_replacement_obligations: 1886 → 1146; quotation_recheck_obligations: 1886 → 1146; ready_for_human_review: 1331 → 1368; text_step_provisional_working_text: 1357 → 560
+- readiness-tracker: formal_revocation_after_earlier_cessation: unavailable → 0; numbered_series_orders: unavailable → 14972; original_replacement_obligations: 1886 → 1146; quotation_recheck_obligations: 1886 → 1146
 - shepard-citations: land_targets: 3547 → 3549
 - status-history: printed_snapshot_undecided_identities: 2240 → 2235; undecided_with_history: 4773 → 4763; undecided_with_own_observation: 4596 → 4591
 - theophilus-sources: cfr_targets_planned: unavailable → 609; eligible_yes_orders: unavailable → 364; failures_total: unavailable → 73; orders_named_in_notices: unavailable → 162
@@ -55,34 +55,12 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - orders_unblocked: 6; kind: one_source; action: Retrieve shared source EO::6868; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6868
 - orders_unblocked: 3; kind: one_source; action: Retrieve shared source EO::6964; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::6964
 
-## Open asks from the newest handoff entries
+## Open asks for the owner (Kean register)
 
-- notes-astra.md: - **Asks:** @Owner: none.
-- notes-boundary-review.md: No open ask recorded in newest entry.
-- notes-ce-review-pair1.md: No open ask recorded in newest entry.
-- notes-ce-review-pair2.md: No open ask recorded in newest entry.
-- notes-ce-review-pair3.md: - **Asks:** none.
-- notes-claude.md: - **Asks:** @Owner: none new in this note; the open Kean ask is A-20261106-mabillon-register, relayed through PR #164. @Claude (coordinator): port the segment and neighbour-margin rules into Tischendorf (`jobs/mabillon-held-printings/README.md`).
-- notes-codex.md: - **Asks:** @Owner: none.
-- notes-corpus-evidence-retrieval.md: - **Asks:** @Owner: none.
-- notes-inventory-a.md: No open ask recorded in newest entry.
-- notes-inventory-b.md: No open ask recorded in newest entry.
-- notes-lifecycle-assurance.md: - **Asks:** @Owner: none.
-- notes-nmb-series-independent-review.md: No open ask recorded in newest entry.
-- notes-production-batch1.md: No open ask recorded in newest entry.
-- notes-production-review1.md: No open ask recorded in newest entry.
-- notes-r1-materializer-followthrough.md: - **Asks:** @Owner: none. @Root: leave PR112 unmerged and preserve exact scientific holds and evidence qualifications.
-- notes-r2-preflight-repair.md: - **Asks:** @Owner: none. @Root: integrate the dependency receipt and exact-version review proposals through existing routes; register R2 findings.
-- notes-r3-ranger-roundtrip.md: - **Asks:** @Owner: none.
-- notes-r4-production-diagnosis.md: No open ask recorded in newest entry.
-- notes-shared-research-production.md: - **Asks:** @Owner: none.
-- notes-sol-readiness-economy.md: - **Asks:** @Owner: none. @Integrator: leave draft unmerged until combined A+B review and checks.
-- notes-sol-runtime-economy.md: - **Asks:** @Owner: none.
-- notes-sol.md: - **Asks:** None while validation is running.
-- notes-source-first-control-preparer.md: No open ask recorded in newest entry.
+No open ask is recorded in the Kean register.
 
 ## Published output status
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42190984454)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42201863839)
