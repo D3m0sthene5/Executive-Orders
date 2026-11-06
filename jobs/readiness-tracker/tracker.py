@@ -86,7 +86,12 @@ J = {
                                        # Tischendorf: official printings located by the order's own number plus a
                                        # text-fingerprint match with the held transcription, gated by planted
                                        # controls each run. Same rule: only finds not flagged needs_page_check.
-                                       "jobs/tischendorf-originals/output/FRAGMENTS.jsonl"],
+                                       "jobs/tischendorf-originals/output/FRAGMENTS.jsonl",
+                                       # Mabillon held printings: government-printed pages hathi-gpo-orders already
+                                       # holds (GPO bound volumes, 1974 GPO Hoover, 1936 FR), proved by Tischendorf's
+                                       # rule plus own-segment scoring and a neighbour margin, gated by planted
+                                       # controls each run. Same rule: only finds not flagged needs_page_check.
+                                       "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl"],
     # Richardson's Messages and Papers: a printed compilation transcribed from records and newspapers, not the
     # signed or officially printed original. A lead only; it never counts as the original text.
     # The American Presidency Project (app-executive-orders) is the same class: an editorial web transcription
