@@ -61,8 +61,23 @@ def build(root,day,old):
     if len(lines)>149:lines=lines[:148]+['Additional items omitted to keep this operational digest below 150 lines.']
     return '\n'.join(lines)+'\n',snapshot
 
+def generation_mismatch(root):
+    """Justinian 2026-11-06: the tracker's SUMMARY.json and STATUS.json must come from one execution."""
+    folder=root/'jobs/readiness-tracker/output'
+    summary,status=load(folder/'SUMMARY.json'),load(folder/'STATUS.json')
+    a,b=summary.get('generation_id'),status.get('generation_id')
+    if a is None and b is None:return None  # both written before generation ids existed
+    if a!=b:return f'readiness-tracker SUMMARY.json generation {a!r} differs from its STATUS.json generation {b!r}'
+    return None
+
 def main():
     root=Path(os.environ['REPO_ROOT']);out=Path(os.environ['OUTPUT_DIR'])
+    reason=generation_mismatch(root)
+    if reason:
+        out.mkdir(parents=True,exist_ok=True)
+        (out/'BLOCKED.json').write_text(json.dumps({'reason':reason},indent=2)+'\n',encoding='utf-8')
+        print('Digest not rendered: '+reason)
+        raise SystemExit(3)
     tests=subprocess.run([__import__('sys').executable,'-m','unittest','-v','test_dashboard','test_mission'],cwd=Path(__file__).resolve().parent)
     if tests.returncode:
         raise SystemExit('Dashboard tests failed; digest not published.')
