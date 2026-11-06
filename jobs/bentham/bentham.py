@@ -102,6 +102,60 @@ def score(measured, action, half_life=HALF_LIFE_DAYS):
     return out
 
 
+PROBE_KINDS = ("production", "status_assignment")
+
+
+def probes_for(unranked):
+    """Justinian B6: an unmeasured stratum is never left unranked; it becomes a ranked 30-order probe.
+
+    The probe's value is information (it measures the stratum's yield and so lets the next plan rank it), so it
+    sorts with the free actions, first within the budget. Owner rulings R4/D2 (protected sample, YES probe) apply.
+    """
+    out = []
+    for s in unranked:
+        if s.get("kind") in PROBE_KINDS and s.get("probe_cost_usd") is not None and s.get("orders"):
+            out.append({"id": "probe." + s["id"], "kind": "probe", "orders": min(PROBE_ORDERS, s["orders"]),
+                        "description": f"{PROBE_ORDERS}-order probe that measures the yield of {s['id']} ({s['orders']} orders)",
+                        "notes": list(s.get("notes", [])), "expected_now": 0.0, "fecundity": 0.0, "value": 0.0,
+                        "cost_usd": s["probe_cost_usd"], "cost_basis": "probe of " + s["id"], "per_usd": math.inf,
+                        "information_value": True})
+    return out
+
+
+def window_rank_flips(measured, ranked):
+    """Order the ranked actions by expected value per window token at each cache-read weight; report pairs that flip."""
+    costs = measured.get("costs") or {}
+    orders = {}
+    for w in ("cache_read_weight_1.0", "cache_read_weight_0.1"):
+        keyed = []
+        for s in ranked:
+            c = costs.get(s.get("cost_key") or "") or {}
+            per = (c.get("window_tokens") or {}).get(w)
+            tokens = 0.0 if s.get("cost_usd") in (0, 0.0) else (per * s["orders"] if per else None)
+            if tokens == 0:
+                ratio = math.inf if s["value"] > 0 else 0.0  # free: same rule as per_usd
+            else:
+                ratio = s["value"] / tokens if tokens else None
+            keyed.append((s["id"], ratio))
+        orders[w] = [i for i, v in sorted((k for k in keyed if k[1] is not None), key=lambda k: -k[1])]
+    # Ties (equal ratios, e.g. two free actions) keep the dollar ranking's order and are not flips.
+    usd_order = [s["id"] for s in ranked]
+    flips = []
+    for w, order in orders.items():
+        ratio = {}
+        for s_ in ranked:
+            c = costs.get(s_.get("cost_key") or "") or {}
+            per = (c.get("window_tokens") or {}).get(w)
+            tok = 0.0 if s_.get("cost_usd") in (0, 0.0) else (per * s_["orders"] if per else None)
+            ratio[s_["id"]] = (math.inf if s_["value"] > 0 else 0.0) if tok == 0 else (s_["value"] / tok if tok else None)
+        pos = {i: n for n, i in enumerate(order)}
+        for a_i, a in enumerate(usd_order):
+            for b in usd_order[a_i + 1:]:
+                if a in pos and b in pos and pos[a] > pos[b] and ratio[a] != ratio[b]:
+                    flips.append({"weight": w, "usd_order": [a, b], "window_order": [b, a]})
+    return {"orders": orders, "flips": flips}
+
+
 def order_plan(scored, budget=None):
     ranked = sorted((s for s in scored if "per_usd" in s), key=lambda s: (-s["per_usd"], s["cost_usd"]))
     spent, cum = 0.0, 0.0
@@ -130,8 +184,10 @@ def plan(args):
     import measure as M
     measured = M.measure(REPO)
     cands = C.candidates(REPO)
-    scored = [score(measured, a) for a in cands["actions"]]
+    scored = [dict(score(measured, a), cost_key=a.get("cost_key")) for a in cands["actions"]]
+    scored += probes_for([s for s in scored if "per_usd" not in s])
     ranked, unranked = order_plan(scored, args.budget_usd)
+    window = window_rank_flips(measured, [s for s in ranked if s.get("kind") != "probe"])
     flips = []
     for hl in SENSITIVITY_HALF_LIVES:
         alt, _ = order_plan([score(measured, a, hl) for a in cands["actions"]], args.budget_usd)
@@ -145,6 +201,7 @@ def plan(args):
     out = Path(args.out or os.environ.get("OUTPUT_DIR") or HERE / "output")
     out.mkdir(parents=True, exist_ok=True)
     result = {"ranked": ranked, "unranked": unranked, "budget_usd": args.budget_usd,
+              "window_token_rankings": window, "context": measured.get("context"),
               "discount_half_life_days": HALF_LIFE_DAYS, "sensitivity": flips,
               "allowance": adata or {"usd_per_week": None, "note": "not recorded; see README"},
               "price_table": measured.get("price_table"), "waves": measured.get("waves"),
@@ -184,9 +241,28 @@ def report(r):
                   f"next step is a {PROBE_ORDERS}-order probe, run under the gate, that measures its yield:", ""]
         for s in r["unranked"]:
             probe = ""
-            if s.get("kind") == "production" and s.get("probe_cost_usd") is not None:
-                probe = f" Probe: {PROBE_ORDERS} orders, about {fmt_usd(s['probe_cost_usd'])}."
+            if s.get("kind") in PROBE_KINDS and s.get("probe_cost_usd") is not None:
+                probe = (f" Ranked above as `probe.{s['id']}`: {PROBE_ORDERS} orders, about {fmt_usd(s['probe_cost_usd'])}; "
+                         "an unmeasured stratum is never left unranked for a second plan.")
             lines.append(f"- {s['id']} ({s['orders']} orders): {'; '.join(s['notes'])}.{probe}")
+    ctx = r.get("context") or {}
+    if ctx.get("context_tokens_per_attempt"):
+        turns = ctx.get("turns_per_attempt")
+        lines += ["", f"Context per attempted order (last measured production wave): "
+                  f"{ctx['context_tokens_per_attempt']:,.0f} tokens, of which {ctx['cache_read_tokens_per_attempt']:,.0f} "
+                  f"cache reads" + (f"; {turns:.1f} model turns." if turns else ".") +
+                  " Smaller packets and fewer turns lower every production cost above."]
+    win = r.get("window_token_rankings") or {}
+    if win.get("orders"):
+        lines += ["", "Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting "
+                  "is not published):", ""]
+        for w, order in win["orders"].items():
+            lines.append(f"- {w}: " + ", ".join(order[:8]) + (" ..." if len(order) > 8 else ""))
+        if win.get("flips"):
+            lines.append(f"- **Rank flips against the dollar ranking: {len(win['flips'])}** "
+                         + "; ".join(f"{f['weight']}: {f['window_order'][0]} before {f['window_order'][1]}" for f in win["flips"][:6]))
+        else:
+            lines.append("- No rank flips against the dollar ranking.")
     if r["sensitivity"]:
         lines += ["", "Budget line moves with the delay discount:", ""]
         lines += [f"- at {f['half_life_days']} days: enters {f['enters'] or 'none'}, leaves {f['leaves'] or 'none'}"
