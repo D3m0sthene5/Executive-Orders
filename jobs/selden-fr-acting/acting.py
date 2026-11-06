@@ -338,7 +338,8 @@ def main(repo: Path, out: Path, cache: Path, transport=None, premis=None, env=os
         except Exception as e:  # a malformed PDF must not stop the run
             return it, f"{type(e).__name__}: {e}"[:300]
     n = 0
-    shard = env.get("SELDEN_SHARD") or ((HERE / "SHARD").read_text().strip() if (HERE / "SHARD").is_file() else "")
+    shard = env["SELDEN_SHARD"] if "SELDEN_SHARD" in env else (
+        (HERE / "SHARD").read_text().strip() if (HERE / "SHARD").is_file() else "")
     if shard:
         k, nsh = map(int, shard.split("/"))
         todo = todo[k::nsh]

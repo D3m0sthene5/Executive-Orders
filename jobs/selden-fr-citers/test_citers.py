@@ -84,7 +84,7 @@ class Citers(unittest.TestCase):
         self.tmp.cleanup()
 
     def run_job(self):
-        env = {"JOB_PRIOR_OUTPUT_DIR": str(Path(self.tmp.name) / "none"), "JOB_WORKERS": "2"}
+        env = {"JOB_PRIOR_OUTPUT_DIR": str(Path(self.tmp.name) / "none"), "JOB_WORKERS": "2", "SELDEN_SHARD": ""}
         return citers.main(self.repo, self.out, Path(self.tmp.name) / "cache", transport=fake_transport, env=env)
 
     def test_end_to_end(self):
@@ -115,7 +115,7 @@ class Citers(unittest.TestCase):
         prior = self.out
         out2 = Path(self.tmp.name) / "out2"
         s = citers.main(self.repo, out2, Path(self.tmp.name) / "cache", transport=fake_transport,
-                        env={"JOB_PRIOR_OUTPUT_DIR": str(prior), "JOB_WORKERS": "2"})
+                        env={"JOB_PRIOR_OUTPUT_DIR": str(prior), "JOB_WORKERS": "2", "SELDEN_SHARD": ""})
         self.assertEqual(s["targets_searched_this_run"], 0)
         self.assertEqual(s["sources_carried"], s["sources_kept"])
         self.assertTrue((out2 / "FRAGMENTS.jsonl").read_text())
