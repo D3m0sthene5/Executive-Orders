@@ -349,6 +349,33 @@ def record(out,kind,rid,cache=None):
     raise ValueError('record absent from current shard: '+rid)
 
 
+EMPTY_HISTORY_RULING='research/readiness/owner_rulings/2026-11-05-empty-status-history.md'
+EMPTY_HISTORY_FLAG='EMPTY_HISTORY_STARTED_UNDER_OWNER_RULING_2026_11_05'
+
+
+def empty_packet(row):
+    """An explicit, noted empty history for an order with no dated observation or event (owner, 2026-11-05).
+
+    Deterministic, so a frozen copy can be compared with the current one exactly. It records the absence; it is
+    not evidence that the order is in force or has ended.
+    """
+    body={'schema':'eo-status-history/v1','instrument_id':row['instrument_id'],'legal_cutoff':CUTOFF,
+          'provisional_status':row.get('status'),'current_legal_status':None,'accepted_legal_intervals':[],
+          'observation_ids':[],'observation_fingerprints':{},'event_ids':[],'event_fingerprints':{},
+          'temporal_constraints_LEADS_ONLY':[],'human_certified':False,
+          'source_record_directory':'jobs/status-history/output',
+          'flags':sorted(set(row.get('flags') or [])|{EMPTY_HISTORY_FLAG}),
+          'empty_history':True,'owner_ruling':EMPTY_HISTORY_RULING,
+          'next_actions':['Judge the status on the order\'s own terms and the bounded later-source searches in its dossier.',
+                          'State in the decision that no dated status observation or later event was located.'],
+          'notice':('Explicit empty history: no dated status observation or later event was located in the 1989 '
+                    'Office of the Federal Register disposition tables or the Federal Register API disposition notes '
+                    'for this order. Started under the owner ruling of 2026-11-05; the absence is not evidence that '
+                    'the order is in force or has ended.')}
+    history=dict(body,fingerprint=objsha(body))
+    return {'history':history,'observations':[],'events':[],'supporting_observations':[]}
+
+
 def show(out,iid,index=None,cache=None):
     if (out/'FAILED.json').exists():raise ValueError('status-history run failed; stale outputs must not be used')
     status=out/'STATUS.json'
@@ -356,7 +383,8 @@ def show(out,iid,index=None,cache=None):
         raise ValueError('status-history runner did not succeed; inspect STATUS.json')
     index=json.loads((out/'INDEX.json').read_bytes()) if index is None else index
     row=next((r for r in index if r['instrument_id']==iid),None)
-    if not row or not row['history']:raise ValueError('no dated history located for '+iid)
+    if not row:raise ValueError('no dated history located for '+iid)
+    if not row['history']:return empty_packet(row)
     h=json.loads((out/row['history']).read_bytes());body={k:v for k,v in h.items() if k!='fingerprint'}
     if objsha(body)!=h['fingerprint'] or h['fingerprint']!=row['fingerprint']:raise ValueError('stale/tampered history')
     packet={'history':h,'observations':[record(out,'observations',v,cache) for v in h['observation_ids']],
