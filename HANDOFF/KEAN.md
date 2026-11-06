@@ -42,7 +42,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 217; `search` finds the rest)
+## Newest results (6 of 219; `search` finds the rest)
 
 - 2026-11-06 F-20261106-tsiolkovsky **worked**: Measure the project's progress since inception as verified work held (rocket step weights x credit from the t… Lesson: Commit timestamps are not landing order; use first-parent order with a running-maximum landing time, and credit by input channel, with re-checks deferred to the work that landed before.
 - 2026-11-06 F-20261106-selden-supplement-decided-only **analysis**: Route newly held later-instrument texts (Selden) into claim-kit packets with jobs/claim-kit/source_supplement… Lesson: Extending source_supplement (or an equivalent excerpt step) to the overlay route is needed before held acting texts can serve the 10,681 undecided orders; the coordinator has taken it up.
@@ -51,4 +51,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-06 F-20261106-road-tests-red-on-main-peano **analysis**: Read why the Road system offline tests failed on PR #187. Lesson: One line fixes it: add jobs/_lib/eo_identity.py to jobs/peano-formulario/needs.txt (Formulario's owner; Photius does not write there). Until then every PR touching jobs/** shows a failing ubuntu/wind…
 - 2026-11-06 F-20261106-ready-drop-26-mabillon-hash **analysis**: Explain the ready drop 1,208 -> 1,185 between tracker generations d029ef3309b1 (15:49 UTC) and 9e850af06e37 (… Lesson: A merge's count-change record must be checked against the next published generation; record the measured change, not the expectation.
 
-Register: 56 owner decisions, 26 answered questions, 217 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 56 owner decisions, 26 answered questions, 219 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
