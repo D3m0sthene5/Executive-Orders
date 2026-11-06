@@ -379,7 +379,8 @@ class QueueAndIndexTests(Base):
     def test_index(self):
         self.assertEqual(ofr_index.normalize_number("7933-a"), "7933A")
         self.assertEqual(ofr_index.normalize_number("10571", "-A Assignment of Frequencies"), "10571A")
-        self.assertEqual(ofr_index.resolve_id("7933A", {"EO:7933a"}), "EO:7933a")
+        self.assertEqual(ofr_index.resolve_id("7933A", {"EO:7933A"}), "EO:7933A")
+        self.assertEqual(ofr_index.resolve_id("7933A", {"EO:7933a"}), "EO:7933a", "legacy lower-case universe still resolves")
         rows = [{"executive_order_number": "13526", "citation": "75 FR 1013", "title": "Correction", "publication_date": "2010-01-08"},
                 {"executive_order_number": "13526", "citation": "75 FR 707", "title": "Classified", "publication_date": "2010-01-05"},
                 {"executive_order_number": "99999", "signing_date": "2026-10-20", "title": "late"}]
@@ -565,7 +566,7 @@ class RouteAndFileTests(Base):
         self.assertEqual(f.read_bytes(), b"one\ntwo\n")
 
     def test_eo_lookup_ignores_case(self):
-        idx = {"EO:7933a": {"primary": {"citation": "3 FR 1"}, "others": []}}
+        idx = {"EO:7933A": {"primary": {"citation": "3 FR 1"}, "others": []}}
         w = fl.Wanted("EO::7933a", ["EO:1"], citation="EO 7933a")
         ladder_queue.attach_eo_record(w, idx)
         self.assertEqual(w.eo_record, {"citation": "3 FR 1"})
