@@ -47,4 +47,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-06 F-20261106-justinian-wpa **analysis**: E1: re-parse the Lord 1944 WPA numbered list at its page boundaries for the 46 missing integers. Lesson: Distinguish what a finding aid's parse misses from what the census misses; a missing scan page is not an OCR error.
 - 2026-11-06 F-20261106-justinian-schema-v2 **worked**: C1/C2: claim schema v2 (date_kind, codebook first_cause, mechanism enum, formal_disposition, derived formal_r… Lesson: Prove a gate change count-neutral by running the tracker with old and new code on the same data before asking for a merge.
 
-Register: 33 owner decisions, 16 answered questions, 178 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 34 owner decisions, 16 answered questions, 178 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
