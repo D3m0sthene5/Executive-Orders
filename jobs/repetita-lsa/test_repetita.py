@@ -397,6 +397,7 @@ class PreWarTests(unittest.TestCase):
         routes[prewar.HATHI_LIST] = (403, b"challenge")
         with tempfile.TemporaryDirectory() as tmp:
             pool = FetchPool(Path(tmp), transport=Net(routes), min_interval=0)
+            prewar.SEED_DIR = Path(tmp) / "no-seed"
             rows, summ = prewar.build(pool, "ua", log=lambda *a: None, wait=0)
         self.assertIn("error", summ["hathi"])
         self.assertEqual(summ["hathi"]["fallback"]["failed"], 0)
@@ -405,6 +406,25 @@ class PreWarTests(unittest.TestCase):
         self.assertEqual((ids["inu.1"]["access"], ids["inu.2"]["access"]), ("allow", "deny"))
         self.assertIn("heinonline", [x["id"] for x in summ["survey_leads"]])
         self.assertTrue(summ["hathi_read_check"]["attempted"])  # robots verdict recorded, page never read
+
+    def test_hathifile_blocked_uses_committed_seed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            seed = Path(tmp) / "seed"
+            seed.mkdir()
+            row = {c: "" for c in prewar.MANIFEST_COLUMNS}
+            row.update(source="hathitrust", id="uc1.z", series="lsa", access="allow", year="1985")
+            with open(seed / "MANIFEST.csv", "w", newline="", encoding="utf-8") as fh:
+                w = csv.DictWriter(fh, fieldnames=prewar.MANIFEST_COLUMNS, lineterminator="\n")
+                w.writeheader()
+                w.writerow(row)
+            (seed / "SCAN.json").write_text(json.dumps({"made_utc": "x"}))
+            prewar.SEED_DIR = seed
+            routes = {prewar.HATHI_LIST: (403, b"challenge"), prewar.IA_SEARCH + "*": (200, json.dumps({"response": {"docs": []}}).encode())}
+            pool = FetchPool(Path(tmp) / "c", transport=Net(routes), min_interval=0)
+            rows, summ = prewar.build(pool, "ua", log=lambda *a: None, wait=0)
+        self.assertEqual([r["id"] for r in rows], ["uc1.z"])
+        self.assertEqual(summ["hathi"]["seed"]["rows"], 1)
+        self.assertNotIn("fallback", summ["hathi"])
 
     def test_build_with_fake_hosts(self):
         gz = self.hathi_gz()

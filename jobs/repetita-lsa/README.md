@@ -34,10 +34,11 @@ is still being named by later documents ("12543 Continued by Notice of Jan. 2, 1
    API sit under `babel.hathitrust.org/cgi/`, which that host's robots.txt disallows for this agent, so no Hathi volume
    is read. HeinOnline, Westlaw, Lexis and ProQuest are never touched. `www.hathitrust.org` answers non-browser clients
    with a Cloudflare challenge at random; the job pauses and retries a robots/list request up to three times and never
-   answers or evades the challenge. If it stays challenged (it did on GitHub's runner on 2026-11-06), the job falls back
-   to HathiTrust's Bibliographic API (`catalog.hathitrust.org`) on 11 seed record numbers (the LSA and codification
-   series, found by reading the 2026-11-01 hathifile from the owner's PC) and lists those records' items with their rights;
-   `PRE1997_SUMMARY.json` says which route ran. It also carries the coordinator's survey leads (`survey_leads`): the Library
+   answers or evades the challenge. GitHub's runner was challenged on every try on 2026-11-06 (the hathifile, the robots.txt of
+   `www.hathitrust.org` and the Bibliographic API alike), so the job carries `hathi_seed/` (`MANIFEST.csv`, `SCAN.json`), made
+   by `seed_hathi.py` run on the owner's PC, which the host does not challenge: the same hathifile scan, with the file's
+   name, size and sha256 in `SCAN.json`. Without a seed the job tries the Bibliographic API on 11 seed record numbers.
+   `PRE1997_SUMMARY.json` says which route ran (`hathi.scan`, `hathi.seed` or `hathi.fallback`). It also carries the coordinator's survey leads (`survey_leads`): the Library
    of Congress holds sample LSA items for 1971-1982 whose scans come from HeinOnline under a stated term against bulk
    download (listed, never fetched; the owner has not decided), the Internet Archive has the 1973-1985 volumes, and the
    Federal Register's own Codification Guide sits inside the FR issues, which govinfo has for 1936-2026 with no key (not

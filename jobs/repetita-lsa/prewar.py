@@ -41,13 +41,14 @@ ANY_TITLE = re.compile(rb"sections affected|parts affected|code of federal regul
 CFR_T3 = re.compile(r"(?i)\btitles?\s*0?3\b(?!\d)|\bv\.\s*3\b|president")
 MANIFEST_COLUMNS = ["source", "id", "series", "access", "rights", "title", "description", "year", "oclc", "lccn",
                     "us_gov_doc", "bib_key", "bib_api_rights", "rights_stated", "url"]
+SEED_DIR = HERE / "hathi_seed"
 HATHI_FIELDS = 26
 KEEP_CFR_MAX = 6000
 
 
 def series_of(title: str) -> str:
     t = title.lower()
-    if re.search(r"sections affected|parts affected", t):
+    if re.search(r"sections affected|parts affected", t) and ("cfr" in t or "federal regulations" in t):
         return "lsa"
     if "codification of presidential" in t:
         return "codification"
@@ -380,7 +381,15 @@ def build(pool, ua, opener=open_stream, log=print, skip_hathi=False, wait=30):
             rows += hrows
         except Exception as e:  # noqa: BLE001
             summary["hathi"] = {"error": f"{type(e).__name__}: {e}"[:300]}
-        if "error" in summary["hathi"] or not summary["hathi"].get("scan"):
+        seed = SEED_DIR
+        if ("error" in summary["hathi"] or not summary["hathi"].get("scan")) and (seed / "MANIFEST.csv").is_file():
+            with open(seed / "MANIFEST.csv", newline="", encoding="utf-8") as fh:
+                srows = list(csv.DictReader(fh))
+            rows += srows
+            summary["hathi"]["seed"] = {"route": "committed seed made by seed_hathi.py on the owner's PC (this host cannot "
+                                        "read www.hathitrust.org: Cloudflare challenge, not answered or evaded)",
+                                        "rows": len(srows), **json.loads((seed / "SCAN.json").read_text(encoding="utf-8"))}
+        elif "error" in summary["hathi"] or not summary["hathi"].get("scan"):
             brows, bst = hathi_via_bib_api(pool, log)
             summary["hathi"]["fallback"] = {"route": "catalog.hathitrust.org Bibliographic API on seed records "
                                             "(hathifile unreadable from this host)", **bst}
