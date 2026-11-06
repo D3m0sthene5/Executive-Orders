@@ -19,7 +19,7 @@ not, without switching branches or touching the working tree.
     python3 -I jobs/kean/lease.py list
 
 Exit codes: 0 done (or free / yours), 3 held by another holder, 2 usage or git error.
-Resource names are free text by convention `job:<name>`, `batch:<packet>`, `order:EO_<n>`,
+Resource names are free text by convention `job:<name>`, `batch:<packet>`, `order:<instrument id>` (e.g. `order:EO:10340`),
 `stream:<name>`. Standard library only.
 """
 from __future__ import annotations

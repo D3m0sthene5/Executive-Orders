@@ -51,6 +51,11 @@ its requests fail (Kean F-20261106-selden-fr-api-400: one bad API field failed a
 push a change in its folder to your branch; the runner commits results back to your branch, so `git pull --ff-only`
 before your next commit. Verify a run only from its `output/STATUS.json` and log, never from memory.
 
+**Pushing a change inside any existing `jobs/<name>/` folder starts that job on your branch**, and the runner commits
+its whole `output/` back. For a job with large outputs (claim-kit, ptolemy-custody, readiness-tracker) that can add
+hundreds of MB. Do not push edits to an existing job's folder without the coordinator's go-ahead; if a run starts by
+mistake, cancel it with `gh run cancel <id>` at once.
+
 ## Evidence
 
 Anything you learn from a web page, a model, or another session is a lead until bytes are held and hashed. Never record
