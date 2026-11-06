@@ -16,7 +16,8 @@ out = pathlib.Path(os.environ["OUTPUT_DIR"])
 repo = pathlib.Path(os.environ["REPO_ROOT"])
 cache = pathlib.Path(os.environ.get("JOB_CACHE_DIR") or (out.parent / "selden-fr-citers-cache")).resolve()
 s = citers.main(repo, out, cache)
-if s["targets_searched_this_run"] == 0 and s["targets_searched_total"] < s["targets_total"]:
+if s["targets_searched_this_run"] == 0 and s["targets_searched_total"] < s["targets_total"] \
+        and not (here / "TARGETS").is_file():
     sys.exit("no target searched")
 if s["failures"] > max(20, s["targets_searched_this_run"]):
     sys.exit("most searches failed; previous output kept (see FAILURES.jsonl)")
