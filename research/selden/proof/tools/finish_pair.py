@@ -43,7 +43,7 @@ def main(batch, *flags):
     applied = sorted(packet.glob("applied-v*"), key=lambda p: int(p.name.split("-v")[1]))[-1]
     if (packet / "APPLIED_FOR_REVIEW").exists():
         applied = packet / (packet / "APPLIED_FOR_REVIEW").read_text().strip()
-    key = json.loads((S / "keys" / f"{batch}.json").read_text())
+    key = json.loads((Path("/root/selden-keys") / f"{batch}.json").read_text())
     rv = packet / "reviews"
     blind = {a: {r["claim_sha256"]: r for r in load(rv / f"BLIND_REVIEW_{a}.jsonl")} for a in "AB"}
     after = {a: {r["claim_sha256"]: r for r in load(rv / f"AFTER_REVEAL_{a}.jsonl")} for a in "AB"}
@@ -73,7 +73,7 @@ def main(batch, *flags):
             receipts.append(str(packet / extra))
     cmd = ["python3", "-I", str(MAKE), str(packet), str(applied), str(rv / "BLIND_REVIEW_A.jsonl"),
            str(rv / "AFTER_REVEAL_A.jsonl") if (rv / "AFTER_REVEAL_A.jsonl").exists() else "-",
-           str(S / "keys" / f"{batch}.json"), pub, ADJ, *judg, "--receipt", *receipts]
+           str(Path("/root/selden-keys") / f"{batch}.json"), pub, ADJ, *judg, "--receipt", *receipts]
     r = subprocess.run(cmd, cwd=REPO, capture_output=True, text=True)
     print(r.stdout.strip(), r.stderr.strip()[-600:])
     mpath = out / "COMPLETION.json"

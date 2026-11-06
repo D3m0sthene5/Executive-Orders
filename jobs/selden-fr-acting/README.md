@@ -40,3 +40,7 @@ owner. Certified: 0.
 **Running.** On a push to this folder or by hand; after `shepard-citations`, `later-events`, `fr-pages`. Budget:
 `JOB_MAX_REQUESTS` 3,000, `JOB_TIME_BUDGET_MIN` 130 (later runs continue), about 15 GB of issue downloads for the full list (1980s issues
 are 30-100 MB). Tests (`test_acting.py`, offline) run first.
+
+## Overlap with Ptolemy and Pothier (checked 2026-11-06, `research/selden/tools/overlap.py`, `research/selden/census/OVERLAP.json`)
+
+74 of the 1,360 source records name a daily-issue URL that is also on Ptolemy's request list (`jobs/ptolemy-custody/REQUESTS.jsonl`), with the same sha256; none is in Pothier's sources. Later runs carry every held page or text forward with no request, so none of these is fetched again.

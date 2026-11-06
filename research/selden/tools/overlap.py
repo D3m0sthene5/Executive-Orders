@@ -44,8 +44,8 @@ def main():
         rows = [json.loads(l) for l in p.read_text().splitlines() if l.strip()] if p.is_file() else []
         urls = {norm(r.get("issue_url") or r.get("url")) for r in rows}
         shas = {r.get("sha256") for r in rows} | {r.get("issue_sha256") for r in rows if r.get("issue_sha256")}
-        report["jobs"][job] = {"sources": len(rows), "url_on_ptolemy_list": sorted(urls & pt_urls)[:50],
-                               "sha_on_ptolemy_list": len(shas & pt_sha), "url_in_pothier": sorted(urls & po_urls)[:50]}
+        report["jobs"][job] = {"sources": len(rows), "url_on_ptolemy_list_count": len(urls & pt_urls), "url_on_ptolemy_list": sorted(urls & pt_urls)[:50],
+                               "sha_on_ptolemy_list": len(shas & pt_sha), "url_in_pothier_count": len(urls & po_urls), "url_in_pothier": sorted(urls & po_urls)[:50]}
     out = ROOT / "research/selden/census/OVERLAP.json"
     out.write_text(json.dumps(report, indent=1) + "\n")
     print(json.dumps(report, indent=1))

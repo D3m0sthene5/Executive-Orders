@@ -95,6 +95,9 @@ def main(batch, *ids):
                 lo, hi = map(int, d["quote_span"].split("-"))
                 if text[lo:hi] == d["quote"]:
                     a, b = widen(text, lo, hi)
+                    if d.get("fr_document_type") == "Presidential Document" and len(text) <= 120_000:
+                        a, b = 0, len(text)  # a later presidential document is bound whole: its acting sections
+                        # are often far from the sentence that names the order (b4 EO 13934)
                     al = alias(job.split(":")[0].split("-")[-1], d["acting_id"], iid)
                     if al in seen:
                         al = alias(al, str(n))

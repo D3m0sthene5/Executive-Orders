@@ -58,3 +58,7 @@ requests in flight to the Federal Register, 0.1 s apart, robots.txt obeyed. Budg
 (40,000), `JOB_TIME_BUDGET_MIN` (100). A `SHARD` file (`k/n`) in this folder, or `SELDEN_SHARD`, makes a runner
 take every n-th order from k, so several runner branches can search in parallel; `research/selden/tools/merge_shards.py`
 unites their outputs. Tests (`test_citers.py`, offline) run first.
+
+## Overlap with Ptolemy and Pothier (checked 2026-11-06, `research/selden/tools/overlap.py`, `research/selden/census/OVERLAP.json`)
+
+No document URL is on Ptolemy's list; 55 kept texts have the same sha256 as a source Ptolemy keeps. None is in Pothier's sources. Later runs carry every held page or text forward with no request, so none of these is fetched again.

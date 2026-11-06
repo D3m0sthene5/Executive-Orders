@@ -72,11 +72,12 @@ def main(batch, applied):
     with open(rdir / "REVIEW_SET.jsonl", "w", encoding="utf-8") as f:
         for c in out:
             f.write(json.dumps(c, ensure_ascii=False) + "\n")
-    with open(rdir / "GENUINE_CONTROLS.jsonl", "w", encoding="utf-8") as f:
+    K = Path("/root/selden-keys")  # keys and genuine versions outside every reviewer's readable tree
+    K.mkdir(exist_ok=True)
+    with open(K / f"{batch}-GENUINE_CONTROLS.jsonl", "w", encoding="utf-8") as f:
         for c in genuine:
             f.write(json.dumps(c, ensure_ascii=False) + "\n")
-    (S / "keys").mkdir(exist_ok=True)
-    (S / "keys" / f"{batch}.json").write_text(json.dumps({"batch": batch, "controls": key}, indent=1))
+    (K / f"{batch}.json").write_text(json.dumps({"batch": batch, "controls": key}, indent=1))
     print(json.dumps({"batch": batch, "claims": len(claims), "controls": sorted(picked)}))
 
 

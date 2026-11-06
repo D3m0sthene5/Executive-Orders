@@ -29,3 +29,7 @@ Certified: 0. Merging registers `FRAGMENTS.jsonl` and `SOURCES.jsonl` with the c
 
 **Running.** On a push to this folder or by hand. Budget `JOB_MAX_REQUESTS` 6,000, `JOB_TIME_BUDGET_MIN` 240; the
 full list is about 4,500 requests and 3 GB. Tests (`test_statutes.py`, offline, small PDF fixture) run first.
+
+## Overlap with Ptolemy and Pothier (checked 2026-11-06, `research/selden/tools/overlap.py`, `research/selden/census/OVERLAP.json`)
+
+61 of the 2,179 statute granules are also on Ptolemy's request list (same sha256), and 27 granule URLs appear in Pothier's sources on `claude/pothier-family-doctrine`. Later runs carry every held page or text forward with no request, so none of these is fetched again.
