@@ -11,6 +11,8 @@ Pushes stay light (owner, 2026-10-28: adding a file must not mean waiting on the
   plus their consumers.
 - A manual run runs the named job(s), separated by spaces or commas, plus their consumers.
   Manual diagnostics run only the requested jobs; the workflow retains receipts without publishing.
+  An Arsenale re-queue (a manual run with requeue_depth > 0) runs exactly the jobs it names, and
+  marks the names in its downstream input as downstream-only, as the refused run had them.
 Picked jobs are ordered so that any job listed in a job's after.txt runs before it. Folders
 starting with "_" (the template) are never run. The result goes to the step output "jobs" as a
 space-separated list; jobs a sweep runs only as consumers go to "downstream".
@@ -211,6 +213,14 @@ def downstream_only(direct, picked):
     return [name for name in picked if name not in set(direct)]
 
 
+def requeue_depth():
+    """Arsenale re-queue generation of a manual run (0 for an ordinary run)."""
+    value = (os.environ.get("REQUEUE_DEPTH") or "0").strip()
+    if not re.fullmatch(r"[0-9]{1,2}", value):
+        sys.exit(f"Invalid requeue_depth: {value!r}")
+    return int(value)
+
+
 def main():
     event, schedule = os.environ.get("EVENT"), os.environ.get("SCHEDULE") or ""
     sweep = event == "schedule" and schedule not in ("", DAILY_CRON)
@@ -224,7 +234,8 @@ def main():
             if not name.startswith("_") and runnable(name) and os.path.isfile(os.path.join("jobs", name, "DAILY"))
         )
     elif os.environ.get("EVENT") == "workflow_dispatch":
-        consumers = os.environ.get("DIAGNOSTIC") != "true"
+        # An Arsenale re-queue (requeue_depth > 0) reruns exactly the refused jobs.
+        consumers = os.environ.get("DIAGNOSTIC") != "true" and not requeue_depth()
         picked = []
         for name in re.split(r"[\s,]+", os.environ.get("INPUT_JOB") or ""):
             name = name.strip().strip("/").removeprefix("jobs/")
@@ -247,7 +258,14 @@ def main():
         picked = ordered(with_consumers(picked) if consumers else picked)
     except ValueError as exc:
         sys.exit(str(exc))
-    downstream = downstream_only(direct, picked) if sweep else []
+    if sweep:
+        downstream = downstream_only(direct, picked)
+    elif event == "workflow_dispatch":
+        # A re-queued sweep consumer keeps the small web-search budget it ran with.
+        named = set(re.split(r"[\s,]+", os.environ.get("INPUT_DOWNSTREAM") or ""))
+        downstream = [name for name in picked if name in named]
+    else:
+        downstream = []
     print("Jobs to run:", ", ".join(picked) or "none")
     if runtime_tests:
         print("Claim-kit runtime-only push: running unit tests; compiler refresh remains scheduled/manual.")

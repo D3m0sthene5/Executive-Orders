@@ -59,19 +59,60 @@ def render(env):
     if outcome == "success":
         publication = {"pushed": "Results pushed.", "unchanged": "Outputs unchanged; no commit needed.",
                        "records-only": "Only run records changed; no commit needed.",
-                       "no-results": "No results to commit."}.get(env.get("PUBLICATION"), "Publication disposition unavailable.")
+                       "no-results": "No results to commit.",
+                       "push-failed": "Push failed after every retry."}.get(env.get("PUBLICATION"), "Publication disposition unavailable.")
     else:
         publication = {"failure": "Publication step failed.", "cancelled": "Publication step cancelled.",
                        "skipped": "Publication step skipped."}.get(outcome, "Publication outcome unavailable.")
     if env.get("DIAGNOSTIC") == "true" and outcome == "skipped":
         publication = "Diagnostic run: named jobs only; publication disabled."
     lines = ["## Production job summary", "", publication]
-    check = read_json(RECEIPTS / "publication-check.json")
-    if outcome == "failure" and isinstance(check, dict) and check.get("result") == "rejected":
-        for problem in check.get("problems", []):
-            job, reason = problem.get("job"), problem.get("reason")
-            if isinstance(job, str) and NAME.fullmatch(job) and isinstance(reason, str) and NAME.fullmatch(reason):
-                lines.append(f"- Freshness check rejected `{job}`: `{reason}`.")
+    arsenale = read_json(RECEIPTS / "ARSENALE.json")
+    arsenale = arsenale if isinstance(arsenale, dict) else {}
+    record = arsenale.get("publication") if isinstance(arsenale.get("publication"), dict) else {}
+    refused = record.get("refused") if isinstance(record.get("refused"), dict) else None
+    if refused is not None:
+        published = [j for j in record.get("published", []) if isinstance(j, str) and NAME.fullmatch(j)]
+        if published:
+            lines.append("Published: " + ", ".join(f"`{j}`" for j in published) + ".")
+        for job, problems in refused.items():
+            reasons = sorted({p.get("reason") for p in problems if isinstance(p, dict)
+                              and isinstance(p.get("reason"), str) and NAME.fullmatch(p["reason"])})
+            producers = sorted({j for p in problems if isinstance(p, dict) for j in p.get("because_refused", [])
+                                if isinstance(j, str) and NAME.fullmatch(j)})
+            if isinstance(job, str) and NAME.fullmatch(job):
+                note = f" (it read a refused candidate of {', '.join(producers)})" if producers else ""
+                lines.append(f"- Freshness check refused `{job}`: " + ", ".join(f"`{r}`" for r in reasons) + note + ".")
+    else:
+        check = read_json(RECEIPTS / "publication-check.json")
+        if outcome == "failure" and isinstance(check, dict) and check.get("result") == "rejected":
+            for problem in check.get("problems", []):
+                job, reason = problem.get("job"), problem.get("reason")
+                if isinstance(job, str) and NAME.fullmatch(job) and isinstance(reason, str) and NAME.fullmatch(reason):
+                    lines.append(f"- Freshness check rejected `{job}`: `{reason}`.")
+    requeue = arsenale.get("requeue") if isinstance(arsenale.get("requeue"), dict) else {}
+    queued = [j for j in requeue.get("jobs", []) if isinstance(j, str) and NAME.fullmatch(j)]
+    if requeue.get("dispatch") and queued:
+        state = "dispatched" if requeue.get("returncode") == 0 else "dispatch failed"
+        lines.append(f"- Re-queued {', '.join(f'`{j}`' for j in queued)} at depth {requeue.get('depth')} "
+                     f"of {requeue.get('limit')} ({state}).")
+    elif requeue.get("reason") == "requeue_limit_reached" and queued:
+        lines.append(f"- Not re-queued (limit {requeue.get('limit')} reached): {', '.join(f'`{j}`' for j in queued)}.")
+    stations = [s for s in arsenale.get("stations", []) if isinstance(s, dict)]
+    if stations:
+        lines.extend(["", "| Station | Jobs | Executed (UTC) |", "|---:|---|---|"])
+        for station in stations:
+            jobs = [j for j in station.get("jobs", []) if isinstance(j, str) and NAME.fullmatch(j)]
+            span = f"{station.get('started_utc') or '?'} to {station.get('finished_utc') or '?'}"
+            if re.fullmatch(r"[0-9TZ:\- ?to]+", span):
+                lines.append(f"| {station.get('station')} | {', '.join(f'`{j}`' for j in jobs)} | {span} |")
+        lock = arsenale.get("lock_acquired_utc")
+        if isinstance(lock, str) and re.fullmatch(r"[0-9TZ:-]+", lock):
+            lines.append("")
+            lines.append(f"Writer lock acquired at {lock}; it was not held while the stations executed.")
+    missing = [j for j in arsenale.get("not_executed", []) if isinstance(j, str) and NAME.fullmatch(j)]
+    if missing:
+        lines.append("- No station delivered results for: " + ", ".join(f"`{j}`" for j in missing) + ".")
     if not jobs:
         message = "No production jobs selected." if env.get("PICK_OUTCOME") == "success" else "Job selection unavailable."
         return "\n".join([*lines, "", message, ""])

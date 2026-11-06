@@ -1,7 +1,8 @@
 """Writer queue contracts and native original-selection/latest-checkout receipts.
 
-These tests do not emulate GitHub's lock service. Hosted workflow validation and
-actual serialized publication remain required acceptance evidence.
+Arsenale holds the writer queue only in the publish job; plan and execute run
+without it. These tests do not emulate GitHub's lock service. Hosted workflow
+validation and actual serialized publication remain required acceptance evidence.
 """
 import json
 import os
@@ -19,23 +20,88 @@ RUN = ROOT / ".github/workflows/run-jobs.yml"
 REFRESH = ROOT / ".github/workflows/refresh-readiness.yml"
 
 
+def job_sections(source):
+    """Split a workflow's jobs: block into {job id: text} without a YAML dependency."""
+    body = source.split("\njobs:\n", 1)[1]
+    parts = re.split(r"(?m)^  ([A-Za-z0-9_-]+):\n", body)
+    return dict(zip(parts[1::2], parts[2::2]))
+
+
 class QueueContract(unittest.TestCase):
+    def test_lock_is_held_only_by_publish(self):
+        run, refresh = RUN.read_text(), REFRESH.read_text()
+        jobs = job_sections(run)
+        self.assertEqual(list(jobs), ["plan", "execute", "publish"])
+        self.assertNotIn("concurrency:", run.split("\njobs:\n", 1)[0])
+        for name in ("plan", "execute"):
+            self.assertNotIn("concurrency:", jobs[name], name)
+            self.assertNotIn("repository-output-writer", jobs[name], name)
+        publish = jobs["publish"]
+        self.assertRegex(publish, r"(?m)^    needs: \[plan, execute\]$")
+        self.assertRegex(publish, r"(?m)^      queue: max$")
+        self.assertRegex(publish, r"(?m)^      cancel-in-progress: false$")
+        self.assertIn("format('repository-output-writer-{0}', github.ref)", publish)
+        # Only publish may write; stations run job code with a read-only token.
+        self.assertRegex(run, r"(?m)^permissions:\n  contents: read$")
+        self.assertIn("    permissions:\n      contents: read\n", jobs["execute"])
+        self.assertIn("    permissions:\n      contents: write\n      actions: write\n", publish)
+        self.assertNotIn("contents: write", jobs["plan"] + jobs["execute"])
+        # The lock is acquired before the latest-tip checkout and kept through the push.
+        self.assertLess(publish.index("    concurrency:"), publish.index("- uses: actions/checkout@v4"))
+        self.assertLess(publish.index("- uses: actions/checkout@v4"), publish.index("bash .github/scripts/commit_results.sh"))
+        refresh_jobs = job_sections(refresh)
+        self.assertEqual(list(refresh_jobs), ["execute", "publish"])
+        self.assertNotIn("concurrency:", refresh_jobs["execute"])
+        self.assertIn("group: repository-output-writer-refs/heads/main", refresh_jobs["publish"])
+        self.assertRegex(refresh_jobs["publish"], r"(?m)^      queue: max$")
+        self.assertRegex(refresh_jobs["publish"], r"(?m)^      cancel-in-progress: false$")
+        self.assertIn("bash .github/scripts/commit_results.sh", refresh_jobs["publish"])
+        self.assertNotIn("commit_results.sh", refresh_jobs["execute"])
+
     def test_shared_mutating_queue_and_diagnostic_isolation(self):
         run, refresh = RUN.read_text(), REFRESH.read_text()
-        for source in (run, refresh):
-            self.assertRegex(source, r"(?m)^      queue: max$")
-            self.assertRegex(source, r"(?m)^      cancel-in-progress: false$")
-        self.assertIn("format('repository-output-writer-{0}', github.ref)", run)
-        self.assertIn("group: repository-output-writer-refs/heads/main", refresh)
-        self.assertIn("github.event_name == 'workflow_dispatch' && inputs.diagnostic", run)
-        self.assertIn("format('read-only-job-diagnostic-{0}-{1}', github.run_id, github.run_attempt)", run)
-        self.assertIn("ref: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic && github.sha || github.ref }}", run)
-        self.assertIn("persist-credentials: ${{ !inputs.diagnostic }}", run)
-        self.assertIn("BEFORE: ${{ github.event.before }}", run)
-        self.assertIn("AFTER: ${{ github.sha }}", run)
-        self.assertIn("env GITHUB_SHA=\"$execution_input_commit\" bash .github/scripts/run_jobs.sh", run)
+        jobs = job_sections(run)
+        self.assertIn("github.event_name == 'workflow_dispatch' && inputs.diagnostic", jobs["publish"])
+        self.assertIn("format('read-only-job-diagnostic-{0}-{1}', github.run_id, github.run_attempt)", jobs["publish"])
+        latest = "ref: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic && github.sha || github.ref }}"
+        self.assertIn(latest, jobs["plan"])
+        self.assertIn(latest, jobs["publish"])
+        # Every station executes the one commit the plan pinned (the tip at plan time).
+        self.assertIn("ref: ${{ needs.plan.outputs.input_commit }}", jobs["execute"])
+        self.assertIn('test "$execution_input_commit" = "$ARSENALE_INPUT_COMMIT"', jobs["execute"])
+        self.assertIn("persist-credentials: ${{ !inputs.diagnostic }}", jobs["execute"])
+        self.assertIn("persist-credentials: ${{ !inputs.diagnostic }}", jobs["publish"])
+        self.assertIn("if: ${{ !inputs.diagnostic }}", jobs["publish"].split("- name: Commit results to the branch", 1)[1].split("\n      - ", 1)[0])
+        self.assertIn("BEFORE: ${{ github.event.before }}", jobs["plan"])
+        self.assertIn("AFTER: ${{ github.sha }}", jobs["plan"])
+        self.assertIn("env GITHUB_SHA=\"$execution_input_commit\" bash .github/scripts/run_jobs.sh", jobs["execute"])
         self.assertIn("github.event.workflow_run.head_repository.full_name == github.repository", refresh)
-        self.assertLess(refresh.index("github.ref == 'refs/heads/main'"), refresh.index("    concurrency:"))
+        publish = job_sections(refresh)["publish"]
+        self.assertLess(publish.index("github.ref == 'refs/heads/main'"), publish.index("    concurrency:"))
+
+    def test_parallel_stations_and_bounded_requeue_are_wired(self):
+        run = RUN.read_text()
+        jobs = job_sections(run)
+        execute = jobs["execute"]
+        self.assertIn("matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}", execute)
+        self.assertIn("fail-fast: false", execute)
+        self.assertIn("JOBS: ${{ matrix.jobs }}", execute)
+        self.assertIn("python .github/scripts/arsenale.py plan", jobs["plan"])
+        self.assertIn("python .github/scripts/arsenale.py bundle --station ${{ matrix.station }}", execute)
+        self.assertIn("arsenale-${{ github.run_id }}-${{ github.run_attempt }}-station-${{ matrix.station }}", execute)
+        self.assertIn("pattern: arsenale-${{ github.run_id }}-${{ github.run_attempt }}-station-*", jobs["publish"])
+        self.assertIn("python .github/scripts/arsenale.py collect", jobs["publish"])
+        self.assertIn("python .github/scripts/arsenale.py requeue --workflow run-jobs.yml", jobs["publish"])
+        self.assertIn("REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}", jobs["plan"])
+        self.assertIn("REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}", jobs["publish"])
+        self.assertIn("requeue_depth:", run.split("\njobs:\n", 1)[0])
+        # Station outputs, oversized files and receipts survive a failed job.
+        for step in ("- name: Bundle this station's results", "- name: Hand the station's results to publish"):
+            self.assertIn("if: always()", execute.split(step, 1)[1].split("\n      - ", 1)[0])
+        self.assertIn("name: oversized-outputs-${{ github.run_id }}", jobs["publish"])
+        self.assertIn("name: diagnostic-receipts-${{ github.run_id }}-${{ github.run_attempt }}", jobs["publish"])
+        refresh = job_sections(REFRESH.read_text())
+        self.assertIn("python .github/scripts/arsenale.py requeue --workflow refresh-readiness.yml", refresh["publish"])
 
 
 class QueuedCheckout(unittest.TestCase):
@@ -108,9 +174,10 @@ class QueuedCheckout(unittest.TestCase):
             command = [sys.executable, ".github/scripts/run_jobs.py"]
         else:
             match = re.search(
-                r"(?m)^          execution_input_commit=.*\n          env GITHUB_SHA=.*\n",
+                r"(?m)^          execution_input_commit=.*\n          test .*\n          env GITHUB_SHA=.*\n",
                 RUN.read_text())
             self.assertIsNotNone(match, "native receipt staging block disappeared")
+            env["ARSENALE_INPUT_COMMIT"] = self.git("rev-parse", "HEAD")
             command = ["bash", "-e", "-o", "pipefail", "-c", textwrap.dedent(match.group())]
         result = subprocess.run(command, cwd=self.repo, env=env,
                                 capture_output=True, text=True)
