@@ -218,6 +218,49 @@ class SearchLayer(unittest.TestCase):
         self.assertEqual(state["EO:5862"]["steps"], 1)
         self.assertTrue(state["EO:5862"]["hits"])
 
+    def _paid_engine(self):
+        return {"name": "fake_paid", "kind": "json", "paid": True, "env": ["PAID_KEY"],
+                "url": "https://paid.test/?key={ENV:PAID_KEY}&q={q}",
+                "json": {"items": "items", "title": "title", "url": "link", "snippet": "snippet"}}
+
+    def test_paid_engine_skipped_when_free_engines_found_something(self):
+        paid = self._paid_engine()
+        s = w.Searcher(os.path.join(self.tmp, "cache"), max_requests=50, transport=self.web, env={"PAID_KEY": "sekrit"},
+                       engines=ENGINES[:2] + [paid], now=lambda: "2026-10-21T00:00:00Z")
+        w.advance(s, TARGET, w.new_state(TARGET), s.ready_engines())
+        self.assertFalse(any("paid.test" in u for u, _ in self.web.calls), "free engines had a good hit")
+        self.assertEqual(s.paid_used, {})
+
+    def test_paid_engine_used_only_when_free_find_nothing_and_capped_and_redacted(self):
+        paid = self._paid_engine()
+        t = {**TARGET, "id": "EO:7777", "number": 7777, "title": ""}
+        s = w.Searcher(os.path.join(self.tmp, "cache"), max_requests=50, transport=self.web, env={"PAID_KEY": "sekrit"},
+                       engines=ENGINES[:2] + [paid], now=lambda: "2026-10-21T00:00:00Z", paid_allowance=1)
+        st = w.advance(s, t, w.new_state(t), s.ready_engines())
+        st = w.advance(s, t, st, s.ready_engines())
+        paid_calls = [u for u, _ in self.web.calls if "paid.test" in u and not u.endswith("robots.txt")]
+        self.assertEqual(len(paid_calls), 1, "allowance of one paid query is never exceeded")
+        self.assertTrue(any("paid cap reached" in n for n in st["notes"]))
+        self.assertFalse(any("sekrit" in json.dumps(r) for r in s.sources), "keys never reach the logged sources")
+
+    def test_campaign_paid_ledger_accumulates_and_stops_at_job_cap(self):
+        paid = self._paid_engine()
+        root = os.path.join(self.tmp, "repo")
+        out = os.path.join(root, "jobs", "p-job", "output")
+        os.makedirs(out)
+        t = {**TARGET, "id": "EO:7777", "number": 7777, "title": ""}
+        env = {"PAID_KEY": "sekrit", "EO_PAID_SEARCHES_PER_JOB": "1"}
+        for i in range(2):
+            summ = w.run_campaign("p-job", root, out, [t], cache_dir=os.path.join(self.tmp, f"pc{i}"), max_requests=50,
+                                  max_targets=1, transport=self.web, env=env, engines=ENGINES[:2] + [paid],
+                                  now=lambda: "2026-10-21T00:00:00Z")
+        with open(os.path.join(out, "PAID_SEARCH.json"), encoding="utf-8") as fh:
+            led = json.load(fh)
+        self.assertEqual(led["lifetime_paid_queries"], 1)
+        self.assertEqual(summ["paid_allowance_this_run"], 0, "second run sees the job cap already spent")
+        with open(os.path.join(out, "SOURCES.jsonl"), encoding="utf-8") as fh:
+            self.assertNotIn("sekrit", fh.read())
+
     def test_page_to_text_strips_scripts(self):
         self.assertEqual(w.page_to_text(b"<html><script>x()</script><p>Hello <b>there</b></p></html>"), "Hello there")
 

@@ -46,6 +46,8 @@ MONTHS = ["January", "February", "March", "April", "May", "June", "July", "Augus
 # Built-in engines. `kind`: how to read the response. `url`: template with {q} (URL-encoded query) and
 # optional {year}. `env`: environment variables that must be set; `headers` may reference them as
 # {ENV:NAME}. `host_only`: result links on the engine's own host are ignored unless listed here.
+# `paid`: billed per query. A paid engine is asked only after the free engines found nothing worth
+# reading for that step, and only within the caps below (PAID_SEARCH.json in the job's output is the ledger).
 ENGINES = [
     # General web search, keyless. robots.txt decides at run time; blocked ones are reported.
     {"name": "duckduckgo_html", "kind": "html", "url": "https://html.duckduckgo.com/html/?q={q}", "unwrap": "uddg"},
@@ -56,16 +58,16 @@ ENGINES = [
     {"name": "marginalia", "kind": "html", "url": "https://search.marginalia.nu/search?query={q}"},
     {"name": "yandex_html", "kind": "html", "url": "https://yandex.com/search/?text={q}"},
     # General web search, keyed (secrets passed by the workflow when the owner adds them).
-    {"name": "google_cse", "kind": "json", "env": ["GOOGLE_CSE_KEY", "GOOGLE_CSE_CX"],
+    {"name": "google_cse", "kind": "json", "paid": True, "env": ["GOOGLE_CSE_KEY", "GOOGLE_CSE_CX"],
      "url": "https://www.googleapis.com/customsearch/v1?key={ENV:GOOGLE_CSE_KEY}&cx={ENV:GOOGLE_CSE_CX}&q={q}&num=10",
      "json": {"items": "items", "title": "title", "url": "link", "snippet": "snippet"}},
-    {"name": "bing_api", "kind": "json", "env": ["BING_SEARCH_KEY"], "headers": {"Ocp-Apim-Subscription-Key": "{ENV:BING_SEARCH_KEY}"},
+    {"name": "bing_api", "kind": "json", "paid": True, "env": ["BING_SEARCH_KEY"], "headers": {"Ocp-Apim-Subscription-Key": "{ENV:BING_SEARCH_KEY}"},
      "url": "https://api.bing.microsoft.com/v7.0/search?q={q}&count=10",
      "json": {"items": "webPages.value", "title": "name", "url": "url", "snippet": "snippet"}},
-    {"name": "brave_api", "kind": "json", "env": ["BRAVE_SEARCH_KEY"], "headers": {"X-Subscription-Token": "{ENV:BRAVE_SEARCH_KEY}", "Accept": "application/json"},
+    {"name": "brave_api", "kind": "json", "paid": True, "env": ["BRAVE_SEARCH_KEY"], "headers": {"X-Subscription-Token": "{ENV:BRAVE_SEARCH_KEY}", "Accept": "application/json"},
      "url": "https://api.search.brave.com/res/v1/web/search?q={q}&count=10",
      "json": {"items": "web.results", "title": "title", "url": "url", "snippet": "description"}},
-    {"name": "serpapi_google", "kind": "json", "env": ["SERPAPI_KEY"],
+    {"name": "serpapi_google", "kind": "json", "paid": True, "env": ["SERPAPI_KEY"],
      "url": "https://serpapi.com/search.json?engine=google&q={q}&api_key={ENV:SERPAPI_KEY}",
      "json": {"items": "organic_results", "title": "title", "url": "link", "snippet": "snippet"}},
     # Libraries, archives and government catalogs, keyless.
@@ -101,6 +103,45 @@ ENGINES = [
      "json": {"items": "body.hits.hits", "title": "_source.record.title", "url": "_source.metadata.naId", "snippet": "_source.record.scopeAndContentNote"},
      "url_prefix": "https://catalog.archives.gov/id/"},
 ]
+
+
+# Paid-query caps (the owner buys these; spend them only where free engines fail). Overridable by env.
+PAID_PER_RUN_DEFAULT = 100      # per job run
+PAID_PER_JOB_DEFAULT = 2500     # lifetime, per job (two consumers -> 5,000 total, about $20-25 at Brave's price)
+PAID_TOTAL_DEFAULT = 5000       # lifetime, across every job ledger visible in the checkout
+PAID_LEDGER = "PAID_SEARCH.json"
+
+
+def _int_env(env, name, default):
+    try:
+        return max(0, int(env.get(name, default)))
+    except (TypeError, ValueError):
+        return default
+
+
+def load_paid_ledgers(root, job):
+    """(this job's prior lifetime count, lifetime count across every visible job ledger)."""
+    import glob
+    mine, total = 0, 0
+    for path in glob.glob(os.path.join(root or ".", "jobs", "*", "output", PAID_LEDGER)):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                n = int(json.load(fh).get("lifetime_paid_queries", 0))
+        except (OSError, ValueError, TypeError, AttributeError):
+            continue
+        total += n
+        if os.path.basename(os.path.dirname(os.path.dirname(path))) == job:
+            mine = n
+    return mine, total
+
+
+def redact(text, engine, env):
+    """Replace every secret value the engine uses with {ENV:NAME}, so logged URLs never carry keys."""
+    for name in engine.get("env", []):
+        v = env.get(name)
+        if v:
+            text = text.replace(urllib.parse.quote(v, safe=""), "{ENV:%s}" % name).replace(v, "{ENV:%s}" % name)
+    return text
 
 
 def load_engines(path=ENGINES_FILE):
@@ -420,7 +461,8 @@ class Searcher:
     sha256, bytes, time) so a hit can be traced to the exact response that produced it.
     """
 
-    def __init__(self, cache_dir, max_requests=300, transport=None, env=None, engines=None, offline=False, now=None):
+    def __init__(self, cache_dir, max_requests=300, transport=None, env=None, engines=None, offline=False, now=None,
+                 paid_allowance=None):
         self.pool = fetch_pool.FetchPool(cache_dir, workers=4, per_host=2, transport=transport, min_interval=1.0,
                                          offline=offline, max_bytes=MAX_PAGE_BYTES,
                                          user_agent="EO-Road-System/1.0 (+https://github.com/D3m0sthene5/Executive-Orders; research)")
@@ -435,6 +477,9 @@ class Searcher:
         self._lock = threading.Lock()
         self.reserved = 0  # fetches started; robots.txt reads are extra (one per host) and not counted here
         self.now = now or (lambda: dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+        # paid queries this searcher may still send (None: the per-run default; caps are applied by run_campaign)
+        self.paid_allowance = _int_env(self.env, "EO_PAID_SEARCHES_PER_RUN", PAID_PER_RUN_DEFAULT) if paid_allowance is None else paid_allowance
+        self.paid_used = {}
 
     @property
     def requests_used(self):
@@ -449,6 +494,13 @@ class Searcher:
             if self.reserved >= self.max_requests:
                 return False
             self.reserved += 1
+            return True
+
+    def _reserve_paid(self, name):
+        with self._lock:
+            if sum(self.paid_used.values()) >= self.paid_allowance:
+                return False
+            self.paid_used[name] = self.paid_used.get(name, 0) + 1
             return True
 
     def ready_engines(self):
@@ -494,11 +546,14 @@ class Searcher:
         """One query on one engine -> {'engine','query','url','status','hits','error'}."""
         url = build_url(engine, query, year, self.env)
         name = engine["name"]
+        shown = redact(url, engine, self.env)
         unavailable = {"blocked_by_robots_txt", "http_401", "http_403", "http_429"}
         if self.engine_status.get(name) in unavailable:
             self.deferred_queries[name] = self.deferred_queries.get(name, 0) + 1
-            return {"engine": name, "query": query, "url": url, "status": 0,
+            return {"engine": name, "query": query, "url": shown, "status": 0,
                     "hits": [], "error": "deferred_this_run:" + self.engine_status[name]}
+        if engine.get("paid") and not self._reserve_paid(name):
+            return {"engine": name, "query": query, "url": shown, "status": 0, "hits": [], "error": "paid_cap_reached"}
         status, body, error = self._fetch(url, build_headers(engine, self.env))
         hits, perr = [], ""
         if status == 200 and body:
@@ -511,7 +566,7 @@ class Searcher:
                 hits, perr = parse_html_results(engine, body, url)
         elif status and not error:
             error = f"HTTP {status}"
-        self._record(url, status, body, "search", error or perr, engine["name"])
+        self._record(shown, status, body, "search", redact(error or perr, engine, self.env), engine["name"])
         name = engine["name"]
         if error == "blocked_by_robots_txt":
             self.engine_status[name] = "blocked_by_robots_txt"
@@ -525,7 +580,7 @@ class Searcher:
             self.engine_status.setdefault(name, "unreadable:" + perr)
         else:
             self.engine_status.setdefault(name, "error")
-        return {"engine": name, "query": query, "url": url, "status": status, "hits": hits, "error": error or perr}
+        return {"engine": name, "query": query, "url": shown, "status": status, "hits": hits, "error": redact(error or perr, engine, self.env)}
 
     def read_page(self, url):
         """Fetch a hit and return (text, links, record)."""
@@ -556,9 +611,18 @@ def advance(searcher, target, state, engines, max_pages=3, min_follow_score=45):
     if not searcher.budget_left():
         state["notes"].append(f"{stamp} budget exhausted before {label}")
         return state
-    # every engine is a different host, so the queries run in parallel under the pool's per-host limits
-    results = searcher.pool.map(lambda e: searcher.search(e, query, year), engines)
-    for engine, res in zip(engines, results):
+    # every engine is a different host, so the queries run in parallel under the pool's per-host limits.
+    # Paid engines are asked only when the free ones found nothing worth reading for this step.
+    free = [e for e in engines if not e.get("paid")]
+    paid = [e for e in engines if e.get("paid")]
+    pairs = list(zip(free, searcher.pool.map(lambda e: searcher.search(e, query, year), free)))
+    if paid and not any(score_hit(h, target)[0] >= min_follow_score
+                        for _, r in pairs for h in r["hits"] if h["url"] not in known):
+        pairs += list(zip(paid, searcher.pool.map(lambda e: searcher.search(e, query, year), paid)))
+    for engine, res in pairs:
+        if res["error"] == "paid_cap_reached":
+            state["notes"].append(f"{stamp} paid cap reached before {engine['name']} on {label}")
+            continue
         if res["error"] == "budget_exhausted":
             state["notes"].append(f"{stamp} budget stopped before {engine['name']} on {label}")
             continue
@@ -664,8 +728,14 @@ def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, ma
     prior, prior_from = load_prior_state(root, job)
     states = {k: v for k, v in prior.items() if isinstance(v, dict)}
     by_id = {t["id"]: t for t in targets}
+    env_ = os.environ if env is None else env
+    paid_mine, paid_all = load_paid_ledgers(root, job)
+    per_run = _int_env(env_, "EO_PAID_SEARCHES_PER_RUN", PAID_PER_RUN_DEFAULT)
+    per_job = _int_env(env_, "EO_PAID_SEARCHES_PER_JOB", PAID_PER_JOB_DEFAULT)
+    total = _int_env(env_, "EO_PAID_SEARCHES_TOTAL", PAID_TOTAL_DEFAULT)
+    allowance = max(0, min(per_run, per_job - paid_mine, total - paid_all))
     searcher = Searcher(cache_dir, max_requests=max_requests, transport=transport, env=env, engines=engines,
-                        offline=offline, now=now)
+                        offline=offline, now=now, paid_allowance=allowance)
     engines_ready = searcher.ready_engines()
     picked = pick_targets(states, targets, max_targets)
     advanced = 0
@@ -708,6 +778,24 @@ def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, ma
         for s in searcher.sources:
             fh.write(json.dumps(s, sort_keys=True) + "\n")
     status = {e["name"]: searcher.engine_status.get(e["name"], "not_tried") for e in searcher.engines}
+    used = sum(searcher.paid_used.values())
+    prior_by_engine = {}
+    try:
+        with open(os.path.join(root or ".", "jobs", job, "output", PAID_LEDGER), encoding="utf-8") as fh:
+            prior_by_engine = json.load(fh).get("lifetime_by_engine", {}) or {}
+    except (OSError, ValueError, AttributeError):
+        pass
+    by_engine = dict(prior_by_engine)
+    for k, v in searcher.paid_used.items():
+        by_engine[k] = by_engine.get(k, 0) + v
+    with open(os.path.join(out_dir, PAID_LEDGER), "w", encoding="utf-8") as fh:
+        json.dump({"job": job, "updated_utc": stamp, "this_run": dict(sorted(searcher.paid_used.items())),
+                   "this_run_total": used, "this_run_allowance": allowance,
+                   "lifetime_paid_queries": paid_mine + used, "lifetime_by_engine": dict(sorted(by_engine.items())),
+                   "caps": {"per_run": per_run, "per_job": per_job, "total_all_jobs": total},
+                   "rule": "Paid engines are asked only after the free engines found nothing worth reading for that step; "
+                           "counts are queries sent (cached replies may be counted too, so the ledger errs high)."},
+                  fh, indent=1, sort_keys=True)
     with open(os.path.join(out_dir, "ENGINES.json"), "w", encoding="utf-8") as fh:
         json.dump({"updated_utc": stamp, "engines": status,
                    "deferred_queries": searcher.deferred_queries,
@@ -717,6 +805,7 @@ def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, ma
         "targets_total": len(targets), "targets_with_state": len(states), "advanced_this_run": advanced,
         "never_searched": sum(1 for t in targets if t["id"] not in states),
         "requests_used": searcher.requests_used, "fetches_budgeted": searcher.reserved, "max_requests": max_requests,
+        "paid_queries_this_run": used, "paid_allowance_this_run": allowance, "paid_queries_lifetime_this_job": paid_mine + used,
         "cache_hits": searcher.pool.cache_hits,
         "deferred_engine_queries": sum(searcher.deferred_queries.values()),
         "hits_total": len(hit_rows), "leads_page_confirmed": len(lead_rows),
