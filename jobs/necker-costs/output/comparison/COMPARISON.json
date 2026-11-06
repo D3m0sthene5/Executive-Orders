@@ -1,0 +1,86 @@
+{
+ "what_this_is": "API-price estimates for waves Bentham already measured. Not bills; not charges under a subscription.",
+ "columns": {
+  "tokens_total": "fresh input + output + cache read + cache write, summed (a size, not a price)",
+  "usd_bentham": "Bentham measure.py table: Sonnet 3/15/0.30/3.75, Opus 5/25/0.50/6.25, both cache-write kinds at one rate",
+  "usd_necker": "per-model list price of the model in the row (PRICES.json), 5m and 1h writes apart",
+  "usd_lumped": "every input-side token (fresh, cache read, cache write) at the full input price, output at the output price, current rates: the estimate that lumps cache reads with full-price input"
+ },
+ "waves": [
+  {
+   "wave": "tribonian-2026-11-04",
+   "agents": 78,
+   "tokens": {
+    "input": 13758,
+    "output": 7395646,
+    "cache_read": 1303869854,
+    "cache_write_5m": 43205202,
+    "cache_write_1h": 489663
+   },
+   "tokens_total": 1354974123,
+   "cache_read_share_of_tokens": 0.9623,
+   "usd_bentham": 815.18,
+   "usd_necker": 419.36,
+   "usd_lumped": 3720.64,
+   "necker_over_bentham": 0.514,
+   "lumped_over_necker": 8.872,
+   "usd_necker_by_kind": {
+    "fresh_input": 0.04,
+    "output": 103.33,
+    "cache_read": 175.29,
+    "cache_write": 140.69
+   },
+   "cache_read_share_of_necker_usd": 0.418
+  },
+  {
+   "wave": "claude-icecore-2026-11-05",
+   "agents": 7,
+   "tokens": {
+    "input": 1122,
+    "output": 446184,
+    "cache_read": 96152859,
+    "cache_write_5m": 1102659,
+    "cache_write_1h": 1244156
+   },
+   "tokens_total": 98946980,
+   "cache_read_share_of_tokens": 0.9718,
+   "usd_bentham": 59.25,
+   "usd_necker": 32.92,
+   "usd_lumped": 297.57,
+   "necker_over_bentham": 0.556,
+   "lumped_over_necker": 9.039,
+   "usd_necker_by_kind": {
+    "fresh_input": 0.0,
+    "output": 6.23,
+    "cache_read": 14.17,
+    "cache_write": 12.51
+   },
+   "cache_read_share_of_necker_usd": 0.4305
+  },
+  {
+   "wave": "claude-theophilus-2026-11-05",
+   "agents": 11,
+   "tokens": {
+    "input": 1204,
+    "output": 617061,
+    "cache_read": 106554996,
+    "cache_write_5m": 576565,
+    "cache_write_1h": 1336580
+   },
+   "tokens_total": 109086406,
+   "cache_read_share_of_tokens": 0.9768,
+   "usd_bentham": 73.46,
+   "usd_necker": 41.7,
+   "usd_lumped": 397.09,
+   "necker_over_bentham": 0.568,
+   "lumped_over_necker": 9.522,
+   "usd_necker_by_kind": {
+    "fresh_input": 0.0,
+    "output": 10.92,
+    "cache_read": 18.97,
+    "cache_write": 11.8
+   },
+   "cache_read_share_of_necker_usd": 0.4549
+  }
+ ]
+}
