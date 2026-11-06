@@ -124,6 +124,10 @@ class Run:
     def __init__(self, out, cache, workers=4, transport=None, max_requests=6000, max_minutes=240,
                  commit_bytes=60_000_000, max_pdf_commit=400_000, prior_dir=None):
         self.prior_dir = Path(prior_dir) if prior_dir else Path("/nonexistent")
+        # Orders whose statutes are committed in full whatever their size (a claim-kit supplement needs held bytes).
+        cf = HERE / "COMMIT_FOR"
+        self.commit_for = set(cf.read_text().split()) if cf.is_file() else set()
+        self.commit_for_cap, self.commit_for_bytes = 250_000_000, 0
         self.prior = {r.get("link_url"): r for r in S.read_jsonl(self.prior_dir / "SOURCES.jsonl")}
         self.out = out
         self.pool = FetchPool(cache / "statute", workers=workers, per_host=6, transport=transport,
@@ -154,11 +158,16 @@ class Run:
         r = self.prior.get(url)
         if not r or not (self.prior_dir / r["text_path"]).is_file():
             return None
+        if not r.get("cache_path") and self.wants_full(it):
+            return None  # refetch so the whole PDF can be committed
         raw = (self.prior_dir / r["cache_path"]).read_bytes() if r.get("cache_path") and \
             (self.prior_dir / r["cache_path"]).is_file() else None
         if r.get("cache_path") and (raw is None or S.sha256(raw) != r["sha256"]):
             return None
         return r, (self.prior_dir / r["text_path"]).read_text(encoding="utf-8"), raw
+
+    def wants_full(self, it):
+        return bool(self.commit_for & (set(it["acting_targets"]) | set(it["basis_targets"])))
 
     def one(self, it):
         c = self.carried(it)
@@ -208,6 +217,9 @@ class Run:
         with self.lock:
             if len(raw) <= self.max_pdf_commit and self.committed + len(raw) <= self.commit_bytes:
                 self.committed += len(raw)
+                cache_path = f"pdf/{name}.pdf"
+            elif self.wants_full(it) and self.commit_for_bytes + len(raw) <= self.commit_for_cap:
+                self.commit_for_bytes += len(raw)
                 cache_path = f"pdf/{name}.pdf"
         if cache_path:
             (self.out / cache_path).write_bytes(raw)
