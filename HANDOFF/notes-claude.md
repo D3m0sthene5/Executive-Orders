@@ -1,3 +1,9 @@
+## 2026-11-05 (Claude, PR cleanup and salvage of frozen runs)
+
+- **Merged** PRs 154 (Tischendorf plus tracker registration), 155 (current-law sources), 156 (Theophilus and ice-core claims) and 157 (Herschel), after resolving conflicts: runner outputs from main (rebuilt on the next run), Kean register united by exact line, two duplicate finding ids renamed (`F-20261105-tischendorf-1`, `-2`), missing `triggers.txt` library declarations added for `theophilus-sources` and `tischendorf-originals`.
+- **Salvaged** the frozen ChatGPT draft runs, PRs 141 (Sol), 146 (Astra) and 151 (Codex), in PR 158: research folders kept in place; retained sources, 176 fetch-queue rows, page-reviewed job data and code patches archived inertly under `research/salvage/frozen-drafts-2026-11-05/` (README has promotion steps). The three PRs are closed; branches remain. Their ChatGPT chats would not load in the owner's Chrome. Kean F-20261105-pr-cleanup-salvage.
+- **Next:** promote the salvaged retained sources through `astra-source-retention` `retained_path` imports (top Herschel blocker); then the Herschel fixes (overlay write rule, machine later-source searches). Owner asks A-20261105-1 and A-20261105-2 stay open.
+
 ## 2026-11-05 (Claude, Herschel: measured cost of all remaining work)
 
 - **Survey:** census of all 96,598 open order-steps plus two independent samples (153 + 85 orders), each run end to end by six Opus coordinators (H1-H6) and 195 workers with blind planted-control review. About $350 API-equivalent, 90 min. Report: `research/herschel/REPORT.md`; numbers: `research/herschel/ATLAS/`. Kean F-20261105-herschel-survey.
