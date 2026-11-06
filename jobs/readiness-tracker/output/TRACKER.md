@@ -9,16 +9,16 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 Orders with a provisional YES/NO status: 4,291. The other 10,681 have not been researched yet.
 
 Ready by text evidence: {'original_supported': 796, 'transcription_dependent': 527}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 1,279; quotation rechecks: 1,279. These remain work after readiness.
+Outstanding original replacement obligations: 1,037; quotation rechecks: 1,037. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 710. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5970}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 468. Confirmations rejected: {'grade_not_a_working_text_grade': 4, 'not_confirmed': 5970}.
 
 ## Steps finished (orders with a provisional status)
 
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 4,291 | 4,291 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 2,990 | 4,291 | 69.7% |
+| Original or explicitly reviewed provisional working text saved | 3,182 | 4,291 | 74.2% |
 | Complete inventory of the order's operative clauses | 1,388 | 4,291 | 32.3% |
 | When and how it ended (NO), or what keeps it operating now (YES) | 1,346 | 4,291 | 31.4% |
 | Savings clauses and surviving effects closed | 1,376 | 4,291 | 32.1% |
@@ -30,9 +30,9 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 3,246 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 2,998 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
 | 2,558 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
-| 474 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 545 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 60 | machine job | Run claim-checker on the newest claims (it reruns on every claims change and daily) |
 | 10 | one source | Retrieve shared source EO::4314 |
@@ -47,14 +47,14 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 10,681 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 979 | 5,333 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 1,011 | 3,246 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 848 | 5,014 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 915 | 2,998 |
 | `NO_CLAUSE_INVENTORY` | 2,786 | 2,786 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,786 | 2,786 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 127 | 2,558 |
 | `FIRST_END_UNPROVED` | 2,408 | 2,408 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,245 | 1,245 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 183 | 474 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 218 | 545 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 378 | 378 |
 | `OPUS_MEDIA_NONE_CITED` | 212 | 212 |
@@ -89,7 +89,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
 - tischendorf-originals: 314
-- mabillon-held-printings: 1,127
+- mabillon-held-printings: 2,015
 - richardson-volumes (lead only, never counted as the original): 68
 - app-executive-orders (lead only, never counted as the original): 9,902
 - hathi-gpo-orders (lead only, never counted as the original): 1,531
