@@ -15,6 +15,11 @@ on:
       - 'research/progress/remaining-work/APOLLO11_MILESTONES.csv'
       - '.github/workflows/refresh-readiness.yml'
   workflow_dispatch:
+    inputs:
+      requeue_depth:
+        description: "Set by Arsenale when it re-queues a refused refresh (0 for an ordinary run; at most 2)"
+        required: false
+        default: "0"
   # GITHUB_TOKEN result commits do not start push workflows. A main runner can
   # publish independent successes even if another selected job failed, so use
   # completion rather than requiring an overall success conclusion.
@@ -23,34 +28,36 @@ on:
     types: [completed]
     branches: [main]
 
+# Each stage asks for its own permissions; only publish can write.
 permissions:
-  contents: write
+  contents: read
 
 env:
   GIT_LFS_SKIP_SMUDGE: '1'
   JOBS: 'claim-checker readiness-tracker gessner-cards daily-digest'
 
 jobs:
-  refresh:
+  # Arsenale: compute without the writer lock, then publish under it. The four
+  # reporting jobs form one after.txt chain, so they share one station.
+  execute:
     if: >-
       github.ref == 'refs/heads/main' &&
       (github.event_name != 'workflow_run' ||
        (github.event.workflow_run.head_branch == 'main' &&
         github.event.workflow_run.head_repository.full_name == github.repository))
-    # Apply after the trusted-main guard. Use the same writer queue as ordinary
-    # main Run jobs so reporting cannot invalidate an in-flight production run.
-    # Queue every pending selection up to GitHub's explicit 100-entry limit.
-    concurrency:
-      group: repository-output-writer-refs/heads/main
-      queue: max
-      cancel-in-progress: false
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    outputs:
+      input_commit: ${{ steps.pin.outputs.input_commit }}
     steps:
+      - name: Record station start
+        run: echo "ARSENALE_STARTED_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           # Always consume trusted current main, never upstream artifacts or a
-          # workflow_run head checkout. Queued triggers include newer filings.
+          # workflow_run head checkout. Publish rechecks against the newest main.
           ref: refs/heads/main
           fetch-depth: 0
           filter: blob:none
@@ -65,16 +72,97 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Pin the execution input commit
+        id: pin
+        run: |
+          progress_input_commit="$(git rev-parse HEAD)"
+          echo "input_commit=$progress_input_commit" >> "$GITHUB_OUTPUT"
+          echo "ARSENALE_INPUT_COMMIT=$progress_input_commit" >> "$GITHUB_ENV"
       - name: Materialize existing reporting inputs
         run: python .github/scripts/materialize_job_inputs.py
       - name: Validate claims, recount readiness, and build the mission feed
         env:
           TRIGGER: '${{ github.event_name }} by ${{ github.actor }}; automatic progress publication'
-        # The event SHA can predate the latest-main checkout after a queue wait.
-        # Bind native STATUS and RUNNER_INPUTS to the same actual input commit.
+        # Bind native STATUS and RUNNER_INPUTS to the actual input commit.
         run: |
           progress_input_commit="$(git rev-parse HEAD)"
+          test "$progress_input_commit" = "$ARSENALE_INPUT_COMMIT"
           env GITHUB_SHA="$progress_input_commit" bash .github/scripts/run_jobs.sh
+      - name: Bundle the reporting results
+        if: always()
+        run: python .github/scripts/arsenale.py bundle --station 1 --out arsenale-station
+      - name: Hand the results to publish
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arsenale-${{ github.run_id }}-${{ github.run_attempt }}-station-1
+          path: arsenale-station/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: execute
+    if: >-
+      always() && needs.execute.result != 'skipped' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    # Apply after the trusted-main guard. Use the same writer queue as ordinary
+    # main Run jobs publication so reporting and production commits serialize.
+    # Queue every pending selection up to GitHub's explicit 100-entry limit.
+    concurrency:
+      group: repository-output-writer-refs/heads/main
+      queue: max
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      actions: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Record lock acquisition
+        run: echo "ARSENALE_LOCK_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        with:
+          ref: refs/heads/main
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/*/
+            /.github/**
+            /HANDOFF/**
+            /jobs/**
+            !/jobs/*/output/**
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download the reporting results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: arsenale-${{ github.run_id }}-${{ github.run_attempt }}-station-*
+          path: arsenale-in
+      - name: Collect the results onto the latest main
+        env:
+          ARSENALE_INPUT_COMMIT: ${{ needs.execute.outputs.input_commit }}
+        run: python .github/scripts/arsenale.py collect --artifacts arsenale-in
+      - name: Publish successful generations with the existing freshness guard
+        id: publish
+        env:
+          EVENT: ${{ github.event_name }}
+          BRANCH: main
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash .github/scripts/commit_results.sh
+      # Bounded: a re-queued refresh carries requeue_depth; at depth 2 nothing is dispatched.
+      - name: Re-queue a refused refresh
+        if: always() && steps.publish.outcome != 'skipped'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}
+          REQUEUE_REF: main
+        run: python .github/scripts/arsenale.py requeue --workflow refresh-readiness.yml
       - name: Retain oversized outputs and publication diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -83,10 +171,6 @@ jobs:
           path: oversized/
           if-no-files-found: ignore
           retention-days: 90
-      - name: Publish successful generations with the existing freshness guard
+      - name: Fail when the reporting station delivered no results
         if: always()
-        env:
-          EVENT: ${{ github.event_name }}
-          BRANCH: main
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: bash .github/scripts/commit_results.sh
+        run: python .github/scripts/arsenale.py verdict

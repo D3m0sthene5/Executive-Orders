@@ -28,3 +28,4 @@ subprocess.run([sys.executable,str(root/'.github/scripts/test_r1_r4_integration.
 subprocess.run([sys.executable,str(root/'.github/scripts/test_job_summary.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 
 subprocess.run([sys.executable,str(root/'.github/scripts/test_writer_queue.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+subprocess.run([sys.executable,str(root/'.github/scripts/test_arsenale.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
