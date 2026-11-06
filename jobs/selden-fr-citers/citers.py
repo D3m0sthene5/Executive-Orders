@@ -365,6 +365,10 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ):
     todo = [t for t in targets if t["id"] not in done_before]
     if limit:
         todo = todo[:limit]
+    only = HERE / "TARGETS"
+    if only.is_file() and "SELDEN_SHARD" not in env:  # a runner branch that searches only these orders first
+        wanted_ids = set(only.read_text().split())
+        todo = [t for t in todo if t["id"] in wanted_ids]
     shard = env["SELDEN_SHARD"] if "SELDEN_SHARD" in env else (
         (HERE / "SHARD").read_text().strip() if (HERE / "SHARD").is_file() else "")
     if shard:  # "k/n": this runner takes every n-th order starting at k (parallel runner branches)
