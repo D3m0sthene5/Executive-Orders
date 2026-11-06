@@ -1,3 +1,41 @@
+## 2026-11-06 08:30 ET (Claude, Dorotheus: Justinian repairs merged, protected stratum worked)
+
+- **Done (all merged by Dorotheus under the owner's delegation):**
+  - Justinian PRs #171, #179, #168, #169, #172, #175, #177, #178, #170, #173.
+  - COUNT-CHANGING #180 (B1): census 14,972 -> 14,998.
+  - COUNT-CHANGING #174 (C3): ready 1,368 -> 1,196.
+  - #181 (B2): catalogued_unnumbered class and two denominators.
+  - COUNT-CHANGING #182 (C/D): ready 1,196 -> 1,208; provisional statuses 4,291 -> 4,298.
+  - #176 closed as superseded by #180/#181.
+  - Freeze posted 09:50 UTC and lifted 11:05 UTC, after one chain published at `dd216474b`: 1,368 ready, generation `42204685627-1:8ee77553...`, the same id in the tracker's SUMMARY and STATUS. That is the first authoritative post-repair figure.
+  - Each count-changing merge's before/after is in Kean: F-20261106-dorotheus-merge-180, -174, -182.
+- **Sample estimate** (`research/dorotheus/SAMPLE_ESTIMATE.md`; provisional, AI-reviewed, uncertified, n=120):
+  - Response: only 19 of 120 orders responded (12 ready, 7 filed).
+  - Operative force on 2026-10-14, responses only (MAR): **0.0%, Korn-Graubard 95% 0.0-17.6%**.
+  - Producers' assessment of 69 orders: 5.3% (1.2-14.2%).
+  - Bounds: all nonresponse NO gives 0.0%; all nonresponse YES gives 79.7%.
+  - Formal validity (unrevoked) among responses: 0% (0-26.5%, 12 respondents).
+  - formal_revocation_after_earlier_cessation is true for 1 of 19 NO responses.
+  - Reviewer plants caught: 25/30.
+  - YES probe: 7/30, now Bentham's rate for yes.fr.
+- **Owner-delegated decisions** (Kean D-20261106-dorotheus-r7 to -r18, each "owner-delegated, reversible" where the prompt did not decide it):
+  - R14: the Bacon run is closed as unrecoverable; there was no bundle to adopt.
+  - R9: 4 Niebuhr orders with no held official page were not admitted.
+  - R9: EO:7933a is read through an alias map, because the ledger is hash-pinned.
+  - Asks closed: A-20261103-1, A-20261104-1, A-20261105-niebuhr-admit, A-20261106-mabillon-register and A-20261106-justinian-{freeze, r3-scope, e1e3, e4, astra, dedup}. No ask is open.
+- **Running:** dispatch of claim-drafts, claim-kit, claim-checker, readiness-tracker, domesday-register, daily-digest and bentham with requeue_depth 1, so main publishes the post-merge figures (expected 1,208 ready of 14,998 orders and 4,298 statuses).
+- **Next:**
+  - Let the claim-kit undecided route accept a held transcription as working text (2026-10-21 ruling), then re-run the 28 undecided sample orders blocked only by that. They are the `blocked` rows of `research/excavator/dorotheus-sample-2026-11-06/DISPOSITION.csv` whose blocker names the original requirement.
+  - Request bytes from Ptolemy for the 38 dispatch-blocked orders (custody_record_only).
+  - Re-run `research/dorotheus/estimate.py`.
+  - Cut producer context: 1.38M tokens per attempted order against a 150k target; try one order per producer with a pre-cut view.
+  - E1 (a hosted readiness-tracker diagnostic with narrowed materialization and a byte-for-byte comparison) and E2 (freshness refusals in the first three post-freeze runs) were not reached.
+  - DASHBOARD.md shows the tracker generation time and input commit but not the generation id itself.
+- **Do not:**
+  - Edit `research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv` keys for EO:7933a; it is hash-pinned, so add aliases instead.
+  - Re-tag the 192 named revocations of in-force orders (R8).
+  - Treat the sample estimate as more than a 19-response reading.
+
 ## 2026-11-06 05:10 ET (Claude, Justinian: repair wave A-F)
 
 - **Done:**
