@@ -1,6 +1,6 @@
 {
-  "base_commit": "d9c2a538ae07e6dc44c2c6da1a9f2ca77c0dcae7",
-  "base_output_sha256": "7f0d1d46bcced3fb32f7a9154607e70e627403c01cfe34f84b8b6cdcf3052e0a",
+  "base_commit": "8dd973d9846396738cd7f7a71476096cf04ba326",
+  "base_output_sha256": "50fd606096c3ff75f5705f8a83c5093a6f6519ffa5ae02bdc498d67a37df0bb0",
   "inputs": {
     ".github/scripts/commit_results.sh": "100644:8d1e97eefb456b983af82735830ca6aa71ad902a",
     ".github/scripts/job_summary.py": "100644:d5721c0624267a9b4d08d23128004ab7687ead9b",
@@ -39,15 +39,18 @@
     "jobs/theophilus-sources/job.py": "100644:c1e07e467a2446226efa69b66dc765042a558086",
     "jobs/theophilus-sources/needs.txt": "100644:90858323a5f26f15eb77861087082e80648816ea",
     "jobs/theophilus-sources/test_job.py": "100644:57d8f5bec40fb55f74ec5a88dfc4fab96aa3ff44",
-    "jobs/theophilus-sources/theophilus.py": "100644:4eb52bda01f24b196a5632be40c2bc7c9bd6b4e5"
+    "jobs/theophilus-sources/theophilus.py": "100644:4eb52bda01f24b196a5632be40c2bc7c9bd6b4e5",
+    "jobs/theophilus-sources/triggers.txt": "100644:6896f5d1b3a9856d4f306bb2654d600197cc2b8d"
   },
-  "inputs_sha256": "b653a823ef5604f4874279d8b055bc26f3d6ad30ffdd383f762569f6a34b4a64",
+  "inputs_sha256": "35cd1fb51a07d6298629410e08b4c729348e7252e3e7596f8424dd893d41e31c",
   "job": "theophilus-sources",
-  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42117674449",
+  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42146946111",
   "schema": 1,
   "scope": {
     "exclude": "jobs/theophilus-sources/output",
-    "patterns": [],
+    "patterns": [
+      "jobs/_lib/fetch_pool.py"
+    ],
     "roots": [
       ".github/scripts",
       ".github/workflows/run-jobs.yml",
