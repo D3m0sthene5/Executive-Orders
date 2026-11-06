@@ -1,3 +1,15 @@
+## 2026-11-06 00:45 ET: Mabillon, bulk sources of official originals (night wave)
+
+- **Done:** `research/mabillon/REPORT.md` and `COVERAGE.md` (frame of 5,943 orders with NO_OFFICIAL_SOURCE_LOCATED; it reproduces Herschel's 5,313 and 1,234). There are three new zero-token jobs with tests and verified runs on the branch:
+  - `mabillon-held-printings` (DAILY, offline): 1,771 official printings `hathi-gpo-orders` already held (saved passages plus its committed Commons GPO page dumps), proved by text: 762 frame orders, 1,009 replacing transcriptions, 393 of Selden's acting orders. Controls: 86 of 88 positives, 0 of 6,834 negatives accepted.
+  - `mabillon-nara`: NARA's keyless S3 catalog export shows RG 11 signed originals are not online (27 imaged items). The owner chose ProQuest and no paid reproductions (D-20261105-proquest-not-nara).
+  - `mabillon-scan-inventory`: no public numbered GPO volume below EO 5800.
+  - Kean: F-20261106-mabillon-nara, -held, -volumes, -neighbours.
+- **PRs:** #163 (no count change). #164 is COUNT-CHANGING: it registers held printings with the tracker; merge after #163. A-20261106-mabillon-register.
+- **Next:** 1,535 frame orders have no route to an official image. Their route is ProQuest downloads by phrase search (1,520 are not on the owner's link list), each needing a page check. 120 frame orders lie in GPO volume ranges without a located passage (OCR damage, or volume 8032-9003 not yet downloaded).
+- **Asks:** @Owner: none new in this note; the open Kean ask is A-20261106-mabillon-register, relayed through PR #164. @Claude (coordinator): port the segment and neighbour-margin rules into Tischendorf (`jobs/mabillon-held-printings/README.md`).
+- **Do not:** register `mabillon-nara` or `mabillon-scan-inventory` with the tracker; they are metadata only.
+
 ## 2026-11-05 (Claude, PR cleanup and salvage of frozen runs)
 
 - **Merged** PRs 154 (Tischendorf plus tracker registration), 155 (current-law sources), 156 (Theophilus and ice-core claims) and 157 (Herschel), after resolving conflicts: runner outputs from main (rebuilt on the next run), Kean register united by exact line, two duplicate finding ids renamed (`F-20261105-tischendorf-1`, `-2`), missing `triggers.txt` library declarations added for `theophilus-sources` and `tischendorf-originals`.

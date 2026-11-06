@@ -1,0 +1,58 @@
+{
+  "job": "mabillon-held-printings",
+  "passages": 2460,
+  "targets": 2015,
+  "frame_orders": 5943,
+  "frame_targets": 870,
+  "frame_strong": 762,
+  "frame_lead": 108,
+  "strong": 1771,
+  "lead": 244,
+  "by_route_verdict_in_frame": {
+    "commons_gpo_ocr|lead|other": 8,
+    "commons_gpo_ocr|lead|frame": 44,
+    "commons_gpo_ocr|strong|other": 213,
+    "commons_gpo_ocr|strong|frame": 419,
+    "commons_gpo_volume|lead|other": 100,
+    "commons_gpo_volume|lead|frame": 49,
+    "commons_gpo_volume|strong|other": 469,
+    "commons_gpo_volume|strong|frame": 270,
+    "govinfo_fr|lead|frame": 13,
+    "govinfo_fr|strong|frame": 41,
+    "ia_hoover|lead|other": 28,
+    "ia_hoover|lead|frame": 2,
+    "ia_hoover|strong|other": 327,
+    "ia_hoover|strong|frame": 32
+  },
+  "controls": {
+    "positives": 88,
+    "positives_confirmed": 86,
+    "positives_not_confirmed": [
+      "EO:5962",
+      "EO:5969"
+    ],
+    "negatives": 6834,
+    "negatives_accepted": 0,
+    "accepted_negatives": [],
+    "false_accept_upper95": 0.0004,
+    "neighbour_also_printed_on_passage": 11,
+    "negatives_by_route": {
+      "commons_gpo_ocr": 1950,
+      "commons_gpo_volume": 2452,
+      "govinfo_fr": 158,
+      "ia_hoover": 2274
+    },
+    "sensitivity": 0.977,
+    "passed": true
+  },
+  "strong_rules": "own number heading or closing tag on the pages (an OCR-damaged or mid-line heading only with a text score >= 0.6; in a compilation that prints no numbers, the signing date), text fingerprint score >= 0.5, distinctive fingerprint (>= 8 rare shingles), government-printed source, and no planted control failed this run; scored on the order's own printed segment (between the previous closing number tag and its own); and the claimed order's text beats every order numbered within 3 of it by at least 0.15",
+  "rules_sha256": {
+    "jobs/tischendorf-originals/tischendorf.py": "ac89ca38e0bb0ad12c3e1e65339a02452d20e6be08cb6acd5e0b605e3181e3ce",
+    "jobs/tischendorf-originals/fingerprint.py": "de1fdea0ba41f2ac0dfbc338a581d037385a1da18bbe66e0a2e81e35feb44fd4",
+    "jobs/source-ladder/fr_pages.py": "b4d6f84087bac09cc8554a1f31f401433b75e92d7502905fbe34f017a7844d5b"
+  },
+  "seconds": 56,
+  "network_requests": 0,
+  "counted_by_tracker": false,
+  "what_this_is_not": "No status, identity, census, codebook or readiness change. Strong finds are machine locations of held government printings; the tracker counts them only after the owner registers this job."
+}
