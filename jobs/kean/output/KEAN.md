@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (3)
+## Waiting for the owner (2)
 
-**A-20261106-1**, **A-20261106-dagron-nyu**, **A-20261106-pothier**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261106-1**, **A-20261106-pothier**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -36,7 +36,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 208; `search` finds the rest)
+## Newest results (6 of 206; `search` finds the rest)
 
 - 2026-11-06 F-20261106-selden-supplement-decided-only **analysis**: Route newly held later-instrument texts (Selden) into claim-kit packets with jobs/claim-kit/source_supplement… Lesson: Extending source_supplement (or an equivalent excerpt step) to the overlay route is needed before held acting texts can serve the 10,681 undecided orders; the coordinator has taken it up.
 - 2026-11-06 F-20261106-selden-fr-api-400 **failed**: selden-fr-citers first full runs (lane run and two runner shards) searched 13,138 orders through the Federal… Lesson: Same lesson as F-20261105-tischendorf-2, which this session read and did not apply: smoke-test every live route on a handful of real items before a full run, and make a job fail when most of its requ…
@@ -45,4 +45,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-06 F-20261106-pothier-refuge **worked**: Pothier doctrine PD-REFUGE-LIGHTHOUSE (refuges and lighthouse reservations) Lesson: 14 refuges named in current law (yes); 35 ended by Public Land Orders; 43 U.S.C. 1714(j) conflicts kept open. Refuge-to-order crosswalk (FWS 1983 FR notice) and PLO texts.
 - 2026-11-06 F-20261106-pothier-one-person **partly worked**: Pothier doctrine PD-CS-ONE-PERSON (one-person civil service orders) Lesson: A one-person waiver is extinguished at latest by the person's death, dated only from a quoted age or presence fact plus the 122y164d record. Most stay open without a sourced minimum age; per-examinat…
 
-Register: 45 owner decisions, 26 answered questions, 208 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 45 owner decisions, 26 answered questions, 206 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
