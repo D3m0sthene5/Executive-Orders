@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nihil obstat: human certifier</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Nihil obstat <span class="ver" id="ver"></span></h1>
+    <p class="sub">Human certification page for filed executive-order lifecycle claims</p>
+  </div>
+  <p class="banner" role="note">This page reads exported cards and writes nothing to the repository. Your decisions stay in your browser until you
+    download them. It changes no count: the certified count stays 0 until the owner imports reviews through the project's own importer.</p>
+</header>
+
+<section class="panel" id="load">
+  <h2>1. Load cards</h2>
+  <div class="row">
+    <label class="btn">Choose export folder <input type="file" id="pickDir" webkitdirectory multiple hidden></label>
+    <label class="btn">Choose files <input type="file" id="pickFiles" multiple hidden></label>
+    <label class="btn">Resume from decisions file <input type="file" id="pickDecisions" accept=".jsonl,.json" hidden></label>
+  </div>
+  <div id="drop" class="drop" tabindex="0">or drop the export folder's files here. Card files are <code>cards/*.json</code>; any other file
+    (for example an original PDF in <code>sources/</code>) is hashed in your browser and matched to claims by SHA-256.</div>
+  <p id="loadStatus" class="status" role="status"></p>
+</section>
+
+<section class="panel" id="who">
+  <h2>2. You</h2>
+  <div class="row">
+    <label>Your name <input id="reviewer" type="text" autocomplete="name" placeholder="as it should appear on the record"></label>
+    <label class="check"><input id="independent" type="checkbox"> I did not produce these claims or take part in their AI review</label>
+  </div>
+</section>
+
+<div class="layout">
+  <nav id="cardList" class="panel" aria-label="Cards"><h2>Cards</h2><ul id="cards"></ul>
+    <div class="row"><button id="exportBtn" class="btn primary" disabled>Export decisions (JSONL)</button></div>
+    <p class="small" id="exportInfo">No decisions recorded yet.</p>
+  </nav>
+  <main id="card" aria-live="polite"><p class="empty">Load a card to begin.</p></main>
+</div>
+
+<dialog id="viewer">
+  <form method="dialog" class="vhead"><strong id="vtitle"></strong><button class="btn">Close</button></form>
+  <pre id="vbody"></pre>
+</dialog>
+
+<footer class="small">Nihil obstat: the censor's certificate that nothing stands in the way. Page version <span id="ver2"></span>. Hashing:
+  <span id="engine"></span>.</footer>
+
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
