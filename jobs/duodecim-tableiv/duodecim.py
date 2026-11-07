@@ -216,6 +216,7 @@ class Fetcher:
         self.intervals = {"webharvest.gov": 10.0, "uscode.house.gov": 1.0, "www.govinfo.gov": 0.5,
                           "babel.hathitrust.org": 1.0, "web.archive.org": 5.0, "webarchive.library.unt.edu": 6.0}
         self.robots_cache = {}
+        self.dead = {}  # origin -> why: a host that could not be reached this run is not tried again
         self.intervals.update(intervals or {})
         self.pools, self.log = {}, []
         self.times_path = self.cache / "retrieved_times.json"
@@ -235,6 +236,8 @@ class Fetcher:
         """(allowed, why). Fetches robots.txt once per host through the pool (cached, paced)."""
         sp = urllib.parse.urlsplit(url)
         origin = f"{sp.scheme}://{sp.netloc}"
+        if origin in self.dead:
+            return False, "host unreachable earlier in this run: " + self.dead[origin]
         if origin not in self.robots_cache:
             pool = self.pool(sp.hostname)
             try:
@@ -242,7 +245,8 @@ class Fetcher:
                 raw = body.read()
                 body.close()
             except Exception as e:
-                return False, f"robots.txt unreadable: {type(e).__name__}"
+                self.dead[origin] = f"robots.txt unreadable: {type(e).__name__}"
+                return False, self.dead[origin]
             if status == 200:
                 self.robots_cache[origin] = robots_rules(raw.decode("utf-8", "replace"), UA)
             elif status in (404, 410):
@@ -293,6 +297,8 @@ class Fetcher:
                 else:
                     res["retrieved_utc"] = self.times[key] = now_utc()
                 break
+            if status == 429:  # slow the whole host down for the rest of the run
+                pool.min_interval = min(60.0, pool.min_interval * 2 if pool.min_interval else 1.0)
             if status in (429, 500, 502, 503, 504, 0) and attempt < self.retries:
                 self.sleep(self.backoff * attempt)
                 continue
@@ -589,7 +595,7 @@ def discover_unt(fetcher, collections=UNT_COLLECTIONS):
     found, seen = [], set()
     for coll in collections:
         for orig in ORIGINALS:
-            res = fetcher.get(UNT_TIMEMAP.format(coll=coll, orig=orig), kind="probe")
+            res = fetcher.get(UNT_TIMEMAP.format(coll=coll, orig=orig), kind="optional")
             if res["status"] != 200:
                 continue
             for d in _json_rows(res["raw"]):
@@ -610,7 +616,7 @@ def discover_unt(fetcher, collections=UNT_COLLECTIONS):
 
 def discover_ia(fetcher, limit=MAX_IA_CAPTURES):
     """Captures the Wayback Machine lists for Table IV (one per distinct digest). [] when it is offline."""
-    res = fetcher.get(IA_CDX, kind="probe")
+    res = fetcher.get(IA_CDX, kind="optional")
     if res["status"] != 200:
         return [], res
     rows = [d for d in _json_rows(res["raw"]) if str(d.get("statuscode")) == "200" and "html" in (d.get("mimetype") or "html")]
@@ -631,12 +637,20 @@ def smoke_pick(captures):
     return [older[0], older[len(older) // 2], older[-1]]
 
 
-def build_editions(fetcher, captures, prior=None):
+def build_editions(fetcher, captures, prior=None, deadline=None):
     """Fetch and parse each capture. Returns (editions, failures)."""
     editions, failures, by_id = [], [], {}
     for n, cap in enumerate(captures, 1):
         if n % 20 == 0:
             print(f"duodecim: capture {n}/{len(captures)}, {len(editions)} editions held, {len(fetcher.log)} requests", flush=True)
+        if deadline is not None and cap["route"] != "olrc_live_page" and time.monotonic() > deadline:
+            carried = (prior or {}).get(cap["url"])
+            if carried:
+                carried.carried = True
+                editions.append(carried)
+            failures.append({"url": cap["url"], "error": "time_budget_exhausted",
+                             "carried_forward_from_prior_output": bool(carried)})
+            continue
         res = fetcher.get(cap["url"], kind="core" if cap["route"] == "olrc_live_page" else "optional")
         if res["status"] in (301, 302, 303, 307, 308) and cap["route"] == "internet_archive_id_replay":
             # Wayback answers a repeat capture with a redirect to the capture that holds the bytes
@@ -1143,7 +1157,8 @@ def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ, sle
     if smoke:
         captures = smoke_pick(captures)
     prior = load_prior(Path(env.get("JOB_PRIOR_OUTPUT_DIR") or (HERE / "output")), captures)
-    editions, failures = build_editions(fetcher, captures, prior)
+    deadline = t0 + float(env.get("JOB_TIME_BUDGET_MIN") or 240) * 60
+    editions, failures = build_editions(fetcher, captures, prior, deadline)
     min_editions = int(env.get("JOB_MIN_EDITIONS") or (1 if smoke else 2))
     cov = coverage(fetcher, unt_found, ia_found, ia_res, smoke)
     fetcher.save_times()

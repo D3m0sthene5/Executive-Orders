@@ -63,11 +63,13 @@ def unt_lines(ts=UNT_TS):
     return (json.dumps(a) + NL + json.dumps(b) + NL).encode()
 
 
-def make_transport(fail=None, live_status=200, ia_online=False, counter=None):
+def make_transport(fail=None, live_status=200, ia_online=False, counter=None, unt_down=False):
     def transport(url, headers, timeout):
         if counter is not None:
             counter.append(url)
         p = urllib.parse.urlsplit(url)
+        if unt_down and p.hostname == "webarchive.library.unt.edu":
+            raise OSError("unreachable from this network")
         if p.path == "/robots.txt":
             if p.hostname == "babel.hathitrust.org":
                 return 200, {}, io.BytesIO(robots("User-agent: *", "Crawl-delay: 1", "Disallow: /cgi/"))
@@ -367,6 +369,36 @@ class Run(unittest.TestCase):
             self.assertEqual(len(mid["duplicate_captures_with_identical_rows"]), 1)  # the redirected repeat capture
             self.assertTrue(dup["url"].startswith("https://webarchive.library.unt.edu/"))
             self.assertEqual(s["routes"]["internet_archive_wayback"], "used")
+
+    def test_unreachable_host_is_tried_once_and_does_not_fail_the_run(self):
+        seen = []
+        with tempfile.TemporaryDirectory() as t:
+            s, out = self.run_job(t, make_transport(unt_down=True, ia_online=True, counter=seen),
+                                  env={"JOB_MIN_EDITIONS": "2"})
+            self.assertEqual(s["editions_parsed_by_source"], {"olrc_live_page": 1, "internet_archive_id_replay": 2})
+            self.assertEqual(len([u for u in seen if "unt.edu" in u]), 1)  # robots.txt once, then the breaker holds
+            self.assertEqual(s["problems"], [])
+
+    def test_time_budget_stops_archive_captures(self):
+        with tempfile.TemporaryDirectory() as t:
+            s, out = self.run_job(t, make_transport(ia_online=True), env={"JOB_TIME_BUDGET_MIN": "0.0000001", "JOB_MIN_EDITIONS": "1"})
+            self.assertEqual(s["editions_parsed_by_source"], {"olrc_live_page": 1})
+            self.assertTrue(all(f["error"] == "time_budget_exhausted" for f in s["capture_failures"]))
+            self.assertGreaterEqual(len(s["capture_failures"]), 2)
+
+    def test_429_slows_the_host(self):
+        calls = {"n": 0}
+
+        def transport(url, headers, timeout):
+            if url.endswith("/robots.txt"):
+                return 404, {}, io.BytesIO(b"")
+            calls["n"] += 1
+            return (429, {}, io.BytesIO(b"slow down")) if calls["n"] < 3 else (200, {}, io.BytesIO(b"ok"))
+        with tempfile.TemporaryDirectory() as t:
+            f = D.Fetcher(Path(t), transport=transport, intervals={"example.org": 0.01}, sleep=lambda s: None, retries=4, backoff=0)
+            r = f.get("https://example.org/x")
+            self.assertEqual(r["status"], 200)
+            self.assertAlmostEqual(f.pool("example.org").min_interval, 0.04)  # doubled twice
 
     def test_fails_when_most_requests_fail(self):
         with tempfile.TemporaryDirectory() as t:
