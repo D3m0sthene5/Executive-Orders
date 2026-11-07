@@ -26,6 +26,8 @@ COMPILER_FILES = ("build.py", "inputs.py", "excavate.py", "current_evidence.py",
                   "assemble.py", "fragment_cache.py", "act_overrides.py", "lifecycle_obligations.py", "working_text.py", "population.py", "factual_events.py",
                   "../clause-drafts/segment.py", "../later-events/later_events.py")
 STATUSES = "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv"
+# Historical id -> current census id (owner ruling R9); see population_contract.json id_aliases.
+ID_ALIASES = {"EO:7933a": "EO:7933A"}
 HEX64 = re.compile(r"^[a-fA-F0-9]{64}$")
 LFS_MAGIC = b"version https://git-lfs.github.com/spec/v1"
 EVENT_KINDS = {"later_event_candidates", "whole_order_end_candidates"}
@@ -484,6 +486,9 @@ def load_corpus(repo):
     if authoritative_statuses:
         for row in _csv(status_path):
             iid = row.get("instrument_id") or row.get("id")
+            # Owner ruling R9 (2026-11-06): the census renamed EO:7933a to EO:7933A; the hash-pinned
+            # ledger keeps the historical spelling (same map as population_contract.json id_aliases).
+            iid = ID_ALIASES.get(iid, iid)
             status = row.get("provisional_substantive_status")
             if iid in universe and status in {"yes", "no"}:
                 if iid in statuses and statuses[iid] != status:
