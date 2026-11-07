@@ -1,6 +1,6 @@
 {
  "job": "youngstown-courts",
- "generated_utc": "2026-11-06T23:27:58Z",
+ "generated_utc": "2026-11-07T00:13:22Z",
  "mode": "smoke",
  "complete": false,
  "bulk_snapshot": "2026-09-30",
@@ -46,7 +46,7 @@
  "opinions_segments_done": 6,
  "opinions_segments_failed": 0,
  "opinions_segments_not_started": 0,
- "opinions_segments_from_cache": 0,
+ "opinions_segments_from_cache": 6,
  "compressed_bytes_read": 327050998,
  "compressed_bytes_planned": 301885164,
  "fraction_of_opinions_file_read": 0.0055,
@@ -104,18 +104,18 @@
  },
  "integrity_failures_raw_vs_recorded_sha": 0,
  "held_text_missing_from_cache": 0,
- "requests": 134,
+ "requests": 97,
  "request_failures": 0,
  "failed_segments": [],
- "seconds": 743,
+ "seconds": 51,
  "projected_full_run_hours_on_this_machine_class": 1.64,
  "second_source": {
   "host": "static.case.law",
-  "url_tested": "https://static.case.law/us/343/cases/0579-01.json",
-  "role": "second source for the planted controls and a recall cross-check (CAP's text is also in CourtListener's bulk rows: its Harvard XML column)",
-  "robots": "blocked",
-  "detail": "blocked_by_robots_txt",
-  "used": false
+  "used": false,
+  "contacted_by_this_job": false,
+  "robots": "disallow_all (found 2026-11-06)",
+  "reason": "robots.txt disallows every path; CourtListener already carries CAP's text",
+  "huggingface_mirror": "option only, awaiting an owner decision; not used"
  },
  "token": "COURTLISTENER_TOKEN absent (not needed for the bulk scan)",
  "limits": "Leads only. A rule class is words in one sentence, not what a court held. No status, census, codebook or count change. Certified: 0."
