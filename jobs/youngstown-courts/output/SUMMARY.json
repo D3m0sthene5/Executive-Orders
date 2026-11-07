@@ -1,6 +1,6 @@
 {
  "job": "youngstown-courts",
- "generated_utc": "2026-11-07T02:44:02Z",
+ "generated_utc": "2026-11-07T03:46:35Z",
  "mode": "full",
  "complete": true,
  "bulk_snapshot": "2026-09-30",
@@ -46,7 +46,7 @@
  "opinions_segments_done": 206,
  "opinions_segments_failed": 0,
  "opinions_segments_not_started": 0,
- "opinions_segments_from_cache": 0,
+ "opinions_segments_from_cache": 206,
  "compressed_bytes_read": 56112475940,
  "compressed_bytes_planned": 55252643327,
  "fraction_of_opinions_file_read": 1.0,
@@ -57,22 +57,24 @@
  "row_start_lost": 0,
  "rows_unterminated": 0,
  "opinions_printing_a_register_order": 15599,
- "order_clusters_found": 114,
- "order_clusters_in_scope": 114,
+ "order_clusters_found": 23152,
+ "order_clusters_in_scope": 23152,
  "focus_orders": [],
  "clusters_by_class": {
-  "mentioned": 101,
-  "enjoined_vacated_invalidated": 12,
-  "interpreted": 1
+  "mentioned": 19604,
+  "enjoined_vacated_invalidated": 1552,
+  "upheld": 574,
+  "interpreted": 1422
  },
  "clusters_by_class_with_federal_signal": {
-  "mentioned": 60,
-  "enjoined_vacated_invalidated": 4,
-  "interpreted": 1
+  "mentioned": 11938,
+  "enjoined_vacated_invalidated": 945,
+  "upheld": 365,
+  "interpreted": 934
  },
- "orders_with_a_hit": 81,
+ "orders_with_a_hit": 2563,
  "dropped": {
-  "no_cluster_metadata": 15527
+  "dropped_opinion_dated_before_the_order": 24
  },
  "unregistered_numbers_cited_top": {
   "7G": 230,
@@ -103,23 +105,43 @@
  },
  "unregistered_number_mentions": 2469,
  "committed": {
-  "court_hits": 65,
-  "opinions_held": 45,
+  "court_hits": 1170,
+  "opinions_held": 1092,
   "bytes": {
-   "hits": 50707,
-   "fragments": 136105,
-   "sources": 62303
+   "hits": 1260660,
+   "fragments": 3180923,
+   "sources": 1517082
   }
  },
  "omitted": {
-  "no_federal_signal": 49
+  "byte_budget_enjoined_vacated_invalidated": 32,
+  "no_federal_signal": 8970,
+  "byte_budget_upheld": 500,
+  "byte_budget_interpreted": 1089,
+  "byte_budget_mentioned": 11391
  },
  "integrity_failures_raw_vs_recorded_sha": 0,
  "held_text_missing_from_cache": 0,
- "requests": 689,
+ "analysis_version": "youngstown-class-1+youngstown-opinion-1",
+ "reanalyzed_records_from_cache": 15599,
+ "reanalysis_text_missing": 0,
+ "clusters_by_opinion_class": {
+  "mentioned": 20747,
+  "interpreted": 844,
+  "enjoined_vacated_invalidated": 1031,
+  "upheld": 530
+ },
+ "clusters_by_effective_class": {
+  "mentioned": 18772,
+  "enjoined_vacated_invalidated": 1936,
+  "interpreted": 1665,
+  "upheld": 779
+ },
+ "clusters_with_conflicting_cues": 111,
+ "requests": 514,
  "request_failures": 0,
  "failed_segments": [],
- "seconds": 6413,
+ "seconds": 782,
  "projected_full_run_hours_on_this_machine_class": null,
  "second_source": {
   "host": "static.case.law",
@@ -129,6 +151,6 @@
   "reason": "robots.txt disallows every path; CourtListener already carries CAP's text",
   "huggingface_mirror": "option only, awaiting an owner decision; not used"
  },
- "token": "COURTLISTENER_TOKEN absent (not needed for the bulk scan)",
+ "token": "COURTLISTENER_TOKEN present",
  "limits": "Leads only. A rule class is words in one sentence, not what a court held. No status, census, codebook or count change. Certified: 0."
 }

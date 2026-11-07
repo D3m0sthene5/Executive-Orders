@@ -13,7 +13,7 @@ opinions pass: 3 segments done, 0 failed, 0 not started; 21 opinions print a reg
 [dockets+citations] 2 segments, 1 worker(s)
 [dockets+citations] 1/2 segments
 [dockets+citations] 2/2 segments
-{"mode": "full", "complete": true, "opinions_segments_done": 3, "opinions_printing_a_register_order": 21, "order_clusters_found": 38, "clusters_by_class": {"mentioned": 36, "enjoined_vacated_invalidated": 1, "interpreted": 1}, "requests": 30, "request_failures": 0, "seconds": 0}
+{"mode": "full", "complete": true, "opinions_segments_done": 3, "opinions_printing_a_register_order": 21, "order_clusters_found": 38, "clusters_by_class": {"mentioned": 36, "enjoined_vacated_invalidated": 1, "interpreted": 1}, "requests": 30, "request_failures": 0, "seconds": 1}
 mode=full orders in register snapshot: 14913; workers=1; token absent
 offline controls passed
 snapshot 2026-09-30: opinions 0.00 GB, clusters 0.00 GB, dockets 0.00 GB, citations 0.00 GB, courts 0.00 GB
@@ -29,13 +29,30 @@ opinions pass: 3 segments done, 0 failed, 0 not started; 21 opinions print a reg
 [dockets+citations] 2 segments, 1 worker(s)
 [dockets+citations] 1/2 segments
 [dockets+citations] 2/2 segments
-{"mode": "full", "complete": true, "opinions_segments_done": 3, "opinions_printing_a_register_order": 21, "order_clusters_found": 38, "clusters_by_class": {"mentioned": 36, "enjoined_vacated_invalidated": 1, "interpreted": 1}, "requests": 24, "request_failures": 0, "seconds": 0}
+{"mode": "full", "complete": true, "opinions_segments_done": 3, "opinions_printing_a_register_order": 21, "order_clusters_found": 38, "clusters_by_class": {"mentioned": 36, "enjoined_vacated_invalidated": 1, "interpreted": 1}, "requests": 10, "request_failures": 0, "seconds": 1}
+mode=full orders in register snapshot: 14913; workers=1; token absent
+offline controls passed
+snapshot 2026-09-30: opinions 0.00 GB, clusters 0.00 GB, dockets 0.00 GB, citations 0.00 GB, courts 0.00 GB
+second source CAP: not used (robots disallow all)
+opinions: 3 segments, 0.00 GB of compressed data to read
+[opinions] 3 segments, 1 worker(s)
+[opinions] 1/3 segments
+[opinions] 2/3 segments
+[opinions] 3/3 segments
+opinions pass: 3 segments done, 0 failed, 0 not started; 21 opinions print a register order
+[clusters] 1 segments, 1 worker(s)
+[clusters] 1/1 segments
+[dockets+citations] 2 segments, 1 worker(s)
+[dockets+citations] 1/2 segments
+[dockets+citations] 2/2 segments
+{"mode": "full", "complete": true, "opinions_segments_done": 3, "opinions_printing_a_register_order": 21, "order_clusters_found": 38, "clusters_by_class": {"mentioned": 36, "enjoined_vacated_invalidated": 1, "interpreted": 1}, "requests": 10, "request_failures": 0, "seconds": 1}
 mode=full orders in register snapshot: 14913; workers=1; token absent
 offline controls passed
 mode=full orders in register snapshot: 14913; workers=1; token absent
 offline controls passed
-15 tests passed: citation_shapes, derive_and_pick, sentence_bounds_ignore_abbreviations, class_rules, segments_reassemble_exactly, row_scanner_owns_each_row_once, csv_dialect_of_the_bulk_files, http_source_resumes_and_counts_failures, listing_and_snapshot, rows_dates_signals_selection, record_formats_match_the_claim_kit_conventions, planted_controls, whole_job_offline, job_fails_when_requests_fail, token_is_never_written_down
-mode=full orders in register snapshot: 14913; workers=2; token absent
+API CROSS-CHECK NOT RUN: COURTLISTENER_TOKEN is set but the robots check of www.courtlistener.com failed (blocked_by_robots_txt); no request was made
+18 tests passed: citation_shapes, derive_and_pick, sentence_bounds_ignore_abbreviations, class_rules, opinion_level_binding, opinion_level_controls_improve_on_the_sentence_level, segments_reassemble_exactly, row_scanner_owns_each_row_once, csv_dialect_of_the_bulk_files, http_source_resumes_and_counts_failures, listing_and_snapshot, rows_dates_signals_selection, record_formats_match_the_claim_kit_conventions, planted_controls, whole_job_offline, pass_two_cache_is_keyed_by_the_wanted_ids, job_fails_when_requests_fail, token_is_never_written_down
+mode=full orders in register snapshot: 14913; workers=2; token present
 offline controls passed
 snapshot 2026-09-30: opinions 55.25 GB, clusters 2.47 GB, dockets 5.14 GB, citations 0.13 GB, courts 0.00 GB
 second source CAP: not used (robots disallow all)
@@ -281,4 +298,5 @@ opinions pass: 206 segments done, 0 failed, 0 not started; 15599 opinions print 
 [dockets+citations] 19/21 segments (0 failed)
 [dockets+citations] 20/21 segments (0 failed)
 [dockets+citations] 21/21 segments (0 failed)
-{"mode": "full", "complete": true, "opinions_segments_done": 206, "opinions_printing_a_register_order": 15599, "order_clusters_found": 114, "clusters_by_class": {"mentioned": 101, "enjoined_vacated_invalidated": 12, "interpreted": 1}, "requests": 689, "request_failures": 0, "seconds": 6413}
+API CROSS-CHECK NOT RUN: COURTLISTENER_TOKEN is set but the robots check of www.courtlistener.com failed (blocked_by_robots_txt); no request was made
+{"mode": "full", "complete": true, "opinions_segments_done": 206, "opinions_printing_a_register_order": 15599, "order_clusters_found": 23152, "clusters_by_class": {"mentioned": 19604, "enjoined_vacated_invalidated": 1552, "upheld": 574, "interpreted": 1422}, "requests": 514, "request_failures": 0, "seconds": 782}
