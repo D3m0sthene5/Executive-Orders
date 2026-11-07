@@ -385,6 +385,8 @@ def build(pool, ua, opener=open_stream, log=print, skip_hathi=False, wait=30):
         if ("error" in summary["hathi"] or not summary["hathi"].get("scan")) and (seed / "MANIFEST.csv").is_file():
             with open(seed / "MANIFEST.csv", newline="", encoding="utf-8") as fh:
                 srows = list(csv.DictReader(fh))
+            for r in srows:
+                r["year"] = int(r["year"]) if str(r["year"]).isdigit() else ""
             rows += srows
             summary["hathi"]["seed"] = {"route": "committed seed made by seed_hathi.py on the owner's PC (this host cannot "
                                         "read www.hathitrust.org: Cloudflare challenge, not answered or evaded)",
@@ -410,6 +412,6 @@ def build(pool, ua, opener=open_stream, log=print, skip_hathi=False, wait=30):
     summary["survey_leads"] = SURVEY_LEADS
     summary["manifest_rows"] = len(rows)
     summary["manifest_by_source_series_access"] = dict(sorted(by.items()))
-    years = Counter(r["year"] for r in rows if r["series"] == "lsa" and r["access"] in ("allow", "open (IA item)") and r["year"])
+    years = Counter(int(r["year"]) for r in rows if r["series"] == "lsa" and r["access"] in ("allow", "open (IA item)") and str(r["year"]).isdigit())
     summary["lsa_full_view_years"] = {str(k): v for k, v in sorted(years.items())}
     return rows, summary

@@ -419,10 +419,13 @@ class PreWarTests(unittest.TestCase):
                 w.writerow(row)
             (seed / "SCAN.json").write_text(json.dumps({"made_utc": "x"}))
             prewar.SEED_DIR = seed
-            routes = {prewar.HATHI_LIST: (403, b"challenge"), prewar.IA_SEARCH + "*": (200, json.dumps({"response": {"docs": []}}).encode())}
+            ia = json.dumps({"response": {"docs": [{"identifier": "m1", "title": "List of CFR Sections Affected 1973-1985", "date": "1985-01-01T00:00:00Z"}]}}).encode()
+            routes = {prewar.HATHI_LIST: (403, b"challenge"), prewar.IA_SEARCH + "*": (200, ia),
+                      prewar.IA_META.format(id="m1"): (200, b"{}"), prewar.IA_TEXT.format(id="m1"): (200, b"x")}
             pool = FetchPool(Path(tmp) / "c", transport=Net(routes), min_interval=0)
             rows, summ = prewar.build(pool, "ua", log=lambda *a: None, wait=0)
-        self.assertEqual([r["id"] for r in rows], ["uc1.z"])
+        self.assertEqual(sorted(r["id"] for r in rows), ["m1", "uc1.z"])
+        self.assertEqual(summ["lsa_full_view_years"], {"1985": 2})
         self.assertEqual(summ["hathi"]["seed"]["rows"], 1)
         self.assertNotIn("fallback", summ["hathi"])
 

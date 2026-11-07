@@ -311,7 +311,10 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
             pre_rows = list(csv.DictReader(fh))
         pre_summary["carried_forward"] = True
     else:
-        pre_rows, pre_summary = prewar.build(pool, lsa.UA, opener or prewar.open_stream, skip_hathi=False)
+        try:
+            pre_rows, pre_summary = prewar.build(pool, lsa.UA, opener or prewar.open_stream, skip_hathi=False)
+        except Exception as e:  # noqa: BLE001  the manifest never costs the LSA results
+            pre_rows, pre_summary = [], {"error": f"{type(e).__name__}: {e}"[:300]}
         pre_summary["generated_utc"] = now_utc()
 
     # ------------------------------------------------------------------ write, small files first
