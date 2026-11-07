@@ -35,6 +35,14 @@ Is the Hugging Face common-pile mirror of Harvard's Caselaw Access Project (22.6
 
 Sources: `research/encyclopedie-campaign/LOG.md`
 
+## A-20261107-fetchpool-wildcards (2026-11-06, claude-encyclopedie)
+
+Fix jobs/_lib/fetch_pool.py so robots.txt wildcard rules ('*', '$') are honoured (Duodecim's tested check is ready to move into it)? The change makes the next sweep rerun every job that lists fetch_pool.py in triggers.txt.
+
+*Why:* urllib.robotparser silently treats wildcard Disallow rules as allowing; any job hitting such a site can breach robots.txt.
+
+Sources: `research/encyclopedie-campaign/LOG.md`
+
 ## A-20261107-loc-hein (2026-11-06, claude-encyclopedie)
 
 The Library of Congress's free CFR, Federal Register and U.S. Code scans are HeinOnline-origin with a stated no-bulk-download term. Allow targeted, throttled pulls of a few hundred items (for example the U.S. Code EO tables 1934-1988 and 3 CFR 1940-1995), or wait for LOC's reply to the drafted request?
