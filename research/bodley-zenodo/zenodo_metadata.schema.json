@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$comment": "LOCAL schema written from the Zenodo developer documentation (https://developers.zenodo.org/ deposit metadata) because Zenodo publishes no downloadable JSON Schema for .zenodo.json. It checks field names, enums and required fields; it is not Zenodo's own validator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["upload_type", "title", "creators", "description", "access_right", "license"],
+  "properties": {
+    "upload_type": {"enum": ["publication", "poster", "presentation", "dataset", "image", "video", "software", "lesson", "physicalobject", "other"]},
+    "title": {"type": "string", "minLength": 1},
+    "version": {"type": "string"},
+    "language": {"type": "string", "pattern": "^[a-z]{3}$"},
+    "access_right": {"enum": ["open", "embargoed", "restricted", "closed"]},
+    "license": {"type": "string", "pattern": "^[A-Za-z0-9.+-]+$"},
+    "embargo_date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "access_conditions": {"type": "string"},
+    "publication_date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "description": {"type": "string", "minLength": 1},
+    "notes": {"type": "string"},
+    "keywords": {"type": "array", "items": {"type": "string"}},
+    "references": {"type": "array", "items": {"type": "string"}},
+    "creators": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": {"type": "string", "pattern": "^[^,]+, .+$"},
+          "affiliation": {"type": "string"},
+          "orcid": {"type": "string", "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"},
+          "gnd": {"type": "string"},
+          "type": {"type": "string"}
+        }
+      }
+    },
+    "contributors": {"type": "array", "items": {"type": "object"}},
+    "grants": {"type": "array", "items": {"type": "object"}},
+    "communities": {"type": "array", "items": {"type": "object"}},
+    "related_identifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["identifier", "relation"],
+        "properties": {
+          "identifier": {"type": "string"},
+          "scheme": {"enum": ["doi", "url", "handle", "arxiv", "isbn", "issn", "pmid", "urn", "purl", "ark", "ads", "lsid", "ean13", "istc", "sra", "bioproject", "biosample", "ensembl", "uniprot", "refseq", "genome", "geo", "arrayexpress", "hal", "swh"]},
+          "relation": {"enum": ["isCitedBy", "cites", "isSupplementTo", "isSupplementedBy", "isContinuedBy", "continues", "isDescribedBy", "describes", "hasMetadata", "isMetadataFor", "isNewVersionOf", "isPreviousVersionOf", "isPartOf", "hasPart", "isReferencedBy", "references", "isDocumentedBy", "documents", "isCompiledBy", "compiles", "isVariantFormOf", "isOriginalFormof", "isIdenticalTo", "isAlternateIdentifier", "isReviewedBy", "reviews", "isDerivedFrom", "isSourceOf", "requires", "isRequiredBy", "isObsoletedBy", "obsoletes"]},
+          "resource_type": {"type": "string", "pattern": "^(publication|image)(-[a-z]+)?$|^(poster|presentation|dataset|video|software|lesson|physicalobject|other)$"}
+        }
+      }
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"access_right": {"const": "embargoed"}}, "required": ["access_right"]}, "then": {"required": ["embargo_date"]}},
+    {"if": {"properties": {"access_right": {"const": "restricted"}}, "required": ["access_right"]}, "then": {"required": ["access_conditions"]}}
+  ]
+}

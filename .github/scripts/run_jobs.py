@@ -30,6 +30,39 @@ def output_file_limit(folder):
     return int(value)
 
 
+# Encyclopedie (owner, 2026-11-06): a failed attempt's receipt is committed to jobs/_attempts, and whole outputs there
+# (1.3-1.5 GB raw per claim-kit attempt) pushed the repository toward GitHub's 10 GB cap. Keep the small files that
+# explain the failure; move the rest to the run's oversized download, and list each moved file with size and SHA-256.
+ATTEMPT_FILE_BYTES = 1024 * 1024
+ATTEMPT_TOTAL_BYTES = 8 * 1024 * 1024
+ATTEMPT_KEEP_ALWAYS = {"log.txt", "STATUS.json", "BLOCKED.json", "tests.txt"}
+
+
+def trim_attempt(attempt, oversized):
+    """Move files out of an attempt folder so what stays is at most ATTEMPT_TOTAL_BYTES; return the moved list."""
+    import hashlib
+    files = sorted((f for f in attempt.rglob("*") if f.is_file()), key=lambda f: (f.name not in ATTEMPT_KEEP_ALWAYS, f.stat().st_size, f.as_posix()))
+    kept, moved = 0, []
+    for f in files:
+        size = f.stat().st_size
+        rel = f.relative_to(attempt).as_posix()
+        if f.name in ATTEMPT_KEEP_ALWAYS and size <= ATTEMPT_FILE_BYTES or size <= ATTEMPT_FILE_BYTES and kept + size <= ATTEMPT_TOTAL_BYTES:
+            kept += size
+            continue
+        digest = hashlib.sha256()
+        with f.open("rb") as fh:
+            for block in iter(lambda: fh.read(1 << 20), b""):
+                digest.update(block)
+        target = oversized / rel
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(f), str(target))
+        moved.append({"path": rel, "bytes": size, "sha256": digest.hexdigest()})
+    if moved:
+        write(attempt / "ATTEMPT_TRIMMED.json", {"kept_bytes": kept, "moved_to_run_download": moved,
+                                                 "limits": {"file": ATTEMPT_FILE_BYTES, "total": ATTEMPT_TOTAL_BYTES}})
+    return moved
+
+
 def write(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
@@ -356,6 +389,7 @@ def main():
                 failed.add(name)
                 attempt.parent.mkdir(parents=True, exist_ok=True)
                 result.replace(attempt)
+                record["attempt_trimmed_files"] = len(trim_attempt(attempt, repo / "oversized" / name / "attempt" / token))
                 if active and backup.exists():
                     backup.replace(out)
                 record["attempt_path"] = attempt.relative_to(repo).as_posix()
