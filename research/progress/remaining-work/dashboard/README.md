@@ -38,4 +38,7 @@ Job tiers (`#tiers`) adds 85 dated editorial assessments, with search, kind/tier
   page's own style (the standalone Tsiolkovsky dashboard, https://claude.ai/artifact/BZJxATqRtwrtBbuBy2UZpc, uses the
   one-writer page form, which this page cannot host). Data from `tsiolkovsky-trajectory` rebuilt locally on the same
   commit: 42 readings, newest 2026-11-06 22:18 UTC, 6,630.8 of 18,191 work-hours (36.5%).
-- `tools` and `workflow_nodes`: see `snapshots/2026-11-07/` once added.
+- `tools` is `snapshots/2026-11-07/TOOLS.csv` (79 tools: the 46 of 2026-11-02 unchanged plus 33 added Nov 3-7); `workflow_nodes`
+  is `workflow/WORKFLOW_NODES.csv` (115 nodes, 33 added); `tiers/JOB_TIERS.json` has 118 assessments (33 added, dated
+  2026-11-07), embedded by `tiers/build_job_tiers.py`. Published as files/index.html version 17. Numbers the worker could
+  not source are written "not yet measured"; inferred namesakes are marked "inferred".
