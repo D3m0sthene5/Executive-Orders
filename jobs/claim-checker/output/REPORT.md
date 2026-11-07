@@ -6,8 +6,8 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 
 - Claims checked: 1732 (parse errors: 0)
 - Orders with a claim (latest claim per order): 1527
-- All checks passed: 1579
-- Mechanical checks passed: 1665; with unverifiable items: 2; failed: 65
+- All checks passed: 1386
+- Mechanical checks passed: 1472; with unverifiable items: 2; failed: 258
 - Structural gate passed: 1642
 
 ## Source references
