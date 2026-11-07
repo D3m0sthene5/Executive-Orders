@@ -1,19 +1,41 @@
 {
- "carried_forward": true,
- "generated_utc": "2026-11-06T23:30:51Z",
+ "generated_utc": "2026-11-07T01:23:03Z",
  "hathi": {
   "error": "FetchError: blocked_by_robots_txt",
-  "fallback": {
-   "failed": 11,
-   "full_view": 0,
-   "items": 0,
-   "records": 0,
-   "route": "catalog.hathitrust.org Bibliographic API on seed records (hathifile unreadable from this host)"
+  "seed": {
+   "bib_api": {
+    "agree": 0,
+    "checked": 0,
+    "disagree": 0,
+    "failed": 9
+   },
+   "hathifile": {
+    "bytes": 1232643243,
+    "cfr_full_view": 9849,
+    "cfr_volumes": 9926,
+    "codification_full_view": 8,
+    "codification_volumes": 8,
+    "file": "hathi_full_20261101.txt.gz",
+    "lines": 19786832,
+    "listed_size": 1232643243,
+    "lsa_full_view": 353,
+    "lsa_volumes": 355,
+    "seconds": 99.0,
+    "sha256": "f17de336f853783956764286c286d2e594e6c3be25900c14e1531ef4349d5aba",
+    "url": "https://www.hathitrust.org/files/hathifiles/hathi_full_20261101.txt.gz",
+    "year_1997_or_later": 10194
+   },
+   "made_utc": "2026-11-06T23:53:14Z",
+   "route": "committed seed made by seed_hathi.py on the owner's PC (this host cannot read www.hathitrust.org: Cloudflare challenge, not answered or evaded)",
+   "rows": 462
   }
  },
  "hathi_read_check": {
-  "attempted": false,
-  "reason": "no full-view Hathi LSA or codification volume listed"
+  "attempted": true,
+  "htid": "mdp.39015020633205",
+  "note": "not read. HathiTrust's Data API also needs OAuth credentials the owner has not issued.",
+  "robots": "blocked_by_robots_txt",
+  "url": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015020633205&seq=1"
  },
  "internet_archive": {
   "docs": 6,
@@ -21,15 +43,63 @@
   "queries": 5
  },
  "lsa_full_view_years": {
-  "1985": 1,
-  "1990": 1
+  "1939": 1,
+  "1948": 1,
+  "1953": 1,
+  "1954": 1,
+  "1955": 2,
+  "1956": 1,
+  "1957": 1,
+  "1958": 2,
+  "1959": 1,
+  "1960": 1,
+  "1961": 2,
+  "1962": 2,
+  "1963": 4,
+  "1964": 2,
+  "1965": 5,
+  "1966": 11,
+  "1967": 2,
+  "1968": 3,
+  "1969": 2,
+  "1970": 2,
+  "1971": 2,
+  "1972": 7,
+  "1973": 3,
+  "1974": 3,
+  "1975": 4,
+  "1976": 1,
+  "1977": 2,
+  "1978": 1,
+  "1979": 1,
+  "1980": 5,
+  "1981": 4,
+  "1982": 2,
+  "1983": 3,
+  "1984": 3,
+  "1985": 12,
+  "1986": 4,
+  "1987": 2,
+  "1988": 2,
+  "1989": 5,
+  "1990": 18,
+  "1991": 4,
+  "1992": 4,
+  "1993": 4,
+  "1994": 6,
+  "1995": 3,
+  "1996": 4
  },
  "manifest_by_source_series_access": {
+  "hathitrust:cfr:full_view": 99,
+  "hathitrust:codification:full_view": 8,
+  "hathitrust:lsa:full_view": 353,
+  "hathitrust:lsa:not_full_view": 2,
   "internet_archive:cfr:full_view": 2,
   "internet_archive:codification:full_view": 1,
   "internet_archive:lsa:full_view": 2
  },
- "manifest_rows": 5,
+ "manifest_rows": 467,
  "smoke_read_internet_archive": {
   "attempted": true,
   "bytes": 2444817,
