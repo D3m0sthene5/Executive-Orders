@@ -229,6 +229,10 @@ jobs:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           NARA_API_KEY: ${{ secrets.NARA_API_KEY }}
           GOVINFO_API_KEY: ${{ secrets.GOVINFO_API_KEY }}
+          # Encyclopedie (owner, 2026-11-06): CourtListener token and api.data.gov key, read by jobs/youngstown-courts and
+          # jobs/repetita-lsa; empty until the owner adds the secrets of the same names.
+          COURTLISTENER_TOKEN: ${{ secrets.COURTLISTENER_TOKEN }}
+          API_DATA_GOV_KEY: ${{ secrets.API_DATA_GOV_KEY }}
         # Selection keeps the original event BEFORE/AFTER. Native receipts bind
         # to the actual checkout, which is the plan's pinned input commit.
         run: |
