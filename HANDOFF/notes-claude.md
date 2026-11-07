@@ -1,3 +1,21 @@
+## 2026-11-07 06:05 UTC (Claude as Hansard, progress refresh unstuck; ready 1,185 -> 992 explained)
+
+- **Done:** [PR #212](https://github.com/D3m0sthene5/Executive-Orders/pull/212) (refreshes one at a time, latest wins)
+  and [PR #216](https://github.com/D3m0sthene5/Executive-Orders/pull/216) (data-drifted reporting readouts publish as
+  of their input commit, then catch up; refresh workflow only). Cancelled 13 overlapping refreshes. First generation
+  since 2026-11-06 22:18: f6e5180880 at 05:23 UTC. Kean F-20261107-hansard-refresh-serialized.
+- **Measured (f6e5180880 vs 6d4b5f6357):** Photius's evidence gains reproduced (NO_OFFICIAL_SOURCE_LOCATED 4,787 ->
+  1,751; replica page checks 2,557 -> 10; compiled-only 2,762 -> 2,269; text step done 3,268 -> 3,516). Ready 1,185 ->
+  992: all 193 lost are transcription-dependent EO 8032-9208 whose Lachmann confirmations gained Photius's GPO
+  printing as a skipped witness, so their filed claims' frozen confirmations went stale. Kean
+  F-20261107-ready-drop-193-photius-witness; owner question A-20261107-photius-193-recheck (page-check them against
+  the new official printing rather than re-freeze).
+- **Tsiolkovsky:** W 6,631 -> 6,781 h of 18,191 (37.3%); +207 h original text, -57 h on the three claim steps.
+  Dashboard datasets refreshed (https://claude.ai/artifact/BZJxATqRtwrtBbuBy2UZpc). The 7-hour backlog landed in one
+  generation, so per-campaign credit for it is split evenly and understates Photius.
+- **Needs the owner (permission rules):** dropping two stashes in the session checkout and deleting 9 branches fully
+  contained in main were refused by the session's safety check; commands are in the chat.
+
 ## 2026-11-07 (Claude, were Photius and Encyclopedie worth their cost)
 
 - Priced Photius's 289 agents at Necker list prices: about $641 API-equivalent (opus $438, sonnet $104, an

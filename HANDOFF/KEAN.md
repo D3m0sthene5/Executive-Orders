@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (9)
+## Waiting for the owner (10)
 
-**A-20261106-1**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261106-1**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**, **A-20261107-photius-193-recheck**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -45,13 +45,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 236; `search` finds the rest)
+## Newest results (6 of 238; `search` finds the rest)
 
+- 2026-11-07 F-20261107-ready-drop-193-photius-witness **analysis**: Explain ready 1,185 -> 992 between tracker generations 6d4b5f6357 (2026-11-06 22:18) and f6e5180880 (2026-11-… Lesson: A new official witness invalidates frozen working-text confirmations by design; Photius's local measure ran on the older Lachmann output and missed it. The 193 now have an official printing, so the s…
 - 2026-11-07 F-20261107-photius-encyclopedie-worth **analysis**: Priced the Photius (289 agents) and Encyclopedie campaigns at Necker list prices and set each against its mea… Lesson: Photius was worth it as an evidence investment; Encyclopedie as protective infrastructure, valued in risk avoided rather than orders. Neither moved ready; confirm Photius in W after the next publishe…
+- 2026-11-07 F-20261107-hansard-refresh-serialized **worked**: Hansard: serialize the progress refresh (workflow concurrency group, one running and one waiting, latest wins… Lesson: A ~35-minute reporting readout cannot be held to exact freshness on a repository that publishes every few minutes; publish it as of its input commit (never older than what it replaces) and catch up,…
 - 2026-11-06 F-20261107-ventris-ocr **partly worked**: OCR pilot: 58 passages (28 hard, 30 clean) read by GPO layer, Tesseract x2, Surya 2.5, PaddleOCR v5 (RTX 5080… Lesson: GPO's layer and independent OCR almost never agree exactly even on clean prose (punctuation, hyphen joins), so exact agreement is unusable as a reference rule; a CER threshold or more human reference…
 - 2026-11-06 F-20261107-thesis-measure **analysis**: Fill the blank formal_revocation_after_earlier_cessation measure from held data (later-events, Formulario, 19… Lesson: The held data prove the cleanup pattern exists but currently point against 'often'; the better-supported half of the thesis is orders that ceased and were never revoked. A rate needs the Stage 15 sam…
 - 2026-11-06 F-20261107-septuagint-xfamily **worked**: Replay four exactly rebuilt Dorotheus YES-probe review batches (8 planted controls) with an OpenAI-family rev… Lesson: A different-family reviewer is complementary on planted defects at no metered cost; samples are too small for a rate. Removed-later-event plants (Mountweazel D6) defeat both families and need a dedic…
-- 2026-11-06 F-20261107-pergamon-tag-triggers **failed**: Create one GitHub Release per hash shard (pergamon-xx) for the byte store, with tags on ordinary main commits Lesson: Never create tags on commits that carry workflows unless you mean to run them all; point release tags at a commit with no .github/workflows. Path filters do not apply to tag pushes.
-- 2026-11-06 F-20261107-bayle-thrower **worked**: Cross-check Thrower's AJPS replication list (doi:10.7910/DVN/LZGQOH, CC0; 6,158 orders 1937-2013) against the… Lesson: Prior-art datasets built from the same OFR notes cannot validate the project's formal layer; use them to find parser artifacts and definitional splits (amenders), and always have a fresh agent re-run…
 
-Register: 67 owner decisions, 26 answered questions, 236 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 67 owner decisions, 26 answered questions, 238 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

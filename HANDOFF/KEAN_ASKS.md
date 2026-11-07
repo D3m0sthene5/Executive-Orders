@@ -74,3 +74,11 @@ Apply TRACKER_FIX.md (about 80 lines) so the tracker fills formal_revocation_aft
 *Why:* The thesis measure is blank for all 14,998 orders because tracker.py reads only v2 claims.
 
 Sources: `research/encyclopedie-campaign/LOG.md`
+
+## A-20261107-photius-193-recheck (2026-11-07, claude)
+
+193 ready orders (EO 8032-9208) left ready because Photius found an official GPO printing for each, which made their frozen working-text confirmations stale. Run a page check of each transcription against its new official printing (an Opus wave like Photius lane 1; upgrades them to original-backed if they pass), or accept the drop until the next ordinary production pass?
+
+*Why:* Re-freezing the 193 confirmations by script would restore the count without anyone reading the official text; the page check is the substantive route and is the owner's spending call.
+
+Sources: `jobs/readiness-tracker/output/READINESS_BY_ORDER.csv`
