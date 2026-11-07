@@ -311,7 +311,8 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
             pre_rows = list(csv.DictReader(fh))
         pre_summary["carried_forward"] = True
         h = pre_summary.get("hathi") or {}
-        if not (h.get("scan") or h.get("seed")):  # a manifest without a Hathi reading is recomputed, not carried
+        if not (h.get("scan") or h.get("seed")) or not any(x.get("id") == "govinfo_lsa_comp_1986_2000" for x in pre_summary.get("survey_leads", [])):
+            # a manifest without a Hathi reading, or made before a source was added, is recomputed, not carried
             pre_rows, pre_summary = [], None
     if pre_summary is None:
         try:

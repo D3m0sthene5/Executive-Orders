@@ -402,7 +402,7 @@ class PreWarTests(unittest.TestCase):
         self.assertIn("error", summ["hathi"])
         self.assertEqual(summ["hathi"]["fallback"]["failed"], 0)
         ids = {r["id"]: r for r in rows}
-        self.assertEqual(sorted(ids), ["inu.1", "inu.2"])  # 1999 is not pre-1997
+        self.assertEqual(sorted(i for i in ids if not i.startswith("LSA-COMP")), ["inu.1", "inu.2"])  # 1999 is not pre-1997
         self.assertEqual((ids["inu.1"]["access"], ids["inu.2"]["access"]), ("allow", "deny"))
         self.assertIn("heinonline", [x["id"] for x in summ["survey_leads"]])
         self.assertTrue(summ["hathi_read_check"]["attempted"])  # robots verdict recorded, page never read
@@ -424,8 +424,8 @@ class PreWarTests(unittest.TestCase):
                       prewar.IA_META.format(id="m1"): (200, b"{}"), prewar.IA_TEXT.format(id="m1"): (200, b"x")}
             pool = FetchPool(Path(tmp) / "c", transport=Net(routes), min_interval=0)
             rows, summ = prewar.build(pool, "ua", log=lambda *a: None, wait=0)
-        self.assertEqual(sorted(r["id"] for r in rows), ["m1", "uc1.z"])
-        self.assertEqual(summ["lsa_full_view_years"], {"1985": 2})
+        self.assertEqual(sorted(r["id"] for r in rows if r["source"] != "govinfo"), ["m1", "uc1.z"])
+        self.assertEqual(summ["lsa_full_view_years"], {"1985": 2, "1986": 4})
         self.assertEqual(summ["hathi"]["seed"]["rows"], 1)
         self.assertNotIn("fallback", summ["hathi"])
 

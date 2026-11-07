@@ -288,7 +288,25 @@ HATHI_SEED_RECORDS = {
 
 # Leads from the Naude free-source survey (branch enc/naude, relayed by the coordinator 2026-11-06). Not verified
 # by this job; recorded so the manifest carries them.
+# govinfo's own pre-1997 LSA: the 1986-2000 compilation, found 2026-11-07 when the keyed API listing was compared with the
+# sitemap listing (4 packages in the API, none in the sitemaps); sizes are the Content-Length of the keyless zips.
+GOVINFO_LSA_COMP = [(1, 3841311), (2, 2746298), (3, 5137186), (4, 5438872)]
+
+
+def govinfo_comp_rows():
+    return [{"source": "govinfo", "id": f"LSA-COMP-1986-2000-vol{v}", "series": "lsa", "access": "open (govinfo)",
+             "rights": "", "title": f"List of CFR Sections Affected (LSA), 1986-2000, Volume {v}",
+             "description": f"compilation; zip {n} bytes at https://www.govinfo.gov/content/pkg/LSA-COMP-1986-2000-vol{v}.zip",
+             "year": 1986, "oclc": "", "lccn": "", "us_gov_doc": "", "bib_key": "", "bib_api_rights": "",
+             "rights_stated": "U.S. Government Publishing Office publication", "url": f"https://www.govinfo.gov/app/details/LSA-COMP-1986-2000-vol{v}"}
+            for v, n in GOVINFO_LSA_COMP]
+
+
 SURVEY_LEADS = [
+    {"id": "govinfo_lsa_comp_1986_2000", "kind": "full_view_keyless_not_downloaded",
+     "text": "govinfo holds the LSA 1986-2000 compilation as LSA-COMP-1986-2000-vol1 to vol4 (zips of 2.7 to 5.4 MB at "
+             "https://www.govinfo.gov/content/pkg/<id>.zip, no key). Found by the keyed API listing; the year sitemaps do not "
+             "list them. Listed in the manifest, not read in this run."},
     {"id": "loc_lsa_samples_1971_1982", "kind": "listed_not_fetched",
      "text": "The Library of Congress holds sample LSA items for 1971-1982. The LOC CFR and LSA scans come from "
              "HeinOnline under a stated term against bulk download; the owner has not decided on them. Listed, never "
@@ -402,16 +420,17 @@ def build(pool, ua, opener=open_stream, log=print, skip_hathi=False, wait=30):
         rows += irows
     except Exception as e:  # noqa: BLE001
         summary["internet_archive"] = {"error": f"{type(e).__name__}: {e}"[:300]}
+    rows += govinfo_comp_rows()
     rows.sort(key=lambda r: (r["source"], r["series"], str(r["year"]), r["id"]))
     summary["smoke_read_internet_archive"] = smoke_read_ia(pool, rows, log)
     summary["hathi_read_check"] = hathi_read_check(pool, rows)
     by = defaultdict(int)
     for r in rows:
-        key = f"{r['source']}:{r['series']}:{'full_view' if r['access'] in ('allow', 'open (IA item)') else 'not_full_view'}"
+        key = f"{r['source']}:{r['series']}:{'full_view' if r['access'] in ('allow', 'open (IA item)', 'open (govinfo)') else 'not_full_view'}"
         by[key] += 1
     summary["survey_leads"] = SURVEY_LEADS
     summary["manifest_rows"] = len(rows)
     summary["manifest_by_source_series_access"] = dict(sorted(by.items()))
-    years = Counter(int(r["year"]) for r in rows if r["series"] == "lsa" and r["access"] in ("allow", "open (IA item)") and str(r["year"]).isdigit())
+    years = Counter(int(r["year"]) for r in rows if r["series"] == "lsa" and r["access"] in ("allow", "open (IA item)", "open (govinfo)") and str(r["year"]).isdigit())
     summary["lsa_full_view_years"] = {str(k): v for k, v in sorted(years.items())}
     return rows, summary

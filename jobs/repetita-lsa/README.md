@@ -42,7 +42,9 @@ is still being named by later documents ("12543 Continued by Notice of Jan. 2, 1
    of Congress holds sample LSA items for 1971-1982 whose scans come from HeinOnline under a stated term against bulk
    download (listed, never fetched; the owner has not decided), the Internet Archive has the 1973-1985 volumes, and the
    Federal Register's own Codification Guide sits inside the FR issues, which govinfo has for 1936-2026 with no key (not
-   read here). No complete pre-1997 LSA run was found.
+   read here). No complete pre-1997 LSA run was found by the survey, but govinfo itself holds the LSA 1986-2000
+   compilation (`LSA-COMP-1986-2000-vol1` to `vol4`, keyless zips of 2.7 to 5.4 MB), which the keyed API listing showed and
+   the sitemaps do not; the manifest lists them (`source` = govinfo) without reading them.
 
 ## What it writes (`output/`, at most 20 MiB in all and no file over 5 MiB, enforced by the job)
 
