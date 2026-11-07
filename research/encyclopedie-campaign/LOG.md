@@ -92,6 +92,12 @@ file over 5 MiB. Per push: at most 25 MiB of new blobs, checked with
 - The first CRLF one-liner in WORKER_RULES.md opened each file for writing before reading it and emptied files; two
   streams lost and rebuilt their files. Replaced by `tools/lf.py` (reads first, refuses to empty) at 23:40 UTC.
 - My first lease tip went to the wrong agent id; resent to Youngstown.
+- **Robots breach, disclosed.** My tip pointed Youngstown at static.case.law before the Naudé survey found its
+  robots.txt is `Disallow: /`. Before the correction arrived, the worker made one-off requests there from the owner's PC
+  (robots.txt, two metadata JSONs, CasesMetadata in part, three case JSONs, one case HTML, one 4.1 MB volume zip,
+  directory pages). Two saved files were deleted; nothing from that host is in any job, fixture, output or commit; the
+  job's README discloses it and the job makes no request to the host. Lesson: verify robots.txt and terms before
+  suggesting a source to a worker.
 
 - A push that changes an existing job's folder starts that job on the branch. The lease-wiring push started claim-kit
   (run 42306096793); it was cancelled within a minute, before committing. Rule added to `WORKER_RULES.md`.
@@ -115,6 +121,7 @@ file over 5 MiB. Per push: at most 25 MiB of new blobs, checked with
 | #202 | enc/prior-art | Bayle: Thrower | neutral |
 | #203 | enc/ocr | Ventris OCR pilot | neutral |
 | #204 | enc/storage | Pergamon store | neutral |
+| #205 | enc/xfamily | Septuagint cross-family pilot | neutral |
 
 ## Workers
 
@@ -135,6 +142,8 @@ file over 5 MiB. Per push: at most 25 MiB of new blobs, checked with
 | Prior-art check | Opus | independent check | 258,745 | 16.3 min |
 | Bayle-LP fixes | Sonnet | corrections | 387,211 total | +5.0 min |
 | Bayle-Thrower fixes | Sonnet | corrections | 455,992 total | +10.5 min |
+| Youngstown | Sonnet | CourtListener job | 463,227 | 116.6 min |
+| Blind adjudicator | Opus | Septuagint scoring | 116,563 | 3.1 min |
 | Codex arm (y01-y05) | gpt-6-sol, medium | blind review | 6.03M input (5.82M cached), 39,439 output | 20.2 min |
 
 ## Events
