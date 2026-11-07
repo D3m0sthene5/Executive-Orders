@@ -1,0 +1,58 @@
+{
+  "agent": "claude",
+  "approved": true,
+  "clauses": [
+    {
+      "checked_through": null,
+      "current_basis_id": null,
+      "current_legal_basis": null,
+      "effective_date": "1938-02-15",
+      "effective_date_confirmed": true,
+      "end_id": "ORIGINAL:EO:7814",
+      "later_event_ids": [
+        "ACTOR_TEXT:EO:8861"
+      ],
+      "later_events": [
+        {
+          "effective_date": "1941-08-20",
+          "effective_date_confirmed": true,
+          "id": "ACTOR_TEXT:EO:8861",
+          "mechanism": "express_revocation_of_parent_order"
+        }
+      ],
+      "mechanism": "task_completed",
+      "reason": "The operative text reads that EO 4430 of April 23, 1926, as modified, \"is hereby revoked as to the\" described 0.50-acre lot in T. 32 N., R. 9 W., sec. 9. The words are present-tense and self-executing, so the command was performed on signing, 1938-02-15 (The White House, February 15, 1938); no later effective date is stated. EO 8861 (1941-08-20) later revoked the whole of EO 4430 but does not name EO 7814 and is not the first end. Alternative reading: if the self-executing release is not accepted as the end, the order ended no later than 1941-08-20 when its parent was revoked.",
+      "scope_id": "EO:7814#revocation",
+      "state": "terminated"
+    }
+  ],
+  "conflict_resolutions": {},
+  "dossier_sha256": "d7eb0f9bb5a7abdddbee23981fb6d29b852fd85efb75ad3cbf9621d0f75da784",
+  "instrument_id": "EO:7814",
+  "inventory_confirmed": true,
+  "inventory_overrides": [
+    {
+      "char_end": 3475,
+      "char_start": 2990,
+      "reason": "The dossier's only clause (characters 0-2585) is the neighboring National Wild Life Week proclamation printed on the same Federal Register page; the order's own operative text, from 'By virtue of and pursuant to the authority' through the land description, begins at character 2990 and ends at 3475.",
+      "scope_id": "EO:7814#revocation",
+      "source_id": "ORIGINAL:EO:7814"
+    }
+  ],
+  "original_confirmed": true,
+  "original_pages_confirmed": true,
+  "research_rationale": "EO 7814 (signed 1938-02-15, 3 FR 447) is a one-time land action: it revokes EO 4430 of April 23, 1926, as modified, \"as to the following-described public land\" (Fourth Principal Meridian, T. 32 N., R. 9 W., sec. 9, lot 1, .50 of an acre). The dossier's single clause covered the neighboring National Wild Life Week proclamation text (characters 0-2585), not the order, so the inventory is corrected to the order's operative text at characters 2990-3475 of the held Federal Register page. The revocation is self-executing (\"is hereby revoked\") and was performed when the order was signed on 1938-02-15; it is a completed act, not a continuing duty (completion_of_task). Later, EO 8861 (1941-08-20; 6 FR 4289) revoked EO 4430 as a whole, so the parent withdrawal that EO 7814 had partly lifted no longer exists and nothing remains for EO 7814 to modify. EO 8861 does not name EO 7814, so EO 7814 itself has not been formally revoked; the 1989 OFR row 'Revoked by EO 8861' is an editorial reading. The first end rests on the order's own self-executing terms, with EO 8861 (1941-08-20) as the latest possible bound. Status proposal: no.\nMember checks: {\"earlier_end_check\":\"Searched held texts for EO 7814's number (Cruden regex): the only hit is a derivative formulario table that lists EO 7814 as amending EO 4430, with no revocation entry. The dossier chain has no events; the only later instrument is EO 8861 (parent revoked 1941-08-20). The first end is the order's own performance on 1938-02-15, earlier than any later revocation, which is treated as a bound/disposition and not as the first end.\",\"independent_command_check\":\"There is one command (partial revocation as to one lot); it has no deadline, report or continuing duty. The surviving effect is the released status of that lot.\",\"savings_check\":\"Savings state transferred_or_accrued per the accrued 1938 release; the order's own text is the source.\",\"scope_check\":\"EO 7814 revokes EO 4430 only 'as to' one described 0.50-acre lot; the clause is limited to that lot. EO 8861 revokes EO 4430 in full, which also covers the rest of the withdrawal, so no part of EO 4430 depends on EO 7814.\"}",
+  "savings": {
+    "reason": "The release of the 0.50-acre lot from the EO 4430 withdrawal accrued on 1938-02-15 under the order's own words; the surviving consequence is the land's released status, which EO 7814 requires no further action to maintain.",
+    "source_id": "ORIGINAL:EO:7814",
+    "state": "transferred_or_accrued"
+  },
+  "schema": "eo-claim-kit-decision/v1",
+  "search_ids": [
+    "current-law:usc",
+    "current-law:ecfr",
+    "later-events:ofr_catalog"
+  ],
+  "source_notes": [],
+  "unresolved_material_gaps": []
+}
