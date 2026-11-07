@@ -34,8 +34,8 @@ from fetch_pool import FetchPool, FetchError, http_transport  # noqa: E402
 UA = "EO-Road-System/1.0 (Youngstown court-decision leads; owner-run research; +https://github.com/D3m0sthene5/Executive-Orders)"
 MIB = 1024 * 1024
 FILE_CAP, TOTAL_CAP = 5 * MIB, 20 * MIB
-CAPS = {"hits": int(4.4 * MIB), "fragments": int(4.4 * MIB), "sources": int(4.4 * MIB)}
-EST = {"hits": 1150, "fragments": 2900, "sources": 1250}
+CAPS = {"hits": int(4.8 * MIB), "fragments": int(4.8 * MIB), "sources": int(4.8 * MIB)}
+EST = {"hits": 1800, "fragments": 4300, "sources": 1250}
 TABLES = {"opinions": "opinions", "clusters": "opinion-clusters", "dockets": "dockets", "citations": "citations",
           "courts": "courts"}
 SOURCE_TAG = "courtlistener_bulk"
@@ -85,9 +85,15 @@ def run_task(task):
     key = bulk.seg_key(task["url"], task["etag"], task["start_bit"], task["end_bit"], task["kind"] + task.get("tag", ""))
     path = bulk.seg_path(cache, task["kind"], task["idx"], key)
     stats = {"requests": 0, "failures": 0}
-    if path.is_file() and bulk.load_json_gz(path) is not None:
-        return {"idx": task["idx"], "kind": task["kind"], "cached": True, "path": str(path), "requests": 0, "failures": 0,
-                "compressed_bytes": task.get("compressed_bytes", 0)}
+    held = bulk.load_json_gz(path) if path.is_file() else None
+    if held is not None:
+        out = {"idx": task["idx"], "kind": task["kind"], "cached": True, "path": str(path), "requests": 0, "failures": 0,
+               "compressed_bytes": task.get("compressed_bytes", 0)}
+        if task["kind"] == "opn" and held.get("analysis") != analyze.ANALYSIS_VERSION:
+            out.update(reanalyze(held, cache, _G["keys"]))
+            held["analysis"] = analyze.ANALYSIS_VERSION
+            bulk.save_json_gz(path, held)
+        return out
     src = _source(task, stats)
     level = task["level"]
     kind = task["kind"]
@@ -112,7 +118,7 @@ def run_task(task):
                 analyze.save_raw(cache, rec["oid"], rawtext)
         sc = bulk.scan_segment(src, level, task["start_bit"], task["end_bit"], task["final"], bulk.prefilter_select, handle,
                                eos_bit=task.get("eos"))
-        result = {"records": records, "unreg": dict(unreg), "counters": dict(c), "scan": sc}
+        result = {"records": records, "unreg": dict(unreg), "counters": dict(c), "scan": sc, "analysis": analyze.ANALYSIS_VERSION}
     elif kind in ("clu", "dok"):
         header = task["header"]
         wanted = set(task["wanted"])
@@ -161,6 +167,37 @@ def run_task(task):
     return {"idx": task["idx"], "kind": kind, "cached": False, "path": str(path), "requests": stats["requests"],
             "failures": stats["failures"], "compressed_bytes": result["scan"].get("compressed_bytes", 0),
             "decoded_bytes": result["scan"].get("decoded_bytes", 0), "seconds": result["scan"].get("seconds", 0)}
+
+
+def reanalyze(held, cache, keys):
+    """Re-run the analysis of a cached opinions segment from the held raw texts: no download. A record whose text the
+    cache lost keeps its earlier result and is counted."""
+    n = missing = 0
+    for rec in held["records"]:
+        ok, text = analyze.load_text(cache, rec)
+        if text is None or not ok:
+            missing += 1
+            continue
+        orders, _ = analyze.analyze_text(text, keys)
+        if set(orders) != set(rec["orders"]):
+            missing += 1  # the set of orders found changed: keep the old record rather than mix versions
+            continue
+        rec["orders"], rec["analysis"] = orders, analyze.ANALYSIS_VERSION
+        n += 1
+    return {"reanalyzed_records": n, "reanalysis_text_missing": missing}
+
+
+def cached_plan(cache, key, build):
+    """Segment plans are cached so a re-analysis run does not probe the 55 GB file again."""
+    p = Path(cache) / "plan" / (bulk.hashlib.sha256(key.encode()).hexdigest()[:20] + ".json")
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        pass
+    plan = build()
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(plan), encoding="utf-8")
+    return plan
 
 
 def run_tasks(tasks, workers, g, deadline, label):
@@ -263,6 +300,10 @@ def tasks_for(kind, obj, src, level, header, segs, extra=None):
              "level": level, "header": header, "compressed_bytes": (s["end_bit"] - s["start_bit"]) // 8, **s}
         if extra:
             t.update(extra)
+            if "wanted" in extra:
+                # the cached result holds only the wanted ids it was built for: key it by them, or a smaller run's cache
+                # would stand in for a larger one (it did, once: the first full run reused the smoke run's cluster rows)
+                t["tag"] = "w" + bulk.hashlib.sha256(json.dumps(sorted(extra["wanted"])).encode()).hexdigest()[:12]
         out.append(t)
     return out
 
@@ -279,15 +320,23 @@ def cap_probe(pool=None):
             "huggingface_mirror": "option only, awaiting an owner decision; not used"}
 
 
+class ApiRefused(SystemExit):
+    """The CourtListener API answered 401 or 403, or its robots file refused us: with a token present that is a failure
+    to report, not a step to skip."""
+
+
 def api_crosscheck(pool, token, orders, limit, transport, sleep=time.sleep):
-    """Optional, token only. Phrase-search counts from CourtListener's search index for a few orders, beside the
-    bulk-scan counts. Spaced 13 s apart (the default limit is 5 requests a minute). Never prints the token."""
+    """Token only. Phrase-search counts from CourtListener's search index for a few orders, beside the bulk-scan counts.
+    Requests are 13 s apart (the documented default is 5 a minute, 50 an hour, 125 a day). Never prints or returns the
+    token. A 401 or 403, a robots refusal, or every request failing raises ApiRefused with the status, so the first live
+    use of the token cannot pass silently; a 429 stops the step with the partial result."""
     if not token:
         return {"ran": False, "reason": "COURTLISTENER_TOKEN not set"}
     try:
         pool.allowed(API_SEARCH)
     except FetchError as e:
-        return {"ran": False, "reason": "robots: " + str(e)[:120]}
+        raise ApiRefused("COURTLISTENER_TOKEN is set but the API cross-check cannot start: robots check of www.courtlistener.com "
+                         "failed (" + str(e)[:140] + ")")
     out, used = [], 0
     for eo, bulk_clusters in orders:
         if used >= limit:
@@ -304,13 +353,19 @@ def api_crosscheck(pool, token, orders, limit, transport, sleep=time.sleep):
         except Exception as e:
             out.append({"eo": eo, "error": type(e).__name__})
             continue
+        if status in (401, 403):
+            detail = ""
+            try:
+                detail = str(json.loads(raw).get("detail", ""))[:120]
+            except ValueError:
+                pass
+            raise ApiRefused(f"COURTLISTENER_TOKEN was refused by the CourtListener API: HTTP {status} on the first live use"
+                             f" ({detail or 'no detail'}). Check the secret and the account, then re-run.")
         if status == 429:
             out.append({"eo": eo, "error": "HTTP 429 (rate limited); stopped"})
             break
         if status != 200:
             out.append({"eo": eo, "error": f"HTTP {status}"})
-            if status in (401, 403):
-                break
             continue
         try:
             d = json.loads(raw)
@@ -320,8 +375,12 @@ def api_crosscheck(pool, token, orders, limit, transport, sleep=time.sleep):
             count = None
         out.append({"eo": eo, "search_index_count": count, "bulk_scan_clusters": bulk_clusters})
         sleep(13)
-    return {"ran": True, "requests": used, "rows": out,
-            "note": "The search index tokenises numbers and matches phrases loosely; a count is a rough bound, not a recall test."}
+    ok = [r for r in out if "error" not in r]
+    if used and not ok and not any(r.get("error", "").startswith("HTTP 429") for r in out):
+        raise ApiRefused("COURTLISTENER_TOKEN is set but every API cross-check request failed: " +
+                         "; ".join(sorted({r.get("error", "") for r in out}))[:200])
+    return {"ran": True, "requests": used, "answered": len(ok), "counts_present": sum(1 for r in ok if r["search_index_count"] is not None),
+            "rows": out, "note": "The search index tokenises numbers and matches phrases loosely; a count is a rough bound, not a recall test."}
 
 
 # ---- main ---------------------------------------------------------------------------------------------------------
@@ -375,12 +434,13 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None):
                      "date": date} for t in TABLES}
     op_src = srcs["opinions"]
     level = bz2seg.stream_level(op_src)
-    op_header = bulk.decode_header(op_src, level)
     seg_bytes = int(float(cfg["seg_mb"]) * MIB)
-    if mode == "smoke":
-        segs = plan_windows(op_src, level, int(cfg["smoke_windows"]), int(cfg["smoke_window_mb"]) * MIB)
-    else:
-        segs = plan_full(op_src, level, seg_bytes)
+    pk = f"{op_src.url}|{op_src.etag}|{mode}|{seg_bytes}|{cfg['smoke_windows']}|{cfg['smoke_window_mb']}"
+    plan = cached_plan(cache, "opn|" + pk, lambda: {
+        "header": bulk.decode_header(op_src, level),
+        "segs": (plan_windows(op_src, level, int(cfg["smoke_windows"]), int(cfg["smoke_window_mb"]) * MIB) if mode == "smoke"
+                 else plan_full(op_src, level, seg_bytes))})
+    op_header, segs = plan["header"], plan["segs"]
     total_compressed = sum((s["end_bit"] - s["start_bit"]) // 8 for s in segs)
     log(f"opinions: {len(segs)} segments, {total_compressed / 1e9:.2f} GB of compressed data to read")
     p1_deadline = deadline - (min(cfg["reserve_minutes"], budget_min * 0.3) * 60 if mode == "full" else 0)
@@ -399,6 +459,9 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None):
         for k, v in res["scan"].items():
             if isinstance(v, (int, float)):
                 scan_totals[k] += v
+    reanalyzed = sum(d.get("reanalyzed_records", 0) for d in done)
+    reanalysis_missing = sum(d.get("reanalysis_text_missing", 0) for d in done)
+    stats["reanalyzed_records"], stats["reanalysis_text_missing"] = reanalyzed, reanalysis_missing
     for d in done:
         stats["requests"] += d.get("requests", 0)
         stats["failures"] += d.get("failures", 0)
@@ -415,9 +478,9 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None):
         def table_tasks(kind, tname, wanted, seg_mb):
             src = srcs[tname]
             lv = bz2seg.stream_level(src)
-            hdr = bulk.decode_header(src, lv) if kind != "cit" else None
-            sgs = plan_full(src, lv, int(seg_mb * MIB))
-            return tasks_for(kind, None, src, lv, hdr, sgs, {"wanted": wanted})
+            pl = cached_plan(cache, f"{kind}|{src.url}|{src.etag}|{int(seg_mb * MIB)}", lambda: {
+                "header": bulk.decode_header(src, lv) if kind != "cit" else None, "segs": plan_full(src, lv, int(seg_mb * MIB))})
+            return tasks_for(kind, None, src, lv, pl["header"], pl["segs"], {"wanted": wanted})
         dl2 = deadline
         dn, fl, sk = run_tasks(table_tasks("clu", "clusters", wanted_clusters, float(cfg["seg_mb"])), workers, g, dl2, "clusters")
         failed2 += fl
@@ -467,6 +530,11 @@ def finish(repo, out, cache, cfg, mode, date, bulk_info, cap, ctl, records, rows
            done, failed, failed2, skipped, total_compressed, stats, dates, keys, cases, token, pool, transport, focus,
            t_start, workers, level):
     now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    if len(records) >= 50:
+        lost = bstats["no_cluster_metadata"] / len(records), bstats["no_docket_metadata"] / max(1, len(records))
+        if lost[0] > 0.2 or lost[1] > 0.2:
+            raise SystemExit(f"pass 2 metadata is missing for most hits: no cluster row for {bstats['no_cluster_metadata']} and no "
+                             f"docket row for {bstats['no_docket_metadata']} of {len(records)} opinions (a stale or partial table cache?)")
     out_rows = [r for r in rows if not focus or r["eo"] in focus]
     mcap = int(cfg["mentions_per_order"])
     chosen, omitted, _ = analyze.select_rows(
@@ -549,13 +617,20 @@ def finish(repo, out, cache, cfg, mode, date, bulk_info, cap, ctl, records, rows
         ctl["bulk_stream_recall"] = {"rows": [], "complete_run": False,
                                      "note": "Smoke reads six windows of the file; the planted opinions are not expected in them. "
                                              "Run mode full to test the scan against the real opinions."}
-    ctl["api_crosscheck"] = api_crosscheck(pool, token, [(e, tally[e]["clusters"]) for e in
-                                                         sorted(tally, key=lambda e: -tally[e]["clusters"])[:int(cfg["api_requests"])]],
-                                           int(cfg["api_requests"]), transport) if token else {"ran": False, "reason": "COURTLISTENER_TOKEN not set"}
+    # the planted opinions' orders first, then the orders with the most bulk hits
+    asked = []
+    for e in [eo for c in cases for eo in c["expected_pair_class"]] + sorted(tally, key=lambda e: -tally[e]["clusters"]):
+        if e not in [a for a, _ in asked]:
+            asked.append((e, tally[e]["clusters"] if e in tally else 0))
+    ctl["api_crosscheck"] = (api_crosscheck(pool, token, asked[:int(cfg["api_requests"])], int(cfg["api_requests"]), transport)
+                             if token else {"ran": False, "reason": "COURTLISTENER_TOKEN not set"})
+    ctl["opinion_level"] = controls.opinion_controls()
     ctl["measured_error_rate"] = {
         "locator_recall_on_hand_marked_citations": ctl["fixtures"]["locator"]["recall"],
         "mention_class_error_rate_vs_hand_labels": ctl["fixtures"]["mention_class"]["error_rate"],
-        "opinion_class_agreement": f"{ctl['fixtures']['opinion_class']['agree']} of {ctl['fixtures']['opinion_class']['planted_positives']}",
+        "opinion_class_agreement_sentence_level": f"{ctl['fixtures']['opinion_class']['agree']} of {ctl['fixtures']['opinion_class']['planted_positives']}",
+        "opinion_level_planted_before_after": ctl["opinion_level"]["summary"]["planted"],
+        "opinion_level_held_out_before_after": ctl["opinion_level"]["summary"]["held_out"],
         "false_hit_rate_on_negatives": ctl["negatives"]["false_hit_rate"],
         "stream_control_recall": ctl["stream"]["recall"]}
     ctl["generated_utc"] = now
@@ -590,6 +665,12 @@ def finish(repo, out, cache, cfg, mode, date, bulk_info, cap, ctl, records, rows
         "committed": {"court_hits": len(written), "opinions_held": len(src_buf), "bytes": sizes},
         "omitted": dict(omitted), "integrity_failures_raw_vs_recorded_sha": integrity_bad,
         "held_text_missing_from_cache": text_missing,
+        "analysis_version": analyze.ANALYSIS_VERSION,
+        "reanalyzed_records_from_cache": stats.get("reanalyzed_records", 0),
+        "reanalysis_text_missing": stats.get("reanalysis_text_missing", 0),
+        "clusters_by_opinion_class": dict(Counter(r["op_class"] for r in out_rows)),
+        "clusters_by_effective_class": dict(Counter(r["eff_class"] for r in out_rows)),
+        "clusters_with_conflicting_cues": sum(1 for r in out_rows if r["deciding"]["orders"][r["eo"]].get("op", {}).get("conflict")),
         "requests": stats["requests"], "request_failures": stats["failures"],
         "failed_segments": failed[:10] + failed2[:10],
         "seconds": round(elapsed), "projected_full_run_hours_on_this_machine_class": full_hours,

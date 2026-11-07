@@ -170,7 +170,7 @@ def _rx(p):
 
 
 INVALIDATE = [
-    ("enjoin", _rx(r"\benjoin(?:s|ed|ing|ment)?\b")),
+    ("enjoin", _rx(r"\benjoin(?:s|ed|ing|ment)?\b(?!\s+(?:upon|on)\b)")),  # "enjoins upon the agency heads the duty" is an order directing, not a court enjoining
     ("restrain", _rx(r"\brestrain(?:s|ed|ing)?\b(?!\s+of\s+trade)|\btemporary\s+restraining\s+order\b")),
     ("injunction", _rx(r"\binjunct(?:ion|ions|ive)\b")),
     ("vacate", _rx(r"\bvacat(?:e|es|ed|ing|ur)\b")),

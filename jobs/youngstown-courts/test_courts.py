@@ -16,6 +16,7 @@ import bulk  # noqa: E402
 import bz2seg  # noqa: E402
 import controls  # noqa: E402
 import courts  # noqa: E402
+import opinion  # noqa: E402
 import scan  # noqa: E402
 
 DATES, KEYS = analyze.load_register(HERE / "data" / "ORDER_DATES.csv")
@@ -104,6 +105,42 @@ def class_rules():
     assert ms == ["enjoined_vacated_invalidated", "upheld"], ms
     assert scan.pair_class([{"class": "mentioned", "federal_signal": False}, {"class": "upheld", "federal_signal": True},
                             {"class": "interpreted", "federal_signal": True}]) == ("upheld", 1)
+
+
+@test
+def opinion_level_binding():
+    ev = lambda t: {k: (v["class"], v["references"]) for k, v in opinion.classify_opinion(t).items()}  # noqa: E731
+    base = "The President issued Executive Order No. 10340, 17 Fed. Reg. 2955. "
+    # a reference binds to the order printed before it; the holding sentence decides
+    assert ev(base + "We hold that the Order is unconstitutional and we affirm.")[(10340, "")] == ("enjoined_vacated_invalidated", 1)
+    # another order number takes the reference away
+    t = base + "Executive Order No. 9102 followed. We hold that the Order is unconstitutional and we affirm."
+    assert ev(t)[(10340, "")][1] == 0 and ev(t)[(9102, "")][1] == 1
+    # another instrument ends the chain, so does a list of numbers
+    assert ev(base + "Proclamation No. 4 followed. We hold that the Order is unconstitutional.")[(10340, "")][1] == 0
+    assert ev("See Executive Orders 10340 and 9102. We hold that the Order is unconstitutional.").get((10340, ""), ("", 0))[1] == 0
+    # a possessive name, a court's order and a bare 'the order' are not references
+    assert ev(base + "President Carter's Executive Order was within the authority delegated; we conclude the Order was lawful.")[(10340, "")][1] == 0
+    assert ev(base + "The district court's order was vacated. The Court's Order stands. In the order of events we see.")[(10340, "")][1] == 0
+    # before the first printed number a reference binds forward to it
+    t = "We conclude that the Order conflicts with the Act, and therefore we reverse. President Clinton issued Executive Order No. 12,954."
+    assert ev(t)[(12954, "")] == ("enjoined_vacated_invalidated", 1)
+    # a descriptive cue in a party's argument is not the court's holding
+    t = base + "The plaintiffs argue that the Order is unconstitutional."
+    assert ev(t)[(10340, "")][0] == "mentioned"
+    # "enjoins upon" is an order directing, not a court enjoining
+    assert ev("Executive Order No. 10450 enjoins upon the agency heads the duty of dismissal.")[(10450, "")][0] == "mentioned"
+    assert ev(base + "We conclude that the President was authorized to suspend the claims pursuant to Executive Order No. 10340.")[(10340, "")][0] == "upheld"
+
+
+@test
+def opinion_level_controls_improve_on_the_sentence_level():
+    r = controls.opinion_controls()
+    p, h = r["summary"]["planted"], r["summary"]["held_out"]
+    assert p["n"] == 8 and h["n"] >= 3
+    assert p["after"] > p["before"] and h["after"] >= h["before"], r["summary"]
+    assert any(x["case"] == "youngstown" and x["after_agrees"] for x in r["rows"])
+    assert all(x["decider_hand_assessment"] for x in r["rows"])
 
 
 # ---- bzip2 segments -----------------------------------------------------------------------------------------------
@@ -282,7 +319,7 @@ def record_formats_match_the_claim_kit_conventions():
     orders, _ = analyze.analyze_text(text, KEYS)
     rec = {"oid": 7, "cid": 70, "type": "020lead", "col": "plain_text", "raw_sha256": "a" * 64, "raw_bytes": len(text),
            "text_sha256": analyze.sha256(text.encode()), "chars": len(text), "ocr": False, "orders": orders}
-    row = {"eo": "EO:10340", "cid": 70, "oids": [7], "recs": [rec], "deciding": rec, "class": orders["EO:10340"]["class"],
+    row = {"eo": "EO:10340", "cid": 70, "oids": [7], "recs": [rec], "deciding": rec, "class": orders["EO:10340"]["class"], "eff_class": orders["EO:10340"]["class"],
            "fed": True, "court": "Sixth Circuit", "court_id": "ca6", "jurisdiction": "F", "date": "1960-01-01", "case_name": "C v. D",
            "slug": "c-v-d", "docket_number": "2", "cites": ["1 F.2d 1"], "n_mentions": 1, "url": "https://www.courtlistener.com/opinion/70/c-v-d/"}
     hit, quote, span, m = analyze.hit_record(row, text, {"date": "2026-09-30"})
@@ -294,7 +331,7 @@ def record_formats_match_the_claim_kit_conventions():
     src = analyze.source_record(rec, [row], {"key": "bulk-data/opinions-2026-09-30.csv.bz2", "etag": "e", "last_modified": "x"}, "2026-11-06T00:00:00Z")
     assert src["instrument_ids"][0] == "COURT:cl-op-7" and "EO:10340" in src["instrument_ids"] and len(src["instrument_ids"]) >= 2
     assert src["acceptable_as_original"] is False and src["role"] == "court_opinion_text" and src["text_path"] is None
-    assert set(hit) == set(analyze.HIT_COLUMNS)
+    assert set(analyze.HIT_COLUMNS) <= set(hit) and hit["opinion_class"] in scan.CLASSES
 
 
 # ---- controls -----------------------------------------------------------------------------------------------------
@@ -382,6 +419,46 @@ def whole_job_offline():
         s2 = courts.main(HERE.parent.parent, out2, cache, env=env, transport=t)
         assert s2["order_clusters_found"] == s["order_clusters_found"]
         assert s2["opinions_segments_from_cache"] == s2["opinions_segments_done"] >= 2 and s["opinions_segments_from_cache"] == 0
+        assert (out / "SUMMARY.json").is_file() and s2["reanalyzed_records_from_cache"] == 0
+        # an older analysis version in the cache is redone from the held texts with no download of the opinions file
+        for seg in (cache / "seg").glob("opn-*.json.gz"):
+            d = bulk.load_json_gz(seg)
+            d["analysis"] = "older"
+            for rec in d["records"]:
+                for info in rec["orders"].values():
+                    info.pop("op", None)
+            bulk.save_json_gz(seg, d)
+        mark = len(t.calls)
+        out3 = Path(tmp) / "out3"
+        s3 = courts.main(HERE.parent.parent, out3, cache, env=env, transport=t)
+        assert s3["reanalyzed_records_from_cache"] == s["opinions_printing_a_register_order"], s3["reanalyzed_records_from_cache"]
+        assert s3["reanalysis_text_missing"] == 0 and s3["order_clusters_found"] == s["order_clusters_found"]
+        big = [c for c in t.calls[mark:] if "opinions-2026" in c[0] and "Range" in c[1]
+               and int(c[1]["Range"].split("-")[1]) - int(c[1]["Range"].split("=")[1].split("-")[0]) > 64]
+        assert not big, big[:2]
+        assert s3["clusters_by_effective_class"]
+
+
+@test
+def pass_two_cache_is_keyed_by_the_wanted_ids():
+    objs, expected = synthetic_bulk()
+    t = make_transport(objs)
+    with tempfile.TemporaryDirectory() as tmp:
+        cache = Path(tmp) / "c"
+        src = bulk.HttpSource(bulk.BUCKET + "/bulk-data/opinion-clusters-2026-09-30.csv.bz2", t, "ua", sleep=lambda s: None)
+        lv = bz2seg.stream_level(src)
+        hdr = bulk.decode_header(src, lv)
+        segs = courts.plan_full(src, lv, 10**8)
+        courts.worker_init({"keys": KEYS, "cache": str(cache), "transport": t})
+        got = []
+        for wanted in ([51001, 51002], [51001, 51002, 51003, 51004]):
+            task = courts.tasks_for("clu", None, src, lv, hdr, segs, {"wanted": wanted})[0]
+            d = courts.run_task(task)
+            got.append((d["cached"], sorted(bulk.load_json_gz(Path(d["path"]))["store"])))
+        assert got[0][0] is False and got[1][0] is False, got  # a different wanted set is a different result
+        assert got[0][1] == ["51001", "51002"] and got[1][1] == ["51001", "51002", "51003", "51004"], got
+        task = courts.tasks_for("clu", None, src, lv, hdr, segs, {"wanted": [51001, 51002]})[0]
+        assert courts.run_task(task)["cached"] is True
 
 
 @test
@@ -413,6 +490,39 @@ def token_is_never_written_down():
     assert r["ran"] and r["rows"][0]["search_index_count"] == 7 and r["rows"][0]["bulk_scan_clusters"] == 3
     assert secret not in json.dumps(r) and seen[0]["Authorization"] == "Token " + secret
     assert courts.api_crosscheck(P(), "", [("EO:1", 1)], 5, t)["ran"] is False
+    # 401 and 403 fail loudly, naming the status and never the token; 429 stops with the partial result
+    for code in (401, 403):
+        def refuse(url, headers, timeout, code=code):
+            return code, {}, FakeBody(json.dumps({"detail": "Invalid token."}).encode())
+        try:
+            courts.api_crosscheck(P(), secret, [("EO:10340", 3)], 5, refuse, sleep=lambda s: None)
+            raise AssertionError("a refused token must fail")
+        except courts.ApiRefused as e:
+            assert str(code) in str(e) and secret not in str(e) and "Invalid token" in str(e)
+    calls = []
+
+    def limited(url, headers, timeout):
+        calls.append(url)
+        return (200, {}, FakeBody(json.dumps({"count": 2}).encode())) if len(calls) == 1 else (429, {}, FakeBody(b""))
+    r = courts.api_crosscheck(P(), secret, [("EO:1", 1), ("EO:2", 1), ("EO:3", 1)], 5, limited, sleep=lambda s: None)
+    assert r["answered"] == 1 and len(calls) == 2 and r["rows"][-1]["error"].startswith("HTTP 429")
+
+    def broken(url, headers, timeout):
+        return 500, {}, FakeBody(b"")
+    try:
+        courts.api_crosscheck(P(), secret, [("EO:1", 1)], 5, broken, sleep=lambda s: None)
+        raise AssertionError("all requests failing must fail")
+    except courts.ApiRefused as e:
+        assert secret not in str(e)
+
+    class Blocked:
+        def allowed(self, url):
+            raise courts.FetchError("blocked_by_robots_txt")
+    try:
+        courts.api_crosscheck(Blocked(), secret, [("EO:1", 1)], 5, t, sleep=lambda s: None)
+        raise AssertionError("a robots refusal with a token must fail")
+    except courts.ApiRefused as e:
+        assert "robots" in str(e) and secret not in str(e)
 
 
 if __name__ == "__main__":

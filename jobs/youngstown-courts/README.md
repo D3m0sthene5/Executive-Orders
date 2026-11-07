@@ -74,11 +74,31 @@ numbers beside Governor or Mayor are marked state or local and left out of the c
 Class comes only from cues in the citation's own sentence; the cue nearest the citation wins, holding words before
 interpretive ones. A cue in a party's request or contention ("moved for an injunction to enjoin", "argues") is demoted to
 `mentioned` (flag `argument_frame`). "Did not enjoin" is a mention; "not valid" reads as invalidated. A strong cue in the
-neighbouring sentence is shown in `adjacent_class`, never as the class. An opinion's class is its strongest citation class.
+neighbouring sentence is shown in `adjacent_class`, never as the class. The sentence-level `class` is the
+strongest class among the citations' own sentences and is what `scan.py` has always produced.
+
+### Opinion level (`opinion.py`, `youngstown-opinion-1`): `opinion_class` beside `class`
+
+A court usually says what it did about an order in sentences that call it "the Order", not by number. Within an opinion the
+order's identity is carried forward to references (`the Order`, `the Executive Order`, `this Order`, `the Second Executive
+Order`, `Section 2(c) of the Order`, `this seizure order`; a bare "the order" is not read, it is usually a court's order).
+Walking the text in order: a printed order number makes that order active (a list or range of numbers leaves none); a
+reference binds to the active order; **another order number rebinds, and another instrument ends the chain** (a
+Proclamation, Public Law, "Exclusion Order No. 34", a Memorandum, a Reorganization Plan, "President Carter's Executive
+Order"); a reference before the first printed number binds forward to it if the number is within 6,000 characters. Each
+bound sentence is classified with the sentence cues, and the strongest class decides (a printed number beats a reference on a
+tie). Descriptive cues (unlawful, invalid, conflicts with, exceeds authority, valid, within authority) count only in a
+sentence where the court speaks (we hold, we conclude, the Court found, ...) and no argument word (argues, whether, sought,
+motion, ...) appears; naming cues (enjoined, vacated, upheld, sustained, affirm) count on their own; "was authorized to ..."
+with the court speaking reads as upheld. "Enjoins upon the agency heads the duty" is an order directing, not a court
+enjoining (a cue bug fixed here and in `scan.py`). The deciding sentence and span are in `COURT_HITS.csv`
+(`opinion_span`, `opinion_quote_span`, `opinion_via` = `mention` or `reference`, `opinion_cue_text`,
+`opinion_conflict` when both an invalidating and an upholding cue are found) and in each fragment
+(`opinion_class`, `opinion_quote`). Rows are ranked and the byte budget spent on the stronger of the two classes.
 
 ## Controls (`controls.py`, `fixtures/CONTROL_OPINIONS.json`; measured on 2026-11-06, deterministic)
 
-Eight real opinions read in full, excerpts around every citation of the order (public-domain text fetched from Cornell LII,
+Eight real opinions read in full (`fixtures/CONTROL_OPINIONS.json`: excerpts around every citation of the order; `fixtures/OPINION_SKELETONS.json`: for the opinion-level class, the sentences the binding rule needs, in order, for these eight and four held-out opinions, checked equal to the whole text's class when built) (public-domain text fetched from Cornell LII,
 law.resource.org and the circuits' own sites; the excerpt, source URL and hash of the fetched bytes are in the fixture):
 Youngstown (EO 10340), Korematsu and *Ex parte Endo* (EO 9066, 9102), *Washington v. Trump* and *IRAP v. Trump* (EO 13769,
 13780), *Chamber of Commerce v. Reich* (EO 12954), *Contractors Ass'n v. Secretary of Labor* (EO 11246), *Dames & Moore v.
@@ -88,7 +108,9 @@ Regan* (EO 12294). 62 citations were marked and labelled by hand.
 | --- | --- |
 | Locator: order number found at each hand-marked citation | 62 of 62 |
 | Mention class vs hand labels | 51 of 62 correct, error rate 17.7% (enjoined: 2 of 2 found, 3 said; upheld: 1 of 2 found, 2 said; interpreted: 3 of 10 found, 4 said; mentioned: 45 of 48 found, 53 said) |
-| Opinion class vs what the hand-read opinion holds | 3 of 8 agree (Youngstown, Endo, IRAP agree; Korematsu, Reich, Washington, Contractors, Dames & Moore are `mentioned` or `interpreted` because the sentences that print the number carry no holding word) |
+| Opinion class vs what the hand-read opinion holds, **sentence level (`class`)** | 3 of 8 agree (Youngstown, Endo, IRAP; the other five carry no holding word in the sentences that print the number) |
+| Opinion class, **opinion level (`opinion_class`)**, same eight | 7 of 8 agree (misses: Contractors, `interpreted` for `upheld`; its holding is about "the Philadelphia Plan"). Rules were tuned on these eight: optimistic |
+| Opinion class, held-out opinions read after the rules were drafted: Hirabayashi (EO 9066, upheld), Cole v. Young (EO 10450, invalidated), Greene v. McElroy (EO 10450, interpreted), Hawaii v. Trump, 9th Cir. (EO 13780, enjoined) | sentence level 1 of 4, opinion level 2 of 4 (Hirabayashi, Hawaii). Cole v. Young read 3 of 4 before the "enjoins upon" bug fix, right for a wrong reason; after the fix it is a miss (its holding, "the standard prescribed by the Executive Order ... is not in conformity with the Act", has no cue word). Greene: no reference bound |
 | Negatives (invented numbers, statute and Federal Register digits, Proclamation or board "Order No.", a year after the lead) | 0 false hits in 8 |
 | Citation shapes (12,954 beside a Fed. Reg. page; E.O. lists with C.F.R. cites; ranges) | 9 of 9 exact |
 | Stream control: the planted text inside a synthetic bzip2 CSV, read through the real segment decoder, scanner and analysis | 21 of 21 found, 0 false rows, 0 rows lost at segment edges |
@@ -108,6 +130,20 @@ well-known litigated ones). `full` reads the whole file in 256 MB segments, stop
 time budget (`JOB_TIME_BUDGET_MIN`, default 320), and writes a partial but valid result (`complete: false`, resume on the next
 run from the cache). Environment: `JOB_WORKERS` (default 2), `JOB_MODE`, `JOB_SEG_MB`, `JOB_TIME_BUDGET_MIN`.
 The job fails when most segments fail, when more than half its HTTP requests fail, when a control fails, or over budget.
+
+**Re-analysis without a download.** Each cached opinions segment records the analysis version that produced it
+(`analysis`). When the code's version differs (`youngstown-class-1+youngstown-opinion-1` now), the next run re-analyses every
+record from the raw texts held in the cache, rewrites the segment, and reads none of the opinions file again (the segment
+plan is cached too, so only small range probes of the bulk objects remain). `SUMMARY.json` -> `reanalyzed_records_from_cache`
+and `reanalysis_text_missing` say how many; a record whose text the cache lost keeps its earlier result. The cache is saved by
+GitHub only when a run succeeds, so a cancelled full run leaves nothing to resume from.
+
+**An incident, fixed.** The first full run (run 42318378954; pass 1 read all 206 segments, 56.1 GB, 0 failures, 15,599
+opinions print a register order) reused the smoke run's cached cluster, docket and citation rows, because those cache files
+were keyed by the segment and not by the ids wanted, so only 114 of the 15,599 opinions got a case name, date and court. Its
+committed hits are therefore a small and unrepresentative slice. Pass-2 cache keys now include a hash of the wanted ids
+(`tests: pass_two_cache_is_keyed_by_the_wanted_ids`), and the job stops with an error when more than a fifth of the hits lack
+cluster or docket rows. Pass 1 (the 206 segment results and the held texts) is unaffected and is reused.
 
 ## The token
 
@@ -129,7 +165,7 @@ re-exporting those two columns. It is a copy so this job reads no other job's ou
 
 ## Running and limits
 
-On a push to this folder or by hand. `python -I test_courts.py` (offline, 15 tests) runs first. Limits: the rules read English
+On a push to this folder or by hand. `python -I test_courts.py` (offline, 17 tests) runs first. Limits: the rules read English
 text with the lead words above (an order cited only by date, or by title, is missed); OCR text (see `extracted_by_ocr`) can
 hide or garble a number; "Executive Order 119" style numbers below the 1937 renumbering match state and local orders too (the
 federal-signal rule and the date rule cut most, not all); CourtListener holds about 10 million opinions, not all of US law.

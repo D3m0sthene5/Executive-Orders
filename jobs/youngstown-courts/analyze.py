@@ -15,8 +15,10 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import opinion
 import scan
 
+ANALYSIS_VERSION = scan.CLASS_VERSION + "+" + opinion.OPINION_VERSION
 OPINION_URL = "https://www.courtlistener.com/opinion/{cid}/{slug}/"
 GRADE = "court_opinion_text_courtlistener_bulk (an opinion's text column from CourtListener's public bulk CSV)"
 MECHANISM = {"enjoined_vacated_invalidated": "court_enjoined_vacated_or_invalidated_lead", "upheld": "court_upheld_lead",
@@ -58,7 +60,9 @@ def analyze_text(text: str, keys: dict):
     """({eo_id: {class, idx, mentions}}, Counter of unregistered numbers) for one opinion's derived text."""
     by_id = defaultdict(list)
     unreg = Counter()
-    for m in scan.eo_mentions(text):
+    allm = scan.eo_mentions(text)
+    refs = opinion.references(text, allm)
+    for m in allm:
         iid = keys.get((m["number"], m["suffix"])) if m["suffix"] else keys.get((m["number"], ""))
         if iid is None:
             unreg[str(m["number"]) + m["suffix"]] += 1
@@ -69,7 +73,9 @@ def analyze_text(text: str, keys: dict):
         ms = ms[:MAX_MENTIONS_KEPT]
         results = [scan.classify_mention(text, m["start"], m["end"]) for m in ms]
         cls, idx = scan.pair_class(results)
-        orders[iid] = {"class": cls, "idx": idx, "mentions": [compact_mention(m, r) for m, r in zip(ms, results)]}
+        key = (ms[0]["number"], ms[0]["suffix"])
+        op = opinion.opinion_class(text, list(zip(ms, results)), refs.get(key, []))
+        orders[iid] = {"class": cls, "idx": idx, "mentions": [compact_mention(m, r) for m, r in zip(ms, results)], "op": op}
     return orders, unreg
 
 
@@ -85,7 +91,7 @@ def analyze_row(row: dict, keys: dict):
     rec = {"oid": int(row["id"]), "cid": int(row["cluster_id"]), "type": row.get("type", ""), "col": col,
            "raw_sha256": sha256(raw.encode("utf-8")), "raw_bytes": len(raw.encode("utf-8")),
            "text_sha256": sha256(text.encode("utf-8")), "chars": len(text),
-           "ocr": row.get("extracted_by_ocr") in ("t", "true", "True"), "orders": orders}
+           "ocr": row.get("extracted_by_ocr") in ("t", "true", "True"), "orders": orders, "analysis": ANALYSIS_VERSION}
     return rec, unreg, {}, raw
 
 
@@ -134,6 +140,8 @@ def build_rows(records, clusters, dockets, courts, citations, dates, stats):
             stats["no_cluster_metadata"] += 1
             continue
         dk = dockets.get(cl["docket_id"]) or {}
+        if not dk:
+            stats["no_docket_metadata"] += 1
         court_id = dk.get("court_id", "")
         court = courts.get(court_id, {})
         date = cl.get("date_filed", "")
@@ -146,7 +154,11 @@ def build_rows(records, clusters, dockets, courts, citations, dates, stats):
             ms = info["mentions"]
             fed = any(m["fed"] for m in ms)
             state_only = all(m["state"] and not m["fed"] for m in ms)
+            op = info.get("op") or {"class": "mentioned", "sent": [0, 0], "via": "", "cue": "", "cue_text": "", "references": 0,
+                                    "conflict": False, "a": -1, "b": -1}
+            eff = op["class"] if scan.RANK[op["class"]] > scan.RANK[info["class"]] else info["class"]
             cand = {"eo": iid, "cid": rec["cid"], "oids": [rec["oid"]], "recs": [rec], "class": info["class"],
+                    "op_class": op["class"], "eff_class": eff, "eff": scan.RANK[eff],
                     "rank": scan.RANK[info["class"]], "idx": info["idx"], "n_mentions": len(ms), "fed": fed,
                     "state_only": state_only, "court_id": court_id, "court": court.get("name", court_id),
                     "jurisdiction": court.get("jurisdiction", ""), "date": date, "case_name": cl.get("case_name", ""),
@@ -162,8 +174,8 @@ def build_rows(records, clusters, dockets, courts, citations, dates, stats):
             old["n_mentions"] += len(ms)
             old["fed"] = old["fed"] or fed
             old["state_only"] = old["state_only"] and state_only
-            if (cand["rank"], -cand["lead"]) > (old["rank"], -old["lead"]):
-                for k in ("class", "rank", "idx", "deciding", "lead"):
+            if (cand["eff"], cand["rank"], -cand["lead"]) > (old["eff"], old["rank"], -old["lead"]):
+                for k in ("class", "rank", "idx", "deciding", "lead", "op_class", "eff_class", "eff"):
                     old[k] = cand[k]
     out = sorted(rows.values(), key=lambda r: (r["eo"], r["cid"]))
     for r in out:
@@ -174,7 +186,7 @@ def build_rows(records, clusters, dockets, courts, citations, dates, stats):
 
 
 def priority(r):
-    return (-r["rank"], 0 if r["fed"] else 1, r["level"], r["date"] or "9999", r["eo"], r["cid"])
+    return (-r["eff"], 0 if r["fed"] else 1, r["level"], r["date"] or "9999", r["eo"], r["cid"])
 
 
 def select_rows(rows, caps):
@@ -190,18 +202,18 @@ def select_rows(rows, caps):
         if not r["eligible"]:
             omitted["no_federal_signal"] += 1
             continue
-        if r["class"] == "mentioned":
+        if r["eff_class"] == "mentioned":
             if mention_count[r["eo"]] >= caps["mentions_per_order"]:
                 omitted["mention_only_beyond_per_order_cap"] += 1
                 continue
         c = cost(r, seen_sources)
         if any(used[k] + c[k] > caps[k] for k in used):
-            omitted["byte_budget_" + r["class"]] += 1
+            omitted["byte_budget_" + r["eff_class"]] += 1
             continue
         for k in used:
             used[k] += c[k]
         seen_sources.update(r["oids"])
-        if r["class"] == "mentioned":
+        if r["eff_class"] == "mentioned":
             mention_count[r["eo"]] += 1
         chosen.append(r)
     return chosen, omitted, used
@@ -231,6 +243,10 @@ def hit_record(r, text, bulk):
     info = rec["orders"][r["eo"]]
     m = info["mentions"][info["idx"]] if info["idx"] >= 0 else info["mentions"][0]
     quote, lo, hi = quote_of(text, m)
+    op = info.get("op") or {}
+    olo, ohi = (op.get("sent") or [0, 0])
+    same = [olo, ohi] == [lo, hi]
+    oquote = text[olo:min(ohi, olo + 1400)] if ohi > olo else ""
     return {
         "eo": r["eo"], "court": r["court"], "court_id": r["court_id"], "jurisdiction": r["jurisdiction"],
         "date_filed": r["date"], "case_name": r["case_name"], "citations": "; ".join(r["cites"][:4]),
@@ -241,13 +257,21 @@ def hit_record(r, text, bulk):
         "citation_span": f"{m['s']}-{m['e']}", "adjacent_class": m["adj"], "argument_frame": m["arg"],
         "reports_lower_court": m["lower"], "source": "courtlistener_bulk", "text_origin": rec["col"],
         "source_sha256": rec["raw_sha256"], "text_sha256": rec["text_sha256"],
-        "bulk_snapshot": bulk["date"]}, quote, (lo, hi), m
+        "bulk_snapshot": bulk["date"],
+        "opinion_class": op.get("class", "mentioned"), "opinion_via": op.get("via", ""), "opinion_cue": op.get("cue", ""),
+        "opinion_cue_text": op.get("cue_text", ""), "opinion_references": op.get("references", 0),
+        "opinion_conflict": op.get("conflict", False),
+        "opinion_span": "" if same else re.sub(r"\s+", " ", oquote).strip()[:500],
+        "opinion_quote_span": f"{olo}-{ohi}", "opinion_span_same_as_sentence": same,
+        "_opinion_quote": oquote, "_opinion_span": (olo, ohi)}, quote, (lo, hi), m
 
 
 HIT_COLUMNS = ["eo", "court", "court_id", "jurisdiction", "date_filed", "case_name", "citations", "docket_number",
                "cluster_id", "opinion_ids", "url", "class", "cue", "cue_text", "scope", "n_mentions", "federal_signal",
                "span", "quote_span", "citation_span", "adjacent_class", "argument_frame", "reports_lower_court",
-               "source", "text_origin", "source_sha256", "text_sha256", "bulk_snapshot"]
+               "source", "text_origin", "source_sha256", "text_sha256", "bulk_snapshot", "opinion_class", "opinion_via",
+               "opinion_cue", "opinion_cue_text", "opinion_references", "opinion_conflict", "opinion_span", "opinion_quote_span",
+               "opinion_span_same_as_sentence"]
 
 
 def fragment_record(r, hit, quote, span, m, source_id):
@@ -257,8 +281,13 @@ def fragment_record(r, hit, quote, span, m, source_id):
                                "vacated, upheld or construed the order. A person reads the opinion.",
             "data": [{
                 "acting_id": f"CASE:cl-cluster-{r['cid']}", "acting_label": (r["case_name"] + " " + "; ".join(r["cites"][:2]))[:200].strip(),
-                "target_id": r["eo"], "mechanism": MECHANISM[r["class"]], "court_class": r["class"],
-                "rule_cue": m["cue"], "rule_cue_text": m["cue_text"], "classified_by": scan.CLASS_VERSION,
+                "target_id": r["eo"], "mechanism": MECHANISM[r["eff_class"]], "court_class": r["class"],
+                "opinion_class": hit["opinion_class"], "opinion_via": hit["opinion_via"], "opinion_rule_cue": hit["opinion_cue"],
+                "opinion_rule_cue_text": hit["opinion_cue_text"], "opinion_references_bound": hit["opinion_references"],
+                "opinion_conflict_of_cues": hit["opinion_conflict"], "opinion_quote_span": hit["opinion_quote_span"],
+                "opinion_quote": "" if hit["opinion_span_same_as_sentence"] else hit["_opinion_quote"],
+                "opinion_quote_same_as_sentence": hit["opinion_span_same_as_sentence"],
+                "rule_cue": m["cue"], "rule_cue_text": m["cue_text"], "classified_by": ANALYSIS_VERSION,
                 "evidence_type": "court_opinion_sentence", "quote": quote, "quote_kind": "verbatim_sentence",
                 "quote_span": f"{span[0]}-{span[1]}", "citation_span": f"{m['s']}-{m['e']}",
                 "span_text": f"derived text of the opinion ({scan.DERIVE_VERSION}) from its {r['deciding']['col']} column",

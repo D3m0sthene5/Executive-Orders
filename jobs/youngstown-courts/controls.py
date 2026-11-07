@@ -17,6 +17,7 @@ from pathlib import Path
 
 import analyze
 import bulk
+import opinion
 import bz2seg
 import scan
 
@@ -88,6 +89,39 @@ def locator_and_class_controls(cases, keys):
                           "note": "Expected class is what the hand-read opinion holds about the order; the rule class sees only the "
                                   "sentences that print the number. Disagreement is the expected weakness of a sentence rule."},
     }
+
+
+def opinion_controls(path=None):
+    """Opinion-level class before (the sentence-level class of the sentences that print the number, the job's `class`)
+    and after (references such as "the Order" bound to the order, opinion.py) against what each hand-read opinion
+    holds, on the eight planted opinions and on four held out ones read after the rules were drafted. The opinions are
+    stored as skeletons: the sentences the binding rule needs, in order."""
+    rows = json.loads((Path(path) if path else HERE / "fixtures" / "OPINION_SKELETONS.json").read_text(encoding="utf-8"))
+    out, sums = [], {}
+    for r in rows:
+        num = int(r["target"].split(":")[1])
+        text = r["skeleton"]
+        ments = [m for m in scan.eo_mentions(text) if m["number"] == num]
+        before, _ = scan.pair_class([scan.classify_mention(text, m["start"], m["end"]) for m in ments])
+        after = opinion.classify_opinion(text).get((num, ""))
+        s, e = after["sent"]
+        row = {"case": r["key"], "case_name": r["case_name"], "citation": r["citation"], "eo": r["target"],
+               "held_out": r["held_out"], "expected_by_reading": r["expected_by_reading"], "before": before,
+               "after": after["class"], "before_agrees": before == r["expected_by_reading"],
+               "after_agrees": after["class"] == r["expected_by_reading"], "decided_by": after["via"],
+               "references_bound": after["references"], "cue_text": after["cue_text"], "conflicting_cues": after["conflict"],
+               "deciding_sentence": re.sub(r"\s+", " ", text[s:e]).strip()[:400], "decider_hand_assessment": r.get("decider_hand_assessment", ""),
+               "support_quote": r["pair_support_quote"], "source_url": r["source_url"]}
+        out.append(row)
+        g = sums.setdefault("held_out" if r["held_out"] else "planted", {"n": 0, "before": 0, "after": 0})
+        g["n"] += 1
+        g["before"] += row["before_agrees"]
+        g["after"] += row["after_agrees"]
+    return {"version": opinion.OPINION_VERSION, "summary": sums, "rows": out,
+            "note": "Planted: the rules were tuned on these eight, so the after figure is optimistic. Held out: four opinions "
+                    "(Hirabayashi, Cole v. Young, Greene v. McElroy, Hawaii v. Trump) were hand-labelled before the rules ran "
+                    "on them; one cue bug found there (\"enjoins upon the agency heads the duty\" read as a court enjoining) "
+                    "was fixed afterwards, which moved Cole v. Young from agree (for a wrong reason) to miss."}
 
 
 def absent_numbers(keys, k=3):
