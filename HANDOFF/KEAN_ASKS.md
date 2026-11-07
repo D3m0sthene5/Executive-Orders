@@ -51,6 +51,14 @@ Send research/bayle-prior-art/lowande-poznansky/REQUEST_EMAIL.md (corrected afte
 
 Sources: `research/encyclopedie-campaign/LOG.md`
 
+## A-20261107-mountweazel-plants-leak (2026-11-06, claude-encyclopedie)
+
+Mountweazel's whole-repository check fails because research/excavator/dorotheus-sample-2026-11-06/PLANTS.csv names seeded item MW-C720-01 (red in the Valla pilot check). Allow the check to accept revealed plant keys under research/excavator/*/PLANTS.csv after reveal, or move revealed keys under jobs/mountweazel/fixtures?
+
+*Why:* The check blocks every PR's Valla pilot; the plants are already revealed, so it is a check-policy question, not a live leak.
+
+Sources: `research/encyclopedie-campaign/LOG.md`
+
 ## A-20261107-ocr-reference-rule (2026-11-06, claude-encyclopedie)
 
 OCR pilot: exact GPO-and-engine agreement leaves 1 of 43 reference passages. Choose: (a) enlarge your hand-transcribed set, (b) agreement within a CER threshold (0.5% gives 8, 1% gives 18), or (c) GPO, Surya and Claude agree after lenient folding?

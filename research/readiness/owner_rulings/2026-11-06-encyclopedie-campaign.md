@@ -71,3 +71,12 @@ None of this changes a status, codebook entry, census row or the certified count
     - Driving the owner's browser to download from static.case.law: a browser the coordinator controls is still
       automated access, which that site's robots.txt forbids; and CourtListener's bulk file already carries the Harvard
       text (`xml_harvard`) for about 97% of opinions in the first 30 MB sampled.
+
+## Fourth answer (2026-11-07, about 01:35 UTC)
+
+17. **Merging.** "You can merge everything as long as you aren't removing [anything] or missing [anything]. You need to
+    deconflict and clean this mess up and save our progress. But don't stop things in progress that are longitudinal,
+    unless there's a faster way to do them." This replaces item 1's "do not merge". The coordinator merges campaign PRs
+    whose diffs add and do not remove, after checking each diff; it does not merge a PR that deletes material (PR #207,
+    the revert of the tag-triggered stage-21 bot commits, is closed unmerged for that reason), and it does not stop the
+    running jobs or the Release-store upload.
