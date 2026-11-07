@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-07 13:49 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-07 14:33 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 **Readiness generation is behind the current records.** The published ready count below is retained with its generation date. New or changed claims require matching checker receipts and a tracker refresh before they can advance readiness.
 
@@ -19,8 +19,8 @@ Generated 2026-11-07 13:49 EST. Legal cutoff: **2026-10-14** (America/New_York).
 | Superseded or repeated claim lines | 205 | Difference between valid lines and unique orders |
 | Human-certified whole histories, published register | 0 | Separate Stage19 human-review record; never inferred from AI passes |
 
-Tracker generation: **2026-11-07 13:49 EST**; input commit `fb0f314151018d7486ee7e5b608ca46f8b34dec9`.
-[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42398265217).
+Tracker generation: **2026-11-07 14:33 EST**; input commit `b0a646369345ad17afab80f3cf84584389257b00`.
+[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42403264962).
 
 ## Receipt coverage and freshness
 
@@ -68,12 +68,12 @@ File acquisition and machine text do not establish legal conclusions or independ
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `fb0f314151018d7486ee7e5b608ca46f8b34dec9`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `b0a646369345ad17afab80f3cf84584389257b00`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
-| Readiness | 2026-11-07 13:49 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
-| Claim checker | 2026-11-07 13:48 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
+| Readiness | 2026-11-07 14:33 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
+| Claim checker | 2026-11-07 14:32 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
 | ProQuest ingestion | 2026-11-06 12:32 EST | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
 | Web-source custody | 2026-11-04 13:34 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
 
