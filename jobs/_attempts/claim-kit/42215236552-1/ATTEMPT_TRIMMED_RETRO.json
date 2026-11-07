@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "retroactive": true,
- "rule": "run_jobs.trim_attempt limits (1 MiB per file, 8 MiB per attempt; log/STATUS/BLOCKED/tests always kept)",
+ "rule": "run_jobs.trim_attempt limits (1 MiB per file, 8 MiB per attempt; log/STATUS/BLOCKED/tests always kept); RUNNER_INPUTS.json also kept (read by mountweazel and the freshness guard)",
  "removed_from_tree_at_parent_of_commit": "7f79ccc840d5ed2d73ea2abe3b12fca2e29e901c",
  "restore": "git show <that commit>:<attempt>/<path>",
  "kept_bytes": 8384250,
@@ -27570,11 +27570,6 @@
    "path": "MISSING_SOURCES.jsonl",
    "bytes": 13155390,
    "git_blob": "9d89bd7301851df65c278a4a18d63bca3e994239"
-  },
-  {
-   "path": "RUNNER_INPUTS.json",
-   "bytes": 14070022,
-   "git_blob": "263dd6a0696a16dd4ad239a0510e87f6c7e3cc2b"
   },
   {
    "path": "ACTING_PROVISIONS.part0001.jsonl",

@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "retroactive": true,
- "rule": "run_jobs.trim_attempt limits (1 MiB per file, 8 MiB per attempt; log/STATUS/BLOCKED/tests always kept)",
+ "rule": "run_jobs.trim_attempt limits (1 MiB per file, 8 MiB per attempt; log/STATUS/BLOCKED/tests always kept); RUNNER_INPUTS.json also kept (read by mountweazel and the freshness guard)",
  "removed_from_tree_at_parent_of_commit": "7f79ccc840d5ed2d73ea2abe3b12fca2e29e901c",
  "restore": "git show <that commit>:<attempt>/<path>",
  "kept_bytes": 8376357,
@@ -5640,11 +5640,6 @@
    "path": "drafts/12/EO_12163.json",
    "bytes": 187026,
    "git_blob": "6f11703c82341b142c1c898406bfaadf3e446c7b"
-  },
-  {
-   "path": "RUNNER_INPUTS.json",
-   "bytes": 1217853,
-   "git_blob": "30a973735c31b5dcaa499180f5616aca57dc5170"
   }
  ]
 }
