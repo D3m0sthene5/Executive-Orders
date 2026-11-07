@@ -1,0 +1,211 @@
+..........capture failure: {"url": "https://uscode.house.gov/tables/usctable4.html", "error": "HTTP 500", "carried_forward_from_prior_output": false}
+core request failed: {"url": "https://uscode.house.gov/tables/usctable4.html", "kind": "core", "status": 500, "bytes": 4, "sha256": "", "error": "HTTP 500", "at": "2026-11-06T23:52:07Z"}
+.EFF{
+ "editions_parsed": 2,
+ "editions_parsed_by_source": {
+  "unt_end_of_term_id_replay": 1,
+  "olrc_live_page": 1
+ },
+ "eo_rows_total_all_editions": 15,
+ "distinct_eos_any_edition": 9,
+ "eos_with_elim_row_in_any_edition": 3,
+ "control_error_rate": 0.0,
+ "requests": {
+  "requests": 7,
+  "core": 1,
+  "core_failed": 0,
+  "probes": 5,
+  "probe_failed": 0,
+  "optional": 1,
+  "optional_failed": 0,
+  "failed_total": 0
+ },
+ "problems": []
+}
+committed bytes 40869 max file 14341
+{
+ "editions_parsed": 3,
+ "editions_parsed_by_source": {
+  "internet_archive_id_replay": 2,
+  "olrc_live_page": 1
+ },
+ "eo_rows_total_all_editions": 21,
+ "distinct_eos_any_edition": 9,
+ "eos_with_elim_row_in_any_edition": 3,
+ "control_error_rate": 0.0,
+ "requests": {
+  "requests": 9,
+  "core": 1,
+  "core_failed": 0,
+  "probes": 5,
+  "probe_failed": 0,
+  "optional": 3,
+  "optional_failed": 1,
+  "failed_total": 0
+ },
+ "problems": []
+}
+committed bytes 45503 max file 15140
+{
+ "editions_parsed": 2,
+ "editions_parsed_by_source": {
+  "unt_end_of_term_id_replay": 1,
+  "olrc_live_page": 1
+ },
+ "eo_rows_total_all_editions": 15,
+ "distinct_eos_any_edition": 9,
+ "eos_with_elim_row_in_any_edition": 3,
+ "control_error_rate": 0.0,
+ "requests": {
+  "requests": 7,
+  "core": 1,
+  "core_failed": 0,
+  "probes": 5,
+  "probe_failed": 0,
+  "optional": 1,
+  "optional_failed": 0,
+  "failed_total": 0
+ },
+ "problems": []
+}
+committed bytes 40869 max file 14341
+{
+ "editions_parsed": 2,
+ "editions_parsed_by_source": {
+  "unt_end_of_term_id_replay": 1,
+  "olrc_live_page": 1
+ },
+ "eo_rows_total_all_editions": 15,
+ "distinct_eos_any_edition": 9,
+ "eos_with_elim_row_in_any_edition": 3,
+ "control_error_rate": 0.0,
+ "requests": {
+  "requests": 7,
+  "core": 1,
+  "core_failed": 0,
+  "probes": 5,
+  "probe_failed": 0,
+  "optional": 1,
+  "optional_failed": 0,
+  "failed_total": 0
+ },
+ "problems": []
+}
+committed bytes 40869 max file 14341
+capture failure: {"url": "https://uscode.house.gov/tables/usctable4.html", "error": "HTTP 503", "carried_forward_from_prior_output": true}
+core request failed: {"url": "https://uscode.house.gov/tables/usctable4.html", "kind": "core", "status": 503, "bytes": 1, "sha256": "", "error": "HTTP 503", "at": "2026-11-06T23:52:07Z"}
+{
+ "editions_parsed": 2,
+ "editions_parsed_by_source": {
+  "unt_end_of_term_id_replay": 1,
+  "olrc_live_page": 1
+ },
+ "eo_rows_total_all_editions": 15,
+ "distinct_eos_any_edition": 9,
+ "eos_with_elim_row_in_any_edition": 3,
+ "control_error_rate": 0.0,
+ "requests": {
+  "requests": 7,
+  "core": 1,
+  "core_failed": 1,
+  "probes": 5,
+  "probe_failed": 0,
+  "optional": 1,
+  "optional_failed": 0,
+  "failed_total": 1
+ },
+ "problems": []
+}
+committed bytes 40404 max file 14341
+capture failure: {"url": "https://uscode.house.gov/tables/usctable4.html", "error": "HTTP 503", "carried_forward_from_prior_output": false}
+core request failed: {"url": "https://uscode.house.gov/tables/usctable4.html", "kind": "core", "status": 503, "bytes": 1, "sha256": "", "error": "HTTP 503", "at": "2026-11-06T23:52:07Z"}
+....
+======================================================================
+ERROR: test_full_run (__main__.Run.test_full_run)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/duodecim-tableiv/test_duodecim.py", line 326, in test_full_run
+    self.assertEqual(cov["sources"]["govinfo_uscode_collection"]["years_with_packages"], [2018])
+                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'govinfo_uscode_collection'
+
+======================================================================
+FAIL: test_internet_archive_leg_when_online (__main__.Run.test_internet_archive_leg_when_online)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/duodecim-tableiv/test_duodecim.py", line 358, in test_internet_archive_leg_when_online
+    self.assertEqual(s["editions_parsed_by_source"], {"olrc_live_page": 1, "unt_end_of_term_id_replay": 1,
+AssertionError: {'internet_archive_id_replay': 2, 'olrc_live_page': 1} != {'olrc_live_page': 1, 'unt_end_of_term_id_r[38 chars]': 1}
+- {'internet_archive_id_replay': 2, 'olrc_live_page': 1}
++ {'internet_archive_id_replay': 1,
++  'olrc_live_page': 1,
++  'unt_end_of_term_id_replay': 1}
+
+======================================================================
+FAIL: test_never_fetches_webharvest_or_loc (__main__.Run.test_never_fetches_webharvest_or_loc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/duodecim-tableiv/test_duodecim.py", line 352, in test_never_fetches_webharvest_or_loc
+    self.assertEqual([u for u in seen if "webharvest.gov" in u], ["https://webharvest.gov/robots.txt"])
+AssertionError: Lists differ: [] != ['https://webharvest.gov/robots.txt']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'https://webharvest.gov/robots.txt'
+
+- []
++ ['https://webharvest.gov/robots.txt']
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.092s
+
+FAILED (failures=2, errors=1)
+{
+ "editions_parsed": 1,
+ "editions_parsed_by_source": {
+  "unt_end_of_term_id_replay": 1
+ },
+ "eo_rows_total_all_editions": 8,
+ "distinct_eos_any_edition": 7,
+ "eos_with_elim_row_in_any_edition": 2,
+ "control_error_rate": 0.0,
+ "requests": {
+  "requests": 7,
+  "core": 1,
+  "core_failed": 1,
+  "probes": 5,
+  "probe_failed": 0,
+  "optional": 1,
+  "optional_failed": 0,
+  "failed_total": 1
+ },
+ "problems": [
+  "only 1 editions parsed; at least 2 expected",
+  "the current Table IV page (uscode.house.gov) is not held in this run"
+ ]
+}
+committed bytes 32658 max file 8520
+{
+ "editions_parsed": 2,
+ "editions_parsed_by_source": {
+  "unt_end_of_term_id_replay": 1,
+  "olrc_live_page": 1
+ },
+ "eo_rows_total_all_editions": 15,
+ "distinct_eos_any_edition": 9,
+ "eos_with_elim_row_in_any_edition": 3,
+ "control_error_rate": 0.0,
+ "requests": {
+  "requests": 7,
+  "core": 1,
+  "core_failed": 0,
+  "probes": 5,
+  "probe_failed": 0,
+  "optional": 1,
+  "optional_failed": 0,
+  "failed_total": 0
+ },
+ "problems": []
+}
+committed bytes 40869 max file 14341
+test_duodecim.py failed; job not run
