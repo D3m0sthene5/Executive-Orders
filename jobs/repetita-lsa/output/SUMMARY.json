@@ -1,6 +1,6 @@
 {
  "budget_refused": [],
- "bytes_downloaded": 18763858,
+ "bytes_downloaded": 18731385,
  "complete": true,
  "control_error_rate": 0.0,
  "entries_parsed_all_titles": 2459761,
@@ -46,7 +46,7 @@
   "FRAGMENTS.2026.jsonl"
  ],
  "fragments": 5104,
- "generated_utc": "2026-11-07T01:23:03Z",
+ "generated_utc": "2026-11-07T01:59:49Z",
  "issues_carried_forward": 355,
  "issues_deferred_by_time": 0,
  "issues_failed": 0,
@@ -61,6 +61,7 @@
  "list_problems": [],
  "planted_error_rate": 0.0,
  "pre1997": {
+  "carried_forward": true,
   "generated_utc": "2026-11-07T01:23:03Z",
   "hathi": {
    "error": "FetchError: blocked_by_robots_txt",
@@ -218,14 +219,22 @@
    }
   ]
  },
- "requests": 11,
+ "requests": 4,
  "route": {
   "api_crosscheck": {
-   "attempted": false
+   "api_issues": 361,
+   "attempted": true,
+   "in_api_not_in_listing": [
+    "LSA-COMP-1986-2000-vol1",
+    "LSA-COMP-1986-2000-vol2",
+    "LSA-COMP-1986-2000-vol3",
+    "LSA-COMP-1986-2000-vol4"
+   ],
+   "in_listing_not_in_api": []
   },
-  "api_key_env_name": null,
-  "api_key_kind": "none",
-  "api_key_present": false,
+  "api_key_env_name": "API_DATA_GOV_KEY",
+  "api_key_kind": "real",
+  "api_key_present": true,
   "bytes_route": "keyless: https://www.govinfo.gov/content/pkg/<issue>.zip (robots.txt permits /content/)",
   "listing_route": "keyless: www.govinfo.gov LSA year sitemaps",
   "note": "The govinfo API (key in X-Api-Key) is used only to cross-check the listing, and only with a real API_DATA_GOV_KEY (or GOVINFO_API_KEY); DEMO_KEY is refused for a full run. The full run does not wait for a key: it reads the keyless content URLs."
@@ -296,7 +305,7 @@
   "2025": 1139,
   "2026": 494
  },
- "seconds": 71.5,
+ "seconds": 8.3,
  "smoke": false,
  "sources": 729,
  "title3_rows": 16390
