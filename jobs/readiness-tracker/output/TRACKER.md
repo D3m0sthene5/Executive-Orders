@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42406909919-1:f0c0f1296383b0cf0c403651d7a2a306b823e669790aa7a16ea6ea870b8bb7ba` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42408846500-1:cf62878f4822cfaa49e52c838cd083a0c774d93ca3b2635a0d05c14b82243196` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -15,7 +15,7 @@ Orders with a provisional YES/NO status: 4,298. The other 10,700 have not been r
 Ready by text evidence: {'original_supported': 660, 'transcription_dependent': 332}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 867; quotation rechecks: 867. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 281. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 4818}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 281. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 1816}.
 
 ## Steps finished (orders with a provisional status)
 
@@ -104,9 +104,9 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - csc-annual-reports (lead only, never counted as the original): 798
 - photius-replica-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 2,557
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
-- lachmann working-text confirmations (provisional text step only, never an original): 5,832
+- lachmann working-text confirmations (provisional text step only, never an original): 2,551
 - opus-media-match status: 1,155
-- source-ladder: 722
+- source-ladder: 762
 - claim-checker: 1,527
 - machine later-source search: 6,938
 
