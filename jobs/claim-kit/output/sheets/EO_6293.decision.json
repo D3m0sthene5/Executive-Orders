@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "fd33e5ee90e0a87aa9a1fb688e74539566b9b0c61fde6cf85e26c81e007f3898",
+  "dossier_sha256": "2bd4cb91a92518db8643e52f5065d496b4bb186585e92c87ac8a1983712ee23c",
   "instrument_id": "EO:6293",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-09-18",
               "register_number": "6293",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6293.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6293.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6293—Code of Fair Competition for the Textile Bag Industry",
               "text_chars": 1228
             },

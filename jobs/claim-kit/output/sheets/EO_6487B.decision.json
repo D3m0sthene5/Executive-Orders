@@ -60,7 +60,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "2627781f7c039040e04f614803e62b17dfc2fbb617f759aac6b60aec60be3102",
+  "dossier_sha256": "1398e208e3e66a96532b3b487c36c35a96bc54f9069ce310493113ac4248194c",
   "instrument_id": "EO:6487B",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -131,7 +131,18 @@
               "register_date": "1933-12-09",
               "register_number": "6487B",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6487B.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6487B.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6487-B—Approval of Code of Fair Competition for the Distilled Spirits Rectifying Industry",
               "text_chars": 1700
             },

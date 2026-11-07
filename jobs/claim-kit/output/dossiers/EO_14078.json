@@ -13,7 +13,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14078",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14078"
@@ -1318,7 +1318,12 @@
       "text": "(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 1 later event(s) end part of it: ? supersession 2023-05-30 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
@@ -1406,8 +1411,42 @@
       "where": "CFR 31 CFR part 526"
     },
     {
+      "basis_code": "table_iv_listed_note_preceding",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14078",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 22 U.S.C. nt. prec. 1741 (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3235",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "22 U.S.C. ch. 23, subch. II note",
+        "member_sha256": "349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923",
+        "note_id": "idddcf2f34-b816-11f1-963c-e4c4db8c41be",
+        "note_text_sha256": "e6c415b7b6a025ab43445017e6b2912b2d4601bb6e706141174bf9cb9382b345",
+        "status": "yes_other_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=idddcf2f34-b816-11f1-963c-e4c4db8c41be"
+      },
+      "row_span": "343950-344052",
+      "snippet": "2022 July 19 | EO 14078 | 22 U.S.C. nt. prec. 1741",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 22 U.S.C. nt. prec. 1741"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1435,7 +1474,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1463,7 +1503,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1517,6 +1558,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note_preceding",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3235",
+        "snippet": "2022 July 19 | EO 14078 | 22 U.S.C. nt. prec. 1741",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 22 U.S.C. nt. prec. 1741"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 22 U.S.C. nt. prec. 1741 (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -1551,6 +1620,9 @@
     "clause_28_state",
     "clause_29_state",
     "clause_30_state",
+    "clause_31_state",
+    "clause_32_state",
+    "clause_33_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -1558,10 +1630,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 31 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 34 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 1 later event(s) end part of it: ? supersession 2023-05-30 (scope: not stated)"
   ],
   "evidence": {
     "ACTOR_TEXT:EO:13698": {
@@ -3049,37 +3122,6 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
-    "TERM:EO:14078:1c1a97fb1b91aaab@f1094ece3b6b04b0": {
-      "actor_id": "EO:14078",
-      "char_end": 18864,
-      "char_start": 18746,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14078:1c1a97fb1b91aaab@f1094ece3b6b04b0",
-      "instrument_id": "EO:14078",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14078#sec15-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14078",
-        "page_or_item": "87 FR 43389, PDF pages 1-6",
-        "requires_page_check": false,
-        "sha256": "c46f08a4b997c23c44994c3ce95c3ff4a89d37ba8cc82e631ad202c40bf0dd2d",
-        "signing_date": "2022-07-19",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14078-c46f08a4b9.txt",
-        "text_sha256": "f1094ece3b6b04b09a9a9973fe3bedaf1c728fd61e7d3695bf3eea44f5e9c389",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2022-07-21/pdf/2022-15743.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
-    },
     "TERM:EO:14078:1f37d794b250eb23@590658d606dcf03a": {
       "actor_id": "EO:14078",
       "char_end": 28447,
@@ -3175,6 +3217,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "No regulation, ruling, instruction, order, directive, or license referring to this part shall be deemed to authorize any transaction prohibited by any other part of this chapter unless the regulation, ruling, instruction, order, directive, or license specifically refers to such part."
+    },
+    "TERM:EO:14078:4966860b076606e2@8e4a7cb4d93e3474": {
+      "actor_id": "EO:14078",
+      "char_end": 17517,
+      "char_start": 17400,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14078:4966860b076606e2@8e4a7cb4d93e3474",
+      "instrument_id": "EO:14078",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14078#sec15-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14078",
+        "page_or_item": "87 FR 43389-43394 (PDF pp. 1-6)",
+        "requires_page_check": false,
+        "sha256": "c46f08a4b997c23c44994c3ce95c3ff4a89d37ba8cc82e631ad202c40bf0dd2d",
+        "signing_date": "2022-07-19",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14078-c46f08a4b9.txt",
+        "text_sha256": "8e4a7cb4d93e347483e15b4227309ec652ea7383ababd61872a3af297fbb0bd8",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2022-07-21/pdf/2022-15743.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     },
     "TERM:EO:14078:569a019ba20a081d@590658d606dcf03a": {
       "actor_id": "EO:14078",
@@ -3675,6 +3748,37 @@
       "stated_end_date": null,
       "text": "See also § 526.502(e), which provides that no license or other authorization contained in or issued pursuant to this part authorizes transfers of or payments from blocked property or debits to blocked accounts unless the license or other authorization explicitly authorizes the transfer of or payment from blocked property or the debit to a blocked account.\n§ 526.408 Charitable contributions."
     },
+    "TERM:EO:14078:a3e0a50e16dc5365@8e4a7cb4d93e3474": {
+      "actor_id": "EO:14078",
+      "char_end": 13020,
+      "char_start": 12736,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14078:a3e0a50e16dc5365@8e4a7cb4d93e3474",
+      "instrument_id": "EO:14078",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14078#sec7-d",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14078",
+        "page_or_item": "87 FR 43389-43394 (PDF pp. 1-6)",
+        "requires_page_check": false,
+        "sha256": "c46f08a4b997c23c44994c3ce95c3ff4a89d37ba8cc82e631ad202c40bf0dd2d",
+        "signing_date": "2022-07-19",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14078-c46f08a4b9.txt",
+        "text_sha256": "8e4a7cb4d93e347483e15b4227309ec652ea7383ababd61872a3af297fbb0bd8",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2022-07-21/pdf/2022-15743.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(d) Such persons shall be treated by this section in the same manner\nas persons covered by section 1 of Proclamation 8693 of July 24, 2011\n(Suspension of Entry of Aliens Subject to United Nations Security Council\nTravel Bans and International Emergency Economic Powers Act Sanctions)."
+    },
     "TERM:EO:14078:a98b15cf6b158b45@590658d606dcf03a": {
       "actor_id": "EO:14078",
       "char_end": 16296,
@@ -4137,40 +4241,9 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(d) Such persons shall be treated by this section in the same manner \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
-    },
-    "TERM:EO:14078:fd9fa8bf98ce2847@f1094ece3b6b04b0": {
-      "actor_id": "EO:14078",
-      "char_end": 14025,
-      "char_start": 13738,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14078:fd9fa8bf98ce2847@f1094ece3b6b04b0",
-      "instrument_id": "EO:14078",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14078#sec7-d",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14078",
-        "page_or_item": "87 FR 43389, PDF pages 1-6",
-        "requires_page_check": false,
-        "sha256": "c46f08a4b997c23c44994c3ce95c3ff4a89d37ba8cc82e631ad202c40bf0dd2d",
-        "signing_date": "2022-07-19",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14078-c46f08a4b9.txt",
-        "text_sha256": "f1094ece3b6b04b09a9a9973fe3bedaf1c728fd61e7d3695bf3eea44f5e9c389",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2022-07-21/pdf/2022-15743.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(d) Such persons shall be treated by this section in the same manner \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
     }
   },
-  "fingerprint": "fbf5031b50caf52df39340d80ddad459f15ac33883382b7a7437c859ce25bd14",
+  "fingerprint": "5c358db6004053117f28cf8bb301ed646510dd06c2d66b3055a1554c5545907e",
   "instrument_id": "EO:14078",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -4714,7 +4787,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14078:fd9fa8bf98ce2847@318cdaf9a37a8831",
         "TERM:EO:14078:8935c4e407ced304@214cea2aa002a78a",
-        "TERM:EO:14078:fd9fa8bf98ce2847@f1094ece3b6b04b0"
+        "TERM:EO:14078:a3e0a50e16dc5365@8e4a7cb4d93e3474"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -5050,7 +5123,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14078:1c1a97fb1b91aaab@318cdaf9a37a8831",
         "TERM:EO:14078:3f07ce5abb0f7119@214cea2aa002a78a",
-        "TERM:EO:14078:1c1a97fb1b91aaab@f1094ece3b6b04b0"
+        "TERM:EO:14078:4966860b076606e2@8e4a7cb4d93e3474"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -5082,7 +5155,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -5094,7 +5167,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -5106,8 +5179,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -5132,8 +5205,8 @@
     "TERM:EO:14078:1c1a97fb1b91aaab@318cdaf9a37a8831",
     "TERM:EO:14078:8935c4e407ced304@214cea2aa002a78a",
     "TERM:EO:14078:3f07ce5abb0f7119@214cea2aa002a78a",
-    "TERM:EO:14078:fd9fa8bf98ce2847@f1094ece3b6b04b0",
-    "TERM:EO:14078:1c1a97fb1b91aaab@f1094ece3b6b04b0",
+    "TERM:EO:14078:a3e0a50e16dc5365@8e4a7cb4d93e3474",
+    "TERM:EO:14078:4966860b076606e2@8e4a7cb4d93e3474",
     "TERM:EO:14078:6471602cd93660ee@612283fde8d7aecb",
     "TERM:EO:14078:95005802eed9d7a8@590658d606dcf03a",
     "TERM:EO:14078:7ff2c9527a139b3e@590658d606dcf03a",
@@ -5172,10 +5245,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "c4b7457737b717c887a9994d44aedc267af6c3e2933fa293a395ed5a9f52e935",
+    "fingerprint": "a0eb2f3bf6240f60de760332765a8f7e1c9c485e1ac80313b2534dc8ab2be0b0",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14078.json",
-    "history_sha256": "ab5807d4771efd38bed63adba3c662cec0ef1b73d729a072ad44b08ac9f28906",
+    "history_sha256": "c525f7f2ed71b0a9e2c870ab880ba7a010e97c89a917426372dfa935829b2439",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "68181f43747ec8b80f29ff9ef09397c7296088c08a6e535cb53bbe5a0e3adeda",
+  "dossier_sha256": "2324915ab591202b910fc5c8be23b007d0bbee4d74dc04c084a12f7977200a64",
   "instrument_id": "EO:7930",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-07-14",
               "register_number": "7930",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7930.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7930.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7930—Exemption of William H. Griffin From Compulsory Retirement for Age",
               "text_chars": 722
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7930",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7930.txt",
+        "text_sha256": "017adb110ec8abf8233c3a670f6e81a237a4378821ab97bc92099f0f94975732"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7930",
@@ -130,6 +151,16 @@
         "sha256": "ef48a1c9f074d3001745fed2ad837b97bc65fdcbf83eca7e1d1ef3bd7fc7296a",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7930-ef48a1c9f0.txt",
         "text_sha256": "a559ba59941cca6af249d2cbd1fadd82265e6014a43702ad07ac63efef8cb442"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7930",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7930.txt",
+        "text_sha256": "f7a1b03c429c7b9a372e06adb52dbbbd4ea012579ce03f89ac798250afc38fa3"
       }
     ],
     "quotation_recheck_required": true,

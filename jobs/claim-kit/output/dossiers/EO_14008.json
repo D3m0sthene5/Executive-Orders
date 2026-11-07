@@ -1,6 +1,10 @@
 {
   "actor_contexts": [
     {
+      "actor_id": "EO:10654",
+      "evidence_id": "ACTOR_TEXT:EO:10654"
+    },
+    {
       "actor_id": "EO:14005",
       "evidence_id": "ACTOR_TEXT:EO:14005"
     },
@@ -54,7 +58,7 @@
     "ACT:EO:14008>EO:14082@7d722b002211de21",
     "ACT:EO:14008>EO:14082@621cef328220c0de",
     "ACT:EO:14008>EO:14082@86152ee25c857be8",
-    "ACT:EO:14008>EO:14082@b5b2b9a526eeefcf",
+    "ACT:EO:14008>EO:14082@8e0426340a70472d",
     "ACT:EO:14008>EO:14096",
     "ACT:EO:14008>EO:14148",
     "ACT:EO:14008>EO:14148@0c059e6315134a41",
@@ -104,13 +108,13 @@
       },
       {
         "actor_id": "EO:14082",
-        "char_end": 6706,
-        "char_start": 6391,
+        "char_end": 6352,
+        "char_start": 6042,
         "confidence": "medium",
         "how_named": "direct",
         "id": "CHAIN:EO:14008#2",
         "notes": "Change wording lead; chronology does not decide legal effect.",
-        "provision_text": "(a) To further the robust implementation \nof the energy and infrastructure provisions of the Act, Executive Order \n14008 is amended as follows: \n(i) The introductory text following the heading for section 203 is revised \nto read as follows: ‘‘There is hereby established a National Climate Task \nForce (Task Force).",
+        "provision_text": "(a) To further the robust implementation\nof the energy and infrastructure provisions of the Act, Executive Order\n14008 is amended as follows:\n(i) The introductory text following the heading for section 203 is revised\nto read as follows: ‘‘There is hereby established a National Climate Task\nForce (Task Force).",
         "sections_touched": [
           "section 203"
         ],
@@ -120,12 +124,12 @@
           "filing_date": null,
           "grade": "held_text_lead",
           "instrument_id": "EO:14082",
-          "page_or_item": "87 FR 56861, PDF pages 1-4",
+          "page_or_item": "87 FR 56861-56864 (PDF pp. 1-4)",
           "requires_page_check": false,
           "sha256": "30436e8efd5e41d8597db18c38043f8aac524d597e12b754d37f77f44143ed91",
           "signing_date": "2022-09-12",
-          "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14082-30436e8efd.txt",
-          "text_sha256": "7039a5b428e9d24a9cea21f678346a4b318fd372f12a0e63e499f0cce3f0612e",
+          "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14082-30436e8efd.txt",
+          "text_sha256": "8a9f67953e49d3011c00f269dd64acabbba6778ec1536d1ca8166da42c70c415",
           "url": "https://www.govinfo.gov/content/pkg/FR-2022-09-16/pdf/2022-20210.pdf"
         },
         "verb": "amend"
@@ -469,7 +473,7 @@
         "verb": "abolish"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14008",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14008"
@@ -3805,7 +3809,7 @@
     },
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 23 U.S.C. 173; USC 23 U.S.C. 173 note"
+      "detail": "provisional NO, but 3 current-law predicate lead(s), e.g. USC 23 U.S.C. 173; USC 23 U.S.C. 173 note; USC 42 U.S.C. 4321 nt"
     }
   ],
   "current_law_leads": [
@@ -3850,6 +3854,31 @@
       },
       "system": "usc",
       "where": "USC 23 U.S.C. 173 note"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14008",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 42 U.S.C. 4321 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3159",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "336225-336318",
+      "snippet": "2021 Jan. 27 | EO 14008 | 42 U.S.C. 4321 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 42 U.S.C. 4321 nt"
     },
     {
       "custody_records_in": [
@@ -3906,6 +3935,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3159",
+        "snippet": "2021 Jan. 27 | EO 14008 | 42 U.S.C. 4321 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 42 U.S.C. 4321 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 42 U.S.C. 4321 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -3915,6 +3972,11 @@
     "clause_3_state",
     "clause_4_state",
     "clause_5_state",
+    "clause_6_state",
+    "clause_7_state",
+    "clause_8_state",
+    "clause_9_state",
+    "clause_10_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -3922,12 +3984,12 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 6 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 11 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
     "CONFLICT WHOLE_END_ACTOR_DISAGREEMENT: EO:14148, EO:14154",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 23 U.S.C. 173; USC 23 U.S.C. 173 note"
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 3 current-law predicate lead(s), e.g. USC 23 U.S.C. 173; USC 23 U.S.C. 173 note; USC 42 U.S.C. 4321 nt"
   ],
   "evidence": {
     "ACT:EO:14008>EO:14082": {
@@ -4105,43 +4167,43 @@
             "filing_date": null,
             "grade": "held_text_lead",
             "instrument_id": "EO:14082",
-            "page_or_item": "87 FR 56861, PDF pages 1-4",
+            "page_or_item": "87 FR 56861-56864 (PDF pp. 1-4)",
             "requires_page_check": false,
             "sha256": "30436e8efd5e41d8597db18c38043f8aac524d597e12b754d37f77f44143ed91",
             "signing_date": "2022-09-12",
-            "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14082-30436e8efd.txt",
-            "text_sha256": "7039a5b428e9d24a9cea21f678346a4b318fd372f12a0e63e499f0cce3f0612e",
+            "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14082-30436e8efd.txt",
+            "text_sha256": "8a9f67953e49d3011c00f269dd64acabbba6778ec1536d1ca8166da42c70c415",
             "url": "https://www.govinfo.gov/content/pkg/FR-2022-09-16/pdf/2022-20210.pdf"
           },
-          "char_end": 6706,
-          "char_start": 6391,
+          "char_end": 6352,
+          "char_start": 6042,
           "confidence": "medium",
           "effective_class": "unknown",
           "effective_date": null,
           "effective_wording": [
             {
-              "char_end": 2766,
-              "char_start": 2606,
-              "text": "Achieving these goals will require effective implementation of the Act by \nmy Administration, as well as by State, local, Tribal, and territorial govern-\nments."
+              "char_end": 2731,
+              "char_start": 2572,
+              "text": "Achieving these goals will require effective implementation of the Act by\nmy Administration, as well as by State, local, Tribal, and territorial govern-\nments."
             },
             {
-              "char_end": 5569,
-              "char_start": 2803,
-              "text": "In implementing the Act, all agencies \n(as described in section 3502(1) of title 44, United States Code, except \nfor the agencies described in section 3502(5) of title 44) shall, as appropriate \nand to the extent consistent with law, prioritize: \nVerDate Sep<11>2014 15:45 Sep 15, 2022 Jkt 256001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\16SEE0.SGM 16SEE0khammond on DSKJM1Z7X2PROD with PRESDOC\n=== PDF page 2 of 4 ===\n56862 Federal Register / Vol. 87, No. 179 / Friday, September 16, 2022 / Presidential Documents \n(a) investing public dollars effectively and efficiently, working to avoid \nwaste, and achieving measurable, demonstrable outcomes for the American \npeople; \n(b) driving progress to achieve the climate goals of the United States \nto reduce greenhouse gas emissions 50–52 percent below 2005 levels in \n2030, achieve a carbon pollution-free electricity sector by 2035, and achieve \nnet-zero emissions by no later than 2050; \n(c) advancing environmental and climate justice through an all-of-govern-\nment approach, including through the Justice40 Initiative set forth in Execu-\ntive Order 14008 of January 27, 2021 (Tackling the Climate Crisis at Home \nand Abroad), to protect and improve the health and well-being of fence- \nline and frontline communities in the United States; \n(d) promoting construction of clean energy generation, storage, and trans-\nmission, and enabling technologies through efficient, effective mechanisms \nthat incorporate community engagement; \n(e) increasing the competitiveness of the United States economy and invest-\nment in critical supply chains, including through the Act’s incentives and \nmeasures to strengthen domestic manufacturing and supply chains; \n(f) increasing high-quality job opportunities for American workers and \nimproving equitable access to these jobs, including in traditional energy \ncommunities, through the timely implementation of the Act’s requirements \nfor prevailing wages and registered apprenticeships and by focusing on \nhigh labor standards and the free and fair chance to join a union; \n(g) reducing energy costs for working families, businesses, and governments \nat all levels while increasing energy security for the benefit of United States \neconomic competitiveness and national security; \n(h) accelerating innovation by directing the scientific and technical exper-\ntise of America’s researchers, businesses, and workers toward achieving \nbreakthroughs in clean energy and climate technologies; and \n(i) effectively coordinating with State, local, Tribal, and territorial govern-\nments, as well as with private-sector stakeholders and nongovernmental \norganizations, in implementing the critical investments outlined in this sec-\ntion to build sustainable, resilient communities."
+              "char_end": 5229,
+              "char_start": 2767,
+              "text": "In implementing the Act, all agencies\n(as described in section 3502(1) of title 44, United States Code, except\nfor the agencies described in section 3502(5) of title 44) shall, as appropriate\nand to the extent consistent with law, prioritize:\n(a) investing public dollars effectively and efficiently, working to avoid\nwaste, and achieving measurable, demonstrable outcomes for the American\npeople;\n(b) driving progress to achieve the climate goals of the United States\nto reduce greenhouse gas emissions 50–52 percent below 2005 levels in\n2030, achieve a carbon pollution-free electricity sector by 2035, and achieve\nnet-zero emissions by no later than 2050;\n(c) advancing environmental and climate justice through an all-of-govern-\nment approach, including through the Justice40 Initiative set forth in Execu-\ntive Order 14008 of January 27, 2021 (Tackling the Climate Crisis at Home\nand Abroad), to protect and improve the health and well-being of fence-\nline and frontline communities in the United States;\n(d) promoting construction of clean energy generation, storage, and trans-\nmission, and enabling technologies through efficient, effective mechanisms\nthat incorporate community engagement;\n(e) increasing the competitiveness of the United States economy and invest-\nment in critical supply chains, including through the Act’s incentives and\nmeasures to strengthen domestic manufacturing and supply chains;\n(f) increasing high-quality job opportunities for American workers and\nimproving equitable access to these jobs, including in traditional energy\ncommunities, through the timely implementation of the Act’s requirements\nfor prevailing wages and registered apprenticeships and by focusing on\nhigh labor standards and the free and fair chance to join a union;\n(g) reducing energy costs for working families, businesses, and governments\nat all levels while increasing energy security for the benefit of United States\neconomic competitiveness and national security;\n(h) accelerating innovation by directing the scientific and technical exper-\ntise of America’s researchers, businesses, and workers toward achieving\nbreakthroughs in clean energy and climate technologies; and\n(i) effectively coordinating with State, local, Tribal, and territorial govern-\nments, as well as with private-sector stakeholders and nongovernmental\norganizations, in implementing the critical investments outlined in this sec-\ntion to build sustainable, resilient communities."
             },
             {
-              "char_end": 9732,
-              "char_start": 8778,
-              "text": "(iii) To expand the mission of the National Climate Task Force to include \ncoordinating effective implementation of the Act, as outlined in section \n2 of this order, the second sentence of section 203(b) is revised to read \nas follows: ‘‘This Task Force shall facilitate planning and implementation \nof key Federal actions to reduce climate pollution; increase resilience \nto the impacts of climate change; protect public health; conserve our \nlands, waters, oceans, and biodiversity; deliver environmental justice; spur \nwell-paying union jobs and economic growth; coordinate effective imple-\nmentation of Public Law 117–169, commonly referred to as the Inflation \nReduction Act of 2022, in coordination with the Infrastructure Implementa-\ntion Task Force established in Executive Order 14052 of November 15, \n2021 (Implementation of the Infrastructure Investment and Jobs Act), as \nappropriate; and accelerate clean energy innovation and deployment.’’."
+              "char_end": 9057,
+              "char_start": 8113,
+              "text": "(iii) To expand the mission of the National Climate Task Force to include\ncoordinating effective implementation of the Act, as outlined in section\n2 of this order, the second sentence of section 203(b) is revised to read\nas follows: ‘‘This Task Force shall facilitate planning and implementation\nof key Federal actions to reduce climate pollution; increase resilience\nto the impacts of climate change; protect public health; conserve our\nlands, waters, oceans, and biodiversity; deliver environmental justice; spur\nwell-paying union jobs and economic growth; coordinate effective imple-\nmentation of Public Law 117–169, commonly referred to as the Inflation\nReduction Act of 2022, in coordination with the Infrastructure Implementa-\ntion Task Force established in Executive Order 14052 of November 15,\n2021 (Implementation of the Infrastructure Investment and Jobs Act), as\nappropriate; and accelerate clean energy innovation and deployment.’’."
             }
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:14008>EO:14082@b5b2b9a526eeefcf",
+          "id": "ACT:EO:14008>EO:14082@8e0426340a70472d",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
           "provision_label": "Sec. 4.",
-          "provision_text": "(a) To further the robust implementation \nof the energy and infrastructure provisions of the Act, Executive Order \n14008 is amended as follows: \n(i) The introductory text following the heading for section 203 is revised \nto read as follows: ‘‘There is hereby established a National Climate Task \nForce (Task Force).",
+          "provision_text": "(a) To further the robust implementation\nof the energy and infrastructure provisions of the Act, Executive Order\n14008 is amended as follows:\n(i) The introductory text following the heading for section 203 is revised\nto read as follows: ‘‘There is hereby established a National Climate Task\nForce (Task Force).",
           "reaches_target_via": "",
           "savings_phrases": [],
           "scope": "partial",
@@ -4451,50 +4513,50 @@
       "text": "(a) To further the robust implementation of the energy and infrastructure provisions of the Act, Executive Order 14008 is amended as follows:",
       "verb": "amend"
     },
-    "ACT:EO:14008>EO:14082@b5b2b9a526eeefcf": {
+    "ACT:EO:14008>EO:14082@8e0426340a70472d": {
       "actor_id": "EO:14082",
       "actor_source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14082",
-        "page_or_item": "87 FR 56861, PDF pages 1-4",
+        "page_or_item": "87 FR 56861-56864 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "30436e8efd5e41d8597db18c38043f8aac524d597e12b754d37f77f44143ed91",
         "signing_date": "2022-09-12",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14082-30436e8efd.txt",
-        "text_sha256": "7039a5b428e9d24a9cea21f678346a4b318fd372f12a0e63e499f0cce3f0612e",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14082-30436e8efd.txt",
+        "text_sha256": "8a9f67953e49d3011c00f269dd64acabbba6778ec1536d1ca8166da42c70c415",
         "url": "https://www.govinfo.gov/content/pkg/FR-2022-09-16/pdf/2022-20210.pdf"
       },
-      "char_end": 6706,
-      "char_start": 6391,
+      "char_end": 6352,
+      "char_start": 6042,
       "confidence": "medium",
       "effective_class": "unknown",
       "effective_date": null,
       "effective_wording": [
         {
-          "char_end": 2766,
-          "char_start": 2606,
-          "text": "Achieving these goals will require effective implementation of the Act by \nmy Administration, as well as by State, local, Tribal, and territorial govern-\nments."
+          "char_end": 2731,
+          "char_start": 2572,
+          "text": "Achieving these goals will require effective implementation of the Act by\nmy Administration, as well as by State, local, Tribal, and territorial govern-\nments."
         },
         {
-          "char_end": 5569,
-          "char_start": 2803,
-          "text": "In implementing the Act, all agencies \n(as described in section 3502(1) of title 44, United States Code, except \nfor the agencies described in section 3502(5) of title 44) shall, as appropriate \nand to the extent consistent with law, prioritize: \nVerDate Sep<11>2014 15:45 Sep 15, 2022 Jkt 256001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\16SEE0.SGM 16SEE0khammond on DSKJM1Z7X2PROD with PRESDOC\n=== PDF page 2 of 4 ===\n56862 Federal Register / Vol. 87, No. 179 / Friday, September 16, 2022 / Presidential Documents \n(a) investing public dollars effectively and efficiently, working to avoid \nwaste, and achieving measurable, demonstrable outcomes for the American \npeople; \n(b) driving progress to achieve the climate goals of the United States \nto reduce greenhouse gas emissions 50–52 percent below 2005 levels in \n2030, achieve a carbon pollution-free electricity sector by 2035, and achieve \nnet-zero emissions by no later than 2050; \n(c) advancing environmental and climate justice through an all-of-govern-\nment approach, including through the Justice40 Initiative set forth in Execu-\ntive Order 14008 of January 27, 2021 (Tackling the Climate Crisis at Home \nand Abroad), to protect and improve the health and well-being of fence- \nline and frontline communities in the United States; \n(d) promoting construction of clean energy generation, storage, and trans-\nmission, and enabling technologies through efficient, effective mechanisms \nthat incorporate community engagement; \n(e) increasing the competitiveness of the United States economy and invest-\nment in critical supply chains, including through the Act’s incentives and \nmeasures to strengthen domestic manufacturing and supply chains; \n(f) increasing high-quality job opportunities for American workers and \nimproving equitable access to these jobs, including in traditional energy \ncommunities, through the timely implementation of the Act’s requirements \nfor prevailing wages and registered apprenticeships and by focusing on \nhigh labor standards and the free and fair chance to join a union; \n(g) reducing energy costs for working families, businesses, and governments \nat all levels while increasing energy security for the benefit of United States \neconomic competitiveness and national security; \n(h) accelerating innovation by directing the scientific and technical exper-\ntise of America’s researchers, businesses, and workers toward achieving \nbreakthroughs in clean energy and climate technologies; and \n(i) effectively coordinating with State, local, Tribal, and territorial govern-\nments, as well as with private-sector stakeholders and nongovernmental \norganizations, in implementing the critical investments outlined in this sec-\ntion to build sustainable, resilient communities."
+          "char_end": 5229,
+          "char_start": 2767,
+          "text": "In implementing the Act, all agencies\n(as described in section 3502(1) of title 44, United States Code, except\nfor the agencies described in section 3502(5) of title 44) shall, as appropriate\nand to the extent consistent with law, prioritize:\n(a) investing public dollars effectively and efficiently, working to avoid\nwaste, and achieving measurable, demonstrable outcomes for the American\npeople;\n(b) driving progress to achieve the climate goals of the United States\nto reduce greenhouse gas emissions 50–52 percent below 2005 levels in\n2030, achieve a carbon pollution-free electricity sector by 2035, and achieve\nnet-zero emissions by no later than 2050;\n(c) advancing environmental and climate justice through an all-of-govern-\nment approach, including through the Justice40 Initiative set forth in Execu-\ntive Order 14008 of January 27, 2021 (Tackling the Climate Crisis at Home\nand Abroad), to protect and improve the health and well-being of fence-\nline and frontline communities in the United States;\n(d) promoting construction of clean energy generation, storage, and trans-\nmission, and enabling technologies through efficient, effective mechanisms\nthat incorporate community engagement;\n(e) increasing the competitiveness of the United States economy and invest-\nment in critical supply chains, including through the Act’s incentives and\nmeasures to strengthen domestic manufacturing and supply chains;\n(f) increasing high-quality job opportunities for American workers and\nimproving equitable access to these jobs, including in traditional energy\ncommunities, through the timely implementation of the Act’s requirements\nfor prevailing wages and registered apprenticeships and by focusing on\nhigh labor standards and the free and fair chance to join a union;\n(g) reducing energy costs for working families, businesses, and governments\nat all levels while increasing energy security for the benefit of United States\neconomic competitiveness and national security;\n(h) accelerating innovation by directing the scientific and technical exper-\ntise of America’s researchers, businesses, and workers toward achieving\nbreakthroughs in clean energy and climate technologies; and\n(i) effectively coordinating with State, local, Tribal, and territorial govern-\nments, as well as with private-sector stakeholders and nongovernmental\norganizations, in implementing the critical investments outlined in this sec-\ntion to build sustainable, resilient communities."
         },
         {
-          "char_end": 9732,
-          "char_start": 8778,
-          "text": "(iii) To expand the mission of the National Climate Task Force to include \ncoordinating effective implementation of the Act, as outlined in section \n2 of this order, the second sentence of section 203(b) is revised to read \nas follows: ‘‘This Task Force shall facilitate planning and implementation \nof key Federal actions to reduce climate pollution; increase resilience \nto the impacts of climate change; protect public health; conserve our \nlands, waters, oceans, and biodiversity; deliver environmental justice; spur \nwell-paying union jobs and economic growth; coordinate effective imple-\nmentation of Public Law 117–169, commonly referred to as the Inflation \nReduction Act of 2022, in coordination with the Infrastructure Implementa-\ntion Task Force established in Executive Order 14052 of November 15, \n2021 (Implementation of the Infrastructure Investment and Jobs Act), as \nappropriate; and accelerate clean energy innovation and deployment.’’."
+          "char_end": 9057,
+          "char_start": 8113,
+          "text": "(iii) To expand the mission of the National Climate Task Force to include\ncoordinating effective implementation of the Act, as outlined in section\n2 of this order, the second sentence of section 203(b) is revised to read\nas follows: ‘‘This Task Force shall facilitate planning and implementation\nof key Federal actions to reduce climate pollution; increase resilience\nto the impacts of climate change; protect public health; conserve our\nlands, waters, oceans, and biodiversity; deliver environmental justice; spur\nwell-paying union jobs and economic growth; coordinate effective imple-\nmentation of Public Law 117–169, commonly referred to as the Inflation\nReduction Act of 2022, in coordination with the Infrastructure Implementa-\ntion Task Force established in Executive Order 14052 of November 15,\n2021 (Implementation of the Infrastructure Investment and Jobs Act), as\nappropriate; and accelerate clean energy innovation and deployment.’’."
         }
       ],
       "exceptions_text": [],
       "filing_date": null,
-      "id": "ACT:EO:14008>EO:14082@b5b2b9a526eeefcf",
+      "id": "ACT:EO:14008>EO:14082@8e0426340a70472d",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
       "provision_label": "Sec. 4.",
-      "provision_text": "(a) To further the robust implementation \nof the energy and infrastructure provisions of the Act, Executive Order \n14008 is amended as follows: \n(i) The introductory text following the heading for section 203 is revised \nto read as follows: ‘‘There is hereby established a National Climate Task \nForce (Task Force).",
+      "provision_text": "(a) To further the robust implementation\nof the energy and infrastructure provisions of the Act, Executive Order\n14008 is amended as follows:\n(i) The introductory text following the heading for section 203 is revised\nto read as follows: ‘‘There is hereby established a National Climate Task\nForce (Task Force).",
       "reaches_target_via": "",
       "savings_phrases": [],
       "scope": "partial",
@@ -4504,16 +4566,16 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14082",
-        "page_or_item": "87 FR 56861, PDF pages 1-4",
+        "page_or_item": "87 FR 56861-56864 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "30436e8efd5e41d8597db18c38043f8aac524d597e12b754d37f77f44143ed91",
         "signing_date": "2022-09-12",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14082-30436e8efd.txt",
-        "text_sha256": "7039a5b428e9d24a9cea21f678346a4b318fd372f12a0e63e499f0cce3f0612e",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14082-30436e8efd.txt",
+        "text_sha256": "8a9f67953e49d3011c00f269dd64acabbba6778ec1536d1ca8166da42c70c415",
         "url": "https://www.govinfo.gov/content/pkg/FR-2022-09-16/pdf/2022-20210.pdf"
       },
       "target_id": "EO:14008",
-      "text": "(a) To further the robust implementation \nof the energy and infrastructure provisions of the Act, Executive Order \n14008 is amended as follows: \n(i) The introductory text following the heading for section 203 is revised \nto read as follows: ‘‘There is hereby established a National Climate Task \nForce (Task Force).",
+      "text": "(a) To further the robust implementation\nof the energy and infrastructure provisions of the Act, Executive Order\n14008 is amended as follows:\n(i) The introductory text following the heading for section 203 is revised\nto read as follows: ‘‘There is hereby established a National Climate Task\nForce (Task Force).",
       "verb": "amend"
     },
     "ACT:EO:14008>EO:14096": {
@@ -5619,6 +5681,26 @@
       "target_id": "EO:14008",
       "text": "Sec. 4. Revocation of and Revisions to Certain Presidential and Regulatory \nActions. (a) The following are revoked and any offices established therein \nare abolished: \n(i) Executive Order 13990 of January 20, 2021 (Protecting Public Health \nand the Environment and Restoring Science to Tackle the Climate Crisis); \n(ii) Executive Order 13992 of January 20, 2021 (Revocation of Certain \nExecutive Orders Concerning Federal Regulation); \n(iii) Executive Order 14008 of January 27, 2021 (Tackling the Climate \nCrisis at Home and Abroad); \n",
       "verb": "abolish"
+    },
+    "ACTOR_TEXT:EO:10654": {
+      "actor_id": "EO:10654",
+      "char_end": 6178,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:10654",
+      "role": "actor_context",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "21 FR 511, PDF pages 1-1",
+        "requires_page_check": false,
+        "sha256": "8032f5be3d286dddf2a9420f5f6cc9a01844bbd153f9bc6256bba127d24adde3",
+        "signing_date": "1956-01-20",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10654.txt",
+        "text_sha256": "a9572972310a1f04b9ecd87cec5b52235a28c7562b152dfa7fe3da96e6079c1d",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1956-01-24/pdf/FR-1956-01-24.pdf"
+      },
+      "text": "Instrument: EO:10654\nSource: https://www.govinfo.gov/content/pkg/FR-1956-01-24/pdf/FR-1956-01-24.pdf\nSHA-256 of the downloaded file: 8032f5be3d286dddf2a9420f5f6cc9a01844bbd153f9bc6256bba127d24adde3\nLocation: 21 FR 511, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 40 ===\n* O N A M *\n\\ UTTEBA \\\ni y  ISCR IPT*I <<N\nAÏ* ^  I  M A N E T  I \\J*\n1\nDERAL\nVOLUME 21 NUMBER 15\\  1 9 3 4  ^\n*  i/A /IT E O  ^\nWashington, Tuesday, January 24, 1956\nTITLE 3— THE PRESIDENT\nPROCLAMATION 3122\nFixing a L ater D ate for T ermination  of \nEcuadoran T rade A greement  P rocla­\nmation\nB Y  T H E  PRESIDENT OF THE UNITED STATES \nOF AMERICA \nA  PROCLAM ATION\nWHEREAS, under the authority vested \nin him by section 350 (a) of the Tariff \nA ct of 1930, as amended by the act of \nJune 12,1934, entitled “An Act to amend \nthe Tariff Act of 1930” (48 Stat. 943), the \ntime within which the President was au­\nthorized to enter into trade agreements \npursuant to such amending act having \nbeen extended for three years from \nJune 12, 1937, by the joint resolution of \nCongress approved March 1, 1937 (50 \nStat. 24), the President of the United \nStates entered into a trade agreement \nwith the Supreme Chief of the Republic \nof Ecuador on August 6, 1938 (53 Stat. \n1952), and proclaimed such trade agree­\nment by proclamation of September 23, \n1 9 3 8  (53 Stat. 1951); and \nWHEREAS Article XIX of the said \ntrade agreement provides that the agree­\nment shall remain in force and effect \nuntil six months from the day on which \neither Government shall give notice of \nits intention to terminate it; and \nWHEREAS, pursuant to the said Arti­\ncle XIX the Government of the United \nStates of America gave notice on July \n18,1955, of its intention to terminate the \nsaid agreement, which notice was with­\ndrawn by the Government of the United \nStates of America on January 17, 1956, \nand on the same day replaced by a new \nnotice of intention to terminate pursu­\nant to the said Article XIX; and \nWHEREAS the said section 350 (a) of \n!?e Tariff Act of 1930, as amended, au­\nthorizes the President to terminate, in \nwhole or in part, any proclamation carry- \nhtg out a trade agreement entered into \nunder such section; and •\nWHEREAS by Proclamation No. 3111 \n2 *  August 27, 1955 (20 P. R. 6485) the \n«resident proclaimed that the said proc­\nuration dated September 23, 1938 \nnould be terminated as of the close of \nanuary 17, 1956, six months from the \nay on which notice of termination of \nh e.?ai(i trade agreement had been given \ny the Government of the United States °f America:\nNOW, THEREFORE, I, DWIGHT D. \nEISENHOWER, President of the United \nStates of America, acting under and by \nvirtue of the authority vested in me by \nthe Constitution and the statutes, in­\ncluding the said section 350 (a) of the \nTariff Act of 1930, as amended, do pro­\nclaim that the said proclamation of \nAugust 27, 1955 shall be amended (1) by \ndeleting “July 18, 1955” as the date on \nwhich notice of intention to terminate \nwas given and by inserting “January 17, \n1956” in place thereof, and (2) by de­\nleting “January 17, 1956” as the date as \nof the close of which termination will \ntake place and by inserting “July 16, \n1956” in place thereof.\nIN WITNESS WHEREOF, I have here­\nunto set my hand and caused the Seal of \nthe United States of America to be \naffixed.\nDONE at the City of Washington this \nseventeenth day of January in the year \nof our Lord nineteen hundred \n[ seal ] and fifty-six, and of the Inde­\npendence of the United States \nof America the one hundred and \neightieth.\nD w ight  D . Eisenho w er\nBy the President:\nJ ohn  F oster  D ulles ,\nSecretary of State.\n[F. R. Doc. 56-604; Filed, Jan. 23, 1956;\n10:59 a. m.]\nEXECUTIVE ORDER 10654\nD elegating  C ertain  F u n c tio n s of the  \nP resident  to the  D irector  of the  B u ­\nreau  of  the  B udget\nBy virtue of the authority vested in \nme by section 301 of title 3 of the United \nStates Code, and as President of the \nUnited States, it is ordered as follows: \nThe functions vested in the President \nby the third proviso of section 5 of the \nWatershed Protection and Flood Pre­\nvention Act (68 Stat. 667; 16 U. S. C. \n1005), relating to the transmittal to the \nCongress of copies of plans for certain \nworks of improvement and the justifica­\ntions therefor, are hereby delegated to \nthe Director of the Bureau of the Budget.\nD w ight  D . E isenho w er\nT h e W h it e H o u se,\nJanuary 20,1956.\n[F. R. Doc. 56-603; Filed, Jan. 23, 1956;  \n10:45 a. m.j\nCONTENTS  \nTHE PRESIDENT  \nProclamation\nFixing a later date for termina­\ntion of Ecuadoran Trade Agree­\nment Proclamation__________\nExecutive Order  \nDelegating certain functions of \nthe President to the Director \nof the Bureau of the Budget _ _\nEXECUTIVE AGENCIES\nAgricultural Marketing Service  \nNotices:\nSeiling Sales Association, Inc., \nSeiling, Okla.:\nDeposting of stockyard _____\nPosting of stockyard _______\nProposed rule making:\nMilk in central Arkansas; han­\ndling_____________________\nMilk in Inland Empire market­\ning area; handling ________\nRules and regulations:\nMilk in Minneapolis-St. Paul, \nMinn., marketing area _____\nAgriculture Department \nSee also  Agricultural Marketing \nService.\nNotices:\nCalifornia; disaster assistance; \ndelineation of flood area ___\nCivil Aeronautics Administra­\ntion\nRules and regulations:\nMinimum en route IFR alti­\ntudes; miscellaneous amend­\nments ____________________\nStandard instrument approach \nprocedures; alterations _____\nCivil Aeronautics Board  \nNotices:\nHearings, etc.:\nChicago and Southern Air\nLines, Inc ______________\nCivil Air Transport Co., Ltd-\nSlick Airways, Inc., et al ____\nRules and regulations: \nCertification and operation rules \nfor scheduled air carrier op­\nerations outside continental \nlimits of U. S.; emergency and \nevacuation equipment and \nprocedures ________________\nCommerce Department  \nSee Civil Aeronautics Administra­\ntion.\nPage\n511\n511\n546\n547\n545\n545\n534\n547\n518\n514\n547\n547\n547\n513\n511\n"
     },
     "ACTOR_TEXT:EO:14005": {
       "actor_id": "EO:14005",
@@ -9207,37 +9289,6 @@
       },
       "text": "Instrument: EO:14008\nSource: https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf\nSHA-256 of the downloaded file: 97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f\nLocation: 86 FR 7619, PDF pages 1-15 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 15 ===\nPresidential Documents\n7619 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \nExecutive Order 14008 of January 27, 2021 \nTackling the Climate Crisis at Home and Abroad \nThe United States and the world face a profound climate crisis. We have \na narrow moment to pursue action at home and abroad in order to avoid \nthe most catastrophic impacts of that crisis and to seize the opportunity \nthat tackling climate change presents. Domestic action must go hand in \nhand with United States international leadership, aimed at significantly \nenhancing global action. Together, we must listen to science and meet the \nmoment. \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, it is hereby ordered as follows: \nPART I—PUTTING THE CLIMATE CRISIS AT THE CENTER OF UNITED \nSTATES FOREIGN POLICY AND NATIONAL SECURITY \nSection 101. Policy. United States international engagement to address climate \nchange—which has become a climate crisis—is more necessary and urgent \nthan ever. The scientific community has made clear that the scale and \nspeed of necessary action is greater than previously believed. There is little \ntime left to avoid setting the world on a dangerous, potentially catastrophic, \nclimate trajectory. Responding to the climate crisis will require both signifi-\ncant short-term global reductions in greenhouse gas emissions and net-zero \nglobal emissions by mid-century or before. \nIt is the policy of my Administration that climate considerations shall be \nan essential element of United States foreign policy and national security. \nThe United States will work with other countries and partners, both bilat-\nerally and multilaterally, to put the world on a sustainable climate pathway. \nThe United States will also move quickly to build resilience, both at home \nand abroad, against the impacts of climate change that are already manifest \nand will continue to intensify according to current trajectories. \nSec. 102. Purpose. This order builds on and reaffirms actions my Administra-\ntion has already taken to place the climate crisis at the forefront of this \nNation’s foreign policy and national security planning, including submitting \nthe United States instrument of acceptance to rejoin the Paris Agreement. \nIn implementing—and building upon—the Paris Agreement’s three over-\narching objectives (a safe global temperature, increased climate resilience, \nand financial flows aligned with a pathway toward low greenhouse gas \nemissions and climate-resilient development), the United States will exercise \nits leadership to promote a significant increase in global climate ambition \nto meet the climate challenge. In this regard: \n(a) I will host an early Leaders’ Climate Summit aimed at raising climate \nambition and making a positive contribution to the 26th United Nations \nClimate Change Conference of the Parties (COP26) and beyond. \n(b) The United States will reconvene the Major Economies Forum on \nEnergy and Climate, beginning with the Leaders’ Climate Summit. In coopera-\ntion with the members of that Forum, as well as with other partners as \nappropriate, the United States will pursue green recovery efforts, initiatives \nto advance the clean energy transition, sectoral decarbonization, and align-\nment of financial flows with the objectives of the Paris Agreement, including \nwith respect to coal financing, nature-based solutions, and solutions to other \nclimate-related challenges. \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 2 of 15 ===\n7620 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \n(c) I have created a new Presidentially appointed position, the Special \nPresidential Envoy for Climate, to elevate the issue of climate change and \nunderscore the commitment my Administration will make toward addressing \nit. \n(d) Recognizing that climate change affects a wide range of subjects, it \nwill be a United States priority to press for enhanced climate ambition \nand integration of climate considerations across a wide range of international \nfora, including the Group of Seven (G7), the Group of Twenty (G20), and \nfora that address clean energy, aviation, shipping, the Arctic, the ocean, \nsustainable development, migration, and other relevant topics. The Special \nPresidential Envoy for Climate and others, as appropriate, are encouraged \nto promote innovative approaches, including international multi-stakeholder \ninitiatives. In addition, my Administration will work in partnership with \nStates, localities, Tribes, territories, and other United States stakeholders \nto advance United States climate diplomacy. \n(e) The United States will immediately begin the process of developing \nits nationally determined contribution under the Paris Agreement. The proc-\ness will include analysis and input from relevant executive departments \nand agencies (agencies), as well as appropriate outreach to domestic stake-\nholders. The United States will aim to submit its nationally determined \ncontribution in advance of the Leaders’ Climate Summit. \n(f) The United States will also immediately begin to develop a climate \nfinance plan, making strategic use of multilateral and bilateral channels \nand institutions, to assist developing countries in implementing ambitious \nemissions reduction measures, protecting critical ecosystems, building resil-\nience against the impacts of climate change, and promoting the flow of \ncapital toward climate-aligned investments and away from high-carbon in-\nvestments. The Secretary of State and the Secretary of the Treasury, in \ncoordination with the Special Presidential Envoy for Climate, shall lead \na process to develop this plan, with the participation of the Administrator \nof the United States Agency for International Development (USAID), the \nChief Executive Officer of the United States International Development Fi-\nnance Corporation (DFC), the Chief Executive Officer of the Millennium \nChallenge Corporation, the Director of the United States Trade and Develop-\nment Agency, the Director of the Office of Management and Budget, and \nthe head of any other agency providing foreign assistance and development \nfinancing, as appropriate. The Secretary of State and the Secretary of the \nTreasury shall submit the plan to the President, through the Assistant to \nthe President for National Security Affairs and the Assistant to the President \nfor Economic Policy, within 90 days of the date of this order. \n(g) The Secretary of the Treasury shall: \n(i) ensure that the United States is present and engaged in relevant inter-\nnational fora and institutions that are working on the management of \nclimate-related financial risks; \n(ii) develop a strategy for how the voice and vote of the United States \ncan be used in international financial institutions, including the World \nBank Group and the International Monetary Fund, to promote financing \nprograms, economic stimulus packages, and debt relief initiatives that \nare aligned with and support the goals of the Paris Agreement; and \n(iii) develop, in collaboration with the Secretary of State, the Administrator \nof USAID, and the Chief Executive Officer of the DFC, a plan for promoting \nthe protection of the Amazon rainforest and other critical ecosystems \nthat serve as global carbon sinks, including through market-based mecha-\nnisms. \n(h) The Secretary of State, the Secretary of the Treasury, and the Secretary \nof Energy shall work together and with the Export-Import Bank of the \nUnited States, the Chief Executive Officer of the DFC, and the heads of \nother agencies and partners, as appropriate, to identify steps through which \nthe United States can promote ending international financing of carbon- \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 3 of 15 ===\n7621 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \nintensive fossil fuel-based energy while simultaneously advancing sustainable \ndevelopment and a green recovery, in consultation with the Assistant to \nthe President for National Security Affairs. \n(i) The Secretary of Energy, in cooperation with the Secretary of State \nand the heads of other agencies, as appropriate, shall identify steps through \nwhich the United States can intensify international collaborations to drive \ninnovation and deployment of clean energy technologies, which are critical \nfor climate protection. \n(j) The Secretary of State shall prepare, within 60 days of the date of \nthis order, a transmittal package seeking the Senate’s advice and consent \nto ratification of the Kigali Amendment to the Montreal Protocol on Sub-\nstances that Deplete the Ozone Layer, regarding the phasedown of the \nproduction and consumption of hydrofluorocarbons. \nSec. 103. Prioritizing Climate in Foreign Policy and National Security . To \nensure that climate change considerations are central to United States foreign \npolicy and national security: \n(a) Agencies that engage in extensive international work shall develop, \nin coordination with the Special Presidential Envoy for Climate, and submit \nto the President, through the Assistant to the President for National Security \nAffairs, within 90 days of the date of this order, strategies and implementation \nplans for integrating climate considerations into their international work, \nas appropriate and consistent with applicable law. These strategies and \nplans should include an assessment of: \n(i) climate impacts relevant to broad agency strategies in particular coun-\ntries or regions; \n(ii) climate impacts on their agency-managed infrastructure abroad (e.g., \nembassies, military installations), without prejudice to existing require-\nments regarding assessment of such infrastructure; \n(iii) how the agency intends to manage such impacts or incorporate risk \nmitigation into its installation master plans; and \n(iv) how the agency’s international work, including partner engagement, \ncan contribute to addressing the climate crisis. \n(b) The Director of National Intelligence shall prepare, within 120 days \nof the date of this order, a National Intelligence Estimate on the national \nand economic security impacts of climate change. \n(c) The Secretary of Defense, in coordination with the Secretary of Com-\nmerce, through the Administrator of the National Oceanic and Atmospheric \nAdministration, the Chair of the Council on Environmental Quality, the \nAdministrator of the Environmental Protection Agency, the Director of Na-\ntional Intelligence, the Director of the Office of Science and Technology \nPolicy, the Administrator of the National Aeronautics and Space Administra-\ntion, and the heads of other agencies as appropriate, shall develop and \nsubmit to the President, within 120 days of the date of this order, an \nanalysis of the security implications of climate change (Climate Risk Analysis) \nthat can be incorporated into modeling, simulation, war-gaming, and other \nanalyses. \n(d) The Secretary of Defense and the Chairman of the Joint Chiefs of \nStaff shall consider the security implications of climate change, including \nany relevant information from the Climate Risk Analysis described in sub-\nsection (c) of this section, in developing the National Defense Strategy, \nDefense Planning Guidance, Chairman’s Risk Assessment, and other relevant \nstrategy, planning, and programming documents and processes. Starting in \nJanuary 2022, the Secretary of Defense and the Chairman of the Joint Chiefs \nof Staff shall provide an annual update, through the National Security Coun-\ncil, on the progress made in incorporating the security implications of climate \nchange into these documents and processes. \n(e) The Secretary of Homeland Security shall consider the implications \nof climate change in the Arctic, along our Nation’s borders, and to National \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 4 of 15 ===\n7622 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \nCritical Functions, including any relevant information from the Climate Risk \nAnalysis described in subsection (c) of this section, in developing relevant \nstrategy, planning, and programming documents and processes. Starting in \nJanuary 2022, the Secretary of Homeland Security shall provide an annual \nupdate, through the National Security Council, on the progress made in \nincorporating the homeland security implications of climate change into \nthese documents and processes. \nSec. 104. Reinstatement. The Presidential Memorandum of September 21, \n2016 (Climate Change and National Security), is hereby reinstated. \nPART II—TAKING A GOVERNMENT-WIDE APPROACH TO THE CLIMATE \nCRISIS \nSec. 201. Policy. Even as our Nation emerges from profound public health \nand economic crises borne of a pandemic, we face a climate crisis that \nthreatens our people and communities, public health and economy, and, \nstarkly, our ability to live on planet Earth. Despite the peril that is already \nevident, there is promise in the solutions—opportunities to create well- \npaying union jobs to build a modern and sustainable infrastructure, deliver \nan equitable, clean energy future, and put the United States on a path \nto achieve net-zero emissions, economy-wide, by no later than 2050. \nWe must listen to science—and act. We must strengthen our clean air \nand water protections. We must hold polluters accountable for their actions. \nWe must deliver environmental justice in communities all across America. \nThe Federal Government must drive assessment, disclosure, and mitigation \nof climate pollution and climate-related risks in every sector of our economy, \nmarshaling the creativity, courage, and capital necessary to make our Nation \nresilient in the face of this threat. Together, we must combat the climate \ncrisis with bold, progressive action that combines the full capacity of the \nFederal Government with efforts from every corner of our Nation, every \nlevel of government, and every sector of our economy. \nIt is the policy of my Administration to organize and deploy the full capacity \nof its agencies to combat the climate crisis to implement a Government- \nwide approach that reduces climate pollution in every sector of the economy; \nincreases resilience to the impacts of climate change; protects public health; \nconserves our lands, waters, and biodiversity; delivers environmental justice; \nand spurs well-paying union jobs and economic growth, especially through \ninnovation, commercialization, and deployment of clean energy technologies \nand infrastructure. Successfully meeting these challenges will require the \nFederal Government to pursue such a coordinated approach from planning \nto implementation, coupled with substantive engagement by stakeholders, \nincluding State, local, and Tribal governments. \nSec. 202. White House Office of Domestic Climate Policy. There is hereby \nestablished the White House Office of Domestic Climate Policy (Climate \nPolicy Office) within the Executive Office of the President, which shall \ncoordinate the policy-making process with respect to domestic climate-policy \nissues; coordinate domestic climate-policy advice to the President; ensure \nthat domestic climate-policy decisions and programs are consistent with \nthe President’s stated goals and that those goals are being effectively pursued; \nand monitor implementation of the President’s domestic climate-policy agen-\nda. The Climate Policy Office shall have a staff headed by the Assistant \nto the President and National Climate Advisor (National Climate Advisor) \nand shall include the Deputy Assistant to the President and Deputy National \nClimate Advisor. The Climate Policy Office shall have such staff and other \nassistance as may be necessary to carry out the provisions of this order, \nsubject to the availability of appropriations, and may work with established \nor ad hoc committees or interagency groups. All agencies shall cooperate \nwith the Climate Policy Office and provide such information, support, and \nassistance to the Climate Policy Office as it may request, as appropriate \nand consistent with applicable law. \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00004 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 5 of 15 ===\n7623 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \nSec. 203. National Climate Task Force. There is hereby established a National \nClimate Task Force (Task Force). The Task Force shall be chaired by the \nNational Climate Advisor. \n(a) Membership. The Task Force shall consist of the following additional \nmembers: \n(i) the Secretary of the Treasury; \n(ii) the Secretary of Defense; \n(iii) the Attorney General; \n(iv) the Secretary of the Interior; \n(v) the Secretary of Agriculture; \n(vi) the Secretary of Commerce; \n(vii) the Secretary of Labor; \n(viii) the Secretary of Health and Human Services; \n(ix) the Secretary of Housing and Urban Development; \n(x) the Secretary of Transportation; \n(xi) the Secretary of Energy; \n(xii) the Secretary of Homeland Security; \n(xiii) the Administrator of General Services; \n(xiv) the Chair of the Council on Environmental Quality; \n(xv) the Administrator of the Environmental Protection Agency; \n(xvi) the Director of the Office of Management and Budget; \n(xvii) the Director of the Office of Science and Technology Policy; \n(xviii) the Assistant to the President for Domestic Policy; \n(xix) the Assistant to the President for National Security Affairs; \n(xx) the Assistant to the President for Homeland Security and Counterter-\nrorism; and \n(xxi) the Assistant to the President for Economic Policy. \n(b) Mission and Work. The Task Force shall facilitate the organization \nand deployment of a Government-wide approach to combat the climate \ncrisis. This Task Force shall facilitate planning and implementation of key \nFederal actions to reduce climate pollution; increase resilience to the impacts \nof climate change; protect public health; conserve our lands, waters, oceans, \nand biodiversity; deliver environmental justice; and spur well-paying union \njobs and economic growth. As necessary and appropriate, members of the \nTask Force will engage on these matters with State, local, Tribal, and terri-\ntorial governments; workers and communities; and leaders across the various \nsectors of our economy. \n(c) Prioritizing Actions. To the extent permitted by law, Task Force mem-\nbers shall prioritize action on climate change in their policy-making and \nbudget processes, in their contracting and procurement, and in their engage-\nment with State, local, Tribal, and territorial governments; workers and \ncommunities; and leaders across all the sectors of our economy. \nUSE OF THE FEDERAL GOVERNMENT’S BUYING POWER AND REAL \nPROPERTY AND ASSET MANAGEMENT \nSec. 204. Policy. It is the policy of my Administration to lead the Nation’s \neffort to combat the climate crisis by example—specifically, by aligning \nthe management of Federal procurement and real property, public lands \nand waters, and financial programs to support robust climate action. By \nproviding an immediate, clear, and stable source of product demand, in-\ncreased transparency and data, and robust standards for the market, my \nAdministration will help to catalyze private sector investment into, and \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00005 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 6 of 15 ===\n7624 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \naccelerate the advancement of America’s industrial capacity to supply, do-\nmestic clean energy, buildings, vehicles, and other necessary products and \nmaterials. \nSec. 205. Federal Clean Electricity and Vehicle Procurement Strategy. (a) \nThe Chair of the Council on Environmental Quality, the Administrator of \nGeneral Services, and the Director of the Office and Management and Budget, \nin coordination with the Secretary of Commerce, the Secretary of Labor, \nthe Secretary of Energy, and the heads of other relevant agencies, shall \nassist the National Climate Advisor, through the Task Force established \nin section 203 of this order, in developing a comprehensive plan to create \ngood jobs and stimulate clean energy industries by revitalizing the Federal \nGovernment’s sustainability efforts. \n(b) The plan shall aim to use, as appropriate and consistent with applicable \nlaw, all available procurement authorities to achieve or facilitate: \n(i) a carbon pollution-free electricity sector no later than 2035; and \n(ii) clean and zero-emission vehicles for Federal, State, local, and Tribal \ngovernment fleets, including vehicles of the United States Postal Service. \n(c) If necessary, the plan shall recommend any additional legislation needed \nto accomplish these objectives. \n(d) The plan shall also aim to ensure that the United States retains the \nunion jobs integral to and involved in running and maintaining clean and \nzero-emission fleets, while spurring the creation of union jobs in the manufac-\nture of those new vehicles. The plan shall be submitted to the Task Force \nwithin 90 days of the date of this order. \nSec. 206. Procurement Standards. Consistent with the Executive Order of \nJanuary 25, 2021, entitled, ‘‘Ensuring the Future Is Made in All of America \nby All of America’s Workers,’’ agencies shall adhere to the requirements \nof the Made in America Laws in making clean energy, energy efficiency, \nand clean energy procurement decisions. Agencies shall, consistent with \napplicable law, apply and enforce the Davis-Bacon Act and prevailing wage \nand benefit requirements. The Secretary of Labor shall take steps to update \nprevailing wage requirements. The Chair of the Council on Environmental \nQuality shall consider additional administrative steps and guidance to assist \nthe Federal Acquisition Regulatory Council in developing regulatory amend-\nments to promote increased contractor attention on reduced carbon emission \nand Federal sustainability. \nSec. 207. Renewable Energy on Public Lands and in Offshore Waters. The \nSecretary of the Interior shall review siting and permitting processes on \npublic lands and in offshore waters to identify to the Task Force steps \nthat can be taken, consistent with applicable law, to increase renewable \nenergy production on those lands and in those waters, with the goal of \ndoubling offshore wind by 2030 while ensuring robust protection for our \nlands, waters, and biodiversity and creating good jobs. In conducting this \nreview, the Secretary of the Interior shall consult, as appropriate, with \nthe heads of relevant agencies, including the Secretary of Defense, the Sec-\nretary of Agriculture, the Secretary of Commerce, through the Administrator \nof the National Oceanic and Atmospheric Administration, the Secretary of \nEnergy, the Chair of the Council on Environmental Quality, State and Tribal \nauthorities, project developers, and other interested parties. The Secretary \nof the Interior shall engage with Tribal authorities regarding the development \nand management of renewable and conventional energy resources on Tribal \nlands. \nSec. 208. Oil and Natural Gas Development on Public Lands and in Offshore \nWaters. To the extent consistent with applicable law, the Secretary of the \nInterior shall pause new oil and natural gas leases on public lands or \nin offshore waters pending completion of a comprehensive review and recon-\nsideration of Federal oil and gas permitting and leasing practices in light \nof the Secretary of the Interior’s broad stewardship responsibilities over \nthe public lands and in offshore waters, including potential climate and \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00006 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 7 of 15 ===\n7625 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \nother impacts associated with oil and gas activities on public lands or \nin offshore waters. The Secretary of the Interior shall complete that review \nin consultation with the Secretary of Agriculture, the Secretary of Commerce, \nthrough the National Oceanic and Atmospheric Administration, and the \nSecretary of Energy. In conducting this analysis, and to the extent consistent \nwith applicable law, the Secretary of the Interior shall consider whether \nto adjust royalties associated with coal, oil, and gas resources extracted \nfrom public lands and offshore waters, or take other appropriate action, \nto account for corresponding climate costs. \nSec. 209. Fossil Fuel Subsidies. The heads of agencies shall identify for \nthe Director of the Office of Management and Budget and the National \nClimate Advisor any fossil fuel subsidies provided by their respective agen-\ncies, and then take steps to ensure that, to the extent consistent with applica-\nble law, Federal funding is not directly subsidizing fossil fuels. The Director \nof the Office of Management and Budget shall seek, in coordination with \nthe heads of agencies and the National Climate Advisor, to eliminate fossil \nfuel subsidies from the budget request for Fiscal Year 2022 and thereafter. \nSec. 210. Clean Energy in Financial Management. The heads of agencies \nshall identify opportunities for Federal funding to spur innovation, commer-\ncialization, and deployment of clean energy technologies and infrastructure \nfor the Director of the Office of Management and Budget and the National \nClimate Advisor, and then take steps to ensure that, to the extent consistent \nwith applicable law, Federal funding is used to spur innovation, commer-\ncialization, and deployment of clean energy technologies and infrastructure. \nThe Director of the Office of Management and Budget, in coordination \nwith agency heads and the National Climate Advisor, shall seek to prioritize \nsuch investments in the President’s budget request for Fiscal Year 2022 \nand thereafter. \nSec. 211. Climate Action Plans and Data and Information Products to Improve \nAdaptation and Increase Resilience. (a) The head of each agency shall submit \na draft action plan to the Task Force and the Federal Chief Sustainability \nOfficer within 120 days of the date of this order that describes steps the \nagency can take with regard to its facilities and operations to bolster adapta-\ntion and increase resilience to the impacts of climate change. Action plans \nshould, among other things, describe the agency’s climate vulnerabilities \nand describe the agency’s plan to use the power of procurement to increase \nthe energy and water efficiency of United States Government installations, \nbuildings, and facilities and ensure they are climate-ready. Agencies shall \nconsider the feasibility of using the purchasing power of the Federal Govern-\nment to drive innovation, and shall seek to increase the Federal Government’s \nresilience against supply chain disruptions. Such disruptions put the Nation’s \nmanufacturing sector at risk, as well as consumer access to critical goods \nand services. Agencies shall make their action plans public, and post them \non the agency website, to the extent consistent with applicable law. \n(b) Within 30 days of an agency’s submission of an action plan, the \nFederal Chief Sustainability Officer, in coordination with the Director of \nthe Office of Management and Budget, shall review the plan to assess its \nconsistency with the policy set forth in section 204 of this order and the \npriorities issued by the Office of Management and Budget. \n(c) After submitting an initial action plan, the head of each agency shall \nsubmit to the Task Force and Federal Chief Sustainability Officer progress \nreports annually on the status of implementation efforts. Agencies shall \nmake progress reports public and post them on the agency website, to \nthe extent consistent with applicable law. The heads of agencies shall assign \ntheir respective agency Chief Sustainability Officer the authority to perform \nduties relating to implementation of this order within the agency, to the \nextent consistent with applicable law. \n(d) To assist agencies and State, local, Tribal, and territorial governments, \ncommunities, and businesses in preparing for and adapting to the impacts \nof climate change, the Secretary of Commerce, through the Administrator \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00007 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 8 of 15 ===\n7626 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \nof the National Oceanic and Atmospheric Administration, the Secretary of \nHomeland Security, through the Administrator of the Federal Emergency \nManagement Agency, and the Director of the Office of Science and Tech-\nnology Policy, in coordination with the heads of other agencies, as appro-\npriate, shall provide to the Task Force a report on ways to expand and \nimprove climate forecast capabilities and information products for the public. \nIn addition, the Secretary of the Interior and the Deputy Director for Manage-\nment of the Office of Management and Budget, in their capacities as the \nChair and Vice-Chair of the Federal Geographic Data Committee, shall assess \nand provide to the Task Force a report on the potential development of \na consolidated Federal geographic mapping service that can facilitate public \naccess to climate-related information that will assist Federal, State, local, \nand Tribal governments in climate planning and resilience activities. \nEMPOWERING WORKERS THROUGH REBUILDING OUR INFRASTRUC-\nTURE FOR A SUSTAINABLE ECONOMY \nSec. 212. Policy. This Nation needs millions of construction, manufacturing, \nengineering, and skilled-trades workers to build a new American infrastruc-\nture and clean energy economy. These jobs will create opportunities for \nyoung people and for older workers shifting to new professions, and for \npeople from all backgrounds and communities. Such jobs will bring oppor-\ntunity to communities too often left behind—places that have suffered as \na result of economic shifts and places that have suffered the most from \npersistent pollution, including low-income rural and urban communities, \ncommunities of color, and Native communities. \nSec. 213. Sustainable Infrastructure. (a) The Chair of the Council on Environ-\nmental Quality and the Director of the Office of Management and Budget \nshall take steps, consistent with applicable law, to ensure that Federal infra-\nstructure investment reduces climate pollution, and to require that Federal \npermitting decisions consider the effects of greenhouse gas emissions and \nclimate change. In addition, they shall review, and report to the National \nClimate Advisor on, siting and permitting processes, including those in \nprogress under the auspices of the Federal Permitting Improvement Steering \nCouncil, and identify steps that can be taken, consistent with applicable \nlaw, to accelerate the deployment of clean energy and transmission projects \nin an environmentally stable manner. \n(b) Agency heads conducting infrastructure reviews shall, as appropriate, \nconsult from an early stage with State, local, and Tribal officials involved \nin permitting or authorizing proposed infrastructure projects to develop effi-\ncient timelines for decision-making that are appropriate given the complex-\nities of proposed projects. \nEMPOWERING WORKERS BY ADVANCING CONSERVATION, AGRI-\nCULTURE, AND REFORESTATION \nSec. 214. Policy. It is the policy of my Administration to put a new generation \nof Americans to work conserving our public lands and waters. The Federal \nGovernment must protect America’s natural treasures, increase reforestation, \nimprove access to recreation, and increase resilience to wildfires and storms, \nwhile creating well-paying union jobs for more Americans, including more \nopportunities for women and people of color in occupations where they \nare underrepresented. America’s farmers, ranchers, and forest landowners \nhave an important role to play in combating the climate crisis and reducing \ngreenhouse gas emissions, by sequestering carbon in soils, grasses, trees, \nand other vegetation and sourcing sustainable bioproducts and fuels. Coastal \ncommunities have an essential role to play in mitigating climate change \nand strengthening resilience by protecting and restoring coastal ecosystems, \nsuch as wetlands, seagrasses, coral and oyster reefs, and mangrove and \nkelp forests, to protect vulnerable coastlines, sequester carbon, and support \nbiodiversity and fisheries. \nSec. 215. Civilian Climate Corps. In furtherance of the policy set forth \nin section 214 of this order, the Secretary of the Interior, in collaboration \nwith the Secretary of Agriculture and the heads of other relevant agencies, \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00008 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 9 of 15 ===\n7627 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \nshall submit a strategy to the Task Force within 90 days of the date of \nthis order for creating a Civilian Climate Corps Initiative, within existing \nappropriations, to mobilize the next generation of conservation and resilience \nworkers and maximize the creation of accessible training opportunities and \ngood jobs. The initiative shall aim to conserve and restore public lands \nand waters, bolster community resilience, increase reforestation, increase \ncarbon sequestration in the agricultural sector, protect biodiversity, improve \naccess to recreation, and address the changing climate. \nSec. 216. Conserving Our Nation’s Lands and Waters. (a) The Secretary \nof the Interior, in consultation with the Secretary of Agriculture, the Secretary \nof Commerce, the Chair of the Council on Environmental Quality, and the \nheads of other relevant agencies, shall submit a report to the Task Force \nwithin 90 days of the date of this order recommending steps that the United \nStates should take, working with State, local, Tribal, and territorial govern-\nments, agricultural and forest landowners, fishermen, and other key stake-\nholders, to achieve the goal of conserving at least 30 percent of our lands \nand waters by 2030. \n(i) The Secretary of the Interior, the Secretary of Agriculture, the Secretary \nof Commerce, through the Administrator of the National Oceanic and \nAtmospheric Administration, and the Chair of the Council on Environ-\nmental Quality shall, as appropriate, solicit input from State, local, Tribal, \nand territorial officials, agricultural and forest landowners, fishermen, and \nother key stakeholders in identifying strategies that will encourage broad \nparticipation in the goal of conserving 30 percent of our lands and waters \nby 2030. \n(ii) The report shall propose guidelines for determining whether lands \nand waters qualify for conservation, and it also shall establish mechanisms \nto measure progress toward the 30-percent goal. The Secretary of the \nInterior shall subsequently submit annual reports to the Task Force to \nmonitor progress. \n(b) The Secretary of Agriculture shall: \n(i) initiate efforts in the first 60 days from the date of this order to \ncollect input from Tribes, farmers, ranchers, forest owners, conservation \ngroups, firefighters, and other stakeholders on how to best use Department \nof Agriculture programs, funding and financing capacities, and other au-\nthorities, and how to encourage the voluntary adoption of climate-smart \nagricultural and forestry practices that decrease wildfire risk fueled by \nclimate change and result in additional, measurable, and verifiable carbon \nreductions and sequestration and that source sustainable bioproducts and \nfuels; and \n(ii) submit to the Task Force within 90 days of the date of this order \na report making recommendations for an agricultural and forestry climate \nstrategy. \n(c) The Secretary of Commerce, through the Administrator of the National \nOceanic and Atmospheric Administration, shall initiate efforts in the first \n60 days from the date of this order to collect input from fishermen, regional \nocean councils, fishery management councils, scientists, and other stake-\nholders on how to make fisheries and protected resources more resilient \nto climate change, including changes in management and conservation meas-\nures, and improvements in science, monitoring, and cooperative research. \nEMPOWERING WORKERS THROUGH REVITALIZING ENERGY COMMU-\nNITIES \nSec. 217. Policy. It is the policy of my Administration to improve air and \nwater quality and to create well-paying union jobs and more opportunities \nfor women and people of color in hard-hit communities, including rural \ncommunities, while reducing methane emissions, oil and brine leaks, and \nother environmental harms from tens of thousands of former mining and \nwell sites. Mining and power plant workers drove the industrial revolution \nand the economic growth that followed, and have been essential to the \ngrowth of the United States. As the Nation shifts to a clean energy economy, \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00009 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 10 of 15 ===\n7628 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \nFederal leadership is essential to foster economic revitalization of and invest-\nment in these communities, ensure the creation of good jobs that provide \na choice to join a union, and secure the benefits that have been earned \nby workers. \nSuch work should include projects that reduce emissions of toxic substances \nand greenhouse gases from existing and abandoned infrastructure and that \nprevent environmental damage that harms communities and poses a risk \nto public health and safety. Plugging leaks in oil and gas wells and reclaiming \nabandoned mine land can create well-paying union jobs in coal, oil, and \ngas communities while restoring natural assets, revitalizing recreation econo-\nmies, and curbing methane emissions. In addition, such work should include \nefforts to turn properties idled in these communities, such as brownfields, \ninto new hubs for the growth of our economy. Federal agencies should \ntherefore coordinate investments and other efforts to assist coal, oil and \ngas, and power plant communities, and achieve substantial reductions of \nmethane emissions from the oil and gas sector as quickly as possible. \nSec. 218. Interagency Working Group on Coal and Power Plant Communities \nand Economic Revitalization. There is hereby established an Interagency \nWorking Group on Coal and Power Plant Communities and Economic Revital-\nization (Interagency Working Group). The National Climate Advisor and \nthe Assistant to the President for Economic Policy shall serve as Co-Chairs \nof the Interagency Working Group. \n(a) Membership. The Interagency Working Group shall consist of the fol-\nlowing additional members: \n(i) the Secretary of the Treasury; \n(ii) the Secretary of the Interior; \n(iii) the Secretary of Agriculture; \n(iv) the Secretary of Commerce; \n(v) the Secretary of Labor; \n(vi) the Secretary of Health and Human Services; \n(vii) the Secretary of Transportation; \n(viii) the Secretary of Energy; \n(ix) the Secretary of Education; \n(x) the Administrator of the Environmental Protection Agency; \n(xi) the Director of the Office of Management and Budget; \n(xii) the Assistant to the President for Domestic Policy and Director of \nthe Domestic Policy Council; and \n(xiii) the Federal Co-Chair of the Appalachian Regional Commission. \n(b) Mission and Work. \n(i) The Interagency Working Group shall coordinate the identification and \ndelivery of Federal resources to revitalize the economies of coal, oil and \ngas, and power plant communities; develop strategies to implement the \npolicy set forth in section 217 of this order and for economic and social \nrecovery; assess opportunities to ensure benefits and protections for coal \nand power plant workers; and submit reports to the National Climate \nAdvisor and the Assistant to the President for Economic Policy on a \nregular basis on the progress of the revitalization effort. \n(ii) As part of this effort, within 60 days of the date of this order, the \nInteragency Working Group shall submit a report to the President describ-\ning all mechanisms, consistent with applicable law, to prioritize \ngrantmaking, Federal loan programs, technical assistance, financing, pro-\ncurement, or other existing programs to support and revitalize the econo-\nmies of coal and power plant communities, and providing recommenda-\ntions for action consistent with the goals of the Interagency Working \nGroup. \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00010 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 11 of 15 ===\n7629 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \n(c) Consultation. Consistent with the objectives set out in this order and \nin accordance with applicable law, the Interagency Working Group shall \nseek the views of State, local, and Tribal officials; unions; environmental \njustice organizations; community groups; and other persons it identifies \nwho may have perspectives on the mission of the Interagency Working \nGroup. \n(d) Administration. The Interagency Working Group shall be housed within \nthe Department of Energy. The Chairs shall convene regular meetings of \nthe Interagency Working Group, determine its agenda, and direct its work. \nThe Secretary of Energy, in consultation with the Chairs, shall designate \nan Executive Director of the Interagency Working Group, who shall coordinate \nthe work of the Interagency Working Group and head any staff assigned \nto the Interagency Working Group. \n(e) Officers. To facilitate the work of the Interagency Working Group, \nthe head of each agency listed in subsection (a) of this section shall assign \na designated official within the agency the authority to represent the agency \non the Interagency Working Group and perform such other duties relating \nto the implementation of this order within the agency as the head of the \nagency deems appropriate. \nSECURING ENVIRONMENTAL JUSTICE AND SPURRING ECONOMIC OP-\nPORTUNITY \nSec. 219. Policy. To secure an equitable economic future, the United States \nmust ensure that environmental and economic justice are key considerations \nin how we govern. That means investing and building a clean energy econ-\nomy that creates well-paying union jobs, turning disadvantaged commu-\nnities—historically marginalized and overburdened—into healthy, thriving \ncommunities, and undertaking robust actions to mitigate climate change \nwhile preparing for the impacts of climate change across rural, urban, and \nTribal areas. Agencies shall make achieving environmental justice part of \ntheir missions by developing programs, policies, and activities to address \nthe disproportionately high and adverse human health, environmental, cli-\nmate-related and other cumulative impacts on disadvantaged communities, \nas well as the accompanying economic challenges of such impacts. It is \ntherefore the policy of my Administration to secure environmental justice \nand spur economic opportunity for disadvantaged communities that have \nbeen historically marginalized and overburdened by pollution and under-\ninvestment in housing, transportation, water and wastewater infrastructure, \nand health care. \nSec. 220. White House Environmental Justice Interagency Council. (a) Section \n1–102 of Executive Order 12898 of February 11, 1994 (Federal Actions \nTo Address Environmental Justice in Minority Populations and Low-Income \nPopulations), is hereby amended to read as follows: \n‘‘(a) There is hereby created within the Executive Office of the President \na White House Environmental Justice Interagency Council (Interagency Coun-\ncil). The Chair of the Council on Environmental Quality shall serve as \nChair of the Interagency Council. \n‘‘(b) Membership. The Interagency Council shall consist of the following \nadditional members: \n(i) the Secretary of Defense; \n(ii) the Attorney General; \n(iii) the Secretary of the Interior; \n(iv) the Secretary of Agriculture; \n(v) the Secretary of Commerce; \n(vi) the Secretary of Labor; \n(vii) the Secretary of Health and Human Services; \n(viii) the Secretary of Housing and Urban Development; \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00011 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 12 of 15 ===\n7630 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \n(ix) the Secretary of Transportation; \n(x) the Secretary of Energy; \n(xi) the Chair of the Council of Economic Advisers; \n(xii) the Administrator of the Environmental Protection Agency; \n(xiii) the Director of the Office of Management and Budget; \n(xiv) the Executive Director of the Federal Permitting Improvement Steering \nCouncil; \n(xv) the Director of the Office of Science and Technology Policy; \n(xvi) the National Climate Advisor; \n(xvii) the Assistant to the President for Domestic Policy; and \n(xviii) the Assistant to the President for Economic Policy. \n‘‘(c) At the direction of the Chair, the Interagency Council may establish \nsubgroups consisting exclusively of Interagency Council members or their \ndesignees under this section, as appropriate. \n‘‘(d) Mission and Work. The Interagency Council shall develop a strategy \nto address current and historic environmental injustice by consulting with \nthe White House Environmental Justice Advisory Council and with local \nenvironmental justice leaders. The Interagency Council shall also develop \nclear performance metrics to ensure accountability, and publish an annual \npublic performance scorecard on its implementation. \n‘‘(e) Administration. The Office of Administration within the Executive \nOffice of the President shall provide funding and administrative support \nfor the Interagency Council, to the extent permitted by law and within \nexisting appropriations. To the extent permitted by law, including the Econ-\nomy Act (31 U.S.C. 1535), and subject to the availability of appropriations, \nthe Department of Labor, the Department of Transportation, and the Environ-\nmental Protection Agency shall provide administrative support as necessary. \n‘‘(f) Meetings and Staff. The Chair shall convene regular meetings of the \nCouncil, determine its agenda, and direct its work. The Chair shall designate \nan Executive Director of the Council, who shall coordinate the work of \nthe Interagency Council and head any staff assigned to the Council. \n‘‘(g) Officers. To facilitate the work of the Interagency Council, the head \nof each agency listed in subsection (b) shall assign a designated official \nwithin the agency to be an Environmental Justice Officer, with the authority \nto represent the agency on the Interagency Council and perform such other \nduties relating to the implementation of this order within the agency as \nthe head of the agency deems appropriate.’’ \n(b) The Interagency Council shall, within 120 days of the date of this \norder, submit to the President, through the National Climate Advisor, a \nset of recommendations for further updating Executive Order 12898. \nSec. 221. White House Environmental Justice Advisory Council. There is \nhereby established, within the Environmental Protection Agency, the White \nHouse Environmental Justice Advisory Council (Advisory Council), which \nshall advise the Interagency Council and the Chair of the Council on Environ-\nmental Quality. \n(a) Membership. Members shall be appointed by the President, shall be \ndrawn from across the political spectrum, and may include those with \nknowledge about or experience in environmental justice, climate change, \ndisaster preparedness, racial inequity, or any other area determined by the \nPresident to be of value to the Advisory Council. \n(b) Mission and Work. The Advisory Council shall be solely advisory. \nIt shall provide recommendations to the White House Environmental Justice \nInteragency Council established in section 220 of this order on how to \nincrease the Federal Government’s efforts to address current and historic \nenvironmental injustice, including recommendations for updating Executive \nOrder 12898. \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00012 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 13 of 15 ===\n7631 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \n(c) Administration. The Environmental Protection Agency shall provide \nfunding and administrative support for the Advisory Council to the extent \npermitted by law and within existing appropriations. Members of the Advi-\nsory Council shall serve without either compensation or reimbursement \nof expenses. \n(d) Federal Advisory Committee Act. Insofar as the Federal Advisory Com-\nmittee Act, as amended (5 U.S.C. App.), may apply to the Advisory Council, \nany functions of the President under the Act, except for those in section \n6 of the Act, shall be performed by the Administrator of the Environmental \nProtection Agency in accordance with the guidelines that have been issued \nby the Administrator of General Services. \nSec. 222. Agency Responsibilities. In furtherance of the policy set forth \nin section 219: \n(a) The Chair of the Council on Environmental Quality shall, within 6 \nmonths of the date of this order, create a geospatial Climate and Economic \nJustice Screening Tool and shall annually publish interactive maps high-\nlighting disadvantaged communities. \n(b) The Administrator of the Environmental Protection Agency shall, within \nexisting appropriations and consistent with applicable law: \n(i) strengthen enforcement of environmental violations with dispropor-\ntionate impact on underserved communities through the Office of Enforce-\nment and Compliance Assurance; and \n(ii) create a community notification program to monitor and provide real- \ntime data to the public on current environmental pollution, including \nemissions, criteria pollutants, and toxins, in frontline and fenceline com-\nmunities—places with the most significant exposure to such pollution. \n(c) The Attorney General shall, within existing appropriations and con-\nsistent with applicable law: \n(i) consider renaming the Environment and Natural Resources Division \nthe Environmental Justice and Natural Resources Division; \n(ii) direct that division to coordinate with the Administrator of the Environ-\nmental Protection Agency, through the Office of Enforcement and Compli-\nance Assurance, as well as with other client agencies as appropriate, \nto develop a comprehensive environmental justice enforcement strategy, \nwhich shall seek to provide timely remedies for systemic environmental \nviolations and contaminations, and injury to natural resources; and \n(iii) ensure comprehensive attention to environmental justice throughout \nthe Department of Justice, including by considering creating an Office \nof Environmental Justice within the Department to coordinate environ-\nmental justice activities among Department of Justice components and \nUnited States Attorneys’ Offices nationwide. \n(d) The Secretary of Health and Human Services shall, consistent with \napplicable law and within existing appropriations: \n(i) establish an Office of Climate Change and Health Equity to address \nthe impact of climate change on the health of the American people; \nand \n(ii) establish an Interagency Working Group to Decrease Risk of Climate \nChange to Children, the Elderly, People with Disabilities, and the Vulner-\nable as well as a biennial Health Care System Readiness Advisory Council, \nboth of which shall report their progress and findings regularly to the \nTask Force. \n(e) The Director of the Office of Science and Technology Policy shall, \nin consultation with the National Climate Advisor, within existing appropria-\ntions, and within 100 days of the date of this order, publish a report \nidentifying the climate strategies and technologies that will result in the \nmost air and water quality improvements, which shall be made public \nto the maximum extent possible and published on the Office’s website. \nSec. 223. Justice40 Initiative. (a) Within 120 days of the date of this order, \nthe Chair of the Council on Environmental Quality, the Director of the \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00013 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 14 of 15 ===\n7632 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \nOffice of Management and Budget, and the National Climate Advisor, in \nconsultation with the Advisory Council, shall jointly publish recommenda-\ntions on how certain Federal investments might be made toward a goal \nthat 40 percent of the overall benefits flow to disadvantaged communities. \nThe recommendations shall focus on investments in the areas of clean \nenergy and energy efficiency; clean transit; affordable and sustainable hous-\ning; training and workforce development; the remediation and reduction \nof legacy pollution; and the development of critical clean water infrastructure. \nThe recommendations shall reflect existing authorities the agencies may \npossess for achieving the 40-percent goal as well as recommendations on \nany legislation needed to achieve the 40-percent goal. \n(b) In developing the recommendations, the Chair of the Council on Envi-\nronmental Quality, the Director of the Office of Management and Budget, \nand the National Climate Advisor shall consult with affected disadvantaged \ncommunities. \n(c) Within 60 days of the recommendations described in subsection (a) \nof this section, agency heads shall identify applicable program investment \nfunds based on the recommendations and consider interim investment guid-\nance to relevant program staff, as appropriate and consistent with applicable \nlaw. \n(d) By February 2022, the Director of the Office of Management and \nBudget, in coordination with the Chair of the Council on Environmental \nQuality, the Administrator of the United States Digital Service, and other \nrelevant agency heads, shall, to the extent consistent with applicable law, \npublish on a public website an annual Environmental Justice Scorecard \ndetailing agency environmental justice performance measures. \nPART III—GENERAL PROVISIONS \nSec. 301. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget, \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00014 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\n=== PDF page 15 of 15 ===\n7633 Federal Register / Vol. 86, No. 19 / Monday, February 1, 2021 / Presidential Documents \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nJanuary 27, 2021. \n[FR Doc. 2021–02177 \nFiled 1–29–21; 8:45 am] \nBilling code 3295–F1–P \nVerDate Sep<11>2014 15:53 Jan 29, 2021 Jkt 253001 PO 00000 Frm 00015 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01FEE1.SGM 01FEE1\nBIDEN.EPS</GPH>"
     },
-    "TERM:EO:14008:06a397dac65d7ca3@28285c9fe9521341": {
-      "actor_id": "EO:14008",
-      "char_end": 54120,
-      "char_start": 53817,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14008:06a397dac65d7ca3@28285c9fe9521341",
-      "instrument_id": "EO:14008",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14008#sec223-c",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14008",
-        "page_or_item": "86 FR 7619, PDF pages 1-15",
-        "requires_page_check": false,
-        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
-        "signing_date": "2021-01-27",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14008-97784c3947.txt",
-        "text_sha256": "28285c9fe9521341f954d2f6a40e27cd432c48a82e8678c5ee02001eb5c7c482",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(c) Within 60 days of the recommendations described in subsection (a) \nof this section, agency heads shall identify applicable program investment \nfunds based on the recommendations and consider interim investment guid-\nance to relevant program staff, as appropriate and consistent with applicable \nlaw."
-    },
     "TERM:EO:14008:06a397dac65d7ca3@424cb4ffb2237075": {
       "actor_id": "EO:14008",
       "char_end": 54731,
@@ -9267,37 +9318,6 @@
       "stated_end_date": null,
       "text": "(c) Within 60 days of the recommendations described in subsection (a) \nof this section, agency heads shall identify applicable program investment \nfunds based on the recommendations and consider interim investment guid-\nance to relevant program staff, as appropriate and consistent with applicable \nlaw."
     },
-    "TERM:EO:14008:0b74163d624d8967@28285c9fe9521341": {
-      "actor_id": "EO:14008",
-      "char_end": 36073,
-      "char_start": 35918,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14008:0b74163d624d8967@28285c9fe9521341",
-      "instrument_id": "EO:14008",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14008#sec216-i-ii-dup2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14008",
-        "page_or_item": "86 FR 7619, PDF pages 1-15",
-        "requires_page_check": false,
-        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
-        "signing_date": "2021-01-27",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14008-97784c3947.txt",
-        "text_sha256": "28285c9fe9521341f954d2f6a40e27cd432c48a82e8678c5ee02001eb5c7c482",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(ii) submit to the Task Force within 90 days of the date of this order \na report making recommendations for an agricultural and forestry climate \nstrategy."
-    },
     "TERM:EO:14008:0b74163d624d8967@424cb4ffb2237075": {
       "actor_id": "EO:14008",
       "char_end": 36684,
@@ -9326,37 +9346,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(ii) submit to the Task Force within 90 days of the date of this order \na report making recommendations for an agricultural and forestry climate \nstrategy."
-    },
-    "TERM:EO:14008:145447e29d5781b9@28285c9fe9521341": {
-      "actor_id": "EO:14008",
-      "char_end": 47431,
-      "char_start": 47220,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14008:145447e29d5781b9@28285c9fe9521341",
-      "instrument_id": "EO:14008",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14008#sec220-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14008",
-        "page_or_item": "86 FR 7619, PDF pages 1-15",
-        "requires_page_check": false,
-        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
-        "signing_date": "2021-01-27",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14008-97784c3947.txt",
-        "text_sha256": "28285c9fe9521341f954d2f6a40e27cd432c48a82e8678c5ee02001eb5c7c482",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) The Interagency Council shall, within 120 days of the date of this \norder, submit to the President, through the National Climate Advisor, a \nset of recommendations for further updating Executive Order 12898."
     },
     "TERM:EO:14008:145447e29d5781b9@424cb4ffb2237075": {
       "actor_id": "EO:14008",
@@ -9489,37 +9478,6 @@
       "stated_end_date": null,
       "text": "(ii) submit to the Task Force within 90 days of the date of this order a report making recommendations for an agricultural and forestry climate strategy."
     },
-    "TERM:EO:14008:2a463e414cd6ecb4@28285c9fe9521341": {
-      "actor_id": "EO:14008",
-      "char_end": 52398,
-      "char_start": 51961,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14008:2a463e414cd6ecb4@28285c9fe9521341",
-      "instrument_id": "EO:14008",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14008#sec222-e",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14008",
-        "page_or_item": "86 FR 7619, PDF pages 1-15",
-        "requires_page_check": false,
-        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
-        "signing_date": "2021-01-27",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14008-97784c3947.txt",
-        "text_sha256": "28285c9fe9521341f954d2f6a40e27cd432c48a82e8678c5ee02001eb5c7c482",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(e) The Director of the Office of Science and Technology Policy shall, \nin consultation with the National Climate Advisor, within existing appropria-\ntions, and within 100 days of the date of this order, publish a report \nidentifying the climate strategies and technologies that will result in the \nmost air and water quality improvements, which shall be made public \nto the maximum extent possible and published on the Office’s website."
-    },
     "TERM:EO:14008:2a463e414cd6ecb4@424cb4ffb2237075": {
       "actor_id": "EO:14008",
       "char_end": 53009,
@@ -9617,37 +9575,6 @@
       "stated_end_date": null,
       "text": "(e) The Director of the Office of Science and Technology Policy shall, in consultation with the National Climate Advisor, within existing appropriations, and within 100 days of the date of this order, publish a report identifying the climate strategies and technologies that will result in the most air and water quality improvements, which shall be made public to the maximum extent possible and published on the Office's website."
     },
-    "TERM:EO:14008:56bfe96d1f13a22c@28285c9fe9521341": {
-      "actor_id": "EO:14008",
-      "char_end": 16072,
-      "char_start": 15817,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14008:56bfe96d1f13a22c@28285c9fe9521341",
-      "instrument_id": "EO:14008",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14008#sec202",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14008",
-        "page_or_item": "86 FR 7619, PDF pages 1-15",
-        "requires_page_check": false,
-        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
-        "signing_date": "2021-01-27",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14008-97784c3947.txt",
-        "text_sha256": "28285c9fe9521341f954d2f6a40e27cd432c48a82e8678c5ee02001eb5c7c482",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The Climate Policy Office shall have such staff and other \nassistance as may be necessary to carry out the provisions of this order, \nsubject to the availability of appropriations, and may work with established \nor ad hoc committees or interagency groups."
-    },
     "TERM:EO:14008:56bfe96d1f13a22c@424cb4ffb2237075": {
       "actor_id": "EO:14008",
       "char_end": 16683,
@@ -9676,6 +9603,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The Climate Policy Office shall have such staff and other \nassistance as may be necessary to carry out the provisions of this order, \nsubject to the availability of appropriations, and may work with established \nor ad hoc committees or interagency groups."
+    },
+    "TERM:EO:14008:61e381627bbd9273@f34f2656d1f229e8": {
+      "actor_id": "EO:14008",
+      "char_end": 38259,
+      "char_start": 37752,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14008:61e381627bbd9273@f34f2656d1f229e8",
+      "instrument_id": "EO:14008",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14008#sec218-i-ii-dup2",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14008",
+        "page_or_item": "86 FR 7619-7633 (PDF pp. 1-15)",
+        "requires_page_check": false,
+        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
+        "signing_date": "2021-01-27",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14008-97784c3947.txt",
+        "text_sha256": "f34f2656d1f229e8dae2fcbc19a75a6912720f343d7cf02026276527aeb68187",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(ii) As part of this effort, within 60 days of the date of this order, the\nInteragency Working Group shall submit a report to the President describ-\ning all mechanisms, consistent with applicable law, to prioritize\ngrantmaking, Federal loan programs, technical assistance, financing, pro-\ncurement, or other existing programs to support and revitalize the econo-\nmies of coal and power plant communities, and providing recommenda-\ntions for action consistent with the goals of the Interagency Working\nGroup."
     },
     "TERM:EO:14008:644615d66e9fb35b@675e35754fe484a3": {
       "actor_id": "EO:14008",
@@ -9711,6 +9669,37 @@
       "stated_end_date": null,
       "text": "(a) The Secretary of the Interior, in consultation with the Secretary of Agriculture, the Secretary of Commerce, the Chair of the Council on Environmental Quality, and the heads of other relevant agencies, shall submit a report to the Task Force within 90 days of the date of this order recommending steps that the United States should take, working with State, local, Tribal, and territorial governments, agricultural and forest landowners, fishermen, and other key stakeholders, to achieve the goal of conserving at least 30 percent of our lands and waters by 2030."
     },
+    "TERM:EO:14008:6a831e5546a8164e@f34f2656d1f229e8": {
+      "actor_id": "EO:14008",
+      "char_end": 15176,
+      "char_start": 14924,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14008:6a831e5546a8164e@f34f2656d1f229e8",
+      "instrument_id": "EO:14008",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14008#sec202",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14008",
+        "page_or_item": "86 FR 7619-7633 (PDF pp. 1-15)",
+        "requires_page_check": false,
+        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
+        "signing_date": "2021-01-27",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14008-97784c3947.txt",
+        "text_sha256": "f34f2656d1f229e8dae2fcbc19a75a6912720f343d7cf02026276527aeb68187",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The Climate Policy Office shall have such staff and other\nassistance as may be necessary to carry out the provisions of this order,\nsubject to the availability of appropriations, and may work with established\nor ad hoc committees or interagency groups."
+    },
     "TERM:EO:14008:8190ec930dea47c4@675e35754fe484a3": {
       "actor_id": "EO:14008",
       "char_end": 51217,
@@ -9745,36 +9734,36 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     },
-    "TERM:EO:14008:900998143c86a5b5@28285c9fe9521341": {
+    "TERM:EO:14008:821766290986d25a@f34f2656d1f229e8": {
       "actor_id": "EO:14008",
-      "char_end": 34419,
-      "char_start": 33842,
+      "char_end": 50417,
+      "char_start": 50117,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14008:900998143c86a5b5@28285c9fe9521341",
+      "id": "TERM:EO:14008:821766290986d25a@f34f2656d1f229e8",
       "instrument_id": "EO:14008",
       "kind": "report_deadline",
       "mechanism": "own_terms_report_deadline",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14008#sec216",
+      "scope_id": "EO:14008#sec223-c",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14008",
-        "page_or_item": "86 FR 7619, PDF pages 1-15",
+        "page_or_item": "86 FR 7619-7633 (PDF pp. 1-15)",
         "requires_page_check": false,
         "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
         "signing_date": "2021-01-27",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14008-97784c3947.txt",
-        "text_sha256": "28285c9fe9521341f954d2f6a40e27cd432c48a82e8678c5ee02001eb5c7c482",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14008-97784c3947.txt",
+        "text_sha256": "f34f2656d1f229e8dae2fcbc19a75a6912720f343d7cf02026276527aeb68187",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(a) The Secretary \nof the Interior, in consultation with the Secretary of Agriculture, the Secretary \nof Commerce, the Chair of the Council on Environmental Quality, and the \nheads of other relevant agencies, shall submit a report to the Task Force \nwithin 90 days of the date of this order recommending steps that the United \nStates should take, working with State, local, Tribal, and territorial govern-\nments, agricultural and forest landowners, fishermen, and other key stake-\nholders, to achieve the goal of conserving at least 30 percent of our lands \nand waters by 2030."
+      "text": "(c) Within 60 days of the recommendations described in subsection (a)\nof this section, agency heads shall identify applicable program investment\nfunds based on the recommendations and consider interim investment guid-\nance to relevant program staff, as appropriate and consistent with applicable\nlaw."
     },
     "TERM:EO:14008:900998143c86a5b5@424cb4ffb2237075": {
       "actor_id": "EO:14008",
@@ -9805,36 +9794,67 @@
       "stated_end_date": null,
       "text": "(a) The Secretary \nof the Interior, in consultation with the Secretary of Agriculture, the Secretary \nof Commerce, the Chair of the Council on Environmental Quality, and the \nheads of other relevant agencies, shall submit a report to the Task Force \nwithin 90 days of the date of this order recommending steps that the United \nStates should take, working with State, local, Tribal, and territorial govern-\nments, agricultural and forest landowners, fishermen, and other key stake-\nholders, to achieve the goal of conserving at least 30 percent of our lands \nand waters by 2030."
     },
-    "TERM:EO:14008:aabfe937b104813a@28285c9fe9521341": {
+    "TERM:EO:14008:93e9f2c07bdfdfdc@f34f2656d1f229e8": {
       "actor_id": "EO:14008",
-      "char_end": 40860,
-      "char_start": 40350,
+      "char_end": 33767,
+      "char_start": 33614,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14008:aabfe937b104813a@28285c9fe9521341",
+      "id": "TERM:EO:14008:93e9f2c07bdfdfdc@f34f2656d1f229e8",
       "instrument_id": "EO:14008",
       "kind": "report_deadline",
       "mechanism": "own_terms_report_deadline",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14008#sec218-i-ii-dup2",
+      "scope_id": "EO:14008#sec216-i-ii-dup2",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14008",
-        "page_or_item": "86 FR 7619, PDF pages 1-15",
+        "page_or_item": "86 FR 7619-7633 (PDF pp. 1-15)",
         "requires_page_check": false,
         "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
         "signing_date": "2021-01-27",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14008-97784c3947.txt",
-        "text_sha256": "28285c9fe9521341f954d2f6a40e27cd432c48a82e8678c5ee02001eb5c7c482",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14008-97784c3947.txt",
+        "text_sha256": "f34f2656d1f229e8dae2fcbc19a75a6912720f343d7cf02026276527aeb68187",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(ii) As part of this effort, within 60 days of the date of this order, the \nInteragency Working Group shall submit a report to the President describ-\ning all mechanisms, consistent with applicable law, to prioritize \ngrantmaking, Federal loan programs, technical assistance, financing, pro-\ncurement, or other existing programs to support and revitalize the econo-\nmies of coal and power plant communities, and providing recommenda-\ntions for action consistent with the goals of the Interagency Working \nGroup."
+      "text": "(ii) submit to the Task Force within 90 days of the date of this order\na report making recommendations for an agricultural and forestry climate\nstrategy."
+    },
+    "TERM:EO:14008:a736d8ed4700a858@f34f2656d1f229e8": {
+      "actor_id": "EO:14008",
+      "char_end": 43380,
+      "char_start": 43074,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14008:a736d8ed4700a858@f34f2656d1f229e8",
+      "instrument_id": "EO:14008",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14008#sec220-x-xviii",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14008",
+        "page_or_item": "86 FR 7619-7633 (PDF pp. 1-15)",
+        "requires_page_check": false,
+        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
+        "signing_date": "2021-01-27",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14008-97784c3947.txt",
+        "text_sha256": "f34f2656d1f229e8dae2fcbc19a75a6912720f343d7cf02026276527aeb68187",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "To the extent permitted by law, including the Econ-\nomy Act (31 U.S.C. 1535), and subject to the availability of appropriations,\nthe Department of Labor, the Department of Transportation, and the Environ-\nmental Protection Agency shall provide administrative support as necessary.\n‘‘(f) Meetings and Staff."
     },
     "TERM:EO:14008:aabfe937b104813a@424cb4ffb2237075": {
       "actor_id": "EO:14008",
@@ -9865,36 +9885,67 @@
       "stated_end_date": null,
       "text": "(ii) As part of this effort, within 60 days of the date of this order, the \nInteragency Working Group shall submit a report to the President describ-\ning all mechanisms, consistent with applicable law, to prioritize \ngrantmaking, Federal loan programs, technical assistance, financing, pro-\ncurement, or other existing programs to support and revitalize the econo-\nmies of coal and power plant communities, and providing recommenda-\ntions for action consistent with the goals of the Interagency Working \nGroup."
     },
-    "TERM:EO:14008:c0a222a69aedf2dc@28285c9fe9521341": {
+    "TERM:EO:14008:b8b4f7880978162c@f34f2656d1f229e8": {
       "actor_id": "EO:14008",
-      "char_end": 55041,
-      "char_start": 54923,
+      "char_end": 48947,
+      "char_start": 48514,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14008:c0a222a69aedf2dc@28285c9fe9521341",
+      "id": "TERM:EO:14008:b8b4f7880978162c@f34f2656d1f229e8",
       "instrument_id": "EO:14008",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14008#sec301-b",
+      "scope_id": "EO:14008#sec222-e",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14008",
-        "page_or_item": "86 FR 7619, PDF pages 1-15",
+        "page_or_item": "86 FR 7619-7633 (PDF pp. 1-15)",
         "requires_page_check": false,
         "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
         "signing_date": "2021-01-27",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14008-97784c3947.txt",
-        "text_sha256": "28285c9fe9521341f954d2f6a40e27cd432c48a82e8678c5ee02001eb5c7c482",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14008-97784c3947.txt",
+        "text_sha256": "f34f2656d1f229e8dae2fcbc19a75a6912720f343d7cf02026276527aeb68187",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
+      "text": "(e) The Director of the Office of Science and Technology Policy shall,\nin consultation with the National Climate Advisor, within existing appropria-\ntions, and within 100 days of the date of this order, publish a report\nidentifying the climate strategies and technologies that will result in the\nmost air and water quality improvements, which shall be made public\nto the maximum extent possible and published on the Office’s website."
+    },
+    "TERM:EO:14008:be7bac5e7915dc04@f34f2656d1f229e8": {
+      "actor_id": "EO:14008",
+      "char_end": 44274,
+      "char_start": 44065,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14008:be7bac5e7915dc04@f34f2656d1f229e8",
+      "instrument_id": "EO:14008",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14008#sec220-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14008",
+        "page_or_item": "86 FR 7619-7633 (PDF pp. 1-15)",
+        "requires_page_check": false,
+        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
+        "signing_date": "2021-01-27",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14008-97784c3947.txt",
+        "text_sha256": "f34f2656d1f229e8dae2fcbc19a75a6912720f343d7cf02026276527aeb68187",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) The Interagency Council shall, within 120 days of the date of this\norder, submit to the President, through the National Climate Advisor, a\nset of recommendations for further updating Executive Order 12898."
     },
     "TERM:EO:14008:c0a222a69aedf2dc@424cb4ffb2237075": {
       "actor_id": "EO:14008",
@@ -9924,6 +9975,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
+    },
+    "TERM:EO:14008:c2297c8f39d34a8e@f34f2656d1f229e8": {
+      "actor_id": "EO:14008",
+      "char_end": 51323,
+      "char_start": 51206,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14008:c2297c8f39d34a8e@f34f2656d1f229e8",
+      "instrument_id": "EO:14008",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14008#sec301-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14008",
+        "page_or_item": "86 FR 7619-7633 (PDF pp. 1-15)",
+        "requires_page_check": false,
+        "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
+        "signing_date": "2021-01-27",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14008-97784c3947.txt",
+        "text_sha256": "f34f2656d1f229e8dae2fcbc19a75a6912720f343d7cf02026276527aeb68187",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     },
     "TERM:EO:14008:c2e93c4dd7842bd3@675e35754fe484a3": {
       "actor_id": "EO:14008",
@@ -9959,36 +10041,36 @@
       "stated_end_date": null,
       "text": "(c) Within 60 days of the recommendations described in subsection (a) of this section, agency heads shall identify applicable program investment funds based on the recommendations and consider interim investment guidance to relevant program staff, as appropriate and consistent with applicable law."
     },
-    "TERM:EO:14008:efc9d7c9ca444cd2@28285c9fe9521341": {
+    "TERM:EO:14008:caa30a4b953d9100@f34f2656d1f229e8": {
       "actor_id": "EO:14008",
-      "char_end": 46525,
-      "char_start": 46217,
+      "char_end": 32137,
+      "char_start": 31566,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14008:efc9d7c9ca444cd2@28285c9fe9521341",
+      "id": "TERM:EO:14008:caa30a4b953d9100@f34f2656d1f229e8",
       "instrument_id": "EO:14008",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14008#sec220-x-xviii",
+      "scope_id": "EO:14008#sec216",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14008",
-        "page_or_item": "86 FR 7619, PDF pages 1-15",
+        "page_or_item": "86 FR 7619-7633 (PDF pp. 1-15)",
         "requires_page_check": false,
         "sha256": "97784c394729629ea685403c55a66ba42e913d59fa521dea887d8d5c8b02dc5f",
         "signing_date": "2021-01-27",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14008-97784c3947.txt",
-        "text_sha256": "28285c9fe9521341f954d2f6a40e27cd432c48a82e8678c5ee02001eb5c7c482",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14008-97784c3947.txt",
+        "text_sha256": "f34f2656d1f229e8dae2fcbc19a75a6912720f343d7cf02026276527aeb68187",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-02-01/pdf/2021-02177.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "To the extent permitted by law, including the Econ-\nomy Act (31 U.S.C. 1535), and subject to the availability of appropriations, \nthe Department of Labor, the Department of Transportation, and the Environ-\nmental Protection Agency shall provide administrative support as necessary. \n‘‘(f) Meetings and Staff."
+      "text": "(a) The Secretary\nof the Interior, in consultation with the Secretary of Agriculture, the Secretary\nof Commerce, the Chair of the Council on Environmental Quality, and the\nheads of other relevant agencies, shall submit a report to the Task Force\nwithin 90 days of the date of this order recommending steps that the United\nStates should take, working with State, local, Tribal, and territorial govern-\nments, agricultural and forest landowners, fishermen, and other key stake-\nholders, to achieve the goal of conserving at least 30 percent of our lands\nand waters by 2030."
     },
     "TERM:EO:14008:efc9d7c9ca444cd2@424cb4ffb2237075": {
       "actor_id": "EO:14008",
@@ -10054,7 +10136,7 @@
       "text": "To the extent permitted by law, including the Economy Act (31 U.S.C. 1535), and subject to the availability of appropriations, the Department of Labor, the Department of Transportation, and the Environmental Protection Agency shall provide administrative support as necessary."
     }
   },
-  "fingerprint": "c5f3bcf219062477d97c864253b29658ddc89dac5024fb5118f9a79399392776",
+  "fingerprint": "5caf6a6c6ff9f8d9416d93e41fccb79865bf59dc58d2dd203d4a5c5d3c211797",
   "instrument_id": "EO:14008",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -10607,7 +10689,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14008:56bfe96d1f13a22c@424cb4ffb2237075",
         "TERM:EO:14008:1ad8505b55a3c6e1@675e35754fe484a3",
-        "TERM:EO:14008:56bfe96d1f13a22c@28285c9fe9521341"
+        "TERM:EO:14008:6a831e5546a8164e@f34f2656d1f229e8"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -11543,7 +11625,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14008:900998143c86a5b5@424cb4ffb2237075",
         "TERM:EO:14008:644615d66e9fb35b@675e35754fe484a3",
-        "TERM:EO:14008:900998143c86a5b5@28285c9fe9521341"
+        "TERM:EO:14008:caa30a4b953d9100@f34f2656d1f229e8"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -11652,7 +11734,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14008:0b74163d624d8967@424cb4ffb2237075",
         "TERM:EO:14008:2933db5151d47bbc@675e35754fe484a3",
-        "TERM:EO:14008:0b74163d624d8967@28285c9fe9521341"
+        "TERM:EO:14008:93e9f2c07bdfdfdc@f34f2656d1f229e8"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -12040,7 +12122,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14008:aabfe937b104813a@424cb4ffb2237075",
         "TERM:EO:14008:1d2063d2901b0750@675e35754fe484a3",
-        "TERM:EO:14008:aabfe937b104813a@28285c9fe9521341"
+        "TERM:EO:14008:61e381627bbd9273@f34f2656d1f229e8"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -12486,7 +12568,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14008:efc9d7c9ca444cd2@424cb4ffb2237075",
         "TERM:EO:14008:f3edb663c7548ac5@675e35754fe484a3",
-        "TERM:EO:14008:efc9d7c9ca444cd2@28285c9fe9521341"
+        "TERM:EO:14008:a736d8ed4700a858@f34f2656d1f229e8"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -12511,7 +12593,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14008:145447e29d5781b9@424cb4ffb2237075",
         "TERM:EO:14008:2c73bf128aafc537@675e35754fe484a3",
-        "TERM:EO:14008:145447e29d5781b9@28285c9fe9521341"
+        "TERM:EO:14008:be7bac5e7915dc04@f34f2656d1f229e8"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -12870,7 +12952,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14008:2a463e414cd6ecb4@424cb4ffb2237075",
         "TERM:EO:14008:4199e4f5ab4a9d80@675e35754fe484a3",
-        "TERM:EO:14008:2a463e414cd6ecb4@28285c9fe9521341"
+        "TERM:EO:14008:b8b4f7880978162c@f34f2656d1f229e8"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -12938,7 +13020,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14008:06a397dac65d7ca3@424cb4ffb2237075",
         "TERM:EO:14008:c2e93c4dd7842bd3@675e35754fe484a3",
-        "TERM:EO:14008:06a397dac65d7ca3@28285c9fe9521341"
+        "TERM:EO:14008:821766290986d25a@f34f2656d1f229e8"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -13041,7 +13123,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14008:c0a222a69aedf2dc@424cb4ffb2237075",
         "TERM:EO:14008:8190ec930dea47c4@675e35754fe484a3",
-        "TERM:EO:14008:c0a222a69aedf2dc@28285c9fe9521341"
+        "TERM:EO:14008:c2297c8f39d34a8e@f34f2656d1f229e8"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -13078,7 +13160,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -13090,7 +13172,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -13102,8 +13184,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -13115,10 +13197,11 @@
   "missing": [
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
-    "cited by number, no change provision located: EO:14048",
+    "target provision not located: EO:10654",
     "target provision not located: EO:14005",
     "target provision not located: EO:14027",
     "target provision not located: EO:14030",
+    "target provision not located: EO:14048",
     "target provision not located: EO:14057",
     "target provision not located: EO:14091",
     "target provision not located: EO:14096",
@@ -13146,23 +13229,23 @@
     "TERM:EO:14008:4199e4f5ab4a9d80@675e35754fe484a3",
     "TERM:EO:14008:c2e93c4dd7842bd3@675e35754fe484a3",
     "TERM:EO:14008:8190ec930dea47c4@675e35754fe484a3",
-    "TERM:EO:14008:56bfe96d1f13a22c@28285c9fe9521341",
-    "TERM:EO:14008:900998143c86a5b5@28285c9fe9521341",
-    "TERM:EO:14008:0b74163d624d8967@28285c9fe9521341",
-    "TERM:EO:14008:aabfe937b104813a@28285c9fe9521341",
-    "TERM:EO:14008:efc9d7c9ca444cd2@28285c9fe9521341",
-    "TERM:EO:14008:145447e29d5781b9@28285c9fe9521341",
-    "TERM:EO:14008:2a463e414cd6ecb4@28285c9fe9521341",
-    "TERM:EO:14008:06a397dac65d7ca3@28285c9fe9521341",
-    "TERM:EO:14008:c0a222a69aedf2dc@28285c9fe9521341"
+    "TERM:EO:14008:6a831e5546a8164e@f34f2656d1f229e8",
+    "TERM:EO:14008:caa30a4b953d9100@f34f2656d1f229e8",
+    "TERM:EO:14008:93e9f2c07bdfdfdc@f34f2656d1f229e8",
+    "TERM:EO:14008:61e381627bbd9273@f34f2656d1f229e8",
+    "TERM:EO:14008:a736d8ed4700a858@f34f2656d1f229e8",
+    "TERM:EO:14008:be7bac5e7915dc04@f34f2656d1f229e8",
+    "TERM:EO:14008:b8b4f7880978162c@f34f2656d1f229e8",
+    "TERM:EO:14008:821766290986d25a@f34f2656d1f229e8",
+    "TERM:EO:14008:c2297c8f39d34a8e@f34f2656d1f229e8"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 10,
-    "fingerprint": "82a8db248e051d753dc6b9d0058c5f68f744aca34b4be16cdd856bd971d32a5d",
+    "fingerprint": "62c820b69d68357669c181d9b09b054ddad9d3e396876cbad62980055a1b6460",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14008.json",
-    "history_sha256": "bdf0d88553df212cc88a3b2c3bca45f56b5a39035b6a0dd9f50675aa41d27b3f",
+    "history_sha256": "2bcbd6275ce47cfe506f0b4851e3f9eef19b69af9a23f26eec00c58c43171172",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:12523",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12523"
@@ -36,7 +36,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 15 U.S.C. 631 note"
+      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 15 U.S.C. 631 note; USC 15 U.S.C. 631 nt"
     },
     {
       "code": "NO_ORDER_IN_FORCE_ON_1989_01_20",
@@ -67,6 +67,39 @@
       "where": "USC 15 U.S.C. 631 note"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12523",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 15 U.S.C. 631 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1654",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "15 U.S.C. 631 note",
+        "member_sha256": "d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7",
+        "note_id": "id44ad00eb-c885-11f1-ae10-9f55152e2dd2",
+        "note_text_sha256": "06c7c2d8b40a17d3ca01e6c364fddded477c6805e12bc5f2976e223e815330c8",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id44ad00eb-c885-11f1-ae10-9f55152e2dd2"
+      },
+      "row_span": "180275-180369",
+      "snippet": "1985 June 27 | EO 12523 | 15 U.S.C. 631 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 15 U.S.C. 631 nt"
+    },
+    {
       "custody_records_in": [
         "current-law"
       ],
@@ -92,6 +125,34 @@
           "page_or_item": "15 U.S.C. 631 note; note 'Ex. Ord. No. 12523. National White House Conference on Small Business' [USLM note id id44ad00eb-c885-11f1-ae10-9f55152e2dd2]; usc15.xml (sha256 d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1654",
+        "snippet": "1985 June 27 | EO 12523 | 15 U.S.C. 631 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 15 U.S.C. 631 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 15 U.S.C. 631 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -141,7 +202,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 15 U.S.C. 631 note",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 15 U.S.C. 631 note; USC 15 U.S.C. 631 nt",
     "CONFLICT NO_ORDER_IN_FORCE_ON_1989_01_20: provisional NO, but the OFR 1989 Codification prints it as in force on 1989-01-20 (OFR Codification 1989, chapter 13 (Business Credit and Assistance)) and no ending candidate is dated after that day"
   ],
   "evidence": {
@@ -193,7 +254,7 @@
       "text": "Instrument: EO:12523\nSource: https://www.govinfo.gov/content/pkg/FR-1985-07-01/pdf/FR-1985-07-01.pdf\nSHA-256 of the downloaded file: b28923f6d2171d8e231986339e4dd0f6917ef5f6e0f706ff612e11c1ac49d195\nLocation: 50 FR 26963, PDF pages 9-11 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 250 ===\nFederal Register / Vol. 50, No. 126 / Monday, July 1,1985 / Presidential Documents 26 9 6 3\n[FR Doc. 85-15872 \nFiled 6-28-85; 10:41 am] \nBilling code 3195-01-M\nPresidential Documents\nExecutive Order 12523 of June 27, 1985\nN ational W hite H ouse C on ference on Sm all B usiness\nBy the authority vested in me as President by the Constitution and laws of the  \nUnited States of America, and in order to implement the White House  \nConference on Small Business Authorization Act (Public Law 98-276), it is  \nhereby ordered as follows:\nNotwithstanding the provisions of any other Executive order, the functions of  \nthe President under the Federal Advisory Committee Act applicable to the  \nWhite House Conference on Small Business Authorization Act, except that of  \nreporting annually to the Congress, shall be performed by the Administrator of  \nthe Small Business Administration in accordance with the guidelines and  \nprocedures established by the Administrator of General Services.\nTHE WHITE HOUSE,  \nJu n e  27, 1985.\n\n=== PDF page 10 of 250 ===\n.\n\n=== PDF page 11 of 250 ===\nRules and Regulations Federal Register  \nVoi. 50, No. 126 \nMonday, July 1, 1985\n26965\nThis section of the FEDERAL REGISTER \ncontains regulatory documents having \ngeneral applicability and legal effect, most \no f which are keyed to and codified in \nthe Code of Federal Regulations, which is \npublished under 50 titles pursuant to 44 \nU.S.C. 1510.\nThe Code of Federal Regulations is sold \nby the Superintendent of Documents.\nPrices of new books are listed in the \nfirs t FEDERAL REGISTER issue of each \nw eek.\nOFFICE OF PERSONNEL  \nMANAGEMENT\n5 CFR Part 771\nAgency Administrative Grievance  \nSystem\na g e n c y: Office of Personnel\nManagement.\na c t io n: Final rule.\ns u m m a r y: This amendment to OPM \nregulations clarifies the meaning of one \nof the regulatory exclusions of subject \nmatter from coverage under the agency \nadministrative grievance system. The \naffected exclusion concerns \nnonselection for promotion from a group \nof properly ranked and certified \ncandidates, and as amended, also \nexcludes decisions not to promote an \nemployee noncompetitively.\nEFFECTIVE DATE: July 31,1985.\nFOR FURTHER INFORMATION CONTACT: \nGary D. Wahlert; Office of Employee, \nLabor and Agency Relations: (202) 653- \n8557.\nSUPPLEMENTARY INFORMATION: OPM \nproposed this amendment with a 60-day \ncomment period in 49 FR 28721 on July\n1 6 ,1984. Responses were received from \n9 agencies, 3 labor organizations, and 1 \nindividual.\nThe great majority of the commenters \nstrongly endorsed the change and said \nthat the amendment should be \nimplemented as written. Many agency \ncomments contained such phrases as \n“very much endorse,” “fully endorse,” \nand “strongly concurs.” One agency \ncommenter agreed with the proposed \namendment but recommended that OPM \ngo further and add a new exclusion that \nhad not been proposed. OPM did not \nadopt this recommendation.\nThe labor organizations that \ncommented generally argued that the \nagency administrative grievance system\nshould be a broad forum available to \nemployees on the full scope of \ndisputable matters and, therefore, \nshould not exclude decisions on \nnoncompetitive promotions. In addition, \none of the unions expressed the view \nthat career ladder promotions (which \nthey noted are acquired through \ncompetitive staffing procedures) are \n“conditions of employment\" which \nshould be recognized by the agency as \nentitling the employee to the training, \ncounseling, etc. necessary for the \nemployee to advance steadily through \nthe applicable grade structure. They \nfurther argued that bargaining unit \nemployees and their unions are allowed \nby statute to grieve changes in \nconditions of employment, and that the \nregulation would circumvent that right.\nHowever, OPM continues to believe \nthat nonselection for promotion, \nwhether it concerns a competitive or a \nnoncompetitive circumstance, is a \ndecision which is not subject to \nadministrative grievance system review. \nIn addition, OPM does not agree that \nselection for a career ladder position \nestablishes a \"condition of \nemployment.” With respect to \nbargaining unit employees' statutory \nright to grieve changes in conditions of \nemployment, we note that these \nregulations, which concern the agency \nadministrative grievance system, would \nnot, except in unusual circumstances, \napply to or affect bargaining unit \nemployees. Finally, althought the \nnonselection decision (or lack of \ndecision) is not grievable under the \nagency administrative grievance system, \nemployees may be able to grieve related \nmatters they believe affect their \nopportunities to be considered for \npromotions.\nTherefore, OPM is amending its \nregualtions by adding language that \nexcludes grievances over management \ndecisions not to promote an employee \nnoncompetitively. As amended, the \nexclusion applies to any noncompetitive \npromotion decision (or lack of decision), \nincluding decisions not to promote an \nemployee occupying a position in a \ncareer ladder series.\nExecutive Order 12291, Federal \nRegulation\nOPM has determined that this is not a \nmajor rule as defined under Section 1(b) \nof E .0 .12291, Federal Regulation.\nRegulatory Flexibility Act\nI certify that this regulation will not \nhave a significant economic impact on a \nsubstantial number of small entities \nbecause it applies only to Federal \nemployees.\nList of Subject in 5 CFR Part 771\nAdministrative practice and \nprocedure, Government employees.\nU.S. Office of Personnel Management.,\nLoretta Cornelius,\nActing Director.\nP A R T771— AGENCY \nADMINISTRATIVE GRIEVANCE  \nSYSTEM\nAccordingly, OPM amends 5 CFR Part \n771 as follows:\n1. The authority for Part 771 continues \nto read as follows:\nAuthority: 5 U .S.C 1302, 3301,3302, 7301; \nE.O. 9830, 3 CFR 1943-1948 Comp., pp. 606- \n624; E .0 .11222, 3 CFR Parts 1964-1969 Comp., \np. 306.\n2. Section 771.206(c)(1)(iii) is revised \nto read as follows:\n§ 771.206 Exclusions.\n★  ♦  ♦  ♦  1»\n(c) M atters excluded.\n(1 ) * * *\n(iii) Nonselection for promotion from a \ngroup of properly ranked and certified \ncandidates or failure to receive a \nnoncompetitive promotion.\n♦  * * * ♦\n[FR Doc. 85-15703 Filed 6-28-85; 8:45 am] \nBILLING CODE 8325-0t-fc\nDEPARTMENT OF AGRICULTURE  \nAgricultural Marketing Service  \n7 CFR Part 52\nUnited States Standards for Grades of  \nCanned Clingstone Peaches\nAGENCY: Agricultural Marketing Service, \nUSDA.\na c t i o n: Final rule.\ns u m m a r y: The purpose of this final rule \nis to revise the voluntary U.S. Standards \nfor Grades of Canned Clingstone \nPeaches. The standards were developed \nby the United States Department of \nAgriculture (USDA) at the request of \nmajor segments of the canned clingstone\n"
     }
   },
-  "fingerprint": "4b9ec47acbd4841f29c08063e9d5537b23b873bf983a8be3c92ef445061c8574",
+  "fingerprint": "e7c305682623721d5782df6bb950a6bab04deb93bb9c5fe9b82c1d207b9f0aea",
   "instrument_id": "EO:12523",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -220,7 +281,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -232,7 +293,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -244,8 +305,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -264,13 +325,13 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "08eca72a4f2656fa7383066ebfbdbdc322a780e79f9671620c8c51020d10d8b3",
+    "fingerprint": "d69dda676fea909e161df0ac2064046b0a31209cdc3087ad6729ee3bdfd262c9",
     "flags": [
       "EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT",
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_12523.json",
-    "history_sha256": "30542deffc0284fd53deea55d7688c865c627cc7563b058bce1243be0e7f4630",
+    "history_sha256": "9a95e0d60c1e46a28088aa81fe59c8a730e20e4fd66ca3a93c50852e8cd82b1c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

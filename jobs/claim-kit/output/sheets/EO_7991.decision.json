@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "9ea7e8c353f0779133fbe5cd4064229dc7505d5c785bbedd34ec7beb4a78352a",
+  "dossier_sha256": "68bee937cadafc9ca1839e574c726de64d650953743b35c78c876942151ee839",
   "instrument_id": "EO:7991",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-10-21",
               "register_number": "7991",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7991.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7991.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7991—Exemption of P. Julian Latham from Compulsory Retirement for Age",
               "text_chars": 721
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7991",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7991.txt",
+        "text_sha256": "3a8b8423c3dd8e7c2eed63ad7ae7d8228a3f1fad29950734d197ce6b22b8902f"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7991",
@@ -130,6 +151,16 @@
         "sha256": "022b2ec68988a87aa55452a9ab3021854464369525eec456118bc91772cfbaa8",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7991-022b2ec689.txt",
         "text_sha256": "3fdb3f94589e59e6e652d17f8fda33e3031e1d23c701849841d553f3bd49b433"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7991",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7991.txt",
+        "text_sha256": "b0aee4a6464a73fd21ad88f2dd42ed0deadcb533d19a4cedcced1f682c2e3341"
       }
     ],
     "quotation_recheck_required": true,

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "360a97d4bfaa643e307d7a04fb016167497d5446e2a134851b96c29b3b001b70",
+  "dossier_sha256": "d8e4945e8fe70c95ce54be2ee375da0e35e8c515af309a343c6e740790ab9e81",
   "instrument_id": "EO:6370",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-31",
               "register_number": "6370",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6370.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6370.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6370—Code of Fair Competition for the Fertilizer Industry",
               "text_chars": 1236
             },

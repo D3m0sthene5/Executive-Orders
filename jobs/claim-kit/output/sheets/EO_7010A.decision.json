@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "9371e68811cb12a1d3a587d1d37d8f23949584c8f8d5dc38c9d9fac76572019e",
+  "dossier_sha256": "b13bfe298781772b8512ab9e6e46f82d8837816f83565c44b5d9471e77b94415",
   "instrument_id": "EO:7010A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -88,7 +88,18 @@
                   "sha256": "12784c543465edd91772f049088049462d288671c2186ed126e1e1b0d8f1e1e1"
                 }
               ],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7010A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7010A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "text_chars": 3840
             },
             "grade": "machine_read_government_printed_copy",
@@ -134,6 +145,16 @@
         "sha256": "12784c543465edd91772f049088049462d288671c2186ed126e1e1b0d8f1e1e1",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-7010-approving-agreement-between-employer-members-the-division-the.txt",
         "text_sha256": "ddf470d05f86e2ee2d6891204562207a01eff2391f80fccaf576bc8f739f3e45"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7010A",
+        "pages_confirmed": false,
+        "sha256": "0a3b52659e143f43bfb0297a71782f5412f55d7ac65b87b4bd5071829aced3fa",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7010A.txt",
+        "text_sha256": "1463ab6da79f293b3478936c6bbf3d55e2e252c38553796a1f6dddf8e8f60a72"
       },
       {
         "complete_text_confirmed": false,

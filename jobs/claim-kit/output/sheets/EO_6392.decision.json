@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "c138f432d5d03ef78dfef9ac30b45b88717a8c7486322995d78c59e22312f2f3",
+  "dossier_sha256": "25858d779a417fb6bad4a3372c1c0316d1302cf458ea50daedb3d73ff8d2c344",
   "instrument_id": "EO:6392",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-04",
               "register_number": "6392",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6392.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6392.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6392—Code of Fair Competition for Stock Exchange Firms",
               "text_chars": 1221
             },

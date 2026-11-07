@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "a561d3a7e66fa010cbb4f29a65f24b8b0b1e77d8ace01056c239808cf62fd7d3",
+  "dossier_sha256": "1d7c0e3e1fd5b452b1f7f12cf21c2d86bffab2d62eea434058d7b21fd35e8ba2",
   "instrument_id": "EO:6426",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-14",
               "register_number": "6426",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6426.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6426.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6426—Code of Fair Competition for the Air Transport Industry",
               "text_chars": 1244
             },

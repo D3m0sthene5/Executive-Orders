@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "d7c69023fca479afc153257f9a1a1b4b69ae95f6eabf53cacbda3bd2d5723543",
+  "dossier_sha256": "39b49ae43a400ae763d306ca71eb0fd82e85dcf8bde519dd79935761ee1fc192",
   "instrument_id": "EO:7982",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-09-30",
               "register_number": "7982",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7982.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7982.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7982—Exemption of Herman G. A. Brauer From Compulsory Retirement for Age",
               "text_chars": 711
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7982",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7982.txt",
+        "text_sha256": "2ebb12e4d1ef6b2d76f6bea8fef0219099f6d726980f40f95e131a083afcf36e"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7982",
@@ -130,6 +151,16 @@
         "sha256": "2c75a1c46bab09fb4581286a570b40d75fbe440731cd600c0dd9d0892a556886",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7982-2c75a1c46b.txt",
         "text_sha256": "2180616595c9647780e49a99efdb316ea17d957040d98393ca0980adc821d045"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7982",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7982.txt",
+        "text_sha256": "121cecf10a4728c1e43968cf7096527511fea5da44b42ed9cac3e06492b893a9"
       }
     ],
     "quotation_recheck_required": true,

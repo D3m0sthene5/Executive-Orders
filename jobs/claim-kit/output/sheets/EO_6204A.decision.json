@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "0be69a51ff95964fe0b34b65787a5380e63a52540c0a73c7e3b073cbfc1204f7",
+  "dossier_sha256": "b0abb2c0269f3a8d79759297d79583972169d75606c1e179132575a6d90c8928",
   "instrument_id": "EO:6204A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-07-14",
               "register_number": "6204A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6204A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6204A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6204-A—Code of Fair Competition for the Rayon Weaving Industry",
               "text_chars": 1168
             },
@@ -120,6 +131,26 @@
         "sha256": "fa6d54a959b3882ff8079930d25225bb6eed24b47ffcd8463e40730375a3fbaf",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-6204-code-fair-competition-for-the-rayon-weaving-industry.txt",
         "text_sha256": "df60f6c72811ecd2c2653d48d4a22513de4e74db5e9a0e00b8ef72d59135b877"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6204A",
+        "pages_confirmed": false,
+        "sha256": "b25de54ee592b1e1bc9fa25ffa94304458524de1d74d588fedb885ae4a09a405",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6204A.txt",
+        "text_sha256": "3ec8c5babea6383a67a84bae651c0e54e3bdbbf657f05032a37a39067dcfc108"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6204A",
+        "pages_confirmed": false,
+        "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6204A.txt",
+        "text_sha256": "884fd83f9fca20d5ab8062f8e28ee61dd90797f35cd505e5ea5b29cd89dd80d8"
       }
     ],
     "quotation_recheck_required": true,

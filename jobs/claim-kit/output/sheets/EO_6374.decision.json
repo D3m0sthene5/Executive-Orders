@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "1ca567b5a26364569c7c0950bbf32c35c4a9cfc697e5a1dfb37897eeb477a470",
+  "dossier_sha256": "083283be462fb64028f6f9efbaf9f307ef7a8596b8295b11b85551bb3495e228",
   "instrument_id": "EO:6374",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-31",
               "register_number": "6374",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6374.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6374.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6374—Code of Fair Competition for the Packaging Machinery Industry and Trade",
               "text_chars": 1244
             },

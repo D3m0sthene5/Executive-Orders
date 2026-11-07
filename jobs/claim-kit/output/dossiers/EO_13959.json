@@ -936,7 +936,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13959",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13959"
@@ -1540,7 +1540,7 @@
   "conflicts": [
     {
       "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
-      "detail": "provisional YES, but 3 later event(s) end part of it: ? supersession undated (EO:13959#sec1(a)); ? supersession undated (scope: not stated); EO:14032 supersession 2021-06-03 (scope: in part)"
+      "detail": "provisional YES, but 5 later event(s) end part of it: ? supersession undated (EO:13959#sec1(a), EO:13959#sec1(b), EO:13959#sec1(c), EO:13959#sec1(d)); ? supersession undated (scope: not stated); EO:14032 supersession 2021-06-03 (scope: in part); ? supersession 2021-06-03 (scope: not stated); ? supersession 2022-02-16 (scope: not stated)"
     }
   ],
   "current_law_leads": [
@@ -1671,8 +1671,34 @@
       "where": "CFR 31 CFR part 586, Appendix A to Part 586"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13959",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3112",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "331419-331514",
+      "snippet": "2020 Nov. 12 | EO 13959 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1700,7 +1726,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1728,7 +1755,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1756,7 +1784,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1837,6 +1866,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3112",
+        "snippet": "2020 Nov. 12 | EO 13959 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -1856,6 +1913,10 @@
     "clause_13_state",
     "clause_14_state",
     "clause_15_state",
+    "clause_16_state",
+    "clause_17_state",
+    "clause_18_state",
+    "clause_19_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -1863,11 +1924,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 16 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 20 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 3 later event(s) end part of it: ? supersession undated (EO:13959#sec1(a)); ? supersession undated (scope: not stated); EO:14032 supersession 2021-06-03 (scope: in part)"
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 5 later event(s) end part of it: ? supersession undated (EO:13959#sec1(a), EO:13959#sec1(b), EO:13959#sec1(c), EO:13959#sec1(d)); ? supersession undated (scope: not stated); EO:14032 supersession 2021-06-03 (scope: in part); ? supersession 2021-06-03 (scope: not stated); ? supersession 2022-02-16 (scope: not stated)"
   ],
   "evidence": {
     "ACT:EO:13959>EO:13974#609-amend": {
@@ -5867,37 +5928,6 @@
       "stated_end_date": null,
       "text": "(i) any person that the Secretary of Defense has listed as a Communist \nChinese military company operating directly or indirectly in the United \nStates or in any of its territories or possessions pursuant to section 1237 \nof Public Law 105–261, as amended by section 1233 of Public Law 106– \n398 and section 1222 of Public Law 108–375, as of the date of this \norder, and as set forth in the Annex to this order, until such time as \nthe Secretary of Defense removes such person from such list;"
     },
-    "TERM:EO:13959:097e826b3da1fd60@4e1adfffdb91244e": {
-      "actor_id": "EO:13959",
-      "char_end": 6877,
-      "char_start": 6385,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13959:097e826b3da1fd60@4e1adfffdb91244e",
-      "instrument_id": "EO:13959",
-      "kind": "until_event",
-      "mechanism": "own_terms_until_event",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13959#sec4-i",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13959",
-        "page_or_item": "85 FR 73185, PDF pages 1-5",
-        "requires_page_check": false,
-        "sha256": "d3d36fbac5c625dbf72ba0253343040bea459629df01b879844ad58e753720ff",
-        "signing_date": "2020-11-12",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13959-d3d36fbac5.txt",
-        "text_sha256": "4e1adfffdb91244e66c4935579f81c624d752948f6cca96d18792ccb97fe6218",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2020-11-17/pdf/2020-25459.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(i) any person that the Secretary of Defense has listed as a Communist \nChinese military company operating directly or indirectly in the United \nStates or in any of its territories or possessions pursuant to section 1237 \nof Public Law 105–261, as amended by section 1233 of Public Law 106– \n398 and section 1222 of Public Law 108–375, as of the date of this \norder, and as set forth in the Annex to this order, until such time as \nthe Secretary of Defense removes such person from such list;"
-    },
     "TERM:EO:13959:0d378d181e74fac3@dca78c3873f5b94c": {
       "actor_id": "EO:13959",
       "char_end": 7287,
@@ -6029,36 +6059,36 @@
       "stated_end_date": null,
       "text": "(iii) any person that the Secretary of the Treasury publicly lists as meeting \nthe criteria in section 1237(b)(4)(B) of Public Law 105–261, or publicly \nlists as a subsidiary of a person already determined to be a Communist \nVerDate Sep<11>2014 19:45 Nov 16, 2020 Jkt 253001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\17NOE0.SGM 17NOE0\n=== PDF page 3 of 5 ===\n73187 Federal Register / Vol. 85, No. 222 / Tuesday, November 17, 2020 / Presidential Documents \nChinese military company, until the Secretary of the Treasury determines \nthat such person no longer meets that criteria and removes such person \nfrom such list."
     },
-    "TERM:EO:13959:34e4c4be9e25992a@4e1adfffdb91244e": {
+    "TERM:EO:13959:4cb6b3678d70c63b@06ef313c4418645c": {
       "actor_id": "EO:13959",
-      "char_end": 8005,
-      "char_start": 7383,
+      "char_end": 9359,
+      "char_start": 9242,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13959:34e4c4be9e25992a@4e1adfffdb91244e",
+      "id": "TERM:EO:13959:4cb6b3678d70c63b@06ef313c4418645c",
       "instrument_id": "EO:13959",
-      "kind": "until_event",
-      "mechanism": "own_terms_until_event",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13959#sec4-i-iii",
+      "scope_id": "EO:13959#sec6-b",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13959",
-        "page_or_item": "85 FR 73185, PDF pages 1-5",
+        "page_or_item": "85 FR 73185-73189 (PDF pp. 1-5)",
         "requires_page_check": false,
         "sha256": "d3d36fbac5c625dbf72ba0253343040bea459629df01b879844ad58e753720ff",
         "signing_date": "2020-11-12",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13959-d3d36fbac5.txt",
-        "text_sha256": "4e1adfffdb91244e66c4935579f81c624d752948f6cca96d18792ccb97fe6218",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13959-d3d36fbac5.txt",
+        "text_sha256": "06ef313c4418645cd4367bbe3215aa306e48ac92ab26161bf9fe4aa0c4aac2a7",
         "url": "https://www.govinfo.gov/content/pkg/FR-2020-11-17/pdf/2020-25459.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(iii) any person that the Secretary of the Treasury publicly lists as meeting \nthe criteria in section 1237(b)(4)(B) of Public Law 105–261, or publicly \nlists as a subsidiary of a person already determined to be a Communist \nVerDate Sep<11>2014 19:45 Nov 16, 2020 Jkt 253001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\17NOE0.SGM 17NOE0\n=== PDF page 3 of 5 ===\n73187 Federal Register / Vol. 85, No. 222 / Tuesday, November 17, 2020 / Presidential Documents \nChinese military company, until the Secretary of the Treasury determines \nthat such person no longer meets that criteria and removes such person \nfrom such list."
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     },
     "TERM:EO:13959:4fb8e6be03296df8@0fd69446df1f5688": {
       "actor_id": "EO:13959",
@@ -6089,14 +6119,45 @@
       "stated_end_date": null,
       "text": "(ii) any person that the Secretary of Defense, in consultation with the \nSecretary of the Treasury, determines is a Communist Chinese military \ncompany operating directly or indirectly in the United States or in any \nof its territories or possessions and therefore lists as such pursuant to \nsection 1237 of Public Law 105–261, as amended by section 1233 of \nPublic Law 106–398 and section 1222 of Public Law 108–375, until such \ntime as the Secretary of Defense removes such person from such list; \nor"
     },
-    "TERM:EO:13959:4fb8e6be03296df8@4e1adfffdb91244e": {
+    "TERM:EO:13959:61f78bffdf561c4a@06ef313c4418645c": {
       "actor_id": "EO:13959",
-      "char_end": 7381,
-      "char_start": 6879,
+      "char_end": 7429,
+      "char_start": 7048,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13959:4fb8e6be03296df8@4e1adfffdb91244e",
+      "id": "TERM:EO:13959:61f78bffdf561c4a@06ef313c4418645c",
+      "instrument_id": "EO:13959",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13959#sec4-i-iii",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13959",
+        "page_or_item": "85 FR 73185-73189 (PDF pp. 1-5)",
+        "requires_page_check": false,
+        "sha256": "d3d36fbac5c625dbf72ba0253343040bea459629df01b879844ad58e753720ff",
+        "signing_date": "2020-11-12",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13959-d3d36fbac5.txt",
+        "text_sha256": "06ef313c4418645cd4367bbe3215aa306e48ac92ab26161bf9fe4aa0c4aac2a7",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2020-11-17/pdf/2020-25459.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(iii) any person that the Secretary of the Treasury publicly lists as meeting\nthe criteria in section 1237(b)(4)(B) of Public Law 105–261, or publicly\nlists as a subsidiary of a person already determined to be a Communist\nChinese military company, until the Secretary of the Treasury determines\nthat such person no longer meets that criteria and removes such person\nfrom such list."
+    },
+    "TERM:EO:13959:b0781ae9fc2ea7c5@06ef313c4418645c": {
+      "actor_id": "EO:13959",
+      "char_end": 7047,
+      "char_start": 6552,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13959:b0781ae9fc2ea7c5@06ef313c4418645c",
       "instrument_id": "EO:13959",
       "kind": "until_event",
       "mechanism": "own_terms_until_event",
@@ -6108,17 +6169,17 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13959",
-        "page_or_item": "85 FR 73185, PDF pages 1-5",
+        "page_or_item": "85 FR 73185-73189 (PDF pp. 1-5)",
         "requires_page_check": false,
         "sha256": "d3d36fbac5c625dbf72ba0253343040bea459629df01b879844ad58e753720ff",
         "signing_date": "2020-11-12",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13959-d3d36fbac5.txt",
-        "text_sha256": "4e1adfffdb91244e66c4935579f81c624d752948f6cca96d18792ccb97fe6218",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13959-d3d36fbac5.txt",
+        "text_sha256": "06ef313c4418645cd4367bbe3215aa306e48ac92ab26161bf9fe4aa0c4aac2a7",
         "url": "https://www.govinfo.gov/content/pkg/FR-2020-11-17/pdf/2020-25459.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(ii) any person that the Secretary of Defense, in consultation with the \nSecretary of the Treasury, determines is a Communist Chinese military \ncompany operating directly or indirectly in the United States or in any \nof its territories or possessions and therefore lists as such pursuant to \nsection 1237 of Public Law 105–261, as amended by section 1233 of \nPublic Law 106–398 and section 1222 of Public Law 108–375, until such \ntime as the Secretary of Defense removes such person from such list; \nor"
+      "text": "(ii) any person that the Secretary of Defense, in consultation with the\nSecretary of the Treasury, determines is a Communist Chinese military\ncompany operating directly or indirectly in the United States or in any\nof its territories or possessions and therefore lists as such pursuant to\nsection 1237 of Public Law 105–261, as amended by section 1233 of\nPublic Law 106–398 and section 1222 of Public Law 108–375, until such\ntime as the Secretary of Defense removes such person from such list;\nor"
     },
     "TERM:EO:13959:be991dc10f2cce03@dca78c3873f5b94c": {
       "actor_id": "EO:13959",
@@ -6183,39 +6244,39 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
-    "TERM:EO:13959:c0c9933e4b7e679a@4e1adfffdb91244e": {
+    "TERM:EO:13959:e2323bea1e61e19f@06ef313c4418645c": {
       "actor_id": "EO:13959",
-      "char_end": 9964,
-      "char_start": 9846,
+      "char_end": 6551,
+      "char_start": 6065,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13959:c0c9933e4b7e679a@4e1adfffdb91244e",
+      "id": "TERM:EO:13959:e2323bea1e61e19f@06ef313c4418645c",
       "instrument_id": "EO:13959",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13959#sec6-b",
+      "scope_id": "EO:13959#sec4-i",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13959",
-        "page_or_item": "85 FR 73185, PDF pages 1-5",
+        "page_or_item": "85 FR 73185-73189 (PDF pp. 1-5)",
         "requires_page_check": false,
         "sha256": "d3d36fbac5c625dbf72ba0253343040bea459629df01b879844ad58e753720ff",
         "signing_date": "2020-11-12",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13959-d3d36fbac5.txt",
-        "text_sha256": "4e1adfffdb91244e66c4935579f81c624d752948f6cca96d18792ccb97fe6218",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13959-d3d36fbac5.txt",
+        "text_sha256": "06ef313c4418645cd4367bbe3215aa306e48ac92ab26161bf9fe4aa0c4aac2a7",
         "url": "https://www.govinfo.gov/content/pkg/FR-2020-11-17/pdf/2020-25459.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
+      "text": "(i) any person that the Secretary of Defense has listed as a Communist\nChinese military company operating directly or indirectly in the United\nStates or in any of its territories or possessions pursuant to section 1237\nof Public Law 105–261, as amended by section 1233 of Public Law 106–\n398 and section 1222 of Public Law 108–375, as of the date of this\norder, and as set forth in the Annex to this order, until such time as\nthe Secretary of Defense removes such person from such list;"
     }
   },
-  "fingerprint": "54c1dcfd597e1921295a508d8943c8742d7d18930c35266f7bf1b9c76496143c",
+  "fingerprint": "c4c546bf9cc0abec3dd8c80fd19b39af089d862cd304ea6291aec87b5e3e8eac",
   "instrument_id": "EO:13959",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -6435,7 +6496,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13959:097e826b3da1fd60@0fd69446df1f5688",
         "TERM:EO:13959:330678f824f99076@dca78c3873f5b94c",
-        "TERM:EO:13959:097e826b3da1fd60@4e1adfffdb91244e"
+        "TERM:EO:13959:e2323bea1e61e19f@06ef313c4418645c"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -6458,7 +6519,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13959:4fb8e6be03296df8@0fd69446df1f5688",
         "TERM:EO:13959:10156d937f1c32bb@dca78c3873f5b94c",
-        "TERM:EO:13959:4fb8e6be03296df8@4e1adfffdb91244e"
+        "TERM:EO:13959:b0781ae9fc2ea7c5@06ef313c4418645c"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -6481,7 +6542,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13959:34e4c4be9e25992a@0fd69446df1f5688",
         "TERM:EO:13959:0d378d181e74fac3@dca78c3873f5b94c",
-        "TERM:EO:13959:34e4c4be9e25992a@4e1adfffdb91244e"
+        "TERM:EO:13959:61f78bffdf561c4a@06ef313c4418645c"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -6642,7 +6703,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13959:c0c9933e4b7e679a@0fd69446df1f5688",
         "TERM:EO:13959:be991dc10f2cce03@dca78c3873f5b94c",
-        "TERM:EO:13959:c0c9933e4b7e679a@4e1adfffdb91244e"
+        "TERM:EO:13959:4cb6b3678d70c63b@06ef313c4418645c"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -6674,7 +6735,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -6686,7 +6747,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -6698,8 +6759,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -6709,6 +6770,10 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2021-11-09",
+    "Acting identity absent from census: NOTICE:2022-11-08",
+    "Acting identity absent from census: NOTICE:2024-11-07",
+    "Acting identity absent from census: NOTICE:2025-11-05",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
@@ -6725,20 +6790,20 @@
     "TERM:EO:13959:10156d937f1c32bb@dca78c3873f5b94c",
     "TERM:EO:13959:0d378d181e74fac3@dca78c3873f5b94c",
     "TERM:EO:13959:be991dc10f2cce03@dca78c3873f5b94c",
-    "TERM:EO:13959:097e826b3da1fd60@4e1adfffdb91244e",
-    "TERM:EO:13959:4fb8e6be03296df8@4e1adfffdb91244e",
-    "TERM:EO:13959:34e4c4be9e25992a@4e1adfffdb91244e",
-    "TERM:EO:13959:c0c9933e4b7e679a@4e1adfffdb91244e"
+    "TERM:EO:13959:e2323bea1e61e19f@06ef313c4418645c",
+    "TERM:EO:13959:b0781ae9fc2ea7c5@06ef313c4418645c",
+    "TERM:EO:13959:61f78bffdf561c4a@06ef313c4418645c",
+    "TERM:EO:13959:4cb6b3678d70c63b@06ef313c4418645c"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "359bb66606d9675b56d9926d27e10cd5bf8c24439835e837055715e2decb4a07",
+    "fingerprint": "a9f18758e35cc7bdfa34a15d4d451db9fc062daed01127c950cc0395b14875b6",
     "flags": [
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_13959.json",
-    "history_sha256": "a6486997d0e74ec1d92b35a23b47bb602923059d6db78f736ed43bd847c5b4ce",
+    "history_sha256": "6a1dcd1d3da4c150aebc8963606ee536d36a796f5a6a8cb906af33b018223514",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

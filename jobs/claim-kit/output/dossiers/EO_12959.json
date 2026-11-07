@@ -140,7 +140,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:12959",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12959"
@@ -590,7 +590,7 @@
   "conflicts": [
     {
       "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
-      "detail": "provisional YES, but 2 later event(s) end part of it: EO:13059 revocation 1997-08-19 (scope: in part); EO:13059 revocation 1997-08-19 (EO:12959#sec1)"
+      "detail": "provisional YES, but 3 later event(s) end part of it: EO:13059 revocation 1997-08-19 (scope: in part); EO:13059 revocation 1997-08-19 (EO:12959#sec1); ? revocation 1997-08-19 (scope: not stated)"
     }
   ],
   "current_law_leads": [
@@ -672,15 +672,41 @@
       "snippet": "...nt to Executive Order 12613 of October 29, 1987 (3 CFR, 1987 … 1987 Comp., p. 256), Executive Order 12957 of March 15, 1995 (3 CFR, 1995 Comp., p. 332) … 332), Executive Order 12959 of May 6, 1995 (3 CFR, 1995 Comp., p. 356), Executive Order",
       "source": {
         "page_or_item": "31 CFR 560.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-        "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+        "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR 560.802"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12959",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2071",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "223844-223941",
+      "snippet": "1995 May 6 | EO 12959 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -708,7 +734,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -757,7 +784,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 560.802)",
         "source": {
           "page_or_item": "31 CFR 560.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-          "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+          "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
         }
       }
@@ -789,6 +816,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2071",
+        "snippet": "1995 May 6 | EO 12959 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -817,7 +872,7 @@
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 2 later event(s) end part of it: EO:13059 revocation 1997-08-19 (scope: in part); EO:13059 revocation 1997-08-19 (EO:12959#sec1)"
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 3 later event(s) end part of it: EO:13059 revocation 1997-08-19 (scope: in part); EO:13059 revocation 1997-08-19 (EO:12959#sec1); ? revocation 1997-08-19 (scope: not stated)"
   ],
   "evidence": {
     "ACT:EO:12959>EO:13059": {
@@ -2779,7 +2834,7 @@
       "text": "(a) This order is effective at 12:01 a.m., eastern daylight time, on\nMay 7, 1995, except that (i) section 1(b), (c), and (d) of this order shall\nnot apply until 12:01 a.m., eastern daylight time, on June 6, 1995, to trade\ntransactions under contracts in force as of the date of this order if such\ntransactions are authorized pursuant to Federal regulations in force imme-\ndiately prior to the date of this order (‘‘existing trade contracts’’), and (ii)\nletters of credit and other financing agreements with respect to existing\ntrade contracts may be performed pursuant to their terms with respect to\nunderlying trade transactions occurring prior to 12:01 a.m., eastern daylight\ntime, on June 6, 1995."
     }
   },
-  "fingerprint": "0b37f2cd5e93b394c3e62a215e87ff1a18def2bf65a8d3b867bf555b4c7c48a3",
+  "fingerprint": "ff9fa46d49d4a6c106e696e0dba9df3e1bb69a465ba76679e792d17f54b36c7e",
   "instrument_id": "EO:12959",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3188,7 +3243,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -3200,7 +3255,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -3212,8 +3267,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3228,6 +3283,7 @@
     "Acting identity absent from census: NOTICE:1998-03-04",
     "Acting identity absent from census: NOTICE:1999-03-10",
     "Acting identity absent from census: NOTICE:2000-03-13",
+    "Acting identity absent from census: NOTICE:2000-03-30",
     "Acting identity absent from census: NOTICE:2001-03-13",
     "Acting identity absent from census: NOTICE:2002-03-13",
     "Acting identity absent from census: NOTICE:2003-03-12",
@@ -3238,6 +3294,20 @@
     "Acting identity absent from census: NOTICE:2008-03-11",
     "Acting identity absent from census: NOTICE:2009-03-11",
     "Acting identity absent from census: NOTICE:2010-03-10",
+    "Acting identity absent from census: NOTICE:2012-03-13",
+    "Acting identity absent from census: NOTICE:2013-03-12",
+    "Acting identity absent from census: NOTICE:2014-03-12",
+    "Acting identity absent from census: NOTICE:2015-03-11",
+    "Acting identity absent from census: NOTICE:2016-03-09",
+    "Acting identity absent from census: NOTICE:2017-01-13",
+    "Acting identity absent from census: NOTICE:2018-03-12",
+    "Acting identity absent from census: NOTICE:2019-03-12",
+    "Acting identity absent from census: NOTICE:2020-03-12",
+    "Acting identity absent from census: NOTICE:2021-03-05",
+    "Acting identity absent from census: NOTICE:2022-03-03",
+    "Acting identity absent from census: NOTICE:2023-03-10",
+    "Acting identity absent from census: NOTICE:2024-03-12",
+    "Acting identity absent from census: NOTICE:2025-03-07",
     "Acting identity absent from census: NOTICE:2026-03-02",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
@@ -3268,12 +3338,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 19,
-    "fingerprint": "4375db841ee38a591043a20729cbb25e274d090cf4f63d17356d4967ab71866f",
+    "fingerprint": "2b0738c9ab4795e2ac0e8b2e8ebf7c2ab045c9a4303ee0c4f79f9e1ef8a15f04",
     "flags": [
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_12959.json",
-    "history_sha256": "0467a7adc396dc1b3d6ad5aed26ad70e3ffa592aaac9936cfb2728723e14173a",
+    "history_sha256": "44c25ecc4af75456337893305de2fe5932502def7e15c6af214c2bab92b96777",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

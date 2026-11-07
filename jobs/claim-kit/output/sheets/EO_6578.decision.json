@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "4553cde9279b0c6a9235e6177ce6dde222a472bd575bfc43119cccd66900fd1f",
+  "dossier_sha256": "2d70a076697be2748aafd723e85bd206f84d4c503cbbb6dfc263c5bf85f682c4",
   "instrument_id": "EO:6578",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-01-31",
               "register_number": "6578",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6578.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6578.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6578—Code of Fair Competition for the Construction Industry",
               "text_chars": 1225
             },

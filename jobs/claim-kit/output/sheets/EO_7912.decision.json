@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "703de58cab07c7f60e1d81a2315e2bec0877cdebc67335357910263a70888b1a",
+  "dossier_sha256": "f05c180a1d227027f349e7111dbf92038875e12b483d6731c0320c7cb0b2d4ff",
   "instrument_id": "EO:7912",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-06-16",
               "register_number": "7912",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7912.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7912.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7912—Further Exemption of John H. Thomas From Compulsory Retirement for Age",
               "text_chars": 741
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7912",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7912.txt",
+        "text_sha256": "a4af9045f86688fe5ca2ab851aac371f1005a22ba7f0460f189b6b9bea4cdffe"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7912",
@@ -130,6 +151,16 @@
         "sha256": "12b593b6b833d263bfc1d97475a4c0b6ec47eb282aa0b3564d3a97d1f6537e10",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7912-12b593b6b8.txt",
         "text_sha256": "03563b0ee77dbe5f1d9876c4d783106857ef6a08b1be177e46dc2d00c47fb12d"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7912",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7912.txt",
+        "text_sha256": "ea948ddcfa4593ecf0116053db681624841721ee8e39e7824bb05b366ddc7266"
       }
     ],
     "quotation_recheck_required": true,

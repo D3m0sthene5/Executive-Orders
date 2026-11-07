@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "29359d0e660db46a5aea3b1af829b6de2ca7913adb5b13c25625951041f842ff",
+  "dossier_sha256": "fee50f464dd4450e3effcfe502628c8769c7ff4dc05fb2cffcb5286e3be44ad4",
   "instrument_id": "EO:6484",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-07",
               "register_number": "6484",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6484.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6484.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6484—Code of Fair Competition for the Pyrotechnic Manufacturing Industry",
               "text_chars": 1255
             },

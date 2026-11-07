@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "e3be10fac4f661fb3b925898bc7b0bd3dddd2a4f48ed23eea3a94923d8c9f0e0",
+  "dossier_sha256": "10ffa49b34bcf50abade32c43300cd9e0f5a3e8c221340b11e7d9e5d19b63173",
   "instrument_id": "EO:6384",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-01",
               "register_number": "6384",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6384.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6384.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6384—Code of Fair Competition for the Crown Manufacturing Industry",
               "text_chars": 1233
             },

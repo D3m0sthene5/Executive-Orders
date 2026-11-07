@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "bc12bd6317c0c56ce457e26655161af952d1d4e982dfe260ef2dd56b04635d2d",
+  "dossier_sha256": "fce2b9876e8aa198c80dafb679938e825cfcb836b8dd06cbeb71bd68b30136cb",
   "instrument_id": "EO:6305",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-03",
               "register_number": "6305",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6305.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6305.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6305—Code of Fair Competition for Bankers",
               "text_chars": 1197
             },

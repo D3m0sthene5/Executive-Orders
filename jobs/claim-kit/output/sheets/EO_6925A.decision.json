@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "162b14501ed3e342c689d16212b082e5031d0297064bea20d21ed08cbeb0747d",
+  "dossier_sha256": "e7a7cfd52913b9db3a6f1f4b31e81a27f5ce207acf08f747616c263dc79e8364",
   "instrument_id": "EO:6925A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-12-19",
               "register_number": "6925A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6925A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6925A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6925-A—Canceling Order Approving Code for the Cinders, Ashes and Scavenger Trade",
               "text_chars": 1367
             },
@@ -120,6 +131,16 @@
         "sha256": "80fdefe6b8499dc009154ce3b2a45ab4286b9c7695d21b21d5c1cb3634dace1a",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-6925-canceling-order-approving-code-for-the-cinders-ashes-and-scavenger.txt",
         "text_sha256": "0adfc659b43fda3d3d72f922a934c1b9db6205f25e277c90dfc17d1e48d1f2fd"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6925A",
+        "pages_confirmed": false,
+        "sha256": "6e742ca9b84f9695822563c1050677a034c59ac47ba31046d1f0af582f24ce8d",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6925A.txt",
+        "text_sha256": "89177c75c79f631e9ee28caff8931b235551a87d9fc92832bec97a8818077f12"
       },
       {
         "complete_text_confirmed": false,

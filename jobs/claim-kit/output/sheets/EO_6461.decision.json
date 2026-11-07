@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "fdd22520b0d08cfa4289fc5233e29697e2a0a4a14b08758fda287b565b9f0998",
+  "dossier_sha256": "eaf9b78a97aaade873ad9b8f879f6cabc4feabdf4c8bfdfe73477d03ec5b3f23",
   "instrument_id": "EO:6461",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -88,7 +88,18 @@
                   "sha256": "7b87cdf2a37be405024b7e51e7732efd4166cf375fdec3c2dc28cf1968f42d40"
                 }
               ],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6461.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6461.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "text_chars": 1306
             },
             "grade": "machine_read_government_printed_copy",

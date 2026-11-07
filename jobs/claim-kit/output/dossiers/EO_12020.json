@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:12020",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12020"
@@ -58,6 +58,39 @@
       "where": "USC 38 U.S.C. 3680 note"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12020",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 38 U.S.C. 3680 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1193",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "38 U.S.C. 3680 note",
+        "member_sha256": "812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6",
+        "note_id": "idf89a534d-ac5f-11f1-867f-e0c61e4ce6af",
+        "note_text_sha256": "4f5cf8e03432809f5f55f782549318dc02527eac0feb7bb58e6baf080744a13c",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=idf89a534d-ac5f-11f1-867f-e0c61e4ce6af"
+      },
+      "row_span": "132298-132392",
+      "snippet": "1977 Nov. 8 | EO 12020 | 38 U.S.C. 3680 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 38 U.S.C. 3680 nt"
+    },
+    {
       "custody_records_in": [
         "current-law"
       ],
@@ -83,6 +116,34 @@
           "page_or_item": "38 U.S.C. 3680 note; note 'Ex. Ord. No. 12020. Payment of Benefits When Schools Are Temporarily Closed To Conserve En' [USLM note id idf89a534d-ac5f-11f1-867f-e0c61e4ce6af]; usc38.xml (sha256 812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1193",
+        "snippet": "1977 Nov. 8 | EO 12020 | 38 U.S.C. 3680 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 38 U.S.C. 3680 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 38 U.S.C. 3680 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -1610,7 +1671,7 @@
       "text": "(2)\n Notwithstanding paragraph (1), the Secretary may, pursuant to such regulations as the Secretary shall prescribe, continue to pay allowances to eligible veterans and eligible persons enrolled in courses set forth in paragraph (1)(A)—\n(A)\n during periods when educational institutions are temporarily closed under an established policy based on an Executive order of the President or due to an emergency situation, except that the total number of weeks for which allowances may continue to be so payable in any 12-month period may not exceed 4 weeks; or\n(B)\n solely for the purpose of awarding a monthly housing stipend described in section 3313 of this title or a subsistence allowance described in section 3108, during periods following a permanent closure of an educational institution, or following the disapproval of a course of study described in section 3699(b)(1)(B) of this title, except that payment of such a stipend or allowance may only be continued until the earlier of—"
     }
   },
-  "fingerprint": "b2eb8f7caba6062335561b7e8eeabbfad0b45b27039838da9fc4505a42770cf4",
+  "fingerprint": "fcce309e562d74c35cc405cac86cc16ff1f3c5cea465081dbb78af89d355fa89",
   "instrument_id": "EO:12020",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1640,7 +1701,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1652,7 +1713,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1664,8 +1725,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1732,12 +1793,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "99d29e2559b8c601477766f6323203cb59f7e68e266296b5ab0d7466375f21df",
+    "fingerprint": "66550d2a3cc0952f9b8eaac5d327fb2400da37afbb0ec017dea4f333588276b2",
     "flags": [
       "EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT"
     ],
     "history_path": "jobs/status-history/output/histories/EO_12020.json",
-    "history_sha256": "1ed73760c3dcdf0f0f561b41df6018865a026988ef876772499fbf0203f44df9",
+    "history_sha256": "073c11229f773f5022fd412cbdbf99b0f384c954881b092bb7029f9d3d5f97bc",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -128,7 +128,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13830",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13830"
@@ -1062,6 +1062,39 @@
       "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
     },
     {
+      "basis_code": "table_iv_listed_note_preceding",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13830",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 10 U.S.C. nt. prec. 1121 (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2987",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "10 U.S.C. subtitle A, pt. II, ch. 57 note",
+        "member_sha256": "f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6",
+        "note_id": "ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5",
+        "note_text_sha256": "d931a145ee21ee419cc5ad748588c666643827f11bc1e99cd3626be3eec3794e",
+        "status": "yes_other_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5"
+      },
+      "row_span": "318395-318497",
+      "snippet": "2018 Apr. 20 | EO 13830 | 10 U.S.C. nt. prec. 1121",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 10 U.S.C. nt. prec. 1121"
+    },
+    {
       "custody_records_in": [
         "current-law"
       ],
@@ -1087,6 +1120,34 @@
           "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 13830. Delegation of Authority To Approve Certain Military Decorations' [USLM note id ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note_preceding",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2987",
+        "snippet": "2018 Apr. 20 | EO 13830 | 10 U.S.C. nt. prec. 1121",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 10 U.S.C. nt. prec. 1121"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 10 U.S.C. nt. prec. 1121 (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -1118,6 +1179,9 @@
     "clause_23_state",
     "clause_24_state",
     "clause_25_state",
+    "clause_26_state",
+    "clause_27_state",
+    "clause_28_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -1125,7 +1189,7 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 26 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 29 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
@@ -2531,14 +2595,14 @@
       "stated_end_date": null,
       "text": "(ii) between December 7, 1941, and September 2, 1945, no award shall be made after May 2, 1952, unless the award recommendation was made on or before May 2, 1951, in which case the award may be made;"
     },
-    "TERM:EO:13830:1e081f65fc246841@a147daea23919f5c": {
+    "TERM:EO:13830:0d2e9e8e5aebeec5@115de2c288892311": {
       "actor_id": "EO:13830",
-      "char_end": 6870,
-      "char_start": 6584,
+      "char_end": 6499,
+      "char_start": 6217,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13830:1e081f65fc246841@a147daea23919f5c",
+      "id": "TERM:EO:13830:0d2e9e8e5aebeec5@115de2c288892311",
       "instrument_id": "EO:13830",
       "kind": "report_deadline",
       "mechanism": "own_terms_report_deadline",
@@ -2550,17 +2614,48 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
         "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
         "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(iii) between September 3, 1945, and twelve o’clock noon on December \n31, 1946 (the date and time World War II hostilities were terminated \npursuant to Proclamation 2714 of December 31, 1946), no award shall \nbe made unless the award recommendation was made on or before June \n30, 1947;"
+      "text": "(iii) between September 3, 1945, and twelve o’clock noon on December\n31, 1946 (the date and time World War II hostilities were terminated\npursuant to Proclamation 2714 of December 31, 1946), no award shall\nbe made unless the award recommendation was made on or before June\n30, 1947;"
+    },
+    "TERM:EO:13830:1d479050a81cf94a@115de2c288892311": {
+      "actor_id": "EO:13830",
+      "char_end": 9486,
+      "char_start": 9207,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13830:1d479050a81cf94a@115de2c288892311",
+      "instrument_id": "EO:13830",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13830#sec7",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13830",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
+        "signing_date": "2018-04-20",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The\nregulations of the Secretaries of the military departments concerned with\nrespect to the award of the Silver Star Medal, Distinguished Flying Cross,\nand Legion of Merit shall, so far as practicable, be uniform and shall be\nsubject to the approval of the Secretary of Defense."
     },
     "TERM:EO:13830:1e081f65fc246841@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
@@ -2659,37 +2754,6 @@
       "stated_end_date": null,
       "text": "(iv) between July 2, 1926, and September 10, 2001, with the exception of a qualifying act or achievement authorized pursuant to paragraphs (ii) or (iii) of this subsection, no award shall be made more than 3 years after the date of the qualifying act or achievement unless the award recommendation was made within 2 years of the qualifying act or achievement; or"
     },
-    "TERM:EO:13830:37b7cb4f3a07802f@a147daea23919f5c": {
-      "actor_id": "EO:13830",
-      "char_end": 6582,
-      "char_start": 6381,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13830:37b7cb4f3a07802f@a147daea23919f5c",
-      "instrument_id": "EO:13830",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13830#sec5-i-ii",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
-        "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(ii) between December 7, 1941, and September 2, 1945, no award shall \nbe made after May 2, 1952, unless the award recommendation was made \non or before May 2, 1951, in which case the award may be made;"
-    },
     "TERM:EO:13830:37b7cb4f3a07802f@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
       "char_end": 7193,
@@ -2718,6 +2782,68 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(ii) between December 7, 1941, and September 2, 1945, no award shall \nbe made after May 2, 1952, unless the award recommendation was made \non or before May 2, 1951, in which case the award may be made;"
+    },
+    "TERM:EO:13830:37dff78353a47aff@115de2c288892311": {
+      "actor_id": "EO:13830",
+      "char_end": 6216,
+      "char_start": 6017,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13830:37dff78353a47aff@115de2c288892311",
+      "instrument_id": "EO:13830",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13830#sec5-i-ii",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13830",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
+        "signing_date": "2018-04-20",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(ii) between December 7, 1941, and September 2, 1945, no award shall\nbe made after May 2, 1952, unless the award recommendation was made\non or before May 2, 1951, in which case the award may be made;"
+    },
+    "TERM:EO:13830:3975f8b8039ad61b@115de2c288892311": {
+      "actor_id": "EO:13830",
+      "char_end": 6016,
+      "char_start": 5838,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13830:3975f8b8039ad61b@115de2c288892311",
+      "instrument_id": "EO:13830",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13830#sec5-i",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13830",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
+        "signing_date": "2018-04-20",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(i) on or before July 2, 1926, no award shall be made after July 2, 1929,\nunless the award recommendation was made on or before July 2, 1928,\nin which case the award may be made;"
     },
     "TERM:EO:13830:43b54fa2bd56889a@411127a0ce0f7369": {
       "actor_id": "EO:13830",
@@ -2787,36 +2913,36 @@
       "stated_end_date": null,
       "text": "(iii) between September 3, 1945, and twelve o'clock noon on December 31, 1946 (the date and time World War II hostilities were terminated pursuant to Proclamation 2714 of December 31, 1946), no award shall be made unless the award recommendation was made on or before June 30, 1947;"
     },
-    "TERM:EO:13830:540426843faeb66c@a147daea23919f5c": {
+    "TERM:EO:13830:52ea4d6ca2b16e1d@115de2c288892311": {
       "actor_id": "EO:13830",
-      "char_end": 6379,
-      "char_start": 6199,
+      "char_end": 6216,
+      "char_start": 6017,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13830:540426843faeb66c@a147daea23919f5c",
+      "id": "TERM:EO:13830:52ea4d6ca2b16e1d@115de2c288892311",
       "instrument_id": "EO:13830",
       "kind": "condition",
       "mechanism": "own_terms_condition",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13830#sec5-i",
+      "scope_id": "EO:13830#sec5-i-ii",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
         "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
         "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(i) on or before July 2, 1926, no award shall be made after July 2, 1929, \nunless the award recommendation was made on or before July 2, 1928, \nin which case the award may be made;"
+      "text": "(ii) between December 7, 1941, and September 2, 1945, no award shall\nbe made after May 2, 1952, unless the award recommendation was made\non or before May 2, 1951, in which case the award may be made;"
     },
     "TERM:EO:13830:540426843faeb66c@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
@@ -2846,6 +2972,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(i) on or before July 2, 1926, no award shall be made after July 2, 1929, \nunless the award recommendation was made on or before July 2, 1928, \nin which case the award may be made;"
+    },
+    "TERM:EO:13830:56d5562a165a99c9@115de2c288892311": {
+      "actor_id": "EO:13830",
+      "char_end": 10467,
+      "char_start": 10078,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13830:56d5562a165a99c9@115de2c288892311",
+      "instrument_id": "EO:13830",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13830#sec8-c",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13830",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
+        "signing_date": "2018-04-20",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "However, existing regulations prescribed pursuant to those orders, shall,\nso far as they are not inconsistent with this order, remain in effect until\nmodified or revoked by regulations prescribed by the Secretary of the military\ndepartment concerned, or the Secretary of Homeland Security with respect\nto the Coast Guard when it is not operating as a service in the Navy,\nunder this order."
     },
     "TERM:EO:13830:5d237d964a301f09@411127a0ce0f7369": {
       "actor_id": "EO:13830",
@@ -2915,36 +3072,36 @@
       "stated_end_date": null,
       "text": "(iii) between September 3, 1945, and twelve o'clock noon on December 31, 1946 (the date and time World War II hostilities were terminated pursuant to Proclamation 2714 of December 31, 1946), no award shall be made unless the award recommendation was made on or before June 30, 1947;"
     },
-    "TERM:EO:13830:7eaf84c309d64a96@a147daea23919f5c": {
+    "TERM:EO:13830:7a14b93ca7507192@115de2c288892311": {
       "actor_id": "EO:13830",
-      "char_end": 6582,
-      "char_start": 6381,
+      "char_end": 9942,
+      "char_start": 9825,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13830:7eaf84c309d64a96@a147daea23919f5c",
+      "id": "TERM:EO:13830:7a14b93ca7507192@115de2c288892311",
       "instrument_id": "EO:13830",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13830#sec5-i-ii",
+      "scope_id": "EO:13830#sec8-b",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
         "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
         "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(ii) between December 7, 1941, and September 2, 1945, no award shall \nbe made after May 2, 1952, unless the award recommendation was made \non or before May 2, 1951, in which case the award may be made;"
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     },
     "TERM:EO:13830:7eaf84c309d64a96@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
@@ -2974,37 +3131,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(ii) between December 7, 1941, and September 2, 1945, no award shall \nbe made after May 2, 1952, unless the award recommendation was made \non or before May 2, 1951, in which case the award may be made;"
-    },
-    "TERM:EO:13830:8691665eb51e685d@a147daea23919f5c": {
-      "actor_id": "EO:13830",
-      "char_end": 10177,
-      "char_start": 9894,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13830:8691665eb51e685d@a147daea23919f5c",
-      "instrument_id": "EO:13830",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13830#sec7",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
-        "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The \nregulations of the Secretaries of the military departments concerned with \nrespect to the award of the Silver Star Medal, Distinguished Flying Cross, \nand Legion of Merit shall, so far as practicable, be uniform and shall be \nsubject to the approval of the Secretary of Defense."
     },
     "TERM:EO:13830:8691665eb51e685d@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
@@ -3069,17 +3195,17 @@
       "stated_end_date": null,
       "text": "The regulations of the Secretaries of the military departments concerned with respect to the award of the Silver Star Medal, Distinguished Flying Cross, and Legion of Merit shall, so far as practicable, be uniform and shall be subject to the approval of the Secretary of Defense."
     },
-    "TERM:EO:13830:aa06ad2270c18ae6@a147daea23919f5c": {
+    "TERM:EO:13830:a54eca8932f27b09@115de2c288892311": {
       "actor_id": "EO:13830",
-      "char_end": 7516,
-      "char_start": 7013,
+      "char_end": 6864,
+      "char_start": 6639,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13830:aa06ad2270c18ae6@a147daea23919f5c",
+      "id": "TERM:EO:13830:a54eca8932f27b09@115de2c288892311",
       "instrument_id": "EO:13830",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
       "scope_id": "EO:13830#sec5-i-ii-dup2",
@@ -3088,17 +3214,17 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
         "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
         "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(ii) or (iii) of this subsection, no award shall be made more than 3 \nVerDate Sep<11>2014 21:35 Apr 24, 2018 Jkt 244001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\25APE0.SGM 25APE0sradovich on DSK3GMQ082PROD with PRES DOCS\n=== PDF page 3 of 4 ===\n18193 Federal Register / Vol. 83, No. 80 / Wednesday, April 25, 2018 / Presidential Documents \nyears after the date of the qualifying act or achievement unless the award \nrecommendation was made within 2 years of the qualifying act or achieve-\nment; or"
+      "text": "(ii) or (iii) of this subsection, no award shall be made more than 3\nyears after the date of the qualifying act or achievement unless the award\nrecommendation was made within 2 years of the qualifying act or achieve-\nment; or"
     },
     "TERM:EO:13830:aa06ad2270c18ae6@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
@@ -3197,37 +3323,6 @@
       "stated_end_date": null,
       "text": "(i) on or before July 2, 1926, no award shall be made after July 2, 1929, unless the award recommendation was made on or before July 2, 1928, in which case the award may be made;"
     },
-    "TERM:EO:13830:bc139e922ac60224@a147daea23919f5c": {
-      "actor_id": "EO:13830",
-      "char_end": 6870,
-      "char_start": 6584,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13830:bc139e922ac60224@a147daea23919f5c",
-      "instrument_id": "EO:13830",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13830#sec5-i-iii",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
-        "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(iii) between September 3, 1945, and twelve o’clock noon on December \n31, 1946 (the date and time World War II hostilities were terminated \npursuant to Proclamation 2714 of December 31, 1946), no award shall \nbe made unless the award recommendation was made on or before June \n30, 1947;"
-    },
     "TERM:EO:13830:bc139e922ac60224@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
       "char_end": 7481,
@@ -3256,37 +3351,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(iii) between September 3, 1945, and twelve o’clock noon on December \n31, 1946 (the date and time World War II hostilities were terminated \npursuant to Proclamation 2714 of December 31, 1946), no award shall \nbe made unless the award recommendation was made on or before June \n30, 1947;"
-    },
-    "TERM:EO:13830:c8ad391b063bd272@a147daea23919f5c": {
-      "actor_id": "EO:13830",
-      "char_end": 7516,
-      "char_start": 7013,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13830:c8ad391b063bd272@a147daea23919f5c",
-      "instrument_id": "EO:13830",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13830#sec5-i-ii-dup2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
-        "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(ii) or (iii) of this subsection, no award shall be made more than 3 \nVerDate Sep<11>2014 21:35 Apr 24, 2018 Jkt 244001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\25APE0.SGM 25APE0sradovich on DSK3GMQ082PROD with PRES DOCS\n=== PDF page 3 of 4 ===\n18193 Federal Register / Vol. 83, No. 80 / Wednesday, April 25, 2018 / Presidential Documents \nyears after the date of the qualifying act or achievement unless the award \nrecommendation was made within 2 years of the qualifying act or achieve-\nment; or"
     },
     "TERM:EO:13830:c8ad391b063bd272@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
@@ -3317,36 +3381,67 @@
       "stated_end_date": null,
       "text": "(ii) or (iii) of this subsection, no award shall be made more than 3 \nVerDate Sep<11>2014 21:35 Apr 24, 2018 Jkt 244001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\25APE0.SGM 25APE0sradovich on DSK3GMQ082PROD with PRES DOCS\n=== PDF page 3 of 4 ===\n18193 Federal Register / Vol. 83, No. 80 / Wednesday, April 25, 2018 / Presidential Documents \nyears after the date of the qualifying act or achievement unless the award \nrecommendation was made within 2 years of the qualifying act or achieve-\nment; or"
     },
-    "TERM:EO:13830:e364b3add985e3ae@a147daea23919f5c": {
+    "TERM:EO:13830:d7dc981ba286b615@115de2c288892311": {
       "actor_id": "EO:13830",
-      "char_end": 11174,
-      "char_start": 10780,
+      "char_end": 6499,
+      "char_start": 6217,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13830:e364b3add985e3ae@a147daea23919f5c",
+      "id": "TERM:EO:13830:d7dc981ba286b615@115de2c288892311",
       "instrument_id": "EO:13830",
-      "kind": "until_event",
-      "mechanism": "own_terms_until_event",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13830#sec8-c",
+      "scope_id": "EO:13830#sec5-i-iii",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
         "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
         "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "However, existing regulations prescribed pursuant to those orders, shall, \nso far as they are not inconsistent with this order, remain in effect until \nmodified or revoked by regulations prescribed by the Secretary of the military \ndepartment concerned, or the Secretary of Homeland Security with respect \nto the Coast Guard when it is not operating as a service in the Navy, \nunder this order."
+      "text": "(iii) between September 3, 1945, and twelve o’clock noon on December\n31, 1946 (the date and time World War II hostilities were terminated\npursuant to Proclamation 2714 of December 31, 1946), no award shall\nbe made unless the award recommendation was made on or before June\n30, 1947;"
+    },
+    "TERM:EO:13830:d7faf8e07612a56e@115de2c288892311": {
+      "actor_id": "EO:13830",
+      "char_end": 6016,
+      "char_start": 5838,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13830:d7faf8e07612a56e@115de2c288892311",
+      "instrument_id": "EO:13830",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13830#sec5-i",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13830",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
+        "signing_date": "2018-04-20",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(i) on or before July 2, 1926, no award shall be made after July 2, 1929,\nunless the award recommendation was made on or before July 2, 1928,\nin which case the award may be made;"
     },
     "TERM:EO:13830:e364b3add985e3ae@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
@@ -3377,36 +3472,36 @@
       "stated_end_date": null,
       "text": "However, existing regulations prescribed pursuant to those orders, shall, \nso far as they are not inconsistent with this order, remain in effect until \nmodified or revoked by regulations prescribed by the Secretary of the military \ndepartment concerned, or the Secretary of Homeland Security with respect \nto the Coast Guard when it is not operating as a service in the Navy, \nunder this order."
     },
-    "TERM:EO:13830:f4499807a0cc955f@a147daea23919f5c": {
+    "TERM:EO:13830:eb4afd9b061d6f37@115de2c288892311": {
       "actor_id": "EO:13830",
-      "char_end": 6379,
-      "char_start": 6199,
+      "char_end": 6864,
+      "char_start": 6639,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13830:f4499807a0cc955f@a147daea23919f5c",
+      "id": "TERM:EO:13830:eb4afd9b061d6f37@115de2c288892311",
       "instrument_id": "EO:13830",
       "kind": "report_deadline",
       "mechanism": "own_terms_report_deadline",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13830#sec5-i",
+      "scope_id": "EO:13830#sec5-i-ii-dup2",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
+        "page_or_item": "83 FR 18191-18194 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
         "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13830-1fdfc782b7.txt",
+        "text_sha256": "115de2c2888923116a12268f12e6bc7fb31c8c585bdbe96754cc590850aeec60",
         "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(i) on or before July 2, 1926, no award shall be made after July 2, 1929, \nunless the award recommendation was made on or before July 2, 1928, \nin which case the award may be made;"
+      "text": "(ii) or (iii) of this subsection, no award shall be made more than 3\nyears after the date of the qualifying act or achievement unless the award\nrecommendation was made within 2 years of the qualifying act or achieve-\nment; or"
     },
     "TERM:EO:13830:f4499807a0cc955f@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
@@ -3436,37 +3531,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(i) on or before July 2, 1926, no award shall be made after July 2, 1929, \nunless the award recommendation was made on or before July 2, 1928, \nin which case the award may be made;"
-    },
-    "TERM:EO:13830:fa77882be3f3f58d@a147daea23919f5c": {
-      "actor_id": "EO:13830",
-      "char_end": 10641,
-      "char_start": 10523,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13830:fa77882be3f3f58d@a147daea23919f5c",
-      "instrument_id": "EO:13830",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13830#sec8-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13830",
-        "page_or_item": "83 FR 18191, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "1fdfc782b74960d2095ae71f4231d619ba3151e206b70976a2a20589239206c2",
-        "signing_date": "2018-04-20",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13830-1fdfc782b7.txt",
-        "text_sha256": "a147daea23919f5c6655187796c841d4dea4ec909816045a502459b4b91e235a",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
     "TERM:EO:13830:fa77882be3f3f58d@d6a9da30734a31c0": {
       "actor_id": "EO:13830",
@@ -3498,7 +3562,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     }
   },
-  "fingerprint": "427f1d7492a8f00922ab0df24523a3e4e229489e0e581ec4849d806e2a4d959f",
+  "fingerprint": "22fe3a2b08376e431f8a74ba35712e5cebd3e46c2135d198db4b1243b1746bc0",
   "instrument_id": "EO:13830",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3831,8 +3895,8 @@
         "TERM:EO:13830:540426843faeb66c@d6a9da30734a31c0",
         "TERM:EO:13830:02353aabab8421e1@411127a0ce0f7369",
         "TERM:EO:13830:b91f3432e2b7d93e@411127a0ce0f7369",
-        "TERM:EO:13830:f4499807a0cc955f@a147daea23919f5c",
-        "TERM:EO:13830:540426843faeb66c@a147daea23919f5c"
+        "TERM:EO:13830:d7faf8e07612a56e@115de2c288892311",
+        "TERM:EO:13830:3975f8b8039ad61b@115de2c288892311"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -3860,8 +3924,8 @@
         "TERM:EO:13830:37b7cb4f3a07802f@d6a9da30734a31c0",
         "TERM:EO:13830:07aa1c82d56344b5@411127a0ce0f7369",
         "TERM:EO:13830:43b54fa2bd56889a@411127a0ce0f7369",
-        "TERM:EO:13830:7eaf84c309d64a96@a147daea23919f5c",
-        "TERM:EO:13830:37b7cb4f3a07802f@a147daea23919f5c"
+        "TERM:EO:13830:37dff78353a47aff@115de2c288892311",
+        "TERM:EO:13830:52ea4d6ca2b16e1d@115de2c288892311"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -3889,8 +3953,8 @@
         "TERM:EO:13830:bc139e922ac60224@d6a9da30734a31c0",
         "TERM:EO:13830:62fdb8238b114a8a@411127a0ce0f7369",
         "TERM:EO:13830:4e15dcdb8dc09882@411127a0ce0f7369",
-        "TERM:EO:13830:1e081f65fc246841@a147daea23919f5c",
-        "TERM:EO:13830:bc139e922ac60224@a147daea23919f5c"
+        "TERM:EO:13830:0d2e9e8e5aebeec5@115de2c288892311",
+        "TERM:EO:13830:d7dc981ba286b615@115de2c288892311"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -3939,8 +4003,8 @@
       "own_term_evidence_ids": [
         "TERM:EO:13830:aa06ad2270c18ae6@d6a9da30734a31c0",
         "TERM:EO:13830:c8ad391b063bd272@d6a9da30734a31c0",
-        "TERM:EO:13830:aa06ad2270c18ae6@a147daea23919f5c",
-        "TERM:EO:13830:c8ad391b063bd272@a147daea23919f5c"
+        "TERM:EO:13830:eb4afd9b061d6f37@115de2c288892311",
+        "TERM:EO:13830:a54eca8932f27b09@115de2c288892311"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -4071,7 +4135,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13830:8691665eb51e685d@d6a9da30734a31c0",
         "TERM:EO:13830:988eed3c6521fc06@411127a0ce0f7369",
-        "TERM:EO:13830:8691665eb51e685d@a147daea23919f5c"
+        "TERM:EO:13830:1d479050a81cf94a@115de2c288892311"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -4137,7 +4201,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13830:fa77882be3f3f58d@d6a9da30734a31c0",
         "TERM:EO:13830:246dd8f305289d61@411127a0ce0f7369",
-        "TERM:EO:13830:fa77882be3f3f58d@a147daea23919f5c"
+        "TERM:EO:13830:7a14b93ca7507192@115de2c288892311"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -4158,7 +4222,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13830:e364b3add985e3ae@d6a9da30734a31c0",
         "TERM:EO:13830:5d237d964a301f09@411127a0ce0f7369",
-        "TERM:EO:13830:e364b3add985e3ae@a147daea23919f5c"
+        "TERM:EO:13830:56d5562a165a99c9@115de2c288892311"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -4208,7 +4272,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -4220,7 +4284,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -4232,8 +4296,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -4273,25 +4337,25 @@
     "TERM:EO:13830:988eed3c6521fc06@411127a0ce0f7369",
     "TERM:EO:13830:246dd8f305289d61@411127a0ce0f7369",
     "TERM:EO:13830:5d237d964a301f09@411127a0ce0f7369",
-    "TERM:EO:13830:f4499807a0cc955f@a147daea23919f5c",
-    "TERM:EO:13830:540426843faeb66c@a147daea23919f5c",
-    "TERM:EO:13830:7eaf84c309d64a96@a147daea23919f5c",
-    "TERM:EO:13830:37b7cb4f3a07802f@a147daea23919f5c",
-    "TERM:EO:13830:1e081f65fc246841@a147daea23919f5c",
-    "TERM:EO:13830:bc139e922ac60224@a147daea23919f5c",
-    "TERM:EO:13830:aa06ad2270c18ae6@a147daea23919f5c",
-    "TERM:EO:13830:c8ad391b063bd272@a147daea23919f5c",
-    "TERM:EO:13830:8691665eb51e685d@a147daea23919f5c",
-    "TERM:EO:13830:fa77882be3f3f58d@a147daea23919f5c",
-    "TERM:EO:13830:e364b3add985e3ae@a147daea23919f5c"
+    "TERM:EO:13830:d7faf8e07612a56e@115de2c288892311",
+    "TERM:EO:13830:3975f8b8039ad61b@115de2c288892311",
+    "TERM:EO:13830:37dff78353a47aff@115de2c288892311",
+    "TERM:EO:13830:52ea4d6ca2b16e1d@115de2c288892311",
+    "TERM:EO:13830:0d2e9e8e5aebeec5@115de2c288892311",
+    "TERM:EO:13830:d7dc981ba286b615@115de2c288892311",
+    "TERM:EO:13830:eb4afd9b061d6f37@115de2c288892311",
+    "TERM:EO:13830:a54eca8932f27b09@115de2c288892311",
+    "TERM:EO:13830:1d479050a81cf94a@115de2c288892311",
+    "TERM:EO:13830:7a14b93ca7507192@115de2c288892311",
+    "TERM:EO:13830:56d5562a165a99c9@115de2c288892311"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "5fd646a720848260980ca77352a7fd8d209a779962ee6159ee9adebf8528db39",
+    "fingerprint": "8cdb8196c3c0a6a0b43a5e78daa0e5ef8b2fa2c5ffa693aa365b564dc1465507",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13830.json",
-    "history_sha256": "057a99c5fc2e20f5489c8662375c5626db16ded91ef593b443085112187a7c63",
+    "history_sha256": "59e3f1400ff9830bd336184e8c480d53550667e4ca768ed1b0e8060dcd39795c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

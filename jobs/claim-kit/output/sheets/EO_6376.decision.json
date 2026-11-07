@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "e97713fb7c92058acc54bdf6439bee473e6d669fab6dfed7f7ad5340d3f1a455",
+  "dossier_sha256": "4f67c964a6ef56c22f464450f8069567bcec0d4a7d8e1b11515890c46ce52333",
   "instrument_id": "EO:6376",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-31",
               "register_number": "6376",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6376.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6376.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6376—Code of Fair Competition for the Hair and Jute Felt Industry",
               "text_chars": 1234
             },

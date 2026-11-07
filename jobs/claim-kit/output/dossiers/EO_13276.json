@@ -135,7 +135,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13276",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13276"
@@ -496,8 +496,42 @@
       "where": "CFR 32 CFR 245.9"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13276",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 8 U.S.C. 1182 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2413",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "8 U.S.C. 1182 note",
+        "member_sha256": "dacd49660b6bae3039c1083ffd54c84f4f39ba9ef8da8457104e63283bcada5f",
+        "note_id": "id9bf4d297-3a6f-11f1-ace3-bb5201d4c7c7",
+        "note_text_sha256": "42b469359f0da6a298e54346c54ff82cae04b887178dde18414a25b0167f00fe",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id9bf4d297-3a6f-11f1-ace3-bb5201d4c7c7"
+      },
+      "row_span": "259111-259209",
+      "snippet": "2002 Nov. 15 | EO 13276 | 8 U.S.C. 1182 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 8 U.S.C. 1182 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -549,6 +583,34 @@
           "page_or_item": "8 U.S.C. 1182 note; note 'Ex. Ord. No. 13276. Delegation of Responsibilities Concerning Undocumented Aliens Interdic' [USLM note id id9bf4d297-3a6f-11f1-ace3-bb5201d4c7c7]; usc08.xml (sha256 dacd49660b6bae3039c1083ffd54c84f4f39ba9ef8da8457104e63283bcada5f) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2413",
+        "snippet": "2002 Nov. 15 | EO 13276 | 8 U.S.C. 1182 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 8 U.S.C. 1182 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 8 U.S.C. 1182 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -8618,7 +8680,7 @@
       "text": "If the Attorney General institutes such screening, then until \na determination is made, the Attorney General shall provide for the custody, \ncare, safety, transportation, and other needs of the aliens."
     }
   },
-  "fingerprint": "3f1f01b7f4c583f56bc8acb82a3cc4807ca96315b16d343fad3ccfdf25f72988",
+  "fingerprint": "9a31d7dd264aff08b18f76a8974c720829df36c73ee69cb6431cab15224f07ee",
   "instrument_id": "EO:13276",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -8848,7 +8910,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -8860,7 +8922,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -8872,8 +8934,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -8883,6 +8945,7 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: MEMORANDUM:2025-06-30",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "Large actor context must be read at actor-texts/EO_13286.json before deciding scope/savings.",
@@ -9129,10 +9192,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "43c2e61c9be6e0e308a7e3291eddc8290c474c5c1a68cfc6bfe4b7b5a29b3840",
+    "fingerprint": "ad474719184d39c33d967f86be82cec403617fc52e4be4214f263c913eebc773",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13276.json",
-    "history_sha256": "0c1f82c09663b32b12b474c8722f1092bb005000860661a10d693ee532c43ae6",
+    "history_sha256": "78652694ceee0f6e9d92aea17e4d24aa828be9ceb44d55b3d592f1841214a4ea",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

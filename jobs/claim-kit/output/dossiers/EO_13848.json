@@ -17,7 +17,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13848",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13848"
@@ -1397,15 +1397,41 @@
       "snippet": "Delegation of certain authorities by the Secretary of the Treasury. | Treasury is authorized to take pursuant to Executive Order 13848 of September 12, 2018, and any",
       "source": {
         "page_or_item": "31 CFR 579.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 2)",
-        "sha256": "aa0b9e4deb2e03b66872f63b77b44c875995d871df2168ad21343ec317e1e3c4",
+        "sha256": "c54607bfc477b464e231fbc1ed665000599a718f8db8279735db1166083cd3a8",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=2"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR 579.802"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13848",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3005",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "320279-320379",
+      "snippet": "2018 Sept. 12 | EO 13848 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1433,7 +1459,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1461,7 +1488,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1489,7 +1517,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1517,7 +1546,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1545,7 +1575,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1573,7 +1604,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1601,7 +1633,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1650,8 +1683,36 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 579.802)",
         "source": {
           "page_or_item": "31 CFR 579.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 2)",
-          "sha256": "aa0b9e4deb2e03b66872f63b77b44c875995d871df2168ad21343ec317e1e3c4",
+          "sha256": "c54607bfc477b464e231fbc1ed665000599a718f8db8279735db1166083cd3a8",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=2"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3005",
+        "snippet": "2018 Sept. 12 | EO 13848 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -3951,7 +4012,7 @@
       "text": "(a) the Secretary of the Treasury shall review the assessment mandated \nby section 1(a) and the report mandated by section 1(b), and, in consultation \nwith the Secretary of State, the Attorney General, and the Secretary of \nHomeland Security, impose all appropriate sanctions pursuant to section \n2(a) of this order and any appropriate sanctions described in section 2(b) \nof this order; and"
     }
   },
-  "fingerprint": "e25f68897083aa487f69651098616a965b42bf0e90f787560dae5ec2d2066f19",
+  "fingerprint": "3e7ebc2c30ce7d94a7f30dbcf2975b98cf2eec0b97ed21d2ef7ed157ea5ab7e2",
   "instrument_id": "EO:13848",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -4848,7 +4909,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -4860,7 +4921,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -4872,8 +4933,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -4883,6 +4944,12 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2019-09-10",
+    "Acting identity absent from census: NOTICE:2020-09-10",
+    "Acting identity absent from census: NOTICE:2021-09-07",
+    "Acting identity absent from census: NOTICE:2022-09-07",
+    "Acting identity absent from census: NOTICE:2023-09-07",
+    "Acting identity absent from census: NOTICE:2024-09-09",
     "Acting identity absent from census: NOTICE:2025-08-29",
     "Acting identity absent from census: NOTICE:2026-08-31",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
@@ -4930,10 +4997,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "f5a57dc6eea4ef00f3d1a6060824a9d9831567f600f9a0cb837a2717f4e48315",
+    "fingerprint": "7967d7b14022a9d91e08ee88e4bce82a60836739dfd92dd25d1d8cd70e7488eb",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13848.json",
-    "history_sha256": "83fbf75cefb8c255fcb8d12fd0b672bc4ede10708ff4ba1afe728f56139699fb",
+    "history_sha256": "39e7a7e8b928211dc8a611179fc60588b01e8120b2b8c2766c359d69fce444dc",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

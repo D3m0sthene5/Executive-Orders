@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "4c507fa8f670b17223bebac9b9e9dd4334ef70d39f6520479982cb446f56f9d3",
+  "dossier_sha256": "7d22da1bff68ade13674b2e3c0704e1b8dc2ed687ca20b07b36edf9b9d8e0544",
   "instrument_id": "EO:6481",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-07",
               "register_number": "6481",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6481.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6481.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6481—Code of Fair Competition for the Furniture Manufacturing Industry",
               "text_chars": 1240
             },

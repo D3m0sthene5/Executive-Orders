@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "198eb8f059239d9e334feb9496cd6ae7b2e5e22caea3785ba3b3d999032f4f9e",
+  "dossier_sha256": "1164a3e3e6632330ff5bc1c8c7ef0a870e1eea2d3aa9e9a34ae421a469d2d96d",
   "instrument_id": "EO:6399",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-04",
               "register_number": "6399",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6399.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6399.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6399—Code of Fair Competition for the Piano Manufacturing Industry",
               "text_chars": 1244
             },

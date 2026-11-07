@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "855603b274a912d9b6bc2d8b4c98a468a0f288ecd2d371a0e678792d4bd0b918",
+  "dossier_sha256": "7425ba5842c257d723ba895ff79c6bf2bdced5ccbc8719f4f3ad26ade6e48160",
   "instrument_id": "EO:6394",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-04",
               "register_number": "6394",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6394.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6394.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6394—Code of Fair Competition for the Funeral Supply Industry",
               "text_chars": 1241
             },

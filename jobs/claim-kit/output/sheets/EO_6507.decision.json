@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "8c9f65c1b8d8585ea4d9a6fd9757b69de8b3ecfff3b9dfdaebf157abd9dc3337",
+  "dossier_sha256": "9637d2fb785373bfb1aa8f99458a9279937d87bf21474c3783c31fa50508ab37",
   "instrument_id": "EO:6507",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-15",
               "register_number": "6507",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6507.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6507.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6507—Code of Fair Competition for the Hair Cloth Manufacturing Industry",
               "text_chars": 1240
             },

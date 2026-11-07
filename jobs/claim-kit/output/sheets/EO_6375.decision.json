@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "a15cbcfdc54332f4d6526392152980c47079657f6d445f7ae73a9caa10a33df8",
+  "dossier_sha256": "99e48d63698aa20b6b199b515e5ceef03555591cfad1e80a9ce17cc42a3a7952",
   "instrument_id": "EO:6375",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-31",
               "register_number": "6375",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6375.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6375.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6375—Code of Fair Competition for the Road Machinery Manufacturing Industry",
               "text_chars": 1161
             },

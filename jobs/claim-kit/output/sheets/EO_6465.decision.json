@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "9571838153ecaef8b244fd2709fde2b623957672ffcc5954dc062d7a307373ba",
+  "dossier_sha256": "ca85e201bf199e747144769a48c98352324da6aafe74221be588ddb099d44a6c",
   "instrument_id": "EO:6465",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-27",
               "register_number": "6465",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6465.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6465.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6465—Code of Fair Competition for the Structural Clay Products Industry",
               "text_chars": 1243
             },

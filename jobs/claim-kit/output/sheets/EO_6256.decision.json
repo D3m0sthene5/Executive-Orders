@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "f11846d9940e5a6f52f2b23bf6990177bf41f608a90e427c61e5d58494d687a0",
+  "dossier_sha256": "408c486b3f20992707f676788edfb11079e9f3759152bb51a56893e98480f7f3",
   "instrument_id": "EO:6256",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-08-19",
               "register_number": "6256",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6256.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6256.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6256—Code of Fair Competition for the Petroleum Industry",
               "text_chars": 1163
             },

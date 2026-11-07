@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3f77572ed189afcf3fca00860affe27520a66f05100971be775417ec3dcb197a",
+  "dossier_sha256": "6afcb06a3177bf8a408d9ed17880bd8fd626ae2e80a031c8a2e2a258b2579b27",
   "instrument_id": "EO:6291",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-09-18",
               "register_number": "6291",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6291.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6291.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6291—Code of Fair Competition for the Linoleum and Felt Base Manufacturing Industry",
               "text_chars": 1253
             },

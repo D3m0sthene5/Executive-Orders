@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:10762",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10762"
@@ -102,7 +102,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 50 U.S.C. 3803 note"
+      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 50 U.S.C. 3803 note; USC 50 U.S.C. 3803 nt"
     },
     {
       "code": "NO_ORDER_IN_FORCE_ON_1989_01_20",
@@ -133,6 +133,39 @@
       "where": "USC 50 U.S.C. 3803 note"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10762",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 3803 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:329",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "50 U.S.C. 3803 note",
+        "member_sha256": "1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff",
+        "note_id": "id9923b9f6-b817-11f1-b12d-8c5a06520415",
+        "note_text_sha256": "5d206c7cee16e5f087f0cc1548b09d2fe2528e1fd4d5f0ecd5431d6065c9ed3c",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id9923b9f6-b817-11f1-b12d-8c5a06520415"
+      },
+      "row_span": "41489-41584",
+      "snippet": "1958 Mar. 28 | EO 10762 | 50 U.S.C. 3803 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 3803 nt"
+    },
+    {
       "custody_records_in": [
         "current-law"
       ],
@@ -158,6 +191,34 @@
           "page_or_item": "50 U.S.C. 3803 note; note 'Ex. Ord. No. 10762. Delegation of Authority to Secretary of Defense' [USLM note id id9923b9f6-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:329",
+        "snippet": "1958 Mar. 28 | EO 10762 | 50 U.S.C. 3803 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 3803 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 3803 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -210,7 +271,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 50 U.S.C. 3803 note",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 50 U.S.C. 3803 note; USC 50 U.S.C. 3803 nt",
     "CONFLICT NO_ORDER_IN_FORCE_ON_1989_01_20: provisional NO, but the OFR 1989 Codification prints it as in force on 1989-01-20 (OFR Codification 1989, chapter 32 (National Defense)) and no ending candidate is dated after that day"
   ],
   "evidence": {
@@ -422,7 +483,7 @@
       "text": "L. 85-62; 71 Stat. 206), to \norder to active duty (other than for  \ntraining) for a period of not more than  \n2 4  consecutive months, with or without \nh is consent, any member of a reserve  \ncom ponent of the armed forces of the  \nUnited States who is in a medical,  \ndental, or allied specialist category, who \nhas not attained the thirty-fifth anni­\nversary of the date of his birth, and  \nw ho has not performed at least one  \nyear of active duty (other than for  \ntraining). ,"
     }
   },
-  "fingerprint": "ec6622979970949933a3f034e5d76a56182530b118846f54bf3c566f60bea678",
+  "fingerprint": "2475208f3c90527df5f8feb7349f04c0c3e946c70c84f9329549fab45e8da4dc",
   "instrument_id": "EO:10762",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -498,7 +559,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -510,7 +571,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -522,8 +583,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -546,12 +607,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "ff641e3904270173f05353cd32d044103cd4e865361b749d914b5bd40dfaff96",
+    "fingerprint": "77f8395215427e71dc8c9c992965c23b342bfbe94f9826b81ec46dd23b9ff50f",
     "flags": [
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_10762.json",
-    "history_sha256": "982be8cf1d757ef6afb14840b14da7813caf62ec2d4f4ea133e8a6e49fc35908",
+    "history_sha256": "0cbdea42d7cad9d2dac4b66a9101d4c6a5f5ec3112f83907b74ee4a97c31362c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

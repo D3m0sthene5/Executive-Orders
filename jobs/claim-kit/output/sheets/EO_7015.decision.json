@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "47549651726851f07309dc5227166badab12f61c7253dea365f0abcf6a915b19",
+  "dossier_sha256": "e940961d6e1aa75c4f12cf3f1b426b125048d8ea1881e1d94de1028bb4d85533",
   "instrument_id": "EO:7015",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1935-04-19",
               "register_number": "7015",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7015.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7015.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7015—Amending Code of Fair Competition for the Alcoholic Beverage Wholesale Industry",
               "text_chars": 885
             },

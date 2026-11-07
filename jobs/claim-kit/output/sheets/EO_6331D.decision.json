@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "c8ec90e215c6f9ecdad971d79f3fa9e80789be649a6bc2b0051a3c4e8ed734c2",
+  "dossier_sha256": "13d065fe1d816d48ea52682b83f4a05bcd0b7d7e16c8ed705f8d3a4164dc1f8a",
   "instrument_id": "EO:6331D",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-11",
               "register_number": "6331D",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6331D.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6331D.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6331-D—Code of Fair Competition for the Pump Manufacturing Industry",
               "text_chars": 1232
             },

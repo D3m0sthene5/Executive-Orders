@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "8ad895b6b2240c99b9c1932f1c1bd0a82709dc760051197c2428fa40c6e7a569",
+  "dossier_sha256": "8cba55e204dd281448cde21ecf1c5365f554596b482272a41836070fc9becd4e",
   "instrument_id": "EO:6312",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-03",
               "register_number": "6312",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6312.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6312.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6312—Code of Fair Competition for the Builders Supplies Trade",
               "text_chars": 1231
             },

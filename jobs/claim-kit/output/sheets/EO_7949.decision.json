@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3420167b3ee2aaac0cda2648570ffbc05088eed032de76b5a431f88f223a96b6",
+  "dossier_sha256": "613045dd1bfee5c398f2a9f01a24c9081c3d509885ff917232e092f145edafa4",
   "instrument_id": "EO:7949",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-08-09",
               "register_number": "7949",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7949.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7949.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7949—Exemption of Stephen W. Hamilton From Compulsory Retirement for Age",
               "text_chars": 689
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7949",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7949.txt",
+        "text_sha256": "12ffe6aaf2dd92a79588ea83491bde3c54afbfa310493f92cb8ad7316d3c90ee"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7949",
@@ -130,6 +151,16 @@
         "sha256": "f3a55333b085ec90a60d36de15df392c5f53dcf5bf3ec9f4c158825eafba5748",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7949-f3a55333b0.txt",
         "text_sha256": "c1624e0a70d600fd8c09b8a2962e3096d1a679e380bae9ba5ea79c0c4d9e9835"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7949",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7949.txt",
+        "text_sha256": "f54eefe48f91c85b985557027c85f90e7f7022e017473b56a65f8dfdf60c9a22"
       }
     ],
     "quotation_recheck_required": true,

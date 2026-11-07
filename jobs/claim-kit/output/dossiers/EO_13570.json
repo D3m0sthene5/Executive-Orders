@@ -21,7 +21,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13570",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13570"
@@ -394,15 +394,41 @@
       "snippet": "...ain authorities of the Secretary of the Treasury. | take pursuant to Executive Order 13466 of June 26, 2008, Executive Order 13551 of August … August 30, 2010, Executive Order 13570 of April 18, 2011, Executive Order 13687 of January … January 2, 2015, Executive Order 13722 of March 15, 2016, Executive Order 13810 of September",
       "source": {
         "page_or_item": "31 CFR 510.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-        "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+        "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR 510.802"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13570",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2761",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "294737-294832",
+      "snippet": "2011 Apr. 18 | EO 13570 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -430,7 +456,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -479,7 +506,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 510.802)",
         "source": {
           "page_or_item": "31 CFR 510.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-          "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+          "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
         }
       }
@@ -509,6 +536,34 @@
           "page_or_item": "22 U.S.C. 9202; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2761",
+        "snippet": "2011 Apr. 18 | EO 13570 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -932,7 +987,7 @@
       "text": "Instrument: EO:13570\nSource: https://www.govinfo.gov/content/pkg/FR-2011-04-20/pdf/2011-9739.pdf\nSHA-256 of the downloaded file: 8ac7053a3b8bd76e66c56dadfdde4cf6d549d6012d9fd26bd97ad7a1da9f74d0\nLocation: 76 FR 22291, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n22291 \nFederal Register \nVol. 76, No. 76 \nWednesday, April 20, 2011 \nTitle 3— \nThe President \nExecutive Order 13570 of April 18, 2011 \nProhibiting Certain Transactions With Respect to North \nKorea \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the International Emergency \nEconomic Powers Act (50 U.S.C. 1701 et seq.) (IEEPA), the National Emer-\ngencies Act (50 U.S.C. 1601 et seq.), section 5 of the United Nations Participa-\ntion Act of 1945 (22 U.S.C. 287c) (UNPA), and section 301 of title 3, \nUnited States Code, and in view of United Nations Security Council Resolu-\ntion (UNSCR) 1718 of October 14, 2006, and UNSCR 1874 of June 12, \n2009, \nI, BARACK OBAMA, President of the United States of America, in order \nto take additional steps to address the national emergency declared in Execu-\ntive Order 13466 of June 26, 2008, and expanded in Executive Order 13551 \nof August 30, 2010, that will ensure implementation of the import restrictions \ncontained in UNSCRs 1718 and 1874 and complement the import restrictions \nprovided for in the Arms Export Control Act (22 U.S.C. 2751 et seq.), \nhereby order: \nSection 1. Except to the extent provided in statutes or in licenses, regulations, \norders, or directives that may be issued pursuant to this order, and notwith-\nstanding any contract entered into or any license or permit granted prior \nto the date of this order, the importation into the United States, directly \nor indirectly, of any goods, services, or technology from North Korea is \nprohibited. \nSec. 2. (a) Any transaction by a United States person or within the United \nStates that evades or avoids, has the purpose of evading or avoiding, causes \na violation of, or attempts to violate any of the prohibitions set forth in \nthis order is prohibited. \n(b) Any conspiracy formed to violate any of the prohibitions set forth \nin this order is prohibited. \nSec. 3. The provisions of Executive Orders 13466 and 13551 remain in \neffect, and this order does not affect any action taken pursuant to those \norders. \nSec. 4. For the purposes of this order: \n(a) the term ‘‘person’’ means an individual or entity; \n(b) the term ‘‘entity’’ means a partnership, association, trust, joint venture, \ncorporation, group, subgroup, or other organization; \n(c) the term ‘‘United States person ’’ means any United States citizen, \npermanent resident alien, entity organized under the laws of the United \nStates or any jurisdiction within the United States (including foreign \nbranches), or any person in the United States; \n(d) the term ‘‘North Korea’’ includes the territory of the Democratic People’s \nRepublic of Korea and the Government of North Korea; and \n(e) the term ‘‘Government of North Korea ’’ means the Government of the \nDemocratic People’s Republic of Korea, its agencies, instrumentalities, and \ncontrolled entities. \nSec. 5. The Secretary of the Treasury, in consultation with the Secretary \nof State, is hereby authorized to take such actions, including the promulgation \nof rules and regulations, and to employ all powers granted to the President \nVerDate Mar<15>2010 18:34 Apr 19, 2011 Jkt 223001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\20APD2.SGM 20APD2jlentini on DSKJ8SOYB1PROD with FRD2\n=== PDF page 2 of 2 ===\n22292 Federal Register / Vol. 76, No. 76 / Wednesday, April 20, 2011 / Presidential Documents \nby IEEPA and the UNPA as may be necessary to carry out the purposes \nof this order. The Secretary of the Treasury may redelegate any of these \nfunctions to other officers and agencies of the United States Government \nconsistent with applicable law. All agencies of the United States Government \nare hereby directed to take all appropriate measures within their authority \nto carry out the provisions of this order. \nSec. 6. This order is not intended to, and does not, create any right or \nbenefit, substantive or procedural, enforceable at law or in equity by any \nparty against the United States, its departments, agencies, or entities, its \nofficers, employees, or agents, or any other person. \nSec. 7. This order is effective at 12:01 a.m. eastern daylight time on April \n19, 2011. \nTHE WHITE HOUSE, \nApril 18, 2011. \n[FR Doc. 2011–9739 \nFiled 4–19–11; 11:15 am] \nBilling code 3195–W1–P \nVerDate Mar<15>2010 18:34 Apr 19, 2011 Jkt 223001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\20APD2.SGM 20APD2\nOB#1.EPS</GPH>\njlentini on DSKJ8SOYB1PROD with FRD2"
     }
   },
-  "fingerprint": "7b04ce2ff7d81d77a28daf4cd5394f43abf1d135cd3812ef02a2d4d26a536454",
+  "fingerprint": "1e762fca239f1d1fb4bd79896fcaae6b8376316c3811e721d7b73769622652d9",
   "instrument_id": "EO:13570",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1139,7 +1194,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1151,7 +1206,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1163,8 +1218,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1174,7 +1229,20 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2011-06-23",
+    "Acting identity absent from census: NOTICE:2012-06-18",
+    "Acting identity absent from census: NOTICE:2013-06-21",
+    "Acting identity absent from census: NOTICE:2014-06-20",
+    "Acting identity absent from census: NOTICE:2015-06-22",
+    "Acting identity absent from census: NOTICE:2016-06-21",
+    "Acting identity absent from census: NOTICE:2017-06-21",
+    "Acting identity absent from census: NOTICE:2018-06-28",
+    "Acting identity absent from census: NOTICE:2019-06-21",
+    "Acting identity absent from census: NOTICE:2020-06-17",
+    "Acting identity absent from census: NOTICE:2021-06-21",
     "Acting identity absent from census: NOTICE:2022-06-13",
+    "Acting identity absent from census: NOTICE:2023-06-20",
+    "Acting identity absent from census: NOTICE:2024-06-13",
     "Acting identity absent from census: NOTICE:2025-06-20",
     "Acting identity absent from census: NOTICE:2026-06-22",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
@@ -1191,10 +1259,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "61f60ac22e085caf3971672dc2c83d4324d607bc84eec6b624002d096e05e6d2",
+    "fingerprint": "6b64fbc5db03916e8e57d5a6c998027a0e0b84c0c8e9845969c67234827f4253",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13570.json",
-    "history_sha256": "07c9a6e5cf40e5a308905ab897b0e2090354052140e3bf985aa645e45eab28f5",
+    "history_sha256": "7932fa3d9be88d330303f7dc7bf9491bf180dd170aaba24407af10ea0ce58dab",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

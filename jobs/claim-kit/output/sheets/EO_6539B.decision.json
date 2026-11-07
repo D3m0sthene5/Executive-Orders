@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "aff7151d72876a09c86965dc841f6ce6e7e2798844880bc00d7abce37fcf157c",
+  "dossier_sha256": "264ca18caba00488307fd3f73a220c8bd45d85a770626f874c6b6e50ece86ab8",
   "instrument_id": "EO:6539B",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -145,7 +145,18 @@
               "register_date": "1933-12-27",
               "register_number": "6539B",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6539B.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6539B.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6539-B—Approval of Code of Fair Competition for the Commercial and Breeder Hatchery Industry",
               "text_chars": 1893
             },

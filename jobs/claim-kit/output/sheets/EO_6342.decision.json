@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "5f1ef2c5d93d2b8596048c74cb6af70f1964767e8a64a56b40135638975be29e",
+  "dossier_sha256": "c1a5980f82c88e9a129b80f2fc39f97f672afe018c73426c756ff6df152bc0e8",
   "instrument_id": "EO:6342",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-18",
               "register_number": "6342",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6342.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6342.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6342—Inspection of Tax Returns by Special Committee to Investigate Receivership and Bankruptcy Proceedin",
               "text_chars": 2577
             },

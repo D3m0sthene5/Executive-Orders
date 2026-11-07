@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "b801ba1df472fa194af07d377fbda64f104007934a734825229d08e08f3f5cdf",
+  "dossier_sha256": "10a1fa0a46cf049ceb9d49af5eff75486fd98553e563a8f1bca06558da3d8f2a",
   "instrument_id": "EO:7954",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-08-12",
               "register_number": "7954",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7954.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7954.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7954—Exemption of Frank S. Smith From Compulsory Retirement for Age",
               "text_chars": 720
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7954",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7954.txt",
+        "text_sha256": "410710fa6575cd836925c60425a51b5e704af3aed62e4fc14b419f6a066c0c48"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7954",
@@ -130,6 +151,16 @@
         "sha256": "bc60252bd4df4979aa6202d28e741b3b3ecf2bfb872d7595f76d88af87eb0a2f",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7954-bc60252bd4.txt",
         "text_sha256": "c57132e0aa3f5f8d3684eba16b23886a786ace973934db26fa4e71217462eca6"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7954",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7954.txt",
+        "text_sha256": "e0f22c5f6f56e5268ceeef8325339cc1459d7359078b3bf5c0dfa35dd383b5cb"
       }
     ],
     "quotation_recheck_required": true,

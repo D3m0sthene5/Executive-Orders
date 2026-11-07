@@ -140,7 +140,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14049",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14049"
@@ -1335,8 +1335,67 @@
       "text": "(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person."
     }
   ],
-  "conflicts": [],
-  "current_law_leads": [],
+  "conflicts": [
+    {
+      "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
+      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 20 U.S.C. 7401 nt"
+    }
+  ],
+  "current_law_leads": [
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14049",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 20 U.S.C. 7401 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3208",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "341140-341239",
+      "snippet": "2021 Oct. 11 | EO 14049 | 20 U.S.C. 7401 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 20 U.S.C. 7401 nt"
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3208",
+        "snippet": "2021 Oct. 11 | EO 14049 | 20 U.S.C. 7401 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 20 U.S.C. 7401 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 20 U.S.C. 7401 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
+    }
+  ],
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
@@ -1358,6 +1417,15 @@
     "clause_17_state",
     "clause_18_state",
     "clause_19_state",
+    "clause_20_state",
+    "clause_21_state",
+    "clause_22_state",
+    "clause_23_state",
+    "clause_24_state",
+    "clause_25_state",
+    "clause_26_state",
+    "clause_27_state",
+    "clause_28_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -1365,10 +1433,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 20 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 29 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 20 U.S.C. 7401 nt"
   ],
   "evidence": {
     "ACT:EO:14049>EO:14148": {
@@ -3254,6 +3323,68 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     },
+    "TERM:EO:14049:490b3a6a7c827908@1b491a3f2ea9eff2": {
+      "actor_id": "EO:14049",
+      "char_end": 14056,
+      "char_start": 13801,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14049:490b3a6a7c827908@1b491a3f2ea9eff2",
+      "instrument_id": "EO:14049",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14049#sec2-i-dup3",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14049",
+        "page_or_item": "86 FR 57313-57318 (PDF pp. 1-6)",
+        "requires_page_check": false,
+        "sha256": "0d1b5e269e51b0789f133a234eeb852b14148f68c4564858a505677993238b90",
+        "signing_date": "2021-10-11",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14049-0d1b5e269e.txt",
+        "text_sha256": "1b491a3f2ea9eff2dd52d3f3eb1eebae0172f0fb24c848a61a44d9860881cf78",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-10-14/pdf/2021-22588.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(i) Each agency with representation on the WHCNAA Education Committee\nshall assess and report to the Co-Chairs of the Initiative on a regular\nbasis, as established by the Co-Chairs of the Initiative, regarding its progress\nin implementing its Agency Plan."
+    },
+    "TERM:EO:14049:4fbcead6903874db@1b491a3f2ea9eff2": {
+      "actor_id": "EO:14049",
+      "char_end": 15935,
+      "char_start": 15561,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14049:4fbcead6903874db@1b491a3f2ea9eff2",
+      "instrument_id": "EO:14049",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14049#sec3",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14049",
+        "page_or_item": "86 FR 57313-57318 (PDF pp. 1-6)",
+        "requires_page_check": false,
+        "sha256": "0d1b5e269e51b0789f133a234eeb852b14148f68c4564858a505677993238b90",
+        "signing_date": "2021-10-11",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14049-0d1b5e269e.txt",
+        "text_sha256": "1b491a3f2ea9eff2dd52d3f3eb1eebae0172f0fb24c848a61a44d9860881cf78",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-10-14/pdf/2021-22588.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The Department of Education’s National\nAdvisory Council on Indian Education (NACIE), comprised of members ap-\npointed by the President under section 6141 of the Elementary and Secondary\nEducation Act of 1965 (ESEA), 20 U.S.C. 7471, shall serve as the advisory\ncouncil for the Initiative and shall report to the Initiative, through and\nas requested by the Executive Director."
+    },
     "TERM:EO:14049:52eab8e66cd53421@2315aa4297e1670d": {
       "actor_id": "EO:14049",
       "char_end": 15279,
@@ -3317,36 +3448,67 @@
       "stated_end_date": null,
       "text": "(i) Each agency with representation on the WHCNAA Education Committee \nshall assess and report to the Co-Chairs of the Initiative on a regular \nbasis, as established by the Co-Chairs of the Initiative, regarding its progress \nin implementing its Agency Plan."
     },
-    "TERM:EO:14049:5f166976f28586d1@d75d6542eb016395": {
+    "TERM:EO:14049:6b3220746404e76c@1b491a3f2ea9eff2": {
       "actor_id": "EO:14049",
-      "char_end": 15057,
-      "char_start": 14799,
+      "char_end": 21254,
+      "char_start": 21137,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14049:5f166976f28586d1@d75d6542eb016395",
+      "id": "TERM:EO:14049:6b3220746404e76c@1b491a3f2ea9eff2",
       "instrument_id": "EO:14049",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14049#sec2-i-dup3",
+      "scope_id": "EO:14049#sec6-b",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14049",
-        "page_or_item": "86 FR 57313, PDF pages 1-6",
+        "page_or_item": "86 FR 57313-57318 (PDF pp. 1-6)",
         "requires_page_check": false,
         "sha256": "0d1b5e269e51b0789f133a234eeb852b14148f68c4564858a505677993238b90",
         "signing_date": "2021-10-11",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14049-0d1b5e269e.txt",
-        "text_sha256": "d75d6542eb01639561ea8e8eca3846ef41663098c8d2d99326587368c77957ab",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14049-0d1b5e269e.txt",
+        "text_sha256": "1b491a3f2ea9eff2dd52d3f3eb1eebae0172f0fb24c848a61a44d9860881cf78",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-10-14/pdf/2021-22588.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(i) Each agency with representation on the WHCNAA Education Committee \nshall assess and report to the Co-Chairs of the Initiative on a regular \nbasis, as established by the Co-Chairs of the Initiative, regarding its progress \nin implementing its Agency Plan."
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
+    },
+    "TERM:EO:14049:75985d2ec8e6286a@1b491a3f2ea9eff2": {
+      "actor_id": "EO:14049",
+      "char_end": 15525,
+      "char_start": 15295,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14049:75985d2ec8e6286a@1b491a3f2ea9eff2",
+      "instrument_id": "EO:14049",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14049#sec2-i-dup4",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14049",
+        "page_or_item": "86 FR 57313-57318 (PDF pp. 1-6)",
+        "requires_page_check": false,
+        "sha256": "0d1b5e269e51b0789f133a234eeb852b14148f68c4564858a505677993238b90",
+        "signing_date": "2021-10-11",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14049-0d1b5e269e.txt",
+        "text_sha256": "1b491a3f2ea9eff2dd52d3f3eb1eebae0172f0fb24c848a61a44d9860881cf78",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-10-14/pdf/2021-22588.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(i) No later than 1 year after the date of this order and annually thereafter,\nthe Co-Chairs of the Initiative shall report to the President on the Initiative’s\nprogress in carrying out its mission and objectives under this order."
     },
     "TERM:EO:14049:897fd5238ee8f8dd@a3594df4f3735429": {
       "actor_id": "EO:14049",
@@ -3371,37 +3533,6 @@
         "signing_date": "2021-10-11",
         "text_path": "jobs/fr-originals/output/texts/EO_14049.txt",
         "text_sha256": "a3594df4f3735429fbb6fa8bb8ccd2c2908fa8641766f757be46fc82664da4a1",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-10-14/pdf/2021-22588.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
-    },
-    "TERM:EO:14049:897fd5238ee8f8dd@d75d6542eb016395": {
-      "actor_id": "EO:14049",
-      "char_end": 22903,
-      "char_start": 22785,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14049:897fd5238ee8f8dd@d75d6542eb016395",
-      "instrument_id": "EO:14049",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14049#sec6-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14049",
-        "page_or_item": "86 FR 57313, PDF pages 1-6",
-        "requires_page_check": false,
-        "sha256": "0d1b5e269e51b0789f133a234eeb852b14148f68c4564858a505677993238b90",
-        "signing_date": "2021-10-11",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14049-0d1b5e269e.txt",
-        "text_sha256": "d75d6542eb01639561ea8e8eca3846ef41663098c8d2d99326587368c77957ab",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-10-14/pdf/2021-22588.pdf"
       },
       "start_date": null,
@@ -3437,37 +3568,6 @@
       "stated_end_date": null,
       "text": "(i) No later than 1 year after the date of this order and annually thereafter, \nthe Co-Chairs of the Initiative shall report to the President on the Initiative’s \nprogress in carrying out its mission and objectives under this order."
     },
-    "TERM:EO:14049:b570edde3023fa22@d75d6542eb016395": {
-      "actor_id": "EO:14049",
-      "char_end": 16545,
-      "char_start": 16313,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14049:b570edde3023fa22@d75d6542eb016395",
-      "instrument_id": "EO:14049",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14049#sec2-i-dup4",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14049",
-        "page_or_item": "86 FR 57313, PDF pages 1-6",
-        "requires_page_check": false,
-        "sha256": "0d1b5e269e51b0789f133a234eeb852b14148f68c4564858a505677993238b90",
-        "signing_date": "2021-10-11",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14049-0d1b5e269e.txt",
-        "text_sha256": "d75d6542eb01639561ea8e8eca3846ef41663098c8d2d99326587368c77957ab",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-10-14/pdf/2021-22588.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(i) No later than 1 year after the date of this order and annually thereafter, \nthe Co-Chairs of the Initiative shall report to the President on the Initiative’s \nprogress in carrying out its mission and objectives under this order."
-    },
     "TERM:EO:14049:b9a5015ca49e8626@a3594df4f3735429": {
       "actor_id": "EO:14049",
       "char_end": 16096,
@@ -3497,14 +3597,14 @@
       "stated_end_date": null,
       "text": "(f) The Department of Education shall provide funding and administrative \nsupport for the Initiative, to the extent permitted by law and subject to \nthe availability of appropriations."
     },
-    "TERM:EO:14049:b9a5015ca49e8626@d75d6542eb016395": {
+    "TERM:EO:14049:d83e37d71d49aeec@1b491a3f2ea9eff2": {
       "actor_id": "EO:14049",
-      "char_end": 15482,
-      "char_start": 15298,
+      "char_end": 14474,
+      "char_start": 14292,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14049:b9a5015ca49e8626@d75d6542eb016395",
+      "id": "TERM:EO:14049:d83e37d71d49aeec@1b491a3f2ea9eff2",
       "instrument_id": "EO:14049",
       "kind": "condition",
       "mechanism": "own_terms_condition",
@@ -3516,17 +3616,17 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14049",
-        "page_or_item": "86 FR 57313, PDF pages 1-6",
+        "page_or_item": "86 FR 57313-57318 (PDF pp. 1-6)",
         "requires_page_check": false,
         "sha256": "0d1b5e269e51b0789f133a234eeb852b14148f68c4564858a505677993238b90",
         "signing_date": "2021-10-11",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14049-0d1b5e269e.txt",
-        "text_sha256": "d75d6542eb01639561ea8e8eca3846ef41663098c8d2d99326587368c77957ab",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14049-0d1b5e269e.txt",
+        "text_sha256": "1b491a3f2ea9eff2dd52d3f3eb1eebae0172f0fb24c848a61a44d9860881cf78",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-10-14/pdf/2021-22588.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(f) The Department of Education shall provide funding and administrative \nsupport for the Initiative, to the extent permitted by law and subject to \nthe availability of appropriations."
+      "text": "(f) The Department of Education shall provide funding and administrative\nsupport for the Initiative, to the extent permitted by law and subject to\nthe availability of appropriations."
     },
     "TERM:EO:14049:da742df504e76956@2315aa4297e1670d": {
       "actor_id": "EO:14049",
@@ -3591,37 +3691,6 @@
       "stated_end_date": null,
       "text": "The Department of Education’s National \nAdvisory Council on Indian Education (NACIE), comprised of members ap-\npointed by the President under section 6141 of the Elementary and Secondary \nEducation Act of 1965 (ESEA), 20 U.S.C. 7471, shall serve as the advisory \ncouncil for the Initiative and shall report to the Initiative, through and \nas requested by the Executive Director."
     },
-    "TERM:EO:14049:f04be054180ff781@d75d6542eb016395": {
-      "actor_id": "EO:14049",
-      "char_end": 17237,
-      "char_start": 16859,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14049:f04be054180ff781@d75d6542eb016395",
-      "instrument_id": "EO:14049",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14049#sec3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14049",
-        "page_or_item": "86 FR 57313, PDF pages 1-6",
-        "requires_page_check": false,
-        "sha256": "0d1b5e269e51b0789f133a234eeb852b14148f68c4564858a505677993238b90",
-        "signing_date": "2021-10-11",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14049-0d1b5e269e.txt",
-        "text_sha256": "d75d6542eb01639561ea8e8eca3846ef41663098c8d2d99326587368c77957ab",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-10-14/pdf/2021-22588.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The Department of Education’s National \nAdvisory Council on Indian Education (NACIE), comprised of members ap-\npointed by the President under section 6141 of the Elementary and Secondary \nEducation Act of 1965 (ESEA), 20 U.S.C. 7471, shall serve as the advisory \ncouncil for the Initiative and shall report to the Initiative, through and \nas requested by the Executive Director."
-    },
     "TERM:EO:14049:f2bb10ce1db001ff@2315aa4297e1670d": {
       "actor_id": "EO:14049",
       "char_end": 13810,
@@ -3657,7 +3726,7 @@
       "text": "(i) Each agency with representation on the WHCNAA Education Committee shall assess and report to the Co-Chairs of the Initiative on a regular basis, as established by the Co-Chairs of the Initiative, regarding its progress in implementing its Agency Plan."
     }
   },
-  "fingerprint": "4dff549ed5c0d68cc9e58b27236d381ecab99ba3d8d866127dde645ec22626b6",
+  "fingerprint": "b6f20846d6f9f0b27937ffc94d8fc36cdd84396d30527878f111f6372e7272d6",
   "instrument_id": "EO:14049",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -4076,7 +4145,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14049:5f166976f28586d1@a3594df4f3735429",
         "TERM:EO:14049:f2bb10ce1db001ff@2315aa4297e1670d",
-        "TERM:EO:14049:5f166976f28586d1@d75d6542eb016395"
+        "TERM:EO:14049:490b3a6a7c827908@1b491a3f2ea9eff2"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -4120,7 +4189,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14049:b9a5015ca49e8626@a3594df4f3735429",
         "TERM:EO:14049:15047563a0983d4a@2315aa4297e1670d",
-        "TERM:EO:14049:b9a5015ca49e8626@d75d6542eb016395"
+        "TERM:EO:14049:d83e37d71d49aeec@1b491a3f2ea9eff2"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -4180,7 +4249,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14049:b570edde3023fa22@a3594df4f3735429",
         "TERM:EO:14049:52eab8e66cd53421@2315aa4297e1670d",
-        "TERM:EO:14049:b570edde3023fa22@d75d6542eb016395"
+        "TERM:EO:14049:75985d2ec8e6286a@1b491a3f2ea9eff2"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -4209,7 +4278,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14049:f04be054180ff781@a3594df4f3735429",
         "TERM:EO:14049:da742df504e76956@2315aa4297e1670d",
-        "TERM:EO:14049:f04be054180ff781@d75d6542eb016395"
+        "TERM:EO:14049:4fbcead6903874db@1b491a3f2ea9eff2"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -4654,7 +4723,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14049:897fd5238ee8f8dd@a3594df4f3735429",
         "TERM:EO:14049:4394c964d8514738@2315aa4297e1670d",
-        "TERM:EO:14049:897fd5238ee8f8dd@d75d6542eb016395"
+        "TERM:EO:14049:6b3220746404e76c@1b491a3f2ea9eff2"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -4690,7 +4759,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -4702,7 +4771,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -4714,8 +4783,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -4725,8 +4794,10 @@
     }
   ],
   "missing": [
-    "cited by number, no change provision located: EO:14081",
+    "Current-law lead lacks an original-source sha256.",
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:13647",
+    "target provision not located: EO:14081",
     "target provision not located: EO:14091"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -4742,19 +4813,19 @@
     "TERM:EO:14049:52eab8e66cd53421@2315aa4297e1670d",
     "TERM:EO:14049:da742df504e76956@2315aa4297e1670d",
     "TERM:EO:14049:4394c964d8514738@2315aa4297e1670d",
-    "TERM:EO:14049:5f166976f28586d1@d75d6542eb016395",
-    "TERM:EO:14049:b9a5015ca49e8626@d75d6542eb016395",
-    "TERM:EO:14049:b570edde3023fa22@d75d6542eb016395",
-    "TERM:EO:14049:f04be054180ff781@d75d6542eb016395",
-    "TERM:EO:14049:897fd5238ee8f8dd@d75d6542eb016395"
+    "TERM:EO:14049:490b3a6a7c827908@1b491a3f2ea9eff2",
+    "TERM:EO:14049:d83e37d71d49aeec@1b491a3f2ea9eff2",
+    "TERM:EO:14049:75985d2ec8e6286a@1b491a3f2ea9eff2",
+    "TERM:EO:14049:4fbcead6903874db@1b491a3f2ea9eff2",
+    "TERM:EO:14049:6b3220746404e76c@1b491a3f2ea9eff2"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "2f35a118f685e1485eb929d610d2573c525f0240505a1c65d7400bdc3b3d7d6b",
+    "fingerprint": "f114f7f35e4dd792d211bb82181ec4e99e642e44f7a3ef836e8a80d88681740b",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14049.json",
-    "history_sha256": "f8a7441fc1063294924cadec9392f05e674e1db089595f924845734bf3f694be",
+    "history_sha256": "54e895c9290357d23c1d1f07521e86d7e9e3e2af74148ec7c4a8c48606bc039c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "a871cab9373cea041fbf05137a0286585609de106ccd9b70bc5d7aae3322cd65",
+  "dossier_sha256": "c2157ef359158ce66e057d0cd44b05cdc5d31e5442a25f1ddebb274521b2db98",
   "instrument_id": "EO:6449",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-27",
               "register_number": "6449",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6449.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6449.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6449—Code of Fair Competition for the Retail Jewelry Trade",
               "text_chars": 1229
             },

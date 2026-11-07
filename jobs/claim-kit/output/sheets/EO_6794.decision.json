@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "1c54713d35f9f31f74c4b3c6b26c34c8851881d78433d7d6bce4bdd327c48735",
+  "dossier_sha256": "ab6a38b005c3ada44ae4e44ccc059061f2b3596b134ce1d56c7334b709596983",
   "instrument_id": "EO:6794",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -145,7 +145,18 @@
               "register_date": "1934-07-11",
               "register_number": "6794",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6794.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6794.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6794—Approval of Amendments to the Code of Fair Competition for the Alcoholic Beverages Importing Indust",
               "text_chars": 1923
             },

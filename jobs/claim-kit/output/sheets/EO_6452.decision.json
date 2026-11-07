@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "d68ff59e51bbd5aaa3f8b0440e2a302700a422e84e21ced6b17667880734a3a4",
+  "dossier_sha256": "82afb7738283c2b74f52ab027ae75f6f13cdb4a95c7fb419e47abdc3ad269c29",
   "instrument_id": "EO:6452",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-27",
               "register_number": "6452",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6452.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6452.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6452—Code of Fair Competition for the Cigar Container Manufacturers Code",
               "text_chars": 1245
             },

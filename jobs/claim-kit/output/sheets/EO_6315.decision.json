@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "727285bab9cbbd61288055621595e34be4d8aca711ff71e709ff85d3883398bc",
+  "dossier_sha256": "1769e15ee1e04e4c3f13334eabbf82a034fde9386df2adaef39c3380eae12b5c",
   "instrument_id": "EO:6315",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-03",
               "register_number": "6315",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6315.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6315.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6315—Code of Fair Competition for the Saddlery Manufacturing Industry",
               "text_chars": 1233
             },

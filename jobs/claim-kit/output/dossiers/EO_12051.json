@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:12051",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12051"
@@ -35,11 +35,68 @@
   ],
   "conflicts": [
     {
+      "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
+      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 19 U.S.C. 2432 nt"
+    },
+    {
       "code": "NO_ORDER_IN_FORCE_ON_1989_01_20",
       "detail": "provisional NO, but the OFR 1989 Codification prints it as in force on 1989-01-20 (OFR Codification 1989, chapter 15 (Commerce and Foreign Trade)) and no ending candidate is dated after that day"
     }
   ],
   "current_law_leads": [
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12051",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 19 U.S.C. 2432 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1236",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "136751-136845",
+      "snippet": "1978 Apr. 7 | EO 12051 | 19 U.S.C. 2432 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 19 U.S.C. 2432 nt"
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1236",
+        "snippet": "1978 Apr. 7 | EO 12051 | 19 U.S.C. 2432 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 19 U.S.C. 2432 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 19 U.S.C. 2432 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
+    },
     {
       "custody_records_in": [],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
@@ -87,6 +144,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 19 U.S.C. 2432 nt",
     "CONFLICT NO_ORDER_IN_FORCE_ON_1989_01_20: provisional NO, but the OFR 1989 Codification prints it as in force on 1989-01-20 (OFR Codification 1989, chapter 15 (Commerce and Foreign Trade)) and no ending candidate is dated after that day"
   ],
   "evidence": {
@@ -201,7 +259,7 @@
       "text": "By virtue of the authority vested in me as President of the United States \nof America by Section 402(c)(2) of the Trade Act of 1974 (88 Stat. 2057, 19 \nU.S.C. 2432(c)(2)), which continues to apply to the Hungarian People’s Re­\npublic pursuant to Section 402(d), and having made the report to the Con­\ngress required by Section 402(c)(2), I waive the application of subsections (a) \nand (b) of Section 402 of said Act with respect to the Hungarian People’ s \nRepublic."
     }
   },
-  "fingerprint": "7dd89ec99fb4f7147644af8dcb89871750542cb6efec6988ba879900ce717f61",
+  "fingerprint": "1e291dfc906a5f25bb14cb0bd69c2d9be56785631c83d1144db1f855d4d7a93a",
   "instrument_id": "EO:12051",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -231,7 +289,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -243,7 +301,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -255,8 +313,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -266,7 +324,8 @@
     }
   ],
   "missing": [
-    "Current-law lead lacks an original-source sha256."
+    "Current-law lead lacks an original-source sha256.",
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12051",
@@ -277,13 +336,13 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "a040b42acc8fe20ff2b21aa4461d1bc326cecefbe1a889ac1dc8b830466de3e7",
+    "fingerprint": "99fac1d7b8c2c9df6bea3f84cae8a282bfb9cfec0f5a1fd0d29cf7ef574368cc",
     "flags": [
       "EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT",
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_12051.json",
-    "history_sha256": "1c6d619419331aafa7776cde7b8f121fbdd85f324b697797eec60562326817c2",
+    "history_sha256": "85c181365ed5c85086b58dd4a757232453116e0e3198a9f32d7543b3c487ca42",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

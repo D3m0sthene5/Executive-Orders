@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "6bb81a3f41c7c4e1c151a106af31566c5116220df1f129e396e13514c818c555",
+  "dossier_sha256": "9f90a819c62931f382a50fa184e58051da953137c3bd540eea35bcf109e3bd65",
   "instrument_id": "EO:6446",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-27",
               "register_number": "6446",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6446.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6446.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6446—Code of Fair Competition for the Anti-Friction Bearing Industry",
               "text_chars": 1241
             },

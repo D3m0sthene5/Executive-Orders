@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "57da83bbd21189b45db60f0e553ee97e107f973dae2e79a3b8d53fb78600de10",
+  "dossier_sha256": "ae0a2ba7d583a3b1105a86af69d9499364dba2e5664a70fc63b493c099686bea",
   "instrument_id": "EO:6403A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-04",
               "register_number": "6403A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6403A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6403A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6403-A—Code of Fair Competition for the Fire Extinguishing Appliance Manufacturing Industry",
               "text_chars": 1258
             },

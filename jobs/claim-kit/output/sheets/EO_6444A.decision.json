@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "5de5d4ea040c4b7a73cac9d4f883a9331a3823a3382ef062e4dfc77b9adba6a9",
+  "dossier_sha256": "b6769c28d81de84d05682035e42e1358e1104bab20c1bb2a58ef0cb1212c9ba7",
   "instrument_id": "EO:6444A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -147,7 +147,18 @@
               "register_date": "1933-11-26",
               "register_number": "6444A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6444A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6444A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6444-A—Approval of Code of Fair Competition for the Distilled Spirits Industry",
               "text_chars": 1777
             },

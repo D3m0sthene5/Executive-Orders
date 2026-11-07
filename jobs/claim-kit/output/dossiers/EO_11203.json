@@ -9,7 +9,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:11203",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11203"
@@ -220,22 +220,55 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11203",
       "legal_basis_candidate": "regulation text names the order (5 CFR 9701.604)",
       "machine_lead": true,
-      "mention_id": "ecfr:1a1cd1fba103",
+      "mention_id": "ecfr:a94133c37b77",
       "snippet": "...tration employees); and (15) Employees appointed and serving under a Schedule B excepted service appointment subject to conversion to career status pursuant to Executive Order 11203.",
       "source": {
-        "page_or_item": "5 CFR 9701.604 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-15; NODE 5:3.0.64.11.2.6.87.4)",
-        "sha256": "d0b85cb99762ee3117c673c30a95c6847c5f15e9d4a9b1401616030827721c91",
+        "page_or_item": "5 CFR 9701.604 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:3.0.64.11.2.6.87.4)",
+        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
       "where": "CFR 5 CFR 9701.604"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11203",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 5 U.S.C. 3301 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:567",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "5 U.S.C. 3301 note",
+        "member_sha256": "129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd",
+        "note_id": "id27672eda-ac5f-11f1-a76e-9d053fb5b48a",
+        "note_text_sha256": "e5d4511d3b67d8e342233e0db2405c6e31b2f9c4b883a7ea850e5a7b6eedfcd0",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id27672eda-ac5f-11f1-a76e-9d053fb5b48a"
+      },
+      "row_span": "66603-66697",
+      "snippet": "1965 Mar. 12 | EO 11203 | 5 U.S.C. 3301 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 5 U.S.C. 3301 nt"
     },
     {
       "custody_records_in": [
@@ -246,10 +279,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:1a1cd1fba103",
+        "mention_id": "ecfr:a94133c37b77",
         "snippet": "...tration employees); and (15) Employees appointed and serving under a Schedule B excepted service appointment subject to conversion to career status pursuant to Executive Order 11203.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -259,8 +292,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (5 CFR 9701.604)",
         "source": {
-          "page_or_item": "5 CFR 9701.604 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-15; NODE 5:3.0.64.11.2.6.87.4)",
-          "sha256": "d0b85cb99762ee3117c673c30a95c6847c5f15e9d4a9b1401616030827721c91",
+          "page_or_item": "5 CFR 9701.604 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:3.0.64.11.2.6.87.4)",
+          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -291,6 +324,34 @@
           "page_or_item": "5 U.S.C. 3301 note; note 'Ex. Ord. No. 11203. Career Appointments to Certain Qualified Employees of Treasury Departm' [USLM note id id27672eda-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:567",
+        "snippet": "1965 Mar. 12 | EO 11203 | 5 U.S.C. 3301 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 5 U.S.C. 3301 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 5 U.S.C. 3301 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -1747,7 +1808,7 @@
       "text": "Appointment is limited to four \nyears unless extended by OPM."
     }
   },
-  "fingerprint": "13c4b74017be6255849c72d71694e28195479e241465841cd9681588370cf379",
+  "fingerprint": "350abfd9ef484eeb599621b3d0026101270133ba30cd90259b5e1163410c6e99",
   "instrument_id": "EO:11203",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1893,7 +1954,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1905,7 +1966,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1917,8 +1978,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1976,10 +2037,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "63b2778d31b0d20bd15e8f803396eda13fee4842ad9626dbc60b65caa87cbd83",
+    "fingerprint": "78972daee1bca686bb8434ba0e74cec2a9eb1dd92edfe325d81ef353f1c61ff1",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11203.json",
-    "history_sha256": "3c772a7f5308b7766a6b944aa5ee6024541dbf1314ab25f638942f8db54dccaf",
+    "history_sha256": "5e49ac6031d2b5018a4a6e290648d3bcd623cce7ab5a6cd7bb4a84c271779893",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

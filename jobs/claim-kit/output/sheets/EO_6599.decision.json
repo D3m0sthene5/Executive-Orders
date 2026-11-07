@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "8cb7ad84bfe06de0e517980a6948dd5c90d1bd88bac5dd9ef72b234c721287a6",
+  "dossier_sha256": "671c151cd70d21b784c09f6039d40f1e4c52de09777915ff44500638ad3d57b5",
   "instrument_id": "EO:6599",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-02-10",
               "register_number": "6599",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6599.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6599.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6599—Code of Fair Competition for the Gray Iron Foundry Industry",
               "text_chars": 1229
             },

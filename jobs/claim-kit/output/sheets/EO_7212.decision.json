@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "4270c20ca65601789091f45eea48468475c486dca66dc572cf24855a950b7d04",
+  "dossier_sha256": "05e47c59a8715dac30045ed6d9df9ffd67761b5445d9c001ac467ebf25e2ab8c",
   "instrument_id": "EO:7212",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -90,7 +90,18 @@
               "register_date": "1935-10-24",
               "register_number": "7212",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7212.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7212.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7212—Addition to Upper Mississippi River Wild Life and Fish Refuge",
               "text_chars": 2105
             },
@@ -124,6 +135,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7212",
+        "pages_confirmed": false,
+        "sha256": "0a3b52659e143f43bfb0297a71782f5412f55d7ac65b87b4bd5071829aced3fa",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7212.txt",
+        "text_sha256": "8f5e48054c3189886a6fb19dfb399015acd836bdf4c999f4adb5d363495ea9af"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7212",
@@ -131,6 +152,16 @@
         "sha256": "004b5836b23c580f8a8e4e1584151edb720487abccc086825309c785cb1e544b",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7212-004b5836b2.txt",
         "text_sha256": "791adb1cf7e91c2d45c647f053f7e057d097748c79fe8a578e6f6db240b0ac87"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7212",
+        "pages_confirmed": false,
+        "sha256": "10b7e443418bbb4f0807495d9f84e6f1057b62fd259b58753e6045b302146cc9",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7212.txt",
+        "text_sha256": "a432971d55dc2c39479a638c6805d4ca374fbdbfe17998d39c888df4c08ce99d"
       }
     ],
     "quotation_recheck_required": true,

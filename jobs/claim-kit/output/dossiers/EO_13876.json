@@ -5,6 +5,10 @@
       "evidence_id": "ACTOR_TEXT:EO:12957"
     },
     {
+      "actor_id": "EO:13716",
+      "evidence_id": "ACTOR_TEXT:EO:13716"
+    },
+    {
       "actor_id": "EO:14294",
       "evidence_id": "ACTOR_TEXT:EO:14294"
     }
@@ -13,7 +17,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13876",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13876"
@@ -636,7 +640,12 @@
       "text": "Sec. 11. The measures taken pursuant to this order are in response to \nactions of the Government of Iran occurring after the conclusion of the \n1981 Algiers Accords, and are intended solely as a response to those later \nactions."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 6 later event(s) end part of it: ? revocation 2021-03-05 (scope: not stated); ? revocation 2022-03-03 (scope: not stated); ? revocation 2023-03-10 (scope: not stated); ? revocation 2024-03-12 (scope: not stated); ? revocation 2025-03-07 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "statutory_note_reference",
@@ -681,8 +690,34 @@
       "where": "CFR 31 CFR part 561"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13876",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3030",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "322912-323007",
+      "snippet": "2019 June 24 | EO 13876 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -735,6 +770,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3030",
+        "snippet": "2019 June 24 | EO 13876 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -756,6 +819,12 @@
     "clause_15_state",
     "clause_16_state",
     "clause_17_state",
+    "clause_18_state",
+    "clause_19_state",
+    "clause_20_state",
+    "clause_21_state",
+    "clause_22_state",
+    "clause_23_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -763,10 +832,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 18 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 24 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 6 later event(s) end part of it: ? revocation 2021-03-05 (scope: not stated); ? revocation 2022-03-03 (scope: not stated); ? revocation 2023-03-10 (scope: not stated); ? revocation 2024-03-12 (scope: not stated); ? revocation 2025-03-07 (scope: not stated)"
   ],
   "evidence": {
     "ACTOR_TEXT:EO:12957": {
@@ -788,6 +858,26 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1995-03-17/pdf/95-6849.pdf"
       },
       "text": "Instrument: EO:12957\nSource: https://www.govinfo.gov/content/pkg/FR-1995-03-17/pdf/95-6849.pdf\nSHA-256 of the downloaded file: 02126fd1e35e294e92ba37833b89a2ea74c53b9cb8acaf3515821de1143bdf67\nLocation: 60 FR 14615, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n14615\nFederal Register\nVol. 60, No. 52\nFriday, March 17, 1995\nTitle 3—\nThe President\nExecutive Order 12957 of March 15, 1995\nProhibiting Certain Transactions With Respect to the\nDevelopment of Iranian Petroleum Resources\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, including the International Emergency\nEconomic Powers Act (50 U.S.C. 1701 et seq .), the National Emergencies\nAct (50 U.S.C. 1601 et seq .), and section 301 of title 3, United States\nCode,\nI, WILLIAM J. CLINTON, President of the United States of America, find\nthat the actions and policies of the Government of Iran constitute an unusual\nand extraordinary threat to the national security, foreign policy, and economy\nof the United States, and hereby declare a national emergency to deal with\nthat threat.\nI hereby order:\nSection 1. The following are prohibited, except to the extent provided in\nregulations, orders, directives, or licenses that may be issued pursuant to\nthis order, and notwithstanding any contract entered into or any license\nor permit granted prior to the effective date of this order: (a) the entry\ninto or performance by a United States person, or the approval by a United\nStates person of the entry into or performance by an entity owned or con-\ntrolled by a United States person, of (i) a contract that includes overall\nsupervision and management responsibility for the development of petroleum\nresources located in Iran, or (ii) a guaranty of another person’s performance\nunder such a contract;\n(b) the entry into or performance by a United States person, or the approval\nby a United States person of the entry into or performance by an entity\nowned or controlled by a United States person, of (i) a contract for the\nfinancing of the development of petroleum resources located in Iran, or\n(ii) a guaranty of another person’s performance under such a contract; and\n(c) any transaction by any United States person or within the United\nStates that evades or avoids, or has the purpose of evading or avoiding,\nor attempts to violate, any of the prohibitions set forth in this order.\nSec. 2. For the purposes of this order: (a) The term ‘‘person’’ means an\nindividual or entity;\n(b) The term ‘‘entity’’ means a partnership, association, trust, joint venture,\ncorporation, or other organization;\n(c) The term ‘‘United States person’’ means any United States citizen,\npermanent resident alien, entity organized under the laws of the United\nStates (including foreign branches), or any person in the United States;\nand\n(d) The term ‘‘Iran’’ means the land territory claimed by Iran and any\nother area over which Iran claims sovereignty, sovereign rights or jurisdiction,\nincluding the territorial sea, exclusive economic zone, and continental shelf\nclaimed by Iran.\nSec. 3. The Secretary of the Treasury, in consultation with the Secretary\nof State, is hereby authorized to take such actions, including the promulgation\nof rules and regulations, and to employ all powers granted to me by the\nInternational Emergency Economic Powers Act as may be necessary to carry\nout the purposes of this order. The Secretary of the Treasury may redelegate\nany of these functions to other officers and agencies of the United States\n=== PDF page 2 of 2 ===\n14616 Federal Register / Vol. 60, No. 52 / Friday, March 17, 1995 / Presidential Documents\nGovernment. All agencies of the United States Government are hereby di-\nrected to take all appropriate measures within their authority to carry out\nthe provisions of this order.\nSec. 4. Nothing contained in this order shall create any right or benefit,\nsubstantive or procedural, enforceable by any party against the United States,\nits agencies or instrumentalities, its officers or employees, or any other\nperson.\nSec. 5. (a) This order is effective at 12:01 a.m., eastern standard time,\non March 16, 1995.\n(b) This order shall be transmitted to the Congress and published in\nthe Federal Register.\nœ–\nTHE WHITE HOUSE,\nMarch 15, 1995.\n[FR Doc. 95–6849\nFiled 3-15-95; 4:50 pm]\nBilling code 3195–01–P"
+    },
+    "ACTOR_TEXT:EO:13716": {
+      "actor_id": "EO:13716",
+      "char_end": 21174,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:13716",
+      "role": "actor_context",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "81 FR 3693, PDF pages 1-6",
+        "requires_page_check": false,
+        "sha256": "9ece160d0bae767ea1bb3ad9f4e2e1cd422ab01b0a543b6ed2565a24cf5d4de1",
+        "signing_date": "2016-01-16",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13716.txt",
+        "text_sha256": "8cf99a0edbac30947c23b0f3596897b8bf598a0bc328b7b88d3f01c031e6f018",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2016-01-21/pdf/2016-01325.pdf"
+      },
+      "text": "Instrument: EO:13716\nSource: https://www.govinfo.gov/content/pkg/FR-2016-01-21/pdf/2016-01325.pdf\nSHA-256 of the downloaded file: 9ece160d0bae767ea1bb3ad9f4e2e1cd422ab01b0a543b6ed2565a24cf5d4de1\nLocation: 81 FR 3693, PDF pages 1-6 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 6 ===\nPresidential Documents\n3693 Federal Register / Vol. 81, No. 13 / Thursday, January 21, 2016 / Presidential Documents \nExecutive Order 13716 of January 16, 2016 \nRevocation of Executive Orders 13574, 13590, 13622, and \n13645 With Respect to Iran, Amendment of Executive Order \n13628 With Respect to Iran, and Provision of Implementation \nAuthorities for Aspects of Certain Statutory Sanctions Out-\nside the Scope of U.S. Commitments Under the Joint Com-\nprehensive Plan of Action of July 14, 2015 \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the International Emergency \nEconomic Powers Act (50 U.S.C. 1701 et seq.) (IEEPA), the National Emer-\ngencies Act (50 U.S.C. 1601 et seq.) (NEA), the Iran Sanctions Act of 1996 \n(Public Law 104–172) (50 U.S.C. 1701 note), the Comprehensive Iran Sanc-\ntions, Accountability, and Divestment Act of 2010 (Public Law 111–195) \n(22 U.S.C. 8501 et seq.), the Iran Threat Reduction and Syria Human Rights \nAct of 2012 (Public Law 112–158), the Iran Freedom and Counter-Prolifera-\ntion Act of 2012 (subtitle D of title XII of Public Law 112–239) (22 U.S.C. \n8801 et seq.) (IFCA), section 212(f) of the Immigration and Nationality Act \nof 1952 (8 U.S.C. 1182(f)), and section 301 of title 3, United States Code, \nI, BARACK OBAMA, President of the United States of America, have deter-\nmined that Iran’s implementation of the nuclear-related measures specified \nin sections 15.1–15.11 of Annex V of the Joint Comprehensive Plan of \nAction of July 14, 2015 (JCPOA) between the P5+1 (China, France, Germany, \nthe Russian Federation, the United Kingdom, and the United States), the \nEuropean Union, and Iran, as verified by the International Atomic Energy \nAgency, marks a fundamental shift in circumstances with respect to Iran’s \nnuclear program. In order to give effect to the United States commitments \nwith respect to sanctions described in section 4 of Annex II and section \n17.4 of Annex V of the JCPOA, I am revoking Executive Orders 13574 \nof May 23, 2011, 13590 of November 20, 2011, 13622 of July 30, 2012, \nand 13645 of June 3, 2013, and amending Executive Order 13628 of October \n9, 2012, by revoking sections 5 through 7 and section 15. In addition, \nin section 3 of this order, I am taking steps with respect to the national \nemergency declared in Executive Order 12957 of March 15, 1995, to provide \nimplementation authorities for aspects of certain statutory sanctions that \nare outside the scope of the U.S. commitment to lift nuclear-related sanctions \nunder the JCPOA. \nThis action is not intended to, and does not, limit the applicability of \nwaiver determinations or any renewals thereof issued by the Secretary of \nState, or licenses issued by the Secretary of the Treasury, to give effect \nto sanctions commitments described in sections 17.1–17.3 and 17.5 of Annex \nV of the JCPOA, or otherwise affect the national emergency declared in \nExecutive Order 12957, which shall remain in place, or any Executive Order \nissued in furtherance of that national emergency other than Executive Orders \n13574, 13590, 13622, 13628, and 13645. \nI hereby order: \nSection 1. Revocation of Executive Orders. The following Executive Orders \nare revoked: \n(a) Executive Order 13574 of May 23, 2011 (Authorizing the Implementa-\ntion of Certain Sanctions Set Forth in the Iran Sanctions Act of 1996, \nas Amended); \nVerDate Sep<11>2014 18:39 Jan 20, 2016 Jkt 235001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21JAE0.SGM 21JAE0mstockstill on DSK4VPTVN1PROD with E0\n=== PDF page 2 of 6 ===\n3694 Federal Register / Vol. 81, No. 13 / Thursday, January 21, 2016 / Presidential Documents \n(b) Executive Order 13590 of November 20, 2011 (Authorizing the Imposi-\ntion of Certain Sanctions With Respect to the Provision of Goods, Services, \nTechnology, or Support for Iran’s Energy and Petrochemical Sectors); \n(c) Executive Order 13622 of July 30, 2012 (Authorizing Additional Sanc-\ntions With Respect to Iran); and \n(d) Executive Order 13645 of June 3, 2013 (Authorizing the Implementation \nof Certain Sanctions Set Forth in the Iran Freedom and Counter-Proliferation \nAct of 2012 and Additional Sanctions With Respect To Iran). \nSec. 2. Amendment of Executive Order. Executive Order 13628 of October \n9, 2012 (Authorizing the Implementation of Certain Sanctions Set Forth \nin the Iran Threat Reduction and Syria Human Rights Act of 2012 and \nAdditional Sanctions with Respect to Iran), is amended by: \n(a) Revoking current sections 5 through 7 and 15; \n(b) Revising current section 4 by removing ‘‘section 5 of Executive Order \n13622 of July 30, 2012,’’ in subsection (a), replacing ‘‘section 12’’ with \n‘‘section 9’’ in subsection (a), and replacing ‘‘section 12’’ with ‘‘section \n9’’ in subsection (b); \n(c) Revising current section 8 by inserting ‘‘and’’ between ‘‘2(a),’’ and \n‘‘3(a)’’ and removing ‘‘, and 7(a)(iv)’’; \n(d) Revising current section 9 by inserting ‘‘and’’ between ‘‘2(a),’’ and \n‘‘3(a)’’ and removing ‘‘, and 7(a)(iv)’’; \n(e) Revising current section 14 by inserting ‘‘and’’ between ‘‘2(a),’’ and \n‘‘3(a)’’ and removing ‘‘, and 7(a)(iv)’’; \n(f) Renumbering current sections 8 through 14 as sections 5 through 11, \nrespectively; and \n(g) Renumbering current sections 16 through 19 as sections 12 through \n15, respectively. \nSec. 3. Provision of Implementation Authorities for Sanctions Outside the \nScope of the JCPOA. \n(a)(i) The Secretary of the Treasury, in consultation with the Secretary \nof State, is hereby authorized to impose on a person the measures described \nin subsection (a)(ii) of this section upon determining, pursuant to authority \ndelegated by the President and in accordance with the terms of such \ndelegation, that sanctions shall be imposed on such person pursuant to \nsection 1244(c)(1)(A) of IFCA for knowingly providing significant financial, \nmaterial, technological, or other support to, or goods or services in support \nof any activity or transaction on behalf of or for the benefit of persons \ndescribed in section 1244(c)(2)(C)(iii) of IFCA. \n(ii) With respect to any person determined by the Secretary of the Treasury \nin accordance with this subsection to meet the criteria set forth in sub-\nsection (a)(i) of this section, all property and interests in property that \nare in the United States, that hereafter come within the United States, \nor that are or hereafter come within the possession or control of any \nUnited States person (including any foreign branch) of such person are \nblocked and may not be transferred, paid, exported, withdrawn, or other-\nwise dealt in. \n(iii) The prohibitions in subsection (a)(ii) of this section apply except \nto the extent provided by statutes, or in regulations, orders, directives, \nor licenses that may be issued pursuant to this order, and notwithstanding \nany contract entered into or any license or permit granted prior to the \ndate of this order. \n(b)(i) When the Secretary of State or the Secretary of the Treasury, pursuant \nto authority delegated by the President and in accordance with the terms \nof such delegation, has determined that sanctions shall be imposed on \na person pursuant to sections 1244(d)(1)(A), 1245(a)(1), or 1246(a)(1) of \nIFCA (including in each case as informed by section 1253(c)(2) of IFCA) \nfor engaging in transactions or activities outside the scope of the waiver \nVerDate Sep<11>2014 18:39 Jan 20, 2016 Jkt 235001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21JAE0.SGM 21JAE0mstockstill on DSK4VPTVN1PROD with E0\n=== PDF page 3 of 6 ===\n3695 Federal Register / Vol. 81, No. 13 / Thursday, January 21, 2016 / Presidential Documents \ndeterminations as to IFCA issued by the Secretary of State to give effect \nto sanctions commitments described in sections 17.1–17.3 and 17.5 of \nAnnex V of the JCPOA, and any renewals thereof, such Secretary may \nselect one or more of the sanctions set forth below to impose on that \nperson, and the Secretary of the Treasury, in consultation with the Sec-\nretary of State, shall take the following actions where necessary to imple-\nment the sanctions selected and maintained by the Secretary of State \nor the Secretary of the Treasury: \n(A) prohibit any United States financial institution from making loans \nor providing credits to the sanctioned person totaling more than \n$10,000,000 in any 12-month period, unless such person is engaged in \nactivities to relieve human suffering and the loans or credits are provided \nfor such activities; \n(B) prohibit any transactions in foreign exchange that are subject to \nthe jurisdiction of the United States and in which the sanctioned person \nhas any interest; \n(C) prohibit any transfers of credit or payments between financial institu-\ntions or by, through, or to any financial institution, to the extent that \nsuch transfers or payments are subject to the jurisdiction of the United \nStates and involve any interest of the sanctioned person; \n(D) block all property and interests in property that are in the United \nStates, that hereafter come within the United States, or that are or hereafter \ncome within the possession or control of any United States person (includ-\ning any foreign branch) of the sanctioned person, and provide that such \nproperty and interests in property may not be transferred, paid, exported, \nwithdrawn, or otherwise dealt in; \n(E) prohibit any United States person from investing in or purchasing \nsignificant amounts of equity or debt instruments of a sanctioned person; \n(F) restrict or prohibit imports of goods, technology, or services, directly \nor indirectly, into the United States from the sanctioned person; or \n(G) impose on the principal executive officer or officers, or persons \nperforming similar functions and with similar authorities, of a sanctioned \nperson the sanctions described in subsections (b)(i)(A)–(F) of this section, \nas selected by the Secretary of State or the Secretary of the Treasury, \nas appropriate. \n(ii) The prohibitions in subsection (b)(i) of this section apply except to \nthe extent provided by statutes, or in regulations, orders, directives, or \nlicenses that may be issued pursuant to this order, and notwithstanding \nany contract entered into or any license or permit granted prior to the \ndate of this order. \n(c)(i) All property and interests in property that are in the United States, \nthat hereafter come within the United States, or that are or hereafter \ncome within the possession or control of any United States person (includ-\ning any foreign branch) of the following persons are blocked and may \nnot be transferred, paid, exported, withdrawn, or otherwise dealt in: any \nperson determined by the Secretary of the Treasury, in consultation with \nor at the recommendation of the Secretary of State: \n(A) to have engaged, on or after January 2, 2013, in corruption or \nother activities relating to the diversion of goods, including agricultural \ncommodities, food, medicine, and medical devices, intended for the people \nof Iran; \n(B) to have engaged, on or after January 2, 2013, in corruption or \nother activities relating to the misappropriation of proceeds from the sale \nor resale of goods described in subsection (c)(i)(A) of this section; \n(C) to have materially assisted, sponsored, or provided financial, material, \nor technological support for, or goods or services to or in support of, \nthe activities described in subsection (c)(i)(A) or (c)(i)(B) of this section \nVerDate Sep<11>2014 18:39 Jan 20, 2016 Jkt 235001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21JAE0.SGM 21JAE0mstockstill on DSK4VPTVN1PROD with E0\n=== PDF page 4 of 6 ===\n3696 Federal Register / Vol. 81, No. 13 / Thursday, January 21, 2016 / Presidential Documents \nor any person whose property and interests in property are blocked pursu-\nant to subsection (c)(i) of this section; or \n(D) to be owned or controlled by, or to have acted or purported to \nact for or on behalf of, directly or indirectly, any person whose property \nand interests in property are blocked pursuant to subsection (c)(i) of \nthis section. \n(ii) The prohibitions in subsection (c)(i) of this section apply except to \nthe extent provided by statutes, or in regulations, orders, directives, or \nlicenses that may be issued pursuant to this order, and notwithstanding \nany contract entered into or any license or permit granted prior to the \ndate of this order. \nSec. 4. Donations. I hereby determine that, to the extent section 203(b)(2) \nof IEEPA (50 U.S.C. 1702(b)(2)) may apply, the making of donations of \nthe types of articles specified in such section by, to, or for the benefit \nof any person whose property and interests in property are blocked pursuant \nto this order would seriously impair my ability to deal with the national \nemergency declared in Executive Order 12957, and I hereby prohibit such \ndonations as provided by subsections 3(a)(ii), 3(b)(i)(D), and 3(c)(i) of this \norder. \nSec. 5. Prohibitions. The prohibitions in subsections 3(a)(ii), 3(b)(i)(D), and \n3(c)(i) of this order include but are not limited to: \n(a) the making of any contribution or provision of funds, goods, or services \nby, to, or for the benefit of any person whose property and interests in \nproperty are blocked pursuant to this order; and \n(b) the receipt of any contribution or provision of funds, goods, or services \nfrom any such person. \nSec. 6. Entry into the United States. I hereby find that the unrestricted \nimmigrant and nonimmigrant entry into the United States of aliens who \nare determined to meet one or more of the criteria in subsections 3(a)(i) \nand 3(c)(i) of this order would be detrimental to the interests of the United \nStates, and I hereby suspend the entry into the United States, as immigrants \nor nonimmigrants, of such persons as of the date of this order. Such persons \nshall be treated as persons covered by section 1 of Proclamation 8693 of \nJuly 24, 2011 (Suspension of Entry of Aliens Subject to United Nations \nSecurity Council Travel Bans and International Emergency Economic Powers \nAct Sanctions). \nSec. 7. General Authorities. The Secretary of the Treasury, in consultation \nwith the Secretary of State, is hereby authorized to take such actions, includ-\ning the promulgation of rules and regulations, and to employ all powers \ngranted to the President by IEEPA as may be necessary to carry out the \npurposes of this order, other than the purposes described in section 6 \nof this order. The Secretary of the Treasury may redelegate any of these \nfunctions to other officers and agencies of the United States Government \nconsistent with applicable law. \nSec. 8. Evasion and Conspiracy. (a) Any transaction that evades or avoids, \nhas the purpose of evading or avoiding, causes a violation of, or attempts \nto violate any of the prohibitions set forth in this order is prohibited. \n(b) Any conspiracy formed to violate any of the prohibitions set forth \nin this order is prohibited. \nSec. 9. Definitions. For the purposes of this order: \n(a) the term ‘‘entity’’ means a partnership, association, trust, joint venture, \ncorporation, group, subgroup, or other organization; \n(b) the term ‘‘financial institution,’’ as used in subsection 3(b) of this \norder, includes: \n(i) a depository institution (as defined in section 3(c)(1) of the Federal \nDeposit Insurance Act) (12 U.S.C. 1813(c)(1)), including a branch or agency \nof a foreign bank (as defined in section 1(b)(7) of the International Banking \nAct of 1978) (12 U.S.C. 3101(7)); \nVerDate Sep<11>2014 18:39 Jan 20, 2016 Jkt 235001 PO 00000 Frm 00004 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21JAE0.SGM 21JAE0mstockstill on DSK4VPTVN1PROD with E0\n=== PDF page 5 of 6 ===\n3697 Federal Register / Vol. 81, No. 13 / Thursday, January 21, 2016 / Presidential Documents \n(ii) a credit union; \n(iii) a securities firm, including a broker or dealer; \n(iv) an insurance company, including an agency or underwriter; and \n(v) any other company that provides financial services; \n(c) the term ‘‘Government of Iran’’ includes the Government of Iran, any \npolitical subdivision, agency, or instrumentality thereof, including the Central \nBank of Iran, and any person owned or controlled by, or acting for or \non behalf of, the Government of Iran; \n(d) the term ‘‘Iran’’ means the Government of Iran and the territory of \nIran and any other territory or marine area, including the exclusive economic \nzone and continental shelf, over which the Government of Iran claims sov-\nereignty, sovereign rights, or jurisdiction, provided that the Government \nof Iran exercises partial or total de facto control over the area or derives \na benefit from economic activity in the area pursuant to international arrange-\nments; \n(e) the term ‘‘person’’ means an individual or entity; \n(f) the term ‘‘sanctioned person’’ means a person that the Secretary of \nState or the Secretary of the Treasury, pursuant to authority delegated by \nthe President and in accordance with the terms of such delegation, has \ndetermined is a person on whom sanctions shall be imposed pursuant to \nsection 1244(d)(1)(A), 1245(a)(1), or 1246(a)(1) of IFCA (including in each \ncase as informed by section 1253(c)(2) of IFCA) for engaging in transactions \nor activities outside the scope of the waiver determinations as to IFCA \nissued by the Secretary of State to give effect to sanctions commitments \ndescribed in sections 17.1–17.3 and 17.5 of Annex V of the JCPOA, and \nany renewals thereof, and on whom the Secretary of State or the Secretary \nof the Treasury has imposed any of the sanctions in subsection 3(b) of \nthis order; \n(g) the term ‘‘United States financial institution’’ means a financial institu-\ntion as defined in subsection (b) of this section (including its foreign \nbranches) organized under the laws of the United States or any jurisdiction \nwithin the United States or located in the United States; and \n(h) the term ‘‘United States person’’ means any United States citizen, \npermanent resident alien, entity organized under the laws of the United \nStates or any jurisdiction within the United States (including foreign \nbranches), or any person in the United States. \nSec. 10. Notice. For those persons whose property and interests in property \nare blocked pursuant to this order who might have a constitutional presence \nin the United States, I find that because of the ability to transfer funds \nor other assets instantaneously, prior notice to such persons of measures \nto be taken pursuant to this order would render those measures ineffectual. \nI therefore determine that for these measures to be effective in addressing \nthe national emergency declared in Executive Order 12957, there need be \nno prior notice of an action taken pursuant to subsection 3(a)(ii), 3(b)(i)(D), \nor 3(c)(i) of this order. \nSec. 11. Direction to Agencies. All agencies of the United States Government \nare hereby directed to take all appropriate measures within their authority \nto carry out the provisions of this order. \nSec. 12. Rights. This order is not intended to, and does not, create any \nright or benefit, substantive or procedural, enforceable at law or in equity \nby any party against the United States, its departments, agencies, or entities, \nits officers, employees, or agents, or any other person. \nSec. 13. Effect on Actions or Proceedings. Pursuant to section 202 of the \nNEA (50 U.S.C. 1622), the revocation of Executive Orders 13574, 13590, \n13622, and 13645 and the amendments to Executive Order 13628 as set \nforth in sections 1 and 2 of this order, shall not affect any action taken \nor proceeding pending not finally concluded or determined as of the date \nVerDate Sep<11>2014 18:39 Jan 20, 2016 Jkt 235001 PO 00000 Frm 00005 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21JAE0.SGM 21JAE0mstockstill on DSK4VPTVN1PROD with E0\n=== PDF page 6 of 6 ===\n3698 Federal Register / Vol. 81, No. 13 / Thursday, January 21, 2016 / Presidential Documents \nof this order, or any action or proceeding based on any act committed \nprior to the date of this order, or any rights or duties that matured or \npenalties that were incurred prior to the date of this order. \nSec. 14. Relationship to Algiers Accords. The measures taken pursuant to \nthis order are in response to actions of the Government of Iran occurring \nafter the conclusion of the 1981 Algiers Accords, and are intended solely \nas a response to those later actions. \nTHE WHITE HOUSE, \nJanuary 16, 2016. \n[FR Doc. 2016–01325 \nFiled 1–20–16; 11:15 am] \nBilling code 3295–F6–P \nVerDate Sep<11>2014 18:39 Jan 20, 2016 Jkt 235001 PO 00000 Frm 00006 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21JAE0.SGM 21JAE0\nOB#1.EPS</GPH>\nmstockstill on DSK4VPTVN1PROD with E0"
     },
     "ACTOR_TEXT:EO:14294": {
       "actor_id": "EO:14294",
@@ -1541,37 +1631,6 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
-    "TERM:EO:13876:09cad3cf3dcaf264@c01da51bc973d122": {
-      "actor_id": "EO:13876",
-      "char_end": 10148,
-      "char_start": 10030,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13876:09cad3cf3dcaf264@c01da51bc973d122",
-      "instrument_id": "EO:13876",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13876#sec10-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13876",
-        "page_or_item": "84 FR 30573, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "e5bfb605aeb3856484ec79bb8f907d33d86b6c347d37c46338e7e06234295d97",
-        "signing_date": "2019-06-24",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13876-e5bfb605ae.txt",
-        "text_sha256": "c01da51bc973d1221ddd7c6a6912265f53e8f35d698dfb47d5b8e8158fb5648f",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2019-06-26/pdf/2019-13793.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
-    },
     "TERM:EO:13876:0d248d1c4f831cec@4dcb0cebcae92385": {
       "actor_id": "EO:13876",
       "char_end": 39904,
@@ -2037,6 +2096,37 @@
       "stated_end_date": null,
       "text": "(1) Subject to the exceptions and conditions set forth in paragraphs (h) through (k) of this section, sanctions may be imposed pursuant to paragraph (a) of this section with respect to any significant financial transaction conducted or facilitated by a foreign financial institution owned or controlled by the government of a foreign country, excluding a central bank of a foreign country, on or after June 28, 2012, for the sale or purchase of petroleum or petroleum products to or from Iran."
     },
+    "TERM:EO:13876:70266c29bcd89994@3f22472c032050fb": {
+      "actor_id": "EO:13876",
+      "char_end": 5671,
+      "char_start": 5426,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13876:70266c29bcd89994@3f22472c032050fb",
+      "instrument_id": "EO:13876",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13876#sec5",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13876",
+        "page_or_item": "84 FR 30573-30576 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "e5bfb605aeb3856484ec79bb8f907d33d86b6c347d37c46338e7e06234295d97",
+        "signing_date": "2019-06-24",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13876-e5bfb605ae.txt",
+        "text_sha256": "3f22472c032050fb1ce2bebe9c713a24944252826dc18174faf2440bcd490336",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2019-06-26/pdf/2019-13793.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Such persons shall be treated as persons\ncovered by section 1 of Proclamation 8693 of July 24, 2011 (Suspension\nof Entry of Aliens Subject to United Nations Security Council Travel Bans\nand International Emergency Economic Powers Act Sanctions)."
+    },
     "TERM:EO:13876:70d51af7ca0a47bf@4dcb0cebcae92385": {
       "actor_id": "EO:13876",
       "char_end": 71165,
@@ -2067,6 +2157,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "Unless otherwise specifically provided, any amendment, modification, or revocation of any provision in or appendix to this part or chapter or of any order, regulation, ruling, instruction, or license issued by the Office of Foreign Assets Control does not affect any act done or omitted, or any civil or criminal proceeding commenced or pending, prior to such amendment, modification, or revocation."
+    },
+    "TERM:EO:13876:7224419e0c35ebb5@3f22472c032050fb": {
+      "actor_id": "EO:13876",
+      "char_end": 9469,
+      "char_start": 9352,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13876:7224419e0c35ebb5@3f22472c032050fb",
+      "instrument_id": "EO:13876",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13876#sec10-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13876",
+        "page_or_item": "84 FR 30573-30576 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "e5bfb605aeb3856484ec79bb8f907d33d86b6c347d37c46338e7e06234295d97",
+        "signing_date": "2019-06-24",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13876-e5bfb605ae.txt",
+        "text_sha256": "3f22472c032050fb1ce2bebe9c713a24944252826dc18174faf2440bcd490336",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2019-06-26/pdf/2019-13793.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     },
     "TERM:EO:13876:722dd5f43309439c@4dcb0cebcae92385": {
       "actor_id": "EO:13876",
@@ -2503,37 +2624,6 @@
       "stated_end_date": null,
       "text": "Such persons shall be treated as persons \ncovered by section 1 of Proclamation 8693 of July 24, 2011 (Suspension \nof Entry of Aliens Subject to United Nations Security Council Travel Bans \nand International Emergency Economic Powers Act Sanctions)."
     },
-    "TERM:EO:13876:b7cf355f2f74cd37@c01da51bc973d122": {
-      "actor_id": "EO:13876",
-      "char_end": 6028,
-      "char_start": 5780,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13876:b7cf355f2f74cd37@c01da51bc973d122",
-      "instrument_id": "EO:13876",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13876#sec5",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13876",
-        "page_or_item": "84 FR 30573, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "e5bfb605aeb3856484ec79bb8f907d33d86b6c347d37c46338e7e06234295d97",
-        "signing_date": "2019-06-24",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13876-e5bfb605ae.txt",
-        "text_sha256": "c01da51bc973d1221ddd7c6a6912265f53e8f35d698dfb47d5b8e8158fb5648f",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2019-06-26/pdf/2019-13793.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Such persons shall be treated as persons \ncovered by section 1 of Proclamation 8693 of July 24, 2011 (Suspension \nof Entry of Aliens Subject to United Nations Security Council Travel Bans \nand International Emergency Economic Powers Act Sanctions)."
-    },
     "TERM:EO:13876:c7df075168c18829@4dcb0cebcae92385": {
       "actor_id": "EO:13876",
       "char_end": 33110,
@@ -2755,7 +2845,7 @@
       "text": "Subject to the limitations, exceptions, and conditions set forth in paragraphs (d) through (k) of this section, upon a determination by the Secretary of the Treasury that a foreign financial institution has knowingly conducted or facilitated any significant financial transaction with the Central Bank of Iran or a designated Iranian financial institution, consistent with section 1245 of the National Defense Authorization Act for Fiscal Year 2012 (Pub."
     }
   },
-  "fingerprint": "054e2ca04a251750f9df600211c91318f9bd293a82f652daf4d7e497a1411e34",
+  "fingerprint": "1cf84c19797b7d98f070e19a2f74f0f71675471e2a258020ca7e3ecc3c298e5b",
   "instrument_id": "EO:13876",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2939,7 +3029,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13876:b7cf355f2f74cd37@38a647bdbe3e7f2a",
         "TERM:EO:13876:f7dd32af0c0c21a1@bfbb2887b3cb79c6",
-        "TERM:EO:13876:b7cf355f2f74cd37@c01da51bc973d122"
+        "TERM:EO:13876:70266c29bcd89994@3f22472c032050fb"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -3155,7 +3245,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13876:09cad3cf3dcaf264@38a647bdbe3e7f2a",
         "TERM:EO:13876:7a5b4e5076d03810@bfbb2887b3cb79c6",
-        "TERM:EO:13876:09cad3cf3dcaf264@c01da51bc973d122"
+        "TERM:EO:13876:7224419e0c35ebb5@3f22472c032050fb"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -3202,7 +3292,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -3214,7 +3304,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -3226,8 +3316,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3237,11 +3327,17 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2020-03-12",
+    "Acting identity absent from census: NOTICE:2021-03-05",
+    "Acting identity absent from census: NOTICE:2022-03-03",
+    "Acting identity absent from census: NOTICE:2023-03-10",
+    "Acting identity absent from census: NOTICE:2025-03-07",
     "Acting identity absent from census: NOTICE:2026-03-02",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:12957",
+    "target provision not located: EO:13716",
     "target provision not located: EO:14294"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -3251,8 +3347,8 @@
     "TERM:EO:13876:09cad3cf3dcaf264@38a647bdbe3e7f2a",
     "TERM:EO:13876:f7dd32af0c0c21a1@bfbb2887b3cb79c6",
     "TERM:EO:13876:7a5b4e5076d03810@bfbb2887b3cb79c6",
-    "TERM:EO:13876:b7cf355f2f74cd37@c01da51bc973d122",
-    "TERM:EO:13876:09cad3cf3dcaf264@c01da51bc973d122",
+    "TERM:EO:13876:70266c29bcd89994@3f22472c032050fb",
+    "TERM:EO:13876:7224419e0c35ebb5@3f22472c032050fb",
     "TERM:EO:13876:31bd100395ab29ac@4dcb0cebcae92385",
     "TERM:EO:13876:7a3efed79638263f@4dcb0cebcae92385",
     "TERM:EO:13876:8355e9d02623fa98@4dcb0cebcae92385",
@@ -3293,10 +3389,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "55ffc6a83f320bcef975eb78cf1dc16a78a33052f8413de8772244826d57f906",
+    "fingerprint": "c2b976ddff74248162c8fb3c9bd18271f5b69843dcfa06777ff31d1e9c8d0b55",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13876.json",
-    "history_sha256": "b5c688f2e1de9ff968bc328278ce1ba16ccb6aac12e2b14d25f99b22e81bb2ff",
+    "history_sha256": "00ac7c5b2f756f935dbb62d16ae8b3adebe88fe2eca2eb2c7343cc6c6a326600",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,
