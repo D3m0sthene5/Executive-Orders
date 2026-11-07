@@ -145,7 +145,27 @@ committed hits are therefore a small and unrepresentative slice. Pass-2 cache ke
 (`tests: pass_two_cache_is_keyed_by_the_wanted_ids`), and the job stops with an error when more than a fifth of the hits lack
 cluster or docket rows. Pass 1 (the 206 segment results and the held texts) is unaffected and is reused.
 
+## Full run, 2026-09-30 snapshot (run 42335910483, from the cache of run 42318378954)
+
+206 segments, 56.1 GB of compressed data, 359 GB decoded, 454,290 candidate rows, 0 segment failures, 0 unparsed rows, 0 rows
+lost at segment edges. 14,203 opinions print a register order (after dropping dash numbers such as "Executive Order 2020-04");
+19,867 order-and-cluster pairs over 2,541 orders (sentence class: 1,249 enjoined-or-invalidated, 497 upheld, 1,270
+interpreted, 16,851 mention only; opinion class: 865, 458, 778, 17,766; either: 1,597, 677, 1,489, 16,104). 85 pairs carry both
+an invalidating and an upholding cue. Committed: 1,170 hits (the strongest first, by the stronger of the two classes), 1,137
+opinions, 6.3 MB in all. All eight planted opinions are among the real hits, matched by reporter citation. At opinion level
+seven of the eight carry the class the hand reading gives (Contractors does not), the same as on the fixtures.
+
 ## The token
+
+**First live test, 2026-11-07: the cross-check did not run.** The runner's request for `https://www.courtlistener.com/robots.txt`
+is answered `403` by CloudFront (so is a request from the author's PC, whatever the user agent), and the fetch pool reads a 403
+robots file as "disallow all", so no API request was made. The job logs `API CROSS-CHECK NOT RUN`, records
+`api_crosscheck.blocked_by_robots: true` in `CONTROLS.json`, and does not fail. The API itself answers (`/api/rest/v4/` lists its
+endpoints; `/search/` answers 401 without a token). Whether a robots refusal should stop an authenticated call to the documented
+API is for the owner to decide; no code skips the check today. Once past that, a 401 or 403 from the API raises and fails the
+job naming the status (never the token), every request failing fails it, a 429 stops with the partial answer, and an answered
+cross-check is cached so a re-run spends no quota.
+
 
 Not needed for the bulk scan. It is read from `COURTLISTENER_TOKEN` and, when set, spends up to `api_requests` (40) search
 requests, 13 seconds apart, on phrase-search counts for the orders with the most bulk hits (`CONTROLS.json` ->
