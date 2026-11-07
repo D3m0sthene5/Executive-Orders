@@ -1,0 +1,10 @@
+#!/bin/bash
+# usage: launch.sh NAME MODEL PROMPTFILE -> one fresh headless Claude Code worker (separate context, no fork), run
+# from the scratch run folder so jobs/bentham/sessions.py finds its transcript; result JSON in run/NAME.json.
+E=/tmp/claude-0/-home-user-Executive-Orders/b948d1cb-92e5-5ecb-8cbe-fc3fb7b3e2c6/scratchpad/necker
+N=$1; M=$2; P=$3
+cd $E/run
+echo "$N $M launched $(date -u +%FT%TZ)" >> $E/COORDINATOR_LOG.txt
+claude -p --model $M --permission-mode auto --output-format json "$(cat $P)" > $E/run/$N.json 2> $E/run/$N.err
+python3 -I -c "import json;d=json.load(open('$E/run/$N.json'));u=d.get('usage',{});print('$N', d.get('session_id'), 'cost', d.get('total_cost_usd'), 'turns', d.get('num_turns'), 'ms', d.get('duration_ms'))" >> $E/COORDINATOR_LOG.txt 2>&1
+echo "$N done $(date -u +%FT%TZ)" >> $E/COORDINATOR_LOG.txt
