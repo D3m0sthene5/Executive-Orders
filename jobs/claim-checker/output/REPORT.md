@@ -13,9 +13,9 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 ## Source references
 
 - custody_record_only: 3
-- gpo_published_hash_match: 9715
+- gpo_published_hash_match: 9343
 - held_bytes_in_release_or_repo: 103
-- held_bytes_verified: 11973
+- held_bytes_verified: 12345
 
 ## Quotations
 

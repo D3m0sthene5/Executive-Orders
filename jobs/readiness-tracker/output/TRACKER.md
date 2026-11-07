@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42373685757-1:226307813213c349a8d952ac4828e5083094a164a57bfa03a01960d0e8183e95` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42382080376-1:345dbe42d0094b74382d508ccc80fe3b37cb327afd26ad3319685e10b288fd40` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -106,7 +106,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
 - lachmann working-text confirmations (provisional text step only, never an original): 5,832
 - opus-media-match status: 1,155
-- source-ladder: 673
+- source-ladder: 722
 - claim-checker: 1,527
 - machine later-source search: 6,938
 
