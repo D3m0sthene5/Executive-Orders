@@ -35,6 +35,22 @@ Is the Hugging Face common-pile mirror of Harvard's Caselaw Access Project (22.6
 
 Sources: `research/encyclopedie-campaign/LOG.md`
 
+## A-20261107-claimkit-court-fragments (2026-11-06, claude-encyclopedie)
+
+Let the claim kit attach Youngstown's court-decision fragments to orders (add court_decision_candidates to EVENT_KINDS and CASE to NON_EO_ACTOR in jobs/claim-kit/inputs.py)? This is count-sensitive.
+
+*Why:* 14,203 opinions cite register orders, 865 pairs with an invalidating holding cue, but the leads are invisible to producers until wired.
+
+Sources: `research/encyclopedie-campaign/LOG.md`
+
+## A-20261107-courtlistener-robots (2026-11-06, claude-encyclopedie)
+
+CourtListener answers robots.txt with HTTP 403 for every agent (RFC 9309 treats a 4xx robots.txt as 'unavailable', allowing access), while its documented API answers normally. Allow Youngstown's 40 authenticated API cross-check calls despite fetch_pool's stricter disallow-all reading, or ask Free Law Project first?
+
+*Why:* The cross-check is the only use of the COURTLISTENER_TOKEN you added; the bulk scan does not need it.
+
+Sources: `research/encyclopedie-campaign/LOG.md`
+
 ## A-20261107-fetchpool-wildcards (2026-11-06, claude-encyclopedie)
 
 Fix jobs/_lib/fetch_pool.py so robots.txt wildcard rules ('*', '$') are honoured (Duodecim's tested check is ready to move into it)? The change makes the next sweep rerun every job that lists fetch_pool.py in triggers.txt.
