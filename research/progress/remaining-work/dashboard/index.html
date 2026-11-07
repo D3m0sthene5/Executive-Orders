@@ -228,6 +228,7 @@
     <button type="button" role="tab" id="tab-apollo" aria-controls="apollo" aria-selected="false">Mission</button>
     <button type="button" role="tab" id="tab-workflow" aria-controls="workflow" aria-selected="false">Workflow</button>
     <button type="button" role="tab" id="tab-tiers" aria-controls="tiers" aria-selected="false">Job tiers</button>
+    <button type="button" role="tab" id="tab-trajectory" aria-controls="trajectory" aria-selected="false">Trajectory</button>
   </nav>
 
   <!-- Page 1: open steps by count -->
@@ -524,6 +525,50 @@
 
 
   <!-- Page 5: workflow map -->
+  <section class="eo-page" id="trajectory" role="tabpanel" aria-labelledby="tab-trajectory" hidden>
+    <p class="eo-takeaway">Tsiolkovsky (<code>jobs/tsiolkovsky-trajectory</code>) measures the verified lifecycle work the project holds, in AI work-hours, at every published tracker reading, and credits each change to the campaign or job whose commit moved it. Work-hours rise when any step of an order is verified; the ready count rises only when every step of an order closes.</p>
+    <div class="eo-tiles">
+      <div class="eo-tile">
+        <div class="eo-tile-label">Verified work held</div>
+        <div class="eo-tile-value dash-skeleton" data-source="traj_latest" data-field="W" id="t-w">—</div>
+        <div class="eo-tile-note">work-hours, of <span data-source="traj_latest" data-field="Wmax" id="t-wmax">—</span> for every order</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Share of all lifecycle work</div>
+        <div class="eo-tile-value dash-skeleton" data-source="traj_latest" data-field="p" id="t-p">—</div>
+        <div class="eo-tile-note">phase: <span data-source="traj_latest" data-field="phase" id="t-phase">—</span></div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Rise, last three days</div>
+        <div class="eo-tile-value dash-skeleton" data-source="traj_latest" data-field="v3" id="t-v3">—</div>
+        <div class="eo-tile-note">work-hours a day</div>
+      </div>
+      <div class="eo-tile">
+        <div class="eo-tile-label">Ready for human review</div>
+        <div class="eo-tile-value dash-skeleton" data-source="traj_latest" data-field="ready" id="t-ready">—</div>
+        <div class="eo-tile-note">orders with every step closed; human-certified stays 0</div>
+      </div>
+    </div>
+    <div class="eo-card">
+      <h2 id="traj-chart-h">Verified work at each tracker reading</h2>
+      <p class="eo-card-note">The line is the central estimate; the band runs from the low to the high step-time model. Hover a point for its commit, share, phase and ready count.</p>
+      <div class="eo-spark" id="traj-chart" data-source="traj_readings"></div>
+    </div>
+    <div class="eo-card">
+      <h2 id="traj-camp-h">Who moved it: credit by campaign or job</h2>
+      <p class="eo-card-note">The fifteen largest credits. "Launch pad" is work held before the first tracker reading.</p>
+      <div class="eo-tablebox"><table class="eo-table" id="traj-camp" data-source="traj_campaigns_top" data-row-key="credited_to">
+        <thead><tr><th class="l" data-field="credited_to">Campaign or job</th><th data-field="hours">Work-hours</th><th class="l" data-field="first_day">First credited</th></tr></thead><tbody></tbody>
+      </table></div>
+    </div>
+    <div class="eo-card">
+      <h2 id="traj-events-h">Latest landings on main</h2>
+      <div class="eo-tablebox"><table class="eo-table" id="traj-events" data-source="traj_events_recent" data-row-key="n">
+        <thead><tr><th data-field="n">#</th><th class="l" data-field="utc">When (UTC)</th><th class="l" data-field="kind">Kind</th><th class="l" data-field="subject">What landed</th></tr></thead><tbody></tbody>
+      </table></div>
+    </div>
+  </section>
+
   <section class="eo-page" id="workflow" role="tabpanel" aria-labelledby="tab-workflow" hidden>
     <p class="eo-takeaway dash-skeleton" data-source="workflow_nodes mission_log" id="wf-takeaway">—</p>
 
@@ -656,6 +701,31 @@
     },
   });
 
+  dash.calc('traj_latest', {
+    title: 'Trajectory: latest figures',
+    description: 'The newest tracker reading and the newest day of the daily series, rounded for display.',
+    inputs: ['traj_daily', 'traj_readings'],
+    fn: (traj_daily, traj_readings) => {
+      if (!traj_daily.length || !traj_readings.length) return [];
+      const last = traj_readings[traj_readings.length - 1], d = traj_daily[traj_daily.length - 1];
+      const W = Number(last.W_hours), p = Number(last.p), n0 = (v) => Math.round(v).toLocaleString('en-US');
+      return [{ W: n0(W), Wmax: n0(W / p), p: (p * 100).toFixed(1) + '%', phase: last.phase,
+        v3: n0(Number(d.v3_hours_per_day)), ready: Number(last.ready).toLocaleString('en-US') }];
+    },
+  });
+  dash.calc('traj_campaigns_top', {
+    title: 'Trajectory: top campaigns',
+    description: 'The fifteen campaigns or jobs credited with the most verified work-hours.',
+    inputs: ['traj_campaigns'],
+    fn: (traj_campaigns) => traj_campaigns.map((r) => ({ credited_to: r.credited_to, w: Number(r.W_hours), first_day: String(r.first_utc).slice(0, 10) }))
+      .sort((a, b) => b.w - a.w).slice(0, 15).map((r) => ({ credited_to: r.credited_to, hours: Math.round(r.w).toLocaleString('en-US'), first_day: r.first_day })),
+  });
+  dash.calc('traj_events_recent', {
+    title: 'Trajectory: latest landings',
+    description: 'The twenty most recent merges and commits Tsiolkovsky recorded, newest first.',
+    inputs: ['traj_events'],
+    fn: (traj_events) => traj_events.slice(-20).reverse().map((r, i) => ({ n: String(i + 1), utc: String(r.utc).slice(0, 16).replace('T', ' '), kind: r.kind, subject: r.subject })),
+  });
   (() => {
     const fmt = d3.format(','), pct = d3.format('.1%'), pct0 = d3.format('.0%');
     const hrs = (h) => h >= 100 ? fmt(Math.round(h)) : h >= 10 ? d3.format('.0f')(h) : d3.format('.1f')(h);
@@ -675,6 +745,7 @@
       document.getElementById('apollo').hidden = id !== 'apollo';
       document.getElementById('workflow').hidden = id !== 'workflow';
       document.getElementById('tiers').hidden = id !== 'tiers';
+      document.getElementById('trajectory').hidden = id !== 'trajectory';
       if (link) dash.setLink(id);
       drawAll();
     };
@@ -1664,6 +1735,70 @@
     ['jt-search','jt-kind','jt-tier'].forEach(id=>document.getElementById(id).addEventListener(id==='jt-search'?'input':'change',()=>drawJobTiers(true)));
     const method=document.getElementById('jt-method');JT_ORDER.forEach(t=>method.append(el('p',null,`${t==='U'?'Unranked':t}: ${JT.definitions[t]}.`)));
 
+    // Trajectory tab: Tsiolkovsky's tracker readings, campaign credit and landings
+    function drawTrajTiles() {
+      const t = dash.data('traj_latest');
+      const ok = t.status === 'ok' && t.data.length > 0;
+      [['t-w', 'W'], ['t-wmax', 'Wmax'], ['t-p', 'p'], ['t-phase', 'phase'], ['t-v3', 'v3'], ['t-ready', 'ready']].forEach(([id, f]) => {
+        const e = document.getElementById(id);
+        e.textContent = ok ? t.data[0][f] : '—';
+        e.classList.toggle('dash-skeleton', !ok);
+      });
+    }
+    function drawTrajChart() {
+      const box = document.getElementById('traj-chart'), d = dash.data('traj_readings');
+      if (d.status === 'error') { fail(box); return; }
+      if (d.status !== 'ok' || !d.data.length) { box.replaceChildren(); box.classList.add('dash-skeleton'); return; }
+      box.classList.remove('dash-skeleton');
+      const W = box.clientWidth;
+      if (!W) return;
+      const rows = d.data.map((r) => ({ t: new Date(r.landed_utc), w: +r.W_hours, lo: +r.W_low_hours, hi: +r.W_high_hours, p: +r.p,
+        ready: +r.ready, phase: r.phase, commit: String(r.commit).slice(0, 10) })).filter((r) => !isNaN(r.t));
+      const H = 240, mg = { l: 52, r: 14, t: 14, b: 26 };
+      const x = d3.scaleUtc().domain(d3.extent(rows, (r) => r.t)).range([mg.l, W - mg.r]);
+      const y = d3.scaleLinear().domain([0, (d3.max(rows, (r) => r.hi) || 1) * 1.08]).nice(4).range([H - mg.b, mg.t]);
+      const svg = d3.create('svg').attr('width', '100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`);
+      box.replaceChildren(svg.node());
+      const grid = svg.append('g').attr('class', 'grid');
+      y.ticks(4).forEach((v) => {
+        grid.append('line').attr('x1', mg.l).attr('x2', W - mg.r).attr('y1', y(v)).attr('y2', y(v));
+        grid.append('text').attr('x', mg.l - 6).attr('y', y(v) + 4).attr('text-anchor', 'end').text(fmt(v));
+      });
+      const ax = svg.append('g').attr('class', 'ax');
+      x.ticks(Math.max(2, Math.floor((W - mg.l) / 80))).forEach((t) => ax.append('text').attr('x', x(t)).attr('y', H - 6).attr('text-anchor', 'middle').text(dayFmt(t)));
+      svg.append('path').attr('d', d3.area().x((r) => x(r.t)).y0((r) => y(r.lo)).y1((r) => y(r.hi))(rows)).attr('fill', dash.colors[0]).attr('opacity', 0.18);
+      svg.append('path').attr('class', 'ln').attr('d', d3.line().x((r) => x(r.t)).y((r) => y(r.w))(rows));
+      svg.append('g').selectAll('circle').data(rows).join('circle').attr('class', 'dot').attr('cx', (r) => x(r.t)).attr('cy', (r) => y(r.w)).attr('r', 3);
+      const L = rows[rows.length - 1];
+      svg.append('text').attr('class', 'note').attr('x', x(L.t) - 6).attr('y', y(L.w) - 10).attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').text(fmt(Math.round(L.w)) + ' h');
+      const cross = svg.append('line').attr('class', 'cross').attr('y1', mg.t).attr('y2', H - mg.b).attr('visibility', 'hidden');
+      const tip = mkTip(box);
+      svg.append('rect').attr('x', mg.l).attr('y', 0).attr('width', W - mg.l - mg.r).attr('height', H).attr('fill', 'transparent')
+        .on('mousemove', (ev) => {
+          const [mx] = d3.pointer(ev);
+          const r = d3.least(rows, (q) => Math.abs(x(q.t) - mx));
+          cross.attr('x1', x(r.t)).attr('x2', x(r.t)).attr('visibility', 'visible');
+          fillTip(tip, box, d3.utcFormat('%b %-d, %H:%M UTC')(r.t), [`${fmt(Math.round(r.w))} work-hours (${fmt(Math.round(r.lo))} to ${fmt(Math.round(r.hi))})`,
+            `${pct(r.p)} of all · ${fmt(r.ready)} ready`, `${r.phase} · ${r.commit}`], x(r.t), y(r.w));
+        })
+        .on('mouseleave', () => { tip.hidden = true; cross.attr('visibility', 'hidden'); });
+    }
+    function drawTrajTable(id, source, cols) {
+      const tb = document.querySelector(`#${id} tbody`), d = dash.data(source);
+      tb.replaceChildren();
+      if (d.status !== 'ok') return;
+      d.data.forEach((r) => {
+        const tr = document.createElement('tr');
+        cols.forEach(([f, cls]) => { const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = r[f]; tr.append(td); });
+        tb.append(tr);
+      });
+    }
+    function drawTrajectory() {
+      drawTrajTiles(); drawTrajChart();
+      drawTrajTable('traj-camp', 'traj_campaigns_top', [['credited_to', 'l'], ['hours'], ['first_day', 'l']]);
+      drawTrajTable('traj-events', 'traj_events_recent', [['n'], ['utc', 'l'], ['kind', 'l'], ['subject', 'l']]);
+    }
+
     function drawAll() {
       drawMission();
       if (current === 'tiers') {
@@ -1672,6 +1807,8 @@
         drawToolmapTotals(); drawLanes(); drawLaneLegend(); drawToolsTable();
       } else if (current === 'workflow') {
         drawWorkflow();
+      } else if (current === 'trajectory') {
+        drawTrajectory();
       } else if (current === 'apollo') {
         drawApollo();
       } else if (current === 'steps') {
@@ -1682,7 +1819,7 @@
     }
 
     const named = location.hash.slice(1);
-    if (named === 'effort' || named === 'steps' || named === 'toolmap' || named === 'apollo' || named === 'workflow' || named === 'tiers') show(named, false);
+    if (named === 'effort' || named === 'steps' || named === 'toolmap' || named === 'apollo' || named === 'workflow' || named === 'tiers' || named === 'trajectory') show(named, false);
     dash.onData(drawAll);
   })();
 </script>
