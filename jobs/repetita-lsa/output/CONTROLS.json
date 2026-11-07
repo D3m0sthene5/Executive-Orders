@@ -3,9 +3,9 @@
  "control_error_rate_excluding_span_checks": 0.0,
  "design": "Planted controls run on every issue's own Title 3 bytes (a planted positive entry must be read with its exact span; a planted line without a dot leader and one with a non-numeric reference must not become entries; the planted block must add exactly one entry). Known facts: Title 3 entries whose order, change and Federal Register citation are known from the orders themselves, in named issues. Negatives: made-up and near-miss entries must be absent from every row. Member check: the public html URL hashes to the same bytes as the zip member. Span check: every entry re-sliced from the held bytes ends with its reference and starts with its item.",
  "failed_controls": [],
- "generated_utc": "2026-11-06T23:29:50Z",
+ "generated_utc": "2026-11-07T00:50:33Z",
  "known_facts": {
-  "checks": 3,
+  "checks": 5,
   "error_rate": 0.0,
   "facts": [
    {
@@ -14,8 +14,18 @@
     "ok": true
    },
    {
+    "issue": "LSA-2001-11",
+    "name": "known_fact:12667:Revoked by EO 13233",
+    "ok": true
+   },
+   {
     "issue": "LSA-2003-03",
     "name": "known_fact:10865:Amended by EO 13284",
+    "ok": true
+   },
+   {
+    "issue": "LSA-2010-05",
+    "name": "known_fact:13292:Revoked by EO 13526",
     "ok": true
    },
    {
@@ -30,31 +40,31 @@
   "checks": 3,
   "detail": [
    {
-    "direct_sha256": "442064dee5adcde675c583777135563cca767a97318498ef63f7e05dbb3ce659",
-    "issue": "LSA-1997-01",
+    "direct_sha256": "41b46a2bf744c82699a6fad0c2dd79a82d0835dbc9c50b0483580af26cb6238d",
+    "issue": "LSA-1997-02",
     "kind": "positive",
     "name": "member_url_hash_equals_zip_member",
     "ok": true,
-    "url": "https://www.govinfo.gov/content/pkg/LSA-1997-01/html/LSA-1997-01-title3.htm",
-    "zip_member_sha256": "442064dee5adcde675c583777135563cca767a97318498ef63f7e05dbb3ce659"
+    "url": "https://www.govinfo.gov/content/pkg/LSA-1997-02/html/LSA-1997-02-title3.htm",
+    "zip_member_sha256": "41b46a2bf744c82699a6fad0c2dd79a82d0835dbc9c50b0483580af26cb6238d"
    },
    {
-    "direct_sha256": "686cffdae96371e7b37228f1fd362355c1e48d2f46825f1496dece72282def58",
-    "issue": "LSA-2003-03",
+    "direct_sha256": "effaceab2580c5dcd9355ee5f955e04a9486a55fae9d292fc235c5d6fb944e74",
+    "issue": "LSA-2011-12",
     "kind": "positive",
     "name": "member_url_hash_equals_zip_member",
     "ok": true,
-    "url": "https://www.govinfo.gov/content/pkg/LSA-2003-03/html/LSA-2003-03-title3.htm",
-    "zip_member_sha256": "686cffdae96371e7b37228f1fd362355c1e48d2f46825f1496dece72282def58"
+    "url": "https://www.govinfo.gov/content/pkg/LSA-2011-12/html/LSA-2011-12-title3.htm",
+    "zip_member_sha256": "effaceab2580c5dcd9355ee5f955e04a9486a55fae9d292fc235c5d6fb944e74"
    },
    {
-    "direct_sha256": "98cacab3020ec74f97c35b93a33f794295d517430ef9f5564131e40632992079",
-    "issue": "LSA-2018-01",
+    "direct_sha256": "69d65e41fee68abcb9a2e95c5048fe199ac921d440728c095d8e9e548ccfd6c3",
+    "issue": "LSA-2026-09",
     "kind": "positive",
     "name": "member_url_hash_equals_zip_member",
     "ok": true,
-    "url": "https://www.govinfo.gov/content/pkg/LSA-2018-01/html/LSA-2018-01-title3.htm",
-    "zip_member_sha256": "98cacab3020ec74f97c35b93a33f794295d517430ef9f5564131e40632992079"
+    "url": "https://www.govinfo.gov/content/pkg/LSA-2026-09/html/LSA-2026-09-title3.htm",
+    "zip_member_sha256": "69d65e41fee68abcb9a2e95c5048fe199ac921d440728c095d8e9e548ccfd6c3"
    }
   ],
   "failures": 0
@@ -103,12 +113,12 @@
   "failures": 0
  },
  "planted": {
-  "checks": 12,
+  "checks": 1428,
   "error_rate": 0.0,
   "failures": 0
  },
  "span_check": {
-  "checks": 19020,
+  "checks": 2459761,
   "error_rate": 0.0,
   "failures": 0
  }
