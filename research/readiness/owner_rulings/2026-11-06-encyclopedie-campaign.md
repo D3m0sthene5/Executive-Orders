@@ -58,3 +58,16 @@ None of this changes a status, codebook entry, census row or the certified count
     fill it and what blocks the rest. Report only; no status changes.
 15. **Computer use** of the owner's PC is allowed when a step needs it (a sign-in prompt, a local GPU install); tell the
     owner before anything irreversible.
+
+## Third answer (2026-11-07, about 00:40 UTC)
+
+16. **Youngstown (CourtListener).** "You have my permission to go ahead and do all of that autonomously. You don't have
+    to use a crawler, just take over my browser." Carried out: the full anonymous run over CourtListener's public bulk
+    opinions (run 42318378954) and the opinion-level holding improvement. Not carried out, and why:
+    - Creating the CourtListener token and entering it as a secret: the coordinator may not create accounts or enter API
+      tokens into any field, so the owner does this step.
+    - Pushing the secrets line into the runner workflow directly to main was refused by the session's safety check
+      (it changes how secrets reach job code); it is PR #206 for the owner.
+    - Driving the owner's browser to download from static.case.law: a browser the coordinator controls is still
+      automated access, which that site's robots.txt forbids; and CourtListener's bulk file already carries the Harvard
+      text (`xml_harvard`) for about 97% of opinions in the first 30 MB sampled.
