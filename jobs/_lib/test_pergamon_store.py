@@ -16,6 +16,13 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import pergamon_store as P  # noqa: E402
 
+import socket  # noqa: E402
+
+# .github/scripts/test_roads.py discovers jobs/_lib tests with every socket forbidden, loopback included. The fake
+# GitHub and S3 servers below bind 127.0.0.1 only, so test_roads.py runs this file once more without that guard.
+LOOPBACK_BLOCKED = socket.socket.__name__ == "NoNetworkSocket"
+needs_loopback = unittest.skipIf(LOOPBACK_BLOCKED, "sockets forbidden here; test_roads.py runs this file unguarded")
+
 BODY = b"%PDF-1.4 a kept order\n" * 5
 SHA = hashlib.sha256(BODY).hexdigest()
 
@@ -296,6 +303,7 @@ class GitBackendTests(unittest.TestCase):
             P.Store.from_env({"PERGAMON_BACKEND": "floppy"})
 
 
+@needs_loopback
 class ReleaseBackendTests(unittest.TestCase):
     def setUp(self):
         self.srv = github_server()
@@ -414,6 +422,7 @@ class ReleaseBackendTests(unittest.TestCase):
         self.assertEqual(self.state["calls"], [])
 
 
+@needs_loopback
 class S3BackendTests(unittest.TestCase):
     def setUp(self):
         self.srv = s3_server()
@@ -482,6 +491,7 @@ class S3BackendTests(unittest.TestCase):
             P.Store.from_env({"PERGAMON_BACKEND": "r2"})
 
 
+@needs_loopback
 class SwitchTests(unittest.TestCase):
     """The point of the design: records written under one backend still verify after the configuration changes."""
 
