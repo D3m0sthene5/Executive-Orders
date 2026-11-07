@@ -1,3 +1,13 @@
+## 2026-11-07 (Claude, were Photius and Encyclopedie worth their cost)
+
+- Priced Photius's 289 agents at Necker list prices: about $641 API-equivalent (opus $438, sonnet $104, an
+  unlabelled family $99 priced as opus, so an upper bound), plan usage, $0 metered. About $0.21 per order that
+  gained an official witness (NO_OFFICIAL_SOURCE_LOCATED 4,787 -> 1,751); ready unchanged at 1,185.
+- Encyclopedie: $1,008.58 API-equivalent, $0 metered; infrastructure (repository growth stopped, reviewer-family
+  gap, Bentham prices about 2x high), no order evidence.
+- Kean F-20261107-photius-encyclopedie-worth. Photius's W gain still waits on a published tracker generation
+  (none since 2026-11-06 22:18 UTC); the refresh-overlap decision is still the owner's (see the 2026-11-06 entries).
+
 ## 2026-11-06 23:30 ET (Claude as Photius, closing the originals hole for EO 1-7315)
 
 - **Done (PRs, in merge order):**
