@@ -1,0 +1,63 @@
+NOTE 2026-11-07T11:00Z: Haloander wave (Bentham wave bentham-2026-11-07), budget $75. Plan rebuilt on main b8223fd55 with full inputs: ranks unchanged (#7 probe undecided 30 $19.39; #8 recovery 48 $19.17; #9 one_step_away now 219 orders $141.54, over budget; #11 page-check $16.54).
+NOTE: partial checkout hid 2373 files >1MB (skip-worktree); kit and tools read them as absent without error. Materialized jobs/** (except _attempts) and research/{readiness,progress,stage15,stage19,production,plans,justinian,dorotheus}.
+NOTE: #8 membership: 13 already ready, 7 never filed (Theophilus blocks: 10570 13900 13965 14012 8341 8613 8639), 27 WORKING_TEXT prior_confirmation_stale (Photius GPO witness), EO 12323 later-event source grade mismatch + Lachmann numbering gap.
+NOTE: claim-kit dossiers built 2026-11-06 08:31 (branch claude/mabillon-register) froze pre-Photius Lachmann records; prepare refuses 'changed or invalid working-text confirmation'. Dispatched run-jobs claim-kit on main (run 42367365744) 11:14Z.
+NOTE: #9 membership 40 -> 219: +176 Justinian R3 re-tags (FIRST_END_UNRESOLVED). 146 are emergency boards; source-ladder holds 83 board report texts (raw in ptolemy-custody). Existing claim owner justinian-2026-11-06-r3-retag (sorts after claude-2026-11-07): any correction is a replacement proposal needing owner adoption.
+NOTE 2026-11-07T12:10Z: claim-kit rebuild run 42367365744 FAILED in tests: population pin research/dorotheus/OWNER_RULINGS.md not materialized (not in claim-kit inputs). Fix PR #219 (one line inputs.txt). 14 downstream jobs blocked too.
+NOTE 2026-11-07T12:07:37Z: PR #219 merged (a7bb6f646). Branch build passed tests, then failed 'Draft summary population stale' (claim-drafts 4291 decided vs 4297). Dispatched run-jobs 'claim-drafts claim-kit' on main.
+NOTE 2026-11-07T16:10:47Z: run 988 failed: claim-kit 'Draft summary population stale' (claim-kit reads committed claim-drafts output, not the same-station rebuild); publisher refused claim-drafts etc. as stale (source-ladder outputs changed on main 14:30 during the 2h station) and re-queued them as run 42382758124 (depth 1). My duplicate claim-drafts dispatch 42389837032 cancelled. Plan: once claim-drafts publishes, dispatch claim-kit alone with requeue_depth=1 (exact jobs, no consumers) to keep the run short.
+NOTE 2026-11-07T17:11:21Z: re-queue 42382758124 still running 2.5h (main moved meanwhile). Queued claim-drafts alone with requeue_depth=1 (exact job, no consumers).
+NOTE 2026-11-07T17:50:47Z: claim-drafts published on main fb0f31415 (4297 decided). Dispatched claim-kit alone (requeue_depth=1).
+NOTE 2026-11-07T18:34:25Z: claim-kit-only run 42398293361 still failed 'Draft summary population stale': R9 alias EO:7933a->EO:7933A not applied by claim-drafts/claim-kit loaders (4297 vs population 4298). Fix PR #221.
+NOTE 2026-11-07T18:49:58Z: PR #221 merged 88711eedc. Dispatched claim-drafts alone (requeue_depth=1).
+NOTE 2026-11-07T19:17:30Z: claim-drafts published fd43029d1 (4298). Dispatched claim-kit alone.
+NOTE 2026-11-07T19:55:24Z: claim-kit run 42405471438 BUILT OK (tests+build+validate passed) but publish refused: readiness-tracker/gessner/daily-digest outputs changed on main during run; Arsenale re-queued claim-kit at depth 2 of 2.
+NOTE 2026-11-07T21:06:34Z: claim-kit depth-2 requeue 42407478883 refused again (reporting outputs advanced). Dispatched claim-kit alone right after tracker publish 69b86f009 (21:05).
+producer-h01 claude-sonnet-5-5 launched 2026-11-07T21:12:20Z
+producer-u01 claude-sonnet-5-5 launched 2026-11-07T21:16:25Z
+producer-u02 claude-sonnet-5-5 launched 2026-11-07T21:16:33Z
+producer-u03 claude-sonnet-5-5 launched 2026-11-07T21:16:41Z
+producer-u02 918eb9f0-9a1c-4645-a6fd-f1242f65dfe0 cost 1.6077743999999994 turns 53 ms 446205
+producer-u02 done 2026-11-07T21:24:01Z
+producer-h01 c1aaad74-8157-4e77-862d-b4d4c341ae65 cost 1.6244765 turns 56 ms 761309
+producer-h01 done 2026-11-07T21:25:03Z
+producer-u01 da3dc2ef-cb09-4f5a-8e15-edc31a560b9e cost 2.0011927999999997 turns 63 ms 538412
+producer-u01 done 2026-11-07T21:25:25Z
+reviewer-h01-A claude-opus-5-5 launched 2026-11-07T21:25:38Z
+reviewer-h01-B claude-opus-5-5 launched 2026-11-07T21:25:38Z
+producer-u03 df752fcd-e8aa-4b7e-ae69-595debed78f8 cost 1.9219762000000005 turns 54 ms 587534
+producer-u03 done 2026-11-07T21:26:30Z
+status-review claude-opus-5-5 launched 2026-11-07T21:27:58Z
+reviewer-h01-A b7ea59a5-321f-4071-95c0-2707363d7c76 cost 1.3766352000000002 turns 24 ms 331534
+reviewer-h01-A done 2026-11-07T21:31:11Z
+reviewer-h01-B 06b9183d-b26a-4e38-823b-3fb3cdd8bf38 cost 1.8751415999999996 turns 31 ms 376777
+reviewer-h01-B done 2026-11-07T21:31:56Z
+reveal-h01-A resume b7ea59a5-321f-4071-95c0-2707363d7c76 launched 2026-11-07T21:32:22Z
+reveal-h01-B resume 06b9183d-b26a-4e38-823b-3fb3cdd8bf38 launched 2026-11-07T21:32:22Z
+reveal-h01-B 06b9183d-b26a-4e38-823b-3fb3cdd8bf38 cost 2.0358065999999995 turns 3 ms 28799
+reveal-h01-B done 2026-11-07T21:32:53Z
+reveal-h01-A b7ea59a5-321f-4071-95c0-2707363d7c76 cost 1.5467408000000002 turns 4 ms 30105
+reveal-h01-A done 2026-11-07T21:32:55Z
+status-review 91f1f2c0-0c8d-4d9f-954d-9ac27df46d49 cost 1.9784361999999998 turns 45 ms 306813
+status-review done 2026-11-07T21:33:07Z
+reconfirm-u01 resume da3dc2ef-cb09-4f5a-8e15-edc31a560b9e launched 2026-11-07T21:39:20Z
+reconfirm-u02 resume 918eb9f0-9a1c-4645-a6fd-f1242f65dfe0 launched 2026-11-07T21:39:20Z
+reconfirm-u03 resume df752fcd-e8aa-4b7e-ae69-595debed78f8 launched 2026-11-07T21:39:20Z
+reconfirm-u02 918eb9f0-9a1c-4645-a6fd-f1242f65dfe0 cost 1.6784122999999995 turns 3 ms 26070
+reconfirm-u02 done 2026-11-07T21:39:48Z
+reconfirm-u01 da3dc2ef-cb09-4f5a-8e15-edc31a560b9e cost 2.0828630999999995 turns 3 ms 37420
+reconfirm-u01 done 2026-11-07T21:39:59Z
+reconfirm-u03 df752fcd-e8aa-4b7e-ae69-595debed78f8 cost 2.1074091000000004 turns 6 ms 74845
+reconfirm-u03 done 2026-11-07T21:40:36Z
+reviewer-ux-A claude-opus-5-5 launched 2026-11-07T21:41:23Z
+reviewer-ux-B claude-opus-5-5 launched 2026-11-07T21:41:23Z
+reviewer-ux-B 04c608f6-e15a-4e14-969c-f33bc53b42c0 cost 1.6587874000000002 turns 33 ms 295312
+reviewer-ux-B done 2026-11-07T21:46:22Z
+reviewer-ux-A c1288c05-62f6-455d-9fa3-bd4c5b814dff cost 2.1344449999999995 turns 38 ms 321509
+reviewer-ux-A done 2026-11-07T21:46:48Z
+reveal-ux-A resume c1288c05-62f6-455d-9fa3-bd4c5b814dff launched 2026-11-07T21:47:55Z
+reveal-ux-B resume 04c608f6-e15a-4e14-969c-f33bc53b42c0 launched 2026-11-07T21:47:55Z
+reveal-ux-A c1288c05-62f6-455d-9fa3-bd4c5b814dff cost 2.352359199999999 turns 4 ms 35898
+reveal-ux-A done 2026-11-07T21:48:32Z
+reveal-ux-B 04c608f6-e15a-4e14-969c-f33bc53b42c0 cost 1.9158722000000004 turns 6 ms 41827
+reveal-ux-B done 2026-11-07T21:48:39Z

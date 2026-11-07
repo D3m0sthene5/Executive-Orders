@@ -1,0 +1,278 @@
+{
+  "attempted": 6,
+  "claims_published": 0,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:10955",
+      "planted_claim_sha256": "aa9cb131ba70929978e3d310f82b2f2ca51694d7b9086850fb57ab981340b718",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 1,
+    "eligible": 3,
+    "rejected_mechanical": 2
+  },
+  "eligible": [
+    "EO:10733",
+    "EO:12082",
+    "EO:7814"
+  ],
+  "eligible_per_attempt": 0.5,
+  "exceptions": 2,
+  "finished_utc": "2026-11-07T21:50:06.224407+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "6c1bfd2f2878fd9d4c55ade7b1ee8fae3a86ce17a40309d964be1679ce8c92ca",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:10733",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": true,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "checker": [
+        {
+          "all_checks_passed": false,
+          "check_counts": {
+            "date_after_signing": {
+              "pass": 3
+            },
+            "date_valid": {
+              "pass": 13
+            },
+            "factual_event_policy": {},
+            "order_exists": {
+              "pass": 8
+            },
+            "quote_verbatim": {
+              "pass": 9
+            },
+            "source_held": {
+              "pass": 3,
+              "skip": 4
+            },
+            "source_identity": {
+              "pass": 3
+            },
+            "structural_gate": {
+              "pass": 1
+            },
+            "working_text_policy": {}
+          },
+          "claim_key": "research/excavator/claude-haloander-2026-11-07/ux/completion/complete-v1/CLAIMS.selected.jsonl:2",
+          "claim_sha256": "572f15a8f0bf76fcb4c999737c1e3ef7535d200d6077b21fdf0b13b586dfa5d0",
+          "effective_for_tracker": true,
+          "failures": [],
+          "failures_total": 0,
+          "file": "research/excavator/claude-haloander-2026-11-07/ux/completion/complete-v1/CLAIMS.selected.jsonl",
+          "gate_claim_level_errors": [],
+          "gate_errors": [],
+          "gate_passed": true,
+          "instrument_id": "EO:10955",
+          "line": 2,
+          "mechanical_result": "pass_with_unverified",
+          "provisional_status": null,
+          "steps": {
+            "clause_inventory": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "counterevidence": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "ending_or_current_basis": {
+              "checker_passed": false,
+              "gate": "pass",
+              "mechanical": "pass_with_unverified",
+              "present": true
+            },
+            "original_text": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "savings_residuals": {
+              "checker_passed": false,
+              "gate": "pass",
+              "mechanical": "pass_with_unverified",
+              "present": true
+            }
+          },
+          "text_evidence_tier": "original_supported",
+          "unverified": [
+            "source_held:custody_record_only@operative_clauses[0].first_end.source",
+            "source_held:custody_record_only@operative_clauses[1].first_end.source",
+            "source_held:custody_record_only@savings_residuals.source",
+            "source_held:custody_record_only@whole_order_end.source"
+          ],
+          "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+        }
+      ],
+      "claim_sha256": "572f15a8f0bf76fcb4c999737c1e3ef7535d200d6077b21fdf0b13b586dfa5d0",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:10955",
+      "outcome": "rejected_mechanical",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "2f08b4888429ae9dc1216fe165f6c64cd319c4336ee540a4be215832681ec1c8",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:12082",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:12200",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"operative_clauses[*].first_end.date / whole_order_end.date\", \"claim_says\": \"1980-10-16 (signing of EO 12248), while research_rationale says the replaced rates 'stopped operating up to about two weeks before the signing date; a reviewer should note this earlier effective reading'\", \"source_says\": \"EO 12248 sec. 1-201: uniformed-services adjustments 'shall be effective on O ctober 1, 1980', other pay 'on the first day of the first applicable pay period beginning on or after O ctober 1,1980'. The held 5 U.S.C. 5332 note records EO 12248 as 'effective Oct. 1, 1980'. EO 12200's Schedules 1-7 include the uniformed-services schedule.\"}, {\"field\": \"savings_residuals.reason vs first_end\", \"claim_says\": \"savings says the later rates replaced the earlier ones from the first pay period on or after October 1, 1980; first_end says the commands ended 1980-10-16\", \"source_says\": \"internal inconsistency on when the EO 12200 rate commands stopped operating\"}, {\"field\": \"unresolved_material_gaps\", \"claim_says\": \"[]\", \"source_says\": \"the claim leaves the choice between the signing date and the earlier effective date open for the reviewer instead of resolving it, so a material gap is undisclosed\"}], \"B\": [{\"field\": \"operative_clauses[EO:12200#s1-103, EO:12200#schedules].first_end.date and judgment_reason\", \"claim_says\": \"First end 1980-10-16 (signing of EO 12248). The same reason says the rates were replaced by the 12248 schedules effective October 1, 1980 or the first applicable pay period on or after that date, and that 'the earlier effective reading is noted for review'. research_rationale says 'the replaced rates stopped operating up to about two weeks before the signing date; a reviewer should note this earlier effective reading'.\", \"source_says\": \"EO 12248 sec. 1-201 makes the uniformed-services rates 'effective on October 1, 1980' and all other pay effective from the first applicable pay period beginning on or after October 1, 1980. Sec. 1-202 supersedes EO 12200. The claim says the rate commands stopped operating before the date it records, but gives no legal reason why that operation does not mark their first end. It hands the question to the reviewer while unresolved_material_gaps is []. The project's sibling claim (EO 10955) uses a retroactive 'effective as of' date as the end, so the treatment is inconsistent. Owner ruling 2026-10-28 item 5: the producer must decide this, not route it.\"}, {\"field\": \"operative_clauses[s1-101, s1-102, s1-104, s1-105a, s1-105b].judgment_reason\", \"claim_says\": \"'the rates it fixed were replaced by the schedules of 12248 ... so the signing date 1980-10-16 is recorded'\", \"source_says\": \"These clauses fixed no rates. They add footnotes, correct a statutory citation and add an enabling subsection, and EO 12200 sec. 1-103 says 'The scheduled rates of pay and allowances have not been altered.' The boilerplate reason misdescribes these clauses, and its 'so' does not follow.\"}]}"
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "0ba180da6b04ca1d47fa1fa5ac73a19aa547343884693657c05d6d0e37b967ab",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:7814",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "checker": [
+        {
+          "all_checks_passed": false,
+          "check_counts": {
+            "date_after_signing": {
+              "pass": 6
+            },
+            "date_valid": {
+              "pass": 22
+            },
+            "factual_event_policy": {},
+            "order_exists": {
+              "fail": 2,
+              "pass": 4
+            },
+            "quote_verbatim": {
+              "pass": 18
+            },
+            "source_held": {
+              "pass": 13
+            },
+            "source_identity": {
+              "pass": 6
+            },
+            "structural_gate": {
+              "pass": 1
+            },
+            "working_text_policy": {}
+          },
+          "claim_key": "research/excavator/claude-haloander-2026-11-07/ux/completion/complete-v1/CLAIMS.selected.jsonl:5",
+          "claim_sha256": "1dd20013322ba7087e94eead16a80ef42ad6c22ecc544f4b155049e74a895330",
+          "effective_for_tracker": true,
+          "failures": [
+            "order_exists:not_in_universe@operative_clauses[4].original_operative_text",
+            "order_exists:not_in_universe@original_representation.quote"
+          ],
+          "failures_total": 2,
+          "file": "research/excavator/claude-haloander-2026-11-07/ux/completion/complete-v1/CLAIMS.selected.jsonl",
+          "gate_claim_level_errors": [],
+          "gate_errors": [],
+          "gate_passed": true,
+          "instrument_id": "EO:9446",
+          "line": 5,
+          "mechanical_result": "fail",
+          "provisional_status": null,
+          "steps": {
+            "clause_inventory": {
+              "checker_passed": false,
+              "gate": "pass",
+              "mechanical": "fail",
+              "present": true
+            },
+            "counterevidence": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "ending_or_current_basis": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "original_text": {
+              "checker_passed": false,
+              "gate": "pass",
+              "mechanical": "fail",
+              "present": true
+            },
+            "savings_residuals": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            }
+          },
+          "text_evidence_tier": "original_supported",
+          "unverified": [],
+          "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+        }
+      ],
+      "claim_sha256": "1dd20013322ba7087e94eead16a80ef42ad6c22ecc544f4b155049e74a895330",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:9446",
+      "outcome": "rejected_mechanical",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    }
+  ],
+  "packet_loads": {},
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 5,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-07T21:48:51.855262+00:00",
+  "submitted": 5,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 74.36916702600138
+}

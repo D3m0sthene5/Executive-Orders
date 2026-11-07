@@ -1,3 +1,20 @@
+## 2026-11-07 17:00 ET (Claude, Haloander: Bentham wave bentham-2026-11-07, $75 budget)
+
+- **Done:** 25 lifecycle claims filed (`research/readiness/claims/claude-2026-11-07-haloander-h01.jsonl`, PR #222, count-changing). Tracker replay: ready 992 -> 1017.
+  - Rank 8 recovery: 27 Photius-stale confirmations plus EO 12323, re-checked against the GPO printings, not re-frozen by script. 3 blocked: EO 8907, 12323, 8538.
+  - Rank 7 probe (30 undecided): 0 canonical; 3 isolated overlay proposals (EO 12082, 7814, 10733) await adoption.
+  - Rank 9: no paid work. 58 board-report fetches enqueued (FETCH_QUEUE 1120 -> 1178).
+  - claim-kit unblocked on main: PR #219 (undeclared pinned input) and PR #221 (R9 alias in claim-drafts and claim-kit). It published at 938c1515a after three freshness refusals.
+  - Report: `research/excavator/claude-haloander-2026-11-07/REPORT.md`.
+- **Cost:** $61.78 API-equivalent measured (`telemetry/`): coordinator $44.45, 4 Sonnet producers $7.49, 5 Opus reviewers $9.84. Gate: h01 PILOT (28<30 attempts). The probe cannot be gated (unranked).
+- **Controls:** 3 planted controls, all caught by both independent arms. No status, census or codebook change; certified 0.
+- **Next:** the other ~166 Photius-193 orders are the cheapest ready gain (same h01 route; about $0.20/order in workers). After A-20261107-board-rule, a board pilot on the 79 held reports.
+- **Asks:** @Owner: A-20261107-haloander-adopt, A-20261107-board-rule, A-20261107-undecided-measure, A-20261107-photius-193-recheck (existing).
+- **Cautions:**
+  - In a partial checkout (blob:limit), files over 1 MB are skip-worktree and the kit, Bentham and Kean read them as absent without error. Materialize with one batched `git checkout --pathspec-from-file`. Never let `jobs/_attempts` into the tree (8 GB).
+  - Run claim-drafts before claim-kit, each alone with `requeue_depth=1`.
+  - Completion receipts over 100 MB must be gzipped before pushing.
+
 ## 2026-11-07 02:00 ET (Claude as the Encyclopédie coordinator: adopting the Peiresc tool survey)
 
 - **Done (all merged):**

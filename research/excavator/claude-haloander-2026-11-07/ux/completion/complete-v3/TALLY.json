@@ -1,0 +1,97 @@
+{
+  "attempted": 6,
+  "claims_published": 0,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:10955",
+      "planted_claim_sha256": "aa9cb131ba70929978e3d310f82b2f2ca51694d7b9086850fb57ab981340b718",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 3,
+    "eligible": 3
+  },
+  "eligible": [
+    "EO:10733",
+    "EO:12082",
+    "EO:7814"
+  ],
+  "eligible_per_attempt": 0.5,
+  "exceptions": 0,
+  "finished_utc": "2026-11-07T21:53:56.933623+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "6c1bfd2f2878fd9d4c55ade7b1ee8fae3a86ce17a40309d964be1679ce8c92ca",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:10733",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:10955",
+      "outcome": "blocked",
+      "reason": "Upheld by both arms (after reveal), but the actual checker refused the exact version in dry-run complete-v1: source_held:custody_record_only for the EO 10973 ending source (first_end x2, whole_order_end, savings). Needs the EO 10973 raw bytes retained."
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "2f08b4888429ae9dc1216fe165f6c64cd319c4336ee540a4be215832681ec1c8",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:12082",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:12200",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"operative_clauses[*].first_end.date / whole_order_end.date\", \"claim_says\": \"1980-10-16 (signing of EO 12248), while research_rationale says the replaced rates 'stopped operating up to about two weeks before the signing date; a reviewer should note this earlier effective reading'\", \"source_says\": \"EO 12248 sec. 1-201: uniformed-services adjustments 'shall be effective on O ctober 1, 1980', other pay 'on the first day of the first applicable pay period beginning on or after O ctober 1,1980'. The held 5 U.S.C. 5332 note records EO 12248 as 'effective Oct. 1, 1980'. EO 12200's Schedules 1-7 include the uniformed-services schedule.\"}, {\"field\": \"savings_residuals.reason vs first_end\", \"claim_says\": \"savings says the later rates replaced the earlier ones from the first pay period on or after October 1, 1980; first_end says the commands ended 1980-10-16\", \"source_says\": \"internal inconsistency on when the EO 12200 rate commands stopped operating\"}, {\"field\": \"unresolved_material_gaps\", \"claim_says\": \"[]\", \"source_says\": \"the claim leaves the choice between the signing date and the earlier effective date open for the reviewer instead of resolving it, so a material gap is undisclosed\"}], \"B\": [{\"field\": \"operative_clauses[EO:12200#s1-103, EO:12200#schedules].first_end.date and judgment_reason\", \"claim_says\": \"First end 1980-10-16 (signing of EO 12248). The same reason says the rates were replaced by the 12248 schedules effective October 1, 1980 or the first applicable pay period on or after that date, and that 'the earlier effective reading is noted for review'. research_rationale says 'the replaced rates stopped operating up to about two weeks before the signing date; a reviewer should note this earlier effective reading'.\", \"source_says\": \"EO 12248 sec. 1-201 makes the uniformed-services rates 'effective on October 1, 1980' and all other pay effective from the first applicable pay period beginning on or after October 1, 1980. Sec. 1-202 supersedes EO 12200. The claim says the rate commands stopped operating before the date it records, but gives no legal reason why that operation does not mark their first end. It hands the question to the reviewer while unresolved_material_gaps is []. The project's sibling claim (EO 10955) uses a retroactive 'effective as of' date as the end, so the treatment is inconsistent. Owner ruling 2026-10-28 item 5: the producer must decide this, not route it.\"}, {\"field\": \"operative_clauses[s1-101, s1-102, s1-104, s1-105a, s1-105b].judgment_reason\", \"claim_says\": \"'the rates it fixed were replaced by the schedules of 12248 ... so the signing date 1980-10-16 is recorded'\", \"source_says\": \"These clauses fixed no rates. They add footnotes, correct a statutory citation and add an enabling subsection, and EO 12200 sec. 1-103 says 'The scheduled rates of pay and allowances have not been altered.' The boilerplate reason misdescribes these clauses, and its 'so' does not follow.\"}]}"
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "0ba180da6b04ca1d47fa1fa5ac73a19aa547343884693657c05d6d0e37b967ab",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:7814",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:9446",
+      "outcome": "blocked",
+      "reason": "Upheld by both arms, but the actual checker refused the exact version in dry-run complete-v1: order_exists:not_in_universe at operative_clauses[4].original_operative_text and original_representation.quote (a number in the quoted text is not a census identity)."
+    }
+  ],
+  "packet_loads": {},
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 3,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-07T21:52:41.236341+00:00",
+  "submitted": 3,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 75.69730398299725
+}

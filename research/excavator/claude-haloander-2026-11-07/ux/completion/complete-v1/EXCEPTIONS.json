@@ -1,0 +1,176 @@
+[
+  {
+    "error": "actual checker did not pass exact version",
+    "instrument_id": "EO:10955",
+    "receipts": [
+      {
+        "all_checks_passed": false,
+        "check_counts": {
+          "date_after_signing": {
+            "pass": 3
+          },
+          "date_valid": {
+            "pass": 13
+          },
+          "factual_event_policy": {},
+          "order_exists": {
+            "pass": 8
+          },
+          "quote_verbatim": {
+            "pass": 9
+          },
+          "source_held": {
+            "pass": 3,
+            "skip": 4
+          },
+          "source_identity": {
+            "pass": 3
+          },
+          "structural_gate": {
+            "pass": 1
+          },
+          "working_text_policy": {}
+        },
+        "claim_key": "research/excavator/claude-haloander-2026-11-07/ux/completion/complete-v1/CLAIMS.selected.jsonl:2",
+        "claim_sha256": "572f15a8f0bf76fcb4c999737c1e3ef7535d200d6077b21fdf0b13b586dfa5d0",
+        "effective_for_tracker": true,
+        "failures": [],
+        "failures_total": 0,
+        "file": "research/excavator/claude-haloander-2026-11-07/ux/completion/complete-v1/CLAIMS.selected.jsonl",
+        "gate_claim_level_errors": [],
+        "gate_errors": [],
+        "gate_passed": true,
+        "instrument_id": "EO:10955",
+        "line": 2,
+        "mechanical_result": "pass_with_unverified",
+        "provisional_status": null,
+        "steps": {
+          "clause_inventory": {
+            "checker_passed": true,
+            "gate": "pass",
+            "mechanical": "pass",
+            "present": true
+          },
+          "counterevidence": {
+            "checker_passed": true,
+            "gate": "pass",
+            "mechanical": "pass",
+            "present": true
+          },
+          "ending_or_current_basis": {
+            "checker_passed": false,
+            "gate": "pass",
+            "mechanical": "pass_with_unverified",
+            "present": true
+          },
+          "original_text": {
+            "checker_passed": true,
+            "gate": "pass",
+            "mechanical": "pass",
+            "present": true
+          },
+          "savings_residuals": {
+            "checker_passed": false,
+            "gate": "pass",
+            "mechanical": "pass_with_unverified",
+            "present": true
+          }
+        },
+        "text_evidence_tier": "original_supported",
+        "unverified": [
+          "source_held:custody_record_only@operative_clauses[0].first_end.source",
+          "source_held:custody_record_only@operative_clauses[1].first_end.source",
+          "source_held:custody_record_only@savings_residuals.source",
+          "source_held:custody_record_only@whole_order_end.source"
+        ],
+        "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+      }
+    ]
+  },
+  {
+    "error": "actual checker did not pass exact version",
+    "instrument_id": "EO:9446",
+    "receipts": [
+      {
+        "all_checks_passed": false,
+        "check_counts": {
+          "date_after_signing": {
+            "pass": 6
+          },
+          "date_valid": {
+            "pass": 22
+          },
+          "factual_event_policy": {},
+          "order_exists": {
+            "fail": 2,
+            "pass": 4
+          },
+          "quote_verbatim": {
+            "pass": 18
+          },
+          "source_held": {
+            "pass": 13
+          },
+          "source_identity": {
+            "pass": 6
+          },
+          "structural_gate": {
+            "pass": 1
+          },
+          "working_text_policy": {}
+        },
+        "claim_key": "research/excavator/claude-haloander-2026-11-07/ux/completion/complete-v1/CLAIMS.selected.jsonl:5",
+        "claim_sha256": "1dd20013322ba7087e94eead16a80ef42ad6c22ecc544f4b155049e74a895330",
+        "effective_for_tracker": true,
+        "failures": [
+          "order_exists:not_in_universe@operative_clauses[4].original_operative_text",
+          "order_exists:not_in_universe@original_representation.quote"
+        ],
+        "failures_total": 2,
+        "file": "research/excavator/claude-haloander-2026-11-07/ux/completion/complete-v1/CLAIMS.selected.jsonl",
+        "gate_claim_level_errors": [],
+        "gate_errors": [],
+        "gate_passed": true,
+        "instrument_id": "EO:9446",
+        "line": 5,
+        "mechanical_result": "fail",
+        "provisional_status": null,
+        "steps": {
+          "clause_inventory": {
+            "checker_passed": false,
+            "gate": "pass",
+            "mechanical": "fail",
+            "present": true
+          },
+          "counterevidence": {
+            "checker_passed": true,
+            "gate": "pass",
+            "mechanical": "pass",
+            "present": true
+          },
+          "ending_or_current_basis": {
+            "checker_passed": true,
+            "gate": "pass",
+            "mechanical": "pass",
+            "present": true
+          },
+          "original_text": {
+            "checker_passed": false,
+            "gate": "pass",
+            "mechanical": "fail",
+            "present": true
+          },
+          "savings_residuals": {
+            "checker_passed": true,
+            "gate": "pass",
+            "mechanical": "pass",
+            "present": true
+          }
+        },
+        "text_evidence_tier": "original_supported",
+        "unverified": [],
+        "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+      }
+    ]
+  }
+]
