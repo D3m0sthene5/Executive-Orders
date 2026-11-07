@@ -1,6 +1,6 @@
 {
-  "base_commit": "d79b480123c47394da6e1df1a0a20bc673221614",
-  "base_output_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "base_commit": "41599f073959846fad6f297e43d1e54f077fd32c",
+  "base_output_sha256": "234439ebda7e50d73b1198e88552baff59a44bb207127d575c2c05931ce0c763",
   "inputs": {
     ".github/scripts/arsenale.py": "100644:2db28c100c805a4670ac8e106ca6c1100777b918",
     ".github/scripts/commit_results.sh": "100644:85d0f75a68f75bd2bdb6c74bb57070bcc27403cd",
@@ -29,15 +29,18 @@
     "jobs/repetita-lsa/repetita.py": "100644:127e59f9e93bdc2a1acaadd5caa28dba7a10d6d3",
     "jobs/repetita-lsa/requirements.txt": "100644:b7c72a67b2a8e676950be23fbaa8307c8bfdd94b",
     "jobs/repetita-lsa/seed_hathi.py": "100644:b387f0a31ce057ac399e0e5a36ee1fcd8bb1757e",
-    "jobs/repetita-lsa/test_repetita.py": "100644:edd12253089a543d103ca7245703a2e2dcea7869"
+    "jobs/repetita-lsa/test_repetita.py": "100644:edd12253089a543d103ca7245703a2e2dcea7869",
+    "jobs/repetita-lsa/triggers.txt": "100644:77b804fe080ea3890bbe6d0c7d74254dca52614a"
   },
-  "inputs_sha256": "b939770a9a68a8c7b1f810ef45f102937eb655efaf7c5509579178918b3a34b0",
+  "inputs_sha256": "5f5d23b221402b32c41554ef87826e8469b5bd265c21d8a3432f50e829825cf0",
   "job": "repetita-lsa",
-  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42329117920",
+  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42333774577",
   "schema": 1,
   "scope": {
     "exclude": "jobs/repetita-lsa/output",
-    "patterns": [],
+    "patterns": [
+      "jobs/_lib/fetch_pool.py"
+    ],
     "roots": [
       ".github/scripts/arsenale.py",
       ".github/scripts/commit_results.sh",
