@@ -1,0 +1,527 @@
+{
+ "ai_review_gate": {
+  "distinct_upholding_reviewers": 2,
+  "met": true,
+  "model_families": [
+   "Anthropic"
+  ],
+  "rejecting_reviewers": [],
+  "rule": "two blind AI reviewers must uphold the exact claim hash",
+  "upholding_reviewers": [
+   "claude-blind-reviewer-herschel-H2-rl1-A-2026-11-05",
+   "claude-blind-reviewer-herschel-H2-rl1-B-2026-11-05"
+  ]
+ },
+ "ai_reviews": [
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T00:30:37Z",
+   "file": "research/herschel/H2/evidence/yes/reviews/BLIND_REVIEW_A.jsonl",
+   "line": 1,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "reviewer": "claude-blind-reviewer-herschel-H2-rl1-A-2026-11-05",
+   "started_utc": "2026-11-06T00:23:00Z",
+   "verdict": "upheld"
+  },
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T00:30:37Z",
+   "file": "research/herschel/H2/evidence/yes/reviews/BLIND_REVIEW_A.kit.jsonl",
+   "independent": true,
+   "line": 1,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "review_kind": "independent_ai_source_review",
+   "reviewer": "claude-blind-reviewer-herschel-H2-rl1-A-2026-11-05",
+   "scope": "whole_case",
+   "separate_context": true,
+   "started_utc": "2026-11-06T00:23:00Z",
+   "verdict": "upheld"
+  },
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T00:30:51Z",
+   "file": "research/herschel/H2/evidence/yes/reviews/BLIND_REVIEW_B.jsonl",
+   "line": 2,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "reviewer": "claude-blind-reviewer-herschel-H2-rl1-B-2026-11-05",
+   "started_utc": "2026-11-06T00:23:01Z",
+   "verdict": "upheld"
+  },
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T00:30:51Z",
+   "file": "research/herschel/H2/evidence/yes/reviews/BLIND_REVIEW_B.kit.jsonl",
+   "independent": true,
+   "line": 2,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "review_kind": "independent_ai_source_review",
+   "reviewer": "claude-blind-reviewer-herschel-H2-rl1-B-2026-11-05",
+   "scope": "whole_case",
+   "separate_context": true,
+   "started_utc": "2026-11-06T00:23:01Z",
+   "verdict": "upheld"
+  },
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T00:30:37Z",
+   "file": "research/herschel/H2/reviews/rl1/BLIND_REVIEW_A.jsonl",
+   "line": 2,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "reviewer": "claude-blind-reviewer-herschel-H2-rl1-A-2026-11-05",
+   "started_utc": "2026-11-06T00:23:00Z",
+   "verdict": "upheld"
+  },
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T00:30:37Z",
+   "file": "research/herschel/H2/reviews/rl1/BLIND_REVIEW_A.kit.jsonl",
+   "independent": true,
+   "line": 2,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "review_kind": "independent_ai_source_review",
+   "reviewer": "claude-blind-reviewer-herschel-H2-rl1-A-2026-11-05",
+   "scope": "whole_case",
+   "separate_context": true,
+   "started_utc": "2026-11-06T00:23:00Z",
+   "verdict": "upheld"
+  },
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T00:30:51Z",
+   "file": "research/herschel/H2/reviews/rl1/BLIND_REVIEW_B.jsonl",
+   "line": 6,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "reviewer": "claude-blind-reviewer-herschel-H2-rl1-B-2026-11-05",
+   "started_utc": "2026-11-06T00:23:01Z",
+   "verdict": "upheld"
+  },
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T00:30:51Z",
+   "file": "research/herschel/H2/reviews/rl1/BLIND_REVIEW_B.kit.jsonl",
+   "independent": true,
+   "line": 6,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "review_kind": "independent_ai_source_review",
+   "reviewer": "claude-blind-reviewer-herschel-H2-rl1-B-2026-11-05",
+   "scope": "whole_case",
+   "separate_context": true,
+   "started_utc": "2026-11-06T00:23:01Z",
+   "verdict": "upheld"
+  }
+ ],
+ "checker": {
+  "non_passing_rows": [],
+  "note": "Mechanical checks only. Passing is not a legal conclusion.",
+  "summary": {
+   "all_checks_passed": true,
+   "check_counts": {
+    "date_after_signing": {
+     "pass": 1
+    },
+    "date_valid": {
+     "pass": 8
+    },
+    "factual_event_policy": {},
+    "order_exists": {
+     "pass": 3
+    },
+    "quote_verbatim": {
+     "pass": 5
+    },
+    "source_held": {
+     "pass": 4
+    },
+    "source_identity": {
+     "pass": 2
+    },
+    "structural_gate": {
+     "pass": 1
+    },
+    "working_text_policy": {}
+   },
+   "claim_sha256": "82a1ba18b0b93442d98823fc1ba36bb42bcbe62ae1e726729ea9a645ff62f3f0",
+   "effective_for_tracker": true,
+   "failures": [],
+   "failures_total": 0,
+   "gate_claim_level_errors": [],
+   "gate_errors": [],
+   "gate_passed": true,
+   "instrument_id": "EO:10863",
+   "mechanical_result": "pass",
+   "provisional_status": "yes",
+   "steps": {
+    "clause_inventory": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    },
+    "counterevidence": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    },
+    "ending_or_current_basis": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    },
+    "original_text": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    },
+    "savings_residuals": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    }
+   },
+   "text_evidence_tier": "original_supported",
+   "unverified": [],
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+  }
+ },
+ "checker_generation": {
+  "blocked_by": [],
+  "branch": "main",
+  "commit_run": "410a1ffc43c5ec8f0fe9fda4c8a08c51e7c1fed4",
+  "exit_code": 0,
+  "finished_utc": "2026-11-06T22:14:48Z",
+  "generation_id": "42299247852-1:0e556d991b913dfe4cb4ddfaef9a2d782095b06eb718a719df9ac398d3fb2e42",
+  "job": "claim-checker",
+  "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+  "max_output_file_bytes": 99614720,
+  "oversized_files_moved_to_run_download": [],
+  "result": "succeeded",
+  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42299247852",
+  "started_utc": "2026-11-06T21:52:42Z",
+  "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
+ },
+ "claim": {
+  "claim_kit": {
+   "agent": "claude",
+   "dossier_sha256": "6bbfbb14b2b8821a9b27aa76f6d6178cd89955f14da16a3ae87251b7180c8787",
+   "inventory_overrides": [],
+   "original_pages_confirmed": false,
+   "producer_approved": true
+  },
+  "instrument_id": "EO:10863",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-19",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "The order's own held text states no end for this clause, no held later order, statute text or search result revokes, supersedes or amends it, and a search of the held texts for the order's number finds no other instrument that cites it. The three selected machine searches (U.S. Code release point 119-121 through 2026-10-09, eCFR as of 2026-10-14, and the Federal Register executive-order catalogue) record no adverse disposition. The clause therefore continues on the original text, checked through 2026-10-14; the current-law pointers the searches return are not relied on as quoted authority.",
+     "source": {
+      "char_end": 2035,
+      "char_start": 966,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDg2MyN3aG9sZQ",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "25 FR 1507, PDF pages 3-3",
+      "quote": "Section  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.",
+      "requires_page_check": false,
+      "sha256": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b",
+      "signing_date": "1960-02-18",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+      "text_sha256": "513cacc1756713cfc9039414ae52e5ad6b47444d0eb7b909eca258942e8eccb3",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf"
+     }
+    },
+    "judgment_reason": "Section 1 designates the Attorney General as the person authorized to seize and detain arms, munitions of war and other articles and the vessels, vehicles or aircraft used in illegal export, and section 2 lets designated Department of Justice officers exercise that authority. It is a standing designation and delegation with no end term, and nothing held changes it.",
+    "later_events": [],
+    "original_operative_text": "Section  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.",
+    "original_source": {
+     "char_end": 2035,
+     "char_start": 966,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDg2MyN3aG9sZQ",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "25 FR 1507, PDF pages 3-3",
+     "quote": "Section  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.",
+     "requires_page_check": false,
+     "sha256": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b",
+     "signing_date": "1960-02-18",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+     "text_sha256": "513cacc1756713cfc9039414ae52e5ad6b47444d0eb7b909eca258942e8eccb3",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf"
+    },
+    "scope_id": "EO:10863#whole",
+    "state_at_cutoff": "operative"
+   }
+  ],
+  "original_representation": {
+   "char_end": 3814,
+   "char_start": 0,
+   "evidence_id": "T1JJR0lOQUw6RU86MTA4NjM",
+   "evidence_id_encoding": "base64url-utf8",
+   "filing_date": null,
+   "location_confidence": "high",
+   "location_verified": false,
+   "page_or_item": "25 FR 1507, PDF pages 3-3",
+   "quote": "Instrument: EO:10863\nSource: https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf\nSHA-256 of the downloaded file: c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b\nLocation: 25 FR 1507, PDF pages 3-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 80 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 10863\nAUTHORIZING THE ATTORNEY GEN­\nERAL TO SEIZE ARMS AND  \nMUNITIONS OF WAR, AND OTHER  \nARTICLES, PURSUANT TO SECTION  \n1  OF TITLE VI OF THE ACT OF  \nJUNE 15, 1917, AS AMENDED\nBy virtue of the authority vested in me \nby section 1  of Title V T  of the act of \nJune 15, 1917, 40 Stat. 223, as amended \nby section 1  of the act of August 13,1953, \n67 Stat. 577 (22 U.S.C. 401), it is ordered \nas follows:\nSection  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.\nDwight  D. E isenhower\nT he W hite  H ouse ,\nFebruary 18,1960.\n[F.R. Doc. 60-1665; Filed, Feb. 19, 1960;\n9:36 am .]\nExecutive Order 10864\nDESIGNATING THE PAN AMERICAN  \nHEALTH ORGANIZATION AS A  \nPUBLIC INTERNATIONAL ORGANI­\nZATION ENTITLED TO ENJOY CER­\nTAIN PRIVILEGES, EXEMPTIONS,  \nAND IMMUNITIES\nBy virtue of the authority vested in me \nby section 1  of the International Organi­\nzations Immunities Act, approved De­\ncember 29, 1945 (59 Stat. 669), and \nhaving found that the United States \nparticipates in the Pan American Health \nOrganization pursuant to the authority \nof the Pan American Sanitary Conven­\ntion ratified by the President on March \n28, 1925, with the advice and consent of \nthe Senate given on February 23, 1925 \n(44 Stat. 2031, TS 714), I hereby desig­\nnate the Pan American Health Organi­\nzation as a public international organi­\nzation entitled to enjoy the privileges, \nexemptions, and immunities conferred \nby the International Organizations Im­\nmunities Act.\nThe designation of the Pan American \nHealth Organization as a public inter­\nnational organization within the mean­\ning of the International Organizations \nImmunities Act is not intended to \nabridge in any respect privileges, ex­\nemptions, arid immunities which that \norganization may have acquired or may \nacquire by treaty or congressional action.\nThe designation of the Pan American \nHealth Organization made by this order \nshall be deemed to include the designa­\ntion of the Pan American Sanitary \nBureau. The designation of the Pan \nAmerican Sanitary Bureau made by \nExecutive Order No. 9751 of July 11, \n1946, is hereby superseded, and that \norder is amended accordingly.\nDwight  D. E isenhower\nThe W hite  H ouse,\nFebruary 18,1960\n[F.R. Doc. 60-1666; Filed, Feb. 19, 1960;\n9:36 a.m.]\n",
+   "requires_page_check": false,
+   "sha256": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b",
+   "signing_date": "1960-02-18",
+   "text_path": "jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+   "text_sha256": "513cacc1756713cfc9039414ae52e5ad6b47444d0eb7b909eca258942e8eccb3",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf"
+  },
+  "research_rationale": "EO 10863 (signed 1960-02-18; 25 FR 1507) designates the Attorney General, under section 1 of Title VI of the act of June 15, 1917 as amended (22 U.S.C. 401), as the person authorized to seize and detain arms and munitions of war, other articles and vessels, vehicles or aircraft used in illegal export (section 1), and lets any officer of the Department of Justice designated by the Attorney General exercise that authority (section 2). I read the complete held Federal Register text; the held file also reprints the next order on the page (EO 10864), which is not part of this order and is the only reason the number appears in a second held file. The dossier inventory is one clause spanning sections 1 and 2; I confirmed that it covers every command of the order. The order has no sunset or ending condition. A search of the held texts for the number finds no other instrument that cites it apart from that page overlap and the 1989 codification entry, which lists no amendment or revocation, and the three bounded machine searches record no adverse disposition. The clause is operative on the original text through 2026-10-14. The statute and CFR text the searches point to are not held as quoted text and are not relied on as authority.\nMember checks: {\"earlier_end_check\":\"No own-terms end: sections 1 and 2 state no date, condition or term. No held instrument revokes, supersedes or amends the order.\",\"independent_command_check\":\"Section 2's delegation depends on section 1's authority; both continue together, and no independent command was found to end earlier.\",\"savings_check\":\"None found in the order; nothing survives an end because no end is shown.\",\"scope_check\":\"The clause covers the Attorney General's designation (section 1) and the delegation to designated Department of Justice officers (section 2), both without limit in time.\"}",
+  "savings_residuals": {
+   "reason": "The order has no savings, transition or accrued-rights clause and nothing held ends it, so no residual effect arises.",
+   "source": {
+    "char_end": 3814,
+    "char_start": 0,
+    "evidence_id": "T1JJR0lOQUw6RU86MTA4NjM",
+    "evidence_id_encoding": "base64url-utf8",
+    "filing_date": null,
+    "location_confidence": "high",
+    "location_verified": false,
+    "page_or_item": "25 FR 1507, PDF pages 3-3",
+    "quote": "Instrument: EO:10863\nSource: https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf\nSHA-256 of the downloaded file: c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b\nLocation: 25 FR 1507, PDF pages 3-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 80 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 10863\nAUTHORIZING THE ATTORNEY GEN­\nERAL TO SEIZE ARMS AND  \nMUNITIONS OF WAR, AND OTHER  \nARTICLES, PURSUANT TO SECTION  \n1  OF TITLE VI OF THE ACT OF  \nJUNE 15, 1917, AS AMENDED\nBy virtue of the authority vested in me \nby section 1  of Title V T  of the act of \nJune 15, 1917, 40 Stat. 223, as amended \nby section 1  of the act of August 13,1953, \n67 Stat. 577 (22 U.S.C. 401), it is ordered \nas follows:\nSection  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.\nDwight  D. E isenhower\nT he W hite  H ouse ,\nFebruary 18,1960.\n[F.R. Doc. 60-1665; Filed, Feb. 19, 1960;\n9:36 am .]\nExecutive Order 10864\nDESIGNATING THE PAN AMERICAN  \nHEALTH ORGANIZATION AS A  \nPUBLIC INTERNATIONAL ORGANI­\nZATION ENTITLED TO ENJOY CER­\nTAIN PRIVILEGES, EXEMPTIONS,  \nAND IMMUNITIES\nBy virtue of the authority vested in me \nby section 1  of the International Organi­\nzations Immunities Act, approved De­\ncember 29, 1945 (59 Stat. 669), and \nhaving found that the United States \nparticipates in the Pan American Health \nOrganization pursuant to the authority \nof the Pan American Sanitary Conven­\ntion ratified by the President on March \n28, 1925, with the advice and consent of \nthe Senate given on February 23, 1925 \n(44 Stat. 2031, TS 714), I hereby desig­\nnate the Pan American Health Organi­\nzation as a public international organi­\nzation entitled to enjoy the privileges, \nexemptions, and immunities conferred \nby the International Organizations Im­\nmunities Act.\nThe designation of the Pan American \nHealth Organization as a public inter­\nnational organization within the mean­\ning of the International Organizations \nImmunities Act is not intended to \nabridge in any respect privileges, ex­\nemptions, arid immunities which that \norganization may have acquired or may \nacquire by treaty or congressional action.\nThe designation of the Pan American \nHealth Organization made by this order \nshall be deemed to include the designa­\ntion of the Pan American Sanitary \nBureau. The designation of the Pan \nAmerican Sanitary Bureau made by \nExecutive Order No. 9751 of July 11, \n1946, is hereby superseded, and that \norder is amended accordingly.\nDwight  D. E isenhower\nThe W hite  H ouse,\nFebruary 18,1960\n[F.R. Doc. 60-1666; Filed, Feb. 19, 1960;\n9:36 a.m.]\n",
+    "requires_page_check": false,
+    "sha256": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b",
+    "signing_date": "1960-02-18",
+    "text_path": "jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+    "text_sha256": "513cacc1756713cfc9039414ae52e5ad6b47444d0eb7b909eca258942e8eccb3",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": null,
+  "whole_order_status": "yes"
+ },
+ "claim_key": "research/readiness/claims/claude-2026-11-05-herschel-H2-rl2-yes.jsonl:2",
+ "claim_sha256": "82a1ba18b0b93442d98823fc1ba36bb42bcbe62ae1e726729ea9a645ff62f3f0",
+ "claim_sha256_recomputed_at_export": true,
+ "elements": [
+  {
+   "id": "original",
+   "label": "Original text and identity"
+  },
+  {
+   "id": "clause:0",
+   "label": "Clause 1: EO:10863#whole"
+  },
+  {
+   "id": "ending",
+   "label": "Whole-order status and end"
+  },
+  {
+   "id": "savings",
+   "label": "Savings and residual effects"
+  },
+  {
+   "id": "search",
+   "label": "Later-source search and counterevidence"
+  }
+ ],
+ "exported_utc": "2026-11-06T22:52:17Z",
+ "exporter_version": "0.1.0",
+ "instrument_id": "EO:10863",
+ "readiness": {
+  "blockers": "",
+  "claim_schema": "eo-lifecycle-claim/v1",
+  "decision_origin": "opus_complete_addition",
+  "exhausted_steps": "",
+  "generation_id": "42299247852-1:808c1a847250f0283cf941324757d010e780f0c6503ac3fa383e48c9b2462bb1",
+  "original_copy_replacement_required": "no",
+  "provisional_status": "yes",
+  "quotation_recheck_required": "no",
+  "ready_for_human_review": "yes",
+  "ready_tier": "complete_claim",
+  "status_contested": "no",
+  "text_evidence_tier": "original_supported",
+  "whole_end_date_kind": ""
+ },
+ "schema": "eo-nihil-obstat-card/v1",
+ "sources": [
+  {
+   "acceptable_as_original": null,
+   "archival_id": null,
+   "grade": null,
+   "location_verified": false,
+   "page_or_item": "25 FR 1507, PDF pages 3-3",
+   "raw_embedded": false,
+   "raw_in_repo": false,
+   "requires_page_check": false,
+   "sha256": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b",
+   "source_key": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b|jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+   "text": "Instrument: EO:10863\nSource: https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf\nSHA-256 of the downloaded file: c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b\nLocation: 25 FR 1507, PDF pages 3-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 80 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 10863\nAUTHORIZING THE ATTORNEY GEN­\nERAL TO SEIZE ARMS AND  \nMUNITIONS OF WAR, AND OTHER  \nARTICLES, PURSUANT TO SECTION  \n1  OF TITLE VI OF THE ACT OF  \nJUNE 15, 1917, AS AMENDED\nBy virtue of the authority vested in me \nby section 1  of Title V T  of the act of \nJune 15, 1917, 40 Stat. 223, as amended \nby section 1  of the act of August 13,1953, \n67 Stat. 577 (22 U.S.C. 401), it is ordered \nas follows:\nSection  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.\nDwight  D. E isenhower\nT he W hite  H ouse ,\nFebruary 18,1960.\n[F.R. Doc. 60-1665; Filed, Feb. 19, 1960;\n9:36 am .]\nExecutive Order 10864\nDESIGNATING THE PAN AMERICAN  \nHEALTH ORGANIZATION AS A  \nPUBLIC INTERNATIONAL ORGANI­\nZATION ENTITLED TO ENJOY CER­\nTAIN PRIVILEGES, EXEMPTIONS,  \nAND IMMUNITIES\nBy virtue of the authority vested in me \nby section 1  of the International Organi­\nzations Immunities Act, approved De­\ncember 29, 1945 (59 Stat. 669), and \nhaving found that the United States \nparticipates in the Pan American Health \nOrganization pursuant to the authority \nof the Pan American Sanitary Conven­\ntion ratified by the President on March \n28, 1925, with the advice and consent of \nthe Senate given on February 23, 1925 \n(44 Stat. 2031, TS 714), I hereby desig­\nnate the Pan American Health Organi­\nzation as a public international organi­\nzation entitled to enjoy the privileges, \nexemptions, and immunities conferred \nby the International Organizations Im­\nmunities Act.\nThe designation of the Pan American \nHealth Organization as a public inter­\nnational organization within the mean­\ning of the International Organizations \nImmunities Act is not intended to \nabridge in any respect privileges, ex­\nemptions, arid immunities which that \norganization may have acquired or may \nacquire by treaty or congressional action.\nThe designation of the Pan American \nHealth Organization made by this order \nshall be deemed to include the designa­\ntion of the Pan American Sanitary \nBureau. The designation of the Pan \nAmerican Sanitary Bureau made by \nExecutive Order No. 9751 of July 11, \n1946, is hereby superseded, and that \norder is amended accordingly.\nDwight  D. E isenhower\nThe W hite  H ouse,\nFebruary 18,1960\n[F.R. Doc. 60-1666; Filed, Feb. 19, 1960;\n9:36 a.m.]\n",
+   "text_bytes": 3833,
+   "text_embedded": true,
+   "text_encoding": "utf-8",
+   "text_found_at": "jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+   "text_found_by": "claim text_path",
+   "text_path": "jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+   "text_sha256_claimed": "513cacc1756713cfc9039414ae52e5ad6b47444d0eb7b909eca258942e8eccb3",
+   "text_sha256_export": "513cacc1756713cfc9039414ae52e5ad6b47444d0eb7b909eca258942e8eccb3",
+   "text_sha256_matches_claim": true,
+   "url": "https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf",
+   "uses": [
+    "operative_clauses[0].current_predicate.source",
+    "operative_clauses[0].original_source",
+    "original_representation",
+    "savings_residuals.source"
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "byte_end": 2041,
+   "byte_start": 969,
+   "claim_path": "operative_clauses[0].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 2041,
+    "byte_start": 969,
+    "char_end": 2035,
+    "char_start": 966
+   },
+   "element": "clause:0",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "Section  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.",
+   "ref_path": "operative_clauses[0].current_predicate.source",
+   "source_key": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b|jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+   "span_id": "q0",
+   "status": "exact"
+  },
+  {
+   "byte_end": 2041,
+   "byte_start": 969,
+   "claim_path": "operative_clauses[0].original_operative_text",
+   "declared": {
+    "byte_end": 2041,
+    "byte_start": 969,
+    "char_end": 2035,
+    "char_start": 966
+   },
+   "element": "clause:0",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "Section  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.",
+   "ref_path": "original_source",
+   "source_key": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b|jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+   "span_id": "q1",
+   "status": "exact"
+  },
+  {
+   "byte_end": 2041,
+   "byte_start": 969,
+   "claim_path": "operative_clauses[0].original_source.quote",
+   "declared": {
+    "byte_end": 2041,
+    "byte_start": 969,
+    "char_end": 2035,
+    "char_start": 966
+   },
+   "element": "clause:0",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "Section  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.",
+   "ref_path": "operative_clauses[0].original_source",
+   "source_key": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b|jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+   "span_id": "q2",
+   "status": "exact"
+  },
+  {
+   "byte_end": 3833,
+   "byte_start": 0,
+   "claim_path": "original_representation.quote",
+   "declared": {
+    "byte_end": 3833,
+    "byte_start": 0,
+    "char_end": 3814,
+    "char_start": 0
+   },
+   "element": "original",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "Instrument: EO:10863\nSource: https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf\nSHA-256 of the downloaded file: c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b\nLocation: 25 FR 1507, PDF pages 3-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 80 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 10863\nAUTHORIZING THE ATTORNEY GEN­\nERAL TO SEIZE ARMS AND  \nMUNITIONS OF WAR, AND OTHER  \nARTICLES, PURSUANT TO SECTION  \n1  OF TITLE VI OF THE ACT OF  \nJUNE 15, 1917, AS AMENDED\nBy virtue of the authority vested in me \nby section 1  of Title V T  of the act of \nJune 15, 1917, 40 Stat. 223, as amended \nby section 1  of the act of August 13,1953, \n67 Stat. 577 (22 U.S.C. 401), it is ordered \nas follows:\nSection  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.\nDwight  D. E isenhower\nT he W hite  H ouse ,\nFebruary 18,1960.\n[F.R. Doc. 60-1665; Filed, Feb. 19, 1960;\n9:36 am .]\nExecutive Order 10864\nDESIGNATING THE PAN AMERICAN  \nHEALTH ORGANIZATION AS A  \nPUBLIC INTERNATIONAL ORGANI­\nZATION ENTITLED TO ENJOY CER­\nTAIN PRIVILEGES, EXEMPTIONS,  \nAND IMMUNITIES\nBy virtue of the authority vested in me \nby section 1  of the International Organi­\nzations Immunities Act, approved De­\ncember 29, 1945 (59 Stat. 669), and \nhaving found that the United States \nparticipates in the Pan American Health \nOrganization pursuant to the authority \nof the Pan American Sanitary Conven­\ntion ratified by the President on March \n28, 1925, with the advice and consent of \nthe Senate given on February 23, 1925 \n(44 Stat. 2031, TS 714), I hereby desig­\nnate the Pan American Health Organi­\nzation as a public international organi­\nzation entitled to enjoy the privileges, \nexemptions, and immunities conferred \nby the International Organizations Im­\nmunities Act.\nThe designation of the Pan American \nHealth Organization as a public inter­\nnational organization within the mean­\ning of the International Organizations \nImmunities Act is not intended to \nabridge in any respect privileges, ex­\nemptions, arid immunities which that \norganization may have acquired or may \nacquire by treaty or congressional action.\nThe designation of the Pan American \nHealth Organization made by this order \nshall be deemed to include the designa­\ntion of the Pan American Sanitary \nBureau. The designation of the Pan \nAmerican Sanitary Bureau made by \nExecutive Order No. 9751 of July 11, \n1946, is hereby superseded, and that \norder is amended accordingly.\nDwight  D. E isenhower\nThe W hite  H ouse,\nFebruary 18,1960\n[F.R. Doc. 60-1666; Filed, Feb. 19, 1960;\n9:36 a.m.]\n",
+   "ref_path": "original_representation",
+   "source_key": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b|jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+   "span_id": "q3",
+   "status": "exact"
+  },
+  {
+   "byte_end": 3833,
+   "byte_start": 0,
+   "claim_path": "savings_residuals.source.quote",
+   "declared": {
+    "byte_end": 3833,
+    "byte_start": 0,
+    "char_end": 3814,
+    "char_start": 0
+   },
+   "element": "savings",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "Instrument: EO:10863\nSource: https://www.govinfo.gov/content/pkg/FR-1960-02-20/pdf/FR-1960-02-20.pdf\nSHA-256 of the downloaded file: c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b\nLocation: 25 FR 1507, PDF pages 3-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 80 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 10863\nAUTHORIZING THE ATTORNEY GEN­\nERAL TO SEIZE ARMS AND  \nMUNITIONS OF WAR, AND OTHER  \nARTICLES, PURSUANT TO SECTION  \n1  OF TITLE VI OF THE ACT OF  \nJUNE 15, 1917, AS AMENDED\nBy virtue of the authority vested in me \nby section 1  of Title V T  of the act of \nJune 15, 1917, 40 Stat. 223, as amended \nby section 1  of the act of August 13,1953, \n67 Stat. 577 (22 U.S.C. 401), it is ordered \nas follows:\nSection  1. The Attorney General is \nhereby designated under section 1 of \nTitle VI of the act of June 15, 1917, as \namended by section 1  of the act of Au­\ngust 13,1953, as a person duly authorized \nto seize arid detain arms or munitions of \nwar or other articles, and to seize and \ndetain any vessel, vehicle, or aircraft \ncontaining such items or which has been, \nor is being, used in exporting or attempt­\ning to export such arms or munitions of \nwar or other articles, whenever an at­\ntempt is made to export or ship from or \ntake out of the United States such arms \nor munitions of war or other articles in \nviolation of law, or whenever it is known, \nor there is probable cause to believe, that \nsuch arms or munitions of war or other \narticles are intended to be, or are being \nor have been, exported or removed from \nthe United States in violation of law.\nS ec. 2. The authority conferred upon \nthe Attorney General by section 1  of this \norder may be exercised by any officer of \nthe Department of Justice designated for \nsuch purpose by the Attorney General.\nDwight  D. E isenhower\nT he W hite  H ouse ,\nFebruary 18,1960.\n[F.R. Doc. 60-1665; Filed, Feb. 19, 1960;\n9:36 am .]\nExecutive Order 10864\nDESIGNATING THE PAN AMERICAN  \nHEALTH ORGANIZATION AS A  \nPUBLIC INTERNATIONAL ORGANI­\nZATION ENTITLED TO ENJOY CER­\nTAIN PRIVILEGES, EXEMPTIONS,  \nAND IMMUNITIES\nBy virtue of the authority vested in me \nby section 1  of the International Organi­\nzations Immunities Act, approved De­\ncember 29, 1945 (59 Stat. 669), and \nhaving found that the United States \nparticipates in the Pan American Health \nOrganization pursuant to the authority \nof the Pan American Sanitary Conven­\ntion ratified by the President on March \n28, 1925, with the advice and consent of \nthe Senate given on February 23, 1925 \n(44 Stat. 2031, TS 714), I hereby desig­\nnate the Pan American Health Organi­\nzation as a public international organi­\nzation entitled to enjoy the privileges, \nexemptions, and immunities conferred \nby the International Organizations Im­\nmunities Act.\nThe designation of the Pan American \nHealth Organization as a public inter­\nnational organization within the mean­\ning of the International Organizations \nImmunities Act is not intended to \nabridge in any respect privileges, ex­\nemptions, arid immunities which that \norganization may have acquired or may \nacquire by treaty or congressional action.\nThe designation of the Pan American \nHealth Organization made by this order \nshall be deemed to include the designa­\ntion of the Pan American Sanitary \nBureau. The designation of the Pan \nAmerican Sanitary Bureau made by \nExecutive Order No. 9751 of July 11, \n1946, is hereby superseded, and that \norder is amended accordingly.\nDwight  D. E isenhower\nThe W hite  H ouse,\nFebruary 18,1960\n[F.R. Doc. 60-1666; Filed, Feb. 19, 1960;\n9:36 a.m.]\n",
+   "ref_path": "savings_residuals.source",
+   "source_key": "c24defb7888672004b93479ce9e74b1d5d2f20f4f142307e6fac51895939a38b|jobs/fr-originals/data/full_run/texts/EO_10863.txt",
+   "span_id": "q4",
+   "status": "exact"
+  }
+ ],
+ "tracker_generation": {
+  "blocked_by": [],
+  "branch": "main",
+  "commit_run": "410a1ffc43c5ec8f0fe9fda4c8a08c51e7c1fed4",
+  "exit_code": 0,
+  "finished_utc": "2026-11-06T22:15:38Z",
+  "generation_id": "42299247852-1:808c1a847250f0283cf941324757d010e780f0c6503ac3fa383e48c9b2462bb1",
+  "job": "readiness-tracker",
+  "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+  "max_output_file_bytes": 99614720,
+  "oversized_files_moved_to_run_download": [],
+  "result": "succeeded",
+  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42299247852",
+  "started_utc": "2026-11-06T22:14:48Z",
+  "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
+ }
+}

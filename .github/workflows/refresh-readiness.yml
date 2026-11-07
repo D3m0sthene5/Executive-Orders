@@ -32,6 +32,18 @@ on:
 permissions:
   contents: read
 
+# Hansard: one refresh at a time, and at most one waiting. A refresh is a
+# readout of main, so the waiting one is enough: it checks out the newest main
+# when it starts, and a newer request replaces it instead of queueing behind it.
+# Without this, every merge and every Run jobs completion started a parallel
+# refresh; all but one were refused as concurrent_output_advanced and each
+# re-queued itself (2026-11-06: no generation published for 4+ hours while 15+
+# refreshes ran at once). This group is not the writer lock, so a refresh still
+# takes the writer queue only in publish, and Run jobs never waits on it.
+concurrency:
+  group: refresh-readiness-${{ github.ref }}
+  cancel-in-progress: false
+
 env:
   GIT_LFS_SKIP_SMUDGE: '1'
   JOBS: 'claim-checker readiness-tracker gessner-cards daily-digest'
