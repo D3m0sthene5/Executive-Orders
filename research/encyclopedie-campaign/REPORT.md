@@ -9,8 +9,9 @@ Nothing here changes a status, the codebook, the census or the certified count (
 1. **The repository's growth is stopped at its two largest sources, and raw bytes are moving out of git.**
    - Ptolemy is paused: it had committed 2.17 GiB of raw source bytes since 2026-11-05.
    - Failed job runs no longer commit their whole output (PR #188, merged): about 740 MB on 2026-11-06 alone.
-   - A byte store outside git (Pergamon: GitHub Release assets now, Cloudflare R2 by configuration later) holds the
-     3,691 Ptolemy and Selden raw files as they upload. Only a history rewrite, which the owner decides, shrinks the
+   - A byte store outside git (Pergamon: GitHub Release assets now, Cloudflare R2 by configuration later) holds all
+     3,691 Ptolemy and Selden raw files (3.18 GB), each re-downloaded without a token and matched to its SHA-256; the
+     manifest is in git (`storage/PERGAMON_MANIFEST.jsonl`). Only a history rewrite, which the owner decides, shrinks the
      repository itself.
    - GitHub's 10 GB figure is a recommended limit; the enforced limits are 2 GB per push and 100 MB per file.
 2. **The thesis has evidence, but not yet a rate.**
@@ -60,9 +61,14 @@ Nothing here changes a status, the codebook, the census or the certified count (
 | #206 | Runner | `COURTLISTENER_TOKEN` and `API_DATA_GOV_KEY` reach jobs (owner merged) |
 | #208 | Fix | Formulario's missing trigger, which had kept main's road tests red since PR #184 |
 | #209 | Integration | This log, the owner rulings, Kean records, references |
+| #210 | Dashboard | Every tab of the remaining-work dashboard refreshed on current main; new Trajectory tab; 33 tools added (79 tools, 118 tier ratings, 115 workflow nodes) |
+| #211 | Repetita | LSA 1997-2026: 357 issues, 16,396 Title 3 and EO rows (696 revocation, supersession or termination entries), 5,104 later-event leads, controls 0 errors; pre-1997 manifest of 471 sources |
+| #213 | Fix | Repetita's missing trigger (road test) |
+| #214 | Duodecim | U.S. Code Table IV, 16 editions 2009-2025: 46,954 EO rows, 2,909 orders, 1,391 with an Elim. marker (leads only); joined to current-law notes; 96 controls, 0 errors |
+| #217 | Youngstown | Derived citator from CourtListener's public bulk opinions: 14,203 opinions cite register orders; 19,867 order-case pairs over 2,541 orders; 865 with an enjoined, vacated or invalidated holding cue; all 8 planted opinions recalled |
 
-Still running when this was written: LSA (Repetita), U.S. Code Table IV (Duodecim), CourtListener (Youngstown) and the
-Release-store upload. Their results are added below when verified.
+Every campaign PR is merged except #207, closed unmerged because it would have deleted files. The two dashboards
+(https://claude.ai/artifact/531KGTebdrgdeUitKhp8du and https://claude.ai/artifact/BZJxATqRtwrtBbuBy2UZpc) are refreshed.
 
 ## Measured results
 
@@ -85,6 +91,11 @@ Release-store upload. Their results are added below when verified.
     Claude 335.
   - Exact GPO-and-engine agreement leaves only 1 of 43 reference passages, so the owner's reference rule needs a
     decision.
+- **Source jobs:** LSA 357 of 357 issues, 0 failed; Table IV 16 editions; CourtListener 206 of 206 bulk segments (56.1 GB),
+  0 failures. Every row each job writes is a lead until its primary page is held.
+- **This campaign's own cost:** 19 agents (4 Opus, 15 Sonnet) and 2,433 model calls in this session, about 215 USD at API
+  list prices (Necker), all on the owner's subscription; metered spending 0 of the 100 USD ceiling. The Codex reviewer ran
+  on the owner's ChatGPT plan. Usage: `research/bentham/usage/encyclopedie-2026-11-06/`.
 - **Cost:**
   - Local transcripts priced at 1,008.58 USD as API-price estimates, not bills. Cache reads are 46% of dollars but 96%
     of tokens.
@@ -127,6 +138,13 @@ Release-store upload. Their results are added below when verified.
    rule.
 4. The first prior-art results had a NaN bug and a definitional error. An independent check caught both before
    anything was recorded.
+5. Two workers made one-off research requests to robots-disallowed hosts (static.case.law; about 30 webharvest.gov
+   pages) before reading the whole robots.txt; nothing from either is used. The shared fetch pool cannot read wildcard
+   robots rules, a gap that affects every job (owner question A-20261107-fetchpool-wildcards).
+6. Merging new jobs twice turned main's road tests red (a job that imports `jobs/_lib` must list it in `triggers.txt`);
+   both fixed within the hour (#208 for an older gap, #213).
+7. Branches that had run jobs carried stale copies of other jobs' outputs; before merging, each was brought up to main and
+   those outputs restored, so no merge rolled main back.
 
 ## Decisions the owner must make
 
@@ -141,3 +159,7 @@ The Kean ask ids are in `HANDOFF/KEAN_ASKS.md`.
 - **Mountweazel PLANTS.csv check:** decide the policy (A-20261107-mountweazel-plants-leak).
 - **Faculty sponsor and certifier pilot:** faculty sponsor, and pilot option A (about 6,500 USD), from `RECRUITING.md`.
 - **Filing rule:** whether to make one blind reviewer a different-family model.
+- **CourtListener cross-check:** run the 40 token calls despite the robots.txt 403 (A-20261107-courtlistener-robots)?
+- **Court leads in the claim kit:** wire them (A-20261107-claimkit-court-fragments)?
+- **Shared fetch pool:** fix wildcard robots handling (A-20261107-fetchpool-wildcards)?
+- **History rewrite:** read `storage/HISTORY_REWRITE_PLAN.md` (recommended option B: about 9.35 GiB to about 4.0 GiB).

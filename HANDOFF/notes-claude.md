@@ -1,3 +1,50 @@
+## 2026-11-07 02:00 ET (Claude as the Encyclopédie coordinator: adopting the Peiresc tool survey)
+
+- **Done (all merged):**
+  - Repository growth stopped at its two main sources:
+    - Ptolemy is paused (`PAUSED`), measured at 0 bytes per run.
+    - Failed-run receipts are trimmed ([PR #188](https://github.com/D3m0sthene5/Executive-Orders/pull/188)); they were
+      about 740 MB on 2026-11-06.
+  - Pergamon byte store ([PR #204](https://github.com/D3m0sthene5/Executive-Orders/pull/204)): GitHub Release assets
+    now, R2 by config. 3,691 Ptolemy and Selden raw files (3.18 GB) migrated, each re-downloaded and hash-matched
+    (`research/encyclopedie-campaign/storage/MIGRATION.md`).
+  - Kean leases on branch `kean-leases`; `kit.py dispatch-check` honours them
+    ([PR #189](https://github.com/D3m0sthene5/Executive-Orders/pull/189)).
+  - New zero-token jobs:
+    - Repetita, the LSA 1997-2026 ([#211](https://github.com/D3m0sthene5/Executive-Orders/pull/211));
+    - Duodecim, U.S. Code Table IV 2009-2025 ([#214](https://github.com/D3m0sthene5/Executive-Orders/pull/214));
+    - Youngstown, a CourtListener bulk citator ([#217](https://github.com/D3m0sthene5/Executive-Orders/pull/217)).
+  - Research merged:
+    - prior art, Thrower and Lowande-Poznansky, independently checked (#200, #202);
+    - thesis measure (#201);
+    - cross-family reviewer pilot (#205);
+    - OCR pilot (#203);
+    - Necker costs (#191) and Hollerith drivers and billing (#190);
+    - free-source survey (#196);
+    - certifier page (#195);
+    - Zenodo design (#192);
+    - Observable trial (#193).
+  - Dashboard: every tab refreshed, plus a Trajectory tab
+    ([#210](https://github.com/D3m0sthene5/Executive-Orders/pull/210)).
+  - Report: `research/encyclopedie-campaign/REPORT.md`. Log: `LOG.md`.
+- **Results to know:**
+  - **Thesis measure:** 59 orders formally revoked after an evidenced earlier end, 34 of them verified on both sides
+    (F-20261107-thesis-measure). In 59% of claimed revoked orders the revocation itself was the end.
+  - **Cross-family review:** Codex caught 8 of 8 planted controls, Claude 17 of 22 (F-20261107-septuagint-xfamily).
+  - **Pricing:** Bentham's price table is about 2x high (F-20261106-encyclopedie-necker).
+  - **Size limit:** GitHub's 10 GB is a recommended limit; 9,776,627 KB on 2026-11-07.
+- **Cautions for every session:**
+  - Point release tags at `pergamon-store-root`, never at a commit with workflows. Path filters do not apply to tag
+    pushes (F-20261107-pergamon-tag-triggers).
+  - A job importing `jobs/_lib` must list it, and what it imports, in `triggers.txt`, or main's road tests go red.
+  - Before merging a branch that ran jobs, bring it up to main and restore other jobs' outputs from main.
+  - `fetch_pool` ignores robots.txt wildcards (F-20261107-robots-wildcards).
+- **Asks:** @Owner: A-20261106-1, A-20261106-2, A-20261107-ocr-reference-rule, A-20261107-loc-hein, A-20261107-cap-mirror, A-20261107-tracker-thesis-fix, A-20261107-lowande-email, A-20261107-mountweazel-plants-leak, A-20261107-fetchpool-wildcards, A-20261107-courtlistener-robots, A-20261107-claimkit-court-fragments.
+  - A-20261106-1 has a provisional answer recorded.
+  - The rewrite plan for A-20261106-2 is `research/encyclopedie-campaign/storage/HISTORY_REWRITE_PLAN.md`.
+- **Running:** nothing from this campaign. The new jobs' first runs on main regenerate their outputs. Youngstown
+  re-streams 56 GB, about 2 hours.
+
 ## 2026-11-07 06:05 UTC (Claude as Hansard, progress refresh unstuck; ready 1,185 -> 992 explained)
 
 - **Done:** [PR #212](https://github.com/D3m0sthene5/Executive-Orders/pull/212) (refreshes one at a time, latest wins)

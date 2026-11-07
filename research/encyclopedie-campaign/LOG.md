@@ -171,3 +171,9 @@ file over 5 MiB. Per push: at most 25 MiB of new blobs, checked with
   errors, and a wrong pronoun in the Lowande email. Both workers sent back to fix and record CHECK_2026-11-07.md.
   Naudé finished (PR #196): govinfo is free for FR 1936-2026, Statutes, Serial Set, bound Congressional Record; LOC's
   CFR/FR/USC scans are Hein-origin with a no-bulk term (owner decision); static.case.law is robots-disallowed.
+- 01:30-02:40 UTC Nov 7. Owner authorized merging what removes nothing (D-20261107-encyclopedie-merge). Merged PRs
+  #189-#217 after per-file checks; closed #207 unmerged. Dashboards refreshed (tracker with Trajectory tab; Tsiolkovsky).
+- 01:20 UTC. Release tags were starting every push workflow (about 870 runs; five bot commits to main, kept). Remaining
+  shard tags created on the workflow-free `pergamon-store-root`; uploads resumed.
+- 06:31 UTC. Pergamon migration complete: 3,691 files, 3.18 GB, all verified by tokenless re-download. Manifest in git.
+  Leases released. Report, handoff note and Bentham usage written. Campaign closed.
