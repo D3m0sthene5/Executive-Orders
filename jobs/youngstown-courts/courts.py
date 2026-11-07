@@ -335,8 +335,14 @@ def api_crosscheck(pool, token, orders, limit, transport, sleep=time.sleep):
     try:
         pool.allowed(API_SEARCH)
     except FetchError as e:
-        raise ApiRefused("COURTLISTENER_TOKEN is set but the API cross-check cannot start: robots check of www.courtlistener.com "
-                         "failed (" + str(e)[:140] + ")")
+        # A policy refusal, not a token failure: no request is made. It is recorded where a reader looks (log, SUMMARY,
+        # CONTROLS) so the owner can decide; the job's real results are not held back by it. On 2026-11-07 the robots
+        # file of www.courtlistener.com answered HTTP 403 (CloudFront) to the runner, which the fetch pool reads as
+        # "disallow all".
+        log("API CROSS-CHECK NOT RUN: COURTLISTENER_TOKEN is set but the robots check of www.courtlistener.com failed ("
+            + str(e)[:140] + "); no request was made")
+        return {"ran": False, "blocked_by_robots": True, "reason": "robots check of www.courtlistener.com failed",
+                "detail": str(e)[:140], "token_used": False}
     out, used = [], 0
     for eo, bulk_clusters in orders:
         if used >= limit:
@@ -381,6 +387,25 @@ def api_crosscheck(pool, token, orders, limit, transport, sleep=time.sleep):
                          "; ".join(sorted({r.get("error", "") for r in out}))[:200])
     return {"ran": True, "requests": used, "answered": len(ok), "counts_present": sum(1 for r in ok if r["search_index_count"] is not None),
             "rows": out, "note": "The search index tokenises numbers and matches phrases loosely; a count is a rough bound, not a recall test."}
+
+
+def cached_crosscheck(cache, pool, token, orders, limit, transport, sleep=time.sleep):
+    """api_crosscheck once per question: a finished answer is kept in the cache and reused, so a re-run spends no API quota.
+    A failure (ApiRefused) is never cached."""
+    key = bulk.hashlib.sha256(json.dumps([orders, limit, API_SEARCH]).encode()).hexdigest()[:16]
+    p = Path(cache) / "api" / f"crosscheck-{key}.json"
+    try:
+        held = json.loads(p.read_text(encoding="utf-8"))
+        held["from_cache"] = True
+        return held
+    except (OSError, ValueError):
+        pass
+    res = api_crosscheck(pool, token, orders, limit, transport, sleep=sleep)
+    if res.get("ran"):
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(res), encoding="utf-8")
+    res["from_cache"] = False
+    return res
 
 
 # ---- main ---------------------------------------------------------------------------------------------------------
@@ -622,7 +647,7 @@ def finish(repo, out, cache, cfg, mode, date, bulk_info, cap, ctl, records, rows
     for e in [eo for c in cases for eo in c["expected_pair_class"]] + sorted(tally, key=lambda e: -tally[e]["clusters"]):
         if e not in [a for a, _ in asked]:
             asked.append((e, tally[e]["clusters"] if e in tally else 0))
-    ctl["api_crosscheck"] = (api_crosscheck(pool, token, asked[:int(cfg["api_requests"])], int(cfg["api_requests"]), transport)
+    ctl["api_crosscheck"] = (cached_crosscheck(cache, pool, token, asked[:int(cfg["api_requests"])], int(cfg["api_requests"]), transport)
                              if token else {"ran": False, "reason": "COURTLISTENER_TOKEN not set"})
     ctl["opinion_level"] = controls.opinion_controls()
     ctl["measured_error_rate"] = {

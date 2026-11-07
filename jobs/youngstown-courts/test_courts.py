@@ -490,6 +490,17 @@ def token_is_never_written_down():
     assert r["ran"] and r["rows"][0]["search_index_count"] == 7 and r["rows"][0]["bulk_scan_clusters"] == 3
     assert secret not in json.dumps(r) and seen[0]["Authorization"] == "Token " + secret
     assert courts.api_crosscheck(P(), "", [("EO:1", 1)], 5, t)["ran"] is False
+    # an answered cross-check is cached and spends no further API quota
+    with tempfile.TemporaryDirectory() as tmp:
+        n_calls = []
+
+        def counted(url, headers, timeout):
+            n_calls.append(url)
+            return 200, {}, FakeBody(json.dumps({"count": 5}).encode())
+        r1 = courts.cached_crosscheck(Path(tmp), P(), secret, [("EO:10340", 3)], 5, counted, sleep=lambda s: None)
+        r2 = courts.cached_crosscheck(Path(tmp), P(), secret, [("EO:10340", 3)], 5, counted, sleep=lambda s: None)
+        assert r1["from_cache"] is False and r2["from_cache"] is True and len(n_calls) == 1
+        assert secret not in json.dumps(r2) and not list(Path(tmp).rglob("*")) == []
     # 401 and 403 fail loudly, naming the status and never the token; 429 stops with the partial result
     for code in (401, 403):
         def refuse(url, headers, timeout, code=code):
@@ -518,11 +529,9 @@ def token_is_never_written_down():
     class Blocked:
         def allowed(self, url):
             raise courts.FetchError("blocked_by_robots_txt")
-    try:
-        courts.api_crosscheck(Blocked(), secret, [("EO:1", 1)], 5, t, sleep=lambda s: None)
-        raise AssertionError("a robots refusal with a token must fail")
-    except courts.ApiRefused as e:
-        assert "robots" in str(e) and secret not in str(e)
+    calls_before = len(seen)
+    r = courts.api_crosscheck(Blocked(), secret, [("EO:1", 1)], 5, t, sleep=lambda s: None)
+    assert r["ran"] is False and r["blocked_by_robots"] is True and len(seen) == calls_before and secret not in json.dumps(r)
 
 
 if __name__ == "__main__":
