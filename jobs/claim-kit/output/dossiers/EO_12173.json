@@ -99,7 +99,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:12173",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12173"
@@ -131,7 +131,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 22 U.S.C. 3601 note"
+      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 22 U.S.C. 3601 note; USC 22 U.S.C. 3601 nt"
     }
   ],
   "current_law_leads": [
@@ -156,6 +156,39 @@
       "system": "usc",
       "text_path": "USC_EO_NOTES.jsonl#note_id=iddef6bf7f-b816-11f1-963c-e4c4db8c41be",
       "where": "USC 22 U.S.C. 3601 note"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12173",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 22 U.S.C. 3601 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1356",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "22 U.S.C. 3601 note",
+        "member_sha256": "349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923",
+        "note_id": "iddef6bf7f-b816-11f1-963c-e4c4db8c41be",
+        "note_text_sha256": "c1df70e50faad230d989ae5c1fad177174ad5e440382955356908c323c3d67cd",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=iddef6bf7f-b816-11f1-963c-e4c4db8c41be"
+      },
+      "row_span": "149165-149260",
+      "snippet": "1979 Nov. 29 | EO 12173 | 22 U.S.C. 3601 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 22 U.S.C. 3601 nt"
     },
     {
       "custody_records_in": [
@@ -185,6 +218,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1356",
+        "snippet": "1979 Nov. 29 | EO 12173 | 22 U.S.C. 3601 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 22 U.S.C. 3601 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 22 U.S.C. 3601 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -201,7 +262,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 22 U.S.C. 3601 note"
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 22 U.S.C. 3601 note; USC 22 U.S.C. 3601 nt"
   ],
   "evidence": {
     "ACT:EO:12173>EO:12203": {
@@ -1010,7 +1071,7 @@
       "text": "All regulations that were adopted by the President or his delegates \npursuant to former Title 2 of the Canal Zone Code (76A Stat. 6-50), repealed \nby Section 303(a)(1) of Public Law 96-70, or actions taken pursuant thereto, \nthat were in effect on September 30, 1979, and that address matters which the \nPresident is authorized to regulate pursuant to Public Law 96-70, shall remain \nin effect unless or until amended, superseded, or otherwise terminated by the \nPresident or the Panama Canal Commission."
     }
   },
-  "fingerprint": "359643011c862897f7744c4370782afae730f763157851fcbfaaff60d6787708",
+  "fingerprint": "f86b483e0f602abf195a575e7083e11610b4db531a76da2784a6f7b6aa9991ec",
   "instrument_id": "EO:12173",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1055,7 +1116,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1067,7 +1128,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1079,8 +1140,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1112,10 +1173,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "6eb6cc5302386eac13fe8c75d01b79f226b923b36eebcb56141fe9496ae3541f",
+    "fingerprint": "cfb892355575770eee33835b0cd7fe8cf7e5aad0fe83b1cf119768ce1fa5dbb7",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12173.json",
-    "history_sha256": "2fc8286562123908678c1aaa5cb81fbb4637ddbe86cc6cbe11150ed630422b0d",
+    "history_sha256": "34659b8c28c95b77ed8d2f1560c3c3848368cc1fa8b6c29483674d8fd89464b3",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

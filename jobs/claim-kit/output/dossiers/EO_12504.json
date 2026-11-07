@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:12504",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12504"
@@ -72,11 +72,44 @@
       "snippet": "Authority: 35 U.S.C. 2(b)(2); E.O. 12504, 50 FR 4849; 3 CFR, 1985 Comp., p. 335.",
       "source": {
         "page_or_item": "37 CFR part 150 (part_authority; GovInfo eCFR XML title 37, amended through 2026-08-26; NODE 37:1.0.1.5.18)",
-        "sha256": "25794b9c881dfff70c0266577c25cc255db51b3fb90b9621f42fc572854654c6",
+        "sha256": "3fc9b5b2fe56289f5ce7ef21a4b91529d284d34b7970a96ca525702f282d5f00",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-37/ECFR-title37.xml"
       },
       "system": "ecfr",
       "where": "CFR 37 CFR part 150"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12504",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 17 U.S.C. 902 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1636",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "17 U.S.C. 902 note",
+        "member_sha256": "167b00a31c2d83fb3e74963c453ee2fddbeb880393a58aca14f7c883e7f1fd3c",
+        "note_id": "id746634f4-2930-11f1-b33a-a9dcf95eef0b",
+        "note_text_sha256": "db4ea39c68de8dad48084927a8d9bf3066f24350ba0bccd32e7ce15d115d6455",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id746634f4-2930-11f1-b33a-a9dcf95eef0b"
+      },
+      "row_span": "178423-178517",
+      "snippet": "1985 Jan. 31 | EO 12504 | 17 U.S.C. 902 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 17 U.S.C. 902 nt"
     },
     {
       "custody_records_in": [
@@ -101,7 +134,7 @@
         "legal_basis": "regulation authority citation lists the order (37 CFR part 150)",
         "source": {
           "page_or_item": "37 CFR part 150 (part_authority; GovInfo eCFR XML title 37, amended through 2026-08-26; NODE 37:1.0.1.5.18)",
-          "sha256": "25794b9c881dfff70c0266577c25cc255db51b3fb90b9621f42fc572854654c6",
+          "sha256": "3fc9b5b2fe56289f5ce7ef21a4b91529d284d34b7970a96ca525702f282d5f00",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-37/ECFR-title37.xml"
         }
       }
@@ -132,6 +165,34 @@
           "page_or_item": "17 U.S.C. 902 note; note 'Ex. Ord. No. 12504. Protection of Semiconductor Chip Products' [USLM note id id746634f4-2930-11f1-b33a-a9dcf95eef0b]; usc17.xml (sha256 167b00a31c2d83fb3e74963c453ee2fddbeb880393a58aca14f7c883e7f1fd3c) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1636",
+        "snippet": "1985 Jan. 31 | EO 12504 | 17 U.S.C. 902 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 17 U.S.C. 902 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 17 U.S.C. 902 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -297,7 +358,7 @@
       "text": "By the authority vested in me as President by the Constitution and laws of the United States of America, including the Semiconductor Chip Protection Act of 1984 (17 U.S.C. 901 et seq.) and in order to provide for the orderly implementation of that Act, it is hereby ordered that, subject to the authority of the Director of the Office of Management and Budget under Executive Order No. 11030, as amended, requests for issuance by the President of a proclamation extending the protection of Chapter 9 of title 17 of the United States Code against unauthorized duplication of semiconductor chip products to foreign nationals, domiciliaries, and sovereign authorities shall be presented to the President through the Secretary of Commerce in accordance with such regulations as the Secretary may, after consultation with the Secretary of State, prescribe and cause to be published in the Federal Register."
     }
   },
-  "fingerprint": "8de8e4c1f531fd5874e32bd21392a370a8439a5c27c350ed4dc19fc1bfa31b9b",
+  "fingerprint": "dbe78199f87dc375d72460cbe932a762b2062a07a3821b651cedf15393122103",
   "instrument_id": "EO:12504",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -326,7 +387,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -338,7 +399,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -350,8 +411,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -374,12 +435,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "4efda928656e871dba3cf4fd155b7a425d8c04497267ba9fcd6cbddd1f49c608",
+    "fingerprint": "86fca523814f8cd201b70ab62f0fc78b6a76d2396b393fca54c87fa9494b6156",
     "flags": [
       "EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT"
     ],
     "history_path": "jobs/status-history/output/histories/EO_12504.json",
-    "history_sha256": "d5e5f689449593f88f4ccfe6ef4022d3ec1475df01407d9a975da127b705f1e8",
+    "history_sha256": "c2f8fac5ee69f17619a525cf1c205e12e603453df9f9cdfbe3b4fb23a635ef7d",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

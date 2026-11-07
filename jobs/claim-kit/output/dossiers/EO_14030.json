@@ -299,7 +299,7 @@
         "verb": "abolish"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14030",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14030"
@@ -1105,7 +1105,7 @@
     },
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. CFR 44 CFR part 9; CFR 34 CFR 75.612"
+      "detail": "provisional NO, but 3 current-law predicate lead(s), e.g. CFR 44 CFR part 9; CFR 34 CFR 75.612; USC 15 U.S.C. 2901 nt"
     }
   ],
   "current_law_leads": [
@@ -1113,18 +1113,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-08)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-10-30)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:14030",
       "legal_basis_candidate": "regulation text names the order (34 CFR 75.612)",
       "machine_lead": true,
-      "mention_id": "ecfr:af94b872585b",
+      "mention_id": "ecfr:72f1ed87a603",
       "snippet": "...ng the construction or real property project, a grantee must, consistent with Executive Order (E.O.) 11988 of May 24, 1977, E.O. 13690 of January 30, 2015, and E.O. 14030 of May 20, 2021— (a) Evaluate flood hazards in connection with the construction; (b) As far as practicable, avoid uneconomic, hazardous, or unnecessary use of...",
       "source": {
-        "page_or_item": "34 CFR 75.612 (section_text; GovInfo eCFR XML title 34, amended through 2026-10-08; NODE 34:1.1.1.1.21.5.56.33)",
-        "sha256": "17a4c7fa9667979fd0eb7e2950ad3c9e0a7679108cb76cd81c902bec0e2852d0",
+        "page_or_item": "34 CFR 75.612 (section_text; GovInfo eCFR XML title 34, amended through 2026-10-30; NODE 34:1.1.1.1.21.5.56.33)",
+        "sha256": "d37443d5387b373cf8973b2374bd8283ef161c52219bc31f244d277b23cbbb3c",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-34/ECFR-title34.xml"
       },
       "system": "ecfr",
@@ -1152,8 +1152,34 @@
       "where": "CFR 44 CFR part 9"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14030",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 15 U.S.C. 2901 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3189",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "339207-339302",
+      "snippet": "2021 May 20 | EO 14030 | 15 U.S.C. 2901 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 15 U.S.C. 2901 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1188,10 +1214,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-08)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-10-30)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:af94b872585b",
+        "mention_id": "ecfr:72f1ed87a603",
         "snippet": "...ng the construction or real property project, a grantee must, consistent with Executive Order (E.O.) 11988 of May 24, 1977, E.O. 13690 of January 30, 2015, and E.O. 14030 of May 20, 2021— (a) Evaluate flood hazards in connection with the construction; (b) As far as practicable, avoid uneconomic,  ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1201,9 +1227,37 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (34 CFR 75.612)",
         "source": {
-          "page_or_item": "34 CFR 75.612 (section_text; GovInfo eCFR XML title 34, amended through 2026-10-08; NODE 34:1.1.1.1.21.5.56.33)",
-          "sha256": "17a4c7fa9667979fd0eb7e2950ad3c9e0a7679108cb76cd81c902bec0e2852d0",
+          "page_or_item": "34 CFR 75.612 (section_text; GovInfo eCFR XML title 34, amended through 2026-10-30; NODE 34:1.1.1.1.21.5.56.33)",
+          "sha256": "d37443d5387b373cf8973b2374bd8283ef161c52219bc31f244d277b23cbbb3c",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-34/ECFR-title34.xml"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3189",
+        "snippet": "2021 May 20 | EO 14030 | 15 U.S.C. 2901 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 15 U.S.C. 2901 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 15 U.S.C. 2901 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -1245,7 +1299,7 @@
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
     "CONFLICT WHOLE_END_ACTOR_DISAGREEMENT: EO:14148, EO:14154",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. CFR 44 CFR part 9; CFR 34 CFR 75.612"
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 3 current-law predicate lead(s), e.g. CFR 44 CFR part 9; CFR 34 CFR 75.612; USC 15 U.S.C. 2901 nt"
   ],
   "evidence": {
     "ACT:EO:14030>EO:14148": {
@@ -3835,7 +3889,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "57608927849eddd4eaebbdb42b5f64acb4df3df3e274034736d513ff12625b03",
+  "fingerprint": "15734c45e36bbc9014510281cdd4897ddd479f8c87a5f95ee91929297b8944c1",
   "instrument_id": "EO:14030",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -4593,7 +4647,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -4605,7 +4659,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -4617,8 +4671,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -4665,10 +4719,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 8,
-    "fingerprint": "7716b872701abc0cefe518e91411a387a85d6343f52a92bb8653a8504a915539",
+    "fingerprint": "9c4c26b36e5c8b89d1b7cdba1d745419680a0dd6a981ca6562d39fb8074ab206",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14030.json",
-    "history_sha256": "eab76e8b1a7ba49c8f8370743b7b4c7ba5b24110754820cd011e11613fe94fb2",
+    "history_sha256": "46efe68bec476f4ede53548929122c2ee4dc5fd4ec439de5754d48c16cb6a950",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

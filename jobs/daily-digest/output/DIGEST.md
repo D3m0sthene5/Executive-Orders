@@ -10,7 +10,7 @@ New York date: 2026-11-07. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42361408030-1:95fb4937df519e697ca5a973c0cc9eaeac8d4ae2c21ccfd82e99f05b87e63119` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42408846500-1:cf62878f4822cfaa49e52c838cd083a0c774d93ca3b2635a0d05c14b82243196` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -21,16 +21,20 @@ Orders with a provisional YES/NO status: 4,298. The other 10,700 have not been r
 Ready by text evidence: {'original_supported': 660, 'transcription_dependent': 332}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 867; quotation rechecks: 867. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 281. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 4818}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 281. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 1816}.
 
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-06; intervening runs may be absent.
 - claim-checker: claims_all_checks_passed: 1579 → 1386; claims_mechanical_fail: 65 → 258; claims_mechanical_pass: 1665 → 1472; held_distinct_sha256: 55081 → 56961
+- claim-drafts: decided_orders_with_draft: 4291 → 4298; drafts_whose_only_remaining_gaps_are_judgment_fields: 1145 → 1148; fragment_orders_not_in_universe: 66 → 41; of_which_decided: 1145 → 1148
+- clause-drafts: clauses_total: 70615 → 71268; fragments_from_app_transcription: 4964 → 4983; fragments_written: 9761 → 9789; ocr_fragments_with_candidate_fr_page: 60 → 58
 - duodecim-tableiv: captures_discovered_internet_archive: unavailable → 99; captures_discovered_unt: unavailable → 2; control_error_rate: unavailable → 0.0; controls_errors: unavailable → 0
+- family-rules: saved_texts_scanned: 51201 → 82522
 - gessner-cards: ready_for_human_review: 1185 → 992
-- kean: decisions: 45 → 67; findings: 211 → 245; open_owner_questions: 3 → 14
-- lachmann: in_scope: 5832 → 5859
+- kean: decisions: 45 → 67; findings: 211 → 246; open_owner_questions: 3 → 14
+- lachmann: assessed: 5832 → 2551; complete_text_confirmed: 2104 → 1330; confirmed: 1011 → 732; identity_confirmed: 2493 → 1256
+- official-fixity: carried_forward: 5158 → 7124; checked_this_run: 1 → 0; files: 5159 → 7124; orders_with_a_gpo_matched_file: 5070 → 5220
 - photius-csc-printings: checked: unavailable → 145; counting_as_official_printing: unavailable → 6; fragments: unavailable → 145; located_rows: unavailable → 803
 - photius-free-printings: checked: unavailable → 471; counting_as_official_printing: unavailable → 117; fragments: unavailable → 471; orders_with_candidates: unavailable → 560
 - photius-gpo-volumes: counting_as_official_printing: unavailable → 3676; counting_in_4306_7315: unavailable → 3200; in_4306_7315: unavailable → 3201; orders_located: unavailable → 3679
@@ -38,6 +42,8 @@ Comparison snapshot: 2026-11-06; intervening runs may be absent.
 - ptolemy-custody: kept_this_run_bytes: 928544414 → 0; still_due: 7384 → 7364
 - readiness-tracker: original_replacement_obligations: 1146 → 867; quotation_recheck_obligations: 1146 → 867; ready_for_human_review: 1185 → 992; text_step_from_checked_replica: unavailable → 1968
 - repetita-lsa: bytes_downloaded: unavailable → 18763858; control_error_rate: unavailable → 0.0; entries_parsed_all_titles: unavailable → 2459761; eo_category_rows_with_target: unavailable → 6886
+- source-ladder: attempts_logged: 70 → 45; bytes_downloaded: 640005978 → 861192611; distinct_new_source_hashes: 36 → 38; embedded_cite_items: 10 → 11
+- theophilus-sources: eligible_yes_orders: 346 → 345; yes_orders_covered_by_sections: 296 → 295
 - youngstown-courts: clusters_with_conflicting_cues: unavailable → 85; compressed_bytes_planned: unavailable → 55252643327; compressed_bytes_read: unavailable → 56112475940; decoded_bytes: unavailable → 359308723901
 
 ## Top shared unlocks
@@ -75,4 +81,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42361408030)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42408846500)

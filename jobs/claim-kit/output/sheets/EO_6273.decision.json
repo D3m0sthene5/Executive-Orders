@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3f15a5b101b4d3cc2c9ad1bfd7227769c17c77e7a4d554a0dc0bb8ceaed4e541",
+  "dossier_sha256": "948b511e498a985562449af26ea79539a3f69148f96d382dd26eb5590f6fd4b8",
   "instrument_id": "EO:6273",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-09-07",
               "register_number": "6273",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6273.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6273.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6273—Code of Fair Competition for the Leather Industry",
               "text_chars": 1233
             },

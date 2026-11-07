@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3a799b8f4b5997af55fbc8ebe9a8880ffee44fbfbfd0ce3119ff6c521d7fa6df",
+  "dossier_sha256": "c06d6f48f9b5d180ae89fd03e822284ed7f57a7ebcc50f1b8603be962f445c74",
   "instrument_id": "EO:6258A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-08-26",
               "register_number": "6258A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6258A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6258A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6258-A—Code of Fair Competition for the Automobile Manufacturing Industry",
               "text_chars": 1206
             },

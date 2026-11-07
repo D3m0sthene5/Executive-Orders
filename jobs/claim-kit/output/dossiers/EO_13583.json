@@ -33,6 +33,10 @@
       "evidence_id": "ACTOR_TEXT:EO:14100"
     },
     {
+      "actor_id": "EO:14171",
+      "evidence_id": "ACTOR_TEXT:EO:14171"
+    },
+    {
       "actor_id": "EO:14173",
       "evidence_id": "ACTOR_TEXT:EO:14173"
     }
@@ -160,7 +164,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13583",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13583"
@@ -192,30 +196,55 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. CFR 5 CFR part 250"
+      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. CFR 5 CFR part 250; USC 42 U.S.C. 2000e nt"
     }
   ],
   "current_law_leads": [
     {
       "basis_code": "cfr_authority_citation",
-      "checked_through": "2026-10-14",
-      "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+      "checked_through": null,
+      "currency_code": "ecfr_bulk_changed_or_unknown",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13583",
       "legal_basis_candidate": "regulation authority citation lists the order (5 CFR part 250)",
       "machine_lead": true,
-      "mention_id": "ecfr:eff6006285f0",
-      "snippet": "...1 U.S.C. 1115(f); 31 U.S.C. 1116(c)(5); Public Law 103-62; Public Law 107-296; Public Law 108-136, 1128; Public Law 111-352; 5 CFR 10.2; FR Doc No: 2011—19844; E.O. 13583; E.O. 13583, Sec 2(b)(ii).",
+      "mention_id": "ecfr:160d6f0d430a",
+      "snippet": "...1 U.S.C. 1115(f); 31 U.S.C. 1116(c)(5); Public Law 103-62; Public Law 107-296; Public Law 108-136, 1128; Public Law 111-352; 5 CFR 10.2; FR Doc No: 2011—19844; E.O. 13583; E.O. 13583, Sec 2(b)(ii). Link to an amendment published at 91 FR 68024, Oct. 29, 2026.",
       "source": {
-        "page_or_item": "5 CFR part 250 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-15; NODE 5:1.0.1.2.27.2)",
-        "sha256": "d0b85cb99762ee3117c673c30a95c6847c5f15e9d4a9b1401616030827721c91",
+        "page_or_item": "5 CFR part 250 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.27.2)",
+        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
       "where": "CFR 5 CFR part 250"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13583",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 42 U.S.C. 2000e nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2774",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "296075-296171",
+      "snippet": "2011 Aug. 18 | EO 13583 | 42 U.S.C. 2000e nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 42 U.S.C. 2000e nt"
     },
     {
       "custody_records_in": [
@@ -225,23 +254,51 @@
       "meta": {
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
-        "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "currency_code": "ecfr_bulk_changed_or_unknown",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:eff6006285f0",
-        "snippet": "...1 U.S.C. 1115(f); 31 U.S.C. 1116(c)(5); Public Law 103-62; Public Law 107-296; Public Law 108-136, 1128; Public Law 111-352; 5 CFR 10.2; FR Doc No: 2011—19844; E.O. 13583; E.O. 13583, Sec 2(b)(ii).",
+        "mention_id": "ecfr:160d6f0d430a",
+        "snippet": "...1 U.S.C. 1115(f); 31 U.S.C. 1116(c)(5); Public Law 103-62; Public Law 107-296; Public Law 108-136, 1128; Public Law 111-352; 5 CFR 10.2; FR Doc No: 2011—19844; E.O. 13583; E.O. 13583, Sec 2(b)(ii). Link to an amendment published at 91 FR 68024, Oct. 29, 2026.",
         "snippet_truncated": false,
         "system": "ecfr",
         "where": "CFR 5 CFR part 250"
       },
       "proposal": {
-        "checked_through": "2026-10-14",
+        "checked_through": null,
         "legal_basis": "regulation authority citation lists the order (5 CFR part 250)",
         "source": {
-          "page_or_item": "5 CFR part 250 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-15; NODE 5:1.0.1.2.27.2)",
-          "sha256": "d0b85cb99762ee3117c673c30a95c6847c5f15e9d4a9b1401616030827721c91",
+          "page_or_item": "5 CFR part 250 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.27.2)",
+          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2774",
+        "snippet": "2011 Aug. 18 | EO 13583 | 42 U.S.C. 2000e nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 42 U.S.C. 2000e nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 42 U.S.C. 2000e nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -272,7 +329,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. CFR 5 CFR part 250"
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. CFR 5 CFR part 250; USC 42 U.S.C. 2000e nt"
   ],
   "evidence": {
     "ACT:EO:13583>EO:14173": {
@@ -957,6 +1014,26 @@
       },
       "text": "Instrument: EO:14100\nSource: https://www.govinfo.gov/content/pkg/FR-2023-06-15/pdf/2023-12974.pdf\nSHA-256 of the downloaded file: fea4735c5ca5706dd47bf6fc486adb73070187ed78d6dcc55bf7298ca43f8978\nLocation: 88 FR 39111, PDF pages 1-6 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 6 ===\nPresidential Documents\n39111 \nFederal Register \nVol. 88, No. 115 \nThursday, June 15, 2023 \nTitle 3— \nThe President \nExecutive Order 14100 of June 9, 2023 \nAdvancing Economic Security for Military and Veteran \nSpouses, Military Caregivers, and Survivors \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, it is hereby ordered as follows: \nSection 1. Policy. Military-connected families are American working families. \nMilitary and veteran families, military caregivers, and survivors face many \nof the same challenges as their neighbors, but they can carry the additional \nstrains of multiple deployments; frequent moves with little control over \ntheir geographic location; caring for wounded, ill, and injured service mem-\nbers or veterans; time apart for training and other demands of military \nlife; and more. The unique demands of military life continue to affect \nveteran families, military caregivers, and survivors for years after a service \nmember’s time in uniform. \nMilitary families, like their civilian counterparts, increasingly look to rely \nupon dual incomes; however, the 21 percent unemployment rate experienced \nby active-duty military spouses in the workforce makes that a difficult \ngoal to achieve and maintain. Nearly one in five military families cite \nchallenges with spousal employment as a reason when considering leaving \nactive-duty service. The challenges associated with the military lifestyle, \nincluding permanent change-of-station moves every 2 to 3 years on average \nfor active-duty families, mean that military spouses often struggle to find \noptions for work that are portable or allow them to build a sustainable \nlong-term career. Employment challenges are not limited to active-duty \nspouses, as Reserve and National Guard spouses must balance their careers \nagainst the unpredictable nature of the service member’s schedule, activa-\ntions, and deployments. Employment challenges can continue to affect the \nemployability and career trajectory of veteran spouses well after a service \nmember leaves the service. \nRecognizing the importance of military family economic well-being to the \nall-volunteer force, the Federal Government employs more than 16,000 mili-\ntary, veteran, and surviving spouses. As the Nation’s largest employer, we \nmust be a model for diversity, equity, inclusion, and accessibility, and, \nin doing so, we recognize that military spouses are an underserved commu-\nnity. Whether they choose public service, employment in the private sector, \nor entrepreneurship through building a small business, it is the policy of \nmy Administration to advance economic opportunity for military spouses. \nMy Administration also recognizes the imperative of promoting economic \nsecurity for military spouses—the vast majority of whom are women—under \nthe National Strategy on Gender Equity and Equality. \nIn addition, my Administration understands that access to high-quality, af-\nfordable child care is a necessity for working families, and a military readi-\nness issue. While the Department of Defense offers the largest employer- \nsponsored child care network in the country, military families still face \nchallenges related to capacity and non-traditional work schedules. Many \nmilitary families seeking care outside of the gates of our military bases \nstruggle to find care they can afford. Because access to child care should \nnot be an impediment to service, I have directed the Secretary of Defense \nto ensure the Fourteenth Quadrennial Review of Military Compensation, \nundertaken in January 2023, includes an assessment of child care access \nand cost in its review of military benefits and pay, along with consideration \nVerDate Sep<11>2014 15:42 Jun 14, 2023 Jkt 259001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\15JNE0.SGM 15JNE0lotter on DSK11XQN23PROD with FR_PREZDOC0\n=== PDF page 2 of 6 ===\n39112 Federal Register / Vol. 88, No. 115 / Thursday, June 15, 2023 / Presidential Documents \nof factors such as the challenge of military spouse unemployment, frequent \nmilitary moves, and periods of geographic separation between service mem-\nbers and their spouses, including dual military couples. \nMilitary spouses can also be service members themselves, wearing the Na-\ntion’s uniform in our Active Components, National Guard, or Reserve forces, \nwith a higher percentage of women service members in a dual military \nmarriage than their male counterparts. As we recognize the 75th anniversary \nof women’s integration into the Armed Forces, my Administration is com-\nmitted to removing barriers to women’s ability to serve, including difficulty \nin accessing child care, which poses a challenge for both spouses, but \ndisproportionately affects retention for women, especially women in dual \nmilitary couples, and can play a factor in women’s early separation from \nthe Armed Forces. \nAs we commemorate the 50th anniversary of the all-volunteer force, we \nmust appreciate now more than ever that the commitment and resilience \nof military-connected families are essential to the recruitment, retention, \nand readiness of our Armed Forces and the enduring strength of our Nation. \nMeeting the economic, social, and emotional needs of our military and \nveteran families, military caregivers, and survivors is a national security \nimperative. In times of peace and of war, military and veteran families, \nmilitary caregivers, and survivors have sacrificed much for our country, \nanswering the call to duty time and again. We owe them nothing less \nthan the dignity of a meaningful career and the opportunity to build economic \nsecurity for their families. \nSec. 2. Government-wide Military and Veteran Spouse, Military Caregiver, \nand Survivor Hiring and Retention Strategic Plan and Training. Given the \nconsiderable Federal footprint around many military installations, military \nspouses are often interested in pursuing careers in the Federal civil service. \nTo ensure that the Federal Government is an employer of choice for military \nand veteran spouses, military caregivers, and survivors, executive depart-\nments and agencies (agencies) must strengthen their ability to recruit, hire, \ndevelop, promote, and retain this skilled and diverse pool of talent. To \nthat end: \n(a) The Director of the Office of Personnel Management (OPM) and the \nDeputy Director for Management of the Office of Management and Budget, \nin consultation with the Secretary of State, the Secretary of Defense, the \nSecretary of Labor, the Secretary of Veterans Affairs, and the Secretary \nof Homeland Security, shall develop and issue a Government-wide Military \nand Veteran Spouse, Military Caregiver, and Survivor Hiring and Retention \nStrategic Plan (Military-Connected Plan) within 180 days of the date of \nthis order that builds upon the Government-wide plans required by Executive \nOrder 13583 of August 18, 2011 (Establishing a Coordinated Government- \nWide Initiative to Promote Diversity and Inclusion in the Federal Workforce), \nand Executive Order 14035 of June 25, 2021 (Diversity, Equity, Inclusion, \nand Accessibility in the Federal Workforce). The Military-Connected Plan \nshall be updated as appropriate and at a minimum every 4 years. The \nMilitary-Connected Plan shall: \n(i) define measures of success for the recruitment, hiring, and retention \nof military and veteran spouses, military caregivers, and survivors based \non leading policies and practices in the public, private, and nonprofit \nsectors; \n(ii) include plans for OPM to consult with the Department of Defense \nand the Department of Homeland Security in developing enhanced support \nfor the retention of military spouses in Federal careers, consistent with \nmerit system principles as defined in 5 U.S.C. 2301; \n(iii) consistent with merit system principles, identify strategies—including \npursuing development of a legislative proposal, as appropriate—to elimi-\nnate, where applicable, barriers to the employment of military and veteran \nspouses, military caregivers, and survivors in the Federal workforce, includ-\ning with respect to recruitment; hiring, including an assessment of whether \nVerDate Sep<11>2014 15:42 Jun 14, 2023 Jkt 259001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\15JNE0.SGM 15JNE0lotter on DSK11XQN23PROD with FR_PREZDOC0\n=== PDF page 3 of 6 ===\n39113 Federal Register / Vol. 88, No. 115 / Thursday, June 15, 2023 / Presidential Documents \nto pursue expanded eligibility for derivative preference; promotion; reten-\ntion; performance evaluations and awards; professional development pro-\ngrams; mentoring programs or sponsorship initiatives; internship, fellow-\nship, and registered apprenticeship programs; employee resource group \nand affinity group programs; and training, learning, and onboarding pro-\ngrams; \n(iv) identify strategies for marketing the talent, experience, and diversity \nof military and veteran spouses, military caregivers, and survivors to agen-\ncies; and \n(v) develop a data-driven approach to increasing transparency and account-\nability in hiring and retention—including by encouraging agencies to set \ngoals for hiring under the Military Spouse Noncompetitive Appointment \nAuthority established by 5 U.S.C. 3330d and hiring individuals eligible \nfor derivative preference, to use data internally to improve performance, \nand to use data to publicly report on progress—which would build upon, \nas appropriate, the reporting requirements of Executive Order 13832 of \nMay 9, 2018 (Enhancing Noncompetitive Civil Service Appointments of \nMilitary Spouses). \n(b) Beginning with Fiscal Year 2025, the Director of OPM shall revise \nthe title of the ‘‘Employment of Veterans in the Federal Executive Branch’’ \nannual report to ‘‘Employment of Veterans and Military-Connected Spouses \nand Survivors in the Federal Executive Branch,’’ and shall include in the \nreport the existing data previously reported in the ‘‘Employment of Veterans \nin the Federal Executive Branch’’ report, including statistics on the hiring \nof military and veteran spouses and survivors in a manner that allows \nfor comparison and analysis of the distinct populations and hiring mecha-\nnisms. \n(c) The Secretary of Veterans Affairs and the Director of OPM shall collabo-\nrate on opportunities to better share Federal employee survey data to enable \nanalysis and reporting relevant to the employment of military and veteran \nspouses and survivors. \n(d) In collaboration with the Director of OPM and consistent with 5 \nU.S.C. 4103, agencies shall provide annual training for agency human re-\nsources personnel and hiring managers concerning the employment of mili-\ntary and veteran spouses, military caregivers, and survivors, including train-\ning on special authorities for the hiring of military spouses and survivors, \nand the provision of tools to build the agencies’ capacity to make use \nof applicable hiring authorities, including distribution of the Joining Forces \nmilitary spouse hiring toolkit, which OPM shall publish on the FedsHireVets \nwebsite. \n(e) The Office of Science and Technology Policy (OSTP) National Science \nand Technology Council Subcommittee on Equitable Data, as designated \nby Executive Order 14091 of February 16, 2023 (Further Advancing Racial \nEquity and Support for Underserved Communities Through the Federal Gov-\nernment), shall develop recommendations on ways in which agencies can \nexpand Federal datasets to track outcomes for military and veteran spouses, \nmilitary caregivers, and survivors. Such recommendations shall be included \nin the Director of OSTP’s reports to the White House Steering Committee \non Equity under section 9 of Executive Order 14091. \n(f) The Secretaries of Defense, Labor, Veterans Affairs, and Homeland \nSecurity shall work together through existing interagency collaborations, \nincluding the Transition Assistance Program, to increase training and employ-\nment opportunities for military spouses in the workforce through the transi-\ntion to veteran spouse status. \nSec. 3. Updates to Federal Training and Hiring Authorities. To strengthen \nthe ability of the Federal Government to train, develop, and hire military \nand veteran spouses and survivors: \n(a) Beginning with Fiscal Year 2025, agencies shall list the Military Spouse \nNoncompetitive Appointment Authority established by 5 U.S.C. 3330d when \nVerDate Sep<11>2014 15:42 Jun 14, 2023 Jkt 259001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\15JNE0.SGM 15JNE0lotter on DSK11XQN23PROD with FR_PREZDOC0\n=== PDF page 4 of 6 ===\n39114 Federal Register / Vol. 88, No. 115 / Thursday, June 15, 2023 / Presidential Documents \nsoliciting applications from outside of their workforce for positions an-\nnounced on USAJOBS or other job posting sites. This requirement applies \nwhen using merit promotion procedures to fill competitive service positions. \n(b) The Secretary of Labor shall examine the eligibility of military and \nveteran spouses for programs that provide education, job training, employ-\nment services, employer engagement, and other relevant programs, and, \nas appropriate, shall work to reduce barriers that military and veteran spouses \nmay face in accessing those programs. \n(c) The Director of OPM shall examine the eligibility criteria for the \nRecent Graduates Program established by section 2 of Executive Order 13562 \nof December 27, 2010 (Recruiting and Hiring Students and Recent Graduates), \nand, as appropriate, including by recommending Presidential action as nec-\nessary, shall work to reduce barriers that military spouses may face in \naccessing the Program. \nSec. 4. Retention of Military and Veteran Spouses and Military Caregivers, \nIncluding Those Employed by the Federal Government. In order to support \nmilitary and veteran spouses and military caregivers, including those who \nare employed by the Federal Government: \n(a) The Director of OPM shall issue guidance to agencies: \n(i) reinforcing existing telework and remote work flexibility options pursu-\nant to 5 U.S.C. 6502 for Federal employees, including military spouses \nand military caregivers, and encouraging agency leaders to consider these \nas options for retaining Federal employee military spouses and military \ncaregivers; \n(ii) encouraging agencies to support the policies set forth in section 1 \nof this order by granting up to 5 days of administrative leave to military \nspouses during a geographic relocation occurring as directed by a service \nmember’s orders; and \n(iii) encouraging agencies to collaborate so that a military spouse or military \ncaregiver Federal employee may be placed in another Federal agency \nposition when arrangements to retain a military spouse or military care-\ngiver—including following changes to support continuity of care or reloca-\ntion due to permanent change-of-station orders for the active-duty service \nmember—are unavailable to allow them to continue in their existing posi-\ntion. \n(b) The Secretary of State and the Secretary of Defense, when reevaluating \nor entering agreements with host nations, shall consider work options for \nmilitary spouses who are performing remote work for non-Department of \nDefense entities, so as to reduce barriers for military spouses seeking to \ncontinue their private sector- or self-employment. \n(c) The Secretary of Defense shall coordinate with the heads of the Military \nDepartments, and the Secretary of Homeland Security shall coordinate with \nthe Commandant of the United States Coast Guard, to amend their respective \nlegal assistance instructions to allow for consultation, advice, and assistance \nto military families on Status of Forces Agreements and other agreements \nwith host nations affecting family employment, so as to provide support \nfor military spouses navigating complex employment requirements related \nto working remotely while their active-duty service member spouse is sta-\ntioned overseas. Those amendments shall specify that legal assistance is \nlimited to the personal civil legal affairs of military dependents affected \nby employment restrictions related to a Status of Forces Agreement or other \nhost nation agreement, and does not extend to their employers or the estab-\nlishment, management, or taxation of small business organizations. \nSec. 5. Domestic Employees Teleworking Overseas Policy. In order to ensure \nthat military spouses are able to equitably and reasonably access opportuni-\nties for remote work in their Federal jobs when their service-member spouse \nreceives orders overseas, promote togetherness for military families, and \nenable agencies that employ military spouses—resilient and talented civil \nservants—to retain them, the following improvements shall be made to the \nVerDate Sep<11>2014 15:42 Jun 14, 2023 Jkt 259001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\15JNE0.SGM 15JNE0lotter on DSK11XQN23PROD with FR_PREZDOC0\n=== PDF page 5 of 6 ===\n39115 Federal Register / Vol. 88, No. 115 / Thursday, June 15, 2023 / Presidential Documents \nDomestic Employees Teleworking Overseas (DETO) program implemented \nby agencies pursuant to the National Defense Authorization Act for Fiscal \nYear 2022 (Public Law 117–81): \n(a) The Secretary of State and the Secretary of Defense shall enter into \na Memorandum of Understanding (MOU) to address residential security \nand safety requirements for military spouses employed by the Federal Govern-\nment and working overseas through the DETO program. The MOU shall \nbe communicated to sponsoring agencies, and the Secretaries of State and \nDefense shall develop appropriate guidance to communicate the provisions \nof the MOU to military spouses who are civilian employees of the Federal \nGovernment. \n(b) To promote consistency and effective coordination in the implementa-\ntion of the DETO program across the executive branch, agencies shall: \n(i) develop common standards for DETO policies, including identification \nof points of contact and creation of guidelines to ensure that such policies \nare communicated and advertised in a manner accessible to military spouse \nemployees; \n(ii) establish a DETO application system and develop a method to track \nDETO applications received and processed, as well as application proc-\nessing timelines; and \n(iii) establish time frames for DETO application processing and approvals, \nconsidering the time-sensitive nature of decisions for applications by mili-\ntary spouses due to permanent change-of-station moves and other factors \nunique to military families. \nSec. 6. Expanding Support for Military and Veteran Spouse Entrepreneurs. \nMany military spouses start their own businesses because of a need for \nflexibility or inability to find or maintain other employment. When military \nspouses must discontinue their businesses, however, they often cite military \nmoves, rather than lack of profitability, as the reason. To support military \nspouse entrepreneurs in starting and sustaining their businesses, the Adminis-\ntrator of the Small Business Administration shall: \n(a) expand access to resources tailored to military and veteran spouses \nwho are interested in starting or growing a small business, including guidance \nto help military spouses with relocating a business following a military \nmove; and \n(b) evaluate access to capital gaps for military spouse entrepreneurs. \nSec. 7. Child Care for Military Families. The Department of Defense operates \nthe largest employer-sponsored child care program in the United States \nin order to provide military families with support that is essential to overall \nmission readiness, retention, and recruitment. To build on the existing sup-\nport and ensure that military families have access to affordable, high-quality \nchild care allowing both the service member and the spouse to pursue \nprofessional opportunities, the Secretary of Defense shall: \n(a) in coordination with the Director of OPM, establish flexible spending \naccounts for the care of military dependents, available to military personnel \nno later than January 1, 2024; and \n(b) expand pathways for military spouses to provide certified, home-based \nchild care on military installations, including by providing them with support \nin seeking licensure and achieving government-mandated quality bench-\nmarks. \nSec. 8. Definitions. For the purposes of this order: \n(a) The term ‘‘active duty’’ has the meaning set forth in 10 U.S.C. 101(d)(1), \nexcept that the term also includes ‘‘active Guard and Reserve duty,’’ as \ndefined in 10 U.S.C. 101(d)(6)(a). \n(b) The term ‘‘agency’’ means any authority of the United States that \nis an ‘‘agency’’ under 44 U.S.C. 3502(1), other than those considered to \nbe independent regulatory agencies, as defined in 44 U.S.C. 3502(5). \nVerDate Sep<11>2014 15:42 Jun 14, 2023 Jkt 259001 PO 00000 Frm 00005 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\15JNE0.SGM 15JNE0lotter on DSK11XQN23PROD with FR_PREZDOC0\n=== PDF page 6 of 6 ===\n39116 Federal Register / Vol. 88, No. 115 / Thursday, June 15, 2023 / Presidential Documents \n(c) The term ‘‘derivative preference’’ means those who are ‘‘preference \neligible,’’ as defined in 5 U.S.C. 2108(3), because they are eligible spouses \nand parents who use a veteran’s preference when the veteran is unable \nto do so. \n(d) The term ‘‘military caregiver’’ means the spouse, child, parent, or \nnext of kin of a veteran who is the primary caregiver for a veteran undergoing \nmedical treatment, recuperation, or therapy for a serious injury or illness \nwho was a member of the Armed Forces (including a member of the National \nGuard or Reserves) and who was discharged or released under conditions \nother than dishonorable. \n(e) The term ‘‘military spouse’’ means an individual married to a member \nof the Armed Forces who is performing active duty. \n(f) The term ‘‘survivor’’ means the spouse, child, parent, or next of kin \nof a service member who died while on active duty, or from a service- \nconnected disability following discharge or release under conditions other \nthan dishonorable. \n(g) The term ‘‘veteran spouse’’ means an individual married to a retired \nor separated member of the Armed Forces who was discharged or released \nunder conditions other than dishonorable, so long as the marriage occurred \nprior to or during the service member’s active service. \nSec. 9. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nJune 9, 2023. \n[FR Doc. 2023–12974 \nFiled 6–14–23; 8:45 am] \nBilling code 3395–F3–P \nVerDate Sep<11>2014 15:42 Jun 14, 2023 Jkt 259001 PO 00000 Frm 00006 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\15JNE0.SGM 15JNE0\nBIDEN.EPS</GPH>\nlotter on DSK11XQN23PROD with FR_PREZDOC0"
     },
+    "ACTOR_TEXT:EO:14171": {
+      "actor_id": "EO:14171",
+      "char_end": 8100,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:14171",
+      "role": "actor_context",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "90 FR 8625, PDF pages 1-3",
+        "requires_page_check": false,
+        "sha256": "207b8ae34fba9815dcef88888d01bcd88cb09e658f00723ff996d9f6f47a59d8",
+        "signing_date": "2025-01-20",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_14171.txt",
+        "text_sha256": "e17f8ca782781b732349615467becd491855e9832e5551d46fa6806388a0980a",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-31/pdf/2025-02095.pdf"
+      },
+      "text": "Instrument: EO:14171\nSource: https://www.govinfo.gov/content/pkg/FR-2025-01-31/pdf/2025-02095.pdf\nSHA-256 of the downloaded file: 207b8ae34fba9815dcef88888d01bcd88cb09e658f00723ff996d9f6f47a59d8\nLocation: 90 FR 8625, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 3 ===\nPresidential Documents\n8625 \nFederal Register \nVol. 90, No. 20 \nFriday, January 31, 2025 \nTitle 3— \nThe President \nExecutive Order 14171 of January 20, 2025 \nRestoring Accountability to Policy-Influencing Positions With-\nin the Federal Workforce \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including sections 3301, 3302, and \n7511 of title 5, United States Code, it is hereby ordered as follows: \nSection 1. Purpose. Article II of the United States Constitution vests the \nPresident with the sole and exclusive authority over the executive branch, \nincluding the authority to manage the Federal workforce to ensure effective \nexecution of Federal law. A critical aspect of this executive function is \nthe responsibility to maintain professionalism and accountability within \nthe civil service. This accountability is sorely lacking today. Only 41 percent \nof civil service supervisors are confident that they can remove an employee \nwho engaged in insubordination or serious misconduct. Even fewer super-\nvisors—26 percent—are confident that they can remove an employee for \npoor performance. \nAccountability is essential for all Federal employees, but it is especially \nimportant for those who are in policy-influencing positions. These personnel \nare entrusted to shape and implement actions that have a significant impact \non all Americans. Any power they have is delegated by the President, \nand they must be accountable to the President, who is the only member \nof the executive branch, other than the Vice President, elected and directly \naccountable to the American people. In recent years, however, there have \nbeen numerous and well-documented cases of career Federal employees \nresisting and undermining the policies and directives of their executive \nleadership. Principles of good administration, therefore, necessitate action \nto restore accountability to the career civil service, beginning with positions \nof a confidential, policy-determining, policy-making, or policy-advocating \ncharacter. \nSec. 2. Reinstatement of Prior Administration Policy. Executive Order 13957 \nof October 21, 2020 (Creating Schedule F in the Excepted Service), is hereby \nimmediately reinstated with full force and effect, subject to the amendments \ndescribed in section 3 of this order; provided that the date of this order \nshall be treated as the date of Executive Order 13957. \nSec. 3. Amendments to Prior Administration Policy. Executive Order 13957 \nis amended as follows: \n(a) replace the letter ‘‘F’’ throughout, when used to designate an excepted \nservice schedule, with the words ‘‘Policy/Career’’; \n(b) in section 1: \n(i) remove the text between the words ‘‘make necessary’’ in the seventh \nparagraph and ‘‘excepting such positions’’ in the eighth paragraph; and \n(ii) insert the text ‘‘competitive service and the’’ immediately before the \nwords ‘‘adverse action procedures’’ in the eighth paragraph; \n(c) in section 4(a)(i), replace the word ‘‘Positions’’ with the words ‘‘Career \npositions’’ in the final paragraph; \n(d) in section 4(b)(i), add the text ‘‘providing for the application of Civil \nService Rule 6.3(a) to Schedule Policy/Career positions and’’ after the words \n‘‘as appropriate’’; \n(e) in section 5: \nVerDate Sep<11>2014 15:39 Jan 30, 2025 Jkt 265001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\31JAE0.SGM 31JAE0ddrumheller on DSK120RN23PROD with PRESDOC-E0\n=== PDF page 2 of 3 ===\n8626 Federal Register / Vol. 90, No. 20 / Friday, January 31, 2025 / Presidential Documents \n(i) insert the words ‘‘recommend that the President’’ immediately after \nthe words ‘‘petition the Director to’’ in subsection (a)(i); \n(ii) insert the following text at the end of subsection (c): \n‘‘(vi) directly or indirectly supervising employees in Schedule Policy/ \nCareer positions; or \n(vii) duties that the Director otherwise indicates may be appropriate for \ninclusion in Schedule Policy/Career.’’; and \n(iii) amend subsection (d) to read ‘‘The Director shall promptly recommend \nto the President which positions should be placed in Schedule Policy/ \nCareer.’’; \n(f) in section 6: \n(i) designate the existing text as new subsection \n‘‘(a)’’; \n(ii) insert a new subsection (b) that reads: \n‘‘(b) Employees in or applicants for Schedule Policy/Career positions are \nnot required to personally or politically support the current President \nor the policies of the current administration. They are required to faithfully \nimplement administration policies to the best of their ability, consistent \nwith their constitutional oath and the vesting of executive authority solely \nin the President. Failure to do so is grounds for dismissal.’’ \nSec. 4. Conforming Regulatory Changes. The Director of the Office of Per-\nsonnel Management (Director) shall promptly amend the Civil Service Regula-\ntions to rescind all changes made by the final rule of April 9, 2024, ‘‘Uphold-\ning Civil Service Protections and Merit System Principles,’’ 89 Fed. Reg. \n24982, that impede the purposes of or would otherwise affect the implementa-\ntion of Executive Order 13957. Until such rescissions are effectuated (includ-\ning the resolution of any judicial review), 5 CFR part 302, subpart F, 5 \nCFR 210.102(b)(3), and 5 CFR 210.102(b)(4) shall be held inoperative and \nwithout effect. \nSec. 5. Additional Positions for Consideration. Within 30 days of the date \nof this order, the Director shall, after consultation with the Executive Office \nof the President, issue guidance about additional categories of positions \nthat executive departments and agencies should consider recommending \nfor Schedule Policy/Career. \nSec. 6. Revocation. Executive Order 14003 of January 22, 2021 (Protecting \nthe Federal Workforce), is hereby revoked, and any rules, regulations, guid-\nance, or other agency policies effectuated under Executive Order 14003 \nshall not be enforced. The heads of each executive department and agency \nshall review and identify existing agency actions relating to or arising under \nsection 3(e)(v) and 3(f) of Executive Order 14003 (relating to suspending, \nrevising, or rescinding revisions to discipline and unacceptable performance \npolicies) and, as soon as practicable, suspend, revise, or rescind such actions \nidentified in the review. \nSec. 7. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \nVerDate Sep<11>2014 15:39 Jan 30, 2025 Jkt 265001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\31JAE0.SGM 31JAE0ddrumheller on DSK120RN23PROD with PRESDOC-E0\n=== PDF page 3 of 3 ===\n8627 Federal Register / Vol. 90, No. 20 / Friday, January 31, 2025 / Presidential Documents \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nJanuary 20, 2025. \n[FR Doc. 2025–02095 \nFiled 1–30–25; 8:45 am] \nBilling code 3395–F4–P \nVerDate Sep<11>2014 15:39 Jan 30, 2025 Jkt 265001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\31JAE0.SGM 31JAE0\nTrump.EPS</GPH>\nddrumheller on DSK120RN23PROD with PRESDOC-E0"
+    },
     "ACTOR_TEXT:EO:14173": {
       "actor_id": "EO:14173",
       "char_end": 12703,
@@ -1059,7 +1136,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "94f84e651ac05a1ba41c1c4454156a37d42a29a18b8326d38a7cfc43b2f11ffa",
+  "fingerprint": "f97aedd1de288a7e61af8e030d362029f46c294e7a85dfafd394eb1f83c3de59",
   "instrument_id": "EO:13583",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1086,7 +1163,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1098,7 +1175,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1110,8 +1187,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1121,6 +1198,8 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: MEMORANDUM:2016-10-05",
+    "Acting identity absent from census: MEMORANDUM:2017-01-12",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:13078",
@@ -1130,7 +1209,8 @@
     "target provision not located: EO:13548",
     "target provision not located: EO:13714",
     "target provision not located: EO:14035",
-    "target provision not located: EO:14100"
+    "target provision not located: EO:14100",
+    "target provision not located: EO:14171"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:13583",
@@ -1140,10 +1220,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 8,
-    "fingerprint": "2e00618aa95da677aa737fc645397e0b04cce8b834329232df79488df0eb46c8",
+    "fingerprint": "5a2faa808fd0735b41dae9710e88c3e7fbc669719c8ad611c7a45e258988b0a4",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13583.json",
-    "history_sha256": "fb3013d30f65f5bfb0ca61accb2ee4a267831ef35c78d98976077ac2edb6d763",
+    "history_sha256": "fbed60c0566723bb08c29861a2e6db5d1e6fba0294ec8fb3fc5a1c2e5c91e0f2",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

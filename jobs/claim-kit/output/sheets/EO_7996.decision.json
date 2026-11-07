@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "6f42bc91a1c6f94854f4c4787509b60413f0aefcf998bb252b72e760f89582d7",
+  "dossier_sha256": "1e719639276a87f93841d6576042abca67afa47e90beaf9d0e9473702b461765",
   "instrument_id": "EO:7996",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-10-28",
               "register_number": "7996",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7996.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7996.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7996—Exemption of Wallace Streater From Compulsory Retirement for Age",
               "text_chars": 713
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7996",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7996.txt",
+        "text_sha256": "fc538572884e86d9e03fb0c0911fa43512e1ab26425a971e466fad69ea3e40cd"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7996",
@@ -130,6 +151,16 @@
         "sha256": "2c69400cd961b08f39f1822278058b2d3e2bf2964ceff085706861da4e926b92",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7996-2c69400cd9.txt",
         "text_sha256": "918cb0000a2db6b190cf836fcf7f8cd30ded13d3a4546f4ef6bab940ac62f312"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7996",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7996.txt",
+        "text_sha256": "3d6dd0f52e16496a86ffdb77a9911c762f8d4441ae622956e4ea4ec7fad2bbc8"
       }
     ],
     "quotation_recheck_required": true,

@@ -81,7 +81,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:10849",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10849"
@@ -156,8 +156,42 @@
       "where": "CFR 14 CFR 1221.102"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10849",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 51 U.S.C. 20111 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:375",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "51 U.S.C. 20111 note",
+        "member_sha256": "38870c44627202cfa3f3360cb2cf27013661405f242f4f332f6baf8a3062b18f",
+        "note_id": "idebcdb093-3a70-11f1-9081-fe88c1712d53",
+        "note_text_sha256": "91f51799c87788f7e25d00362c1b6b3be6cb0f0e36733f5a841f923ca8832d43",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=idebcdb093-3a70-11f1-9081-fe88c1712d53"
+      },
+      "row_span": "46327-46427",
+      "snippet": "1959 Nov. 27 | EO 10849 | 51 U.S.C. 20111 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 51 U.S.C. 20111 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -209,6 +243,34 @@
           "page_or_item": "51 U.S.C. 20111 note; note 'Ex. Ord. No. 10849. Establishment of Seal for National Aeronautics and Space Administratio' [USLM note id idebcdb093-3a70-11f1-9081-fe88c1712d53]; usc51.xml (sha256 38870c44627202cfa3f3360cb2cf27013661405f242f4f332f6baf8a3062b18f) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:375",
+        "snippet": "1959 Nov. 27 | EO 10849 | 51 U.S.C. 20111 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 51 U.S.C. 20111 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 51 U.S.C. 20111 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -974,7 +1036,7 @@
       "text": "(1)\n The National Space Council shall establish a Users’ Advisory Group composed of non-Federal representatives of industries and other persons involved in aeronautical and space activities.\n“(2)\n The Vice President shall name a chairman of the Users’ Advisory Group.\n“(3)\n The National Space Council shall from time to time, but not less than once a year, meet with the Users’ Advisory Group.\n“(4)\n The function of the Users’ Advisory Group shall be to ensure that the interests of industries and other non-Federal entities involved in space activities, including in particular commercial entities, are adequately represented in the National Space Council.\n“(5)\n The Users’ Advisory Group may be assisted by personnel detailed to the National Space Council.\n“(b)\n Exemption.—\nThe Users’ Advisory Group shall not be subject to section 1013(a) of title 5, United States Code.”\nNational Space Council\nPub."
     }
   },
-  "fingerprint": "3acfb1c974360e8e3723024ab7bd37bf6a8032d312ab02cddcd60db68a03a247",
+  "fingerprint": "4122bedc636fd6fc564cff111fa4d94f7854c1b1b046be2ed087627a9185a52f",
   "instrument_id": "EO:10849",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -998,7 +1060,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1010,7 +1072,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1022,8 +1084,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1058,10 +1120,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "e19ef48ff277fcfb06003559204ebf993ec6deb922fabfc056cc1fbd9f9c91ed",
+    "fingerprint": "7394f98f34c937ddfcd4cf907ae010029bfcc45472fe2c40165097e2c2728f5b",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_10849.json",
-    "history_sha256": "489c1276da0b4671989849c8602a13dae4f43c6ca41bb33c1ba019e48a49f6f3",
+    "history_sha256": "0335217a6f5d1f0bd8893150e384d55f2ddb098d4b837fe1878339a84a6086a0",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

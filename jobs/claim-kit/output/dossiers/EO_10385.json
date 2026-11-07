@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:10385",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10385"
@@ -36,7 +36,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 42 U.S.C. 1553; USC 42 U.S.C. 1589a note"
+      "detail": "provisional NO, but 3 current-law predicate lead(s), e.g. USC 42 U.S.C. 1553; USC 42 U.S.C. 1589a note; USC 42 U.S.C. 1589a nt"
     }
   ],
   "current_law_leads": [
@@ -82,6 +82,39 @@
       },
       "system": "usc",
       "where": "USC 42 U.S.C. 1553"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10385",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 42 U.S.C. 1589a nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:202",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "42 U.S.C. 1589a note",
+        "member_sha256": "9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692",
+        "note_id": "id39b36425-c3e9-11f1-bd73-d95596aaa024",
+        "note_text_sha256": "d31f36b9dbf63812fb4f048094c70d2819773e2af88c166ad6bd4f57e41deddc",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id39b36425-c3e9-11f1-bd73-d95596aaa024"
+      },
+      "row_span": "27786-27882",
+      "snippet": "1952 Aug. 16 | EO 10385 | 42 U.S.C. 1589a nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 42 U.S.C. 1589a nt"
     },
     {
       "custody_records_in": [
@@ -139,6 +172,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:202",
+        "snippet": "1952 Aug. 16 | EO 10385 | 42 U.S.C. 1589a nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 42 U.S.C. 1589a nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 42 U.S.C. 1589a nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -154,7 +215,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 42 U.S.C. 1553; USC 42 U.S.C. 1589a note"
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 3 current-law predicate lead(s), e.g. USC 42 U.S.C. 1553; USC 42 U.S.C. 1589a note; USC 42 U.S.C. 1589a nt"
   ],
   "evidence": {
     "CLAUSES:EO:10385#whole": {
@@ -270,7 +331,7 @@
       "text": "The time stipulated in section 313 of the said act approved October 14, 1940, as amended, within which, subject to the qualification stated in the said section 313, housing of a temporary character under the jurisdiction of the Housing and Home Finance Administration and constructed under certain laws must be removed is hereby extended form December 31, 1952, to July 1, 1954."
     }
   },
-  "fingerprint": "d21a304fb78f9acb16aef54a67de9fcd1ec182e03d71e225bb684b8a8ae14ce5",
+  "fingerprint": "c886c4451696f49300c0e22ee16fe4d896d0b8c49d8ac735a46f48b19ad57d20",
   "instrument_id": "EO:10385",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -301,7 +362,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -313,7 +374,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -325,8 +386,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -348,12 +409,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "a4ce52f7ce515a71cbb762828bcb162e9931da4bada24db9640b0f7af07ff1cc",
+    "fingerprint": "6a7786690347ec4b67110ea1f45ac0c6c9eea043a8806b635e4f4e201f6ef576",
     "flags": [
       "EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT"
     ],
     "history_path": "jobs/status-history/output/histories/EO_10385.json",
-    "history_sha256": "3a63344ef7dba8a60b66bf8238b223ba72f93c0911a7464adb4761dc8fa46194",
+    "history_sha256": "2994093bc7b655f32a01c6c82c3c490a58c70df16d6641123251ec6337e3171e",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

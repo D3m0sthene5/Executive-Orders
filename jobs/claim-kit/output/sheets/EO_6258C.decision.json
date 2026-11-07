@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "0b38de159e8972a8cb82353a9cc93f7683c87c514cf45a510c6ac8c16af3fd23",
+  "dossier_sha256": "83451696bef02340bd31e9e3a0468e6e7667d566c2bc845ae396b2c14e21b43c",
   "instrument_id": "EO:6258C",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-08-26",
               "register_number": "6258C",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6258C.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6258C.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6258-C—Code of Fair Competition for the Hosiery Industry",
               "text_chars": 1225
             },

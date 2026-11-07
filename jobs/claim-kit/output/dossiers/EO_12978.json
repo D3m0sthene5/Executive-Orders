@@ -86,7 +86,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:12978",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12978"
@@ -696,15 +696,41 @@
       "snippet": "Delegation by the Secretary of the Treasury. | Treasury is authorized to take pursuant to Executive Order 12978 or any further executive orders … the national emergency declared in Executive Order 12978 may be taken by the Director",
       "source": {
         "page_or_item": "31 CFR 536.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-        "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+        "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR 536.802"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12978",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2088",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "225605-225700",
+      "snippet": "1995 Oct. 21 | EO 12978 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -732,7 +758,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -760,7 +787,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -788,7 +816,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -837,7 +866,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 536.802)",
         "source": {
           "page_or_item": "31 CFR 536.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-          "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+          "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
         }
       }
@@ -951,6 +980,34 @@
           "page_or_item": "22 U.S.C. 7210 note; note 'References in Text' [USLM note id iddf9681e9-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2088",
+        "snippet": "1995 Oct. 21 | EO 12978 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -2011,7 +2068,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2042,7 +2099,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2104,7 +2161,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2166,7 +2223,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2197,7 +2254,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2228,7 +2285,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2259,7 +2316,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2321,7 +2378,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2383,7 +2440,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2414,7 +2471,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2445,7 +2502,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2507,7 +2564,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2538,7 +2595,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2631,7 +2688,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2693,7 +2750,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2724,7 +2781,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2755,7 +2812,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2786,7 +2843,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2848,7 +2905,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2910,7 +2967,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2941,7 +2998,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2972,7 +3029,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3003,7 +3060,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3065,7 +3122,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3096,7 +3153,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3127,7 +3184,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3158,7 +3215,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3189,7 +3246,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3220,7 +3277,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3251,7 +3308,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3313,7 +3370,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3375,7 +3432,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3406,7 +3463,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3437,7 +3494,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3530,7 +3587,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3561,7 +3618,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3592,7 +3649,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3654,7 +3711,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3716,7 +3773,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3809,7 +3866,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3840,7 +3897,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3933,7 +3990,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3995,7 +4052,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4119,7 +4176,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4181,7 +4238,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4243,7 +4300,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4305,7 +4362,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4336,7 +4393,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4367,7 +4424,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4460,7 +4517,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4491,7 +4548,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4522,7 +4579,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4584,7 +4641,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4615,7 +4672,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4677,7 +4734,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-560.530.txt",
         "text_sha256": "024d63a68e8f740d2149ab0a5493a77d67d83fc7854a72b1ac401f2922ccd1ae",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-560.530"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-560.530"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4770,7 +4827,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4832,7 +4889,7 @@
         "signing_date": "1995-10-21",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part536.txt",
         "text_sha256": "da1cf5133f3820bf38d88b7c768e8421a8a49c35ac00551f2ae5be1e7d303fba",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-536"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-536"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4901,7 +4958,7 @@
       "text": "The terms blocked account and blocked \nproperty mean any account or property \nsubject to the prohibitions in § 536.201 \nheld in the name of a specially des-\nignated narcotics trafficker, or in \nwhich such person has an interest, and \nwith respect to which payments, trans-\nfers, exportations, withdrawals, or \nother dealings may not be made or ef-\nfected except pursuant to a license or \nother authorization from OFAC ex-\npressly authorizing such action."
     }
   },
-  "fingerprint": "f1b109835aa21ff01b6081ec08aa98730d811b95b7478680125b9bff14605488",
+  "fingerprint": "f83128f9229512b8151301fa411327a72377f52a32abd3a2ebb22625724f5bb0",
   "instrument_id": "EO:12978",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -5204,7 +5261,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -5216,7 +5273,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -5228,8 +5285,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -5253,13 +5310,29 @@
     "Acting identity absent from census: NOTICE:2007-10-18",
     "Acting identity absent from census: NOTICE:2008-10-16",
     "Acting identity absent from census: NOTICE:2009-10-16",
+    "Acting identity absent from census: NOTICE:2010-10-14",
+    "Acting identity absent from census: NOTICE:2011-10-19",
+    "Acting identity absent from census: NOTICE:2012-10-17",
+    "Acting identity absent from census: NOTICE:2013-10-16",
+    "Acting identity absent from census: NOTICE:2014-10-16",
+    "Acting identity absent from census: NOTICE:2015-10-19",
+    "Acting identity absent from census: NOTICE:2016-10-18",
+    "Acting identity absent from census: NOTICE:2017-10-16",
+    "Acting identity absent from census: NOTICE:2018-10-17",
+    "Acting identity absent from census: NOTICE:2019-10-15",
+    "Acting identity absent from census: NOTICE:2020-10-19",
+    "Acting identity absent from census: NOTICE:2021-10-12",
+    "Acting identity absent from census: NOTICE:2022-10-12",
+    "Acting identity absent from census: NOTICE:2023-10-17",
+    "Acting identity absent from census: NOTICE:2024-10-11",
     "Acting identity absent from census: NOTICE:2025-10-16",
+    "Acting identity absent from census: PROC:8693",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "Large actor context must be read at actor-texts/EO_13286.json before deciding scope/savings.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "cited by number, no change provision located: EO:13094",
-    "cited by number, no change provision located: EO:13313",
+    "target provision not located: EO:13313",
     "target provision not located: EO:14294"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -5366,10 +5439,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 17,
-    "fingerprint": "307081e7f9302dd28224b94ad821bf8ffa296f21e919195d1125baefd661dfe3",
-    "flags": [],
+    "fingerprint": "f5dbe78569e1b73aecb26c494d9d742f609640f91b0aca27049843f6d7399b94",
+    "flags": [
+      "EVENT_QUOTE_NOT_VERIFIED_AGAINST_HELD_RAW_API"
+    ],
     "history_path": "jobs/status-history/output/histories/EO_12978.json",
-    "history_sha256": "c5e0f55bdba13b295b4eb6c983f27c2af80f29dc422001da5b1146068b32a623",
+    "history_sha256": "8688b8dba3f1cb2b264ec7d49f2adb88756392536c76c08b26ed9203a666be71",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

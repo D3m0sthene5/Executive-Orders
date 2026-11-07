@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "26b31d4a7c45f4c36f5ad14f5f1a76b1aed0a2701fe07bc86b749f4f546a7b84",
+  "dossier_sha256": "57f37e8e65bff50de87fa9e02d316ccd391a352b1b0afd9ef04499ba2a04f099",
   "instrument_id": "EO:6351",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-21",
               "register_number": "6351",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6351.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6351.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6351—Code of Fair Competition for the Retail Trade",
               "text_chars": 1224
             },

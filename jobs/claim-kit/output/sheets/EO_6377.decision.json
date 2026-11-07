@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "73e8c799de30eea4fcf983705952e753b175bef8727ee0bcc0e8a04bd1a031b6",
+  "dossier_sha256": "7fe363fb3947a4df7abb7c8bd17ebd921f7f7e81a4327f5327a2b17e5ee8c869",
   "instrument_id": "EO:6377",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-31",
               "register_number": "6377",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6377.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6377.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6377—Code of Fair Competition for the Terra Cotta Industry",
               "text_chars": 1229
             },

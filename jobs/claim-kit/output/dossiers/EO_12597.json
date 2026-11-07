@@ -9,7 +9,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:12597",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12597"
@@ -527,26 +527,60 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-13)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-10-28)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12597",
       "legal_basis_candidate": "regulation text names the order (49 CFR 1.27)",
       "machine_lead": true,
-      "mention_id": "ecfr:0ed22d95834b",
+      "mention_id": "ecfr:ce8726cfd0d2",
       "snippet": "...C. 1428). (m) Exercise review authority under 49 U.S.C. 41307 (related actions about foreign air transportation) delegated to the Secretary by the President in Executive Order 12597. (n) Assist and protect consumers in their dealings with the air transportation industry and conduct all departmental regulation of airline consumer protection...",
       "source": {
-        "page_or_item": "49 CFR 1.27 (section_text; GovInfo eCFR XML title 49, amended through 2026-10-13; NODE 49:1.0.1.1.1.2.2.13)",
-        "sha256": "5d007eebab9ddc5a37474b2e7bfba0e3345c9bb831298dfc9389a2aa0615db52",
+        "page_or_item": "49 CFR 1.27 (section_text; GovInfo eCFR XML title 49, amended through 2026-10-28; NODE 49:1.0.1.1.1.2.2.13)",
+        "sha256": "dcc6423b588201ac247b010199952703649fdbb01310c14e515163e29d26641e",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-49/ECFR-title49.xml"
       },
       "system": "ecfr",
       "where": "CFR 49 CFR 1.27"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12597",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 49 U.S.C. 41307 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1707",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "49 U.S.C. 41307 note",
+        "member_sha256": "6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990",
+        "note_id": "idcbbb2ece-47c4-11f1-9671-b5c725212f70",
+        "note_text_sha256": "c42681dbd1695604e046979237c8192cfbf8d13503f5ab3f6727c16c1c21d27c",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=idcbbb2ece-47c4-11f1-9671-b5c725212f70"
+      },
+      "row_span": "185912-186008",
+      "snippet": "1987 May 13 | EO 12597 | 49 U.S.C. 41307 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 49 U.S.C. 41307 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -581,10 +615,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-13)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-10-28)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:0ed22d95834b",
+        "mention_id": "ecfr:ce8726cfd0d2",
         "snippet": "...C. 1428). (m) Exercise review authority under 49 U.S.C. 41307 (related actions about foreign air transportation) delegated to the Secretary by the President in Executive Order 12597. (n) Assist and protect consumers in their dealings with the air transportation industry and conduct all department ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -594,8 +628,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (49 CFR 1.27)",
         "source": {
-          "page_or_item": "49 CFR 1.27 (section_text; GovInfo eCFR XML title 49, amended through 2026-10-13; NODE 49:1.0.1.1.1.2.2.13)",
-          "sha256": "5d007eebab9ddc5a37474b2e7bfba0e3345c9bb831298dfc9389a2aa0615db52",
+          "page_or_item": "49 CFR 1.27 (section_text; GovInfo eCFR XML title 49, amended through 2026-10-28; NODE 49:1.0.1.1.1.2.2.13)",
+          "sha256": "dcc6423b588201ac247b010199952703649fdbb01310c14e515163e29d26641e",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-49/ECFR-title49.xml"
         }
       }
@@ -626,6 +660,34 @@
           "page_or_item": "49 U.S.C. 41307 note; note 'Ex. Ord. No. 12597. Establishing Procedures for Facilitating Presidential Review of Intern' [USLM note id idcbbb2ece-47c4-11f1-9671-b5c725212f70]; usc49.xml (sha256 6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1707",
+        "snippet": "1987 May 13 | EO 12597 | 49 U.S.C. 41307 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 49 U.S.C. 41307 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 49 U.S.C. 41307 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -2012,14 +2074,14 @@
         "signing_date": "1987-05-13",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t49-1.27.txt",
         "text_sha256": "57531fbd2e1b48a52a0196f925630a797860b8ea2137d33ab0069adbf8e7cb84",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-49/section-1.27"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-49/section-1.27"
       },
       "start_date": null,
       "stated_end_date": null,
       "text": "(h) Except with respect to proceedings relating to safety fitness of an applicant (49 U.S.C. 307), decide on requests to intervene or appear before courts (with the consent of the Department of Justice) or agencies to present the views of the Department, subject to the concurrence of the Secretary."
     }
   },
-  "fingerprint": "1ea05c88e567f40dbe588fbeccd1f08201def87ab0dbb1cf0769be2ccf2d75b6",
+  "fingerprint": "b9eaa1cb852882eb4aa4942435c550faf25213257b67267bd482d598bdacfa73",
   "instrument_id": "EO:12597",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2395,7 +2457,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2407,7 +2469,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2419,8 +2481,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2468,10 +2530,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "c20b7998d83f25ec5d55d4bca57f9d45748bed2f282ce368a3188fc4abe11137",
+    "fingerprint": "ec45c1f575fb166207fa3a23cc25ec09afc69b2ef97978dab85cd0ed276c6441",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12597.json",
-    "history_sha256": "16ceb50e41d5c7dbb6033971e7e68df0234d8ddce088891315f0e1a6c4a736b0",
+    "history_sha256": "06963adb9fba65b7ba5c4281b822dc1d41690733369bf07c0115ef6583d390b8",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -157,7 +157,7 @@
         "verb": "transfer"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:10077",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10077"
@@ -281,7 +281,7 @@
     },
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 48 U.S.C. 1421 note"
+      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 48 U.S.C. 1421 note; USC 48 U.S.C. 1421 nt"
     },
     {
       "code": "NO_ORDER_IN_FORCE_ON_1989_01_20",
@@ -312,6 +312,39 @@
       "where": "USC 48 U.S.C. 1421 note"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10077",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 48 U.S.C. 1421 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:130",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "48 U.S.C. 1421 note",
+        "member_sha256": "cc3cea4278d976b122583e2de6fb36385bcb1a793f3192dfd71548b3cd52f759",
+        "note_id": "idcf6de6a4-3a70-11f1-9e44-df1065572ea0",
+        "note_text_sha256": "42a73f80f1b6b6ae9afecbc317256c0f305e05235e20a7b29a97d4a78b093b0f",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=idcf6de6a4-3a70-11f1-9e44-df1065572ea0"
+      },
+      "row_span": "20020-20119",
+      "snippet": "1949 Sept. 7 | EO 10077 | 48 U.S.C. 1421 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 48 U.S.C. 1421 nt"
+    },
+    {
       "custody_records_in": [
         "current-law"
       ],
@@ -337,6 +370,34 @@
           "page_or_item": "48 U.S.C. 1421 note; note 'Ex. Ord. No. 10077. Transfer of Administration of Guam' [USLM note id idcf6de6a4-3a70-11f1-9e44-df1065572ea0]; usc48.xml (sha256 cc3cea4278d976b122583e2de6fb36385bcb1a793f3192dfd71548b3cd52f759) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:130",
+        "snippet": "1949 Sept. 7 | EO 10077 | 48 U.S.C. 1421 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 48 U.S.C. 1421 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 48 U.S.C. 1421 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -392,7 +453,7 @@
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
     "CONFLICT STATED_EFFECTIVE_DATE_DIFFERS: EO:10137: date 1950-06-30, but the source says effective 1950-07-01",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 48 U.S.C. 1421 note",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 48 U.S.C. 1421 note; USC 48 U.S.C. 1421 nt",
     "CONFLICT NO_ORDER_IN_FORCE_ON_1989_01_20: provisional NO, but the OFR 1989 Codification prints it as in force on 1989-01-20 (OFR Codification 1989, chapter 43 (Public Lands)) and no ending candidate is dated after that day"
   ],
   "evidence": {
@@ -1180,7 +1241,7 @@
       "text": "Instrument: EO:10077\nSource: https://www.govinfo.gov/content/pkg/FR-1949-09-09/pdf/FR-1949-09-09.pdf\nSHA-256 of the downloaded file: 891fabc6d90e70edd18e3cbee077d652bf45f91bd0896f2ae8a30170d130d0d4\nLocation: 14 FR 5533, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 24 ===\nVOLUME 14 1934 *  OftiTED ^ NUMBER 174\nWashington, Friday, September 9, 1949\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10077\nT ransfer  of the  A dministration  of the  \nI sland  of G uam  from  the  S ecretary \nof the  N avy to the  S ecretary  of the  \nI nterior\nWHEREAS the Island of Guam was  \nplaced under the control of the Depart­\nment of the Navy by Executive Order  \nNo. 108-A of December 23, 1898; and  \nWHEREAS a committee composed of  \nthe Secretaries of State, War, the Navy, \nand the Interior recommended on June  \n18, 1947, that administrative responsi­\nbility for the Island of Guam be trans­\nferred to a civilian agency of the Govern­\nment at the earliest practicable date as  \ndetermined by the President; and  \nWHEREAS plans for the orderly  \ntransfer of administrative responsibility  \nfor the Island of Guam from the Secre­\ntary of the Navy to the Secretary of the  \nInterior are embodied in a memorandum  \nof understanding between the Depart­\nment of the Navy and the Department of  \nthe Interior, approved by me on August  \n10, 1949, and it is the view of the two  \ndepartments, as expressed in that mem­\norandum, that such transfer should take  \neffect on July 1, 1950; and  \nWHEREAS the transfer of adminis­\ntration of the Island of Guam from the  \nSecretary of the Navy to the Secretary  \nof the Interior, effective July 1, 1950,  \nappears to be in the public interest:  \nNOW, THEREFORE, by virtue of the  \nauthority vested in me as President of  \nthe United States, it is ordered as  \nfollows:\n1. The administration of the Island of  \nGuam is hereby transferred from the  \nSecretary of the Navy to the Secretary of  \nthe Interior, such transfer to become  \neffective on July 1, 1950.\n2. The Department of the Navy and  \nthe Department of the Interior shall pro­\nceed with the plans for the transfer of  \nthe administration of the Island of Guam  \nas embodied in the above mentioned  \nmemorandum of understanding between  \nthe two departments.\n3. When the transfer of administra­\ntion made by this order becomes effective, \nthe Secretary of the Interior shall take  \nsuch action as may be necessary and ap­\npropriate, and in harmony with appli­\ncable law, for the administration of civil \ngovernment on the Island of Guam.\n4. The executive departments and  \nagencies of the Government are author­\nized and directed to cooperate with the  \nDepartments of the Navy and Interior  \nin the effectuation of the provisions of  \nthis order.\n5. The said Executive Order No. 108-A  \nof December 23, 1898, is revoked, effec­\ntive July 1, 1950.\nH arry S. T ruman\nT he  W hite  H ouse ,\nSeptember 7,1949.\n[F. R. Doc. 49-7331; Filed, Sept. 7, 1949;\n4:06 p. m.]\nTITLE 6— AGRICULTURAL CREDIT\nChapter III— Farmers Home Adminis­\ntration, Department of Agriculture\nSubchapter B— Farm Ownership Leans  \nP art 311—B asic  R egulations  \nS ubpart  B—Loan L im it a t io n s\nA V E R A G E  VALUES OF FARM S AND INVESTMENT \nLIMITS\nFor the purposes of Title I of the Bank-  \nhead-Jones Farm Tenant Act, as  \namended, the average value of efficient \nfamily-type farm-management units  \nand the investment limit for the county  \nidentified below are determined to be as  \nherein set forth; and §  311.30, Chapter  \nIII, Title 6 of the Code of Federal Regula­\ntions (13 F. R. 9381), is amended by  \nadding said county, average value, and  \ninvestment limit to the tabulations ap­\npearing in said section under the State of  \nCalifornia.\nCalifornia\nCounty Averagevalue Invest­mentlimit\n$16,000 $12,000\n(Sec. 41 (i), 60 Stat. 1066; 7 U. S. C. 1015\n(i). Applies secs. 3 (a), 44 (b), 60 Stat.  \n1074, 1069; 7 U. S. C. 1003 (a), 1018 (b))\nIssued this 2d day of September 1949.\n[ seal ] C harles  F. B rannan , \nSecretary of Agriculture.\n[P. R. Doc. 49-7304; Filed, Sept. 8, 1949;  \n8:52 a. m.]\nCONTENTS\nTHE PRESIDENT\nExecutive Order Page\nIsland of Guam; transfer of ad­\nministration from Secretary of  \nthe Navy to Secretary of the In­\nterior _______________________ 5533\nEXECUTIVE AGENCIES\nAgriculture Department  \nSee Farmers Home Administra­\ntion; Production and Market­\ning Administration.\nAir Force Department  \nRules and regulations :\nJoint procurement regulations;  \niron and steel industry (see  \nArmy Department).\nOfficers’  Reserve Corps; ap­\npointment in Air Force Re­\nserve without prior commis-\nsioned service --------------------- 5537\nAlien Property, Office of  \nNotices :\nVesting orders, etc.:\nBergalli, Anna Costa ved., et\nal______________________ 5551\nBertry, Vital Antoine ----------- 5554\nBracht, William. ___________ 5552\nCorti, Count Egon -------------- 5554\nDassum, Badih ------------------ 5552\nDeutsche Bank ------------------ 5553\nDezsone, Bertha Frenkel ----- 5554\nEgidio D’ Eustachio and An-\ntoinetta D’ Eustachio-------- 5554\nFuerst, Augusta ------------------ 5553\nGriffon, Gaston Leon Rene— 5552\nLambiotte, Auguste— --------- 5555\nLutz Knieling Kommandit-\n»  gesellschaft______________ 5553\nMeier, Margaret ----------------- 5554\nNassauische Landesbank ----- 5550\nOstergaard, Thomas, et al ----- 5555\nPetersen, Alfred Laurits, et al_ 5555\nSonnino, Bruno ____________ 5554\nStinnes, Ernst— ___________ 5551\nArmy Department  \nNotices:\nChemical Corps procurement\ndistricts; organization, func­\ntions and procedures; cor­\nrection------------------------------ 5546\nRules and regulations:\nJoint procurement regulations;  \niron and steel industry -------- 5536\n5533\n"
     }
   },
-  "fingerprint": "1f00207ad7cf3632ed74244499f35816364ed3366a2ce633cd9e875fd2f7cd6c",
+  "fingerprint": "20eb2e24ebed8ccc0c4eb2baf59d21bba066628c575ed34c62374e9c4b717cec",
   "instrument_id": "EO:10077",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1264,7 +1325,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1276,7 +1337,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1288,8 +1349,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1308,12 +1369,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "2025d63e353fbd67a1c23ec1bfbd3a588db1be5055dea19cc4a4657cc11160b9",
+    "fingerprint": "6dba5cd4d9985e3e600a02cae7ee3b264b7a9c96ba4c27a04194dd678e0004de",
     "flags": [
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_10077.json",
-    "history_sha256": "0caa3ed2551613b4599b65325b0c5b59e5ffcf8596eda1f1b87158690736a6b1",
+    "history_sha256": "29e13fbbc68e50876d820c9ba49d73ae41f95b6665796b0883db2a1217c94e64",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

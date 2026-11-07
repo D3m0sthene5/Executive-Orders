@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "4267839db9467b85781f2010f8529ab9ed516772fc8cd13b03bbe9bf7e89aa82",
+  "dossier_sha256": "1015ce225541723e8bff582ca84ec750f92c40fc844f62e8fef83b015b711746",
   "instrument_id": "EO:6620B",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-02-26",
               "register_number": "6620B",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6620B.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6620B.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6620-B—Code of Fair Competition for the Hotel Industry, Modification of Executive Order of November 17, ",
               "text_chars": 1465
             },

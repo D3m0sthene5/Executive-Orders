@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "9c398b3133bdfc78e20d389fbfb38898119ed47de28d60628abffec2d9d18d47",
+  "dossier_sha256": "3e50df10308b3207d5c19c2a027f176b8ed25b8fc037430e6af288ef494bb07e",
   "instrument_id": "EO:6471A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -145,7 +145,18 @@
               "register_date": "1933-12-02",
               "register_number": "6471A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6471A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6471A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6471-A—Approval of Code of Fair Competition for the Alcoholic Beverages Importing Industry",
               "text_chars": 1846
             },

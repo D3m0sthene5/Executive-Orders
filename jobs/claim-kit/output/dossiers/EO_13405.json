@@ -51,7 +51,7 @@
         "verb": "transfer"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13405",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13405"
@@ -454,7 +454,12 @@
       "text": "Sec. 9. This order is effective at 12:01 a.m. eastern daylight time on June \n19, 2006. \nW"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 1 later event(s) end part of it: ? supersession 2023-06-06 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "statutory_note_reference",
@@ -555,7 +560,7 @@
       "snippet": "Effect of transfers violating the provisions of this part. | enforceable but for the provisions of IEEPA, Executive Order 13405, this part, and any regulation",
       "source": {
         "page_or_item": "31 CFR 548.202 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 3)",
-        "sha256": "6edecd5d7d179bd77a1c39561c12105cf4842032c11a19706bb4e0a40f39dd58",
+        "sha256": "fff45daffe405ca553248a72648b36cae16d4691684d5d060c6c29c37015f435",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=3"
       },
       "system": "ecfr",
@@ -576,7 +581,7 @@
       "snippet": "Entities owned by a person whose property and interests in property are blocked. | entity itself is listed in the Annex to Executive Order 13405 or designated pursuant to § 548",
       "source": {
         "page_or_item": "31 CFR 548.411 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 2)",
-        "sha256": "aa0b9e4deb2e03b66872f63b77b44c875995d871df2168ad21343ec317e1e3c4",
+        "sha256": "c54607bfc477b464e231fbc1ed665000599a718f8db8279735db1166083cd3a8",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=2"
       },
       "system": "ecfr",
@@ -597,15 +602,41 @@
       "snippet": "Delegation by the Secretary of the Treasury. | Treasury is authorized to take pursuant to Executive Order 13405 of June 16, 2006 (71 FR 35485",
       "source": {
         "page_or_item": "31 CFR 548.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 2)",
-        "sha256": "aa0b9e4deb2e03b66872f63b77b44c875995d871df2168ad21343ec317e1e3c4",
+        "sha256": "c54607bfc477b464e231fbc1ed665000599a718f8db8279735db1166083cd3a8",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=2"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR 548.802"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13405",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2620",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "279914-280009",
+      "snippet": "2006 June 16 | EO 13405 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -633,7 +664,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -661,7 +693,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -710,7 +743,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 548.202)",
         "source": {
           "page_or_item": "31 CFR 548.202 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 3)",
-          "sha256": "6edecd5d7d179bd77a1c39561c12105cf4842032c11a19706bb4e0a40f39dd58",
+          "sha256": "fff45daffe405ca553248a72648b36cae16d4691684d5d060c6c29c37015f435",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=3"
         }
       }
@@ -738,7 +771,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 548.411)",
         "source": {
           "page_or_item": "31 CFR 548.411 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 2)",
-          "sha256": "aa0b9e4deb2e03b66872f63b77b44c875995d871df2168ad21343ec317e1e3c4",
+          "sha256": "c54607bfc477b464e231fbc1ed665000599a718f8db8279735db1166083cd3a8",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=2"
         }
       }
@@ -766,7 +799,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 548.802)",
         "source": {
           "page_or_item": "31 CFR 548.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 2)",
-          "sha256": "aa0b9e4deb2e03b66872f63b77b44c875995d871df2168ad21343ec317e1e3c4",
+          "sha256": "c54607bfc477b464e231fbc1ed665000599a718f8db8279735db1166083cd3a8",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=2"
         }
       }
@@ -798,6 +831,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2620",
+        "snippet": "2006 June 16 | EO 13405 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -827,7 +888,8 @@
     "DRAFT: state_at_cutoff not decided for 16 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 1 later event(s) end part of it: ? supersession 2023-06-06 (scope: not stated)"
   ],
   "evidence": {
     "ACT:EO:13405>EO:14038": {
@@ -2215,7 +2277,7 @@
       "text": "SANCTIONS AGAINST THE GOVERNMENT OF BELARUS.\n“(a)\n Application of Sanctions.—\nThe sanctions described in subsections (c) through (f) should apply with respect to the Republic of Belarus until the President determines and certifies to the appropriate congressional committees that the Government of Belarus has made significant progress in meeting the conditions described in subsection (b).\n“(b)\n Conditions.—\nThe conditions referred to in subsection (a) are the following:\n“(1)\n The release of individuals in Belarus who have been jailed based on political or religious beliefs or expression, including those individuals jailed based on political beliefs or expression in connection with repression that attended the presidential election of August 9, 2020.\n“(2)\n The withdrawal of politically motivated legal charges against all opposition activists, peaceful protesters, and independent journalists in Belarus, including politically motivated legal charges made in connection with repression that attended the presidential election of August 9, 2020.\n“(3)\n The cessation of all forms of harassment and repression against the independent media, independent trade unions, nongovernmental organizations, youth groups, religious organizations (including their leadership and members), and the political opposition in Belarus.\n“(4)\n The prosecution of senior leadership of the Government of Belarus responsible for the administration of fraudulent elections and violations of human rights, including violations of human rights committed in connection with the presidential election of August 9, 2020.\n“(5)\n The holding of free, fair and transparent presidential and parliamentary elections in Belarus consistent with OSCE standards and under the supervision of OSCE observers and independent domestic observers.\n“(c)\n Denial of Entry Into the United States of Senior Leadership of the Government of Belarus and Russian Individuals Complicit in the Crackdown That Occurred After the August 9, 2020, Election.—\nNotwithstanding any other provision of law, the President may exercise the authority under section 212(f) of the Immigration and Nationality Act (8 U.S.C. 1182(f)) to deny the entry into the United States of any alien who—\n“(1)\n holds a position in the senior leadership of the Government of Belarus;\n“(2)\n is an immediate family member of a person inadmissible under paragraph (1);\n“(3)\n through his or her business dealings with senior leadership of the Government of Belarus derives significant financial benefit from policies or actions, including electoral fraud, human rights abuses, or corruption, that undermine or injure democratic institutions or impede the transition to democracy in Belarus;\n“(4)\n is a member of the Central Election Commission of Belarus or assisted the Commission in manipulating the presidential election of August 9, 2020;\n“(5)\n is a member of any branch of the security or law enforcement services of Belarus, including the KGB, Interior Ministry, and OMON special police unit, and is responsible for, or complicit in, ordering, controlling, materially assisting, sponsoring, or providing financial, material, or technological support for, or otherwise directing, the crackdown on opposition leaders, journalists, and peaceful protestors that occurred in connection with the presidential election of August 9, 2020; or [sic]\n“(6)\n is a member of any branch of the security or law enforcement services of Belarus and has participated in the persecution or harassment of religious groups, human rights defenders, democratic opposition groups, or independent media or journalists.[;]\n“(7)\n is a government official, including at the Information Ministry, responsible for the crackdown on independent media, including revoking the accreditation of journalists, disrupting internet access, and restricting online content;\n“(8)\n is an official in the so-called ‘Union State’ between Russia and Belarus (regardless of nationality of the individual); or\n“(9)\n is a Russian individual that has significantly participated in the crackdown on independent press or human rights abuses related to political repression in Belarus, including the Russian propagandists sent to replace local employees at Belarusian state media outlets.\n“(d)\n Prohibition on Loans and Investment.—\n“(1)\n United states government financing.—\nIt is the sense of Congress that no loan, credit guarantee, insurance, financing, or other similar financial assistance should be extended by any agency of the Government of the United States (including the Export-Import Bank of the United States and the United States International Development Finance Corporation) to the Government of Belarus, except with respect to the provision of humanitarian goods and agricultural or medical products.\n“(2)\n Trade and development agency.—\nIt is the sense of Congress that no funds available to the Trade and Development Agency should be available for activities of the Agency in or for Belarus.\n“(e)\n Multilateral Financial Assistance.—\nThe Secretary of the Treasury should instruct the United States Executive Director at each international financial institution of which the United States is a member to use the voice and vote of the United States to oppose any extension by those institutions of any financial assistance to the Government of Belarus, except for loans and assistance that serve humanitarian needs.\n“(f)\n Blocking of Assets and Other Prohibited Activities.—\n“(1)\n Blocking of assets.—\nIt is the sense of Congress that the President should block all property and interests in property, including all commercial, industrial, or public utility undertakings or entities, that, on or after the date of the enactment of the Belarus Democracy Reauthorization Act of 2006 [Jan. 12, 2007]—\n“(A)\n are owned, in whole or in part, by the Government of Belarus, or by the senior leadership of the Government of Belarus or by any member or family member closely linked to the senior leadership of the Government of Belarus, or an official of the so-called ‘Union State’ with Russia, or any person who through his or her business dealings with senior leadership of the Government of Belarus derives significant financial benefit from policies or actions, including electoral fraud, human rights abuses, or corruption, that undermine or injure democratic institutions or impede the transition to democracy in Belarus; and\n“(B)\n are in the United States, or in the possession or control of the Government of the United States or of any United States financial institution, including any branch or office of such financial institution that is located outside the United States.\n“(2)\n Prohibited activities.—\nActivities prohibited by reason of the blocking of property and interests in property under paragraph (1) should include—\n“(A)\n payments or transfers of any property, or any transactions involving the transfer of anything of economic value by any United States person, to the Government of Belarus, to any person or entity acting for or on behalf of, or owned or controlled, directly or indirectly, by that government, or to any member of the senior leadership of the Government of Belarus, or an official of the so-called ‘Union State’ with Russia;\n“(B)\n the export or reexport to any entity owned, controlled, or operated by the Government of Belarus, or the so-called ‘Union State’ with Russia,, [sic] directly or indirectly, of any goods, technology, or services, either—\n“(i)\n by a United States person; or\n“(ii)\n involving the use of any air carrier or a vessel documented under the laws of the United States; and\n“(C)\n the performance by any United States person of any contract, including a contract providing a loan or other financing, in support of an industrial, commercial, or public utility operated, controlled, or owned by the Government of Belarus.\n“(3)\n Payment of expenses.—\nAll expenses incident to the blocking and maintenance of property blocked under paragraph (1) should be charged to the owners or operators of such property."
     }
   },
-  "fingerprint": "bbd5c8769053997d6f1d1877c54be9512e24aa9e92560a6411c8d7fd58fbbd52",
+  "fingerprint": "4021076d76fdb70d970f0ce622f1f2623a3aa36c8e0da456ff7d50bd6c66a01b",
   "instrument_id": "EO:13405",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2497,7 +2559,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2509,7 +2571,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2521,8 +2583,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2536,8 +2598,22 @@
     "Acting identity absent from census: NOTICE:2008-06-06",
     "Acting identity absent from census: NOTICE:2009-06-12",
     "Acting identity absent from census: NOTICE:2010-06-08",
+    "Acting identity absent from census: NOTICE:2011-06-14",
+    "Acting identity absent from census: NOTICE:2012-06-14",
+    "Acting identity absent from census: NOTICE:2014-06-10",
+    "Acting identity absent from census: NOTICE:2015-06-10",
+    "Acting identity absent from census: NOTICE:2016-06-10",
+    "Acting identity absent from census: NOTICE:2017-06-13",
+    "Acting identity absent from census: NOTICE:2018-06-08",
+    "Acting identity absent from census: NOTICE:2019-06-13",
+    "Acting identity absent from census: NOTICE:2020-06-11",
+    "Acting identity absent from census: NOTICE:2021-06-08",
+    "Acting identity absent from census: NOTICE:2022-06-13",
+    "Acting identity absent from census: NOTICE:2023-06-12",
+    "Acting identity absent from census: NOTICE:2024-06-13",
     "Acting identity absent from census: NOTICE:2025-06-09",
     "Acting identity absent from census: NOTICE:2026-05-21",
+    "Acting identity absent from census: PROC:8693",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
@@ -2565,10 +2641,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "bbe25ad7fe32f7b77f33b45ff574812a7e0218133e4def3f198e1bea872157f6",
+    "fingerprint": "3f5e4a8a43063876f89eee3159742c780262a57b08abcb3698df133d9380a647",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13405.json",
-    "history_sha256": "aba41b06a4544bd3e2dd242369cc57357dbe6aced17af47c7fa92b52f6b32f6b",
+    "history_sha256": "1d90c3827404c493d78b632d9fc0b86316b1c22d111197c5a86314831d705a7c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

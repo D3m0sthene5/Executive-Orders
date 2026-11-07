@@ -21,7 +21,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13608",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13608"
@@ -622,7 +622,12 @@
       "text": "Sec. 11. The measures taken pursuant to this order with respect to Iran \nare in response to actions of the Government of Iran occurring after the \nconclusion of the 1981 Algiers Accords, and are intended solely as a response \nto those later actions."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 13 later event(s) end part of it: ? suspension 2014-09-08 (scope: not stated); ? suspension 2014-09-05 (scope: not stated); ? suspension 2019-02-15 (scope: not stated); ? suspension 2020-03-20 (scope: not stated); ? revocation 2021-03-05 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "statutory_text_reference",
@@ -688,8 +693,34 @@
       "where": "CFR 31 CFR 560.537"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13608",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nts (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2797",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "298495-298593",
+      "snippet": "2012 May 1 | EO 13608 | 50 U.S.C. 1701 nts",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nts"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -770,6 +801,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2797",
+        "snippet": "2012 May 1 | EO 13608 | 50 U.S.C. 1701 nts",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nts"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nts (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -806,7 +865,8 @@
     "DRAFT: state_at_cutoff not decided for 23 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 13 later event(s) end part of it: ? suspension 2014-09-08 (scope: not stated); ? suspension 2014-09-05 (scope: not stated); ? suspension 2019-02-15 (scope: not stated); ? suspension 2020-03-20 (scope: not stated); ? revocation 2021-03-05 (scope: not stated)"
   ],
   "evidence": {
     "ACTOR_TEXT:EO:12938": {
@@ -2261,7 +2321,7 @@
       "text": "For those persons subject to the measures described in section 1 of this order who might have a constitutional presence in the United States, I find that because of the ability to transfer funds or other assets instantaneously, prior notice to such persons of measures to be taken pursuant to this order would render those measures ineffectual."
     }
   },
-  "fingerprint": "d6fedb909c45e998cdee2b73a9e2af2921f055877ae0c58dacb5978e6b80ea9d",
+  "fingerprint": "11179ab45ead3f6228758ddfc135a4ffcb3e361eb5af1d6bc4ca4b8039493984",
   "instrument_id": "EO:13608",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2728,7 +2788,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2740,7 +2800,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2752,8 +2812,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2763,6 +2823,32 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2012-05-09",
+    "Acting identity absent from census: NOTICE:2013-03-12",
+    "Acting identity absent from census: NOTICE:2013-05-07",
+    "Acting identity absent from census: NOTICE:2014-03-12",
+    "Acting identity absent from census: NOTICE:2014-05-07",
+    "Acting identity absent from census: NOTICE:2015-03-11",
+    "Acting identity absent from census: NOTICE:2015-05-06",
+    "Acting identity absent from census: NOTICE:2016-03-09",
+    "Acting identity absent from census: NOTICE:2016-05-03",
+    "Acting identity absent from census: NOTICE:2017-01-13",
+    "Acting identity absent from census: NOTICE:2017-05-09",
+    "Acting identity absent from census: NOTICE:2018-03-12",
+    "Acting identity absent from census: NOTICE:2018-05-09",
+    "Acting identity absent from census: NOTICE:2019-03-12",
+    "Acting identity absent from census: NOTICE:2019-05-08",
+    "Acting identity absent from census: NOTICE:2020-03-12",
+    "Acting identity absent from census: NOTICE:2020-05-07",
+    "Acting identity absent from census: NOTICE:2021-03-05",
+    "Acting identity absent from census: NOTICE:2021-05-06",
+    "Acting identity absent from census: NOTICE:2022-03-03",
+    "Acting identity absent from census: NOTICE:2022-05-09",
+    "Acting identity absent from census: NOTICE:2023-03-10",
+    "Acting identity absent from census: NOTICE:2023-05-08",
+    "Acting identity absent from census: NOTICE:2024-03-12",
+    "Acting identity absent from census: NOTICE:2025-03-07",
+    "Acting identity absent from census: NOTICE:2025-05-07",
     "Acting identity absent from census: NOTICE:2026-03-02",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
@@ -2803,10 +2889,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 5,
-    "fingerprint": "3e37a03998d9e8c8e1e4e7f83c31c55fe21f0c4f9e37f36e42ae07528f337190",
+    "fingerprint": "f77713c29a0ec055ed08afc0765a768806b6ba871e796822e30a1d617b9ac422",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13608.json",
-    "history_sha256": "bc0c28c9be16bc08f50db5363b88145752d49459639444ddfb449509cdec2332",
+    "history_sha256": "e7cca52d77d31f994430a7cd751defff83f0b0ab9a733ef3d28f29f45dba2767",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

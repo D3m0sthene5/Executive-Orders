@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "efee67d8d432d4e91a71295f067ffcaf625c0aa41fd6e15d257a5ccf1f860171",
+  "dossier_sha256": "c5d022871500cab44fad82a9f2eeeca3a3a65cdda1b7f832184d57b4615b0d3e",
   "instrument_id": "EO:6921",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-12-15",
               "register_number": "6921",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6921.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6921.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6921—Amending Code of Fair Competition for the Brewing Industry",
               "text_chars": 847
             },

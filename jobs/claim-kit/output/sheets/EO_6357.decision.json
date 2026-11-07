@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "a8c5f6afd6002e37ae005d47ebb31cc519ce9f0194a69bd5bf3dd951a75465f5",
+  "dossier_sha256": "0ec17d024e3539ede6755c4968c716cb942f4c940439953842070dad518a9c9c",
   "instrument_id": "EO:6357",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-23",
               "register_number": "6357",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6357.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6357.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6357—Code of Fair Competition for the Plumbago Crucible Industry",
               "text_chars": 1231
             },

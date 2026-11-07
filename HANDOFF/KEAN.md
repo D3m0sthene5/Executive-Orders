@@ -46,7 +46,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 246; `search` finds the rest)
+## Newest results (6 of 247; `search` finds the rest)
 
 - 2026-11-07 F-20261107-ready-drop-193-photius-witness **analysis**: Explain ready 1,185 -> 992 between tracker generations 6d4b5f6357 (2026-11-06 22:18) and f6e5180880 (2026-11-… Lesson: A new official witness invalidates frozen working-text confirmations by design; Photius's local measure ran on the older Lachmann output and missed it. The 193 now have an official printing, so the s…
 - 2026-11-07 F-20261107-photius-encyclopedie-worth **analysis**: Priced the Photius (289 agents) and Encyclopedie campaigns at Necker list prices and set each against its mea… Lesson: Photius was worth it as an evidence investment; Encyclopedie as protective infrastructure, valued in risk avoided rather than orders. Neither moved ready; confirm Photius in W after the next publishe…
@@ -55,4 +55,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-07 F-20261107-hansard-refresh-serialized **worked**: Hansard: serialize the progress refresh (workflow concurrency group, one running and one waiting, latest wins… Lesson: A ~35-minute reporting readout cannot be held to exact freshness on a repository that publishes every few minutes; publish it as of its input commit (never older than what it replaces) and catch up,…
 - 2026-11-07 F-20261107-haloander-claimkit-blocked **worked**: Bentham 2026-11-07 wave pre-spend checks: rebuild the plan on main with full inputs, re-derive the ranked str… Lesson: Before any wave, check that claim-kit's and claim-drafts' STATUS.json on main are newer than the newest Lachmann/Photius and status-adoption changes; a stale claim-kit silently strands confirmations.…
 
-Register: 67 owner decisions, 26 answered questions, 246 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 67 owner decisions, 26 answered questions, 247 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

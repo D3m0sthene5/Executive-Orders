@@ -389,7 +389,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:10122",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10122"
@@ -643,8 +643,42 @@
       "where": "CFR 38 CFR part 17"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10122",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 10 U.S.C. 1216 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:141",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "10 U.S.C. 1216 note",
+        "member_sha256": "f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6",
+        "note_id": "ida8b2d94e-3a6f-11f1-a58a-d8db54b14ab5",
+        "note_text_sha256": "f8dfdee1260df92cd161e7e3021a325bbe326eb781ecee0e8ba30b0aacd97d56",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=ida8b2d94e-3a6f-11f1-a58a-d8db54b14ab5"
+      },
+      "row_span": "21204-21303",
+      "snippet": "1950 Apr. 14 | EO 10122 | 10 U.S.C. 1216 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 10 U.S.C. 1216 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -672,7 +706,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -700,7 +735,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -752,6 +788,34 @@
           "page_or_item": "10 U.S.C. 1216 note; note 'Ex. Ord. No. 10122. Regulations Governing Disability Pay, Hospitalization and Reexaminatio' [USLM note id ida8b2d94e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:141",
+        "snippet": "1950 Apr. 14 | EO 10122 | 10 U.S.C. 1216 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 10 U.S.C. 1216 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 10 U.S.C. 1216 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -3443,7 +3507,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3474,7 +3538,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3505,7 +3569,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3536,7 +3600,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3567,7 +3631,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3627,7 +3691,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3658,7 +3722,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3689,7 +3753,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3720,7 +3784,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3751,7 +3815,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3782,7 +3846,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3813,7 +3877,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3844,7 +3908,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3875,7 +3939,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3906,7 +3970,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3937,7 +4001,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3968,7 +4032,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3999,7 +4063,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4030,7 +4094,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4061,7 +4125,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4092,7 +4156,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4123,7 +4187,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4154,7 +4218,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4185,7 +4249,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4216,7 +4280,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4247,7 +4311,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4278,7 +4342,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4309,7 +4373,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4340,7 +4404,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4371,7 +4435,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4402,7 +4466,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4433,7 +4497,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4464,7 +4528,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4495,7 +4559,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4526,7 +4590,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4557,7 +4621,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4588,7 +4652,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4619,7 +4683,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4650,7 +4714,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4681,7 +4745,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4712,7 +4776,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4743,7 +4807,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4774,7 +4838,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4805,7 +4869,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4836,7 +4900,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4867,7 +4931,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4898,7 +4962,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4929,7 +4993,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4960,7 +5024,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -4991,7 +5055,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5022,7 +5086,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5053,7 +5117,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5084,7 +5148,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5115,7 +5179,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5146,7 +5210,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5177,7 +5241,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5208,7 +5272,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5239,7 +5303,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5270,7 +5334,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5301,7 +5365,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5332,7 +5396,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5363,7 +5427,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5394,7 +5458,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5425,7 +5489,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5456,7 +5520,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5487,7 +5551,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5518,7 +5582,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5549,7 +5613,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5580,7 +5644,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5611,7 +5675,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5642,7 +5706,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5673,7 +5737,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5704,7 +5768,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5735,7 +5799,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5766,7 +5830,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5797,7 +5861,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5893,7 +5957,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5924,7 +5988,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5955,7 +6019,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -5986,7 +6050,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6017,7 +6081,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6048,7 +6112,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6079,7 +6143,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6110,7 +6174,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6141,7 +6205,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6203,7 +6267,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6234,7 +6298,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6265,7 +6329,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6296,7 +6360,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6327,7 +6391,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6358,7 +6422,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6389,7 +6453,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6420,7 +6484,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6451,7 +6515,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6482,7 +6546,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6513,7 +6577,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6544,7 +6608,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6575,7 +6639,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6606,7 +6670,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6637,7 +6701,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6668,7 +6732,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6699,7 +6763,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6730,7 +6794,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6761,7 +6825,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6792,7 +6856,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6823,7 +6887,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6854,7 +6918,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6885,7 +6949,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6916,7 +6980,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6947,7 +7011,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -6978,7 +7042,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7009,7 +7073,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7040,7 +7104,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7071,7 +7135,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7102,7 +7166,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7133,7 +7197,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7164,7 +7228,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7195,7 +7259,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7226,7 +7290,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7257,7 +7321,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7288,7 +7352,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7319,7 +7383,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7350,7 +7414,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7381,7 +7445,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7412,7 +7476,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7443,7 +7507,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7474,7 +7538,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7505,7 +7569,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7536,7 +7600,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7567,7 +7631,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7598,7 +7662,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7629,7 +7693,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7660,7 +7724,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7691,7 +7755,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7722,7 +7786,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7753,7 +7817,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7784,7 +7848,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7815,7 +7879,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7846,7 +7910,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7877,7 +7941,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7939,7 +8003,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -7970,7 +8034,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8001,7 +8065,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8032,7 +8096,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8063,7 +8127,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8094,7 +8158,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8125,7 +8189,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8156,7 +8220,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8187,7 +8251,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8218,7 +8282,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8249,7 +8313,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8280,7 +8344,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8311,7 +8375,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8342,7 +8406,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8373,7 +8437,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8404,7 +8468,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8435,7 +8499,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8466,7 +8530,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8497,7 +8561,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8528,7 +8592,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8559,7 +8623,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8590,7 +8654,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8621,7 +8685,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8652,7 +8716,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8683,7 +8747,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8714,7 +8778,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8745,7 +8809,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8776,7 +8840,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8807,7 +8871,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8838,7 +8902,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8869,7 +8933,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8900,7 +8964,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8931,7 +8995,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -8962,7 +9026,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": "1989-01-31",
@@ -8993,7 +9057,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9024,7 +9088,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9055,7 +9119,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9086,7 +9150,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9117,7 +9181,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9148,7 +9212,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9179,7 +9243,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9210,7 +9274,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": "2009-06-15",
       "stated_end_date": null,
@@ -9241,7 +9305,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9272,7 +9336,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9303,7 +9367,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9334,7 +9398,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9365,7 +9429,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9396,7 +9460,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9427,7 +9491,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9458,7 +9522,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9489,7 +9553,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9520,7 +9584,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9551,7 +9615,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9582,7 +9646,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9613,7 +9677,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9644,7 +9708,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9675,7 +9739,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9706,7 +9770,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9737,7 +9801,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9768,7 +9832,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9799,7 +9863,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9830,7 +9894,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9861,7 +9925,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9892,7 +9956,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9923,7 +9987,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9954,7 +10018,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -9985,7 +10049,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10016,7 +10080,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10047,7 +10111,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10078,7 +10142,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10109,7 +10173,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10140,7 +10204,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10171,7 +10235,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10202,7 +10266,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10233,7 +10297,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10264,7 +10328,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10295,7 +10359,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10326,7 +10390,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10357,7 +10421,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10388,7 +10452,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10419,7 +10483,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10450,7 +10514,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10512,7 +10576,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10543,7 +10607,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10574,7 +10638,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10605,7 +10669,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10636,7 +10700,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10667,7 +10731,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10698,7 +10762,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10729,7 +10793,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10760,7 +10824,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10791,7 +10855,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10822,7 +10886,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10853,7 +10917,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10884,7 +10948,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10915,7 +10979,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10946,7 +11010,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -10977,7 +11041,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11008,7 +11072,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11039,7 +11103,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11070,7 +11134,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11101,7 +11165,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11132,7 +11196,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11163,7 +11227,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11194,7 +11258,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11225,7 +11289,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11256,7 +11320,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11287,7 +11351,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11318,7 +11382,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11349,7 +11413,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11380,7 +11444,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11411,7 +11475,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11442,7 +11506,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11473,7 +11537,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11504,7 +11568,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": "1989-01-31",
@@ -11535,7 +11599,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11566,7 +11630,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11597,7 +11661,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11628,7 +11692,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11659,7 +11723,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11690,7 +11754,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11721,7 +11785,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11752,7 +11816,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11783,7 +11847,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11814,7 +11878,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11845,7 +11909,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11876,7 +11940,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11907,7 +11971,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11938,7 +12002,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -11969,7 +12033,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12000,7 +12064,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12031,7 +12095,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12062,7 +12126,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12093,7 +12157,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12124,7 +12188,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12155,7 +12219,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12186,7 +12250,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12217,7 +12281,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12248,7 +12312,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12279,7 +12343,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12310,7 +12374,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-17.102.txt",
         "text_sha256": "bc9aad581eca0f18004be88f16cf9ab0b81e57e4ebcf4ab1c11030d666de7d91",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/section-17.102"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/section-17.102"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12341,7 +12405,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12372,7 +12436,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-17.102.txt",
         "text_sha256": "bc9aad581eca0f18004be88f16cf9ab0b81e57e4ebcf4ab1c11030d666de7d91",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/section-17.102"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/section-17.102"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12403,7 +12467,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12434,7 +12498,7 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -12465,14 +12529,14 @@
         "signing_date": "1950-04-14",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t38-part17.txt",
         "text_sha256": "2bd2f49c2831753deb391f9ce0e66ee4295918f9e83dd2df8a5cd4163faf2f9a",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-38/part-17"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-38/part-17"
       },
       "start_date": null,
       "stated_end_date": null,
       "text": "(1) Tuition at the covered medical school for which the veteran enrolls for a period of not more than 4 years;"
     }
   },
-  "fingerprint": "cbeca30cb0501913b3180933116f93b7ac7fcf69d2150f374f0b0fdfad4e5854",
+  "fingerprint": "3b9b4a1234ab5d1b09ce6c32b504f837e4ac2ea36732e4f1c378d32b2fcc30c2",
   "instrument_id": "EO:10122",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -12593,7 +12657,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -12605,7 +12669,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -12617,8 +12681,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -12931,10 +12995,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "648b6f5a8d43fa547178689f6a1bdea6b3cae166d9c64bf5a0263f2c089265de",
+    "fingerprint": "2a8ddd9cd428e16cc31ff0a0e9d290e52f18d186a2f4b7dbef45b5d0dc0af651",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_10122.json",
-    "history_sha256": "ebe170bce685249af3684448c116645842816c4857f9bd8940a1766fce0f1c22",
+    "history_sha256": "c73cb8ef0087eb6eb811e8e9693e5c4670f64ccd1edd7accc50bf6f8fee23dda",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

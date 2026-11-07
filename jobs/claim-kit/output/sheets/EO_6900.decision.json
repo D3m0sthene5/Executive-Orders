@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "99656a5d9d36050ee7f4bc4616aa98d19a38036931a45c2158407bd8f887ae70",
+  "dossier_sha256": "de151aabb4abcec0438643cd9696071b881bb38b00d6ed459fa9a531c6bbe97f",
   "instrument_id": "EO:6900",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-11-08",
               "register_number": "6900",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6900.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6900.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6900—Amending Code of Fair Competition for the Wine Industry",
               "text_chars": 848
             },

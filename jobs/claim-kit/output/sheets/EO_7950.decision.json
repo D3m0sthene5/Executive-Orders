@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3a1260bac82ea82ddbb15684297b9534dc653231ec3cd5d2e3e58d8d516987bd",
+  "dossier_sha256": "3b46563547d10ea8aa73e89440b76b0bd17a5e149a61bb1a2afc5121410a6d9c",
   "instrument_id": "EO:7950",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-08-09",
               "register_number": "7950",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7950.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7950.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7950—Exemption of William H. Egberts From Compulsory Retirement for Age",
               "text_chars": 747
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7950",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7950.txt",
+        "text_sha256": "1d2b3e9215ba83c1bb2219a6b96dede39ef0781fc1b0f0655a4eb961ffc3149e"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7950",
@@ -130,6 +151,16 @@
         "sha256": "6a4930248a40839c54b3f3f6bbc443b7ec63e17639a35aa805be94e8c2b69fcc",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7950-6a4930248a.txt",
         "text_sha256": "78d461a01923d09db3a13a6a4f7190f435c81ea7a727ba968e4dc63749d377c0"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7950",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7950.txt",
+        "text_sha256": "66eccbc5e66ad7136bf444e2204ce6233ecbbe6db350f2d1f99730c391968df7"
       }
     ],
     "quotation_recheck_required": true,

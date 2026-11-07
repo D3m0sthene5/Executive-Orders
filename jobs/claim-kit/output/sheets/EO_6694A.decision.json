@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "f6f2422d2c07c9015e7b99e6ed70ce62b9515a20a73cb21783a48131e00e4798",
+  "dossier_sha256": "bbd1e0631a6f30335e4cf953307746346662064f539225b65960b3de3d772d22",
   "instrument_id": "EO:6694A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-05-01",
               "register_number": "6694A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6694A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6694A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6694-A—Code of Fair Competition for the Retail Rubber Tire and Battery Trade",
               "text_chars": 2931
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6694A",
+        "pages_confirmed": false,
+        "sha256": "6e742ca9b84f9695822563c1050677a034c59ac47ba31046d1f0af582f24ce8d",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6694A.txt",
+        "text_sha256": "40f93294352ba98edcfe6b3ef14c8d93d773fd41aeb5b2581dd9e1401fdaed43"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:6694A",
@@ -130,6 +151,16 @@
         "sha256": "b876c37301ab54fbb31ef2b8661a69b7fd18e9e4fa2cf96b0865d71c57808b16",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6694A-b876c37301.txt",
         "text_sha256": "b13d6e7c451ed1b3a2dd275862e8c1b045e708173780425711c71e797eace071"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6694A",
+        "pages_confirmed": false,
+        "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6694A.txt",
+        "text_sha256": "9cb4e77872ce56196bee406c31614ccefdd86b2ccf047f86f62fbb09e9e1da4b"
       }
     ],
     "quotation_recheck_required": true,

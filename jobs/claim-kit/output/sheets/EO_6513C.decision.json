@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "ea3ae06f76729889d45358185f5f1e5b5f4df01f58ae76e5b11b2438610fd1de",
+  "dossier_sha256": "afbe6a9277346e787a02187df3609bd81bb7d941cb45ee659a26f7d02aa21d28",
   "instrument_id": "EO:6513C",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-18",
               "register_number": "6513C",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6513C.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6513C.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6513-C—Code of Fair Competition for the Waxed Paper Industry",
               "text_chars": 1222
             },

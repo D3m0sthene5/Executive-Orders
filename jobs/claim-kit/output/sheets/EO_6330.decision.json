@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "d0c88febd8547839613ff9f241626c8bf3f151dc568e571493a5b264f5b2865b",
+  "dossier_sha256": "5045f44799afa897d8498c661948a6238d7a1fe8f041e02294d95244c765ae67",
   "instrument_id": "EO:6330",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-10",
               "register_number": "6330",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6330.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6330.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6330—Code of Fair Competition for the Silk Textile Industry",
               "text_chars": 1695
             },

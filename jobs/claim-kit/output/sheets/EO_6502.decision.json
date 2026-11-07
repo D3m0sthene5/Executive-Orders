@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "8f926d5e5e0f5fa376aa4a43813098a9861015f5f774e3829c506230c72d19a5",
+  "dossier_sha256": "cb866f058bade9bf148b6491d3b687dcd7e6a85640c1ed89ba07466de38b2109",
   "instrument_id": "EO:6502",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-15",
               "register_number": "6502",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6502.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6502.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6502—Code of Fair Competition for the Can Manufacturers Industry",
               "text_chars": 1865
             },

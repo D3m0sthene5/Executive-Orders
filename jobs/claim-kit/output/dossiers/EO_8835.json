@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:8835",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8835"
@@ -242,7 +242,7 @@
       "text": "Appel, chief accountant and auditor, Bureau of Internal Revenue, Treasury Department, who, during the month of October, 1941, will reach the retirement age prescribed for automatic separation from the service, applicable to him, be exempted from compulsory retirement for age for a period of one year:"
     }
   },
-  "fingerprint": "9c0a157301b870b289b7615ab6ad3b2c87a868d056d39a50b353e8a9fb76403e",
+  "fingerprint": "d4ce4ea0a2c330bb0486684846cc3b8ea839229460b2ec61e7722d286185c01f",
   "instrument_id": "EO:8835",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -274,7 +274,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -286,7 +286,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -298,8 +298,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -310,9 +310,9 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-28",
-        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 59 census orders have no held text and were not searched; 296 of 2231 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
-        "repository": "held order texts in this repository (30725 text files for 14913 of 14972 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+        "checked_on": "2026-11-07",
+        "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 85 census orders have no held text and were not searched; 302 of 2246 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+        "repository": "held order texts in this repository (30725 text files for 14913 of 14998 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
         "searched_by": "jobs/namier (machine search)"
       },
       "machine_hits_for_this_order": 0,
@@ -335,12 +335,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "ae31dae26b8a8d77cabd5cd315187f130999d066b0444870f844f107d2e8e924",
+    "fingerprint": "0d4af9790b4adb7f42dea41f7370d9a70beb4e8cb2a7e7dfabc52b882be165f7",
     "flags": [
       "EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT"
     ],
     "history_path": "jobs/status-history/output/histories/EO_8835.json",
-    "history_sha256": "680d0a143380ddd27a9c536bd84cf443b0facd2506f4a99af8675d20b8e70741",
+    "history_sha256": "e3636b80ecd425f6d1afefd9656f7cc100745f0c095a82a5584b755b23743957",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,
@@ -392,7 +392,13 @@
         "register_date": "1941-07-29",
         "register_number": "8835",
         "similarity": [],
-        "skipped_witnesses": [],
+        "skipped_witnesses": [
+          {
+            "grade": "official_printing",
+            "text_path": "jobs/photius-gpo-volumes/output/texts/EO_8835.txt",
+            "why": "grade_not_in_working_text_policy"
+          }
+        ],
         "source_heading": "Executive Order 8835—Exemption of Charles A. Appel From Compulsory Retirement for Age",
         "text_chars": 720
       },

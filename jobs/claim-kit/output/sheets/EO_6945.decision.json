@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "0709b8bf2e5a49936e7019e510f60b9b146f55d8c56e92c90fd259251db29090",
+  "dossier_sha256": "fd909df9f864d38d2095bdac8f074775bb03eb7930e72be2393ba3791580453f",
   "instrument_id": "EO:6945",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1935-01-10",
               "register_number": "6945",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6945.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6945.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6945—Amending Code of Fair Competition for the Distilled Spirits Rectifying Industry",
               "text_chars": 888
             },

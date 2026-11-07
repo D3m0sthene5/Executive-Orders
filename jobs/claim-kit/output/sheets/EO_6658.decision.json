@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "2bdceb0c0adee7d0e72fe7ea4472a314a4234d7509c27cb6211b35bb2f1f42f2",
+  "dossier_sha256": "855ca5b146baf77618ad79754b7175c522e1b029062e2e058b9f1a89402c8421",
   "instrument_id": "EO:6658",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-03-27",
               "register_number": "6658",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6658.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6658.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6658—Code of Fair Competition for the Shoe Rebuilding Trade",
               "text_chars": 1421
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6658",
+        "pages_confirmed": false,
+        "sha256": "6e742ca9b84f9695822563c1050677a034c59ac47ba31046d1f0af582f24ce8d",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6658.txt",
+        "text_sha256": "d09e9954dbc3e1bf952c269e93862407ad8f1530732880bf9e11118e5b72e68a"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:6658",
@@ -130,6 +151,16 @@
         "sha256": "65a7e6c8a570539ab3891f82900b2f1c3ca12e041c4261340dd810624352a294",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6658-65a7e6c8a5.txt",
         "text_sha256": "81dc45b6d6c9db7cf7c012191462fd9ed64190cf045fa4a10c31abc7239afe9d"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6658",
+        "pages_confirmed": false,
+        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6658.txt",
+        "text_sha256": "4078ad0fec70b517a14b349eac9a82a0e7d3b9b855e3d7265786c72d326d0215"
       }
     ],
     "quotation_recheck_required": true,

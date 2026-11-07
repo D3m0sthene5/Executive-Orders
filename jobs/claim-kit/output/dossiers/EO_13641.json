@@ -10,7 +10,7 @@
     "ACT:EO:13641>EO:13655@257d06117a5c53ee",
     "ACT:EO:13641>EO:13655@cacc6db10393b485",
     "ACT:EO:13641>EO:13655@82e6966f74e30630",
-    "ACT:EO:13641>EO:13655@5961308b92a5dbd7"
+    "ACT:EO:13641>EO:13655@f34104f309abeb92"
   ],
   "chain": {
     "confidence": "medium",
@@ -48,13 +48,13 @@
       },
       {
         "actor_id": "EO:13655",
-        "char_end": 3170,
-        "char_start": 3052,
+        "char_end": 2848,
+        "char_start": 2731,
         "confidence": "medium",
         "how_named": "direct",
         "id": "CHAIN:EO:13641#2",
         "notes": "Change wording lead; chronology does not decide legal effect.",
-        "provision_text": "Executive Order 13641 of April 5, 2013, \nis superseded as of the effective dates specified in section 7 of this order.",
+        "provision_text": "Executive Order 13641 of April 5, 2013,\nis superseded as of the effective dates specified in section 7 of this order.",
         "sections_touched": [
           "section 7"
         ],
@@ -64,12 +64,12 @@
           "filing_date": null,
           "grade": "held_text_lead",
           "instrument_id": "EO:13655",
-          "page_or_item": "78 FR 80451, PDF pages 1-12",
+          "page_or_item": "78 FR 80451-80462 (PDF pp. 1-12)",
           "requires_page_check": false,
           "sha256": "5b229fa0acde6f5b918db786e6ed005361ae263cc9485fb91054d9e3a24134bf",
           "signing_date": "2013-12-23",
-          "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13655-5b229fa0ac.txt",
-          "text_sha256": "c76af8ffb9ba683aba35c797dd460a9c4b8b409f730289e84ec258d0c0db7143",
+          "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13655-5b229fa0ac.txt",
+          "text_sha256": "05cc7a2ce61bc6893ce899187a006eb5d7b3eb8ec104e703e0eb663f044f0e45",
           "url": "https://www.govinfo.gov/content/pkg/FR-2013-12-31/pdf/2013-31445.pdf"
         },
         "verb": "supersede"
@@ -128,7 +128,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13641",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13641"
@@ -773,8 +773,67 @@
       "text": "SCHEDULE 10--ADMINISTRATIVE LAW JUDGES \nRate \n24.69% \n19.29% \n24.80% \n16.98% \n25.10% \n18.55% \n18.68% \n17.16% \n20.67% \n16.24% \n22.52% \n24.09% \n25.82% \n16.51% \n28.71% \n16.02% \n14.68% \n27.16% \n20.79% \n18.10% \n20.96% \n28.72% \n21.79% \n16.76% \n16.37% \n20.35% \n17.64% \n16.47% \n22.20% \n24.19% \n35.15% \n21.81% \n24.22% \n14.16% \n(Effective on the first day of the first applicable pay period \nbeginning on or after January 1, 2013) \nAL-3/A \nAL-3/B \nAL-3/C \nAL-3/D \nAL-3/E \nAL-3/F \nAL-2 \nAL-1 . \n$103,900 \n111,800 \n119,900 \n127,800 \n135,900 \n143,700 \n151,800 \n155,500"
     }
   ],
-  "conflicts": [],
-  "current_law_leads": [],
+  "conflicts": [
+    {
+      "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
+      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 5 U.S.C. 5332 nt"
+    }
+  ],
+  "current_law_leads": [
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13641",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 5 U.S.C. 5332 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2827",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "301625-301717",
+      "snippet": "2013 Apr. 5 | EO 13641 | 5 U.S.C. 5332 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 5 U.S.C. 5332 nt"
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2827",
+        "snippet": "2013 Apr. 5 | EO 13641 | 5 U.S.C. 5332 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 5 U.S.C. 5332 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 5 U.S.C. 5332 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
+    }
+  ],
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
@@ -801,7 +860,8 @@
     "DRAFT: state_at_cutoff not decided for 15 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 5 U.S.C. 5332 nt"
   ],
   "evidence": {
     "ACT:EO:13641>EO:13655": {
@@ -994,48 +1054,48 @@
             "filing_date": null,
             "grade": "held_text_lead",
             "instrument_id": "EO:13655",
-            "page_or_item": "78 FR 80451, PDF pages 1-12",
+            "page_or_item": "78 FR 80451-80462 (PDF pp. 1-12)",
             "requires_page_check": false,
             "sha256": "5b229fa0acde6f5b918db786e6ed005361ae263cc9485fb91054d9e3a24134bf",
             "signing_date": "2013-12-23",
-            "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13655-5b229fa0ac.txt",
-            "text_sha256": "c76af8ffb9ba683aba35c797dd460a9c4b8b409f730289e84ec258d0c0db7143",
+            "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13655-5b229fa0ac.txt",
+            "text_sha256": "05cc7a2ce61bc6893ce899187a006eb5d7b3eb8ec104e703e0eb663f044f0e45",
             "url": "https://www.govinfo.gov/content/pkg/FR-2013-12-31/pdf/2013-31445.pdf"
           },
-          "char_end": 3170,
-          "char_start": 3052,
+          "char_end": 2848,
+          "char_start": 2731,
           "confidence": "medium",
           "effective_class": "agency_variable",
           "effective_date": null,
           "effective_wording": [
             {
-              "char_end": 2555,
-              "char_start": 2539,
+              "char_end": 2515,
+              "char_start": 2499,
               "text": "Effective Dates."
             },
             {
-              "char_end": 2596,
-              "char_start": 2556,
+              "char_end": 2556,
+              "char_start": 2516,
               "text": "Schedule 8 is effective January 1, 2014."
             },
             {
-              "char_end": 2740,
-              "char_start": 2597,
-              "text": "The other \nschedules contained herein are effective on the first day of the first applicable \npay period beginning on or after January 1, 2014."
+              "char_end": 2698,
+              "char_start": 2557,
+              "text": "The other\nschedules contained herein are effective on the first day of the first applicable\npay period beginning on or after January 1, 2014."
             },
             {
-              "char_end": 3170,
-              "char_start": 3052,
-              "text": "Executive Order 13641 of April 5, 2013, \nis superseded as of the effective dates specified in section 7 of this order."
+              "char_end": 2848,
+              "char_start": 2731,
+              "text": "Executive Order 13641 of April 5, 2013,\nis superseded as of the effective dates specified in section 7 of this order."
             }
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:13641>EO:13655@5961308b92a5dbd7",
+          "id": "ACT:EO:13641>EO:13655@f34104f309abeb92",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective date depends on agency, publication or an unstated event.",
           "provision_label": "Sec. 8.",
-          "provision_text": "Executive Order 13641 of April 5, 2013, \nis superseded as of the effective dates specified in section 7 of this order.",
+          "provision_text": "Executive Order 13641 of April 5, 2013,\nis superseded as of the effective dates specified in section 7 of this order.",
           "reaches_target_via": "",
           "savings_phrases": [],
           "scope": "partial",
@@ -1242,76 +1302,6 @@
       "text": "Executive Order 13641 of April 5, 2013, \nis superseded as of the effective dates specified in section 7 of this order.",
       "verb": "supersede"
     },
-    "ACT:EO:13641>EO:13655@5961308b92a5dbd7": {
-      "actor_id": "EO:13655",
-      "actor_source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13655",
-        "page_or_item": "78 FR 80451, PDF pages 1-12",
-        "requires_page_check": false,
-        "sha256": "5b229fa0acde6f5b918db786e6ed005361ae263cc9485fb91054d9e3a24134bf",
-        "signing_date": "2013-12-23",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13655-5b229fa0ac.txt",
-        "text_sha256": "c76af8ffb9ba683aba35c797dd460a9c4b8b409f730289e84ec258d0c0db7143",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2013-12-31/pdf/2013-31445.pdf"
-      },
-      "char_end": 3170,
-      "char_start": 3052,
-      "confidence": "medium",
-      "effective_class": "agency_variable",
-      "effective_date": null,
-      "effective_wording": [
-        {
-          "char_end": 2555,
-          "char_start": 2539,
-          "text": "Effective Dates."
-        },
-        {
-          "char_end": 2596,
-          "char_start": 2556,
-          "text": "Schedule 8 is effective January 1, 2014."
-        },
-        {
-          "char_end": 2740,
-          "char_start": 2597,
-          "text": "The other \nschedules contained herein are effective on the first day of the first applicable \npay period beginning on or after January 1, 2014."
-        },
-        {
-          "char_end": 3170,
-          "char_start": 3052,
-          "text": "Executive Order 13641 of April 5, 2013, \nis superseded as of the effective dates specified in section 7 of this order."
-        }
-      ],
-      "exceptions_text": [],
-      "filing_date": null,
-      "id": "ACT:EO:13641>EO:13655@5961308b92a5dbd7",
-      "names_target": true,
-      "notes": "Machine lead only; no legal ending or revival asserted. Effective date depends on agency, publication or an unstated event.",
-      "provision_label": "Sec. 8.",
-      "provision_text": "Executive Order 13641 of April 5, 2013, \nis superseded as of the effective dates specified in section 7 of this order.",
-      "reaches_target_via": "",
-      "savings_phrases": [],
-      "scope": "partial",
-      "signing_date": "2013-12-23",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13655",
-        "page_or_item": "78 FR 80451, PDF pages 1-12",
-        "requires_page_check": false,
-        "sha256": "5b229fa0acde6f5b918db786e6ed005361ae263cc9485fb91054d9e3a24134bf",
-        "signing_date": "2013-12-23",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13655-5b229fa0ac.txt",
-        "text_sha256": "c76af8ffb9ba683aba35c797dd460a9c4b8b409f730289e84ec258d0c0db7143",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2013-12-31/pdf/2013-31445.pdf"
-      },
-      "target_id": "EO:13641",
-      "text": "Executive Order 13641 of April 5, 2013, \nis superseded as of the effective dates specified in section 7 of this order.",
-      "verb": "supersede"
-    },
     "ACT:EO:13641>EO:13655@82e6966f74e30630": {
       "actor_id": "EO:13655",
       "actor_source": {
@@ -1452,6 +1442,76 @@
       },
       "target_id": "EO:13641",
       "text": "Executive Order 13641 of April 5, 2013, \nis superseded as of the effective dates specified in section 7 of this order.",
+      "verb": "supersede"
+    },
+    "ACT:EO:13641>EO:13655@f34104f309abeb92": {
+      "actor_id": "EO:13655",
+      "actor_source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13655",
+        "page_or_item": "78 FR 80451-80462 (PDF pp. 1-12)",
+        "requires_page_check": false,
+        "sha256": "5b229fa0acde6f5b918db786e6ed005361ae263cc9485fb91054d9e3a24134bf",
+        "signing_date": "2013-12-23",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13655-5b229fa0ac.txt",
+        "text_sha256": "05cc7a2ce61bc6893ce899187a006eb5d7b3eb8ec104e703e0eb663f044f0e45",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2013-12-31/pdf/2013-31445.pdf"
+      },
+      "char_end": 2848,
+      "char_start": 2731,
+      "confidence": "medium",
+      "effective_class": "agency_variable",
+      "effective_date": null,
+      "effective_wording": [
+        {
+          "char_end": 2515,
+          "char_start": 2499,
+          "text": "Effective Dates."
+        },
+        {
+          "char_end": 2556,
+          "char_start": 2516,
+          "text": "Schedule 8 is effective January 1, 2014."
+        },
+        {
+          "char_end": 2698,
+          "char_start": 2557,
+          "text": "The other\nschedules contained herein are effective on the first day of the first applicable\npay period beginning on or after January 1, 2014."
+        },
+        {
+          "char_end": 2848,
+          "char_start": 2731,
+          "text": "Executive Order 13641 of April 5, 2013,\nis superseded as of the effective dates specified in section 7 of this order."
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:13641>EO:13655@f34104f309abeb92",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending or revival asserted. Effective date depends on agency, publication or an unstated event.",
+      "provision_label": "Sec. 8.",
+      "provision_text": "Executive Order 13641 of April 5, 2013,\nis superseded as of the effective dates specified in section 7 of this order.",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": "2013-12-23",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13655",
+        "page_or_item": "78 FR 80451-80462 (PDF pp. 1-12)",
+        "requires_page_check": false,
+        "sha256": "5b229fa0acde6f5b918db786e6ed005361ae263cc9485fb91054d9e3a24134bf",
+        "signing_date": "2013-12-23",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13655-5b229fa0ac.txt",
+        "text_sha256": "05cc7a2ce61bc6893ce899187a006eb5d7b3eb8ec104e703e0eb663f044f0e45",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2013-12-31/pdf/2013-31445.pdf"
+      },
+      "target_id": "EO:13641",
+      "text": "Executive Order 13641 of April 5, 2013,\nis superseded as of the effective dates specified in section 7 of this order.",
       "verb": "supersede"
     },
     "ACTOR_TEXT:EO:13655": {
@@ -2225,7 +2285,7 @@
       "text": "SCHEDULE 8--PAY OF THE UNIFORMED SERVICES \n(Effective January 1, 2013) \nPart I--MONTHLY BASIC PAY \nYEARS OF SERVICE (COMPUTED UNDER 37 U.S.C. 205) \nOver 4 Over 6 Over 8 Over 10 \nCOMMISSIONED OFFICERS \n$10,444.20 $10,711.50 $11,157.60 $11,261.40 \n8,878.50 9,131.70 9,381.90 9,671.10 \n7,100.10 7,127.10 7,432.80 7,473.00 \n6,164.10 6,410.10 6,557.10 6,880.80 \n5,461.80 5,774.70 6,109.80 6,527.70 \n5,116.50 5,361.60 5,630.70 5,804.70 \n4,493.70 4,586.40 4,586.40 4,586.40 \n3,619.20 3,619.20 3,619.20 3,619.20 \nOver 12 \n$11,685.00 \n9,959.40 \n7,473.00 \n7,118.40 \n6,852.90 \n6,090.60 \n4,586.40 \n3,619.20 \nCOMMISSIONED OFFICERS WITH OVER 4 YEARS ACTIVE DUTY SERVICE \nAS AN ENLISTED MEMBER OR WARRANT OFFICER**** \n$5,116.50 $5,361. 60 $5,630.70 $5,804.70 $6,090.60 \n4,493.70 4,586.40 4,732.50 4,978.80 5,169.30 \n3,619.20 3,864.60 4,007.70 4,153.80 4,297.20 \nWARRANT OFFICERS \n$4,386.00 $4,506.60 $4,713.90 $4,919.10 $5,126.70 $5,439.60 \n3,925.20 3,975.90 4,138.20 4,457.10 4,789.20 4,945.50 \n3,599.40 3,663.30 3,871.20 4,194.00 4,353.90 4,511.40 \n3,195.30 3,367.50 3,570.90 3,870.60 4,010.40 4,205.70 \nOver 14 Over 16 Over 18 \n$11,806.50 $12,171.60 $12,700.20 \n10,248.60 11,157.60 11,924.70 \n7,897.80 8,648.70 9,089.40 \n7,425.30 7,895.10 8,118.00 \n7,078.80 7,208.70 7,283.70 \n6,240.00 6,240.00 6,240.00 \n4,586.40 4,586.40 4,586.40 \n3,619.20 3,619.20 3,619.20 \n$6,332.10 $6,470.70 $6,659.40 \n5,311.20 5,311.20 5,311.20 \n4,493.70 4,493.70 4,493.70 \n$5,713.50 $5,974.20 $6,187.50 \n5,126.40 5,313.00 5,648.10 \n4,704.00 4,854.30 4,990.80 \n4,398.30 4,549.80 4,689.00 \nFor officers at pay grades 0-7 through 0-10, basic pay is limited to the rate of basic pay for level II of the Executive Schedule, which is \n$14,975.10 per month."
     }
   },
-  "fingerprint": "19be442b4e92951550d39d8e4b367131fe7f902f825edabc9b727b187252268d",
+  "fingerprint": "b2773ba0f47ada38f02d2a4192f40279c5be35dbc38415c9e1e29aa0079a55b9",
   "instrument_id": "EO:13641",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2774,7 +2834,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2786,7 +2846,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2798,8 +2858,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2808,7 +2868,10 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [],
+  "missing": [
+    "Current-law lead lacks an original-source sha256.",
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
+  ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:13641",
   "own_terms": [
@@ -2819,10 +2882,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "364b1f9a558ee83e4baeae636962c50d543ca2be1a17013ff096fca1f72bc709",
+    "fingerprint": "66495d244592b0fef43d0cc27e3e7139353851bcabd005bca93f3e8392260dbb",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13641.json",
-    "history_sha256": "efadf4c246638b13e1660bbbff4510f1a6353d98d99f76bb0cfddef8ec607940",
+    "history_sha256": "4274aa8dfef89d0ee61c5ba00f63c2bbace8e1beb3e8a3ff9262bf290dff43e0",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "6f8e393bf3fff2a85db5ec47c8cc99fb89d21eb2906f0ebb182a9102f2106ee1",
+  "dossier_sha256": "e8efde89cea3eb9db890efb45799e3ab70e465f41751fa6ca2359799c2a3f980",
   "instrument_id": "EO:6543F",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-30",
               "register_number": "6543F",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6543F.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6543F.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6543-F—Code of Fair Competition for the Cotton Cloth Glove Manufacturing Industry",
               "text_chars": 1252
             },

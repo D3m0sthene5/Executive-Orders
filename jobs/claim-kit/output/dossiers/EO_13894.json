@@ -117,7 +117,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13894",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13894"
@@ -1268,7 +1268,12 @@
       "text": "(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 7 later event(s) end part of it: ? suspension 2020-06-05 (scope: not stated); ? suspension 2020-06-25 (scope: not stated); ? suspension 2020-06-26 (scope: not stated); ? suspension 2020-09-01 (scope: not stated); ? suspension 2025-01-15 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "cfr_text_reference",
@@ -1369,15 +1374,41 @@
       "snippet": "Delegation of certain authorities of the Secretary of the Treasury. | Treasury is authorized to take pursuant to Executive Order 13894 of October 14, 2019 (E.O. 13894)",
       "source": {
         "page_or_item": "31 CFR 569.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 2)",
-        "sha256": "aa0b9e4deb2e03b66872f63b77b44c875995d871df2168ad21343ec317e1e3c4",
+        "sha256": "c54607bfc477b464e231fbc1ed665000599a718f8db8279735db1166083cd3a8",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=2"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR 569.802"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13894",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3048",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "324780-324875",
+      "snippet": "2019 Oct. 14 | EO 13894 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1405,7 +1436,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1433,7 +1465,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1461,7 +1494,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1510,8 +1544,36 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 569.802)",
         "source": {
           "page_or_item": "31 CFR 569.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 2)",
-          "sha256": "aa0b9e4deb2e03b66872f63b77b44c875995d871df2168ad21343ec317e1e3c4",
+          "sha256": "c54607bfc477b464e231fbc1ed665000599a718f8db8279735db1166083cd3a8",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=2"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3048",
+        "snippet": "2019 Oct. 14 | EO 13894 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -1544,6 +1606,9 @@
     "clause_24_state",
     "clause_25_state",
     "clause_26_state",
+    "clause_27_state",
+    "clause_28_state",
+    "clause_29_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -1551,10 +1616,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 27 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 30 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 7 later event(s) end part of it: ? suspension 2020-06-05 (scope: not stated); ? suspension 2020-06-25 (scope: not stated); ? suspension 2020-06-26 (scope: not stated); ? suspension 2020-09-01 (scope: not stated); ? suspension 2025-01-15 (scope: not stated)"
   ],
   "evidence": {
     "ACT:EO:13894>EO:14142": {
@@ -3319,37 +3385,6 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
-    "TERM:EO:13894:32144bb0e686e997@ced996ac16c37adb": {
-      "actor_id": "EO:13894",
-      "char_end": 17003,
-      "char_start": 16885,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13894:32144bb0e686e997@ced996ac16c37adb",
-      "instrument_id": "EO:13894",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13894#sec12-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13894",
-        "page_or_item": "84 FR 55851, PDF pages 1-5",
-        "requires_page_check": false,
-        "sha256": "801caa6189ab356f55613d6c59fd5897bb0bbd3fe6512cf7906847bd1a841749",
-        "signing_date": "2019-10-14",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13894-801caa6189.txt",
-        "text_sha256": "ced996ac16c37adb3e944d4cd3a549bd8c73af6dd559c1f08d1a46309469653c",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2019-10-17/pdf/2019-22849.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
-    },
     "TERM:EO:13894:38d6bc94d6e18936@4d225cbaf81cc3f8": {
       "actor_id": "EO:13894",
       "char_end": 7495,
@@ -3373,37 +3408,6 @@
         "signing_date": "2019-10-14",
         "text_path": "jobs/fr-originals/output/texts/EO_13894.txt",
         "text_sha256": "4d225cbaf81cc3f867cdb4321591ee9261ff02953d99b01e71f8e808ba2a2a8d",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2019-10-17/pdf/2019-22849.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(ii) prohibit any transactions in foreign exchange that are subject to the \njurisdiction of the United States and in which the sanctioned person \nhas any interest;"
-    },
-    "TERM:EO:13894:38d6bc94d6e18936@ced996ac16c37adb": {
-      "actor_id": "EO:13894",
-      "char_end": 6882,
-      "char_start": 6719,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13894:38d6bc94d6e18936@ced996ac16c37adb",
-      "instrument_id": "EO:13894",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13894#sec2-i-ii-dup3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13894",
-        "page_or_item": "84 FR 55851, PDF pages 1-5",
-        "requires_page_check": false,
-        "sha256": "801caa6189ab356f55613d6c59fd5897bb0bbd3fe6512cf7906847bd1a841749",
-        "signing_date": "2019-10-14",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13894-801caa6189.txt",
-        "text_sha256": "ced996ac16c37adb3e944d4cd3a549bd8c73af6dd559c1f08d1a46309469653c",
         "url": "https://www.govinfo.gov/content/pkg/FR-2019-10-17/pdf/2019-22849.pdf"
       },
       "start_date": null,
@@ -3507,14 +3511,45 @@
       "stated_end_date": null,
       "text": "(iii) prohibit any transfers of credit or payments between banking institu-\ntions or by, through, or to any banking institution, to the extent that \nVerDate Sep<11>2014 19:36 Oct 16, 2019 Jkt 250001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\17OCE0.SGM 17OCE0\n=== PDF page 3 of 5 ===\n55853 Federal Register / Vol. 84, No. 201 / Thursday, October 17, 2019 / Presidential Documents \nsuch transfers or payments are subject to the jurisdiction of the United \nStates and involve any interest of the sanctioned person;"
     },
-    "TERM:EO:13894:5569798bbee613b4@ced996ac16c37adb": {
+    "TERM:EO:13894:5e5cd244d44c6be6@190f9256db938be9": {
       "actor_id": "EO:13894",
-      "char_end": 7400,
-      "char_start": 6884,
+      "char_end": 6387,
+      "char_start": 6064,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13894:5569798bbee613b4@ced996ac16c37adb",
+      "id": "TERM:EO:13894:5e5cd244d44c6be6@190f9256db938be9",
+      "instrument_id": "EO:13894",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13894#sec2-i-dup3",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13894",
+        "page_or_item": "84 FR 55851-55855 (PDF pp. 1-5)",
+        "requires_page_check": false,
+        "sha256": "801caa6189ab356f55613d6c59fd5897bb0bbd3fe6512cf7906847bd1a841749",
+        "signing_date": "2019-10-14",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13894-801caa6189.txt",
+        "text_sha256": "190f9256db938be9eb4310c258bb4d926072b75476c13e7004fbfaa819213a83",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2019-10-17/pdf/2019-22849.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(i) prohibit any United States financial institution that is a U.S. person\nfrom making loans or providing credits to the sanctioned person totaling\nmore than $10,000,000 in any 12-month period, unless such person is\nengaged in activities to relieve human suffering and the loans or credits\nare provided for such activities;"
+    },
+    "TERM:EO:13894:7fab50888286ff86@190f9256db938be9": {
+      "actor_id": "EO:13894",
+      "char_end": 6828,
+      "char_start": 6550,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13894:7fab50888286ff86@190f9256db938be9",
       "instrument_id": "EO:13894",
       "kind": "condition",
       "mechanism": "own_terms_condition",
@@ -3526,17 +3561,17 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13894",
-        "page_or_item": "84 FR 55851, PDF pages 1-5",
+        "page_or_item": "84 FR 55851-55855 (PDF pp. 1-5)",
         "requires_page_check": false,
         "sha256": "801caa6189ab356f55613d6c59fd5897bb0bbd3fe6512cf7906847bd1a841749",
         "signing_date": "2019-10-14",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13894-801caa6189.txt",
-        "text_sha256": "ced996ac16c37adb3e944d4cd3a549bd8c73af6dd559c1f08d1a46309469653c",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13894-801caa6189.txt",
+        "text_sha256": "190f9256db938be9eb4310c258bb4d926072b75476c13e7004fbfaa819213a83",
         "url": "https://www.govinfo.gov/content/pkg/FR-2019-10-17/pdf/2019-22849.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(iii) prohibit any transfers of credit or payments between banking institu-\ntions or by, through, or to any banking institution, to the extent that \nVerDate Sep<11>2014 19:36 Oct 16, 2019 Jkt 250001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\17OCE0.SGM 17OCE0\n=== PDF page 3 of 5 ===\n55853 Federal Register / Vol. 84, No. 201 / Thursday, October 17, 2019 / Presidential Documents \nsuch transfers or payments are subject to the jurisdiction of the United \nStates and involve any interest of the sanctioned person;"
+      "text": "(iii) prohibit any transfers of credit or payments between banking institu-\ntions or by, through, or to any banking institution, to the extent that\nsuch transfers or payments are subject to the jurisdiction of the United\nStates and involve any interest of the sanctioned person;"
     },
     "TERM:EO:13894:84f10b21581393ca@4d225cbaf81cc3f8": {
       "actor_id": "EO:13894",
@@ -3567,14 +3602,14 @@
       "stated_end_date": null,
       "text": "Such persons shall be treated in the same manner \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
     },
-    "TERM:EO:13894:84f10b21581393ca@ced996ac16c37adb": {
+    "TERM:EO:13894:850c330cb08a3302@190f9256db938be9": {
       "actor_id": "EO:13894",
-      "char_end": 11167,
-      "char_start": 10900,
+      "char_end": 10544,
+      "char_start": 10280,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13894:84f10b21581393ca@ced996ac16c37adb",
+      "id": "TERM:EO:13894:850c330cb08a3302@190f9256db938be9",
       "instrument_id": "EO:13894",
       "kind": "condition",
       "mechanism": "own_terms_condition",
@@ -3586,17 +3621,48 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13894",
-        "page_or_item": "84 FR 55851, PDF pages 1-5",
+        "page_or_item": "84 FR 55851-55855 (PDF pp. 1-5)",
         "requires_page_check": false,
         "sha256": "801caa6189ab356f55613d6c59fd5897bb0bbd3fe6512cf7906847bd1a841749",
         "signing_date": "2019-10-14",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13894-801caa6189.txt",
-        "text_sha256": "ced996ac16c37adb3e944d4cd3a549bd8c73af6dd559c1f08d1a46309469653c",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13894-801caa6189.txt",
+        "text_sha256": "190f9256db938be9eb4310c258bb4d926072b75476c13e7004fbfaa819213a83",
         "url": "https://www.govinfo.gov/content/pkg/FR-2019-10-17/pdf/2019-22849.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "Such persons shall be treated in the same manner \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
+      "text": "Such persons shall be treated in the same manner\nas persons covered by section 1 of Proclamation 8693 of July 24, 2011\n(Suspension of Entry of Aliens Subject to United Nations Security Council\nTravel Bans and International Emergency Economic Powers Act Sanctions)."
+    },
+    "TERM:EO:13894:8ca230a21b8fb2c5@190f9256db938be9": {
+      "actor_id": "EO:13894",
+      "char_end": 15832,
+      "char_start": 15715,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13894:8ca230a21b8fb2c5@190f9256db938be9",
+      "instrument_id": "EO:13894",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13894#sec12-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13894",
+        "page_or_item": "84 FR 55851-55855 (PDF pp. 1-5)",
+        "requires_page_check": false,
+        "sha256": "801caa6189ab356f55613d6c59fd5897bb0bbd3fe6512cf7906847bd1a841749",
+        "signing_date": "2019-10-14",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13894-801caa6189.txt",
+        "text_sha256": "190f9256db938be9eb4310c258bb4d926072b75476c13e7004fbfaa819213a83",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2019-10-17/pdf/2019-22849.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     },
     "TERM:EO:13894:ac519b3938b8ecb1@4d225cbaf81cc3f8": {
       "actor_id": "EO:13894",
@@ -3627,36 +3693,36 @@
       "stated_end_date": null,
       "text": "(i) prohibit any United States financial institution that is a U.S. person \nfrom making loans or providing credits to the sanctioned person totaling \nmore than $10,000,000 in any 12-month period, unless such person is \nengaged in activities to relieve human suffering and the loans or credits \nare provided for such activities;"
     },
-    "TERM:EO:13894:ac519b3938b8ecb1@ced996ac16c37adb": {
+    "TERM:EO:13894:d2958ae21cb8eb3e@190f9256db938be9": {
       "actor_id": "EO:13894",
-      "char_end": 6717,
-      "char_start": 6390,
+      "char_end": 6549,
+      "char_start": 6388,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13894:ac519b3938b8ecb1@ced996ac16c37adb",
+      "id": "TERM:EO:13894:d2958ae21cb8eb3e@190f9256db938be9",
       "instrument_id": "EO:13894",
       "kind": "condition",
       "mechanism": "own_terms_condition",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13894#sec2-i-dup3",
+      "scope_id": "EO:13894#sec2-i-ii-dup3",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13894",
-        "page_or_item": "84 FR 55851, PDF pages 1-5",
+        "page_or_item": "84 FR 55851-55855 (PDF pp. 1-5)",
         "requires_page_check": false,
         "sha256": "801caa6189ab356f55613d6c59fd5897bb0bbd3fe6512cf7906847bd1a841749",
         "signing_date": "2019-10-14",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13894-801caa6189.txt",
-        "text_sha256": "ced996ac16c37adb3e944d4cd3a549bd8c73af6dd559c1f08d1a46309469653c",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13894-801caa6189.txt",
+        "text_sha256": "190f9256db938be9eb4310c258bb4d926072b75476c13e7004fbfaa819213a83",
         "url": "https://www.govinfo.gov/content/pkg/FR-2019-10-17/pdf/2019-22849.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(i) prohibit any United States financial institution that is a U.S. person \nfrom making loans or providing credits to the sanctioned person totaling \nmore than $10,000,000 in any 12-month period, unless such person is \nengaged in activities to relieve human suffering and the loans or credits \nare provided for such activities;"
+      "text": "(ii) prohibit any transactions in foreign exchange that are subject to the\njurisdiction of the United States and in which the sanctioned person\nhas any interest;"
     },
     "TERM:EO:13894:d99f79f2f725a57a@b6f682ed5e38b10d": {
       "actor_id": "EO:13894",
@@ -3761,7 +3827,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "3239c3e4c59550a46bc51907dad3d944ab99bed99d4c157c3665f0155c26c390",
+  "fingerprint": "b282bbc4292470f42c68420e643da89ded0e36051776e2bb5c40eeea713975e3",
   "instrument_id": "EO:13894",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -4061,7 +4127,7 @@
       "later_actor_evidence_ids": [],
       "own_term_evidence_ids": [
         "TERM:EO:13894:ac519b3938b8ecb1@4d225cbaf81cc3f8",
-        "TERM:EO:13894:ac519b3938b8ecb1@ced996ac16c37adb"
+        "TERM:EO:13894:5e5cd244d44c6be6@190f9256db938be9"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -4083,7 +4149,7 @@
       "later_actor_evidence_ids": [],
       "own_term_evidence_ids": [
         "TERM:EO:13894:38d6bc94d6e18936@4d225cbaf81cc3f8",
-        "TERM:EO:13894:38d6bc94d6e18936@ced996ac16c37adb"
+        "TERM:EO:13894:d2958ae21cb8eb3e@190f9256db938be9"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -4103,7 +4169,7 @@
       "later_actor_evidence_ids": [],
       "own_term_evidence_ids": [
         "TERM:EO:13894:5569798bbee613b4@4d225cbaf81cc3f8",
-        "TERM:EO:13894:5569798bbee613b4@ced996ac16c37adb"
+        "TERM:EO:13894:7fab50888286ff86@190f9256db938be9"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -4250,7 +4316,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13894:84f10b21581393ca@4d225cbaf81cc3f8",
         "TERM:EO:13894:481e7d4a0e985551@b6f682ed5e38b10d",
-        "TERM:EO:13894:84f10b21581393ca@ced996ac16c37adb"
+        "TERM:EO:13894:850c330cb08a3302@190f9256db938be9"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -4556,7 +4622,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13894:32144bb0e686e997@4d225cbaf81cc3f8",
         "TERM:EO:13894:f33d891d5a291c0e@b6f682ed5e38b10d",
-        "TERM:EO:13894:32144bb0e686e997@ced996ac16c37adb"
+        "TERM:EO:13894:8ca230a21b8fb2c5@190f9256db938be9"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -4588,7 +4654,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -4600,7 +4666,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -4612,8 +4678,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -4623,6 +4689,11 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2020-10-08",
+    "Acting identity absent from census: NOTICE:2021-10-06",
+    "Acting identity absent from census: NOTICE:2022-10-12",
+    "Acting identity absent from census: NOTICE:2023-10-12",
+    "Acting identity absent from census: NOTICE:2024-10-10",
     "Acting identity absent from census: NOTICE:2025-09-30",
     "Acting identity absent from census: NOTICE:2026-09-30",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
@@ -4643,19 +4714,19 @@
     "TERM:EO:13894:d99f79f2f725a57a@b6f682ed5e38b10d",
     "TERM:EO:13894:481e7d4a0e985551@b6f682ed5e38b10d",
     "TERM:EO:13894:f33d891d5a291c0e@b6f682ed5e38b10d",
-    "TERM:EO:13894:ac519b3938b8ecb1@ced996ac16c37adb",
-    "TERM:EO:13894:38d6bc94d6e18936@ced996ac16c37adb",
-    "TERM:EO:13894:5569798bbee613b4@ced996ac16c37adb",
-    "TERM:EO:13894:84f10b21581393ca@ced996ac16c37adb",
-    "TERM:EO:13894:32144bb0e686e997@ced996ac16c37adb"
+    "TERM:EO:13894:5e5cd244d44c6be6@190f9256db938be9",
+    "TERM:EO:13894:d2958ae21cb8eb3e@190f9256db938be9",
+    "TERM:EO:13894:7fab50888286ff86@190f9256db938be9",
+    "TERM:EO:13894:850c330cb08a3302@190f9256db938be9",
+    "TERM:EO:13894:8ca230a21b8fb2c5@190f9256db938be9"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "612f55997e15309019e39d4967e17cde153d3fa89a8a33643c5641c3f4788b10",
+    "fingerprint": "b8a0adb0f178b8f85937e4df9a7d44d699641e548bcf4ad93b5a090d19b10e88",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13894.json",
-    "history_sha256": "5d227445ac3c18571b3edfe83844503bd3fe8a1956e21ed6392c4bf75da2fdf1",
+    "history_sha256": "0f6a94fa6944964041e13b68660d0d1a298d2fa18abb4e1ecfa7797f7360800f",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

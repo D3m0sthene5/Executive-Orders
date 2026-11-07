@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "850e54122a791afe62c79365f9634e25a992dfff3189236d53caec8ddde4cb7a",
+  "dossier_sha256": "336443b1dfbbeaaf940af138f5d76494d0c181e4fa4b24091748973331a0b125",
   "instrument_id": "EO:8019",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-12-02",
               "register_number": "8019",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_8019.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_8019.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 8019—Exemption of George M. Lewis From Compulsory Retirement for Age",
               "text_chars": 716
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8019",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_8019.txt",
+        "text_sha256": "a33374c0ea66c6ef80080f03222e30ed7ac6b785e64d211d439b24a46568757c"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:8019",
@@ -130,6 +151,16 @@
         "sha256": "13fc060265ac03224befeb22987865b66ee8b70809f26f40a7bd40005c7ded76",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-8019-13fc060265.txt",
         "text_sha256": "46b1c15af51072eff0767acc9961399b0615798635de0e625966758a340ca88e"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8019",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8019.txt",
+        "text_sha256": "884b0c2ed5fdb66b734b0af901289f1c17700c64c2046f120fa83d010ce62c94"
       }
     ],
     "quotation_recheck_required": true,

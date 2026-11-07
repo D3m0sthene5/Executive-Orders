@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "aad9c08190fcb5c6066c29c85f5f5240c37956edc50ba57b139569af8b34f830",
+  "dossier_sha256": "b93bce8d0382ee01a772ee0f5b5854bb2484a62eb68c9ea1b8c79c981c9b3d9b",
   "instrument_id": "EO:6382",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-01",
               "register_number": "6382",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6382.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6382.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6382—Code of Fair Competition for the Rock Crusher Manufacturing Industry",
               "text_chars": 1162
             },

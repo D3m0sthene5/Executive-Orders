@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:11825",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11825"
@@ -36,7 +36,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 3 U.S.C. 301 note"
+      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 3 U.S.C. 301 note; USC 3 U.S.C. 301 nt"
     },
     {
       "code": "NO_ORDER_IN_FORCE_ON_1989_01_20",
@@ -66,6 +66,31 @@
       "where": "USC 3 U.S.C. 301 note"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11825",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 3 U.S.C. 301 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1026",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "114796-114889",
+      "snippet": "1974 Dec. 31 | EO 11825 | 3 U.S.C. 301 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 3 U.S.C. 301 nt"
+    },
+    {
       "custody_records_in": [
         "current-law"
       ],
@@ -90,6 +115,34 @@
           "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 10289. Delegation of Functions to Secretary of the Treasury' [USLM note id id37152e91-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1026",
+        "snippet": "1974 Dec. 31 | EO 11825 | 3 U.S.C. 301 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 3 U.S.C. 301 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 3 U.S.C. 301 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -140,7 +193,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 3 U.S.C. 301 note",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 3 U.S.C. 301 note; USC 3 U.S.C. 301 nt",
     "CONFLICT NO_ORDER_IN_FORCE_ON_1989_01_20: provisional NO, but the OFR 1989 Codification prints it as in force on 1989-01-20 (OFR Codification 1989, chapter 31 (Money and Finance)) and no ending candidate is dated after that day"
   ],
   "evidence": {
@@ -192,7 +245,7 @@
       "text": "Instrument: EO:11825\nSource: https://www.govinfo.gov/content/pkg/FR-1975-01-06/pdf/FR-1975-01-06.pdf\nSHA-256 of the downloaded file: 275bb66456c50c9d6e92d3c1149c7c84ec0e92930bdf6e2796c1bdbbe9b80b8c\nLocation: 40 FR 1003, PDF pages 9-9 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 168 ===\npresidential documents\nTitle 3— The President\nE X E C U T I V E  O R D E R  1 18 25\nR evocation o f Executive O rders Pertaining to the R egulation o f the \nA cquisition of, H olding of, or O ther Transactions in G old\nBy virtue o f the authority vested in me by section 1 o f the A ct o f \nAugust 8, 1950, 64 Stat. 419, and section 5 (b ) o f the A ct o f O ctober 6, \n1917, as amended (12 U .S.C . 95 a ) , and as President o f the United States, \nand in view o f the provisions o f section 3 o f Public Law 93— 1  IQ, 87 Stat. \n352, as amended by section 2 o f Public Law 9 3 -3 7 3 , 88 Stat. 445, it is \nordered as follow s:\nS e c t i o n 1. Executive O rder N o. 6260 o f August 28,1 9 3 3 , as am ended \nby Executive O rder N o. 6359 o f O ctober 25, 1933, Executive O rder \nN o. 6556 o f January 12, 1934, Executive O rder N o. 6560 o f January 15, \n1934, Executive O rder N o. 10896 o f Novem ber 29, 1960, Executive \nO rder N o. 10905 o f January 14, 1961, and Executive O rder N o. 11037 \nof July 20, 1962; the. fifth and sixth paragraphs o f Executive O rder \nN o. 6073, M arch 10, 1933; sections 3 and 4 o f Executive O rder N o. 6359 \no f O ctober 2 5 ,1 9 3 3 ; and paragraph 2(d)  o f Executive O rder N o. 10289 \no f September 17,1951, are hereby revoked.\nS e c t i o n 2. The revocation, in whole or in part, o f such prior Executive \norders relating to regulation on the acquisition of, holding of, or other \ntransactions in gold shall not affect any act com pleted, or any right \naccruing or accrued, or any suit or proceeding finished or started in any \ncivil or crim inal cause prior to the revocation, but all such liabilities, pen­\nalties, and forfeitures under the Executive orders shall continue and may \nbe enforced in the same manner as if the revocation had not been made.\nThis order shall becom e effective on Decem ber 3 1 ,1 9 7 4 .\nT h e  W h i t e H o u s e,\nDecember 31, 1974.\n[FR Doc.75-472 Filed l-3-75jt0:22 am]\nFEDERAL REGISTER,. V O L  40, NO. » — MONDAY, JANUARY ft, 1975\n"
     }
   },
-  "fingerprint": "85b31289e1c3bead928063a8e3ea52ad9a0ee1b96aefce38a49cbf0a56890151",
+  "fingerprint": "7839ee5fb1a3b9567b8f7a01b01575a612059944f6c48c7cff45dc79987d95eb",
   "instrument_id": "EO:11825",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -218,7 +271,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -230,7 +283,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -242,8 +295,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -262,12 +315,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "d0a619e87533cf2b4d8fef2b511ecac22a4c408ddf4d2fb19d642a95002d8267",
+    "fingerprint": "ead27141cfa59dd5716022ed62b6a6e92352cb92ff3df644d0d265ac35eced6d",
     "flags": [
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_11825.json",
-    "history_sha256": "6a10c9a7cb3fd9c2d7829fcbb8782a8acfff09b56ba904e316d13712a7036ee1",
+    "history_sha256": "04b3699d3833e7c147e59d72102617d4e3926e57a4945e51ce73a1aa0788f012",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

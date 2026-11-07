@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "8baded5433ebafebf2c464bb9f4d6ec3245360b732ecd7ffdc8b10e2f12deb1a",
+  "dossier_sha256": "208ec94424fbfd55216deae0d5d69fd3ee0824c2e9e6a447b08fd8d5610eeb96",
   "instrument_id": "EO:6509",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-15",
               "register_number": "6509",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6509.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6509.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6509—Code of Fair Competition for the Dry and Polishing Mop Manufacturing Industry",
               "text_chars": 1252
             },

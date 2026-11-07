@@ -102,7 +102,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "2449a1c8004c06bf6fb874f7abc2da0ccfaeeefa057bdbb3c3cbfaf747765a61",
+  "dossier_sha256": "9d20c50e311e20b43684e0cd316ad7888bec9cf482bd970a95b22ba323d67c02",
   "instrument_id": "EO:6606B",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -173,7 +173,18 @@
               "register_date": "1934-02-17",
               "register_number": "6606B",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6606B.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6606B.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6606-B—Code of Fair Competition for the Graphic Arts Industries",
               "text_chars": 6218
             },
@@ -207,6 +218,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6606B",
+        "pages_confirmed": false,
+        "sha256": "6e742ca9b84f9695822563c1050677a034c59ac47ba31046d1f0af582f24ce8d",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6606B.txt",
+        "text_sha256": "54d00d6a3d684c303d14e5489fe797825c972b6a5877b5a8e6373c2faf2fdec3"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:6606B",
@@ -214,6 +235,16 @@
         "sha256": "ee64b83ba4637e9adb08ddd270b6a1a593afc172f502d71cfd59f2c503603982",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6606B-ee64b83ba4.txt",
         "text_sha256": "1c60137b541f2155c66bce36a79667d68572adb86597f88c9e733e2b15312506"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6606B",
+        "pages_confirmed": false,
+        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6606B.txt",
+        "text_sha256": "b67ff878421353b5cfd446d17c34171fcab2839e1efcdd8aad04751180962828"
       }
     ],
     "quotation_recheck_required": true,

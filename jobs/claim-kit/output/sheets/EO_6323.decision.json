@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "4fba0a02f5fe244986cc59e0a12076819c3bf35a525d72642ec279cd3db771e1",
+  "dossier_sha256": "3858eea84856107119c330d7d581064a97a673ed22535c52a2df7a6ce22ab58f",
   "instrument_id": "EO:6323",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-09",
               "register_number": "6323",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6323.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6323.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6323—Amendment of Code of Fair Competition for the Lumber and Timber Products Industries",
               "text_chars": 1429
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6323",
+        "pages_confirmed": false,
+        "sha256": "b25de54ee592b1e1bc9fa25ffa94304458524de1d74d588fedb885ae4a09a405",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6323.txt",
+        "text_sha256": "5096132ebe69d588c1c7dd601bc231023cce7ec48a9ffd9b26ff95052212e32c"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:6323",
@@ -130,6 +151,16 @@
         "sha256": "fb556ef6bd436e37ed6b098e5551ae268a796d0a3b49546a70857abdc61f44fd",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6323-fb556ef6bd.txt",
         "text_sha256": "9b95cf40a50745ab85cc91c979f2cb2035759c366ae1b99faf514a61627b5f0f"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6323",
+        "pages_confirmed": false,
+        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6323.txt",
+        "text_sha256": "de6bcd75519a5b76629e5abf5d8168b832f6fb77fc876af488327491ba063d75"
       }
     ],
     "quotation_recheck_required": true,

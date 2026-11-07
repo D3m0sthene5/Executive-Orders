@@ -74,7 +74,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:10113",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10113"
@@ -194,7 +194,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 37 U.S.C. 418 note"
+      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 37 U.S.C. 418 note; USC 37 U.S.C. 418 nt"
     },
     {
       "code": "NO_ORDER_IN_FORCE_ON_1989_01_20",
@@ -225,6 +225,39 @@
       "where": "USC 37 U.S.C. 418 note"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10113",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 37 U.S.C. 418 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:140",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "37 U.S.C. 418 note",
+        "member_sha256": "0b60863db6bbb37315a324926c1dfa91940836beb0ae74c981f1c677e28d36a0",
+        "note_id": "idb0a6185f-2930-11f1-a69d-9cbca84c43f0",
+        "note_text_sha256": "512c61eb658fc709891654db16a5953dad5acc40940955e3a9ccf09bb8c4c90b",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=idb0a6185f-2930-11f1-a69d-9cbca84c43f0"
+      },
+      "row_span": "21104-21198",
+      "snippet": "1950 Feb. 24 | EO 10113 | 37 U.S.C. 418 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 37 U.S.C. 418 nt"
+    },
+    {
       "custody_records_in": [
         "current-law"
       ],
@@ -250,6 +283,34 @@
           "page_or_item": "37 U.S.C. 418 note; note 'Ex. Ord. No. 10113. Clothing Allowances for Enlisted Personnel' [USLM note id idb0a6185f-2930-11f1-a69d-9cbca84c43f0]; usc37.xml (sha256 0b60863db6bbb37315a324926c1dfa91940836beb0ae74c981f1c677e28d36a0) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:140",
+        "snippet": "1950 Feb. 24 | EO 10113 | 37 U.S.C. 418 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 37 U.S.C. 418 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 37 U.S.C. 418 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -303,7 +364,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 37 U.S.C. 418 note",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 37 U.S.C. 418 note; USC 37 U.S.C. 418 nt",
     "CONFLICT NO_ORDER_IN_FORCE_ON_1989_01_20: provisional NO, but the OFR 1989 Codification prints it as in force on 1989-01-20 (OFR Codification 1989, chapter 32 (National Defense)) and no ending candidate is dated after that day"
   ],
   "evidence": {
@@ -940,7 +1001,7 @@
       "text": "Existing regulations prescribing the quantity and kind of clothing furnished, and any cash allowances in lieu thereof, shall remain in effect until modified, revoked, or superseded by action taken pursuant to this order."
     }
   },
-  "fingerprint": "54d56efebc1a36f7d1bb1da64adc2b761c137d295ce3ee2eef6b8747d5078b20",
+  "fingerprint": "068ba13ef374e12da22cd1083852605f0f22771cf57a1076d1bb27e6918dec3f",
   "instrument_id": "EO:10113",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1033,7 +1094,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1045,7 +1106,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1057,8 +1118,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1082,12 +1143,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "4ab844bb8dd9c23f2cf3e115bfae257d466845a4263ec37f9894d8b7162c22ed",
+    "fingerprint": "cf5fc9d83655fe33e49ba71d9377872e4ebaf35b33c6b7ae75f1fb0913645ae9",
     "flags": [
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_10113.json",
-    "history_sha256": "5a14ae896eb7d4d6ac86f381e5c4618a008a4c0e831dc1235f2018b5dc7f550c",
+    "history_sha256": "644e057110e62198018252d90eb9d238248d3fc096428e145445d0d5e10d8327",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

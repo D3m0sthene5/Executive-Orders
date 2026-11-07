@@ -244,7 +244,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13508",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13508"
@@ -1684,7 +1684,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 33 U.S.C. 1267 note; USC 33 U.S.C. 1267 note"
+      "detail": "provisional NO, but 3 current-law predicate lead(s), e.g. USC 33 U.S.C. 1267 note; USC 33 U.S.C. 1267 note; USC 33 U.S.C. 1267 nt"
     }
   ],
   "current_law_leads": [
@@ -1730,6 +1730,39 @@
       },
       "system": "usc",
       "where": "USC 33 U.S.C. 1267 note"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13508",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 33 U.S.C. 1267 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2705",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "33 U.S.C. 1267 note",
+        "member_sha256": "3c4aba3d9d7aa6413ca82154c36bf38dcf35e623f6475117a57c434d7a56d5ef",
+        "note_id": "id6bab4360-3a70-11f1-9100-cf79f4fb4b3e",
+        "note_text_sha256": "003b6e1ad231bfa5a0762136aa4550ba23728ff76a5793d3d567390407880bee",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id6bab4360-3a70-11f1-9100-cf79f4fb4b3e"
+      },
+      "row_span": "288824-288922",
+      "snippet": "2009 May 12 | EO 13508 | 33 U.S.C. 1267 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 33 U.S.C. 1267 nt"
     },
     {
       "custody_records_in": [
@@ -1787,6 +1820,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2705",
+        "snippet": "2009 May 12 | EO 13508 | 33 U.S.C. 1267 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 33 U.S.C. 1267 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 33 U.S.C. 1267 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -1809,7 +1870,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 33 U.S.C. 1267 note; USC 33 U.S.C. 1267 note"
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 3 current-law predicate lead(s), e.g. USC 33 U.S.C. 1267 note; USC 33 U.S.C. 1267 note; USC 33 U.S.C. 1267 nt"
   ],
   "evidence": {
     "ACT:EO:13508>EO:14428#3602-revoke": {
@@ -4694,7 +4755,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "a9aa9e65de81e0f13ac40bc700d9eb4e478e4a513e25cea5a2fb24bafa3fb8bb",
+  "fingerprint": "c7e7ad0813eb21e4fe83827230fd6084648fb948e50e9dc0590e9d1e04b65744",
   "instrument_id": "EO:13508",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -5935,7 +5996,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -5947,7 +6008,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -5959,8 +6020,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -5998,10 +6059,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "238715839da5e9b34d2cee2b6d03274f583430c8840bb6263f0f32e5c420b33f",
+    "fingerprint": "41b1f6df1ff80c030aa3ef74396c70939ee793e82fffeecae3ef87040eeb9574",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13508.json",
-    "history_sha256": "346867192f6cb8ce7eaaa86807443bae2992428f82d43d204341e5cb3c15db6b",
+    "history_sha256": "3a569484f16f7a63043b80003af566c6c4cd866a671b737d22792123c6b28027",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

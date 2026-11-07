@@ -60,7 +60,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "dcf2f9a074acb63c53e9452ad12af2ddc7face390ec5d830411f0616b6f0f1d8",
+  "dossier_sha256": "8fa3549c9666a8fb13b5b45ed77a36cdd44f7e6f1238010e5c043c7270f37f3f",
   "instrument_id": "EO:6487A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -131,7 +131,18 @@
               "register_date": "1933-12-09",
               "register_number": "6487A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6487A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6487A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6487-A—Approval of Code of Fair Competition for the Alcoholic Beverage Wholesale Industry",
               "text_chars": 1698
             },
