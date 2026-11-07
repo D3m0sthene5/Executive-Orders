@@ -51,6 +51,13 @@ class QueueContract(unittest.TestCase):
         self.assertLess(publish.index("- uses: actions/checkout@v4"), publish.index("bash .github/scripts/commit_results.sh"))
         refresh_jobs = job_sections(refresh)
         self.assertEqual(list(refresh_jobs), ["execute", "publish"])
+        # Hansard: refreshes run one at a time with one waiting (latest wins), on
+        # their own group so the writer lock is still held only by publish.
+        refresh_head = refresh.split("\njobs:\n", 1)[0]
+        self.assertIn("concurrency:\n  group: refresh-readiness-${{ github.ref }}\n  cancel-in-progress: false\n",
+                      refresh_head)
+        self.assertNotIn("queue:", refresh_head)
+        self.assertNotIn("repository-output-writer", refresh_head)
         self.assertNotIn("concurrency:", refresh_jobs["execute"])
         self.assertIn("group: repository-output-writer-refs/heads/main", refresh_jobs["publish"])
         self.assertRegex(refresh_jobs["publish"], r"(?m)^      queue: max$")
