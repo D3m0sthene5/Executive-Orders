@@ -18,6 +18,27 @@ from build import build, dump, filename
 
 HERE=Path(__file__).resolve().parent
 
+
+def lease_gate(repo,packet,result):
+    """Kean leases (Encyclopedie, 2026-11-06): refuse dispatch while another holder's active lease covers this
+    packet (batch:<packet folder name>) or any member (order:<instrument id>). The caller's holder is
+    KEAN_LEASE_HOLDER. An unreadable lease branch never blocks; it is reported as state 'unknown'.
+    KEAN_LEASE_OFFLINE=1 reads the last fetched kean-leases ref without the network."""
+    try:
+        sys.path.insert(0,str(Path(repo)/'jobs/kean'));import lease
+    except ImportError:
+        result['lease']={'state':'unavailable'};return
+    ids=result.get('dispatchable_ids') or []
+    resources=['batch:'+Path(packet).resolve().name]+['order:'+i for i in ids]
+    held,why=lease.held_by_others(repo,resources,os.environ.get('KEAN_LEASE_HOLDER',''),
+                                  offline=os.environ.get('KEAN_LEASE_OFFLINE')=='1')
+    if held is None:
+        result['lease']={'state':'unknown','reason':why[:300]};return
+    result['lease']={'state':'held_by_other' if held else 'free','resources_checked':len(resources),
+                     'conflicts':[{k:r[k] for k in ('resource','holder','until_utc','purpose')} for r in held]}
+    if held:
+        result['ok']=False
+
 def read(path,default=None):
     if not path.exists():return default
     return json.loads(path.read_text('utf-8'))
@@ -230,8 +251,9 @@ def main(argv=None):
             if a.write and a.write.exists():raise ValueError('Dispatch receipt exists; refusing overwrite')
             if a.write and not a.write.resolve().is_relative_to(a.packet.resolve()):raise ValueError('Dispatch receipt must stay inside its packet')
             result=check(repo,a.packet,a.order)
+            lease_gate(repo,a.packet,result)
             if a.write:dump(a.write,result)
-            compact=summary(result)
+            compact=summary(result);compact['lease']=result['lease']
             if a.write:compact['receipt']=str(a.write)
             print(json.dumps(compact,ensure_ascii=False,indent=2));return int(not result['ok'])
         if a.command=='history-check':

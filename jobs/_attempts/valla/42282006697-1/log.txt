@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/valla/job.py", line 8, in <module>
+    doc = valla.build(repo)
+          ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/valla/valla.py", line 459, in build
+    active, history = active_claims(repo, ids)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/valla/valla.py", line 110, in active_claims
+    raise ValueError('nonproduction claim in canonical claims: ' + str(p))
+ValueError: nonproduction claim in canonical claims: /home/runner/work/Executive-Orders/Executive-Orders/research/readiness/claims/justinian-2026-11-06-r3-retag.jsonl

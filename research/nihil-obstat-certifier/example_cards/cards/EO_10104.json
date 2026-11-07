@@ -1,0 +1,1493 @@
+{
+ "ai_review_gate": {
+  "distinct_upholding_reviewers": 3,
+  "met": true,
+  "model_families": [
+   "Anthropic"
+  ],
+  "rejecting_reviewers": [],
+  "rule": "two blind AI reviewers must uphold the exact claim hash",
+  "upholding_reviewers": [
+   "dorotheus-blind-reviewer-y01-A-2026-11-06",
+   "dorotheus-blind-reviewer-y01-B-2026-11-06",
+   "dorotheus-blind-reviewer-y01-C-2026-11-06"
+  ]
+ },
+ "ai_reviews": [
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T10:44:41Z",
+   "evidence_checked": [
+    "re-hashed every cited text file (text_sha256 matches) and checked each quoted span against held bytes",
+    "cruden.py number search of held order texts",
+    "EO_10104.txt",
+    "usc-t18-s795.txt",
+    "cfr-t36-902.51.txt"
+   ],
+   "file": "research/excavator/dorotheus-yesprobe-2026-11-06/y01/packet/reviews/BLIND_REVIEW_A.jsonl",
+   "independent": true,
+   "line": 2,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "reasoning": "Quotes and hashes verified; ten clauses cover lead, items 1(a)-(f), 2, 3 with supersession of EO 8381 in item 3 span; no own-terms end. Cruden number search: only EO 10102/10103 page overlaps (TOC/page text), 1989 OFR, DoD reg, 36 CFR 902.51; the 18 U.S.C. 795 note in held usc-t18-s795.txt prints the order as a note with no ending. Other 10104 digit hits are page/doc numbers. Continuing predicate honestly bounded.",
+   "review_id": "dorotheus-blind-y01-A-EO-10104",
+   "review_kind": "independent_ai_source_review",
+   "reviewer": "dorotheus-blind-reviewer-y01-A-2026-11-06",
+   "scope": "whole_case",
+   "separate_context": true,
+   "started_utc": "2026-11-06T10:40:50Z",
+   "verdict": "upheld"
+  },
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T10:44:17Z",
+   "evidence_checked": [
+    "held text files re-hashed and quoted spans checked",
+    "cruden number search EO:10104",
+    "order read in full",
+    "later instruments and codification sources cited by the claim"
+   ],
+   "file": "research/excavator/dorotheus-yesprobe-2026-11-06/y01/packet/reviews/BLIND_REVIEW_B.jsonl",
+   "independent": true,
+   "line": 2,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "reasoning": "Hashes and spans verified; order read in full: lead, item 1(a)-(f), items 2 and 3, supersession of EO 8381 sits in item 3 span; inventory complete. No own-terms end. Number search finds only EO 10102/10103 page-overlap hits, 1989 OFR snapshot, 36 CFR 902.51, DoD regulation; 18 U.S.C. 795 note prints the order with no ending. Original_plus_bounded_search route honestly described with edition limits.",
+   "review_id": "dorotheus-blind-y01-B-EO-10104",
+   "review_kind": "independent_ai_source_review",
+   "reviewer": "dorotheus-blind-reviewer-y01-B-2026-11-06",
+   "scope": "whole_case",
+   "separate_context": true,
+   "started_utc": "2026-11-06T10:41:05Z",
+   "verdict": "upheld"
+  },
+  {
+   "defects": [],
+   "ended_utc": "2026-11-06T10:51:13Z",
+   "evidence_checked": [
+    "REVIEW_SET_C claim",
+    "cited held text files re-hashed and spans compared",
+    "cruden number search for the order",
+    "ending/amending sources read"
+   ],
+   "file": "research/excavator/dorotheus-yesprobe-2026-11-06/y01/packet/reviews/BLIND_REVIEW_C.jsonl",
+   "independent": true,
+   "line": 3,
+   "model_family": "Anthropic",
+   "phase": "blind",
+   "reasoning": "Hashes and all spans match. Order read in full: lead, items 1 (a)-(f), 2, 3 and closing supersession of EO 8381 (inside item 3 span, signing-date act) all covered. Cruden number search: only EO 10102/10103 page overlaps, 1989 OFR snapshot and 36 CFR 902.51 cite it; no amendment or revocation. Original_plus_bounded_search route honestly described with edition limits.",
+   "review_id": "dorotheus-blind-y01-C-EO-10104",
+   "review_kind": "independent_ai_source_review",
+   "reviewer": "dorotheus-blind-reviewer-y01-C-2026-11-06",
+   "scope": "whole_case",
+   "separate_context": true,
+   "started_utc": "2026-11-06T10:48:17Z",
+   "verdict": "upheld"
+  }
+ ],
+ "checker": {
+  "non_passing_rows": [],
+  "note": "Mechanical checks only. Passing is not a legal conclusion.",
+  "summary": {
+   "all_checks_passed": true,
+   "check_counts": {
+    "date_after_signing": {
+     "pass": 10
+    },
+    "date_valid": {
+     "pass": 35
+    },
+    "factual_event_policy": {},
+    "order_exists": {
+     "pass": 8
+    },
+    "quote_verbatim": {
+     "pass": 32
+    },
+    "source_held": {
+     "pass": 22
+    },
+    "source_identity": {
+     "pass": 11
+    },
+    "structural_gate": {
+     "pass": 1
+    },
+    "working_text_policy": {}
+   },
+   "claim_sha256": "fb03ad49c7b8ab5de1c5cb19a4f63626bbc82abf90e1cea7f30e005ea267cb62",
+   "effective_for_tracker": true,
+   "failures": [],
+   "failures_total": 0,
+   "gate_claim_level_errors": [],
+   "gate_errors": [],
+   "gate_passed": true,
+   "instrument_id": "EO:10104",
+   "mechanical_result": "pass",
+   "provisional_status": "yes",
+   "steps": {
+    "clause_inventory": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    },
+    "counterevidence": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    },
+    "ending_or_current_basis": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    },
+    "original_text": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    },
+    "savings_residuals": {
+     "checker_passed": true,
+     "gate": "pass",
+     "mechanical": "pass",
+     "present": true
+    }
+   },
+   "text_evidence_tier": "original_supported",
+   "unverified": [],
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+  }
+ },
+ "checker_generation": {
+  "blocked_by": [],
+  "branch": "main",
+  "commit_run": "410a1ffc43c5ec8f0fe9fda4c8a08c51e7c1fed4",
+  "exit_code": 0,
+  "finished_utc": "2026-11-06T22:14:48Z",
+  "generation_id": "42299247852-1:0e556d991b913dfe4cb4ddfaef9a2d782095b06eb718a719df9ac398d3fb2e42",
+  "job": "claim-checker",
+  "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+  "max_output_file_bytes": 99614720,
+  "oversized_files_moved_to_run_download": [],
+  "result": "succeeded",
+  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42299247852",
+  "started_utc": "2026-11-06T21:52:42Z",
+  "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
+ },
+ "claim": {
+  "claim_kit": {
+   "agent": "dorotheus",
+   "dossier_sha256": "f7b43f2ea4fd27bb7b75ada841ac03a2123ad15b9de52279203a227941249d33",
+   "inventory_overrides": [],
+   "original_pages_confirmed": false,
+   "producer_approved": true
+  },
+  "instrument_id": "EO:10104",
+  "later_source_search": [
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+    "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-17",
+    "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+    "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+    "searched_by": "jobs/current-law (machine search)"
+   },
+   {
+    "checked_on": "2026-10-19",
+    "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+    "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+    "searched_by": "jobs/later-events (machine search)"
+   }
+  ],
+  "operative_clauses": [
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 10616,
+      "char_start": 10284,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNsZWFk",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is the operative definition: the President defines, for 18 U.S.C. 795 and 797, the installations and equipment listed below as vital and requiring protection against general dissemination of information. The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT",
+    "original_source": {
+     "char_end": 10616,
+     "char_start": 10284,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNsZWFk",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#lead",
+    "state_at_cutoff": "operative"
+   },
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 11179,
+      "char_start": 10617,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCMx",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is item 1: classified military, naval or air-force installations and equipment, now or hereafter classified, located within the places listed in (a) to (f). The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:",
+    "original_source": {
+     "char_end": 11179,
+     "char_start": 10617,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCMx",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#1",
+    "state_at_cutoff": "operative"
+   },
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 11346,
+      "char_start": 11180,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNh",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is subparagraph (a): military, naval or air-force reservations, posts, arsenals, proving grounds, ranges, mine fields, camps, bases, airfields, forts, yards, stations, districts or areas. The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.",
+    "original_source": {
+     "char_end": 11346,
+     "char_start": 11180,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNh",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#a",
+    "state_at_cutoff": "operative"
+   },
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 11598,
+      "char_start": 11347,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNi",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is subparagraph (b): defensive sea areas heretofore established by Executive order and not discontinued, and those established later under 18 U.S.C. 2152. The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.",
+    "original_source": {
+     "char_end": 11598,
+     "char_start": 11347,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNi",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#b",
+    "state_at_cutoff": "operative"
+   },
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 11860,
+      "char_start": 11599,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNj",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is subparagraph (c): airspace reservations established under the Air Commerce Act of 1926 except the one established by Executive Order 10092 of December 17, 1949. The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.",
+    "original_source": {
+     "char_end": 11860,
+     "char_start": 11599,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNj",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#c",
+    "state_at_cutoff": "operative"
+   },
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 11910,
+      "char_start": 11861,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNk",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "(d) Any naval harbor closed to for­\neign vessels.",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is subparagraph (d): naval harbors closed to foreign vessels. The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "(d) Any naval harbor closed to for­\neign vessels.",
+    "original_source": {
+     "char_end": 11910,
+     "char_start": 11861,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNk",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "(d) Any naval harbor closed to for­\neign vessels.",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#d",
+    "state_at_cutoff": "operative"
+   },
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 11954,
+      "char_start": 11911,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNl",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "(e) Any area required for fleet pur­\nposes.",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is subparagraph (e): areas required for fleet purposes. The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "(e) Any area required for fleet pur­\nposes.",
+    "original_source": {
+     "char_end": 11954,
+     "char_start": 11911,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNl",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "(e) Any area required for fleet pur­\nposes.",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#e",
+    "state_at_cutoff": "operative"
+   },
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 12182,
+      "char_start": 11955,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNm",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is subparagraph (f): commercial establishments engaged in developing or manufacturing classified arms, munitions, equipment, designs, ships, aircraft or vessels for the Army, Navy or Air Force. The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.",
+    "original_source": {
+     "char_end": 12182,
+     "char_start": 11955,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNm",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#f",
+    "state_at_cutoff": "operative"
+   },
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 13001,
+      "char_start": 12183,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNmLTI",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is item 2: classified military, naval or air-force aircraft, weapons, ammunition, vehicles, ships, instruments, engines, machinery, tools, devices and other equipment. The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.",
+    "original_source": {
+     "char_end": 13001,
+     "char_start": 12183,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNmLTI",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#f-2",
+    "state_at_cutoff": "operative"
+   },
+   {
+    "current_predicate": {
+     "checked_through": "2026-10-14",
+     "legal_basis": "Continuing, on the original_plus_bounded_search route: the held original has no own-terms end, no held later instrument amends, revokes or supersedes it, and the bounded searches of the U.S. Code (release point 119-121, current through 2026-10-09), the eCFR (as of 2026-10-14) and the OFR catalog name no ending. The statutes it applies, 18 U.S.C. 795 and 797, are cited in its preamble; the Code note and 36 CFR 902.51 are continuation leads only.",
+     "source": {
+      "char_end": 13724,
+      "char_start": 13002,
+      "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNmLTM",
+      "evidence_id_encoding": "base64url-utf8",
+      "filing_date": null,
+      "location_confidence": "high",
+      "location_verified": false,
+      "page_or_item": "15 FR 597, PDF pages 3-4",
+      "quote": "3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.",
+      "requires_page_check": false,
+      "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+      "signing_date": "1950-02-01",
+      "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+      "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+      "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+     }
+    },
+    "judgment_reason": "Operative on 2026-10-14. This clause is item 3: classified or marked official books, pamphlets, documents, reports, maps, charts, plans, designs, models, drawings, photographs, contracts and specifications (its span also carries the closing sentence superseding EO 8381). The held text states no end date, condition or duration and no held later order touches it; the bounded searches found no ending, so the clause is treated as continuing, with the limit that a later statute or unnumbered action beyond those searches cannot be excluded.",
+    "later_events": [],
+    "original_operative_text": "3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.",
+    "original_source": {
+     "char_end": 13724,
+     "char_start": 13002,
+     "evidence_id": "Q0xBVVNFUzpFTzoxMDEwNCNmLTM",
+     "evidence_id_encoding": "base64url-utf8",
+     "filing_date": null,
+     "location_confidence": "high",
+     "location_verified": false,
+     "page_or_item": "15 FR 597, PDF pages 3-4",
+     "quote": "3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.",
+     "requires_page_check": false,
+     "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+     "signing_date": "1950-02-01",
+     "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+     "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+     "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+    },
+    "scope_id": "EO:10104#f-3",
+    "state_at_cutoff": "operative"
+   }
+  ],
+  "original_representation": {
+   "char_end": 16721,
+   "char_start": 0,
+   "evidence_id": "T1JJR0lOQUw6RU86MTAxMDQ",
+   "evidence_id_encoding": "base64url-utf8",
+   "filing_date": null,
+   "location_confidence": "high",
+   "location_verified": false,
+   "page_or_item": "15 FR 597, PDF pages 3-4",
+   "quote": "Instrument: EO:10104\nSource: https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf\nSHA-256 of the downloaded file: d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561\nLocation: 15 FR 597, PDF pages 3-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 20 ===\n597Friday, February 3,1950\nCODIFICATÌbN GUIDE— Con.\nTitle 24 Page\nChapter VUI:\nPart 825 (3 documents) _______ 602\nTitle 29\nChapter V:\nPart 523 _____     602\nTitle 43\nChapter I:\nAppendix (Public land orders) :\n632___________________  603\nTitle 49\nChapter I:\nPart 176___________________ 603\nCompany is hereby obligated to main­\ntain and repair such docks.\nSec. 4. All such coal-handling facil­\nities, structures and appurtenances at \nCristobal, Canal Zone, as are owned by \nThe Panama Canal and form a part of \nthe Cristobal Coaling Plant (the plant \nas a whole being operated by the Panama \nRailroad Company but owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company) are hereby \ntransferred to the Panama Railroad \nCompany.\nSec. 5. The railroad roundhouses and \ncar shops, together with appurtenant \nstructures and facilities, in the Canal \nZone, devoted to the maintenance and re­\npair of railroad locomotives and cars and \nheretofore maintained and operated by \nThe Panama Canal, shall hereafter be \nmaintained and operated by the Panama \nRailroad Company; and there are hereby \ntransferred to the Panama Railroad \nCompany all of the personnel, property \n(with the exception of Cristobal Round­\nhouse which is now owned by the Panama \nRailroad Company), records, related as­\nsets, contracts, obligations, and liabilities \nof or appertaining to the property re­\nquired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 6. With the exception of the oil- \nstorage tanks owned by The Panama \nCanal, the pipe lines connecting such \ntanks with the manifolds and the distri­\nbution lines from such tanks, which fa­\ncilities are used predominantly for gov­\nernmental, rather than commercial, pur­\nposes, all of the oil-handling facilities \nheretofore maintained and operated by \nThe Panama Canal in the Canal Zone \nshall hereafter be maintained and oper­\nated by the Panama Railroad Company; \nand there are hereby transferred to the \nPanama Railroad Company all of the \npersonnel, property, records, related as­\nsets, contracts, obligations, and liabil­\nities of or appertaining to the facilities \nrequired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 7. The printing plant at Mount \nHope, Canal Zone, known as thé Pan­\nama Canal Press, now owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company (the latter \nowning the building and certain of the \nequipment), and hèretofore maintained \nand operated by The Panama Canal, shall\nFEDERAL REGISTER\nhereafter be maintained and operated by \nthe Panama Railroad Company; and \nthere are hereby transferred to the Pan­\nama Railroad Company all of the per­\nsonnel, property (so far as not already \nowned by the Panama Railroad Com­\npany), records, related assets, contracts, \nobligations, and liabilities of or apper­\ntaining to such printing plant: Provided, \nhowever, that such transfer shall not \ninclude the printing supplies and ma­\nterials on hand at the time of the trans­\nfer.\nS ec. 8. The gasoline service stations \nheretofore established, maintained, and \noperated by The Panama Canal in the \nCanal Zone shall hereafter be maintained \nand operated by the Panama Railroad \nCompany; and there are hereby trans­\nferred to the Panama Railroad Company \nall of the personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities of or appertaining to such \nfacilities.\nS ec. 9. The transfers from The Pan­\nama Canal to the Panama Railroad Com­\npany of personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities accomplished by this order \nshall, as provided by law, be deemed to. \nhave been accepted and assumed by the \nPanama Railroad Company without the \nnecessity of any act or acts on the part \nof the said Company except as otherwise \nstipulated in the provisions of law appli­\ncable to the said Company, including the \nprovisions of section 246 of title 2 of the \nCanal Zone Code, as added by section 2 \nof the act of June 29, 1948, 62 Stat. 1076, \nrelative to adjustment of the investment \nof the United States in the said Company.\nSec. 10. Executive Order No. 7021 of \nApril 19, 1935, authorizing the Governor \nof The Panama Canal to arrange for the \noperation by the Panama Railroad Com­\npany of Panama Canal piers, and Execu­\ntive Order No. 9479 of September 6,1944,? \namending that order, are hereby revoked.\nS ec. 11. The. foregoing provisions of \nthis order shall take effect on July 1,1950, \nexcept that section 5 and section 9 so far \nas it relates to section 5 shall become \neffective on February 1, 1950.\nH arry S. T ruman\nThe W hite  H ouse ,\nJanuary 31, 1950.\n[P. R. Doc. 50-1009; Piled, Peb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10103\nAmendment  of E xecutive O rder N o. 9721 \nof M ay 10, 1946,2  Providing for the \nT ransfer of P ersonnel to C ertain \nPublic I nternational O rganizations\nBy virtue of the authority vested in \nme by the Civil Service Act (22 Stat. 403) \nand by section 1753 of the Revised Stat­\nutes of the United States, and as Presi­\ndent of the United States, it is ordered \nthat Executive Order No. 9721 of May \n10, 1946, authorizing the transfer, under \ncertain conditions, of civilian employees\n13 CFR, 1944 Supp. \n*  3 CFR, 1946 Supp.\nin the Executive branch of the Federal \nGovernment to public international or­\nganizations in which the United States \nGovernment participates, be, and it is \nhereby, amended in the following re­\nspects :\n1. Section 1  is amended, effective as of \nMay 10,1946, by adding at the end there­\nof the following sentence:'\n“Any employee so transferred shall, \nfor a period not to exceed three years \nfrom the date of transfer and while em­\nployed by the said international organ­\nization, be considered as being on leave \nof absence from his employment by the \nFederal Government: Provided, that the \nemployee is subsequently reemployed by \nthe Federal Government in accordance \nwith section 3 of this order.”\n2. Section 2, which by its terms be­\ncame inoperative on May 10, 1949, is re­\nvived and amended, effective as of that \ndate, to read as follows:\n“Any employee serving under a war- \nservice indefinite appointment who is \ntransferred to a public international or­\nganization pursuant to this order and, \nwhile serving in such organization and \nwithin three years from the date of such \ntransfer, is either reached in regular \norder for probational appointment from \na civil-service register appropriate for \nfilling the position in which he was serv­\ning or could, with the approval of the \nhead of such agency, have been given a > \ncompetitive status under Civil Service \nRule III if he had remained in the posi­\ntion in which he last served in a Federal \nagency, shall be considered as having \nacquired a competitive status as of the \ndate he is reached, for probational \nappointment or classification. Any em­\nployee transferred to a public interna­\ntional organization pursuant to this order \nwho was serving in such organization on \nSeptember 30, 1949, and had served con­\ntinuously therein from the date of his \ntransfer shall be considered, so far as \nExecutive Order No. 10080 or September \n30,1949,* is concerned, as having been in \nan active-duty status on September 30, \n1949, in the position in the Federal Gov­\nernment from which he was transferred \nand as having had continuous service \nwith the Federal Government from the \ndate of his transfer to September 30, \n1949.”\nHarry S. T ruman\nThe W hite H ouse ,\nFebruary 1, 1950.\n[P. R. Doc. 50-1010; Filed, Feb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10104\nDefining  C ertain V ital M ilitary  and \nNaval I nstallations  and E quipment  \nas R equiring P rotection A gainst the \nGeneral D issemination  of I nforma­\ntion  R elative T hereto\nWHEREAS section 795 of title lS’of the \nUnited States Code provides:\n“(a) Whenever, in the interests of na­\ntional defense, the President defines certain  \nvital military and naval installations or\n»  14 P. W . 5985.\n\n=== PDF page 4 of 20 ===\n598\nequipment as requiring protection against  \nthe general dissemination of information rel­\native thereto, it shall be unlawful to make  \nany photograph, sketch, picture, drawing,  \nmap, or graphical representation of such  \nvital military and naval installations or  \nequipment without first obtaining permis­\nsion of the commanding officer of the military  \nor naval.  post, camp, or station, or naval  \nvessels, military and naval aircraft, and any  \nseparate military or naval command con­\ncerned, or higher authority, and promptly  \nsubmitting the product obtained to such  \ncommanding officer or higher authority for  \ncensorship or such other action as he may  \ndeem necessary.\n“(b) Whoever violates this section shall  \nbe fined not. more than $1,000 or imprisoned  \nnot more than one year, or both.”;\nAND WHEREAS section 797 of title 18 \nof the United States Code provides:\n“On and after thirty days from the date  \nupon which the President defines any vital  \nmilitary or naval installation or equip­\nment as being within the category contem­\nplated under section 795 of this title,  \nwhoever reproduces, publishes, sells, or gives  \naway any photograph, sketch, picture, draw­\ning, map, or graphical representation of the  \nvital military or naval installations or  \nequipment so defined, without first obtaining  \npermission of the commanding officer of the  \nmilitary or naval post, camp, or station con­\ncerned, or higher authority, unless such  \nphotograph, sketch, picture, drawing, map,  \nor graphical representation has clearly indi­\ncated thereon that it has been censored by  \nthe proper military or naval authority, shall  \nbe fined not more than $1,000 or imprisoned  \nnot more than one year, or both.”:\nNOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT\n1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:\n(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.\n(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.\n(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.\n(d) Any naval harbor closed to for­\neign vessels.\n(e) Any area required for fleet pur­\nposes.\n(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.\n2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.\n3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.\nH arry S. T ruman\nThe W hite H ouse,\nFebruary 1, 1950.\n[P. R. Doc. 50-1011; Piled, Feb. 1, 1950;\n4:09 p. m.]\nRULES AND REGULATIONS\nTITLE 8— ALIENS AND  \nNATIONALITY\nChapter I— Immigration and Natu­\nralization Service, Department of  \nJustice\nOrder 10088 (14 F. R. 7287), and for \npractical administrative reasons the date \nof designation for immigration purposes \nshould be the same as that for customs \npurposes.\n(Sec. 23, 39 Stat. 892, sec. 24, 43 Stat. 166, sec.  \n37, 54 Stat. 675; 8 U. S. C. 102, 222, 458)\nof countries ; country of oHgin of im­\nports; invoice information on country of  \norigin; nationality and motive power of  \nimporting vessels.”\n2. §30.10 (b) is amended to read as \nfollows:\n(b) For statistical purposes, importers \nshall provide information with respect to \nthe country of origin of the merchan­\ndise on all entries for consumption, en­\ntries for warehouse, and withdrawals \nfrom warehouse for consumption. As \na basis for such information, importers \nshall give the necessary instructions to \ntheir foreign suppliers, in accordance \nwith paragraph (c) of this section, for a \nstatement as to the country of origin of \nthe imported merchandise to appear on \nall invoices covering shipments to the \nUnited States.\nBy country of origin is meant the \ncountry of production or manufacture of \nthe imported merchandise. Further \nlabor, work, or material added to an \narticle in another country must effect a \nsubstantial transformation in order to \nrender such other country the “country \nof origin.” Such substantial transfor­\nmations include: Smelting of ores; \nmilling or refining of crude products;\n13 CFR, Cttm.Supp.\nSubchapter B— Immigration Regulations\nP art 110—P rimary I nspection  and \nD etention\nDESIGNATION OF NEAH BAY, WASHINGTON, AS \nA CLASS A PORT OF ENTRY FOR ALIENS\nJanuary 20, 1950.\nSection 110.1, Designated ports of entry  \nexcept by aircraft , Chapter I, Title 8 of \nthe Code of Federal Regulations, is \namended by inserting “Neáh Bay, Wash.” \nbetween “Metaline Falls, Wash.” and \n“Northport, Wash.” in the list of Class A \nports of entry under District No. 12— \nSeattle; Washington.\nThis order shall be considered effec­\ntive as of January 2, 1950. Compliance \nwith the provisions of section 4 of the \nAdministrative Procedure Act (60 Stat. \n238; 5 U. S. C. 1003) is impracticable be­\ncause Neah Bay, Washington, was des­\nignated as a customs port of entry, ef­\nfective January 2. 1950. by Executive\nW atson B. M iller, \nCommissioner of  \nImmigration and Naturalization.\nApproved: January 30,1950.\nP eyton  F ord,\nActing Attorney General.\n[F. R. Doc. 50-963; Filed, Feb. 2, 1950;  \n8:46 a. m.]\n-------------------------------------------\n\"  TITLE 15— COMMERCE AND  \n.FOREIGN TRADE\nChapter I— Bureau of the Census,  \nDepartment of Commerce  \n[Foreign Commerce Statistical Decision 71]  \nP art 30—F oreign T rade S tatistics\nCOUNTRY OF ORIGIN FOR STATISTICAL \nPURPOSES\n1. The title of §  30.10 is amended to \nread as follows: “§  30.10. Classification\n",
+   "requires_page_check": false,
+   "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+   "signing_date": "1950-02-01",
+   "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+   "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+  },
+  "research_rationale": "EO 10104 (Feb. 1, 1950, 15 FR 597) is a standing definition order: relying on 18 U.S.C. 795 and 797 it defines as vital military and naval installations or equipment requiring protection against general dissemination of information classified installations and equipment within listed areas (item 1), classified equipment (item 2) and classified documents (item 3). I read the held Federal Register text layer of the complete order (jobs/fr-originals/data/full_run/texts/EO_10104.txt, verified whole-order span) and the dossier inventory (lead paragraph, item 1 with subparagraphs (a) to (f), items 2 and 3) covers each operative provision; the two WHEREAS recitals only quote the statutes and are not operative, and the closing sentence superseding EO 8381 sits inside the item 3 span. Earlier-end tests: the dossier records no own-terms end, no change provision, no conflict and no chain event. I searched the held Federal Register order texts (jobs/fr-originals) for the number 10104: the only hits that name this order are EOs 10102 and 10103, whose held page images overlap the page that prints this order, plus unrelated page, document and hash numbers; the lookup also lists the 1989 OFR codification snapshot, a DoD regulation text, and 36 CFR 902.51, none of which end the order. The three bounded machine searches (U.S. Code release point 119-121, current through 2026-10-09 with laws to 2026-10-14 not reflected; eCFR as of 2026-10-14; OFR catalog and saved order texts, 0 later-event hits) name no amendment, revocation or supersession. Route: original_plus_bounded_search. The U.S. Code prints the order as a note to 18 U.S.C. 795 without an ending statement and 36 CFR 902.51 lists it among Executive orders under which records may be kept secret; both are leads for continuation, not the basis. Limit: displacement by a later statute or an unnumbered action cannot be excluded beyond those bounded searches, and the U.S. Code edition stops at 2026-10-09. The text is a Federal Register text layer, not a page-checked image. Nothing here is a certification.\nMember checks: {\"earlier_end_check\":\"No earlier end. The order has no sunset, condition, emergency-duration or report term in its text; no held later order amends, revokes or supersedes it (number search of the held Federal Register texts and the three bounded machine searches); the supersession of EO 8381 is an act done by this order, not an end of it.\",\"independent_command_check\":\"The items are independent definitions under 18 U.S.C. 795 and 797 and none depends on another surviving or ending, except that subparagraphs (a) to (f) qualify item 1; the exception in (c) for the airspace reservation of EO 10092 of December 17, 1949 narrows but does not end the clause.\",\"savings_check\":\"The order has no saving clause; its only executed act is the supersession of EO 8381, which is not a retained command and needs no savings. The 18 U.S.C. 797 thirty-day rule recited in the preamble is statutory, not an obligation created by the order.\",\"scope_check\":\"Each of the ten scopes (lead, item 1, subparagraphs (a) to (f), item 2, item 3) is a separate definition clause that applies to its own class of installations, equipment or documents; none is limited in time or to a transaction, and the closing supersession sentence is read within item 3's span as an executed act. The recitals are not operative clauses.\"}",
+  "savings_residuals": {
+   "reason": "The only transitional event is the closing supersession of EO 8381 of March 22, 1940, which took effect with this order's signing on February 1, 1950 and is not a continuing command of this order; no savings or residual clause exists in the held text, and no later instrument touching this order was found in the bounded searches, so no accrued right or pending action is left outside the claim.",
+   "source": {
+    "char_end": 16721,
+    "char_start": 0,
+    "evidence_id": "T1JJR0lOQUw6RU86MTAxMDQ",
+    "evidence_id_encoding": "base64url-utf8",
+    "filing_date": null,
+    "location_confidence": "high",
+    "location_verified": false,
+    "page_or_item": "15 FR 597, PDF pages 3-4",
+    "quote": "Instrument: EO:10104\nSource: https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf\nSHA-256 of the downloaded file: d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561\nLocation: 15 FR 597, PDF pages 3-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 20 ===\n597Friday, February 3,1950\nCODIFICATÌbN GUIDE— Con.\nTitle 24 Page\nChapter VUI:\nPart 825 (3 documents) _______ 602\nTitle 29\nChapter V:\nPart 523 _____     602\nTitle 43\nChapter I:\nAppendix (Public land orders) :\n632___________________  603\nTitle 49\nChapter I:\nPart 176___________________ 603\nCompany is hereby obligated to main­\ntain and repair such docks.\nSec. 4. All such coal-handling facil­\nities, structures and appurtenances at \nCristobal, Canal Zone, as are owned by \nThe Panama Canal and form a part of \nthe Cristobal Coaling Plant (the plant \nas a whole being operated by the Panama \nRailroad Company but owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company) are hereby \ntransferred to the Panama Railroad \nCompany.\nSec. 5. The railroad roundhouses and \ncar shops, together with appurtenant \nstructures and facilities, in the Canal \nZone, devoted to the maintenance and re­\npair of railroad locomotives and cars and \nheretofore maintained and operated by \nThe Panama Canal, shall hereafter be \nmaintained and operated by the Panama \nRailroad Company; and there are hereby \ntransferred to the Panama Railroad \nCompany all of the personnel, property \n(with the exception of Cristobal Round­\nhouse which is now owned by the Panama \nRailroad Company), records, related as­\nsets, contracts, obligations, and liabilities \nof or appertaining to the property re­\nquired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 6. With the exception of the oil- \nstorage tanks owned by The Panama \nCanal, the pipe lines connecting such \ntanks with the manifolds and the distri­\nbution lines from such tanks, which fa­\ncilities are used predominantly for gov­\nernmental, rather than commercial, pur­\nposes, all of the oil-handling facilities \nheretofore maintained and operated by \nThe Panama Canal in the Canal Zone \nshall hereafter be maintained and oper­\nated by the Panama Railroad Company; \nand there are hereby transferred to the \nPanama Railroad Company all of the \npersonnel, property, records, related as­\nsets, contracts, obligations, and liabil­\nities of or appertaining to the facilities \nrequired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 7. The printing plant at Mount \nHope, Canal Zone, known as thé Pan­\nama Canal Press, now owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company (the latter \nowning the building and certain of the \nequipment), and hèretofore maintained \nand operated by The Panama Canal, shall\nFEDERAL REGISTER\nhereafter be maintained and operated by \nthe Panama Railroad Company; and \nthere are hereby transferred to the Pan­\nama Railroad Company all of the per­\nsonnel, property (so far as not already \nowned by the Panama Railroad Com­\npany), records, related assets, contracts, \nobligations, and liabilities of or apper­\ntaining to such printing plant: Provided, \nhowever, that such transfer shall not \ninclude the printing supplies and ma­\nterials on hand at the time of the trans­\nfer.\nS ec. 8. The gasoline service stations \nheretofore established, maintained, and \noperated by The Panama Canal in the \nCanal Zone shall hereafter be maintained \nand operated by the Panama Railroad \nCompany; and there are hereby trans­\nferred to the Panama Railroad Company \nall of the personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities of or appertaining to such \nfacilities.\nS ec. 9. The transfers from The Pan­\nama Canal to the Panama Railroad Com­\npany of personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities accomplished by this order \nshall, as provided by law, be deemed to. \nhave been accepted and assumed by the \nPanama Railroad Company without the \nnecessity of any act or acts on the part \nof the said Company except as otherwise \nstipulated in the provisions of law appli­\ncable to the said Company, including the \nprovisions of section 246 of title 2 of the \nCanal Zone Code, as added by section 2 \nof the act of June 29, 1948, 62 Stat. 1076, \nrelative to adjustment of the investment \nof the United States in the said Company.\nSec. 10. Executive Order No. 7021 of \nApril 19, 1935, authorizing the Governor \nof The Panama Canal to arrange for the \noperation by the Panama Railroad Com­\npany of Panama Canal piers, and Execu­\ntive Order No. 9479 of September 6,1944,? \namending that order, are hereby revoked.\nS ec. 11. The. foregoing provisions of \nthis order shall take effect on July 1,1950, \nexcept that section 5 and section 9 so far \nas it relates to section 5 shall become \neffective on February 1, 1950.\nH arry S. T ruman\nThe W hite  H ouse ,\nJanuary 31, 1950.\n[P. R. Doc. 50-1009; Piled, Peb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10103\nAmendment  of E xecutive O rder N o. 9721 \nof M ay 10, 1946,2  Providing for the \nT ransfer of P ersonnel to C ertain \nPublic I nternational O rganizations\nBy virtue of the authority vested in \nme by the Civil Service Act (22 Stat. 403) \nand by section 1753 of the Revised Stat­\nutes of the United States, and as Presi­\ndent of the United States, it is ordered \nthat Executive Order No. 9721 of May \n10, 1946, authorizing the transfer, under \ncertain conditions, of civilian employees\n13 CFR, 1944 Supp. \n*  3 CFR, 1946 Supp.\nin the Executive branch of the Federal \nGovernment to public international or­\nganizations in which the United States \nGovernment participates, be, and it is \nhereby, amended in the following re­\nspects :\n1. Section 1  is amended, effective as of \nMay 10,1946, by adding at the end there­\nof the following sentence:'\n“Any employee so transferred shall, \nfor a period not to exceed three years \nfrom the date of transfer and while em­\nployed by the said international organ­\nization, be considered as being on leave \nof absence from his employment by the \nFederal Government: Provided, that the \nemployee is subsequently reemployed by \nthe Federal Government in accordance \nwith section 3 of this order.”\n2. Section 2, which by its terms be­\ncame inoperative on May 10, 1949, is re­\nvived and amended, effective as of that \ndate, to read as follows:\n“Any employee serving under a war- \nservice indefinite appointment who is \ntransferred to a public international or­\nganization pursuant to this order and, \nwhile serving in such organization and \nwithin three years from the date of such \ntransfer, is either reached in regular \norder for probational appointment from \na civil-service register appropriate for \nfilling the position in which he was serv­\ning or could, with the approval of the \nhead of such agency, have been given a > \ncompetitive status under Civil Service \nRule III if he had remained in the posi­\ntion in which he last served in a Federal \nagency, shall be considered as having \nacquired a competitive status as of the \ndate he is reached, for probational \nappointment or classification. Any em­\nployee transferred to a public interna­\ntional organization pursuant to this order \nwho was serving in such organization on \nSeptember 30, 1949, and had served con­\ntinuously therein from the date of his \ntransfer shall be considered, so far as \nExecutive Order No. 10080 or September \n30,1949,* is concerned, as having been in \nan active-duty status on September 30, \n1949, in the position in the Federal Gov­\nernment from which he was transferred \nand as having had continuous service \nwith the Federal Government from the \ndate of his transfer to September 30, \n1949.”\nHarry S. T ruman\nThe W hite H ouse ,\nFebruary 1, 1950.\n[P. R. Doc. 50-1010; Filed, Feb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10104\nDefining  C ertain V ital M ilitary  and \nNaval I nstallations  and E quipment  \nas R equiring P rotection A gainst the \nGeneral D issemination  of I nforma­\ntion  R elative T hereto\nWHEREAS section 795 of title lS’of the \nUnited States Code provides:\n“(a) Whenever, in the interests of na­\ntional defense, the President defines certain  \nvital military and naval installations or\n»  14 P. W . 5985.\n\n=== PDF page 4 of 20 ===\n598\nequipment as requiring protection against  \nthe general dissemination of information rel­\native thereto, it shall be unlawful to make  \nany photograph, sketch, picture, drawing,  \nmap, or graphical representation of such  \nvital military and naval installations or  \nequipment without first obtaining permis­\nsion of the commanding officer of the military  \nor naval.  post, camp, or station, or naval  \nvessels, military and naval aircraft, and any  \nseparate military or naval command con­\ncerned, or higher authority, and promptly  \nsubmitting the product obtained to such  \ncommanding officer or higher authority for  \ncensorship or such other action as he may  \ndeem necessary.\n“(b) Whoever violates this section shall  \nbe fined not. more than $1,000 or imprisoned  \nnot more than one year, or both.”;\nAND WHEREAS section 797 of title 18 \nof the United States Code provides:\n“On and after thirty days from the date  \nupon which the President defines any vital  \nmilitary or naval installation or equip­\nment as being within the category contem­\nplated under section 795 of this title,  \nwhoever reproduces, publishes, sells, or gives  \naway any photograph, sketch, picture, draw­\ning, map, or graphical representation of the  \nvital military or naval installations or  \nequipment so defined, without first obtaining  \npermission of the commanding officer of the  \nmilitary or naval post, camp, or station con­\ncerned, or higher authority, unless such  \nphotograph, sketch, picture, drawing, map,  \nor graphical representation has clearly indi­\ncated thereon that it has been censored by  \nthe proper military or naval authority, shall  \nbe fined not more than $1,000 or imprisoned  \nnot more than one year, or both.”:\nNOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT\n1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:\n(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.\n(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.\n(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.\n(d) Any naval harbor closed to for­\neign vessels.\n(e) Any area required for fleet pur­\nposes.\n(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.\n2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.\n3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.\nH arry S. T ruman\nThe W hite H ouse,\nFebruary 1, 1950.\n[P. R. Doc. 50-1011; Piled, Feb. 1, 1950;\n4:09 p. m.]\nRULES AND REGULATIONS\nTITLE 8— ALIENS AND  \nNATIONALITY\nChapter I— Immigration and Natu­\nralization Service, Department of  \nJustice\nOrder 10088 (14 F. R. 7287), and for \npractical administrative reasons the date \nof designation for immigration purposes \nshould be the same as that for customs \npurposes.\n(Sec. 23, 39 Stat. 892, sec. 24, 43 Stat. 166, sec.  \n37, 54 Stat. 675; 8 U. S. C. 102, 222, 458)\nof countries ; country of oHgin of im­\nports; invoice information on country of  \norigin; nationality and motive power of  \nimporting vessels.”\n2. §30.10 (b) is amended to read as \nfollows:\n(b) For statistical purposes, importers \nshall provide information with respect to \nthe country of origin of the merchan­\ndise on all entries for consumption, en­\ntries for warehouse, and withdrawals \nfrom warehouse for consumption. As \na basis for such information, importers \nshall give the necessary instructions to \ntheir foreign suppliers, in accordance \nwith paragraph (c) of this section, for a \nstatement as to the country of origin of \nthe imported merchandise to appear on \nall invoices covering shipments to the \nUnited States.\nBy country of origin is meant the \ncountry of production or manufacture of \nthe imported merchandise. Further \nlabor, work, or material added to an \narticle in another country must effect a \nsubstantial transformation in order to \nrender such other country the “country \nof origin.” Such substantial transfor­\nmations include: Smelting of ores; \nmilling or refining of crude products;\n13 CFR, Cttm.Supp.\nSubchapter B— Immigration Regulations\nP art 110—P rimary I nspection  and \nD etention\nDESIGNATION OF NEAH BAY, WASHINGTON, AS \nA CLASS A PORT OF ENTRY FOR ALIENS\nJanuary 20, 1950.\nSection 110.1, Designated ports of entry  \nexcept by aircraft , Chapter I, Title 8 of \nthe Code of Federal Regulations, is \namended by inserting “Neáh Bay, Wash.” \nbetween “Metaline Falls, Wash.” and \n“Northport, Wash.” in the list of Class A \nports of entry under District No. 12— \nSeattle; Washington.\nThis order shall be considered effec­\ntive as of January 2, 1950. Compliance \nwith the provisions of section 4 of the \nAdministrative Procedure Act (60 Stat. \n238; 5 U. S. C. 1003) is impracticable be­\ncause Neah Bay, Washington, was des­\nignated as a customs port of entry, ef­\nfective January 2. 1950. by Executive\nW atson B. M iller, \nCommissioner of  \nImmigration and Naturalization.\nApproved: January 30,1950.\nP eyton  F ord,\nActing Attorney General.\n[F. R. Doc. 50-963; Filed, Feb. 2, 1950;  \n8:46 a. m.]\n-------------------------------------------\n\"  TITLE 15— COMMERCE AND  \n.FOREIGN TRADE\nChapter I— Bureau of the Census,  \nDepartment of Commerce  \n[Foreign Commerce Statistical Decision 71]  \nP art 30—F oreign T rade S tatistics\nCOUNTRY OF ORIGIN FOR STATISTICAL \nPURPOSES\n1. The title of §  30.10 is amended to \nread as follows: “§  30.10. Classification\n",
+    "requires_page_check": false,
+    "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+    "signing_date": "1950-02-01",
+    "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+    "text_sha256": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+    "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf"
+   },
+   "state": "none_after_bounded_search"
+  },
+  "schema": "eo-lifecycle-claim/v1",
+  "unresolved_material_gaps": [],
+  "whole_order_end": null,
+  "whole_order_status": "yes"
+ },
+ "claim_key": "research/readiness/claims/dorotheus-2026-11-06-yesprobe.jsonl:2",
+ "claim_sha256": "fb03ad49c7b8ab5de1c5cb19a4f63626bbc82abf90e1cea7f30e005ea267cb62",
+ "claim_sha256_recomputed_at_export": true,
+ "elements": [
+  {
+   "id": "original",
+   "label": "Original text and identity"
+  },
+  {
+   "id": "clause:0",
+   "label": "Clause 1: EO:10104#lead"
+  },
+  {
+   "id": "clause:1",
+   "label": "Clause 2: EO:10104#1"
+  },
+  {
+   "id": "clause:2",
+   "label": "Clause 3: EO:10104#a"
+  },
+  {
+   "id": "clause:3",
+   "label": "Clause 4: EO:10104#b"
+  },
+  {
+   "id": "clause:4",
+   "label": "Clause 5: EO:10104#c"
+  },
+  {
+   "id": "clause:5",
+   "label": "Clause 6: EO:10104#d"
+  },
+  {
+   "id": "clause:6",
+   "label": "Clause 7: EO:10104#e"
+  },
+  {
+   "id": "clause:7",
+   "label": "Clause 8: EO:10104#f"
+  },
+  {
+   "id": "clause:8",
+   "label": "Clause 9: EO:10104#f-2"
+  },
+  {
+   "id": "clause:9",
+   "label": "Clause 10: EO:10104#f-3"
+  },
+  {
+   "id": "ending",
+   "label": "Whole-order status and end"
+  },
+  {
+   "id": "savings",
+   "label": "Savings and residual effects"
+  },
+  {
+   "id": "search",
+   "label": "Later-source search and counterevidence"
+  }
+ ],
+ "exported_utc": "2026-11-06T22:52:17Z",
+ "exporter_version": "0.1.0",
+ "instrument_id": "EO:10104",
+ "readiness": {
+  "blockers": "",
+  "claim_schema": "eo-lifecycle-claim/v1",
+  "decision_origin": "opus_complete_addition",
+  "exhausted_steps": "",
+  "generation_id": "42299247852-1:808c1a847250f0283cf941324757d010e780f0c6503ac3fa383e48c9b2462bb1",
+  "original_copy_replacement_required": "no",
+  "provisional_status": "yes",
+  "quotation_recheck_required": "no",
+  "ready_for_human_review": "yes",
+  "ready_tier": "complete_claim",
+  "status_contested": "no",
+  "text_evidence_tier": "original_supported",
+  "whole_end_date_kind": ""
+ },
+ "schema": "eo-nihil-obstat-card/v1",
+ "sources": [
+  {
+   "acceptable_as_original": null,
+   "archival_id": null,
+   "grade": null,
+   "location_verified": false,
+   "page_or_item": "15 FR 597, PDF pages 3-4",
+   "raw_embedded": false,
+   "raw_in_repo": false,
+   "requires_page_check": false,
+   "sha256": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "text": "Instrument: EO:10104\nSource: https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf\nSHA-256 of the downloaded file: d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561\nLocation: 15 FR 597, PDF pages 3-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 20 ===\n597Friday, February 3,1950\nCODIFICATÌbN GUIDE— Con.\nTitle 24 Page\nChapter VUI:\nPart 825 (3 documents) _______ 602\nTitle 29\nChapter V:\nPart 523 _____     602\nTitle 43\nChapter I:\nAppendix (Public land orders) :\n632___________________  603\nTitle 49\nChapter I:\nPart 176___________________ 603\nCompany is hereby obligated to main­\ntain and repair such docks.\nSec. 4. All such coal-handling facil­\nities, structures and appurtenances at \nCristobal, Canal Zone, as are owned by \nThe Panama Canal and form a part of \nthe Cristobal Coaling Plant (the plant \nas a whole being operated by the Panama \nRailroad Company but owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company) are hereby \ntransferred to the Panama Railroad \nCompany.\nSec. 5. The railroad roundhouses and \ncar shops, together with appurtenant \nstructures and facilities, in the Canal \nZone, devoted to the maintenance and re­\npair of railroad locomotives and cars and \nheretofore maintained and operated by \nThe Panama Canal, shall hereafter be \nmaintained and operated by the Panama \nRailroad Company; and there are hereby \ntransferred to the Panama Railroad \nCompany all of the personnel, property \n(with the exception of Cristobal Round­\nhouse which is now owned by the Panama \nRailroad Company), records, related as­\nsets, contracts, obligations, and liabilities \nof or appertaining to the property re­\nquired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 6. With the exception of the oil- \nstorage tanks owned by The Panama \nCanal, the pipe lines connecting such \ntanks with the manifolds and the distri­\nbution lines from such tanks, which fa­\ncilities are used predominantly for gov­\nernmental, rather than commercial, pur­\nposes, all of the oil-handling facilities \nheretofore maintained and operated by \nThe Panama Canal in the Canal Zone \nshall hereafter be maintained and oper­\nated by the Panama Railroad Company; \nand there are hereby transferred to the \nPanama Railroad Company all of the \npersonnel, property, records, related as­\nsets, contracts, obligations, and liabil­\nities of or appertaining to the facilities \nrequired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 7. The printing plant at Mount \nHope, Canal Zone, known as thé Pan­\nama Canal Press, now owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company (the latter \nowning the building and certain of the \nequipment), and hèretofore maintained \nand operated by The Panama Canal, shall\nFEDERAL REGISTER\nhereafter be maintained and operated by \nthe Panama Railroad Company; and \nthere are hereby transferred to the Pan­\nama Railroad Company all of the per­\nsonnel, property (so far as not already \nowned by the Panama Railroad Com­\npany), records, related assets, contracts, \nobligations, and liabilities of or apper­\ntaining to such printing plant: Provided, \nhowever, that such transfer shall not \ninclude the printing supplies and ma­\nterials on hand at the time of the trans­\nfer.\nS ec. 8. The gasoline service stations \nheretofore established, maintained, and \noperated by The Panama Canal in the \nCanal Zone shall hereafter be maintained \nand operated by the Panama Railroad \nCompany; and there are hereby trans­\nferred to the Panama Railroad Company \nall of the personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities of or appertaining to such \nfacilities.\nS ec. 9. The transfers from The Pan­\nama Canal to the Panama Railroad Com­\npany of personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities accomplished by this order \nshall, as provided by law, be deemed to. \nhave been accepted and assumed by the \nPanama Railroad Company without the \nnecessity of any act or acts on the part \nof the said Company except as otherwise \nstipulated in the provisions of law appli­\ncable to the said Company, including the \nprovisions of section 246 of title 2 of the \nCanal Zone Code, as added by section 2 \nof the act of June 29, 1948, 62 Stat. 1076, \nrelative to adjustment of the investment \nof the United States in the said Company.\nSec. 10. Executive Order No. 7021 of \nApril 19, 1935, authorizing the Governor \nof The Panama Canal to arrange for the \noperation by the Panama Railroad Com­\npany of Panama Canal piers, and Execu­\ntive Order No. 9479 of September 6,1944,? \namending that order, are hereby revoked.\nS ec. 11. The. foregoing provisions of \nthis order shall take effect on July 1,1950, \nexcept that section 5 and section 9 so far \nas it relates to section 5 shall become \neffective on February 1, 1950.\nH arry S. T ruman\nThe W hite  H ouse ,\nJanuary 31, 1950.\n[P. R. Doc. 50-1009; Piled, Peb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10103\nAmendment  of E xecutive O rder N o. 9721 \nof M ay 10, 1946,2  Providing for the \nT ransfer of P ersonnel to C ertain \nPublic I nternational O rganizations\nBy virtue of the authority vested in \nme by the Civil Service Act (22 Stat. 403) \nand by section 1753 of the Revised Stat­\nutes of the United States, and as Presi­\ndent of the United States, it is ordered \nthat Executive Order No. 9721 of May \n10, 1946, authorizing the transfer, under \ncertain conditions, of civilian employees\n13 CFR, 1944 Supp. \n*  3 CFR, 1946 Supp.\nin the Executive branch of the Federal \nGovernment to public international or­\nganizations in which the United States \nGovernment participates, be, and it is \nhereby, amended in the following re­\nspects :\n1. Section 1  is amended, effective as of \nMay 10,1946, by adding at the end there­\nof the following sentence:'\n“Any employee so transferred shall, \nfor a period not to exceed three years \nfrom the date of transfer and while em­\nployed by the said international organ­\nization, be considered as being on leave \nof absence from his employment by the \nFederal Government: Provided, that the \nemployee is subsequently reemployed by \nthe Federal Government in accordance \nwith section 3 of this order.”\n2. Section 2, which by its terms be­\ncame inoperative on May 10, 1949, is re­\nvived and amended, effective as of that \ndate, to read as follows:\n“Any employee serving under a war- \nservice indefinite appointment who is \ntransferred to a public international or­\nganization pursuant to this order and, \nwhile serving in such organization and \nwithin three years from the date of such \ntransfer, is either reached in regular \norder for probational appointment from \na civil-service register appropriate for \nfilling the position in which he was serv­\ning or could, with the approval of the \nhead of such agency, have been given a > \ncompetitive status under Civil Service \nRule III if he had remained in the posi­\ntion in which he last served in a Federal \nagency, shall be considered as having \nacquired a competitive status as of the \ndate he is reached, for probational \nappointment or classification. Any em­\nployee transferred to a public interna­\ntional organization pursuant to this order \nwho was serving in such organization on \nSeptember 30, 1949, and had served con­\ntinuously therein from the date of his \ntransfer shall be considered, so far as \nExecutive Order No. 10080 or September \n30,1949,* is concerned, as having been in \nan active-duty status on September 30, \n1949, in the position in the Federal Gov­\nernment from which he was transferred \nand as having had continuous service \nwith the Federal Government from the \ndate of his transfer to September 30, \n1949.”\nHarry S. T ruman\nThe W hite H ouse ,\nFebruary 1, 1950.\n[P. R. Doc. 50-1010; Filed, Feb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10104\nDefining  C ertain V ital M ilitary  and \nNaval I nstallations  and E quipment  \nas R equiring P rotection A gainst the \nGeneral D issemination  of I nforma­\ntion  R elative T hereto\nWHEREAS section 795 of title lS’of the \nUnited States Code provides:\n“(a) Whenever, in the interests of na­\ntional defense, the President defines certain  \nvital military and naval installations or\n»  14 P. W . 5985.\n\n=== PDF page 4 of 20 ===\n598\nequipment as requiring protection against  \nthe general dissemination of information rel­\native thereto, it shall be unlawful to make  \nany photograph, sketch, picture, drawing,  \nmap, or graphical representation of such  \nvital military and naval installations or  \nequipment without first obtaining permis­\nsion of the commanding officer of the military  \nor naval.  post, camp, or station, or naval  \nvessels, military and naval aircraft, and any  \nseparate military or naval command con­\ncerned, or higher authority, and promptly  \nsubmitting the product obtained to such  \ncommanding officer or higher authority for  \ncensorship or such other action as he may  \ndeem necessary.\n“(b) Whoever violates this section shall  \nbe fined not. more than $1,000 or imprisoned  \nnot more than one year, or both.”;\nAND WHEREAS section 797 of title 18 \nof the United States Code provides:\n“On and after thirty days from the date  \nupon which the President defines any vital  \nmilitary or naval installation or equip­\nment as being within the category contem­\nplated under section 795 of this title,  \nwhoever reproduces, publishes, sells, or gives  \naway any photograph, sketch, picture, draw­\ning, map, or graphical representation of the  \nvital military or naval installations or  \nequipment so defined, without first obtaining  \npermission of the commanding officer of the  \nmilitary or naval post, camp, or station con­\ncerned, or higher authority, unless such  \nphotograph, sketch, picture, drawing, map,  \nor graphical representation has clearly indi­\ncated thereon that it has been censored by  \nthe proper military or naval authority, shall  \nbe fined not more than $1,000 or imprisoned  \nnot more than one year, or both.”:\nNOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT\n1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:\n(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.\n(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.\n(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.\n(d) Any naval harbor closed to for­\neign vessels.\n(e) Any area required for fleet pur­\nposes.\n(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.\n2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.\n3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.\nH arry S. T ruman\nThe W hite H ouse,\nFebruary 1, 1950.\n[P. R. Doc. 50-1011; Piled, Feb. 1, 1950;\n4:09 p. m.]\nRULES AND REGULATIONS\nTITLE 8— ALIENS AND  \nNATIONALITY\nChapter I— Immigration and Natu­\nralization Service, Department of  \nJustice\nOrder 10088 (14 F. R. 7287), and for \npractical administrative reasons the date \nof designation for immigration purposes \nshould be the same as that for customs \npurposes.\n(Sec. 23, 39 Stat. 892, sec. 24, 43 Stat. 166, sec.  \n37, 54 Stat. 675; 8 U. S. C. 102, 222, 458)\nof countries ; country of oHgin of im­\nports; invoice information on country of  \norigin; nationality and motive power of  \nimporting vessels.”\n2. §30.10 (b) is amended to read as \nfollows:\n(b) For statistical purposes, importers \nshall provide information with respect to \nthe country of origin of the merchan­\ndise on all entries for consumption, en­\ntries for warehouse, and withdrawals \nfrom warehouse for consumption. As \na basis for such information, importers \nshall give the necessary instructions to \ntheir foreign suppliers, in accordance \nwith paragraph (c) of this section, for a \nstatement as to the country of origin of \nthe imported merchandise to appear on \nall invoices covering shipments to the \nUnited States.\nBy country of origin is meant the \ncountry of production or manufacture of \nthe imported merchandise. Further \nlabor, work, or material added to an \narticle in another country must effect a \nsubstantial transformation in order to \nrender such other country the “country \nof origin.” Such substantial transfor­\nmations include: Smelting of ores; \nmilling or refining of crude products;\n13 CFR, Cttm.Supp.\nSubchapter B— Immigration Regulations\nP art 110—P rimary I nspection  and \nD etention\nDESIGNATION OF NEAH BAY, WASHINGTON, AS \nA CLASS A PORT OF ENTRY FOR ALIENS\nJanuary 20, 1950.\nSection 110.1, Designated ports of entry  \nexcept by aircraft , Chapter I, Title 8 of \nthe Code of Federal Regulations, is \namended by inserting “Neáh Bay, Wash.” \nbetween “Metaline Falls, Wash.” and \n“Northport, Wash.” in the list of Class A \nports of entry under District No. 12— \nSeattle; Washington.\nThis order shall be considered effec­\ntive as of January 2, 1950. Compliance \nwith the provisions of section 4 of the \nAdministrative Procedure Act (60 Stat. \n238; 5 U. S. C. 1003) is impracticable be­\ncause Neah Bay, Washington, was des­\nignated as a customs port of entry, ef­\nfective January 2. 1950. by Executive\nW atson B. M iller, \nCommissioner of  \nImmigration and Naturalization.\nApproved: January 30,1950.\nP eyton  F ord,\nActing Attorney General.\n[F. R. Doc. 50-963; Filed, Feb. 2, 1950;  \n8:46 a. m.]\n-------------------------------------------\n\"  TITLE 15— COMMERCE AND  \n.FOREIGN TRADE\nChapter I— Bureau of the Census,  \nDepartment of Commerce  \n[Foreign Commerce Statistical Decision 71]  \nP art 30—F oreign T rade S tatistics\nCOUNTRY OF ORIGIN FOR STATISTICAL \nPURPOSES\n1. The title of §  30.10 is amended to \nread as follows: “§  30.10. Classification\n",
+   "text_bytes": 16926,
+   "text_embedded": true,
+   "text_encoding": "utf-8",
+   "text_found_at": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "text_found_by": "claim text_path",
+   "text_path": "jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "text_sha256_claimed": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+   "text_sha256_export": "4e239e40571b93c507d94614fb7abf9aa78d883de5170abfed81fc62c72d1947",
+   "text_sha256_matches_claim": true,
+   "url": "https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf",
+   "uses": [
+    "operative_clauses[0].current_predicate.source",
+    "operative_clauses[0].original_source",
+    "operative_clauses[1].current_predicate.source",
+    "operative_clauses[1].original_source",
+    "operative_clauses[2].current_predicate.source",
+    "operative_clauses[2].original_source",
+    "operative_clauses[3].current_predicate.source",
+    "operative_clauses[3].original_source",
+    "operative_clauses[4].current_predicate.source",
+    "operative_clauses[4].original_source",
+    "operative_clauses[5].current_predicate.source",
+    "operative_clauses[5].original_source",
+    "operative_clauses[6].current_predicate.source",
+    "operative_clauses[6].original_source",
+    "operative_clauses[7].current_predicate.source",
+    "operative_clauses[7].original_source",
+    "operative_clauses[8].current_predicate.source",
+    "operative_clauses[8].original_source",
+    "operative_clauses[9].current_predicate.source",
+    "operative_clauses[9].original_source",
+    "original_representation",
+    "savings_residuals.source"
+   ]
+  }
+ ],
+ "spans": [
+  {
+   "byte_end": 10696,
+   "byte_start": 10362,
+   "claim_path": "operative_clauses[0].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 10696,
+    "byte_start": 10362,
+    "char_end": 10616,
+    "char_start": 10284
+   },
+   "element": "clause:0",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT",
+   "ref_path": "operative_clauses[0].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q0",
+   "status": "exact"
+  },
+  {
+   "byte_end": 10696,
+   "byte_start": 10362,
+   "claim_path": "operative_clauses[0].original_operative_text",
+   "declared": {
+    "byte_end": 10696,
+    "byte_start": 10362,
+    "char_end": 10616,
+    "char_start": 10284
+   },
+   "element": "clause:0",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q1",
+   "status": "exact"
+  },
+  {
+   "byte_end": 10696,
+   "byte_start": 10362,
+   "claim_path": "operative_clauses[0].original_source.quote",
+   "declared": {
+    "byte_end": 10696,
+    "byte_start": 10362,
+    "char_end": 10616,
+    "char_start": 10284
+   },
+   "element": "clause:0",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "NOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT",
+   "ref_path": "operative_clauses[0].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q2",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11278,
+   "byte_start": 10697,
+   "claim_path": "operative_clauses[1].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 11278,
+    "byte_start": 10697,
+    "char_end": 11179,
+    "char_start": 10617
+   },
+   "element": "clause:1",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:",
+   "ref_path": "operative_clauses[1].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q3",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11278,
+   "byte_start": 10697,
+   "claim_path": "operative_clauses[1].original_operative_text",
+   "declared": {
+    "byte_end": 11278,
+    "byte_start": 10697,
+    "char_end": 11179,
+    "char_start": 10617
+   },
+   "element": "clause:1",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q4",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11278,
+   "byte_start": 10697,
+   "claim_path": "operative_clauses[1].original_source.quote",
+   "declared": {
+    "byte_end": 11278,
+    "byte_start": 10697,
+    "char_end": 11179,
+    "char_start": 10617
+   },
+   "element": "clause:1",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:",
+   "ref_path": "operative_clauses[1].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q5",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11445,
+   "byte_start": 11279,
+   "claim_path": "operative_clauses[2].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 11445,
+    "byte_start": 11279,
+    "char_end": 11346,
+    "char_start": 11180
+   },
+   "element": "clause:2",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.",
+   "ref_path": "operative_clauses[2].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q6",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11445,
+   "byte_start": 11279,
+   "claim_path": "operative_clauses[2].original_operative_text",
+   "declared": {
+    "byte_end": 11445,
+    "byte_start": 11279,
+    "char_end": 11346,
+    "char_start": 11180
+   },
+   "element": "clause:2",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q7",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11445,
+   "byte_start": 11279,
+   "claim_path": "operative_clauses[2].original_source.quote",
+   "declared": {
+    "byte_end": 11445,
+    "byte_start": 11279,
+    "char_end": 11346,
+    "char_start": 11180
+   },
+   "element": "clause:2",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.",
+   "ref_path": "operative_clauses[2].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q8",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11699,
+   "byte_start": 11446,
+   "claim_path": "operative_clauses[3].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 11699,
+    "byte_start": 11446,
+    "char_end": 11598,
+    "char_start": 11347
+   },
+   "element": "clause:3",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.",
+   "ref_path": "operative_clauses[3].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q9",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11699,
+   "byte_start": 11446,
+   "claim_path": "operative_clauses[3].original_operative_text",
+   "declared": {
+    "byte_end": 11699,
+    "byte_start": 11446,
+    "char_end": 11598,
+    "char_start": 11347
+   },
+   "element": "clause:3",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q10",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11699,
+   "byte_start": 11446,
+   "claim_path": "operative_clauses[3].original_source.quote",
+   "declared": {
+    "byte_end": 11699,
+    "byte_start": 11446,
+    "char_end": 11598,
+    "char_start": 11347
+   },
+   "element": "clause:3",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.",
+   "ref_path": "operative_clauses[3].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q11",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11964,
+   "byte_start": 11700,
+   "claim_path": "operative_clauses[4].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 11964,
+    "byte_start": 11700,
+    "char_end": 11860,
+    "char_start": 11599
+   },
+   "element": "clause:4",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.",
+   "ref_path": "operative_clauses[4].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q12",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11964,
+   "byte_start": 11700,
+   "claim_path": "operative_clauses[4].original_operative_text",
+   "declared": {
+    "byte_end": 11964,
+    "byte_start": 11700,
+    "char_end": 11860,
+    "char_start": 11599
+   },
+   "element": "clause:4",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q13",
+   "status": "exact"
+  },
+  {
+   "byte_end": 11964,
+   "byte_start": 11700,
+   "claim_path": "operative_clauses[4].original_source.quote",
+   "declared": {
+    "byte_end": 11964,
+    "byte_start": 11700,
+    "char_end": 11860,
+    "char_start": 11599
+   },
+   "element": "clause:4",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.",
+   "ref_path": "operative_clauses[4].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q14",
+   "status": "exact"
+  },
+  {
+   "byte_end": 12015,
+   "byte_start": 11965,
+   "claim_path": "operative_clauses[5].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 12015,
+    "byte_start": 11965,
+    "char_end": 11910,
+    "char_start": 11861
+   },
+   "element": "clause:5",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(d) Any naval harbor closed to for­\neign vessels.",
+   "ref_path": "operative_clauses[5].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q15",
+   "status": "exact"
+  },
+  {
+   "byte_end": 12015,
+   "byte_start": 11965,
+   "claim_path": "operative_clauses[5].original_operative_text",
+   "declared": {
+    "byte_end": 12015,
+    "byte_start": 11965,
+    "char_end": 11910,
+    "char_start": 11861
+   },
+   "element": "clause:5",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(d) Any naval harbor closed to for­\neign vessels.",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q16",
+   "status": "exact"
+  },
+  {
+   "byte_end": 12015,
+   "byte_start": 11965,
+   "claim_path": "operative_clauses[5].original_source.quote",
+   "declared": {
+    "byte_end": 12015,
+    "byte_start": 11965,
+    "char_end": 11910,
+    "char_start": 11861
+   },
+   "element": "clause:5",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(d) Any naval harbor closed to for­\neign vessels.",
+   "ref_path": "operative_clauses[5].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q17",
+   "status": "exact"
+  },
+  {
+   "byte_end": 12060,
+   "byte_start": 12016,
+   "claim_path": "operative_clauses[6].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 12060,
+    "byte_start": 12016,
+    "char_end": 11954,
+    "char_start": 11911
+   },
+   "element": "clause:6",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(e) Any area required for fleet pur­\nposes.",
+   "ref_path": "operative_clauses[6].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q18",
+   "status": "exact"
+  },
+  {
+   "byte_end": 12060,
+   "byte_start": 12016,
+   "claim_path": "operative_clauses[6].original_operative_text",
+   "declared": {
+    "byte_end": 12060,
+    "byte_start": 12016,
+    "char_end": 11954,
+    "char_start": 11911
+   },
+   "element": "clause:6",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(e) Any area required for fleet pur­\nposes.",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q19",
+   "status": "exact"
+  },
+  {
+   "byte_end": 12060,
+   "byte_start": 12016,
+   "claim_path": "operative_clauses[6].original_source.quote",
+   "declared": {
+    "byte_end": 12060,
+    "byte_start": 12016,
+    "char_end": 11954,
+    "char_start": 11911
+   },
+   "element": "clause:6",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(e) Any area required for fleet pur­\nposes.",
+   "ref_path": "operative_clauses[6].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q20",
+   "status": "exact"
+  },
+  {
+   "byte_end": 12290,
+   "byte_start": 12061,
+   "claim_path": "operative_clauses[7].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 12290,
+    "byte_start": 12061,
+    "char_end": 12182,
+    "char_start": 11955
+   },
+   "element": "clause:7",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.",
+   "ref_path": "operative_clauses[7].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q21",
+   "status": "exact"
+  },
+  {
+   "byte_end": 12290,
+   "byte_start": 12061,
+   "claim_path": "operative_clauses[7].original_operative_text",
+   "declared": {
+    "byte_end": 12290,
+    "byte_start": 12061,
+    "char_end": 12182,
+    "char_start": 11955
+   },
+   "element": "clause:7",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q22",
+   "status": "exact"
+  },
+  {
+   "byte_end": 12290,
+   "byte_start": 12061,
+   "claim_path": "operative_clauses[7].original_source.quote",
+   "declared": {
+    "byte_end": 12290,
+    "byte_start": 12061,
+    "char_end": 12182,
+    "char_start": 11955
+   },
+   "element": "clause:7",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.",
+   "ref_path": "operative_clauses[7].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q23",
+   "status": "exact"
+  },
+  {
+   "byte_end": 13132,
+   "byte_start": 12291,
+   "claim_path": "operative_clauses[8].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 13132,
+    "byte_start": 12291,
+    "char_end": 13001,
+    "char_start": 12183
+   },
+   "element": "clause:8",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.",
+   "ref_path": "operative_clauses[8].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q24",
+   "status": "exact"
+  },
+  {
+   "byte_end": 13132,
+   "byte_start": 12291,
+   "claim_path": "operative_clauses[8].original_operative_text",
+   "declared": {
+    "byte_end": 13132,
+    "byte_start": 12291,
+    "char_end": 13001,
+    "char_start": 12183
+   },
+   "element": "clause:8",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q25",
+   "status": "exact"
+  },
+  {
+   "byte_end": 13132,
+   "byte_start": 12291,
+   "claim_path": "operative_clauses[8].original_source.quote",
+   "declared": {
+    "byte_end": 13132,
+    "byte_start": 12291,
+    "char_end": 13001,
+    "char_start": 12183
+   },
+   "element": "clause:8",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.",
+   "ref_path": "operative_clauses[8].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q26",
+   "status": "exact"
+  },
+  {
+   "byte_end": 13880,
+   "byte_start": 13133,
+   "claim_path": "operative_clauses[9].current_predicate.source.quote",
+   "declared": {
+    "byte_end": 13880,
+    "byte_start": 13133,
+    "char_end": 13724,
+    "char_start": 13002
+   },
+   "element": "clause:9",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.",
+   "ref_path": "operative_clauses[9].current_predicate.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q27",
+   "status": "exact"
+  },
+  {
+   "byte_end": 13880,
+   "byte_start": 13133,
+   "claim_path": "operative_clauses[9].original_operative_text",
+   "declared": {
+    "byte_end": 13880,
+    "byte_start": 13133,
+    "char_end": 13724,
+    "char_start": 13002
+   },
+   "element": "clause:9",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.",
+   "ref_path": "original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q28",
+   "status": "exact"
+  },
+  {
+   "byte_end": 13880,
+   "byte_start": 13133,
+   "claim_path": "operative_clauses[9].original_source.quote",
+   "declared": {
+    "byte_end": 13880,
+    "byte_start": 13133,
+    "char_end": 13724,
+    "char_start": 13002
+   },
+   "element": "clause:9",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.",
+   "ref_path": "operative_clauses[9].original_source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q29",
+   "status": "exact"
+  },
+  {
+   "byte_end": 16926,
+   "byte_start": 0,
+   "claim_path": "original_representation.quote",
+   "declared": {
+    "byte_end": 16926,
+    "byte_start": 0,
+    "char_end": 16721,
+    "char_start": 0
+   },
+   "element": "original",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "Instrument: EO:10104\nSource: https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf\nSHA-256 of the downloaded file: d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561\nLocation: 15 FR 597, PDF pages 3-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 20 ===\n597Friday, February 3,1950\nCODIFICATÌbN GUIDE— Con.\nTitle 24 Page\nChapter VUI:\nPart 825 (3 documents) _______ 602\nTitle 29\nChapter V:\nPart 523 _____     602\nTitle 43\nChapter I:\nAppendix (Public land orders) :\n632___________________  603\nTitle 49\nChapter I:\nPart 176___________________ 603\nCompany is hereby obligated to main­\ntain and repair such docks.\nSec. 4. All such coal-handling facil­\nities, structures and appurtenances at \nCristobal, Canal Zone, as are owned by \nThe Panama Canal and form a part of \nthe Cristobal Coaling Plant (the plant \nas a whole being operated by the Panama \nRailroad Company but owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company) are hereby \ntransferred to the Panama Railroad \nCompany.\nSec. 5. The railroad roundhouses and \ncar shops, together with appurtenant \nstructures and facilities, in the Canal \nZone, devoted to the maintenance and re­\npair of railroad locomotives and cars and \nheretofore maintained and operated by \nThe Panama Canal, shall hereafter be \nmaintained and operated by the Panama \nRailroad Company; and there are hereby \ntransferred to the Panama Railroad \nCompany all of the personnel, property \n(with the exception of Cristobal Round­\nhouse which is now owned by the Panama \nRailroad Company), records, related as­\nsets, contracts, obligations, and liabilities \nof or appertaining to the property re­\nquired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 6. With the exception of the oil- \nstorage tanks owned by The Panama \nCanal, the pipe lines connecting such \ntanks with the manifolds and the distri­\nbution lines from such tanks, which fa­\ncilities are used predominantly for gov­\nernmental, rather than commercial, pur­\nposes, all of the oil-handling facilities \nheretofore maintained and operated by \nThe Panama Canal in the Canal Zone \nshall hereafter be maintained and oper­\nated by the Panama Railroad Company; \nand there are hereby transferred to the \nPanama Railroad Company all of the \npersonnel, property, records, related as­\nsets, contracts, obligations, and liabil­\nities of or appertaining to the facilities \nrequired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 7. The printing plant at Mount \nHope, Canal Zone, known as thé Pan­\nama Canal Press, now owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company (the latter \nowning the building and certain of the \nequipment), and hèretofore maintained \nand operated by The Panama Canal, shall\nFEDERAL REGISTER\nhereafter be maintained and operated by \nthe Panama Railroad Company; and \nthere are hereby transferred to the Pan­\nama Railroad Company all of the per­\nsonnel, property (so far as not already \nowned by the Panama Railroad Com­\npany), records, related assets, contracts, \nobligations, and liabilities of or apper­\ntaining to such printing plant: Provided, \nhowever, that such transfer shall not \ninclude the printing supplies and ma­\nterials on hand at the time of the trans­\nfer.\nS ec. 8. The gasoline service stations \nheretofore established, maintained, and \noperated by The Panama Canal in the \nCanal Zone shall hereafter be maintained \nand operated by the Panama Railroad \nCompany; and there are hereby trans­\nferred to the Panama Railroad Company \nall of the personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities of or appertaining to such \nfacilities.\nS ec. 9. The transfers from The Pan­\nama Canal to the Panama Railroad Com­\npany of personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities accomplished by this order \nshall, as provided by law, be deemed to. \nhave been accepted and assumed by the \nPanama Railroad Company without the \nnecessity of any act or acts on the part \nof the said Company except as otherwise \nstipulated in the provisions of law appli­\ncable to the said Company, including the \nprovisions of section 246 of title 2 of the \nCanal Zone Code, as added by section 2 \nof the act of June 29, 1948, 62 Stat. 1076, \nrelative to adjustment of the investment \nof the United States in the said Company.\nSec. 10. Executive Order No. 7021 of \nApril 19, 1935, authorizing the Governor \nof The Panama Canal to arrange for the \noperation by the Panama Railroad Com­\npany of Panama Canal piers, and Execu­\ntive Order No. 9479 of September 6,1944,? \namending that order, are hereby revoked.\nS ec. 11. The. foregoing provisions of \nthis order shall take effect on July 1,1950, \nexcept that section 5 and section 9 so far \nas it relates to section 5 shall become \neffective on February 1, 1950.\nH arry S. T ruman\nThe W hite  H ouse ,\nJanuary 31, 1950.\n[P. R. Doc. 50-1009; Piled, Peb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10103\nAmendment  of E xecutive O rder N o. 9721 \nof M ay 10, 1946,2  Providing for the \nT ransfer of P ersonnel to C ertain \nPublic I nternational O rganizations\nBy virtue of the authority vested in \nme by the Civil Service Act (22 Stat. 403) \nand by section 1753 of the Revised Stat­\nutes of the United States, and as Presi­\ndent of the United States, it is ordered \nthat Executive Order No. 9721 of May \n10, 1946, authorizing the transfer, under \ncertain conditions, of civilian employees\n13 CFR, 1944 Supp. \n*  3 CFR, 1946 Supp.\nin the Executive branch of the Federal \nGovernment to public international or­\nganizations in which the United States \nGovernment participates, be, and it is \nhereby, amended in the following re­\nspects :\n1. Section 1  is amended, effective as of \nMay 10,1946, by adding at the end there­\nof the following sentence:'\n“Any employee so transferred shall, \nfor a period not to exceed three years \nfrom the date of transfer and while em­\nployed by the said international organ­\nization, be considered as being on leave \nof absence from his employment by the \nFederal Government: Provided, that the \nemployee is subsequently reemployed by \nthe Federal Government in accordance \nwith section 3 of this order.”\n2. Section 2, which by its terms be­\ncame inoperative on May 10, 1949, is re­\nvived and amended, effective as of that \ndate, to read as follows:\n“Any employee serving under a war- \nservice indefinite appointment who is \ntransferred to a public international or­\nganization pursuant to this order and, \nwhile serving in such organization and \nwithin three years from the date of such \ntransfer, is either reached in regular \norder for probational appointment from \na civil-service register appropriate for \nfilling the position in which he was serv­\ning or could, with the approval of the \nhead of such agency, have been given a > \ncompetitive status under Civil Service \nRule III if he had remained in the posi­\ntion in which he last served in a Federal \nagency, shall be considered as having \nacquired a competitive status as of the \ndate he is reached, for probational \nappointment or classification. Any em­\nployee transferred to a public interna­\ntional organization pursuant to this order \nwho was serving in such organization on \nSeptember 30, 1949, and had served con­\ntinuously therein from the date of his \ntransfer shall be considered, so far as \nExecutive Order No. 10080 or September \n30,1949,* is concerned, as having been in \nan active-duty status on September 30, \n1949, in the position in the Federal Gov­\nernment from which he was transferred \nand as having had continuous service \nwith the Federal Government from the \ndate of his transfer to September 30, \n1949.”\nHarry S. T ruman\nThe W hite H ouse ,\nFebruary 1, 1950.\n[P. R. Doc. 50-1010; Filed, Feb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10104\nDefining  C ertain V ital M ilitary  and \nNaval I nstallations  and E quipment  \nas R equiring P rotection A gainst the \nGeneral D issemination  of I nforma­\ntion  R elative T hereto\nWHEREAS section 795 of title lS’of the \nUnited States Code provides:\n“(a) Whenever, in the interests of na­\ntional defense, the President defines certain  \nvital military and naval installations or\n»  14 P. W . 5985.\n\n=== PDF page 4 of 20 ===\n598\nequipment as requiring protection against  \nthe general dissemination of information rel­\native thereto, it shall be unlawful to make  \nany photograph, sketch, picture, drawing,  \nmap, or graphical representation of such  \nvital military and naval installations or  \nequipment without first obtaining permis­\nsion of the commanding officer of the military  \nor naval.  post, camp, or station, or naval  \nvessels, military and naval aircraft, and any  \nseparate military or naval command con­\ncerned, or higher authority, and promptly  \nsubmitting the product obtained to such  \ncommanding officer or higher authority for  \ncensorship or such other action as he may  \ndeem necessary.\n“(b) Whoever violates this section shall  \nbe fined not. more than $1,000 or imprisoned  \nnot more than one year, or both.”;\nAND WHEREAS section 797 of title 18 \nof the United States Code provides:\n“On and after thirty days from the date  \nupon which the President defines any vital  \nmilitary or naval installation or equip­\nment as being within the category contem­\nplated under section 795 of this title,  \nwhoever reproduces, publishes, sells, or gives  \naway any photograph, sketch, picture, draw­\ning, map, or graphical representation of the  \nvital military or naval installations or  \nequipment so defined, without first obtaining  \npermission of the commanding officer of the  \nmilitary or naval post, camp, or station con­\ncerned, or higher authority, unless such  \nphotograph, sketch, picture, drawing, map,  \nor graphical representation has clearly indi­\ncated thereon that it has been censored by  \nthe proper military or naval authority, shall  \nbe fined not more than $1,000 or imprisoned  \nnot more than one year, or both.”:\nNOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT\n1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:\n(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.\n(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.\n(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.\n(d) Any naval harbor closed to for­\neign vessels.\n(e) Any area required for fleet pur­\nposes.\n(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.\n2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.\n3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.\nH arry S. T ruman\nThe W hite H ouse,\nFebruary 1, 1950.\n[P. R. Doc. 50-1011; Piled, Feb. 1, 1950;\n4:09 p. m.]\nRULES AND REGULATIONS\nTITLE 8— ALIENS AND  \nNATIONALITY\nChapter I— Immigration and Natu­\nralization Service, Department of  \nJustice\nOrder 10088 (14 F. R. 7287), and for \npractical administrative reasons the date \nof designation for immigration purposes \nshould be the same as that for customs \npurposes.\n(Sec. 23, 39 Stat. 892, sec. 24, 43 Stat. 166, sec.  \n37, 54 Stat. 675; 8 U. S. C. 102, 222, 458)\nof countries ; country of oHgin of im­\nports; invoice information on country of  \norigin; nationality and motive power of  \nimporting vessels.”\n2. §30.10 (b) is amended to read as \nfollows:\n(b) For statistical purposes, importers \nshall provide information with respect to \nthe country of origin of the merchan­\ndise on all entries for consumption, en­\ntries for warehouse, and withdrawals \nfrom warehouse for consumption. As \na basis for such information, importers \nshall give the necessary instructions to \ntheir foreign suppliers, in accordance \nwith paragraph (c) of this section, for a \nstatement as to the country of origin of \nthe imported merchandise to appear on \nall invoices covering shipments to the \nUnited States.\nBy country of origin is meant the \ncountry of production or manufacture of \nthe imported merchandise. Further \nlabor, work, or material added to an \narticle in another country must effect a \nsubstantial transformation in order to \nrender such other country the “country \nof origin.” Such substantial transfor­\nmations include: Smelting of ores; \nmilling or refining of crude products;\n13 CFR, Cttm.Supp.\nSubchapter B— Immigration Regulations\nP art 110—P rimary I nspection  and \nD etention\nDESIGNATION OF NEAH BAY, WASHINGTON, AS \nA CLASS A PORT OF ENTRY FOR ALIENS\nJanuary 20, 1950.\nSection 110.1, Designated ports of entry  \nexcept by aircraft , Chapter I, Title 8 of \nthe Code of Federal Regulations, is \namended by inserting “Neáh Bay, Wash.” \nbetween “Metaline Falls, Wash.” and \n“Northport, Wash.” in the list of Class A \nports of entry under District No. 12— \nSeattle; Washington.\nThis order shall be considered effec­\ntive as of January 2, 1950. Compliance \nwith the provisions of section 4 of the \nAdministrative Procedure Act (60 Stat. \n238; 5 U. S. C. 1003) is impracticable be­\ncause Neah Bay, Washington, was des­\nignated as a customs port of entry, ef­\nfective January 2. 1950. by Executive\nW atson B. M iller, \nCommissioner of  \nImmigration and Naturalization.\nApproved: January 30,1950.\nP eyton  F ord,\nActing Attorney General.\n[F. R. Doc. 50-963; Filed, Feb. 2, 1950;  \n8:46 a. m.]\n-------------------------------------------\n\"  TITLE 15— COMMERCE AND  \n.FOREIGN TRADE\nChapter I— Bureau of the Census,  \nDepartment of Commerce  \n[Foreign Commerce Statistical Decision 71]  \nP art 30—F oreign T rade S tatistics\nCOUNTRY OF ORIGIN FOR STATISTICAL \nPURPOSES\n1. The title of §  30.10 is amended to \nread as follows: “§  30.10. Classification\n",
+   "ref_path": "original_representation",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q30",
+   "status": "exact"
+  },
+  {
+   "byte_end": 16926,
+   "byte_start": 0,
+   "claim_path": "savings_residuals.source.quote",
+   "declared": {
+    "byte_end": 16926,
+    "byte_start": 0,
+    "char_end": 16721,
+    "char_start": 0
+   },
+   "element": "savings",
+   "in_declared_span": true,
+   "occurrences": 1,
+   "other_occurrences": [],
+   "quote": "Instrument: EO:10104\nSource: https://www.govinfo.gov/content/pkg/FR-1950-02-03/pdf/FR-1950-02-03.pdf\nSHA-256 of the downloaded file: d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561\nLocation: 15 FR 597, PDF pages 3-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 3 of 20 ===\n597Friday, February 3,1950\nCODIFICATÌbN GUIDE— Con.\nTitle 24 Page\nChapter VUI:\nPart 825 (3 documents) _______ 602\nTitle 29\nChapter V:\nPart 523 _____     602\nTitle 43\nChapter I:\nAppendix (Public land orders) :\n632___________________  603\nTitle 49\nChapter I:\nPart 176___________________ 603\nCompany is hereby obligated to main­\ntain and repair such docks.\nSec. 4. All such coal-handling facil­\nities, structures and appurtenances at \nCristobal, Canal Zone, as are owned by \nThe Panama Canal and form a part of \nthe Cristobal Coaling Plant (the plant \nas a whole being operated by the Panama \nRailroad Company but owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company) are hereby \ntransferred to the Panama Railroad \nCompany.\nSec. 5. The railroad roundhouses and \ncar shops, together with appurtenant \nstructures and facilities, in the Canal \nZone, devoted to the maintenance and re­\npair of railroad locomotives and cars and \nheretofore maintained and operated by \nThe Panama Canal, shall hereafter be \nmaintained and operated by the Panama \nRailroad Company; and there are hereby \ntransferred to the Panama Railroad \nCompany all of the personnel, property \n(with the exception of Cristobal Round­\nhouse which is now owned by the Panama \nRailroad Company), records, related as­\nsets, contracts, obligations, and liabilities \nof or appertaining to the property re­\nquired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 6. With the exception of the oil- \nstorage tanks owned by The Panama \nCanal, the pipe lines connecting such \ntanks with the manifolds and the distri­\nbution lines from such tanks, which fa­\ncilities are used predominantly for gov­\nernmental, rather than commercial, pur­\nposes, all of the oil-handling facilities \nheretofore maintained and operated by \nThe Panama Canal in the Canal Zone \nshall hereafter be maintained and oper­\nated by the Panama Railroad Company; \nand there are hereby transferred to the \nPanama Railroad Company all of the \npersonnel, property, records, related as­\nsets, contracts, obligations, and liabil­\nities of or appertaining to the facilities \nrequired by this section to be hereafter \nmaintained and operated by the Panama \nRailroad Company.\nSec. 7. The printing plant at Mount \nHope, Canal Zone, known as thé Pan­\nama Canal Press, now owned in part by \nThe Panama Canal and in part by the \nPanama Railroad Company (the latter \nowning the building and certain of the \nequipment), and hèretofore maintained \nand operated by The Panama Canal, shall\nFEDERAL REGISTER\nhereafter be maintained and operated by \nthe Panama Railroad Company; and \nthere are hereby transferred to the Pan­\nama Railroad Company all of the per­\nsonnel, property (so far as not already \nowned by the Panama Railroad Com­\npany), records, related assets, contracts, \nobligations, and liabilities of or apper­\ntaining to such printing plant: Provided, \nhowever, that such transfer shall not \ninclude the printing supplies and ma­\nterials on hand at the time of the trans­\nfer.\nS ec. 8. The gasoline service stations \nheretofore established, maintained, and \noperated by The Panama Canal in the \nCanal Zone shall hereafter be maintained \nand operated by the Panama Railroad \nCompany; and there are hereby trans­\nferred to the Panama Railroad Company \nall of the personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities of or appertaining to such \nfacilities.\nS ec. 9. The transfers from The Pan­\nama Canal to the Panama Railroad Com­\npany of personnel, property, records, \nrelated assets, contracts, obligations, and \nliabilities accomplished by this order \nshall, as provided by law, be deemed to. \nhave been accepted and assumed by the \nPanama Railroad Company without the \nnecessity of any act or acts on the part \nof the said Company except as otherwise \nstipulated in the provisions of law appli­\ncable to the said Company, including the \nprovisions of section 246 of title 2 of the \nCanal Zone Code, as added by section 2 \nof the act of June 29, 1948, 62 Stat. 1076, \nrelative to adjustment of the investment \nof the United States in the said Company.\nSec. 10. Executive Order No. 7021 of \nApril 19, 1935, authorizing the Governor \nof The Panama Canal to arrange for the \noperation by the Panama Railroad Com­\npany of Panama Canal piers, and Execu­\ntive Order No. 9479 of September 6,1944,? \namending that order, are hereby revoked.\nS ec. 11. The. foregoing provisions of \nthis order shall take effect on July 1,1950, \nexcept that section 5 and section 9 so far \nas it relates to section 5 shall become \neffective on February 1, 1950.\nH arry S. T ruman\nThe W hite  H ouse ,\nJanuary 31, 1950.\n[P. R. Doc. 50-1009; Piled, Peb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10103\nAmendment  of E xecutive O rder N o. 9721 \nof M ay 10, 1946,2  Providing for the \nT ransfer of P ersonnel to C ertain \nPublic I nternational O rganizations\nBy virtue of the authority vested in \nme by the Civil Service Act (22 Stat. 403) \nand by section 1753 of the Revised Stat­\nutes of the United States, and as Presi­\ndent of the United States, it is ordered \nthat Executive Order No. 9721 of May \n10, 1946, authorizing the transfer, under \ncertain conditions, of civilian employees\n13 CFR, 1944 Supp. \n*  3 CFR, 1946 Supp.\nin the Executive branch of the Federal \nGovernment to public international or­\nganizations in which the United States \nGovernment participates, be, and it is \nhereby, amended in the following re­\nspects :\n1. Section 1  is amended, effective as of \nMay 10,1946, by adding at the end there­\nof the following sentence:'\n“Any employee so transferred shall, \nfor a period not to exceed three years \nfrom the date of transfer and while em­\nployed by the said international organ­\nization, be considered as being on leave \nof absence from his employment by the \nFederal Government: Provided, that the \nemployee is subsequently reemployed by \nthe Federal Government in accordance \nwith section 3 of this order.”\n2. Section 2, which by its terms be­\ncame inoperative on May 10, 1949, is re­\nvived and amended, effective as of that \ndate, to read as follows:\n“Any employee serving under a war- \nservice indefinite appointment who is \ntransferred to a public international or­\nganization pursuant to this order and, \nwhile serving in such organization and \nwithin three years from the date of such \ntransfer, is either reached in regular \norder for probational appointment from \na civil-service register appropriate for \nfilling the position in which he was serv­\ning or could, with the approval of the \nhead of such agency, have been given a > \ncompetitive status under Civil Service \nRule III if he had remained in the posi­\ntion in which he last served in a Federal \nagency, shall be considered as having \nacquired a competitive status as of the \ndate he is reached, for probational \nappointment or classification. Any em­\nployee transferred to a public interna­\ntional organization pursuant to this order \nwho was serving in such organization on \nSeptember 30, 1949, and had served con­\ntinuously therein from the date of his \ntransfer shall be considered, so far as \nExecutive Order No. 10080 or September \n30,1949,* is concerned, as having been in \nan active-duty status on September 30, \n1949, in the position in the Federal Gov­\nernment from which he was transferred \nand as having had continuous service \nwith the Federal Government from the \ndate of his transfer to September 30, \n1949.”\nHarry S. T ruman\nThe W hite H ouse ,\nFebruary 1, 1950.\n[P. R. Doc. 50-1010; Filed, Feb. 1, 1950;\n4:09 p. m.]\nEXECUTIVE ORDER 10104\nDefining  C ertain V ital M ilitary  and \nNaval I nstallations  and E quipment  \nas R equiring P rotection A gainst the \nGeneral D issemination  of I nforma­\ntion  R elative T hereto\nWHEREAS section 795 of title lS’of the \nUnited States Code provides:\n“(a) Whenever, in the interests of na­\ntional defense, the President defines certain  \nvital military and naval installations or\n»  14 P. W . 5985.\n\n=== PDF page 4 of 20 ===\n598\nequipment as requiring protection against  \nthe general dissemination of information rel­\native thereto, it shall be unlawful to make  \nany photograph, sketch, picture, drawing,  \nmap, or graphical representation of such  \nvital military and naval installations or  \nequipment without first obtaining permis­\nsion of the commanding officer of the military  \nor naval.  post, camp, or station, or naval  \nvessels, military and naval aircraft, and any  \nseparate military or naval command con­\ncerned, or higher authority, and promptly  \nsubmitting the product obtained to such  \ncommanding officer or higher authority for  \ncensorship or such other action as he may  \ndeem necessary.\n“(b) Whoever violates this section shall  \nbe fined not. more than $1,000 or imprisoned  \nnot more than one year, or both.”;\nAND WHEREAS section 797 of title 18 \nof the United States Code provides:\n“On and after thirty days from the date  \nupon which the President defines any vital  \nmilitary or naval installation or equip­\nment as being within the category contem­\nplated under section 795 of this title,  \nwhoever reproduces, publishes, sells, or gives  \naway any photograph, sketch, picture, draw­\ning, map, or graphical representation of the  \nvital military or naval installations or  \nequipment so defined, without first obtaining  \npermission of the commanding officer of the  \nmilitary or naval post, camp, or station con­\ncerned, or higher authority, unless such  \nphotograph, sketch, picture, drawing, map,  \nor graphical representation has clearly indi­\ncated thereon that it has been censored by  \nthe proper military or naval authority, shall  \nbe fined not more than $1,000 or imprisoned  \nnot more than one year, or both.”:\nNOW, THEREFORE, by virtue of the \nauthority vested in me by the foregoing \nstatutory provisions, and in the interests \nof national defense, I hereby define the \nfollowing as vital military and naval in­\nstallations or equipment requiring pro­\ntection against the general dissemination \nof information relative thereto:\nTHE PRESIDENT\n1. All military, naval, or air-force in­\nstallations and equipment which are now \nclassified, designated, or marked under \nthe authority or at the direction of the \nPresident, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as “top secret”, “secret”, “confiden­\ntial”, or “restricted”, and all military, \nnaval, or air-force installations and \nequipment which may hereafter be so \nclassified, designated, or marked with the \napproval or at the direction of the Presi­\ndent, and located within:\n(a) Any military, naval, or air-force \nreservation, post, arsenal, proving \nground, range, mine field, camp, base, \nairfield, fort, yard, station, district,-or \narea.\n(b) Any defensive sea area heretofore \nestablished by Executive order and not \nsubsequently discontinued by Executive \norder, *and any defensive sea area here­\nafter established under authority of sec­\ntion 2152 of title 18 of the United States \nCode.\n(c) Any airspace reservation hereto­\nfore or hereafter established under au­\nthority of section 4 of the Air Commerce \nAct of 1926 (44 Stat. 570; 49 U. S. C. \n174) except the airspace reservation es­\ntablished by Executive Order No. 10092 \nof December 17, 1949.\n(d) Any naval harbor closed to for­\neign vessels.\n(e) Any area required for fleet pur­\nposes.\n(f ) Any commercial establishment en­\ngaged in the development or manufac­\nture of classified military or naval arms, \nmunitions, equipment, designs, ships, \naircraft, or vessels for the United States \nArmy, Navy, or Air'Force.\n2. All military, naval, or air-force \naircraft, weapons; ammunition,\nvehicles, ships, vessels,instruments, en­\ngines, manufacturing machinery, tools, \ndevices, or any other equipment what­\nsoever, in the possession of the Army, \nNavy, or Air Force or in the course of \nexperimentation, development, manu­\nfacture, or delivery for the Army, Navy, \nor Air Force which are now classified, \ndesignated, or marked under the au­\nthority or at the direction of the Presi­\ndent, the Secretary of Defense, the \nSecretary of the Army, the Secretary of \nthe Navy, or the Secretary of the Air \nForce as .“top secret”, “secret”, “confi­\ndential”, or “restricted”, and all such \narticles, materials, or equipment which \nmay hereafter be so classified, desig­\nnated, or marked with the approval or \nat the direction of the President.\n3. All offipial military, naval, or air­\nforce books, pamphlets, documents, re­\nports, maps, charts, plans, designs, \nmodels, drawings, photographs, con­\ntracts, or specifications which are now \nmarked under the authority or at the \ndirection of the President, the Secretary \nof Defense, the Secretary of the Army, \nthe Secretary of the Navy, or the Secre­\ntary of the Air Force as “top secret”, \n“secret”, “confidential”, or “restricted”, \nand all such articles or equipment which \nmay hereafter be so marked with the \napproval or at the direction of the \nPresident. -\nThis order supersedes Executive Order \nNo. 8381 of March 22,1940 \\  entitled “De­\nfining Certain Vital Military and Naval \nInstallations and Equipment”.\nH arry S. T ruman\nThe W hite H ouse,\nFebruary 1, 1950.\n[P. R. Doc. 50-1011; Piled, Feb. 1, 1950;\n4:09 p. m.]\nRULES AND REGULATIONS\nTITLE 8— ALIENS AND  \nNATIONALITY\nChapter I— Immigration and Natu­\nralization Service, Department of  \nJustice\nOrder 10088 (14 F. R. 7287), and for \npractical administrative reasons the date \nof designation for immigration purposes \nshould be the same as that for customs \npurposes.\n(Sec. 23, 39 Stat. 892, sec. 24, 43 Stat. 166, sec.  \n37, 54 Stat. 675; 8 U. S. C. 102, 222, 458)\nof countries ; country of oHgin of im­\nports; invoice information on country of  \norigin; nationality and motive power of  \nimporting vessels.”\n2. §30.10 (b) is amended to read as \nfollows:\n(b) For statistical purposes, importers \nshall provide information with respect to \nthe country of origin of the merchan­\ndise on all entries for consumption, en­\ntries for warehouse, and withdrawals \nfrom warehouse for consumption. As \na basis for such information, importers \nshall give the necessary instructions to \ntheir foreign suppliers, in accordance \nwith paragraph (c) of this section, for a \nstatement as to the country of origin of \nthe imported merchandise to appear on \nall invoices covering shipments to the \nUnited States.\nBy country of origin is meant the \ncountry of production or manufacture of \nthe imported merchandise. Further \nlabor, work, or material added to an \narticle in another country must effect a \nsubstantial transformation in order to \nrender such other country the “country \nof origin.” Such substantial transfor­\nmations include: Smelting of ores; \nmilling or refining of crude products;\n13 CFR, Cttm.Supp.\nSubchapter B— Immigration Regulations\nP art 110—P rimary I nspection  and \nD etention\nDESIGNATION OF NEAH BAY, WASHINGTON, AS \nA CLASS A PORT OF ENTRY FOR ALIENS\nJanuary 20, 1950.\nSection 110.1, Designated ports of entry  \nexcept by aircraft , Chapter I, Title 8 of \nthe Code of Federal Regulations, is \namended by inserting “Neáh Bay, Wash.” \nbetween “Metaline Falls, Wash.” and \n“Northport, Wash.” in the list of Class A \nports of entry under District No. 12— \nSeattle; Washington.\nThis order shall be considered effec­\ntive as of January 2, 1950. Compliance \nwith the provisions of section 4 of the \nAdministrative Procedure Act (60 Stat. \n238; 5 U. S. C. 1003) is impracticable be­\ncause Neah Bay, Washington, was des­\nignated as a customs port of entry, ef­\nfective January 2. 1950. by Executive\nW atson B. M iller, \nCommissioner of  \nImmigration and Naturalization.\nApproved: January 30,1950.\nP eyton  F ord,\nActing Attorney General.\n[F. R. Doc. 50-963; Filed, Feb. 2, 1950;  \n8:46 a. m.]\n-------------------------------------------\n\"  TITLE 15— COMMERCE AND  \n.FOREIGN TRADE\nChapter I— Bureau of the Census,  \nDepartment of Commerce  \n[Foreign Commerce Statistical Decision 71]  \nP art 30—F oreign T rade S tatistics\nCOUNTRY OF ORIGIN FOR STATISTICAL \nPURPOSES\n1. The title of §  30.10 is amended to \nread as follows: “§  30.10. Classification\n",
+   "ref_path": "savings_residuals.source",
+   "source_key": "d9f70d8a3a66650f9e45a9ac94bb80af0c86093f32347a0b718f978b9675b561|jobs/fr-originals/data/full_run/texts/EO_10104.txt",
+   "span_id": "q31",
+   "status": "exact"
+  }
+ ],
+ "tracker_generation": {
+  "blocked_by": [],
+  "branch": "main",
+  "commit_run": "410a1ffc43c5ec8f0fe9fda4c8a08c51e7c1fed4",
+  "exit_code": 0,
+  "finished_utc": "2026-11-06T22:15:38Z",
+  "generation_id": "42299247852-1:808c1a847250f0283cf941324757d010e780f0c6503ac3fa383e48c9b2462bb1",
+  "job": "readiness-tracker",
+  "machine": "Linux-7.0.0-1019-azure-x86_64-with-glibc2.43, Python 3.12.16",
+  "max_output_file_bytes": 99614720,
+  "oversized_files_moved_to_run_download": [],
+  "result": "succeeded",
+  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42299247852",
+  "started_utc": "2026-11-06T22:14:48Z",
+  "trigger": "workflow_run by D3m0sthene5; automatic progress publication"
+ }
+}
