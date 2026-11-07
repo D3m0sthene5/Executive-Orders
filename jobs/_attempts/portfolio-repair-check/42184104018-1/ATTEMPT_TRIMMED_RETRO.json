@@ -1,0 +1,15 @@
+{
+ "schema": 1,
+ "retroactive": true,
+ "rule": "run_jobs.trim_attempt limits (1 MiB per file, 8 MiB per attempt; log/STATUS/BLOCKED/tests always kept)",
+ "removed_from_tree_at_parent_of_commit": "7f79ccc840d5ed2d73ea2abe3b12fca2e29e901c",
+ "restore": "git show <that commit>:<attempt>/<path>",
+ "kept_bytes": 35002,
+ "removed": [
+  {
+   "path": "RUNNER_INPUTS.json",
+   "bytes": 11687123,
+   "git_blob": "35f79737894a2d8c52ac9e66dda1dad6b87e33e3"
+  }
+ ]
+}

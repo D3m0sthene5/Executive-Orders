@@ -1,0 +1,15 @@
+{
+ "schema": 1,
+ "retroactive": true,
+ "rule": "run_jobs.trim_attempt limits (1 MiB per file, 8 MiB per attempt; log/STATUS/BLOCKED/tests always kept)",
+ "removed_from_tree_at_parent_of_commit": "7f79ccc840d5ed2d73ea2abe3b12fca2e29e901c",
+ "restore": "git show <that commit>:<attempt>/<path>",
+ "kept_bytes": 725640,
+ "removed": [
+  {
+   "path": "ROUTES.csv",
+   "bytes": 2046536,
+   "git_blob": "2a516ae905dcc1e4fafd691a9fda3012ff931e14"
+  }
+ ]
+}

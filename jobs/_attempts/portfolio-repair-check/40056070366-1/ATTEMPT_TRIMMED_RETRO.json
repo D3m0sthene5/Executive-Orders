@@ -1,0 +1,25 @@
+{
+ "schema": 1,
+ "retroactive": true,
+ "rule": "run_jobs.trim_attempt limits (1 MiB per file, 8 MiB per attempt; log/STATUS/BLOCKED/tests always kept)",
+ "removed_from_tree_at_parent_of_commit": "7f79ccc840d5ed2d73ea2abe3b12fca2e29e901c",
+ "restore": "git show <that commit>:<attempt>/<path>",
+ "kept_bytes": 3132969,
+ "removed": [
+  {
+   "path": "current-packet/PACKET.json",
+   "bytes": 1420549,
+   "git_blob": "3ecf8711fb730dd54340874d2c3b6811bc1c22e4"
+  },
+  {
+   "path": "EFFECTIVE_CLAIMS.jsonl",
+   "bytes": 1548088,
+   "git_blob": "e097514f99d41f009464bdefafe2a0b2f48b4f41"
+  },
+  {
+   "path": "RUNNER_INPUTS.json",
+   "bytes": 7724125,
+   "git_blob": "a16bff2b736ac6fdd76c16376c17949941cb120d"
+  }
+ ]
+}
