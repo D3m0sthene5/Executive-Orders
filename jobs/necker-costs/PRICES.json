@@ -1,0 +1,42 @@
+{
+  "schema": "necker-prices/v1",
+  "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "source_url_note": "https://docs.claude.com/en/docs/about-claude/pricing redirects (302) to the URL above",
+  "retrieved": "2026-11-06",
+  "unit": "USD per million tokens (MTok), Anthropic API list price",
+  "what_this_is": "API list prices used to put a dollar figure on recorded tokens. Estimates of API-equivalent cost, not bills. Under a Claude subscription nothing here is charged per token.",
+  "rules": {
+    "cache_read": "per-model rate below (0.1x base input; 0.05x on Opus 5.5 and Sonnet 5.5; 0.025x on Fable 5.1 and Mythos 5.1)",
+    "cache_write": "5-minute and 1-hour writes have separate rates; usage.cache_creation.ephemeral_5m_input_tokens and ephemeral_1h_input_tokens say which a call used; a write total with no split is priced at the 5-minute rate and counted as unclassified",
+    "fast_mode": "usage.speed == 'fast' on Opus 5.5 / Opus 5 / Opus 4.8 multiplies every rate by fast_multiplier (page: input and output are doubled; caching multipliers apply on top)",
+    "haiku_5_5_long_prompt": "a request whose prompt (input + cache read + cache write tokens) exceeds 100,000 tokens is priced at the long-prompt rates, per request",
+    "web_search_usd_per_1000": 10.0,
+    "unknown_model": "tokens are reported, dollars are left out and the model is listed as unpriced"
+  },
+  "models": [
+    {"name": "Claude Fable 5.1", "match": "^claude-(fable|mythos)-5-1", "input": 10, "cache_write_5m": 12.5, "cache_write_1h": 20, "cache_read": 0.25, "output": 50},
+    {"name": "Claude Fable 5 / Mythos 5", "match": "^claude-(fable|mythos)-5(?!-1)", "input": 10, "cache_write_5m": 12.5, "cache_write_1h": 20, "cache_read": 1, "output": 50},
+    {"name": "Claude Opus 5.5", "match": "^claude-opus-5-5", "input": 4, "cache_write_5m": 5, "cache_write_1h": 8, "cache_read": 0.20, "output": 20, "fast_multiplier": 2},
+    {"name": "Claude Opus 5", "match": "^claude-opus-5(?!-5)", "input": 5, "cache_write_5m": 6.25, "cache_write_1h": 10, "cache_read": 0.50, "output": 25, "fast_multiplier": 2},
+    {"name": "Claude Opus 4.5 to 4.8", "match": "^claude-opus-4-[5-8]", "input": 5, "cache_write_5m": 6.25, "cache_write_1h": 10, "cache_read": 0.50, "output": 25, "fast_multiplier": 2},
+    {"name": "Claude Opus 4 / 4.1", "match": "^claude-opus-4(-1)?(-20[0-9]{6})?$", "input": 15, "cache_write_5m": 18.75, "cache_write_1h": 30, "cache_read": 1.5, "output": 75},
+    {"name": "Claude Sonnet 5.5", "match": "^claude-sonnet-5-5", "input": 2, "cache_write_5m": 2.5, "cache_write_1h": 4, "cache_read": 0.10, "output": 10},
+    {"name": "Claude Sonnet 5", "match": "^claude-sonnet-5(?!-5)", "input": 2, "cache_write_5m": 2.5, "cache_write_1h": 4, "cache_read": 0.20, "output": 10},
+    {"name": "Claude Sonnet 4 to 4.6 and 3.x", "match": "^claude-(sonnet-4|3-[57]-sonnet)", "input": 3, "cache_write_5m": 3.75, "cache_write_1h": 6, "cache_read": 0.30, "output": 15},
+    {"name": "Claude Haiku 5.5", "match": "^claude-haiku-5-5", "input": 0.10, "cache_write_5m": 0.125, "cache_write_1h": 0.20, "cache_read": 0.01, "output": 0.50,
+     "long_prompt_threshold_tokens": 100000,
+     "long_prompt": {"input": 0.50, "cache_write_5m": 0.625, "cache_write_1h": 1.0, "cache_read": 0.05, "output": 2.50}},
+    {"name": "Claude Haiku 4.5", "match": "^claude-haiku-4-5", "input": 1, "cache_write_5m": 1.25, "cache_write_1h": 2, "cache_read": 0.10, "output": 5}
+  ],
+  "aliases_for_telemetry_without_a_model_id": {
+    "opus": "claude-opus-5-5",
+    "sonnet": "claude-sonnet-5-5",
+    "haiku": "claude-haiku-5-5",
+    "note": "Bentham's AGENT_USAGE.csv rows carry model ids; Herschel's TRACE.jsonl carries only the alias. The alias is read as the current model of that family, which is an assumption."
+  },
+  "bentham_price_table_in_measure_py": {
+    "sonnet": {"input": 3.0, "output": 15.0, "cache_read": 0.30, "cache_write": 3.75},
+    "opus": {"input": 5.0, "output": 25.0, "cache_read": 0.50, "cache_write": 6.25},
+    "note": "Copied from jobs/bentham/measure.py PRICE_TABLE on origin/main for the comparison. These are the Opus 5 and Sonnet 4.x rates; the models in the transcripts are Opus 5.5 and Sonnet 5.5, which list lower, with cache reads at 0.05x base input."
+  }
+}
