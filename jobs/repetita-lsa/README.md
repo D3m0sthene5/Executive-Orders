@@ -120,8 +120,8 @@ Run on every issue's own Title 3 bytes, and on the final rows:
 EO-mention rows before the within-year dedupe, **16,396 rows after it** (16,390 in Title 3, 6 elsewhere), 2,891 rows that
 mention an executive order in their text, 6,886 Title 3 "Executive Orders" rows about a numbered order, 5,104 fragments.
 Controls: 1,428 planted checks, 5 known facts, 6 negatives and 3 member-URL hashes with no failure, and 0 of 2,459,761
-span checks failed (control error rate 0.0). About 11.9 MB committed of the 20 MiB budget. Two-thirds of the rows
-are "See ..." cross-references; 696 Executive Orders rows state a revocation, supersession or termination and 625 an amendment.
+span checks failed (control error rate 0.0). About 11.9 MB committed of the 20 MiB budget. Of the 7,042 Title 3 "Executive Orders" rows,
+3,819 are "See ..." cross-references, 696 state a revocation, supersession or termination, 625 an amendment and 215 a continuation.
 
 ## Running
 
