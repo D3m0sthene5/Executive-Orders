@@ -97,6 +97,9 @@ FALLBACK_GATE_ERROR_STEP = [
     ("savings_residuals", "savings_residuals"), ("bounded_later_search", "counterevidence"),
 ]
 
+# Historical id -> current census id (owner ruling R9).
+ID_ALIASES = {"EO:7933a": "EO:7933A"}
+
 P = {
     "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
     "decided": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
@@ -624,7 +627,10 @@ class RepoData:
         if uni is None:
             raise FileNotFoundError(f"missing {P['universe']} (add research/stage15/CENSUS to needs.txt)")
         self.universe = {r["id"]: r for r in uni if r.get("included_in_bibliography", "1") == "1"}
-        self.decided = {r["instrument_id"]: r for r in self._csv(repo, "decided")}
+        # Owner ruling R9 (2026-11-06): the census renamed EO:7933a to EO:7933A; the hash-pinned ledger
+        # keeps the historical spelling (same map as jobs/readiness-tracker ID_ALIASES).
+        canon = lambda i: ID_ALIASES.get(i, i)
+        self.decided = {canon(r["instrument_id"]): r for r in self._csv(repo, "decided")}
         self.causal = {r["instrument_id"]: r for r in self._csv(repo, "causal")}
         self.crosswalk = {r["instrument_id"]: r for r in self._csv(repo, "crosswalk")}
         self.custody = {r["instrument_id"]: r for r in self._csv(repo, "custody")}
