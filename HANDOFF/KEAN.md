@@ -46,7 +46,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 239; `search` finds the rest)
+## Newest results (6 of 240; `search` finds the rest)
 
 - 2026-11-07 F-20261107-pergamon-migration **worked**: Copy Ptolemy's and Selden's raw files from git into the Pergamon release store and verify each by tokenless r… Lesson: Precondition 1 of the history-rewrite plan holds for option A; the checker adapter (count-sensitive) must be merged and SOURCES records switched to store locators before the files leave the tip.
 - 2026-11-06 F-20261107-youngstown-courts **worked**: Find court decisions citing each register order by streaming CourtListener's public bulk opinions, classify t… Lesson: Bulk streaming beats the API (5/min, 125/day) by orders of magnitude; holdings are stated about 'the Order', so number-only sentence rules miss most; key caches by the ids they hold.
@@ -55,4 +55,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-06 F-20261107-septuagint-xfamily **worked**: Replay four exactly rebuilt Dorotheus YES-probe review batches (8 planted controls) with an OpenAI-family rev… Lesson: A different-family reviewer is complementary on planted defects at no metered cost; samples are too small for a rate. Removed-later-event plants (Mountweazel D6) defeat both families and need a dedic…
 - 2026-11-06 F-20261107-robots-wildcards **failed**: Rely on jobs/_lib/fetch_pool.py's robots.txt check (urllib.robotparser) for every job Lesson: Read the whole robots.txt before any request, including manual research with curl; and fix fetch_pool to honour wildcard rules (owner decision: the change reruns every consumer job).
 
-Register: 67 owner decisions, 26 answered questions, 239 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 67 owner decisions, 26 answered questions, 240 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
