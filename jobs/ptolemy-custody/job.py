@@ -21,6 +21,11 @@ def main():
     if test.returncode != 0:
         print(test.stdout + test.stderr)
         sys.exit("ptolemy: offline tests failed; no output replaced")
+    if (HERE / "PAUSED").is_file():
+        # Encyclopedie (owner, 2026-11-06): the repository is near GitHub's 10 GB cap. Carry the held
+        # files forward and fetch nothing until raw bytes are stored outside git. See PAUSED.
+        ptolemy.run(HERE, out, cache, prior=prior, archive_limit=0, live_limit=0)
+        return
     ptolemy.run(HERE, out, cache, prior=prior)
 
 

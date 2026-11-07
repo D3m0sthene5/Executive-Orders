@@ -94,7 +94,15 @@ J = {
                                        # holds (GPO bound volumes, 1974 GPO Hoover, 1936 FR), proved by Tischendorf's
                                        # rule plus own-segment scoring and a neighbour margin, gated by planted
                                        # controls each run. Same rule: only finds not flagged needs_page_check.
-                                       "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl"],
+                                       "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+                                       # Photius (owner prompt 2026-11-06, ruling R37): official printings page-checked by a model
+                                       # worker and recorded with the page reference. GPO bound slip-order volumes (HathiTrust
+                                       # record 000070271, EO 4306-9284), Civil Service Commission annual reports, and free
+                                       # Internet Archive copies of official publications (R40). Same rule: only finds not
+                                       # flagged needs_page_check count; acceptable_as_original stays false on every record.
+                                       "jobs/photius-gpo-volumes/output/FRAGMENTS.jsonl",
+                                       "jobs/photius-csc-printings/output/FRAGMENTS.jsonl",
+                                       "jobs/photius-free-printings/output/FRAGMENTS.jsonl"],
     # Richardson's Messages and Papers: a printed compilation transcribed from records and newspapers, not the
     # signed or officially printed original. A lead only; it never counts as the original text.
     # The American Presidency Project (app-executive-orders) is the same class: an editorial web transcription
@@ -111,6 +119,12 @@ J = {
     # order, matched by file name only, with a machine text. A lead with byte evidence, never counted as the original
     # until a person compares the pages and the codebook assigns the grade (acceptable_as_original stays false).
     "archival_replica_fragments": ["jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl"],
+    # Photius (owner prompt 2026-11-06, ruling R37's logic and decision D-20261106-photius-p4): a ProQuest replica whose
+    # pages a worker read and found to be the order (number, date, signature block, first and last words; failures and
+    # a 5% sample adjudicated by Opus) is written with grade archival_replica_checked and needs_page_check false. It
+    # credits the text step like an official printing, and the row carries the flag REPLICA_CHECKED_PROQUEST_BYTES
+    # because the bytes are ProQuest's until NARA M1118 or the owner's Hein facts re-point them.
+    "checked_replica_fragments": ["jobs/photius-replica-check/output/FRAGMENTS.jsonl"],
     # Standalone working-text confirmations (jobs/lachmann). The agent-reviewed file is read second, so its line for an
     # instrument replaces the machine line. They can only make the text step `provisional`, never an original.
     "working_text_confirmations": ["jobs/lachmann/output/CONFIRMATIONS.jsonl",
@@ -137,6 +151,7 @@ CONFIRMATION_RULING = "research/readiness/owner_rulings/2026-10-31-jacquard-and-
 CONFIRMATION_SCHEMA = "eo-lachmann-confirmation/v1"
 CONFIRMATION_METHODS = frozenset({"machine", "agent"})
 PROVISIONAL_FLAG = "TEXT_PROVISIONAL_WORKING_TEXT"
+REPLICA_FLAG = "REPLICA_CHECKED_PROQUEST_BYTES"  # Photius P4: text step credited by a checked ProQuest replica
 # Text-step blockers a confirmation may clear. Any other text blocker (an official copy found but not page-checked,
 # an official URL not yet downloaded, a claim's working-text errors) keeps the step open.
 # Owner ruling 2026-11-06 (research/readiness/owner_rulings/2026-11-06-provisional-with-unchecked-original.md): an
@@ -305,6 +320,18 @@ def load_job_outputs(root):
             by_job.setdefault(job, None)
     for job, ids in by_job.items():
         used[f"{job} (lead only, never counted as the original)"] = len(ids) if ids is not None else None
+    checked_replica = collections.defaultdict(list)
+    for rel in J["checked_replica_fragments"]:
+        job = rel.split("/")[1]
+        paths = existing([rel])
+        rows, more = read_jsonl(paths)
+        problems += more
+        ids = set()
+        for r in rows:
+            if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str):
+                checked_replica[r["instrument_id"]].append(r.get("data") if isinstance(r.get("data"), dict) else {})
+                ids.add(r["instrument_id"])
+        used[f"{job} (checked ProQuest replica: credits the text step, bytes ProQuest-dependent)"] = len(ids) if paths else None
     replica = set()
     for rel in J["archival_replica_fragments"]:
         job = rel.split("/")[1]
@@ -369,6 +396,7 @@ def load_job_outputs(root):
     search = load_machine_search(root, problems)
     used["machine later-source search"] = len(search["catalog"]) if search["complete"] else None
     return {"fr": fr, "opus_text": opus_text, "official": official, "transcription": transcription, "replica": replica,
+            "checked_replica": checked_replica,
             "confirmations": confirmations, "malformed_confirmations": malformed_confirmations,
             "opus_status": opus_status, "ladder_found": ladder_found,
             "opus_missing": opus_missing, "search": search,
@@ -555,9 +583,12 @@ def build(root, *, planning_closures=None):
                  # same rule as fr-originals: a find the job itself did not flag for a page check
                  or any(o.get("needs_page_check") is False for o in official)
                  or i in jobs["opus_text"])
+        # Photius P4: a checked ProQuest replica credits the step when nothing else does; the row says so.
+        replica_credit = (not saved) and any(o.get("needs_page_check") is False for o in jobs.get("checked_replica", {}).get(i, []))
+        saved = saved or replica_credit
         steps["original_text"] = saved or from_claim("original_text")
         text_provisional = None  # the counting confirmation that makes the text step provisional
-        flags = []  # informational, never blockers
+        flags = [REPLICA_FLAG] if replica_credit else []  # informational, never blockers
         if not steps["original_text"]:
             if fr is not None or official:
                 blockers["original_text"].append("ORIGINAL_FOUND_NEEDS_PAGE_CHECK")
@@ -859,6 +890,7 @@ def summarise(orders, problems):
         "opus_media_not_applicable": sorted(o["instrument_id"] for o in orders
                                             if o.get("opus_media_applicability_note")),
         "text_step_provisional_working_text": sum(o["step_original_text"] == "provisional" for o in orders),
+        "text_step_from_checked_replica": sum(REPLICA_FLAG in (o.get("informational_flags") or "") for o in orders),
         "working_text_confirmations_counting": getattr(build, "confirmations_counting", 0),
         "rejected_working_text_confirmations": getattr(build, "confirmation_rejections", {}),
         "step_done_among_decided": {s: {"done": step_done[s], "applicable": step_applicable[s],

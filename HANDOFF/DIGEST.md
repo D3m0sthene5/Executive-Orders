@@ -10,7 +10,7 @@ New York date: 2026-11-06. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42289309919-1:6a3cc92883889f922281901370cc5148b70fc69587b5808f7f17b21256980395` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42299247852-1:808c1a847250f0283cf941324757d010e780f0c6503ac3fa383e48c9b2462bb1` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -30,7 +30,7 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - claim-drafts: orders_with_any_conflict: 434 → 707; orders_with_draft: 4291 → 14919; undecided_orders_with_draft: 0 → 10628
 - gessner-cards: not_researched: 10681 → 10700; numbered_series_orders: unavailable → 14998; one_step_from_ready: 43 → 219; orders: 14972 → 14998
 - gratian-niebuhr-leads: date_leads: unavailable → 63; date_leads_in_census: unavailable → 36; network_requests: unavailable → 0; resolved_references: unavailable → 10
-- kean: decisions: 23 → 45; findings: 146 → 208; open_owner_questions: 2 → 3
+- kean: decisions: 23 → 45; findings: 146 → 211; open_owner_questions: 2 → 3
 - lachmann: assessed: 7738 → 5832; complete_text_confirmed: 3370 → 2104; confirmed: 1764 → 1011; identity_confirmed: 3716 → 2493
 - lambertini: counterevidence_records: 1248 → 1245; pool_LAMBC: 64 → 225; pool_LAMBS: 64 → 36
 - later-events: catalog_records_post_cutoff_ignored: 0 → 3; catalog_records_used: 6938 → 6941; catalog_records_with_notes: 5063 → 5064; decided_no_with_full_revocation_candidate: 909 → 944
@@ -48,6 +48,7 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 - status-history: census_identities: 14972 → 14998; editorial_edges_raw_span_verified: 15660 → 15656; identities_with_history: 7650 → 7651; identities_with_own_observation: 7448 → 7449
 - theophilus-sources: cfr_targets_planned: unavailable → 566; eligible_yes_orders: unavailable → 346; failures_total: unavailable → 74; orders_named_in_notices: unavailable → 162
 - tischendorf-originals: bytes_downloaded: unavailable → 27441440056; leads: unavailable → 492; order_errors: unavailable → 0; replacement_strong: unavailable → 25
+- tsiolkovsky-trajectory: W_hours: unavailable → 6630.8; W_max_hours: unavailable → 18191.0; a_hours_per_day2_latest: unavailable → -93.05; days: unavailable → 21
 - x1-class-engine: modern_families_5_plus: 193 → 196
 
 ## Top shared unlocks
@@ -70,4 +71,4 @@ Comparison snapshot: 2026-11-05; intervening runs may be absent.
 
 A failed attempt preserves the prior successful output. Newer failure receipts are retained under jobs/_attempts; the current workflow status is authoritative for this execution.
 - hathi-gpo-orders: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42289309919)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42299247852)

@@ -1,0 +1,9 @@
+Paused 2026-11-06 by the Encyclopedie campaign with the owner's approval (Kean D-20261106-encyclopedie-ptolemy-pause).
+
+GitHub reported this repository at 9,717,466 KB against its 10 GB limit. Ptolemy had added about 2.1 GB of
+packed blobs since 2026-11-05 and had 7,384 requests still due at up to 900 MB per run. While this file
+exists, job.py carries every held file forward and fetches nothing, and the DAILY file is removed, so the
+job adds no new bytes to git.
+
+Resume by routing kept bytes to storage outside git (research/encyclopedie-campaign/STORAGE.md), then
+deleting this file and restoring DAILY.
