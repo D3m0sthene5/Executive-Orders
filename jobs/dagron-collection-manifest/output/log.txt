@@ -1,10 +1,10 @@
-test_groups_and_evidence (test_dagron.EndToEnd.test_groups_and_evidence) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/dagron-collection-manifest/test_dagron.py:86: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpfjbd1rn4/jobs/wikisource-texts/output/texts/EO_20.txt' mode='w' encoding='UTF-8'>
+test_groups_and_evidence (test_dagron.EndToEnd.test_groups_and_evidence) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/dagron-collection-manifest/test_dagron.py:86: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp5n3a7e0i/jobs/wikisource-texts/output/texts/EO_20.txt' mode='w' encoding='UTF-8'>
   open(f"{root}/jobs/wikisource-texts/output/texts/EO_20.txt", "w").write("x")
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/dagron-collection-manifest/test_dagron.py:91: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpfjbd1rn4/jobs/ofr-compilations/output/texts/EO_20.txt' mode='w' encoding='UTF-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/dagron-collection-manifest/test_dagron.py:91: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp5n3a7e0i/jobs/ofr-compilations/output/texts/EO_20.txt' mode='w' encoding='UTF-8'>
   open(f"{root}/jobs/ofr-compilations/output/texts/EO_20.txt", "w").write("x")
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/dagron-collection-manifest/test_dagron.py:114: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpinkxlw_2/nyu-film709/SUMMARY.json' mode='r' encoding='UTF-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/dagron-collection-manifest/test_dagron.py:114: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp7d59l3zn/nyu-film709/SUMMARY.json' mode='r' encoding='UTF-8'>
   s = json.load(open(f"{out}/nyu-film709/SUMMARY.json"))
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -14,7 +14,7 @@ test_lfs_pointer (test_dagron.Units.test_lfs_pointer) ... ok
 test_reel_bounds (test_dagron.Units.test_reel_bounds) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.071s
+Ran 5 tests in 0.010s
 
 OK
 {
@@ -31,7 +31,8 @@ OK
  "nyu-film709": {
   "rows": 6010,
   "by_group": {
-   "1_missing_accepted_original_witness": 5875,
+   "1_missing_accepted_original_witness": 2703,
+   "2_missing_accepted_working_text_only": 3172,
    "3_unnumbered_or_ambiguous_identity": 81,
    "4_edge_numbered_after_last_unit_within_dates": 54
   }
