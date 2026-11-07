@@ -114,6 +114,15 @@ Run on every issue's own Title 3 bytes, and on the final rows:
 * The first Internet Archive hit is a Readex microprint copy of a GPO publication; its `rights` field is empty, so the
   public-domain basis is "United States Government Printing Office publication" (17 U.S.C. 105), a lead for the owner.
 
+## Measured (full run of 2026-11-07, `output/SUMMARY.json` has the live values)
+
+357 issues read (1997-01 to 2026-09; 2026-10 is not yet published), 2,459,761 entries parsed in all titles, 86,789 Title 3 and
+EO-mention rows before the within-year dedupe, **16,396 rows after it** (16,390 in Title 3, 6 elsewhere), 2,891 rows that
+mention an executive order in their text, 6,886 Title 3 "Executive Orders" rows about a numbered order, 5,104 fragments.
+Controls: 1,428 planted checks, 5 known facts, 6 negatives and 3 member-URL hashes with no failure, and 0 of 2,459,761
+span checks failed (control error rate 0.0). About 11.9 MB committed of the 20 MiB budget. Two-thirds of the rows
+are "See ..." cross-references; 696 Executive Orders rows state a revocation, supersession or termination and 625 an amendment.
+
 ## Running
 
 Push to this folder (the runner commits results back) or run by hand. `SMOKE` in the folder (or `JOB_SMOKE=1`; `JOB_SMOKE=0`
