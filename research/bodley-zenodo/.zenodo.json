@@ -1,0 +1,66 @@
+{
+  "upload_type": "dataset",
+  "title": "Bodley: a provisional register of United States executive orders, their working statuses and source-hashed lifecycle claims (version 1)",
+  "version": "1.0.0",
+  "language": "eng",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "creators": [
+    {
+      "name": "Kind, Danny",
+      "affiliation": "NYU School of Law"
+    }
+  ],
+  "description": "<p>Version 1 of the data behind <em>The Afterlife of Executive Orders</em>: a register of 14,998 working bibliographic identities for United States executive orders (the project's census, legal cutoff 14 October 2026), with, for each order, what source documents are held, a <strong>provisional</strong> yes/no status for whether any operative effect survives the cutoff, and, for 1,527 orders, a filed lifecycle claim with the source hashes and character spans it rests on.</p><p><strong>Read this first.</strong> The number of orders whose whole lifecycle has been certified by an independent human reviewer is <strong>0</strong>. Every status, claim and estimate in this release is an AI-produced working hypothesis that has passed the project's own structural and provenance gates (and, for the statuses, an AI review under written owner rulings); none is a legal finding. Each table carries an explicit evidence-tier label. The 4,298 provisional statuses are not a survival rate for executive orders: the other 10,700 orders have no status yet, and the researched orders were not drawn at random.</p><p><strong>What is not here.</strong> No licensed text and no bulk source bytes (no PDFs, page images or scans). Every source is cited by URL and SHA-256; every quotation in a claim is replaced by its SHA-256 and length, with the character span kept, so a reader who holds the source bytes can re-verify each span. A hash manifest of the project's byte store is included.</p><p>Contents: census identity layer; order register; provisional status ledger with decision origin; per-order readiness and text-evidence tier; filed claims (latest per order) with an index and a table of source references; source and byte-store hash manifests; GPO fixity matches; a stratified-sample estimate (n=120, provisional); the frozen codebook v2.0.0; methods documents and code. Prior datasets on executive-order longevity (Thrower; Lowande and Poznansky) are cited and crosswalked, not redistributed.</p>",
+  "keywords": [
+    "executive orders",
+    "presidential power",
+    "legal history",
+    "United States",
+    "executive order revocation",
+    "executive order longevity",
+    "provenance",
+    "SHA-256",
+    "AI-assisted legal research",
+    "provisional data"
+  ],
+  "notes": "Human-certified whole-lifecycle count: 0. All statuses and claims are provisional, AI-produced and uncertified. Source texts are cited by URL and SHA-256 and are not redistributed. Built offline from one commit of https://github.com/D3m0sthene5/Executive-Orders by build_release.py; see MANIFEST.json and SHA256SUMS.",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/D3m0sthene5/Executive-Orders",
+      "relation": "isDerivedFrom",
+      "scheme": "url",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.7910/DVN/LZGQOH",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "10.7910/DVN/TZ2QKY",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "10.1111/ajps.12294",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1017/S0143814X23000442",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    }
+  ],
+  "references": [
+    "Thrower, S. (2016). Replication Data for: To Revoke or Not Revoke? The Political Determinants of Executive Order Longevity (v1.1). Harvard Dataverse. https://doi.org/10.7910/DVN/LZGQOH",
+    "Lowande, K. (2023). Replication Data for: Executive Action that Lasts (v1.0). Harvard Dataverse. https://doi.org/10.7910/DVN/TZ2QKY",
+    "Thrower, S. (2017). To Revoke or Not Revoke? The Political Determinants of Executive Order Longevity. American Journal of Political Science, 61. https://doi.org/10.1111/ajps.12294",
+    "Lowande, K. and Poznansky, M. (2024). Executive action that lasts. Journal of Public Policy, 44(2). https://doi.org/10.1017/S0143814X23000442"
+  ]
+}
