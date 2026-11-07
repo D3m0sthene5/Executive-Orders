@@ -10,7 +10,7 @@ New York date: 2026-11-07. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42403264962-1:7fc3f44cb7136b5821e45e8a6cb27bd9b3cf66afd68a0d101ced861cde647ef3` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42406909919-1:f0c0f1296383b0cf0c403651d7a2a306b823e669790aa7a16ea6ea870b8bb7ba` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -27,7 +27,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 Comparison snapshot: 2026-11-06; intervening runs may be absent.
 - claim-checker: claims_all_checks_passed: 1579 → 1386; claims_mechanical_fail: 65 → 258; claims_mechanical_pass: 1665 → 1472; held_distinct_sha256: 55081 → 56961
-- claim-drafts: decided_orders_with_draft: 4291 → 4297; drafts_whose_only_remaining_gaps_are_judgment_fields: 1145 → 1148; fragment_orders_not_in_universe: 66 → 41; of_which_decided: 1145 → 1148
+- claim-drafts: decided_orders_with_draft: 4291 → 4298; drafts_whose_only_remaining_gaps_are_judgment_fields: 1145 → 1148; fragment_orders_not_in_universe: 66 → 41; of_which_decided: 1145 → 1148
 - clause-drafts: clauses_total: 70615 → 71253; fragments_from_app_transcription: 4964 → 4983; fragments_written: 9761 → 9788; ocr_fragments_with_candidate_fr_page: 60 → 58
 - duodecim-tableiv: captures_discovered_internet_archive: unavailable → 99; captures_discovered_unt: unavailable → 2; control_error_rate: unavailable → 0.0; controls_errors: unavailable → 0
 - family-rules: saved_texts_scanned: 51201 → 82481
@@ -80,4 +80,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42403264962)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42406909919)
