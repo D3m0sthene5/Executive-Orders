@@ -21,7 +21,7 @@ Tier 2 evidence job, so it has no claim fragments and no error-rate controls.
 
 First run: https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42307107988, `output/STATUS.json` says
 `succeeded`, exit code 0, commit `483108ae31ed`. (Editing this README reruns the job; the numbers below are from that
-first run, and `output/MEASUREMENTS.json` holds the latest.)
+first run, and `output/MEASUREMENTS.json` (the branch trial's copy is kept as `TRIAL_MEASUREMENTS_run42307107988.json`) holds the latest.)
 
 ## 1. The site, and how close it is to the limits
 
