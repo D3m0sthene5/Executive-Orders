@@ -6,11 +6,11 @@ New York date: 2026-11-07. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Numbered series: ready for human review 992 of 14,998 orders (6.6%)**
+**Numbered series: ready for human review 1,017 of 14,998 orders (6.8%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42414190243-1:36a711f9fc973b952b62102ca18c17137465efc963577c1a9349fcc27ea9fd56` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42421523970-1:3409259f539bf8bea63fe5d361437d405edc804d20bbe3c0f43cec558249041e` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -18,7 +18,7 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 4,298. The other 10,700 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 660, 'transcription_dependent': 332}. Provisional working texts do not authenticate originals.
+Ready by text evidence: {'original_supported': 660, 'transcription_dependent': 357}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 867; quotation rechecks: 867. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 281. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 1816}.
@@ -26,12 +26,12 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-06; intervening runs may be absent.
-- claim-checker: claims_all_checks_passed: 1579 → 1386; claims_mechanical_fail: 65 → 258; claims_mechanical_pass: 1665 → 1472; held_distinct_sha256: 55081 → 56961
+- claim-checker: claim_lines_found: 1732 → 1757; claims_all_checks_passed: 1579 → 1411; claims_checked: 1732 → 1757; claims_gate_passed: 1642 → 1667
 - claim-drafts: decided_orders_with_draft: 4291 → 4298; drafts_whose_only_remaining_gaps_are_judgment_fields: 1145 → 1148; fragment_orders_not_in_universe: 66 → 41; of_which_decided: 1145 → 1148
 - clause-drafts: clauses_total: 70615 → 71268; fragments_from_app_transcription: 4964 → 4983; fragments_written: 9761 → 9789; ocr_fragments_with_candidate_fr_page: 60 → 58
 - duodecim-tableiv: captures_discovered_internet_archive: unavailable → 99; captures_discovered_unt: unavailable → 2; control_error_rate: unavailable → 0.0; controls_errors: unavailable → 0
 - family-rules: saved_texts_scanned: 51201 → 82522
-- gessner-cards: ready_for_human_review: 1185 → 992
+- gessner-cards: ready_for_human_review: 1185 → 1017
 - kean: decisions: 45 → 67; findings: 211 → 246; open_owner_questions: 3 → 14
 - lachmann: assessed: 5832 → 2551; complete_text_confirmed: 2104 → 1330; confirmed: 1011 → 732; identity_confirmed: 2493 → 1256
 - official-fixity: carried_forward: 5158 → 7124; checked_this_run: 1 → 0; files: 5159 → 7124; orders_with_a_gpo_matched_file: 5070 → 5220
@@ -40,7 +40,7 @@ Comparison snapshot: 2026-11-06; intervening runs may be absent.
 - photius-gpo-volumes: counting_as_official_printing: unavailable → 3676; counting_in_4306_7315: unavailable → 3200; in_4306_7315: unavailable → 3201; orders_located: unavailable → 3679
 - photius-replica-check: adjudicated: unavailable → 219; adjudication_queue: unavailable → 0; credited_archival_replica_checked: unavailable → 2544; credited_below_4306: unavailable → 1967
 - ptolemy-custody: kept_this_run_bytes: 928544414 → 0; still_due: 7384 → 7364
-- readiness-tracker: original_replacement_obligations: 1146 → 867; quotation_recheck_obligations: 1146 → 867; ready_for_human_review: 1185 → 992; text_step_from_checked_replica: unavailable → 1968
+- readiness-tracker: original_replacement_obligations: 1146 → 867; quotation_recheck_obligations: 1146 → 867; ready_for_human_review: 1185 → 1017; text_step_from_checked_replica: unavailable → 1968
 - repetita-lsa: bytes_downloaded: unavailable → 18763858; control_error_rate: unavailable → 0.0; entries_parsed_all_titles: unavailable → 2459761; eo_category_rows_with_target: unavailable → 6886
 - source-ladder: attempts_logged: 70 → 45; bytes_downloaded: 640005978 → 861192611; distinct_new_source_hashes: 36 → 38; embedded_cite_items: 10 → 11
 - theophilus-sources: eligible_yes_orders: 346 → 345; yes_orders_covered_by_sections: 296 → 295
@@ -71,7 +71,10 @@ Comparison snapshot: 2026-11-06; intervening runs may be absent.
 - A-20261107-mountweazel-plants-leak (2026-11-06, claude-encyclopedie): Mountweazel's whole-repository check fails because research/excavator/dorotheus-sample-2026-11-06/PLANTS.csv names seeded item MW-C720-01 (red in the Valla pilot check). Allow the check to accept revealed plant keys under research/excavator/*/PLANTS.csv after reveal, or move revealed keys under jobs
 - A-20261107-ocr-reference-rule (2026-11-06, claude-encyclopedie): OCR pilot: exact GPO-and-engine agreement leaves 1 of 43 reference passages. Choose: (a) enlarge your hand-transcribed set, (b) agreement within a CER threshold (0.5% gives 8, 1% gives 18), or (c) GPO, Surya and Claude agree after lenient folding?
 - A-20261107-tracker-thesis-fix (2026-11-06, claude-encyclopedie): Apply TRACKER_FIX.md (about 80 lines) so the tracker fills formal_revocation_after_earlier_cessation from filed claims (32 yes, 487 no)? It is count-sensitive, so it would go in a count-changing PR for you to merge.
+- A-20261107-board-rule (2026-11-07, claude-haloander): For the 146 Presidential Emergency Board orders re-tagged under R3: may their first end be the board report's transmittal date (board command, completion_of_task) and 30 days after it for the order's own no-change sentence (inclusive), keeping EO 12553/12379 as formal disposition, with corrections f
+- A-20261107-haloander-adopt (2026-11-07, claude-haloander): Adopt the 3 Haloander status-overlay proposals (NO for EO 12082, 7814, 10733; research/excavator/claude-haloander-2026-11-07/ux/overlay/REPLACEMENT_PROPOSAL.jsonl), each upheld by an independent status reviewer and two blind lifecycle arms?
 - A-20261107-photius-193-recheck (2026-11-07, claude): 193 ready orders (EO 8032-9208) left ready because Photius found an official GPO printing for each, which made their frozen working-text confirmations stale. Run a page check of each transcription against its new official printing (an Opus wave like Photius lane 1; upgrades them to original-backed i
+- A-20261107-undecided-measure (2026-11-07, claude-haloander): Bentham's measure.py computes no filed_per_attempt.undecided, so the undecided probe (rank 7) is listed every day however often it is run. Should a measured undecided rate be added (from the Haloander probe: 0/30 canonical, 3/30 overlay proposals; Dorotheus sample 7/92 overlay), and should overlay p
 
 ## Published output status
 
@@ -81,4 +84,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42414190243)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42421523970)
