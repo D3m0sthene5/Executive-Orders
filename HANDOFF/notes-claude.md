@@ -45,8 +45,12 @@
   in `research/photius/WORKERS.csv`; sanitized totals in `research/bentham/usage/photius/`. The twelve-worker
   limit was exceeded once (up to 16 concurrent) early in the wave; recorded here, not hidden. `claude -p` was
   not logged in, so workers ran through the Agent tool (P1).
-- **Running:** `Run jobs` dispatch of readiness-tracker, claim-checker and daily-digest on main right after
-  PR #199 merges; its STATUS.json and the ready count go into Kean as F-20261106-photius-lane6 when it lands.
+- **Lane 6 (Kean F-20261106-photius-lane6):** the `Run jobs` dispatch (run 42311160709) recomputed the tracker on the
+  runner with the same counts as the local run (ready 1,185; NO_OFFICIAL_SOURCE_LOCATED 1,751; needs-page-check 594;
+  replica-needs-page-check cleared). Publish refused the whole station because claim-kit failed ("Draft summary
+  population stale": claim-drafts ran before the tracker in the same station) and case-bundles failed (EO:11246 over
+  its startup budget). Re-queued runs are on main; the tracker output on main is still the 22:18 generation until one
+  passes. Run `readiness-tracker` alone first after a count-changing merge.
 - **Found in passing:** main's Road system offline tests fail on their own:
   `jobs/peano-formulario/needs.txt` does not list `jobs/_lib/eo_identity.py` (Kean
   F-20261106-road-tests-red-on-main-peano). One line for the Formulario owner; Photius did not touch it (P6).

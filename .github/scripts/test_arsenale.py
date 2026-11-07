@@ -274,7 +274,7 @@ class StationFixture(unittest.TestCase):
                       "--out", str(out)], repo, env=self.env(station["jobs"].split()))
         return artifacts, {station["station"]: repo for station, repo, _ in running}
 
-    def publish(self, order, artifacts, hook=None, event="workflow_dispatch"):
+    def publish(self, order, artifacts, hook=None, event="workflow_dispatch", extra=None):
         publisher = self.root / "publisher"
         self.sh(["git", "-c", "core.autocrlf=false", "clone", "-q", str(self.origin), str(publisher)], self.root)
         self.configure(publisher)
@@ -284,7 +284,7 @@ class StationFixture(unittest.TestCase):
             target.chmod(0o755)
         env = self.env(order, BRANCH="main", EVENT=event, RUN_URL="https://example.invalid/runs/4242",
                        ARSENALE_RETRY_SECONDS="0", GITHUB_STEP_SUMMARY=str(self.root / "summary.md"),
-                       GITHUB_OUTPUT=str(self.root / "publish.outputs"))
+                       GITHUB_OUTPUT=str(self.root / "publish.outputs"), **(extra or {}))
         self.sh([sys.executable, ".github/scripts/arsenale.py", "collect", "--artifacts", str(artifacts)],
                  publisher, env=env)
         result = self.sh([sys.executable, ".github/scripts/arsenale.py", "publish"], publisher, env=env, check=False)
@@ -340,6 +340,48 @@ class ParallelPublicationTests(StationFixture):
         self.assertEqual(refused["beta"][0]["reason"], "inputs_changed")
         self.assertIn("research/beta/request.txt", json.dumps(refused["beta"]))
         self.assertIn("research/beta/request.txt", (self.root / "summary.md").read_text())
+
+    def test_refresh_publishes_data_drift_as_of_its_input_commit(self):
+        values, stations = self.plan()
+        artifacts, _ = self.execute(stations, sleep="0")
+        self.advance("research/beta/request.txt", "beta input v2\n")
+        result, report, _ = self.publish(values["check_order"].split(), artifacts,
+                                         extra={"ARSENALE_AS_OF_READOUT": "1"})
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(self.subject().splitlines()[0], "Results of job(s): alpha beta gamma")
+        self.assertIn("data inputs advanced since for: beta", self.subject())
+        self.assertEqual(self.show("jobs/beta/output/result.txt"), "beta input v1\n")
+        publication = report["publication"]
+        self.assertEqual(publication["refused"], {})
+        self.assertEqual(publication["published_as_of"]["beta"]["input_commit"], self.input_commit)
+        self.assertIn("research/beta/request.txt", publication["published_as_of"]["beta"]["changed_paths_sample"])
+
+    def test_refresh_still_refuses_code_drift_and_its_consumers(self):
+        self.assertTrue(arsenale.as_of_acceptable(
+            [{"reason": "inputs_changed", "changed_path_count": 1,
+              "changed_paths": [{"path": "jobs/repetita-lsa/output/FRAGMENTS.2009.jsonl"}]}], ["alpha"]))
+        self.assertFalse(arsenale.as_of_acceptable(
+            [{"reason": "inputs_changed", "changed_path_count": 1,
+              "changed_paths": [{"path": "research/alpha/request.py"}]}], []))
+        self.assertFalse(arsenale.as_of_acceptable(
+            [{"reason": "inputs_changed", "changed_path_count": 1,
+              "changed_paths": [{"path": "jobs/alpha/output/result.txt"}]}], ["alpha", "gamma"]))
+        self.assertFalse(arsenale.as_of_acceptable([{"reason": "concurrent_output_advanced"}], []))
+        self.assertFalse(arsenale.as_of_acceptable(
+            [{"reason": "inputs_changed", "changed_path_count": 2,
+              "changed_paths": [{"path": "research/x.csv"}]}], []))
+
+    def test_refresh_mode_still_refuses_concurrent_publication(self):
+        values, stations = self.plan()
+        artifacts, _ = self.execute(stations, sleep="0")
+        self.sh(["git", "pull", "-q", "--rebase", "origin", "main"], self.author)
+        self.put("jobs/beta/output/result.txt", "another run published first\n")
+        self.commit("Results of job(s): beta")
+        result, report, _ = self.publish(values["check_order"].split(), artifacts,
+                                         extra={"ARSENALE_AS_OF_READOUT": "1"})
+        self.assertEqual(result.returncode, 3)
+        self.assertEqual(report["publication"]["refused"]["beta"][0]["reason"], "concurrent_output_advanced")
+        self.assertNotIn("published_as_of", report["publication"])
 
     def test_consumer_of_refused_producer_is_refused_too(self):
         values, stations = self.plan()
