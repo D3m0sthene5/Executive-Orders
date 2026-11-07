@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:6543C",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:6543C"
@@ -37,7 +37,12 @@
       "text": "Now, Therefore, I, Franklin D. Roosevelt, President of the United States, pursuant to the authority vested in me by Title I of the National Industrial Recovery Act, approved June 16, 1933, and otherwise, do adopt and approve the report, recommendations, and findings of the Administrator, and do order that the said Code of Fair Competition be, and it is hereby, approved.\n\nFRANKLIN D. ROOSEVELT\n\nApproval recommended:\n\n     Hugh S. Johnson.\n\n          Administrator."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "SIGNING_DATE_DISAGREEMENT",
+      "detail": "mabillon-held-printings@jobs/mabillon-held-printings/output: 1933-12-30; photius-gpo-volumes@jobs/photius-gpo-volumes/output: 1933-06-16"
+    }
+  ],
   "current_law_leads": [],
   "draft_gate_errors": [
     "original_representation_provenance",
@@ -54,7 +59,8 @@
     "DRAFT: state_at_cutoff not decided for 2 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT SIGNING_DATE_DISAGREEMENT: mabillon-held-printings@jobs/mabillon-held-printings/output: 1933-12-30; photius-gpo-volumes@jobs/photius-gpo-volumes/output: 1933-06-16"
   ],
   "evidence": {
     "CLAUSES:EO:6543C#whole": {
@@ -113,7 +119,7 @@
       "text": "An application having been duly made, pursuant to and in full compliance with the provisions of Title I of the National Industrial Recovery Act, approved June 16, 1933, for my approval of a Code of Fair Competition for the Shoe and Leather Finish, Polish, and Cement Manufacturing Industry, and hearings having been held thereon and the Administrator having rendered his report containing an analysis of the said Code of Fair Competition together with his recommendations and findings with respect thereto, and the Administrator having found that the said Code of Fair Competition complies in all respects with the pertinent provisions of Title I of said Act and that the requirements of clauses (1) and (2) of subsection (a) of Section 3 of the said Act have been met:\n\nNow, Therefore, I, Franklin D. Roosevelt, President of the United States, pursuant to the authority vested in me by Title I of the National Industrial Recovery Act, approved June 16, 1933, and otherwise, do adopt and approve the report, recommendations, and findings of the Administrator, and do order that the said Code of Fair Competition be, and it is hereby, approved.\n\nFRANKLIN D. ROOSEVELT\n\nApproval recommended:\n\n     Hugh S. Johnson.\n\n          Administrator.\n\nThe White House,\n\nDecember 30, 1933.\n"
     }
   },
-  "fingerprint": "d7a896eb5eff8fd380f2ddc28a8dac5cdf395d6734f083f240f62cd60d7a875d",
+  "fingerprint": "8a050156472e2a543a84d4da9daa271cac32949deec21a2a5a9eac3745da5bc1",
   "instrument_id": "EO:6543C",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -137,7 +143,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -149,7 +155,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -160,9 +166,10 @@
     },
     {
       "complete": true,
+      "coverage_warning": "order dated 1933: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own",
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -179,77 +186,5 @@
   "original_source_id": "ORIGINAL:EO:6543C",
   "own_terms": [],
   "schema": "eo-claim-kit-dossier/v1",
-  "whole_order_status": "no",
-  "working_text_confirmation": {
-    "fragments": [
-      {
-        "acceptable_as_original": false,
-        "complete_text": null,
-        "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
-        "grade": "mirror_transcription",
-        "instrument_id": "EO:6543C",
-        "requires_page_check": true,
-        "sha256": "05bbd3e1cc25d5934f8cbcb3483ca9d387f71c699f205e1090e40d8a252ff80e",
-        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6543-c-code-fair-competition-for-the-shoe-and-leather-finish-polish-and.txt",
-        "text_sha256": "5b4efa4c5fbbe433da59c4d283cc90d80bfc791ec82dc421ace4323b072f3286",
-        "url": "https://www.presidency.ucsb.edu/documents/executive-order-6543-c-code-fair-competition-for-the-shoe-and-leather-finish-polish-and"
-      }
-    ],
-    "record": {
-      "acceptable_as_original": false,
-      "complete_text_confirmed": true,
-      "confirmed": true,
-      "evidence": {
-        "complete_detail": {
-          "end_cue_kind": "signature",
-          "start_kind": "title_words"
-        },
-        "complete_route": "own_start_and_end",
-        "first_cue_snippet": "An application having been duly made, pursuant to and in full compliance with th",
-        "identity_detail": {
-          "source_heading": "Executive Order 6543-C—Code of Fair Competition for the Shoe and Leather Finish, Polish, and Cement Manufacturing Indust",
-          "source_heading_producer": "app-executive-orders",
-          "title_overlap_body_opening": 1.0,
-          "title_overlap_heading": 1.0
-        },
-        "identity_route": "source_heading",
-        "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
-        "matched_date": "December 30, 1933",
-        "matched_number": null,
-        "pages_detail": {
-          "app_date": "1933-12-30",
-          "app_heading": "Executive Order 6543-C—Code of Fair Competition for the Shoe and Leather Finish,",
-          "app_subject_overlap": 1.0
-        },
-        "register_date": "1933-12-30",
-        "register_number": "6543C",
-        "similarity": [],
-        "skipped_witnesses": [],
-        "source_heading": "Executive Order 6543-C—Code of Fair Competition for the Shoe and Leather Finish, Polish, and Cement Manufacturing Indust",
-        "text_chars": 1277
-      },
-      "grade": "mirror_transcription",
-      "identity_confirmed": true,
-      "instrument_id": "EO:6543C",
-      "method": "machine",
-      "pages_confirmed": true,
-      "reasons": [],
-      "requires_page_check": true,
-      "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
-      "schema": "eo-lachmann-confirmation/v1",
-      "sha256": "05bbd3e1cc25d5934f8cbcb3483ca9d387f71c699f205e1090e40d8a252ff80e",
-      "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
-      "text_path": "jobs/app-executive-orders/output/texts/executive-order-6543-c-code-fair-competition-for-the-shoe-and-leather-finish-polish-and.txt",
-      "text_sha256": "5b4efa4c5fbbe433da59c4d283cc90d80bfc791ec82dc421ace4323b072f3286",
-      "witnesses": [
-        {
-          "grade": "mirror_transcription",
-          "producer": "app-executive-orders",
-          "sha256": "05bbd3e1cc25d5934f8cbcb3483ca9d387f71c699f205e1090e40d8a252ff80e",
-          "text_path": "jobs/app-executive-orders/output/texts/executive-order-6543-c-code-fair-competition-for-the-shoe-and-leather-finish-polish-and.txt"
-        }
-      ]
-    },
-    "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
-  }
+  "whole_order_status": "no"
 }

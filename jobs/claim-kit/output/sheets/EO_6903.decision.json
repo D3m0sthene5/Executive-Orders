@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "e24d2831ae54f5c39c1d1cbbe3d89e48bc5a0d86e4c81e51dc00adcfdf9448ce",
+  "dossier_sha256": "e4bab7afdcc3d6b57adcb6c0c5a873f93b9e82499a734b679708d74afd1384e1",
   "instrument_id": "EO:6903",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-11-14",
               "register_number": "6903",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6903.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6903.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6903—Amending Code of Fair Competition for the Alcoholic Beverages Importing Industry",
               "text_chars": 891
             },

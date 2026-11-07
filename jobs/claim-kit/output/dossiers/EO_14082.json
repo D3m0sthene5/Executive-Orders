@@ -320,7 +320,7 @@
         "verb": "abolish"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14082",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14082"
@@ -1651,9 +1651,67 @@
     {
       "code": "WHOLE_END_ACTOR_DISAGREEMENT",
       "detail": "EO:14148, EO:14154"
+    },
+    {
+      "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
+      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 26 U.S.C. 1 nt"
     }
   ],
-  "current_law_leads": [],
+  "current_law_leads": [
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14082",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 26 U.S.C. 1 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3239",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "344369-344459",
+      "snippet": "2022 Sept. 12 | EO 14082 | 26 U.S.C. 1 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 26 U.S.C. 1 nt"
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3239",
+        "snippet": "2022 Sept. 12 | EO 14082 | 26 U.S.C. 1 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 26 U.S.C. 1 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 26 U.S.C. 1 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
+    }
+  ],
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
@@ -1672,6 +1730,15 @@
     "clause_14_state",
     "clause_15_state",
     "clause_16_state",
+    "clause_17_state",
+    "clause_18_state",
+    "clause_19_state",
+    "clause_20_state",
+    "clause_21_state",
+    "clause_22_state",
+    "clause_23_state",
+    "clause_24_state",
+    "clause_25_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -1679,11 +1746,12 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 17 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 26 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT WHOLE_END_ACTOR_DISAGREEMENT: EO:14148, EO:14154"
+    "CONFLICT WHOLE_END_ACTOR_DISAGREEMENT: EO:14148, EO:14154",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 26 U.S.C. 1 nt"
   ],
   "evidence": {
     "ACT:EO:14082>EO:14096": {
@@ -4215,37 +4283,6 @@
       },
       "text": "Instrument: EO:14082\nSource: https://www.govinfo.gov/content/pkg/FR-2022-09-16/pdf/2022-20210.pdf\nSHA-256 of the downloaded file: 30436e8efd5e41d8597db18c38043f8aac524d597e12b754d37f77f44143ed91\nLocation: 87 FR 56861, PDF pages 1-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 4 ===\nPresidential Documents\n56861 \nFederal Register \nVol. 87, No. 179 \nFriday, September 16, 2022 \nTitle 3— \nThe President \nExecutive Order 14082 of September 12, 2022 \nImplementation of the Energy and Infrastructure Provisions \nof the Inflation Reduction Act of 2022 \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, and in order to effectively implement \nthe historic energy and infrastructure provisions in Public Law 117–169, \ncommonly referred to as the Inflation Reduction Act of 2022 (the ‘‘Act’’), \nand to accelerate United States global leadership in clean energy innovation, \nmanufacturing, and deployment in a way that cuts consumer energy costs, \ncreates well-paying union jobs and sustainable and equitable economic oppor-\ntunity, advances environmental justice, and addresses the climate crisis, \nit is hereby ordered as follows: \nSection 1. Background. The Act is the single largest and most ambitious \ninvestment in the ability of the United States to advance clean energy, \ncut consumer energy costs, confront the climate crisis, promote environ-\nmental justice, and strengthen energy security, among other vital provisions \nthat will lower costs for families, reduce the deficit, and grow and strengthen \nthe economy. The Act will: \n(a) build on the once-in-a-generation investment in the infrastructure and \ncompetitiveness of the United States set forth in the Infrastructure Investment \nand Jobs Act (Public Law 117–58) by accelerating the deployment of clean \nenergy technologies, making home energy efficiency and clean energy instal-\nlations more affordable, and incentivizing the purchase of electric vehicles; \n(b) boost energy security and lower energy costs for families, businesses, \nand government; \n(c) revitalize American manufacturing by investing in domestic clean en-\nergy supply chains and creating well-paying union jobs, including in tradi-\ntional energy communities; \n(d) improve public health and advance environmental justice and economic \nopportunity for frontline communities who disproportionately bear the brunt \nof cumulative exposure to industrial and energy pollution; \n(e) promote climate justice by reducing harmful greenhouse gas emissions \nin line with the goal of realizing net-zero emissions by no later than 2050; \n(f) harness nature-based solutions—including climate-smart agriculture and \nforestry—that deliver economic benefits for rural communities, Tribes, farm-\ners, ranchers, and forest landowners; \n(g) expand research and accelerate innovation in the development of clean \nenergy, climate, and related technologies; and \n(h) increase the resilience of our communities in the face of a changing \nclimate. \nAchieving these goals will require effective implementation of the Act by \nmy Administration, as well as by State, local, Tribal, and territorial govern-\nments. \nSec. 2. Implementation Priorities. In implementing the Act, all agencies \n(as described in section 3502(1) of title 44, United States Code, except \nfor the agencies described in section 3502(5) of title 44) shall, as appropriate \nand to the extent consistent with law, prioritize: \nVerDate Sep<11>2014 15:45 Sep 15, 2022 Jkt 256001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\16SEE0.SGM 16SEE0khammond on DSKJM1Z7X2PROD with PRESDOC\n=== PDF page 2 of 4 ===\n56862 Federal Register / Vol. 87, No. 179 / Friday, September 16, 2022 / Presidential Documents \n(a) investing public dollars effectively and efficiently, working to avoid \nwaste, and achieving measurable, demonstrable outcomes for the American \npeople; \n(b) driving progress to achieve the climate goals of the United States \nto reduce greenhouse gas emissions 50–52 percent below 2005 levels in \n2030, achieve a carbon pollution-free electricity sector by 2035, and achieve \nnet-zero emissions by no later than 2050; \n(c) advancing environmental and climate justice through an all-of-govern-\nment approach, including through the Justice40 Initiative set forth in Execu-\ntive Order 14008 of January 27, 2021 (Tackling the Climate Crisis at Home \nand Abroad), to protect and improve the health and well-being of fence- \nline and frontline communities in the United States; \n(d) promoting construction of clean energy generation, storage, and trans-\nmission, and enabling technologies through efficient, effective mechanisms \nthat incorporate community engagement; \n(e) increasing the competitiveness of the United States economy and invest-\nment in critical supply chains, including through the Act’s incentives and \nmeasures to strengthen domestic manufacturing and supply chains; \n(f) increasing high-quality job opportunities for American workers and \nimproving equitable access to these jobs, including in traditional energy \ncommunities, through the timely implementation of the Act’s requirements \nfor prevailing wages and registered apprenticeships and by focusing on \nhigh labor standards and the free and fair chance to join a union; \n(g) reducing energy costs for working families, businesses, and governments \nat all levels while increasing energy security for the benefit of United States \neconomic competitiveness and national security; \n(h) accelerating innovation by directing the scientific and technical exper-\ntise of America’s researchers, businesses, and workers toward achieving \nbreakthroughs in clean energy and climate technologies; and \n(i) effectively coordinating with State, local, Tribal, and territorial govern-\nments, as well as with private-sector stakeholders and nongovernmental \norganizations, in implementing the critical investments outlined in this sec-\ntion to build sustainable, resilient communities. \nSec. 3. White House Office on Clean Energy Innovation and Implementation. \nThere is hereby established the White House Office on Clean Energy Innova-\ntion and Implementation within the Executive Office of the President, which \nshall coordinate the policymaking process with respect to implementing \nthe energy and infrastructure provisions of the Act and other essential initia-\ntives. The White House Office on Clean Energy Innovation and Implementa-\ntion shall have a staff headed by the Senior Advisor for Clean Energy \nInnovation and Implementation; shall have such staff and other assistance \nas may be necessary to carry out the provisions of this order, subject to \nthe availability of appropriations; and may work with established or ad \nhoc committees and interagency groups. \nSec. 4. Interagency Coordination. (a) To further the robust implementation \nof the energy and infrastructure provisions of the Act, Executive Order \n14008 is amended as follows: \n(i) The introductory text following the heading for section 203 is revised \nto read as follows: ‘‘There is hereby established a National Climate Task \nForce (Task Force). The Task Force shall be chaired by the Senior Advisor \nfor Clean Energy Innovation and Implementation. The National Climate \nAdvisor shall serve as Vice Chair.’’. \n(ii) Section 203(a) is revised to read as follows: \n‘‘(a) Membership. The Task Force shall consist of the following additional \nmembers: \n(i) the Secretary of the Treasury; \n(ii) the Secretary of Defense; \nVerDate Sep<11>2014 15:45 Sep 15, 2022 Jkt 256001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\16SEE0.SGM 16SEE0khammond on DSKJM1Z7X2PROD with PRESDOC\n=== PDF page 3 of 4 ===\n56863 Federal Register / Vol. 87, No. 179 / Friday, September 16, 2022 / Presidential Documents \n(iii) the Attorney General; \n(iv) the Secretary of the Interior; \n(v) the Secretary of Agriculture; \n(vi) the Secretary of Commerce; \n(vii) the Secretary of Labor; \n(viii) the Secretary of Health and Human Services; \n(ix) the Secretary of Housing and Urban Development; \n(x) the Secretary of Transportation; \n(xi) the Secretary of Energy; \n(xii) the Secretary of Education; \n(xiii) the Secretary of Homeland Security; \n(xiv) the Administrator of the Environmental Protection Agency; \n(xv) the Director of the Office of Management and Budget; \n(xvi) the Director of the Office of Science and Technology Policy; \n(xvii) the Administrator of the Small Business Administration; \n(xviii) the Chair of the Council on Environmental Quality; \n(xix) the Assistant to the President for National Security Affairs; \n(xx) the Assistant to the President for Domestic Policy; \n(xxi) the Assistant to the President for Homeland Security and \nCounterterrorism; \n(xxii) the Assistant to the President for Economic Policy; \n(xxiii) the Administrator of the National Aeronautics and Space Ad-\nministration; \n(xxiv) the Chief Executive Officer of the Corporation for National and \nCommunity Service; \n(xxv) the Administrator of General Services; \n(xxvi) the White House Infrastructure Coordinator; and \n(xxvii) the heads of such other departments, agencies, and offices as \nthe Chair or Vice Chair may from time to time invite to participate.’’. \n(iii) To expand the mission of the National Climate Task Force to include \ncoordinating effective implementation of the Act, as outlined in section \n2 of this order, the second sentence of section 203(b) is revised to read \nas follows: ‘‘This Task Force shall facilitate planning and implementation \nof key Federal actions to reduce climate pollution; increase resilience \nto the impacts of climate change; protect public health; conserve our \nlands, waters, oceans, and biodiversity; deliver environmental justice; spur \nwell-paying union jobs and economic growth; coordinate effective imple-\nmentation of Public Law 117–169, commonly referred to as the Inflation \nReduction Act of 2022, in coordination with the Infrastructure Implementa-\ntion Task Force established in Executive Order 14052 of November 15, \n2021 (Implementation of the Infrastructure Investment and Jobs Act), as \nappropriate; and accelerate clean energy innovation and deployment.’’. \n(iv) The introductory text following the heading for section 218 is revised \nto read as follows: ‘‘There is hereby established an Interagency Working \nGroup on Coal and Power Plant Communities and Economic Revitalization \n(Interagency Working Group). The National Climate Advisor, the Assistant \nto the President for Economic Policy, and the Senior Advisor for Clean \nEnergy Innovation and Implementation shall serve as Co-Chairs of the \nInteragency Working Group.’’. \n(b) Section 1–102(b) of Executive Order 12898 of February 11, 1994 (Federal \nActions to Address Environmental Justice in Minority Populations and Low- \nIncome Populations), as amended by section 220(a) of Executive Order 14008, \nis further amended by revising subsection (xvii) and (xviii) and adding \nsubsection (xix) to read as follows: ‘‘(xvii) the Assistant to the President \nfor Domestic Policy; (xviii) the Assistant to the President for Economic \nPolicy; and (xix) the Senior Advisor for Clean Energy Innovation and Imple-\nmentation.’’. \n(c) To further support implementation of the energy and infrastructure \nprovisions of the Act, section 3(d) of Executive Order 14052 of November \n15, 2021 (Implementation of the Infrastructure Investment and Jobs Act), \nis amended by striking ‘‘and’’ at the end of subsection (xi), striking subsection \nVerDate Sep<11>2014 15:45 Sep 15, 2022 Jkt 256001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\16SEE0.SGM 16SEE0khammond on DSKJM1Z7X2PROD with PRESDOC\n=== PDF page 4 of 4 ===\n56864 Federal Register / Vol. 87, No. 179 / Friday, September 16, 2022 / Presidential Documents \n(xii), and adding in lieu thereof the following: ‘‘(xii) the Senior Advisor \nfor Clean Energy Innovation and Implementation; and (xiii) the heads of \nsuch other executive departments, agencies, and offices as the Co-Chairs \nmay from time to time invite to participate.’’. \nSec. 5. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nSeptember 12, 2022. \n[FR Doc. 2022–20210 \nFiled 9–15–22; 8:45 am] \nBilling code 3395–F2–P \nVerDate Sep<11>2014 15:45 Sep 15, 2022 Jkt 256001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\16SEE0.SGM 16SEE0\nBIDEN.EPS</GPH>\nkhammond on DSKJM1Z7X2PROD with PRESDOC"
     },
-    "TERM:EO:14082:06a125f928476be5@7039a5b428e9d24a": {
-      "actor_id": "EO:14082",
-      "char_end": 6355,
-      "char_start": 5957,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14082:06a125f928476be5@7039a5b428e9d24a",
-      "instrument_id": "EO:14082",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14082#sec3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14082",
-        "page_or_item": "87 FR 56861, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "30436e8efd5e41d8597db18c38043f8aac524d597e12b754d37f77f44143ed91",
-        "signing_date": "2022-09-12",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14082-30436e8efd.txt",
-        "text_sha256": "7039a5b428e9d24a9cea21f678346a4b318fd372f12a0e63e499f0cce3f0612e",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2022-09-16/pdf/2022-20210.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The White House Office on Clean Energy Innovation and Implementa-\ntion shall have a staff headed by the Senior Advisor for Clean Energy \nInnovation and Implementation; shall have such staff and other assistance \nas may be necessary to carry out the provisions of this order, subject to \nthe availability of appropriations; and may work with established or ad \nhoc committees and interagency groups."
-    },
     "TERM:EO:14082:06a125f928476be5@7c43834fd0ed6ee0": {
       "actor_id": "EO:14082",
       "char_end": 6968,
@@ -4274,37 +4311,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The White House Office on Clean Energy Innovation and Implementa-\ntion shall have a staff headed by the Senior Advisor for Clean Energy \nInnovation and Implementation; shall have such staff and other assistance \nas may be necessary to carry out the provisions of this order, subject to \nthe availability of appropriations; and may work with established or ad \nhoc committees and interagency groups."
-    },
-    "TERM:EO:14082:191f0bc0fdbc46b6@7039a5b428e9d24a": {
-      "actor_id": "EO:14082",
-      "char_end": 12061,
-      "char_start": 11943,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14082:191f0bc0fdbc46b6@7039a5b428e9d24a",
-      "instrument_id": "EO:14082",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14082#sec5-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14082",
-        "page_or_item": "87 FR 56861, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "30436e8efd5e41d8597db18c38043f8aac524d597e12b754d37f77f44143ed91",
-        "signing_date": "2022-09-12",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14082-30436e8efd.txt",
-        "text_sha256": "7039a5b428e9d24a9cea21f678346a4b318fd372f12a0e63e499f0cce3f0612e",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2022-09-16/pdf/2022-20210.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
     "TERM:EO:14082:191f0bc0fdbc46b6@7c43834fd0ed6ee0": {
       "actor_id": "EO:14082",
@@ -4402,9 +4408,71 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
+    },
+    "TERM:EO:14082:844ca5fafefa28cf@8a9f67953e49d301": {
+      "actor_id": "EO:14082",
+      "char_end": 11081,
+      "char_start": 10964,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14082:844ca5fafefa28cf@8a9f67953e49d301",
+      "instrument_id": "EO:14082",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14082#sec5-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14082",
+        "page_or_item": "87 FR 56861-56864 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "30436e8efd5e41d8597db18c38043f8aac524d597e12b754d37f77f44143ed91",
+        "signing_date": "2022-09-12",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14082-30436e8efd.txt",
+        "text_sha256": "8a9f67953e49d3011c00f269dd64acabbba6778ec1536d1ca8166da42c70c415",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2022-09-16/pdf/2022-20210.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
+    },
+    "TERM:EO:14082:b5594ed108f1a9bf@8a9f67953e49d301": {
+      "actor_id": "EO:14082",
+      "char_end": 6007,
+      "char_start": 5613,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14082:b5594ed108f1a9bf@8a9f67953e49d301",
+      "instrument_id": "EO:14082",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14082#sec3",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14082",
+        "page_or_item": "87 FR 56861-56864 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "30436e8efd5e41d8597db18c38043f8aac524d597e12b754d37f77f44143ed91",
+        "signing_date": "2022-09-12",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14082-30436e8efd.txt",
+        "text_sha256": "8a9f67953e49d3011c00f269dd64acabbba6778ec1536d1ca8166da42c70c415",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2022-09-16/pdf/2022-20210.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The White House Office on Clean Energy Innovation and Implementa-\ntion shall have a staff headed by the Senior Advisor for Clean Energy\nInnovation and Implementation; shall have such staff and other assistance\nas may be necessary to carry out the provisions of this order, subject to\nthe availability of appropriations; and may work with established or ad\nhoc committees and interagency groups."
     }
   },
-  "fingerprint": "c387e18589d5f35218e19cda5a57ebff44016451cc8554e6b8af2a35fb040c7d",
+  "fingerprint": "f659514aa409cf023df15a0362f68f27ca4f2ad40a84643e4e332fc51714d132",
   "instrument_id": "EO:14082",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -4787,7 +4855,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14082:06a125f928476be5@7c43834fd0ed6ee0",
         "TERM:EO:14082:36e7b6b401a1395e@d77686f0842688eb",
-        "TERM:EO:14082:06a125f928476be5@7039a5b428e9d24a"
+        "TERM:EO:14082:b5594ed108f1a9bf@8a9f67953e49d301"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -5543,7 +5611,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14082:191f0bc0fdbc46b6@7c43834fd0ed6ee0",
         "TERM:EO:14082:67a7e1ca497eff75@d77686f0842688eb",
-        "TERM:EO:14082:191f0bc0fdbc46b6@7039a5b428e9d24a"
+        "TERM:EO:14082:844ca5fafefa28cf@8a9f67953e49d301"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -5580,7 +5648,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -5592,7 +5660,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -5604,8 +5672,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -5615,6 +5683,8 @@
     }
   ],
   "missing": [
+    "Current-law lead lacks an original-source sha256.",
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:14096",
     "target provision not located: EO:14126"
   ],
@@ -5625,16 +5695,16 @@
     "TERM:EO:14082:191f0bc0fdbc46b6@7c43834fd0ed6ee0",
     "TERM:EO:14082:36e7b6b401a1395e@d77686f0842688eb",
     "TERM:EO:14082:67a7e1ca497eff75@d77686f0842688eb",
-    "TERM:EO:14082:06a125f928476be5@7039a5b428e9d24a",
-    "TERM:EO:14082:191f0bc0fdbc46b6@7039a5b428e9d24a"
+    "TERM:EO:14082:b5594ed108f1a9bf@8a9f67953e49d301",
+    "TERM:EO:14082:844ca5fafefa28cf@8a9f67953e49d301"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "a3c9a1d16b7c3d1d95973e835c2f0f02dd0a3008695f2f30e5932bf47d466949",
+    "fingerprint": "c1734b972cf44ef1bcd06b38f33d14dbc87443753ebab3dec42a47f409dfeb5d",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14082.json",
-    "history_sha256": "823f511d6e5ea88c08b91c4fb2f24d72296d861cab5f13d06f55779fb3ec500a",
+    "history_sha256": "9cf7d5ca2d7de5ad8e7e0c72aacd1a2b197a85ac98598a6d66b898a1918402c3",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

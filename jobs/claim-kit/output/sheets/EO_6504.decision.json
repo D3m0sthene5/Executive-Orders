@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "077124dc7d3c75238c749e5dd7316abf8309d81fd86a2a507610ca3b5a3b88cd",
+  "dossier_sha256": "8de6069dc12e3a846425c40feeb8310e14ce9c02cb2852e43ab5894bcaca9406",
   "instrument_id": "EO:6504",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-15",
               "register_number": "6504",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6504.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6504.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6504—Code of Fair Competition for the Metal Tank Industry",
               "text_chars": 1230
             },

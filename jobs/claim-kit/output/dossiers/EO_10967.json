@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:10967",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10967"
@@ -173,6 +173,39 @@
       "where": "USC 43 U.S.C. 1458 note"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10967",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 43 U.S.C. 1458 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:436",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "43 U.S.C. 1458 note",
+        "member_sha256": "d5d336ae3213bcaff4435792da500c41969203f71f5107db98abce2256bd9722",
+        "note_id": "idca3699bc-3a70-11f1-bde1-a5140e158598",
+        "note_text_sha256": "ebfa3e0fe9d09eb4f338892bcf2c55bbf60391d41932f3dc06e6c2a9e6abc0e5",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=idca3699bc-3a70-11f1-bde1-a5140e158598"
+      },
+      "row_span": "52738-52831",
+      "snippet": "1961 Oct. 10 | EO 10967 | 43 U.S.C. 1458 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 43 U.S.C. 1458 nt"
+    },
+    {
       "custody_records_in": [
         "current-law"
       ],
@@ -198,6 +231,34 @@
           "page_or_item": "43 U.S.C. 1458 note; note 'Ex. Ord. No. 10967. Administration of Palmyra Island' [USLM note id idca3699bc-3a70-11f1-bde1-a5140e158598]; usc43.xml (sha256 d5d336ae3213bcaff4435792da500c41969203f71f5107db98abce2256bd9722) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:436",
+        "snippet": "1961 Oct. 10 | EO 10967 | 43 U.S.C. 1458 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 43 U.S.C. 1458 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 43 U.S.C. 1458 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -505,40 +566,9 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The foregoing provisions of this order shall continue in force until the Congress shall provide for the civil administration of Palmyra Island or until such earlier time as the President may specify."
-    },
-    "TERM:EO:10967:7d374633baedc722@e30d80304b664167": {
-      "actor_id": "EO:10967",
-      "char_end": 3228,
-      "char_start": 3029,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:10967:7d374633baedc722@e30d80304b664167",
-      "instrument_id": "EO:10967",
-      "kind": "until_event",
-      "mechanism": "own_terms_until_event",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:10967#sec4",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:10967",
-        "page_or_item": "43 U.S.C. 1458",
-        "requires_page_check": false,
-        "sha256": "e30d80304b664167cdded1aca3f9b84162afd45b184ae3422f2e3720930513d3",
-        "signing_date": "1961-10-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t43-s1458.txt",
-        "text_sha256": "e30d80304b664167cdded1aca3f9b84162afd45b184ae3422f2e3720930513d3",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title43-section1458&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The foregoing provisions of this order shall continue in force until the Congress shall provide for the civil administration of Palmyra Island or until such earlier time as the President may specify."
     }
   },
-  "fingerprint": "88709d1ee0205cd6f11baf4e5f81f4c92844f0ed02106d386b9330aa9c6bbe7c",
+  "fingerprint": "d322337882c7e71393b8fb2f8556c6053263d706ba2f323d6aa283483f3c6d05",
   "instrument_id": "EO:10967",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -581,8 +611,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:10967:72ae6aae590d6410@81c81a1e7448c838",
         "TERM:EO:10967:7d374633baedc722@a44d7e11125d1a4b",
-        "TERM:EO:10967:72ae6aae590d6410@8a09eea96ce9fbde",
-        "TERM:EO:10967:7d374633baedc722@e30d80304b664167"
+        "TERM:EO:10967:72ae6aae590d6410@8a09eea96ce9fbde"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -646,7 +675,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -658,7 +687,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -670,8 +699,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -690,18 +719,17 @@
   "own_terms": [
     "TERM:EO:10967:72ae6aae590d6410@81c81a1e7448c838",
     "TERM:EO:10967:7d374633baedc722@a44d7e11125d1a4b",
-    "TERM:EO:10967:72ae6aae590d6410@8a09eea96ce9fbde",
-    "TERM:EO:10967:7d374633baedc722@e30d80304b664167"
+    "TERM:EO:10967:72ae6aae590d6410@8a09eea96ce9fbde"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "af7a904947d1ca55e5367981c330ce591b16c661f080d26501c4941e915d2ae5",
+    "fingerprint": "e50cb2b313b6fbb900b7a0b226e3605d56aa8597338fd85471434eef17eba389",
     "flags": [
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_10967.json",
-    "history_sha256": "7751b9ca77e2f95fa47343c06e3b01ae28bb0f8852ec1e3d4d660a2cc10293f1",
+    "history_sha256": "088d155446dda240eff740d63627541fc4d8a51d8e1479cb2061ec92977154e2",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

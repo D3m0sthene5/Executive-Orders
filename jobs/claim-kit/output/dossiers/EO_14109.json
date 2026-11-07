@@ -1,6 +1,10 @@
 {
   "actor_contexts": [
     {
+      "actor_id": "EO:14177",
+      "evidence_id": "ACTOR_TEXT:EO:14177"
+    },
+    {
       "actor_id": "EO:14354",
       "evidence_id": "ACTOR_TEXT:EO:14354"
     }
@@ -162,7 +166,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14109",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14109"
@@ -1203,8 +1207,67 @@
       "text": "(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person."
     }
   ],
-  "conflicts": [],
-  "current_law_leads": [],
+  "conflicts": [
+    {
+      "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
+      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 5 U.S.C. 1013 nt"
+    }
+  ],
+  "current_law_leads": [
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14109",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 5 U.S.C. 1013 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3266",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "347160-347259",
+      "snippet": "2023 Sept. 29 | EO 14109 | 5 U.S.C. 1013 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 5 U.S.C. 1013 nt"
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3266",
+        "snippet": "2023 Sept. 29 | EO 14109 | 5 U.S.C. 1013 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 5 U.S.C. 1013 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 5 U.S.C. 1013 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
+    }
+  ],
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
@@ -1257,7 +1320,8 @@
     "DRAFT: state_at_cutoff not decided for 41 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 5 U.S.C. 1013 nt"
   ],
   "evidence": {
     "ACT:EO:14109>EO:14354": {
@@ -1843,6 +1907,26 @@
       "target_id": "EO:14109",
       "text": "Sections 1 and 2 of Executive Order 14109 of \n September 29, 2023, are hereby superseded by sections 1 \n and 2 of this order.",
       "verb": "supersede"
+    },
+    "ACTOR_TEXT:EO:14177": {
+      "actor_id": "EO:14177",
+      "char_end": 9256,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:14177",
+      "role": "actor_context",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "90 FR 8643, PDF pages 1-3",
+        "requires_page_check": false,
+        "sha256": "b62a16cad78794fc1c1d10affd94406058d8d69fa39a48a4b9f4e37161e050f4",
+        "signing_date": "2025-01-23",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_14177.txt",
+        "text_sha256": "2d52de7ad1347d225363d87fa8bbd6dbd5aca6949ce9761480e063392f000cd5",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-31/pdf/2025-02121.pdf"
+      },
+      "text": "Instrument: EO:14177\nSource: https://www.govinfo.gov/content/pkg/FR-2025-01-31/pdf/2025-02121.pdf\nSHA-256 of the downloaded file: b62a16cad78794fc1c1d10affd94406058d8d69fa39a48a4b9f4e37161e050f4\nLocation: 90 FR 8643, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 3 ===\nPresidential Documents\n8643 Federal Register / Vol. 90, No. 20 / Friday, January 31, 2025 / Presidential Documents \nExecutive Order 14177 of January 23, 2025 \nPresident’s Council of Advisors on Science and Technology \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, and in order to establish an advisory \ncouncil on science and technology, it is hereby ordered: \nSection 1. Purpose. The American story is one of boundless creativity and \nbold ambition, driven by an indomitable pioneering spirit that propels explo-\nration and discovery. It is this spirit that illuminated the world with Edison’s \nlightbulb, carried the Wright brothers into the skies, and sent Armstrong \nto the moon. Today, a new frontier of scientific discovery lies before us, \ndefined by transformative technologies such as artificial intelligence, quan-\ntum computing, and advanced biotechnology. Breakthroughs in these fields \nhave the potential to reshape the global balance of power, spark entirely \nnew industries, and revolutionize the way we live and work. As our global \ncompetitors race to exploit these technologies, it is a national security impera-\ntive for the United States to achieve and maintain unquestioned and unchal-\nlenged global technological dominance. To secure our future, we must har-\nness the full power of American innovation by empowering entrepreneurs, \nunleashing private-sector creativity, and reinvigorating our research institu-\ntions. \nAt the heart of scientific progress lies the pursuit of truth. But this \nfoundational principle, which has driven every major breakthrough in our \nhistory, is increasingly under threat. Today, across science, medicine, and \ntechnology, ideological dogmas have surfaced that elevate group identity \nabove individual achievement, enforce conformity at the expense of innova-\ntive ideas, and inject politics into the heart of the scientific method. These \nagendas have not only distorted truth but have eroded public trust, under-\nmined the integrity of research, stifled innovation, and weakened America’s \ncompetitive edge. This order establishes the President’s Council of Advisors \non Science and Technology to unite the brightest minds from academia, \nindustry, and government to guide our Nation through this critical moment \nby charting a path forward for American leadership in science and tech-\nnology. \nSec. 2. Establishment. (a) There is hereby established the President’s Council \nof Advisors on Science and Technology (PCAST). \n(b) The PCAST shall be composed of not more than 24 members. The \nAssistant to the President for Science and Technology (APST) and the Special \nAdvisor for AI & Crypto shall be members of the PCAST. If also serving \nas the Director of the Office of Science and Technology Policy, the APST \nmay designate the U.S. Chief Technology Officer as a member. The remaining \nmembers shall be distinguished individuals and representatives from sectors \noutside of the Federal Government appointed by the President. These non- \nFederal members shall have diverse perspectives and expertise in science, \ntechnology, education, and innovation. \n(c) The APST and the Special Advisor for AI & Crypto shall serve as \nCo-Chairs of the PCAST. The Co-Chairs may designate up to two Vice \nChairs of the PCAST from among the non-Federal members of the PCAST, \nto support the Co-Chairs in the leadership and organization of the PCAST. \nSec. 3. Functions. (a) The PCAST shall advise the President on matters \ninvolving science, technology, education, and innovation policy. The Council \nshall also provide the President with scientific and technical information \nVerDate Sep<11>2014 16:07 Jan 30, 2025 Jkt 265001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\31JAE6.SGM 31JAE6ddrumheller on DSK120RN23PROD with PRESDOC-E6\n=== PDF page 2 of 3 ===\n8644 Federal Register / Vol. 90, No. 20 / Friday, January 31, 2025 / Presidential Documents \nthat is needed to inform public policy relating to the American economy, \nthe American worker, national and homeland security, and other topics. \n(b) The PCAST shall meet regularly and shall: \n(i) respond to requests from the President or the Co-Chairs for information, \nanalysis, evaluation, or advice; \n(ii) solicit information and ideas from a broad range of stakeholders, \nincluding the research community; the private sector; universities; national \nlaboratories; State, local, and Tribal governments; foundations; and non-\nprofit organizations; \n(iii) serve as the advisory committee identified in section 101(b) of the \nHigh-Performance Computing Act of 1991 (Public Law 102–194), as amend-\ned (15 U.S.C. 5511(b)), in which capacity the PCAST shall be known \nas the President’s Innovation and Technology Advisory Committee; and \n(iv) serve as the advisory panel identified in section 4 of the 21st Century \nNanotechnology Research and Development Act (Public Law 108–153), \nas amended (15 U.S.C. 7503), in which capacity the PCAST shall be \nknown as the National Nanotechnology Advisory Panel. \n(c) The PCAST shall provide advice from the non-Federal sector to the \nNational Science and Technology Council (NSTC) in response to requests \nfrom the NSTC. \nSec. 4. Administration. (a) The heads of executive departments and agencies \nshall, to the extent permitted by law, provide the PCAST with information \nconcerning scientific and technological matters when requested by the PCAST \nCo-Chairs and as required for the purpose of carrying out the PCAST’s \nfunctions. \n(b) In consultation with the Co-Chairs, the PCAST is authorized to create \nstanding subcommittees and ad hoc groups, including technical advisory \ngroups, to assist the PCAST and provide preliminary information directly \nto the PCAST. \n(c) In order to allow the PCAST to provide advice and analysis regarding \nclassified matters, the Co-Chairs may request that members of the PCAST, \nits standing subcommittees, or ad hoc groups who do not hold a current \nclearance for access to classified information receive security clearance and \naccess determinations pursuant to Executive Order 12968 of August 2, 1995 \n(Access to Classified Information), as amended, or any successor order. \n(d) The Department of Energy shall provide such funding and administra-\ntive and technical support as the PCAST may require, to the extent permitted \nby law and as authorized by existing appropriations. \n(e) Members of the PCAST shall serve without any compensation for \ntheir work on the PCAST, but may receive travel expenses, including per \ndiem in lieu of subsistence, as authorized by law for persons serving intermit-\ntently in the government service (5 U.S.C. 5701–5707). \n(f) Insofar as the Federal Advisory Committee Act, as amended (5 U.S.C. \nApp.), may apply to the PCAST, any functions of the President under \nthat Act, except that of reporting to the Congress, shall be performed by \nthe Secretary of Energy, in accordance with the guidelines and procedures \nestablished by the Administrator of General Services. \nSec. 5. Termination. The PCAST shall terminate 2 years from the date \nof this order unless extended by the President. \nSec. 6. Revocation. Executive Order 14007 of January 27, 2021 (President’s \nCouncil of Advisors on Science and Technology), as amended by Executive \nOrder 14109 of September 29, 2023 (Continuance of Certain Federal Advisory \nCommittees and Amendments to Other Executive Orders), is hereby revoked. \nSec. 7. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \nVerDate Sep<11>2014 16:07 Jan 30, 2025 Jkt 265001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\31JAE6.SGM 31JAE6ddrumheller on DSK120RN23PROD with PRESDOC-E6\n=== PDF page 3 of 3 ===\n8645 Federal Register / Vol. 90, No. 20 / Friday, January 31, 2025 / Presidential Documents \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nJanuary 23, 2025. \n[FR Doc. 2025–02121 \nFiled 1–30–25; 8:45 am] \nBilling code 3395–F4–P \nVerDate Sep<11>2014 16:07 Jan 30, 2025 Jkt 265001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\31JAE6.SGM 31JAE6\nTrump.EPS</GPH>\nddrumheller on DSK120RN23PROD with PRESDOC-E6"
     },
     "ACTOR_TEXT:EO:14354": {
       "actor_id": "EO:14354",
@@ -3112,7 +3196,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     }
   },
-  "fingerprint": "0cbe71dbad6025e33708a6c5dd20971dd69fffd8ef7530b1cf1dcb0b1695e61c",
+  "fingerprint": "6e64e0b7ad54d7eed561613fa0762ff9a80175fe3bfa3d42f12659721752b5df",
   "instrument_id": "EO:14109",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3981,7 +4065,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -3993,7 +4077,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -4005,8 +4089,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -4015,7 +4099,11 @@
       "search_id": "later-events:ofr_catalog"
     }
   ],
-  "missing": [],
+  "missing": [
+    "Current-law lead lacks an original-source sha256.",
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+    "target provision not located: EO:14177"
+  ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:14109",
   "own_terms": [
@@ -4029,13 +4117,13 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "bf0e22cc4ef4033b79c7982cb9b629879482d0faa74c1517ed2cdf56468521d3",
+    "fingerprint": "25c219e5d5fa14f0c86350b2918c6dbae05650405396a7472e3fdd47af90d749",
     "flags": [
       "EVENT_QUOTE_NOT_VERIFIED_AGAINST_HELD_RAW_API",
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_14109.json",
-    "history_sha256": "08a87b0181611cd6661f8aad3bde4802d1d1121b6e517152f90bdfcfdd50b4a6",
+    "history_sha256": "5dc843e246713c3fc67aa9de90e903901b1c8b456ebada5c37a95781eb254a4d",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

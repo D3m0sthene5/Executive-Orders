@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "93febfe31eac623d448dcb28a31ad0276b9629e808bc00f83b6c231e0497b6aa",
+  "dossier_sha256": "aaafa4e97dd87bac911ccd28fbe4224a5e07da3f4666ebe8fe8e69670666a5ba",
   "instrument_id": "EO:6331B",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-11",
               "register_number": "6331B",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6331B.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6331B.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6331-B—Code of Fair Competition for the Compressed Air Industry",
               "text_chars": 1228
             },

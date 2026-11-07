@@ -13,7 +13,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14306",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14306"
@@ -680,7 +680,12 @@
       "text": "Sec. 3. Amendments to Executive Order 13694. Executive Order 13694 of \nApril 1, 2015 (Blocking the Property of Certain Persons Engaging in Signifi-\ncant Malicious Cyber-Enabled Activities), as amended by Executive Order \n13757 of December 28, 2016 (Taking Additional Steps to Address the National \nEmergency With Respect to Significant Malicious Cyber-Enabled Activities),"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 1 later event(s) end part of it: ? revocation 2026-03-24 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [],
   "draft_gate_errors": [
     "clause_0_state",
@@ -705,6 +710,9 @@
     "clause_19_state",
     "clause_20_state",
     "clause_21_state",
+    "clause_22_state",
+    "clause_23_state",
+    "clause_24_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -712,10 +720,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 22 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 25 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 1 later event(s) end part of it: ? revocation 2026-03-24 (scope: not stated)"
   ],
   "evidence": {
     "ACTOR_TEXT:EO:13757": {
@@ -1478,7 +1487,7 @@
       "text": "(b) This order shall be implemented in a manner consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "489dab6500a10480132f44887639fe03f4e3aa99dc389647997dd9f829e950b2",
+  "fingerprint": "166cb35b0f24430e1269b09b73d62221821db48a21288e26f95f87632387066b",
   "instrument_id": "EO:14306",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1957,7 +1966,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1969,7 +1978,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1981,8 +1990,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2005,10 +2014,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "4211ff55d33c8582dd8fb1a691b68e0ff0dec45d5836c1de938bd50ea1d0ca3a",
+    "fingerprint": "6d6e64aed0f1e71c141f7b2e01264c470bb9f0fdf3819aed9ea14cfd18d996d9",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14306.json",
-    "history_sha256": "9cbe763561ae1f73bacde8bfed4c9411bc55aaf726bc4f4c833d76985fc53f83",
+    "history_sha256": "c8c6976d62f5d33d708eeccc74e3bd60d0f80b0c251d5d7e292f269c44b7c8b1",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

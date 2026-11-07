@@ -2758,7 +2758,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:12171",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12171"
@@ -3667,7 +3667,12 @@
       "text": "(d) The Office of the Area Auditor General/Washington.\n1-3. U n its o u tsid e the 50 S ta tes an d  the D istr ic t o f  C olu m b ia.\n1-301. The Drug Enforcement Administration, Department of Justice."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 2 later event(s) end part of it: ? suspension 2025-04-17 (scope: not stated); ? rescission 2025-11-13 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
@@ -3690,6 +3695,39 @@
       "system": "usc",
       "text_path": "USC_EO_NOTES.jsonl#note_id=id2812d880-ac5f-11f1-a76e-9d053fb5b48a",
       "where": "USC 5 U.S.C. 7103 note"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12171",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 5 U.S.C. 7103 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1354",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "5 U.S.C. 7103 note",
+        "member_sha256": "129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd",
+        "note_id": "id2812d880-ac5f-11f1-a76e-9d053fb5b48a",
+        "note_text_sha256": "41dbc645f0a15009c54ffc9cc041c69d4d6d7851a68dfaa56d94f3166aa9c4cb",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id2812d880-ac5f-11f1-a76e-9d053fb5b48a"
+      },
+      "row_span": "148965-149059",
+      "snippet": "1979 Nov. 19 | EO 12171 | 5 U.S.C. 7103 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 5 U.S.C. 7103 nt"
     },
     {
       "custody_records_in": [
@@ -3717,6 +3755,34 @@
           "page_or_item": "5 U.S.C. 7103 note; note 'Ex. Ord. No. 12171. Exclusions From Coverage of Program' [USLM note id id2812d880-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1354",
+        "snippet": "1979 Nov. 19 | EO 12171 | 5 U.S.C. 7103 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 5 U.S.C. 7103 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 5 U.S.C. 7103 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -3808,7 +3874,8 @@
     "DRAFT: state_at_cutoff not decided for 44 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 2 later event(s) end part of it: ? suspension 2025-04-17 (scope: not stated); ? rescission 2025-11-13 (scope: not stated)"
   ],
   "evidence": {
     "ACT:EO:12171>EO:12338#1171-amend": {
@@ -15283,7 +15350,7 @@
       "text": "Effective Date\nSection effective 90 days after Oct. 13, 1978, see section 907 of Pub."
     }
   },
-  "fingerprint": "7f7c11740c39488aabfec777b862157c05fcd47ff1c53c1bab4ea2ae38d2d315",
+  "fingerprint": "ae273317004794215e621fbce9cd4156839cbd05ef6d0eaf112a133603701554",
   "instrument_id": "EO:12171",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -15907,7 +15974,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -15919,7 +15986,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -15931,8 +15998,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -15960,10 +16027,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 35,
-    "fingerprint": "c3b7b09742e1e84d2f4483b9352f29ae4f925e5cac16f7edb5408cf239dad347",
+    "fingerprint": "92b0348d607d3282ebd4ba6b79688d119c3ad72bf9eb8bbb55d442c126a3a77d",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12171.json",
-    "history_sha256": "695c5a8195a1f335060e6877cec1581d28da031c5b443ade1be7954c2a13eab4",
+    "history_sha256": "d4d77e1dd4c86d1b18f2d9ee33e3a4584a198d0d7d1fa8183a37ac938df1d387",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3a04ea3dfb004bf64c7e3c64495109d0a5aba6da718f90954cd887ff264cfd7e",
+  "dossier_sha256": "b1e48e1f5d1c25dc57bf8657bacd4008dbb90625ecffac66c35f3a78c931a96f",
   "instrument_id": "EO:6331C",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-11",
               "register_number": "6331C",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6331C.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6331C.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6331-C—Code of Fair Competition for the Heat Exchange Industry",
               "text_chars": 1226
             },

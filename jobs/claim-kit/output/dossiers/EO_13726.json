@@ -13,7 +13,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13726",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13726"
@@ -658,7 +658,12 @@
       "text": "Sec. 9. This order is not intended to, and does not, create any right or \nbenefit, substantive or procedural, enforceable at law or in equity by any \nparty against the United States, its departments, agencies, or entities, its \nofficers, employees, or agents, or any other person."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 11 later event(s) end part of it: ? suspension 2016-04-26 (scope: not stated); ? suspension 2016-05-18 (scope: not stated); ? suspension 2017-04-19 (scope: not stated); ? suspension 2018-03-02 (scope: not stated); ? suspension 2018-06-25 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "cfr_text_reference",
@@ -724,8 +729,34 @@
       "where": "CFR 31 CFR part 570"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13726",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2899",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "309236-309331",
+      "snippet": "2016 Apr. 19 | EO 13726 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -753,7 +784,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -781,7 +813,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -806,6 +839,34 @@
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2899",
+        "snippet": "2016 Apr. 19 | EO 13726 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -823,6 +884,9 @@
     "clause_11_state",
     "clause_12_state",
     "clause_13_state",
+    "clause_14_state",
+    "clause_15_state",
+    "clause_16_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -830,10 +894,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 14 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 17 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 11 later event(s) end part of it: ? suspension 2016-04-26 (scope: not stated); ? suspension 2016-05-18 (scope: not stated); ? suspension 2017-04-19 (scope: not stated); ? suspension 2018-03-02 (scope: not stated); ? suspension 2018-06-25 (scope: not stated)"
   ],
   "evidence": {
     "ACTOR_TEXT:EO:13566": {
@@ -1539,6 +1604,37 @@
       },
       "text": "Instrument: EO:13726\nSource: https://www.govinfo.gov/content/pkg/FR-2016-04-21/pdf/2016-09483.pdf\nSHA-256 of the downloaded file: 3d0d943f172f8e3737219cd2ad116bcd96e1f2cc4de36598334fe62cfa0da8a0\nLocation: 81 FR 23559, PDF pages 1-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 4 ===\nPresidential Documents\n23559 Federal Register / Vol. 81, No. 77 / Thursday, April 21, 2016 / Presidential Documents \nExecutive Order 13726 of April 19, 2016 \nBlocking Property and Suspending Entry Into the United \nStates of Persons Contributing to the Situation in Libya \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the International Emergency \nEconomic Powers Act (50 U.S.C. 1701 et seq.) (IEEPA), the National Emer-\ngencies Act (50 U.S.C. 1601 et seq.), section 5 of the United Nations Participa-\ntion Act of 1945, as amended (22 U.S.C. 287c) (UNPA), section 212(f) of \nthe Immigration and Nationality Act of 1952 (8 U.S.C. 1182(f)), and section \n301 of title 3, United States Code, \nI, BARACK OBAMA, President of the United States of America, hereby \nexpand the scope of the national emergency declared in Executive Order \n13566 of February 25, 2011, finding that the ongoing violence in Libya, \nincluding attacks by armed groups against Libyan state facilities, foreign \nmissions in Libya, and critical infrastructure, as well as human rights abuses, \nviolations of the arms embargo imposed by United Nations Security Council \nResolution 1970 (2011), and misappropriation of Libya’s natural resources \nthreaten the peace, security, stability, sovereignty, democratic transition, \nand territorial integrity of Libya, and thereby constitute an unusual and \nextraordinary threat to the national security and foreign policy of the United \nStates. To address this threat, and in view of United Nations Security Council \nResolutions 2174 of August 27, 2014, and 2213 of March 27, 2015, I hereby \norder: \nSection 1. (a) All property and interests in property that are in the United \nStates, that hereafter come within the United States, or that are or hereafter \ncome within the possession or control of any United States person of the \nfollowing persons are blocked and may not be transferred, paid, exported, \nwithdrawn, or otherwise dealt in: any person determined by the Secretary \nof the Treasury, in consultation with the Secretary of State: \n(i) to be responsible for or complicit in, or to have engaged in, directly \nor indirectly, any of the following: \n(A) actions or policies that threaten the peace, security, or stability \nof Libya, including through the supply of arms or related materiel; \n(B) actions or policies that obstruct, undermine, delay, or impede, or \npose a significant risk of obstructing, undermining, delaying, or impeding, \nthe adoption of or political transition to a Government of National Accord \nor a successor government; \n(C) actions that may lead to or result in the misappropriation of state \nassets of Libya; or \n(D) threatening or coercing Libyan state financial institutions or the \nLibyan National Oil Company; \n(ii) to be planning, directing, or committing, or to have planned, directed, \nor committed, attacks against any Libyan state facility or installation (in-\ncluding oil facilities), against any air, land, or sea port in Libya, or against \nany foreign mission in Libya; \n(iii) to be involved in, or to have been involved in, the targeting of \ncivilians through the commission of acts of violence, abduction, forced \ndisplacement, or attacks on schools, hospitals, religious sites, or locations \nVerDate Sep<11>2014 17:44 Apr 20, 2016 Jkt 238001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21APE0.SGM 21APE0asabaliauskas on DSK3SPTVN1PROD with E0\n=== PDF page 2 of 4 ===\n23560 Federal Register / Vol. 81, No. 77 / Thursday, April 21, 2016 / Presidential Documents \nwhere civilians are seeking refuge, or through conduct that would con-\nstitute a serious abuse or violation of human rights or a violation of \ninternational humanitarian law; \n(iv) to be involved in, or to have been involved in, the illicit exploitation \nof crude oil or any other natural resources in Libya, including the illicit \nproduction, refining, brokering, sale, purchase, or export of Libyan oil; \n(v) to be a leader of an entity that has, or whose members have, engaged \nin any activity described in subsections (a)(i), (a)(ii), (a)(iii), or (a)(iv) \nof this section; \n(vi) to have materially assisted, sponsored, or provided financial, material, \nlogistical, or technological support for, or goods or services in support \nof (A) any of the activities described in subsections (a)(i), (a)(ii), (a)(iii), \nor (a)(iv) of this section or (B) any person whose property and interests \nin property are blocked pursuant to this order; or \n(vii) to be owned or controlled by, or to have acted or purported to \nact for or on behalf of, any person whose property and interests in property \nare blocked pursuant to this order. \n(b) The prohibitions in subsection (a) of this section apply except to \nthe extent provided by statutes, or in regulations, orders, directives, or \nlicenses that may be issued pursuant to this order, and notwithstanding \nany contract entered into or any license or permit granted prior to the \ndate of this order. The prohibitions in subsection (a) of this section are \nin addition to export control authorities implemented by the Department \nof Commerce. \nSec. 2. I hereby find that the unrestricted immigrant and nonimmigrant \nentry into the United States of aliens determined to meet one or more \nof the criteria in section 1(a) of this order would be detrimental to the \ninterests of the United States, and I hereby suspend entry into the United \nStates, as immigrants or nonimmigrants, of such persons. Such persons \nshall be treated as persons covered by section 1 of Proclamation 8693 of \nJuly 24, 2011 (Suspension of Entry of Aliens Subject to United Nations \nSecurity Council Travel Bans and International Emergency Economic Powers \nAct Sanctions). Further, United Nations Security Council Resolution 2174 \nshall be treated as a Resolution listed in Annex A of Proclamation 8693. \nSec. 3. I hereby determine that the making of donations of the type of \narticles specified in section 203(b)(2) of IEEPA (50 U.S.C. 1702(b)(2)) by, \nto, or for the benefit of any person whose property and interests in property \nare blocked pursuant to section 1 of this order would seriously impair \nmy ability to deal with the national emergency declared in Executive Order \n13566 and expanded in this order, and I hereby prohibit such donations \nas provided by section 1 of this order. \nSec. 4. The prohibitions in section 1 of this order include but are not \nlimited to: \n(a) the making of any contribution or provision of funds, goods, or services \nby, to, or for the benefit of any person whose property and interests in \nproperty are blocked pursuant to this order; and \n(b) the receipt of any contribution or provision of funds, goods, or services \nfrom any such person. \nSec. 5. (a) Any transaction that evades or avoids, has the purpose of evading \nor avoiding, causes a violation of, or attempts to violate any of the prohibi-\ntions set forth in this order is prohibited. \n(b) Any conspiracy formed to violate any of the prohibitions set forth \nin this order is prohibited. \nSec. 6. For the purposes of this order: \n(a) the term ‘‘person’’ means an individual or entity; \n(b) the term ‘‘entity’’ means a partnership, association, trust, joint venture, \ncorporation, group, subgroup, or other organization; and \nVerDate Sep<11>2014 17:44 Apr 20, 2016 Jkt 238001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21APE0.SGM 21APE0asabaliauskas on DSK3SPTVN1PROD with E0\n=== PDF page 3 of 4 ===\n23561 Federal Register / Vol. 81, No. 77 / Thursday, April 21, 2016 / Presidential Documents \n(c) the term ‘‘United States person’’ means any United States citizen, \npermanent resident alien, entity organized under the laws of the United \nStates or any jurisdiction within the United States (including foreign \nbranches), or any person in the United States. \n(d) the term ‘‘Government of National Accord or a successor government’’ \nmeans: \n(i) a Government of National Accord formed pursuant to the terms of \nthe Libyan Political Agreement signed in Skhirat, Morocco, on December \n17, 2015, or any amendments thereto; \n(ii) a governmental authority formed under the Libyan Constitution pursu-\nant to the terms of the Libyan Political Agreement signed in Skhirat, \nMorocco, on December 17, 2015, or any amendments thereto; \n(iii) any subdivision, agency, or instrumentality of the foregoing, and \nany partnership, association, corporation, or other organization owned \nor controlled, directly or indirectly, by, or acting for or on behalf of, \nthe foregoing; or \n(iv) any other person determined by the Secretary of the Treasury to \nbe included within paragraphs (a) through (c) of this section. \nSec. 7. For those persons whose property and interests in property are \nblocked pursuant to this order who might have a constitutional presence \nin the United States, I find that because of the ability to transfer funds \nor other assets instantaneously, prior notice to such persons of measures \nto be taken pursuant to this order would render those measures ineffectual. \nI therefore determine that for these measures to be effective in addressing \nthe national emergency declared in Executive Order 13566 and expanded \nin this order, there need be no prior notice of a listing or determination \nmade pursuant to section 1 of this order. \nSec. 8. The Secretary of the Treasury, in consultation with the Secretary \nof State, is hereby authorized to take such actions, including the promulgation \nof rules and regulations, and to employ all powers granted to the President \nby IEEPA and the UNPA, as may be necessary to carry out the purposes \nof this order. The Secretary of the Treasury may redelegate any of these \nfunctions to other officers and agencies of the United States Government \nconsistent with applicable law. All agencies of the United States Government \nare hereby directed to take all appropriate measures within their authority \nto carry out the provisions of this order. \nVerDate Sep<11>2014 17:44 Apr 20, 2016 Jkt 238001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21APE0.SGM 21APE0asabaliauskas on DSK3SPTVN1PROD with E0\n=== PDF page 4 of 4 ===\n23562 Federal Register / Vol. 81, No. 77 / Thursday, April 21, 2016 / Presidential Documents \nSec. 9. This order is not intended to, and does not, create any right or \nbenefit, substantive or procedural, enforceable at law or in equity by any \nparty against the United States, its departments, agencies, or entities, its \nofficers, employees, or agents, or any other person. \nTHE WHITE HOUSE, \nApril 19, 2016. \n[FR Doc. 2016–09483 \nFiled 4–20–16; 11:15 am] \nBilling code 3295–F6–P \nVerDate Sep<11>2014 17:44 Apr 20, 2016 Jkt 238001 PO 00000 Frm 00004 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\21APE0.SGM 21APE0\nOB#1.EPS</GPH>\nasabaliauskas on DSK3SPTVN1PROD with E0"
     },
+    "TERM:EO:13726:5dcebe40b6c2ed82@ac085050bd31772b": {
+      "actor_id": "EO:13726",
+      "char_end": 5310,
+      "char_start": 5065,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13726:5dcebe40b6c2ed82@ac085050bd31772b",
+      "instrument_id": "EO:13726",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13726#sec2",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13726",
+        "page_or_item": "81 FR 23559-23562 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "3d0d943f172f8e3737219cd2ad116bcd96e1f2cc4de36598334fe62cfa0da8a0",
+        "signing_date": "2016-04-19",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13726-3d0d943f17.txt",
+        "text_sha256": "ac085050bd31772b693ba753bf0bed4df1d33ad8514254320cdc24c22a039834",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2016-04-21/pdf/2016-09483.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Such persons\nshall be treated as persons covered by section 1 of Proclamation 8693 of\nJuly 24, 2011 (Suspension of Entry of Aliens Subject to United Nations\nSecurity Council Travel Bans and International Emergency Economic Powers\nAct Sanctions)."
+    },
     "TERM:EO:13726:8ffb039664bb60eb@1260f46b41a16d67": {
       "actor_id": "EO:13726",
       "char_end": 5164,
@@ -1573,37 +1669,6 @@
       "stated_end_date": null,
       "text": "Such persons shall be treated as persons covered by section 1 of Proclamation 8693 of July 24, 2011 (Suspension of Entry of Aliens Subject to United Nations Security Council Travel Bans and International Emergency Economic Powers Act Sanctions)."
     },
-    "TERM:EO:13726:ded7bd6605381d7e@02b37b3f26afd654": {
-      "actor_id": "EO:13726",
-      "char_end": 5658,
-      "char_start": 5409,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13726:ded7bd6605381d7e@02b37b3f26afd654",
-      "instrument_id": "EO:13726",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13726#sec2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13726",
-        "page_or_item": "81 FR 23559, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "3d0d943f172f8e3737219cd2ad116bcd96e1f2cc4de36598334fe62cfa0da8a0",
-        "signing_date": "2016-04-19",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13726-3d0d943f17.txt",
-        "text_sha256": "02b37b3f26afd6544d2dd736c059575c5a6a17d89b8caec77bf2d371aa5406fc",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2016-04-21/pdf/2016-09483.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Such persons \nshall be treated as persons covered by section 1 of Proclamation 8693 of \nJuly 24, 2011 (Suspension of Entry of Aliens Subject to United Nations \nSecurity Council Travel Bans and International Emergency Economic Powers \nAct Sanctions)."
-    },
     "TERM:EO:13726:ded7bd6605381d7e@92ce1478fc3578f9": {
       "actor_id": "EO:13726",
       "char_end": 6269,
@@ -1634,7 +1699,7 @@
       "text": "Such persons \nshall be treated as persons covered by section 1 of Proclamation 8693 of \nJuly 24, 2011 (Suspension of Entry of Aliens Subject to United Nations \nSecurity Council Travel Bans and International Emergency Economic Powers \nAct Sanctions)."
     }
   },
-  "fingerprint": "2a7fc9090076990bba6b10e9d2f4e14c3fc0c643f02151fdee781d84309b5581",
+  "fingerprint": "d170e47e04fc30a0a679104ae0829d8b3f15f67d10d7eed171d3462d9df51806",
   "instrument_id": "EO:13726",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1800,7 +1865,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13726:ded7bd6605381d7e@92ce1478fc3578f9",
         "TERM:EO:13726:8ffb039664bb60eb@1260f46b41a16d67",
-        "TERM:EO:13726:ded7bd6605381d7e@02b37b3f26afd654"
+        "TERM:EO:13726:5dcebe40b6c2ed82@ac085050bd31772b"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -2087,7 +2152,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2099,7 +2164,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2111,8 +2176,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2122,6 +2187,10 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2022-02-22",
+    "Acting identity absent from census: NOTICE:2023-02-17",
+    "Acting identity absent from census: NOTICE:2024-02-21",
+    "Acting identity absent from census: NOTICE:2025-02-20",
     "Acting identity absent from census: NOTICE:2026-02-13",
     "Acting identity absent from census: PROC:8693",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
@@ -2135,15 +2204,15 @@
   "own_terms": [
     "TERM:EO:13726:ded7bd6605381d7e@92ce1478fc3578f9",
     "TERM:EO:13726:8ffb039664bb60eb@1260f46b41a16d67",
-    "TERM:EO:13726:ded7bd6605381d7e@02b37b3f26afd654"
+    "TERM:EO:13726:5dcebe40b6c2ed82@ac085050bd31772b"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "03bd7443f533aa668c12a2fa0447b22899db67f6e802cafc118e85ce394e4079",
+    "fingerprint": "0b16fb46d42a53e18e9150c571c477698d82f5f1b17569bc4f8329ccd25bdbd8",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13726.json",
-    "history_sha256": "ad8bf3e7b376d965f08dbef6599e43c49839f6c41edf26ec248f6b084d8df809",
+    "history_sha256": "5db77c49dcd1b72cbdf7e7e1461a47eeec5bcc8e90122bc560ff9fb3fc931a7e",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

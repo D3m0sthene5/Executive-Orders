@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "5d7e1834cb7b92e33a0e2ca2d860339b7a99389562308f222ded83e490f53b2e",
+  "dossier_sha256": "62b2116a8ef718b2a43eef9cf0d323295576f928569fcca7339c9991047284a5",
   "instrument_id": "EO:6473A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -145,7 +145,18 @@
               "register_date": "1933-12-04",
               "register_number": "6473A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6473A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6473A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6473-A—Approval of Code of Fair Competition for the Brewing Industry",
               "text_chars": 1746
             },
@@ -176,6 +187,16 @@
         "sha256": "a00b28dd1250b97c14550ddb284e6cb367214c08bff3e08521b97309ec019e71",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-6473-approval-code-fair-competition-for-the-brewing-industry.txt",
         "text_sha256": "c9010a66ddbd4267f6f12c33da5301973558c0479da3402bd9f5845dbe239411"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6473A",
+        "pages_confirmed": false,
+        "sha256": "b25de54ee592b1e1bc9fa25ffa94304458524de1d74d588fedb885ae4a09a405",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6473A.txt",
+        "text_sha256": "4200bda4dfe6dde2335dc49df43af044278f788f2742fec847f4a599874185c3"
       }
     ],
     "quotation_recheck_required": true,

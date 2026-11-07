@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "d274cd20e454a22595f81adabc00fed99febaab2a7fb85de7e8014fd623200ae",
+  "dossier_sha256": "2d0bec0c6afd21e8a13d118d444cc74cba98de018d771e3035533dab87c387cb",
   "instrument_id": "EO:6756D",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -145,7 +145,18 @@
               "register_date": "1934-06-29",
               "register_number": "6756D",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6756D.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6756D.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6756-D—Approval of Amendments to the Code of Fair Competition for the Distilled Spirits Industry",
               "text_chars": 1888
             },

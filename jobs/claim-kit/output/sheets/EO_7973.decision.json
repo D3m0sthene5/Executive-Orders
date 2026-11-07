@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "8263ef4520ea85ba42d97c102f49781c5000dd3f9fd20784904be25616c1c8f8",
+  "dossier_sha256": "d2fc40bda0718ec2e12de1440885643ffeb16f383e079135e15ee93aadbcb732",
   "instrument_id": "EO:7973",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-09-15",
               "register_number": "7973",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7973.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7973.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7973—Exemption of Joseph H. Wheat From Compulsory Retirement for Age",
               "text_chars": 705
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7973",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7973.txt",
+        "text_sha256": "94c75090fdbee8a95665687f60ee78286142739d2cffbbcae1464b152a723377"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7973",
@@ -130,6 +151,16 @@
         "sha256": "5a89043b4ab0c5243aa843609a11b03e4dffbaf6b8e7e5d06cb96a93bf2ceb38",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7973-5a89043b4a.txt",
         "text_sha256": "269859dd51a6c856a0658bfccacef0946161004fbd402ca9bbc8d731ff9c7264"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7973",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7973.txt",
+        "text_sha256": "9070196fea61d5ecf59d9b15740ac44830816c3fe22ecbe94452a6faa1f7b221"
       }
     ],
     "quotation_recheck_required": true,

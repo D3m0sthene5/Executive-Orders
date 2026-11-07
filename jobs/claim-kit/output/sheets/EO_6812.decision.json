@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "e9c518205afc520e183350f36a054b67559baedd2531f70b12d35bae9abe8348",
+  "dossier_sha256": "e4f057c0c087c9c1beffa30edff702907692c658ba1f4847aac0b0635d1d9f29",
   "instrument_id": "EO:6812",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -145,7 +145,18 @@
               "register_date": "1934-08-04",
               "register_number": "6812",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6812.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6812.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6812—Approval of Amendment to the Code of Fair Competition for the Distilled Spirits Rectifying Industry",
               "text_chars": 2075
             },

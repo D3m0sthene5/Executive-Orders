@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13963",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13963"
@@ -567,13 +567,69 @@
       "detail": "Stage 19 causal queue: 1 quarantined relationship(s)"
     }
   ],
-  "current_law_leads": [],
+  "current_law_leads": [
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13963",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 5 U.S.C. 3345 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3116",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "331828-331922",
+      "snippet": "2020 Dec. 10 | EO 13963 | 5 U.S.C. 3345 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 5 U.S.C. 3345 nt"
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3116",
+        "snippet": "2020 Dec. 10 | EO 13963 | 5 U.S.C. 3345 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 5 U.S.C. 3345 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 5 U.S.C. 3345 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
+    }
+  ],
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
     "clause_2_state",
     "clause_3_state",
     "clause_4_state",
+    "clause_5_state",
+    "clause_6_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -581,7 +637,7 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 5 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 7 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
@@ -1197,37 +1253,6 @@
       "stated_end_date": null,
       "text": "(a) Subject to the provisions of section 2 of this order, the following officials of the Department of Defense, in the order listed, shall act as and perform the functions and duties of the office of the Secretary of Defense (Secretary) during any period in which the Secretary has died, resigned, or otherwise become unable to perform the functions and duties of the office of the Secretary, until such time as the Secretary is able to perform the functions and duties of that office:"
     },
-    "TERM:EO:13963:4cab9ab26965afb9@24bca6a32042cdfb": {
-      "actor_id": "EO:13963",
-      "char_end": 868,
-      "char_start": 377,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13963:4cab9ab26965afb9@24bca6a32042cdfb",
-      "instrument_id": "EO:13963",
-      "kind": "until_event",
-      "mechanism": "own_terms_until_event",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13963#sec1",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13963",
-        "page_or_item": "85 FR 81331, PDF pages 1-2",
-        "requires_page_check": false,
-        "sha256": "62a5af427ffab5eb2dc0438b2462afaf173b33517718c1e38eb457ce5f5a91b3",
-        "signing_date": "2020-12-10",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13963-62a5af427f.txt",
-        "text_sha256": "24bca6a32042cdfb1476ca3917fb65df9501cb155629d7fb55fa3b592c0a19ed",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2020-12-15/pdf/2020-27739.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(a) Subject to the provisions of section \n2 of this order, the following officials of the Department of Defense, in \nthe order listed, shall act as and perform the functions and duties of the \noffice of the Secretary of Defense (Secretary) during any period in which \nthe Secretary has died, resigned, or otherwise become unable to perform \nthe functions and duties of the office of the Secretary, until such time \nas the Secretary is able to perform the functions and duties of that office:"
-    },
     "TERM:EO:13963:4cab9ab26965afb9@26f2bb340fd17e8d": {
       "actor_id": "EO:13963",
       "char_end": 1482,
@@ -1257,14 +1282,14 @@
       "stated_end_date": null,
       "text": "(a) Subject to the provisions of section \n2 of this order, the following officials of the Department of Defense, in \nthe order listed, shall act as and perform the functions and duties of the \noffice of the Secretary of Defense (Secretary) during any period in which \nthe Secretary has died, resigned, or otherwise become unable to perform \nthe functions and duties of the office of the Secretary, until such time \nas the Secretary is able to perform the functions and duties of that office:"
     },
-    "TERM:EO:13963:8fb9f7d3586ddc4b@24bca6a32042cdfb": {
+    "TERM:EO:13963:53621d3200ff2891@ab50a7201c315a25": {
       "actor_id": "EO:13963",
-      "char_end": 3380,
-      "char_start": 3022,
+      "char_end": 3097,
+      "char_start": 2743,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:13963:8fb9f7d3586ddc4b@24bca6a32042cdfb",
+      "id": "TERM:EO:13963:53621d3200ff2891@ab50a7201c315a25",
       "instrument_id": "EO:13963",
       "kind": "condition",
       "mechanism": "own_terms_condition",
@@ -1276,17 +1301,17 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:13963",
-        "page_or_item": "85 FR 81331, PDF pages 1-2",
+        "page_or_item": "85 FR 81331-81332 (PDF pp. 1-2)",
         "requires_page_check": false,
         "sha256": "62a5af427ffab5eb2dc0438b2462afaf173b33517718c1e38eb457ce5f5a91b3",
         "signing_date": "2020-12-10",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13963-62a5af427f.txt",
-        "text_sha256": "24bca6a32042cdfb1476ca3917fb65df9501cb155629d7fb55fa3b592c0a19ed",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13963-62a5af427f.txt",
+        "text_sha256": "ab50a7201c315a25ef33d03268f4a3359f19e65f33a944140b84af78b8b490df",
         "url": "https://www.govinfo.gov/content/pkg/FR-2020-12-15/pdf/2020-27739.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(b) No individual listed in section l(a) of this order shall act as Secretary \nunless that individual was appointed to an office for which appointment \nis required to be made by the President, by and with the advice and consent \nof the Senate, and that individual is otherwise eligible to so serve under \nthe Federal Vacancies Reform Act of 1998, as amended."
+      "text": "(b) No individual listed in section l(a) of this order shall act as Secretary\nunless that individual was appointed to an office for which appointment\nis required to be made by the President, by and with the advice and consent\nof the Senate, and that individual is otherwise eligible to so serve under\nthe Federal Vacancies Reform Act of 1998, as amended."
     },
     "TERM:EO:13963:8fb9f7d3586ddc4b@26f2bb340fd17e8d": {
       "actor_id": "EO:13963",
@@ -1317,37 +1342,6 @@
       "stated_end_date": null,
       "text": "(b) No individual listed in section l(a) of this order shall act as Secretary \nunless that individual was appointed to an office for which appointment \nis required to be made by the President, by and with the advice and consent \nof the Senate, and that individual is otherwise eligible to so serve under \nthe Federal Vacancies Reform Act of 1998, as amended."
     },
-    "TERM:EO:13963:a8ea374c126493b8@24bca6a32042cdfb": {
-      "actor_id": "EO:13963",
-      "char_end": 868,
-      "char_start": 377,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13963:a8ea374c126493b8@24bca6a32042cdfb",
-      "instrument_id": "EO:13963",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13963#sec1",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13963",
-        "page_or_item": "85 FR 81331, PDF pages 1-2",
-        "requires_page_check": false,
-        "sha256": "62a5af427ffab5eb2dc0438b2462afaf173b33517718c1e38eb457ce5f5a91b3",
-        "signing_date": "2020-12-10",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13963-62a5af427f.txt",
-        "text_sha256": "24bca6a32042cdfb1476ca3917fb65df9501cb155629d7fb55fa3b592c0a19ed",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2020-12-15/pdf/2020-27739.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(a) Subject to the provisions of section \n2 of this order, the following officials of the Department of Defense, in \nthe order listed, shall act as and perform the functions and duties of the \noffice of the Secretary of Defense (Secretary) during any period in which \nthe Secretary has died, resigned, or otherwise become unable to perform \nthe functions and duties of the office of the Secretary, until such time \nas the Secretary is able to perform the functions and duties of that office:"
-    },
     "TERM:EO:13963:a8ea374c126493b8@26f2bb340fd17e8d": {
       "actor_id": "EO:13963",
       "char_end": 1482,
@@ -1376,6 +1370,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(a) Subject to the provisions of section \n2 of this order, the following officials of the Department of Defense, in \nthe order listed, shall act as and perform the functions and duties of the \noffice of the Secretary of Defense (Secretary) during any period in which \nthe Secretary has died, resigned, or otherwise become unable to perform \nthe functions and duties of the office of the Secretary, until such time \nas the Secretary is able to perform the functions and duties of that office:"
+    },
+    "TERM:EO:13963:bcfee3e1d181a2f7@ab50a7201c315a25": {
+      "actor_id": "EO:13963",
+      "char_end": 855,
+      "char_start": 370,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13963:bcfee3e1d181a2f7@ab50a7201c315a25",
+      "instrument_id": "EO:13963",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13963#sec1",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13963",
+        "page_or_item": "85 FR 81331-81332 (PDF pp. 1-2)",
+        "requires_page_check": false,
+        "sha256": "62a5af427ffab5eb2dc0438b2462afaf173b33517718c1e38eb457ce5f5a91b3",
+        "signing_date": "2020-12-10",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13963-62a5af427f.txt",
+        "text_sha256": "ab50a7201c315a25ef33d03268f4a3359f19e65f33a944140b84af78b8b490df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2020-12-15/pdf/2020-27739.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(a) Subject to the provisions of section\n2 of this order, the following officials of the Department of Defense, in\nthe order listed, shall act as and perform the functions and duties of the\noffice of the Secretary of Defense (Secretary) during any period in which\nthe Secretary has died, resigned, or otherwise become unable to perform\nthe functions and duties of the office of the Secretary, until such time\nas the Secretary is able to perform the functions and duties of that office:"
     },
     "TERM:EO:13963:e7b81d8671542f3d@55a3d3cfb171892b": {
       "actor_id": "EO:13963",
@@ -1410,6 +1435,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(a) Subject to the provisions of section 2 of this order, the following officials of the Department of Defense, in the order listed, shall act as and perform the functions and duties of the office of the Secretary of Defense (Secretary) during any period in which the Secretary has died, resigned, or otherwise become unable to perform the functions and duties of the office of the Secretary, until such time as the Secretary is able to perform the functions and duties of that office:"
+    },
+    "TERM:EO:13963:edea6b3c0e48a9f8@ab50a7201c315a25": {
+      "actor_id": "EO:13963",
+      "char_end": 855,
+      "char_start": 370,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13963:edea6b3c0e48a9f8@ab50a7201c315a25",
+      "instrument_id": "EO:13963",
+      "kind": "until_event",
+      "mechanism": "own_terms_until_event",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13963#sec1",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13963",
+        "page_or_item": "85 FR 81331-81332 (PDF pp. 1-2)",
+        "requires_page_check": false,
+        "sha256": "62a5af427ffab5eb2dc0438b2462afaf173b33517718c1e38eb457ce5f5a91b3",
+        "signing_date": "2020-12-10",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13963-62a5af427f.txt",
+        "text_sha256": "ab50a7201c315a25ef33d03268f4a3359f19e65f33a944140b84af78b8b490df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2020-12-15/pdf/2020-27739.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(a) Subject to the provisions of section\n2 of this order, the following officials of the Department of Defense, in\nthe order listed, shall act as and perform the functions and duties of the\noffice of the Secretary of Defense (Secretary) during any period in which\nthe Secretary has died, resigned, or otherwise become unable to perform\nthe functions and duties of the office of the Secretary, until such time\nas the Secretary is able to perform the functions and duties of that office:"
     },
     "TERM:EO:13963:f5c8483c413e297f@55a3d3cfb171892b": {
       "actor_id": "EO:13963",
@@ -1446,7 +1502,7 @@
       "text": "(b) No individual listed in section l(a) of this order shall act as Secretary unless that individual was appointed to an office for which appointment is required to be made by the President, by and with the advice and consent of the Senate, and that individual is otherwise eligible to so serve under the Federal Vacancies Reform Act of 1998, as amended."
     }
   },
-  "fingerprint": "30bf6357a54a15db811de5ea540021eef1b17732af480e76ab5b2568017f0305",
+  "fingerprint": "d880d5db9ca3aaa9bdb0db22b94290a4cd3bb970438959d1e036cc36a4734722",
   "instrument_id": "EO:13963",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1461,8 +1517,8 @@
         "TERM:EO:13963:a8ea374c126493b8@26f2bb340fd17e8d",
         "TERM:EO:13963:e7b81d8671542f3d@55a3d3cfb171892b",
         "TERM:EO:13963:114b0ebb15e4b532@55a3d3cfb171892b",
-        "TERM:EO:13963:4cab9ab26965afb9@24bca6a32042cdfb",
-        "TERM:EO:13963:a8ea374c126493b8@24bca6a32042cdfb"
+        "TERM:EO:13963:edea6b3c0e48a9f8@ab50a7201c315a25",
+        "TERM:EO:13963:bcfee3e1d181a2f7@ab50a7201c315a25"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -1785,7 +1841,7 @@
       "later_actor_evidence_ids": [],
       "own_term_evidence_ids": [
         "TERM:EO:13963:8fb9f7d3586ddc4b@26f2bb340fd17e8d",
-        "TERM:EO:13963:8fb9f7d3586ddc4b@24bca6a32042cdfb"
+        "TERM:EO:13963:53621d3200ff2891@ab50a7201c315a25"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -1849,7 +1905,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1861,7 +1917,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1873,8 +1929,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1884,7 +1940,9 @@
     }
   ],
   "missing": [
-    "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation."
+    "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
+    "Current-law lead lacks an original-source sha256.",
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:13963",
@@ -1895,17 +1953,17 @@
     "TERM:EO:13963:e7b81d8671542f3d@55a3d3cfb171892b",
     "TERM:EO:13963:114b0ebb15e4b532@55a3d3cfb171892b",
     "TERM:EO:13963:f5c8483c413e297f@55a3d3cfb171892b",
-    "TERM:EO:13963:4cab9ab26965afb9@24bca6a32042cdfb",
-    "TERM:EO:13963:a8ea374c126493b8@24bca6a32042cdfb",
-    "TERM:EO:13963:8fb9f7d3586ddc4b@24bca6a32042cdfb"
+    "TERM:EO:13963:edea6b3c0e48a9f8@ab50a7201c315a25",
+    "TERM:EO:13963:bcfee3e1d181a2f7@ab50a7201c315a25",
+    "TERM:EO:13963:53621d3200ff2891@ab50a7201c315a25"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "4f16357b2372b8b9b2035806a8ea6169012267b908e8ca3b37830d241dc76825",
+    "fingerprint": "045e105941f4e4179940a46d41bbf93f3d9b43cf4aab43a6e8e9e2ce1e9bfe68",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13963.json",
-    "history_sha256": "ebb01035b619c4ce29d278e345810b8e31544912189b76f5896d2eedb404a6a2",
+    "history_sha256": "6fe4cbad69d78c56dea4ebdb72e607def73ff4c44e4a3a5b6cecb7f59ffbd031",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

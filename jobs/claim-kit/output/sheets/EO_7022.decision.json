@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "0ee1681f2280cab072a469793134fcc7100621ebdbdaaf022c3b508f157261de",
+  "dossier_sha256": "8e9e6a8c5fa71509e4f5b66a5ab7202d208cbdf50cff1e7f79332a6629543bd7",
   "instrument_id": "EO:7022",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1935-04-20",
               "register_number": "7022",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7022.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7022.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7022—Amending Code of Fair Competition for the Distilled Spirits Rectifying Industry",
               "text_chars": 870
             },

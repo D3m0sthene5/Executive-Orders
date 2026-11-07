@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "1660ec025f39fcf1878572bad1e7862bc9e078cdefa11591058cd4b0be6b3c7e",
+  "dossier_sha256": "ebe1d649f8e3eddbae6bdc1fee26b12304af0633f6fad4f08ada5d9f1330cb35",
   "instrument_id": "EO:6875",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-10-16",
               "register_number": "6875",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6875.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6875.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6875—Amending Code of Fair Competition for the Silk Textile Industry",
               "text_chars": 1183
             },
@@ -120,6 +131,16 @@
         "sha256": "97bd1e49b399bcac700b520f8b94d425e7cc72ecf28101c95f29f5b98f986ffd",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-6875-amending-code-fair-competition-for-the-silk-textile-industry.txt",
         "text_sha256": "7130fc9f78905772906a6d55f16733376d3fb41b2c28b568d71855e55297c4fc"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "machine_read_government_printed_copy",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6858",
+        "pages_confirmed": false,
+        "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+        "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6858.txt",
+        "text_sha256": "947d8b001b7560f46e19707602dc1b3831bafa0096b1417f9c0e7e8e60877128"
       }
     ],
     "quotation_recheck_required": true,

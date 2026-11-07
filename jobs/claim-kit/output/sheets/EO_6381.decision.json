@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "5fe772c2e76cce55639cf00049cc2cbf2674a1f7670e3cfe180956da5942f448",
+  "dossier_sha256": "28fd4eadd877afc2142aba08e94898e274c36b912fd8eec5ec6b4f5ebf998666",
   "instrument_id": "EO:6381",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-01",
               "register_number": "6381",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6381.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6381.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6381—Code of Fair Competition for the Asbestos Industry",
               "text_chars": 1228
             },

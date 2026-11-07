@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "4fcf7f4ed91e38d860b74fbc7799ccf69f097b7a20ad55dd83a35daf949bc7a3",
+  "dossier_sha256": "5986e97497c669f184d51a4c2dd103212a77da75a23545f9be2f53511c04d634",
   "instrument_id": "EO:7974",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-09-16",
               "register_number": "7974",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7974.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7974.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7974—Exemption of Alfred R. Gould From Compulsory Retirement for Age",
               "text_chars": 737
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7974",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7974.txt",
+        "text_sha256": "5de87c8438878e13d433bfa9732dddbc360826ed858a2f2b7c78d5a63aab93cc"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7974",
@@ -130,6 +151,16 @@
         "sha256": "48fb8bd4e39ca233e5539ca82b25da5e8d5d5a06306c67ecd6e160af219fb777",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7974-48fb8bd4e3.txt",
         "text_sha256": "b0311e57ec5c3b7721b9d77779a790b001f4b8d31a82fd0aa16de5746d603e64"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7974",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7974.txt",
+        "text_sha256": "f53c359baed31a05e550da9ece8decd2fa5eaa4679d6e4986555bf42ed2d3485"
       }
     ],
     "quotation_recheck_required": true,

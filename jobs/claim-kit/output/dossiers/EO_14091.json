@@ -248,7 +248,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14091",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14091"
@@ -478,7 +478,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. CFR 2 CFR 200.318"
+      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. CFR 2 CFR 200.318; USC 5 U.S.C. 601 nt"
     }
   ],
   "current_law_leads": [
@@ -504,8 +504,34 @@
       "where": "CFR 2 CFR 200.318"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14091",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 5 U.S.C. 601 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3249",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "345427-345524",
+      "snippet": "2023 Feb. 16 | EO 14091 | 5 U.S.C. 601 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 5 U.S.C. 601 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -528,6 +554,34 @@
           "page_or_item": "2 CFR 200.318 (section_text; GovInfo eCFR XML title 2, amended through 2026-08-17; NODE 2:1.1.2.3.1.4.28.19)",
           "sha256": "118da26a4b4b55a0c8f85a611aa976d62e5dc155dc27cd679043e8b140df174d",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-2/ECFR-title2.xml"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3249",
+        "snippet": "2023 Feb. 16 | EO 14091 | 5 U.S.C. 601 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 5 U.S.C. 601 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 5 U.S.C. 601 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -573,6 +627,8 @@
     "clause_37_state",
     "clause_38_state",
     "clause_39_state",
+    "clause_40_state",
+    "clause_41_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -580,11 +636,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 40 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 42 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. CFR 2 CFR 200.318"
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. CFR 2 CFR 200.318; USC 5 U.S.C. 601 nt"
   ],
   "evidence": {
     "ACT:EO:14091>EO:12630": {
@@ -3580,7 +3636,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "99d28bf494e9df77760ec22d49a111765eefa060671124e934df46e1c7da8265",
+  "fingerprint": "94e46ab6a91e61b9c40d7d4f49595563d1fc72fd65c4edb61dbfd3be38a29815",
   "instrument_id": "EO:14091",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3788,7 +3844,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -3800,7 +3856,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -3812,8 +3868,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3828,7 +3884,6 @@
     "Large actor context must be read at actor-texts/EO_14008.json before deciding scope/savings.",
     "Large actor context must be read at actor-texts/EO_14110.json before deciding scope/savings.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
-    "cited by number, no change provision located: EO:14096",
     "target provision not located: EO:12072",
     "target provision not located: EO:12866",
     "target provision not located: EO:13006",
@@ -3845,6 +3900,7 @@
     "target provision not located: EO:14049",
     "target provision not located: EO:14050",
     "target provision not located: EO:14058",
+    "target provision not located: EO:14096",
     "target provision not located: EO:14100",
     "target provision not located: EO:14110",
     "target provision not located: EO:14121",
@@ -3859,10 +3915,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 21,
-    "fingerprint": "49202b3bbf083487f2dfdff22ab15a352ce5f3a4388e3500855d0c1ed73771ba",
+    "fingerprint": "d580f1ce15438ce4b673e6b9bd1bc14bf3914aeb01a312a06f7b7e4076e117b1",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14091.json",
-    "history_sha256": "5d4f6ef56232a6a2e56a08458b667eea7d7533d962a389976cf4132bd129c1b5",
+    "history_sha256": "c444926e74dcfa553331bc54569205a5e2afa2ff9affe06625e9ac274604ac4a",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

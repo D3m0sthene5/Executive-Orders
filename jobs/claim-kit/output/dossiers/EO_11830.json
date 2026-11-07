@@ -5,6 +5,10 @@
       "evidence_id": "ACTOR_TEXT:EO:11022"
     },
     {
+      "actor_id": "EO:11141",
+      "evidence_id": "ACTOR_TEXT:EO:11141"
+    },
+    {
       "actor_id": "EO:12106",
       "evidence_id": "ACTOR_TEXT:EO:12106"
     },
@@ -371,7 +375,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:11830",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11830"
@@ -621,8 +625,42 @@
       "where": "CFR 32 CFR 191.5"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11830",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 29 U.S.C. 791 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1031",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "29 U.S.C. 791 note",
+        "member_sha256": "6d96ab79a925909c23e198f5df57f5f325e4cfa8d3defec6bfccafd897d81d43",
+        "note_id": "id5a9331b9-3a70-11f1-8704-e0e66b400d7c",
+        "note_text_sha256": "02f308b9b5291050c6c3d0353992c7442e2f211a55abd7496c0ed78d08b64ea2",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id5a9331b9-3a70-11f1-8704-e0e66b400d7c"
+      },
+      "row_span": "115353-115446",
+      "snippet": "1975 Jan. 9 | EO 11830 | 29 U.S.C. 791 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 29 U.S.C. 791 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -650,7 +688,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -702,6 +741,34 @@
           "page_or_item": "29 U.S.C. 791 note; note 'Ex. Ord. No. 11830. Enlarging Membership of Interagency Committee on Handicapped Employees' [USLM note id id5a9331b9-3a70-11f1-8704-e0e66b400d7c]; usc29.xml (sha256 6d96ab79a925909c23e198f5df57f5f325e4cfa8d3defec6bfccafd897d81d43) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1031",
+        "snippet": "1975 Jan. 9 | EO 11830 | 29 U.S.C. 791 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 29 U.S.C. 791 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 29 U.S.C. 791 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     },
@@ -2129,6 +2196,26 @@
       },
       "text": "Instrument: EO:11022\nSource: https://www.govinfo.gov/content/pkg/FR-1962-05-17/pdf/FR-1962-05-17.pdf\nSHA-256 of the downloaded file: 56b46770ca89bc4f1e85cec8842eb0e28a4dd0cfb466a6513647bdeeb7dceba2\nLocation: 27 FR 4659, PDF pages 5-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 72 ===\nThursday , M a y 17, 1962 FEDERAL REGISTER 4659\nExecutive Order 11022\nESTABLISHING THE PRESIDENT’S COUNCIL ON AGING\nBy virtue of the authority vested in me as President of the United \nStates, it is hereby ordered as follow s:\nSectio n 1. (a) There is hereby established the President’s Council \non Aging (hereinafter referred to as the “ Council” ) .\n(b) The Council shall be composed of the Secretary of Health, \nEducation, and Welfare, who shall be Chairman, the Secretary of \nAgriculture, the Secretary of Commerce, the Secretary of Labor, the \nSecretary of the Treasury, the Chairman of the Civil Service Commis­\nsion, the Administrator of the Housing and Home Finance Agency, \nand the Administrator of Veterans’ Affairs.\n(c) The Chairman of the Council shall invite the head of any other \nFederal department or agency to attend any meeting of the Council \nat which any matter within or affecting the area o f responsibility of \nsuch department or agency is considered and to be a temporary member \nwith respect to such matter.\nS ec. 2. The Council shall:\n(a) Maintain a continuing study of the overall responsibilities of \nthe Federal Government with respect to the problems of the aging and \nmake recommendations to the President concerning policies and pro­\ngrams required to meet Federal responsibilities, particularly on mat­\nters which do not fall within the jurisdiction o f a single agency.\n(b) Identify matters which require coordinated action by two or \nmore Federal agencies and make appropriate arrangements for joint \nor coordinated action, including, as appropriate, conferences, ^oint \nstudies, and the development o f recommendations to the President.\n(c) Promote the sharing and dissemination of information on the \nneeds of the aging and policies and programs relating to the aging, \namong Federal departments and agencies and between them and \nState, local, or private agencies and organizations having functions \nor interests in fields relating to the problems o f the aging.\n(d) Prepare an annual consolidated report to the President con­\ncerning the activities of the Council and the several Federal depart­\nments and agencies having programs relating to the aging.\nSec. 3. (a) Consonant with law, each department or agency repre­\nsented on the Council shall, as may be necessary for the effectuation \no f the purpose of this order, furnish assistance to the Council in \naccordance with Section 214 o f the Act of May 3, 1945, 59 Stat. 134 \n(31 U.S.C. 691).\n(b) Other Federal departments and agencies are also authorized \nand directed, to the extent not inconsistent with law, to cooperate \nwith the Council and to furnish it such information and assistance \nas it may find necessary in the performance o f its functions.\nS ec. 4. The Federal Council on Aging, established by a letter from \nthe President to the Secretary of Health, Education, and Welfare, \ndated March 7, 1959, is hereby abolished and that letter is hereby \nsuperseded.\nJ o h n F. K e n n e d y\nT h e W h it e H ouse,\nM ay 14-, 1962.\n[F.R. Doc. 62-4831; Filed, May 15, 1962 ; 3:58 p.m.]\n"
     },
+    "ACTOR_TEXT:EO:11141": {
+      "actor_id": "EO:11141",
+      "char_end": 3736,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:11141",
+      "role": "actor_context",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "29 FR 2477, PDF pages 5-5",
+        "requires_page_check": false,
+        "sha256": "dd2778d5f98c2dd779b33831dfdbdaff8a045edfac173841604ac7d24b2210b1",
+        "signing_date": "1964-02-12",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11141.txt",
+        "text_sha256": "3e1bd131e2e7b4c1c2d81fd2abc719f7a49c6a5acb1f8ba5e4c87f4253b395a4",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1964-02-15/pdf/FR-1964-02-15.pdf"
+      },
+      "text": "Instrument: EO:11141\nSource: https://www.govinfo.gov/content/pkg/FR-1964-02-15/pdf/FR-1964-02-15.pdf\nSHA-256 of the downloaded file: dd2778d5f98c2dd779b33831dfdbdaff8a045edfac173841604ac7d24b2210b1\nLocation: 29 FR 2477, PDF pages 5-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 64 ===\nSaturday, February IS, 1964 FEDERAL REGISTER 2477\nExecutive Order 11141,\nDECLARING A PUBLIC POLICY AGAINST DISCRIMINATION ON THE\nBASIS OF AGE\nW H E R E A S the principle of equal employment opportunity is now \nan established policy of our Government and applies equally to all who \nwish to work and are capable of doing so; and\nW H E R E A S discrimination in employment because of age, except \nupon the basis of a bona, fid e occupational qualification, retirement \nplan, or statutory requirement, is inconsistent with that principle and \nwith the social and economic objectives of our society; and\nW H E R E A S older workers are an indispensable source of produc­\ntivity and experience which our Nation can ill afford to lose; and\nW H E R E A S President Kennedy, mindful that maximum national \ngrowth depends on the utilization of all manpower resources, issued \na memorandum on March 14, 1963, reaffirming the policy of the \nExecutive Branch of the Government of hiring and promoting em­\nployees on the basis of merit alone and emphasizing the need to assure \nthat older people are not discriminated against because of their age \nand receive fair and full consideration for employment and ad­\nvancement in Federal employment; and\nW H E R E A S, to encourage and hasten the acceptance of the prin­\nciple of equal employment opportunity for older persons by all sectors \nof the economy, private and public, the Federal Government can and \nshould provide maximum leadership in this regard T > y  adopting that \nprinciple as an express policy of the Federal Government not only \nwith respect to Federal employees but also with respect to persons \nemployed by contractors and subcontractors engaged in the per­\nformance of Federal contracts:\nNOW, T H E R E F O R E , by virtue of the authority vested in me by \nthe Constitution and statutes of the United States and as President of \nthe United States, I  hereby declare that it is the policy of the Executive \nBranch of the Government that (1) contractors and subcontractors \nengaged in the performance of Federal contracts shall not, in connec­\ntion with the employment, advancement, or discharge of employees, or \nin connection with the terms, conditions, or privileges of their employ­\nment, discriminate against persons because of their age except upon the \nbasis of a bon a fid e occupational qualification, retirement plan, or statu­\ntory requirement, and (2) that contractors and subcontractors, or per­\nsons acting on their behalf, shall not specify, in solicitations or \nadvertisements for employees to work on Government contracts, a \nfnaximum age limit for such employment unless the specified maximum \nage limit is based upon a b on a fid e occupational qualification, retire­\nment plan, or statutory requirement. The head of each department \nand agency shall take appropriate action to enunciate this policy, and \nto this end the Federal Procurement Regulations and the Armed Serv­\nices Procurement Regulation shall be amended by the insertion.therein \nof a statement giving continuous notice of the existence of the policy \ndeclared by this order.\nL y nDon B. J ohnson\nT h e W h it e H ouse ,\nF e b ru a r y  12 ,1 9 6J.\n[F.R. Doc. 64-1599; Filed, Feb. 13, 1964; 3:05  p.m.]\n"
+    },
     "ACTOR_TEXT:EO:12106": {
       "actor_id": "EO:12106",
       "char_end": 5097,
@@ -2391,7 +2478,7 @@
       "text": "Instrument: EO:11830\nSource: https://www.govinfo.gov/content/pkg/FR-1975-01-13/pdf/FR-1975-01-13.pdf\nSHA-256 of the downloaded file: 0a6c6158683266a4a6874f82848fdb7b783d2e8817d67b11d133269486c45600\nLocation: 40 FR 2411, PDF pages 11-11 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 11 of 176 ===\npresidential docum ents\nTitle 3—The President\nE X E C U T IV E  O R D E R  11830\nEnlarging the Membership of the Interagency Committee on \nHandicapped Employees\nBy virtue of the authority vested in me by section 501(a) of the Reha­\nbilitation Act of 1973 (Public Law 93-112; 87 Stat. 390), it is hereby \nordered as follows:\nSection  1. The Interagency Committee on Handicapped Employees \nshall be comprised of the following (or their designees whose positions \nare executive level IV or higher):\n(1) The Secretary of Defense.\n(2) The Secretary of Labor.\n(3) The Secretary of Health, Education, and Welfare.\n(4) The Chairman of the Civil Service Commission.\n(5) The Administrator of Veterans Affairs.\n(6) The Administrator of General Services.\n[(7) The Chairman of the Federal Communications Commission, and\n(8) such other members as the President may, from time to time, \ndesignate.\nS e c. 2. The Secretary of Health, Education, and Welfare and the \nChairman of,the Civil Service Commission, under the provisions of \nsection 501(a) of the Rehabilitation Act of 1973, shall serve as Co- \nchairmen of the Committee.\nT h e W h i t e H o u s e,\nJanuary 9,1975.\n[FR Doc.75-1220 Filed 1— 10— 75^10:00 am]\nFEDERAL REGISTER, VOL. '40, NO. 8— M ONDAY, JANUARY 13, 1975\n"
     }
   },
-  "fingerprint": "b2e3f239b067fb31d1cff626bc32a834b286bdcf885870e762af95106958213f",
+  "fingerprint": "aeb731dab026a8a5a658c6d3654e5e68eb33009591b210bee0b6687949659d4f",
   "instrument_id": "EO:11830",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2523,7 +2610,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2535,7 +2622,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2547,8 +2634,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2562,6 +2649,7 @@
     "Current-law lead lacks an original-source sha256.",
     "Large actor context must be read at actor-texts/EO_12450.json before deciding scope/savings.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+    "cited by number, no change provision located: EO:11141",
     "target provision not located: EO:12704"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -2570,10 +2658,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 8,
-    "fingerprint": "1a8f91afcd87ebe12aea09fd49c2e6dbccefeebcd286f761d67cab960c1a98c6",
+    "fingerprint": "d500c1881c882a99e113ac91b3915a4564c7867ff8edb611de805c92efe04b2d",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11830.json",
-    "history_sha256": "625a4e0c989352e6626fc01ec2d7943a648fc63f97751af720216ee4438340aa",
+    "history_sha256": "f182c3e3f7ab91e3ab5a573b8e614e6705433412326f0952858f8e97b45d0308",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

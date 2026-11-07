@@ -1,6 +1,10 @@
 {
   "actor_contexts": [
     {
+      "actor_id": "EO:13848",
+      "evidence_id": "ACTOR_TEXT:EO:13848"
+    },
+    {
       "actor_id": "EO:13849",
       "evidence_id": "ACTOR_TEXT:EO:13849"
     },
@@ -194,7 +198,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13757",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13757"
@@ -377,7 +381,12 @@
       "text": "Sec. 5. This order is effective at 12:01 a.m. eastern standard time on December \n29, 2016."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 2 later event(s) end part of it: ? revocation 2025-03-27 (scope: not stated); ? revocation 2026-03-24 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "statutory_text_reference",
@@ -611,8 +620,34 @@
       "where": "CFR 31 CFR part 579, Appendix A to Part 579"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13757",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2927",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "312079-312174",
+      "snippet": "2016 Dec. 28 | EO 13757 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -640,7 +675,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -668,7 +704,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -696,7 +733,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -724,7 +762,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -752,7 +791,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -917,6 +957,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2927",
+        "snippet": "2016 Dec. 28 | EO 13757 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -935,7 +1003,8 @@
     "DRAFT: state_at_cutoff not decided for 5 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 2 later event(s) end part of it: ? revocation 2025-03-27 (scope: not stated); ? revocation 2026-03-24 (scope: not stated)"
   ],
   "evidence": {
     "ACT:EO:13757>EO:13849": {
@@ -1735,6 +1804,26 @@
       },
       "text": "(d) To enhance the effective governance and oversight of Federal informa-\ntion systems, within 90 days of the date of this order, the Director of \nOMB shall issue guidance as appropriate requiring agencies to inventory \nall major information systems and provide the inventory to CISA, the Depart-\nment of Defense, or the National Manager, as applicable, which shall each \nmaintain a registry of agency inventories within their purview."
     },
+    "ACTOR_TEXT:EO:13848": {
+      "actor_id": "EO:13848",
+      "char_end": 20112,
+      "char_start": 0,
+      "id": "ACTOR_TEXT:EO:13848",
+      "role": "actor_context",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "83 FR 46843, PDF pages 1-6",
+        "requires_page_check": false,
+        "sha256": "e1dcdce9622c3e4575aee902f6e3279fcb157be2da8d72c5acac217f4c941b69",
+        "signing_date": "2018-09-12",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13848.txt",
+        "text_sha256": "559788b153275ee7b9ead064ef46e36f540342e16c00b8d5140177c0917b4efb",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2018-09-14/pdf/2018-20203.pdf"
+      },
+      "text": "Instrument: EO:13848\nSource: https://www.govinfo.gov/content/pkg/FR-2018-09-14/pdf/2018-20203.pdf\nSHA-256 of the downloaded file: e1dcdce9622c3e4575aee902f6e3279fcb157be2da8d72c5acac217f4c941b69\nLocation: 83 FR 46843, PDF pages 1-6 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 6 ===\nPresidential Documents\n46843 \nFederal Register \nVol. 83, No. 179 \nFriday, September 14, 2018 \nTitle 3— \nThe President \nExecutive Order 13848 of September 12, 2018 \nImposing Certain Sanctions in the Event of Foreign Inter-\nference in a United States Election \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the International Emergency \nEconomic Powers Act (50 U.S.C. 1701 et seq.) (IEEPA), the National Emer-\ngencies Act (50 U.S.C. 1601 et seq.) (NEA), section 212(f) of the Immigration \nand Nationality Act of 1952 (8 U.S.C. 1182(f)), and section 301 of title \n3, United States Code, \nI, DONALD J. TRUMP, President of the United States of America, find \nthat the ability of persons located, in whole or in substantial part, outside \nthe United States to interfere in or undermine public confidence in United \nStates elections, including through the unauthorized accessing of election \nand campaign infrastructure or the covert distribution of propaganda and \ndisinformation, constitutes an unusual and extraordinary threat to the na-\ntional security and foreign policy of the United States. Although there has \nbeen no evidence of a foreign power altering the outcome or vote tabulation \nin any United States election, foreign powers have historically sought to \nexploit America’s free and open political system. In recent years, the pro-\nliferation of digital devices and internet-based communications has created \nsignificant vulnerabilities and magnified the scope and intensity of the threat \nof foreign interference, as illustrated in the 2017 Intelligence Community \nAssessment. I hereby declare a national emergency to deal with this threat. \nAccordingly, I hereby order: \nSection 1. (a) Not later than 45 days after the conclusion of a United \nStates election, the Director of National Intelligence, in consultation with \nthe heads of any other appropriate executive departments and agencies \n(agencies), shall conduct an assessment of any information indicating that \na foreign government, or any person acting as an agent of or on behalf \nof a foreign government, has acted with the intent or purpose of interfering \nin that election. The assessment shall identify, to the maximum extent \nascertainable, the nature of any foreign interference and any methods em-\nployed to execute it, the persons involved, and the foreign government \nor governments that authorized, directed, sponsored, or supported it. The \nDirector of National Intelligence shall deliver this assessment and appropriate \nsupporting information to the President, the Secretary of State, the Secretary \nof the Treasury, the Secretary of Defense, the Attorney General, and the \nSecretary of Homeland Security. \n(b) Within 45 days of receiving the assessment and information described \nin section 1(a) of this order, the Attorney General and the Secretary of \nHomeland Security, in consultation with the heads of any other appropriate \nagencies and, as appropriate, State and local officials, shall deliver to the \nPresident, the Secretary of State, the Secretary of the Treasury, and the \nSecretary of Defense a report evaluating, with respect to the United States \nelection that is the subject of the assessment described in section 1(a): \n(i) the extent to which any foreign interference that targeted election \ninfrastructure materially affected the security or integrity of that infrastruc-\nture, the tabulation of votes, or the timely transmission of election results; \nand \n(ii) if any foreign interference involved activities targeting the infrastructure \nof, or pertaining to, a political organization, campaign, or candidate, the \nVerDate Sep<11>2014 17:47 Sep 13, 2018 Jkt 244001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\14SEE0.SGM 14SEE0daltland on DSKBBV9HB2PROD with PRES DOCS\n=== PDF page 2 of 6 ===\n46844 Federal Register / Vol. 83, No. 179 / Friday, September 14, 2018 / Presidential Documents \nextent to which such activities materially affected the security or integrity \nof that infrastructure, including by unauthorized access to, disclosure or \nthreatened disclosure of, or alteration or falsification of, information or \ndata. \nThe report shall identify any material issues of fact with respect to these \nmatters that the Attorney General and the Secretary of Homeland Security \nare unable to evaluate or reach agreement on at the time the report is \nsubmitted. The report shall also include updates and recommendations, \nwhen appropriate, regarding remedial actions to be taken by the United \nStates Government, other than the sanctions described in sections 2 and \n3 of this order. \n(c) Heads of all relevant agencies shall transmit to the Director of National \nIntelligence any information relevant to the execution of the Director’s duties \npursuant to this order, as appropriate and consistent with applicable law. \nIf relevant information emerges after the submission of the report mandated \nby section 1(a) of this order, the Director, in consultation with the heads \nof any other appropriate agencies, shall amend the report, as appropriate, \nand the Attorney General and the Secretary of Homeland Security shall \namend the report required by section 1(b), as appropriate. \n(d) Nothing in this order shall prevent the head of any agency or any \nother appropriate official from tendering to the President, at any time through \nan appropriate channel, any analysis, information, assessment, or evaluation \nof foreign interference in a United States election. \n(e) If information indicating that foreign interference in a State, tribal, \nor local election within the United States has occurred is identified, it \nmay be included, as appropriate, in the assessment mandated by section \n1(a) of this order or in the report mandated by section 1(b) of this order, \nor submitted to the President in an independent report. \n(f) Not later than 30 days following the date of this order, the Secretary \nof State, the Secretary of the Treasury, the Attorney General, the Secretary \nof Homeland Security, and the Director of National Intelligence shall develop \na framework for the process that will be used to carry out their respective \nresponsibilities pursuant to this order. The framework, which may be classi-\nfied in whole or in part, shall focus on ensuring that agencies fulfill their \nresponsibilities pursuant to this order in a manner that maintains methodo-\nlogical consistency; protects law enforcement or other sensitive information \nand intelligence sources and methods; maintains an appropriate separation \nbetween intelligence functions and policy and legal judgments; ensures that \nefforts to protect electoral processes and institutions are insulated from \npolitical bias; and respects the principles of free speech and open debate. \nSec. 2. (a) All property and interests in property that are in the United \nStates, that hereafter come within the United States, or that are or hereafter \ncome within the possession or control of any United States person of the \nfollowing persons are blocked and may not be transferred, paid, exported, \nwithdrawn, or otherwise dealt in: any foreign person determined by the \nSecretary of the Treasury, in consultation with the Secretary of State, the \nAttorney General, and the Secretary of Homeland Security: \n(i) to have directly or indirectly engaged in, sponsored, concealed, or \notherwise been complicit in foreign interference in a United States election; \n(ii) to have materially assisted, sponsored, or provided financial, material, \nor technological support for, or goods or services to or in support of, \nany activity described in subsection (a)(i) of this section or any person \nwhose property and interests in property are blocked pursuant to this \norder; or \n(iii) to be owned or controlled by, or to have acted or purported to \nact for or on behalf of, directly or indirectly, any person whose property \nor interests in property are blocked pursuant to this order. \n(b) Executive Order 13694 of April 1, 2015, as amended by Executive \nOrder 13757 of December 28, 2016, remains in effect. This order is not \nVerDate Sep<11>2014 17:47 Sep 13, 2018 Jkt 244001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\14SEE0.SGM 14SEE0daltland on DSKBBV9HB2PROD with PRES DOCS\n=== PDF page 3 of 6 ===\n46845 Federal Register / Vol. 83, No. 179 / Friday, September 14, 2018 / Presidential Documents \nintended to, and does not, serve to limit the Secretary of the Treasury’s \ndiscretion to exercise the authorities provided in Executive Order 13694. \nWhere appropriate, the Secretary of the Treasury, in consultation with the \nAttorney General and the Secretary of State, may exercise the authorities \ndescribed in Executive Order 13694 or other authorities in conjunction with \nthe Secretary of the Treasury’s exercise of authorities provided in this order. \n(c) The prohibitions in subsection (a) of this section apply except to \nthe extent provided by statutes, or in regulations, orders, directives, or \nlicenses that may be issued pursuant to this order, and notwithstanding \nany contract entered into or any license or permit granted prior to the \ndate of this order. \nSec. 3. Following the transmission of the assessment mandated by section \n1(a) and the report mandated by section 1(b): \n(a) the Secretary of the Treasury shall review the assessment mandated \nby section 1(a) and the report mandated by section 1(b), and, in consultation \nwith the Secretary of State, the Attorney General, and the Secretary of \nHomeland Security, impose all appropriate sanctions pursuant to section \n2(a) of this order and any appropriate sanctions described in section 2(b) \nof this order; and \n(b) the Secretary of State and the Secretary of the Treasury, in consultation \nwith the heads of other appropriate agencies, shall jointly prepare a rec-\nommendation for the President as to whether additional sanctions against \nforeign persons may be appropriate in response to the identified foreign \ninterference and in light of the evaluation in the report mandated by section \n1(b) of this order, including, as appropriate and consistent with applicable \nlaw, proposed sanctions with respect to the largest business entities licensed \nor domiciled in a country whose government authorized, directed, sponsored, \nor supported election interference, including at least one entity from each \nof the following sectors: financial services, defense, energy, technology, and \ntransportation (or, if inapplicable to that country’s largest business entities, \nsectors of comparable strategic significance to that foreign government). The \nrecommendation shall include an assessment of the effect of the rec-\nommended sanctions on the economic and national security interests of \nthe United States and its allies. Any recommended sanctions shall be appro-\npriately calibrated to the scope of the foreign interference identified, and \nmay include one or more of the following with respect to each targeted \nforeign person: \n(i) blocking and prohibiting all transactions in a person’s property and \ninterests in property subject to United States jurisdiction; \n(ii) export license restrictions under any statute or regulation that requires \nthe prior review and approval of the United States Government as a \ncondition for the export or re-export of goods or services; \n(iii) prohibitions on United States financial institutions making loans or \nproviding credit to a person; \n(iv) restrictions on transactions in foreign exchange in which a person \nhas any interest; \n(v) prohibitions on transfers of credit or payments between financial institu-\ntions, or by, through, or to any financial institution, for the benefit of \na person; \n(vi) prohibitions on United States persons investing in or purchasing equity \nor debt of a person; \n(vii) exclusion of a person’s alien corporate officers from the United States; \n(viii) imposition on a person’s alien principal executive officers of any \nof the sanctions described in this section; or \n(ix) any other measures authorized by law. \nSec. 4. I hereby determine that the making of donations of the type of \narticles specified in section 203(b)(2) of IEEPA (50 U.S.C. 1702(b)(2)) by, \nVerDate Sep<11>2014 17:47 Sep 13, 2018 Jkt 244001 PO 00000 Frm 00005 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\14SEE0.SGM 14SEE0daltland on DSKBBV9HB2PROD with PRES DOCS\n=== PDF page 4 of 6 ===\n46846 Federal Register / Vol. 83, No. 179 / Friday, September 14, 2018 / Presidential Documents \nto, or for the benefit of any person whose property and interests in property \nare blocked pursuant to this order would seriously impair my ability to \ndeal with the national emergency declared in this order, and I hereby prohibit \nsuch donations as provided by section 2 of this order. \nSec. 5. The prohibitions in section 2 of this order include the following: \n(a) the making of any contribution or provision of funds, goods, or services \nby, to, or for the benefit of any person whose property and interests in \nproperty are blocked pursuant to this order; and \n(b) the receipt of any contribution or provision of funds, goods, or services \nfrom any such person. \nSec. 6. I hereby find that the unrestricted immigrant and nonimmigrant \nentry into the United States of aliens whose property and interests in property \nare blocked pursuant to this order would be detrimental to the interests \nof the United States, and I hereby suspend entry into the United States, \nas immigrants or nonimmigrants, of such persons. Such persons shall be \ntreated as persons covered by section 1 of Proclamation 8693 of July 24, \n2011 (Suspension of Entry of Aliens Subject to United Nations Security \nCouncil Travel Bans and International Emergency Economic Powers Act \nSanctions). \nSec. 7. (a) Any transaction that evades or avoids, has the purpose of evading \nor avoiding, causes a violation of, or attempts to violate any of the prohibi-\ntions set forth in this order is prohibited. \n(b) Any conspiracy formed to violate any of the prohibitions set forth \nin this order is prohibited. \nSec. 8. For the purposes of this order: \n(a) the term ‘‘person’’ means an individual or entity; \n(b) the term ‘‘entity’’ means a partnership, association, trust, joint venture, \ncorporation, group, subgroup, or other organization; \n(c) the term ‘‘United States person’’ means any United States citizen, \npermanent resident alien, entity organized under the laws of the United \nStates or any jurisdiction within the United States (including foreign \nbranches), or any person (including a foreign person) in the United States; \n(d) the term ‘‘election infrastructure’’ means information and communica-\ntions technology and systems used by or on behalf of the Federal Government \nor a State or local government in managing the election process, including \nvoter registration databases, voting machines, voting tabulation equipment, \nand equipment for the secure transmission of election results; \n(e) the term ‘‘United States election’’ means any election for Federal office \nheld on, or after, the date of this order; \n(f) the term ‘‘foreign interference,’’ with respect to an election, includes \nany covert, fraudulent, deceptive, or unlawful actions or attempted actions \nof a foreign government, or of any person acting as an agent of or on \nbehalf of a foreign government, undertaken with the purpose or effect of \ninfluencing, undermining confidence in, or altering the result or reported \nresult of, the election, or undermining public confidence in election processes \nor institutions; \n(g) the term ‘‘foreign government’’ means any national, state, provincial, \nor other governing authority, any political party, or any official of any \ngoverning authority or political party, in each case of a country other than \nthe United States; \n(h) the term ‘‘covert,’’ with respect to an action or attempted action, \nmeans characterized by an intent or apparent intent that the role of a \nforeign government will not be apparent or acknowledged publicly; and \n(i) the term ‘‘State’’ means the several States or any of the territories, \ndependencies, or possessions of the United States. \nSec. 9. For those persons whose property and interests in property are \nblocked pursuant to this order who might have a constitutional presence \nVerDate Sep<11>2014 17:47 Sep 13, 2018 Jkt 244001 PO 00000 Frm 00006 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\14SEE0.SGM 14SEE0daltland on DSKBBV9HB2PROD with PRES DOCS\n=== PDF page 5 of 6 ===\n46847 Federal Register / Vol. 83, No. 179 / Friday, September 14, 2018 / Presidential Documents \nin the United States, I find that because of the ability to transfer funds \nor other assets instantaneously, prior notice to such persons of measures \nto be taken pursuant to this order would render those measures ineffectual. \nI therefore determine that for these measures to be effective in addressing \nthe national emergency declared in this order, there need be no prior notice \nof a listing or determination made pursuant to section 2 of this order. \nSec. 10. Nothing in this order shall prohibit transactions for the conduct \nof the official business of the United States Government by employees, \ngrantees, or contractors thereof. \nSec. 11. The Secretary of the Treasury, in consultation with the Attorney \nGeneral and the Secretary of State, is hereby authorized to take such actions, \nincluding the promulgation of rules and regulations, and to employ all \npowers granted to the President by IEEPA as may be necessary to carry \nout the purposes of this order. The Secretary of the Treasury may re-delegate \nany of these functions to other officers within the Department of the Treasury \nconsistent with applicable law. All agencies of the United States Government \nare hereby directed to take all appropriate measures within their authority \nto carry out the provisions of this order. \nSec. 12. The Secretary of the Treasury, in consultation with the Attorney \nGeneral and the Secretary of State, is hereby authorized to submit the \nrecurring and final reports to the Congress on the national emergency de-\nclared in this order, consistent with section 401(c) of the NEA (50 U.S.C. \n1641(c)) and section 204(c) of IEEPA (50 U.S.C. 1703(c)). \nSec. 13. This order shall be implemented consistent with 50 U.S.C. 1702(b)(1) \nand (3). \nSec. 14. (a) Nothing in this order shall be construed to impair or otherwise \naffect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \nVerDate Sep<11>2014 17:47 Sep 13, 2018 Jkt 244001 PO 00000 Frm 00007 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\14SEE0.SGM 14SEE0daltland on DSKBBV9HB2PROD with PRES DOCS\n=== PDF page 6 of 6 ===\n46848 Federal Register / Vol. 83, No. 179 / Friday, September 14, 2018 / Presidential Documents \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nSeptember 12, 2018. \n[FR Doc. 2018–20203 \nFiled 9–13–18; 11:15 am] \nBilling code 3295–F8–P \nVerDate Sep<11>2014 17:47 Sep 13, 2018 Jkt 244001 PO 00000 Frm 00008 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\14SEE0.SGM 14SEE0\nTrump.EPS</GPH>\ndaltland on DSKBBV9HB2PROD with PRES DOCS"
+    },
     "ACTOR_TEXT:EO:13849": {
       "actor_id": "EO:13849",
       "char_end": 21034,
@@ -2037,7 +2126,7 @@
       "text": "Instrument: EO:13757\nSource: https://www.govinfo.gov/content/pkg/FR-2017-01-03/pdf/2016-31922.pdf\nSHA-256 of the downloaded file: afc8dceaa5ceef402ebfc1ef84bccf58cda4182a4a8b7c3a8dae9e0553d06782\nLocation: 82 FR 1, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 3 ===\nPresidential Documents\n1 \nFederal Register \nVol. 82, No. 1 \nTuesday, January 3, 2017 \nTitle 3— \nThe President \nExecutive Order 13757 of December 28, 2016 \nTaking Additional Steps to Address the National Emergency \nWith Respect to Significant Malicious Cyber-Enabled Activi-\nties \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the International Emergency \nEconomic Powers Act (50 U.S.C. 1701 et seq.) (IEEPA), the National Emer-\ngencies Act (50 U.S.C. 1601 et seq.) (NEA), and section 301 of title 3, \nUnited States Code, \nI, BARACK OBAMA, President of the United States of America, in order \nto take additional steps to deal with the national emergency with respect \nto significant malicious cyber-enabled activities declared in Executive Order \n13694 of April 1, 2015, and in view of the increasing use of such activities \nto undermine democratic processes or institutions, hereby order: \nSection 1. Section 1(a) of Executive Order 13694 is hereby amended to \nread as follows: \n‘‘Section 1. (a) All property and interests in property that are in the \nUnited States, that hereafter come within the United States, or that are \nor hereafter come within the possession or control of any United States \nperson of the following persons are blocked and may not be transferred, \npaid, exported, withdrawn, or otherwise dealt in: \n(i) the persons listed in the Annex to this order; \n(ii) any person determined by the Secretary of the Treasury, in consultation \nwith the Attorney General and the Secretary of State, to be responsible \nfor or complicit in, or to have engaged in, directly or indirectly, cyber- \nenabled activities originating from, or directed by persons located, in \nwhole or in substantial part, outside the United States that are reasonably \nlikely to result in, or have materially contributed to, a significant threat \nto the national security, foreign policy, or economic health or financial \nstability of the United States and that have the purpose or effect of: \n(A) harming, or otherwise significantly compromising the provision of \nservices by, a computer or network of computers that support one or \nmore entities in a critical infrastructure sector; \n(B) significantly compromising the provision of services by one or more \nentities in a critical infrastructure sector; \n(C) causing a significant disruption to the availability of a computer \nor network of computers; \n(D) causing a significant misappropriation of funds or economic re-\nsources, trade secrets, personal identifiers, or financial information for \ncommercial or competitive advantage or private financial gain; or \n(E) tampering with, altering, or causing a misappropriation of information \nwith the purpose or effect of interfering with or undermining election \nprocesses or institutions; and \n(iii) any person determined by the Secretary of the Treasury, in consultation \nwith the Attorney General and the Secretary of State: \n(A) to be responsible for or complicit in, or to have engaged in, the \nreceipt or use for commercial or competitive advantage or private financial \ngain, or by a commercial entity, outside the United States of trade secrets \nVerDate Sep<11>2014 22:08 Dec 30, 2016 Jkt 241001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\03JAE0.SGM 03JAE0sradovich on DSK3GMQ082PROD with PRES DOCS\n=== PDF page 2 of 3 ===\n2 Federal Register / Vol. 82, No. 1 / Tuesday, January 3, 2017 / Presidential Documents \nmisappropriated through cyber-enabled means, knowing they have been \nmisappropriated, where the misappropriation of such trade secrets is rea-\nsonably likely to result in, or has materially contributed to, a significant \nthreat to the national security, foreign policy, or economy of the United \nStates; \n(B) to have materially assisted, sponsored, or provided financial, material, \nor technological support for, or goods or services to or in support of, \nany activity described in subsections (a)(ii) or (a)(iii)(A) of this section \nor any person whose property and interests in property are blocked pursu-\nant to this order; \n(C) to be owned or controlled by, or to have acted or purported to \nact for or on behalf of, directly or indirectly, any person whose property \nand interests in property are blocked pursuant to this order; or \n(D) to have attempted to engage in any of the activities described in \nsubsections (a)(ii) and (a)(iii)(A)–(C) of this section.’’ \nSec. 2. Executive Order 13694 is further amended by adding as an Annex \nto Executive Order 13694 the Annex to this order. \nSec. 3. Executive Order 13694 is further amended by redesignating section \n10 as section 11 and adding a new section 10 to read as follows: \n‘‘Sec. 10. The Secretary of the Treasury, in consultation with the Attorney \nGeneral and the Secretary of State, is hereby authorized to determine that \ncircumstances no longer warrant the blocking of the property and interests \nin property of a person listed in the Annex to this order, and to take \nnecessary action to give effect to that determination.’’ \nSec. 4. This order is not intended to, and does not, create any right or \nbenefit, substantive or procedural, enforceable at law or in equity by any \nparty against the United States, its departments, agencies, or entities, its \nofficers, employees, or agents, or any other person. \nSec. 5. This order is effective at 12:01 a.m. eastern standard time on December \n29, 2016. \nTHE WHITE HOUSE, \nDecember 28, 2016. \nBilling code 3295–F7–P \nVerDate Sep<11>2014 22:08 Dec 30, 2016 Jkt 241001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\03JAE0.SGM 03JAE0\nOB#1.EPS</GPH>\nsradovich on DSK3GMQ082PROD with PRES DOCS\n=== PDF page 3 of 3 ===\n3 Federal Register / Vol. 82, No. 1 / Tuesday, January 3, 2017 / Presidential Documents \n[FR Doc. 2016–31922 \nFiled 12–30–16; 8:45 am] \nBilling code 4811–33–C \nVerDate Sep<11>2014 22:08 Dec 30, 2016 Jkt 241001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\03JAE0.SGM 03JAE0\nED03JA17.018</GPH>\nsradovich on DSK3GMQ082PROD with PRES DOCS\nAnnex \nEntities \n1. Main Intelligence Directorate (a.k.a. Glavnoe Razvedyvatel'noe Upravlenie) \n(a.k.a. GRU); Moscow, Russia \n2. Federal Security Service (a.k.a. Federalnaya Sluzhba Bezopasnosti) (a.k.a FSB); \nMoscow, Russia \n3. Special Technology Center (a.k.a. STLC, Ltd. Special Technology Center St. \nPetersburg); St. Petersburg, Russia \n4. Zorsecurity (a.k.a. Esage Lab); Moscow, .. Russia \n5. Autonomous Noncommercial Organization \"Professional Association of \nDesigners of Data Processing Systems\" (a.k.a. ANO PO KSI); Moscow, Russia \nIndividuals \n1. Igor Valentinovich Korobov; DOB Aug 3, 1956; nationality, Russian \n2. Sergey Aleksandrovich Gizunov; DOB Oct 18, 1956; nationality, Russian \n3. Igor Olegovich Kostyukov; DOB Feb 21, 1961; nationality, Russian \n4. Vladimir Stepanovich Alexseyev; DOB Apr 24, 1961; nationality, Russian "
     }
   },
-  "fingerprint": "9acb52edf0c9d36cd04ba030060d67eaa071523079ad1af6234e3db1bc06221f",
+  "fingerprint": "baaae723b4287fc2f11a4378600c29333254513739a698353000ab0bec965664",
   "instrument_id": "EO:13757",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2166,7 +2255,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2178,7 +2267,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2190,8 +2279,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2201,12 +2290,23 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2017-03-29",
+    "Acting identity absent from census: NOTICE:2018-03-27",
+    "Acting identity absent from census: NOTICE:2019-03-26",
+    "Acting identity absent from census: NOTICE:2020-03-30",
+    "Acting identity absent from census: NOTICE:2021-03-29",
+    "Acting identity absent from census: NOTICE:2022-03-30",
+    "Acting identity absent from census: NOTICE:2023-03-29",
+    "Acting identity absent from census: NOTICE:2024-03-26",
+    "Acting identity absent from census: NOTICE:2025-03-27",
     "Acting identity absent from census: NOTICE:2026-03-24",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "Large actor context must be read at actor-texts/EO_14110.json before deciding scope/savings.",
     "Large actor context must be read at actor-texts/EO_14144.json before deciding scope/savings.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+    "target provision not located: EO:13848",
+    "target provision not located: EO:14110",
     "target provision not located: EO:14144",
     "target provision not located: EO:14294",
     "target provision not located: EO:14306"
@@ -2217,10 +2317,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "16c8e85bac89b80ea99d96e55a6d2b7fdf8a63ff797b2caa035fbc5804a01ffc",
+    "fingerprint": "3f1cc3ac4df8d49f02671abdc8e4789e8e2ccd5e63a21d9b4dffdcb2815aec30",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13757.json",
-    "history_sha256": "867796b9fdf27717f60d1dab63efd739aa4ffbc7b81d89d6df81979fe2a1c94b",
+    "history_sha256": "3e48494549cc90492abc03efb684767f32baa4ae4c86ca13c39cf738529b68b8",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

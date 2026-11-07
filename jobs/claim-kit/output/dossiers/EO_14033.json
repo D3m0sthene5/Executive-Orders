@@ -143,7 +143,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14033",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14033"
@@ -876,7 +876,12 @@
       "text": "(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 9 later event(s) end part of it: ? suspension 2022-01-13 (scope: not stated); ? suspension 2022-06-10 (scope: not stated); ? suspension 2022-10-06 (scope: not stated); ? suspension 2023-03-20 (scope: not stated); ? suspension 2023-07-24 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "cfr_text_reference",
@@ -942,8 +947,34 @@
       "where": "CFR 31 CFR part 588"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14033",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3192",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "339514-339608",
+      "snippet": "2021 June 8 | EO 14033 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -971,7 +1002,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -999,7 +1031,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -1022,6 +1055,34 @@
           "page_or_item": "31 CFR 588.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.39.2.1.1)",
           "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3192",
+        "snippet": "2021 June 8 | EO 14033 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -1047,6 +1108,9 @@
     "clause_17_state",
     "clause_18_state",
     "clause_19_state",
+    "clause_20_state",
+    "clause_21_state",
+    "clause_22_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -1054,10 +1118,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 20 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 23 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 9 later event(s) end part of it: ? suspension 2022-01-13 (scope: not stated); ? suspension 2022-06-10 (scope: not stated); ? suspension 2022-10-06 (scope: not stated); ? suspension 2023-03-20 (scope: not stated); ? suspension 2023-07-24 (scope: not stated)"
   ],
   "evidence": {
     "ACT:EO:14033>EO:14140": {
@@ -2339,14 +2404,14 @@
       "stated_end_date": null,
       "text": "(d) Such persons shall be treated by this section in the same manner \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
     },
-    "TERM:EO:14033:8161be50694f38eb@0839b3e20efdf5be": {
+    "TERM:EO:14033:b68e8ed78ad52f86@b10e0592a36fc900": {
       "actor_id": "EO:14033",
-      "char_end": 7548,
-      "char_start": 7261,
+      "char_end": 7180,
+      "char_start": 6896,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14033:8161be50694f38eb@0839b3e20efdf5be",
+      "id": "TERM:EO:14033:b68e8ed78ad52f86@b10e0592a36fc900",
       "instrument_id": "EO:14033",
       "kind": "condition",
       "mechanism": "own_terms_condition",
@@ -2358,17 +2423,17 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14033",
-        "page_or_item": "86 FR 31079, PDF pages 1-4",
+        "page_or_item": "86 FR 31079-31082 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "164a2999b582328945cc490d54c76a7e0ab2b25150202f6f615d1d2668b59cd8",
         "signing_date": "2021-06-08",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14033-164a2999b5.txt",
-        "text_sha256": "0839b3e20efdf5be730e1b51ad1d01e3f9a3421bbd1250419ee165b57e63d610",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14033-164a2999b5.txt",
+        "text_sha256": "b10e0592a36fc900945f517708f4d2f21997eb36947ea8a0a4f358d6ce476f4b",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-06-10/pdf/2021-12382.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(d) Such persons shall be treated by this section in the same manner \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
+      "text": "(d) Such persons shall be treated by this section in the same manner\nas persons covered by section 1 of Proclamation 8693 of July 24, 2011\n(Suspension of Entry of Aliens Subject to United Nations Security Council\nTravel Bans and International Emergency Economic Powers Act Sanctions)."
     },
     "TERM:EO:14033:d0a32d22a4c649a4@03c91de56421a46f": {
       "actor_id": "EO:14033",
@@ -2399,14 +2464,14 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
-    "TERM:EO:14033:d0a32d22a4c649a4@0839b3e20efdf5be": {
+    "TERM:EO:14033:d2ab9595266a284c@b10e0592a36fc900": {
       "actor_id": "EO:14033",
-      "char_end": 10622,
-      "char_start": 10504,
+      "char_end": 9940,
+      "char_start": 9823,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14033:d0a32d22a4c649a4@0839b3e20efdf5be",
+      "id": "TERM:EO:14033:d2ab9595266a284c@b10e0592a36fc900",
       "instrument_id": "EO:14033",
       "kind": "condition",
       "mechanism": "own_terms_condition",
@@ -2418,17 +2483,17 @@
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14033",
-        "page_or_item": "86 FR 31079, PDF pages 1-4",
+        "page_or_item": "86 FR 31079-31082 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "164a2999b582328945cc490d54c76a7e0ab2b25150202f6f615d1d2668b59cd8",
         "signing_date": "2021-06-08",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14033-164a2999b5.txt",
-        "text_sha256": "0839b3e20efdf5be730e1b51ad1d01e3f9a3421bbd1250419ee165b57e63d610",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14033-164a2999b5.txt",
+        "text_sha256": "b10e0592a36fc900945f517708f4d2f21997eb36947ea8a0a4f358d6ce476f4b",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-06-10/pdf/2021-12382.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     },
     "TERM:EO:14033:ec2e8500e2eb398b@c67403770de5af35": {
       "actor_id": "EO:14033",
@@ -2465,7 +2530,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "3b787c7888ea252113f7919c1aafdc1d54022aef0c82d9ba6e0ab339ef91fc7a",
+  "fingerprint": "5e24cdf29bcc770dfb8bee13ca4e383c7398196be37631ae0284f6a94ac4c2aa",
   "instrument_id": "EO:14033",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2736,7 +2801,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14033:8161be50694f38eb@03c91de56421a46f",
         "TERM:EO:14033:00bb21bc5fba3901@c67403770de5af35",
-        "TERM:EO:14033:8161be50694f38eb@0839b3e20efdf5be"
+        "TERM:EO:14033:b68e8ed78ad52f86@b10e0592a36fc900"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -2952,7 +3017,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14033:d0a32d22a4c649a4@03c91de56421a46f",
         "TERM:EO:14033:ec2e8500e2eb398b@c67403770de5af35",
-        "TERM:EO:14033:d0a32d22a4c649a4@0839b3e20efdf5be"
+        "TERM:EO:14033:d2ab9595266a284c@b10e0592a36fc900"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -2984,7 +3049,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2996,7 +3061,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -3008,8 +3073,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3019,6 +3084,9 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2022-06-13",
+    "Acting identity absent from census: NOTICE:2023-06-20",
+    "Acting identity absent from census: NOTICE:2024-06-13",
     "Acting identity absent from census: NOTICE:2025-06-20",
     "Acting identity absent from census: NOTICE:2026-06-22",
     "Acting identity absent from census: PROC:8693",
@@ -3036,16 +3104,16 @@
     "TERM:EO:14033:d0a32d22a4c649a4@03c91de56421a46f",
     "TERM:EO:14033:00bb21bc5fba3901@c67403770de5af35",
     "TERM:EO:14033:ec2e8500e2eb398b@c67403770de5af35",
-    "TERM:EO:14033:8161be50694f38eb@0839b3e20efdf5be",
-    "TERM:EO:14033:d0a32d22a4c649a4@0839b3e20efdf5be"
+    "TERM:EO:14033:b68e8ed78ad52f86@b10e0592a36fc900",
+    "TERM:EO:14033:d2ab9595266a284c@b10e0592a36fc900"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "bcfd4ed8cab4beea35e36a543b710672913946d9f83b3fde3a9854477f816d2a",
+    "fingerprint": "30ad6ba14320fd9323b74f96b42aef24da81abb682de1c42c05fbf1aceb183e8",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14033.json",
-    "history_sha256": "a6faf782f22565ae6ec11c033c2cd56595104d127609fb01f84549fa31b55136",
+    "history_sha256": "65b31d06e0b73f1213486dc55b08456a696bab778c9dc78694509d80353f15a6",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

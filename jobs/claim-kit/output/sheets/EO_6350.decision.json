@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "9b86ecded97e6f6a347ee65801fa91a236c22376be6310205af569186a85be49",
+  "dossier_sha256": "521c42a411a2d50ff126649ae3134c291c9f03580ebddf0ee2af55734d41857b",
   "instrument_id": "EO:6350",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-20",
               "register_number": "6350",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6350.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6350.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6350—Code of Fair Competition for the Cap and Closure Industry",
               "text_chars": 1235
             },

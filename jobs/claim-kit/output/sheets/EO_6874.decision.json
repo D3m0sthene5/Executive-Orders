@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "205263a0d76146d9db99382dee1fd41cb28183adbbb3bde2c9cdc2465766e8f5",
+  "dossier_sha256": "345684cfe0ed57116b4bc3bfec8ea6a113cadd5ec8dc252d0976805225750320",
   "instrument_id": "EO:6874",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-10-16",
               "register_number": "6874",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6874.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6874.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6874—Amendment of Subdivision VII, Schedule A, of the Civil-Service Rules",
               "text_chars": 606
             },

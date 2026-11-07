@@ -33,7 +33,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14066",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14066"
@@ -482,6 +482,31 @@
       "where": "USC 22 U.S.C. 8923 note"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14066",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3224",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "342820-342918",
+      "snippet": "2022 Mar. 8 | EO 14066 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
         "current-law"
       ],
@@ -506,6 +531,34 @@
           "page_or_item": "22 U.S.C. 8923 note; note 'Ending Importation of Russian Oil' [USLM note id iddfd22bf6-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3224",
+        "snippet": "2022 Mar. 8 | EO 14066 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -1648,7 +1701,7 @@
       "text": "(ii)\n the President has received reliable assurances that the foreign person will not knowingly engage in activity subject to sanctions under subsection (a)(2) in the future."
     }
   },
-  "fingerprint": "50518e6f459758772745165ce91d36efa174ad2e8385ae200fb313ece9ff0619",
+  "fingerprint": "513c958cd76d0eccc6dbdd2b02ec0c638ffad267b75492164a82656bce113632",
   "instrument_id": "EO:14066",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1951,7 +2004,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1963,7 +2016,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1975,8 +2028,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1986,14 +2039,19 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2022-04-13",
+    "Acting identity absent from census: NOTICE:2024-04-09",
+    "Acting identity absent from census: NOTICE:2025-04-10",
     "Acting identity absent from census: NOTICE:2026-03-24",
+    "Acting identity absent from census: PROC:10420",
+    "Acting identity absent from census: PROC:10523",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
-    "cited by number, no change provision located: EO:14068",
-    "cited by number, no change provision located: EO:14071",
     "target provision not located: EO:14024",
     "target provision not located: EO:14039",
+    "target provision not located: EO:14068",
+    "target provision not located: EO:14071",
     "target provision not located: EO:14114",
     "target provision not located: EO:14329",
     "target provision not located: EO:14384"
@@ -2022,10 +2080,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "7d2b07b159151d6d46355c70a5b4fac005b0f06fa7e41198ccb4b9e014dcdf3f",
+    "fingerprint": "9bdbf1f0587c1ea93bd4ef8b630af5ea7fb03b4b21cfe6f4d5c4b09f66febbd3",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14066.json",
-    "history_sha256": "2655c34bb5726f161ec74f4720b00f796fe4e4c7f58e58ce629010119580c957",
+    "history_sha256": "7152e9f4e52ba6c3ce453f370aa591443b0afa1fc0d1e82735f85b1ca2bd1eee",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

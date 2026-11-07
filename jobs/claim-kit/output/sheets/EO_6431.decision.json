@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "195988a97cd91fdbd962bf998fd774e9f49a1819580a9903710e333d9f4380ca",
+  "dossier_sha256": "b35d5b5c4d6f6df5c9f161b86f495890854160b3559be6221704606268046f55",
   "instrument_id": "EO:6431",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-11-14",
               "register_number": "6431",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6431.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6431.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6431—Code of Fair Competition for the Mop Stick Industry",
               "text_chars": 1244
             },

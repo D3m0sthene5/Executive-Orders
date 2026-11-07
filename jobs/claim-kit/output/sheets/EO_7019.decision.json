@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "d7bcfae363f211a9bdff820e99a46e5fba78b77756a71bdc0ff2d211774a8831",
+  "dossier_sha256": "f673898f19883c5e2e3980c78091a0aa743109271653a0809b8840191c793504",
   "instrument_id": "EO:7019",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1935-04-19",
               "register_number": "7019",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7019.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7019.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7019—Amending Code of Fair Competition for the Brewing Industry",
               "text_chars": 843
             },

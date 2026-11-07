@@ -132,7 +132,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14060",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14060"
@@ -802,7 +802,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 50 U.S.C. 3021 note"
+      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 50 U.S.C. 3021 note; USC 50 U.S.C. 3021 nt"
     }
   ],
   "current_law_leads": [
@@ -826,6 +826,31 @@
       },
       "system": "usc",
       "where": "USC 50 U.S.C. 3021 note"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14060",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 3021 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3219",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "342254-342347",
+      "snippet": "2021 Dec. 15 | EO 14060 | 50 U.S.C. 3021 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 3021 nt"
     },
     {
       "custody_records_in": [
@@ -854,6 +879,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3219",
+        "snippet": "2021 Dec. 15 | EO 14060 | 50 U.S.C. 3021 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 3021 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 3021 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -871,6 +924,8 @@
     "clause_11_state",
     "clause_12_state",
     "clause_13_state",
+    "clause_14_state",
+    "clause_15_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -878,11 +933,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 14 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 16 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 50 U.S.C. 3021 note"
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 50 U.S.C. 3021 note; USC 50 U.S.C. 3021 nt"
   ],
   "evidence": {
     "ACT:EO:14060>EO:14148": {
@@ -2132,36 +2187,36 @@
       },
       "text": "Instrument: EO:14060\nSource: https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf\nSHA-256 of the downloaded file: b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8\nLocation: 86 FR 71793, PDF pages 1-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 4 ===\nPresidential Documents\n71793 \nFederal Register \nVol. 86, No. 241 \nMonday, December 20, 2021 \nTitle 3— \nThe President \nExecutive Order 14060 of December 15, 2021 \nEstablishing the United States Council on Transnational Or-\nganized Crime \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, I hereby order as follows: \nSection 1. Purpose. Transnational organized crime (TOC) poses a direct \nand escalating threat to public health, public safety, and national security. \nTransnational criminal organizations engage in a broad range of criminal \nactivities, including drug and weapons trafficking, migrant smuggling, human \ntrafficking, cybercrime, intellectual property theft, money laundering, wildlife \nand timber trafficking, illegal fishing, and illegal mining. \nThese networks continue to expand in size and influence in the United \nStates and abroad. Transnational criminal organizations contribute directly \nto tens of thousands of drug-overdose deaths in the United States each \nyear and adversely affect American communities and economic prosperity. \nThey also threaten United States national security by degrading the security \nand stability of allied and partner nations, undermining the rule of law, \nfostering corruption, acting as proxies for hostile state activities, directly \nor indirectly funding insurgent and terrorist groups, depleting natural re-\nsources, harming human health and the environment, contributing to climate \nchange through illegal deforestation and logging, and exploiting and endan-\ngering vulnerable populations. In some regions, transnational criminal organi-\nzations wield state-like capabilities, disregarding sovereign borders, compro-\nmising the integrity of democratic institutions and threatening the legitimacy \nof fragile governments, and securing their power through intimidation, cor-\nruption, and violence. For these reasons, it is in the national interest of \nthe United States to counter TOC. Addressing TOC requires a coordinated \nFederal framework accompanied by a cohesive whole-of-government effort \nexecuted in collaboration with State, local, Tribal, territorial, and civil society \npartners in the United States and in close coordination with foreign partners, \ninternational and regional organizations, and international and local civil \nsociety groups abroad. \nSec. 2. Policy. Executive departments and agencies (agencies) shall take \nactions within their respective authorities, including, as appropriate, through \nthe provision of technical and financial assistance, to enhance efforts to \ncounter TOC. It is the policy of the United States to: \n(a) employ authorized intelligence and operational capabilities in an inte-\ngrated manner to target, disrupt, and degrade transnational criminal organiza-\ntions that pose the greatest threat to national security; \n(b) collaborate with private entities and international, multilateral, and \nbilateral organizations to combat TOC, while also strengthening cooperation \nwith and advancing efforts to build capacity in partner nations to reduce \ntransnational criminal activity; \n(c) improve information sharing between law enforcement entities and \nthe Intelligence Community to enhance strategic analysis of, and efforts \nto combat, transnational criminal organizations and their activities, while \nalso preserving our ability to speedily bring TOC actors to justice; \n(d) expand tools and capabilities to combat illicit finance, which underpins \nall TOC activities; and \nVerDate Sep<11>2014 15:39 Dec 17, 2021 Jkt 256001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\20DEE0.SGM 20DEE0khammond on DSKJM1Z7X2PROD with PRESDOC\n=== PDF page 2 of 4 ===\n71794 Federal Register / Vol. 86, No. 241 / Monday, December 20, 2021 / Presidential Documents \n(e) develop and deploy new technologies to identify and disrupt existing \nand newly emerging TOC threats. \nSec. 3. Establishments. (a) There shall be established a United States Council \non Transnational Organized Crime (USCTOC), which shall report to the \nPresident through the Assistant to the President for National Security Affairs. \nThe USCTOC shall monitor the production and implementation of coordi-\nnated strategic plans for whole-of-government counter-TOC efforts in support \nof and in alignment with policy priorities established by the President \nthrough the National Security Council. \n(i) The USCTOC shall replace the Threat Mitigation Working Group, pre-\nviously directed to lead whole-of-government efforts on TOC under Execu-\ntive Order 13773 of February 9, 2017 (Enforcing Federal Law With Respect \nto Transnational Criminal Organizations and Preventing International Traf-\nficking). Accordingly, section 3 of Executive Order 13773 is hereby revoked. \n(ii) The USCTOC shall consist of the following members or their designees: \n(A) the Secretary of State; \n(B) the Secretary of the Treasury; \n(C) the Secretary of Defense; \n(D) the Attorney General; \n(E) the Secretary of Homeland Security; and \n(F) the Director of National Intelligence. \n(iii) The USCTOC may request other agencies to contribute to the \nUSCTOC’s efforts as necessary, including by detail or assignment of per-\nsonnel consistent with subsection (b)(v) of this section. \n(iv) The USCTOC shall meet not later than 60 days from the date of \nthis order and periodically thereafter. \n(b) There shall be established a USCTOC Strategic Division (Division), \nan interagency working group housed at the Department of Justice, com-\nprising personnel from agencies designated in subsection (a)(ii) of this sec-\ntion. \n(i) The Division shall produce coordinated strategic plans for whole-of- \ngovernment counter-TOC efforts in support of and in alignment with policy \npriorities established by the President through the National Security Coun-\ncil. These strategic plans shall be informed by intelligence assessments, \nbe developed in coordination with agencies, and include recommendations \nfor actions by agencies. The Division shall submit its completed strategic \nplans to the USCTOC. \n(ii) The Division shall be chaired by a senior official from the Department \nof Justice or the Department of Homeland Security. The Chairperson shall \nserve a 2 year term. The Attorney General and the Secretary of Homeland \nSecurity, or their designees, shall alternate every 2 years selecting the \nChairperson. \n(iii) The Division shall be established for administrative purposes within \nthe Department of Justice, and the Department of Justice shall, to the \nextent permitted by law and subject to the availability of appropriations, \nprovide administrative support and funding for the Division. \n(iv) Agencies designated in subsection (a)(ii) of this section are hereby \ndirected, consistent with their authorities, budget priorities, and mission \nconstraints, and to the extent permitted by law and consistent with the \nneed to protect intelligence and law enforcement sources, methods, oper-\nations, and investigations, to provide to the Division: \n(A) details or assignments of personnel, who shall be qualified subject- \nmatter experts and strategic planners, and who shall serve on full-time \nassignments of not less than 1 year; \n(B) relevant information, research, intelligence, and analysis; and \nVerDate Sep<11>2014 15:39 Dec 17, 2021 Jkt 256001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\20DEE0.SGM 20DEE0khammond on DSKJM1Z7X2PROD with PRESDOC\n=== PDF page 3 of 4 ===\n71795 Federal Register / Vol. 86, No. 241 / Monday, December 20, 2021 / Presidential Documents \n(C) such other resources and assistance as the Division may request \nfor the purpose of carrying out the responsibilities outlined in this section. \n(v) To the extent permitted by law, agencies designated in subsection \n(a)(ii) of this section are encouraged to detail or assign their employees \nto the Division on a non-reimbursable basis. \n(vi) The Division, within 120 days of the date of this order, shall submit \nto the USCTOC a report describing a process that the USCTOC can imple-\nment on an ongoing basis and as necessary to identify and prioritize \nthe most significant TOC threats in alignment with policy priorities estab-\nlished by the President through the National Security Council. \nSec. 4. Report. The Director of National Intelligence, within 120 days of \nthe date of this order and annually thereafter, shall submit a report to \nthe President through the Assistant to the President for National Security \nAffairs assessing the Intelligence Community’s posture with respect to TOC- \nrelated collection efforts, including recommendations on resource allocation \nand prioritization. \nSec. 5. Definitions. For the purposes of this order: \n(a) the term ‘‘Intelligence Community’’ has the meaning ascribed to it \nunder 50 U.S.C. 3003(4); and \n(b) the term ‘‘transnational criminal organizations’’ refers to groups, net-\nworks, and associated individuals who operate transnationally for the pur-\npose of obtaining power, influence, or monetary or commercial gain, wholly \nor in part by illegal means, while advancing their activities through a pattern \nof crime, corruption, or violence, and while protecting their illegal activities \nthrough a transnational organizational structure and the exploitation of public \ncorruption or transnational logistics, financial, or communication mecha-\nnisms. \nSec. 6. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \nVerDate Sep<11>2014 15:39 Dec 17, 2021 Jkt 256001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\20DEE0.SGM 20DEE0khammond on DSKJM1Z7X2PROD with PRESDOC\n=== PDF page 4 of 4 ===\n71796 Federal Register / Vol. 86, No. 241 / Monday, December 20, 2021 / Presidential Documents \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nDecember 15, 2021. \n[FR Doc. 2021–27605 \nFiled 12–17–21; 8:45 am] \nBilling code 3395–F2–P \nVerDate Sep<11>2014 15:39 Dec 17, 2021 Jkt 256001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\20DEE0.SGM 20DEE0\nBIDEN.EPS</GPH>\nkhammond on DSKJM1Z7X2PROD with PRESDOC"
     },
-    "TERM:EO:14060:1840fac3e5a85fed@1fa056e12c040877": {
+    "TERM:EO:14060:09c69d611106d13a@00ee5e39f31aee48": {
       "actor_id": "EO:14060",
-      "char_end": 8134,
-      "char_start": 7779,
+      "char_end": 7887,
+      "char_start": 7509,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14060:1840fac3e5a85fed@1fa056e12c040877",
+      "id": "TERM:EO:14060:09c69d611106d13a@00ee5e39f31aee48",
       "instrument_id": "EO:14060",
       "kind": "report_deadline",
       "mechanism": "own_terms_report_deadline",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14060#sec3-a-vi",
+      "scope_id": "EO:14060#sec4",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14060",
-        "page_or_item": "86 FR 71793, PDF pages 1-4",
+        "page_or_item": "86 FR 71793-71796 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8",
         "signing_date": "2021-12-15",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14060-b7d9cdee00.txt",
-        "text_sha256": "1fa056e12c040877bf09af36a9986f4a361086523f919205fc88b621ed350600",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14060-b7d9cdee00.txt",
+        "text_sha256": "00ee5e39f31aee482e0d627d472f3c6131f67f3f0c1273bc8c344e8a6435b64c",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(vi) The Division, within 120 days of the date of this order, shall submit \nto the USCTOC a report describing a process that the USCTOC can imple-\nment on an ongoing basis and as necessary to identify and prioritize \nthe most significant TOC threats in alignment with policy priorities estab-\nlished by the President through the National Security Council."
+      "text": "The Director of National Intelligence, within 120 days of\nthe date of this order and annually thereafter, shall submit a report to\nthe President through the Assistant to the President for National Security\nAffairs assessing the Intelligence Community’s posture with respect to TOC-\nrelated collection efforts, including recommendations on resource allocation\nand prioritization."
     },
     "TERM:EO:14060:1840fac3e5a85fed@4b0bfff1e0e36351": {
       "actor_id": "EO:14060",
@@ -2192,36 +2247,67 @@
       "stated_end_date": null,
       "text": "(vi) The Division, within 120 days of the date of this order, shall submit \nto the USCTOC a report describing a process that the USCTOC can imple-\nment on an ongoing basis and as necessary to identify and prioritize \nthe most significant TOC threats in alignment with policy priorities estab-\nlished by the President through the National Security Council."
     },
-    "TERM:EO:14060:6af5303969498a0c@1fa056e12c040877": {
+    "TERM:EO:14060:2a6e7cf37e457a71@00ee5e39f31aee48": {
       "actor_id": "EO:14060",
-      "char_end": 6552,
-      "char_start": 6268,
+      "char_end": 5539,
+      "char_start": 5374,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14060:6af5303969498a0c@1fa056e12c040877",
+      "id": "TERM:EO:14060:2a6e7cf37e457a71@00ee5e39f31aee48",
       "instrument_id": "EO:14060",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14060#sec3-i-iii-dup2",
+      "scope_id": "EO:14060#sec3-i-dup2",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14060",
-        "page_or_item": "86 FR 71793, PDF pages 1-4",
+        "page_or_item": "86 FR 71793-71796 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8",
         "signing_date": "2021-12-15",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14060-b7d9cdee00.txt",
-        "text_sha256": "1fa056e12c040877bf09af36a9986f4a361086523f919205fc88b621ed350600",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14060-b7d9cdee00.txt",
+        "text_sha256": "00ee5e39f31aee482e0d627d472f3c6131f67f3f0c1273bc8c344e8a6435b64c",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "(iii) The Division shall be established for administrative purposes within \nthe Department of Justice, and the Department of Justice shall, to the \nextent permitted by law and subject to the availability of appropriations, \nprovide administrative support and funding for the Division."
+      "text": "These strategic plans shall be informed by intelligence assessments,\nbe developed in coordination with agencies, and include recommendations\nfor actions by agencies."
+    },
+    "TERM:EO:14060:2fbc5f943552a0a6@00ee5e39f31aee48": {
+      "actor_id": "EO:14060",
+      "char_end": 5780,
+      "char_start": 5738,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14060:2fbc5f943552a0a6@00ee5e39f31aee48",
+      "instrument_id": "EO:14060",
+      "kind": "fixed_term",
+      "mechanism": "own_terms_fixed_term",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14060#sec3-i-ii-dup2",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14060",
+        "page_or_item": "86 FR 71793-71796 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8",
+        "signing_date": "2021-12-15",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14060-b7d9cdee00.txt",
+        "text_sha256": "00ee5e39f31aee482e0d627d472f3c6131f67f3f0c1273bc8c344e8a6435b64c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "The Chairperson shall\nserve a 2 year term."
     },
     "TERM:EO:14060:6af5303969498a0c@4b0bfff1e0e36351": {
       "actor_id": "EO:14060",
@@ -2251,37 +2337,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(iii) The Division shall be established for administrative purposes within \nthe Department of Justice, and the Department of Justice shall, to the \nextent permitted by law and subject to the availability of appropriations, \nprovide administrative support and funding for the Division."
-    },
-    "TERM:EO:14060:6bc1c773d96bdf06@1fa056e12c040877": {
-      "actor_id": "EO:14060",
-      "char_end": 9709,
-      "char_start": 9591,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14060:6bc1c773d96bdf06@1fa056e12c040877",
-      "instrument_id": "EO:14060",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14060#sec6-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14060",
-        "page_or_item": "86 FR 71793, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14060-b7d9cdee00.txt",
-        "text_sha256": "1fa056e12c040877bf09af36a9986f4a361086523f919205fc88b621ed350600",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
     "TERM:EO:14060:6bc1c773d96bdf06@4b0bfff1e0e36351": {
       "actor_id": "EO:14060",
@@ -2482,37 +2537,6 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     },
-    "TERM:EO:14060:b01213de4cadad6b@1fa056e12c040877": {
-      "actor_id": "EO:14060",
-      "char_end": 5881,
-      "char_start": 5714,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14060:b01213de4cadad6b@1fa056e12c040877",
-      "instrument_id": "EO:14060",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14060#sec3-i-dup2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14060",
-        "page_or_item": "86 FR 71793, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14060-b7d9cdee00.txt",
-        "text_sha256": "1fa056e12c040877bf09af36a9986f4a361086523f919205fc88b621ed350600",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "These strategic plans shall be informed by intelligence assessments, \nbe developed in coordination with agencies, and include recommendations \nfor actions by agencies."
-    },
     "TERM:EO:14060:b01213de4cadad6b@4b0bfff1e0e36351": {
       "actor_id": "EO:14060",
       "char_end": 6493,
@@ -2542,36 +2566,36 @@
       "stated_end_date": null,
       "text": "These strategic plans shall be informed by intelligence assessments, \nbe developed in coordination with agencies, and include recommendations \nfor actions by agencies."
     },
-    "TERM:EO:14060:ba324b8cd21e0d96@1fa056e12c040877": {
+    "TERM:EO:14060:b0e1c42ac37fc526@00ee5e39f31aee48": {
       "actor_id": "EO:14060",
-      "char_end": 8535,
-      "char_start": 8152,
+      "char_end": 9045,
+      "char_start": 8928,
       "computed_end_candidate": null,
       "confidence": "medium",
       "effective_date": null,
-      "id": "TERM:EO:14060:ba324b8cd21e0d96@1fa056e12c040877",
+      "id": "TERM:EO:14060:b0e1c42ac37fc526@00ee5e39f31aee48",
       "instrument_id": "EO:14060",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
       "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
       "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14060#sec4",
+      "scope_id": "EO:14060#sec6-b",
       "source": {
         "acceptable_as_original": false,
         "filing_date": null,
         "grade": "held_text_lead",
         "instrument_id": "EO:14060",
-        "page_or_item": "86 FR 71793, PDF pages 1-4",
+        "page_or_item": "86 FR 71793-71796 (PDF pp. 1-4)",
         "requires_page_check": false,
         "sha256": "b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8",
         "signing_date": "2021-12-15",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14060-b7d9cdee00.txt",
-        "text_sha256": "1fa056e12c040877bf09af36a9986f4a361086523f919205fc88b621ed350600",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14060-b7d9cdee00.txt",
+        "text_sha256": "00ee5e39f31aee482e0d627d472f3c6131f67f3f0c1273bc8c344e8a6435b64c",
         "url": "https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf"
       },
       "start_date": null,
       "stated_end_date": null,
-      "text": "The Director of National Intelligence, within 120 days of \nthe date of this order and annually thereafter, shall submit a report to \nthe President through the Assistant to the President for National Security \nAffairs assessing the Intelligence Community’s posture with respect to TOC- \nrelated collection efforts, including recommendations on resource allocation \nand prioritization."
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     },
     "TERM:EO:14060:ba324b8cd21e0d96@4b0bfff1e0e36351": {
       "actor_id": "EO:14060",
@@ -2601,6 +2625,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The Director of National Intelligence, within 120 days of \nthe date of this order and annually thereafter, shall submit a report to \nthe President through the Assistant to the President for National Security \nAffairs assessing the Intelligence Community’s posture with respect to TOC- \nrelated collection efforts, including recommendations on resource allocation \nand prioritization."
+    },
+    "TERM:EO:14060:cc19421918532586@00ee5e39f31aee48": {
+      "actor_id": "EO:14060",
+      "char_end": 6200,
+      "char_start": 5919,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14060:cc19421918532586@00ee5e39f31aee48",
+      "instrument_id": "EO:14060",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14060#sec3-i-iii-dup2",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14060",
+        "page_or_item": "86 FR 71793-71796 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8",
+        "signing_date": "2021-12-15",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14060-b7d9cdee00.txt",
+        "text_sha256": "00ee5e39f31aee482e0d627d472f3c6131f67f3f0c1273bc8c344e8a6435b64c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(iii) The Division shall be established for administrative purposes within\nthe Department of Justice, and the Department of Justice shall, to the\nextent permitted by law and subject to the availability of appropriations,\nprovide administrative support and funding for the Division."
     },
     "TERM:EO:14060:d96e517183d7ce33@283fdb7af37fbc18": {
       "actor_id": "EO:14060",
@@ -2636,37 +2691,6 @@
       "stated_end_date": null,
       "text": "The Chairperson shall serve a 2 year term."
     },
-    "TERM:EO:14060:e36101c265142f7d@1fa056e12c040877": {
-      "actor_id": "EO:14060",
-      "char_end": 6126,
-      "char_start": 6083,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14060:e36101c265142f7d@1fa056e12c040877",
-      "instrument_id": "EO:14060",
-      "kind": "fixed_term",
-      "mechanism": "own_terms_fixed_term",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14060#sec3-i-ii-dup2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14060",
-        "page_or_item": "86 FR 71793, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14060-b7d9cdee00.txt",
-        "text_sha256": "1fa056e12c040877bf09af36a9986f4a361086523f919205fc88b621ed350600",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The Chairperson shall \nserve a 2 year term."
-    },
     "TERM:EO:14060:e36101c265142f7d@4b0bfff1e0e36351": {
       "actor_id": "EO:14060",
       "char_end": 6738,
@@ -2695,9 +2719,40 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The Chairperson shall \nserve a 2 year term."
+    },
+    "TERM:EO:14060:f80f93a83089ddf7@00ee5e39f31aee48": {
+      "actor_id": "EO:14060",
+      "char_end": 7492,
+      "char_start": 7139,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14060:f80f93a83089ddf7@00ee5e39f31aee48",
+      "instrument_id": "EO:14060",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14060#sec3-a-vi",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14060",
+        "page_or_item": "86 FR 71793-71796 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "b7d9cdee0089cb01717f8aec9288f8cb91526a2ca7d0919f03f976a182049df8",
+        "signing_date": "2021-12-15",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14060-b7d9cdee00.txt",
+        "text_sha256": "00ee5e39f31aee482e0d627d472f3c6131f67f3f0c1273bc8c344e8a6435b64c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-12-20/pdf/2021-27605.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(vi) The Division, within 120 days of the date of this order, shall submit\nto the USCTOC a report describing a process that the USCTOC can imple-\nment on an ongoing basis and as necessary to identify and prioritize\nthe most significant TOC threats in alignment with policy priorities estab-\nlished by the President through the National Security Council."
     }
   },
-  "fingerprint": "792924331e63219cf8a82a414a334ac84da8904b3b614077ed9b12deeb24bf3c",
+  "fingerprint": "f25a2334fb3d67f55050ce0745bdcc06092f852158389698bc0d014feb0d502b",
   "instrument_id": "EO:14060",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2975,7 +3030,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14060:b01213de4cadad6b@4b0bfff1e0e36351",
         "TERM:EO:14060:85cc16498509f5a5@283fdb7af37fbc18",
-        "TERM:EO:14060:b01213de4cadad6b@1fa056e12c040877"
+        "TERM:EO:14060:2a6e7cf37e457a71@00ee5e39f31aee48"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -3002,7 +3057,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14060:e36101c265142f7d@4b0bfff1e0e36351",
         "TERM:EO:14060:d96e517183d7ce33@283fdb7af37fbc18",
-        "TERM:EO:14060:e36101c265142f7d@1fa056e12c040877"
+        "TERM:EO:14060:2fbc5f943552a0a6@00ee5e39f31aee48"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -3027,7 +3082,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14060:6af5303969498a0c@4b0bfff1e0e36351",
         "TERM:EO:14060:7246cc00825475b1@283fdb7af37fbc18",
-        "TERM:EO:14060:6af5303969498a0c@1fa056e12c040877"
+        "TERM:EO:14060:cc19421918532586@00ee5e39f31aee48"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -3104,7 +3159,7 @@
       ],
       "own_term_evidence_ids": [
         "TERM:EO:14060:1840fac3e5a85fed@4b0bfff1e0e36351",
-        "TERM:EO:14060:1840fac3e5a85fed@1fa056e12c040877"
+        "TERM:EO:14060:f80f93a83089ddf7@00ee5e39f31aee48"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -3131,7 +3186,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14060:ba324b8cd21e0d96@4b0bfff1e0e36351",
         "TERM:EO:14060:6c360013381a4c45@283fdb7af37fbc18",
-        "TERM:EO:14060:ba324b8cd21e0d96@1fa056e12c040877"
+        "TERM:EO:14060:09c69d611106d13a@00ee5e39f31aee48"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -3268,7 +3323,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14060:6bc1c773d96bdf06@4b0bfff1e0e36351",
         "TERM:EO:14060:9250731e33f77152@283fdb7af37fbc18",
-        "TERM:EO:14060:6bc1c773d96bdf06@1fa056e12c040877"
+        "TERM:EO:14060:b0e1c42ac37fc526@00ee5e39f31aee48"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -3304,7 +3359,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -3316,7 +3371,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -3328,8 +3383,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3358,20 +3413,20 @@
     "TERM:EO:14060:74da697e50713424@283fdb7af37fbc18",
     "TERM:EO:14060:6c360013381a4c45@283fdb7af37fbc18",
     "TERM:EO:14060:9250731e33f77152@283fdb7af37fbc18",
-    "TERM:EO:14060:b01213de4cadad6b@1fa056e12c040877",
-    "TERM:EO:14060:e36101c265142f7d@1fa056e12c040877",
-    "TERM:EO:14060:6af5303969498a0c@1fa056e12c040877",
-    "TERM:EO:14060:1840fac3e5a85fed@1fa056e12c040877",
-    "TERM:EO:14060:ba324b8cd21e0d96@1fa056e12c040877",
-    "TERM:EO:14060:6bc1c773d96bdf06@1fa056e12c040877"
+    "TERM:EO:14060:2a6e7cf37e457a71@00ee5e39f31aee48",
+    "TERM:EO:14060:2fbc5f943552a0a6@00ee5e39f31aee48",
+    "TERM:EO:14060:cc19421918532586@00ee5e39f31aee48",
+    "TERM:EO:14060:f80f93a83089ddf7@00ee5e39f31aee48",
+    "TERM:EO:14060:09c69d611106d13a@00ee5e39f31aee48",
+    "TERM:EO:14060:b0e1c42ac37fc526@00ee5e39f31aee48"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "b4821e12e4da338cce3ab94ea2aef877fa55d767d7f62a15024b0d185cab0d8e",
+    "fingerprint": "848e573351324808d7eaea18fc556b9dd44414b2eaf7530300312d91cf7e47d6",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14060.json",
-    "history_sha256": "176ffc36238e55c6154773a400bba975482741e748ab7ffe9d69f2b4c5c10c74",
+    "history_sha256": "c37bbf6563e000239395d2ff0ff8e496b74f4a84550931cc747618294e912513",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

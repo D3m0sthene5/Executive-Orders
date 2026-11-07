@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "1ceb968d6672a173d1cf6d3b17b1ad114f5bddbf2af2b06c9d39418391c22db0",
+  "dossier_sha256": "6cfe383d2616c7d58ade407d80ae61baa15de8b081ee5cb05e22d00f26709567",
   "instrument_id": "EO:6513E",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-18",
               "register_number": "6513E",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6513E.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6513E.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6513-E—Code of Fair Competition for the Wholesale Automotive Trade",
               "text_chars": 1229
             },

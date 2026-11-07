@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "da74f93776b29cccd24313747dc68bcd5cc84b7c20f6132ebfaacb1844ab0333",
+  "dossier_sha256": "4be6c31abb4d34ddd04952903837106d9c21e06c6a910d2a73a8e1a978fc7999",
   "instrument_id": "EO:6870A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-10-11",
               "register_number": "6870A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6870A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6870A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6870-A—Modifying Order Approving Code of Fair Competition for the Needlework Industry in Puerto Rico to ",
               "text_chars": 2273
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6870A",
+        "pages_confirmed": false,
+        "sha256": "6e742ca9b84f9695822563c1050677a034c59ac47ba31046d1f0af582f24ce8d",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6870A.txt",
+        "text_sha256": "74d5b6160d3ff10fbea77374e0c4f61120d0ea786942153f3e148a12e4364be4"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:6870A",
@@ -130,6 +151,16 @@
         "sha256": "3243c055d6bd9be6f559362275781dd2f0dac28d97b5909f1b187f8636ac737b",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6870A-3243c055d6.txt",
         "text_sha256": "e58c4d06ef537932013f555b5323553a115d5a6128973389081d8fcc6446bf6c"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6870A",
+        "pages_confirmed": false,
+        "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6870A.txt",
+        "text_sha256": "6bed082b2f585f5b876942f3c3b3b5f3c5a9f9f47108185078059cfd17a9d255"
       }
     ],
     "quotation_recheck_required": true,

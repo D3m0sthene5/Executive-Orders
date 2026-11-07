@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3900aff98a6acde8ddcce029e9d7eaa6f4bfdebb0a422895808bc5f218c090c8",
+  "dossier_sha256": "c35517459bc593eeebd89ad949724853e9c233edf36abf71ce62fd9374221777",
   "instrument_id": "EO:6242B",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-08-04",
               "register_number": "6242B",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6242B.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6242B.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6242-B—Code of Fair Competition for the Electrical Manufacturing Industry",
               "text_chars": 1238
             },

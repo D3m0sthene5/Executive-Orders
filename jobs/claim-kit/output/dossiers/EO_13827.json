@@ -68,7 +68,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13827",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13827"
@@ -361,7 +361,12 @@
       "text": "Sec. 7. This order is effective at 12:15 p.m. eastern daylight time on March \n19, 2018."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 2 later event(s) end part of it: ? supersession 2022-10-13 (scope: not stated); ? suspension 2023-02-01 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "cfr_text_reference",
@@ -420,15 +425,41 @@
       "snippet": "...ain authorities of the Secretary of the Treasury. | take pursuant to Executive Order 13692 of March 8, 2015, Executive Order 13808 of August … August 24, 2017, Executive Order 13827 of March 19, 2018, Executive Order 13835 of May 21, … 2018, Executive Order 13850 of November 1, 2018, Executive Order 13857 of January 25",
       "source": {
         "page_or_item": "31 CFR 591.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-        "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+        "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR 591.802"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13827",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2985",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "318186-318281",
+      "snippet": "2018 Mar. 19 | EO 13827 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -456,7 +487,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -505,8 +537,36 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 591.802)",
         "source": {
           "page_or_item": "31 CFR 591.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-          "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+          "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2985",
+        "snippet": "2018 Mar. 19 | EO 13827 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -535,7 +595,8 @@
     "DRAFT: state_at_cutoff not decided for 13 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 2 later event(s) end part of it: ? supersession 2022-10-13 (scope: not stated); ? suspension 2023-02-01 (scope: not stated)"
   ],
   "evidence": {
     "ACT:EO:13827>EO:13857": {
@@ -1120,7 +1181,7 @@
       "text": "Instrument: EO:13827\nSource: https://www.govinfo.gov/content/pkg/FR-2018-03-21/pdf/2018-05916.pdf\nSHA-256 of the downloaded file: f66ed3db8562b06c7fd6ed28a26ab9a87fef4c62ff5c3fa21bf214c3d8c33ed5\nLocation: 83 FR 12469, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n12469 \nFederal Register \nVol. 83, No. 55 \nWednesday, March 21, 2018 \nTitle 3— \nThe President \nExecutive Order 13827 of March 19, 2018 \nTaking Additional Steps to Address the Situation in Ven-\nezuela \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the International Emergency \nEconomic Powers Act (50 U.S.C. 1701 et seq.) (IEEPA), the National Emer-\ngencies Act (50 U.S.C. 1601 et seq.), and section 301 of title 3, United \nStates Code, \nI, DONALD J. TRUMP, President of the United States of America, in order \nto take additional steps with respect to the national emergency declared \nin Executive Order 13692 of March 8, 2015, and relied upon for additional \nsteps taken in Executive Order 13808 of August 24, 2017, and in light \nof recent actions taken by the Maduro regime to attempt to circumvent \nU.S. sanctions by issuing a digital currency in a process that Venezuela’s \ndemocratically elected National Assembly has denounced as unlawful, hereby \norder as follows: \nSection 1. (a) All transactions related to, provision of financing for, and \nother dealings in, by a United States person or within the United States, \nany digital currency, digital coin, or digital token, that was issued by, \nfor, or on behalf of the Government of Venezuela on or after January 9, \n2018, are prohibited as of the effective date of this order. \n(b) The prohibitions in subsection (a) of this section apply except to \nthe extent provided by statutes, or in regulations, orders, directives, or \nlicenses that may be issued pursuant to this order, and notwithstanding \nany contract entered into or any license or permit granted before the effective \ndate of this order. \nSec. 2. (a) Any transaction that evades or avoids, has the purpose of evading \nor avoiding, causes a violation of, or attempts to violate any of the prohibi-\ntions set forth in this order is prohibited. \n(b) Any conspiracy formed to violate any of the prohibitions set forth \nin this order is prohibited. \nSec. 3. For the purposes of this order: \n(a) the term ‘‘person’’ means an individual or entity; \n(b) the term ‘‘entity’’ means a partnership, association, trust, joint venture, \ncorporation, group, subgroup, or other organization; \n(c) the term ‘‘United States person’’ means any United States citizen, \npermanent resident alien, entity organized under the laws of the United \nStates or any jurisdiction within the United States (including foreign branches \nof such entities), or any person within the United States; and \n(d) the term ‘‘Government of Venezuela’’ means the Government of Ven-\nezuela, any political subdivision, agency, or instrumentality thereof, includ-\ning the Central Bank of Venezuela and Petroleos de Venezuela, S.A. (PdVSA), \nand any person owned or controlled by, or acting for or on behalf of, \nthe Government of Venezuela. \nSec. 4. The Secretary of the Treasury, in consultation with the Secretary \nof State, is hereby authorized to take such actions, including promulgating \nrules and regulations, and to employ all powers granted to the President \nby IEEPA as may be necessary to implement this order. The Secretary \nof the Treasury may, consistent with applicable law, redelegate any of these \nfunctions to other officers and executive departments and agencies of the \nVerDate Sep<11>2014 18:45 Mar 20, 2018 Jkt 244001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\21MRE0.SGM 21MRE0sradovich on DSK3GMQ082PROD with PRES DOCS\n=== PDF page 2 of 2 ===\n12470 Federal Register / Vol. 83, No. 55 / Wednesday, March 21, 2018 / Presidential Documents \nUnited States Government. All agencies of the United States Government \nshall take all appropriate measures within their authority to carry out the \nprovisions of this order. \nSec. 5. For those persons whose property and interests in property are \naffected by this order who might have a constitutional presence in the \nUnited States, I find that because of the ability to transfer funds or other \nassets instantaneously, prior notice to such persons of measures taken pursu-\nant to this order would render those measures ineffectual. I therefore deter-\nmine that for these measures to be effective in addressing the national \nemergency declared in Executive Order 13692, there need be no prior notice \ngiven for implementation of this order. \nSec. 6. This order is not intended to, and does not, create any right or \nbenefit, substantive or procedural, enforceable at law or in equity by any \nparty against the United States, its departments, agencies, or entities, its \nofficers, employees, or agents, or any other person. \nSec. 7. This order is effective at 12:15 p.m. eastern daylight time on March \n19, 2018. \nTHE WHITE HOUSE, \nMarch 19, 2018. \n[FR Doc. 2018–05916 \n3–20–18; 11:15 am] \nBilling code 3295–F8–P \nVerDate Sep<11>2014 18:45 Mar 20, 2018 Jkt 244001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\21MRE0.SGM 21MRE0\nTrump.EPS</GPH>\nsradovich on DSK3GMQ082PROD with PRES DOCS"
     }
   },
-  "fingerprint": "0d3760cdff92572e2516a5da591b3653192daf08da1576c67cff201e0073beed",
+  "fingerprint": "80b327b221e4aa9f2391460a4ecf00602caee289c4897b5c8ad674034f3baebf",
   "instrument_id": "EO:13827",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1330,7 +1391,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -1342,7 +1403,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -1354,8 +1415,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1365,14 +1426,20 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2019-03-05",
+    "Acting identity absent from census: NOTICE:2020-03-05",
+    "Acting identity absent from census: NOTICE:2021-03-02",
+    "Acting identity absent from census: NOTICE:2023-03-01",
+    "Acting identity absent from census: NOTICE:2024-03-05",
+    "Acting identity absent from census: NOTICE:2025-02-27",
     "Acting identity absent from census: NOTICE:2026-02-18",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
-    "cited by number, no change provision located: EO:13835",
-    "cited by number, no change provision located: EO:13850",
     "target provision not located: EO:13692",
     "target provision not located: EO:13808",
+    "target provision not located: EO:13835",
+    "target provision not located: EO:13850",
     "target provision not located: EO:14294"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -1381,10 +1448,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "9a21c4e8a648d7233169d8855efe2123b235e5f68ac8cfbbde395f66a2f571bb",
+    "fingerprint": "b042a443030077ea2eec42804ca1a3ca1a3708abbd8b4d72c4a9888a16f65f5e",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13827.json",
-    "history_sha256": "c2803cad17f9a6ad2151b1d320eccd177d243d2f04f406431767b5983ca5b696",
+    "history_sha256": "38ca70865e22448a0e420951b7ce1630718101cc5b7b203128a2bf5e6f04c62c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

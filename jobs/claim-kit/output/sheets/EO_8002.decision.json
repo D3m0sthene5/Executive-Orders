@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "ddf40638a2ac2cb7454f90c21cee7fdc2299cc62d3ade90d344d5abf2dea00f9",
+  "dossier_sha256": "729cdcb9479b5124b8c7dd0106cc11bd6f960845be1ef792d4887ad17332939e",
   "instrument_id": "EO:8002",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-11-07",
               "register_number": "8002",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_8002.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_8002.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 8002—Exemption of Harry Peale From Compulsory Retirement for Age",
               "text_chars": 700
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8002",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_8002.txt",
+        "text_sha256": "3abbacb079f862a272c42bd2a592e72786b444146d211f21ba62fb4f2ac88dac"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:8002",
@@ -130,6 +151,16 @@
         "sha256": "9d605efeb35192014e36943437f614904cf0dfcbbed8afc719977e47f29d789a",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-8002-9d605efeb3.txt",
         "text_sha256": "ddeb4d5b084d4bfe9ad52183c144da137f6a6ba5d3383aca26b7ee20379b1aba"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8002",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8002.txt",
+        "text_sha256": "d0c89709aca931b6bdd263b1a219b399dcac647241d05ea3a15a88c458c534db"
       }
     ],
     "quotation_recheck_required": true,

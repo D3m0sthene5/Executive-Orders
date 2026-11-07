@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "d3ec997dde1ec6155d8e2777656c413b5e3030f2291a7700269e185d715a4016",
+  "dossier_sha256": "d87cc98eee56a305b570e3be8222b94f5d88b222aa5ba8b5f3163fde05bb9d3b",
   "instrument_id": "EO:6480",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-07",
               "register_number": "6480",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6480.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6480.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6480—Code of Fair Competition for the Paper Making Machine Builders Industry",
               "text_chars": 1248
             },

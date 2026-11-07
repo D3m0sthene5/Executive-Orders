@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "e8141b149634ed30f47adf3122c3163a1e896fb62e52eb612c7faba034c31f83",
+  "dossier_sha256": "0738295f802675e0240bd490be1ac1aa4f156173fd4b66af632632dac87d9693",
   "instrument_id": "EO:7020",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1935-04-19",
               "register_number": "7020",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7020.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7020.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7020—Amending Code of Fair Competition for the Wine Industry",
               "text_chars": 837
             },

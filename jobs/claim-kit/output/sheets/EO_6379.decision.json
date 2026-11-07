@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "2b5dd7c549cb721c1006581d7f720cc58f010b61160ca31ff1172a22fb02c043",
+  "dossier_sha256": "474994b597556da548fa03b31c73a5a47a925ba9b8a8ac59895ac33fca3b774d",
   "instrument_id": "EO:6379",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-31",
               "register_number": "6379",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6379.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6379.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6379—Code of Fair Competition for the Paint, Varnish and Lacquer Manufacturing Industry",
               "text_chars": 1256
             },

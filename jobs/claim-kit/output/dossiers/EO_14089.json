@@ -136,7 +136,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14089",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14089"
@@ -627,8 +627,67 @@
       "text": "(d) This order is not intended to, and does not, create any right or \nbenefit, substantive or procedural, enforceable at law or in equity by any \nparty against the United States, its departments, agencies, or entities, its \nofficers, employees, or agents, or any other person."
     }
   ],
-  "conflicts": [],
-  "current_law_leads": [],
+  "conflicts": [
+    {
+      "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
+      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 22 U.S.C. 2656 nt"
+    }
+  ],
+  "current_law_leads": [
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14089",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 22 U.S.C. 2656 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3247",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "345168-345267",
+      "snippet": "2022 Dec. 13 | EO 14089 | 22 U.S.C. 2656 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 22 U.S.C. 2656 nt"
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3247",
+        "snippet": "2022 Dec. 13 | EO 14089 | 22 U.S.C. 2656 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 22 U.S.C. 2656 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 22 U.S.C. 2656 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
+    }
+  ],
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
@@ -641,6 +700,9 @@
     "clause_8_state",
     "clause_9_state",
     "clause_10_state",
+    "clause_11_state",
+    "clause_12_state",
+    "clause_13_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -648,10 +710,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 11 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 14 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 22 U.S.C. 2656 nt"
   ],
   "evidence": {
     "ACT:EO:14089>EO:14148": {
@@ -1813,37 +1876,6 @@
       "stated_end_date": null,
       "text": "(c) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     },
-    "TERM:EO:14089:c30fdf3247fca4bc@ce837b75e35ad47d": {
-      "actor_id": "EO:14089",
-      "char_end": 6891,
-      "char_start": 6773,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14089:c30fdf3247fca4bc@ce837b75e35ad47d",
-      "instrument_id": "EO:14089",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14089#sec6-c",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14089",
-        "page_or_item": "87 FR 77459, PDF pages 1-3",
-        "requires_page_check": false,
-        "sha256": "fd4598811e8dcaa162924534fbfb4569bfe42a9189f6eb45b34a69c63c43875d",
-        "signing_date": "2022-12-13",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14089-fd4598811e.txt",
-        "text_sha256": "ce837b75e35ad47d89085811d53fc5ff104e7f0e132858300b61987400efbe04",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2022-12-19/pdf/2022-27585.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(c) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
-    },
     "TERM:EO:14089:c30fdf3247fca4bc@e1258e6eb4653662": {
       "actor_id": "EO:14089",
       "char_end": 7503,
@@ -1872,9 +1904,40 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(c) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
+    },
+    "TERM:EO:14089:f13abb1bc36cafdd@4b8bcd3e331cea31": {
+      "actor_id": "EO:14089",
+      "char_end": 6528,
+      "char_start": 6411,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14089:f13abb1bc36cafdd@4b8bcd3e331cea31",
+      "instrument_id": "EO:14089",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14089#sec6-c",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14089",
+        "page_or_item": "87 FR 77459-77461 (PDF pp. 1-3)",
+        "requires_page_check": false,
+        "sha256": "fd4598811e8dcaa162924534fbfb4569bfe42a9189f6eb45b34a69c63c43875d",
+        "signing_date": "2022-12-13",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14089-fd4598811e.txt",
+        "text_sha256": "4b8bcd3e331cea319c16515b441694de8de7dfbc1f69b006b1789afedf5d7a7b",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2022-12-19/pdf/2022-27585.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(c) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     }
   },
-  "fingerprint": "a149a6018dd7e42cce23de606aee9c9d848d2691f70c9fe7a770d0c514f76cc9",
+  "fingerprint": "b4223a9115c7233d2b057adf4da49588c3e3b55d9af522f77826f086fdc4eaa3",
   "instrument_id": "EO:14089",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2260,7 +2323,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14089:c30fdf3247fca4bc@e1258e6eb4653662",
         "TERM:EO:14089:682695d0360289e1@360ac1628ef6e702",
-        "TERM:EO:14089:c30fdf3247fca4bc@ce837b75e35ad47d"
+        "TERM:EO:14089:f13abb1bc36cafdd@4b8bcd3e331cea31"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -2296,7 +2359,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2308,7 +2371,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2320,8 +2383,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2331,6 +2394,8 @@
     }
   ],
   "missing": [
+    "Current-law lead lacks an original-source sha256.",
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:13985",
     "target provision not located: EO:14109"
   ],
@@ -2340,15 +2405,15 @@
     "TERM:EO:14089:c30fdf3247fca4bc@e1258e6eb4653662",
     "TERM:EO:14089:5032145b46e183ff@360ac1628ef6e702",
     "TERM:EO:14089:682695d0360289e1@360ac1628ef6e702",
-    "TERM:EO:14089:c30fdf3247fca4bc@ce837b75e35ad47d"
+    "TERM:EO:14089:f13abb1bc36cafdd@4b8bcd3e331cea31"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "60e9ad1eee70eb630631821260a78bb3b50483e22188804cf707e4698f62bf5c",
+    "fingerprint": "a6b9e6d4ce9e59a534cdee0019f3b05379d32b538ebd2613553c6562c5d3827a",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14089.json",
-    "history_sha256": "124fc3ece42f2ee14ca8430eb0b4e65574958c49ebc1a944e4339bd45f6a1731",
+    "history_sha256": "d79dbde9cdeb8c9e80703fc16ba5ec02f50a8a9477d999f9f470308efe9af664",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -25,7 +25,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14098",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14098"
@@ -860,15 +860,41 @@
       "snippet": "Delegation of certain authorities of the Secretary of the Treasury | authorized to take pursuant to Executive Order 13400, Executive Order 14098, and any further Executive … the national emergency declared in Executive Order 13067, may be taken by the Director",
       "source": {
         "page_or_item": "31 CFR 546.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-        "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+        "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR 546.802"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14098",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3256",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "346143-346240",
+      "snippet": "2023 May 4 | EO 14098 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -896,7 +922,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -924,7 +951,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -973,8 +1001,36 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 546.802)",
         "source": {
           "page_or_item": "31 CFR 546.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-          "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+          "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3256",
+        "snippet": "2023 May 4 | EO 14098 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
         }
       }
     }
@@ -999,6 +1055,12 @@
     "clause_16_state",
     "clause_17_state",
     "clause_18_state",
+    "clause_19_state",
+    "clause_20_state",
+    "clause_21_state",
+    "clause_22_state",
+    "clause_23_state",
+    "clause_24_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -1006,7 +1068,7 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 19 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 25 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
@@ -1885,6 +1947,37 @@
       },
       "text": "Instrument: EO:14098\nSource: https://www.govinfo.gov/content/pkg/FR-2023-05-05/pdf/2023-09826.pdf\nSHA-256 of the downloaded file: b3acfd19e411a0629f764fe7c404cdd6fea2563f71b4720f32cd13e7d6566ed2\nLocation: 88 FR 29529, PDF pages 1-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 5 ===\nPresidential Documents\n29529 \nFederal Register \nVol. 88, No. 87 \nFriday, May 5, 2023 \nTitle 3— \nThe President \nExecutive Order 14098 of May 4, 2023 \nImposing Sanctions on Certain Persons Destabilizing Sudan \nand Undermining the Goal of a Democratic Transition \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the International Emergency \nEconomic Powers Act (50 U.S.C. 1701 et seq.) (IEEPA), the National Emer-\ngencies Act (50 U.S.C. 1601 et seq.), section 212(f) of the Immigration and \nNationality Act of 1952 (8 U.S.C. 1182(f)), and section 301 of title 3, United \nStates Code, \nI, JOSEPH R. BIDEN JR., President of the United States of America, hereby \nexpand the scope of the national emergency declared in Executive Order \n13067 of November 3, 1997 (Blocking Sudanese Government Property and \nProhibiting Transactions With Sudan), and expanded by Executive Order \n13400 of April 26, 2006 (Blocking Property of Persons in Connection With \nthe Conflict in Sudan’s Darfur Region), finding that the situation in Sudan, \nincluding the military’s seizure of power in October 2021 and the outbreak \nof inter-service fighting in April 2023, constitutes an unusual and extraor-\ndinary threat to the national security and foreign policy of the United \nStates. \nIt is the policy of the United States to support a transition to democracy \nand civilian transitional government in Sudan, to defend such a transitional \ngovernment from those who would prevent its initial formation through \nviolence and other methods, and, once formed, to protect it from those \nwho would undermine it. The United States, in cooperation with like- \nminded partners, will help such a transitional government, when formed, \nmeet the needs of the Sudanese people and prepare for democratic elections. \nAccordingly, to address the threat described in this order and to take further \nsteps with respect to this national emergency, I hereby order: \nSection 1. (a) All property and interests in property that are in the United \nStates, that hereafter come within the United States, or that are or hereafter \ncome within the possession or control of any United States person of the \nfollowing persons are blocked and may not be transferred, paid, exported, \nwithdrawn, or otherwise dealt in: \n(i) any foreign person determined by the Secretary of the Treasury, in \nconsultation with the Secretary of State, to be responsible for, or complicit \nin, or to have directly or indirectly engaged or attempted to engage in, \nany of the following: \n(A) actions or policies that threaten the peace, security, or stability \nof Sudan; \n(B) actions or policies that obstruct, undermine, delay, or impede, or \npose a significant risk of obstructing, undermining, delaying, or impeding, \nthe formation or operation of a civilian transitional government, Sudan’s \ntransition to democracy, or a future democratically elected government; \n(C) actions or policies that have the purpose or effect of undermining \ndemocratic processes or institutions in Sudan; \n(D) censorship or other actions or policies that prohibit, limit, or penalize \nthe exercise of freedoms of expression, association, or peaceful assembly \nby individuals in Sudan, or that limit access to free and independent \nnews or information in or with respect to Sudan; \nVerDate Sep<11>2014 21:37 May 04, 2023 Jkt 259001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MYE0.SGM 05MYE0lotter on DSK11XQN23PROD with FR_PREZDOC0\n=== PDF page 2 of 5 ===\n29530 Federal Register / Vol. 88, No. 87 / Friday, May 5, 2023 / Presidential Documents \n(E) corruption, including bribery, misappropriation of state assets, and \ninterference with public processes such as government oversight of \nparastatal budgets and revenues for personal benefit; \n(F) serious human rights abuse, including serious human rights abuse \nrelated to political repression, in or with respect to Sudan; \n(G) the targeting of women, children, or any other civilians through \nthe commission of acts of violence (including killing, maiming, torture, \nor rape or other sexual violence), abduction, forced displacement, or attacks \non schools, hospitals, religious sites, or locations where civilians are seek-\ning refuge, or through conduct that would constitute a serious abuse \nor violation of human rights or a violation of international humanitarian \nlaw; \n(H) the obstruction of the activities of United Nations missions—includ-\ning peacekeeping missions, as well as diplomatic or humanitarian mis-\nsions—in Sudan, or of the delivery of, distribution of, or access to humani-\ntarian assistance; or \n(I) attacks against United Nations missions, including peacekeeping oper-\nations; \n(ii) any foreign person determined by the Secretary of the Treasury, in \nconsultation with the Secretary of State, to be or have been a leader, \nofficial, senior executive officer, or member of the board of directors \nof any entity: \n(A) that has, or whose members have, engaged in any activity described \nin subsection (a)(i) of this section relating to the tenure of such leader, \nofficial, senior executive officer, or member of the board of directors; \nor \n(B) whose property and interests in property are blocked pursuant to \nthis order relating to the tenure of such leader, official, senior executive \nofficer, or member of the board of directors; \n(iii) any foreign person determined by the Secretary of the Treasury, \nin consultation with the Secretary of State, to be a spouse or adult child \nof any person whose property and interests in property are blocked pursu-\nant to this order; \n(iv) any foreign person determined by the Secretary of the Treasury, in \nconsultation with the Secretary of State, to have materially assisted, spon-\nsored, or provided financial, material, or technological support for, or \ngoods or services to or in support of, any activity described in subsection \n(a)(i) of this section or any person whose property and interests in property \nare blocked pursuant to this order; or \n(v) any foreign person determined by the Secretary of the Treasury, in \nconsultation with the Secretary of State, to be owned or controlled by, \nor to have acted or purported to act for or on behalf of, directly or \nindirectly, any person whose property and interests in property are blocked \npursuant to this order. \n(b) The prohibitions in subsection (a) of this section apply except to \nthe extent provided by statutes, or in regulations, orders, directives, or \nlicenses that may be issued pursuant to this order, and notwithstanding \nany contract entered into or any license or permit granted before the date \nof this order. \nSec. 2. Following the issuance of a determination by the Secretary of State, \nin consultation with the Secretary of the Treasury and the Administrator \nof the United States Agency for International Development, that a civilian \ntransitional government has been formed in Sudan, the Assistant to the \nPresident for National Security Affairs shall coordinate, through the inter-\nagency process identified in National Security Memorandum 2 of February \n4, 2021 (Renewing the National Security Council System), or any successor \nmemorandum, the executive branch actions necessary to implement the \npolicy set forth in this order, including coordinating executive departments \nVerDate Sep<11>2014 21:37 May 04, 2023 Jkt 259001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MYE0.SGM 05MYE0lotter on DSK11XQN23PROD with FR_PREZDOC0\n=== PDF page 3 of 5 ===\n29531 Federal Register / Vol. 88, No. 87 / Friday, May 5, 2023 / Presidential Documents \nand agencies (agencies) to mobilize international assistance to support such \na civilian transitional government in implementing political, economic, secu-\nrity, and human rights-related reforms essential for completing a democratic \ntransition. \nSec. 3. The prohibitions in section 1 of this order include: \n(a) the making of any contribution or provision of funds, goods, or services \nby, to, or for the benefit of any person whose property and interests in \nproperty are blocked pursuant to this order; and \n(b) the receipt of any contribution or provision of funds, goods, or services \nfrom any such person. \nSec. 4. I hereby determine that the making of donations of the types of \narticles specified in section 203(b)(2) of IEEPA (50 U.S.C. 1702(b)(2)) by, \nto, or for the benefit of any person whose property and interests in property \nare blocked pursuant to section 1 of this order would seriously impair \nmy ability to deal with the national emergency declared in Executive Order \n13067, and expanded by Executive Order 13400 and this order, and I hereby \nprohibit such donations as provided by section 1 of this order. \nSec. 5. (a) Any transaction that evades or avoids, has the purpose of evading \nor avoiding, causes a violation of, or attempts to violate any of the prohibi-\ntions set forth in this order is prohibited. \n(b) Any conspiracy formed to violate any of the prohibitions set forth \nin this order is prohibited. \nSec. 6. (a) The unrestricted immigrant and nonimmigrant entry into the \nUnited States of noncitizens determined to meet one or more of the criteria \nset forth in section 1(a) of this order would be detrimental to the interests \nof the United States, and the entry of such persons into the United States, \nas immigrants or nonimmigrants, is hereby suspended, except when the \nSecretary of State or the Secretary of Homeland Security, as appropriate, \ndetermines that the person’s entry would not be contrary to the interests \nof the United States, including when the Secretary of State or the Secretary \nof Homeland Security, as appropriate, so determines, based on a rec-\nommendation of the Attorney General, that the person’s entry would further \nimportant United States law enforcement objectives. \n(b) The Secretary of State shall implement this authority as it applies \nto visas pursuant to such procedures as the Secretary of State, in consultation \nwith the Secretary of Homeland Security, may establish. \n(c) The Secretary of Homeland Security shall implement this order as \nit applies to the entry of noncitizens pursuant to such procedures as the \nSecretary of Homeland Security, in consultation with the Secretary of State, \nmay establish. \n(d) Such persons shall be treated by this section in the same manner \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions). \nVerDate Sep<11>2014 21:37 May 04, 2023 Jkt 259001 PO 00000 Frm 00005 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MYE0.SGM 05MYE0lotter on DSK11XQN23PROD with FR_PREZDOC0\n=== PDF page 4 of 5 ===\n29532 Federal Register / Vol. 88, No. 87 / Friday, May 5, 2023 / Presidential Documents \nSec. 7. For the purposes of this order: \n(a) the term ‘‘entity’’ means a partnership, association, trust, joint venture, \ncorporation, group, subgroup, or other organization; \n(b) the term ‘‘noncitizen’’ means any person who is not a citizen or \nnoncitizen national of the United States; \n(c) the term ‘‘person’’ means an individual or entity; and \n(d) the term ‘‘United States person’’ means any United States citizen, \nlawful permanent resident, entity organized under the laws of the United \nStates or any jurisdiction within the United States (including foreign \nbranches), or any person in the United States. \nSec. 8. For those persons whose property and interests in property are \nblocked pursuant to this order who might have a constitutional presence \nin the United States, I find that because of the ability to transfer funds \nor other assets instantaneously, prior notice to such persons of measures \nto be taken pursuant to this order would render those measures ineffectual. \nI therefore determine that for these measures to be effective in addressing \nthe national emergency declared in Executive Order 13067, and expanded \nby Executive Order 13400 and this order, there need be no prior notice \nof a listing or determination made pursuant to section 1 of this order. \nSec. 9. The Secretary of the Treasury, in consultation with the Secretary \nof State, is hereby authorized to take such actions, including the promulgation \nof rules and regulations, and to employ all powers granted to the President \nby IEEPA as may be necessary to carry out the purposes of this order. \nThe Secretary of the Treasury may, consistent with applicable law, redelegate \nany of these functions within the Department of the Treasury. All agencies \nof the United States shall take all appropriate measures within their authority \nto implement this order. \nSec. 10. Nothing in this order shall prohibit transactions for the conduct \nof the official business of the Federal Government or the United Nations \n(including its specialized agencies, programs, funds, and related organiza-\ntions) by employees, grantees, or contractors thereof. \nSec. 11. Nothing in this order is intended to affect the continued effectiveness \nof any action taken pursuant to Executive Order 13761 of January 13, 2017 \n(Recognizing Positive Actions by the Government of Sudan and Providing \nfor the Revocation of Certain Sudan-Related Sanctions), and Executive Order \n13804 of July 11, 2017 (Allowing Additional Time for Recognizing Positive \nActions by the Government of Sudan and Amending Executive Order 13761). \nSec. 12. (a) Nothing in this order shall be construed to impair or otherwise \naffect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \nVerDate Sep<11>2014 21:37 May 04, 2023 Jkt 259001 PO 00000 Frm 00006 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MYE0.SGM 05MYE0lotter on DSK11XQN23PROD with FR_PREZDOC0\n=== PDF page 5 of 5 ===\n29533 Federal Register / Vol. 88, No. 87 / Friday, May 5, 2023 / Presidential Documents \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nMay 4, 2023. \n[FR Doc. 2023–09826 \nFiled 5–4–23; 11:15 am] \nBilling code 3395–F3–P \nVerDate Sep<11>2014 21:37 May 04, 2023 Jkt 259001 PO 00000 Frm 00007 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MYE0.SGM 05MYE0\nBIDEN.EPS</GPH>\nlotter on DSK11XQN23PROD with FR_PREZDOC0"
     },
+    "TERM:EO:14098:0075fcaa3b9f2bb2@ec62aec489dc8495": {
+      "actor_id": "EO:14098",
+      "char_end": 12796,
+      "char_start": 12679,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14098:0075fcaa3b9f2bb2@ec62aec489dc8495",
+      "instrument_id": "EO:14098",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14098#sec12-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14098",
+        "page_or_item": "88 FR 29529-29533 (PDF pp. 1-5)",
+        "requires_page_check": false,
+        "sha256": "b3acfd19e411a0629f764fe7c404cdd6fea2563f71b4720f32cd13e7d6566ed2",
+        "signing_date": "2023-05-04",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14098-b3acfd19e4.txt",
+        "text_sha256": "ec62aec489dc849510c3ab07caa2c82850333e9c4d32d6626276fa73053caab7",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2023-05-05/pdf/2023-09826.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
+    },
     "TERM:EO:14098:4a3f18aa654af5eb@40d573125ab20b67": {
       "actor_id": "EO:14098",
       "char_end": 14389,
@@ -1914,37 +2007,6 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
-    "TERM:EO:14098:4a3f18aa654af5eb@b01854f8073f462f": {
-      "actor_id": "EO:14098",
-      "char_end": 13784,
-      "char_start": 13666,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14098:4a3f18aa654af5eb@b01854f8073f462f",
-      "instrument_id": "EO:14098",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14098#sec12-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14098",
-        "page_or_item": "88 FR 29529, PDF pages 1-5",
-        "requires_page_check": false,
-        "sha256": "b3acfd19e411a0629f764fe7c404cdd6fea2563f71b4720f32cd13e7d6566ed2",
-        "signing_date": "2023-05-04",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14098-b3acfd19e4.txt",
-        "text_sha256": "b01854f8073f462ffa830940cef5f8e0f98156436b44aa8c5be40a15b492116e",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2023-05-05/pdf/2023-09826.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
-    },
     "TERM:EO:14098:71182800e38af52a@40d573125ab20b67": {
       "actor_id": "EO:14098",
       "char_end": 11091,
@@ -1968,37 +2030,6 @@
         "signing_date": "2023-05-04",
         "text_path": "jobs/fr-originals/output/texts/EO_14098.txt",
         "text_sha256": "40d573125ab20b671f4b5a35144bcfa95dc060ddb5d78deca7994e7a4e01bb3c",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2023-05-05/pdf/2023-09826.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(d) Such persons shall be treated by this section in the same manner \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
-    },
-    "TERM:EO:14098:71182800e38af52a@b01854f8073f462f": {
-      "actor_id": "EO:14098",
-      "char_end": 10486,
-      "char_start": 10199,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14098:71182800e38af52a@b01854f8073f462f",
-      "instrument_id": "EO:14098",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14098#sec6-d",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14098",
-        "page_or_item": "88 FR 29529, PDF pages 1-5",
-        "requires_page_check": false,
-        "sha256": "b3acfd19e411a0629f764fe7c404cdd6fea2563f71b4720f32cd13e7d6566ed2",
-        "signing_date": "2023-05-04",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14098-b3acfd19e4.txt",
-        "text_sha256": "b01854f8073f462ffa830940cef5f8e0f98156436b44aa8c5be40a15b492116e",
         "url": "https://www.govinfo.gov/content/pkg/FR-2023-05-05/pdf/2023-09826.pdf"
       },
       "start_date": null,
@@ -2039,6 +2070,37 @@
       "stated_end_date": null,
       "text": "(d) Such persons shall be treated by this section in the same manner as persons covered by section 1 of Proclamation 8693 of July 24, 2011 (Suspension of Entry of Aliens Subject to United Nations Security Council Travel Bans and International Emergency Economic Powers Act Sanctions)."
     },
+    "TERM:EO:14098:d6e6c2bfb96b9e43@ec62aec489dc8495": {
+      "actor_id": "EO:14098",
+      "char_end": 9811,
+      "char_start": 9527,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14098:d6e6c2bfb96b9e43@ec62aec489dc8495",
+      "instrument_id": "EO:14098",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14098#sec6-d",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14098",
+        "page_or_item": "88 FR 29529-29533 (PDF pp. 1-5)",
+        "requires_page_check": false,
+        "sha256": "b3acfd19e411a0629f764fe7c404cdd6fea2563f71b4720f32cd13e7d6566ed2",
+        "signing_date": "2023-05-04",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14098-b3acfd19e4.txt",
+        "text_sha256": "ec62aec489dc849510c3ab07caa2c82850333e9c4d32d6626276fa73053caab7",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2023-05-05/pdf/2023-09826.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(d) Such persons shall be treated by this section in the same manner\nas persons covered by section 1 of Proclamation 8693 of July 24, 2011\n(Suspension of Entry of Aliens Subject to United Nations Security Council\nTravel Bans and International Emergency Economic Powers Act Sanctions)."
+    },
     "TERM:EO:14098:f6a5c86d3e11bb5d@8e4c316c3df697af": {
       "actor_id": "EO:14098",
       "char_end": 12657,
@@ -2074,7 +2136,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "58feed5ccdbe7d3f54ad007c45ce1d9922cce754afee457f3f7c5e99fe82dd2f",
+  "fingerprint": "e4bacfa750adc1411dae392d25f0fcb0a8df8b399a8b091288e1444c4f414e66",
   "instrument_id": "EO:14098",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2375,7 +2437,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14098:71182800e38af52a@40d573125ab20b67",
         "TERM:EO:14098:861a330f7fd31e05@8e4c316c3df697af",
-        "TERM:EO:14098:71182800e38af52a@b01854f8073f462f"
+        "TERM:EO:14098:d6e6c2bfb96b9e43@ec62aec489dc8495"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -2576,7 +2638,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14098:4a3f18aa654af5eb@40d573125ab20b67",
         "TERM:EO:14098:f6a5c86d3e11bb5d@8e4c316c3df697af",
-        "TERM:EO:14098:4a3f18aa654af5eb@b01854f8073f462f"
+        "TERM:EO:14098:0075fcaa3b9f2bb2@ec62aec489dc8495"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -2608,7 +2670,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2620,7 +2682,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2632,8 +2694,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2643,6 +2705,8 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2023-10-31",
+    "Acting identity absent from census: NOTICE:2024-10-25",
     "Acting identity absent from census: NOTICE:2025-10-16",
     "Acting identity absent from census: PROC:8693",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
@@ -2661,16 +2725,16 @@
     "TERM:EO:14098:4a3f18aa654af5eb@40d573125ab20b67",
     "TERM:EO:14098:861a330f7fd31e05@8e4c316c3df697af",
     "TERM:EO:14098:f6a5c86d3e11bb5d@8e4c316c3df697af",
-    "TERM:EO:14098:71182800e38af52a@b01854f8073f462f",
-    "TERM:EO:14098:4a3f18aa654af5eb@b01854f8073f462f"
+    "TERM:EO:14098:d6e6c2bfb96b9e43@ec62aec489dc8495",
+    "TERM:EO:14098:0075fcaa3b9f2bb2@ec62aec489dc8495"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "bfa58c0468b20a15e4f692cc5a9d9791ae4942a19243f895956e3ebe9acb79b1",
+    "fingerprint": "00e8f5f22f0e1349be1158db55ce076bd472b3bc3d4ec25b6a3e0e774e1080e3",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14098.json",
-    "history_sha256": "dc181ada07e8f4f782936d78baa50714b978827ff82dcf9fa1394623c9a5115a",
+    "history_sha256": "37b33e00881af219f07029820bb54325c367463c313208c625f7bfed4152d09b",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

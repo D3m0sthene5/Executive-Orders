@@ -132,7 +132,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14070",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14070"
@@ -667,8 +667,67 @@
       "text": "(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person."
     }
   ],
-  "conflicts": [],
-  "current_law_leads": [],
+  "conflicts": [
+    {
+      "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
+      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 42 U.S.C. 18001 nt"
+    }
+  ],
+  "current_law_leads": [
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14070",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 42 U.S.C. 18001 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3228",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "343226-343325",
+      "snippet": "2022 Apr. 5 | EO 14070 | 42 U.S.C. 18001 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 42 U.S.C. 18001 nt"
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3228",
+        "snippet": "2022 Apr. 5 | EO 14070 | 42 U.S.C. 18001 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 42 U.S.C. 18001 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 42 U.S.C. 18001 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
+    }
+  ],
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
@@ -701,7 +760,8 @@
     "DRAFT: state_at_cutoff not decided for 21 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 42 U.S.C. 18001 nt"
   ],
   "evidence": {
     "ACT:EO:14070>EO:14148": {
@@ -2008,7 +2068,7 @@
       "text": "(d) extending the length of the HealthCare.gov Open Enrollment Period by 1 month and operating the most successful Open Enrollment Period ever, with a historic 14.5 million Americans enrolling in coverage through the ACA Marketplaces and an additional 1 million people enrolling in Basic Health Program coverage, resulting in a 20 percent increase over the prior year across both programs combined;"
     }
   },
-  "fingerprint": "7112722769923560053de0d3f9779c00c1cdc61598546b089ef021f33fe5685e",
+  "fingerprint": "f73e5e88969e4e31c46aed158d34a0a87ac64d376e89cfee746d03b97a9a9ca8",
   "instrument_id": "EO:14070",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2468,7 +2528,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2480,7 +2540,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2492,8 +2552,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2503,6 +2563,8 @@
     }
   ],
   "missing": [
+    "Current-law lead lacks an original-source sha256.",
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:14009"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -2518,10 +2580,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "0a40ebafafce0791a09bed33b733e91d930f9aa4a62b4c561be95765a4a64fed",
+    "fingerprint": "f3e9188dc71aa8dcdc403e6b3ae68d7833224aabacce3726d4b9aaa0c1f1764b",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14070.json",
-    "history_sha256": "b10ace7c3458b8b695d03a2c230f80a402739907e9ff40fc7051737aae56f689",
+    "history_sha256": "2ccbe6e43d06ab351ac1284a5a63cb2dd3fe7c64c811a994aeb9f1dd5ddf9b89",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

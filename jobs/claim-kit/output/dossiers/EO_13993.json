@@ -288,7 +288,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13993",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13993"
@@ -453,9 +453,67 @@
     {
       "code": "WHOLE_END_ACTOR_DISAGREEMENT",
       "detail": "EO:14148, EO:14159"
+    },
+    {
+      "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
+      "detail": "provisional NO, but 1 current-law predicate lead(s), e.g. USC 8 U.S.C. 1103 nt"
     }
   ],
-  "current_law_leads": [],
+  "current_law_leads": [
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13993",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 8 U.S.C. 1103 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3144",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "334718-334810",
+      "snippet": "2021 Jan. 20 | EO 13993 | 8 U.S.C. 1103 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 8 U.S.C. 1103 nt"
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3144",
+        "snippet": "2021 Jan. 20 | EO 13993 | 8 U.S.C. 1103 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 8 U.S.C. 1103 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 8 U.S.C. 1103 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
+    }
+  ],
   "draft_gate_errors": [
     "clause_0_state",
     "clause_1_state",
@@ -472,7 +530,8 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT WHOLE_END_ACTOR_DISAGREEMENT: EO:14148, EO:14159"
+    "CONFLICT WHOLE_END_ACTOR_DISAGREEMENT: EO:14148, EO:14159",
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 1 current-law predicate lead(s), e.g. USC 8 U.S.C. 1103 nt"
   ],
   "evidence": {
     "ACT:EO:13993>EO:12656": {
@@ -2543,7 +2602,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     }
   },
-  "fingerprint": "c53ff06ec167257421bda3a2991b7d1696251e9c7e09f519ad54c88c02d3c24d",
+  "fingerprint": "18f004ff5d52e3eb91e37df071440843dea364810d1abd14c842c3139708ed5b",
   "instrument_id": "EO:13993",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2701,7 +2760,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2713,7 +2772,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2725,8 +2784,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2736,7 +2795,9 @@
     }
   ],
   "missing": [
-    "Large actor context must be read at actor-texts/EO_12656.json before deciding scope/savings."
+    "Current-law lead lacks an original-source sha256.",
+    "Large actor context must be read at actor-texts/EO_12656.json before deciding scope/savings.",
+    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:13993",
@@ -2748,10 +2809,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "eb661b84aa3ab77ff6617f473c953f32e3490dd12a69d652ed75bb3b67d17a50",
+    "fingerprint": "42013c711bf32b50c8c08a82127eea7ea78d7bab20123d7a183639512ce57c0f",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13993.json",
-    "history_sha256": "810a59e7c4e9a17fc081daf184959ad4d80c6b5c9d5ea82427e108a5d708dbdd",
+    "history_sha256": "0ac7ef4dc4b8e14c51186a73c008a83ea2863a13fc5d75dcf92650e03529aa67",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

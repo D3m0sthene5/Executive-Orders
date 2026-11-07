@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "236ffc6220d6cdb0bab9b22305ecf0cc399be6a203663def7e466f178304fa02",
+  "dossier_sha256": "930b4ea73a4ce2f45f6a41bd81d8e3a191dd03a282e4d8b8f211f351bf43edf9",
   "instrument_id": "EO:6322",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-10-03",
               "register_number": "6322",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6322.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6322.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6322—Code of Fair Competition for the Glass Container Industry",
               "text_chars": 1227
             },

@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "62b93f0fd8e28c9da49315a35f1a609d37d523f5dc597c86caeefd1a33eb9a17",
+  "dossier_sha256": "ff73cac9e29b99859682eb12d1b3a8a8663ba3608664d9bb936e89d28d042484",
   "instrument_id": "EO:6539A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -145,7 +145,18 @@
               "register_date": "1933-12-27",
               "register_number": "6539A",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6539A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6539A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6539-A—Approval of Code of Fair Competition for the Wine Industry",
               "text_chars": 1738
             },

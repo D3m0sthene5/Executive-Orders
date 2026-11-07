@@ -25,7 +25,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13687",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13687"
@@ -702,15 +702,41 @@
       "snippet": "...reasury. | take pursuant to Executive Order 13466 of June 26, 2008, Executive Order 13551 of August … August 30, 2010, Executive Order 13570 of April 18, 2011, Executive Order 13687 of January … January 2, 2015, Executive Order 13722 of March 15, 2016, Executive Order 13810 of September",
       "source": {
         "page_or_item": "31 CFR 510.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-        "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+        "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR 510.802"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13687",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:2867",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "305859-305957",
+      "snippet": "2015 Jan. 2 | EO 13687 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -738,7 +764,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -766,7 +793,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -794,7 +822,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -843,7 +872,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 510.802)",
         "source": {
           "page_or_item": "31 CFR 510.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-          "sha256": "76fbc08bd706ab6607b86a7d63a04dd95082ca53a523190af0557731c4646ce9",
+          "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
         }
       }
@@ -931,6 +960,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:2867",
+        "snippet": "2015 Jan. 2 | EO 13687 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -950,6 +1007,7 @@
     "clause_13_state",
     "clause_14_state",
     "clause_15_state",
+    "clause_16_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -957,7 +1015,7 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 16 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 17 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
@@ -1594,6 +1652,37 @@
       },
       "text": "Instrument: EO:13687\nSource: https://www.govinfo.gov/content/pkg/FR-2015-01-06/pdf/2015-00058.pdf\nSHA-256 of the downloaded file: 921f665c60807d9c9a213c999f19e5af5314e2a8b53bc7a68e7a021c4be8cb74\nLocation: 80 FR 819, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 3 ===\nPresidential Documents\n819 \nFederal Register \nVol. 80, No. 3 \nTuesday, January 6, 2015 \nTitle 3— \nThe President \nExecutive Order 13687 of January 2, 2015 \nImposing Additional Sanctions With Respect To North Korea \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the International Emergency \nEconomic Powers Act (50 U.S.C. 1701 et seq.) (IEEPA), the National Emer-\ngencies Act (50 U.S.C. 1601 et seq.), section 212(f) of the Immigration and \nNationality Act of 1952 (8 U.S.C. 1182(f)), and section 301 of title 3, United \nStates Code; and in view of United Nations Security Council Resolution \n(UNSCR) 1718 of October 14, 2006, UNSCR 1874 of June 12, 2009, UNSCR \n2087 of January 22, 2013, and UNSCR 2094 of March 7, 2013, \nI, BARACK OBAMA, President of the United States of America, find that \nthe provocative, destabilizing, and repressive actions and policies of the \nGovernment of North Korea, including its destructive, coercive cyber-related \nactions during November and December 2014, actions in violation of UNSCRs \n1718, 1874, 2087, and 2094, and commission of serious human rights abuses, \nconstitute a continuing threat to the national security, foreign policy, and \neconomy of the United States, and hereby expand the scope of the national \nemergency declared in Executive Order 13466 of June 26, 2008, expanded \nin scope in Executive Order 13551 of August 30, 2010, and relied upon \nfor additional steps in Executive Order 13570 of April 18, 2011. To address \nthis threat and to take further steps with respect to this national emergency, \nI hereby order: \nSection 1. (a) All property and interests in property that are in the United \nStates, that hereafter come within the United States, or that are or hereafter \ncome within the possession or control of any United States person of the \nfollowing persons are blocked and may not be transferred, paid, exported, \nwithdrawn, or otherwise dealt in: any person determined by the Secretary \nof the Treasury, in consultation with the Secretary of State: \n(i) to be an agency, instrumentality, or controlled entity of the Government \nof North Korea or the Workers’ Party of Korea; \n(ii) to be an official of the Government of North Korea; \n(iii) to be an official of the Workers’ Party of Korea; \n(iv) to have materially assisted, sponsored, or provided financial, material, \nor technological support for, or goods or services to or in support of, \nthe Government of North Korea or any person whose property and interests \nin property are blocked pursuant to this order; or \n(v) to be owned or controlled by, or to have acted or purported to act \nfor or on behalf of, directly or indirectly, the Government of North Korea \nor any person whose property and interests in property are blocked pursu-\nant to this order. \n(b) The prohibitions in this order apply except to the extent provided \nby statutes, or in regulations, orders, directives, or licenses that may be \nissued pursuant to this order, and notwithstanding any contract entered \ninto or any license or permit granted prior to the effective date of this \norder. \nSec. 2. I hereby determine that the making of donations of the type of \narticles specified in section 203(b)(2) of IEEPA (50 U.S.C. 1702(b)(2)) by, \nto, or for the benefit of any person whose property and interests in property \nare blocked pursuant to section 1 of this order would seriously impair \nmy ability to deal with the national emergency declared in Executive Order \nVerDate Sep<11>2014 21:57 Jan 05, 2015 Jkt 235001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\06JAE0.SGM 06JAE0tkelley on DSK3SPTVN1PROD with E0\n=== PDF page 2 of 3 ===\n820 Federal Register / Vol. 80, No. 3 / Tuesday, January 6, 2015 / Presidential Documents \n13466, and I hereby prohibit such donations as provided by section 1 of \nthis order. \nSec. 3. The prohibitions in this order include but are not limited to: \n(a) the making of any contribution or provision of funds, goods, or services \nby, to, or for the benefit of any person whose property and interests in \nproperty are blocked pursuant to this order; and \n(b) the receipt of any contribution or provision of funds, goods, or services \nfrom any such person. \nSec. 4. I hereby find that the unrestricted immigrant and nonimmigrant \nentry into the United States of aliens determined to meet one or more \nof the criteria in section 1(a) of this order would be detrimental to the \ninterests of the United States, and I hereby suspend entry into the United \nStates, as immigrants or nonimmigrants, of such persons. Such persons \nshall be treated as persons covered by section 1 of Proclamation 8693 of \nJuly 24, 2011 (Suspension of Entry of Aliens Subject to United Nations \nSecurity Council Travel Bans and International Emergency Economic Powers \nAct Sanctions). \nSec. 5. (a) Any transaction that evades or avoids, has the purpose of evading \nor avoiding, causes a violation of, or attempts to violate any of the prohibi-\ntions set forth in this order is prohibited. \n(b) Any conspiracy formed to violate any of the prohibitions set forth \nin this order is prohibited. \nSec. 6. For the purposes of this order: \n(a) the term ‘‘person’’ means an individual or entity; \n(b) the term ‘‘entity’’ means a partnership, association, trust, joint venture, \ncorporation, group, subgroup, or other organization; \n(c) the term ‘‘United States person’’ means any United States citizen, \npermanent resident alien, entity organized under the laws of the United \nStates or any jurisdiction within the United States (including foreign \nbranches), or any person in the United States; and \n(d) the term ‘‘Government of North Korea’’ means the Government of \nthe Democratic People’s Republic of Korea and its agencies, instrumentalities, \nand controlled entities. \nSec. 7. For those persons whose property and interests in property are \nblocked pursuant to this order who might have a constitutional presence \nin the United States, I find that because of the ability to transfer funds \nor other assets instantaneously, prior notice to such persons of measures \nto be taken pursuant to this order would render those measures ineffectual. \nI therefore determine that for these measures to be effective in addressing \nthe national emergency declared in Executive Order 13466, there need be \nno prior notice of a listing or determination made pursuant to section \n1 of this order. \nSec. 8. The Secretary of the Treasury, in consultation with the Secretary \nof State, is hereby authorized to take such actions, including the promulgation \nof rules and regulations, and to employ all powers granted to the President \nby IEEPA, as may be necessary to carry out the purposes of this order. \nThe Secretary of the Treasury may redelegate any of these functions to \nother officers and agencies of the United States Government consistent with \napplicable law. All agencies of the United States Government are hereby \ndirected to take all appropriate measures within their authority to carry \nout the provisions of this order. \nVerDate Sep<11>2014 21:57 Jan 05, 2015 Jkt 235001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\06JAE0.SGM 06JAE0tkelley on DSK3SPTVN1PROD with E0\n=== PDF page 3 of 3 ===\n821 Federal Register / Vol. 80, No. 3 / Tuesday, January 6, 2015 / Presidential Documents \nSec. 9. This order is not intended to, and does not, create any right or \nbenefit, substantive or procedural, enforceable at law or in equity by any \nparty against the United States, its departments, agencies, or entities, its \nofficers, employees, or agents, or any other person. \nTHE WHITE HOUSE, \nJanuary 2, 2015. \n[FR Doc. 2015–00058 \nFiled 1–5–15; 11:15 am] \nBilling code 3295–F5 \nVerDate Sep<11>2014 21:57 Jan 05, 2015 Jkt 235001 PO 00000 Frm 00005 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\06JAE0.SGM 06JAE0\nOB#1.EPS</GPH>\ntkelley on DSK3SPTVN1PROD with E0"
     },
+    "TERM:EO:13687:41b21f53058db03a@88bdfd7b7a4c21fd": {
+      "actor_id": "EO:13687",
+      "char_end": 4412,
+      "char_start": 4167,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13687:41b21f53058db03a@88bdfd7b7a4c21fd",
+      "instrument_id": "EO:13687",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13687#sec4",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13687",
+        "page_or_item": "80 FR 819-821 (PDF pp. 1-3)",
+        "requires_page_check": false,
+        "sha256": "921f665c60807d9c9a213c999f19e5af5314e2a8b53bc7a68e7a021c4be8cb74",
+        "signing_date": "2015-01-02",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13687-921f665c60.txt",
+        "text_sha256": "88bdfd7b7a4c21fd9f3f10d8a54e1e22241fa4688de5adbce3d2e4ab69293576",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2015-01-06/pdf/2015-00058.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Such persons\nshall be treated as persons covered by section 1 of Proclamation 8693 of\nJuly 24, 2011 (Suspension of Entry of Aliens Subject to United Nations\nSecurity Council Travel Bans and International Emergency Economic Powers\nAct Sanctions)."
+    },
     "TERM:EO:13687:9cd1caba73e51610@24cca123decf9a3d": {
       "actor_id": "EO:13687",
       "char_end": 5344,
@@ -1617,37 +1706,6 @@
         "signing_date": "2015-01-02",
         "text_path": "jobs/fr-originals/output/texts/EO_13687.txt",
         "text_sha256": "24cca123decf9a3ded06e7fc3f16a2d58a3ec876e69b45a4d581543b9f48fab3",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2015-01-06/pdf/2015-00058.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Such persons \nshall be treated as persons covered by section 1 of Proclamation 8693 of \nJuly 24, 2011 (Suspension of Entry of Aliens Subject to United Nations \nSecurity Council Travel Bans and International Emergency Economic Powers \nAct Sanctions)."
-    },
-    "TERM:EO:13687:9cd1caba73e51610@7bea9af7137072c4": {
-      "actor_id": "EO:13687",
-      "char_end": 4739,
-      "char_start": 4490,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13687:9cd1caba73e51610@7bea9af7137072c4",
-      "instrument_id": "EO:13687",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13687#sec4",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13687",
-        "page_or_item": "80 FR 819, PDF pages 1-3",
-        "requires_page_check": false,
-        "sha256": "921f665c60807d9c9a213c999f19e5af5314e2a8b53bc7a68e7a021c4be8cb74",
-        "signing_date": "2015-01-02",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13687-921f665c60.txt",
-        "text_sha256": "7bea9af7137072c490a1b731bc541963b5ec5e07531e8379e8edf91c0993a286",
         "url": "https://www.govinfo.gov/content/pkg/FR-2015-01-06/pdf/2015-00058.pdf"
       },
       "start_date": null,
@@ -1689,7 +1747,7 @@
       "text": "Such persons shall be treated as persons covered by section 1 of Proclamation 8693 of July 24, 2011 (Suspension of Entry of Aliens Subject to United Nations Security Council Travel Bans and International Emergency Economic Powers Act Sanctions)."
     }
   },
-  "fingerprint": "e783e87e70b5d404e6144772c816b3068edd21e434dfe3b694650085b2d86902",
+  "fingerprint": "232e342ec400336911237cfd2587a6b0ab169ee19014ad1ff35cc539ae022e5f",
   "instrument_id": "EO:13687",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1885,7 +1943,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13687:9cd1caba73e51610@24cca123decf9a3d",
         "TERM:EO:13687:eaaff11f9d4657ad@9ea07753f442efc4",
-        "TERM:EO:13687:9cd1caba73e51610@7bea9af7137072c4"
+        "TERM:EO:13687:41b21f53058db03a@88bdfd7b7a4c21fd"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -2052,7 +2110,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2064,7 +2122,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -2076,8 +2134,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2087,7 +2145,15 @@
     }
   ],
   "missing": [
+    "Acting identity absent from census: NOTICE:2015-06-22",
+    "Acting identity absent from census: NOTICE:2016-06-21",
+    "Acting identity absent from census: NOTICE:2018-06-28",
+    "Acting identity absent from census: NOTICE:2019-06-21",
+    "Acting identity absent from census: NOTICE:2020-06-17",
+    "Acting identity absent from census: NOTICE:2021-06-21",
     "Acting identity absent from census: NOTICE:2022-06-13",
+    "Acting identity absent from census: NOTICE:2023-06-20",
+    "Acting identity absent from census: NOTICE:2024-06-13",
     "Acting identity absent from census: NOTICE:2025-06-20",
     "Acting identity absent from census: NOTICE:2026-06-22",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
@@ -2104,15 +2170,15 @@
   "own_terms": [
     "TERM:EO:13687:9cd1caba73e51610@24cca123decf9a3d",
     "TERM:EO:13687:eaaff11f9d4657ad@9ea07753f442efc4",
-    "TERM:EO:13687:9cd1caba73e51610@7bea9af7137072c4"
+    "TERM:EO:13687:41b21f53058db03a@88bdfd7b7a4c21fd"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 7,
-    "fingerprint": "45da8461dad25e7521a243a2c955ef7e074a23d0da4392cecc7eeb2fcac09c7c",
+    "fingerprint": "b928c18500d7809e10bdd37706241d5a74cbf6a4f3eb16e673ab2c47086dbe7b",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13687.json",
-    "history_sha256": "8253867b6cdd9912fb5e181c4e7e91d0e326e81b64a4d388186e90108ef56a63",
+    "history_sha256": "3a70b8efdcae3893458f296794f7ac2132c2f1bf41b58e4ee4383c9e07daed2e",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

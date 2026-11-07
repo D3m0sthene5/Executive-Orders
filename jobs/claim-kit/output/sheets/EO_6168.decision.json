@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "cf5dbf95a0b008d7ee515ac2b1219583425b12e4ea095f5b6561b08f7f7ceab6",
+  "dossier_sha256": "165141537d20e0a9e8361a53a93a68fdb8f196597232ba6e439e6022e210b199",
   "instrument_id": "EO:6168",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-06-13",
               "register_number": "6168",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6168.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6168.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6168—Exemption of William A. Taylor from Compulsory Retirement for Age",
               "text_chars": 582
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6168",
+        "pages_confirmed": false,
+        "sha256": "b25de54ee592b1e1bc9fa25ffa94304458524de1d74d588fedb885ae4a09a405",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6168.txt",
+        "text_sha256": "b4b3c3e7358bed808a1a86042ad24dd5518e0aed89f23f598639e7c0a7e2f292"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:6168",
@@ -130,6 +151,16 @@
         "sha256": "e35a68d7542e86a978effc37665c36434a441d526276b49e4fd9139dadaf33b3",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6168-e35a68d754.txt",
         "text_sha256": "4ba5a4fd4a3213af12717df068d006a0e4bcd0167ff075e666455a4a6b90453c"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6168",
+        "pages_confirmed": false,
+        "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6168.txt",
+        "text_sha256": "1d402a8c2f52907bc24e3f79f80f494c8d1c5e39e4fd13ecf1160f1da6601272"
       }
     ],
     "quotation_recheck_required": true,

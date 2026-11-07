@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3f96f43d48425fb0d0d2c3b5c2d1912ad2b2de815a83b864add0461f65c84e3e",
+  "dossier_sha256": "33c6b98f4955e8773f2bbcfdf1a4e64353cd393faefba52b453db5b677c57daa",
   "instrument_id": "EO:7000",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1935-04-05",
               "register_number": "7000",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7000.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7000.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7000—Amending Code of Fair Competition for the Distilled Spirits Industry",
               "text_chars": 872
             },

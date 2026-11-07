@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:11878",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11878"
@@ -36,7 +36,7 @@
   "conflicts": [
     {
       "code": "NO_ORDER_CITED_IN_CURRENT_LAW",
-      "detail": "provisional NO, but 2 current-law predicate lead(s), e.g. USC 50 U.S.C. 3811 note; USC 50 U.S.C. 3811 note"
+      "detail": "provisional NO, but 3 current-law predicate lead(s), e.g. USC 50 U.S.C. 3811 note; USC 50 U.S.C. 3811 note; USC 50 U.S.C. 3811 nt"
     }
   ],
   "current_law_leads": [
@@ -82,6 +82,39 @@
       },
       "system": "usc",
       "where": "USC 50 U.S.C. 3811 note"
+    },
+    {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11878",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 3811 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:1068",
+      "note_text_held": {
+        "current_law_edition": "U.S. Code release point 119-121",
+        "current_law_source_sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "current_law_source_url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip",
+        "matched_citation": "50 U.S.C. 3811 note",
+        "member_sha256": "1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff",
+        "note_id": "id992ae6ba-b817-11f1-b12d-8c5a06520415",
+        "note_text_sha256": "17b5c6ab40393d823844e23de55339325ecdaa7596c5b32212144564815dbdf9",
+        "status": "yes_exact_citation",
+        "text_ref": "jobs/current-law/output/USC_EO_NOTES.jsonl#note_id=id992ae6ba-b817-11f1-b12d-8c5a06520415"
+      },
+      "row_span": "119187-119282",
+      "snippet": "1975 Sept. 10 | EO 11878 | 50 U.S.C. 3811 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 3811 nt"
     },
     {
       "custody_records_in": [
@@ -139,6 +172,34 @@
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:1068",
+        "snippet": "1975 Sept. 10 | EO 11878 | 50 U.S.C. 3811 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 3811 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 3811 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -159,7 +220,7 @@
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
-    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 2 current-law predicate lead(s), e.g. USC 50 U.S.C. 3811 note; USC 50 U.S.C. 3811 note"
+    "CONFLICT NO_ORDER_CITED_IN_CURRENT_LAW: provisional NO, but 3 current-law predicate lead(s), e.g. USC 50 U.S.C. 3811 note; USC 50 U.S.C. 3811 note; USC 50 U.S.C. 3811 nt"
   ],
   "evidence": {
     "CLAUSES:EO:11878#whole": {
@@ -398,7 +459,7 @@
       "text": "The responsibilities assigned under this Order are to be completed no later than March 31, 1976, at which time the Attorney General shall submit his final recommendations to the President."
     }
   },
-  "fingerprint": "7b399cb1270af8a005cf6d69faacdd5f3da5d0343760994452074e76568594f6",
+  "fingerprint": "d1fe79029690cd9d5554be8b2da9a4c1621e774bf5835136664e858668419f8f",
   "instrument_id": "EO:11878",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -433,7 +494,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -445,7 +506,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -457,8 +518,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -484,10 +545,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "21f9a95c8ebe15598593ddf2f1810b3c41dcbc692b15692537ae330d85dbc6c9",
+    "fingerprint": "8a0ffe0d00db103f83b3a68889d88732775435053ff665489590dec617a0c567",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11878.json",
-    "history_sha256": "b98dea4ad31e24d33685016ff0cf926d8682d558c63212585ac319015560af10",
+    "history_sha256": "b9f76c65a2d6aa6bb6d326b7a4202c9ecb8272835eb5d7ee57dd82a69f048b10",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "331824bfe56a85f317f0aca21c6482499757559bc2b2414095349fdbbab79016",
+  "dossier_sha256": "ccd92ca4a4acc4c76834f29b6f52520751c0ffe90e7bd1f5ebbd414fd28e3a0a",
   "instrument_id": "EO:6965",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1935-02-07",
               "register_number": "6965",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6965.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6965.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6965—Amending Code of Fair Competition for the Brewing Industry",
               "text_chars": 846
             },

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "05c673d1285090a12b4304d23b4273061f4812119164e66675ed4fa5dc2a2320",
+  "dossier_sha256": "ba2e9f0623e6b45e9187f875f2226295048f64a5b86c0c9e03efa0fa7967b173",
   "instrument_id": "EO:6531",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1933-12-23",
               "register_number": "6531",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6531.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6531.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6531—Code of Fair Competition for the Silverware Manufacturing Industry",
               "text_chars": 1237
             },

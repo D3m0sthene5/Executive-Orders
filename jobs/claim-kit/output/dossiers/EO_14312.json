@@ -13,7 +13,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:14312",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14312"
@@ -174,7 +174,12 @@
       "text": "(a) I hereby expand the scope of the national emergency declared in"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 1 later event(s) end part of it: ? revocation 2025-09-25 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
@@ -202,18 +207,18 @@
       "basis_code": "cfr_authority_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-09-24)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:14312",
       "legal_basis_candidate": "regulation authority citation lists the order (15 CFR part 746)",
       "machine_lead": true,
-      "mention_id": "ecfr:08e9448443c1",
+      "mention_id": "ecfr:782c28e56b05",
       "snippet": "...ential Determination 2003-23, 68 FR 26459, 3 CFR, 2004 Comp., p. 320; Presidential Determination 2007-7, 72 FR 1899, 3 CFR, 2006 Comp., p. 325; Pub. L. 118-50; E.O. 14312.",
       "source": {
-        "page_or_item": "15 CFR part 746 (part_authority; GovInfo eCFR XML title 15, amended through 2026-09-24; NODE 15:3.1.1.1.2)",
-        "sha256": "45d4774141e341c13b618de5a174dbb5163bad804f35ee06bdad8d2fc7ed10ca",
+        "page_or_item": "15 CFR part 746 (part_authority; GovInfo eCFR XML title 15, amended through 2026-11-04; NODE 15:3.1.1.1.2)",
+        "sha256": "80ce51ba4b62a0a6d6e00d02155fe5a040d0d484c25a140491767caf265687ad",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
       },
       "system": "ecfr",
@@ -270,10 +275,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-09-24)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:08e9448443c1",
+        "mention_id": "ecfr:782c28e56b05",
         "snippet": "...ential Determination 2003-23, 68 FR 26459, 3 CFR, 2004 Comp., p. 320; Presidential Determination 2007-7, 72 FR 1899, 3 CFR, 2006 Comp., p. 325; Pub. L. 118-50; E.O. 14312.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -283,15 +288,16 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (15 CFR part 746)",
         "source": {
-          "page_or_item": "15 CFR part 746 (part_authority; GovInfo eCFR XML title 15, amended through 2026-09-24; NODE 15:3.1.1.1.2)",
-          "sha256": "45d4774141e341c13b618de5a174dbb5163bad804f35ee06bdad8d2fc7ed10ca",
+          "page_or_item": "15 CFR part 746 (part_authority; GovInfo eCFR XML title 15, amended through 2026-11-04; NODE 15:3.1.1.1.2)",
+          "sha256": "80ce51ba4b62a0a6d6e00d02155fe5a040d0d484c25a140491767caf265687ad",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
         }
       }
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -319,7 +325,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -391,6 +398,10 @@
     "clause_12_state",
     "clause_13_state",
     "clause_14_state",
+    "clause_15_state",
+    "clause_16_state",
+    "clause_17_state",
+    "clause_18_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -398,10 +409,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 15 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 19 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 1 later event(s) end part of it: ? revocation 2025-09-25 (scope: not stated)"
   ],
   "evidence": {
     "ACTOR_TEXT:EO:13224": {
@@ -648,7 +660,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -679,7 +691,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -710,7 +722,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -741,7 +753,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -772,7 +784,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -803,7 +815,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -834,7 +846,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -865,7 +877,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -896,7 +908,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -992,7 +1004,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1023,7 +1035,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1054,7 +1066,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1085,7 +1097,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1116,7 +1128,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1147,7 +1159,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1178,7 +1190,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1209,7 +1221,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1240,7 +1252,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1336,7 +1348,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1367,11 +1379,42 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
       "text": "(A) Exports from abroad or reexports from the countries described in supplement no. 3 to this part are not subject to the license requirements described in paragraph (a)(1)(iii) of this section, unless a limit to the exclusion is described in the “Scope” column in supplement no. 3 to this part."
+    },
+    "TERM:EO:14312:3a3d6837912ec43a@8cae3de37824cb2f": {
+      "actor_id": "EO:14312",
+      "char_end": 4115,
+      "char_start": 3516,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14312:3a3d6837912ec43a@8cae3de37824cb2f",
+      "instrument_id": "EO:14312",
+      "kind": "emergency_duration",
+      "mechanism": "own_terms_emergency_duration",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14312#sec3-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14312",
+        "page_or_item": "90 FR 29395-29399 (PDF pp. 1-5)",
+        "requires_page_check": false,
+        "sha256": "f8e16f106dd61502fb5c69fa88b616b087d0a452d32a933146469421002902f0",
+        "signing_date": "2025-06-30",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14312-f8e16f106d.txt",
+        "text_sha256": "8cae3de37824cb2fd5967bad53ced5b2a3aa5fe13b5fe8df06c682c5b113eb7c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2025-07-03/pdf/2025-12506.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) Pursuant to section 202(a) of the NEA (50 U.S.C. 1622(a)), termination\nof the national emergency declared in Executive Order 13338, as modified\nin scope and relied upon for additional steps taken in Executive Order\n13399, Executive Order 13460, Executive Order 13572, Executive Order\n13573, and Executive Order 13582 shall not affect any action taken or\npending proceeding not finally concluded or determined as of July 1, 2025,\nany action or proceeding based on any act committed prior to July 1,\n2025, or any rights or duties that matured or penalties that were incurred\nprior to July 1, 2025."
     },
     "TERM:EO:14312:3bdecd870243bb9b@fe35a854a00904a2": {
       "actor_id": "EO:14312",
@@ -1429,7 +1472,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1460,7 +1503,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1491,7 +1534,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1522,7 +1565,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1553,7 +1596,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1584,7 +1627,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1619,37 +1662,6 @@
       "stated_end_date": null,
       "text": "(a) Effective July 1, 2025, I hereby \nterminate the national emergency declared in Executive Order 13338 of \nMay 11, 2004 (Blocking Property of Certain Persons and Prohibiting the \nExport of Certain Goods to Syria), and revoke that order, as well as Executive \nOrder 13399 of April 25, 2006 (Blocking Property of Additional Persons \nin Connection With the National Emergency With Respect to Syria), Executive \nOrder 13460 of February 13, 2008 (Blocking Property of Additional Persons \nin Connection With the National Emergency With Respect to Syria), Executive \nOrder 13572 of April 29, 2011 (Blocking Property of Certain Persons with \nRespect to Human Rights Abuses in Syria), Executive Order 13573 of May \n18, 2011 (Blocking Property of Senior Officials of the Government of Syria), \nand Executive Order 13582 of August 17, 2011 (Blocking Property of the \nGovernment of Syria and Prohibiting Certain Transactions with Respect to \nSyria)."
     },
-    "TERM:EO:14312:48ed04eabf730ad5@99e2df098be67201": {
-      "actor_id": "EO:14312",
-      "char_end": 3561,
-      "char_start": 2622,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14312:48ed04eabf730ad5@99e2df098be67201",
-      "instrument_id": "EO:14312",
-      "kind": "sunset_date",
-      "mechanism": "own_terms_sunset_date",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14312#sec3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14312",
-        "page_or_item": "90 FR 29395, PDF pages 1-5",
-        "requires_page_check": false,
-        "sha256": "f8e16f106dd61502fb5c69fa88b616b087d0a452d32a933146469421002902f0",
-        "signing_date": "2025-06-30",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14312-f8e16f106d.txt",
-        "text_sha256": "99e2df098be6720165e7f942bb07d4c2c09bd4663ee9014f3c14b20c553e69ee",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2025-07-03/pdf/2025-12506.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(a) Effective July 1, 2025, I hereby \nterminate the national emergency declared in Executive Order 13338 of \nMay 11, 2004 (Blocking Property of Certain Persons and Prohibiting the \nExport of Certain Goods to Syria), and revoke that order, as well as Executive \nOrder 13399 of April 25, 2006 (Blocking Property of Additional Persons \nin Connection With the National Emergency With Respect to Syria), Executive \nOrder 13460 of February 13, 2008 (Blocking Property of Additional Persons \nin Connection With the National Emergency With Respect to Syria), Executive \nOrder 13572 of April 29, 2011 (Blocking Property of Certain Persons with \nRespect to Human Rights Abuses in Syria), Executive Order 13573 of May \n18, 2011 (Blocking Property of Senior Officials of the Government of Syria), \nand Executive Order 13582 of August 17, 2011 (Blocking Property of the \nGovernment of Syria and Prohibiting Certain Transactions with Respect to \nSyria)."
-    },
     "TERM:EO:14312:4f4c3a95abd1b3f7@2d0c88bb72c19753": {
       "actor_id": "EO:14312",
       "char_end": 68678,
@@ -1675,7 +1687,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1706,7 +1718,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1737,11 +1749,42 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
       "text": "A license is required to export, reexport, or transfer (in-country) any item subject to the EAR listed in supplement no. 4 to this part to or within Russia or Belarus."
+    },
+    "TERM:EO:14312:5c760718855004bb@8cae3de37824cb2f": {
+      "actor_id": "EO:14312",
+      "char_end": 3515,
+      "char_start": 2589,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:14312:5c760718855004bb@8cae3de37824cb2f",
+      "instrument_id": "EO:14312",
+      "kind": "sunset_date",
+      "mechanism": "own_terms_sunset_date",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:14312#sec3",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14312",
+        "page_or_item": "90 FR 29395-29399 (PDF pp. 1-5)",
+        "requires_page_check": false,
+        "sha256": "f8e16f106dd61502fb5c69fa88b616b087d0a452d32a933146469421002902f0",
+        "signing_date": "2025-06-30",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-14312-f8e16f106d.txt",
+        "text_sha256": "8cae3de37824cb2fd5967bad53ced5b2a3aa5fe13b5fe8df06c682c5b113eb7c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2025-07-03/pdf/2025-12506.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(a) Effective July 1, 2025, I hereby\nterminate the national emergency declared in Executive Order 13338 of\nMay 11, 2004 (Blocking Property of Certain Persons and Prohibiting the\nExport of Certain Goods to Syria), and revoke that order, as well as Executive\nOrder 13399 of April 25, 2006 (Blocking Property of Additional Persons\nin Connection With the National Emergency With Respect to Syria), Executive\nOrder 13460 of February 13, 2008 (Blocking Property of Additional Persons\nin Connection With the National Emergency With Respect to Syria), Executive\nOrder 13572 of April 29, 2011 (Blocking Property of Certain Persons with\nRespect to Human Rights Abuses in Syria), Executive Order 13573 of May\n18, 2011 (Blocking Property of Senior Officials of the Government of Syria),\nand Executive Order 13582 of August 17, 2011 (Blocking Property of the\nGovernment of Syria and Prohibiting Certain Transactions with Respect to\nSyria)."
     },
     "TERM:EO:14312:5d09d40d26d7f219@2d0c88bb72c19753": {
       "actor_id": "EO:14312",
@@ -1768,7 +1811,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1895,7 +1938,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1926,7 +1969,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1957,7 +2000,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1988,7 +2031,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2019,7 +2062,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2081,7 +2124,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2112,7 +2155,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2143,7 +2186,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2174,7 +2217,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2205,7 +2248,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2236,7 +2279,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2267,7 +2310,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2298,7 +2341,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2329,7 +2372,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2391,7 +2434,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2422,7 +2465,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2453,7 +2496,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2484,7 +2527,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2515,7 +2558,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2577,7 +2620,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2639,7 +2682,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2670,7 +2713,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2701,7 +2744,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2732,7 +2775,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2763,7 +2806,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2794,7 +2837,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2823,37 +2866,6 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/fr-originals/output/texts/EO_14312.txt",
         "text_sha256": "37a98cf4a2ae6994b173697921a14d2cc2ea07a22db8559c3ba566457143e99b",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2025-07-03/pdf/2025-12506.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) Pursuant to section 202(a) of the NEA (50 U.S.C. 1622(a)), termination \nof the national emergency declared in Executive Order 13338, as modified \nin scope and relied upon for additional steps taken in Executive Order \n13399, Executive Order 13460, Executive Order 13572, Executive Order \n13573, and Executive Order 13582 shall not affect any action taken or \npending proceeding not finally concluded or determined as of July 1, 2025, \nany action or proceeding based on any act committed prior to July 1, \n2025, or any rights or duties that matured or penalties that were incurred \nprior to July 1, 2025."
-    },
-    "TERM:EO:14312:bac77da28abd886c@99e2df098be67201": {
-      "actor_id": "EO:14312",
-      "char_end": 4442,
-      "char_start": 3835,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14312:bac77da28abd886c@99e2df098be67201",
-      "instrument_id": "EO:14312",
-      "kind": "emergency_duration",
-      "mechanism": "own_terms_emergency_duration",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14312#sec3-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14312",
-        "page_or_item": "90 FR 29395, PDF pages 1-5",
-        "requires_page_check": false,
-        "sha256": "f8e16f106dd61502fb5c69fa88b616b087d0a452d32a933146469421002902f0",
-        "signing_date": "2025-06-30",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-14312-f8e16f106d.txt",
-        "text_sha256": "99e2df098be6720165e7f942bb07d4c2c09bd4663ee9014f3c14b20c553e69ee",
         "url": "https://www.govinfo.gov/content/pkg/FR-2025-07-03/pdf/2025-12506.pdf"
       },
       "start_date": null,
@@ -2916,7 +2928,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2947,7 +2959,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2978,7 +2990,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3009,7 +3021,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3040,7 +3052,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3071,7 +3083,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3102,7 +3114,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3133,7 +3145,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3164,7 +3176,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3195,7 +3207,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3257,7 +3269,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3353,7 +3365,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3384,7 +3396,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3415,7 +3427,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3477,7 +3489,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3508,7 +3520,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3573,7 +3585,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3604,7 +3616,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3635,7 +3647,7 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3666,14 +3678,14 @@
         "signing_date": "2025-06-30",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-part746.txt",
         "text_sha256": "2d0c88bb72c19753baf3709d6de0c00175b77baa2ded88473f699b8c95ec1448",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-15/part-746"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-15/part-746"
       },
       "start_date": null,
       "stated_end_date": null,
       "text": "(e) OFAC maintains controls on certain transactions involving persons subject to U.S. jurisdiction and North Korean entities or any specially designated North Korean national.\n[72 FR 3725, Jan. 26, 2007, as amended at 72 FR 20223, Apr. 24, 2007; 79 FR 32625, June 5, 2014]\n§ 746.5 [Reserved]\n§ 746.6 Temporarily occupied Crimea region of Ukraine and covered regions of Ukraine."
     }
   },
-  "fingerprint": "962c870e645bbf88702a2b4aa8aeebc87e959a239aa8c8bb0d4682330aa4cbde",
+  "fingerprint": "c39ba2abc26d6933494611d8b6d4bf8d0274f7385ef86eb1918737390d655180",
   "instrument_id": "EO:14312",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3731,7 +3743,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14312:48ed04eabf730ad5@37a98cf4a2ae6994",
         "TERM:EO:14312:f46867b5c3ffc8a9@93742c598855fded",
-        "TERM:EO:14312:48ed04eabf730ad5@99e2df098be67201",
+        "TERM:EO:14312:5c760718855004bb@8cae3de37824cb2f",
         "TERM:EO:14312:a5940b98aa569824@fe35a854a00904a2"
       ],
       "questions": [
@@ -3755,7 +3767,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14312:bac77da28abd886c@37a98cf4a2ae6994",
         "TERM:EO:14312:2b8637b735e12ed1@93742c598855fded",
-        "TERM:EO:14312:bac77da28abd886c@99e2df098be67201",
+        "TERM:EO:14312:3a3d6837912ec43a@8cae3de37824cb2f",
         "TERM:EO:14312:2b8637b735e12ed1@fe35a854a00904a2"
       ],
       "questions": [
@@ -3804,7 +3816,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -3816,7 +3828,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -3828,8 +3840,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3857,8 +3869,8 @@
     "TERM:EO:14312:d95d11bc1f9468e4@93742c598855fded",
     "TERM:EO:14312:5fb7efcc562dc4fe@93742c598855fded",
     "TERM:EO:14312:0fcbf0720f9cc21f@93742c598855fded",
-    "TERM:EO:14312:48ed04eabf730ad5@99e2df098be67201",
-    "TERM:EO:14312:bac77da28abd886c@99e2df098be67201",
+    "TERM:EO:14312:5c760718855004bb@8cae3de37824cb2f",
+    "TERM:EO:14312:3a3d6837912ec43a@8cae3de37824cb2f",
     "TERM:EO:14312:ac647678e7033145@2d0c88bb72c19753",
     "TERM:EO:14312:944b6ce7d10c14af@2d0c88bb72c19753",
     "TERM:EO:14312:685d1b3bbde067cc@2d0c88bb72c19753",
@@ -3952,10 +3964,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "9cb2d25f80cf5b6688ee3054f220b47dfacfbc803efa0ea52f812881afa8a819",
+    "fingerprint": "9424aefbbd0e48d4948c37aaef9ae3797b55549faa1baa1510506f6449d97246",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14312.json",
-    "history_sha256": "f42a487244f3cc14437758a2d6ffec074f0ab2c821224c08e2249cfb74edf798",
+    "history_sha256": "d447d2f171417179692b08ff93c1ff4d3f926957ac86361707751d99f95a3580",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "6c3993af838c0d535b978b5be539c1d4d33c136b851576c988ef098bc835e469",
+  "dossier_sha256": "2bc0004e3b62f505571df29929e12d51a293bb292abd498d3fa6a5c2a67d9d08",
   "instrument_id": "EO:7988",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1938-10-12",
               "register_number": "7988",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7988.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7988.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 7988—Exemption of Miss Ada Tanner From Compulsory Retirement for Age",
               "text_chars": 719
             },
@@ -123,6 +134,16 @@
       },
       {
         "complete_text_confirmed": false,
+        "grade": "official_printing",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7988",
+        "pages_confirmed": false,
+        "sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7988.txt",
+        "text_sha256": "2a11029c5b132f769d92107c6d31ee995f647085474da19d4b52b3b7cf782461"
+      },
+      {
+        "complete_text_confirmed": false,
         "grade": "mirror_transcription",
         "identity_confirmed": false,
         "instrument_id": "EO:7988",
@@ -130,6 +151,16 @@
         "sha256": "07c035b1abfac1ac80f1a8a294756aec93dabe622cc59ca218e510fcebfe7795",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7988-07c035b1ab.txt",
         "text_sha256": "7d1dcc6ff17447d071a1d70ce11c2141ec85561d9bcff8be79231d21719cf44d"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7988",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7988.txt",
+        "text_sha256": "e38c09e1385caf1e544ac862fca280f5727bdb37fa29199893446e4d296c6fa0"
       }
     ],
     "quotation_recheck_required": true,

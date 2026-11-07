@@ -9,7 +9,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 225,
+    "generic_refs_excluded": 234,
     "id": "CHAIN:EO:13882",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13882"
@@ -566,7 +566,12 @@
       "text": "(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person."
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    {
+      "code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER",
+      "detail": "provisional YES, but 1 later event(s) end part of it: ? suspension 2020-02-07 (scope: not stated)"
+    }
+  ],
   "current_law_leads": [
     {
       "basis_code": "cfr_text_reference",
@@ -632,8 +637,34 @@
       "where": "CFR 31 CFR part 555"
     },
     {
+      "basis_code": "table_iv_listed_note",
+      "checked_through": "2025-01-06",
+      "currency_code": "table_iv_edition_date_not_cutoff",
+      "edition": "2025-01-06",
+      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "fragment_kind": "current_predicate_candidates",
+      "input_origin": "jobs/duodecim-tableiv/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13882",
+      "legal_basis_candidate": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+      "machine_lead": true,
+      "mention_id": "USC2024@2025-01-06:3036",
+      "note_text_held": {
+        "status": "no_printed_note_in_current_law"
+      },
+      "row_span": "323529-323624",
+      "snippet": "2019 July 26 | EO 13882 | 50 U.S.C. 1701 nt",
+      "source": {
+        "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+        "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+        "url": "https://uscode.house.gov/tables/usctable4.html"
+      },
+      "system": "usc",
+      "where": "USC 50 U.S.C. 1701 nt"
+    },
+    {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -661,7 +692,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -689,7 +721,8 @@
     },
     {
       "custody_records_in": [
-        "current-law"
+        "current-law",
+        "ptolemy-custody"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
@@ -714,6 +747,34 @@
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
+    },
+    {
+      "custody_records_in": [
+        "duodecim-tableiv"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "table_iv_listed_note",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "table_iv_edition_date_not_cutoff",
+        "edition": "2025-01-06",
+        "from": "duodecim-tableiv@jobs/duodecim-tableiv/output",
+        "from_job": "duodecim-tableiv",
+        "mention_id": "USC2024@2025-01-06:3036",
+        "snippet": "2019 July 26 | EO 13882 | 50 U.S.C. 1701 nt",
+        "snippet_truncated": false,
+        "system": "usc",
+        "where": "USC 50 U.S.C. 1701 nt"
+      },
+      "proposal": {
+        "checked_through": "2025-01-06",
+        "legal_basis": "U.S. Code Table IV lists this order at 50 U.S.C. 1701 nt (updated through the 2024 Main Edition (01/06/2025))",
+        "source": {
+          "page_or_item": "U.S. Code Table IV (Executive Orders), updated through the 2024 Main Edition (01/06/2025)",
+          "sha256": "16f2e0268cbadcac80e17875f74644c68f7a51430046e9ad6c60d09af0dce95c",
+          "url": "https://uscode.house.gov/tables/usctable4.html"
+        }
+      }
     }
   ],
   "draft_gate_errors": [
@@ -734,6 +795,9 @@
     "clause_14_state",
     "clause_15_state",
     "clause_16_state",
+    "clause_17_state",
+    "clause_18_state",
+    "clause_19_state",
     "yes_without_continuing_clause",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -741,10 +805,11 @@
     "research_rationale"
   ],
   "draft_material_gaps": [
-    "DRAFT: state_at_cutoff not decided for 17 clause(s); clause inventory completeness not confirmed",
+    "DRAFT: state_at_cutoff not decided for 20 clause(s); clause inventory completeness not confirmed",
     "DRAFT: current legal basis not established",
     "DRAFT: savings and residual effects not closed",
-    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
+    "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)",
+    "CONFLICT PARTIAL_END_CANDIDATE_ON_YES_ORDER: provisional YES, but 1 later event(s) end part of it: ? suspension 2020-02-07 (scope: not stated)"
   ],
   "evidence": {
     "ACTOR_TEXT:EO:14294": {
@@ -1371,37 +1436,6 @@
       "stated_end_date": null,
       "text": "Such persons shall be treated \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
     },
-    "TERM:EO:13882:13d5d53b9c043efd@cc707cb7e766ee5e": {
-      "actor_id": "EO:13882",
-      "char_end": 5832,
-      "char_start": 5584,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13882:13d5d53b9c043efd@cc707cb7e766ee5e",
-      "instrument_id": "EO:13882",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13882#sec2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13882",
-        "page_or_item": "84 FR 37055, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "537a00c9878069728313c6a2f69c09afa7e768d60aa6df08e58d2ca6422798c3",
-        "signing_date": "2019-07-26",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13882-537a00c987.txt",
-        "text_sha256": "cc707cb7e766ee5e4d8405c2010e6aa54d5e91a3e897b70a4a1c4a53c4264195",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2019-07-30/pdf/2019-16383.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Such persons shall be treated \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
-    },
     "TERM:EO:13882:167040205eadd8de@c173d8f4364b87b0": {
       "actor_id": "EO:13882",
       "char_end": 3481,
@@ -1427,7 +1461,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1458,7 +1492,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1489,7 +1523,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1520,7 +1554,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1551,7 +1585,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1582,7 +1616,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1647,7 +1681,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-555.201.txt",
         "text_sha256": "bb2bcf093e78b9c88156149d644abe8b0f0b1b5670562a83fc0301e70d08cd23",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/section-555.201"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/section-555.201"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1678,7 +1712,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1709,7 +1743,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1740,7 +1774,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1771,7 +1805,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1802,7 +1836,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1833,7 +1867,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1864,7 +1898,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1895,7 +1929,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1926,11 +1960,42 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
       "text": "(b) Reference to any regulation, ruling, instruction, order, directive, or license issued pursuant to this part is a reference to the same as currently amended unless otherwise so specified.\n§ 555.402 Effect of amendment."
+    },
+    "TERM:EO:13882:63c1060e92139232@bedfd3c87067e466": {
+      "actor_id": "EO:13882",
+      "char_end": 5485,
+      "char_start": 5240,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13882:63c1060e92139232@bedfd3c87067e466",
+      "instrument_id": "EO:13882",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13882#sec2",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13882",
+        "page_or_item": "84 FR 37055-37058 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "537a00c9878069728313c6a2f69c09afa7e768d60aa6df08e58d2ca6422798c3",
+        "signing_date": "2019-07-26",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13882-537a00c987.txt",
+        "text_sha256": "bedfd3c87067e466b3edd84fd8b85de6b6a8ad6ebe6b7d8b0b8482c511314a5c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2019-07-30/pdf/2019-16383.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "Such persons shall be treated\nas persons covered by section 1 of Proclamation 8693 of July 24, 2011\n(Suspension of Entry of Aliens Subject to United Nations Security Council\nTravel Bans and International Emergency Economic Powers Act Sanctions)."
     },
     "TERM:EO:13882:69d7558f2e3ea27c@c173d8f4364b87b0": {
       "actor_id": "EO:13882",
@@ -1957,7 +2022,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -1988,7 +2053,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2019,7 +2084,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2050,11 +2115,42 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
       "text": "(1) Receipt of payment of professional fees and reimbursement of incurred expenses for the provision of legal services authorized pursuant to § 555.507(a) to or on behalf of any person whose property and interests in property are blocked pursuant to § 555.201, is authorized from funds originating outside the United States, provided that the funds do not originate from:"
+    },
+    "TERM:EO:13882:a4b996be2bc2ab27@bedfd3c87067e466": {
+      "actor_id": "EO:13882",
+      "char_end": 9039,
+      "char_start": 8922,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13882:a4b996be2bc2ab27@bedfd3c87067e466",
+      "instrument_id": "EO:13882",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13882#sec10-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13882",
+        "page_or_item": "84 FR 37055-37058 (PDF pp. 1-4)",
+        "requires_page_check": false,
+        "sha256": "537a00c9878069728313c6a2f69c09afa7e768d60aa6df08e58d2ca6422798c3",
+        "signing_date": "2019-07-26",
+        "text_path": "jobs/clause-drafts/output/texts/cd-stage21-13882-537a00c987.txt",
+        "text_sha256": "bedfd3c87067e466b3edd84fd8b85de6b6a8ad6ebe6b7d8b0b8482c511314a5c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2019-07-30/pdf/2019-16383.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     },
     "TERM:EO:13882:addf6caf3043cf75@c173d8f4364b87b0": {
       "actor_id": "EO:13882",
@@ -2081,7 +2177,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2112,7 +2208,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2143,7 +2239,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2174,7 +2270,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2205,7 +2301,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2270,7 +2366,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2301,7 +2397,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2332,7 +2428,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2363,7 +2459,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2394,7 +2490,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2425,7 +2521,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2456,7 +2552,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2487,7 +2583,7 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2522,37 +2618,6 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     },
-    "TERM:EO:13882:f6f7c6cc7c175448@cc707cb7e766ee5e": {
-      "actor_id": "EO:13882",
-      "char_end": 9713,
-      "char_start": 9595,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13882:f6f7c6cc7c175448@cc707cb7e766ee5e",
-      "instrument_id": "EO:13882",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13882#sec10-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13882",
-        "page_or_item": "84 FR 37055, PDF pages 1-4",
-        "requires_page_check": false,
-        "sha256": "537a00c9878069728313c6a2f69c09afa7e768d60aa6df08e58d2ca6422798c3",
-        "signing_date": "2019-07-26",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-13882-537a00c987.txt",
-        "text_sha256": "cc707cb7e766ee5e4d8405c2010e6aa54d5e91a3e897b70a4a1c4a53c4264195",
-        "url": "https://www.govinfo.gov/content/pkg/FR-2019-07-30/pdf/2019-16383.pdf"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
-    },
     "TERM:EO:13882:fd351ec44308fbc2@c173d8f4364b87b0": {
       "actor_id": "EO:13882",
       "char_end": 17671,
@@ -2578,14 +2643,14 @@
         "signing_date": "2019-07-26",
         "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part555.txt",
         "text_sha256": "c173d8f4364b87b005cfa7b495cef818d7d6d2acd7a73799a4ad5c3983904d17",
-        "url": "https://www.ecfr.gov/on/2026-11-04/title-31/part-555"
+        "url": "https://www.ecfr.gov/on/2026-11-05/title-31/part-555"
       },
       "start_date": null,
       "stated_end_date": null,
       "text": "(f) Blocked funds held in accounts or instruments outside the United States at the time the funds become subject to § 555.201 may continue to be held in the same type of accounts or instruments, provided the funds earn interest at rates that are commercially reasonable."
     }
   },
-  "fingerprint": "78012d4d932570099facb26a9b3eb78954caf8e3588d9eb16b979d26f62d4470",
+  "fingerprint": "ec02d6755937390ccc4a9009f1f8602a842c64c40617033346426422837b2fb7",
   "instrument_id": "EO:13882",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2691,7 +2756,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13882:13d5d53b9c043efd@01b41b4e005230ec",
         "TERM:EO:13882:2c50a1de682439c4@4a1f7f4bdee8ab98",
-        "TERM:EO:13882:13d5d53b9c043efd@cc707cb7e766ee5e"
+        "TERM:EO:13882:63c1060e92139232@bedfd3c87067e466"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -2952,7 +3017,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:13882:f6f7c6cc7c175448@01b41b4e005230ec",
         "TERM:EO:13882:c92bf796d128fa0d@4a1f7f4bdee8ab98",
-        "TERM:EO:13882:f6f7c6cc7c175448@cc707cb7e766ee5e"
+        "TERM:EO:13882:a4b996be2bc2ab27@bedfd3c87067e466"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -2984,7 +3049,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
@@ -2996,7 +3061,7 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-17",
+        "checked_on": "2026-11-06",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
@@ -3008,8 +3073,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-10-19",
-        "query_or_scope": "disposition notes of 6938 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-06",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3020,6 +3085,7 @@
   ],
   "missing": [
     "Acting identity absent from census: NOTICE:2021-07-20",
+    "Acting identity absent from census: NOTICE:2023-07-21",
     "Acting identity absent from census: NOTICE:2025-07-21",
     "Acting identity absent from census: NOTICE:2026-07-21",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
@@ -3034,8 +3100,8 @@
     "TERM:EO:13882:f6f7c6cc7c175448@01b41b4e005230ec",
     "TERM:EO:13882:2c50a1de682439c4@4a1f7f4bdee8ab98",
     "TERM:EO:13882:c92bf796d128fa0d@4a1f7f4bdee8ab98",
-    "TERM:EO:13882:13d5d53b9c043efd@cc707cb7e766ee5e",
-    "TERM:EO:13882:f6f7c6cc7c175448@cc707cb7e766ee5e",
+    "TERM:EO:13882:63c1060e92139232@bedfd3c87067e466",
+    "TERM:EO:13882:a4b996be2bc2ab27@bedfd3c87067e466",
     "TERM:EO:13882:3679ccd772dbc28f@bb2bcf093e78b9c8",
     "TERM:EO:13882:167040205eadd8de@c173d8f4364b87b0",
     "TERM:EO:13882:3679ccd772dbc28f@c173d8f4364b87b0",
@@ -3074,10 +3140,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "ffb5c7f4712bfc7a42daaec71fc27f37d130262c9fbf7e27a442052d5bb2652f",
+    "fingerprint": "5f9cdc2961028d304024e64a703f43e619ee394d64650efcc3c6346aa5d34544",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13882.json",
-    "history_sha256": "cf3f63774fe807d6c923f1256880a4600d78349bd57180fc436d54c54b1adab2",
+    "history_sha256": "98ad8c926755ef9c7d875992ad11f0178a3932a7f06b99d1ad0846b091caf26b",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

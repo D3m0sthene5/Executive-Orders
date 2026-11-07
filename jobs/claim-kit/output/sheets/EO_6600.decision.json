@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "181c4150d6b296cee0f2d1a701d82c5fc87965281f2b25c9b3ba693584b5d661",
+  "dossier_sha256": "82e28cc502a81740fae5f6d11e7cb7b0f6b3615fb99eb159cb19cbea8c8a7eb2",
   "instrument_id": "EO:6600",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -89,7 +89,18 @@
               "register_date": "1934-02-10",
               "register_number": "6600",
               "similarity": [],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6600.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6600.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
               "source_heading": "Executive Order 6600—Code of Fair Competition for the Trucking Industry",
               "text_chars": 1850
             },
