@@ -310,7 +310,10 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
         with open(prior_dir / "PRE1997_MANIFEST.csv", newline="", encoding="utf-8") as fh:
             pre_rows = list(csv.DictReader(fh))
         pre_summary["carried_forward"] = True
-    else:
+        h = pre_summary.get("hathi") or {}
+        if not (h.get("scan") or h.get("seed")):  # a manifest without a Hathi reading is recomputed, not carried
+            pre_rows, pre_summary = [], None
+    if pre_summary is None:
         try:
             pre_rows, pre_summary = prewar.build(pool, lsa.UA, opener or prewar.open_stream, skip_hathi=False)
         except Exception as e:  # noqa: BLE001  the manifest never costs the LSA results
