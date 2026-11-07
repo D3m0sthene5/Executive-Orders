@@ -14,7 +14,7 @@ import html
 import re
 
 DERIVE_VERSION = "derive-1"
-SCAN_VERSION = "youngstown-scan-1"
+SCAN_VERSION = "youngstown-scan-2"
 CLASS_VERSION = "youngstown-class-1"
 
 CLASSES = ("enjoined_vacated_invalidated", "upheld", "interpreted", "mentioned")
@@ -93,6 +93,8 @@ def eo_mentions(text: str):
         n, suf = _split_suffix(m.group("first"))
         if n is None or n < 1:
             continue
+        if re.match(r"[-\u2013\u2014]0?\d{1,2}(?!\d)", text[m.end("first"):m.end("first") + 5]):
+            continue  # "Executive Order 2020-04", "20-12": a year or fiscal-year dash number, a state or local style, not a federal number
         items = [(m.start("first"), m.end("first"), n, suf, False, False)]
         pos, prev = m.end("first"), n
         while True:

@@ -23,7 +23,7 @@ import scan
 
 HERE = Path(__file__).resolve().parent
 # Name patterns that identify each planted opinion among the real court hits of a full run.
-CASE_PATTERNS = {"youngstown": r"youngstown", "korematsu": r"korematsu", "endo": r"\bendo\b", "wash": r"washington v\.? trump",
+CASE_PATTERNS = {"youngstown": r"youngstown", "korematsu": r"korematsu", "endo": r"\bendo\b", "wash": r"washington.*trump",
                  "reich": r"chamber of commerce.*reich", "contractors": r"contractors? ass", "dames": r"dames\s*&\s*moore",
                  "irap": r"international refugee"}
 
@@ -279,9 +279,16 @@ def stream_recall_in_hits(cases, rows):
     out = []
     for c in cases:
         pat = re.compile(CASE_PATTERNS[c["key"]], re.I)
+        cite = c["citation"]
         for eo, expected in c["expected_pair_class"].items():
-            hit = [r for r in rows if r["eo"] == eo and pat.search(r["case_name"] or "")]
-            out.append({"case": c["key"], "eo": eo, "found_in_bulk": bool(hit), "rule_class": hit[0]["class"] if hit else None,
-                        "expected_by_reading": expected, "cluster_ids": [r["cid"] for r in hit][:5],
-                        "citation": c["citation"]})
+            by_cite = [r for r in rows if r["eo"] == eo and any(cite in x for x in r.get("cites", []))]
+            by_name = [r for r in rows if r["eo"] == eo and pat.search(r["case_name"] or "")]
+            hit = by_cite or by_name
+            out.append({"case": c["key"], "eo": eo, "citation": cite, "found_in_bulk": bool(hit),
+                        "found_by_reporter_citation": bool(by_cite), "expected_by_reading": expected,
+                        "sentence_class": by_cite[0]["class"] if by_cite else None,
+                        "opinion_class": by_cite[0]["op_class"] if by_cite else None,
+                        "effective_class": by_cite[0]["eff_class"] if by_cite else None,
+                        "matched": [{"cluster_id": r["cid"], "case_name": r["case_name"], "citations": r["cites"][:2],
+                                     "sentence_class": r["class"], "opinion_class": r["op_class"]} for r in hit][:5]})
     return out

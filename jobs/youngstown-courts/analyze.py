@@ -18,7 +18,7 @@ from pathlib import Path
 import opinion
 import scan
 
-ANALYSIS_VERSION = scan.CLASS_VERSION + "+" + opinion.OPINION_VERSION
+ANALYSIS_VERSION = scan.SCAN_VERSION + "+" + scan.CLASS_VERSION + "+" + opinion.OPINION_VERSION
 OPINION_URL = "https://www.courtlistener.com/opinion/{cid}/{slug}/"
 GRADE = "court_opinion_text_courtlistener_bulk (an opinion's text column from CourtListener's public bulk CSV)"
 MECHANISM = {"enjoined_vacated_invalidated": "court_enjoined_vacated_or_invalidated_lead", "upheld": "court_upheld_lead",

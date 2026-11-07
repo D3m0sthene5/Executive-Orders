@@ -172,19 +172,23 @@ def run_task(task):
 def reanalyze(held, cache, keys):
     """Re-run the analysis of a cached opinions segment from the held raw texts: no download. A record whose text the
     cache lost keeps its earlier result and is counted."""
-    n = missing = 0
+    n = missing = dropped = 0
+    keep = []
     for rec in held["records"]:
         ok, text = analyze.load_text(cache, rec)
         if text is None or not ok:
             missing += 1
+            keep.append(rec)
             continue
         orders, _ = analyze.analyze_text(text, keys)
-        if set(orders) != set(rec["orders"]):
-            missing += 1  # the set of orders found changed: keep the old record rather than mix versions
+        if not orders:
+            dropped += 1  # a rule change (e.g. dash numbers such as 2020-04) no longer finds a register order here
             continue
         rec["orders"], rec["analysis"] = orders, analyze.ANALYSIS_VERSION
+        keep.append(rec)
         n += 1
-    return {"reanalyzed_records": n, "reanalysis_text_missing": missing}
+    held["records"] = keep
+    return {"reanalyzed_records": n, "reanalysis_text_missing": missing, "reanalysis_records_dropped": dropped}
 
 
 def cached_plan(cache, key, build):
@@ -486,6 +490,7 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None):
                 scan_totals[k] += v
     reanalyzed = sum(d.get("reanalyzed_records", 0) for d in done)
     reanalysis_missing = sum(d.get("reanalysis_text_missing", 0) for d in done)
+    stats["reanalysis_records_dropped"] = sum(d.get("reanalysis_records_dropped", 0) for d in done)
     stats["reanalyzed_records"], stats["reanalysis_text_missing"] = reanalyzed, reanalysis_missing
     for d in done:
         stats["requests"] += d.get("requests", 0)
@@ -693,6 +698,7 @@ def finish(repo, out, cache, cfg, mode, date, bulk_info, cap, ctl, records, rows
         "analysis_version": analyze.ANALYSIS_VERSION,
         "reanalyzed_records_from_cache": stats.get("reanalyzed_records", 0),
         "reanalysis_text_missing": stats.get("reanalysis_text_missing", 0),
+        "reanalysis_records_dropped": stats.get("reanalysis_records_dropped", 0),
         "clusters_by_opinion_class": dict(Counter(r["op_class"] for r in out_rows)),
         "clusters_by_effective_class": dict(Counter(r["eff_class"] for r in out_rows)),
         "clusters_with_conflicting_cues": sum(1 for r in out_rows if r["deciding"]["orders"][r["eo"]].get("op", {}).get("conflict")),

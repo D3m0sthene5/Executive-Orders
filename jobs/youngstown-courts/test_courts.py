@@ -57,6 +57,8 @@ def citation_shapes():
     assert got("Executive Order\n10340") == [10340]
     assert got("pursuant to Exec. Order 13,769, 82 Fed. Reg. 8,977") == [13769]
     assert got("Proclamation No. 10340, Order No. 9066, 42 U.S.C. § 10340, 82 Fed. Reg. 13,769") == []
+    assert got("Executive Order 2020-04 and Executive Order No. 20-12 and E.O. 14-01") == []
+    assert got("Executive Order 12276-12285, 46 Fed. Reg. 7913") == list(range(12276, 12286))
     assert got("the executive order of the Governor") == [] and got("Executive Order of February 19, 1942") == []
     ms = scan.eo_mentions("see E.O. 6980-C and Executive Order 2656A")
     assert [(m["number"], m["suffix"]) for m in ms] == [(6980, "C"), (2656, "A")]
