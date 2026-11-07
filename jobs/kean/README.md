@@ -99,3 +99,30 @@ Standard library only. Kean changes no claim, provisional status, count, codeboo
 Mutating runner jobs and main progress reporting share the branch writer queue, so a reporting publication cannot invalidate a computation running beside it. Pending production selections are retained up to GitHub's explicit queue limit; read-only diagnostics use independent groups. Current branch inputs are checked out after waiting and are named in native receipts.
 
 Record a failed publication separately from a successful computation: a freshness refusal is not permission to overwrite newer results or renew evidence seals. Final operational receipt files can live under HANDOFF when they are not scientific research inputs. Avoid changing files consumed by an active production run merely to record its progress; register results and regenerate the brief together when that result requires a new finding.
+
+## Leases (Encyclopédie, 2026-11-06)
+
+Sessions kept starting the same batch or job. `jobs/kean/lease.py` records who holds a resource, until when, on one
+shared branch, `kean-leases` (one JSON file per resource under `leases/`). A claim is a commit pushed without force; a
+rejected non-fast-forward push means someone else moved the branch first, so the claimant re-reads and either backs
+off or claims again. Leases expire on their own (default 2 hours, at most 24), so a crashed session releases its
+lease by doing nothing. No server or database; the idea is the atomic claim from Beads and MCP Agent Mail.
+
+```sh
+python3 -I jobs/kean/lease.py claim   --resource batch:<packet> --holder <you> --minutes 240 --purpose "..."
+python3 -I jobs/kean/lease.py renew   --resource batch:<packet> --holder <you> --minutes 240
+python3 -I jobs/kean/lease.py release --resource batch:<packet> --holder <you>
+python3 -I jobs/kean/lease.py check   --resource job:<name>    --holder <you>     # exit 3 when another holder has it
+python3 -I jobs/kean/lease.py list
+```
+
+Resource names: `job:<folder>`, `batch:<packet folder name>`, `order:<instrument id>` (e.g. `order:EO:10340`),
+`stream:<name>`. Set `KEAN_LEASE_HOLDER` once instead of passing `--holder`.
+
+Checks that honour leases:
+- `jobs/claim-kit/kit.py dispatch-check` refuses (exit 1, `lease.state: held_by_other`) when another holder's active
+  lease covers the packet or any dispatchable member. An unreadable lease branch is reported as `unknown` and does not
+  block. `KEAN_LEASE_OFFLINE=1` uses the last fetched ref.
+- Before dispatching a job by hand, run `lease.py claim --resource job:<name>`; if it prints HELD, do not dispatch.
+  The shared runner (`.github/scripts/run_jobs.py`) does not yet read leases; making scheduled runs skip a leased job is
+  a separate, owner-reviewed runner change.
