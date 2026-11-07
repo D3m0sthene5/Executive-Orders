@@ -1,49 +1,30 @@
-## 2026-11-07 02:00 ET (Claude as the Encyclopédie coordinator: adopting the Peiresc tool survey)
+## 2026-11-07 06:05 UTC (Claude as Hansard, progress refresh unstuck; ready 1,185 -> 992 explained)
 
-- **Done (all merged):**
-  - Repository growth stopped at its two main sources:
-    - Ptolemy is paused (`PAUSED`), measured at 0 bytes per run.
-    - Failed-run receipts are trimmed ([PR #188](https://github.com/D3m0sthene5/Executive-Orders/pull/188)); they were
-      about 740 MB on 2026-11-06.
-  - Pergamon byte store ([PR #204](https://github.com/D3m0sthene5/Executive-Orders/pull/204)): GitHub Release assets
-    now, R2 by config. 3,691 Ptolemy and Selden raw files (3.18 GB) migrated, each re-downloaded and hash-matched
-    (`research/encyclopedie-campaign/storage/MIGRATION.md`).
-  - Kean leases on branch `kean-leases`; `kit.py dispatch-check` honours them
-    ([PR #189](https://github.com/D3m0sthene5/Executive-Orders/pull/189)).
-  - New zero-token jobs:
-    - Repetita, the LSA 1997-2026 ([#211](https://github.com/D3m0sthene5/Executive-Orders/pull/211));
-    - Duodecim, U.S. Code Table IV 2009-2025 ([#214](https://github.com/D3m0sthene5/Executive-Orders/pull/214));
-    - Youngstown, a CourtListener bulk citator ([#217](https://github.com/D3m0sthene5/Executive-Orders/pull/217)).
-  - Research merged:
-    - prior art, Thrower and Lowande-Poznansky, independently checked (#200, #202);
-    - thesis measure (#201);
-    - cross-family reviewer pilot (#205);
-    - OCR pilot (#203);
-    - Necker costs (#191) and Hollerith drivers and billing (#190);
-    - free-source survey (#196);
-    - certifier page (#195);
-    - Zenodo design (#192);
-    - Observable trial (#193).
-  - Dashboard: every tab refreshed, plus a Trajectory tab
-    ([#210](https://github.com/D3m0sthene5/Executive-Orders/pull/210)).
-  - Report: `research/encyclopedie-campaign/REPORT.md`. Log: `LOG.md`.
-- **Results to know:**
-  - **Thesis measure:** 59 orders formally revoked after an evidenced earlier end, 34 of them verified on both sides
-    (F-20261107-thesis-measure). In 59% of claimed revoked orders the revocation itself was the end.
-  - **Cross-family review:** Codex caught 8 of 8 planted controls, Claude 17 of 22 (F-20261107-septuagint-xfamily).
-  - **Pricing:** Bentham's price table is about 2x high (F-20261106-encyclopedie-necker).
-  - **Size limit:** GitHub's 10 GB is a recommended limit; 9,776,627 KB on 2026-11-07.
-- **Cautions for every session:**
-  - Point release tags at `pergamon-store-root`, never at a commit with workflows. Path filters do not apply to tag
-    pushes (F-20261107-pergamon-tag-triggers).
-  - A job importing `jobs/_lib` must list it, and what it imports, in `triggers.txt`, or main's road tests go red.
-  - Before merging a branch that ran jobs, bring it up to main and restore other jobs' outputs from main.
-  - `fetch_pool` ignores robots.txt wildcards (F-20261107-robots-wildcards).
-- **Asks:** @Owner: A-20261106-1, A-20261106-2, A-20261107-ocr-reference-rule, A-20261107-loc-hein, A-20261107-cap-mirror, A-20261107-tracker-thesis-fix, A-20261107-lowande-email, A-20261107-mountweazel-plants-leak, A-20261107-fetchpool-wildcards, A-20261107-courtlistener-robots, A-20261107-claimkit-court-fragments.
-  - A-20261106-1 has a provisional answer recorded.
-  - The rewrite plan for A-20261106-2 is `research/encyclopedie-campaign/storage/HISTORY_REWRITE_PLAN.md`.
-- **Running:** nothing from this campaign. The new jobs' first runs on main regenerate their outputs. Youngstown
-  re-streams 56 GB, about 2 hours.
+- **Done:** [PR #212](https://github.com/D3m0sthene5/Executive-Orders/pull/212) (refreshes one at a time, latest wins)
+  and [PR #216](https://github.com/D3m0sthene5/Executive-Orders/pull/216) (data-drifted reporting readouts publish as
+  of their input commit, then catch up; refresh workflow only). Cancelled 13 overlapping refreshes. First generation
+  since 2026-11-06 22:18: f6e5180880 at 05:23 UTC. Kean F-20261107-hansard-refresh-serialized.
+- **Measured (f6e5180880 vs 6d4b5f6357):** Photius's evidence gains reproduced (NO_OFFICIAL_SOURCE_LOCATED 4,787 ->
+  1,751; replica page checks 2,557 -> 10; compiled-only 2,762 -> 2,269; text step done 3,268 -> 3,516). Ready 1,185 ->
+  992: all 193 lost are transcription-dependent EO 8032-9208 whose Lachmann confirmations gained Photius's GPO
+  printing as a skipped witness, so their filed claims' frozen confirmations went stale. Kean
+  F-20261107-ready-drop-193-photius-witness; owner question A-20261107-photius-193-recheck (page-check them against
+  the new official printing rather than re-freeze).
+- **Tsiolkovsky:** W 6,631 -> 6,781 h of 18,191 (37.3%); +207 h original text, -57 h on the three claim steps.
+  Dashboard datasets refreshed (https://claude.ai/artifact/BZJxATqRtwrtBbuBy2UZpc). The 7-hour backlog landed in one
+  generation, so per-campaign credit for it is split evenly and understates Photius.
+- **Needs the owner (permission rules):** dropping two stashes in the session checkout and deleting 9 branches fully
+  contained in main were refused by the session's safety check; commands are in the chat.
+
+## 2026-11-07 (Claude, were Photius and Encyclopedie worth their cost)
+
+- Priced Photius's 289 agents at Necker list prices: about $641 API-equivalent (opus $438, sonnet $104, an
+  unlabelled family $99 priced as opus, so an upper bound), plan usage, $0 metered. About $0.21 per order that
+  gained an official witness (NO_OFFICIAL_SOURCE_LOCATED 4,787 -> 1,751); ready unchanged at 1,185.
+- Encyclopedie: $1,008.58 API-equivalent, $0 metered; infrastructure (repository growth stopped, reviewer-family
+  gap, Bentham prices about 2x high), no order evidence.
+- Kean F-20261107-photius-encyclopedie-worth. Photius's W gain still waits on a published tracker generation
+  (none since 2026-11-06 22:18 UTC); the refresh-overlap decision is still the owner's (see the 2026-11-06 entries).
 
 ## 2026-11-06 23:30 ET (Claude as Photius, closing the originals hole for EO 1-7315)
 
@@ -82,8 +63,12 @@
   in `research/photius/WORKERS.csv`; sanitized totals in `research/bentham/usage/photius/`. The twelve-worker
   limit was exceeded once (up to 16 concurrent) early in the wave; recorded here, not hidden. `claude -p` was
   not logged in, so workers ran through the Agent tool (P1).
-- **Running:** `Run jobs` dispatch of readiness-tracker, claim-checker and daily-digest on main right after
-  PR #199 merges; its STATUS.json and the ready count go into Kean as F-20261106-photius-lane6 when it lands.
+- **Lane 6 (Kean F-20261106-photius-lane6):** the `Run jobs` dispatch (run 42311160709) recomputed the tracker on the
+  runner with the same counts as the local run (ready 1,185; NO_OFFICIAL_SOURCE_LOCATED 1,751; needs-page-check 594;
+  replica-needs-page-check cleared). Publish refused the whole station because claim-kit failed ("Draft summary
+  population stale": claim-drafts ran before the tracker in the same station) and case-bundles failed (EO:11246 over
+  its startup budget). Re-queued runs are on main; the tracker output on main is still the 22:18 generation until one
+  passes. Run `readiness-tracker` alone first after a count-changing merge.
 - **Found in passing:** main's Road system offline tests fail on their own:
   `jobs/peano-formulario/needs.txt` does not list `jobs/_lib/eo_identity.py` (Kean
   F-20261106-road-tests-red-on-main-peano). One line for the Formulario owner; Photius did not touch it (P6).

@@ -10,6 +10,7 @@ import unittest
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import ptolemy as P  # noqa: E402
+import pergamon_store as PS  # noqa: E402
 
 PAGE = b"<html>an APP transcription</html>"
 PDF = b"%PDF-1.4 an FR document"
@@ -27,6 +28,32 @@ class FakePool:
         if url in self.errors:
             raise RuntimeError(self.errors[url])
         return {"url": url, "final_url": url, "body": self.bodies[url]}
+
+
+class MemBackend:
+    """An in-memory stand-in for a non-git Pergamon backend."""
+    name = "release"
+
+    def __init__(self):
+        self.objects, self.down = {}, False
+
+    def locator_for(self, sha, ext):
+        return f"mem://{sha}{ext}"
+
+    def put(self, raw, sha, ext):
+        if self.down:
+            raise PS.Unavailable("store is down")
+        self.objects[sha + ext] = raw
+        return self.locator_for(sha, ext)
+
+    def has(self, sha, ext=None):
+        return (sha + ext) in self.objects
+
+    def get(self, locator, max_bytes=0):
+        try:
+            return self.objects[locator[len("mem://"):]]
+        except KeyError:
+            raise PS.NotFound(locator)
 
 
 class PtolemyTests(unittest.TestCase):
@@ -139,6 +166,108 @@ class PtolemyTests(unittest.TestCase):
         ledger = {r["sha256"]: r["result"] for r in P.read_jsonl(out / "LEDGER.jsonl")}
         self.assertEqual(ledger[SHA_BAD], "fetch_failed")
         self.assertEqual(s["kept_total"], 1)
+
+
+class PergamonRoutingTests(unittest.TestCase):
+    """With PERGAMON_BACKEND other than git, kept bytes go to the store, not to output/raw."""
+    fetch_archive = PtolemyTests.fetch_archive
+
+    def setUp(self):
+        PtolemyTests.setUp(self)
+        self.mem = MemBackend()
+        self.store = PS.Store(self.mem)
+
+    def run_once(self, out, prior=None, **kw):
+        return P.run(self.job, out, self.root / "cache", prior=prior, fetch_archive=self.fetch_archive,
+                     pool=self.pool, store=self.store, **kw)
+
+    def test_kept_bytes_go_to_the_store_and_sources_carry_the_locator(self):
+        out = self.root / "out1"
+        s = self.run_once(out)
+        self.assertEqual(sorted(p.name for p in (out / "raw").iterdir()), [])          # nothing written to git's folder
+        self.assertEqual(self.mem.objects, {SHA_PAGE + ".html": PAGE, SHA_PDF + ".pdf": PDF})
+        src = {r["sha256"]: r for r in P.read_jsonl(out / "SOURCES.jsonl")}
+        self.assertEqual(set(src), {SHA_PAGE, SHA_PDF})
+        rec = src[SHA_PDF]
+        self.assertIsNone(rec["cache_path"])
+        self.assertEqual(rec["pergamon"]["locator"], f"mem://{SHA_PDF}.pdf")
+        self.assertEqual(rec["pergamon"]["backend"], "release")
+        self.assertEqual(rec["bytes"], len(PDF))
+        self.assertEqual(self.store.get_verified(rec["pergamon"]), PDF)
+        self.assertEqual(s["kept_total"], 2)
+        self.assertEqual(s["store"]["stored_this_run"], 2)
+        budget = json.loads((out / "BUDGET.json").read_text())
+        self.assertTrue(budget["ok"])
+
+    def test_wrong_bytes_never_reach_the_store(self):
+        self.run_once(self.root / "out1")
+        self.assertFalse(any(k.startswith(SHA_BAD) for k in self.mem.objects))
+
+    def test_next_run_carries_stored_records_without_refetching_them(self):
+        first = self.root / "out1"
+        self.run_once(first)
+        self.pool.calls.clear()
+        second = self.root / "out2"
+        s = self.run_once(second, prior=first)
+        self.assertEqual(self.pool.calls, ["https://www.govinfo.gov/flaky.pdf"])
+        self.assertEqual(s["kept_total"], 2)
+        self.assertEqual({r["sha256"] for r in P.read_jsonl(second / "SOURCES.jsonl")}, {SHA_PAGE, SHA_PDF})
+        self.assertTrue(all(r["pergamon"]["locator"] for r in P.read_jsonl(second / "SOURCES.jsonl")))
+
+    def test_paused_style_run_fetches_nothing_and_carries_everything(self):
+        first = self.root / "out1"
+        self.run_once(first)
+        self.pool.calls.clear()
+        paused = self.root / "out2"
+        s = self.run_once(paused, prior=first, archive_limit=0, live_limit=0)
+        self.assertEqual(self.pool.calls, [])
+        self.assertEqual(s["kept_total"], 2)
+        self.assertEqual(len(P.read_jsonl(paused / "SOURCES.jsonl")), 2)
+
+    def test_store_outage_is_not_charged_to_the_source_and_stops_the_run(self):
+        self.mem.down = True
+        out = self.root / "out1"
+        s = self.run_once(out)
+        self.assertEqual(s["kept_total"], 0)
+        ledger = {r["sha256"]: r for r in P.read_jsonl(out / "LEDGER.jsonl")}
+        self.assertEqual(ledger[SHA_PDF]["result"], "store_failed")
+        self.assertEqual(ledger[SHA_PDF]["attempts"], 0)          # still due in full on the next run
+        self.assertEqual(s["still_due"], 3)                       # mismatch is final; the other three can retry
+        self.assertGreaterEqual(s["store"]["store_failures_this_run"], 2)
+
+    def test_output_over_budget_fails_the_run_once_bytes_live_outside_git(self):
+        out = self.root / "out1"
+        out.mkdir()
+        (out / "stray.bin").write_bytes(b"x" * (6 * 1024 * 1024))
+        with self.assertRaises(RuntimeError):
+            self.run_once(out)
+        self.assertTrue((out / "BUDGET.json").is_file())
+
+    def test_legacy_raw_files_are_carried_and_excluded_from_the_enforced_budget(self):
+        legacy = self.root / "legacy"
+        self.store_git = PS.Store(PS.GitBackend(legacy / "raw", legacy))
+        P.run(self.job, legacy, self.root / "cache", fetch_archive=self.fetch_archive, pool=self.pool,
+              store=self.store_git)
+        self.assertTrue((legacy / "raw" / (SHA_PDF + ".pdf")).is_file())
+        (legacy / "raw" / "padding.bin").write_bytes(b"x" * (30 * 1024 * 1024))   # far over 20 MiB, but legacy
+        out = self.root / "out2"
+        s = self.run_once(out, prior=legacy)
+        self.assertEqual(s["kept_total"], 2)
+        self.assertTrue((out / "raw" / (SHA_PDF + ".pdf")).is_file())              # old git files still resolve
+        rec = {r["sha256"]: r for r in P.read_jsonl(out / "SOURCES.jsonl")}[SHA_PDF]
+        self.assertEqual(rec["cache_path"], "raw/" + SHA_PDF + ".pdf")
+
+
+class PtolemyDefaultStoreTests(unittest.TestCase):
+    def test_default_is_git_and_environment_switch_is_honoured(self):
+        self.assertEqual(PS.Store.from_env({}, git_root="x").backend_name, "git")
+        env = {"PERGAMON_BACKEND": "release", "GITHUB_REPOSITORY": "o/r", "GITHUB_TOKEN": "t"}
+        self.assertEqual(PS.Store.from_env(env).backend_name, "release")
+
+    def test_job_py_keeps_the_paused_branch(self):
+        src = (HERE / "job.py").read_text(encoding="utf-8")
+        self.assertIn('"PAUSED"', src)
+        self.assertIn("archive_limit=0, live_limit=0", src)
 
 
 if __name__ == "__main__":
