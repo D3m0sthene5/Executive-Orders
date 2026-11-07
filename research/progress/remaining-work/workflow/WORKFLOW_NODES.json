@@ -5466,5 +5466,2124 @@
     "path": "research/excavator/claude-erasmus-2026-11-02/REPORT.md"
    }
   ]
+ },
+ {
+  "id": "bentham",
+  "name": "Bentham",
+  "label": "Bentham",
+  "catalog_tool": "Bentham",
+  "stage": "support",
+  "order": 100,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Jeremy Bentham, whose felicific calculus (1789) weighed an act's certainty, nearness and fecundity against its cost",
+  "namesake_short": "after Jeremy Bentham",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/bentham/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jeremy_Bentham",
+  "role": "Ranks every available agent action by measured dossiers per API-equivalent dollar, gates a running wave after each batch (continue, pilot or stop), and records per-agent token usage so the next plan is measured on the newest wave.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/bentham"
+  ],
+  "inputs": [
+   "readiness tracker and shared-unlock tables",
+   "wave dispositions and telemetry",
+   "Hamilton and Polya outputs"
+  ],
+  "outputs": [
+   "output/PLAN.md ranked actions",
+   "gate verdicts",
+   "sanitized per-agent usage"
+  ],
+  "results": [
+   {
+    "date": "2026-11-04",
+    "text": "Yields come from one wave so far: 492 of 1,041 production orders filed and 53 of 83 corrections. Every attempted production order was a Federal Register-era order, so pre-1937 strata have no measured yield yet. A stratum with fewer than 30 attempts is left unranked.",
+    "source": "jobs/bentham/README.md"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "Costs are API-equivalent list prices, not invoices; the coordinator's tokens are a lower bound.",
+   "Necker (branch enc/cost) prices the Tribonian wave at 419.36 USD against Bentham's table figure of 815.18, so the table is about twice too high; the correction is not yet applied.",
+   "Changes no status, claim or count and dispatches nothing by itself."
+  ],
+  "sources": [
+   {
+    "label": "jobs/bentham/README.md",
+    "path": "jobs/bentham/README.md"
+   },
+   {
+    "label": "jobs/bentham/CONTRACT.md",
+    "path": "jobs/bentham/CONTRACT.md"
+   }
+  ]
+ },
+ {
+  "id": "kean-leases",
+  "name": "Kean leases",
+  "label": "Kean leases",
+  "catalog_tool": "Kean leases",
+  "stage": "support",
+  "order": 101,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pieces but did not share them",
+  "namesake_short": "after Thomas Kean",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/kean/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Thomas_Kean",
+  "role": "Records on one shared branch who holds a job, batch, order or stream, with expiry, so two sessions do not start the same work; claim-kit dispatch-check refuses a batch another holder leases.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "779dfb1577178cf9b651fc57cb6ab612766d40d7",
+  "jobs": [
+   "jobs/kean/lease.py",
+   "jobs/claim-kit/kit.py"
+  ],
+  "inputs": [
+   "claims pushed to the kean-leases branch"
+  ],
+  "outputs": [
+   "one JSON lease file per resource",
+   "dispatch-check refusal (exit 1, held_by_other)"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Built and wired into kit.py dispatch-check on the integration branch; the campaign log records 12 tests passing and 12 campaign leases held on the kean-leases branch.",
+    "source": "research/encyclopedie-campaign/LOG.md; jobs/kean/test_lease.py"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "The shared job runner does not read leases; scheduled runs ignore them.",
+   "Pull request #189 was open when checked; lease.py was not on main.",
+   "No measured saving: it prevents duplicate starts that were not counted."
+  ],
+  "sources": [
+   {
+    "label": "jobs/kean/README.md",
+    "path": "jobs/kean/README.md"
+   },
+   {
+    "label": "jobs/kean/lease.py",
+    "path": "jobs/kean/lease.py"
+   },
+   {
+    "label": "research/encyclopedie-campaign/LOG.md",
+    "path": "research/encyclopedie-campaign/LOG.md"
+   }
+  ]
+ },
+ {
+  "id": "arsenale",
+  "name": "Arsenale parallel runner",
+  "label": "Arsenale",
+  "catalog_tool": "Arsenale",
+  "stage": "support",
+  "order": 102,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "undocumented",
+  "namesake_text": "",
+  "namesake_short": "",
+  "namesake_note": "The inspected README, code and findings do not state why the runner is called Arsenale.",
+  "namesake_evidence": "",
+  "wikipedia_url": "",
+  "role": "Splits the job runner into plan, execute and publish stages: stations run on separate machines in parallel, and only publish holds the branch writer lock and refuses a job whose declared inputs changed during its run.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   ".github/scripts/arsenale.py",
+   ".github/scripts/test_arsenale.py",
+   ".github/workflows/run-jobs.yml"
+  ],
+  "inputs": [
+   "selected jobs with declared after, needs, inputs and triggers files"
+  ],
+  "outputs": [
+   "one Results of job(s) commit per publish",
+   "ARSENALE.json freshness record",
+   "automatic re-run of a refused job"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Hosted probe (run 42172723342): two stations ran at the same time and published in one commit; an input pushed mid-run refused only probe-b and re-queued it. Publisher lock wait was 2-3 s uncontended and 26 s behind another publisher.",
+    "source": "jobs/kean/register/findings.jsonl; .github/scripts/arsenale.py"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "No run was queued on main at 08:20 UTC; the backlog of about 20 queued runs had been cancelled at 07:55 UTC when Arsenale (#166) merged.",
+    "source": "research/justinian/WORKERS.csv"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "job-runner-freshness"
+  ],
+  "caveats": [
+   "An undeclared read of another selected job may now see that job's previous output.",
+   "Each station pays about 2 minutes of materialization.",
+   "Engineering validation only; no scientific count follows."
+  ],
+  "sources": [
+   {
+    "label": ".github/scripts/arsenale.py",
+    "path": ".github/scripts/arsenale.py"
+   },
+   {
+    "label": "jobs/README.md",
+    "path": "jobs/README.md"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "necker",
+  "name": "Necker dollar costs",
+  "label": "Necker",
+  "catalog_tool": "Necker",
+  "stage": "support",
+  "order": 103,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Jacques Necker, whose 1781 Compte rendu was the first public account of the French crown's finances",
+  "namesake_short": "after Jacques Necker",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/necker-costs/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jacques_Necker",
+  "role": "Prices every model message at its own list price and sums dollars per session, worker and claim batch, checked against the CLI's own cost records, so Bentham can rank work on real prices.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "a6a873839b80b2fd60a6e373f11bfbd6dcfd22f3",
+  "jobs": [
+   "jobs/necker-costs"
+  ],
+  "inputs": [
+   "Claude Code transcripts (kept private)",
+   "committed wave telemetry",
+   "dated price table PRICES.json"
+  ],
+  "outputs": [
+   "BATCH_COSTS.csv in the format bentham gate reads",
+   "WORKER_COSTS.csv",
+   "COMPARISON.md"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Tribonian wave priced at 419.36 USD against 815.18 by Bentham's table (ratio 0.51); the icecore wave at 32.92 against 59.25; the Theophilus wave at 41.70 against 73.46. Cache reads are 96% of tokens and about 42-46% of dollars.",
+    "source": "jobs/necker-costs/output/comparison/COMPARISON.md"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "bentham"
+  ],
+  "caveats": [
+   "Every dollar is an API list-price estimate, not a bill; under a subscription nothing is charged per token.",
+   "Pull request #191 was open when checked; the job is not on main.",
+   "Proposed change to Bentham's table awaits owner review (jobs/necker-costs/PROPOSAL.md)."
+  ],
+  "sources": [
+   {
+    "label": "jobs/necker-costs/README.md",
+    "path": "jobs/necker-costs/README.md"
+   },
+   {
+    "label": "jobs/necker-costs/necker.py",
+    "path": "jobs/necker-costs/necker.py"
+   },
+   {
+    "label": "jobs/necker-costs/PROPOSAL.md",
+    "path": "jobs/necker-costs/PROPOSAL.md"
+   },
+   {
+    "label": "jobs/necker-costs/output/comparison/COMPARISON.md",
+    "path": "jobs/necker-costs/output/comparison/COMPARISON.md"
+   }
+  ]
+ },
+ {
+  "id": "pergamon",
+  "name": "Pergamon byte store",
+  "label": "Pergamon",
+  "catalog_tool": "Pergamon",
+  "stage": "support",
+  "order": 104,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "The Library of Pergamon, which rivalled Alexandria",
+  "namesake_short": "after the Library of Pergamon",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/_lib/pergamon_store.py:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Library_of_Pergamon",
+  "role": "Keeps source bytes outside git in a content-addressed store keyed by SHA-256 (GitHub Release assets now, Cloudflare R2 by configuration); git holds only small manifests and a file is trusted only if it hashes exactly to its manifest entry.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "050809d8b3dbd754ce674406ede919f03b95e38f",
+  "jobs": [
+   "jobs/_lib/pergamon_store.py",
+   "jobs/_lib/byte_budget.py"
+  ],
+  "inputs": [
+   "raw source files from jobs such as Ptolemy and Selden"
+  ],
+  "outputs": [
+   "manifests (SHA-256, size, backend, locator)",
+   "release assets"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "On main Ptolemy held 3,060 files (2.58 GiB unpacked; median 81 KiB, largest 23.4 MiB) with about 7,300 requests still due; deleting files from git does not shrink the repository. The release backend passed a live smoke test; the R2 backend was tested only against a local fake S3 and the AWS signature test vector, never against real R2.",
+    "source": "research/encyclopedie-campaign/storage/STORAGE.md; research/encyclopedie-campaign/storage/SMOKE.md"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "ptolemy-custody"
+  ],
+  "caveats": [
+   "Only a history rewrite, which is the owner's decision, shrinks the repository itself.",
+   "Resuming Ptolemy needs the migration, a runner secret and a claim-checker adapter patch that changes counts.",
+   "The campaign log records a migration of 3,691 unique raw files started 2026-11-07 00:00 UTC; completion was not verified here."
+  ],
+  "sources": [
+   {
+    "label": "research/encyclopedie-campaign/storage/STORAGE.md",
+    "path": "research/encyclopedie-campaign/storage/STORAGE.md"
+   },
+   {
+    "label": "research/encyclopedie-campaign/storage/NOTES.md",
+    "path": "research/encyclopedie-campaign/storage/NOTES.md"
+   },
+   {
+    "label": "jobs/_lib/pergamon_store.py",
+    "path": "jobs/_lib/pergamon_store.py"
+   },
+   {
+    "label": "jobs/_lib/test_pergamon_store.py",
+    "path": "jobs/_lib/test_pergamon_store.py"
+   }
+  ]
+ },
+ {
+  "id": "hollerith",
+  "name": "Hollerith driver scripts",
+  "label": "Hollerith",
+  "catalog_tool": "Hollerith",
+  "stage": "draft",
+  "order": 105,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Herman Hollerith, whose tabulators ran the 1890 census",
+  "namesake_short": "after Herman Hollerith",
+  "namesake_note": "",
+  "namesake_evidence": "research/hollerith-drivers/README.md:2",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Herman_Hollerith",
+  "role": "Runs one claim-kit model stage for one packet through a model runner with a schema, validation, spending caps and a cost log, refuses a draft without a passing dispatch-check, and passes deterministic stages through to kit.py unchanged.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "779dfb1577178cf9b651fc57cb6ab612766d40d7",
+  "jobs": [
+   "research/hollerith-drivers"
+  ],
+  "inputs": [
+   "claim-kit packets",
+   "model runner (dry, or the claude CLI)"
+  ],
+  "outputs": [
+   "decisions.csv, clauses.csv and RATIONALES.json drafts",
+   "blind review records",
+   "cost log"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Shipped with 33 offline tests and sourced billing facts. The Claude runner has never made a real call; it was tested only against a fake subprocess. Blinding is instructed plus mechanical, not proof.",
+    "source": "research/hollerith-drivers/README.md; research/hollerith-drivers/BILLING.md; research/encyclopedie-campaign/REPORT.md"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "Which billing route to use (subscription token or API key) is an owner choice; no live batch has been run.",
+   "Control seeding, adjudication and completion stay with people and the existing tools."
+  ],
+  "sources": [
+   {
+    "label": "research/hollerith-drivers/README.md",
+    "path": "research/hollerith-drivers/README.md"
+   },
+   {
+    "label": "research/hollerith-drivers/BILLING.md",
+    "path": "research/hollerith-drivers/BILLING.md"
+   },
+   {
+    "label": "research/hollerith-drivers/driver.py",
+    "path": "research/hollerith-drivers/driver.py"
+   },
+   {
+    "label": "research/hollerith-drivers/test_driver.py",
+    "path": "research/hollerith-drivers/test_driver.py"
+   }
+  ]
+ },
+ {
+  "id": "bayle-prior-art",
+  "name": "Bayle prior art (Thrower; Lowande-Poznansky)",
+  "label": "Bayle",
+  "catalog_tool": "Bayle (Thrower · Lowande-Poznansky)",
+  "stage": "support",
+  "order": 106,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "inferred",
+  "namesake_text": "Pierre Bayle",
+  "namesake_short": "probably after Pierre Bayle",
+  "namesake_note": "The project never recorded why. Inferred from the job: Bayle's critical Dictionary (1697) set out to check earlier reference works against their sources.",
+  "namesake_evidence": "",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Pierre_Bayle",
+  "role": "Compares the project's register with two published executive-order datasets (Thrower 2017 and Lowande-Poznansky 2024, both CC0 deposits) and lists where they agree, disagree or are silent.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "779dfb1577178cf9b651fc57cb6ab612766d40d7",
+  "jobs": [
+   "research/bayle-prior-art/thrower",
+   "research/bayle-prior-art/lowande-poznansky"
+  ],
+  "inputs": [
+   "Harvard Dataverse deposits doi:10.7910/DVN/LZGQOH and doi:10.7910/DVN/TZ2QKY",
+   "the project's register, later-events edges and tracker"
+  ],
+  "outputs": [
+   "coverage and disagreement tables",
+   "variable crosswalk to the codebook",
+   "draft data-request email (not sent)"
+  ],
+  "results": [
+   {
+    "date": "2026-11-07",
+    "text": "Thrower's 6,158 orders (1937-2013) compared with the register: 221 distinct orders in 223 disagreement rows. An independent check found a NaN bug, definitional errors and a confounded comparison before anything was recorded; both streams were corrected.",
+    "source": "research/bayle-prior-art/thrower/CROSSCHECK_SUMMARY.json; research/bayle-prior-art/thrower/CHECK_2026-11-07.md"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "Lowande and Poznansky's orders.Rda has 6,536 orders (1937-2021) and 14 variables but no order numbers; the listed codebook is missing. Their baseline reproduces from the public file.",
+    "source": "research/bayle-prior-art/lowande-poznansky/README.md; research/bayle-prior-art/lowande-poznansky/CHECK_2026-11-07.md"
+   }
+  ],
+  "history": [],
+  "feeds": [],
+  "caveats": [
+   "Not independent of the project: Thrower and the project both derive from the Office of the Federal Register notes.",
+   "Everything here is a lead; no status, revocation fact or count is settled.",
+   "The request email to the authors is a draft and has not been sent."
+  ],
+  "sources": [
+   {
+    "label": "research/bayle-prior-art/thrower/README.md",
+    "path": "research/bayle-prior-art/thrower/README.md"
+   },
+   {
+    "label": "research/bayle-prior-art/lowande-poznansky/README.md",
+    "path": "research/bayle-prior-art/lowande-poznansky/README.md"
+   },
+   {
+    "label": "research/encyclopedie-campaign/REPORT.md",
+    "path": "research/encyclopedie-campaign/REPORT.md"
+   }
+  ]
+ },
+ {
+  "id": "naude-free-sources",
+  "name": "Naude free-source survey",
+  "label": "Naude",
+  "catalog_tool": "Naude",
+  "stage": "acquire",
+  "order": 107,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "documented",
+  "namesake_text": "Gabriel Naude, whose 1627 Advis pour dresser une bibliotheque argued for a library open to every reader",
+  "namesake_short": "after Gabriel Naude",
+  "namesake_note": "",
+  "namesake_evidence": "research/naude-free-sources/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Gabriel_Naudé",
+  "role": "Surveys free, lawful, machine-readable routes to the material otherwise held in licensed databases (Federal Register pages, CFR, U.S. Code tables, case law) and ranks jobs to use them.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "779dfb1577178cf9b651fc57cb6ab612766d40d7",
+  "jobs": [
+   "research/naude-free-sources"
+  ],
+  "inputs": [
+   "each candidate route opened and checked, with robots.txt and terms"
+  ],
+  "outputs": [
+   "SOURCE_MAP.csv (27 routes)",
+   "ranked jobs",
+   "drafted requests held as a last resort"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "27 routes opened and checked. govinfo covers the Federal Register 1936 on, Statutes at Large, the Serial Set and the bound Congressional Record without a key; two hosts block compliant automation (babel.hathitrust.org and static.case.law); Library of Congress copies of CFR and U.S. Code tables are Hein-origin scans with a stated no-bulk term, an owner decision.",
+    "source": "research/naude-free-sources/README.md; research/naude-free-sources/SOURCE_MAP.csv"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "ptolemy-custody",
+   "selden"
+  ],
+  "caveats": [
+   "A route found is a lead until a job holds and hashes the bytes.",
+   "No free editorial citator exists; the CourtListener job derives one from bulk text.",
+   "Opening Hein-origin Library of Congress scans awaits an owner decision."
+  ],
+  "sources": [
+   {
+    "label": "research/naude-free-sources/README.md",
+    "path": "research/naude-free-sources/README.md"
+   },
+   {
+    "label": "research/naude-free-sources/SOURCE_MAP.csv",
+    "path": "research/naude-free-sources/SOURCE_MAP.csv"
+   },
+   {
+    "label": "research/naude-free-sources/REQUESTS.md",
+    "path": "research/naude-free-sources/REQUESTS.md"
+   }
+  ]
+ },
+ {
+  "id": "ventris-ocr",
+  "name": "Ventris OCR pilot",
+  "label": "Ventris",
+  "catalog_tool": "Ventris",
+  "stage": "acquire",
+  "order": 108,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "inferred",
+  "namesake_text": "Michael Ventris",
+  "namesake_short": "probably after Michael Ventris",
+  "namesake_note": "The project never recorded why. Inferred from the job: Ventris deciphered Linear B by comparing readings of an unknown script.",
+  "namesake_evidence": "",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Michael_Ventris",
+  "role": "Measures whether GPO's OCR text layer on scanned Federal Register, Statutes at Large and Serial Set pages is good enough and whether a voting protocol over other readers fixes it.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "779dfb1577178cf9b651fc57cb6ab612766d40d7",
+  "jobs": [
+   "research/ventris-ocr"
+  ],
+  "inputs": [
+   "58 page crops from GPO scans",
+   "readers: GPO layer, Tesseract, Surya, PaddleOCR, Claude"
+  ],
+  "outputs": [
+   "READINGS.jsonl (348 readings)",
+   "owner reference worksheet",
+   "scoring code"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "58 passages read by five readers (348 readings). On 15 fraction passages the number of quarter, half and three-quarter glyphs produced was GPO layer 0, Tesseract 0, PaddleOCR 22, Surya 134, Claude 335. No reference text exists yet; only 1 of 43 non-owner passages has GPO and Surya in exact agreement.",
+    "source": "research/ventris-ocr/README.md"
+   }
+  ],
+  "history": [],
+  "feeds": [],
+  "caveats": [
+   "Reference-free preview only; none of the numbers is accuracy.",
+   "The owner's reference rule needs a decision before the adoption test can run.",
+   "PaddleOCR-VL was not attempted."
+  ],
+  "sources": [
+   {
+    "label": "research/ventris-ocr/README.md",
+    "path": "research/ventris-ocr/README.md"
+   },
+   {
+    "label": "research/encyclopedie-campaign/REPORT.md",
+    "path": "research/encyclopedie-campaign/REPORT.md"
+   }
+  ]
+ },
+ {
+  "id": "septuagint-xfamily",
+  "name": "Septuagint cross-family review pilot",
+  "label": "Septuagint",
+  "catalog_tool": "Septuagint",
+  "stage": "review",
+  "order": 109,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "inferred",
+  "namesake_text": "The Septuagint",
+  "namesake_short": "probably after the Septuagint",
+  "namesake_note": "The project never recorded why. Inferred from the job: tradition says translators working apart produced agreeing texts, as independent reviewers from different families are meant to.",
+  "namesake_evidence": "",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Septuagint",
+  "role": "Replays claim batches that Claude reviewers reviewed with planted controls through an OpenAI-family reviewer (Codex) on identical inputs, so the two families' catch rates can be compared under blind adjudication.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "779dfb1577178cf9b651fc57cb6ab612766d40d7",
+  "jobs": [
+   "research/septuagint-xfamily"
+  ],
+  "inputs": [
+   "four exactly rebuilt Dorotheus review batches",
+   "planted Mountweazel controls"
+  ],
+  "outputs": [
+   "Codex review records",
+   "blind adjudication of eight plants"
+  ],
+  "results": [
+   {
+    "date": "2026-11-07",
+    "text": "Four rebuilt batches, eight plants, blind adjudication: Codex caught 7 of 8 strictly (8 of 8 leniently; Wilson interval 0.53-0.98 strict) and Claude reviewers caught 16 of 22 strictly (17 of 22). Codex caught every control some Claude reviewer missed; one contestable rejection of a genuine claim and no false alarms.",
+    "source": "research/encyclopedie-campaign/REPORT.md; research/septuagint-xfamily/README.md"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "independent-ai-review"
+  ],
+  "caveats": [
+   "The sample is too small for a rate and the filing rule is unchanged.",
+   "Two further batches were dropped because their producer claims could not be rebuilt exactly.",
+   "Whether to make one blind reviewer a different-family model is an owner decision."
+  ],
+  "sources": [
+   {
+    "label": "research/septuagint-xfamily/README.md",
+    "path": "research/septuagint-xfamily/README.md"
+   },
+   {
+    "label": "research/encyclopedie-campaign/REPORT.md",
+    "path": "research/encyclopedie-campaign/REPORT.md"
+   }
+  ]
+ },
+ {
+  "id": "nihil-obstat-certifier",
+  "name": "Nihil obstat certifier page",
+  "label": "Nihil obstat",
+  "catalog_tool": "Nihil obstat",
+  "stage": "ready",
+  "order": 110,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "The censor's certificate that nothing stands in the way",
+  "namesake_short": "after the nihil obstat certificate",
+  "namesake_note": "",
+  "namesake_evidence": "research/nihil-obstat-certifier/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Nihil_obstat",
+  "role": "Static page, card exporter and reliability calculator for independent humans to certify machine-checked claims, with in-browser SHA-256 checks of cited sources and a costed recruiting plan.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "779dfb1577178cf9b651fc57cb6ab612766d40d7",
+  "jobs": [
+   "research/nihil-obstat-certifier"
+  ],
+  "inputs": [
+   "ready claims exported as cards",
+   "committed original PDFs picked locally"
+  ],
+  "outputs": [
+   "exported certifier decisions (JSONL)",
+   "Krippendorff's alpha",
+   "recruiting plan"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Five example cards of real filed claims (813,527 bytes) open in the page. It changes no count: the certified count stays 0 until the owner's importer records reviews. No certifier has used it, so reliability is not yet measured.",
+    "source": "research/nihil-obstat-certifier/README.md; research/nihil-obstat-certifier/RECRUITING.md"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "human-certification"
+  ],
+  "caveats": [
+   "A faculty sponsor and the pilot option are owner decisions.",
+   "The reliability calculator has no certifier data."
+  ],
+  "sources": [
+   {
+    "label": "research/nihil-obstat-certifier/README.md",
+    "path": "research/nihil-obstat-certifier/README.md"
+   },
+   {
+    "label": "research/nihil-obstat-certifier/RECRUITING.md",
+    "path": "research/nihil-obstat-certifier/RECRUITING.md"
+   },
+   {
+    "label": "research/nihil-obstat-certifier/alpha.py",
+    "path": "research/nihil-obstat-certifier/alpha.py"
+   },
+   {
+    "label": "research/nihil-obstat-certifier/export_cards.py",
+    "path": "research/nihil-obstat-certifier/export_cards.py"
+   }
+  ]
+ },
+ {
+  "id": "bodley-zenodo",
+  "name": "Bodley Zenodo release design",
+  "label": "Bodley",
+  "catalog_tool": "Bodley",
+  "stage": "support",
+  "order": 111,
+  "kind": "proposal",
+  "status_class": "proposed",
+  "namesake_status": "documented",
+  "namesake_text": "Thomas Bodley, who refounded Oxford's library and arranged that a copy of every registered book reach it",
+  "namesake_short": "after Thomas Bodley",
+  "namesake_note": "",
+  "namesake_evidence": "research/bodley-zenodo/DESIGN.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Thomas_Bodley",
+  "role": "Designs the first citable Zenodo release of the project's data tables, labelled provisional, AI-produced and uncertified, with metadata drafts and an offline build script.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "779dfb1577178cf9b651fc57cb6ab612766d40d7",
+  "jobs": [
+   "research/bodley-zenodo"
+  ],
+  "inputs": [
+   "census, register, ledger and tracker tables at a pinned commit"
+  ],
+  "outputs": [
+   "DESIGN.md",
+   ".zenodo.json and CITATION.cff drafts",
+   "CONTENTS.csv",
+   "dry-run build script"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Design and drafts only; nothing is published and no Zenodo account or deposit exists. Version 1 would hold 33 files, 21.8 MiB built (about 26.9 MiB with three pending items), and states certified = 0 in five places.",
+    "source": "research/bodley-zenodo/DESIGN.md; research/bodley-zenodo/CONTENTS.csv"
+   }
+  ],
+  "history": [],
+  "feeds": [],
+  "caveats": [
+   "Publishing needs owner decisions listed in OWNER_DECISIONS.md.",
+   "Counts are re-measured at the commit actually released."
+  ],
+  "sources": [
+   {
+    "label": "research/bodley-zenodo/DESIGN.md",
+    "path": "research/bodley-zenodo/DESIGN.md"
+   },
+   {
+    "label": "research/bodley-zenodo/OWNER_DECISIONS.md",
+    "path": "research/bodley-zenodo/OWNER_DECISIONS.md"
+   },
+   {
+    "label": "research/bodley-zenodo/build_release.py",
+    "path": "research/bodley-zenodo/build_release.py"
+   }
+  ]
+ },
+ {
+  "id": "playfair-observable",
+  "name": "Playfair Observable trial",
+  "label": "Playfair",
+  "catalog_tool": "Playfair",
+  "stage": "support",
+  "order": 112,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "documented",
+  "namesake_text": "William Playfair, who invented the line chart and the bar chart (1786)",
+  "namesake_short": "after William Playfair",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/playfair-observable/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/William_Playfair",
+  "role": "Builds one section of the progress site (the project's trajectory) with Observable Framework on GitHub's runner and measures size and build time; it deploys nothing.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "f06586e0734916ac0907233792b8464064e4b6d1",
+  "jobs": [
+   "jobs/playfair-observable"
+  ],
+  "inputs": [
+   "three committed Tsiolkovsky data files"
+  ],
+  "outputs": [
+   "MEASUREMENTS.json",
+   "dist.zip",
+   "screenshot"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Branch trial run 42307107988 succeeded: Observable Framework 1.13.4 built the section in 5.15 s after an 8.21 s install into 44 files, 643,767 bytes (223,742 gzipped); 16 svg elements drew and the three data files matched byte for byte. The live site is on Vercel, not GitHub Pages.",
+    "source": "jobs/playfair-observable/TRIAL_MEASUREMENTS_run42307107988.json; jobs/playfair-observable/README.md"
+   }
+  ],
+  "history": [],
+  "feeds": [],
+  "caveats": [
+   "A build trial, not an evidence job; it has no error-rate controls.",
+   "Nothing is deployed and the pull request was open when checked."
+  ],
+  "sources": [
+   {
+    "label": "jobs/playfair-observable/README.md",
+    "path": "jobs/playfair-observable/README.md"
+   },
+   {
+    "label": "jobs/playfair-observable/TRIAL_MEASUREMENTS_run42307107988.json",
+    "path": "jobs/playfair-observable/TRIAL_MEASUREMENTS_run42307107988.json"
+   },
+   {
+    "label": "jobs/playfair-observable/measure.py",
+    "path": "jobs/playfair-observable/measure.py"
+   }
+  ]
+ },
+ {
+  "id": "repetita-lsa",
+  "name": "Repetita LSA reader",
+  "label": "Repetita",
+  "catalog_tool": "Repetita",
+  "stage": "research",
+  "order": 113,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Justinian's Codex repetitae praelectionis (534), the revised edition of his Code",
+  "namesake_short": "after the Codex repetitae praelectionis",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/repetita-lsa/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Codex_Justinianus",
+  "role": "Reads the monthly List of CFR Sections Affected (Title 3) as data to date revocations, amendments and continuations of executive orders from 1997 on, with planted controls and no model tokens.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "5b90ca716daace76c615827f5c113e6c3a7d2e9d",
+  "jobs": [
+   "jobs/repetita-lsa"
+  ],
+  "inputs": [
+   "govinfo LSA issues (keyless)",
+   "HathiTrust and Internet Archive listings for pre-1997"
+  ],
+  "outputs": [
+   "LSA_EO_ROWS by year",
+   "FRAGMENTS by year",
+   "pre-1997 manifest"
+  ],
+  "results": [
+   {
+    "date": "2026-11-07",
+    "text": "Branch full run 42321667850 succeeded: 357 of 358 listed issues read (one speculative month not found), 2,891 executive-order mention rows and 5,104 fragments; control error rate 0.0 over five known facts, planted entries and member-hash checks. An entry names a Federal Register page the job does not hold.",
+    "source": "jobs/repetita-lsa/output/SUMMARY.json; jobs/repetita-lsa/output/CONTROLS.json; jobs/repetita-lsa/output/STATUS.json"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "Leads only; no status, census or count change.",
+   "Before 1997 only a manifest is made; HathiTrust is blocked by robots.txt and Hein-origin scans await an owner decision.",
+   "The job was on a branch when checked; not on main."
+  ],
+  "sources": [
+   {
+    "label": "jobs/repetita-lsa/README.md",
+    "path": "jobs/repetita-lsa/README.md"
+   },
+   {
+    "label": "jobs/repetita-lsa/output/SUMMARY.json",
+    "path": "jobs/repetita-lsa/output/SUMMARY.json"
+   },
+   {
+    "label": "jobs/repetita-lsa/output/CONTROLS.json",
+    "path": "jobs/repetita-lsa/output/CONTROLS.json"
+   }
+  ]
+ },
+ {
+  "id": "duodecim-tableiv",
+  "name": "Duodecim U.S. Code Table IV",
+  "label": "Duodecim",
+  "catalog_tool": "Duodecim",
+  "stage": "research",
+  "order": 114,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Table IV of the Twelve Tables; the job reads Table IV of the U.S. Code",
+  "namesake_short": "after Table IV of the Twelve Tables",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/duodecim-tableiv/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Twelve_Tables",
+  "role": "Reads every edition of the U.S. Code's Table IV (executive orders implementing general and permanent law) it can hold by routes robots.txt allows and builds a time series of when each order is listed, moved, marked Elim. or dropped.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "1b55cf65fcd584aefd0fd95fce73ce77ae1ffc17",
+  "jobs": [
+   "jobs/duodecim-tableiv"
+  ],
+  "inputs": [
+   "OLRC, UNT and Internet Archive Wayback editions"
+  ],
+  "outputs": [
+   "TABLE_IV_ROWS.csv",
+   "TIMESERIES.csv",
+   "later-event fragments"
+  ],
+  "results": [
+   {
+    "date": "2026-11-07",
+    "text": "Smoke run 42322183668 succeeded: 3 editions parsed; the 2025 edition has 3,284 rows and 2,908 distinct orders, 1,483 of the rows marked Elim. The full run was not yet measured.",
+    "source": "jobs/duodecim-tableiv/output/SUMMARY.json; jobs/duodecim-tableiv/output/STATUS.json"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "An Elim. marker is a lead about editorial classification, not proof that an order ceased; the held pages do not define it for Table IV.",
+   "Library of Congress scans and HathiTrust were not fetched; webharvest is robots-blocked.",
+   "The job was on a branch when checked; not on main."
+  ],
+  "sources": [
+   {
+    "label": "jobs/duodecim-tableiv/README.md",
+    "path": "jobs/duodecim-tableiv/README.md"
+   },
+   {
+    "label": "jobs/duodecim-tableiv/output/SUMMARY.json",
+    "path": "jobs/duodecim-tableiv/output/SUMMARY.json"
+   },
+   {
+    "label": "jobs/duodecim-tableiv/output/STATUS.json",
+    "path": "jobs/duodecim-tableiv/output/STATUS.json"
+   }
+  ]
+ },
+ {
+  "id": "youngstown-courts",
+  "name": "Youngstown CourtListener scan",
+  "label": "Youngstown",
+  "catalog_tool": "Youngstown",
+  "stage": "research",
+  "order": 115,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Youngstown Sheet & Tube Co. v. Sawyer (1952), where the Supreme Court held Truman's steel-seizure order, EO 10340, unlawful",
+  "namesake_short": "after Youngstown v. Sawyer",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/youngstown-courts/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Youngstown_Sheet_%26_Tube_Co._v._Sawyer",
+  "role": "Streams CourtListener's public bulk opinions for court decisions that print a register order's number and marks, by transparent word rules, whether the sentence holds words of enjoining, upholding or construing the order.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "bc9dfb341f21c3843e7232575789a915af09bc14",
+  "jobs": [
+   "jobs/youngstown-courts"
+  ],
+  "inputs": [
+   "CourtListener bulk opinion, cluster, docket and court files (2026-09-30)"
+  ],
+  "outputs": [
+   "COURT_HITS.csv",
+   "ORDER_TALLY.csv",
+   "fragments"
+  ],
+  "results": [
+   {
+    "date": "2026-11-07",
+    "text": "Smoke run 42313383420 read 0.55% of the 55.25 GB opinions file in 6 of 6 segments: 66 opinions printing a register order and 114 order clusters. The full anonymous run was pushed afterwards; its result was not yet available here.",
+    "source": "jobs/youngstown-courts/output/SUMMARY.json; jobs/youngstown-courts/output/STATUS.json"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "A hit is a lead, never a status; an enjoin or vacate word does not show a court held the order invalid.",
+   "An earlier one-off look at static.case.law (robots.txt disallows all) is disclosed in the README; the job makes no request there.",
+   "The job was on a branch when checked; not on main."
+  ],
+  "sources": [
+   {
+    "label": "jobs/youngstown-courts/README.md",
+    "path": "jobs/youngstown-courts/README.md"
+   },
+   {
+    "label": "jobs/youngstown-courts/output/SUMMARY.json",
+    "path": "jobs/youngstown-courts/output/SUMMARY.json"
+   },
+   {
+    "label": "jobs/youngstown-courts/output/STATUS.json",
+    "path": "jobs/youngstown-courts/output/STATUS.json"
+   }
+  ]
+ },
+ {
+  "id": "thesis-measure",
+  "name": "Thesis measure",
+  "label": "Thesis measure",
+  "catalog_tool": "Thesis measure",
+  "stage": "support",
+  "order": 116,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "none",
+  "namesake_text": "",
+  "namesake_short": "",
+  "namesake_note": "",
+  "namesake_evidence": "",
+  "wikipedia_url": "",
+  "role": "Counts how many executive orders were formally revoked only after they had already stopped operating, using the tracker's own columns, and what blocks the rest.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "research/encyclopedie-campaign/thesis-measure"
+  ],
+  "inputs": [
+   "readiness tracker, claims, later-events and status ledgers at main 857313b455"
+  ],
+  "outputs": [
+   "MEASURE.csv by order",
+   "SUMMARY.json",
+   "proposed tracker fix"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Of 14,998 orders: 59 formally revoked after an evidenced earlier end (34 verified on both sides), 2,610 revoked with no earlier end, 1,135 ended and never revoked, 837 blocked, 10,357 neither. This proves the pattern exists; it does not give a rate.",
+    "source": "research/encyclopedie-campaign/thesis-measure/SUMMARY.json; research/encyclopedie-campaign/thesis-measure/REPORT.md"
+   }
+  ],
+  "history": [],
+  "feeds": [],
+  "caveats": [
+   "The tracker's own formal-revocation-after-earlier-cessation column is blank for all orders; the proposed fix changes counts and needs the owner.",
+   "8,609 of the neither group have no record at all.",
+   "Provisional, AI-reviewed, uncertified evidence."
+  ],
+  "sources": [
+   {
+    "label": "research/encyclopedie-campaign/thesis-measure/REPORT.md",
+    "path": "research/encyclopedie-campaign/thesis-measure/REPORT.md"
+   },
+   {
+    "label": "research/encyclopedie-campaign/thesis-measure/SUMMARY.json",
+    "path": "research/encyclopedie-campaign/thesis-measure/SUMMARY.json"
+   },
+   {
+    "label": "research/encyclopedie-campaign/thesis-measure/TRACKER_FIX.md",
+    "path": "research/encyclopedie-campaign/thesis-measure/TRACKER_FIX.md"
+   }
+  ]
+ },
+ {
+  "id": "selden",
+  "name": "Selden acting-instrument texts",
+  "label": "Selden",
+  "catalog_tool": "Selden (selden-statutes · selden-fr-acting · selden-fr-citers)",
+  "stage": "research",
+  "order": 117,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "John Selden (1584-1654), who went back to the records for the actual texts of statutes and precedents",
+  "namesake_short": "after John Selden",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/selden-fr-citers/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/John_Selden",
+  "role": "Holds the official text of later statutes, Public Land Orders and Federal Register documents that act on an order and locates the sentence that does so, at no model-token cost.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/selden-statutes",
+   "jobs/selden-fr-acting",
+   "jobs/selden-fr-citers",
+   "jobs/selden-common"
+  ],
+  "inputs": [
+   "later-events and Shepard edges",
+   "federalregister.gov API (1994 on)",
+   "govinfo link service and Statutes at Large"
+  ],
+  "outputs": [
+   "SOURCES.jsonl and FRAGMENTS.jsonl per job",
+   "LOCATED.csv",
+   "CITATIONS.csv"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Citers: 19,726 citations located, 5,534 acting on the target, 1,096 orders with an acting citation; controls located 79 of 80 positives and 0 of 312 negatives. Acting pages: 739 of 1,009 pairs located, 0 false locations among 2,525 negatives. Statutes: 1,931 of 1,956 wanted statutes held.",
+    "source": "jobs/selden-fr-citers/output/SUMMARY.json; jobs/selden-fr-acting/output/SUMMARY.json; jobs/selden-statutes/output/SUMMARY.json"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "One bad API field name (presidential_document_type) made every search return HTTP 400 and cost about 45 runner-minutes, because the offline test server accepted any field.",
+    "source": "jobs/selden-fr-citers/citers.py; jobs/kean/register/findings.jsonl"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles",
+   "later-events-status-history-current-law"
+  ],
+  "caveats": [
+   "Leads only: a printed relation word near a citation does not show the instrument ended the order.",
+   "Registering the outputs with the claim kit waited for the owner at the pin.",
+   "Statute and Federal Register texts are OCR for the older volumes."
+  ],
+  "sources": [
+   {
+    "label": "jobs/selden-fr-citers/README.md",
+    "path": "jobs/selden-fr-citers/README.md"
+   },
+   {
+    "label": "jobs/selden-fr-acting/README.md",
+    "path": "jobs/selden-fr-acting/README.md"
+   },
+   {
+    "label": "jobs/selden-statutes/README.md",
+    "path": "jobs/selden-statutes/README.md"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "pothier",
+  "name": "Pothier family doctrines",
+  "label": "Pothier",
+  "catalog_tool": "Pothier",
+  "stage": "research",
+  "order": 118,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Robert-Joseph Pothier (1699-1772), who reduced French law to treatises by subject so that one treatise settled what had been argued case by case",
+  "namesake_short": "after Robert-Joseph Pothier",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/pothier/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Robert_Joseph_Pothier",
+  "role": "Applies class-wide legal doctrines to the undecided orders that have no dated status history and writes, per order, a status lead (no, yes or open) with the deciding branch, sources and evidence gaps.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/pothier",
+   "research/pothier"
+  ],
+  "inputs": [
+   "5,918 undecided orders with no located status history",
+   "held later-event edges and text features"
+  ],
+  "outputs": [
+   "MEMBERS.jsonl",
+   "LEADS.jsonl",
+   "COVERAGE.json and DOCTRINE_PINS.json"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Doctrines cover 5,834 members and decide 2,139 (2,088 no, 51 yes); 3,695 stay open with stated reasons. Reviews caught 44 of 44 planted errors; the pilot caught 22 of 22 controls, found 1 wrong status in 129 decided leads (0.8%, 95% upper bound 4.2%; fixed) and 10 of 201 open leads decidable. About 15M Opus subagent tokens over 4 hours.",
+    "source": "research/pothier/REPORT.md; jobs/kean/register/findings.jsonl"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "A lead is never a provisional status, claim or finding; adoption is one owner decision per family.",
+   "Every order still goes through the claim kit on its own terms.",
+   "Ask A-20261106-pothier remained open at the pin."
+  ],
+  "sources": [
+   {
+    "label": "jobs/pothier/README.md",
+    "path": "jobs/pothier/README.md"
+   },
+   {
+    "label": "research/pothier/REPORT.md",
+    "path": "research/pothier/REPORT.md"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "peano-formulario",
+  "name": "Formulario lemma library",
+  "label": "Formulario",
+  "catalog_tool": "Formulario (peano-formulario)",
+  "stage": "research",
+  "order": 119,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Giuseppe Peano's Formulario mathematico (1895-1908), the first attempt to write every known theorem in one notation, each with its source",
+  "namesake_short": "after Peano's Formulario",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/peano-formulario/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Giuseppe_Peano",
+  "role": "Breaks lifecycle facts into small named lemmas, each proved by retained bytes, an exact quoted span and a mechanical kernel, so a producer can import a checked span instead of rereading a whole document.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/peano-formulario"
+  ],
+  "inputs": [
+   "retained source bytes and held texts",
+   "later-events edges",
+   "critic-adjusted axioms"
+  ],
+  "outputs": [
+   "sharded lemma files",
+   "SOURCES.jsonl",
+   "formulario.py exact queries"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Local build at main 43add3ec3: 23,899 lemmas, 22,728 proved (22,697 later-events edges), 1,171 unproved with reasons; 3,097 orders have a proved end lemma. Retained 27 MB; 6 larger files are refetchable by hash.",
+    "source": "jobs/kean/register/findings.jsonl; jobs/peano-formulario/README.md"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "Road tests on main were red from PR #184 because the job's trigger file was missing; fixed in PR #208.",
+    "source": "jobs/kean/register/findings.jsonl"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "Free search engines found no official copies for the 10 unproved axioms; the Brave API was blocked by robots in the shared fetch pool.",
+   "Proved means the quote is in the retained text, not that the legal reading is right.",
+   "The claim kit does not yet read the lemmas."
+  ],
+  "sources": [
+   {
+    "label": "jobs/peano-formulario/README.md",
+    "path": "jobs/peano-formulario/README.md"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "tsiolkovsky",
+  "name": "Tsiolkovsky trajectory",
+  "label": "Tsiolkovsky",
+  "catalog_tool": "Tsiolkovsky",
+  "stage": "support",
+  "order": 120,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Konstantin Tsiolkovsky, whose rocket equation (1903) reduced a rocket's progress to one number, its delta-v",
+  "namesake_short": "after Konstantin Tsiolkovsky",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/tsiolkovsky-trajectory/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Konstantin_Tsiolkovsky",
+  "role": "Credits verified work-hours at every tracker generation on main (done steps in full, open steps by blocker code) to give the project a history, velocity and acceleration and to attribute each change to the work that landed before it.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/tsiolkovsky-trajectory"
+  ],
+  "inputs": [
+   "every version of READINESS_BY_ORDER.csv on main's first-parent history",
+   "fixed mission step weights"
+  ],
+  "outputs": [
+   "TRAJECTORY.csv",
+   "GENERATION_POINTS.csv",
+   "MISSION.csv"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "40 tracker generations from 2026-10-17 to 2026-11-06: work held rose from 4,108 to 6,631 of 18,191 work-hours (22.6% to 36.5%; mission clock 39.9 h) while ready went from 0 to 1,185. Ready count and census size matched each generation's tracker summary at all 40. Largest credited: Tribonian +322, Apollo +164.",
+    "source": "jobs/kean/register/findings.jsonl; jobs/tsiolkovsky-trajectory/README.md"
+   }
+  ],
+  "history": [],
+  "feeds": [],
+  "caveats": [
+   "Partial-credit weights and the work-hour scale are modeling choices; a low and high variant give a band.",
+   "Human certification is never credited.",
+   "A visual measure of work is not a validated completion-date forecast."
+  ],
+  "sources": [
+   {
+    "label": "jobs/tsiolkovsky-trajectory/README.md",
+    "path": "jobs/tsiolkovsky-trajectory/README.md"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "ptolemy-custody",
+  "name": "Ptolemy source-byte custody",
+  "label": "Ptolemy",
+  "catalog_tool": "Ptolemy",
+  "stage": "acquire",
+  "order": 121,
+  "kind": "software",
+  "status_class": "historical",
+  "namesake_status": "documented",
+  "namesake_text": "The Ptolemies' rule at Alexandria that every book arriving on a ship was copied for the Library before the ship sailed",
+  "namesake_short": "after the Ptolemies' Library",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/ptolemy-custody/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Library_of_Alexandria",
+  "role": "Re-reads and keeps the bytes of every source the dossiers cite that was recorded only by hash, so agents can check quotes where the host is unreachable and the claim kit stops refusing for custody_record_only.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/ptolemy-custody"
+  ],
+  "inputs": [
+   "REQUESTS.jsonl built from the claim checker's source index"
+  ],
+  "outputs": [
+   "output/raw files by SHA-256",
+   "SOURCES.jsonl",
+   "LEDGER.jsonl"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "3,060 sources kept as bytes covering 2,528 orders; 812 hash mismatches, 7 blocked by robots.txt, 24 failed fetches and 19 too large; 7,364 still due. Paused by a direct push to main (0ed4bd6a95) after committing 2.17 GiB since 2026-11-05.",
+    "source": "jobs/ptolemy-custody/output/SUMMARY.json; jobs/ptolemy-custody/output/STATUS.json"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-checker"
+  ],
+  "caveats": [
+   "Paused: it carries kept files forward and fetches nothing until the byte store and a checker adapter are in place.",
+   "Keeping bytes proves only that a file is the one first read; it grades and authenticates nothing.",
+   "The Herschel survey found custody gaps block about 2,900 open orders."
+  ],
+  "sources": [
+   {
+    "label": "jobs/ptolemy-custody/README.md",
+    "path": "jobs/ptolemy-custody/README.md"
+   },
+   {
+    "label": "jobs/ptolemy-custody/output/SUMMARY.json",
+    "path": "jobs/ptolemy-custody/output/SUMMARY.json"
+   },
+   {
+    "label": "jobs/ptolemy-custody/output/STATUS.json",
+    "path": "jobs/ptolemy-custody/output/STATUS.json"
+   }
+  ]
+ },
+ {
+  "id": "mabillon",
+  "name": "Mabillon official printings",
+  "label": "Mabillon",
+  "catalog_tool": "Mabillon (mabillon-held-printings · mabillon-nara · mabillon-scan-inventory)",
+  "stage": "acquire",
+  "order": 122,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Jean Mabillon (1632-1707), founder of diplomatics, the science of authenticating original documents",
+  "namesake_short": "after Jean Mabillon",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/mabillon-held-printings/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Jean_Mabillon",
+  "role": "Proves by text which official printings the project already holds are the order (own heading, fingerprint score and neighbour margin), and inventories the National Archives catalog and scanned volumes for the rest.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/mabillon-held-printings",
+   "jobs/mabillon-nara",
+   "jobs/mabillon-scan-inventory",
+   "research/mabillon"
+  ],
+  "inputs": [
+   "hathi-gpo-orders saved passages",
+   "NARA bulk catalog export",
+   "Wikimedia Commons and Internet Archive volume lists"
+  ],
+  "outputs": [
+   "strong and lead verdicts per order",
+   "FRAME_COVERAGE.csv",
+   "SCANS.csv"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Held-printing machine finds: 1,771 strong (762 in the frame of orders with no official source) and 244 leads; controls confirmed 86 of 88 positives and accepted 0 of 6,834 negatives. Two controls needed an own-segment rule and a neighbour margin: 11 and 49 of 4,382 negatives would otherwise have passed.",
+    "source": "jobs/mabillon-held-printings/output/SUMMARY.json; jobs/mabillon-held-printings/README.md"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "NARA catalog: series Executive Orders (NAID 299999) has 41 item descriptions, 27 imaged, covering 29 orders (3669-13125); signed originals are not online and a Catalog key would not change this.",
+    "source": "research/mabillon/REPORT.md; jobs/mabillon-nara/output/SUMMARY.json"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "readiness-tracker"
+  ],
+  "caveats": [
+   "Machine locations are leads until the owner counts them; one branch fix left ready unchanged at 1,185 but reopened provisional texts until Lachmann gets a page-record rule.",
+   "Do not merge the register change alone (Kean F-20261106-mabillon-fix-measured).",
+   "Neighbour orders printed on the same page make family orders a standing false-positive risk."
+  ],
+  "sources": [
+   {
+    "label": "jobs/mabillon-held-printings/README.md",
+    "path": "jobs/mabillon-held-printings/README.md"
+   },
+   {
+    "label": "jobs/mabillon-nara/README.md",
+    "path": "jobs/mabillon-nara/README.md"
+   },
+   {
+    "label": "jobs/mabillon-scan-inventory/README.md",
+    "path": "jobs/mabillon-scan-inventory/README.md"
+   },
+   {
+    "label": "research/mabillon/REPORT.md",
+    "path": "research/mabillon/REPORT.md"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "photius",
+  "name": "Photius printing and replica checks",
+  "label": "Photius",
+  "catalog_tool": "Photius (photius-gpo-volumes · photius-replica-check · photius-free-printings · photius-csc-printings)",
+  "stage": "acquire",
+  "order": 123,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Photius of Constantinople, whose Bibliotheca catalogued and excerpted every book he could reach",
+  "namesake_short": "after Photius",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/photius-gpo-volumes/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Photios_I_of_Constantinople",
+  "role": "Locates and page-checks official printings and archival replicas for orders numbered 1 to 7315 (GPO bound volumes, ProQuest replicas, free Internet Archive printings, Civil Service Commission rescans) so the text step can count them.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/photius-gpo-volumes",
+   "jobs/photius-replica-check",
+   "jobs/photius-free-printings",
+   "jobs/photius-csc-printings"
+  ],
+  "inputs": [
+   "HathiTrust GPO volume OCR",
+   "ProQuest scans held privately",
+   "Internet Archive volumes",
+   "CSC annual reports"
+  ],
+  "outputs": [
+   "page-check fragments",
+   "credited archival_replica_checked records",
+   "located-printing tables"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "GPO bound volumes: 3,679 printings located, 554 page checks (551 pass, 2 fail, 1 unsure). ProQuest replicas: 2,557 read, 2,544 pass, 8 fail, 5 unsure after image adjudication. Free printings: 117 of 471 checked pages pass. CSC rescans: 6 of 145 pass, 129 fail (68 full text without a signature block).",
+    "source": "jobs/photius-replica-check/output/SUMMARY.json; jobs/photius-free-printings/output/SUMMARY.json; jobs/photius-csc-printings/output/SUMMARY.json; jobs/kean/register/findings.jsonl"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "Tracker before and after all four lanes (local run): ready 1,185 to 1,185; decided text step done 3,268 to 3,516; NO_OFFICIAL_SOURCE_LOCATED 4,787 to 1,751. Certified 0 to 0.",
+    "source": "HANDOFF/notes-claude.md"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "readiness-tracker"
+  ],
+  "caveats": [
+   "Passes credit the text step as a checked replica or printing; bytes stay ProQuest's and the replica is not an original.",
+   "Four count-changing pull requests (#187, #194, #197, #198) each have their own Kean finding.",
+   "Fuel Administration packets f011-f022 were not run."
+  ],
+  "sources": [
+   {
+    "label": "jobs/photius-gpo-volumes/README.md",
+    "path": "jobs/photius-gpo-volumes/README.md"
+   },
+   {
+    "label": "jobs/photius-replica-check/README.md",
+    "path": "jobs/photius-replica-check/README.md"
+   },
+   {
+    "label": "jobs/photius-free-printings/README.md",
+    "path": "jobs/photius-free-printings/README.md"
+   },
+   {
+    "label": "jobs/photius-csc-printings/README.md",
+    "path": "jobs/photius-csc-printings/README.md"
+   },
+   {
+    "label": "HANDOFF/notes-claude.md",
+    "path": "HANDOFF/notes-claude.md"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "tischendorf-originals",
+  "name": "Tischendorf official-printing finder",
+  "label": "Tischendorf",
+  "catalog_tool": "Tischendorf",
+  "stage": "acquire",
+  "order": 124,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Constantin von Tischendorf (1815-1874), who tracked down the oldest manuscripts behind texts known only from later copies and found the Codex Sinaiticus",
+  "namesake_short": "after Constantin von Tischendorf",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/tischendorf-originals/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Constantin_von_Tischendorf",
+  "role": "Finds the official printing of orders held only as transcriptions and proves page by page, by a text fingerprint against the transcription, that it carries the same order, with a measured error rate.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/tischendorf-originals"
+  ],
+  "inputs": [
+   "orders held only as transcriptions",
+   "Federal Register issues by date",
+   "Internet Archive full text"
+  ],
+  "outputs": [
+   "strong and lead verdicts",
+   "page fragments",
+   "calibration controls"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "3,813 targets: 195 strong finds and 492 leads; planted controls confirmed 56 of 60 true pairs and accepted 0 of 120 false ones; 9,013 requests (1,254 Federal Register by date, 6,293 Internet Archive).",
+    "source": "jobs/tischendorf-originals/output/SUMMARY.json"
+   },
+   {
+    "date": "2026-11-05",
+    "text": "Calibration: true pairs median score 0.87 (5th percentile 0.55), unrelated pairs at most 0.06 over 600 orders. A first run spent 5.5 GB and 62 minutes on Federal Register issues before per-route budgets were added.",
+    "source": "jobs/tischendorf-originals/README.md; jobs/kean/register/findings.jsonl"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "readiness-tracker"
+  ],
+  "caveats": [
+   "Strong finds are machine locations; counting them as official text depends on the owner's rule.",
+   "A text fingerprint cannot separate orders printed in families without extra margin rules (see Mabillon)."
+  ],
+  "sources": [
+   {
+    "label": "jobs/tischendorf-originals/README.md",
+    "path": "jobs/tischendorf-originals/README.md"
+   },
+   {
+    "label": "jobs/tischendorf-originals/output/SUMMARY.json",
+    "path": "jobs/tischendorf-originals/output/SUMMARY.json"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "theophilus-sources",
+  "name": "Theophilus current-basis sources",
+  "label": "Theophilus",
+  "catalog_tool": "Theophilus",
+  "stage": "acquire",
+  "order": 125,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Theophilus, the law professor who with Tribonian and Dorotheus compiled Justinian's Institutes (533)",
+  "namesake_short": "after Theophilus",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/theophilus-sources/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Theophilus_Antecessor",
+  "role": "Gathers the free official sources (National Emergencies Act continuation notices, U.S. Code sections and CFR targets) that keep provisional-YES orders operating and that were not yet held.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/theophilus-sources"
+  ],
+  "inputs": [
+   "Federal Register API presidential documents",
+   "U.S. Code and eCFR title XML"
+  ],
+  "outputs": [
+   "fr-<document>.txt notices",
+   "section texts with SHA-256",
+   "coverage list"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "All 673 continuation notices fetched, naming 162 orders; 234 U.S. Code sections and 531 CFR targets fetched; 296 of 346 eligible provisional-YES orders covered by sections; 74 failures (35 targets not in the title XML, 29 citations not a single section).",
+    "source": "jobs/theophilus-sources/output/SUMMARY.json"
+   },
+   {
+    "date": "2026-11-05",
+    "text": "The Theophilus claim wave filed 41 claims plus 1 replacement proposal; controls 4 of 4 caught by both arms; 73.46 USD API-equivalent. Only 2 of 43 rank-11 orders were closable from held bytes.",
+    "source": "research/excavator/claude-theophilus-2026-11-05/REPORT.md; jobs/kean/register/findings.jsonl"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "claim-kit-case-bundles"
+  ],
+  "caveats": [
+   "No legal finding; a held section is not shown to be the order's basis.",
+   "Notices before 1994 are not in the Federal Register API and are left for another route."
+  ],
+  "sources": [
+   {
+    "label": "jobs/theophilus-sources/README.md",
+    "path": "jobs/theophilus-sources/README.md"
+   },
+   {
+    "label": "jobs/theophilus-sources/output/SUMMARY.json",
+    "path": "jobs/theophilus-sources/output/SUMMARY.json"
+   },
+   {
+    "label": "research/excavator/claude-theophilus-2026-11-05/REPORT.md",
+    "path": "research/excavator/claude-theophilus-2026-11-05/REPORT.md"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "niebuhr-discovery",
+  "name": "Niebuhr identification wave",
+  "label": "Niebuhr",
+  "catalog_tool": "Niebuhr (research/niebuhr · niebuhr-verify)",
+  "stage": "identify",
+  "order": 126,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "documented",
+  "namesake_text": "Barthold Georg Niebuhr, who in 1816 recognised Gaius's lost Institutes under a later text in a Verona palimpsest",
+  "namesake_short": "after Barthold Georg Niebuhr",
+  "namesake_note": "",
+  "namesake_evidence": "research/niebuhr/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Barthold_Georg_Niebuhr",
+  "role": "Discovery wave against the orders Clark could not identify: searchers report date, subject and sources, a verifier fetches each reported page and checks the quote, and a corroboration step compares results with the held WPA indexes.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "research/niebuhr",
+   "jobs/niebuhr-verify"
+  ],
+  "inputs": [
+   "Clark's unidentified-order lists"
+  ],
+  "outputs": [
+   "identification results by order",
+   "VERIFY.csv and CORROBORATION.csv",
+   "30 held-text orders without a census row"
+  ],
+  "results": [
+   {
+    "date": "2026-11-05",
+    "text": "301 unknowns searched: 258 identified (50 with the order's text, 198 date and subject without text, 10 references resolved to known orders), 3 OCR errors, 40 not found or citation only. All 40 numbered identifications checked against the held WPA 1944 index agreed. Cost 2.70M Sonnet tokens over 23 workers.",
+    "source": "research/niebuhr/README.md; research/niebuhr/WORKERS.csv; jobs/kean/register/findings.jsonl"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "The verifier fetched 98 pages (126 page fetches failed) and found an exact quote for 127 targets.",
+    "source": "jobs/niebuhr-verify/output/SUMMARY.json"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "gratian-concordance",
+   "census-candidates"
+  ],
+  "caveats": [
+   "Discovery, not identity authentication: no find enters the census or changes a count until a person reviews it.",
+   "Identifications are almost all from secondary sources.",
+   "The owner admitted 30 recovered numbered orders under ruling R9, moving the census from 14,972 to 14,998."
+  ],
+  "sources": [
+   {
+    "label": "research/niebuhr/README.md",
+    "path": "research/niebuhr/README.md"
+   },
+   {
+    "label": "jobs/niebuhr-verify/README.md",
+    "path": "jobs/niebuhr-verify/README.md"
+   },
+   {
+    "label": "jobs/niebuhr-verify/output/SUMMARY.json",
+    "path": "jobs/niebuhr-verify/output/SUMMARY.json"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "gratian-concordance",
+  "name": "Gratian concordance and date leads",
+  "label": "Gratian",
+  "catalog_tool": "Gratian (concordance · gratian-niebuhr-leads)",
+  "stage": "support",
+  "order": 127,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Gratian, whose Concordance of Discordant Canons (c. 1140) reconciled scattered and conflicting sources into one usable body of law",
+  "namesake_short": "after Gratian",
+  "namesake_note": "",
+  "namesake_evidence": "research/gratian/CONCORDANCE.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Gratian_(jurist)",
+  "role": "Records which tracker step or claim-kit route should read each product of the 2026-11-05 night wave, whether anything reads it, and what wiring would change; its leads job converts Niebuhr's identifications into date leads for Lewis.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "research/gratian",
+   "jobs/gratian-niebuhr-leads"
+  ],
+  "inputs": [
+   "outputs of Niebuhr, Mabillon, Selden, Pothier, Lachmann, Ptolemy"
+  ],
+  "outputs": [
+   "CONCORDANCE.md and .csv",
+   "IMPACT.md ablation",
+   "DATE_LEADS.csv"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Of twelve products, eight wired, two partly wired and two orphaned. Ablation: no product moves any order to ready or one step away (1,323 ready and 40 one step away in every variant), because they supply sources and leads while ready also needs a checked claim.",
+    "source": "research/gratian/CONCORDANCE.md; research/gratian/IMPACT.md; jobs/kean/register/findings.jsonl"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "63 date leads for numbered orders (36 in the census) feed eo_identity.load_dates; no network requests.",
+    "source": "jobs/gratian-niebuhr-leads/output/SUMMARY.json"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "lewis-originals"
+  ],
+  "caveats": [
+   "The branch carrying the wiring could not be pushed at the time (session push access refused).",
+   "Leads establish nothing: census, dates of record, grades and identity are unchanged."
+  ],
+  "sources": [
+   {
+    "label": "research/gratian/CONCORDANCE.md",
+    "path": "research/gratian/CONCORDANCE.md"
+   },
+   {
+    "label": "research/gratian/IMPACT.md",
+    "path": "research/gratian/IMPACT.md"
+   },
+   {
+    "label": "jobs/gratian-niebuhr-leads/README.md",
+    "path": "jobs/gratian-niebuhr-leads/README.md"
+   },
+   {
+    "label": "jobs/gratian-niebuhr-leads/output/SUMMARY.json",
+    "path": "jobs/gratian-niebuhr-leads/output/SUMMARY.json"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "dagron-manifest",
+  "name": "Dagron collection manifest",
+  "label": "Dagron",
+  "catalog_tool": "Dagron",
+  "stage": "acquire",
+  "order": 128,
+  "kind": "software",
+  "status_class": "current",
+  "namesake_status": "documented",
+  "namesake_text": "Rene Dagron, who put the dispatches of besieged Paris (1870-71) on microfilm for the pigeon post",
+  "namesake_short": "after Rene Dagron",
+  "namesake_note": "",
+  "namesake_evidence": "jobs/dagron-collection-manifest/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/René_Dagron",
+  "role": "Lists, for an outside collection described by units and a date range, every tracked order it could supply missing evidence for, with what is held, the likely unit and a priority, so a browser agent can work without redoing the inventory.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "jobs/dagron-collection-manifest",
+   "research/dagron"
+  ],
+  "inputs": [
+   "collection description (NYU film 709)",
+   "readiness tracker, Domesday register, Lewis"
+  ],
+  "outputs": [
+   "per-order manifest (gzipped)",
+   "SUMMARY.json by group and priority"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "NYU film 709 manifest: 6,010 rows; 5,875 in group 1 (no accepted original witness, 5,092 with the text step open), 81 unnumbered or ambiguous, 54 edge-numbered. Priorities 1, 2 and 3 are 2,196, 1,435 and 2,244. 1,839 group-1 orders have a source read but no retained bytes.",
+    "source": "jobs/dagron-collection-manifest/output/SUMMARY.json; research/dagron/README.md; jobs/kean/register/findings.jsonl"
+   }
+  ],
+  "history": [],
+  "feeds": [],
+  "caveats": [
+   "It changes no status, readiness count, census row or custody; the tracker is the only authority on the text step.",
+   "The 5,305 and 4,954 figures once quoted are not in the repository."
+  ],
+  "sources": [
+   {
+    "label": "jobs/dagron-collection-manifest/README.md",
+    "path": "jobs/dagron-collection-manifest/README.md"
+   },
+   {
+    "label": "jobs/dagron-collection-manifest/output/SUMMARY.json",
+    "path": "jobs/dagron-collection-manifest/output/SUMMARY.json"
+   },
+   {
+    "label": "research/dagron/README.md",
+    "path": "research/dagron/README.md"
+   },
+   {
+    "label": "jobs/kean/register/findings.jsonl",
+    "path": "jobs/kean/register/findings.jsonl"
+   }
+  ]
+ },
+ {
+  "id": "tribonian-wave",
+  "name": "Tribonian production wave",
+  "label": "Tribonian",
+  "catalog_tool": "Tribonian",
+  "stage": "research",
+  "order": 129,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "documented",
+  "namesake_text": "Tribonian, the jurist whose commission compiled Justinian's Digest in parallel teams under one plan",
+  "namesake_short": "after Tribonian",
+  "namesake_note": "",
+  "namesake_evidence": "research/excavator/claude-tribonian-2026-11-04/tools/prompts/producer.txt:16",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Tribonian",
+  "role": "Large production wave through the ordinary claim-kit route (producers, two blind reviewers with planted controls, completion) on decided orders and on earlier rejected claims.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "research/excavator/claude-tribonian-2026-11-04",
+   "jobs/claim-kit"
+  ],
+  "inputs": [
+   "1,041 decided orders in 37 batches",
+   "83 previously rejected claims in three correction batches"
+  ],
+  "outputs": [
+   "filed claims",
+   "DISPOSITION.json per batch",
+   "telemetry"
+  ],
+  "results": [
+   {
+    "date": "2026-11-04",
+    "text": "545 reviewed lifecycle claims filed (492 new dossiers and 53 corrections); all 51 planted controls caught; 502 of 1,041 new orders blocked or rejected and 47 reviewed claims blocked by source custody. Priced at 419.36 USD API-equivalent by Necker (815.18 by Bentham's table).",
+    "source": "research/excavator/claude-tribonian-2026-11-04/REPORT.md; research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "independent-ai-review",
+   "claim-checker"
+  ],
+  "caveats": [
+   "Filings, readiness and human certification are different measures.",
+   "Corrections replace nothing: each is a new version of a claim never filed.",
+   "Low-yield batches were dominated by producer blocks naming a missing ending or current-law source."
+  ],
+  "sources": [
+   {
+    "label": "research/excavator/claude-tribonian-2026-11-04/REPORT.md",
+    "path": "research/excavator/claude-tribonian-2026-11-04/REPORT.md"
+   },
+   {
+    "label": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json",
+    "path": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
+   }
+  ]
+ },
+ {
+  "id": "dorotheus-wave",
+  "name": "Dorotheus repair and protected-stratum wave",
+  "label": "Dorotheus",
+  "catalog_tool": "Dorotheus",
+  "stage": "research",
+  "order": 130,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "inferred",
+  "namesake_text": "Dorotheus",
+  "namesake_short": "probably after Dorotheus",
+  "namesake_note": "The project never recorded why for this line. Inferred from the job and its siblings: Dorotheus served with Tribonian and Theophilus on Justinian's compilations, and this wave finished the Justinian repairs.",
+  "namesake_evidence": "jobs/theophilus-sources/README.md:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Dorotheus_(jurist)",
+  "role": "Finished the Justinian repairs under owner delegation, ran the protected provisional-YES stratum, and estimated operative force on a 120-order stratified sample.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "research/dorotheus"
+  ],
+  "inputs": [
+   "Justinian repair pull requests",
+   "Bentham stratum production.claim_ready.yes.fr",
+   "Stage 15 sample"
+  ],
+  "outputs": [
+   "YES_PROBE.md",
+   "SAMPLE_ESTIMATE.md",
+   "denominator repairs",
+   "owner rulings R7-R18"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Provisional-YES probe: 7 of 30 drawn orders filed (0.233). Planted-control catch 25 of 30 (83%; 95% interval 65-94%), 22 of 30 strictly. The 120-order sample's operative-force estimate is 0.0% (95% interval 0.0-17.6%) from only 19 responding orders, all with no operative clause.",
+    "source": "research/dorotheus/YES_PROBE.md; research/dorotheus/SAMPLE_ESTIMATE.md; research/excavator/dorotheus-sample-2026-11-06/PLANTS.csv"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "Denominator repair: census rows 14,972 to 14,998 (+26 admitted).",
+    "source": "research/dorotheus/B1_REPORT.md"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "bentham"
+  ],
+  "caveats": [
+   "Provisional, AI-reviewed, uncertified; only 16% of the sample produced a filed, reviewed claim.",
+   "One merge (PR #164) changed counts before the owner answered the related ask; ratified by ruling R13.",
+   "All-nonresponse-YES worst case is 79.7%; the headline is not a rate for the whole census."
+  ],
+  "sources": [
+   {
+    "label": "research/dorotheus/YES_PROBE.md",
+    "path": "research/dorotheus/YES_PROBE.md"
+   },
+   {
+    "label": "research/dorotheus/SAMPLE_ESTIMATE.md",
+    "path": "research/dorotheus/SAMPLE_ESTIMATE.md"
+   },
+   {
+    "label": "research/dorotheus/B1_REPORT.md",
+    "path": "research/dorotheus/B1_REPORT.md"
+   },
+   {
+    "label": "research/dorotheus/OWNER_RULINGS.md",
+    "path": "research/dorotheus/OWNER_RULINGS.md"
+   }
+  ]
+ },
+ {
+  "id": "herschel-survey",
+  "name": "Herschel remaining-work survey",
+  "label": "Herschel",
+  "catalog_tool": "Herschel",
+  "stage": "support",
+  "order": 131,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "documented",
+  "namesake_text": "William Herschel, whose star gauges (1785) counted stars in sample fields to infer the shape of the whole",
+  "namesake_short": "after William Herschel",
+  "namesake_note": "",
+  "namesake_evidence": "research/herschel/census.py:3",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/William_Herschel",
+  "role": "Costs all remaining work by running a probability sample of 238 orders through every open step with instrumented workers and two blind Opus reviewers, then projecting onto the orders not yet ready.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "research/herschel"
+  ],
+  "inputs": [
+   "96,598 open order-step cells over 14,972 orders",
+   "two independent samples (153 and 85 orders)"
+  ],
+  "outputs": [
+   "REPORT.md projection",
+   "census and replicate scripts",
+   "seven filed claims"
+  ],
+  "results": [
+   {
+    "date": "2026-11-05",
+    "text": "Running every open agent step now would cost about 21,200 USD API-equivalent (80% interval 18,900-23,600) and carry only about 760 orders (510-1,020) through every step; rounds agree (20,500 and 22,300). 76-81% of status, original-text and ending steps end blocked on missing sources. Human certification about 50 minutes per dossier (n=6, estimated).",
+    "source": "research/herschel/REPORT.md"
+   },
+   {
+    "date": "2026-11-05",
+    "text": "The survey cost about 350 USD API-equivalent over 90 minutes; all planted controls caught by both blind reviewers.",
+    "source": "research/herschel/REPORT.md"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "bentham"
+  ],
+  "caveats": [
+   "Costs are API list prices, not invoices; Necker later found the price table behind such figures about twice too high.",
+   "The certification estimate rests on six dossiers and an assumed reading speed."
+  ],
+  "sources": [
+   {
+    "label": "research/herschel/REPORT.md",
+    "path": "research/herschel/REPORT.md"
+   },
+   {
+    "label": "research/herschel/PROTOCOL.md",
+    "path": "research/herschel/PROTOCOL.md"
+   },
+   {
+    "label": "research/herschel/project.py",
+    "path": "research/herschel/project.py"
+   }
+  ]
+ },
+ {
+  "id": "justinian-repair-wave",
+  "name": "Justinian repair wave (Nov 6)",
+  "label": "Justinian (Nov 6)",
+  "catalog_tool": "Justinian repair wave (Nov 6)",
+  "stage": "support",
+  "order": 132,
+  "kind": "campaign",
+  "status_class": "historical",
+  "namesake_status": "documented",
+  "namesake_text": "Justinian, whose commission reduced the law to one body (the name was reused from the Oct 22 Justinian line)",
+  "namesake_short": "after Justinian",
+  "namesake_note": "",
+  "namesake_evidence": "research/progress/remaining-work/snapshots/2026-11-02/TOOLS.csv",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Justinian_I",
+  "role": "Repair wave A to F: owner rulings and the operative-force estimand, freshness scopes, denominator repairs, queue handling and a PDF duplicate plan, with five Sonnet workers under an Opus coordinator.",
+  "history_note": "Added in the Nov 7 refresh. Earlier node histories remain dated.",
+  "source_pin": "178203a83abfad5732bd9a2d41c485d3f013624c",
+  "jobs": [
+   "research/justinian"
+  ],
+  "inputs": [
+   "open asks and stale outputs",
+   "tracker generations and run queue",
+   "repository PDF inventory"
+  ],
+  "outputs": [
+   "ESTIMAND.md",
+   "FRESHNESS_SCOPES.md",
+   "DEDUP_PLAN.md",
+   "RULINGS_WIRING_REPORT.md"
+  ],
+  "results": [
+   {
+    "date": "2026-11-06",
+    "text": "Five Sonnet repair workers cost 3.55 USD API-equivalent (Opus coordinator about 48 USD). The Tribonian wave used 751,017 context tokens per attempted order (723,973 cache reads) over 3.6 model turns; ranking by window tokens flips 8 action pairs against the dollar ranking.",
+    "source": "research/justinian/WORKERS.csv; jobs/kean/register/findings.jsonl"
+   },
+   {
+    "date": "2026-11-06",
+    "text": "Ready-count audit: ready fell from 1,331 to 1,309 (22 orders lost readiness on the working-text grade rule), then rose to 1,384 (+75).",
+    "source": "research/justinian/WORKERS.csv; jobs/kean/register/findings.jsonl"
+   }
+  ],
+  "history": [],
+  "feeds": [
+   "bentham"
+  ],
+  "caveats": [
+   "Several rulings are marked owner-delegated and reversible; none changes codebook text or the certified count.",
+   "The Oct 22 Justinian line (owner-question drafting) remains a separate node with an unverified completion record.",
+   "PDF duplicates measured by git blob identity say nothing about which copy is the cited one."
+  ],
+  "sources": [
+   {
+    "label": "research/justinian/ESTIMAND.md",
+    "path": "research/justinian/ESTIMAND.md"
+   },
+   {
+    "label": "research/justinian/DEDUP_PLAN.md",
+    "path": "research/justinian/DEDUP_PLAN.md"
+   },
+   {
+    "label": "research/justinian/FRESHNESS_SCOPES.md",
+    "path": "research/justinian/FRESHNESS_SCOPES.md"
+   },
+   {
+    "label": "research/justinian/WORKERS.csv",
+    "path": "research/justinian/WORKERS.csv"
+   }
+  ]
  }
 ]
