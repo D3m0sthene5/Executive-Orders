@@ -58,6 +58,10 @@ class QueueContract(unittest.TestCase):
                       refresh_head)
         self.assertNotIn("queue:", refresh_head)
         self.assertNotIn("repository-output-writer", refresh_head)
+        # Hansard: only the reporting refresh publishes data-drifted readouts as of
+        # their input commit; production publication never does.
+        self.assertIn("ARSENALE_AS_OF_READOUT: '1'", refresh_jobs["publish"])
+        self.assertNotIn("ARSENALE_AS_OF_READOUT", run)
         self.assertNotIn("concurrency:", refresh_jobs["execute"])
         self.assertIn("group: repository-output-writer-refs/heads/main", refresh_jobs["publish"])
         self.assertRegex(refresh_jobs["publish"], r"(?m)^      queue: max$")
