@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (10)
+## Waiting for the owner (12)
 
-**A-20261106-1**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261106-1**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -45,13 +45,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 237; `search` finds the rest)
+## Newest results (6 of 238; `search` finds the rest)
 
+- 2026-11-06 F-20261107-youngstown-courts **worked**: Find court decisions citing each register order by streaming CourtListener's public bulk opinions, classify t… Lesson: Bulk streaming beats the API (5/min, 125/day) by orders of magnitude; holdings are stated about 'the Order', so number-only sentence rules miss most; key caches by the ids they hold.
 - 2026-11-06 F-20261107-ventris-ocr **partly worked**: OCR pilot: 58 passages (28 hard, 30 clean) read by GPO layer, Tesseract x2, Surya 2.5, PaddleOCR v5 (RTX 5080… Lesson: GPO's layer and independent OCR almost never agree exactly even on clean prose (punctuation, hyphen joins), so exact agreement is unusable as a reference rule; a CER threshold or more human reference…
 - 2026-11-06 F-20261107-thesis-measure **analysis**: Fill the blank formal_revocation_after_earlier_cessation measure from held data (later-events, Formulario, 19… Lesson: The held data prove the cleanup pattern exists but currently point against 'often'; the better-supported half of the thesis is orders that ceased and were never revoked. A rate needs the Stage 15 sam…
 - 2026-11-06 F-20261107-septuagint-xfamily **worked**: Replay four exactly rebuilt Dorotheus YES-probe review batches (8 planted controls) with an OpenAI-family rev… Lesson: A different-family reviewer is complementary on planted defects at no metered cost; samples are too small for a rate. Removed-later-event plants (Mountweazel D6) defeat both families and need a dedic…
 - 2026-11-06 F-20261107-robots-wildcards **failed**: Rely on jobs/_lib/fetch_pool.py's robots.txt check (urllib.robotparser) for every job Lesson: Read the whole robots.txt before any request, including manual research with curl; and fix fetch_pool to honour wildcard rules (owner decision: the change reruns every consumer job).
 - 2026-11-06 F-20261107-repetita-lsa **worked**: Read every monthly List of CFR Sections Affected 1997-2026 from govinfo's keyless content/pkg zips and extrac… Lesson: The LSA is cumulative within a year (December repeats January-November), so keep each row once with first and last issue. Its FR reference is a page pointer, not a date. HathiTrust challenges GitHub'…
-- 2026-11-06 F-20261107-pergamon-tag-triggers **failed**: Create one GitHub Release per hash shard (pergamon-xx) for the byte store, with tags on ordinary main commits Lesson: Never create tags on commits that carry workflows unless you mean to run them all; point release tags at a commit with no .github/workflows. Path filters do not apply to tag pushes.
 
-Register: 67 owner decisions, 26 answered questions, 237 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 67 owner decisions, 26 answered questions, 238 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
