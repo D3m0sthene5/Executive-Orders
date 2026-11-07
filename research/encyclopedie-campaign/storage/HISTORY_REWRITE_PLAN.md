@@ -85,6 +85,7 @@ breaks every open branch and clone. Only the owner can start it.**
 
 ## Status at writing
 
-- Ptolemy and Selden raw files: 3,691 unique files (3.2 GB) being uploaded to `pergamon-xx` releases; the verification
-  result is recorded in `research/encyclopedie-campaign/storage/MIGRATION.md` when complete.
+- Ptolemy and Selden raw files: **done and verified**. 3,691 unique files (3,177,188,305 bytes) are in `pergamon-xx`
+  releases and every one re-downloads without a token with the same SHA-256 (`MIGRATION.md`, `PERGAMON_MANIFEST.jsonl`).
+  Option A's first precondition therefore holds.
 - Checker adapter: written and tested in isolation, not applied (count-sensitive; owner).

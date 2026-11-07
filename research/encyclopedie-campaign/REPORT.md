@@ -9,8 +9,9 @@ Nothing here changes a status, the codebook, the census or the certified count (
 1. **The repository's growth is stopped at its two largest sources, and raw bytes are moving out of git.**
    - Ptolemy is paused: it had committed 2.17 GiB of raw source bytes since 2026-11-05.
    - Failed job runs no longer commit their whole output (PR #188, merged): about 740 MB on 2026-11-06 alone.
-   - A byte store outside git (Pergamon: GitHub Release assets now, Cloudflare R2 by configuration later) holds the
-     3,691 Ptolemy and Selden raw files as they upload. Only a history rewrite, which the owner decides, shrinks the
+   - A byte store outside git (Pergamon: GitHub Release assets now, Cloudflare R2 by configuration later) holds all
+     3,691 Ptolemy and Selden raw files (3.18 GB), each re-downloaded without a token and matched to its SHA-256; the
+     manifest is in git (`storage/PERGAMON_MANIFEST.jsonl`). Only a history rewrite, which the owner decides, shrinks the
      repository itself.
    - GitHub's 10 GB figure is a recommended limit; the enforced limits are 2 GB per push and 100 MB per file.
 2. **The thesis has evidence, but not yet a rate.**
