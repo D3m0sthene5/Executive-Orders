@@ -1126,7 +1126,7 @@ def load_prior(prior_dir: Path, captures):
 
 def main(repo: Path, out: Path, cache: Path, transport=None, env=os.environ, sleep=time.sleep, intervals=None):
     out.mkdir(parents=True, exist_ok=True)
-    smoke = bool(env.get("JOB_SMOKE")) or (HERE / "SMOKE").is_file()
+    smoke = bool(env["JOB_SMOKE"]) if "JOB_SMOKE" in env else (HERE / "SMOKE").is_file()
     t0 = time.monotonic()
     universe = load_universe(repo)
     notes = load_current_law_notes(repo)

@@ -268,7 +268,7 @@ class Run(unittest.TestCase):
     def run_job(self, root, transport, env=None, prior=None, name="out", cache="cache"):
         repo = Path(root) / "repo" if (Path(root) / "repo").exists() else make_repo(root)
         out = Path(root) / name
-        e = {"JOB_UNT_COLLECTIONS": "eot2008,eot2012", "JOB_RETRIES": "2", "JOB_MIN_EDITIONS": "2", "JOB_BACKOFF": "0",
+        e = {"JOB_UNT_COLLECTIONS": "eot2008,eot2012", "JOB_RETRIES": "2", "JOB_MIN_EDITIONS": "2", "JOB_BACKOFF": "0", "JOB_SMOKE": "",
              "JOB_PRIOR_OUTPUT_DIR": str(prior or (Path(root) / "no_prior"))}
         e.update(env or {})
         s = D.main(repo, out, Path(root) / cache, transport=transport, env=e, sleep=lambda s: None,
