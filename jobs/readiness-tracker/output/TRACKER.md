@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42382847594-1:85c24a50626eef5982782fc869869b83a1c0e9cf2a70c59e9627485221eb7723` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42398265217-1:7af08fa41bf644611fdfae2c2bdebc0bf5d37534d6df9d892ffb29be30578e84` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
