@@ -10,7 +10,7 @@ New York date: 2026-11-07. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42351905395-1:efa8a80dc706b4223b07857a2e152e65a9f022f18422752ef97af1a8eadf7b93` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42359031778-1:760edf0386d3e4ec214cb5c2fdff6b353fc6920670144d11595e110d1c4fc13e` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -29,7 +29,7 @@ Comparison snapshot: 2026-11-06; intervening runs may be absent.
 - claim-checker: claims_all_checks_passed: 1579 → 1386; claims_mechanical_fail: 65 → 258; claims_mechanical_pass: 1665 → 1472; held_distinct_sha256: 55081 → 56961
 - duodecim-tableiv: captures_discovered_internet_archive: unavailable → 99; captures_discovered_unt: unavailable → 2; control_error_rate: unavailable → 0.0; controls_errors: unavailable → 0
 - gessner-cards: ready_for_human_review: 1185 → 992
-- kean: decisions: 45 → 67; findings: 211 → 244; open_owner_questions: 3 → 14
+- kean: decisions: 45 → 67; findings: 211 → 245; open_owner_questions: 3 → 14
 - lachmann: in_scope: 5832 → 5859
 - photius-csc-printings: checked: unavailable → 145; counting_as_official_printing: unavailable → 6; fragments: unavailable → 145; located_rows: unavailable → 803
 - photius-free-printings: checked: unavailable → 471; counting_as_official_printing: unavailable → 117; fragments: unavailable → 471; orders_with_candidates: unavailable → 560
@@ -75,4 +75,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42351905395)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42359031778)
