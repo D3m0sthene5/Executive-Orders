@@ -408,13 +408,46 @@ def command_verdict(args):
 
 
 # ----------------------------------------------------------------- publishing
-def fresh_subset(ref, names, report_path):
+DATA_ROOTS = re.compile(r"^(research|releases)/|^jobs/[^/]+/(output|data)/")
+CODE_SUFFIXES = (".py", ".sh", ".yml", ".yaml")
+
+
+def as_of_acceptable(problems, candidates):
+    """Hansard: may a refused reporting generation still be published as an as-of readout?
+
+    Only when every problem is inputs_changed, and every changed path is data
+    (research/, releases/, another job's output/ or data/), never code, and never
+    the output of a job in this publication (a consumer of a refused producer stays
+    refused). Such a generation is exact for its input commit, which descends from
+    the commit of the generation it replaces: concurrent_output_advanced is a
+    different reason and stays refused. Publishing it moves the readout forward
+    instead of keeping an older one.
+    """
+    if not problems or any(p.get("reason") != "inputs_changed" for p in problems):
+        return False
+    for problem in problems:
+        paths = [c.get("path", "") for c in problem.get("changed_paths", []) if isinstance(c, dict)]
+        if not paths or len(paths) != problem.get("changed_path_count", len(paths)):
+            return False
+        for path in paths:
+            if not DATA_ROOTS.match(path) or path.endswith(CODE_SUFFIXES):
+                return False
+            if any(path.startswith(f"jobs/{name}/output/") for name in candidates):
+                return False
+    return True
+
+
+def fresh_subset(ref, names, report_path, as_of=None):
     """Fresh subset: drop refused jobs and recheck the rest until the check passes.
 
     The final check over exactly the published set passes, which is the same
     acceptance condition the serial runner applied to its whole selection.
+    When as_of is a dict (reporting refreshes only), jobs refused solely because
+    data inputs advanced (as_of_acceptable) are kept and recorded there instead.
     """
     remaining, refused, rounds, final = list(names), {}, 0, None
+    if as_of is not None:
+        as_of.clear()
     while remaining:
         rounds += 1
         buffer = io.StringIO()
@@ -431,6 +464,16 @@ def fresh_subset(ref, names, report_path):
         bad = {p.get("job") for p in final.get("problems", [])} & set(remaining)
         if not bad:
             raise RuntimeError("freshness check rejected without naming a job")
+        if as_of is not None:
+            by_job = {n: [p for p in final["problems"] if p.get("job") == n] for n in bad}
+            # Consumers whose only problem is a refused producer are re-judged after
+            # that producer is dropped; data-only drift is accepted as of its commit.
+            hard = {n for n, problems in by_job.items() if not as_of_acceptable(problems, remaining)}
+            if not hard:
+                as_of.clear()
+                as_of.update(by_job)
+                break
+            bad = hard
         for problem in final["problems"]:
             if problem.get("job") in bad:
                 refused.setdefault(problem["job"], []).append(problem)
@@ -516,6 +559,7 @@ def command_publish(args):
     check_report = RECEIPTS / "publication-check.json"
     record = {"started_utc": now(), "candidates": candidates, "push_attempts": 0}
     refused, fresh, outcome = {}, [], None
+    as_of = {} if os.environ.get("ARSENALE_AS_OF_READOUT") == "1" else None
     pool = list(candidates)
     remote = f"origin/{branch}"
     for attempt in range(1, PUSH_ATTEMPTS + 1):
@@ -539,7 +583,7 @@ def command_publish(args):
                 outcome = "records-only"
                 break
         # Each push attempt rechecks against the newest tip; the set only shrinks.
-        fresh, newly, rounds, _ = fresh_subset(remote, pool, check_report)
+        fresh, newly, rounds, _ = fresh_subset(remote, pool, check_report, as_of)
         refused.update(newly)
         pool = list(fresh)
         record["freshness_rounds"] = record.get("freshness_rounds", 0) + rounds
@@ -554,7 +598,11 @@ def command_publish(args):
         if not staged_names():
             outcome = "unchanged"
             break
-        git("commit", "-q", "-m", "Results of job(s): " + " ".join(fresh), "-m", "Run: " + run_url)
+        message = ["-m", "Results of job(s): " + " ".join(fresh), "-m", "Run: " + run_url]
+        if as_of:
+            message += ["-m", "As of their input commits; data inputs advanced since for: "
+                        + " ".join(sorted(as_of)) + ". A catch-up refresh is queued (Hansard)."]
+        git("commit", "-q", *message)
         record["push_attempts"] = attempt
         push = git("push", "-q", "origin", f"HEAD:{branch}", check=False)
         if push.returncode == 0:
@@ -575,6 +623,12 @@ def command_publish(args):
     published = fresh if outcome == "pushed" else []
     record.update(finished_utc=now(), outcome=outcome, published=published,
                   refused={name: problems for name, problems in refused.items()})
+    if as_of and published:
+        record["published_as_of"] = {
+            name: {"input_commit": (read_json(Path("jobs", name, "output", "RUNNER_INPUTS.json"), {}) or {}).get("base_commit"),
+                   "changed_path_count": sum(p.get("changed_path_count", 0) for p in problems),
+                   "changed_paths_sample": [c["path"] for p in problems for c in p.get("changed_paths", [])][:10]}
+            for name, problems in as_of.items() if name in published}
     report = read_json(REPORT, {}) or {}
     report["publication"] = record
     write_json(REPORT, report)
@@ -615,7 +669,8 @@ def requeue_plan(refused, depth, downstream, workflow, ref, limit=MAX_REQUEUE_DE
 def command_requeue(args):
     report = read_json(REPORT, {}) or {}
     publication = report.get("publication") or {}
-    refused = sorted((publication.get("refused") or {}).keys())
+    # An as-of readout is published but behind: queue the catch-up like a refusal.
+    refused = sorted(set(publication.get("refused") or {}) | set(publication.get("published_as_of") or {}))
     try:
         depth = int(os.environ.get("REQUEUE_DEPTH") or 0)
     except ValueError:

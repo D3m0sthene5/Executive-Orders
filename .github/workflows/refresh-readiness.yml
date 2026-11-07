@@ -167,6 +167,11 @@ jobs:
           EVENT: ${{ github.event_name }}
           BRANCH: main
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          # Hansard: a readout whose only staleness is data that advanced during
+          # its ~35-minute run is published as of its input commit (never older
+          # than what it replaces) and a catch-up refresh is queued. Code changes,
+          # concurrent publication and refused producers are still refused.
+          ARSENALE_AS_OF_READOUT: '1'
         run: bash .github/scripts/commit_results.sh
       # Bounded: a re-queued refresh carries requeue_depth; at depth 2 nothing is dispatched.
       - name: Re-queue a refused refresh
