@@ -11,6 +11,14 @@ Does a statute that abolishes an order's body, or ends the emergency its term de
 
 Sources: `research/selden/REPORT.md`
 
+## A-20261106-2 (2026-11-06, claude-peiresc)
+
+The repo is near GitHub's 10 GB cap. Stop committing source bytes (R2 plus hash manifest), and shrink by history rewrite or a fresh repository? Default: stop new bytes now; you choose how to shrink.
+
+*Why:* GitHub API size went from 9,175,409 KB to 9,717,466 KB on 2026-11-06; behaviour at the cap is undocumented.
+
+Sources: `research/peiresc-tool-survey/README.md`
+
 ## A-20261106-dagron-nyu (2026-11-06, Claude)
 
 NYU Film 709/Hein: lift the 2026-10-19 no-microfilm rule for this collection, and approve staged images under research/dagron/acquired?
