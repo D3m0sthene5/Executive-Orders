@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Nihil obstat core tests</title></head>
+<body>
+<h1>Nihil obstat core tests</h1>
+<p>Open this page over http (for example <code>py -m http.server</code> in the certifier folder) or run <code>py -I tests/run_js_tests.py</code>.</p>
+<pre id="log">running…</pre>
+<pre id="result" hidden></pre>
+<script src="../core.js"></script>
+<script>
+(async function () {
+  var C = window.NihilCore, results = [];
+  function ok(name, cond, extra) { results.push({ name: name, pass: !!cond, extra: cond ? undefined : String(extra) }); }
+  async function test(name, fn) { try { await fn(); } catch (e) { ok(name + " (threw)", false, e && e.stack || e); } }
+  var enc = new TextEncoder();
+  function bytesOf(n, seed) { var u = new Uint8Array(n), x = seed >>> 0; for (var i = 0; i < n; i++) { x = (x * 1664525 + 1013904223) >>> 0; u[i] = x >>> 24; } return u; }
+
+  await test("sha256 known vectors", async function () {
+    ok("empty", (await C.sha256Hex(new Uint8Array(0))) === "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
+    ok("abc", (await C.sha256Hex(enc.encode("abc"))) === "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
+    ok("two-block message", (await C.sha256Hex(enc.encode("abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"))) === "248d6a61d20638b8e5c026930c3e6039a33ce45964ff2167f6ecedd419db06c1");
+    ok("one million a", (await C.sha256Hex(enc.encode("a".repeat(1000000)))) === "cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0");
+  });
+
+  await test("fallback equals SubtleCrypto", async function () {
+    var lens = [0, 1, 54, 55, 56, 57, 63, 64, 65, 119, 120, 128, 129, 1000, 65537], bad = [];
+    for (var i = 0; i < lens.length; i++) {
+      var b = bytesOf(lens[i], lens[i] + 7);
+      var digest = await crypto.subtle.digest("SHA-256", b);
+      var hex = Array.prototype.map.call(new Uint8Array(digest), function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+      if (C.sha256Fallback(b) !== hex) bad.push(lens[i]);
+    }
+    ok("fallback matches native for " + lens.length + " lengths", bad.length === 0, "differs at lengths " + bad);
+  });
+
+  await test("canonical JSON equals Python claim_gate.canonical", async function () {
+    var o = { b: [1, 2, { z: null, a: "é\n\"x\u0001" }], a: true };
+    ok("canonical text", C.canonical(o) === '{"a":true,"b":[1,2,{"a":"é\\n\\"x\\u0001","z":null}]}', C.canonical(o));
+    ok("claim sha matches the value Python computed", (await C.claimSha(o)) === "8dff30f2831d3011e24dad59512ab9855a23e304d10f661dc60354629af2d626");
+  });
+
+  await test("byte spans on multibyte text", async function () {
+    var text = "aé€b😀c", bytes = enc.encode(text);   // 1+2+3+1+4+1 = 12 bytes
+    ok("length", bytes.length === 12);
+    ok("slice decodes", C.decodeRange(bytes, 1, 6) === "é€");
+    var cx = C.context(bytes, 3, 6, 2);                                    // pad cuts mid-character on the left
+    ok("context hit", cx.hit === "€");
+    ok("context cuts on character boundaries", cx.before.indexOf("�") < 0 && cx.after.indexOf("�") < 0, JSON.stringify(cx));
+    var seg = C.segments(bytes, [{ id: "x", start: 1, end: 6 }, { id: "y", start: 3, end: 7 }]);
+    ok("segments cover everything", seg.map(function (s) { return s.text; }).join("") === text);
+    ok("overlap carries both ids", seg.some(function (s) { return s.ids.length === 2; }));
+  });
+
+  var card = null;
+  await test("load example card", async function () {
+    var r = await fetch("../example_cards/cards/EO_10863.json");
+    card = await r.json();
+    ok("is a card", C.isCard(card));
+  });
+
+  if (card) {
+    await test("real card: claim hash, text hashes, byte spans", async function () {
+      ok("claim sha recomputed equals claim_sha256", (await C.claimSha(card.claim)) === card.claim_sha256);
+      var bad = 0, n = 0;
+      for (var i = 0; i < card.sources.length; i++) {
+        var v = await C.verifySource(card.sources[i], {}, null);
+        if (v.text !== "verified") bad++;
+        n++;
+      }
+      ok("every source text verifies against the claim's text hash (" + n + ")", bad === 0, bad + " failed");
+      var spanBad = 0;
+      card.spans.forEach(function (s) {
+        var src = card.sources.find(function (x) { return x.source_key === s.source_key; });
+        if (C.spanCheck(s, C.textBytes(src)) !== "ok") spanBad++;
+      });
+      ok("every quoted span's bytes equal the quotation (" + card.spans.length + ")", spanBad === 0, spanBad + " differ");
+    });
+
+    await test("tampering is detected", async function () {
+      var copy = JSON.parse(JSON.stringify(card));
+      var src = copy.sources[0];
+      src.text = src.text.slice(0, 40) + (src.text[40] === "X" ? "Y" : "X") + src.text.slice(41);
+      var v = await C.verifySource(src, {}, null);
+      ok("one changed character makes the text hash red", v.text === "mismatch", v.text);
+      var span = copy.spans.find(function (s) { return s.status === "exact"; });
+      ok("and the span no longer verifies or still does only if untouched", ["ok", "differs"].indexOf(C.spanCheck(span, C.textBytes(src))) >= 0);
+      var c2 = JSON.parse(JSON.stringify(card)); c2.claim.whole_order_status = c2.claim.whole_order_status === "yes" ? "no" : "yes";
+      ok("changing a claim field changes its hash", (await C.claimSha(c2.claim)) !== card.claim_sha256);
+    });
+
+    await test("original attachment: match, mismatch, slot", async function () {
+      var src = JSON.parse(JSON.stringify(card.sources[0]));
+      var v0 = await C.verifySource(src, {}, null);
+      ok("not attached is unverified", v0.original === "unverified");
+      var attached = {}; attached[src.sha256] = { name: "orig.pdf", sha256: src.sha256 };
+      var v1 = await C.verifySource(src, attached, null);
+      ok("attached by hash verifies", v1.original === "verified" && v1.originalName === "orig.pdf");
+      var v2 = await C.verifySource(src, {}, { name: "other.pdf", sha256: "0".repeat(64) });
+      ok("a different file in this source's slot is a mismatch", v2.original === "mismatch" && v2.notes.length === 1);
+      var raw = bytesOf(300, 5), rawSha = await C.sha256Hex(raw), b64 = btoa(String.fromCharCode.apply(null, raw));
+      var s2 = { sha256: rawSha, raw_b64: b64 };
+      ok("embedded raw bytes verify", (await C.verifySource(s2, {}, null)).original === "verified");
+      s2.sha256 = "f".repeat(64);
+      ok("embedded raw bytes with a wrong claimed hash are red", (await C.verifySource(s2, {}, null)).original === "mismatch");
+    });
+
+    await test("decision rules and sealing", async function () {
+      var form = { reviewerName: "A B", independent: true, readOriginal: true, overall: "certify", elements: {}, notes: "", activeSeconds: 12.4, sourceStatus: {} };
+      card.elements.forEach(function (e) { form.elements[e.id] = { decision: "certify", reason: "read it" }; });
+      ok("complete certify has no errors", C.validateDecision(card, form, {}).length === 0, C.validateDecision(card, form, {}));
+      var f2 = JSON.parse(JSON.stringify(form)); f2.independent = false;
+      ok("certify needs independence", C.validateDecision(card, f2, {}).length >= 1);
+      var f3 = JSON.parse(JSON.stringify(form)); f3.elements[card.elements[1].id] = { decision: "reject", reason: "" };
+      ok("a rejected element needs a reason and blocks overall certify", C.validateDecision(card, f3, {}).length >= 2);
+      var st = {}; st[card.sources[0].source_key] = { text: "verified", original: "mismatch" };
+      ok("a hash mismatch blocks certify", C.validateDecision(card, form, st).some(function (e) { return /hash/.test(e); }));
+      var rec = C.buildDecision(card, "c".repeat(64), form);
+      ok("record carries claim hash, page version and reviewer", rec.claim_sha256 === card.claim_sha256 && rec.page_version === C.VERSION && rec.reviewer.name === "A B");
+      ok("certify with independence yields a review draft", rec.lifecycle_review_draft && rec.lifecycle_review_draft.reviewer_role === "independent_human");
+      await C.sealDecision(rec);
+      var copy = JSON.parse(JSON.stringify(rec)); delete copy.record_sha256;
+      ok("record_sha256 covers the rest of the record", rec.record_sha256 === await C.sha256Hex(enc.encode(C.canonical(copy))));
+      var lines = C.toJsonl([rec, rec]);
+      ok("JSONL round trip", C.parseJsonl(lines).length === 2 && lines.split("\n").length === 3);
+      form.overall = "reject"; form.notes = "";
+      ok("overall reject with every element certified needs notes", C.validateDecision(card, form, {}).length === 1);
+      form.elements[card.elements[1].id] = { decision: "reject", reason: "quotation is from a different order" };
+      ok("overall reject is backed by an element reason", C.validateDecision(card, form, {}).length === 0, C.validateDecision(card, form, {}));
+      ok("reject has no review draft", !C.buildDecision(card, null, form).lifecycle_review_draft);
+    });
+  }
+
+  var failed = results.filter(function (r) { return !r.pass; });
+  var summary = { engine: C.engine(), total: results.length, passed: results.length - failed.length, failed: failed.length, failures: failed };
+  document.getElementById("log").textContent = results.map(function (r) { return (r.pass ? "PASS " : "FAIL ") + r.name + (r.extra ? "  :: " + r.extra : ""); }).join("\n") +
+    "\n\n" + summary.passed + " of " + summary.total + " passed (hash engine: " + summary.engine + ")";
+  document.getElementById("result").textContent = JSON.stringify(summary);
+})();
+</script>
+</body></html>

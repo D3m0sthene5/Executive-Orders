@@ -1,0 +1,520 @@
+{
+ "engines": [
+  "claude",
+  "gpo-layer",
+  "paddleocr",
+  "surya",
+  "tesseract-psm3",
+  "tesseract-psm6"
+ ],
+ "invent_run": 6,
+ "PREVIEW_pairwise_cer_NO_REFERENCES": {
+  "strict": {
+   "hard": {
+    "claude vs gpo-layer": 0.1457,
+    "claude vs paddleocr": 0.2249,
+    "claude vs surya": 0.1518,
+    "claude vs tesseract-psm3": 0.3315,
+    "claude vs tesseract-psm6": 0.2268,
+    "gpo-layer vs claude": 0.1685,
+    "gpo-layer vs paddleocr": 0.2638,
+    "gpo-layer vs surya": 0.2015,
+    "gpo-layer vs tesseract-psm3": 0.4154,
+    "gpo-layer vs tesseract-psm6": 0.2819,
+    "paddleocr vs claude": 0.2327,
+    "paddleocr vs gpo-layer": 0.2458,
+    "paddleocr vs surya": 0.2715,
+    "paddleocr vs tesseract-psm3": 0.3598,
+    "paddleocr vs tesseract-psm6": 0.1873,
+    "surya vs claude": 0.2453,
+    "surya vs gpo-layer": 0.259,
+    "surya vs paddleocr": 0.3458,
+    "surya vs tesseract-psm3": 0.5451,
+    "surya vs tesseract-psm6": 0.3917,
+    "tesseract-psm3 vs claude": 0.2514,
+    "tesseract-psm3 vs gpo-layer": 0.2787,
+    "tesseract-psm3 vs paddleocr": 0.2639,
+    "tesseract-psm3 vs surya": 0.3216,
+    "tesseract-psm3 vs tesseract-psm6": 0.1845,
+    "tesseract-psm6 vs claude": 0.22,
+    "tesseract-psm6 vs gpo-layer": 0.2517,
+    "tesseract-psm6 vs paddleocr": 0.1834,
+    "tesseract-psm6 vs surya": 0.2935,
+    "tesseract-psm6 vs tesseract-psm3": 0.2682
+   },
+   "clean": {
+    "claude vs gpo-layer": 0.0309,
+    "claude vs paddleocr": 0.0112,
+    "claude vs surya": 0.03,
+    "claude vs tesseract-psm3": 0.0165,
+    "claude vs tesseract-psm6": 0.0139,
+    "gpo-layer vs claude": 0.0329,
+    "gpo-layer vs paddleocr": 0.0292,
+    "gpo-layer vs surya": 0.0293,
+    "gpo-layer vs tesseract-psm3": 0.0272,
+    "gpo-layer vs tesseract-psm6": 0.033,
+    "paddleocr vs claude": 0.012,
+    "paddleocr vs gpo-layer": 0.0287,
+    "paddleocr vs surya": 0.0307,
+    "paddleocr vs tesseract-psm3": 0.0147,
+    "paddleocr vs tesseract-psm6": 0.0121,
+    "surya vs claude": 0.0342,
+    "surya vs gpo-layer": 0.0323,
+    "surya vs paddleocr": 0.034,
+    "surya vs tesseract-psm3": 0.0311,
+    "surya vs tesseract-psm6": 0.0369,
+    "tesseract-psm3 vs claude": 0.0172,
+    "tesseract-psm3 vs gpo-layer": 0.0268,
+    "tesseract-psm3 vs paddleocr": 0.0147,
+    "tesseract-psm3 vs surya": 0.0278,
+    "tesseract-psm3 vs tesseract-psm6": 0.0066,
+    "tesseract-psm6 vs claude": 0.0145,
+    "tesseract-psm6 vs gpo-layer": 0.0323,
+    "tesseract-psm6 vs paddleocr": 0.0121,
+    "tesseract-psm6 vs surya": 0.0336,
+    "tesseract-psm6 vs tesseract-psm3": 0.0065
+   }
+  },
+  "lenient": {
+   "hard": {
+    "claude vs gpo-layer": 0.1379,
+    "claude vs paddleocr": 0.2202,
+    "claude vs surya": 0.1501,
+    "claude vs tesseract-psm3": 0.3285,
+    "claude vs tesseract-psm6": 0.2247,
+    "gpo-layer vs claude": 0.1587,
+    "gpo-layer vs paddleocr": 0.2574,
+    "gpo-layer vs surya": 0.1979,
+    "gpo-layer vs tesseract-psm3": 0.4061,
+    "gpo-layer vs tesseract-psm6": 0.2753,
+    "paddleocr vs claude": 0.2284,
+    "paddleocr vs gpo-layer": 0.242,
+    "paddleocr vs surya": 0.2703,
+    "paddleocr vs tesseract-psm3": 0.3556,
+    "paddleocr vs tesseract-psm6": 0.183,
+    "surya vs claude": 0.2434,
+    "surya vs gpo-layer": 0.2577,
+    "surya vs paddleocr": 0.3445,
+    "surya vs tesseract-psm3": 0.5424,
+    "surya vs tesseract-psm6": 0.3889,
+    "tesseract-psm3 vs claude": 0.2487,
+    "tesseract-psm3 vs gpo-layer": 0.2749,
+    "tesseract-psm3 vs paddleocr": 0.2595,
+    "tesseract-psm3 vs surya": 0.319,
+    "tesseract-psm3 vs tesseract-psm6": 0.1842,
+    "tesseract-psm6 vs claude": 0.2181,
+    "tesseract-psm6 vs gpo-layer": 0.2472,
+    "tesseract-psm6 vs paddleocr": 0.1789,
+    "tesseract-psm6 vs surya": 0.2909,
+    "tesseract-psm6 vs tesseract-psm3": 0.2679
+   },
+   "clean": {
+    "claude vs gpo-layer": 0.0304,
+    "claude vs paddleocr": 0.0104,
+    "claude vs surya": 0.029,
+    "claude vs tesseract-psm3": 0.016,
+    "claude vs tesseract-psm6": 0.0133,
+    "gpo-layer vs claude": 0.0324,
+    "gpo-layer vs paddleocr": 0.0278,
+    "gpo-layer vs surya": 0.0279,
+    "gpo-layer vs tesseract-psm3": 0.0266,
+    "gpo-layer vs tesseract-psm6": 0.0324,
+    "paddleocr vs claude": 0.0112,
+    "paddleocr vs gpo-layer": 0.0273,
+    "paddleocr vs surya": 0.0297,
+    "paddleocr vs tesseract-psm3": 0.0136,
+    "paddleocr vs tesseract-psm6": 0.011,
+    "surya vs claude": 0.0332,
+    "surya vs gpo-layer": 0.0308,
+    "surya vs paddleocr": 0.033,
+    "surya vs tesseract-psm3": 0.0299,
+    "surya vs tesseract-psm6": 0.0358,
+    "tesseract-psm3 vs claude": 0.0167,
+    "tesseract-psm3 vs gpo-layer": 0.0263,
+    "tesseract-psm3 vs paddleocr": 0.0136,
+    "tesseract-psm3 vs surya": 0.0266,
+    "tesseract-psm3 vs tesseract-psm6": 0.0066,
+    "tesseract-psm6 vs claude": 0.0139,
+    "tesseract-psm6 vs gpo-layer": 0.0318,
+    "tesseract-psm6 vs paddleocr": 0.0109,
+    "tesseract-psm6 vs surya": 0.0324,
+    "tesseract-psm6 vs tesseract-psm3": 0.0065
+   }
+  }
+ },
+ "agreed": {
+  "reference_engine": "surya",
+  "n_agreed": 1,
+  "n_disagreed_left_out": 42,
+  "disagreed_ids": [
+   "P001",
+   "P002",
+   "P003",
+   "P004",
+   "P005",
+   "P006",
+   "P007",
+   "P008",
+   "P009",
+   "P010",
+   "P011",
+   "P012",
+   "P013",
+   "P014",
+   "P015",
+   "P016",
+   "P017",
+   "P018",
+   "P019",
+   "P021",
+   "P022",
+   "P023",
+   "P024",
+   "P025",
+   "P026",
+   "P027",
+   "P028",
+   "P029",
+   "P030",
+   "P031",
+   "P035",
+   "P038",
+   "P039",
+   "P040",
+   "P041",
+   "P042",
+   "P044",
+   "P045",
+   "P049",
+   "P051",
+   "P053",
+   "P057"
+  ]
+ },
+ "agreement_sensitivity_gpo_vs_ref_engine_INFORMATION_ONLY": {
+  "strict": {
+   "0.0": 1,
+   "0.005": 8,
+   "0.01": 18,
+   "0.02": 25,
+   "0.05": 34,
+   "n_non_owner": 43
+  },
+  "lenient": {
+   "0.0": 2,
+   "0.005": 10,
+   "0.01": 19,
+   "0.02": 27,
+   "0.05": 34,
+   "n_non_owner": 43
+  }
+ },
+ "spotcheck": {
+  "n_checked": 0,
+  "agreed_texts_found_wrong": []
+ },
+ "owner_refs_present": 0,
+ "strict": {
+  "scores": {
+   "owner_hard": {},
+   "agreed_hard": {},
+   "agreed_clean": {
+    "gpo-layer": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "tesseract-psm6": {
+     "n": 1,
+     "exact": 0,
+     "exact_rate": 0.0,
+     "failures": 1,
+     "failure_rate_ci95": [
+      0.207,
+      1
+     ],
+     "cer_mean": 0.0023,
+     "invents": 0,
+     "abstained": 0
+    },
+    "tesseract-psm3": {
+     "n": 1,
+     "exact": 0,
+     "exact_rate": 0.0,
+     "failures": 1,
+     "failure_rate_ci95": [
+      0.207,
+      1
+     ],
+     "cer_mean": 0.0023,
+     "invents": 0,
+     "abstained": 0
+    },
+    "surya": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "paddleocr": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "claude": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "majority-exact": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "medoid": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "agree3-else-claude": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "claude-judge": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "surya+gpo-else-claude": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    }
+   }
+  }
+ },
+ "lenient": {
+  "scores": {
+   "owner_hard": {},
+   "agreed_hard": {},
+   "agreed_clean": {
+    "gpo-layer": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "tesseract-psm6": {
+     "n": 1,
+     "exact": 0,
+     "exact_rate": 0.0,
+     "failures": 1,
+     "failure_rate_ci95": [
+      0.207,
+      1
+     ],
+     "cer_mean": 0.0023,
+     "invents": 0,
+     "abstained": 0
+    },
+    "tesseract-psm3": {
+     "n": 1,
+     "exact": 0,
+     "exact_rate": 0.0,
+     "failures": 1,
+     "failure_rate_ci95": [
+      0.207,
+      1
+     ],
+     "cer_mean": 0.0023,
+     "invents": 0,
+     "abstained": 0
+    },
+    "surya": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "paddleocr": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "claude": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "majority-exact": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "medoid": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "agree3-else-claude": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "claude-judge": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    },
+    "surya+gpo-else-claude": {
+     "n": 1,
+     "exact": 1,
+     "exact_rate": 1.0,
+     "failures": 0,
+     "failure_rate_ci95": [
+      0,
+      0.793
+     ],
+     "cer_mean": 0.0,
+     "invents": 0,
+     "abstained": 0
+    }
+   }
+  }
+ },
+ "note": "On agreed passages gpo-layer and the reference engine score 100% by construction; those rows measure only the other readers. Adoption uses owner passages for the halving test and agreed clean passages for the invention test."
+}
