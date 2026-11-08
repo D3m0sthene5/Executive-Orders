@@ -106,3 +106,11 @@ Apply TRACKER_FIX.md (about 80 lines) so the tracker fills formal_revocation_aft
 *Why:* The thesis measure is blank for all 14,998 orders because tracker.py reads only v2 claims.
 
 Sources: `research/encyclopedie-campaign/LOG.md`
+
+## A-20261108-bracton-11033-no-report (2026-11-08, Sol-Bracton)
+
+For EO 11033, if the NMB annual report is authenticated and confirms no formal board report, may the R3 board command end on the dated advisement of settlement to the President, with the no-change sentence treated as spent by agreement, or must this order stay blocked pending a different rule?
+
+*Why:* The adopted PEB rule uses the transmittal-letter date of a held report. The NMB 1963 annual report says the EO 11033 board submitted no formal report and advised the President of the settled dispute on August 11, 1962; the report-date predicate therefore has no document to apply to.
+
+Sources: `research/bracton/BOARD_SOURCE_DISCOVERY.md`
