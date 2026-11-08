@@ -1,5 +1,11 @@
 # Sol's handoff notes
 
+## 2026-11-08 18:44 ET: y06 staged while y05 source run executes
+
+- **Done:** `yes-y06/packet-v1` covers the next 25 disjoint rank-9 orders, EO:11223 through EO:11582. With the committed stage21 custody indexes present, the research gate cleared EO:11269 and named 24 source-blocked members, 149 distinct recovery tasks, 21 mandatory official FR issue tasks. The clean `packet-ready-v1` for EO:11269 passed fresh dispatch with 35 custody checks and a free lease. No producer or reviewer used it.
+- **Done:** All 21 mandatory y06 official issue downloads matched frozen hashes (353,939,036 bytes in untracked local cache). `source-requests-v8.jsonl` validates 21/21 without correction and its 21 prefixes select exactly 21 URLs. These are queued after y05; no page check or legal finding was inferred.
+- **Running:** [y05 source-only run 42536027083](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42536027083) is the only source-ladder writer. Do not push the y06 queue until that publisher finishes; then fetch/rebase Sol's branch, push y06, and launch its source-only selection. Recheck all source outcomes and packet seals before any producer batch.
+
 ## 2026-11-08 18:35 ET: next YES source batch staged
 
 - **Done:** Selected the next 25 disjoint rank-9 YES/FR orders, EO:10830 through EO:11203, outside y03 and the EO:10538 pilot. `yes-y05/packet-v2` was prepared research-only after restoring the committed stage21 custody indexes hidden by sparse checkout. Its gate names 123 source tasks; 23 official FR issues are mandatory now. Each of those 23 public issue downloads matched its frozen SHA-256, totaling 1,045,555,868 bytes in an untracked local cache. No page check or claim was inferred from the downloads.
