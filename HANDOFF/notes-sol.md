@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 16:23 ET: second 25-order board packet staged
+
+- **Done:** Prepared `research/bracton/board-b03/packet-v2` for the next 25 rank-8 board cases (EO:10314 through EO:10875, exact list in `PACKET.json`). Materialized the exact tracked dossiers and FR/NMB text extracts. Twenty-four official Federal Register PDFs and 23 NMB reports matched their frozen SHA-256 values and were staged in untracked local caches. `dispatch-v2.json` passed 25/25 with 76 distinct custody checks, no mandatory source blocks, and no Kean lease conflicts. This is source/packet preparation for Justinian-owned replacement proposals. No original page check, model producer, blind review, claim, or status change occurred.
+- **Running:** The first targeted source-ladder Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) was still active at the last watcher observation.
+- **Next:** Read its published source receipts, reconcile runner commits and current main, and refresh all packet seals before production after Monday's Claude reset.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Count hash matches as page checks, legal findings, or portable custody.
+
 ## 2026-11-08 16:16 ET: 25-order board packet source preflight passed
 
 - **Done:** Prepared `research/bracton/board-b02/packet-v3` for 25 disjoint rank-8 board cases (EO:10032 through EO:10306, exact member list in `PACKET.json`). The partial clone initially lacked frozen dossiers and text extracts. After materializing those exact tracked files, 24 official FR issue PDFs and 20 NMB report PDFs matched their frozen SHA-256 values and were staged in untracked local caches. A fresh `dispatch-v4.json` passed 25/25 with 74 distinct custody checks, zero mandatory source blocks, and no Kean lease conflicts. No original page was checked. No producer, reviewer, claim or status change was made. The packet is a Justinian-claim replacement-proposal route and must be refreshed after shared inputs change.
