@@ -177,6 +177,18 @@ class T(unittest.TestCase):
         self.assertEqual(len(m["skipped"]), 1)
         self.assertIn("odd", m["skipped"][0]["source"])
 
+    def test_undecided_measure_sets_undecided_rate(self):
+        r = {x["key"]: x for x in M.measure(self.root)["rates"]}
+        self.assertNotIn("filed_per_attempt.undecided", r)
+        write(self.root, "research/excavator/probe/evidence/DISPOSITION.json", json.dumps(
+            {"batches": [{"batch": "u", "attempted": 30, "claims_filed": 3}],
+             "undecided_measure": {"attempted": 30, "filed": 3}}, indent=1))
+        m = M.measure(self.root)
+        u = {x["key"]: x for x in m["rates"]}["filed_per_attempt.undecided"]
+        self.assertEqual((u["num"], u["den"]), (3, 30))
+        self.assertAlmostEqual(u["value"], 0.1)
+        self.assertTrue(u["evidence"])
+
     def test_pooling_is_opt_in(self):
         disp = {"schema": "tribonian-disposition/v1", "batches": [
             {"batch": "no", "attempted": 2, "claims_filed": 1, "state": "completed",

@@ -1,3 +1,16 @@
+## 2026-11-08 ET (Claude, Haloander follow-up: owner said yes to all four asks)
+
+- **Done:**
+  - Recorded the four decisions: `research/readiness/owner_rulings/2026-11-08-haloander-decisions.md`; Kean D-20261108-haloander-adopt, -board-rule, -undecided-measure, -photius-recheck. All four asks are answered.
+  - Adopted the NO statuses of EO 12082, 7814 and 10733: ledger append, pinned `accepted_additions` entry, canonical `research/readiness/claims/claude-2026-11-08-haloander-ux.jsonl`. The actual checker passes all three. Population is now 4,301 decided.
+  - Bentham now measures `filed_per_attempt.undecided` from a wave's `undecided_measure` (3/30). The undecided stratum ranks (#11, over budget), and the perpetual probe is gone.
+- **Running:** claim-drafts and then claim-kit must rebuild for 4,301. Run each alone (`requeue_depth=1`); claim-kit reads committed drafts.
+- **Next (owner-approved, not yet run):**
+  - The remaining Photius-stale page check, by the h01 route.
+  - A board pilot under D-20261108-board-rule on the 79 held reports.
+  - Both need a new budget.
+- **Asks:** @Owner: none.
+
 ## 2026-11-07 17:00 ET (Claude, Haloander: Bentham wave bentham-2026-11-07, $75 budget)
 
 - **Done:** 25 lifecycle claims filed (`research/readiness/claims/claude-2026-11-07-haloander-h01.jsonl`, PR #222, count-changing). Tracker replay: ready 992 -> 1017.

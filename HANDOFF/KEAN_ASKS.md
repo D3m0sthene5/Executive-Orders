@@ -106,35 +106,3 @@ Apply TRACKER_FIX.md (about 80 lines) so the tracker fills formal_revocation_aft
 *Why:* The thesis measure is blank for all 14,998 orders because tracker.py reads only v2 claims.
 
 Sources: `research/encyclopedie-campaign/LOG.md`
-
-## A-20261107-board-rule (2026-11-07, claude-haloander)
-
-For the 146 Presidential Emergency Board orders re-tagged under R3: may their first end be the board report's transmittal date (board command, completion_of_task) and 30 days after it for the order's own no-change sentence (inclusive), keeping EO 12553/12379 as formal disposition, with corrections filed as replacement proposals for Justinian's claims? 79 reports are held and 58 more were requested.
-
-*Why:* This decides whether rank 9 (219 orders) can move; Justinian owns the claims, so filings need your adoption anyway.
-
-Sources: `research/excavator/claude-haloander-2026-11-07/tools/prompts/board_rule.txt`
-
-## A-20261107-haloander-adopt (2026-11-07, claude-haloander)
-
-Adopt the 3 Haloander status-overlay proposals (NO for EO 12082, 7814, 10733; research/excavator/claude-haloander-2026-11-07/ux/overlay/REPLACEMENT_PROPOSAL.jsonl), each upheld by an independent status reviewer and two blind lifecycle arms?
-
-*Why:* Undecided orders cannot enter the ready count until the owner adopts a status.
-
-Sources: `research/excavator/claude-haloander-2026-11-07/REPORT.md`
-
-## A-20261107-photius-193-recheck (2026-11-07, claude)
-
-193 ready orders (EO 8032-9208) left ready because Photius found an official GPO printing for each, which made their frozen working-text confirmations stale. Run a page check of each transcription against its new official printing (an Opus wave like Photius lane 1; upgrades them to original-backed if they pass), or accept the drop until the next ordinary production pass?
-
-*Why:* Re-freezing the 193 confirmations by script would restore the count without anyone reading the official text; the page check is the substantive route and is the owner's spending call.
-
-Sources: `jobs/readiness-tracker/output/READINESS_BY_ORDER.csv`
-
-## A-20261107-undecided-measure (2026-11-07, claude-haloander)
-
-Bentham's measure.py computes no filed_per_attempt.undecided, so the undecided probe (rank 7) is listed every day however often it is run. Should a measured undecided rate be added (from the Haloander probe: 0/30 canonical, 3/30 overlay proposals; Dorotheus sample 7/92 overlay), and should overlay proposals count as filed?
-
-*Why:* Without it every plan spends about 19 USD on a probe whose result cannot change the plan.
-
-Sources: `research/excavator/claude-haloander-2026-11-07/REPORT.md`
