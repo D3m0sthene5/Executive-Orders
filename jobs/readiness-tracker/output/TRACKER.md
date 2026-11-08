@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42519208512-1:bd3ebc80fe561e5645c09fee226949e82ca6cd4369a71d57e4dc267248230009` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42528175947-1:250a4389d9db85ede281399e6ec78da9e9618ebda3b217a0f0bbb98b57724052` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -22,7 +22,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 4,301 | 4,301 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 3,474 | 4,301 | 80.8% |
+| Original or explicitly reviewed provisional working text saved | 3,489 | 4,301 | 81.1% |
 | Complete inventory of the order's operative clauses | 1,339 | 4,301 | 31.1% |
 | When and how it ended (NO), or what keeps it operating now (YES) | 1,116 | 4,301 | 25.9% |
 | Savings clauses and surviving effects closed | 1,326 | 4,301 | 30.8% |
@@ -34,8 +34,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 2,428 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
-| 881 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 2,362 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 815 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 10 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 10 | one source | Retrieve shared source EO::4314 |
@@ -52,11 +52,11 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `NO_PROVISIONAL_STATUS` | 0 | 10,697 |
 | `NO_CLAUSE_INVENTORY` | 2,771 | 2,771 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,771 | 2,771 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 802 | 2,428 |
 | `FIRST_END_UNPROVED` | 2,401 | 2,401 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 787 | 2,362 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 547 | 1,623 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,244 | 1,244 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 263 | 881 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 248 | 815 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 370 | 370 |
 | `OPUS_MEDIA_NONE_CITED` | 198 | 198 |
@@ -96,7 +96,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - photius-gpo-volumes: 3,679
 - photius-csc-printings: 143
 - photius-free-printings: 471
-- montfaucon-page-check: 0
+- montfaucon-page-check: 66
 - richardson-volumes (lead only, never counted as the original): 68
 - app-executive-orders (lead only, never counted as the original): 9,902
 - hathi-gpo-orders (lead only, never counted as the original): 1,531
