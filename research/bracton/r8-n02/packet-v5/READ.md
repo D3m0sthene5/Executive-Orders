@@ -481,57 +481,57 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 Presidential Documents
 Executive Order 12502 of January 28, 1985
 Chemical Warfare Review Commission
-By the authority vested in me as President by the Constitution of the laws of  
-the United States of America, and in order to establish, in accordance with the  
-provisions of Section 1511 of the Department of Defense Authorization Act,  
-1985 (Public Law 98-525), and of the Federal Advisory Committee Act, as  
-amended (5 U.S.C. App. I), a Chemical Warfare Review Commission, it is  
+By the authority vested in me as President by the Constitution of the laws of
+the United States of America, and in order to establish, in accordance with the
+provisions of Section 1511 of the Department of Defense Authorization Act,
+1985 (Public Law 98-525), and of the Federal Advisory Committee Act, as
+amended (5 U.S.C. App. I), a Chemical Warfare Review Commission, it is
 hereby ordered as follows:
-Section 1. Establishm ent, (a) There is established the Chemical Warfare  
-Review Commission. The Commission shall be composed of no more than nine  
-members appointed or designated by the President. The membership shall be  
+Section 1. Establishm ent, (a) There is established the Chemical Warfare
+Review Commission. The Commission shall be composed of no more than nine
+members appointed or designated by the President. The membership shall be
 bipartisan.
-(b) The President shall designate a Chairman from among the members of the  
+(b) The President shall designate a Chairman from among the members of the
 Commission.
-Sec. 2. Functions, (a) The Commission shall review the overall adequacy of the  
-chemical warfare posture of the United States with particular emphasis on the  
+Sec. 2. Functions, (a) The Commission shall review the overall adequacy of the
+chemical warfare posture of the United States with particular emphasis on the
 question of whether the United* States should produce binary chemical muni­
-tions. In conducting its review, the Commission shall take account of the  
+tions. In conducting its review, the Commission shall take account of the
 considerations specified in Section 1511 of Public Law 98-525.
-(b) The Commission shall make sequential reports to the President on its  
-findings and recommendations, by February 15, 1985, as to the need to  
+(b) The Commission shall make sequential reports to the President on its
+findings and recommendations, by February 15, 1985, as to the need to
 maintain a chemical retaliatory stockpile; by March 1,1985, as to the adequa­
-cy of the current stockpile if one has been determined to be needed; and by  
-March 15, 1985, as to whether the United States should produce binary  
+cy of the current stockpile if one has been determined to be needed; and by
+March 15, 1985, as to whether the United States should produce binary
 chemical munitions or undertake other actions.
-Sec. 3. Adm inistration, (a) The heads of Executive agencies shall, to the extent  
-permitted by law, provide the Commission such information as it may require  
+Sec. 3. Adm inistration, (a) The heads of Executive agencies shall, to the extent
+permitted by law, provide the Commission such information as it may require
 for purposes of carrying out its functions.
 (b) Members of the Commission shall serve without any additional compensa­
-tion for their work on the Commission. However, members appointed from  
-among private citizens may be allowed travel expenses, including per diem in  
-lieu of subsistence, as authorized by law for persons serving intermittently in  
-the government service (5 U.S.C. 5701-5707), to the extent funds are available  
+tion for their work on the Commission. However, members appointed from
+among private citizens may be allowed travel expenses, including per diem in
+lieu of subsistence, as authorized by law for persons serving intermittently in
+the government service (5 U.S.C. 5701-5707), to the extent funds are available
 therefor.
 (c) The Secretary of Defense shall provide the Commission with such adminis­
 trative services, facilities, staff and other support services as may be neces­
-sary. Any expenses of the Commission shall be paid from such funds as may  
+sary. Any expenses of the Commission shall be paid from such funds as may
 be available to the Secretary of Defense.
 
 === PDF page 18 of 296 ===
 4 1 9 6  Federal Register /  Vol. 50, No. 20 /  W ednesday, January 30, 1985 /  Presidential Docum ents
-[FR Doc. 85-2556  
-Filed 1-28-85; 4:21 pm]  
+[FR Doc. 85-2556
+Filed 1-28-85; 4:21 pm]
 Billing code 3195-01-M
-S ec. 4. G e n e ra l, (a) N otwithstanding any other Executive order, the functions 
-of the President under the Federal Advisory Com m ittee A ct, as amended, 
+S ec. 4. G e n e ra l, (a) N otwithstanding any other Executive order, the functions
+of the President under the Federal Advisory Com m ittee A ct, as amended,
 except that of reporting to the Congress, w hich are applicable to the Commis­
-sion, shall be perform ed by the Secretary  o f D efense, in accord ance with 
+sion, shall be perform ed by the Secretary  o f D efense, in accord ance with
 guidelines and procedures established by the Adm inistrator of G eneral Serv­
 ices.
-(b) The Commission shall terminate 30 days after submission of its report, or 
+(b) The Commission shall terminate 30 days after submission of its report, or
 on September 30,1985, whichever date is earlier.
-TH E W H ITE HOUSE, 
+TH E W H ITE HOUSE,
 January 28, 1985.
 
 ```
@@ -674,12 +674,12 @@ Text hash e381b41411acb046fc1e2146ac84aa09024a70ac1f75b981e7724a2bacd229d0; abso
 ```text
 Since this list is intended as a reminder, it does not include effective dates that occur within 14 days of publication.)
 Rules Going Into Effect Today
-Note: There were no items eligible for  
-inclusion in the list of R ules  G oing  I nto 
+Note: There were no items eligible for
+inclusion in the list of R ules  G oing  I nto
 E ffect  T oday. \
 List of Public Laws
-This is a continuing listing of public bills  
-that have become law, the text of which is  
+This is a continuing listing of public bills
+that have become law, the text of which is
 not published in the F ederal R egister .
 ```
 
@@ -701,18 +701,18 @@ Title 3—
 The President
 Executive Order 12119 of February 14, 1979
 Levels IV and V of the Executive Schedule
-[FR Doc. 79-5237 
+[FR Doc. 79-5237
 Filed 2-14-79; 2:37 pm]
 Billing code 3195-01-M
-By the authority vested in me as President of the United States of America by  
-Section 5317 of Title 5 of the United States Code, and in order to place the  
+By the authority vested in me as President of the United States of America by
+Section 5317 of Title 5 of the United States Code, and in order to place the
 position of Counselor on Legislative and Intergovernmental Policy, Depart­
-ment of the Treasury in level IV of the Executive Schedule, Executive Order  
-No. 12076, as amended, is further amended by deleting “Assistant Attorney  
-General, United States Attorneys and Trial Advocacy, Department of Justice.”  
-from Section l-101(f) and by inserting in lieu thereof “Counselor on Legislative  
+ment of the Treasury in level IV of the Executive Schedule, Executive Order
+No. 12076, as amended, is further amended by deleting “Assistant Attorney
+General, United States Attorneys and Trial Advocacy, Department of Justice.”
+from Section l-101(f) and by inserting in lieu thereof “Counselor on Legislative
 and Intergovernmental Policy, Department of the Treasury.”.
-THE WHITE HOUSE,  
+THE WHITE HOUSE,
 F eb ru a ry 14, 1979.
 FEDERAL REGISTER, V O L  44, N O . 34— FRIDAY, FEBRUARY 16, 1979
 
@@ -944,80 +944,80 @@ THE PRESIDENT 37161
 The President
 Executive Order 12076 • August 18,1978
 Levels IV and V of the Executive Schedule
-By the authority vested in me as President by Section 5317 of Title 5 of 
-the United States Code, in order to place in level IV of the Executive Schedule 
-the positions of Senior Adviser to the Secretary of State and Special Assistant 
-to the Special Representative for Trade Negotiations, and in order to codify 
-other positions presently placed in levels IV and V of the Executive Schedule, 
+By the authority vested in me as President by Section 5317 of Title 5 of
+the United States Code, in order to place in level IV of the Executive Schedule
+the positions of Senior Adviser to the Secretary of State and Special Assistant
+to the Special Representative for Trade Negotiations, and in order to codify
+other positions presently placed in levels IV and V of the Executive Schedule,
 it is hereby ordered as follows:
 1  - 1. Executive Schedule Positions.
-1-101. The following positions are placed in level IV of the Executive 
+1-101. The following positions are placed in level IV of the Executive
 Schedule:
 (a) Senior Adviser to the Secretary, Department of State.
 (b) Director, United. States Secret Service, Department of the Treasury.
-(c) Assistant Secretary (Enforcement and Operations), Department of the 
+(c) Assistant Secretary (Enforcement and Operations), Department of the
 Treasury.
-(d) Adviser to the Secretary and Deputy Secretary of Defense for NATO 
+(d) Adviser to the Secretary and Deputy Secretary of Defense for NATO
 Affairs, Department of Defense.
 (e) Assistant to the Secretary for Legislative Affairs, Department of De­
 fense.
 (f) Assistant Attorney General, United States Attorneys and Trial Advoca­
 cy, Department of Justice.
 (g) Director of Agricultural Economics, Department of Agriculture.
-(h) Director, Office of Congressional and Public Affairs, Department of 
+(h) Director, Office of Congressional and Public Affairs, Department of
 Agriculture.
 (i) Chief Economist, Department of Commerce.
 (j) Deputy Under Secretary for Regional Affairs, Department of Com­
 merce.
-(k) Deputy Under Secretary for International Labor Affairs, Department of 
+(k) Deputy Under Secretary for International Labor Affairs, Department of
 Labor.
-(l) Administrator, Health Care Financing Administration, Department of 
+(l) Administrator, Health Care Financing Administration, Department of
 Health, Education, and Welfare.
 (m) Administrator, Alcohol, Drug Abuse and Mental Health Administra­
 tion, Department of Health, Education, and Welfare.
-(n) Administrator, Health Services Administration, Department of Health, 
+(n) Administrator, Health Services Administration, Department of Health,
 Education, and Welfare.
 (o) Administrator, Research and Special Programs Administration, Depart­
 ment of Transportation.
-(p) Associate Directors (4), Office of Management and Budget, Executive 
+(p) Associate Directors (4), Office of Management and Budget, Executive
 Office of the President.
-(q) Special Assistant to the Special Representative for Trade Negotiations, 
+(q) Special Assistant to the Special Representative for Trade Negotiations,
 Office of the Special Representative for Trade Negotiations.
 FEDERAL REGISTER, V O L 43, NO. 163— TUESDAY, AUGUST 22, 1978
 
 === PDF page 16 of 272 ===
 37162 THE PRESIDENT
-1-102. The following positions are placed in level V of the Executive 
+1-102. The following positions are placed in level V of the Executive
 Schedule:
-(a) Deputy Director, United States Secret Service, Department of the 
+(a) Deputy Director, United States Secret Service, Department of the
 Treasury.
 (b) Director, Office of Revenue Sharing, Department of the Treasury.
-(c) Principal Deputy Assistant Secretary for Communications, Command, 
+(c) Principal Deputy Assistant Secretary for Communications, Command,
 Control and Intelligence, Department of Defense.
-(d) Deputy Assistant Secretary of Defense for Reserve Affairs, Department 
+(d) Deputy Assistant Secretary of Defense for Reserve Affairs, Department
 of Defense.
 (e) Director of Policy Review, Department of Defense.
-(f) Principal Deputy Assistant Secretary (International Security Affairs), 
+(f) Principal Deputy Assistant Secretary (International Security Affairs),
 Department of Defense.
-(g) Assistant to thé Secretary and Land Utilization Adviser, Department of 
+(g) Assistant to thé Secretary and Land Utilization Adviser, Department of
 the Interior.
 (h) Executive Director, Pension Benefit Guaranty Corporation, Depart­
 ment of Labor.
 (i) Administrator for Pension and Welfare Benefits, Department of Labor.
-(j) Executive Assistant and Counselor to the Secretary, Department of 
+(j) Executive Assistant and Counselor to the Secretary, Department of
 Labor.
-(k) Assistant Secretary, Comptroller, Department of Health, Education, 
+(k) Assistant Secretary, Comptroller, Department of Health, Education,
 and Welfare.
 (l) Deputy Commissioner of Social Security, Department of Health, Edu­
 cation, and Welfare.
 (m) Commissioner on Aging, Department of Health, Education, and Wel­
 fare.
-(n) Commissioner, Automated Data and Telecommunications Service, 
+(n) Commissioner, Automated Data and Telecommunications Service,
 General Services Administration.
 1-2. General Provisions.
-1-201. Nothing in this Order shall be deemed to terminate or otherwise 
+1-201. Nothing in this Order shall be deemed to terminate or otherwise
 / affect the appointment, or to require the reappointment, of any occupant of
-any position listed in Section 1-1 of this Order who was the occupant of that 
+any position listed in Section 1-1 of this Order who was the occupant of that
 position immediately prior to the issuance of this Order.
 1-202. Executive Order No. 11861, as amended, is hereby revoked.
 T h e W h it e H o u s e,
@@ -1054,11 +1054,11 @@ Text hash 51d292d7eb074db9bf32fffb40e3177ef87c42d1c4623e84904bd9f04bd3df18; abso
 Text hash 133890969c2bd251ca1ff454e7c07d6facf807e926967d00d5400bffe963de02; absolute characters 1193–1614; files: jobs/clause-drafts/output/texts/cd-job-fr-originals-12502-9a05ce9716.txt
 
 ```text
-(b) The Commission shall make sequential reports to the President on its  
-findings and recommendations, by February 15, 1985, as to the need to  
+(b) The Commission shall make sequential reports to the President on its
+findings and recommendations, by February 15, 1985, as to the need to
 maintain a chemical retaliatory stockpile; by March 1,1985, as to the adequa­
-cy of the current stockpile if one has been determined to be needed; and by  
-March 15, 1985, as to whether the United States should produce binary  
+cy of the current stockpile if one has been determined to be needed; and by
+March 15, 1985, as to whether the United States should produce binary
 chemical munitions or undertake other actions.
 ```
 
@@ -1067,10 +1067,10 @@ chemical munitions or undertake other actions.
 Text hash d38647a37c5d6617b91bd6e26fd91340628cb8ff99918ff2245ff371e61e323c; absolute characters 306–643; files: jobs/clause-drafts/output/texts/cd-job-fr-originals-12429-52753cd96a.txt
 
 ```text
-I), and in order to extend the life o f the President’s 
-Private Sector Survey on C ost Control in the Federal Governm ent, it is hereby 
-ordered that Section  4(b) of E xecutive -Order No. 12369 of June 30, 1982, as 
-amended, is further am ended to read: “The Com m ittee shall term inate on 
+I), and in order to extend the life o f the President’s
+Private Sector Survey on C ost Control in the Federal Governm ent, it is hereby
+ordered that Section  4(b) of E xecutive -Order No. 12369 of June 30, 1982, as
+amended, is further am ended to read: “The Com m ittee shall term inate on
 O ctober 30,1983, unless sooner extended.”.
 ```
 
@@ -1234,69 +1234,69 @@ presidential documents
 Title 3—The President
 Executive Order 11998 • June 27> 1977
 President’s Commission on Military Compensation
-By virtue of the authority vested in me by the Constitution and statutes of the 
+By virtue of the authority vested in me by the Constitution and statutes of the
 United States of America, and as President of the United States of America, in accord­
-ance with the Federal Advisory Committee Act (5 U.S.C. App. I), it is hereby ordered 
+ance with the Federal Advisory Committee Act (5 U.S.C. App. I), it is hereby ordered
 as follows :
 Section  1. (a) There is established the President’s Commission on Military Com­
-pensation, hereinafter referred to as the Commission, which shall be composed of not 
+pensation, hereinafter referred to as the Commission, which shall be composed of not
 more than nine members who shall be appointed by the President.
 (b) The President shall designate a Chairman from among the members.
 Sec. 2. (a) The Commission shall review at least the analyses, findings, and rec­
-ommendations related to military compensation which have been completed by the 
+ommendations related to military compensation which have been completed by the
 Quadrennial Reviews of Military Compensation, the Comptroller General, the Inter­
-agency Committee Study of Uniformed Services Retirement and Survivor Benefits, the 
+agency Committee Study of Uniformed Services Retirement and Survivor Benefits, the
 Department of Defense Retirement Study Group, and the Defense Manpower Com­
 mission.
-(b) The Commission shall identify, study, and make recommendations on critical 
+(b) The Commission shall identify, study, and make recommendations on critical
 military compensation issues, specifically addressing the following issues:
-( 1  ) What form of military compensation is the most effective for meeting the 
+( 1  ) What form of military compensation is the most effective for meeting the
 needs of the Nation in peace and war? Is the present pay and allowances system ap­
-propriate? If not, what changes (such as some form of military salary) offer greater 
+propriate? If not, what changes (such as some form of military salary) offer greater
 potential to serve the national purpose?
-(2) Are specific standards appropriate and necessary for setting and adjusting 
+(2) Are specific standards appropriate and necessary for setting and adjusting
 military compensation? If so, what should the standards be? What elements of com­
 pensation should be based on such standards?
 (3) What provisions are appropriate for differential compensation (such as spe­
 cial and incentive pays) and what are the appropriate criteria for using them?
-(4) What are the purposes of the military retirement system? Is the present system 
+(4) What are the purposes of the military retirement system? Is the present system
 effective in achieving these purposes? What changes are appropriate?
 (5) Should the unique characteristics of military service be reflected in the com­
 pensation system, and, if so, how?
-(c) The Commission shall submit a report to the President through the Secretary 
+(c) The Commission shall submit a report to the President through the Secretary
 of Defense by March 15, 1978. The report shall recommend how the military com­
-pensation system can best be structured to serve the national interest. If changes are 
+pensation system can best be structured to serve the national interest. If changes are
 recommended, the Commission should estimate their cost and propose an implementa­
 tion plan and timetable.
 FEDERAL REGISTER, VOL. 4 2 , N O . 125— WEDNESDAY, JUNE 2 9 , 19 77
 
 === PDF page 16 of 232 ===
 33022 THE PRESIDENT
-Sec. 3. In performing its functions the Commission shall conduct such studies, 
-reviews, and inquiries as may be necessary. In addition to conducting open meetings in 
-accordance with the Federal Advisory Committee Act, the Commission shall conduct 
-public hearings to identify critical issues and possible solutions related to the structure 
+Sec. 3. In performing its functions the Commission shall conduct such studies,
+reviews, and inquiries as may be necessary. In addition to conducting open meetings in
+accordance with the Federal Advisory Committee Act, the Commission shall conduct
+public hearings to identify critical issues and possible solutions related to the structure
 of military compensation.
-Sec. 4. The Commission is authorized to request from any Executive agency such 
-information that may be deemed necessary to carry out its functions under this Order. 
-Each Executive agency shall, to the extent permitted by law, furnish such information 
+Sec. 4. The Commission is authorized to request from any Executive agency such
+information that may be deemed necessary to carry out its functions under this Order.
+Each Executive agency shall, to the extent permitted by law, furnish such information
 to the Commission in the performance of its functions under this Order.
-Sec. 5. Each member of the Commission who is not otherwise employed in the 
-Federal Government may receive, to the extent permitted by law, compensation for 
-each day he or she is engaged in the work of the Commission at a rate not to exceed the 
-majdmum daily rate now or hereafter prescribed by law for GS-18 of the General 
-Schedule, and may also receive transportation and travel expenses, inçluding per diem 
+Sec. 5. Each member of the Commission who is not otherwise employed in the
+Federal Government may receive, to the extent permitted by law, compensation for
+each day he or she is engaged in the work of the Commission at a rate not to exceed the
+majdmum daily rate now or hereafter prescribed by law for GS-18 of the General
+Schedule, and may also receive transportation and travel expenses, inçluding per diem
 in lieu of subsistence, as authorized by law (5 U.S.C. 5702 and 5703).
-Sec. 6. The Chairman of the Commission is authorized to establish such additional 
-advisory committees as may be deemed appropriate to carry out the purposes of this 
+Sec. 6. The Chairman of the Commission is authorized to establish such additional
+advisory committees as may be deemed appropriate to carry out the purposes of this
 Order.
-Sec. 7. All necessary administrative staff services, supportj facilities, and expenses 
+Sec. 7. All necessary administrative staff services, supportj facilities, and expenses
 of the Commission shall, to the extent permitted by law, be furnished by the Depart­
 ment of Defense.
 Sec. 8. Notwithstanding the provisions of any other Executive order, the func­
-tions of the President under the Federal Advisory Committee Act (5 U.S.C. App. -I), 
+tions of the President under the Federal Advisory Committee Act (5 U.S.C. App. -I),
 except that of reporting annually to the Congress, which are applicable to the Com­
-mission, shall be performed by the Secretary of Defense in accordance with guidelines 
+mission, shall be performed by the Secretary of Defense in accordance with guidelines
 and procedures established by the Office of Management and Budget.
 Sec. 9. The Commission shall terminate thirty days after submitting its report.
 T he  W hite  H ouse ,
@@ -1313,14 +1313,14 @@ Text hash dd007a2c7fc8a25ac17ab50fa9cdb5ab3494fe29e51bfb40b39dc235acc76465; abso
 ```text
 Executive Order 11982 April 29, 1977
 Committee on Selection of the Director of the Federal Bureau of Investigation
-By virtue of the authority vested in me by the Constitution and statutes of the 
-United States of America, and as President of the United States of America, in order 
-to extend for 30 days the reporting time for the Committee on Selection of the Director 
-of the Federal Bureau of Investigation, Section 3(a) of Executive Order No. 11971 
+By virtue of the authority vested in me by the Constitution and statutes of the
+United States of America, and as President of the United States of America, in order
+to extend for 30 days the reporting time for the Committee on Selection of the Director
+of the Federal Bureau of Investigation, Section 3(a) of Executive Order No. 11971
 of February 11, 1977, is hereby amended to read as follows:
-"The Committee shall submit to the President and to the Attorney General, no 
-later than June 11, 1977, a report listing the names of the five persons whom the 
-Committee considers best qualified to serve as the Director and setting forth such other 
+"The Committee shall submit to the President and to the Attorney General, no
+later than June 11, 1977, a report listing the names of the five persons whom the
+Committee considers best qualified to serve as the Director and setting forth such other
 information as the President or the Attorney General may require.”.
 ```
 
@@ -1371,29 +1371,29 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 THE PRESIDENT 35565
 E X E C U T I V E  O R D E R  11809
 Establishing the President’s Labor-Management Committee
-By virtue of the authority vested in me by section 301 of title 3 of  
-the United States Code, and as President of the United States of  
+By virtue of the authority vested in me by section 301 of title 3 of
+the United States Code, and as President of the United States of
 America,.it is ordered as follows:
-Section  1. There is hereby established the President’s Labor-  
-Management Committee (hereinafter referred to as the Committee).  
-The Committee shall consist of eight labor members and eight man-  
-. agement members and a neutral coordinator, all to be designated by  
+Section  1. There is hereby established the President’s Labor-
+Management Committee (hereinafter referred to as the Committee).
+The Committee shall consist of eight labor members and eight man-
+. agement members and a neutral coordinator, all to be designated by
 the President.
 Se c. 2. The Committee shall study and shall advise and make rec­
-ommendations to the President with respect to policies that may be  
-followed by labor, management, or the public which will promote  
-free and responsible collective bargaining, industrial peace, sound wage  
-and price policies, higher standards of living, increased productivity, and  
+ommendations to the President with respect to policies that may be
+followed by labor, management, or the public which will promote
+free and responsible collective bargaining, industrial peace, sound wage
+and price policies, higher standards of living, increased productivity, and
 related manpower policies, and such other matters which could con­
 tribute to the longer-run economic well-being of the Nation.
-Se c. 3. The Committee shall encourage the establishment of labor-  
-management committees (bipartite or tripartite) in particular sectors  
+Se c. 3. The Committee shall encourage the establishment of labor-
+management committees (bipartite or tripartite) in particular sectors
 or industries as may be appropriate.
 Sec. 4. All executive departments and agencies of the Federal Gov­
-ernment are authorized and directed to cooperate with the Committee  
-and to furnish such information and assistance, not inconsistent with law, 
+ernment are authorized and directed to cooperate with the Committee
+and to furnish such information and assistance, not inconsistent with law,
 as it may require in the performance of its duties.
-Se c. 5. The Secretary of the Treasury shall perform any functions  
+Se c. 5. The Secretary of the Treasury shall perform any functions
 with respect to the Committee as may be required by the Federal Advi­
 sory Committee Act (5 U.S.C., App. I).
 T he W hite  H ouse,
@@ -1416,64 +1416,64 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 
 === PDF page 135 of 148 ===
 Federal Register Presidential Documents
-Vol. 57, No. 51 
+Vol. 57, No. 51
 Monday, March 16, 1992
 9 165
 Title 3— Executive Order 12792 of March 12, 1992
 The President National Commission on A m erica’s Urban Fam ilies
-By the authority vested in me as President by the Constitution and the laws of 
-the United States of America, and in order to establish, in accordance with the 
-provisions of the Federal Advisory Committee Act, as amended (5 U.S.C. App. 
+By the authority vested in me as President by the Constitution and the laws of
+the United States of America, and in order to establish, in accordance with the
+provisions of the Federal Advisory Committee Act, as amended (5 U.S.C. App.
 2), a commission on America’s urban families, it is hereby ordered as follows:
-Section 1. E s t a b l i s h m e n t , (a) There is established the National Commission on 
+Section 1. E s t a b l i s h m e n t , (a) There is established the National Commission on
 America’s Urban Families (“Commission”). The Commission shall be com­
 posed of up to eight members appointed by the President.
-(b) The President shall appoint a Chairman and Co-chairman from among 
-the members of the Commission. The Chairman shall appoint an Executive 
+(b) The President shall appoint a Chairman and Co-chairman from among
+the members of the Commission. The Chairman shall appoint an Executive
 Director.
 Sec. 2. F u n c t i o n s , (a) The Commission shall:
 •  examine the current condition of urban families:
-•  consider how existing government policies and programs support or 
+•  consider how existing government policies and programs support or
 weaken the urban family structure;
-•  evaluate the potential for integrating the delivery of government services 
+•  evaluate the potential for integrating the delivery of government services
 in ways to strengthen urban families;
-•  identify State, local, and Federal programs that have been successful in 
+•  identify State, local, and Federal programs that have been successful in
 preserving and strengthening urban families;
-•  analyze ways to improve private/nonprofit efforts to preserve and 
+•  analyze ways to improve private/nonprofit efforts to preserve and
 strengthen urban families; and
 •  provide appropriate recommendations for government policies and pro­
-grams and for actions by other institutions to strengthen families living in 
+grams and for actions by other institutions to strengthen families living in
 urban areas.
-(b) The Commission shall make its report to the President on or before 
+(b) The Commission shall make its report to the President on or before
 December 31,1992.
-Sec. 3. A d m i n i s t r a t i o n , (a) The heads of executive agencies shall, to the extent 
-permitted by law, provide the Commission such information as it may require 
+Sec. 3. A d m i n i s t r a t i o n , (a) The heads of executive agencies shall, to the extent
+permitted by law, provide the Commission such information as it may require
 for the purpose of carrying out its functions.
-(b) Members of the Commission shall serve without any compensation for 
-their work on the Commission. However, they shall 'be entitled to travel 
-expenses, including per diem in lieu of subsistence, as authorized for persons 
-serving intermittently in the Government service (5 U.S.C. 5701-5707 and 5 
-U.S.C. App. 2, 7(d)). The Executive Director shall be compensated at a rate of 
-pay not to exceed the maximum allowable under section 7(d)(1)(A) of the 
+(b) Members of the Commission shall serve without any compensation for
+their work on the Commission. However, they shall 'be entitled to travel
+expenses, including per diem in lieu of subsistence, as authorized for persons
+serving intermittently in the Government service (5 U.S.C. 5701-5707 and 5
+U.S.C. App. 2, 7(d)). The Executive Director shall be compensated at a rate of
+pay not to exceed the maximum allowable under section 7(d)(1)(A) of the
 Federal Advisory Committee Act, as amended.
 (c) The Department of Health and Human Services shall provide the Com­
 mission with administrative services, facilities, staff, and other support serv­
-ices necessary for the performance of its functions. Funds for the operation of 
-the Commission shall be provided by the Department of Health and Human 
+ices necessary for the performance of its functions. Funds for the operation of
+the Commission shall be provided by the Department of Health and Human
 Services.
 
 === PDF page 136 of 148 ===
 m m Federal Register /  Vol. 57* No. 51 /  Monday, March 16* 1992, /  Presidential Documents
 fdj1  Notwithstanding any other Executive order, the functions o f the Presi­
-dent under the Federal Advisory Committee Act, as amended, which are 
-applicable to the Commission, except that of reporting to the Congress, shall 
-be performed by the Secretary of Health and Human Services in accordance 
+dent under the Federal Advisory Committee Act, as amended, which are
+applicable to the Commission, except that of reporting to the Congress, shall
+be performed by the Secretary of Health and Human Services in accordance
 with guidelines issued by the Administrator of General Services.
 (ej The Commission shall terminate 30 days after submitting its report.
-THE WHITE HOUSE, 
+THE WHITE HOUSE,
 M a r c h  12, 1992.
-[FR  D oe. 9 2 -8 2 6 7  
-F ile d  3 - 1 3 - 9 2  1 1:07 a m } 
+[FR  D oe. 9 2 -8 2 6 7
+F ile d  3 - 1 3 - 9 2  1 1:07 a m }
 B illin g  co d e 3 1 9 5 -0 1 -M
 
 ```
@@ -1491,8 +1491,8 @@ By virtue of the authority vested in me by section 5317 of title 5 of the United
 Text hash 09bfa0defb3f55e64944b6f13498e80af7f712ff5050722ae479a782ad3d70de; absolute characters 1799–1985; files: jobs/clause-drafts/output/texts/cd-job-fr-originals-12686-506bacf95f.txt
 
 ```text
-(b) Within 6 months of the date of this order, the Commission shall submit a  
-report to the President, which shall be classified if necessary, containing  
+(b) Within 6 months of the date of this order, the Commission shall submit a
+report to the President, which shall be classified if necessary, containing
 findings and recommendations.
 ```
 
@@ -1560,11 +1560,11 @@ presidential documents
 Title 3—The President
 Executive Order 12099 •  November 17,1978
 Levels IV and V of the Executive Schedule
-By the authority vested in me as President of the United States of America  
-by Section 5317 o f Title 5 o f the United States Code, and in order to place  
-the position o f Director of Policy Review, Department o f Defense, in level IV  
-of the Executive Schedule, Executive Order No. 12076 of August 18, 1978, is  
-amended by deleting “ Director of Policy Review, Department of Defense.’’  
+By the authority vested in me as President of the United States of America
+by Section 5317 o f Title 5 o f the United States Code, and in order to place
+the position o f Director of Policy Review, Department o f Defense, in level IV
+of the Executive Schedule, Executive Order No. 12076 of August 18, 1978, is
+amended by deleting “ Director of Policy Review, Department of Defense.’’
 from Section 1  — 102(e) and inserting “ (r) Director of Policy Review, Depart­
 ment of Defense.” in alphabetical order in Section 1-101 thereof.
 T h e W h i t e H o u s e,
@@ -1600,69 +1600,69 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 
 === PDF page 247 of 260 ===
 2661
-Federal Register 
+Federal Register
 Vol. 56 No. 15
 Presidential Documents
 W ed n esd ay, January 23, 1991
 Title 3— Executive Order 12743 of January 18, 1991
-The President Ordering the Ready Reserve of the Armed Forces to Active  
+The President Ordering the Ready Reserve of the Armed Forces to Active
 Duty
-By the authority vested in me as President by the Constitution and the laws of  
-the United States of Am erica, including the National Emergencies A ct (50  
-U .S .C  1601 e t s e q.), and section 301 of title 3 of the United States Code; in  
+By the authority vested in me as President by the Constitution and the laws of
+the United States of Am erica, including the National Emergencies A ct (50
+U .S .C  1601 e t s e q.), and section 301 of title 3 of the United States Code; in
 furtherance of Executive Order No. 12722, dated August 2, 1990, which de­
-clared a national emergency to address the threat to the national security and  
-foreign policy of the United States posed by the invasion of Kuwait by Iraq;  
-and, in accordance with the requirements contained in section 301 of the  
+clared a national emergency to address the threat to the national security and
+foreign policy of the United States posed by the invasion of Kuwait by Iraq;
+and, in accordance with the requirements contained in section 301 of the
 National Emergencies A ct, 50 U.S.C. 1 6 3 1 ,1 hereby order as follows:
-Section 1. To provide additional authority to the Department of Defense and  
-the Department of Transportation to respond to the continuing threat posed by  
-Iraq’s invasion of Kuwait, the authority under section 673 of title 10, United  
-States Code, to order any unit, and any member not assigned to a unit  
-organized to serve as a unit, in the Ready Reserve to active duty (other than  
-for training) for not more than 24 consecutive months, is invoked and made  
-available, according to its terms, to the Secretary concerned, subject, in the  
-case of the Secretaries of the Army, Navy, and Air Force, to the direction of  
-the Secretary of Defense. The term “Secretary concerned” is defined in section  
-101(8) of title 10, United States Code, to m ean the Secretary of the Army with  
-respect to the Army; the Secretary of the N avy with respect to the Navy, the  
-Marine Corps, and the C oast Guard when it is operating as a service in the  
-Navy; the Secretary of the Air Force with respect to the Air Force; and, the  
-Secretary of Transportation with respect to the C oast Guard when it is not  
+Section 1. To provide additional authority to the Department of Defense and
+the Department of Transportation to respond to the continuing threat posed by
+Iraq’s invasion of Kuwait, the authority under section 673 of title 10, United
+States Code, to order any unit, and any member not assigned to a unit
+organized to serve as a unit, in the Ready Reserve to active duty (other than
+for training) for not more than 24 consecutive months, is invoked and made
+available, according to its terms, to the Secretary concerned, subject, in the
+case of the Secretaries of the Army, Navy, and Air Force, to the direction of
+the Secretary of Defense. The term “Secretary concerned” is defined in section
+101(8) of title 10, United States Code, to m ean the Secretary of the Army with
+respect to the Army; the Secretary of the N avy with respect to the Navy, the
+Marine Corps, and the C oast Guard when it is operating as a service in the
+Navy; the Secretary of the Air Force with respect to the Air Force; and, the
+Secretary of Transportation with respect to the C oast Guard when it is not
 operating as a service in the Navy.
-Sec. 2. To allow for the orderly administration of personnel within the armed  
-forces, the authority vested in the President by section 527 of title 10, United  
-States Code, to suspend the operation of sections 523-526 of title 10, United  
-States Code, regarding officer strength and officer distribution in grade, is  
+Sec. 2. To allow for the orderly administration of personnel within the armed
+forces, the authority vested in the President by section 527 of title 10, United
+States Code, to suspend the operation of sections 523-526 of title 10, United
+States Code, regarding officer strength and officer distribution in grade, is
 invoked to the full extent provided by the terms thereof.
-Sec. 3. To allow for the orderly administration of personnel within the armed  
-forces, the authority vested in the President by section 644 of title 10, United  
-States Code, to suspend the operation of any provision of law  relating to the  
-promotion, involuntary retirement, or separation of commissioned officers of  
-the Army, Navy, Air Force, or Marine Corps, is invoked to the full extent  
+Sec. 3. To allow for the orderly administration of personnel within the armed
+forces, the authority vested in the President by section 644 of title 10, United
+States Code, to suspend the operation of any provision of law  relating to the
+promotion, involuntary retirement, or separation of commissioned officers of
+the Army, Navy, Air Force, or Marine Corps, is invoked to the full extent
 provided by the terms thereof.
-Sec. 4. The Secretary of Defense is hereby designated and empowered,  
-without the approval, ratification, or other action by the President, to exercise  
-the authority vested in the President by sections 527 and 644 of title 10, United  
-States Code, as invoked by sections 2 and 3 of this order, to suspend the  
+Sec. 4. The Secretary of Defense is hereby designated and empowered,
+without the approval, ratification, or other action by the President, to exercise
+the authority vested in the President by sections 527 and 644 of title 10, United
+States Code, as invoked by sections 2 and 3 of this order, to suspend the
 operation of certain provisions of law.
-Sec. 5. The authorities delegated by sections 1 and 4 of this order may be  
+Sec. 5. The authorities delegated by sections 1 and 4 of this order may be
 redelegated and further subdelegated to civilian subordinates who are ap­
-pointed to their offices by the President, by and with the advice and consent  
+pointed to their offices by the President, by and with the advice and consent
 of the Senate.
 
 === PDF page 248 of 260 ===
 2662 Federal Register /  V o l 56, N o. 15 ]  W ednesday, January 23, 1991 /  Presidential Documents
-Sec. 6. This order is intended to improve the internal management of the  
+Sec. 6. This order is intended to improve the internal management of the
 executive branch, and is not intended to create any right or benefit, substan­
-tive or procedural, enforceable at law  by a party against the United States, its  
+tive or procedural, enforceable at law  by a party against the United States, its
 agencies, its officers, or any person.
-Sec. 7. This order is effective immediately, and shall be transmitted to the  
+Sec. 7. This order is effective immediately, and shall be transmitted to the
 Congress and published in the Federal Register.
-[FR Doc. 91-1727 
-Filed 1-22-91; 10:59 am] 
+[FR Doc. 91-1727
+Filed 1-22-91; 10:59 am]
 Billing code 3195-01-M
-THE W HITE HOUSE,  
+THE W HITE HOUSE,
 Ja n u a ry  18, 1991.
 
 ```
@@ -1690,10 +1690,10 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 THE PRESIDENT 47213
 Executive Order 11943 •  October 25, 1976
 Amendment of Adjustments of Certain Rates of Pay and Allowances
-By virtue of the authority vested in me as President of the United States of 
-America, in order to correct a typographical error, it is hereby ordered that the 
-adjusted maximum scale of pay in the Section 4103 Schedule for Director of Nursing 
-Service, as set forth in Schedule 3 of Executive Order No. 11941 of October 1, 1976, is 
+By virtue of the authority vested in me as President of the United States of
+America, in order to correct a typographical error, it is hereby ordered that the
+adjusted maximum scale of pay in the Section 4103 Schedule for Director of Nursing
+Service, as set forth in Schedule 3 of Executive Order No. 11941 of October 1, 1976, is
 amended by ehanging “ 2,611*” to read “ 52,611*” .
 T h e W h it e H o u se,,
 October 25,1976.
@@ -1732,9 +1732,9 @@ Text hash dd034b7f363ec34e618a776534cda5e9777df74603f8707aa77ac739e31c9d34; abso
 
 ```text
 (a) The Committee shall submit to the President and to the Attorney General,
-within ninety days from the date of this Order, a report listing the names of the five 
-persons whom the Committee considers best qualified to serve as the Director and 
-setting forth such other information as the President or the Attorney General may 
+within ninety days from the date of this Order, a report listing the names of the five
+persons whom the Committee considers best qualified to serve as the Director and
+setting forth such other information as the President or the Attorney General may
 require. . .  „
 ```
 
@@ -1817,7 +1817,7 @@ Text hash 06e702bcaac055ac87f842d52a7a9515289159d91e0056783c4f7c80a796840b; abso
 Text hash dd034b7f363ec34e618a776534cda5e9777df74603f8707aa77ac739e31c9d34; absolute characters 1912–2040; files: jobs/clause-drafts/output/texts/cd-job-fr-originals-11971-b47dbf578e.txt
 
 ```text
-(b) The Committee shall terminate thirty days after submission of its report, 
+(b) The Committee shall terminate thirty days after submission of its report,
 unless its duration is extended by the President.
 ```
 
@@ -1845,48 +1845,48 @@ Presidential Documents
 Title 3— The President
 EXECUTIVE ORDER 11727
 Drug Law Enforcement
-Reorganization Plan No. 2 of 1973, which becomes effective on 
-July 1, 1973, among other things establishes a Drug Enforcement 
-Administration in the Department of Justice. In my message to the 
-Congress transmitting that plan, I stated that all functions of the Office 
-for Drug Abuse Law Enforcement (established pursuant to Executive 
-Order No. 11641 of January 28, 1972) and the Office of National 
-Narcotics Intelligence (established pursuant to Executive Order No. 
-11676 of July 27, 1972) would, together with other related functions, 
+Reorganization Plan No. 2 of 1973, which becomes effective on
+July 1, 1973, among other things establishes a Drug Enforcement
+Administration in the Department of Justice. In my message to the
+Congress transmitting that plan, I stated that all functions of the Office
+for Drug Abuse Law Enforcement (established pursuant to Executive
+Order No. 11641 of January 28, 1972) and the Office of National
+Narcotics Intelligence (established pursuant to Executive Order No.
+11676 of July 27, 1972) would, together with other related functions,
 be merged in the new Drug Enforcement Administration.
-N O W , TH E R EFO R E, by virtue of the authority vested in me by the 
-Constitution and laws of the United States, including section 5317 of 
-title 5 of the United States Code, as amended, it is hereby ordered 
+N O W , TH E R EFO R E, by virtue of the authority vested in me by the
+Constitution and laws of the United States, including section 5317 of
+title 5 of the United States Code, as amended, it is hereby ordered
 as follows:
-Sectio n 1. The Attorney General, to the extent permitted by law, 
-is authorized to coordinate all activities of executive branch departments 
-and agencies which are directly related to the enforcement of laws 
-respecting narcotics and dangerous drugs. Each department and agency 
+Sectio n 1. The Attorney General, to the extent permitted by law,
+is authorized to coordinate all activities of executive branch departments
+and agencies which are directly related to the enforcement of laws
+respecting narcotics and dangerous drugs. Each department and agency
 of the Federal Government shall, upon request and to the extent per­
 mitted by law, assist the Attorney General in the performance of func­
-tions assigned to him pursuant to this order, and the Attorney General 
-may, in carrying out those functions, utilize the services of any other 
+tions assigned to him pursuant to this order, and the Attorney General
+may, in carrying out those functions, utilize the services of any other
 agencies, Federal and State, as may be available and appropriate.
-Se c. 2. Executive Order No. 11641 of January 28, 1972, is revoked 
-and the Attorney General shall provide for the reassignment of the 
-functions of the Office for Drug Abuse Law Enforcement and for the 
+Se c. 2. Executive Order No. 11641 of January 28, 1972, is revoked
+and the Attorney General shall provide for the reassignment of the
+functions of the Office for Drug Abuse Law Enforcement and for the
 abolishment of that Office.
-Sec.  3. Executive Order No. 11676 of July 27, 1972, is hereby revoked 
-and the Attorney General shall provide for the reassignment of the 
-functions of the Office of National Narcotics Intelligence and for the 
+Sec.  3. Executive Order No. 11676 of July 27, 1972, is hereby revoked
+and the Attorney General shall provide for the reassignment of the
+functions of the Office of National Narcotics Intelligence and for the
 abolishment of that Office.
 FEDERAL REGISTER, VOL. 38, N O. 131— TUESDAY, JULY 10, 1973
 
 === PDF page 8 of 88 ===
 18358 THE PRESIDENT
-Sec. 4. Section 1  of Executive Order No. 11708 of March 23, 1973, 
-as amended, placing certain positions in level IV  of the Executive 
+Sec. 4. Section 1  of Executive Order No. 11708 of March 23, 1973,
+as amended, placing certain positions in level IV  of the Executive
 Schedule is hereby further amended by deleting—
 (1 ) “ (6)  Director, Office for Drug Abuse Law Enforcement, De­
 partment of Justice.” ; and
-(2 ) “ (7) Director, Office of National Narcotics Intelligence, 
+(2 ) “ (7) Director, Office of National Narcotics Intelligence,
 Department of Justice.”
-Se c. 5. The Attorney General shall provide for the winding up of the 
+Se c. 5. The Attorney General shall provide for the winding up of the
 affairs of the two offices and for the reassignment of their functions.
 Se c. 6. This order shall be effective as of July 1, 1973.
 T h e W h it e H o u se,
@@ -1934,29 +1934,29 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 === PDF page 17 of 1144 ===
 Executive Order 12010 September 28, 1977
 Adjustments of Certain Rates of Pay and Allowances
-By virtue of the authority vested in me by the Constitution and the laws of the  
-United States of America, and as President of the United States of America, it is hereby  
+By virtue of the authority vested in me by the Constitution and the laws of the
+United States of America, and as President of the United States of America, it is hereby
 ordered as follows:
-Section  1 . Statutory Pay Systems.  Pursuant to the provisions of subchapter I of 
-Chapter 53 of Title 5 of the United States Code, the rates of basic pay and salaries are  
-adjusted, as set forth at the schedules attached hereto and made a part hereof, for the  
+Section  1 . Statutory Pay Systems.  Pursuant to the provisions of subchapter I of
+Chapter 53 of Title 5 of the United States Code, the rates of basic pay and salaries are
+adjusted, as set forth at the schedules attached hereto and made a part hereof, for the
 following statutory pay systems:
 (a) The General Schedule (5 U.S.C. 5 3 32(a)) at Schedule 1;
 (b) the schedules for the Foreign Service (22 U.S.C. 867 and 8 7 0 (a )) at Sched­
 ule 2; and
 (c) the schedules for the Department of Medicine and Surgery, Veterans Admin­
 istration (38 U.S.C. 4107) at Schedule 3.
-Sec.  2. Pay and Allowances for Members of the Uniformed Services.  Pursuant to  
-the provisions of Section 1009 of Title 37 of the United States Code, the rates of  
-monthly basic pay (37 U.S.C. 203(a) and (c)), the rates of basic allowances for  
-subsistence' (37 U.S.C. 402), and the rates of basic allowances for quarters (37 U.S.C.  
-403(a))  are adjusted, as set forth at Schedule 4 attached hereto and made a part  
+Sec.  2. Pay and Allowances for Members of the Uniformed Services.  Pursuant to
+the provisions of Section 1009 of Title 37 of the United States Code, the rates of
+monthly basic pay (37 U.S.C. 203(a) and (c)), the rates of basic allowances for
+subsistence' (37 U.S.C. 402), and the rates of basic allowances for quarters (37 U.S.C.
+403(a))  are adjusted, as set forth at Schedule 4 attached hereto and made a part
 hereof, for members of the uniformed services.
-Sec. 3. Effective Date.  The adjustments in rates of monthly basic pay and basic  
-allowances for subsistence and quarters for members of the uniformed services shall  
-be effective on October 1, 1977. All other adjustments of salary or pa)Nshall be effective  
+Sec. 3. Effective Date.  The adjustments in rates of monthly basic pay and basic
+allowances for subsistence and quarters for members of the uniformed services shall
+be effective on October 1, 1977. All other adjustments of salary or pa)Nshall be effective
 on the first day of the first applicable pay period beginning on or after October 1, 1977.
-Sec.  4. Superseded Orders.  Executive Order No. 11941 of October 1, 1976, is  
+Sec.  4. Superseded Orders.  Executive Order No. 11941 of October 1, 1976, is
 superseded.
 T h e W hite  H o use,
 ■ "  September 28, 1977.
@@ -1981,56 +1981,56 @@ TH E  PRESIDENT 9155
 E xecutive O rder 11971 • February 11, 1977
 Establishing the Committee on Selection of the Director of the Federal Bureau of
 Investigation
-By virtue of the authority vested in me by the Constitution and statutes of the 
-United States of America, and as President of the United States of America, in 
-accordance with the provisions of the Federal Advisory Committee Act (5 U.S.C. 
+By virtue of the authority vested in me by the Constitution and statutes of the
+United States of America, and as President of the United States of America, in
+accordance with the provisions of the Federal Advisory Committee Act (5 U.S.C.
 App. I ) , it is hereby ordered as follows:
-Section  1. Establishment of the Committee.  There is hereby established the 
+Section  1. Establishment of the Committee.  There is hereby established the
 Committee on Selection of the Director of the Federal Bureau of Investigation, herein­
-after referred to as the Committee. The Committee shall consist of a Chairman and 
+after referred to as the Committee. The Committee shall consist of a Chairman and
 eight other members to be appointed by the President.
-Sec. 2. Functions. The Committee.shall conduct inquiries to identify persons who 
-may be qualified to serve as the Director of the Federal Bureau of Investigation, 
-hereinafter referred to as the Director, and shall conduct investigations of those 
+Sec. 2. Functions. The Committee.shall conduct inquiries to identify persons who
+may be qualified to serve as the Director of the Federal Bureau of Investigation,
+hereinafter referred to as the Director, and shall conduct investigations of those
 persons to determine their qualifications.
 Sec. 3. Report; Duration.
 (a) The Committee shall submit to the President and to the Attorney General,
-within ninety days from the date of this Order, a report listing the names of the five 
-persons whom the Committee considers best qualified to serve as the Director and 
-setting forth such other information as the President or the Attorney General may 
+within ninety days from the date of this Order, a report listing the names of the five
+persons whom the Committee considers best qualified to serve as the Director and
+setting forth such other information as the President or the Attorney General may
 require. . .  „
-(b) The Committee shall terminate thirty days after submission of its report, 
-unless its duration is extended by the President. So, long as the Committee remains 
-in existence, it shall conduct such additional inquiries and submit such additional 
+(b) The Committee shall terminate thirty days after submission of its report,
+unless its duration is extended by the President. So, long as the Committee remains
+in existence, it shall conduct such additional inquiries and submit such additional
 reports as may be requested by the President or the Attorney General.
-Sec. 4. Ineligibility of Committee Members.  No member of the. Committee shall 
+Sec. 4. Ineligibility of Committee Members.  No member of the. Committee shall
 be eligible to be considered as a possible nominee for the position of Director.
-SeCi. 5. Cooperation by Executive Agencies.  The Committee is authorized to 
-request, through its Chairman, from any Executive department or agency such 
-information or assistance as the Committee deems necessary to carry out its functions 
-under this Order. Each department or agency shall, to the extent permitted by law, 
-furnish such information or assistance to the Committee. The Committee also is 
-authorized to request from any State agency such information and assistance as the 
-Committee deems necessary, and to obtain such information and assistance to the 
+SeCi. 5. Cooperation by Executive Agencies.  The Committee is authorized to
+request, through its Chairman, from any Executive department or agency such
+information or assistance as the Committee deems necessary to carry out its functions
+under this Order. Each department or agency shall, to the extent permitted by law,
+furnish such information or assistance to the Committee. The Committee also is
+authorized to request from any State agency such information and assistance as the
+Committee deems necessary, and to obtain such information and assistance to the
 extént permitted by State law.
 FEDERAL REGISTER, VOL. 42, N O . 31— TUESDAY, FEBRUARY 15, 19 77
 
 === PDF page 14 of 216 ===
 9156 TH E  PRESIDENT
 Sec. 6. Travel Expenses; Administrative Support; Financing.
-(a) Members of the Committee shall serve without compensation. While 
+(a) Members of the Committee shall serve without compensation. While
 engaged in the work of the Committee, members may receive travel expenses, includ­
 ing per diem in lieu of subsistence, as authorized by law (5 U.S.C. 5702 and 5703).
 (b) The Attorney General shall furnish to the Committee necessary staff, sup­
 plies, facilities and other administrative services.
 (c) All necessary expenses incurred in connection with the work of the Com­
-mittee, to the extent permitted by law, shall be paid from funds available to the 
+mittee, to the extent permitted by law, shall be paid from funds available to the
 Attorney General.
 Sec. 7. Federal Advisory Committee Act Functions.  Notwithstanding the provi­
-sions of any other Executive order, the functions of the President under the Federal 
-Advisory Committee Act (5 U.S.C. App. I ), except that of reporting annually to the 
-Congress, which are applicable to the Committee, shall be performed by the Attorney 
-General in accordance with guidelines and procedures established by the Office of 
+sions of any other Executive order, the functions of the President under the Federal
+Advisory Committee Act (5 U.S.C. App. I ), except that of reporting annually to the
+Congress, which are applicable to the Committee, shall be performed by the Attorney
+General in accordance with guidelines and procedures established by the Office of
 Management and Budget.
 T he W hite H ouse,
 February 11, 1977.
@@ -2044,8 +2044,8 @@ f FEDERAL REGISTER, VOL. 42, N O . 31— TUESDAY, FEBRUARY 15, 1977
 Text hash 7f65d45e5617cc7e6a71fa0f305388813ff70dc58c9638444538af024305dac5; absolute characters 2213–2333; files: jobs/clause-drafts/output/texts/cd-job-fr-originals-11883-480394a88a.txt
 
 ```text
-Executive Order No. 11811 of October 2* 
-1974, and Executive Order No. 11812 of October 7, 1974, are hereby 
+Executive Order No. 11811 of October 2*
+1974, and Executive Order No. 11812 of October 7, 1974, are hereby
 superseded.
 ```
 
@@ -2061,524 +2061,524 @@ Location: 59 FR 29525, PDF pages 185-194 (confidence medium)
 Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.
 
 === PDF page 185 of 204 ===
-Federal Register 
-Vol. 59, N o. 108 
+Federal Register
+Vol. 59, N o. 108
 Tuesday, June 7 1994
 Presidential Documents
 2 9 5 2 5
 T itle 3— Executive Order 12919 o f June 3, 1994
 The President N ation al Defense In d u strial R esou rces Prep ared n ess
-By the authority vested in me as President by the Constitution and the 
-laws of the United States of America, including the Defense Production 
-Act of 1950, as amended (64 Stat. 798; 50 U .S.C  App. 2061, e t seq .)  
-and section 301 of title 3, United States Code, and as Commander in Chief 
+By the authority vested in me as President by the Constitution and the
+laws of the United States of America, including the Defense Production
+Act of 1950, as amended (64 Stat. 798; 50 U .S.C  App. 2061, e t seq .)
+and section 301 of title 3, United States Code, and as Commander in Chief
 of the Armed Forces of the United States, it is hereby ordered as follows
 PART 1 — PURPOSE, POLICY AND IMPLEMENTATION
-Section 101. P u rp o se. This order delegates authorities and addresses national 
+Section 101. P u rp o se. This order delegates authorities and addresses national
 defense industrial resource policies and programs under the Defense Produc­
-tion Act of 1950, as amended (“the A ct”), except for the amendments to 
-Title III of the Act in the Energy Security Act of 1980 and telecommunication 
+tion Act of 1950, as amended (“the A ct”), except for the amendments to
+Title III of the Act in the Energy Security Act of 1980 and telecommunication
 authorities under Executive Order No. 12472.
-Sec. 102. P o licy . The United States must have an industrial and technology 
+Sec. 102. P o licy . The United States must have an industrial and technology
 base capable of meeting national defense requirements, and capable of con­
 tributing to the technological superiority o f its defense equipment in peace­
-time and in times of national emergency. The domestic industrial and techno- 
+time and in times of national emergency. The domestic industrial and techno-
 logical base is the foundation for national defense preparedness. The authori­
-ties provided in the Act shall be used to strengthen this base and to ensure 
-it is capable of responding to all threats to the national security of the 
+ties provided in the Act shall be used to strengthen this base and to ensure
+it is capable of responding to all threats to the national security of the
 United States.
-Sec. 103. G en era l F u n ctio n s.  Federal departments and agencies responsible 
-for defense acquisition (or for industrial resources needed to support defense 
+Sec. 103. G en era l F u n ctio n s.  Federal departments and agencies responsible
+for defense acquisition (or for industrial resources needed to support defense
 acquisition) shall:
 (a) Identify requirements for the full spectrum of national security emer­
 gencies, including m ilitary, industrial, and essential civilian demand;
 (b) Assess continually the capability of the domestic industrial and techno­
-logical base to satisfy requirements in peacetime and times of national 
-emergency, specifically evaluating the availability o f adequate industrial 
-resource and production sources, including subcontractors and suppliers 
+logical base to satisfy requirements in peacetime and times of national
+emergency, specifically evaluating the availability o f adequate industrial
+resource and production sources, including subcontractors and suppliers
 materials, skilled labor, and professional and technical personnel;
-(c) Be prepared, in the event of a potential threat to the security of 
-the United States, to take actions necessary to ensure the availability of 
-adequate industrial resources and production capability, including services 
+(c) Be prepared, in the event of a potential threat to the security of
+the United States, to take actions necessary to ensure the availability of
+adequate industrial resources and production capability, including services
 and critical technology for national defense requirements;
-(d) Improve the efficiency and responsiveness to defense requirements 
+(d) Improve the efficiency and responsiveness to defense requirements
 of the domestic industrial base; and
-(e) Foster cooperation between the defense and commercial sectors for 
-research and development and for acquisition of materials, components 
+(e) Foster cooperation between the defense and commercial sectors for
+research and development and for acquisition of materials, components
 and equipment to enhance industrial base efficiency and responsiveness
-Sec. 104. Im p le m e n ta tio n , (a) The National Security Council is the principal 
+Sec. 104. Im p le m e n ta tio n , (a) The National Security Council is the principal
 forum for consideration and resolution of national security resource prepared­
 ness policy. -
-(b) The Director, Federal Emergency' Management Agency (“Director 
+(b) The Director, Federal Emergency' Management Agency (“Director
 FEM A”) shall:
-(1) Serve as an advisor to the National Security Council on issues 
-of national security resource preparedness and on the use of the 
+(1) Serve as an advisor to the National Security Council on issues
+of national security resource preparedness and on the use of the
 authorities and functions delegated by this order-
 
 === PDF page 186 of 204 ===
 29526 Federal Register / Vol. 59, No. 108 / Tuesday, June 7, 1994 / Presidential Documents
-(2.) Provide for the central coordination of the plans and programs *  
-incident to authorities and functions delegated under this order,  
-and provide guidance and procedures approved by the Assistant  
+(2.) Provide for the central coordination of the plans and programs *
+incident to authorities and functions delegated under this order,
+and provide guidance and procedures approved by the Assistant
 to the President for National Security Affairs to the Federal depart­
 ments and agencies under this order;
-(3) Establish procedures» in consultation with Federal departments  
-and agencies assigned functions under this order, to résolve in  
-a. timely and effective manner conflicts and issues that may arise  
-in implementing the authorities and functions delegated under this  
+(3) Establish procedures» in consultation with Federal departments
+and agencies assigned functions under this order, to résolve in
+a. timely and effective manner conflicts and issues that may arise
+in implementing the authorities and functions delegated under this
 order; and
 (4) Report to the President periodically concerning all program activi­
 ties conducted pursuant to this order.
-(c) The head of every Federal department and agency assigned functions  
-under this, order shall ensure that the performance of these functions is  
+(c) The head of every Federal department and agency assigned functions
+under this, order shall ensure that the performance of these functions is
 consistent with National Security Council policy and guidelines.
 PART H— PRtORITIES AND ALLOCATIONS
-Sec. 2G T. Delegations of Priorities and Allocations,  (a) The authority of  
-the President conferred by section 101 of the Act to require acceptance  
-and priority performance of contracts or orders (other than contracts of  
-employment) to promote the national defense over performance of any other  
-contracts or orders, and to allocate materials, services, and facilities as  
-deemed necessary or appropriate to promote the national defense, is delegated  
+Sec. 2G T. Delegations of Priorities and Allocations,  (a) The authority of
+the President conferred by section 101 of the Act to require acceptance
+and priority performance of contracts or orders (other than contracts of
+employment) to promote the national defense over performance of any other
+contracts or orders, and to allocate materials, services, and facilities as
+deemed necessary or appropriate to promote the national defense, is delegated
 to the following agency heads;
-(1) The Secretary of Agriculture with respect to food resources,  
+(1) The Secretary of Agriculture with respect to food resources,
 food resource facilities, and the domestic distribution of farm equip­
 ment and commercial fertilizer;.
 (2) The Secretary of Energy with respect to all forms of energy;
-(3) The Secretary of Health and Human Services with respect to  
+(3) The Secretary of Health and Human Services with respect to
 health resources;
-(4) The Secretary of Transportation with respect to all forms of  
+(4) The Secretary of Transportation with respect to all forms of
 civil transportation;
 (5) ;  The Secretary of Defense with respect to water resources; and
-(6) The Secretary of Commerce for all other materials, services,  
+(6) The Secretary of Commerce for all other materials, services,
 and facilities, including construction materials.
-C & l f  The Secretary of Commerce, in consultation with the heads of those  
-departments and agencies specified in subsection 201(a) of this order, shall  
+C & l f  The Secretary of Commerce, in consultation with the heads of those
+departments and agencies specified in subsection 201(a) of this order, shall
 administer the Defense Priorities and Allocations System (“DPAS”) regula­
-tions that will be used to implement the authority of the President conferred  
-by section 1-01 of the Act as delegated to the Secretary of Commerce in  
-subsection 201(a)(6) of this order. The Secretary of Commerce will redelegate  
-to the-Secretary of Defense, and the heads of other departments and agencies  
-as appropriate, authority for the priority rating of contracts and orders for  
-all. materials, services, and facilities needed in support of programs approved  
-under section 202 of this order. The Secretary of Commerce shall act as  
-appropriate upon Special Priorities Assistance requests in a time frame  
+tions that will be used to implement the authority of the President conferred
+by section 1-01 of the Act as delegated to the Secretary of Commerce in
+subsection 201(a)(6) of this order. The Secretary of Commerce will redelegate
+to the-Secretary of Defense, and the heads of other departments and agencies
+as appropriate, authority for the priority rating of contracts and orders for
+all. materials, services, and facilities needed in support of programs approved
+under section 202 of this order. The Secretary of Commerce shall act as
+appropriate upon Special Priorities Assistance requests in a time frame
 consistent with the urgency of the need at hand.
-fcl The Director, FEMA, shall attempt to resolve issues or disagreements  
-on priorities or allocations between Federal departments or agencies in  
-a time frame consistent with the urgency of the issue at hand and, if  
-not resolved, such issues will be referred to the Assistant to the President  
+fcl The Director, FEMA, shall attempt to resolve issues or disagreements
+on priorities or allocations between Federal departments or agencies in
+a time frame consistent with the urgency of the issue at hand and, if
+not resolved, such issues will be referred to the Assistant to the President
 for National Security Affairs for final determination.
-(dr) The head of each Federal department or agency assigned functions  
-under subsection 201(a) of this order, when necessary, shall make the finding  
-required under subsection 101(b) of the Act. This finding shall be submitted  
+(dr) The head of each Federal department or agency assigned functions
+under subsection 201(a) of this order, when necessary, shall make the finding
+required under subsection 101(b) of the Act. This finding shall be submitted
 for the President’s approval through the Assistant to the President for Na­
 tional Security Affairs. Upon such approval the head, of the Federal depart-
 
 === PDF page 187 of 204 ===
 Federal Register /  VoL 59, No. 108 /  Tuesday, June 7, 1994 f Presidential Documents 2 9 5 2 7
-ment or agency that made the finding may use the authority of subsection 
-101(a) of the Act to control the general distribution of any material (including 
+ment or agency that made the finding may use the authority of subsection
+101(a) of the Act to control the general distribution of any material (including
 applicable services) in the civilian market.
-(e) The Assistant to the President for National Security Affairs is hereby 
-delegated the authority under subsection 101(c)(3) of the Act, and will 
-be assisted by the Director, FEMA* in ensuring the coordinated administration 
+(e) The Assistant to the President for National Security Affairs is hereby
+delegated the authority under subsection 101(c)(3) of the Act, and will
+be assisted by the Director, FEMA* in ensuring the coordinated administration
 of the Act.
-Sec. 202. Determinations.  The authority delegated by section 201 of this 
-order may be used only to support programs that have been determined 
+Sec. 202. Determinations.  The authority delegated by section 201 of this
+order may be used only to support programs that have been determined
 in writing as necessary or appropriate to promote the national defense:
-(a) By the Secretary of Defense with respect to military production and 
-construction, military assistance to foreign nations, stockpiling, outer space, 
+(a) By the Secretary of Defense with respect to military production and
+construction, military assistance to foreign nations, stockpiling, outer space,
 and directly related activities;
-(b) By the Secretary of Energy with respect to energy production and 
+(b) By the Secretary of Energy with respect to energy production and
 construction, distribution and use, and directly related activities; and
 (c) By the Director, FEMA, with respect to essential civilian needs support­
-ing national defense, including civil defense and continuity of government 
+ing national defense, including civil defense and continuity of government
 and directly related activities.
 Sec. 203. Maximizing Domestic  Energy Supplies.  The authority of the Presi­
-dent to perform the functions provided by subsection 101(c) of the Act 
-is delegated to the Secretary of Commerce, who shall redelegate to the 
-Secretary of Energy the authority to make the findings described in subsection 
-101(c)(2)(A) that the m aterials (including equipment), services, and facilities 
-are critical and essential. The Secretary of Commerce shall make the finding 
-described in subsection 101(c)(2)(A) of the Act that the materials (including 
-equipment), services, or facilities are scarce, and the finding described in 
-subsection 101(c)(2)(B) that it is necessary to use the authority provided 
+dent to perform the functions provided by subsection 101(c) of the Act
+is delegated to the Secretary of Commerce, who shall redelegate to the
+Secretary of Energy the authority to make the findings described in subsection
+101(c)(2)(A) that the m aterials (including equipment), services, and facilities
+are critical and essential. The Secretary of Commerce shall make the finding
+described in subsection 101(c)(2)(A) of the Act that the materials (including
+equipment), services, or facilities are scarce, and the finding described in
+subsection 101(c)(2)(B) that it is necessary to use the authority provided
 by subsection 101(c)(1).
-Sec. 204. Chemical and Biological Warfare.  The authority of the President 
-conferred by subsection 104(b) of the Act is delegated to the Secretary 
+Sec. 204. Chemical and Biological Warfare.  The authority of the President
+conferred by subsection 104(b) of the Act is delegated to the Secretary
 of Defense. This authority may not be further delegated by the Secretary.
 PART III— EXPANSION OF PRODUCTIVE CAPACITY AND SUPPLY
 Sec. 301. (a) Financing Institution Guarantees.  To expedite or expand produc­
 tion and deliveries or services under government contracts for the procure­
-ment of industrial resources or critical technology items essential to the 
-national defense, the head of each Federal department or agency engaged 
-in procurement for the national defense (referred to as “agency head” in 
-this part) and the President and Chairman o f the Export-Import Bank of 
+ment of industrial resources or critical technology items essential to the
+national defense, the head of each Federal department or agency engaged
+in procurement for the national defense (referred to as “agency head” in
+this part) and the President and Chairman o f the Export-Import Bank of
 the United States (in cases involving capacity expansion, technological d evel­
-opment, or production in foreign countries) are authorized to guarantee 
-in w hole or in part any public or private financing institution, subject 
+opment, or production in foreign countries) are authorized to guarantee
+in w hole or in part any public or private financing institution, subject
 to provisions of section 301 of the Act. Guarantees shall be made in consulta­
-tion with the Department of the Treasury as to the terms and conditions 
-thereof. The Director of the Office of Management and Budget (“OMB”) 
+tion with the Department of the Treasury as to the terms and conditions
+thereof. The Director of the Office of Management and Budget (“OMB”)
 shall be informed when such guarantees are to be made.
 (b) Direct Loan Guarantees.  To expedite or expand production and deliv­
-eries or services under government contracts for the procurement of industrial 
-resources or critical technology items essential to the national defense, each 
+eries or services under government contracts for the procurement of industrial
+resources or critical technology items essential to the national defense, each
 agency head is authorized to make direct loan guarantees from funds appro­
 priated to their agency for Title HI.
-(c) Fiscal Agent.  Each Federal Reserve Bank is designated and authorized 
-to act, on behalf of any guaranteeing agency, as fiscal agent in the making 
-of guarantee contracts and in otherwise carrying out the purposes of section 
+(c) Fiscal Agent.  Each Federal Reserve Bank is designated and authorized
+to act, on behalf of any guaranteeing agency, as fiscal agent in the making
+of guarantee contracts and in otherwise carrying out the purposes of section
 301 of the Act.
-(d) Regulations.  The Board of Governors o f the Federal Reserve System 
-is authorized, after consultation with heads of guaranteeing departments 
+(d) Regulations.  The Board of Governors o f the Federal Reserve System
+is authorized, after consultation with heads of guaranteeing departments
 and agencies, the Secretary of the Treasury, and the Director, OMB, to
 
 === PDF page 188 of 204 ===
 2 9 5 28 Federal Register / Vol. 59, No. 108 / Tuesday, June 7, 1994 / Presidential Documents
-prescribe regulations governing procedures, forms, rates of interest, and fees  
+prescribe regulations governing procedures, forms, rates of interest, and fees
 for such guarantee contracts.
-Sec. 302. Loans,  (a) To expedite production and deliveries or services to  
-aid in carrying out government contracts for the procurement of industrial  
-resources or a critical technology item foi the national defense, an agency  
-head is authorized, subject to the provisions of section 302 of the Act,  
-to submit to the Secretary of the Treasury or the President and Chairman  
-of the Export-Import Bank of the United States (in cases involving capacity  
-expansion, technological development, or production in foreign countries)  
+Sec. 302. Loans,  (a) To expedite production and deliveries or services to
+aid in carrying out government contracts for the procurement of industrial
+resources or a critical technology item foi the national defense, an agency
+head is authorized, subject to the provisions of section 302 of the Act,
+to submit to the Secretary of the Treasury or the President and Chairman
+of the Export-Import Bank of the United States (in cases involving capacity
+expansion, technological development, or production in foreign countries)
 applications for loans.
-(b) To expedite or expand production and deliveries or services under  
-government contracts for the procurement of industrial resources or critical  
-technology items essential to the national defense, each agency head may  
+(b) To expedite or expand production and deliveries or services under
+government contracts for the procurement of industrial resources or critical
+technology items essential to the national defense, each agency head may
 make direct loans from funds appropriated to their agency for Title III.
 (c) After receiving a loan application and determining that financial assist­
-ance is not otherwise available on reasonable terms, the Secretary of the  
-Treasury or the President and Chairman of the Export-Import Bank of the  
+ance is not otherwise available on reasonable terms, the Secretary of the
+Treasury or the President and Chairman of the Export-Import Bank of the
 United States (in cases involving capacity expansion, technological develop­
 ment, or production in foreign countries) may make loans, subject to provi­
 sions of section 302 of the Act.
-Sec. 303. Purchase Commitments,  (a) In order to carry out the objectives  
-of the Act, and subject to the provisions of section 303 thereof, an agency  
-head is authorized to make provision for purchases of, or commitments  
+Sec. 303. Purchase Commitments,  (a) In order to carry out the objectives
+of the Act, and subject to the provisions of section 303 thereof, an agency
+head is authorized to make provision for purchases of, or commitments
 to purchase, an industrial resource or a critical technology item for govern­
 ment use or resale.
-(b) Materials acquired under section 303 of the Act that exceed the needs  
-of the programs under the Act may be transferred to the National Defense  
-Stockpile, if such transfer is determined by the Secretary of Defense as  
+(b) Materials acquired under section 303 of the Act that exceed the needs
+of the programs under the Act may be transferred to the National Defense
+Stockpile, if such transfer is determined by the Secretary of Defense as
 the National Defense Stockpile Manager to be in the public interest.
-Sec. 304. Subsidy Payments.  In order to ensure the supply of raw or non-  
-processed materials from high-cost sources, an agency head is authorized  
-to make subsidy payments, after consultation with the Secretary of the  
-Treasury and the Director, OMB, and subject to the provisions of section  
+Sec. 304. Subsidy Payments.  In order to ensure the supply of raw or non-
+processed materials from high-cost sources, an agency head is authorized
+to make subsidy payments, after consultation with the Secretary of the
+Treasury and the Director, OMB, and subject to the provisions of section
 303(c) of the Act.
-Sec. 305. Determinations and Findings.  When carrying out the authorities  
-in sections 301 through 303 of this order, an agency head is authorized  
-to make the required determinations, judgments, statements, certifications,  
-and findings, in consultation with the Secretary of Defense, Secretary of  
-Energy or Director, FEMA, as appropriate. The agency head shall provide  
-a copy of the determination, judgment, statement, certification, or finding  
-to the Director, OMB, to the Director, FEMA, and, when appropriate, to  
+Sec. 305. Determinations and Findings.  When carrying out the authorities
+in sections 301 through 303 of this order, an agency head is authorized
+to make the required determinations, judgments, statements, certifications,
+and findings, in consultation with the Secretary of Defense, Secretary of
+Energy or Director, FEMA, as appropriate. The agency head shall provide
+a copy of the determination, judgment, statement, certification, or finding
+to the Director, OMB, to the Director, FEMA, and, when appropriate, to
 the Secretary of the Treasury.
-Sec. 306. Strategic and Critical Materials, [a)  The Secretary of the Interior  
+Sec. 306. Strategic and Critical Materials, [a)  The Secretary of the Interior
 in consultation with the Secretary of Defense as the National Defense Stock­
-pile Manager and subject to the provisions of section 303 of the Act, is  
-authorized to encourage the exploration, development, and mining of critical  
+pile Manager and subject to the provisions of section 303 of the Act, is
+authorized to encourage the exploration, development, and mining of critical
 and strategic.materials and other materials.
-(b) An agency head is authorized, pursuant to section 303(g) of the Act,  
-to make provision for the development of substitutes for strategic and critical  
-materials, critical components, critical technology items, and other industrial  
+(b) An agency head is authorized, pursuant to section 303(g) of the Act,
+to make provision for the development of substitutes for strategic and critical
+materials, critical components, critical technology items, and other industrial
 resources to aid the national defense.
-(c) An agency head is authorized, pursuant to section 303(a)(1)(B) of  
-the Act, to make provisions to encourage the exploration, development  
+(c) An agency head is authorized, pursuant to section 303(a)(1)(B) of
+the Act, to make provisions to encourage the exploration, development
 and mining of critical and strategic materials and other materials.
-Sec. 307 . Government-owned Equipment.  An agency head is authorized,  
+Sec. 307 . Government-owned Equipment.  An agency head is authorized,
 pursuant to section 303(e) of the Act, to install additional equipment, facili­
-ties, processes, or improvements to facilities owned by the government and  
-to install government-owned equipment in industrial facilities owned by  
+ties, processes, or improvements to facilities owned by the government and
+to install government-owned equipment in industrial facilities owned by
 private persons.
 
 === PDF page 189 of 204 ===
 Federal Register / Vol. 59, No. 108 / Tuesday, June 7, 1994 / Presidential Documents 2 95 29
 Sec. 308. Identification o f Shortfalls.  Except during periods of national emer­
-gency or after a Presidential determination in accordance with sections  
-301{e)(l)(D)(ii), 302(c)(4)(B), or 303(a)(7)(B) of the Act, no guarantee, loan  
-or other action pursuant to sections 301, 302, and 303 of the Act to correct  
-an industrial shortfall shall be taken unless the shortfall has been identified  
+gency or after a Presidential determination in accordance with sections
+301{e)(l)(D)(ii), 302(c)(4)(B), or 303(a)(7)(B) of the Act, no guarantee, loan
+or other action pursuant to sections 301, 302, and 303 of the Act to correct
+an industrial shortfall shall be taken unless the shortfall has been identified
 in the Budget of the United States or amendments thereto.
-Sec. 309. D efense Production Act Fun d  Manager.  The Secretary of Defense  
-is designated the Defense Production Act Fund Manager, in accordance  
-with section 304(f) of the Act, and shall carry out the duties specified  
-in that section, in consultation with the agency heads having approved  
+Sec. 309. D efense Production Act Fun d  Manager.  The Secretary of Defense
+is designated the Defense Production Act Fund Manager, in accordance
+with section 304(f) of the Act, and shall carry out the duties specified
+in that section, in consultation with the agency heads having approved
 Title H I projects and appropriated Title III funds.
-Sec. 310. Critical Items List,  (a) Pursuant to section 107(b)(1)(A) of the  
-Act, the Secretary of Defense shall identify critical components and critical  
-technology items for each item on the Critical Items List of the Commanders-  
-in-Chief of the Unified and Specified Commands and other items within  
+Sec. 310. Critical Items List,  (a) Pursuant to section 107(b)(1)(A) of the
+Act, the Secretary of Defense shall identify critical components and critical
+technology items for each item on the Critical Items List of the Commanders-
+in-Chief of the Unified and Specified Commands and other items within
 the inventory of weapon systems and defense equipment.
-(b) Each agency head shall take appropriate action to ensure that critical  
-components or critical technology items are available from reliable sources  
-when needed to meet defense requirements during peacetime, graduated  
-mobilization, and national emergency. “Appropriate action” may include  
+(b) Each agency head shall take appropriate action to ensure that critical
+components or critical technology items are available from reliable sources
+when needed to meet defense requirements during peacetime, graduated
+mobilization, and national emergency. “Appropriate action” may include
 restricting contract solicitations to reliable sources, restricting contract solici­
-tations to domestic sources (pursuant to statutory authority), stockpiling  
-critical components, and developing substitutes for critical components or  
+tations to domestic sources (pursuant to statutory authority), stockpiling
+critical components, and developing substitutes for critical components or
 critical technology items.
-Sec. 311. Strengthening Domestic Capability.  An agency head, in accordance  
-with section 107(a) of the Act, may utilize the authority of Title III of  
-the Act or any other provision of law, in consultation with the Secretary  
+Sec. 311. Strengthening Domestic Capability.  An agency head, in accordance
+with section 107(a) of the Act, may utilize the authority of Title III of
+the Act or any other provision of law, in consultation with the Secretary
 of Defense, to provide appropriate incentives to develop, maintain, modern­
-ize, and expand the productive capacities of domestic sources for critical  
-components, critical technology items, and industrial resources essential  
+ize, and expand the productive capacities of domestic sources for critical
+components, critical technology items, and industrial resources essential
 for the execution of the national security strategy of the United States.
-Sec. 312. Modernization o f Equipment.  An agency head, in accordance with  
-section 108(b) of the Act, may utilize the authority of Title III of the Act  
-to guarantee the purchase or lease of advance manufacturing equipment  
-and any related services with respect to any such equipment for purposes  
+Sec. 312. Modernization o f Equipment.  An agency head, in accordance with
+section 108(b) of the Act, may utilize the authority of Title III of the Act
+to guarantee the purchase or lease of advance manufacturing equipment
+and any related services with respect to any such equipment for purposes
 of the Act.
 J  PART IV— IMPACT OF OFFSETS
-Sec. 401. Offsets. (a) The responsibilities and authority conferred upon the  
-President by section 309 of the Act with respect to offsets are delegated  
-to the Secretary of Commerce, who shall function as the President’s Executive  
+Sec. 401. Offsets. (a) The responsibilities and authority conferred upon the
+President by section 309 of the Act with respect to offsets are delegated
+to the Secretary of Commerce, who shall function as the President’s Executive
 Agent for carrying out this authority.
-(b) The Secretary of Commerce shall prepare the annual ^report required  
-by section 309(a) of the Act in consultation with the Secretaries of Defense,  
-Treasury, Labor, State, the United States Trade Representative, the Arms  
-Control and Disarmament Agency, the Director of Central Intelligence, and  
-the heads of other departments and agencies as required. The heads of  
-Federal departments and agencies shall provide the Secretary of Commerce  
-with such information as may be necessary for the effective performance  
+(b) The Secretary of Commerce shall prepare the annual ^report required
+by section 309(a) of the Act in consultation with the Secretaries of Defense,
+Treasury, Labor, State, the United States Trade Representative, the Arms
+Control and Disarmament Agency, the Director of Central Intelligence, and
+the heads of other departments and agencies as required. The heads of
+Federal departments and agencies shall provide the Secretary of Commerce
+with such information as may be necessary for the effective performance
 of this function.
-(c) The offset report shall be subject to the normal interagency clearance  
-process conducted by the Director, OMB, prior to the report’s submission  
+(c) The offset report shall be subject to the normal interagency clearance
+process conducted by the Director, OMB, prior to the report’s submission
 by the President to Congress.
 PART V— VOLUNTARY AGREEMENTS AND ADVISORY COMMITTEES
-Sec. 501. Appointments.  The authority of the President under sections 708(c)  
-and (d) of the Act is delegated to the heads of each Federal department  
-or agency, except that, insofar as that authority relates to section 101 of  
-the Act, it is delegated only to the heads of each Federal department or  
+Sec. 501. Appointments.  The authority of the President under sections 708(c)
+and (d) of the Act is delegated to the heads of each Federal department
+or agency, except that, insofar as that authority relates to section 101 of
+the Act, it is delegated only to the heads of each Federal department or
 agency assigned functions under section 201(a) of this order. The authority
 
 === PDF page 190 of 204 ===
 29530 Federal Register /  Vol. 59, No. 108 /  Tuesday, June 7, 1994 /  Presidential Documents
-delegated under this section shall be exercised pursuant to the provisions 
-of section 708 of the Act, and copies and the status of the use of such 
+delegated under this section shall be exercised pursuant to the provisions
+of section 708 of the Act, and copies and the status of the use of such
 delegations shall be furnished to the Director, FEMA.
-Sec. 502. Advisory Committees. The authority of the President under section 
-708(d) of the Act and delegated in section 501 of this order (relating to 
+Sec. 502. Advisory Committees. The authority of the President under section
+708(d) of the Act and delegated in section 501 of this order (relating to
 establishment of advisory committee's) shall be exercised only after consulta­
-tion with, and in accordance with, guidelines and procedures established 
+tion with, and in accordance with, guidelines and procedures established
 by the Administrator of General Services.
 PART VI— EMPLOYMENT OF PERSONNEL
-Sec. 601. National Defense Executive Reserve, (a) In accordance with section 
-710(e) of the Act, there is established in the Executive Branch a National 
-Defense Executive Reserve (“NDER”) composed of persons of recognized 
-expertise from various segments of the private sector and from government 
-(except full-time federal employees) for training for employment in executive 
-positions in the Federal Government in the event of an emergency that 
+Sec. 601. National Defense Executive Reserve, (a) In accordance with section
+710(e) of the Act, there is established in the Executive Branch a National
+Defense Executive Reserve (“NDER”) composed of persons of recognized
+expertise from various segments of the private sector and from government
+(except full-time federal employees) for training for employment in executive
+positions in the Federal Government in the event of an emergency that
 requires such employment.
-(b) The head of any department or agency may establish a unit of the 
+(b) The head of any department or agency may establish a unit of the
 NDER in the department or agency and train members of that unit.
-(c) The head of each department or agency with an NDER unit is authorized 
+(c) The head of each department or agency with an NDER unit is authorized
 to exercise the President’s authority to employ civilian personnel in accord­
-ance with section 703(a) of the Act when activating all or a part of its 
-NDER unit. The exercise of this authority shall be subject to the provisions 
+ance with section 703(a) of the Act when activating all or a part of its
+NDER unit. The exercise of this authority shall be subject to the provisions
 of subsections 601(d) and (e) of this order and shall not be redelegated.
-(d) The head of a department or agency may activate an NDER unit, 
-in whole or in part, upon the written determination that an emergency 
-affecting the national security or defense preparedness of the United States 
-exists and that the activation of the unit is necessary to carry out the 
+(d) The head of a department or agency may activate an NDER unit,
+in whole or in part, upon the written determination that an emergency
+affecting the national security or defense preparedness of the United States
+exists and that the activation of the unit is necessary to carry out the
 emergency program functions of the department or agency.
-(e) At least 72 hours prior to activating the NDER unit, the head of 
+(e) At least 72 hours prior to activating the NDER unit, the head of
 the department or agency shall notify, in writing, the Assistant to the Presi­
-dent for National Security Affairs of the impending activation and provide 
+dent for National Security Affairs of the impending activation and provide
 a copy of the determination required under subsection 601(d) of this order
-(f) The Director, FEMA, shall coordinate the NDER program activities 
-of departments and agencies in establishing units of the Reserve; provide 
-for appropriate guidance for recruitment, training, and activation, and issue 
+(f) The Director, FEMA, shall coordinate the NDER program activities
+of departments and agencies in establishing units of the Reserve; provide
+for appropriate guidance for recruitment, training, and activation, and issue
 necessary rules and guidance in connection with the program.
 (g) This order suspends any delegated authority, regulation, or other re­
-quirement or condition with respect to the activation of any NDER unit, 
-in whole or in part, or appointment of any NDER member that is inconsistent 
-with the authorities delegated herein, provided that the aforesaid suspension 
-applies only as long as sections 703(a) an(K710(e) of the Act are in effect. 
-Sec. 602. Consultants. The head of each department or agency assigned 
-functions und’ er this order is delegated authority under sections 710(b) and 
-(c) of the Act to employ persons of outstanding experience and ability 
-without compensation and to employ experts, consultants, or organizations. 
+quirement or condition with respect to the activation of any NDER unit,
+in whole or in part, or appointment of any NDER member that is inconsistent
+with the authorities delegated herein, provided that the aforesaid suspension
+applies only as long as sections 703(a) an(K710(e) of the Act are in effect.
+Sec. 602. Consultants. The head of each department or agency assigned
+functions und’ er this order is delegated authority under sections 710(b) and
+(c) of the Act to employ persons of outstanding experience and ability
+without compensation and to employ experts, consultants, or organizations.
 The authority delegated by this section shall not be redelegated.
 PART VII— LABOR SUPPLY
-Sec. 701. Secretary of Labor. The Secretary of Labor, identified in this 
+Sec. 701. Secretary of Labor. The Secretary of Labor, identified in this
 section as the Secretary, shall;
 (a) Collect, analyze, and maintain data needed to make a continuing ap-
 |  praisal of the nation’s labor requirements and the supply of workers for
-purposes of national defense. All agencies of the government shall cooperate 
+purposes of national defense. All agencies of the government shall cooperate
 I with the Secretary in furnishing information necessary for this purpose,
 to the extent permitted by law;
-(b) In response to requests from the head of a Federal department or 
-agency engaged in the procurement for national defense, Consult with and 
+(b) In response to requests from the head of a Federal department or
+agency engaged in the procurement for national defense, Consult with and
 advise that department or agency with respect to (1) the effect of contemplated
 
 === PDF page 191 of 204 ===
 Federal Register / Vol. 59, No. 108 / Tuesday, June 7, 1994 / Presidential Documents 29531
-actions on labor supply and utilization, (2) the relation of labor supply  
-to materials and facilities requirements, and (3) such other matters as will  
-assist in making the exercise of priority and allocations functions consistent  
+actions on labor supply and utilization, (2) the relation of labor supply
+to materials and facilities requirements, and (3) such other matters as will
+assist in making the exercise of priority and allocations functions consistent
 with effective utilization and distribution of labor;
 (c) Formulate plans, programs, and policies for meeting defense and essen­
 tial civilian labor requirements;
-(d) Project skill shortages to facilitate meeting defense and essential civilian 
+(d) Project skill shortages to facilitate meeting defense and essential civilian
 needs and establish training programs;
-(e) Determine the occupations and skills critical to meeting the labor  
+(e) Determine the occupations and skills critical to meeting the labor
 requirements of defense and essential civilian activities and, with the assist­
-ance of the Secretary of Defense, the Director of Selective Service, and  
-such other persons as the Director, FEMA, may designate, develop policies  
-regulating the induction and deferment of personnel for the armed services,  
+ance of the Secretary of Defense, the Director of Selective Service, and
+such other persons as the Director, FEMA, may designate, develop policies
+regulating the induction and deferment of personnel for the armed services,
 except for civilian personnel in the reserves; and
-(f) Administer an effective labor-management relations policy to support 
-the activities and programs under this order with the cooperation of other 
-Federal agencies, including the National Labor Relations Board and the 
+(f) Administer an effective labor-management relations policy to support
+the activities and programs under this order with the cooperation of other
+Federal agencies, including the National Labor Relations Board and the
 Federal Mediation and Conciliation Service.
 PART VIII— DEFENSE INDUSTRIAL BASE INFORMATION AND REPORTS
-Sec. 801. Foreign Acquisition of Companies.  The Secretary of the Treasury,  
-in cooperation with the Department of State, the Department of Defense,  
-the Department of Commerce, the Department of Energy, the Department  
-of Agriculture, the Attorney General, and the Director of Central Intelligence,  
-shall complete and furnish a report to the President and then to Congress  
-in accordance with the requirements of section 721(k) of the Act concerning  
-foreign efforts to acquire United States companies involved in research,  
-development, or production of critical technologies and industrial espionage  
+Sec. 801. Foreign Acquisition of Companies.  The Secretary of the Treasury,
+in cooperation with the Department of State, the Department of Defense,
+the Department of Commerce, the Department of Energy, the Department
+of Agriculture, the Attorney General, and the Director of Central Intelligence,
+shall complete and furnish a report to the President and then to Congress
+in accordance with the requirements of section 721(k) of the Act concerning
+foreign efforts to acquire United States companies involved in research,
+development, or production of critical technologies and industrial espionage
 activities directed by foreign governments against private U.S. companies.
-Sec. 802. Defense Industrial Base Information System,  (a) The Secretary  
-of Defense and the heads of other appropriate Federal departments and  
+Sec. 802. Defense Industrial Base Information System,  (a) The Secretary
+of Defense and the heads of other appropriate Federal departments and
 agencies, as determined by the Secretary of Defense, shall establish an infor­
-mation system on the domestic defense industrial base in accordance with  
+mation system on the domestic defense industrial base in accordance with
 the requirements of section 722 of the Act.
-(b) In establishing the information system required by subsection (a) of  
-this order, the Secretary of Defense, the Secretary of Commerce, and the  
-heads of other appropriate Federal departments and agencies, as determined  
-by the Secretary of Defense in consultation with the Secretary of Commerce,  
-shall consult with each other for the purposes of performing the duties  
+(b) In establishing the information system required by subsection (a) of
+this order, the Secretary of Defense, the Secretary of Commerce, and the
+heads of other appropriate Federal departments and agencies, as determined
+by the Secretary of Defense in consultation with the Secretary of Commerce,
+shall consult with each other for the purposes of performing the duties
 listed in section 722(d)(1) of the Act.
-(c) The Secretary of Defense shall convene a task force consisting of  
-the Secretary of Commerce and the Secretary of each military department  
-and the heads of other appropriate Federal departments and agencies, as  
-determined by the Secretary of Defense in consultation with the Secretary  
+(c) The Secretary of Defense shall convene a task force consisting of
+the Secretary of Commerce and the Secretary of each military department
+and the heads of other appropriate Federal departments and agencies, as
+determined by the Secretary of Defense in consultation with the Secretary
 of Commerce,'to carry out the duties under section 722(d)(2) of the Act.
-(d) The Secretary of Defense shall report to Congress on a strategic plan  
-for developing a cost-effective, comprehensive information system capable  
-of identifying on a timely, ongoing basis vulnerability in critical components  
-and critical technology items. The plans shall include an assessment of  
-the performance and cost-effectiveness of procedures specified in section  
+(d) The Secretary of Defense shall report to Congress on a strategic plan
+for developing a cost-effective, comprehensive information system capable
+of identifying on a timely, ongoing basis vulnerability in critical components
+and critical technology items. The plans shall include an assessment of
+the performance and cost-effectiveness of procedures specified in section
 722(b) of the Act.
-(e) The Secretary of Commerce, acting through the Bureau of the Census,  
-shall consult with the Secretary of Defense and the Director, FEMA, to  
+(e) The Secretary of Commerce, acting through the Bureau of the Census,
+shall consult with the Secretary of Defense and the Director, FEMA, to
 improve the usefulness of information derived from the Census of Manufac­
 turers in carrying out section 722 of the Act.
-(f) The Secretary of Defense shall perform an analysis of the production 
+(f) The Secretary of Defense shall perform an analysis of the production
 base for not more than two major weapons systems of each military depart-
 
 === PDF page 192 of 204 ===
 2 9 5 3 2 Federal Register / Vol. 59, No. 108 / Tuesday, June 7, 1994 / Presidential Documents
-ment in establishing the information system under section 722 of the Act.  
+ment in establishing the information system under section 722 of the Act.
 Each analysis shall identify the critical components of each system.
 (g) The Secretary of Defense, in consultation with the Secretary of Com­
 merce, and the heads of other Federal departments and agencies as appro­
-priate, shall issue a biennial report on critical components and technology  
+priate, shall issue a biennial report on critical components and technology
 in accordance with section 722(e) of the Act.
 PART IX— GENERAL PROVISIONS
-Sec. 901. Definitions. In addition to the definitions in section 702 of the  
+Sec. 901. Definitions. In addition to the definitions in section 702 of the
 Act, the following definitions apply throughout this order:
-(a) “Civil transportation” includes movement of persons and property  
-by all modes of transportation in interstate, intrastate, or foreign commerce  
-within the United States, its territories and possessions, and the District  
-of Columbia, and, without limitation, related public storage and warehousing,  
-ports, services, equipment and facilities, such'as transportation carrier shop  
+(a) “Civil transportation” includes movement of persons and property
+by all modes of transportation in interstate, intrastate, or foreign commerce
+within the United States, its territories and possessions, and the District
+of Columbia, and, without limitation, related public storage and warehousing,
+ports, services, equipment and facilities, such'as transportation carrier shop
 and repair facilities. However, “civil transportation” shall not include trans­
-portation owned or controlled by the Department of Defense, use of petroleum  
-and gas pipelines, and coal slurry pipelines used only to supply energy  
-production facilities directly. As applied herein, “civil transportation” shall  
-include direction, control, and coordination of civil transportation capacity  
+portation owned or controlled by the Department of Defense, use of petroleum
+and gas pipelines, and coal slurry pipelines used only to supply energy
+production facilities directly. As applied herein, “civil transportation” shall
+include direction, control, and coordination of civil transportation capacity
 regardless of ownership.
-(b) “Energy” means all forms of energy including petroleum, gas (both  
-natural and manufactured), electricity, solid fuels (including all forms of  
-coal, coke, coal chemicals, coal liquification, and coal gasification), and  
+(b) “Energy” means all forms of energy including petroleum, gas (both
+natural and manufactured), electricity, solid fuels (including all forms of
+coal, coke, coal chemicals, coal liquification, and coal gasification), and
 atomic, energy, and the production, conservation, use, control, and distribu­
 tion (including pipelines) of all of these forms of energy.
 (c) “Farm equipment” means equipment, machinery, and repair parts man­
-ufactured for use on farms in connection with the production or preparation  
+ufactured for use on farms in connection with the production or preparation
 for market use of food resources.
-(d) “Fertilizer” means any product or combination of products that contain  
-one or more of the elements—nitrogen, phosphorus, and potassium—for  
+(d) “Fertilizer” means any product or combination of products that contain
+one or more of the elements—nitrogen, phosphorus, and potassium—for
 use as a plant nutrient.
-(e) “Food resources” means all commodities and products, simple, mixed,  
-or compound, or complements to such commodities or products, that are  
-capable of being ingested by either human beings or animals, irrespective  
-of other uses to which such commodities or products may be put, at all  
-stages of processing from the raw commodity to the products thereof in  
-vendible form for human o r animal consumption. “Food resources” also  
-means all starches, sugars, vegetable and animal or marine fats and oils,  
-cotton, tobacco, wool, mohair, hemp, flax fiber, and naval stores, but does  
-not mean any such material after it loses its identity as an agricultural  
+(e) “Food resources” means all commodities and products, simple, mixed,
+or compound, or complements to such commodities or products, that are
+capable of being ingested by either human beings or animals, irrespective
+of other uses to which such commodities or products may be put, at all
+stages of processing from the raw commodity to the products thereof in
+vendible form for human o r animal consumption. “Food resources” also
+means all starches, sugars, vegetable and animal or marine fats and oils,
+cotton, tobacco, wool, mohair, hemp, flax fiber, and naval stores, but does
+not mean any such material after it loses its identity as an agricultural
 commodity or agricultural product.
-(f) “Food resource facilities” means plants, machinery, vehicles (including  
+(f) “Food resource facilities” means plants, machinery, vehicles (including
 on-farm), and other facilities required for the production, processing, distribu­
-tion, and storage (including cold storage) of food resources, livestock and  
-poultry feed and seed, and for the domestic distribution of farm equipment  
+tion, and storage (including cold storage) of food resources, livestock and
+poultry feed and seed, and for the domestic distribution of farm equipment
 and fertilizer (excluding transportation thereof).
-(g) “Functions” include powers, duties, authority, responsibilities, and  
+(g) “Functions” include powers, duties, authority, responsibilities, and
 discretion,
-(h) “Head of each Federal department or agency engaged in procurement  
-for the national defense” means the heads of the Departments of Defense,  
-Energy, and Commerce, as well as those departments and agencies listed  
+(h) “Head of each Federal department or agency engaged in procurement
+for the national defense” means the heads of the Departments of Defense,
+Energy, and Commerce, as well as those departments and agencies listed
 in Executive Order No. 10789.
-(i) “Heads of x>ther appropriate Federal departments and agencies” as  
-used in part VIII of this order means the heads of such other* Federal  
-agencies and departments that acquire information or need information with  
-respect to making any determination to exercise any authority under the  
+(i) “Heads of x>ther appropriate Federal departments and agencies” as
+used in part VIII of this order means the heads of such other* Federal
+agencies and departments that acquire information or need information with
+respect to making any determination to exercise any authority under the
 Act.
 
 === PDF page 193 of 204 ===
 Federal Register / Vol. 59, No. 108 / Tuesday, June 7, 1994 / Presidential Documents 2 9 5 3 3
-(j) “Health resources” means materials, facilities, health supplies, and  
+(j) “Health resources” means materials, facilities, health supplies, and
 equipment (including pharmaceutical, blood collecting and dispensing sup­
-plies, biological, surgical textiles, and emergency surgical instruments and  
-supplies) required to prevent the impairment of, improve, or restore the  
+plies, biological, surgical textiles, and emergency surgical instruments and
+supplies) required to prevent the impairment of, improve, or restore the
 physical and mental health conditions of the population.
 (k) “Metals and m inerals” means all raw materials of mineral origin (ex­
 cluding energy) including their refining, smelting, or processing, but exclud­
 ing their fabrication.
-(l) Strategic and Critical Materials” means materials (including energy)  
-that (1) would be needed to supply the military, industrial, and essential  
-civilian needs of the United States during a national security emergency,  
-and (2) are not found or produced in the United States in sufficient quantities  
-to meet such need and are vulnerable to the termination or reduction of  
+(l) Strategic and Critical Materials” means materials (including energy)
+that (1) would be needed to supply the military, industrial, and essential
+civilian needs of the United States during a national security emergency,
+and (2) are not found or produced in the United States in sufficient quantities
+to meet such need and are vulnerable to the termination or reduction of
 the availability of the material.
-(m) ‘‘Water resources” means all usable water, from all sources, w ithin 
-the jurisdiction of the United States, which can be managed, controlled, 
+(m) ‘‘Water resources” means all usable water, from all sources, w ithin
+the jurisdiction of the United States, which can be managed, controlled,
 and allocated to meet emergency requirements.
-S e c . 9 0 2 . G en era l, (a) Except as otherwise provided in subsection 902(c)  
-of this order, the authorities vested in the President by title VII of the  
-Act may be exercised and performed by the head of each department and  
-agency in carrying out the delegated authorities under the Act and this  
+S e c . 9 0 2 . G en era l, (a) Except as otherwise provided in subsection 902(c)
+of this order, the authorities vested in the President by title VII of the
+Act may be exercised and performed by the head of each department and
+agency in carrying out the delegated authorities under the Act and this
 order.
-(b) The authorities which may be exercised and performed pursuant to  
-subsection 902(a) of this order shall include (1) the power to redelegate  
-authorities, and to authorize the successive redelegation of authorities, to  
-departments and agencies, officers, and employees of the government, and  
-(2) the power of subpoena with respect to authorities delegated in parts  
-II, ill, and IV of this order, provided that the subpoena power shall be  
-utilized only after the scope and purpose of the investigation, inspection,  
-or inquiry to which the subpoena relates have been defined either by the  
-appropriate officer identified in subsection 902(a) of this order or by such  
+(b) The authorities which may be exercised and performed pursuant to
+subsection 902(a) of this order shall include (1) the power to redelegate
+authorities, and to authorize the successive redelegation of authorities, to
+departments and agencies, officers, and employees of the government, and
+(2) the power of subpoena with respect to authorities delegated in parts
+II, ill, and IV of this order, provided that the subpoena power shall be
+utilized only after the scope and purpose of the investigation, inspection,
+or inquiry to which the subpoena relates have been defined either by the
+appropriate officer identified in subsection 902(a) of this order or by such
 other person or persons as the officer shall designate.
-(c) Excluded from the authorities delegated by subsection 902(a) of this  
-order are authorities delegated by parts V, VI, and VIII of this order and  
-the authority with respect to fixing compensation under section 703(a) of  
+(c) Excluded from the authorities delegated by subsection 902(a) of this
+order are authorities delegated by parts V, VI, and VIII of this order and
+the authority with respect to fixing compensation under section 703(a) of
 the Act.
 S e c . 9 0 3. A u thority,  All previously issued orders, regulations, rulings, certifi­
-cates, directives, and other actions relating to any function affected by this  
-order shall remain in effect except as they are inconsistent with this order  
-or are subsequently amended or revoked under proper authority. Nothing  
-in this order shall affect the validity or force of anything done under previous  
+cates, directives, and other actions relating to any function affected by this
+order shall remain in effect except as they are inconsistent with this order
+or are subsequently amended or revoked under proper authority. Nothing
+in this order shall affect the validity or force of anything done under previous
 delegations or other assignment of authority under the Act.
 S e c . 9 0 4 . E ffe c t on  o t h e r  O rders, (a) The following are superseded or revoked:
 (1) Section 3, Executive Order No. 8248 of September 8, 1939
@@ -2597,26 +2597,26 @@ FR 43239, 43241).
 
 === PDF page 194 of 204 ===
 2 9 5 34 Federal Register / Vol. 59, No. 108 / Tuesday, June 7, 1994 / Presidential Documents
-(11) Executive Order No. 12773 o f September 26, 1991 (56 FR  
-49387), except that part of the order that amends section 604 of  
+(11) Executive Order No. 12773 o f September 26, 1991 (56 FR
+49387), except that part of the order that amends section 604 of
 Executive Order 10480.
-(b) Executive Order No. 10789 of November 14, 1958, is amended by  
+(b) Executive Order No. 10789 of November 14, 1958, is amended by
 deleting “and in view of the existing national emergency declared by Procla­
 mation No. 2914 of December 16, 1950,” as it appears in the first sentence.
-(c) Executive Order No. 11790, as amended, relating to the Federal Energy  
-Administration Act of 1974, is amended by deleting “Executive Order No.  
+(c) Executive Order No. 11790, as amended, relating to the Federal Energy
+Administration Act of 1974, is amended by deleting “Executive Order No.
 10480” where it appears in section 4 and substituting this order’s number.'
-(d) Subject to subsection 904(c) of this order, to the extent that any  
-provision of any prior Executive order is inconsistent with the provisions  
-of this order, this order shall control and such prior provision is amended  
+(d) Subject to subsection 904(c) of this order, to the extent that any
+provision of any prior Executive order is inconsistent with the provisions
+of this order, this order shall control and such prior provision is amended
 accordingly.
-Sec. 905. Judicial Review. This order is not intended to create any right  
-or benefit, substantive or procedural, enforceable at law by a party against  
+Sec. 905. Judicial Review. This order is not intended to create any right
+or benefit, substantive or procedural, enforceable at law by a party against
 the United States, its agencies, its officers, or any person.
-THE WHITE HOUSE,  
+THE WHITE HOUSE,
 June 3, 1994.
-[FR Doc. 9 4 -1 4 0 2 7  
-F iled  6 - 6 - 9 4 ; 1 0 :45 am i 
+[FR Doc. 9 4 -1 4 0 2 7
+F iled  6 - 6 - 9 4 ; 1 0 :45 am i
 B illin g  code 3 1 9 5 -0 1 -P
 
 ```
@@ -2716,8 +2716,8 @@ Location: 45 FR 26311, PDF pages 9-9 (confidence high)
 Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.
 
 === PDF page 9 of 336 ===
-Federal Register 
-Vol. 45. N o. 77 
+Federal Register
+Vol. 45. N o. 77
 Friday, April 18, 1980
 Presidential Documents
 26311
@@ -2725,32 +2725,32 @@ Title 3—
 The President
 Executive Order 12209 of April 16, 1980
 Base Production Control Level for Marginal Properties
-By the authority vested in me as President by the Constitution and statutes of 
-the United States o f Am erica, including the Em ergency Petroleum A llocation 
-A ct of 1973, as am ended (15 U.S.C. 751 e t  s e q .) , and notw ithstanding the 
-delegations to the Secretary of Energy in Executive O rder No. 11790, as 
-am ended by Executive Order No. 12038, and in order to permit the conversion 
-to new  oil status o f all old oil production from m arginal oil w ells effective 
-April 1,1980, it is hereby ordered that Executive O rder No. 12187 of D ecem ber 
+By the authority vested in me as President by the Constitution and statutes of
+the United States o f Am erica, including the Em ergency Petroleum A llocation
+A ct of 1973, as am ended (15 U.S.C. 751 e t  s e q .) , and notw ithstanding the
+delegations to the Secretary of Energy in Executive O rder No. 11790, as
+am ended by Executive Order No. 12038, and in order to permit the conversion
+to new  oil status o f all old oil production from m arginal oil w ells effective
+April 1,1980, it is hereby ordered that Executive O rder No. 12187 of D ecem ber
 29,1979, is am ended to read as follow s:
-“1-101. For purposes o f the pricing regulations adopted pursuant to the 
-Em ergency Petroleum A llocation A ct of 1973, w ith respect to the m onths of 
-January, February and M arch 1980, the b ase production control level for 
-marginal properties shall equal 20 percent of the total num ber of barrels of old 
-crude oil produced and sold from the property concerned during calendar year 
-1978, divided by 365, multiplied by the num ber of days during the month in 
+“1-101. For purposes o f the pricing regulations adopted pursuant to the
+Em ergency Petroleum A llocation A ct of 1973, w ith respect to the m onths of
+January, February and M arch 1980, the b ase production control level for
+marginal properties shall equal 20 percent of the total num ber of barrels of old
+crude oil produced and sold from the property concerned during calendar year
+1978, divided by 365, multiplied by the num ber of days during the month in
 1978 w hich corresponds to the months concerned.”
-“1-102. For purposes of this Order, the term “m arginal properties” has the 
-sam e meaning as that term under the crude oil pricing regulations adopted 
+“1-102. For purposes of this Order, the term “m arginal properties” has the
+sam e meaning as that term under the crude oil pricing regulations adopted
 pursuant to the Em ergency Petroleum A llocation A ct of 1973, as am ended.”
-“1-103. The Secretary of Energy may, pursuant to Executive Order No. 11790, 
-as am ended by Executive Order No. 12038, adopt such regulations as he 
-deems n ecessary  or appropriate to conform the crude oil pricing regulations to 
+“1-103. The Secretary of Energy may, pursuant to Executive Order No. 11790,
+as am ended by Executive Order No. 12038, adopt such regulations as he
+deems n ecessary  or appropriate to conform the crude oil pricing regulations to
 this Order.”.
-[FR Doc. 80-12197 
-Filed 4-17-80; 10:36 am] 
+[FR Doc. 80-12197
+Filed 4-17-80; 10:36 am]
 Billing code 3195-01-M
-THE WHITE HOUSE,  
+THE WHITE HOUSE,
 A p r il 16, 1980.
 
 ```
@@ -2793,35 +2793,35 @@ Presidential Documents
 Title 3—The President
 EXECUTIVE ORDER 11768
 Placing Certain Positions in Levels IV  and V  of the Executive Schedule
-By virtue of the authority vested in me by section 5317 of title 5 of the  
+By virtue of the authority vested in me by section 5317 of title 5 of the
 United States Code, as amended, it is ordered as follows:
-Section  1. The following offices and positions are placed in level IV  
+Section  1. The following offices and positions are placed in level IV
 of the Executive Schedule:
-(1) Administrator, Social and Rehabilitation Service, Department of  
+(1) Administrator, Social and Rehabilitation Service, Department of
 Health, Education, and Welfare.
-(2) Director, National Institutes of Health, Department of Health,  
+(2) Director, National Institutes of Health, Department of Health,
 Education, and Welfare.
 (3 ) Administrator, Health Services and Mental Health Administra­
 tion, Department of Health, Education, and Welfare.
-(4) Director, United States Secret Service, Department of the  
+(4) Director, United States Secret Service, Department of the
 Treasury.
 (5)  Associate Directors, (4) Office of Management and Budget, Ex­
 ecutive Office of the President.
-(6) Deputy Under Secretary for Legislative Affaire, Department of  
+(6) Deputy Under Secretary for Legislative Affaire, Department of
 Labor.
-(7) Director of Program Analysis and Evaluation, Department of  
+(7) Director of Program Analysis and Evaluation, Department of
 Defense.
-(8) Principal Deputy Director of Defense Research and Engineering,  
+(8) Principal Deputy Director of Defense Research and Engineering,
 Department of Defense.
 (9) Deputy Under Secretary for International Labor Affairs, De­
 partment of Labor.
 (10)  Counselor to the Secretary of Labor, Department of Labor.
 (11)  Deputy Under Secretary, Department of Transportation.
-(12)  Deputy Under Secretary for Legislative Affaire, Department of  
+(12)  Deputy Under Secretary for Legislative Affaire, Department of
 Commerce.
 (13)  Special Prosecutor, Department of Justice.
 (14)  Associate Attomey General, Department of Justice.
-(15)  Commissioner General of the International Exposition on the  
+(15)  Commissioner General of the International Exposition on the
 Environment, Department of Commerce.
 (16)  Assistant Secretary for Oceans and International Environ­
 mental and Scientific Affaire, Department of State.
@@ -2829,32 +2829,32 @@ F E D E R A L  R E G IS T E R , V O L . 39, N O . 37—F R ID A Y , F E B R U A 
 
 === PDF page 8 of 276 ===
 6694 THE PRESIDENT
-Sec . 2. The following offices and positions are placed in level V  of the  
+Sec . 2. The following offices and positions are placed in level V  of the
 Executive Schedule:
-(1) Principal Deputy Assistant Secretary of Defense (Comptroller),  
+(1) Principal Deputy Assistant Secretary of Defense (Comptroller),
 Department of Defense.
 (2) Deputy Assistant Secretary of Defense for Reserve Affair?, De­
 partment of Defense.
 (3) Assistant Secretary-, Comptroller, Department of Health, Educa­
 tion, and Welfare.
-(4) Deputy Commissioner of Social Security, Department of Health,  
+(4) Deputy Commissioner of Social Security, Department of Health,
 Education, and Welfare.
-(5) Commissioner on Aging, Department of Health, Education, and  
+(5) Commissioner on Aging, Department of Health, Education, and
 Welfare.
-(6) Deputy Director, United States Secret Service, Department of  
+(6) Deputy Director, United States Secret Service, Department of
 the Treasury.
 (7) Assistant to the Secretary and Director, Office of Revenue Shar­
 ing, Department of the Treasury.
 (8) Commissioner, Automated Data and Telecommunications Serv­
 ice, General Services Administration.
-(9) Associate Administrator for Federal Management Policy, Gen-  
+(9) Associate Administrator for Federal Management Policy, Gen-
 eral Services Administration.
 Sec. 3. Nothing in this order shall be deemed to terminate or other­
-wise affect the appointment, or to require the reappointment, of any  
-occupant of any position listed in section 1  or section 2 of this order who  
-was the occupant of that position immediately before the issuance of  
+wise affect the appointment, or to require the reappointment, of any
+occupant of any position listed in section 1  or section 2 of this order who
+was the occupant of that position immediately before the issuance of
 this order.
-Sec . 4. Executive Order No. 11708 of March 23, 1973, as amended,  
+Sec . 4. Executive Order No. 11708 of March 23, 1973, as amended,
 is hereby superseded.
 T h e W h ite H ouse :,
 February 20,1974.
@@ -2881,15 +2881,15 @@ presidential docum ents
 Title 3—The President
 E x ecu tiv e O rd e r 12111 J a n u a r y  2,1979
 Levels IV and V of the Executive Schedule
-By the authority vested in me as President of the United States of America  
-by Section 5317 of Title 5 of the United States Code, and in order to place  
-the position of Counselor on Labor Management Relations, Department of  
-Commerce, in level IV of the Executive Schedule, Executive Order No. 12076,  
-as amended, is further amended by deleting “Assistant to the Secretary and  
-Land Utilization Adviser, Department of the Interior.” from Section l-102(g)  
-and inserting “(s) Counselor on Labor Management Relations, Department of  
+By the authority vested in me as President of the United States of America
+by Section 5317 of Title 5 of the United States Code, and in order to place
+the position of Counselor on Labor Management Relations, Department of
+Commerce, in level IV of the Executive Schedule, Executive Order No. 12076,
+as amended, is further amended by deleting “Assistant to the Secretary and
+Land Utilization Adviser, Department of the Interior.” from Section l-102(g)
+and inserting “(s) Counselor on Labor Management Relations, Department of
 Commerce.” in alphabetical order in Section 1-101 thereof.
-T he W hite  H o use, 
+T he W hite  H o use,
 January 2, 1979.
 [FR Doc. 79-445 Filed 1-2-79; 2:01 pm]
 FEDERAL REGISTER, V O L. 44, N O . 3— THURSDAY, JA N U A R Y  4, 1979
@@ -2937,85 +2937,85 @@ Federal Register /  Vol. 50, No. 191 /  W ednesday, O ctober 2 ,1 9 8 5  /  Pres
 Presidential Documents
 Executive Order 12534 of September 30, 1985
 Continuance of Certain Federal Advisory Committees
-By the authority vested in me as President by the Constitution and statutes of  
-the United States of Am erica, and in accordance with the provisions of the"  
-Federal Advisory Committee A ct, as amended (5 U.S.C. App. I), it is hereby  
+By the authority vested in me as President by the Constitution and statutes of
+the United States of Am erica, and in accordance with the provisions of the"
+Federal Advisory Committee A ct, as amended (5 U.S.C. App. I), it is hereby
 ordered as follows:
-Section 1. Each advisory committee listed below is continued until September  
+Section 1. Each advisory committee listed below is continued until September
 30,1987:
 (a) Advisory Committee on Small and Minority Business Ownership; Execu­
 tive Order No. 12190 (Small Business Administration).
-(b) Committee for the Preservation of the W hite House; Executive Order No.  
+(b) Committee for the Preservation of the W hite House; Executive Order No.
 11145, as amended (Department of the Interior).
-(c) Federal Advisory Council on Occupational Safety and Health; Executive  
+(c) Federal Advisory Council on Occupational Safety and Health; Executive
 Order No. 12196 (Department of Labor).
-(d) President’s Commission on W hite House Fellowships; Executive Order No.  
+(d) President’s Commission on W hite House Fellowships; Executive Order No.
 11183, as amended (Office of Personnel Management).
-(e) President’s Committee on the Arts and the" Humanities; Executive Order  
+(e) President’s Committee on the Arts and the" Humanities; Executive Order
 No. 12367 (National Endowment for the Arts).
-(f) President’s Committee on the International Labor Organization; Executive  
+(f) President’s Committee on the International Labor Organization; Executive
 Order No. 12216 (Department of Labor).
-(g) President’s Committee on Mental Retardation; Executive Order No. 11776  
+(g) President’s Committee on Mental Retardation; Executive Order No. 11776
 (Department of Health and Human Services).
-(h) President’s Committee on the National Medal of Science; Executive Order  
+(h) President’s Committee on the National Medal of Science; Executive Order
 No. 11287, as amended (National Science Foundation).
-(i) President’s Council on Physical Fitness and Sports; Executive Order No.  
+(i) President’s Council on Physical Fitness and Sports; Executive Order No.
 12345, as amended (Department of Health and Human Services).
-(j) President’s Econom ic Policy Advisory Board; Executive Order No. 12296  
+(j) President’s Econom ic Policy Advisory Board; Executive Order No. 12296
 (Office of Policy Development).
-(k) President’s National Security Telecommunications Advisory Committee;  
+(k) President’s National Security Telecommunications Advisory Committee;
 Executive Order No. 12382, as amended (Department of Defense).
-(7) President’s Export Council; Executive Order No. 12131 (Department of  
+(7) President’s Export Council; Executive Order No. 12131 (Department of
 Commerce). ,
-Sec. 2. Notwithstanding the provisiops of any other Executive Order, the  
-functions of the President under the Federal Advisory Committee A ct that are  
-applicable to the committees listed in Section 1 of this Order, except that of  
-reporting annually to the Congress, shall be performed by the head of the  
-department or agency designated after each committee, in accordance with  
+Sec. 2. Notwithstanding the provisiops of any other Executive Order, the
+functions of the President under the Federal Advisory Committee A ct that are
+applicable to the committees listed in Section 1 of this Order, except that of
+reporting annually to the Congress, shall be performed by the head of the
+department or agency designated after each committee, in accordance with
 guidelines and procedures established by the Administrator of General Serv­
 ices.
-Sec. 3. The following Executive Orders, which established committees that  
-have terminated or been abolished by statute or whose work is completed, are  
+Sec. 3. The following Executive Orders, which established committees that
+have terminated or been abolished by statute or whose work is completed, are
 revoked:
-(a) Executive Order No. 12502, establishing the Chemical W arfare Review  
+(a) Executive Order No. 12502, establishing the Chemical W arfare Review
 Commission.
 
 === PDF page 146 of 152 ===
 40320 Federal Register /  Vol. 50, No. 191 / W ednesday, O ctober 2, 1985 / Presidential Documents
-(b) Executive Order No. 12369, establishing the President’s Private Sector  
+(b) Executive Order No. 12369, establishing the President’s Private Sector
 Survey on Cost Control in the Federal Government.
 (c) Executive Order No. 12395, establishing the International Private Enter­
 prise Task Force.
 (d) Executive Order No. 12433, establishing the National Bipartisan Commis­
 sion on Central America.
-(e) Executive Order No. 12335, establishing the National Commission on Social  
+(e) Executive Order No. 12335, establishing the National Commission on Social
 Security Reform.
-(f) Executive Order No. 12332, establishing the National Productivity Advisory  
+(f) Executive Order No. 12332, establishing the National Productivity Advisory
 Committee.
 (g) Executive Order No. 12412, establishing the Peace Corps Advisory Council.
-(h) Executive Order No. 12426, establishing the President’s Committee on  
+(h) Executive Order No. 12426, establishing the President’s Committee on
 W om en’s Business Ownership.
-(i) Executive Order No. 12499, establishing the President’s Blue Ribbon Task  
+(i) Executive Order No. 12499, establishing the President’s Blue Ribbon Task
 Group on Nuclear W eapons Program Management.
-(j) Executive Order No. 12428, establishing the President’s Commission on 
+(j) Executive Order No. 12428, establishing the President’s Commission on
 Industrial Competitiveness.
-(k) Executive Order No. 12400, establishing the President’s Commission on  
+(k) Executive Order No. 12400, establishing the President’s Commission on
 Strategic Forces.
-(7) Executive Order No. 12439, establishing the President’s Task Force on Food  
+(7) Executive Order No. 12439, establishing the President’s Task Force on Food
 A ssistance.
-(m) Executive Order No. 12421, establishing the Presidential Commission on 
+(m) Executive Order No. 12421, establishing the Presidential Commission on
 the Conduct of United States-Japan Relations.
-(n) Executive Order No. 12401, establishing the Presidential Commission on  
+(n) Executive Order No. 12401, establishing the Presidential Commission on
 Indian Reservation Econom ies.
-(o) Executive Order No. 12468, establishing the Presidential Advisory Council  
+(o) Executive Order No. 12468, establishing the Presidential Advisory Council
 on the P eace Corps.
 Sec. 4. Executive Order No. 12399 and Executive Order No. 12489 are super­
 seded.
 Sec. 5 This Order shall be effective September 30,1985.
-THE W HITE HOUSE,  
+THE W HITE HOUSE,
 S e p t e m b e r  30, 1985.
-|FR Doc. 85-23754  
-Filed 10-1-85; 11:51 am]  
+|FR Doc. 85-23754
+Filed 10-1-85; 11:51 am]
 Billing code 3195-01-M
 
 ```
@@ -3037,10 +3037,10 @@ Text hash 47f366b414a968c9589cb54a8cc85d1bf022c78911c119bef344eb5680f83616; abso
 THE PRESIDENT 47213
 Executive Order 11943 •  October 25, 1976
 Amendment of Adjustments of Certain Rates of Pay and Allowances
-By virtue of the authority vested in me as President of the United States of 
-America, in order to correct a typographical error, it is hereby ordered that the 
-adjusted maximum scale of pay in the Section 4103 Schedule for Director of Nursing 
-Service, as set forth in Schedule 3 of Executive Order No. 11941 of October 1, 1976, is 
+By virtue of the authority vested in me as President of the United States of
+America, in order to correct a typographical error, it is hereby ordered that the
+adjusted maximum scale of pay in the Section 4103 Schedule for Director of Nursing
+Service, as set forth in Schedule 3 of Executive Order No. 11941 of October 1, 1976, is
 amended by ehanging “ 2,611*” to read “ 52,611*” .
 ```
 
@@ -3094,9 +3094,9 @@ Section 1 of Executive Order No. 11708 of March 23, 1973, as amended, placing ce
 Text hash 907135720d7339b0e1f6f1e9d25fef15f053c089f5cbf56ed60d0b0084c6815d; absolute characters 301–633; files: jobs/clause-drafts/output/texts/cd-job-fr-originals-12447-a0d5fedf37.txt
 
 ```text
-I), and in order to extend the life of the President’s  
-Private Sector Survey on Cost Control in the Federal Government, it is hereby  
-ordered that Section 4(b) of Executive Order No. 12369 of June 30, 1982, as  
+I), and in order to extend the life of the President’s
+Private Sector Survey on Cost Control in the Federal Government, it is hereby
+ordered that Section 4(b) of Executive Order No. 12369 of June 30, 1982, as
 amended, is further amended to read:
 “The Committee shall terminate on December 31, 1983, unless sooner ex­
 tended.”.
@@ -3118,41 +3118,41 @@ presidential docum ents
 Title 3—The President
 Executive Order 11883 October 6, 1975
 Adjustments of Certain Rates of Pay and Allowances
-By virtue of the authority vested in me by the Constitution and the 
-laws of the United States of America, and as President of the United 
+By virtue of the authority vested in me by the Constitution and the
+laws of the United States of America, and as President of the United
 -  States of America, it is hereby ordered as follows:
 Section  1. Statutory Pay Systems. Pursuant to the provisions of sub­
-chapter I of chapter 53 of title 5 of the United States Code, the rates of 
-basic pay and salaries are adjusted, as set forth at the schedules attached 
+chapter I of chapter 53 of title 5 of the United States Code, the rates of
+basic pay and salaries are adjusted, as set forth at the schedules attached
 hereto and made a part hereof, for the following statutory pay systems:
 (a) The General Schedule (5 U.S.C. 5332(a)) at Schedule 1;
-[(b) the schedules for the Foreign Service (22 U.S.C. 867 and 870(a)) 
+[(b) the schedules for the Foreign Service (22 U.S.C. 867 and 870(a))
 at Schedule 2; and
 Xc ) the schedules for the Department of Medicine and Surgery, Vet­
 erans Administration (38 U.S.C. 4107) at Schedule 3.
-Sec. 2. Pay and Allowances For Members of the Uniformed Services. 
-Pursuant to the provisions of section 1009 of title 37 of the United States 
-Code, the rates of monthly basic pay (37 U.S.C. 205(a)), the rates of 
-basic allowances for subsistence (37 U.S.C. 402), and the rates of basic 
-allowances for quarters (37 U.S.C. 403 (a )) are adjusted, as set forth at 
-Schedule 4 attached hereto and made a part hereof, for members of the 
+Sec. 2. Pay and Allowances For Members of the Uniformed Services.
+Pursuant to the provisions of section 1009 of title 37 of the United States
+Code, the rates of monthly basic pay (37 U.S.C. 205(a)), the rates of
+basic allowances for subsistence (37 U.S.C. 402), and the rates of basic
+allowances for quarters (37 U.S.C. 403 (a )) are adjusted, as set forth at
+Schedule 4 attached hereto and made a part hereof, for members of the
 uniformed services.
 Sec. 3. Executive Salaries. The Executive Salary Cost-of-Living Ad­
-justment Act (Pub. L. 94-82, 89 Stat. 419) provides for adjustments in 
-the rates of pay and salaries, as set forth at the schedules attached hereto 
+justment Act (Pub. L. 94-82, 89 Stat. 419) provides for adjustments in
+the rates of pay and salaries, as set forth at the schedules attached hereto
 and made a part hereof, for the following:
 (a) The Vice President (3 U.S.C. 104) and the Executive Schedule
 U.S.C. 5312-5316) at Schedule 5;
 [(b) Congressional Salaries (2 U.S.C. 31) at Schedule 6; and
-(c) Judicial Salaries (28 U.S.C. 5 ,44(d), 135,173, 213, 252, 792(b) 
+(c) Judicial Salaries (28 U.S.C. 5 ,44(d), 135,173, 213, 252, 792(b)
 and 11 U.S.C. 68 (a )), at Schedule 7.
-Sec . 4. Effective Date. The adjustments in rates of monthly basic pay 
-and basic allowances for subsistence and quarters for members of the 
-uniformed services shall be effective on October 1, 1975. All other adjust 
+Sec . 4. Effective Date. The adjustments in rates of monthly basic pay
+and basic allowances for subsistence and quarters for members of the
+uniformed services shall be effective on October 1, 1975. All other adjust
 ments of salary or pay shall be effective on the first day of the first appli­
 cable pay period beginning on or after October 1, 1975.
-Sec. 5. Superseded Orders. Executive Order No. 11811 of October 2* 
-1974, and Executive Order No. 11812 of October 7, 1974, are hereby 
+Sec. 5. Superseded Orders. Executive Order No. 11811 of October 2*
+1974, and Executive Order No. 11812 of October 7, 1974, are hereby
 superseded.
 T he W hite  H ouse ,
 October 6,1975.
@@ -3196,30 +3196,30 @@ $6.299 $6,484 $6,669 $6,854 $7,039
 21,970 22,616 23,262 23,903 24,554
 25,962 26,726 27,490 28 ¿254 29,018
 30,441 31,336 32,231 33,126 34.,021
-35,485 36,529 •37,573 33,617* 39,661* #6:,026*41,132* 
+35,485 36,529 •37,573 33,617* 39,661* #6:,026*41,132*
 47,674*
 42,393* 43,604* 44,815*
 10
-$7,224 
-S , 1 3 5  
-9,233 
-10,370 
-11,607 
-12,934 
-14,358 
-15,385 
-17,523 
-19*. 270 
-21,133 
-23,200 
-29,782 
-34,916 
+$7,224
+S , 1 3 5
+9,233
+10,370
+11,607
+12,934
+14,358
+15,385
+17,523
+19*. 270
+21,133
+23,200
+29,782
+34,916
 40,705*
-* The rate of basic pay for employees at these rates is limited by Section 33*08 of Title 5 
-of the United States Code to the rate for level V of the Executive Schedule (as of the 
+* The rate of basic pay for employees at these rates is limited by Section 33*08 of Title 5
+of the United States Code to the rate for level V of the Executive Schedule (as of the
 effective date of'this schedule^ $37¿800).
 Schedule 2
-F o r e ig n  S e r v ic e  S c h e d u le s 
+F o r e ig n  S e r v ic e  S c h e d u le s
 F a x  t  X
 T h e  F e x  A n n u m  S a l a r i e s  o f  F o r e i g n  S e r v i c e  O f f i c e r *
 S0-1 $’ 46,045*$47,380* $48,65.4*
@@ -3237,7 +3237,7 @@ S0-1 $’ 46,045*$47,380* $48,65.4*
 17,407
 14,619
 12,518
-42,107* 43,310* 
+42,107* 43,310*
 33,347 34,300
 26,726
 21,712
@@ -3272,15 +3272,15 @@ $32,394
 11,247
 10,084
 9,040
-$33,347 
-26,726 
-21,712 
-17,919 
-16,065 
-14,405 
-12,913 
-11,578 
-10,381 
+$33,347
+26,726
+21,712
+17,919
+16,065
+14,405
+12,913
+11,578
+10,381
 9,306
 $34,300
 27,490
@@ -3292,15 +3292,15 @@ $34,300
 11,909
 10,678
 9,572
-$35,253 
-28,254 
-22*952 
-18,943 
-16,983 
-15,229 
-13,651 
-12,240 
-10,975 
+$35,253
+28,254
+22*952
+18,943
+16,983
+15,229
+13,651
+12,240
+10,975
 9 ,838
 $36,206
 29,018
@@ -3316,14 +3316,14 @@ $37,159
 29,782
 24,192
 19,967
-17.901 
-16,053 
+17.901
+16,053
 Ì4..3S9
-12.902 
-11,569 
+12.902
+11,569
 10,370
 ,  « _____« .« .s e a  r a t e a  i a  l i m i t e d  b V  S e c t i o n  o r  i i S A S
-T h e  r a t e  o f  b a s i c  p a y  f o e  * a p ^ ? ^ e ® t  f o r  j e v e x v  o f  t h e  E x e c u t i v e  S c h e d u l e  ( a s  o f  t h e  
+T h e  r a t e  o f  b a s i c  p a y  f o e  * a p ^ ? ^ e ® t  f o r  j e v e x v  o f  t h e  E x e c u t i v e  S c h e d u l e  ( a s  o f  t h e
 o f  t h e  U n i t e d  S t a t e s  C o d e  t o  t h e  r a t e  f o r  l e v e l  *  o r  c n e
 e f f e c t i v e  d a t f c  o f  t h i s  s c h e d u l e ,  $ 3 7 , 8 0 0 ; ,
 FEDERAL REGISTER, VOL. 4 0 , NO. 196— WEDNESDAY, OCTOBER 8, 1975
@@ -3333,30 +3333,30 @@ THE PRESIDENT 47093
 . Schedule 3
 jtepartnent o f M edicine end Surgery, Veterans Admlnisti
 S ection 4103 Schedule
-A ssocia te Deputy C hief M edical D irector 
-A ssistan t C hief M edical D irector 
-Medical D irector 
-D irector o f liursing S erv ice 
-D irector o f Chaplain S ervice 
-D irector o f Pharmacy S ervice 
-D irector o f D ie te tic  S ervice 
+A ssocia te Deputy C hief M edical D irector
+A ssistan t C hief M edical D irector
+Medical D irector
+D irector o f liursing S erv ice
+D irector o f Chaplain S ervice
+D irector o f Pharmacy S ervice
+D irector o f D ie te tic  S ervice
 D irector o f Optometry
 Fhysician and D entist Schedule
-D irector grade 
-Executive grade 
-C hief grade 
-Senior grade 
-Interm ediate grade 
-F u ll grade 
+D irector grade
+Executive grade
+C hief grade
+Senior grade
+Interm ediate grade
+F u ll grade
 A ssocia te grade
 Kurse Schedule
-D irector grade 
-A ssista n t D irector grade 
-C hief grade 
-Senior grade 
-Interm ediate grade 
-F u ll grade 
-A ssocia te grade 
+D irector grade
+A ssista n t D irector grade
+C hief grade
+Senior grade
+Interm ediate grade
+F u ll grade
+A ssocia te grade
 Junior grade
 $ 3 1 ,3 0 9
 2 6 ,8 6 1
@@ -3451,25 +3451,25 @@ T ,543.50 1 ,6 1 0 .7 0
 838.20 838.20
 Over 18
 $ 3 ,5 2 2 .9 0 *
-3 .0 5 3 .7 0  
-2 ,9 4 0 .9 0  
+3 .0 5 3 .7 0
+2 ,9 4 0 .9 0
 2 ,7 6 1 .8 0
 2 .0 6 9 .7 0
-1 .8 5 6 .7 0  
+1 .8 5 6 .7 0
 1 ,6 5 5 .4 0
 1 .4 3 1 .3 0
-1 .0 6 2 .3 0  
+1 .0 6 2 .3 0
 838.20
 Over 20
 $ 3 ,7 5 8 .4 0 *
 3 ,2 8 7 .7 0 *
 3 ,0 5 3 .7 0
 2 ,7 6 1 .8 0
-2 .1 1 4 .4 0  
+2 .1 1 4 .4 0
 1 ,9 1 2 .5 0
 1 .6 5 5 .4 0
 1 .4 3 1 .3 0
-1 .0 6 2 .3 0  
+1 .0 6 2 .3 0
 838.20
 F E D E R A L  R E G IS T E R , VOL. 40, NO. 196— WEDNESDAY, OCTOBER 8, 1975
 
@@ -3484,20 +3484,20 @@ Grade Over 22 Over 26 Over 30
 0-4 1 ,6 5 5 .4 0 1 ,6 5 5 .4 0 1 ,6 5 5 .4 0
 0 -3 2 1 ,4 3 1 .3 0 1 ,4 3 1 .3 0 1 ,4 3 1 .3 00-2 2 1 ,0 6 2 .3 0 1 ,0 6 2 .3 0 1 ,0 6 2 .3 0
 0 - l z 838.20 838.20 838.20
--W h ile s e rv in g  as Chairman o f  the J o in t C h iefs o f  S t a f f , C h ie f 
-o f  S t a f f o f  the Army, C h ief o f  Naval O p era tion s, C h ief o f  
-S t a f f  o f  th e A ir  F o rce , or Commandant o f  the Marine C orps, 
+-W h ile s e rv in g  as Chairman o f  the J o in t C h iefs o f  S t a f f , C h ie f
+o f  S t a f f o f  the Army, C h ief o f  Naval O p era tion s, C h ief o f
+S t a f f  o f  th e A ir  F o rce , or Commandant o f  the Marine C orps,
 b a s ic  pay f o r  t h is  gra^e i s  $ 4 ,4 0 5 .5 0 * re g a r d le s s  o f  cumu­
-l a t i v e  yea rs o f  s e r v ic e  computed under s e c t io n  205 o f  t i t l e  
+l a t i v e  yea rs o f  s e r v ic e  computed under s e c t io n  205 o f  t i t l e
 37 o f  the U nited S ta tes Code.
-*Does n ot apply to  com m issioned o f f i c e r s  who have been credited 
+*Does n ot apply to  com m issioned o f f i c e r s  who have been credited
 w ith  ov er 4 y e a r s ’ a c t iv e  s e r v ic e  as e n lis t e d  members.
-*The r a te  o f  b a s ic  pay f o r  m ilit a r y  p erson n el a t th ese r a te s  
-i s  lim ite d  by s e c t io n  5308 o f  t i t l e  5 o f  th e U n ite d  S ta te s 
-Code, as added by the F ederal Pay C om parability A ct o f  1970, 
-t o  the r a te  f o r  le v e l V o f  the E xecu tive Schedule 'or $ 3 ,1 5 0 .0 0  
+*The r a te  o f  b a s ic  pay f o r  m ilit a r y  p erson n el a t th ese r a te s
+i s  lim ite d  by s e c t io n  5308 o f  t i t l e  5 o f  th e U n ite d  S ta te s
+Code, as added by the F ederal Pay C om parability A ct o f  1970,
+t o  the r a te  f o r  le v e l V o f  the E xecu tive Schedule 'or $ 3 ,1 5 0 .0 0
 p e r month.
-Commissioned o f f i c e r s  \ v T ho have been c r e d ite d  w ith  
+Commissioned o f f i c e r s  \ v T ho have been c r e d ite d  w ith
 over- 4 years* a c t iv e  s e r v ic e  as e n lis t e d  members
 ra y Years o± s e r v ic e  computed under s e c t io n  205
 Grade uver 4 Over 6 Over 8 Over 10 Òver 12
@@ -3513,16 +3513,16 @@ F E D E R A L  R E G IS T E R , VOL. 40, NO. 196— W ED N ESD AY, O C TO B E R 
 
 === PDF page 20 of 364 ===
 47096 THE PRESIDENT
-Commissioned o  
-over 4 years * 
+Commissioned o
+over 4 years *
 Pay Years or s
 Grade Over 26~~
-ftleers who have bee  
-active service as e  
-errice computed, unce  
+ftleers who have bee
+active service as e
+errice computed, unce
 Over 30
-ïi credited with  
-nlisted members  
+ïi credited with
+nlisted members
 r section zo'S
 0-3
 0-2
@@ -3584,9 +3584,9 @@ $1,252.50
 1,095.90
 983.70
 905.70
-$1,'296.90 
-1,128.60  
-1,018.20  
+$1,'296.90
+1,128.60
+1,018.20
 939.30
 Warrant Officers
 Pay
@@ -3624,15 +3624,15 @@ THE PRESIDENT
 E n lis t e dMembersPay Y ears o r s e r v i c e  compuited  u n der s e c t i o n ' 20 5G rade 2 o r  l e ss O ver 2 O ver 5 Ó ver 4 O ver 6
 H -91
 E -8
-$ 0 . 
+$ 0 .
 0 .
-$ 0 . 
+$ 0 .
 0 .
-$ 0 . 
+$ 0 .
 0 .
-$ 0 . 
+$ 0 .
 0 . '
-$ o . 
+$ o .
 0 .E -7 5 9 6 .7 0 6 4 3 .SO 6 6 7 .8 0 6 9 1 .2 0 71 5 r2 0E - 6 5 1 5 .4 0 5 6 1 .9 0 5 8 5 .3 0 6 0 9 .6 0 6 3 ? . 7 0E -5 4 5 2 .4 0 4 9 2 .6 0 5 1 6 .3 0 5 3 8 .8 0 5 7 3 .9 0E -4 4 3 5 .0 0 4 5 9 .3 0 4 8 6 .0 0 5 2 4 .1 0 5 4 4 .5 0E -3 4 1 8 .2 0 ~  4 4 1 .3 0 4 5 9 .0 0 4 7 7 .0 0 4 7 7 .0 0E-2. 4 0 2 .6 0 4 0 2 .6 0 4 0 2 .6 0 4 0 2 .6 0 4 0 2 .6 0E - l 3 6 1 .2 0 3 6 1 .2 0 3 6 1 .2 0 3 6 1 ,2 0 3 6 1 .2 0
 * r > —Z T m... E n lis t e dMembersPay jf Ä Y e a rs o r s e r v i c e  com pu ted u n d ers e c t i o n  205G rade Over  8 o v e r  10 O ver 12 O ver 14 O ver 16
 E -9 * $ 0 . $ 1 ,0 1 8 .5 0 $ 1 ,0 4 1 .6 0 $ 1 r0 6 5 .3  0 $ 1 ,0 8 9 .9 0E -8 8 5 4 .7 0 8 7 8 .4 0 9 0 1 .8 0 .'9 2 5 .5 0 9 4 9 .5 0E -7 7 3 7 .4 0 7 6 0 .8 0 7 8 4 .8 0 8 2 0 .2 0 8 4 3 .3 0E -6 6 5 6 .1 0 6 7 9 .8 0 7 1 5 .2 0 7 3 7 .4 0 7 6 0 .8 0E -5 5 9 7 .3 0 6 2 1 .3 0 6 4 3 .8 0 6 5 6 .1 0 6 5 6 .1 0E -4 5 4 4 .5 0 544.. 50 5 4 4 .5 0 5 4 4 .5 0 5 4 4 .5 0E -3  . 4 7 7 .0 0 4 7 7 .0 0 4 7 7 .0 0 4 7 7 .0 0 4 7 7 .0 0E -2 4 0 2 .6 0 4 0 2 .6 0 4 0 2 .6 0 4 0 2 .6 0 4 0 2 .6 0E - l 3 6 1 .2 0 3 6 1 .2 0 3 6 1 .2 0 3 6 1 .2 0 3 6 1 .2 0
@@ -3640,11 +3640,11 @@ E n lis t e d  Members
 ra y r e a r s  o rs e r v i c e  com put:ed u n d er s e c t i o n  205
 G rade O ver 18 O ver 20 . O ver 22 O ver 26 O v er 30
 E -9 1 $ 1 ,1 1 3 .9 0 $ 1 ,1 3 5 .8 0 $ 1 ,1 9 5 .8 0 $ 1 ,3 1 1 .6 0 $ 1 ,3 1 1 .6 0E -8 9 7 1 .7 0 9 9 5 .7 0 1 ,0 5 3 .9 0 1 ,1 7 1 .8 0 1 ^ 1 7 1 .8 0E -7 8 6 7 .0 0 8 7 8 .4 0 9 3 7 .5 0 1 ,0 5 3 .9 0 1 .0 5 3 .9 0E -6 7 7 2 .8 0 7 7 2 .8 0 7 7 2 .8 0 7 7 2 .8 0 772 80E -5 6 5 6 .1 0 6 5 6 .1 0 6 5 6 ,1 0 6 5 6 .1 0 6 5 6 .1 0E -4 5 4 4 .5 0 5 4 4 .5 0 5 4 4 .5 0 5 4 4 .5 0 5 4 4 .5 0E -3 4 7 7 .0 0 4 7 7 .0 0 4 7 7 .0 0 4 7 7 .0 0 477 00E -2 4 0 2 .6 0 4 0 2 .6 0 4 0 2 .6 0 4 0 2 .6 0 402 60E - l 3 6 1 .2 0 3 6 1 .2 0 3 6 1 ,2 0 3 6 1 .2 0 3 6 1 .2 0
-Jlvhile serving as Sergeant Major of the Army, Master Chief Pet tv  
-Officer of the Navy or Coast Guard, Chief Master Sergeant of 7 
-the Air Force, or Sergeant Major of the Marine Corps basic  
-pay for this grade is $1,594.50 regardless of cumulative years  
-of service computed under section 205 of title 37 of the United  
+Jlvhile serving as Sergeant Major of the Army, Master Chief Pet tv
+Officer of the Navy or Coast Guard, Chief Master Sergeant of 7
+the Air Force, or Sergeant Major of the Marine Corps basic
+pay for this grade is $1,594.50 regardless of cumulative years
+of service computed under section 205 of title 37 of the United
 States Code» ■
 47097
 F E D E R A L  R E G IS T E R , VOL. 40, NO. 196— W ED N ESD AY, O C T O B E R  8, 1975
@@ -3652,7 +3652,7 @@ F E D E R A L  R E G IS T E R , VOL. 40, NO. 196— W ED N ESD AY, O C T O B E R
 === PDF page 22 of 364 ===
 47098 THE PRESIDENT
 Part II
-B a sic A llow ance f o r  S u b sisten ce Rates 
+B a sic A llow ance f o r  S u b sisten ce Rates
 O f f i c e r s ; S53.-05 p er month
 E n lis te d  M enbers:
 When on le a v e  o r  a u th orized
@@ -3697,7 +3697,7 @@ E -l 66.60 116.10
 F E D E R A L  R E G IS T E R , VOL. 40, NO. 196— W EDN ESDAY, O C TO B E R  8, 1975
 
 === PDF page 23 of 364 ===
-THE PRESIDENT 
+THE PRESIDENT
 Schedule 5
 V ice P re sid e n t and the E x ecu tiv e S ch edu le
 V ice  P re s id e n t $65 ,60 0
@@ -3713,10 +3713,10 @@ Member o f  th e House o f  R e p r e s e n ta tiv e s $ 44 ,60 0
 D e le g a te  to  th e Ho'usre o f R e p r e s e n ta tiv e s$ 4 4 ,6 0 0
 R e sid e n t Com m issioner from  P u erto R ico $ 4 4 ,6 0 0
 P re s id e n t pro tem pore o f  th e Senate $ 5 2 ,0 0 0
-M a jo r ity  le a d e r  and m in o rity  le a d e r  o f  
+M a jo r ity  le a d e r  and m in o rity  le a d e r  o f
 S enate
 $ 5 2 ,0 0 0
-M a jo r ity  le a d e r  and m in o rity  le a d e r  o f  
+M a jo r ity  le a d e r  and m in o rity  le a d e r  o f
 House o f  R e p re se n ta tiv e s
 $ 5 2 ,0 0 0
 S p ea k er*of th e House o f R e p r e s e n ta tiv e s $ 6 5 ,6 0 0
@@ -3727,7 +3727,7 @@ A s s o c ia t e  J u s t ic e s  o f the Supreme Court: Jpÿ $ 6 3 ,0 0 0
 C ir c u it  Judges $ 4 4 ,6 0 0
 D i s t r i c t  Judges $ 4 2 ,0 0 0
 Judges o f  th e Court o f  Clhims $ 4 4 ,6 0 0
-Judges o f  th e Court o f  Customs and 
+Judges o f  th e Court o f  Customs and
 P aten t A ppeals
 $ 4 4 ,6 0 0
 Judges o f  the Customs Court v  $ 4 2 ,0 0 0
@@ -3803,36 +3803,36 @@ p resid ential docum ents
 Title 3—The President
 Executive Order 11941 • October 1, 1976
 Adjustments of Certain Rates of Pay and Allowances
-By virtue of the authority vested in me by the Constitution and the laws of die  
-United States of America, and as President of the United States of America, it is  
+By virtue of the authority vested in me by the Constitution and the laws of die
+United States of America, and as President of the United States of America, it is
 hereby ordered as follows:
-Section 1. Statutory Pay Systems.  Pursuant to the provisions of subchapter I of  
-Chapter 53 of Title 5 of the United States Code, the rates of basic pay and salaries are  
-adjusted, as set forth at the schedules attached hereto and made a part hereof, for the  
+Section 1. Statutory Pay Systems.  Pursuant to the provisions of subchapter I of
+Chapter 53 of Title 5 of the United States Code, the rates of basic pay and salaries are
+adjusted, as set forth at the schedules attached hereto and made a part hereof, for the
 following statutory pay systems:
 (a) The General Schedule (5 U.S.C. 5 3 32(a)) at Schedule 1;
-(b) the schedules for the Foreign Service (22 U.S.C. 867 and 870(a)) at  
+(b) the schedules for the Foreign Service (22 U.S.C. 867 and 870(a)) at
 Schedule 2; and .
 (c) the schedules for the Department of Medicine and Surgery, Veterans Admin­
 istration (38 U.S.C. 4107) at Schedule 3.
-Sec. 2. Pay and Allowances for Members of the Uniformed Services.  Pursuant to  
-the provisions of Section 1009 of Title 37 of the United States Code, the rates of  
-monthly basic pay (37 U.S.C. 2 0 3 (a )), the rates of basic allowances for subsistence  
-(37 U.S.C. 402), and the rates of basic allowances for quarters (37 U.S.C. 4 0 3 (a ))  
-are adjusted,, as set forth at Schedule 4 attached hereto and made a. part hereof, for  
+Sec. 2. Pay and Allowances for Members of the Uniformed Services.  Pursuant to
+the provisions of Section 1009 of Title 37 of the United States Code, the rates of
+monthly basic pay (37 U.S.C. 2 0 3 (a )), the rates of basic allowances for subsistence
+(37 U.S.C. 402), and the rates of basic allowances for quarters (37 U.S.C. 4 0 3 (a ))
+are adjusted,, as set forth at Schedule 4 attached hereto and made a. part hereof, for
 members of the uniformed services.
-Sec. 3. Executive Salaries.  The Executive Salary Cost of Living Adjustment Act  
-(Public Law 94— 82, 89 Stat. 419) provides for adjustments in the rates of pay and  
-salaries, as set forth at the schedules attached hereto and made a part hereof, for the  
+Sec. 3. Executive Salaries.  The Executive Salary Cost of Living Adjustment Act
+(Public Law 94— 82, 89 Stat. 419) provides for adjustments in the rates of pay and
+salaries, as set forth at the schedules attached hereto and made a part hereof, for the
 following:
-(a) The Vice President (3 U.S.C. 104) and the Executive Schedule (5 U.S.C.  
+(a) The Vice President (3 U.S.C. 104) and the Executive Schedule (5 U.S.C.
 5312— 5316) at Schedule 5;
 (b) Congressional Salaries (2 U.S.C. 31) at Schedule 6; and
-(c) Judicial Salaries (28 U.S.C. 5, 4 4 (d ), 135, 173, 213, 252, 792(b) and 11  
+(c) Judicial Salaries (28 U.S.C. 5, 4 4 (d ), 135, 173, 213, 252, 792(b) and 11
 U.S.G. 6 8 (a )), at Schedule 7.
-Sec. 4. Effective Date.  The adjustments in rates of monthly basic pay and basic  
-allowances for subsistence and quarters for members of the uniformed services shall  
-be effective on October 1,1976. AH other adjustments of salary or pay shall be effective  
+Sec. 4. Effective Date.  The adjustments in rates of monthly basic pay and basic
+allowances for subsistence and quarters for members of the uniformed services shall
+be effective on October 1,1976. AH other adjustments of salary or pay shall be effective
 on the first day of the first applicable pay period beginning on or after October 1, 1976.
 Sec. 5. Superseded Orders.  Executive Order No. 11883 of October 6, 1975.
 T he  W hite  H ouse ,
@@ -3874,9 +3874,9 @@ GS-1 $5,810 $6,004 $6,198 $6,392 $6,586 $6,780 .$6,974 $7,168 $7,362 $7,556
 52,611*
 46,234* 47,555* 48,876* 50,197*
 §§i 'S.'.
-•Basic pay is limited by Section 5308 of Title 5 of the United States Code to the rate for level V of the Executive  
+•Basic pay is limited by Section 5308 of Title 5 of the United States Code to the rate for level V of the Executive
 Schedule which is, as of the effective date of this schedule, $39,600.
-Schedule 2 - FOREIGN SERVICE SCHEDULES  
+Schedule 2 - FOREIGN SERVICE SCHEDULES
 Fart 1 - The Per Annum Salaries of Foreign Service Officers
 1 2 3 4 5 . 6 7- f
 SO-1
@@ -3905,7 +3905,7 @@ SS-1 $30,674 $31,696 $32,728 $33,740 $34,762 $35,784 $36,806 $37,828 $38,850 $39
 8 10,346 10,691 11,036 11,381 11,726 12,071 12,416 12,761 13,106 13,451
 9 9,273 9,582 9,891 10,200 10,509 10,818 11,127 11,436 11,745 12,054
 10 8,316 8,593 8,870 9,147 9,424 9,701 9,976 10,255 10,532 10,809
-•Basic pay is limited by Section 5308 of Title 5 of the United States Code to the rate for level V of the  
+•Basic pay is limited by Section 5308 of Title 5 of the United States Code to the rate for level V of the
 Executive Schedule which is, as of the effective date of this schedule, $39,600.
 FEDERAL REGISTER, V O L  4 1 , N O . 194— TU ESD AY, OCTOBER 5 , 1 9 76
 
@@ -3914,31 +3914,31 @@ THE PRESIDENT 43891
 Schedule 3 - DEPARTMENT OF MEDICINE AND SORCERY SCHEDULES, VETERANS ADMINISTRATION
 Section 4103 Schedule
 Chief Medical Director •
-Deputy Chief Medical Director  
-Associate Deputy Chief Medical Director  
-Assistant Chief Medical Director  
-Medical Director  
-Director of Nursing Service  
-Director of Chaplain Service  
-Director of Pharmacy Service  
-Director of Dietetic Service  
+Deputy Chief Medical Director
+Associate Deputy Chief Medical Director
+Assistant Chief Medical Director
+Medical Director
+Director of Nursing Service
+Director of Chaplain Service
+Director of Pharmacy Service
+Director of Dietetic Service
 Director of Optometry
-Physician and Dentist Schedule  
-Director grade  
-Executive grade  
-Chief grade  
-Senior grade  
-Intermediate grade  
-Full grade  
+Physician and Dentist Schedule
+Director grade
+Executive grade
+Chief grade
+Senior grade
+Intermediate grade
+Full grade
 Associate grade
 Surse Schedule
-Director grade  
-Assistant Director grade  
-Chief grade  
-- Senior grade  
-Intermediate grade  
-Full grade  
-Associate grade  
+Director grade
+Assistant Director grade
+Chief grade
+- Senior grade
+Intermediate grade
+Full grade
+Associate grade
 Junior grade
 Minimuf t Maximum
 (single rate) $61.015***
@@ -3966,14 +3966,14 @@ $46,423* 52,611*
 14,097 18,327
 12,131 15,767
 10,370 13,484
-*Basic pay is limited by Section 4107(d) of Title 38"of the United States Code to the -rate for level V  
+*Basic pay is limited by Section 4107(d) of Title 38"of the United States Code to the -rate for level V
 Of the Exeputive Schedule which is, as of the effective date of this- schedule, $39,600.
-**Basic pay is limited by Section 4107(d) of Title 38 of the United States Code to the rate for .level IV  
+**Basic pay is limited by Section 4107(d) of Title 38 of the United States Code to the rate for .level IV
 Of'the Executive Schedule which is, as of the effective date of this schedule, $41,800.
-***Basic pay is limited by Section 4107(d) of Title 38 of the United States Code to the rate for level XXX  
+***Basic pay is limited by Section 4107(d) of Title 38 of the United States Code to the rate for level XXX
 of the Executive Schedule which is, as of the-effective date of this.schedule, $44,000.
-Schedule 4 - PAY AND allowances .  Of THE UNIFORMED SERVCES  
-Part X-Monthly Basic Pay  
+Schedule 4 - PAY AND allowances .  Of THE UNIFORMED SERVCES
+Part X-Monthly Basic Pay
 (Years of service computed under 37 U.S.C. 205)
 Commissioned Officers
 Pay Grade 2 or less Over 2 Over 3. Over 4 Over 6 Over 8 Over 10 Over 12
@@ -3995,12 +3995,12 @@ Pav Grade Over 14 Over 16 Over 18 Over 20 Over 22 Over 26 Over 30 '
 -  ^  -  -0-5 1692.30 1819.50 1923.90 1981.80 2051.40 2051.40 2051.40
 0-4 2 1599.30 1668,90 1715.40 1715.40 1715.40 1715.40 1715.400-3, 1483.20 1483.20 1483.20 1483.20 1483.20 1483.20 * 1483.20
 0-2* 1100.70 1100.70 1100.70 1100.70 1100.70 1100.70 1100.700-1* 868.50 868.50 868.50 868.50 868.50 868.50 868.50
-1. While serving as Chairman of the Joint Chiefs of Staff, Chief of Staff of the Army, Chief of Naval Operations,  
-Chief of Staff of the Air Force, or Commandant of the Marine Corps,' basic pay for this grade is- $4565.10* regardless  
+1. While serving as Chairman of the Joint Chiefs of Staff, Chief of Staff of the Army, Chief of Naval Operations,
+Chief of Staff of the Air Force, or Commandant of the Marine Corps,' basic pay for this grade is- $4565.10* regardless
 of cumulative years of service computed under Section 205 of Title 37 of the United States Code.
 2. Does not apply to commissioned officers who have been credited with over 4 years* active service as enlisted  members.
 * P*y- is limited by Section 5308 of Title 5 of the United States Code, as added by the Federal Pay Com»
-payability Act of 1970, to the rate for level V of the Executive Schedule which is. as of the effective daté of  
+payability Act of 1970, to the rate for level V of the Executive Schedule which is. as of the effective daté of
 this schedule, $3300.00 per month.
 FEDERAL REG ISTER, V O L  4 1 , N O . 194— TU ESD AY, OCTOBER 5 , 1 9 76
 
@@ -4061,23 +4061,23 @@ W-2
 W-l
 $ 928.80
 844.50
-739.50 
+739.50
 616.20
-$ 996.60 
-916.70 '  
-799.80 
+$ 996.60
+916.70 '
+799.80
 706.50
-$ 996.60 
-916.20 
-799.80 
+$ 996.60
+916.20
+799.80
 706.50
 $1019.40
-927.30 
+927.30
 823.20
 765.30
-$1065.90 
-938.40 
-868.50 
+$1065.90
+938.40
+868.50
 799.80
 $1112.70
 1007.10
@@ -4096,9 +4096,9 @@ W-4
 W-3
 W-2
 W-l
-*$1297.80 
-1135.50 
-1019.40 
+*$1297.80
+1135.50
+1019.40
 - 938.40
 $13*43.70
 1169.40
@@ -4126,7 +4126,7 @@ $1586.40
 1043.10
 !
 Enlisted Members
-far Crade 
+far Crade
 B-91
 E-8
 E-7
@@ -4144,18 +4144,18 @@ E-8
 8 -1
 2 er less
 $ 00
-$ 618.30 
-534.00 
-468.90 . 
-450.60 
-433.20 
-417.30 
+$ 618.30
+534.00
+468.90 .
+450.60
+433.20
+417.30
 374.40
 Over 14
 $1104.00
-959.10 
+959.10
 849.90
-764.10 
+764.10
 679.80
 564.30
 494.40
@@ -4165,8 +4165,8 @@ Over 2
 $ 00
 $ 667.20
 582.30
-510.30 
-475.80 
+510.30
+475.80
 457.20
 '* 417.30
 374.40
@@ -4174,7 +4174,7 @@ Over 16
 $1129.50
 984.00
 873.90
-788.40 
+788.40
 679.80
 564.30
 494.40
@@ -4204,15 +4204,15 @@ $1154.10 $1176.90 $1239.00 $1359.00 $1359.00
 Over 12
 $1079.40
 934.50
-813.30 
-741.00 
-667.20 
+813.30
+741.00
+667.20
 564f30
 494.40
 417.30
 374.40
-1. while serving as Sergeant Major of the Army, Master Chief Petty Officer of the Wavy or «o*st Guaff’JChief Master  
-Sergeant of the Air Force, or. Sergeant Major of the Marine Corps, basic pay for this grade is $1652.10 regardless  
+1. while serving as Sergeant Major of the Army, Master Chief Petty Officer of the Wavy or «o*st Guaff’JChief Master
+Sergeant of the Air Force, or. Sergeant Major of the Marine Corps, basic pay for this grade is $1652.10 regardless
 of cumulative years of service computed under Section 205 of Title.37 of the United States Code.
 FEDERAL REGISTER, V O L, 4 1 , N O . 194— TU ESD A Y, OCTOBER 5 , 1976
 
@@ -4225,10 +4225,10 @@ When on leave or authorized to mess separately*
 When rations in-kind are not available:
 When assigned to duty under emergency conditions where no
 messing facilities of the United States are available: $ 3.97 pet day
-Part XIX - Monthly Basic Allowance for Quarters Rates  
+Part XIX - Monthly Basic Allowance for Quarters Rates
 Pay Grade Without Dependents With Dependents
 Pull Rate*" '  Partial Rate2
-$ 2.65 per day  
+$ 2.65 per day
 $ 2*99 per day
 Commissioned Officers
 0-10
@@ -4281,39 +4281,39 @@ E-l
 73. p0 3.90
 228.60
 212.40
-198.30 
+198.30
 183.00
-168.30 
+168.30
 147.90
 128.40
 128.40
 128.40
-!• Payment of the full* rate of basic allowance for quarters at these* rates for members of the  
-uniformed services to personnel without dependents is authorized by 37 U.S.C. 403 and Part XV  
+!• Payment of the full* rate of basic allowance for quarters at these* rates for members of the
+uniformed services to personnel without dependents is authorized by 37 U.S.C. 403 and Part XV
 of Executive Order Mo. 11157# as amended.
-2 Payment of the partial rate of basic allowance for quarters at these rates to members of the  
-uniformed services without dependents who# under 37 U.S.C. 403(b) or 403(c)# are not entitled  
-to the full rate of basic allowance for quarters# As authorized by 37 U.S.C. 1009(d) and Part XV  
+2 Payment of the partial rate of basic allowance for quarters at these rates to members of the
+uniformed services without dependents who# under 37 U.S.C. 403(b) or 403(c)# are not entitled
+to the full rate of basic allowance for quarters# As authorized by 37 U.S.C. 1009(d) and Part XV
 of Executive Order No. 11157# as amended.
 FEDERAL REGISTER, V O L  4 1 , N O . 194— TU ESDAY, OCTOBER 5 , 19 76
 
 === PDF page 16 of 132 ===
 43894 THE PRESIDENT
 Schedule 5 - VICE PRESIDENT AND THE EXECUTIVE SCHEDULE
-Vice President  
-Level I 
+Vice President
+Level I
 Level II
 $68,800*
 $66, 000**
 $46,800***
-Level III 
-Level IV 
+Level III
+Level IV
 Level V
 $44,000****
 $41,800*****
 $39,600******
-Pursuant to the Legislative Branch Appropriation Act, 1977, funds are not availabi«  
-to pay a salary at a rate which exceeds the rate in effect on September 30, 1976#  
+Pursuant to the Legislative Branch Appropriation Act, 1977, funds are not availabi«
+to pay a salary at a rate which exceeds the rate in effect on September 30, 1976#
 as follows:
 *$65,600.
 **$63,000.***$44,600.
@@ -4322,15 +4322,15 @@ as follows:
 ******$37,800.
 Schedule 6 - CONGRESSIONAL SALARIES
 Senator
-Member of the House of Representatives  
-Delegate to the House of Représentatives  
+Member of the House of Representatives
+Delegate to the House of Représentatives
 Resident Commissioner from Puerto Rico~
-President pro tempore.of the Senate  
+President pro tempore.of the Senate
 Majority leader and minority leader of Senate
-Majority leader and minority leader of House of Representatives  
+Majority leader and minority leader of House of Representatives
 Speaker of the House of Representatives
-Pursuant to the Legislative Branch Appropriation Act, 1977, funds are not'available  
-to pay a salary at a rate which exceeds the rate in effect on September 30, 1976,  
+Pursuant to the Legislative Branch Appropriation Act, 1977, funds are not'available
+to pay a salary at a rate which exceeds the rate in effect on September 30, 1976,
 as follows:
 *$44,600.
 •*$52,000.
@@ -4349,9 +4349,9 @@ Associate Justices of the Supreme Court
 Circuit Judges
 District Judges
 Judges of the Court of Claims
-Judges of the Court of Customs and Patent Appeals  
+Judges of the Court of Customs and Patent Appeals
 Judges of the Customs Court ( >
-Commissioners of the Court of Claims  
+Commissioners of the Court of Claims
 Referees in Bankruptcy (full-time)
 $68,800*
 $66, 000**
@@ -4362,8 +4362,8 @@ $46,800***
 $44,000****
 $39,600*****
 $39,600*****
-Pursuant to the Legislative Branch Appropriation Act, 1977, funds are not availabi«  
-to pay a salary at a rate which exceeds the rate in effect on September 30, 1976,  
+Pursuant to the Legislative Branch Appropriation Act, 1977, funds are not availabi«
+to pay a salary at a rate which exceeds the rate in effect on September 30, 1976,
 as follows:
 *$65,600.
 **$63,000.
@@ -4371,9 +4371,9 @@ as follows:
 ****$42,000.
 *****$37,800.
 [FR Doc.76-29433 Filed 10-4-76 ;11  ;  01 am]
-E ditorial  N o t e: For the White House announcement e r f Sept. 29, 1976, and die text of  
-the President’s message to Congress, dated Oct. 1, 1976, on the adjustments of certain rates of  
-pay and allowances, see the Weekly Compilation of Presidential Documents (voL 12, nos. 40  
+E ditorial  N o t e: For the White House announcement e r f Sept. 29, 1976, and die text of
+the President’s message to Congress, dated Oct. 1, 1976, on the adjustments of certain rates of
+pay and allowances, see the Weekly Compilation of Presidential Documents (voL 12, nos. 40
 and 41).
 FEDERAL REGISTER, V O L. 4 1 , N O . 194— TU ESD AY, OCTOBER 5 , 1 9 76
 
@@ -4416,21 +4416,21 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 
 === PDF page 11 of 226 ===
 Federal R egister /  Vol. 49, No. 2 /  W ednesday, January 4 ,1 9 8 4  /  Presidential Docum ents 345
-[FR Doc. 84-302 
-Filed 1-3-84; 11:25 am] 
+[FR Doc. 84-302
+Filed 1-3-84; 11:25 am]
 Billing code 3195-01-M
 Presidential Documents
 Executive O rder 12455 o f D ecem ber 29, 1983
-President’s Private Sector Survey on Cost Control in the  
+President’s Private Sector Survey on Cost Control in the
 Federal Government
-By the authority vested in me as President by the Constitution and law s o f the 
-United States o f A m erica, including the Federal Advisory Com m ittee A ct, as 
-am ended (5 U .S.C. App. I), and in order to extend the life of the President’s 
-Private Sector Survey on C ost Control in the Federal Governm ent, it is hereby 
-ordered that Section 4(b) of Executive O rder No. 12369 o f June 30, 1982, as 
-amended, is further am ended to read: “The Com m ittee shall term inate on 
+By the authority vested in me as President by the Constitution and law s o f the
+United States o f A m erica, including the Federal Advisory Com m ittee A ct, as
+am ended (5 U .S.C. App. I), and in order to extend the life of the President’s
+Private Sector Survey on C ost Control in the Federal Governm ent, it is hereby
+ordered that Section 4(b) of Executive O rder No. 12369 o f June 30, 1982, as
+amended, is further am ended to read: “The Com m ittee shall term inate on
 January 31,1984, unless sooner extended.”.
-THE WHITE HOUSE,  
+THE WHITE HOUSE,
 D ecem ber 29, 1983.
 
 === PDF page 12 of 226 ===
@@ -4440,44 +4440,44 @@ Federal Register / Vol. 49, No. 2 /  Wednesday, January 4, 1984 / Presidential D
 Presidential Documents
 Executive Order 12456 of December 30, 1983
 Adjustments of Certain Rates of Pay and Allowances
-By the authority vested in me as President by the Constitution and laws of the  
+By the authority vested in me as President by the Constitution and laws of the
 United States of America, it is hereby ordered as follows:
-Section 1. Statutory Pay System s. Pursuant to the provisions of subchapter I of  
-chapter 53 of title 5 of the United States Code, the rates of basic pay and  
-salaries are adjusted, as set forth at the schedules attached hereto and made a  
+Section 1. Statutory Pay System s. Pursuant to the provisions of subchapter I of
+chapter 53 of title 5 of the United States Code, the rates of basic pay and
+salaries are adjusted, as set forth at the schedules attached hereto and made a
 part hereof, for the following statutory pay systems:
 (a) The General Schedule (5 U.S.C. 5332(a)) at Schedule 1;
 (b) The Foreign Service Schedule (22 U.S.C. 3963) at Schedule 2; and
-(c) The schedules for the Department of Medicine and Surgery, Veterans  
+(c) The schedules for the Department of Medicine and Surgery, Veterans
 Administration (38 U.S.C. 4107) at Schedule 3.
-Sec. 2. S en io r E xecutive Serv ice. Pursuant to the provisions of section 5382 of  
-title 5 of the United States Code, the rates of basic pay are adjusted, as set  
-forth at Schedule 4 attached hereto and made a part hereof, for members of  
+Sec. 2. S en io r E xecutive Serv ice. Pursuant to the provisions of section 5382 of
+title 5 of the United States Code, the rates of basic pay are adjusted, as set
+forth at Schedule 4 attached hereto and made a part hereof, for members of
 the Senior Executive Service.
-Sec. 3. Pay and A llow ances fo r  M em bers o f the Uniform ed Services. Pursuant 
-to the provisions of Section 901 of Public Law 98-94 (97 Stat. 634), the rates of  
-monthly basic pay (37 U.S.C. 203(a)), the rates of basic allowances for  
+Sec. 3. Pay and A llow ances fo r  M em bers o f the Uniform ed Services. Pursuant
+to the provisions of Section 901 of Public Law 98-94 (97 Stat. 634), the rates of
+monthly basic pay (37 U.S.C. 203(a)), the rates of basic allowances for
 subsistence (37 U.S.C. 402), and the rates of basic allowances for quarters (37
-U.S.C. 403(a)) are adjusted, as set forth at Schedule 5 attached hereto and  
+U.S.C. 403(a)) are adjusted, as set forth at Schedule 5 attached hereto and
 made a part hereof, for members of the uniformed services.
-Sec. 4. E xecutive Salaries.  The Executive Salary Cost-of-Living Adjustment  
-Act (Public Law 94-82, 89 Stat. 419) provides for adjustments in rates of pay  
-and salaries as set forth at the schedules attached hereto and made a part 
+Sec. 4. E xecutive Salaries.  The Executive Salary Cost-of-Living Adjustment
+Act (Public Law 94-82, 89 Stat. 419) provides for adjustments in rates of pay
+and salaries as set forth at the schedules attached hereto and made a part
 hereof, for the following:
-(a) The Vice President (3 U.S.C. 104) and the Executive Schedule (5 U.S.C.  
+(a) The Vice President (3 U.S.C. 104) and the Executive Schedule (5 U.S.C.
 5312-5316) at Schedule 6;
 (b) Congressional Salaries (2 U.S.C. 31) at Schedule 7; and
-(c) Judicial Salaries (28 U.S.C. 5, 44(d), 135,172(b), 252, and 11 U.S.C. 68(a), and  
+(c) Judicial Salaries (28 U.S.C. 5, 44(d), 135,172(b), 252, and 11 U.S.C. 68(a), and
 Sections 401(a), 404(a), 404(b), and 404(d) of Public Law 95-598) at Schedule 8.
 
 === PDF page 14 of 226 ===
 348 Federal Register / Vol. 49, No. 2 / Wednesday, January 4,1984 / Presidential Documents
-Sec. 5. E ffectiv e Date. The adjustments in rates of monthly basic pay and  
+Sec. 5. E ffectiv e Date. The adjustments in rates of monthly basic pay and
 allowances for subsistence and quarters for members of the uniformed serv­
-ices, and all other adjustments of salary or pay, shall be effective on the first  
+ices, and all other adjustments of salary or pay, shall be effective on the first
 day of the first applicable pay period beginning on or after January 1, 1984.
 Sec. 6. Executive Order No. 12387 of October 8,1982, is superseded.
-THE WHITE HOUSE,  
+THE WHITE HOUSE,
 D ecem b er 30, 1983.
 Billing code 3195-01-M
 
@@ -4505,7 +4505,7 @@ GS-1
 5
 6
 7
-8 
+8
 9
 10
 11
@@ -4561,15 +4561,15 @@ $69,042 3 / 78,246 3 /
 58,938 74 ,658 3 /
 $58,938 $74 ,658 3 /
 54 ,422 70 ,748 3 /
-50,252 
-42,722 
-36,152 
-30 ,402 
+50,252
+42,722
+36,152
+30 ,402
 25,366
-65,327 
-55,538 
-46,997 
-39,519 
+65,327
+55,538
+46,997
+39,519
 32,980
 S ec.4 1 0 3  schedule:
 A sso cia te Deputy C hief M edical D ir e c to r ................................................... ..
@@ -4584,16 +4584,16 @@ D ire c to r of O ptom etric S e rv ic e .......................................
 P h y sician  and d e n tis t schedule:
 D ire cto r g ra d e ...........................................................................
 E xecutive g ra d e .............................................................................................*'***[]
-C hief g ra d e ................................................................................................. '***י*י 
-Senior g ra d e ................................................................................................... יי 
+C hief g ra d e ................................................................................................. '***י*י
+Senior g ra d e ................................................................................................... יי
 In term e d iate g r a d e .. ..........................................................................................
 F u ll g ra d e...........................; ..............................................................................
 A sso ciate g ra d e .........................................................................................................
-1 / N otw ithstanding the r a te  shown, the maximum ra te  payable a t th is  le v e l may not exceed $70.800 
+1 / N otw ithstanding the r a te  shown, the maximum ra te  payable a t th is  le v e l may not exceed $70.800
 the r a te  payable fo r le v e l I I I  of the E xecutive Schedule.
-2/ N otw ithstanding the r a te  shown, the maximum r a te  payable a t th is  le v e l may not exceed $69,600, 
+2/ N otw ithstanding the r a te  shown, the maximum r a te  payable a t th is  le v e l may not exceed $69,600,
 the r a te  payable for le v e l IV of the E xecutive Schedule.
-3 / N otw ithstanding the r a te s  shown, the maximum r a te  payable a t th ese le v e ls  may not exceed $66,000, 
+3 / N otw ithstanding the r a te s  shown, the maximum r a te  payable a t th ese le v e ls  may not exceed $66,000,
 the r a te  payable for le v e l V  of the E xecutive Schedule.
 
 === PDF page 18 of 226 ===
@@ -4611,7 +4611,7 @@ CL
 33
 09
 a.3<י
-33331 * ־<< 
+33331 * ־<<
 C O0 0
 4 k
 53
@@ -4655,11 +4655,11 @@ $50,252 $65,327
 === PDF page 19 of 226 ===
 Federal Register /  V o l 49, No. 2 /  W ednesday, January 4, 1984 /  Presidential Documents 353
 Schedule 4 - SENIOR EXECUTIVE SERVICE SCHEDULE
-ES-1 
-ES-2 
-ES-3 
-ES—4 
-ES-5 
+ES-1
+ES-2
+ES-3
+ES—4
+ES-5
 ES-6
 $58,938
 61,292
@@ -4671,8 +4671,8 @@ $58,938
 
 === PDF page 20 of 226 ===
 354 Federal Register / Vol. 49, No. 2 / Wednesday, January 4, 1984 / Presidential Documents
-Schedule 5  ־ PAY A N D  A L L O W A N C E S  OF THE U N IFO RM ED  SERVICES 
-P a rt 1 -  Monthly B asic Pay 
+Schedule 5  ־ PAY A N D  A L L O W A N C E S  OF THE U N IFO RM ED  SERVICES
+P a rt 1 -  Monthly B asic Pay
 (Years o f se rv ic e  computed under 37 U.S.C. 205)
 Pay
 Commissioned O ffic e rs
@@ -4702,11 +4702,11 @@ Grade Over 12 Over 14 Over 16 Over 18 Over 20 Over 22 Over 26
 0-1 2/ . . .____ 1437.60 1437.60 1437.60 1437.60 1437.60 1437.60 1437.60
 * B asic pay i s  lim ite d  to  th e r a te  o fb a sic  pay payable fo r le v e l V o f th e E xecutive Schedule,
 which i s  $5,499.90 per month.
-1 / W hile serv in g  as Chairman o f th e J o in t C h iefs o f S t a f f , C hief o f S ta f f  o f th e Army, C hief o f 
-Naval O p eratio n s, C hief o f S ta f f  o f th e A ir F o rce, or Commandant o f th e  Marine C orps, b a sic  pay 
-fo r th is  grade i s  $7,558.80* re g a rd le ss o f cum ulative y e a rs o f s e rv ic e  confuted under se c . 205 o f 
+1 / W hile serv in g  as Chairman o f th e J o in t C h iefs o f S t a f f , C hief o f S ta f f  o f th e Army, C hief o f
+Naval O p eratio n s, C hief o f S ta f f  o f th e A ir F o rce, or Commandant o f th e  Marine C orps, b a sic  pay
+fo r th is  grade i s  $7,558.80* re g a rd le ss o f cum ulative y e a rs o f s e rv ic e  confuted under se c . 205 o f
 t i t l e  37 o f th e  U nited S ta te s  Code.
-2/  Does n o t apply to  commissioned o f f ic e r s  who have been c re d ite d  w ith over 4 y e a rs ' a c tiv e  s e rv ic e  
+2/  Does n o t apply to  commissioned o f f ic e r s  who have been c re d ite d  w ith over 4 y e a rs ' a c tiv e  s e rv ic e
 as e n liste d  members and/or as w arrant o f f ic e r s .
 
 === PDF page 21 of 226 ===
@@ -4715,9 +4715,9 @@ as e n liste d  members and/or as w arrant o f f ic e r s .
 *
 Federal Register / Vol. 49, No. 2 / Wednesday, January 4, 1984 / Presidential Documen
 Pay Grade Over 4 Over 6 Over 8 Over 10 Over 12
-Conmissioned c  
-been cred ite 
-a c tiv e  duty 
+Conmissioned c
+been cred ite
+a c tiv e  duty
 and/or a s a
 .................... 3 ־ 0
 .................... 2 ־ 0
@@ -4727,15 +4727,15 @@ and/or a s a
 .................... 1 ־ 0
 W arrant O ffice
 W-4...................
-W 3 ..................־ 
+W 3 ..................־
 W-2....................
-w1...................־ 
-jf f ic e r s  who have 
-3d w ith over 4 y ears 
-as an e n lis te d  member 
+w1...................־
+jf f ic e r s  who have
+3d w ith over 4 y ears
+as an e n lis te d  member
 w arrant o f f ic e r :
-$1996.50 $2091.90 
-1785.30 1822.80 
+$1996.50 $2091.90
+1785.30 1822.80
 1437.60 1535.70
 $2167.50
 1880.40
@@ -4773,11 +4773,11 @@ $1538.10
 1020.30
 $1650.00
 1516.50
-1324.50 
+1324.50
 1169.70
 $1650.00
 1516.50
-1324.50 
+1324.50
 1169.70
 $1687.80
 1535.70
@@ -4792,7 +4792,7 @@ $1842.30
 1516.50
 1381.50
 $1919.70
-1764.60 
+1764.60
 1573.80
 1437.60
 Over 12 Over 14 Over 16 Over 18 Over 20 Over 22 Over 26 C O
@@ -4825,13 +4825,13 @@ E -2................ 668.70 668.70 668.70 668.70 668.70 668.70 668.70
 E-l>4 2 / ..., 596.40 596.40 596.40 596.40 596.40 596.40 596.40
 E-l<4 3 / . . . , 573.60 573.60 573.60 573.60 573.60 573.60 573.60
 T7 While serv in g  as S erg ean t Major o f th e Army, M aster C hief P e tty  O ffic e r o f th e Navy or C oast Guard, C hief
-M aster S ergeant o f th e A ir F o rce, or S ergeant Major o f th e M arine Corps, b a sic  pay fo r t h is  grade i s  $2,800.20 
+M aster S ergeant o f th e A ir F o rce, or S ergeant Major o f th e M arine Corps, b a sic  pay fo r t h is  grade i s  $2,800.20
 re g a rd le ss o f cum ulative y ears o f s e rv ic e  computed under S ec. 205 o f t i t l e  37 o f th e U nited S ta te s  Code.
 2/  A pplies to  p ersonnel who have served 4 months or more on a c tiv e  d u ty .
 3 / Applies to personnel who have served le s s  than 4 months on a c tiv e  duty.
 
 === PDF page 23 of 226 ===
-1 יי 
+1 יי
 CD
 C L
 CD
@@ -4854,8 +4854,8 @@ aooc
 3
 CD
 מ
-A l l  O th e r 
-E n l i s t e d  
+A l l  O th e r
+E n l i s t e d
 $ 4 .8 7
 $ 5 .5 0
 $ 7 .2 8
@@ -4868,8 +4868,8 @@ When on l e a v e  o r a u t h o r i z e d  4 m o n th s) 1/
 t o  m ess s e p a r a t e l y :................................................    $ 4.68
 When r a t i o n s  i n - k i n d  a r e  n o t
 a v a i l a b l e : . ....................................   $ 5 .2 9
-When a s s i g n e d  t o  d u ty  u n d e r 
-e m e rg e n c y  c o n d i t i o n s  w h e re  no m e s s in g  
+When a s s i g n e d  t o  d u ty  u n d e r
+e m e rg e n c y  c o n d i t i o n s  w h e re  no m e s s in g
 f a c i l i t i e s  o f  t h e  U n ite d  S t a t e s
 a r e  a v a i l a b l e : ................................................................   $ 7.00
 17 A p p l i e s  t o  p e r s o n n e l  who h a v e  s e r v e d  l e s s  th a n  4 m o n th s on a c t i v e  d u ty
@@ -4892,7 +4892,7 @@ a ><ז
 מ
 cנ 0
 כס
-P a r t  I I I  -  M o n th ly  
+P a r t  I I I  -  M o n th ly
 B a s i c  A llo w a n c e  F o r Q u a r t e r s  R a te s
 W ith o u t d e p e n d e n ts  w ith  * ״
 P a y  g r a d e  F u l l  r a t e  1 /  P a r t i a l  r a t e  2 / _____________________________d e p e n d e n ts
@@ -4924,11 +4924,11 @@ E - 2 ......................................................... 1 3 5 .0 0  7 .2
 E -l> 4  3 / ............................................ 1 2 7 .5 0  6 .9 0  2 2 2 .0 0
 E -l< 4  4 / ............................................ 1 2 2 .7 0  6 .9 0  2 1 3 .6 0
 1 /  P a y m en t o f  t h e  f u l l  r a t e  o f  b a s i c  a llo w a n c e  f o r  q u a r t e r s  a t  t h e s e  r a t e s  t o  m em bers o f  th e
-u n ifo rm e d  s e r v i c e s  w i t h o u t  d e p e n d e n ts  i s  a u t h o r i z e d  by 37 U .S .C . and p a r t  IV o f  E x e c u ti v e  O rd e r 
+u n ifo rm e d  s e r v i c e s  w i t h o u t  d e p e n d e n ts  i s  a u t h o r i z e d  by 37 U .S .C . and p a r t  IV o f  E x e c u ti v e  O rd e r
 1 1 1 5 7 , a s  am en d ed .
 2 /  P a y m en t o f  th e  p a r t i a l  r a t e  o f , b a s i c  a llo w a n c e  f o r  q u a r t e r s  a t  t h e s e  r a t e s  t o  m em bers o f  th e
-u n ifo rm e d  s e r v i c e s  w i t h o u t  d e p e n d e n ts  w ho, u n d e r 37 U .S .C . 4 0 3 (b ) o r  4 0 3 ( c ) ,  a r e  n o t e n t i t l e d  t o  
-t h e  f u l l  r a t e  o f  b a s i c  a llo w a n c e  f o r  q u a r t e r s ,  i s  a u t h o r i z e d  by 37 U .S .C . 1 0 0 9 (d ) and p a r t  IV o f  
+u n ifo rm e d  s e r v i c e s  w i t h o u t  d e p e n d e n ts  w ho, u n d e r 37 U .S .C . 4 0 3 (b ) o r  4 0 3 ( c ) ,  a r e  n o t e n t i t l e d  t o
+t h e  f u l l  r a t e  o f  b a s i c  a llo w a n c e  f o r  q u a r t e r s ,  i s  a u t h o r i z e d  by 37 U .S .C . 1 0 0 9 (d ) and p a r t  IV o f
 E x e c u ti v e  O rd e r 1 1 1 5 7 , a s  am en d ed .
 3 /  A p p l i e s  t o  p e r s o n n e l  who h a v e  s e r v e d  4 m o n th s o r  m ore on a c t i v e  d u t y .
 4 / A p p lie s  to  p e r s o n n e l  who h av e s e r v e d  l e s s  th a n  4 m onths on a c t i v e  d u ty .
@@ -4976,11 +4976,11 @@ Judges of the United States Claims Court .......... 67,500
 Referees in Bankruptcy (full-time) or Bankruptcy
 Judges ............................................. 65,800
 Referees in Bankruptcy (part-time) (maximum rate). 32,900
-•Under section 140 of Public Law 97-92 (95 Stat. 1200), salaries  
-for Federal judges and Justices of the Supreme Court are not  
+•Under section 140 of Public Law 97-92 (95 Stat. 1200), salaries
+for Federal judges and Justices of the Supreme Court are not
 increased.
-[FR Doc. 84-303 
-Filed 1-3-84; 11:26 am] 
+[FR Doc. 84-303
+Filed 1-3-84; 11:26 am]
 Billing code 3195-01-C
 
 ```
@@ -4998,8 +4998,8 @@ Text hash d97cd7793dde402d05819089c993ab48c32847b5644382160d4d0e43d6fb011a; abso
 Text hash e381b41411acb046fc1e2146ac84aa09024a70ac1f75b981e7724a2bacd229d0; absolute characters 59601–59783; files: jobs/source-ladder/output/texts/queue_EO_12076_43_FR_37161_PDF_pages_15-16_cited_revocation_exception_effective_provisions_678101009a.txt
 
 ```text
-I invite the Governors of the States, the 
-Commonwealth of Puerto Rico, and officials of other areas subject to the 
+I invite the Governors of the States, the
+Commonwealth of Puerto Rico, and officials of other areas subject to the
 jurisdiction of the United States to issue similar proclamations.
 ```
 
@@ -5008,9 +5008,9 @@ jurisdiction of the United States to issue similar proclamations.
 Text hash 4951e2fddbd59c62fb8ae21f16e3be491a942e17e1cdae31c115306868f7e79d; absolute characters 8092–8256; files: jobs/source-ladder/output/texts/queue_EO_12439_Date_of_the_first_meeting_and_date_the_President_s_Task_Force_on_Food_Assistance_EO_1_6a9880f299.txt
 
 ```text
-The report reflects months of thoughtful 
-and diligent work by Chairman Clay La 
-Force and his task force members, and I 
+The report reflects months of thoughtful
+and diligent work by Chairman Clay La
+Force and his task force members, and I
 want to give them all my heartfelt thanks.
 ```
 
@@ -5030,61 +5030,61 @@ THE PRESIDENT 1069
 [3195-01-M ]
 Executive O rder 12110 • Decem ber 28,1978
 Continuance of Certain Federal Advisory Committees
-By the authority vested in me as President by the Constitution and 
-statutes o f the United States o f America, and in accordance with the provisions 
-o f the Federal Advisory Committee Act (5 U.S.C. App. I), it is hereby ordered 
+By the authority vested in me as President by the Constitution and
+statutes o f the United States o f America, and in accordance with the provisions
+o f the Federal Advisory Committee Act (5 U.S.C. App. I), it is hereby ordered
 as follows:
-1-101. Each advisory committee listed below is continued until December 
+1-101. Each advisory committee listed below is continued until December
 31, 1980.
-fe) Committee for the Preservation o f the White House— Executive Order 
+fe) Committee for the Preservation o f the White House— Executive Order
 No. 1*1145, as amended (Department o f the Interior).
-(b) President’s Commission on White House Fellowships— Executive 
+(b) President’s Commission on White House Fellowships— Executive
 Ordçr J^o. 11183, as amended (United States Civil Service Commission).
-(c) President’s Committee on the National Medal o f Science—Executive 
+(c) President’s Committee on the National Medal o f Science—Executive
 Order No. 11287, as amended (National Science Foundation).
-(d) President’s Council on Physical Fitness and Sports— Executive Order 
+(d) President’s Council on Physical Fitness and Sports— Executive Order
 No. 11562, as amended (Department o f Health, Education, and Welfare).
-(e) President’s Export Council— Executive Order No. 11753 o f December 
+(e) President’s Export Council— Executive Order No. 11753 o f December
 20, 1973 (Department o f Commerce).
-(f) President’s Committee on Mental Retardation— Executive Order No. 
+(f) President’s Committee on Mental Retardation— Executive Order No.
 11776 o f March 28, 1974 (Department o f Health, Education, and Welfare).
 (g) Federal Advisory Council on Occupational Safety and Health— Execu­
 tive Order No. 11807 o f September 28, 1974 (Department o f Labor).
 (h) Presidential Advisory Board on Ambassadorial Appointments, Execu­
 tive Order No. 11970 o f February 5, 1977 (Department o f State).
-(i) Committee on Selection o f Federal Judicial Officers— Executive Order 
+(i) Committee on Selection o f Federal Judicial Officers— Executive Order
 No. 11992 o f May 24, 1977 (Department o f Justice).
-(j) United States Circuit Judge Nominating Commission— Executive Order 
+(j) United States Circuit Judge Nominating Commission— Executive Order
 No. 12059, as amended (Department o f Justice).
-(k) United States Court o f Military Appeals Nominating Commission— 
+(k) United States Court o f Military Appeals Nominating Commission—
 Executive Order No. 12063 o f June 5, 1978 (Department o f Defense).
-(l) United States Tax Court Nominating Commission— Executive Order 
+(l) United States Tax Court Nominating Commission— Executive Order
 No. 12064 o f June 5, 1978 (Department o f the Treasury).
-(m) Judicial Nominating Commission for the District o f Puerto Rico— 
+(m) Judicial Nominating Commission for the District o f Puerto Rico—
 Executive Order No. 12084, as amended (Department o f Justice).
-1-102. Notwithstanding the provisions o f any other Executive order, the 
-functions o f the President under the Federal Advisory Committee Act which 
-are applicable to the committees listed in Section 1-101 o f this Order, except 
-that o f reporting annually to Congress, shall be performed by the head o f the 
-department or agency designated after each committee, in accordance with 
+1-102. Notwithstanding the provisions o f any other Executive order, the
+functions o f the President under the Federal Advisory Committee Act which
+are applicable to the committees listed in Section 1-101 o f this Order, except
+that o f reporting annually to Congress, shall be performed by the head o f the
+department or agency designated after each committee, in accordance with
 guidelines and procedures established by the Administrator o f General Serv­
 ices.
-1-103. The following Executive orders, that established committees which 
+1-103. The following Executive orders, that established committees which
 , have terminated or whose work is completed, are revoked:
 (a) Executive Order No. 11482 o f September 22, 1969, establishing a
 (
 Construction Industry Collective Bargaining Commission.
-(b) Executive Order No. 11849 o f April 1, 1975, establishing the Collec- 
+(b) Executive Order No. 11849 o f April 1, 1975, establishing the Collec-
 m tive Bargaining Committee in Construction.
-(c) Executive Order No. 11534 o f June 4, 1970, establishing the National 
+(c) Executive Order No. 11534 o f June 4, 1970, establishing the National
 Council on Organized Crime.
 FEDERAL REGISTER, VOL. 44, NO. 2— WEDNESDAY, JANUARY 3, 1979
 
 === PDF page 336 of 336 ===
 1070 THE PRESIDENT
-(d) Executive Order No. 11971, as amended, establishing the Committee 
+(d) Executive Order No. 11971, as amended, establishing the Committee
 on Selection o f the Director o f the Federal Bureau o f Investigation.
-(e) Executive Order No. 11973 o f February 17, 1977, establishing the 
+(e) Executive Order No. 11973 o f February 17, 1977, establishing the
 President’s Commission on Mental Health.
 (f) Executive Order No. 11998 o f June 27, 1977, establishing the Presi­
 dent’s Commission on Military Compensation.
@@ -5210,10 +5210,10 @@ The Commission shall make a preliminary report with recommendations to the Presi
 Text hash 4951e2fddbd59c62fb8ae21f16e3be491a942e17e1cdae31c115306868f7e79d; absolute characters 2740–2944; files: jobs/source-ladder/output/texts/queue_EO_12439_Date_of_the_first_meeting_and_date_the_President_s_Task_Force_on_Food_Assistance_EO_1_6a9880f299.txt
 
 ```text
-Five years ago, Chinese leader Ding Xiao 
+Five years ago, Chinese leader Ding Xiao
 Ping said at this podium that “great possi­
-bilities lie ahead for developing amicable 
-cooperation between China and the United 
+bilities lie ahead for developing amicable
+cooperation between China and the United
 States.” This remains our faith.
 ```
 
@@ -5233,14 +5233,14 @@ presidential docum ents
 Title 3— The President
 Executive Order 11982 April 29, 1977
 Committee on Selection of the Director of the Federal Bureau of Investigation
-By virtue of the authority vested in me by the Constitution and statutes of the 
-United States of America, and as President of the United States of America, in order 
-to extend for 30 days the reporting time for the Committee on Selection of the Director 
-of the Federal Bureau of Investigation, Section 3(a) of Executive Order No. 11971 
+By virtue of the authority vested in me by the Constitution and statutes of the
+United States of America, and as President of the United States of America, in order
+to extend for 30 days the reporting time for the Committee on Selection of the Director
+of the Federal Bureau of Investigation, Section 3(a) of Executive Order No. 11971
 of February 11, 1977, is hereby amended to read as follows:
-"The Committee shall submit to the President and to the Attorney General, no 
-later than June 11, 1977, a report listing the names of the five persons whom the 
-Committee considers best qualified to serve as the Director and setting forth such other 
+"The Committee shall submit to the President and to the Attorney General, no
+later than June 11, 1977, a report listing the names of the five persons whom the
+Committee considers best qualified to serve as the Director and setting forth such other
 information as the President or the Attorney General may require.”.
 T h e W h i t e H o u s e,
 April 29, 1977.
@@ -5364,69 +5364,69 @@ Federal Register /  Vol. 58, No. 190 /  Monday, October 4, 1993 V  Presidential 
 Presidential Docum ents
 Executive O rder 12869 o f Septem ber 30, 1993
 C ontinuance o f C ertain  F ed eral A dvisory Com m ittees
-By the authority vested in me as» President by the Constitution and the 
-laws o f the United States o f America, and in accordance with the provisions 
-of the Federal Advisory Committee Act, as amended (5 U.S.C. A p p ), it 
+By the authority vested in me as» President by the Constitution and the
+laws o f the United States o f America, and in accordance with the provisions
+of the Federal Advisory Committee Act, as amended (5 U.S.C. A p p ), it
 is hereby ordered as follows:
-Section 1. Each advisory committee listed below is continued until Septem ber 
+Section 1. Each advisory committee listed below is continued until Septem ber
 3 0 ,1 9 9 5 :
-(a) Committee for the Preservation of the W hite House; Executive Order 
+(a) Committee for the Preservation of the W hite House; Executive Order
 No. 11145, as amended (Department of the Interior);
-(b) Federal Advisory C ouncil on O ccupational Safety and Health; Executive 
+(b) Federal Advisory C ouncil on O ccupational Safety and Health; Executive
 Order No. 12196, as amended (Department of Labor);
-(c) President’s Com m ission on W hite House Fellow ships; Executive Order 
+(c) President’s Com m ission on W hite House Fellow ships; Executive Order
 No. 11183, as amended (Office of Personnel Management);
-(d) President’s Committee on the Arts and Humanities; Executive Order 
+(d) President’s Committee on the Arts and Humanities; Executive Order
 No. 12367, as amended (National Endowment for the Arts);
 (e) President’s Committee on the International Labor Organization; Execu­
 tive Order No. 12216 (Department of Labor);
-(f) President’s Committee on Mental Retardation; Executive Order No. 
+(f) President’s Committee on Mental Retardation; Executive Order No.
 11776, as amended (Department of Health and Human Services);
-(g) President’s Committee on the National Medal o f Science; Executive 
+(g) President’s Committee on the National Medal o f Science; Executive
 Order No. 11287, as amended (National Science Foundation);
-(h) President’s Council on Physical Fitness and Sports; Executive Order 
+(h) President’s Council on Physical Fitness and Sports; Executive Order
 No. 12345, as amended (Department of Health and Human Services);
-(i) President’s Export Council; Executive Order No. 12131, as amended 
+(i) President’s Export Council; Executive Order No. 12131, as amended
 (Department o f Commerce); and
-(j) President’s National Security Telecom m unications Advisory Committee; 
+(j) President’s National Security Telecom m unications Advisory Committee;
 Executive Order No. 12382, as amended (Department of Defense).
-Sec. 2. T h e President’s Council o f Advisors on Science and Technology; 
-Executive Order No. 12700, as amended (Office o f Science and Technology 
+Sec. 2. T h e President’s Council o f Advisors on Science and Technology;
+Executive Order No. 12700, as amended (Office o f Science and Technology
 Policy), the authority for w hich expired on June 30, 1993, is hereby reestab­
-lished in accordance w ith the provisions o f Executive Order No. 12700, 
+lished in accordance w ith the provisions o f Executive Order No. 12700,
 as am ended, and shall continue until Septem ber 3 0 ,1 9 9 5 .
-Sec. 3. Notwithstanding the provisions o f any other Executive order, the 
-functions o f the President under the Federal Advisory Committee Act that 
-are applicable to the com m ittees listed in sections 1 and 2 of this order, 
-except that o f reporting annually to the Congress, shall be performed by 
-the head o f the department or agency designated after each committee, 
+Sec. 3. Notwithstanding the provisions o f any other Executive order, the
+functions o f the President under the Federal Advisory Committee Act that
+are applicable to the com m ittees listed in sections 1 and 2 of this order,
+except that o f reporting annually to the Congress, shall be performed by
+the head o f the department or agency designated after each committee,
 in accordance w ith the guidelines and procedures established by the Admin­
 istrator ô f General Services.
-Sec. 4. T h e following Executive orders or sections thereof, w hich established 
+Sec. 4. T h e following Executive orders or sections thereof, w hich established
 com m ittees that have terminated or whose work is com pleted, are revoked:
-(a) Executive Order No. 12792, establishing the National Commission on 
+(a) Executive Order No. 12792, establishing the National Commission on
 A m erica’s Urban Fam ilies;
-(b) Executive Order No. 12813, as amended by Executive Order No. 12815, 
-establishing the President’s Commission on the Management of the Agency 
+(b) Executive Order No. 12813, as amended by Executive Order No. 12815,
+establishing the President’s Commission on the Management of the Agency
 for International Development (AID) Programs;
 
 === PDF page 198 of 212 ===
 5 1 7 5 2  Federal Register /  Vol. 58, No. 190 /  Monday, October 4, 1993 /  Presidential Documents
-(c) Executive Order No. 12720, as amended by Executive Order No. 12783, 
+(c) Executive Order No. 12720, as amended by Executive Order No. 12783,
 establishing the President’s Council on Rural America;
-(d) Executive Order No. 12696, as amended by Executive Order No, 12756, 
+(d) Executive Order No. 12696, as amended by Executive Order No, 12756,
 establishing the President’s Drug Advisory Council;
-(e) Executive Order No. 12687, as amended by Executive Orders Nos. 
-12741 and 12785, establishing the President’s Education Policy Advisory 
+(e) Executive Order No. 12687, as amended by Executive Orders Nos.
+12741 and 12785, establishing the President’s Education Policy Advisory
 Committee; and
-(f) Section 5 of Executive Order No. 12675, establishing the V ice President’s 
+(f) Section 5 of Executive Order No. 12675, establishing the V ice President’s
 Space Policy Advisory Board.
 Sec. 5. Executive Order No. 12774 is superseded.
 Sec. 6. This order shall be effective Septem ber 3 0 ,1 9 9 3 .
-THE WHITE HOUSE, 
+THE WHITE HOUSE,
 S e p t e m b e r  3 0 , 1 9 9 3 .
-[FR Doc. 93-24533 
-Filed 10-1-93; 1:14 pm] 
+[FR Doc. 93-24533
+Filed 10-1-93; 1:14 pm]
 Billing code 3195-01-P
 
 ```
@@ -5452,22 +5452,22 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 
 === PDF page 245 of 250 ===
 8113
-Federal Register 
+Federal Register
 Vol. 55, No. 44
 Presidential Documents
 Tuesday, March 6, 1990
 T itle 3— E x e cu tiv e  O rder 12705 o f M a rch  3, 1990
-The President Extending the President’s Commission on Aviation Security  
+The President Extending the President’s Commission on Aviation Security
 and Terrorism
-B y the authority v e sted  in m e as President b y  the Con stitu tio n  and la w s o f the 
-U n ited  State s o f A m e rica , and in order to exten d  the President’s C o m m issio n 
-on A v ia tio n  Secu rity and Terrorism , it is hereby ordered that the first sentence  
-o f section  2(b) o f E x e cu tiv e  O rd er N o . 12686 is am ended to read as fo llo w s: 
-“ N o  later than M a y  15, 1990, the C o m m issio n  sh all subm it a report to the  
-President, w h ich  sh all be cla ssifie d  if n ecessa ry, con tain ing findings and  
+B y the authority v e sted  in m e as President b y  the Con stitu tio n  and la w s o f the
+U n ited  State s o f A m e rica , and in order to exten d  the President’s C o m m issio n
+on A v ia tio n  Secu rity and Terrorism , it is hereby ordered that the first sentence
+o f section  2(b) o f E x e cu tiv e  O rd er N o . 12686 is am ended to read as fo llo w s:
+“ N o  later than M a y  15, 1990, the C o m m issio n  sh all subm it a report to the
+President, w h ich  sh all be cla ssifie d  if n ecessa ry, con tain ing findings and
 recom m en d atio n s.”
-(FR Doc. 90 -5 3 1 2  
-Filed 3-5-90; 1 0 :4 4  am ] 
+(FR Doc. 90 -5 3 1 2
+Filed 3-5-90; 1 0 :4 4  am ]
 Billing code 3195-01-M
 T H E  W H IT E  H O U S E ,
 M a r c h  3 , 1990. ^
@@ -5498,158 +5498,158 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 === PDF page 1 of 13 ===
 Presidential Documents
 46055
-Federal Register 
+Federal Register
 Vol. 69, No. 146
 Friday, July 30, 2004
-Title 3— 
-The President 
+Title 3—
+The President
 Executive Order 13350 of July 29, 2004
-Termination of Emergency Declared in Executive Order 
-12722 With Respect to Iraq and Modification of Executive 
-Order 13290, Executive Order 13303, and Executive Order 
+Termination of Emergency Declared in Executive Order
+12722 With Respect to Iraq and Modification of Executive
+Order 13290, Executive Order 13303, and Executive Order
 13315
-By the authority vested in me as President by the Constitution and laws 
-of the United States of America, including the International Emergency 
+By the authority vested in me as President by the Constitution and laws
+of the United States of America, including the International Emergency
 Economic Powers Act (50 U.S.C. 1701 et seq .)(IEEPA), the National Emer-
-gencies Act (50 U.S.C. 1601 et seq .)(NEA), section 5 of the United Nations 
-Participation Act, as amended (22 U.S.C. 287c)(UNPA), and section 301 
-of title 3, United States Code, 
-I, GEORGE W. BUSH, President of the United States of America, have 
-determined that the situation that gave rise to the declaration of a national 
-emergency with respect to Iraq in Executive Order 12722 of August 2, 
-1990, has been significantly altered by the removal of the regime of Saddam 
-Hussein and other developments. I hereby terminate the national emergency 
+gencies Act (50 U.S.C. 1601 et seq .)(NEA), section 5 of the United Nations
+Participation Act, as amended (22 U.S.C. 287c)(UNPA), and section 301
+of title 3, United States Code,
+I, GEORGE W. BUSH, President of the United States of America, have
+determined that the situation that gave rise to the declaration of a national
+emergency with respect to Iraq in Executive Order 12722 of August 2,
+1990, has been significantly altered by the removal of the regime of Saddam
+Hussein and other developments. I hereby terminate the national emergency
 declared in Executive Order 12722, revoke that Executive Order and Execu-
-tive Order 12724 of August 9, 1990, Executive Order 12734 of November 
-14, 1990, Executive Order 12743 of January 18, 1991, Executive Order 12751 
-of February 14, 1991, and Executive Order 12817 of October 21, 1992, 
-that are based on that national emergency. I hereby amend Executive Order 
-13290 of March 20, 2003, so that the authorities therein remain in effect 
-based on the national emergency I declared in Executive Order 13303 of 
-May 22, 2003, and expanded in Executive Order 13315 of August 28, 2003. 
-At the same time, and in order to take additional steps to deal with the 
-national emergency that I declared in Executive Order 13303, and expanded 
-in Executive Order 13315, with respect to the unusual and extraordinary 
-threat to the national security and foreign policy of the United States posed 
+tive Order 12724 of August 9, 1990, Executive Order 12734 of November
+14, 1990, Executive Order 12743 of January 18, 1991, Executive Order 12751
+of February 14, 1991, and Executive Order 12817 of October 21, 1992,
+that are based on that national emergency. I hereby amend Executive Order
+13290 of March 20, 2003, so that the authorities therein remain in effect
+based on the national emergency I declared in Executive Order 13303 of
+May 22, 2003, and expanded in Executive Order 13315 of August 28, 2003.
+At the same time, and in order to take additional steps to deal with the
+national emergency that I declared in Executive Order 13303, and expanded
+in Executive Order 13315, with respect to the unusual and extraordinary
+threat to the national security and foreign policy of the United States posed
 by obstacles to the orderly reconstruction of Iraq, the restoration and mainte-
-nance of peace and security in that country, and the development of political, 
-administrative and economic institutions in Iraq, I hereby order: 
+nance of peace and security in that country, and the development of political,
+administrative and economic institutions in Iraq, I hereby order:
 Section 1. Pursuant to section 202(a) of the NEA (50 U.S.C. 1622(a)), termi-
-nation of the national emergency declared in Executive Order 12722 shall 
-not affect any action taken or proceeding pending but not finally concluded 
-or determined as of the effective date of this order, any action or proceeding 
-based on any act committed prior to such date, or any rights or duties 
-that matured or penalties that were incurred prior to such date. Pursuant 
-to section 207(a) of IEEPA (50 U.S.C. 1706(a)), and subject to such regulations, 
-orders, directives, or licenses as may be issued pursuant to this order, 
-I hereby determine that the continuation of prohibitions with regard to 
-transactions involving property blocked pursuant to Executive Orders 12722 
-or 12724 that continues to be blocked as of the effective date of this order 
-is necessary on account of claims involving Iraq. 
-Sec. 2. The Annex to Executive Order 13315 is replaced and superseded 
-in its entirety by the Annex to this order. 
-Sec. 3. I hereby amend Executive Order 13290 by removing ‘‘the national 
+nation of the national emergency declared in Executive Order 12722 shall
+not affect any action taken or proceeding pending but not finally concluded
+or determined as of the effective date of this order, any action or proceeding
+based on any act committed prior to such date, or any rights or duties
+that matured or penalties that were incurred prior to such date. Pursuant
+to section 207(a) of IEEPA (50 U.S.C. 1706(a)), and subject to such regulations,
+orders, directives, or licenses as may be issued pursuant to this order,
+I hereby determine that the continuation of prohibitions with regard to
+transactions involving property blocked pursuant to Executive Orders 12722
+or 12724 that continues to be blocked as of the effective date of this order
+is necessary on account of claims involving Iraq.
+Sec. 2. The Annex to Executive Order 13315 is replaced and superseded
+in its entirety by the Annex to this order.
+Sec. 3. I hereby amend Executive Order 13290 by removing ‘‘the national
 emergency declared in Executive Order 12722 of August 2, 1990’’ and replac-
-ing it with ‘‘the national emergency declared in Executive Order 13303 
-of March 20, 2003, and expanded in Executive Order 13315 of August 
-28, 2003’’. 
+ing it with ‘‘the national emergency declared in Executive Order 13303
+of March 20, 2003, and expanded in Executive Order 13315 of August
+28, 2003’’.
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 === PDF page 2 of 13 ===
-46056 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
-Sec. 4. Unless licensed or otherwise authorized pursuant to this order or 
-otherwise consistent with U.S. law, the trade in or transfer of ownership 
-or possession of Iraqi cultural property or other items of archeological, 
-historical, cultural, rare scientific, and religious importance that were illegally 
-removed, or for which a reasonable suspicion exists that they were illegally 
-removed, from the Iraq National Museum, the National Library, and other 
-locations in Iraq since August 6, 1990, is prohibited. 
-Sec. 5. I hereby determine that the making of donations of the type specified 
+46056 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
+Sec. 4. Unless licensed or otherwise authorized pursuant to this order or
+otherwise consistent with U.S. law, the trade in or transfer of ownership
+or possession of Iraqi cultural property or other items of archeological,
+historical, cultural, rare scientific, and religious importance that were illegally
+removed, or for which a reasonable suspicion exists that they were illegally
+removed, from the Iraq National Museum, the National Library, and other
+locations in Iraq since August 6, 1990, is prohibited.
+Sec. 5. I hereby determine that the making of donations of the type specified
 in section 203(b)(2) of IEEPA (50 U.S.C. 1702(b)(2)) by or to persons deter-
-mined to be subject to the sanctions imposed by Executive Order 13315 
-or by this order would seriously impair my ability to deal with the national 
-emergency declared in Executive Order 13303, and expanded by Executive 
-Order 13315, or would endanger the Armed Forces of the United States 
-that are engaged in hostilities, and I hereby prohibit such donations as 
-provided in section 1 of Executive Order 13315 as amended by this order. 
-Sec. 6. For those persons listed in the Annex to this order or determined 
-to be subject to Executive Order 13315 or this order who might have a 
-constitutional presence in the United States, I find that because of the 
-ability to transfer funds or other assets instantaneously, prior notice to 
-such persons of measures to be taken pursuant to this order would render 
-these measures ineffectual. I therefore determine that for these measures 
-to be effective in addressing the national emergency declared in Executive 
-Order 13303, and expanded by Executive Order 13315, there need be no 
-prior notice of a listing or determination made pursuant to Executive Order 
-13315 or this order. 
-Sec. 7. The Secretary of the Treasury, in consultation with the Secretary 
-of State, is hereby authorized to take such actions, including the promulgation 
-of rules and regulations, and to employ all powers granted to the President 
-by IEEPA and UNPA as may be necessary to carry out the purposes of 
+mined to be subject to the sanctions imposed by Executive Order 13315
+or by this order would seriously impair my ability to deal with the national
+emergency declared in Executive Order 13303, and expanded by Executive
+Order 13315, or would endanger the Armed Forces of the United States
+that are engaged in hostilities, and I hereby prohibit such donations as
+provided in section 1 of Executive Order 13315 as amended by this order.
+Sec. 6. For those persons listed in the Annex to this order or determined
+to be subject to Executive Order 13315 or this order who might have a
+constitutional presence in the United States, I find that because of the
+ability to transfer funds or other assets instantaneously, prior notice to
+such persons of measures to be taken pursuant to this order would render
+these measures ineffectual. I therefore determine that for these measures
+to be effective in addressing the national emergency declared in Executive
+Order 13303, and expanded by Executive Order 13315, there need be no
+prior notice of a listing or determination made pursuant to Executive Order
+13315 or this order.
+Sec. 7. The Secretary of the Treasury, in consultation with the Secretary
+of State, is hereby authorized to take such actions, including the promulgation
+of rules and regulations, and to employ all powers granted to the President
+by IEEPA and UNPA as may be necessary to carry out the purposes of
 this order. The Secretary of the Treasury may redelegate any of these func-
 tions to other officers and agencies of the United States Government con-
-sistent with applicable law. All agencies of the United States Government 
-are hereby directed to take all appropriate measures within their authority 
-to carry out the provisions of this order. 
-Sec. 8. The Secretary of the Treasury, in consultation with the Secretary 
-of State, is authorized to determine subsequent to the issuance of the order, 
-that circumstances no longer warrant the inclusion of a person in the Annex 
-to this order and that such person is therefore no longer covered within 
-the scope of the order. 
-Sec. 9. This order is not intended to, and does not, create any right or 
-benefit, substantive or procedural, enforceable at law or in equity by any 
-party against the United States, its departments, agencies, instrumentalities, 
-or entities, officers or employees, or any other person. 
+sistent with applicable law. All agencies of the United States Government
+are hereby directed to take all appropriate measures within their authority
+to carry out the provisions of this order.
+Sec. 8. The Secretary of the Treasury, in consultation with the Secretary
+of State, is authorized to determine subsequent to the issuance of the order,
+that circumstances no longer warrant the inclusion of a person in the Annex
+to this order and that such person is therefore no longer covered within
+the scope of the order.
+Sec. 9. This order is not intended to, and does not, create any right or
+benefit, substantive or procedural, enforceable at law or in equity by any
+party against the United States, its departments, agencies, instrumentalities,
+or entities, officers or employees, or any other person.
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 === PDF page 3 of 13 ===
-46057Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
-Sec. 10. This order is effective at 12:01 a.m. eastern daylight time on July 
-30, 2004. This order shall be transmitted to the Congress and published 
+46057Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
+Sec. 10. This order is effective at 12:01 a.m. eastern daylight time on July
+30, 2004. This order shall be transmitted to the Congress and published
 in the Federal Register.
 W
-THE WHITE HOUSE, 
-July 29, 2004. 
+THE WHITE HOUSE,
+July 29, 2004.
 Billing code 3195 –01–P
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00005 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 === PDF page 4 of 13 ===
-46058 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46058 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00006 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.093</GPH>
 === PDF page 5 of 13 ===
-46059Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46059Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00007 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.094</GPH>
 === PDF page 6 of 13 ===
-46060 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46060 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00008 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.095</GPH>
 === PDF page 7 of 13 ===
-46061Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46061Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00009 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.096</GPH>
 === PDF page 8 of 13 ===
-46062 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46062 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00010 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.097</GPH>
 === PDF page 9 of 13 ===
-46063Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46063Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00011 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.098</GPH>
 === PDF page 10 of 13 ===
-46064 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46064 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00012 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.099</GPH>
 === PDF page 11 of 13 ===
-46065Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46065Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00013 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.100</GPH>
 === PDF page 12 of 13 ===
-46066 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46066 Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00014 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.101</GPH>
 === PDF page 13 of 13 ===
-46067Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents 
+46067Federal Register / Vol. 69, No. 146 / Friday, July 30, 2004 / Presidential Documents
 [FR Doc. 04 –17636
-Filed 7 –29–04; 12:57 pm] 
+Filed 7 –29–04; 12:57 pm]
 Billing code 4810 –25–C
 VerDate jul<14>2003 20:07 Jul 29, 2004 Jkt 203001 PO 00000 Frm 00015 Fmt 4705 Sfmt 4790 E:\FR\FM\30JYE0.SGM 30JYE0
 ED30JY04.102</GPH>
@@ -5723,19 +5723,19 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 Federal Register /  V o l 48, No. 127 /  Thursday, June 30 ,1 9 8 3  /  Presidential Docum ents 30087
 Presidential Documents
 Executive Order 12429 of June 28, 1983
-President’s Private Sector Survey on Cost Control in the  
+President’s Private Sector Survey on Cost Control in the
 Federal Government
-By the authority vested in me as President by the Constitution and law s o f the 
-United States of A m erica, including the Federal A dvisory Com m ittee A ct, as 
-am ended (5 U .S.C. App. I), and in order to extend the life o f the President’s 
-Private Sector Survey on C ost Control in the Federal Governm ent, it is hereby 
-ordered that Section  4(b) of E xecutive -Order No. 12369 of June 30, 1982, as 
-amended, is further am ended to read: “The Com m ittee shall term inate on 
+By the authority vested in me as President by the Constitution and law s o f the
+United States of A m erica, including the Federal A dvisory Com m ittee A ct, as
+am ended (5 U .S.C. App. I), and in order to extend the life o f the President’s
+Private Sector Survey on C ost Control in the Federal Governm ent, it is hereby
+ordered that Section  4(b) of E xecutive -Order No. 12369 of June 30, 1982, as
+amended, is further am ended to read: “The Com m ittee shall term inate on
 O ctober 30,1983, unless sooner extended.”.
-THE WHITE HOUSE, 
+THE WHITE HOUSE,
 J u n e  28, 1983.
-[FR Doc. 83-17869 
-Filed 6-29-83; 11:29 am] 
+[FR Doc. 83-17869
+Filed 6-29-83; 11:29 am]
 Billing, code 3195-01-M
 
 ```
@@ -5757,7 +5757,7 @@ Executive Order No. 12792, establishing the National Commission on America’s U
 Text hash e381b41411acb046fc1e2146ac84aa09024a70ac1f75b981e7724a2bacd229d0; absolute characters 5063–5246; files: jobs/source-ladder/output/texts/queue_EO_12076_43_FR_37161_PDF_pages_15-16_cited_revocation_exception_effective_provisions_678101009a.txt
 
 ```text
-D ocum ents are on file for p u b lic inspection in  the Office of the Federal Register the day before  
+D ocum ents are on file for p u b lic inspection in  the Office of the Federal Register the day before
 they are published, unless earlier filing is requested by th e issuing agency.
 ```
 
@@ -5774,61 +5774,61 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 
 === PDF page 9 of 152 ===
 4 0871
-Federal Register 
+Federal Register
 V ol. 48, No. 177
 Presidential Documents
 Monday, September 12, 1983
 Title 3— Executive Order 12439 of Septem ber 8, 1983
 The President President’s Task Force on Food A ssistance
-By the authority vested in me as President by the Constitution and law s of the  
-United States of Am erica, in order to establish, in accordance with the  
-provisions of the Federal Advisory Committee A ct, as amended (5 U.S.C. App.  
-I), an advisory committee to exam ine programs intended to render food  
-assistance to the needy and to make recom m endations on how such programs  
+By the authority vested in me as President by the Constitution and law s of the
+United States of Am erica, in order to establish, in accordance with the
+provisions of the Federal Advisory Committee A ct, as amended (5 U.S.C. App.
+I), an advisory committee to exam ine programs intended to render food
+assistance to the needy and to make recom m endations on how such programs
 m ay be improved, it is hereby ordered as follows:
-Section 1. Establishm ent, (a) There is established the President’s Task Force  
-on Food A ssistance, which shall be composed of not more than fifteen  
-persons, who shall be appointed by the President from among citizens of the  
-United States who are not full-time officers or employees of the Federal  
+Section 1. Establishm ent, (a) There is established the President’s Task Force
+on Food A ssistance, which shall be composed of not more than fifteen
+persons, who shall be appointed by the President from among citizens of the
+United States who are not full-time officers or employees of the Federal
 Government.
-(b) The President shall designate a Chairman, and m ay also designate a Vice  
+(b) The President shall designate a Chairman, and m ay also designate a Vice
 Chairman, from among the members of the Task Force.
-Sec. 2. Functions.  The Task Force shall analyze Federal and other programs  
+Sec. 2. Functions.  The Task Force shall analyze Federal and other programs
 intended to render food assistance to the needy and shall make recom m enda­
-tions to the President and the Secretary of Agriculture with respect to how  
-such programs m ay be improved. The Task Force shall submit its report to the  
+tions to the President and the Secretary of Agriculture with respect to how
+such programs m ay be improved. The Task Force shall submit its report to the
 President within ninety days of its first meeting.
-Sec. 3. Adm inistration, (a) The heads of Executive agencies shall, to the extent  
-permitted by law, provide the Task Force such information as it m ay require  
+Sec. 3. Adm inistration, (a) The heads of Executive agencies shall, to the extent
+permitted by law, provide the Task Force such information as it m ay require
 for purposes of carrying out its functions.
-(b) M embers of the Task F oice shall serve without com pensation for their  
-work on the Task Force, but m ay be allowed travel expenses, including per  
+(b) M embers of the Task F oice shall serve without com pensation for their
+work on the Task Force, but m ay be allowed travel expenses, including per
 diem in lieu of subsistence, as authorized by law  for persons serving intermit­
-tently in the Government service (5 U.S.C. 5701-5707), to the extent funds are  
+tently in the Government service (5 U.S.C. 5701-5707), to the extent funds are
 available therefor.
-(c) The Secretary of Agriculture shall, to the extent permitted by law  and  
+(c) The Secretary of Agriculture shall, to the extent permitted by law  and
 subject to the availability of funds, provide the Task Force with such adminis­
 trative services, facilities, staff and other support services as m ay be neces­
 sary for the effective perform ance of its functions.
 
 === PDF page 10 of 152 ===
 40872 Federal Register /  Vol. 48, No. 177 /  Monday, September 1 2,1983 /  Presidential Documents
-[FR Doc. 83-24955  
-Filed 9-9-83; 10:45 am]  
+[FR Doc. 83-24955
+Filed 9-9-83; 10:45 am]
 Billing code 3195-01-M
-Sec. 4. G eneral, (a) Notwithstanding any other Executive Order, the functions  
-of the President under the Federal Advisory Committee A ct, as amended,  
-which are applicable to the Task Force, except that o£ reporting to the  
-Congress, shall be performed by the Secretary of Agriculture in accordance  
-with guidelines and procedures established by the Adm inistrator of General  
+Sec. 4. G eneral, (a) Notwithstanding any other Executive Order, the functions
+of the President under the Federal Advisory Committee A ct, as amended,
+which are applicable to the Task Force, except that o£ reporting to the
+Congress, shall be performed by the Secretary of Agriculture in accordance
+with guidelines and procedures established by the Adm inistrator of General
 Services.
-(b) The Task Force shall, unless sooner extended, terminate thirty days after  
-submission of its report to the President, but in no event later than January 31,  
+(b) The Task Force shall, unless sooner extended, terminate thirty days after
+submission of its report to the President, but in no event later than January 31,
 1984.
-Editorial Note: For the President’s announcement of Sept. 8, 1983, of his intention to appoint the  
-membership of the Task Force, see the W eekly Com pilation o f P resid en tia l D ocum ents (vol. 19,  
+Editorial Note: For the President’s announcement of Sept. 8, 1983, of his intention to appoint the
+membership of the Task Force, see the W eekly Com pilation o f P resid en tia l D ocum ents (vol. 19,
 no. 36).
-TH E W H ITE HOUSE, 
+TH E W H ITE HOUSE,
 S eptem ber 8, 1983.
 
 ```
@@ -5865,17 +5865,17 @@ Federal Register /  Vol. 58, No. 1 /  Monday, January 4 ,1 9 9 3  /  Presidentia
 Presidential Documents
 Executive O rder 1 2 8 2 7  o f D ecem ber 3 0 y  1 9 9 2
 A m endm ent to Execu tive O rd er No. 1 2 7 9 2
-By the authority vested in m e as President by the Constitution and the  
+By the authority vested in m e as President by the Constitution and the
 laws of the United States of A m erica, including the Federal Advisory Com m it­
-tee A ct, as am ended (5 U.S.C. App. 2), and in order to extend the reporting  
-period of the National Com m ission on A m erica’s Urban Fam ilies, it is hereby  
-ordered that section 2(b) of Executive Order No. 12792 is am ended by  
-deleting the date “December 31, 1 9 9 2 “ and inserting in lieu thereof the  
+tee A ct, as am ended (5 U.S.C. App. 2), and in order to extend the reporting
+period of the National Com m ission on A m erica’s Urban Fam ilies, it is hereby
+ordered that section 2(b) of Executive Order No. 12792 is am ended by
+deleting the date “December 31, 1 9 9 2 “ and inserting in lieu thereof the
 date “January 2 0 ,1 9 9 3 “.
-IFR Doc. 92-31946 
-Filed 12-30-92; 4:51 pm] 
+IFR Doc. 92-31946
+Filed 12-30-92; 4:51 pm]
 Billing code 3195-01-M
-THE WHITE HOUSE, 
+THE WHITE HOUSE,
 D ecem ber 30, 1992.
 
 ```
@@ -5956,22 +5956,22 @@ THE PRESIDENT 7979
 EXECUTIVE ORDER 11708
 Placing Certain Positions in Levels I V  and V  o f the Executive
 Schedule
-By virtue of the authority vested in me by section 5317 of title 5 of 
+By virtue of the authority vested in me by section 5317 of title 5 of
 the United States Code, as amended, it is ordered as follows:
-Section 1. The following offices and positions are placed in level IV 
+Section 1. The following offices and positions are placed in level IV
 of the Executive Schedule:
-(1) Administrator, Social and Rehabilitation Service, Department of 
+(1) Administrator, Social and Rehabilitation Service, Department of
 Health, Education, and Welfare.
-(2) Administrator, National Institutes of Health, Department of 
+(2) Administrator, National Institutes of Health, Department of
 Health, Education, and Welfare.
 (3) Administrator, Health Services and Mental Health Administra­
 tion, Department of Health, Education, and Welfare.
-(4) Special Assistant to the Secretary (Congressional Relations), 
+(4) Special Assistant to the Secretary (Congressional Relations),
 Treasury Department.
 (5) Director, United States Secret Service, Treasury Department.
-(6) Director, Office for Drug Abuse Law Enforcement, Department 
+(6) Director, Office for Drug Abuse Law Enforcement, Department
 of Justice.
-(7) Director, Office of National Narcotics Intelligence, Department 
+(7) Director, Office of National Narcotics Intelligence, Department
 of Justice.
 (8) Associate Director, Office of Management and Budget, Execu­
 tive Office of the President.
@@ -5984,13 +5984,13 @@ ing, Department of Defense.
 (12)  Deputy Under Secretary for International Labor Affairs, De­
 partment of Labor.
 (13)  Counselor to the Secretary of Labor, Department of Labor.
-(14)  Assistant to the Secretary for Policy Development, Department 
+(14)  Assistant to the Secretary for Policy Development, Department
 of Commerce.
-Sec. 2. The following offices and positions are continued in level V  
+Sec. 2. The following offices and positions are continued in level V
 of the Executive Schedule:
-(1) Principal Deputy Assistant Secretary of Defense (Comptroller), 
+(1) Principal Deputy Assistant Secretary of Defense (Comptroller),
 Department of Defense.
-(2) Deputy Assistant Secretary of Defense for Reserve Affairs, 
+(2) Deputy Assistant Secretary of Defense for Reserve Affairs,
 Department of Defense.
 (3) Assistant Secretary, Comptroller, Department of Health, Edu­
 cation, and Welfare.
@@ -5999,18 +5999,18 @@ FEDERAL REGISTER, V O L . 38, N O . 58— TUESDAY, MARCH 27, 1973
 
 === PDF page 12 of 72 ===
 7980 THE PRESIDENT
-(4) Deputy Commissioner of Social Security, Department of Health, 
+(4) Deputy Commissioner of Social Security, Department of Health,
 Education, and Welfare.
-(5) Commissioner on Aging, Department of Health, Education, 
+(5) Commissioner on Aging, Department of Health, Education,
 and Welfare.
 (6) Deputy Director, United States Secret Service, Treasury Depart­
 ment.
-(7) Commissioner, Property Management and Disposal Service, 
+(7) Commissioner, Property Management and Disposal Service,
 General Services Administration.
-(8) Deputy Assistant Secretary for Model Cities, Department of 
+(8) Deputy Assistant Secretary for Model Cities, Department of
 Housing and Urban Development.
-Sec. 3. Except with respect to the positions enumerated in section 2 
-o f this order, Executive Order No. 11248 of October 10, 1965, as 
+Sec. 3. Except with respect to the positions enumerated in section 2
+o f this order, Executive Order No. 11248 of October 10, 1965, as
 amended, is hereby revoked.
 T h e W h ite H o u se,
 March 23, 1973
@@ -6040,64 +6040,64 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 
 === PDF page 183 of 192 ===
 49835
-Federal Register 
+Federal Register
 Vol. 56. No. 190
 Presidential Documents
 Tuesday. October 1. 1991
 Title 3— Executive Order 12774 o f Septem ber 27, 1991
 The President Continuance of Certain Federal Advisory Committees
-By the authority vested in me as President by the Constitution and the laws of 
-the United States of America, and in accordance with the provisions of the 
-Federal Advisory Committee Act, as amended (5 U.S.C. App.), it is hereby 
+By the authority vested in me as President by the Constitution and the laws of
+the United States of America, and in accordance with the provisions of the
+Federal Advisory Committee Act, as amended (5 U.S.C. App.), it is hereby
 ordered as follows:
-Section 1. Each advisory committee listed below is continued until September 
+Section 1. Each advisory committee listed below is continued until September
 30,1993.
-(a) Committee for the Preservation of the White House; Executive Order No. 
+(a) Committee for the Preservation of the White House; Executive Order No.
 11145, as amended (Department of the Interior).
-(b) Federal Advisory Council on Occupational Safety and Health; Executive 
+(b) Federal Advisory Council on Occupational Safety and Health; Executive
 Order No. 12196, as amended (Department of Labor).
-(c) President’s Commission on White House Fellowships; Executive Order 
+(c) President’s Commission on White House Fellowships; Executive Order
 No. 11183, as amended (Office of Personnel Management).
-(d) President’s Committee on the Arts and the Humanities; Executive Order 
+(d) President’s Committee on the Arts and the Humanities; Executive Order
 No. 12367, as amended (National Endowment for the Arts).
 (e) President’s Committee on the International Labor Organization; Execu­
 tive Order No. 12216 (Department of Labor).
-(f) President’s Committee on Mental Retardation; Executive Order No. 11776 
+(f) President’s Committee on Mental Retardation; Executive Order No. 11776
 (Department of Health and Human Services).
-(g) President’s Committee on the National Medal of Science; Executive 
+(g) President’s Committee on the National Medal of Science; Executive
 Order No. 11287, as amended (National Science Foundation).
-(h) President’s Council on Physical Fitness and Sports; Executive Order No. 
+(h) President’s Council on Physical Fitness and Sports; Executive Order No.
 12345, as amended (Department of Health and Human Services).
-(i) President’s Export Council; Executive Order No. 12131, as amended 
+(i) President’s Export Council; Executive Order No. 12131, as amended
 (Department of Commerce).
-(j) President’s National Security Telecommunications Advisory Committee; 
+(j) President’s National Security Telecommunications Advisory Committee;
 Executive Order No. 12382, as amended (Department of Defense).
-Sec. 2. Notwithstanding the provisions of any other Executive order, the 
-functions of the President under the Federal Advisory Committee Act that are 
-applicable to the committees listed in Section 1 of this order, except that of 
-reporting annually to the Congress, shall be performed by the head of the 
-department or agency designated after each committee, in accordance with 
-the guidelines and procedures established by the Administrator of General 
+Sec. 2. Notwithstanding the provisions of any other Executive order, the
+functions of the President under the Federal Advisory Committee Act that are
+applicable to the committees listed in Section 1 of this order, except that of
+reporting annually to the Congress, shall be performed by the head of the
+department or agency designated after each committee, in accordance with
+the guidelines and procedures established by the Administrator of General
 Services.
-Sec. 3. The following Executive orders or sections thereof, which established 
-committees that have been terminated or whose work has been completed, are 
+Sec. 3. The following Executive orders or sections thereof, which established
+committees that have been terminated or whose work has been completed, are
 revoked:
-(a) Section 3-401 of Executive Order No. 12661, as amended by Executive 
+(a) Section 3-401 of Executive Order No. 12661, as amended by Executive
 Order No. 12716, establishing the National Commission on Superconductivity;
 
 === PDF page 184 of 192 ===
 49836 Federal Register /  Vol. 56, No. 190 /  Tuesday, O ctober 1, 1991 /  Presidential Docum ents
-(b) Executive Order No. 12686, as am ended by Executive Order No. 12705,  
-establishing the President’s Com m ission on A viation Security and Terrorism;  
+(b) Executive Order No. 12686, as am ended by Executive Order No. 12705,
+establishing the President’s Com m ission on A viation Security and Terrorism;
 and
-(c) Executive Order No. 12658, as am ended by Executive Order No. 12665,  
+(c) Executive Order No. 12658, as am ended by Executive Order No. 12665,
 establishing the President’s Com m ission on Catastrophic Nuclear A ccidents.
 Sec. 4. Executive Order No. 12692 is superseded.
 Sec. 5. This order shall be effective Septem ber 30,1991.
-[FR D oc. 91-23839 
-F ile d  9-30-91; 12:57 pm ] 
+[FR D oc. 91-23839
+F ile d  9-30-91; 12:57 pm ]
 B illin g  code 3195-01-M
-THE WHITE HOUSE,  
+THE WHITE HOUSE,
 S e p tem b er 27, 1991.
 
 ```
@@ -6121,7 +6121,7 @@ ruary 28, 1997’’ in lieu thereof.
 Text hash dde99ded0f277b921b43c3abd8998e023d144c30a5cf5fff4abeabbcfe743506; absolute characters 1710–1772; files: jobs/clause-drafts/output/texts/cd-job-fr-originals-12010-8b0809b649.txt
 
 ```text
-Executive Order No. 11941 of October 1, 1976, is  
+Executive Order No. 11941 of October 1, 1976, is
 superseded.
 ```
 
@@ -6139,15 +6139,15 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 === PDF page 199 of 204 ===
 THE PRESIDENT 36307
 EXECUTIVE ORDER 11812
-A djusting the R ates of B asic P a y , B asic Allow ance for Subsistence and 
+A djusting the R ates of B asic P a y , B asic Allow ance for Subsistence and
 B asic A llow ance fo r Q u arters for M em bers of the U niform ed Services
-By v i r t u e  o f th e  a u t h o r it y  v e s t e d  i n  me by th e  la w s o f  th e  U n ite d 
-S ta te s, in c lu d in g  th e  F e d e r a l Pay C o m p a ra b ility  A c t  o f 1 9 7 0 , and s e c t io n 
-1009 o f t i t l e  37 o f th e  U n ite d  S t a t e s  C o d e, and a s  P r e s id e n t  o f  th e  U n ite d 
-States and Commander i n  C h ie f  o f th e  Armed F o r c e s  o f  th e  U n ite d  S t a t e s , 
+By v i r t u e  o f th e  a u t h o r it y  v e s t e d  i n  me by th e  la w s o f  th e  U n ite d
+S ta te s, in c lu d in g  th e  F e d e r a l Pay C o m p a ra b ility  A c t  o f 1 9 7 0 , and s e c t io n
+1009 o f t i t l e  37 o f th e  U n ite d  S t a t e s  C o d e, and a s  P r e s id e n t  o f  th e  U n ite d
+States and Commander i n  C h ie f  o f th e  Armed F o r c e s  o f  th e  U n ite d  S t a t e s ,
 i t  i s  h ereb y o rd e re d  a s f o llo w s :
-SECTION 1 . The r a t e s  o f  m o n thly b a s ic  p ay  f o r  members o f  th e  u n ifo rm ed 
-se rv ic e s w it h in  e a ch  p ay g rad e a re  a d ju s t e d  upw ards a s  s e t  f o r t h  i n  th e 
+SECTION 1 . The r a t e s  o f  m o n thly b a s ic  p ay  f o r  members o f  th e  u n ifo rm ed
+se rv ic e s w it h in  e a ch  p ay g rad e a re  a d ju s t e d  upw ards a s  s e t  f o r t h  i n  th e
 follow ing t a b l e s :
 Com m issioned O f f i c e r s
 Pay Y e a rs  o f  • :  s e r v ic ecomputed u n d er s e c t io n  205
@@ -6172,7 +6172,7 @@ Grade O ver 6 O ver 8 O ver 10 O ver 12
 0-6 1 ,5 6 5 .7 0 1 ,5 6 5 .7 0 1 ,5 6 5 .7 0 1 ,5 6 5 .7 0
 0-5 1 ,3 4 3 .1 0 1 ,3 4 3 .1 0 1 ,3 8 4 .2 0 1 ,4 5 8 .0 0
 0-4 1 ,1 9 2 .. 80 1 ,2 4 5 .9 0 1 ,3 3 0 .5 0 1 ,4 0 5 .8 0
-0-32 
+0-32
 «  2 1 ,1 6 1 .0 0 1 ,2 0 3 .0 0 1 ,2 6 7 .5 0 1 ,3 3 0 .5 00-2 1 ,0 1 1 .6 0 1 ,0 1 1 .6 0 1 ,0 1 1 .6 0 _ 1 ,0 1 1 .6 0
 0-l¿ 7 9 8 .3 0 7 9 8 .3 0 7 9 3 .3 0 7 9 8 .3 0
 FEDERAL REGISTER, VOL 39, NO. 196— TUESDAY, OCTOBER 8, 1974
@@ -6207,28 +6207,28 @@ Grade Oyer 22 Over 26 Over 30
 0 -2 2 1 ,0 1 1 .6 0 1 ,0 1 1 .6 0 1 ,0 1 1 .6 0
 o - i 2 798.30 798.30 798.30
 1 W hile s e ry in g  as Chairm an o f the J o in t C h ie f s  o f
-o f th e Army* C h ie f o f N ayal O p e ra tio n s, C h ie f o f S t a f f  o f the A ir Force, 
-o r Commandant o f th e M arine C o rp s, b a s ic  pay f o r  t h i s  grade i s  $4,195.80* 
-re g a r d le s s  o f cu m u lative y e a rs  of s e r v ic e  computed under se ctio n  205 of 
+o f th e Army* C h ie f o f N ayal O p e ra tio n s, C h ie f o f S t a f f  o f the A ir Force,
+o r Commandant o f th e M arine C o rp s, b a s ic  pay f o r  t h i s  grade i s  $4,195.80*
+re g a r d le s s  o f cu m u lative y e a rs  of s e r v ic e  computed under se ctio n  205 of
 t i t l e  37 o f th e U n ite d  S ta te s  Code.
-2 Does n o t ap p ly to  commissioned o f f ic e r s  who have been c re d ite d  with over  
+2 Does n o t ap p ly to  commissioned o f f ic e r s  who have been c re d ite d  with over
 4 y e a r s ’ a c t iv e  s e r v ic e  as e n lis t e d  members.
-* The r a t e  o f b a s ic  pay fo r  m ilit a r y  p e rso n n e l a t  th e se  ra t e s  i s  lim ited 
-by s e c t io n  5308 o f t i t l e  5 o f th e U n ited  State's Code, as added by the  
-F e d e ra l Pay C o m p a ra b ility  A ct o f 1970, to  th e r a t e  f o r  le v e l V of the 
+* The r a t e  o f b a s ic  pay fo r  m ilit a r y  p e rso n n e l a t  th e se  ra t e s  i s  lim ited
+by s e c t io n  5308 o f t i t l e  5 o f th e U n ited  State's Code, as added by the
+F e d e ra l Pay C o m p a ra b ility  A ct o f 1970, to  th e r a t e  f o r  le v e l V of the
 E x e c u tiv e  S ch ed u le.
 Commissioned o f f ic e r s  who have been c re d ite d  w ith  over 4 y e a rs'
 ,______________________a c t iy e  s e r v ic e  as e n lis t e d  members____________________
 Pay Y e a ts o f s e r v ic e  computed under s e c t io n  205
 Grade Oyer 4 Oyer 6 Oyer 8 Over 10 Over 12
-Q-3 $ 1 ,1 0 8 .2 0  $ 1 ,1 6 1 .0 0  $ 1 ,2 0 3 .0 0  $ 1 ,2 6 7 .5 0  $1,330.50  
-0-2 990.90 1 ,0 1 1 .6 0  1 ,0 4 3 .7 0  1 ,0 9 7 .7 0  1,140.30  
+Q-3 $ 1 ,1 0 8 .2 0  $ 1 ,1 6 1 .0 0  $ 1 ,2 0 3 .0 0  $ 1 ,2 6 7 .5 0  $1,330.50
+0-2 990.90 1 ,0 1 1 .6 0  1 ,0 4 3 .7 0  1 ,0 9 7 .7 0  1,140.30
 0-1 798.30 852.30 884.10 915.90 948.00
 FEDERAL REGISTER, VOL 39, NO. 196— TUESDAY, OCTOBER 8, 1974
 
 === PDF page 201 of 204 ===
 THE PRESIDENT 36309
-Commissioned officers who have been credited with over 4 years' 
+Commissioned officers who have been credited with over 4 years'
 active service as enlisted members
 Pay Years of :service computed under section 205
 Grade Over 14 Over 16 Over 18 Over 20 Over 22
@@ -6245,9 +6245,9 @@ Grade Over 26 Over 30
 .......................warrant Officers
 Pay '  Years of service computed under section 205
 Grade 2 or less Over 2 Over 3 Over 4 Over 6
-W-4 $853.80 $915.90 $915.90 $936.90 $979.80  
-W-3 776.40 842.10 842.10 852.30 862.50  
-W-2 679.80 735.00 735.00 756.60 798.30  
+W-4 $853.80 $915.90 $915.90 $936.90 $979.80
+W-3 776.40 842.10 842.10 852.30 862.50
+W-2 679.80 735.00 735.00 756.60 798.30
 W-l ... 566.40 649.50 649.50 703.50 735.00
 Warrant Officers
 Pay Years of : service computed under section 205
@@ -6308,23 +6308,23 @@ E-4 518.70 518.70 518.70 518.70 518.70
 E-3 454.20 454.20 454.20 454.20 454.20
 E-2 383.40 383.40 383.40 383.40 383.40
 E - l 344.10 344.10 344.10 344,. 10 ; 344.10
-1 W hile se rv in g  as S erg ean t M ajor o f the Army, M aster C h ie f P e tty  O f f ic e r  
-o f the Navy o r C o a st G uard, C h ie f M aster Sergeant o f the A ir  F o rc e , o r  
-Serg eant M ajor o f th e M arine C o r p s , b a s ic  pay fo r  t h i s  grade i s  $ 1 ,51 8.6 0 
-r e g a rd le s s  o f cu m u lative y e a rs o f s e r v ic e  computed under s e c t io n  205 o f 
+1 W hile se rv in g  as S erg ean t M ajor o f the Army, M aster C h ie f P e tty  O f f ic e r
+o f the Navy o r C o a st G uard, C h ie f M aster Sergeant o f the A ir  F o rc e , o r
+Serg eant M ajor o f th e M arine C o r p s , b a s ic  pay fo r  t h i s  grade i s  $ 1 ,51 8.6 0
+r e g a rd le s s  o f cu m u lative y e a rs o f s e r v ic e  computed under s e c t io n  205 o f
 t i t l e  37 o f th e U n ite d  S ta te s  Code,
-SEC. 2 . The r a t e s  o f b a s ic  allo w an ce f o r  s u b s is te n c e  a u th o rize d  members 
-o f the uniform ed s e r v ic e s  a re  a d ju ste d  upwards as s e t  fo r t h  in  the 
+SEC. 2 . The r a t e s  o f b a s ic  allo w an ce f o r  s u b s is te n c e  a u th o rize d  members
+o f the uniform ed s e r v ic e s  a re  a d ju ste d  upwards as s e t  fo r t h  in  the
 fo llo w in g  t a b le :
-foil, »ir: B a s ic  A llow ance fo r  S u b siste n ce  R ates 
+foil, »ir: B a s ic  A llow ance fo r  S u b siste n ce  R ates
 O f f ic e r s : $50.52 p er month,
 Enlisted Members:
 When on leaye or authorized
 to  mess s e p a r a t e ly : $ 2.41  p e r day
 When r a t io n s  in  k in d  a re
 not a v a ila b le : $ 2.71  p e r day
-When a ssig n e d  to  duty under  
-emergency co n d itio n s where  
+When a ssig n e d  to  duty under
+emergency co n d itio n s where
 no m essing f a c i l i t i e s  o f the
 U n ite d  S ta te s  a re  a v a ila b le : $3.61 p e r day
 FEDERAL REGISTER, VOL 39, NO. 196— TUESDAY, OCTOBER 8, 1974
@@ -6332,8 +6332,8 @@ FEDERAL REGISTER, VOL 39, NO. 196— TUESDAY, OCTOBER 8, 1974
 === PDF page 203 of 204 ===
 THE PRESIDENT 36311
 5
-¡E C , 3. The r a t e s  o f m onthly b a s ic  a llo w a n c e  f o r  q u a r t e r s  a u th o r iz e d 
-e m b e rs of the u n ifo rm ed  s e r v ic e s  by p ay g rad e a re  a d ju s te d  upwards a s 
+¡E C , 3. The r a t e s  o f m onthly b a s ic  a llo w a n c e  f o r  q u a r t e r s  a u th o r iz e d
+e m b e rs of the u n ifo rm ed  s e r v ic e s  by p ay g rad e a re  a d ju s te d  upwards a s
 e t forth in  th e fo llo w in g  t a b le :
 M onthly B a s ic  A llo w a n ce  f o r  Q u a rte rsR a te s
 Pay W ith o u t W ith
@@ -6364,9 +6364,9 @@ E -4 8 6 .1 0 1 2 8 .1 0
 E-3 7 6 .2 0 1 1 0 .7 0
 E -2 6 7 .5 0 1 1 0 .7 0
 E - l 6 3 .3 0 1 1 0 .7 0
-S E C  Ao f  thi N o  W ith s ta n d in g  th e  r a t e s  o f b a s ic  p ay e s t a b lis h e d  by s e c t io n  1 
-titi S  o r< ^ e r ' no r a t e  o f b a s ic  p ay  may be p a id  under s e c t io n  5308 o f 
-o r  ,6  5  We U n ite d  S t a t e s  Co d e, w h ich  i s  i n  e x c e s s  o f th e  r a t e  now 
+S E C  Ao f  thi N o  W ith s ta n d in g  th e  r a t e s  o f b a s ic  p ay e s t a b lis h e d  by s e c t io n  1
+titi S  o r< ^ e r ' no r a t e  o f b a s ic  p ay  may be p a id  under s e c t io n  5308 o f
+o r  ,6  5  We U n ite d  S t a t e s  Co d e, w h ich  i s  i n  e x c e s s  o f th e  r a t e  now
 ereafter p ro y id e d  f o r  l e y e l  V o f th e  E x e c u t iv e  S c h e d u le .
 FEDERAL REGISTER, VO L 39, NO. 196— TUESDAY, OCTOBER 8, 1974
 
@@ -6477,8 +6477,8 @@ Location: 54 FR 32629, PDF pages 9-10 (confidence high)
 Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.
 
 === PDF page 9 of 172 ===
-Federal Register 
-Vol. 54. No. 152 
+Federal Register
+Vol. 54. No. 152
 Wednesday, August 9, 1989
 Presidential Documents
 32629
@@ -6486,68 +6486,68 @@ Title 3—
 The President
 Executive Order 12686 of August 4, 1989
 President’s Commission on Aviation Security and Terrorism
-?T y j  *Uihorit?  veste<? in me as President by the Constitution and laws of the  
-United States of America, and in order to establish a Commission on Aviation  
+?T y j  *Uihorit?  veste<? in me as President by the Constitution and laws of the
+United States of America, and in order to establish a Commission on Aviation
 Security and Terrorism, it is hereby ordered as follows:
-Section 1. E s ta b lis h m e n t, (a) There is established the President’s Commission  
-on Aviation Security and Terrorism to review and evaluate policy options in  
-connection with aviation security, with particular reference to the destruction  
-on December 21, 1988, of Pan American World A irways Flight 103. The 
-Commission shall consist of seven members appointed by the President. Two  
-members shall be Senators, and two shall be Members of the House of  
-Representatives; they shall represent both parties equally. The President shall  
-consult with the Majority and Republican Leaders of the Senate and the  
-Speaker and Minority Leader of the House of Representatives in making  
+Section 1. E s ta b lis h m e n t, (a) There is established the President’s Commission
+on Aviation Security and Terrorism to review and evaluate policy options in
+connection with aviation security, with particular reference to the destruction
+on December 21, 1988, of Pan American World A irways Flight 103. The
+Commission shall consist of seven members appointed by the President. Two
+members shall be Senators, and two shall be Members of the House of
+Representatives; they shall represent both parties equally. The President shall
+consult with the Majority and Republican Leaders of the Senate and the
+Speaker and Minority Leader of the House of Representatives in making
 appointments from the Senate and House of Representatives, respectively.
-(b) The President shall designate a Chairman from among the members of the  
+(b) The President shall designate a Chairman from among the members of the
 Commission.
-Sec. 2. F u n c tio n s , (a) The Commission shall conduct a comprehensive study  
-and appraisal of practices and policy options with respect to preventing  
-terrorist acts involving aviation. In conducting this effort, the Commission  
-shall evaluate the adequacy of existing procedures for aviation security,  
-compliance therewith, and enforcement thereof. The Commission also shall  
-review options for handling terrorist threats, including prior notification to the  
-public. Further, the Commission shall investigate practices, policies, and laws  
+Sec. 2. F u n c tio n s , (a) The Commission shall conduct a comprehensive study
+and appraisal of practices and policy options with respect to preventing
+terrorist acts involving aviation. In conducting this effort, the Commission
+shall evaluate the adequacy of existing procedures for aviation security,
+compliance therewith, and enforcement thereof. The Commission also shall
+review options for handling terrorist threats, including prior notification to the
+public. Further, the Commission shall investigate practices, policies, and laws
 with respect to the treatment of families of victims of terrorist acts.
-(b) Within 6 months of the date of this order, the Commission shall submit a  
-report to the President, which shall be classified if necessary, containing  
-findings and recommendations. If the Commission’s report is classified, an  
+(b) Within 6 months of the date of this order, the Commission shall submit a
+report to the President, which shall be classified if necessary, containing
+findings and recommendations. If the Commission’s report is classified, an
 unclassified version shall be prepared for public distribution.
-Sec. 3. A d m in is tra tio n , (a) To the extent permitted by law and fully protecting  
-intelligence sources and methods and the ongoing investigations into the  
-destruction of Pan Anerican World Airways Flight 103 of December 21,1988,  
+Sec. 3. A d m in is tra tio n , (a) To the extent permitted by law and fully protecting
+intelligence sources and methods and the ongoing investigations into the
+destruction of Pan Anerican World Airways Flight 103 of December 21,1988,
 the beads of executive departments, agencies, and independent instrumental­
-ities shall provide the Commission, upon request, with such information as it  
+ities shall provide the Commission, upon request, with such information as it
 may require for purposes of carrying out its functions.
-{b) Members of the Commission appointed from among private citizens may  
-receive compensation for their work on the Commission at the daily rate  
-specified for GS-18 of the General Schedule. While engaged in the work of the  
-Commission, members appointed from among private citizens of the United  
+{b) Members of the Commission appointed from among private citizens may
+receive compensation for their work on the Commission at the daily rate
+specified for GS-18 of the General Schedule. While engaged in the work of the
+Commission, members appointed from among private citizens of the United
 States may be allowed travel expenses, including per diem in lieu of subsist­
 ence, as authorized by law for persons serving intermittently in the Govern­
 ment service (5 U.S.C. 5701-5707).
 (c) To the extent permitted by law and subject to the availability of appropria­
-tions, the Department of Transportation shall, among other Administrative  
+tions, the Department of Transportation shall, among other Administrative
 tunchons, provide the Commission with administrative services, funds, facili­
-ties, staff, and other support services necessary for the performance of its  
-unctions and the Secretary of Transportation shall perform the functions of  
+ties, staff, and other support services necessary for the performance of its
+unctions and the Secretary of Transportation shall perform the functions of
 ¡Ye ^ re81(^ ent un(ier the Federal Advisory Committee Act, as amended (5
 .o.C. App. 2), except that of reporting to the Congress, in accordance with the
 
 === PDF page 10 of 172 ===
 3 2 6 3 0  Federal Register / Vol. 54, No. 152 / Wednesday, August 9, 1989 / Presidential Documents
-[FR Doc. 89-18760 
-Filed 8-7-89; 2:50 pm] 
+[FR Doc. 89-18760
+Filed 8-7-89; 2:50 pm]
 Billing code 3195-01-M
 guidelines and procedures established by the Administrator of General Serv­
 ices.
-(d) The Commission shall adhere to the requirements set forth in the Federal  
-Advisory Committee Act, as amended. All executive branch officials assigned  
+(d) The Commission shall adhere to the requirements set forth in the Federal
+Advisory Committee Act, as amended. All executive branch officials assigned
 duties by the Federal Advisory Committee Act shall comply with its require­
 ments with respect to this Commission.
-Sec. 4. G eneral Provision.  The Commission shall terminate 30 days after  
+Sec. 4. G eneral Provision.  The Commission shall terminate 30 days after
 submitting its report to the President.
-THE WHITE HOUSE,  
+THE WHITE HOUSE,
 A ugust 4, 1989.
 Editorial note: For a White House statement, dated Aug. 4, on the establishment of the Commis­
 sion, see the W e e k ly  C om p ilation o f  P r esid e n tia l D ocum ents (vol. 25, no. 31).
@@ -6568,30 +6568,30 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 === PDF page 12 of 192 ===
 10246 THE PRESIDENT
 EXECUTIVE ORDER 11715
-Am ending Executive O rder N o . 1 1 7 0 8 , Placing Certain Positions In 
+Am ending Executive O rder N o . 1 1 7 0 8 , Placing Certain Positions In
 Levels I V  and V  of the Executive Schedule
-By virtue of the authority vested in me by section 5317 of title 5 of 
-the United States Code, as amended, Executive Order No. 11708, dated 
+By virtue of the authority vested in me by section 5317 of title 5 of
+the United States Code, as amended, Executive Order No. 11708, dated
 March 23, 1973, is amended as follows :
-1. Section 1  of that order, placing certain positions in level IV  of the 
+1. Section 1  of that order, placing certain positions in level IV  of the
 Executive Schedule, is amended—•
-(a) by deleting “ (8) Associate Director, Office of Management and 
-Budget, Executive Office of the President.”  and inserting in lieu thereof 
+(a) by deleting “ (8) Associate Director, Office of Management and
+Budget, Executive Office of the President.”  and inserting in lieu thereof
 “ (8) Associate Directors, Office of Management and Budget, Execu­
 tive Office of the President (4).”,
-(b)  by deleting “ (9) Assistant Director, Office of Management and 
-Budget, Executive Office of the President.” and inserting in lieu thereof 
-“ (9) Deputy Under Secretary for Legislative Affairs, Department of 
+(b)  by deleting “ (9) Assistant Director, Office of Management and
+Budget, Executive Office of the President.” and inserting in lieu thereof
+“ (9) Deputy Under Secretary for Legislative Affairs, Department of
 Labor.” ,
 (c) by deleting “ (10) Assistant to the Secretary of Defense, Legis­
-lative Affairs, Department of Defense.” and inserting in lieu thereof 
-“ (10) Director of Program Analysis and Evaluation, Department of 
+lative Affairs, Department of Defense.” and inserting in lieu thereof
+“ (10) Director of Program Analysis and Evaluation, Department of
 Defense.” , and
-(d) by adding at the end thereof “ (15) Deputy Under Secretary 
+(d) by adding at the end thereof “ (15) Deputy Under Secretary
 for Legislative Affairs, Department of Commerce.” .
-2. Section 2 of that order, placing certain positions in level V  of the 
-Executive Schedule, is amended by deleting “  (8 ) Deputy Assistant 
-Secretary for Model Cities, Department of Housing and Urban 
+2. Section 2 of that order, placing certain positions in level V  of the
+Executive Schedule, is amended by deleting “  (8 ) Deputy Assistant
+Secretary for Model Cities, Department of Housing and Urban
 Development.”
 T h e W h ite  H o u se,
 April 24,1973.
@@ -6628,51 +6628,51 @@ Location: 44 FR 51965, PDF pages 9-9 (confidence high)
 Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.
 
 === PDF page 9 of 208 ===
-Federal Register 
-V oi. 44, No. 174 
+Federal Register
+V oi. 44, No. 174
 Thursday, September 6, 1979
 Presidential Documents
 51965
 Title 3— Executive Order 12154 of September 4, 1979
 The President Levels IV and V of the Executive Schedule
-1 F R  D oc. 79-27999 
-F ile d  9-4-79; 5:08 pm ] 
+1 F R  D oc. 79-27999
+F ile d  9-4-79; 5:08 pm ]
 B illin g  code 3195-01-M
-By the authority vested in me as President by Section 5317 of Title 5 of the  
+By the authority vested in me as President by Section 5317 of Title 5 of the
 United States Code it is hereby ordered as follows:
 1-1. E x e c u tiv e  S c h e d u le  P o sitio n s.
 1-101. The following positions are placed in level IV of the Executive Sched­
 ule:
 (a) Senior Adviser to the Secretary, Department of State.
-(b) Deputy Under Secretary for International Labor Affairs, Department of  
+(b) Deputy Under Secretary for International Labor Affairs, Department of
 Labor.
-(c) Administrator, Alcohol, Drug Abuse and Mental Health Administration,  
+(c) Administrator, Alcohol, Drug Abuse and Mental Health Administration,
 Department of Health, Education, and Welfare.
-(d) Special Assistant to the Special Representative for Trade Negotiations,  
+(d) Special Assistant to the Special Representative for Trade Negotiations,
 Office of the Special Representative for Trade Negotiations.
-(e) Deputy Adviser for Labor-Management, Council *  on Wage and Price  
+(e) Deputy Adviser for Labor-Management, Council *  on Wage and Price
 Stability.
-(f) Deputy Adviser for Congressional Affairs, Council on Wage and Price  
+(f) Deputy Adviser for Congressional Affairs, Council on Wage and Price
 Stability.
-(g) Deputy Adviser for Government Operations, Council on Wage and Price  
+(g) Deputy Adviser for Government Operations, Council on Wage and Price
 Stability.
-(h) Deputy Adviser for Regulatory Policies, Council on Wage and Price  
+(h) Deputy Adviser for Regulatory Policies, Council on Wage and Price
 Stability.
 1-102. The following positions are placed in level V of the Executive Schedule:
-(a) Deputy Assistant Secretary of Defense for Reserve Affairs, Department of  
+(a) Deputy Assistant Secretary of Defense for Reserve Affairs, Department of
 Defense.
-(b) Executive Director, Pension Benefit Guaranty Corporation, Department of  
+(b) Executive Director, Pension Benefit Guaranty Corporation, Department of
 Labor.
-(c) Executive Assistant and Counselor to the Secretary of Labor, Department  
+(c) Executive Assistant and Counselor to the Secretary of Labor, Department
 of Labor.
-(d) Commissioner on Aging, Department of Health, Education, and Welfare.  
+(d) Commissioner on Aging, Department of Health, Education, and Welfare.
 1-2. G e n e ra l P ro visio n s.
-1-201. Nothing in this Order shall be deemed to terminate or otherwise affect  
-the appointment, or to require the reappointment, of any occupant of any  
-position listed in Section 1-1 of this Order who was the occupant of that  
+1-201. Nothing in this Order shall be deemed to terminate or otherwise affect
+the appointment, or to require the reappointment, of any occupant of any
+position listed in Section 1-1 of this Order who was the occupant of that
 position immediately prior to the issuance of this Order.
 1-202. Executive Order No. 12076, as amended, is hereby revoked.
-THE WHITE HOUSE,  
+THE WHITE HOUSE,
 S e p te m b e r  4, 1979.
 
 ```
@@ -6833,9 +6833,9 @@ VerDate 22-SEP-99 13:58 Oct 01, 1999 Jkt 183247 PO 00000 Frm 00003 Fmt 4790 Sfmt
 Text hash 4951e2fddbd59c62fb8ae21f16e3be491a942e17e1cdae31c115306868f7e79d; absolute characters 5962–6089; files: jobs/source-ladder/output/texts/queue_EO_12439_Date_of_the_first_meeting_and_date_the_President_s_Task_Force_on_Food_Assistance_EO_1_6a9880f299.txt
 
 ```text
-Wilson was 
-the president of Web Wilson Oil Tools, Inc., 
-until 1960, and thereafter he was active in 
+Wilson was
+the president of Web Wilson Oil Tools, Inc.,
+until 1960, and thereafter he was active in
 real estate development.
 ```
 
@@ -6898,87 +6898,87 @@ presidential docum ents
 Title 3—The President
 Executive Order 11973 •  February 17, 1977
 President’s Commission on Mental Health
-By virtue of the authority vested in me by the Constitution and statutes o f the  
+By virtue of the authority vested in me by the Constitution and statutes o f the
 U n ited States of Am erica, and as President o f the U nited States o f A m erica, in accord­
-ance with the provisions o f the Federal Advisory Com m ittee A ct (5  U .S .C . A p p . I ) , 
+ance with the provisions o f the Federal Advisory Com m ittee A ct (5  U .S .C . A p p . I ) ,
 it is hereby ordered as follow s : .
-Section 1. (a ) There is hereby established the President’ s Com m ission on M en tal 
-H ealth , hereinafter referred to. as the Com m ission, which shall be composed o f not  
+Section 1. (a ) There is hereby established the President’ s Com m ission on M en tal
+H ealth , hereinafter referred to. as the Com m ission, which shall be composed o f not
 m ore than twenty persons who shall be appointed by the President.
-(b> T h e President shall designate a Chairperson and a V ice Chairperson from  
+(b> T h e President shall designate a Chairperson and a V ice Chairperson from
 am ong the members.
-Sec. 2. (a ) T h e Com mission shall conduct such public hearings, inquiries, and  
-studies as m ay be necessary to identify the m ental health needs o f the N ation. In  
+Sec. 2. (a ) T h e Com mission shall conduct such public hearings, inquiries, and
+studies as m ay be necessary to identify the m ental health needs o f the N ation. In
 particular, the Com mission shall seek to identify :
-( 1 ) H ow  the m entally ill, em otionally disturbed, and m entally retarded are being 
-served, to what extent they are being underserved, and who is affected by such  
+( 1 ) H ow  the m entally ill, em otionally disturbed, and m entally retarded are being
+served, to what extent they are being underserved, and who is affected by such
 underservice.
-(2 ) T h e projected needs for dealing with em otional stress during the next  
+(2 ) T h e projected needs for dealing with em otional stress during the next
 tw enty-five years.
-(3 ) T h e various ways the President, the Congress, and the Federal Governm ent  
-m ay most efficiently support the treatm ent of the underserved m entally ill, em otionally 
+(3 ) T h e various ways the President, the Congress, and the Federal Governm ent
+m ay most efficiently support the treatm ent of the underserved m entally ill, em otionally
 disturbed, and m entally retarded.
-(4 ) V arious m ethods for coordinating a unified approach to all m ental health  
+(4 ) V arious m ethods for coordinating a unified approach to all m ental health
 and people-helping services.'
-(5 ) T h e types o f research the Federal Governm ent should support to further the 
+(5 ) T h e types o f research the Federal Governm ent should support to further the
 prevention and treatm ent of m ental illness and m ental retardation.
-(6 ) W h at role the various educational systems, volunteer agencies and other  
-people-helping institutions can perform  to m inim ize em otional disturbance in our  
+(6 ) W h at role the various educational systems, volunteer agencies and other
+people-helping institutions can perform  to m inim ize em otional disturbance in our
 country.
-(7 ) A s nearly as possible, what programs will cost, when the m oney should be  
-spent, and how  the financing should be divided am ong Federal, State and local  
+(7 ) A s nearly as possible, what programs will cost, when the m oney should be
+spent, and how  the financing should be divided am ong Federal, State and local
 governm ents, and the private sector.
-(b ) T h e Com mission shall submit a report to the President recom m ending how  
-the m ental health needs of the N ation can be m et and identifying the relative priority  
+(b ) T h e Com mission shall submit a report to the President recom m ending how
+the m ental health needs of the N ation can be m et and identifying the relative priority
 o f those needs.
-Sec. 3. T h e Com mission shall make a prelim inary report w ith recomm endations 
-to the President by Septem ber 1, 1977. A  final report w ith recom m endations and  
+Sec. 3. T h e Com mission shall make a prelim inary report w ith recomm endations
+to the President by Septem ber 1, 1977. A  final report w ith recom m endations and
 priorities shall be submitted to the President by A pril 1, 1978.
 FEDERAL REGISTER, V O L  42, N O . 36— W EDNESDAY, FEBRUARY 23, 197?
 
 === PDF page 16 of 152 ===
 10678 THE PRESIDENT
-Sec. 4. (a ) Thie Chairperson o f the Com m ission is authorized to establish such  
-advisory committees as m ay be deemed appropriate to carry out the purposes of this  
+Sec. 4. (a ) Thie Chairperson o f the Com m ission is authorized to establish such
+advisory committees as m ay be deemed appropriate to carry out the purposes of this
 O rder.
-(b ) T h e  Com m ission, and any advisory com m ittees established pursuant to this  
-O rder, shall hold such hearings and public meetings as the Chairperson m ay deem  
+(b ) T h e  Com m ission, and any advisory com m ittees established pursuant to this
+O rder, shall hold such hearings and public meetings as the Chairperson m ay deem
 necessary and as required by law .
 Sec. 5 . T h e Com m ission is authorized to request, at the direction of the Chair­
-person, from  any executive departm ent or agency, any inform ation deem ed necessary  
-to carry out its functions under this O rder. Each departm ent or agency shall, to the  
-extent perm itted by law , furnish inform ation and otherwise cooperate with the  
+person, from  any executive departm ent or agency, any inform ation deem ed necessary
+to carry out its functions under this O rder. Each departm ent or agency shall, to the
+extent perm itted by law , furnish inform ation and otherwise cooperate with the
 Com m ission in perform ing its functions under this O rder.
-Se c. 6 . T h e G eneral Services Adm inistration shall provide adm inistrative services 
+Se c. 6 . T h e G eneral Services Adm inistration shall provide adm inistrative services
 and facilities to the Com m ission on a reimbursable basis.
-Sec. 7. { a )  Each mem ber of the Com m ission and its advisory comm ittees and  
-staff w ho is not otherwise em ployed in the G overnm ent, m ay receive, to the extent  
-perm itted by law , com pensation for each day he or she is engaged upon the work of the 
+Sec. 7. { a )  Each mem ber of the Com m ission and its advisory comm ittees and
+staff w ho is not otherwise em ployed in the G overnm ent, m ay receive, to the extent
+perm itted by law , com pensation for each day he or she is engaged upon the work of the
 Com m ission at a rate not to exceed the m axim um  daily rate now or hereafter pre­
 scribed by law for G S -1 8  o f the G eneral Schedule, and m ay also receive travel ex­
-penses, including per diem  in lieu of subsistence, as authorized by law  (5  U .S .C . 5702 
+penses, including per diem  in lieu of subsistence, as authorized by law  (5  U .S .C . 5702
 and 5 7 0 3 ) fo r persons in the governm ent service em ployed interm ittently.
-(b ) T h e Com m ission is authorized to appoint and fix the compensation o f such  
+(b ) T h e Com m ission is authorized to appoint and fix the compensation o f such
 other persons as m ay be necessary to enable it to carry out its functions, and is author­
-ized to  obtain services in accordance with the provisions o f Section 3109 o f T itle 5 of  
+ized to  obtain services in accordance with the provisions o f Section 3109 o f T itle 5 of
 the U nited States C ode, to the extent funds are'available therefor.
 (c ) A ll necessary expenses incurred in connection with the work of the Com m is­
-sion shall be paid from  the appropriation for “ U nanticipated N eeds,”  in the Executive 
+sion shall be paid from  the appropriation for “ U nanticipated N eeds,”  in the Executive
 O ffice Appropriations A ct, 1977, or from  such other funds as m ay be available.
-(d ) W ithin  the lim itations perm itted by law the Com mission has the authority  
+(d ) W ithin  the lim itations perm itted by law the Com mission has the authority
 to seek and receive other than governm ent funds to carry out its work.
 Seo. 8. Notw ithstanding the provisions of any other Executive order, the func­
-tions of the President under the Federal Advisory Com m ittee A c t (5  U .S .C . A p p . I ) , 
+tions of the President under the Federal Advisory Com m ittee A c t (5  U .S .C . A p p . I ) ,
 except that o f reporting annually to the Congress, which are applicable to the C om ­
-mission or its advisory com m ittees, shall be perform ed by the Secretary o f H ealth ,  
-Education, and W elfare in accordance w ith guidelines and procedures established by  
+mission or its advisory com m ittees, shall be perform ed by the Secretary o f H ealth ,
+Education, and W elfare in accordance w ith guidelines and procedures established by
 the O ffice of M anagem ent and Budget.
-Sec. 9 . T h e  Com m ission shall term inate sixty days after the transm ittal o f its 
+Sec. 9 . T h e  Com m ission shall term inate sixty days after the transm ittal o f its
 final report to the President.
 T h e W h ite H ouse,
 February 17,1 97 7 ,
 [FR Doc.77-5617 Filed 2-18-77 ; 1:32 pm]
-Editorial  Note : The President’s remarks of Feb. 17, 1977, on signing Executive Order 
+Editorial  Note : The President’s remarks of Feb. 17, 1977, on signing Executive Order
 Î1973, are printed in the Weekly Compilation of Presidential Documents (vol. 13, no. 8).
 FEDERAL REGISTER, V O L . 42, N O . 36— W EDNESDAY, FEBRUARY 23, 1977
 
@@ -7047,31 +7047,31 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 
 === PDF page 7 of 248 ===
 377
-Federal Register  
+Federal Register
 Vol. 48, No. 3
 Wednesday, January 5, 1983
 Presidential Documents
 Title 3—
 The President
 Executive Order 12398 of December 31, 1982
-President's Private Sector Survey on Cost Control in the  
+President's Private Sector Survey on Cost Control in the
 Federal Government
-By the authority vested in me as President by the Constitution and laws of the  
-United States of America, including the Federal Advisory Committee Act, as  
-amended (5 U.S.C. App. I), and in order to increase the membership and  
-extend the life of the President’s Private Sector Survey on Cost Control in the  
-Federal Government, it is hereby ordered that Executive Order No. 12369 of  
+By the authority vested in me as President by the Constitution and laws of the
+United States of America, including the Federal Advisory Committee Act, as
+amended (5 U.S.C. App. I), and in order to increase the membership and
+extend the life of the President’s Private Sector Survey on Cost Control in the
+Federal Government, it is hereby ordered that Executive Order No. 12369 of
 June 30,1982, is amended as follows:
-(a) The second sentence of Section 1(a) shall read: “The Committee shall be  
-composed of not more than 170 members appointed by the President from  
+(a) The second sentence of Section 1(a) shall read: “The Committee shall be
+composed of not more than 170 members appointed by the President from
 among citizens in private life.’’.
 (b) Section 4(b) shall read: “In accordance with the Federal Advisory Commit­
-tee Act, as amended, the Committee shall terminate on June 30, 1983, unless  
+tee Act, as amended, the Committee shall terminate on June 30, 1983, unless
 sooner extended.”.
-THE WHITE HOUSE,  
+THE WHITE HOUSE,
 D ecem b er 31, 1982.
 [FR Doc. 83-384]
-Filed 1-3-83; 4:25 pm]  
+Filed 1-3-83; 4:25 pm]
 Billing code 3195-01-M
 
 ```
@@ -7082,10 +7082,10 @@ Text hash 09bfa0defb3f55e64944b6f13498e80af7f712ff5050722ae479a782ad3d70de; abso
 
 ```text
 (c) To the extent permitted by law and subject to the availability of appropria­
-tions, the Department of Transportation shall, among other Administrative  
+tions, the Department of Transportation shall, among other Administrative
 tunchons, provide the Commission with administrative services, funds, facili­
-ties, staff, and other support services necessary for the performance of its  
-unctions and the Secretary of Transportation shall perform the functions of  
+ties, staff, and other support services necessary for the performance of its
+unctions and the Secretary of Transportation shall perform the functions of
 ¡Ye ^ re81(^ ent un(ier the Federal Advisory Committee Act, as amended (5
 .o.C.
 ```
@@ -7188,47 +7188,47 @@ THE PRESIDENT 14887
 EXECUTIVE ORDER 11849
 Establishing thie C ollective Bargaining Committee in Construction
 The President’s Labor-Management Committee established by Execu­
-tive Order No. 11809 was authorized to “encourage the establishment of 
-labor-management committees (bipartite or tripartite) in particular 
-sectors or industries as may be appropriate.” That Committee expressed 
-the view that a committee should appropriately be established in the 
+tive Order No. 11809 was authorized to “encourage the establishment of
+labor-management committees (bipartite or tripartite) in particular
+sectors or industries as may be appropriate.” That Committee expressed
+the view that a committee should appropriately be established in the
 construction industry.
-An interim labor-management committee on collective bargaining 
+An interim labor-management committee on collective bargaining
 problems in construction, representative of labor and management orga­
 nizations involved in collective bargaining in the industry, has met reg­
-ularly since November 1974 to explore the feasibility and details of a 
+ularly since November 1974 to explore the feasibility and details of a
 continuing committee.
-The recommendations of the interim labor-management committee 
+The recommendations of the interim labor-management committee
 have been ratified by the standard national labor and management orga­
-nizations engaged in collective bargaining in the industry, and their 
-representatives have been authorized to participate and serve cm such a 
+nizations engaged in collective bargaining in the industry, and their
+representatives have been authorized to participate and serve cm such a
 committee.
-This Order is required to establish an arrangement and machinery 
-fear an operating structure with a minimum of government interference 
+This Order is required to establish an arrangement and machinery
+fear an operating structure with a minimum of government interference
 in the furtherance of more effective collective bargaining in the industry.
-NOW, THEREFORE, by virtue of the authority vested in me as 
+NOW, THEREFORE, by virtue of the authority vested in me as
 President of the United States of America, it is ordered as follows:
 Section 1. There is hereby established the Collective Bargaining Com­
-mittee in Construction (hereinafter referred1  to as the Committee). The 
-Committee shall consist of ten labor members and ten management 
-members appointed by the President. The Secretary of Labor or his 
-designee shall serve as Chairman. The Director of the Federal Mediation 
-and Conciliation Service shall participate as a member e rf the Committee. 
-Additional alternate members may be appointed by the Secretary of 
+mittee in Construction (hereinafter referred1  to as the Committee). The
+Committee shall consist of ten labor members and ten management
+members appointed by the President. The Secretary of Labor or his
+designee shall serve as Chairman. The Director of the Federal Mediation
+and Conciliation Service shall participate as a member e rf the Committee.
+Additional alternate members may be appointed by the Secretary of
 Labor.
-Sec. 2. (a) The Committee shall facilitate the collective bargaining 
-process at local and area levels* assist in providing a data bank of wage 
-and benefit information* encourage peaceful negotiation of responsible 
-local and area agreements, facilitate local coordinated bargaining and 
+Sec. 2. (a) The Committee shall facilitate the collective bargaining
+process at local and area levels* assist in providing a data bank of wage
+and benefit information* encourage peaceful negotiation of responsible
+local and area agreements, facilitate local coordinated bargaining and
 larger area bargaining wherever appropriate, and seek to resolve par­
 ticular disputes that cannot otherwise be reasonably resolved.
-(b) In the furtherance of these objectives the Committee is authorized 
-to hold conferences; and if it deems appropriate, in particular collective 
-bargaining disputes or in groups of related disputes, the Committee may 
-make recommendations to the appropriate standard organizations which 
-are party to collective bargaining in the construction industry concerning 
+(b) In the furtherance of these objectives the Committee is authorized
+to hold conferences; and if it deems appropriate, in particular collective
+bargaining disputes or in groups of related disputes, the Committee may
+make recommendations to the appropriate standard organizations which
+are party to collective bargaining in the construction industry concerning
 the provisions of agreements or the structure of collective bargaining.
-(c) The Committee shall promote more effective machinery for the 
+(c) The Committee shall promote more effective machinery for the
 resolution of disputes over the terms of collective bargaining agreements
 FEDERAL REGISTER. V O L 40, NO. 65— THURSDAY, APRIL 3, 1975
 
@@ -7237,37 +7237,37 @@ FEDERAL REGISTER. V O L 40, NO. 65— THURSDAY, APRIL 3, 1975
 which recognizes the interests of each branch of the industry and pre­
 serves existing procedures that have been effective.
 Sec. 3. In addition to the foregoing tasks, the Committee shall also:
-(a) Review and analyze construction manpower under collective 
-bargaining agreements, including regional requirements and availabilities 
-of respective skills for projected needs, and the effectiveness of training, 
-programs, and, if appropriate, maintain a continuing central data file of 
+(a) Review and analyze construction manpower under collective
+bargaining agreements, including regional requirements and availabilities
+of respective skills for projected needs, and the effectiveness of training,
+programs, and, if appropriate, maintain a continuing central data file of
 manpower requirements and availabilities by major areas of the country;
 (b) Consider measures to reduce the instability of demand for con­
 struction labor and to provide more weeks of work per year;
 (c) Take measures to increase productivity in the industry under col­
 lective bargaining agreements;
 (d) Improve further the current wage and benefit data base for con­
-struction to facilitate collective bargaining at local and regional levels and 
+struction to facilitate collective bargaining at local and regional levels and
 the role of the national organizations in dispute settlements;
-(e) Consider the problems for collective bargaining arising from the 
+(e) Consider the problems for collective bargaining arising from the
 activities of separate Federal government agencies as they affect the con­
 struction industry;
-(f) Consider from time to time such problems in the-construction 
+(f) Consider from time to time such problems in the-construction
 industry under collective bargaining as it may deem appropriate; and
-(g) Encourage the establishment of comparable joint regional or local 
+(g) Encourage the establishment of comparable joint regional or local
 committees on an area basis to the extent it deems appropriate.
 Sec. 4. In carrying out its functions, the Committee shall give con­
-sideration to long term developments in the construction industry under 
-collective bargaining agreements and shall seek to develop appropriate 
+sideration to long term developments in the construction industry under
+collective bargaining agreements and shall seek to develop appropriate
 policies in the national interest.
 Sec. 5. All executive departments and agencies of the Federal govern­
-ment are authorized and directed to cooperate with the Committee and 
-to furnish such information, personnel and assistance, not inconsistent 
+ment are authorized and directed to cooperate with the Committee and
+to furnish such information, personnel and assistance, not inconsistent
 with law, as it may require in the performance of its duties.
-Sec. 6. The Committee shall make periodic reports to the President. 
-Standard national labor and management organizations are encouraged 
-to review the operation of the Committee and report to the President 
-annually on the extent to which the purposes of this Order are being 
+Sec. 6. The Committee shall make periodic reports to the President.
+Standard national labor and management organizations are encouraged
+to review the operation of the Committee and report to the President
+annually on the extent to which the purposes of this Order are being
 achieved.
 T h e W h ite H ouse ,
 April 1, 1975.
@@ -7372,52 +7372,52 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 
 === PDF page 9 of 232 ===
 211
-Federal Register 
+Federal Register
 V el. 50, No. 2
 Presidential Documents
 Thursday, January 3,1985
 Title 3— Executive Order 12496 of D ecember 26, 1984
 The President Adjustments of Certain Rates of Pay and Allowances
-,By the authority vested in me as President by the Constitution and law s of the  
+,By the authority vested in me as President by the Constitution and law s of the
 United S tates of Am erica, it is hereby ordered as follows:
-Section 1. S ta tu to ry  P a y  S y s t e m s . Pursuant to the provisions of subchapter I of  
-chapter 53 of title 5 of the United States Code, the rates of b asic pay and  
-salaries are adjusted, as set forth at the schedules attached hereto and made a  
+Section 1. S ta tu to ry  P a y  S y s t e m s . Pursuant to the provisions of subchapter I of
+chapter 53 of title 5 of the United States Code, the rates of b asic pay and
+salaries are adjusted, as set forth at the schedules attached hereto and made a
 part hereof, for the following statutory pay systems:
 (a) The General Schedule (5 U.S.C. 5332(a)) at Schedule 1;
 (b) The Foreign Service Schedule (22 U.S.C. 3963) at Schedule 2; and
-(c) The schedules for the Department of Medicine and Surgery, V eterans’  
+(c) The schedules for the Department of Medicine and Surgery, V eterans’
 Administration (38 U.S.C. 4107) at Schedule 3.
-Sec. 2. S e n io r  E x e c u t iv e  S e r v ic e . Pursuant to the provisions of section 5382 of  
-title 5 of the United States Code, the rates of basic pay are adjusted, as set  
-forth at Schedule 4 attached hereto and m ade a part hereof, for members of  
+Sec. 2. S e n io r  E x e c u t iv e  S e r v ic e . Pursuant to the provisions of section 5382 of
+title 5 of the United States Code, the rates of basic pay are adjusted, as set
+forth at Schedule 4 attached hereto and m ade a part hereof, for members of
 the Senior Executive Service.
-Sec. 3. E x e c u t iv e  S a la r ie s . The Executive Salary Cost-of-Living Adjustment  
-A ct (Public Law  94-82; 89 Stat. 419) provides for adjustments in rates of pay  
-and salaries as set forth at the schedules attached hereto and made a part  
+Sec. 3. E x e c u t iv e  S a la r ie s . The Executive Salary Cost-of-Living Adjustment
+A ct (Public Law  94-82; 89 Stat. 419) provides for adjustments in rates of pay
+and salaries as set forth at the schedules attached hereto and made a part
 hereof, for the following:
-(a) The Vice President (3 U.S.C. 104) and the Executive Schedule (5 U.S.C.  
+(a) The Vice President (3 U.S.C. 104) and the Executive Schedule (5 U.S.C.
 5312-5316) at Schedule 5;
 (b) Congressional Salaries (2 U.S.C. 31) at Schedule 6; and
-(c) Judicial Salaries (28 U.S.C. 5, 44(d), 1 3 5 ,153(a), 172(b), and 252) at Schedule  
+(c) Judicial Salaries (28 U.S.C. 5, 44(d), 1 3 5 ,153(a), 172(b), and 252) at Schedule
 7.
-Sec. 4. P a y  a n d  A llo w a n c e s  f o r  M e m b e r s  o f  th e  U n ifo rm e d  S e r v ic e s . Pursuant  
-to the provisions of Section 601 of Public Law  98-525, the rates of monthly  
-basic pay (37 U.S.C. 203(a)), the rates of basic allow ances for subsistence (37  
-U.S.C. 402), and the rates of basic allow ance for quarters (37 U.S.C. 403(a)) are  
-adjusted, as set forth at Schedule 8 attached hereto and m ade a part hereof,  
+Sec. 4. P a y  a n d  A llo w a n c e s  f o r  M e m b e r s  o f  th e  U n ifo rm e d  S e r v ic e s . Pursuant
+to the provisions of Section 601 of Public Law  98-525, the rates of monthly
+basic pay (37 U.S.C. 203(a)), the rates of basic allow ances for subsistence (37
+U.S.C. 402), and the rates of basic allow ance for quarters (37 U.S.C. 403(a)) are
+adjusted, as set forth at Schedule 8 attached hereto and m ade a part hereof,
 for members of the uniformed services.
 
 === PDF page 10 of 232 ===
 212 Federal Register / Vol. 50, No. 2 /  Thursday, January 3, 1985 / Presidential Documents
-Sec. 5. E ffe c tiv e  D ate. The adjustments in rates of monthly basic pay a n d  
+Sec. 5. E ffe c tiv e  D ate. The adjustments in rates of monthly basic pay a n d
 allow ances for subsistence and quarters for members of the uniformed s e r v ­
-ices, and all other adjustments of salary or rates of basic pay provided for 
-herein, shall be effective on the first day of the first applicable pay p e r io d  
+ices, and all other adjustments of salary or rates of basic pay provided for
+herein, shall be effective on the first day of the first applicable pay p e r io d
 beginning on or after January 1,1985.
-Sec. 6. Executive Order No. 12456 of December 30, 1983, as amended, is  
+Sec. 6. Executive Order No. 12456 of December 30, 1983, as amended, is
 superseded.
-THE W HITE HOUSE.  
+THE W HITE HOUSE.
 D e ce m b e r 28. 1984.
 Billing code 3195-01-M
 
@@ -7443,7 +7443,7 @@ GS-1 $9,339 $9,650 $9,961 $10,271 $10,582 $10,764 $11,071 $ il ,380 $11,393 $11,
 16 61,296 63,339 65,382 67,425 69,468* 71,511* 73,554* 75,597* 77,640*
 17 71,804* 74,197* 76,590* 78,983* 81,376*
 18 84,157*
-* The ra te  of basic pay payable to employees at these rates is lim ited to the ra te  payable for level V  
+* The ra te  of basic pay payable to employees at these rates is lim ited to the ra te  payable for level V
 of the Executive Schedule, which is $ 6 8,700.
 Federal Register /  "Voi. 50, No. 2 f/ Thursday, January 3, 1985 • /  Presidential Documents 213
 
@@ -7470,7 +7470,7 @@ k
 
 === PDF page 13 of 232 ===
 215Federal Register /  VoL 50, No. 2 /  Thursday, January 3 ,1 9 8 5  /  Presidential Documents
-S C H E D U L E  3—-D E P A R T M E N T  O F M ED IC IN E A N D  S U R G E R Y  S C H E D U L E S 
+S C H E D U L E  3—-D E P A R T M E N T  O F M ED IC IN E A N D  S U R G E R Y  S C H E D U L E S
 V ET E R A N S  A D M IN IST R A T IO N
 Section 4103 Schedule
 Chief Medical D irector .............................. ..............................................................$94,375***
@@ -7482,13 +7482,13 @@ D irector of Nursing Service •••••••
 D irector of P odiatrie Service •  • • • • •
 D irector of Chaplain Service •  •  •  «  •  •
 D irector of Pharmacy Service ..................... •
-D irector of D ie te tic Service •  • • • • • 
+D irector of D ie te tic Service •  • • • • •
 D irector of Optométrie Service •  •  •  •  •
 Physician and D entist Schedule
 D irector grade ..................... ........
 Executive grade •  ••••••••••«.
 Chief grade •  •••••••••«••••
-Senior grade •  . . •  •  •  «  •  •  . . . •  •  
+Senior grade •  . . •  •  •  «  •  •  . . . •  •
 Interm ediate grade •  ••••••••••
 Fu ll grade •
 A ssociate grade •  ••••••.«•••«
@@ -7535,11 +7535,11 @@ $52,262 $67,940
 37,599 48,876
 31,619 41,105
 26,381 34,292
-*** The ra te  of basic pay is  lim ited to the ra te  payable for lev el I I I  of  
+*** The ra te  of basic pay is  lim ited to the ra te  payable for lev el I I I  of
 the Executive Schedule, which is  $ 73,600.
-** The ra te  of basic pay is  lim ited to the ra te  payable for lev el IV of  
+** The ra te  of basic pay is  lim ited to the ra te  payable for lev el IV of
 the Executive Schedule, which is  $ 7 2,300.
-* The ra te  of basic pay is  lim ited to the ra te  payable for level V  of  
+* The ra te  of basic pay is  lim ited to the ra te  payable for level V  of
 the Executive Schedule, which is  $68,700.
 
 === PDF page 14 of 232 ===
@@ -7568,7 +7568,7 @@ M ajority leader and m inority leader of the Senate ....••••  85,000
 M ajority leader and minority leader of the House
 of Representatives ••••••••••••• . . . . . . . . . . . . . . . . . . . . .  .....  85 000
 Speaker of the House of Representatives ••••••••••••.  97,900
-S C H E D U L E  7— JUDICIAL SALARIES 
+S C H E D U L E  7— JUDICIAL SALARIES
 v
 Chief Ju s tic e  of the United S t a t e s ...........................................................................$104,700*
 A ssociate Ju stice s of the Supreme Court .....  .................................... 100,600*
@@ -7577,12 +7577,12 @@ D is tric t Judges ...................... . . . . . . . . . . . . . . . . . . . 
 Judges of the Court of In tern ation al Trade • • • • .................................... 76,000*
 Judges of the United States Claims Court . .  .....................' .  ...................... 70,200
 Bankruptcy J u d g e s ......................... .......................................................................... 68,400
-* Under sectio n  140 of Public Law 97— 92 (95 S ta t. 1200), s a la rie s  for Federal  
+* Under sectio n  140 of Public Law 97— 92 (95 S ta t. 1200), s a la rie s  for Federal
 judges and Ju s tic e s  of the Supreme Court are not increased.
 
 === PDF page 15 of 232 ===
-Schedule 8— PAY AND ALLOWANCES OF THE UNIFORMED SERVICES  
-Part I—Monthly Basic Pay  
+Schedule 8— PAY AND ALLOWANCES OF THE UNIFORMED SERVICES
+Part I—Monthly Basic Pay
 (Years of service computed under 37 U.S.C. 205)
 Commissioned Officers
 Pay
@@ -7618,7 +7618,7 @@ While serving as Chairman < of the Joint Chiefs of Staff , Chief of Staff of the
 Operations, Chief of Staff of the Air Force, or Com m andant of the Marine Corps, basic pay for this
 grade is $7 ,861.20* regardless of cumulative years of service computed under section 205 of t i t l e  37,
 United States £ode.
-2 J Does not apply to commissioned officers w h o  have been credited with over 4 years* active service  
+2 J Does not apply to commissioned officers w h o  have been credited with over 4 years* active service
 as enlisted members and/or as warrant officers*
 Federal Register / Voh 50, No. 2 / Thursday, January 3,1985 / Presidential Documents 217
 
@@ -7672,14 +7672,14 @@ E-6 . . . . 1341.00 1384.20 1405.20 1405.20 1405.20 1405.20
 E-5 . . . . 1192.80 1192.80 1192.80 1192.80 1192.80 1192.80
 E-4 . . .  . < 960.90 960.90 960*90 960*90 960.90 960.90
 E-3 . . . . 824.70 824.70 824.70 824.70 824.70 824.70
-E-2 ? . . .  
-E -l %  .  .  .  
+E-2 ? . . .
+E -l %  .  .  .
 E-l J/ . . .
 695.40 695.40 695.40 695.40 695.40 695.40
 620.40 620.40 620.40 620.40 620.40 620.40
 573.60 573.60 573.60 573.60 573.60 573.60
-—  While serving as Sergeant Major of the Army, Master Chief Petty Officer of the Navy or Coast Guard,  
-Chief Master Sergeant of the Air Force, or Sergeant Major of the Marine Corps, basic pay for this  
+—  While serving as Sergeant Major of the Army, Master Chief Petty Officer of the Navy or Coast Guard,
+Chief Master Sergeant of the Air Force, or Sergeant Major of the Marine Corps, basic pay for this
 grade is  $2,912.10
 2/— ! Applies to personnel w h o have served 4 months or more on active duty.
 3 /— ' Applies to personnel w h o  have served less than 4 months on active duty.
@@ -7689,17 +7689,17 @@ Federal Register /  VoL SO , No. 2 /  Thursday, January 3 ,1 9 8 5  f Presidenti
 Part I I — Basic Allowance for Subsistence Rates
 O fficers (per month): •  . . *  . . .  . . •  •  •  $106.18
 Enlisted Members (per day):
-E -l (le s s  than 
+E -l (le s s  than
 4 months)A
 W hen on leave or authorized
 to mess sep arately : •  •  •  • ...................... . $4.68
-W h en  ratio n s-in -k in d  are not 
+W h en  ratio n s-in -k in d  are not
 av ailab le:  ................................... $ 5.29  $5.72
-W hen assigned to duty under  
-emergency conditions where no  
+W hen assigned to duty under
+emergency conditions where no
 messing f a c i l i t i e s  of the United
 States are a v ailab le: •  . . . ......  $ 7 .00 $7.57
-A ll Other  
+A ll Other
 Enlisted
 $5.06
 I
@@ -7708,8 +7708,8 @@ I  ■ I
 2 2 0  Federal Register /  Vol. 50, No. 2 /  Thursday, January 3 ,1 9 8 5  /  Presidential Documents
 
 === PDF page 19 of 232 ===
-| F R  Doc. 84-34018 
-P iled  12-31-84: 12:57 pmj 
+| F R  Doc. 84-34018
+P iled  12-31-84: 12:57 pmj
 Billing code 3195-01-C
 Part III— Monthly Basic Allowance For Quarters Rates
 Pay
@@ -7731,7 +7731,7 @@ o -i o $ 5 0 .7 0 $ 6 6 0 .9 0
 0 - 3 ................................................... 2 2 .2 0 4 2 0 .9 0
 0 - 2 ................................................... 1 7 .7 0 3 6 0 .9 0
 0 - 1 .............................................. . 1 3 .2 0 3 2 3 .7 0
-W arrant o f f i c e r s : 
+W arrant o f f i c e r s :
 W - 4..............................
 «
 $ 2 5 .2 0 $ 4 5 3 .9 0
@@ -7754,8 +7754,8 @@ out dependents is authorized by t i tle  37, United States Code, and part IV  of
 without dependents w ho, under 37 U.S.C. 403(b) or 403(c), are not entitled to the full rate of basic allowance for
 quarters, is authorized by 37 U.S.C. 1009(d) and part IV  of Executive Order 11157, as am ended*
 Note: The rate for a m em b er w h o  is entitled to a basic allowance for quarters on or after January 1, 1985, and w h o
-w as entitled to such an allowance on December 31, 1984, shall not be less than the rate that w as in effect for  
-that m em b er on December 31, 1984 (unless the m em b er holds a lower grade than held on that date or has changed  
+w as entitled to such an allowance on December 31, 1984, shall not be less than the rate that w as in effect for
+that m em b er on December 31, 1984 (unless the m em b er holds a lower grade than held on that date or has changed
 from a "with dependents" to a "without dependents" statu s).
 Federal Register / V ol. 50, N o. 2 / Thursday, January 3, 1985 / Presidential Documents 221
 
@@ -7810,8 +7810,8 @@ Location: 51 FR 7237, PDF pages 9-15 (confidence high)
 Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.
 
 === PDF page 9 of 200 ===
-Federal Register  
-Voi. 51, No. 41  
+Federal Register
+Voi. 51, No. 41
 Monday, March 3, 1986
 Presidential Documents
 7237
@@ -7819,9 +7819,9 @@ Title 3—
 The President
 Executive Order 12553 of February 25, 1986
 Revocation of Various Executive Orders
-By the authority vested in me as President by the Constitution and law s of the  
-United States of Am erica, and to eliminate Executive Orders that are no  
-longer necessary, it is hereby ordered that the following Executive Orders, and  
+By the authority vested in me as President by the Constitution and law s of the
+United States of Am erica, and to eliminate Executive Orders that are no
+longer necessary, it is hereby ordered that the following Executive Orders, and
 any amendments thereto, are revoked:
 No. Subject
 723
@@ -7847,36 +7847,36 @@ No. Subject
 9702
 9713
 9716
-9717 
-9719 
-9721 
+9717
+9719
+9721
 9731
 9748
-9749 
-9763 
-9770 
-9782 
-9793 
-9798 
-9803 
-9838 
-9855 
-9874 
-9878 
-9880 
+9749
+9763
+9770
+9782
+9793
+9798
+9803
+9838
+9855
+9874
+9878
+9880
 9891
 9899
-9900 
-9910 
+9900
+9910
 9918
 9922
-9923 
-9929 
-9936 
+9923
+9929
+9936
 9940
-Providing for examination for appointment to the U.S. Military and Naval Academies  
-Establishing the manner of dating proclamations, commissions and similar executive documents  
-Providing for appointments to and inclusion of the District of Columbia municipal service in the Civil  
+Providing for examination for appointment to the U.S. Military and Naval Academies
+Establishing the manner of dating proclamations, commissions and similar executive documents
+Providing for appointments to and inclusion of the District of Columbia municipal service in the Civil
 Service
 Providing for examination for appointment to the U.S. Military and Naval Academies
 Relating to gold recovered from natural deposits
@@ -7886,69 +7886,69 @@ Establishing the Office of Alien Property Custodian
 Relating to the Office of Alien Property Custodian
 Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate a railroad labor dispute
-Amending functions and duties of the Alien Property Custodian with respect to property of Germany  
+Amending functions and duties of the Alien Property Custodian with respect to property of Germany
 and Japan and their nationals
-Creating an emergency board to investigate a railroad labor dispute 
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate railroad labor disputes  
-Creating an emergency board to investigate railroad labor disputes  
-Creating an emergency board to investigate railroad labor disputes  
-Creating an emergency board to investigate railroad labor disputes  
-Creating an emergency board to investigate railroad labor disputes  
-Creating an emergency board to investigate railroad labor disputes  
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate railroad labor disputes  
-Creating an emergency board to investigate airline labor disputes  
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate railroad labor disputes
+Creating an emergency board to investigate railroad labor disputes
+Creating an emergency board to investigate railroad labor disputes
+Creating an emergency board to investigate railroad labor disputes
+Creating an emergency board to investigate railroad labor disputes
+Creating an emergency board to investigate railroad labor disputes
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate railroad labor disputes
+Creating an emergency board to investigate airline labor disputes
 Providing for transfer of personnel to certain public international organizations
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
-Creating an emergency board to  
 Creating an emergency board to
-nvestigate a railroad labor dispute  
-nvestigate an airline labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate railroad labor disputes  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate railroad labor disputes  
-investigate a railroad labor dispute  
-nvestigate railroad labor disputes  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate railroad labor disputes  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
-nvestigate a railroad labor dispute  
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+Creating an emergency board to
+nvestigate a railroad labor dispute
+nvestigate an airline labor dispute
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate railroad labor disputes
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate railroad labor disputes
+investigate a railroad labor dispute
+nvestigate railroad labor disputes
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate railroad labor disputes
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
+nvestigate a railroad labor dispute
 nvestigate a railroad labor dispute
 
 === PDF page 10 of 200 ===
@@ -7957,18 +7957,18 @@ No. Subject
 9942 Providing for performance of functions under the Rubber Act of 1948
 9947 Creating an emergency board to investigate a railroad labor dispute
 9948 Creating an emergency board to investigate a railroad labor dispute
-9949 Amending provisions for transfer of personnel to certain public international organizations 
+9949 Amending provisions for transfer of personnel to certain public international organizations
 9965 Creating an emergency board to investigate airline labor disputes
 9971 Creating an emergency board to investigate labor disputes between certain workers and transporta­
-tion systèms operated by the Secretary of the Army  
+tion systèms operated by the Secretary of the Army
 9988 Prescribing Selective Service regulations
 9991 Creating an emergency board to investigate a railroad labor dispute
 9992 Amending Selective Service regulations
-9996 Creating an emergency board to investigate a railroad labor dispute 
-10001 Prescribing and amending Selective Service regulations 
+9996 Creating an emergency board to investigate a railroad labor dispute
+10001 Prescribing and amending Selective Service regulations
 10008 Amending Selective Service regulations
-10010 Creating an emergency board to investigate railroad labor disputes 
-10015 Amending an order creating an emergency board to investigate railroad labor disputes 
+10010 Creating an emergency board to investigate railroad labor disputes
+10015 Amending an order creating an emergency board to investigate railroad labor disputes
 10029 Creating an emergency board to investigate an airline labor dispute
 10032 Creating an emergency board to investigate a railroad labor dispute
 10037 Creating an emergency board to investigate a railroad labor dispute
@@ -7985,7 +7985,7 @@ tion systèms operated by the Secretary of the Army
 10080 Authorizing certain Government employees to acquire a competitive civil service status
 10103 Amending provisions for transfer of personnel to certain public international organizations
 10105 Creating an emergency board to investigate a railroad labor dispute
-10106 Creating a board of inquiry to report on a labor dispute affecting the coal industry 
+10106 Creating a board of inquiry to report on a labor dispute affecting the coal industry
 10109 Creating an emergency board to investigate railroad labor disputes
 10112 Creating an emergency board to investigate a railroad labor dispute
 10114 Creating an emergency board to investigate a railroad labor dispute
@@ -8000,31 +8000,31 @@ tion systèms operated by the Secretary of the Army
 10142 Creating an emergency board to investigate an airline labor dispute
 10147 Creating an emergency board to investigate a railroad labor dispute
 10150 Creating an emergency board to investigate railroad labor disputes
-10157 Authorizing certain Government employees to acquire a competitive civil service status 
-10165 Creating an emergency board to investigate a railroad labor dispute 
+10157 Authorizing certain Government employees to acquire a competitive civil service status
+10165 Creating an emergency board to investigate a railroad labor dispute
 10167 Prescribing or amending Selective Service regulations
 10202 Prescribing or amending Selective Service regulations
-10203 Creating an emergency board to investigate an airline labor dispute 
+10203 Creating an emergency board to investigate an airline labor dispute
 10230 Amending Selective Service regulations
-10232 Amending Selective Service regulations  
+10232 Amending Selective Service regulations
 10258 Amending Selective Service regulations
-10283 Creating a board of inquiry to report on labor disputes affeoting the copper and nonferrous metals 
+10283 Creating a board of inquiry to report on labor disputes affeoting the copper and nonferrous metals
 industry
 10285 Creating an emergency board to investigate a labor dispute between certain workers and a railroad
 operated by the Secretary of the Army
-10286 Creating an emergency board to investigate a railroad labor dispute 
+10286 Creating an emergency board to investigate a railroad labor dispute
 10292 Amending Selective Service regulations
 10300 Providing for the administration of the Mutual Security Act of 1951
-10303 Creating an emergency board to investigate a labor dispute between employees and transportation 
-systems operated by the Secretary of the Army 
+10303 Creating an emergency board to investigate a labor dispute between employees and transportation
+systems operated by the Secretary of the Army
 10306 Creating an emergency board to investigate a railroad labor dispute
 10314 Creating an emergency board to investigate an airline labor dispute
 10319 Creating an emergency board to investigate an airline labor dispute
 10323 Transferring certain functions and delegating certain powers to the Small Defense Plants Administra­
 tion
-10328 Prescribing Selective Service regulations 
-10344 Prescribing or amending Selective Service regulations 
-10363 Amending Selective Service regulations 
+10328 Prescribing Selective Service regulations
+10344 Prescribing or amending Selective Service regulations
+10363 Amending Selective Service regulations
 10366 Amending Selective Service regulations
 10368 Amending provisions for the administration of the Mutual Security Act of 1951
 10371 Creating an emergency board to investigate an airline labor dispute
@@ -8042,8 +8042,8 @@ No. Subject
 10458
 10469
 10504
-10505 
-10509 
+10505
+10509
 10511
 10542
 10543
@@ -8053,11 +8053,11 @@ No. Subject
 10578
 10587
 10593
-10594 
-10601 
-10615 
-10622 
-10630 
+10594
+10601
+10615
+10622
+10630
 10635
 10643
 10644
@@ -8073,19 +8073,19 @@ No. Subject
 10714
 10723
 10734
-10735 
+10735
 10738
 10749
-10750 
-10757 
-10760 
-10770 
+10750
+10757
+10760
+10770
 10774
 10809
 10811
 10837
 10842
-10843 
+10843
 10848
 10862
 10868
@@ -8093,31 +8093,31 @@ No. Subject
 10874
 10875
 10877
-10878 
-10888 
-10904 
+10878
+10888
+10904
 10906
-Providing for permanent appointments in the field service of the Post Office Department  
-Creating an emergency board to investigate an airline labor dispute  
-Amending provisions for transfer of personnel to certain public international organizations  
-Creating a board of inquiry to report on a labor dispute affecting the construction and operation of  
-atomic energy facilities  
+Providing for permanent appointments in the field service of the Post Office Department
+Creating an emergency board to investigate an airline labor dispute
+Amending provisions for transfer of personnel to certain public international organizations
+Creating a board of inquiry to report on a labor dispute affecting the construction and operation of
+atomic energy facilities
 Amending Selective Service regulations
-Creating an emergency board to investigate a railroad labor dispute  
-Providing for the administration of certain foreign aid programs  
+Creating an emergency board to investigate a railroad labor dispute
+Providing for the administration of certain foreign aid programs
 Amending Selective Service regulations
-Transferring certain functions, powers, and duties to the Small Business Administration  
+Transferring certain functions, powers, and duties to the Small Business Administration
 Amending Selective Service regulations
-Creating an emergency board to investigate a railroad labor dispute  
+Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate railroad labor disputes
 ^ fa c ilitie s * )° art^  °* inquiry t0 rePort on a labor dispute affecting the operations of atomic energy
 CrfacHu1es ° f inQuiry t0 report on a labor disPute affecting the operations of atomic energy
 Amending Selective Service regulations
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate an airline labor dispute  
-Creating an emergency board to investigate a railroad labor dispute  
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate an airline labor dispute
+Creating an emergency board to investigate a railroad labor dispute
 Providing for the administration of the Trading with the Enemy Act
-Authorizing the Director of the Office of Defense Mobilization to perform additional functions of the  
+Authorizing the Director of the Office of Defense Mobilization to perform additional functions of the
 President
 Amending Selective Service regulations
 Relating to the administration of a commodity set-aside
@@ -8126,59 +8126,59 @@ Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate railroad labor disputes
-Administering Title II of the International Claims Settlement Act, as amended, relating to vesting and  
-liquidation of Bulgarian, Hungarian and Rumanian property  
+Administering Title II of the International Claims Settlement Act, as amended, relating to vesting and
+liquidation of Bulgarian, Hungarian and Rumanian property
 Prescribing Selective Service regulations
-Transferring to the Housing and Home Finance Administrator certain functions of the Atomic Energy  
-Commission under the Atomic Energy Community Act of 1955  
+Transferring to the Housing and Home Finance Administrator certain functions of the Atomic Energy
+Commission under the Atomic Energy Community Act of 1955
 Amending Selective Service regulations
 Creating a board of inquiry to report on labor disputes affecting the maritime industry
 Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate railroad labor disputes
 Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate a dock company labor dispute
-^facUMes b° ard ° f inqu,ry t0 reP°rt on « labor dispute affecting the operations of atomic energy  
+^facUMes b° ard ° f inqu,ry t0 reP°rt on « labor dispute affecting the operations of atomic energy
 Amending Selective Service regulations
 Creating an emergency board to investigate a railroad labor dispute
-Amending Executive Order No. 10657 relating to the transfer of certain functions to the Housing and  
-Home Finance Administrator under the Atomic Energy Community Act of 1955  
+Amending Executive Order No. 10657 relating to the transfer of certain functions to the Housing and
+Home Finance Administrator under the Atomic Energy Community Act of 1955
 Amending Selective Service regulations
-Providing for inspection of estate and gift tax returns by State tax officials  
-Creating an emergency board to investigate an airline labor dispute  
-Creating an emergency board to investigate an airline labor dispute  
-Creating an emergency board to investigate an airline labor dispute  
-Creating an emergency board to investigate an airline labor dispute  
+Providing for inspection of estate and gift tax returns by State tax officials
 Creating an emergency board to investigate an airline labor dispute
-Providing for the protection of the civil service rights of Federal personnel who transfer to the  
-International Atomic Energy Agency  
+Creating an emergency board to investigate an airline labor dispute
+Creating an emergency board to investigate an airline labor dispute
+Creating an emergency board to investigate an airline labor dispute
+Creating an emergency board to investigate an airline labor dispute
+Providing for the protection of the civil service rights of Federal personnel who transfer to the
+International Atomic Energy Agency
 Amending Selective Service regulations
-Creating an emergency board to investigate an airline labor dispute  
+Creating an emergency board to investigate an airline labor dispute
 Amending Selective Service regulations
-Creating a board of inquiry to report on labor disputes affecting the maritime industry  
+Creating a board of inquiry to report on labor disputes affecting the maritime industry
 Creating a board of inquiry to report on a labor dispute affecting the steel industry
-ThTstell Tndust^6 ° rder N°' 10843 CreatÌng 8 b° ard ° f ÌnqUÌry t0 report on a labor dispute affecting  
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate an airline labor dispute  
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate railroad labor disputes  
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate a railroad labor dispute  
-Creating an emergency board to investigate a railroad labor dispute  
+ThTstell Tndust^6 ° rder N°' 10843 CreatÌng 8 b° ard ° f ÌnqUÌry t0 report on a labor dispute affecting
 Creating an emergency board to investigate a railroad labor dispute
-Providing for inspection of tax returns made in respect to certain taxes imposed by the Internal  
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate an airline labor dispute
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate railroad labor disputes
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate a railroad labor dispute
+Creating an emergency board to investigate a railroad labor dispute
+Providing for inspection of tax returns made in respect to certain taxes imposed by the Internal
 Revenue Code of 1954
 
 === PDF page 12 of 200 ===
 7240 Federal Register / Vol. 51, No. 41 / Monday, M arch 3, 1986 / Presidential Documents
 No. Subject
-10919 Creating an emergency board to investigate an airline labor dispute 
-10923 Creating an emergency board to investigate airline labor disputes 
-10926 Extending an emergency board created to investigate an airline labor dispute 
-10933 Extending an emergency board to investigate airline labor disputes 
-10944 Creating an emergency board to investigate a railroad labor dispute 
-10949 Creating a board of inquiry to report on a labor dispute affecting the maritime industry 
-10951 Amending Executive Order No. 10949 creating a board of inquiry to report on a labor dispute affecting 
+10919 Creating an emergency board to investigate an airline labor dispute
+10923 Creating an emergency board to investigate airline labor disputes
+10926 Extending an emergency board created to investigate an airline labor dispute
+10933 Extending an emergency board to investigate airline labor disputes
+10944 Creating an emergency board to investigate a railroad labor dispute
+10949 Creating a board of inquiry to report on a labor dispute affecting the maritime industry
+10951 Amending Executive Order No. 10949 creating a board of inquiry to report on a labor dispute affecting
 the maritime industry
 10953 Creating an emergency board to investigate a railroad labor dispute
 10954 Amending an authorization to inspect certain tax returns
@@ -8188,7 +8188,7 @@ the maritime industry
 10969 Creating an emergency board to investigate a railroad labor dispute
 10971 Creating an emergency board to investigate an airline labor dispute
 10975 Creating an emergency board to investigate an airline labor dispute
-10976 Relating to working hours for employees of the National Aeronautics and Space Administration 
+10976 Relating to working hours for employees of the National Aeronautics and Space Administration
 10984 Amending Selective Service regulations
 11006 Creating an emergency board to investigate an airline labor dispute
 11008 Creating an emergency board to investigate railroad labor disputes
@@ -8199,7 +8199,7 @@ the maritime industry
 11026 Amending Executive Order No. 11025 creating a board of inquiry to report on a labor dispute affecting
 the aircraft industry
 11027 Creating an emergency board to investigate a railroad labor dispute
-11029 Amending an order creating a board of inquiry to report on a labor dispute affecting the aircraft 
+11029 Amending an order creating a board of inquiry to report on a labor dispute affecting the aircraft
 industry
 11033 Creating an emergency board to investigate airline labor disputes
 11040 Creating an emergency board to investigate a railroad labor dispute
@@ -8207,16 +8207,16 @@ industry
 11043 Creating an emergency board to investigate an airline labor dispute
 11049 Providing for the carrying out of the Public Works Acceleration Act
 11050 Creating an emergency board to investigate railroad labor disputes
-11054 Creating a board of inquiry to report on labor disputes affecting the maritime industry 
-11078 Creating a board of inquiry to report on a labor dispute affecting the ballistics missile, space vehicle, 
+11054 Creating a board of inquiry to report on labor disputes affecting the maritime industry
+11078 Creating a board of inquiry to report on a labor dispute affecting the ballistics missile, space vehicle,
 and military aircraft industry
-11086 Amending the administration of the Trading with the Enemy Act 
+11086 Amending the administration of the Trading with the Enemy Act
 11098 Amending Selective Service regulations
 11101 Creating an emergency board to investigate railroad labor disputes
 11102 Providing for inspection of tax returns by possessions of the United States
-11105 Transferring to the Housing and Home Finance Administrator certain functions of the Atomic Energy 
-Commission under the Atomic Energy Community Act of 1955 
-11108 Delegating authority to the Secretary of Agriculture under the International Wheat Agreement Act of 
+11105 Transferring to the Housing and Home Finance Administrator certain functions of the Atomic Energy
+Commission under the Atomic Energy Community Act of 1955
+11108 Delegating authority to the Secretary of Agriculture under the International Wheat Agreement Act of
 1949
 11115 Creating an emergency board to investigate railroad labor disputes
 11116 Prescribing and delegating authority to prescribe rates of charges for certain hospitalization and
@@ -8226,27 +8226,27 @@ dispensary services
 11127 Creating an emergency board to investigate a railroad labor dispute
 11131 Creating an emergency board to investigate airline labor disputes
 11135 Creating an emergency board to investigate railroad labor disputes
-11138 Modifying provisions for the transfer of personnel to certain public international organizations 
+11138 Modifying provisions for the transfer of personnel to certain public international organizations
 11147 Creating an emergency board to investigate railroad labor disputes
 11168 Creating an emergency board to investigate railroad labor disputes
 11169 Creating an emergency board to investigate railroad labor disputes
 11170 Creating an emergency board to investigate railroad labor disputes
 11171 Relating to the Canal Zone Merit System
 11180 Creating an emergency board to investigate railroad labor disputes
-11181 Creating a board of inquiry to report on labor disputes affecting the maritime indusiry 
+11181 Creating a board of inquiry to report on labor disputes affecting the maritime indusiry
 11188 Amending Selective Service regulations
-11196 Providing for performance by the Housing and Home Finance Administrator of functions vested in or 
-subject to the approval of the President 
+11196 Providing for performance by the Housing and Home Finance Administrator of functions vested in or
+subject to the approval of the President
 11206 Providing for inspection of interest equalization tax returns
-11213 Providing for inspection of certain interest equalization tax information returns by the Board of 
-Governors of the Federal Reserve System and the Federal Reserve Banks 
-11237 Prescribing regulations for coordinating planning and acquiring land under the Outdoor Recreation 
-Program of the Department of the Interior and the Open Space Program of the Housing and Home 
+11213 Providing for inspection of certain interest equalization tax information returns by the Board of
+Governors of the Federal Reserve System and the Federal Reserve Banks
+11237 Prescribing regulations for coordinating planning and acquiring land under the Outdoor Recreation
+Program of the Department of the Interior and the Open Space Program of the Housing and Home
 Finance Agency
 11241 Amending Selective Service regulations
 11243 Creating an emergency board to investigate a railroad labor dispute
-11252 Transferring the functions of the Director of the Food-for-Peace Program to the Secretary of State 
-11255 Designating Vietnam and waters adjacent thereto as an overseas combat area for purposes of Armed 
+11252 Transferring the functions of the Director of the Food-for-Peace Program to the Secretary of State
+11255 Designating Vietnam and waters adjacent thereto as an overseas combat area for purposes of Armed
 Forces mailing privileges
 
 === PDF page 13 of 200 ===
@@ -8254,52 +8254,52 @@ Federal Register /  Vol. 51, No. 41 /  Monday, M arch 3, 1986 /  Presidential Do
 No. Subject
 11266 Amending Selective Service regulations
 11276 Creating an emergency board to investigate an airline labor dispute
-11284 Suspending provisions of sections 5701(a)(1) and 6371 of title 10, U.S.C., relating to continuation on the 
-active list of rear admirals in the line of the Navy not restricted in the performace of duty 
-11286 Designating the Department of Commerce as the Department through which the United States shall 
-participate in the inter-American Cultural and Trade Center in Dade County, Florida 
-11291 Creating an emergency board to investigate an airline labor dispute 
+11284 Suspending provisions of sections 5701(a)(1) and 6371 of title 10, U.S.C., relating to continuation on the
+active list of rear admirals in the line of the Navy not restricted in the performace of duty
+11286 Designating the Department of Commerce as the Department through which the United States shall
+participate in the inter-American Cultural and Trade Center in Dade County, Florida
+11291 Creating an emergency board to investigate an airline labor dispute
 11303 Modifying provisions for transfer of personnel to certain public international organizations
 11307 Coordinating Federal programs affecting agriculture and rural development
 11308 Creating an emergency board to investigate an airline labor dispute
-11314 Creating a board of inquiry to report on labor disputes affecting the military jet engine, military 
+11314 Creating a board of inquiry to report on labor disputes affecting the military jet engine, military
 aircraft, military armament and military electronics industries
 11320 Delegating authority to prescribe rules and regulations relating to foreign gifts and decorations
 11321 Creating a board of inquiry to report on a labor dispute affecting the military aircraft engine industry
 11324 Creating an emergency board to investigate a railroad labor dispute
 11325 Prescribing Selective Service regulations
-11327 Assigning authority to order certain persons in the Ready Reserve to active duty 
-11329 Creating a board of inquiry to report on a labor dispute affecting the shipbuilding and repair 
+11327 Assigning authority to order certain persons in the Ready Reserve to active duty
+11329 Creating a board of inquiry to report on a labor dispute affecting the shipbuilding and repair
 industries
 11343 Creating an emergency board to investigate a railroad labor dispute
 11344 Creating a board of inquiry to report on a labor dispute affecting the military aircraft and military
-aircraft engine industries 
+aircraft engine industries
 11350 Amending Selective Service regulations
-11356 Creating an emergency board to investigate a railroad labor dispute 
+11356 Creating an emergency board to investigate a railroad labor dispute
 11360 Amending Selective Service regulations
 11386 Prescribing arrangements for coordination of the activities of regional commissions and activities of
 the Federal Government relating to regional economic development
-11387 Governing certain capital transfers abroad 
+11387 Governing certain capital transfers abroad
 11391 Amending Selective Service regulations
 11422 Establishing the Cooperative Area Manpower Planning System affecting the aircraft industry.
 11431 Creating a board of inquiry to report on labor disputes affecting the maritime industry
 11433 Creating an emergency board to investigate a railroad labor dispute
 11434 Relating to the administration of the Foreign Service personnel systems of the United States, and for
 other purposes
-11436 Suspending provisions of section 6372 of title 10, U.S.C., relating to retirement or retention on the 
+11436 Suspending provisions of section 6372 of title 10, U.S.C., relating to retirement or retention on the
 active list of certain rear admirals in the Navy
 11442 Creating an emergency board to investigate a railroad labor dispute
 11443 Creating an emergency board to investigate railroad labor disputes
 11444 Creating an emergency board to investigate railroad labor disputes
 11445 Creating an emergency board to investigate railroad labor disputes
-11449 Relating to participation in the International Coffee Organization 
+11449 Relating to participation in the International Coffee Organization
 11452 Establishing the Council for Urban Affairs
 11486 Creating an emergency board to investigate railroad labor disputes
 11493 Establishing the Council for Rural Affairs
 11497 Amending Selective Service regulations
 11527 Amending Selective Service regulations
 11537 Amending Selective Service regulations
-11543 Creating an emergency board to investigate railroad labor disputes 
+11543 Creating an emergency board to investigate railroad labor disputes
 11553 Amending Selective Service regulations
 11555 Amending Selective Service regulations
 11558 Creating an emergency board to investigate railroad labor disputes
@@ -8318,11 +8318,11 @@ industry
 11664 Creating an emergency board to investigate a railroad labor dispute
 11679 Creating an emergency board to investigate a railroad labor dispute
 11694 Creating an emergency board to investigate a railroad labor dispute
-11706 Providing for inspection of tax returns by U.S. Attorneys and justice Department attorneys for grand  
+11706 Providing for inspection of tax returns by U.S. Attorneys and justice Department attorneys for grand
 jiiry proceedings and litigation
-11745 Creating an emergency board to investigate a railroad labor dispute 
+11745 Creating an emergency board to investigate a railroad labor dispute
 11761 Facilitating the coordination of Federal education programs
-11771 Extending diplomatic privileges and immunities to the Liaison Office of the People’s Republic of China  
+11771 Extending diplomatic privileges and immunities to the Liaison Office of the People’s Republic of China
 in Washington, D.C.
 
 === PDF page 14 of 200 ===
@@ -8330,7 +8330,7 @@ in Washington, D.C.
 No. Subject
 11783
 11787
-11788  
+11788
 11797
 11805
 11834
@@ -8363,19 +8363,19 @@ No. Subject
 12257
 12263
 12269
-12270 
-12297 
-12299  
-12327 
+12270
+12297
+12299
+12327
 12351
 12357
-12358 
-12370 
-12373 
+12358
+12370
+12373
 12376
 12384
 12385
-12386  
+12386
 12390
 12392
 12393
@@ -8386,20 +8386,20 @@ No. Subject
 12408
 12409
 12414
-12415 
-12427 
-12429 
+12415
+12427
+12429
 12434
 Creating an emergency- board to investigate a railroad labor dispute
 Relating to the adverse actions appeals system
 Providing for termination of economic stabilization activities
-Delegating to the Secretary of Agriculture submission of an annual report to Congress on location of  
+Delegating to the Secretary of Agriculture submission of an annual report to Congress on location of
 new Federal facilities in rural areas
-Providing for inspection of tax returns by the President and certain employees of the White House  
+Providing for inspection of tax returns by the President and certain employees of the White House
 Office
 Activating the Energy Research and Development Administration and the Nuclear Regulatory Commis­
 sion
-increasing the effectiveness of the Transportation Cargo Security Program  
+increasing the effectiveness of the Transportation Cargo Security Program
 Creating an emergency board to investigate a railroad labor dispute
 Delegating to the Administrator of General Services authority to issue joint funding regulations
 Transferring the SCORE and ACE programs from ACTION to the Small Business Administration
@@ -8413,9 +8413,9 @@ Establishing a Critical Energy Facility Program
 Delegating authorities relating to motor gasoline end-user allocation
 Relating to the. United States Sinai Support Mission
 Decontrolling heavy oil
-Continuing the delegation of authorities relating to motor gasoline end-user allocation  
-Relating to the President’s Commission for the Study of Ethical Problems in Medicine and Biomedical  
-and Behavioral Research  
+Continuing the delegation of authorities relating to motor gasoline end-user allocation
+Relating to the President’s Commission for the Study of Ethical Problems in Medicine and Biomedical
+and Behavioral Research
 Changing the definition of heavy oil
 Providing for the base production control level for marginal properties
 Relating to the definition of heavy oil
@@ -8423,33 +8423,33 @@ Providing for nuclear cooperation with EURATOM
 Relating to the base production level for marginal properties
 Providing for the effectuation of the Department of Education Organization Act
 Relating to the United States Sinai Support Mission
-Providing exemption for Fort Allen from compliance with the Federal Water Pollution Control Act  
-Establishing the National Advisory Community Investment Board  
+Providing exemption for Fort Allen from compliance with the Federal Water Pollution Control Act
+Establishing the National Advisory Community Investment Board
 Providing for census statistics on legal immigrants
-Providing for noncompetitive conversion of CETA participants to career or career-conditional civil  
+Providing for noncompetitive conversion of CETA participants to career or career-conditional civil
 service status
 Delegating strategic and critical materials transaction authority to the United States Trade Representa­
 tive
-Establishing the President’s Committee on Small Business Policy  
-Establishing the President’s Council on Spinal Cord Injury  
-Executing the International Coffee Agreement of 1976  
-Terminating the President's Advisory Board on Ambassadorial Appointments  
-Exempting Fort Allen from pollution control statutes  
-Providing for nuclear cooperation with EURATOM  
-Phasing out the United States Sinai Support Mission  
-Establishing the Presidential Commission on Drunk Driving  
+Establishing the President’s Committee on Small Business Policy
+Establishing the President’s Council on Spinal Cord Injury
+Executing the International Coffee Agreement of 1976
+Terminating the President's Advisory Board on Ambassadorial Appointments
+Exempting Fort Allen from pollution control statutes
+Providing for nuclear cooperation with EURATOM
+Phasing out the United States Sinai Support Mission
+Establishing the Presidential Commission on Drunk Driving
 Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate a railroad labor dispute
 Increasing membership on the Presidential Commission on Drunk Driving
 Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate a railroad labor dispute
 Creating an emergency board to investigate a railroad labor dispute
-Delegating a reporting function to the Secretary of State concerning U.S. credit to Poland  
-Delegating authority to the Secretary of the Treasury to make payments to certain international  
+Delegating a reporting function to the Secretary of State concerning U.S. credit to Poland
+Delegating authority to the Secretary of the Treasury to make payments to certain international
 financial institutions
-Creating an emergency board to investigate a railroad labor dispute  
+Creating an emergency board to investigate a railroad labor dispute
 Continuing the National Commission on Social Security Reform
-Increasing membership and extending the President’s Private Sector Survey on Cost Control in the  
+Increasing membership and extending the President’s Private Sector Survey on Cost Control in the
 Federal Government
 Continuing the National Commission on Social Security Reform
 Creating an emergency board to investigate a railroad labor dispute
@@ -8458,18 +8458,18 @@ Extending the period for nuclear cooperation with EURATOM
 Creating an emergency board to investigate a railroad labor dispute
 Continuing the Presidential Commission on Drunk Driving
 Establishing the President’s Advisory Council on Private Sector Initiatives
-Continuing the President’s Private Sector Survey on Cost Control in the Federal Government  
+Continuing the President’s Private Sector Survey on Cost Control in the Federal Government
 Transferring responsibility for setting rates for the Alaska Railroad
 
 === PDF page 15 of 200 ===
 Federal Register /  Vol. 51, No. 41 /  Monday, M arch 3, 1986 /  Presidential Documents 7243
 No. Subject
-12440 Increasing the membership of the President’s Commission on Industrial Competitiveness  
+12440 Increasing the membership of the President’s Commission on Industrial Competitiveness
 12442 Continuing the President’s Commission on Indian Reservation Economies
-12447 Continuing the President’s Private Sector Survey on- Cost Control in the Federal Government  
+12447 Continuing the President’s Private Sector Survey on- Cost Control in the Federal Government
 12449 Continuing the National Bipartisan Commission on Central America
-12455 Continuing the President’s Private Sector Survey on Cost Control in the Federal Government  
-12457 Continuing the President's Commission on- Industrial Competitiveness and increasing its membership  
+12455 Continuing the President’s Private Sector Survey on Cost Control in the Federal Government
+12457 Continuing the President's Commission on- Industrial Competitiveness and increasing its membership
 12463 Extending the period for nuclear cooperation with EURATOM
 12476 Relating to the Presidential Commission on the Conduct of United States-Japan Relations
 12480 Creating an emergency board to investigate a railroad labor dispute
@@ -8479,12 +8479,12 @@ No. Subject
 12491 Creating an emergency board to investigate a railroad labor dispute
 12492 Creating an emergency board to investigate a railroad labor dispute
 12495 Creating an emergency board to investigate a railroad labor dispute
-Editorial note: For the text of a White House announcement, released February 25, on Executive  
+Editorial note: For the text of a White House announcement, released February 25, on Executive
 Order 12553, see the W eekly Com pilation o f P residential Documents  (vol. 22, no. 9).
-THE W HITE HOUSE,  
+THE W HITE HOUSE,
 F e b r u a r y  2 5 , 1986.
-[FR Doc. 86-4455  
-Filed 2-26-86; 11:19 am]  
+[FR Doc. 86-4455
+Filed 2-26-86; 11:19 am]
 Billing code 3195-01-M
 
 ```
@@ -8512,31 +8512,31 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 Presidential Documents
 Title 3—The President
 EXECUTIVE ORDER 11736
-Am ending Executive O rder N o . 1 1 7 0 8 , Placing Certain Positions in 
+Am ending Executive O rder N o . 1 1 7 0 8 , Placing Certain Positions in
 Levels I V  and V  of the Executive Schedule
-By virtue o f the authority vested in m e by section 5317 o f title 5 o f the 
-U nited States C ode, as am ended, E xecutive O rd er N o. 11708, dated 
+By virtue o f the authority vested in m e by section 5317 o f title 5 o f the
+U nited States C ode, as am ended, E xecutive O rd er N o. 11708, dated
 M a rch  23, 1973, as am ended, is further am ended as follow s:
-1 . -Section 1 o f that order, p lacin g certain positions in level I V  o f the 
+1 . -Section 1 o f that order, p lacin g certain positions in level I V  o f the
 E xecutive Schedule, is am ended—
-(a ) by deleting “ (2)  A dm inistrator, N ational Institutes o f H ealth, 
-D epartm ent o f H ealth, E du cation , and W elfare”  and inserting in  lieu 
-th ereof “ (2) D irector, N ational-Institutes o f H ealth, D epartm ent o f 
+(a ) by deleting “ (2)  A dm inistrator, N ational Institutes o f H ealth,
+D epartm ent o f H ealth, E du cation , and W elfare”  and inserting in  lieu
+th ereof “ (2) D irector, N ational-Institutes o f H ealth, D epartm ent o f
 H ealth, E du cation , and W elfare” ;
 ( b )  b y deleting “ (4) Special Assistant to the Secretary (C on gres­
-sional R ela tion s), Treasury D epartm ent”  and inserting in lieu thereof 
-“ (4) Assistant to the Secretary fo r Legislative A ffairs, Treasury 
+sional R ela tion s), Treasury D epartm ent”  and inserting in lieu thereof
+“ (4) Assistant to the Secretary fo r Legislative A ffairs, Treasury
 D epartm ent” ;
 ( c )  b y deleting “ (14)  Assistant to the Secretary fo r P olicy D evelop­
-m ent, D epartm ent o f C om m erce”  and inserting in lieu thereof “ (14) 
+m ent, D epartm ent o f C om m erce”  and inserting in lieu thereof “ (14)
 D eputy U nder Secretary, D epartm ent o f T ransportation” ; and
 ( d ) by adding at the end th ereof:
 “ (16)  Special P rosecutor, D epartm ent o f Justice.
 “ (17)  A ssociate A ttorney G eneral, D epartm ent o f Justice.
-“ (18)  Com m issioner G eneral o f the International E xposition on the 
+“ (18)  Com m issioner G eneral o f the International E xposition on the
 E nvironm ent, D epartm ent o f C om m erce.”
-2. Section 2 o f that order, placin g certain positions in level V  o f the 
-E xecutive Schedule, is am ended b y Adding at the end th ereof “ (8) 
+2. Section 2 o f that order, placin g certain positions in level V  o f the
+E xecutive Schedule, is am ended b y Adding at the end th ereof “ (8)
 Associate A dm inistrator fo r Federal M anagem ent P olicy, G eneral Serv­
 ices A dm inistration.”
 T h e W h it e H o u se,
@@ -8562,14 +8562,14 @@ Federal Register /  Vol. 49, No. 182 /  Tuesday, September 18,1984 /  Presidenti
 Presidential Documents
 Executive Order 12487 of September 14, 1984
 Adjustments of Certain Rates of Pay
-By the authority vested in me as President by the Constitution and laws of the  
-United States of America, and in accordance with section 2207 of the Deficit  
+By the authority vested in me as President by the Constitution and laws of the
+United States of America, and in accordance with section 2207 of the Deficit
 Reduction Act of 1984 (Public Law 98-369), it is hereby ordered as follows:
-Section 1. Executive Order No. 12456 of December 30, 1983, as amended, is  
+Section 1. Executive Order No. 12456 of December 30, 1983, as amended, is
 further amended by replacing Schedule 8 attached thereto with the corre­
 sponding new Schedule 8 attached hereto.
-Sec. 2. The adjustments of rates of pay made by section 1 of this Order are  
-effective on the first day of the first applicable pay period beginning on or  
+Sec. 2. The adjustments of rates of pay made by section 1 of this Order are
+effective on the first day of the first applicable pay period beginning on or
 after January 1,1984.
 crvAJJiflxVs*
 THE WHITE HOUSE,
@@ -8583,7 +8583,7 @@ Judges of the Court of International Trade, ...... 76 000
 Judges of the United States Claims Court ......... 67*800
 Bankruptcy Judges (full-time)...................... 66,*100
 |FR Doc. 84-24822 Bankruptcy Judges (part-time) (maximum rate) ----- 33^100
-Filed 9-14-84; 4:24 pm] 
+Filed 9-14-84; 4:24 pm]
 Billing code 3195-01-M
 
 ```
@@ -8603,19 +8603,19 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 presidential docum ents
 Title 3—The President
 Executive Order 11931 August 3, 1976
-Extending Diplomatic Privileges and Immunities to Permanent Observers to the  
+Extending Diplomatic Privileges and Immunities to Permanent Observers to the
 Organization of American States and to Members of Their Diplomatic Staffs
-By virtue of the authority vested in me by the Act of November 7, 1973 (87 Stat.  
-560; 22 U.S.G. 288g), and as President of the United States of America, I extend to  
-Permanent Observers to the Organization of American States, and to the members of  
-the diplomatic staffs of such Permanent Observers, the same privileges and immunities,  
-subject to corresponding conditions and obligations, as are enjoyed'by' diplomatic  
+By virtue of the authority vested in me by the Act of November 7, 1973 (87 Stat.
+560; 22 U.S.G. 288g), and as President of the United States of America, I extend to
+Permanent Observers to the Organization of American States, and to the members of
+the diplomatic staffs of such Permanent Observers, the same privileges and immunities,
+subject to corresponding conditions and obligations, as are enjoyed'by' diplomatic
 envoys accredited to the United States.
-This Executive order shall be effective as of November 7, 1973. The enjoyment  
-of privileges and immunities extended hereunder shall be subject to any Agreements  
-entered into between the Government of the United States and the Organization of  
+This Executive order shall be effective as of November 7, 1973. The enjoyment
+of privileges and immunities extended hereunder shall be subject to any Agreements
+entered into between the Government of the United States and the Organization of
 American States after that date.
-T h e W h it e H o u se, 
+T h e W h it e H o u se,
 August 3,1976.
 [FR Doc.76-22978 Filed 8-3-76;4:50 pm]
 FEDERAL REGISTER, VOL. 41, NO. 152— THURSDAY, AUGUST 5 , 1974
@@ -8637,12 +8637,12 @@ first meeting, unless otherwise directed by the President.
 Text hash 5e8af2a7ccaf63598e2f6a7d89c8102ffe20c21e18675c62c5625ca50344bd01; absolute characters 2082–2449; files: jobs/clause-drafts/output/texts/cd-job-fr-originals-11727-ff1fe59ce2.txt
 
 ```text
-Section 1  of Executive Order No. 11708 of March 23, 1973, 
-as amended, placing certain positions in level IV  of the Executive 
+Section 1  of Executive Order No. 11708 of March 23, 1973,
+as amended, placing certain positions in level IV  of the Executive
 Schedule is hereby further amended by deleting—
 (1 ) “ (6)  Director, Office for Drug Abuse Law Enforcement, De­
 partment of Justice.” ; and
-(2 ) “ (7) Director, Office of National Narcotics Intelligence, 
+(2 ) “ (7) Director, Office of National Narcotics Intelligence,
 Department of Justice.”
 Se c. 5.
 ```
@@ -8653,7 +8653,7 @@ Text hash 63d584ef97db95f15da97c6b162e9558a237ffa27913c332037668e6042df8f5; abso
 
 ```text
 (b) Section 4(b) shall read: “In accordance with the Federal Advisory Commit­
-tee Act, as amended, the Committee shall terminate on June 30, 1983, unless  
+tee Act, as amended, the Committee shall terminate on June 30, 1983, unless
 sooner extended.”.
 ```
 
@@ -8672,19 +8672,19 @@ Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May 
 Federal Register /  Vol. 48, No. 211 / Monday, October 31, 1983 /  Presidential Documents 50055
 Presidential Documents
 Executive Order 12447 of October 27, 1983
-President’ s Private Sector Survey on Cost Control in the 
+President’ s Private Sector Survey on Cost Control in the
 Federal Government
-By the authority vested in me as President by the Constitution and laws of the  
-United States of America, including the Federal Advisory Committee Act, as  
-amended (5 U.S.C. App. I), and in order to extend the life of the President’s  
-Private Sector Survey on Cost Control in the Federal Government, it is hereby  
-ordered that Section 4(b) of Executive Order No. 12369 of June 30, 1982, as  
+By the authority vested in me as President by the Constitution and laws of the
+United States of America, including the Federal Advisory Committee Act, as
+amended (5 U.S.C. App. I), and in order to extend the life of the President’s
+Private Sector Survey on Cost Control in the Federal Government, it is hereby
+ordered that Section 4(b) of Executive Order No. 12369 of June 30, 1982, as
 amended, is further amended to read:
 “The Committee shall terminate on December 31, 1983, unless sooner ex­
 tended.”.
-THE WHITE HOUSE, 
-O c to b e r 27, 1983.[FR Doc. 83-29686 
-Filed 10-28-83; 11:20 am] 
+THE WHITE HOUSE,
+O c to b e r 27, 1983.[FR Doc. 83-29686
+Filed 10-28-83; 11:20 am]
 Billing code 3195-01-M
 
 ```
