@@ -114,3 +114,19 @@ For EO 11033, if the NMB annual report is authenticated and confirms no formal b
 *Why:* The adopted PEB rule uses the transmittal-letter date of a held report. The NMB 1963 annual report says the EO 11033 board submitted no formal report and advised the President of the settled dispute on August 11, 1962; the report-date predicate therefore has no document to apply to.
 
 Sources: `research/bracton/BOARD_SOURCE_DISCOVERY.md`
+
+## A-20261108-bracton-11054-board-inquiry (2026-11-08, Sol Bracton)
+
+For EO:11054, should Sol use the Taft-Hartley Board of Inquiry report route and a separate end rule instead of Haloander's NMB Presidential Emergency Board report-date rule?
+
+*Why:* EO:11054 establishes a maritime Board of Inquiry under the Taft-Hartley Act, not an NMB Presidential Emergency Board; the present PEB cohort and source request may therefore use the wrong legal event.
+
+Sources: `research/bracton/BOARD_SOURCE_DISCOVERY.md`
+
+## A-20261108-bracton-board-classification (2026-11-08, Sol Bracton)
+
+Should EO:11206, EO:11213, EO:12121, EO:12162, EO:12187, and EO:12189 be removed from Haloander's R3 PEB report-date cohort and routed under their actual tax/energy order types?
+
+*Why:* The official order descriptions concern tax inspection or energy/petroleum amendments, and no Presidential Emergency Board report appears applicable. Their current missing_board_report state would incorrectly block them and invite a PEB ending rule.
+
+Sources: `research/bracton/BOARD_CLASSIFICATION_TRIAGE.csv`

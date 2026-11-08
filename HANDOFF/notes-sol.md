@@ -1,5 +1,12 @@
 # Sol's handoff notes
 
+## 2026-11-08 18:05 ET: nine board reports retained; n03 clean packet expanded
+
+- **Done:** [Source-only run 42531642782](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42531642782) succeeded and published direct NMB PDFs for EO:9918, 9922, 9923, 9929, 9936, 9940, 9948, 9991 and 10078. `ACQUISITIONS.csv` holds their exact hashes. Report identity, transmittal dates and legal effects remain for review. No page check or claim was made.
+- **Done:** Exact raw custody for n03 EO:5825, 6437 and 6530 was found or retained without page authentication. The refreshed research packet `r8-n03/packet-a-v6` clears 24/25 cases, and clean `packet-c-v1` passed 24/24 with 106 custody checks and a free remote lease. EO:6743's exact archived XML returned HTTP 500 on repeated attempts and remains source blocked. EO:6331B and EO:6370 retain their invalid working-text preflight blocks. The three source-ready originals requiring page readings are assigned to Montfaucon in `BLOCKED_MONTFAUCON.csv`.
+- **Done:** Kean asks `A-20261108-bracton-board-classification` and `A-20261108-bracton-11054-board-inquiry` record the six apparent non-PEB roster entries and the distinct Taft-Hartley Board of Inquiry route. No board end rule was applied to them.
+- **Next:** Commit the latest packet, source outcome and Kean receipts; reconcile the published source-ladder commit before pushing. Refresh board coverage and recheck Montfaucon page-check landings on main before any merge. Keep Claude-family blind arms after Monday's 6 PM ET reset with planted controls and a hard stop on a missed control. After ranks #1–#9, process the disjoint 92-order Photius stratum word by word against GPO before blind review.
+
 ## 2026-11-08 17:33 ET: all nonboard rank-8 members triaged
 
 - **Done:** Reconciled 223 rank-8 members into 146 board and 77 nonboard cases. The disjoint nonboard packets n01 (25), n02 (25) and n03 research packet (25) plus two n03 preflight blocks cover all 77 exactly. `r8-n03/packet-b-v1` isolates 21 of the final 27 and passed a fresh 21/21 dispatch with 93 custody checks and free lease. Four others have exact HathiTrust/Internet Archive raw-source blocks (EO:5825, 6437, 6530, 6743); EO:6331B and EO:6370 have invalid working-text confirmations with named Mabillon text-hash mismatches. No page checks or claims were made.
