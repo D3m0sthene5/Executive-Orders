@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 15:57 ET: direct shared-source hint and EO 12285 report located
+
+- **Done:** Staged an exact `CFR::26 CFR 458.324` source-ladder URL hint to the official 1955 Federal Register issue, with a passing routing test. The earlier 1955 publication does not answer 1959–1960 applicability. Found a Reagan Library archival bundle containing EO:12285's commission final report and an official 1982 Federal Register notice of its September 21, 1981 submission; two validated requests are in the append-only fetch queue. Identified catalog holdings for EO:4314's 1925 booklet but no verified full scan. No page check, claim, or blind review was made. The full source-ladder test file has two unrelated PDF extraction failures in this embedded Python environment because `pypdf` is absent; the new targeted test passes.
+- **Running:** First targeted Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) remains active. Local commits and the new queue lines remain unpublished until its pinned-input run publishes.
+- **Next:** Reconcile the runner's remote branch commit, merge current main, then dispatch direct-source and untried-board batches. Read published source receipts before marking an acquisition complete. Revisit page-only cases only after Montfaucon's checks land on main; refresh packets for Monday's review reset.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Run #10/#13, create page-check records, or count a discovered URL as authenticated source custody.
+
 ## 2026-11-08 15:37 ET: Bracton board source retries staged; first source run still active
 
 - **Done:** Kept the first targeted source run pinned. Classified nine absent board-report sources with prior failures in `research/bracton/BOARD_RETRY_TRIAGE.csv`. Five page-reading blocks now name exact sources in `BLOCKED_MONTFAUCON.csv` (three recovery FR printings plus EO:10117 and EO:12414 scanned NMB reports). No Sol page-check record was written. Added six direct board source leads to the append-only fetch queue: NMB PEB-067/086/142, Truman Library's EO:10106 receipt letter, NMB's EO:11033 annual report, and BLS's EO:11078 bulletin. They remain unacquired. `COST.md` still has $0 measured worker cost and explicitly leaves Codex coordinator usage unmeasured. Kean ask `A-20261108-bracton-11033-no-report` names the possible owner rule exception; strict Kean check passes.
