@@ -151,6 +151,21 @@ class VallaTests(unittest.TestCase):
         self.path.write_text(V.canon({**self.claim, 'synthetic': True}) + '\n')
         with self.assertRaises(ValueError):V.active_claims(self.repo)
 
+    def test_canonical_v2_claim_is_available_as_review_context(self):
+        revised = copy.deepcopy(self.claim)
+        revised['schema'] = 'eo-lifecycle-claim/v2'
+        revised['whole_order_end'] = {'date_kind': 'not_later_than', 'date': '2001-01-01',
+                                      'first_cause': 'unresolved', 'mechanism': 'express_revocation'}
+        revised['operative_clauses'][0]['first_end'] = copy.deepcopy(revised['whole_order_end'])
+        self.path.write_text(V.canon(revised) + '\n')
+        active, history = V.active_claims(self.repo, frozenset(['EO:1']))
+        self.assertEqual(active['EO:1']['claim'], revised)
+        self.assertEqual(history[0]['claim_sha256'], V.sha(revised))
+        revised['seeded'] = True
+        self.path.write_text(V.canon(revised) + '\n')
+        with self.assertRaises(ValueError):
+            V.active_claims(self.repo, frozenset(['EO:1']))
+
     def test_shared_references_are_exact_and_not_causal_inference(self):
         p = self.repo / 'research/package'; p.mkdir(); V.dump(p / 'RATIONALES.json', {'rule': 'Shared reasoning.'})
         (p / 'decisions.csv').write_text('instrument_id,research_rationale\nEO:1,@rationale:rule\n')

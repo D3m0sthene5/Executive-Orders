@@ -84,7 +84,7 @@ def walk(obj, pointer=''):
 
 
 def production_claim(c):
-    return (isinstance(c, dict) and c.get('schema') == 'eo-lifecycle-claim/v1'
+    return (isinstance(c, dict) and c.get('schema') in ('eo-lifecycle-claim/v1', 'eo-lifecycle-claim/v2')
             and str(c.get('instrument_id', '')).startswith('EO:')
             and not any(c.get(k) for k in ('SEEDED', 'seeded', 'synthetic')))
 

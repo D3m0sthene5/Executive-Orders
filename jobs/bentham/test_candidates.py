@@ -48,6 +48,7 @@ ROWS = [
     row(9042, "no", "done", "done", "CLAIM_INCOMPLETE:ending_or_current_basis", claim="no", clause="done", end="open", sav="done"),   # no claim
     # custody-stranded recovery order that would otherwise sit in the no.fr stratum
     row(9050, "no", "done", "done", NONGATE),
+    {**row(9051, "no", "done", "done", NONGATE), "ready_for_human_review": "yes"},
 ]
 TRACKER_MD = """# Readiness tracker
 
@@ -88,7 +89,8 @@ def make_repo(root):
         {"batch": "a", "not_filed": [{"instrument_id": "EO:9050", "outcome": "rejected_mechanical", "reason": ""},
                                      {"instrument_id": "EO:77", "outcome": "rejected_mechanical", "reason": ""},
                                      {"instrument_id": "EO:78", "outcome": "blocked", "reason": "x"}]},
-        {"batch": "b", "not_filed": [{"instrument_id": "EO:77", "outcome": "rejected_mechanical", "reason": ""}]}]}, indent=2))
+        {"batch": "b", "not_filed": [{"instrument_id": "EO:77", "outcome": "rejected_mechanical", "reason": ""},
+                                     {"instrument_id": "EO:9051", "outcome": "rejected_mechanical", "reason": ""}]}]}, indent=2))
     w(C.TRIBONIAN_REPORT, "x\n47 reviewed claims are blocked by source custody. y\nEmergency-dependent YES orders lack the yearly National Emergencies Act continuation notices.\nThe current texts of parent orders and statutes are not held.\n")
     w(C.POLYA_COMPARE, json.dumps({"frames": [{"frame": "F7_aux_current_predicate_table", "decided_not_ready_reachable": 340}]}, indent=1))
     w(C.POLYA_ACTIONS, "{}")
@@ -134,10 +136,10 @@ class CandidatesTest(unittest.TestCase):
     def test_recovery(self):
         r = self.by["recovery.custody_stranded"]
         self.assertEqual(r["kind"], "recovery")
-        self.assertEqual(r["orders"], 2)  # EO:77 counted once
+        self.assertEqual(r["orders"], 1)  # EO:77 is absent; EO:9051 has already become ready
         self.assertEqual(r["cost_key"], "review.per_submitted")
         self.assertIn("review", r["description"])
-        self.assertEqual(self.ids("recovery.custody_stranded"), {"EO:9050", "EO:77"})
+        self.assertEqual(self.ids("recovery.custody_stranded"), {"EO:9050"})
 
     def unlock_total(self, aid):
         return sum(u["orders"] for u in self.by[aid]["unlocks"])

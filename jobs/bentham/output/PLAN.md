@@ -11,17 +11,17 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 3 | acquire.shared.EO_6964 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 4 | acquire.shared.EO_6910 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 5 | acquire.shared.CFR_26_CFR_458.324 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
-| 6 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
-| 7 | recovery.custody_stranded | recovery | 48 | 30.7 | 0.0 | $19 | 159.9 | $19 |
-| 8 | production.one_step_away | production | 219 | 139.8 | 0.0 | $142 | 98.8 | $161 |
-| 9 | production.claim_ready.yes.fr | production | 345 | 80.5 | 0.0 | $223 | 36.1 | $384 |
-| 10 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 3.2 | $17 | 19.3 | $400 |
-| 11 | status_assignment.undecided | status_assignment | 10700 | 1070.0 | 0.0 | $6,916 | 15.5 | $7,316 |
-| 12 | production.claim_ready.no.fr | production | 1193 | 39.8 | 0.0 | $771 | 5.2 | $8,087 |
-| 13 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $8,087 |
-| 14 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $8,087 |
-| 15 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $8,087 |
-| 16 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $8,087 |
+| 6 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.3 | free | ∞ | free |
+| 7 | recovery.custody_stranded | recovery | 9 | 5.7 | 0.0 | $3.60 | 159.9 | $3.60 |
+| 8 | production.one_step_away | production | 223 | 142.4 | 0.0 | $144 | 98.8 | $148 |
+| 9 | production.claim_ready.yes.fr (over budget) | production | 338 | 78.9 | 0.0 | $218 | 36.1 | $148 |
+| 10 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 5.5 | $29 | 18.7 | $177 |
+| 11 | status_assignment.undecided (over budget) | status_assignment | 10697 | 1069.7 | 0.0 | $6,914 | 15.5 | $177 |
+| 12 | production.claim_ready.no.fr (over budget) | production | 1158 | 38.6 | 0.0 | $748 | 5.2 | $177 |
+| 13 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $177 |
+| 14 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $177 |
+| 15 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $177 |
+| 16 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $177 |
 
 Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
 

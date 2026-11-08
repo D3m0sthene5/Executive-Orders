@@ -1,0 +1,482 @@
+{
+  "generated_from": {
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "7d0a98476b11f102560563809cad0e51c872e832fdbeb89da11154db6b3e39b9",
+    "jobs/readiness-tracker/output/TRACKER.md": "e78b380d8e883626c5fb91bf4c6493628fdb8a5955b518ec24834efe0fc4ed82",
+    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "e740dc8f02d3f41745fbf420fd62d74a78c362c74e0a4342af1b1401355ea000",
+    "jobs/polya/output/CANDIDATE_ACTIONS.json": "29cf22d5522b6ced73085419c8438c150b4a948ffb54617b38fc1d82601481b0",
+    "jobs/polya/output/COMPARE.json": "8ec65cab87bd0ffdfaef4b98fec5f53a6bf66876cfa1b69d9b601d9195272dd3",
+    "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json": "688bd3c450081288a998382e30e330ed0b51e8bfc6ce712090a6c46f9eeeee4d",
+    "research/excavator/claude-tribonian-2026-11-04/REPORT.md": "6ae4b9e7ebfda4b74f02dc670f483fcea4b1874528c378448786641bcc073fd8"
+  },
+  "pool": {
+    "decided_not_ready_orders": 3278,
+    "held_by_unretrieved_source_or_quarantine": 20
+  },
+  "notes": [
+    "Unlock counts are additive across acquisition actions (one assignment per order); orders needing two acquisitions are uncounted.",
+    "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE (orders absent from the OFR catalog) has no tracker action, so no acquisition is proposed for it.",
+    "Polya counts reach, not yield; they are cited, never added."
+  ],
+  "actions": [
+    {
+      "id": "production.claim_ready.no.fr",
+      "kind": "production",
+      "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
+      "orders": 1158,
+      "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.no.fr.txt",
+      "rate_key": "filed_per_attempt.no.fr",
+      "cost_key": "wave.per_attempt",
+      "unlocks": [],
+      "prerequisites": [],
+      "basis": "Computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: provisional_status=no, ready_for_human_review=no, EO number >= 7532, rule in_claim_ready_stratum.",
+      "evidence": [
+        {
+          "quote": "instrument_id,provisional_status,decision_origin,steps_applicable",
+          "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        }
+      ]
+    },
+    {
+      "id": "production.claim_ready.yes.fr",
+      "kind": "production",
+      "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
+      "orders": 338,
+      "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.yes.fr.txt",
+      "rate_key": "filed_per_attempt.yes.fr",
+      "cost_key": "wave.per_attempt",
+      "unlocks": [],
+      "prerequisites": [],
+      "basis": "Computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: provisional_status=yes, ready_for_human_review=no, EO number >= 7532, rule in_claim_ready_stratum.",
+      "evidence": [
+        {
+          "quote": "instrument_id,provisional_status,decision_origin,steps_applicable",
+          "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        }
+      ]
+    },
+    {
+      "id": "production.one_step_away",
+      "kind": "production",
+      "description": "Close the single open step of orders that already have a claim and exactly one applicable step open. Excludes recovery orders.",
+      "orders": 223,
+      "order_ids_path": "jobs/bentham/output/strata/production.one_step_away.txt",
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": "wave.per_attempt",
+      "unlocks": [],
+      "prerequisites": [],
+      "basis": "Computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: claim_present=yes and exactly one step_* column equal to open (n/a steps ignored).",
+      "evidence": [
+        {
+          "quote": "instrument_id,provisional_status,decision_origin,steps_applicable",
+          "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        }
+      ]
+    },
+    {
+      "id": "status_assignment.undecided",
+      "kind": "status_assignment",
+      "description": "Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided (claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such.",
+      "orders": 10697,
+      "order_ids_path": "jobs/bentham/output/strata/status_assignment.undecided.txt",
+      "rate_key": "filed_per_attempt.undecided",
+      "cost_key": "wave.per_attempt",
+      "unlocks": [],
+      "prerequisites": [],
+      "basis": "Computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: provisional_status blank. Yield unmeasured until a probe of this population is pooled.",
+      "evidence": [
+        {
+          "quote": "instrument_id,provisional_status,decision_origin,steps_applicable",
+          "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
+        }
+      ]
+    },
+    {
+      "id": "recovery.custody_stranded",
+      "kind": "recovery",
+      "description": "Prior rejected-mechanical reviewed claims still marked not ready by the current tracker. They need re-preparation and fresh review, not new drafting, so the cost is review.per_submitted. DISPOSITION.json lists 48 distinct historical orders; 9 remain not ready.",
+      "orders": 9,
+      "order_ids_path": "jobs/bentham/output/strata/recovery.custody_stranded.txt",
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": "review.per_submitted",
+      "unlocks": [],
+      "prerequisites": [
+        "source bytes held for the cited sources (jobs/cotton-capture-custody, jobs/astra-source-retention)",
+        "kit.py prepare for exactly these ids, then fresh blind review or owner-approved reuse"
+      ],
+      "basis": "Computed from research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json: orders with outcome rejected_mechanical, de-duplicated, then filtered to ready_for_human_review=no in jobs/readiness-tracker/output/READINESS_BY_ORDER.csv. 9 also sit in a claim-ready stratum and were removed from it.",
+      "evidence": [
+        {
+          "quote": "\"outcome\": \"rejected_mechanical\"",
+          "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
+        },
+        {
+          "quote": "47 reviewed claims are blocked by source custody",
+          "source": "research/excavator/claude-tribonian-2026-11-04/REPORT.md"
+        }
+      ]
+    },
+    {
+      "id": "acquire.shared.EO_4314",
+      "kind": "acquisition",
+      "description": "Retrieve shared source EO::4314 (tracker reach 10 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": null,
+      "cost_override_usd": 0,
+      "cost_units": null,
+      "unlocks": [
+        {
+          "orders": 8,
+          "rate_key": "filed_per_attempt.no.fr",
+          "delay_days": 2,
+          "delay_basis": "estimate: one machine fetch of a single source plus a tracker re-run (no measured run time)",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {SHARED_SOURCE_NOT_RETRIEVED:EO::4314}, with clause inventory, ending and savings open; assigned to this action only."
+        }
+      ],
+      "overlaps_with": [],
+      "prerequisites": [],
+      "tracker_reach_orders": 10,
+      "tracker_kind": "one_source",
+      "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
+      "evidence": [
+        {
+          "quote": "| 10 | one source | Retrieve shared source EO::4314 |",
+          "source": "jobs/readiness-tracker/output/TRACKER.md"
+        },
+        {
+          "quote": "SHARED_SOURCE_NOT_RETRIEVED:EO::4314",
+          "source": "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv"
+        }
+      ]
+    },
+    {
+      "id": "acquire.shared.EO_6868",
+      "kind": "acquisition",
+      "description": "Retrieve shared source EO::6868 (tracker reach 6 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": null,
+      "cost_override_usd": 0,
+      "cost_units": null,
+      "unlocks": [
+        {
+          "orders": 5,
+          "rate_key": "filed_per_attempt.no.fr",
+          "delay_days": 2,
+          "delay_basis": "estimate: one machine fetch of a single source plus a tracker re-run (no measured run time)",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {SHARED_SOURCE_NOT_RETRIEVED:EO::6868}, with clause inventory, ending and savings open; assigned to this action only."
+        }
+      ],
+      "overlaps_with": [],
+      "prerequisites": [],
+      "tracker_reach_orders": 6,
+      "tracker_kind": "one_source",
+      "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
+      "evidence": [
+        {
+          "quote": "| 6 | one source | Retrieve shared source EO::6868 |",
+          "source": "jobs/readiness-tracker/output/TRACKER.md"
+        },
+        {
+          "quote": "SHARED_SOURCE_NOT_RETRIEVED:EO::6868",
+          "source": "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv"
+        }
+      ]
+    },
+    {
+      "id": "acquire.shared.EO_6964",
+      "kind": "acquisition",
+      "description": "Retrieve shared source EO::6964 (tracker reach 3 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": null,
+      "cost_override_usd": 0,
+      "cost_units": null,
+      "unlocks": [
+        {
+          "orders": 2,
+          "rate_key": "filed_per_attempt.no.fr",
+          "delay_days": 2,
+          "delay_basis": "estimate: one machine fetch of a single source plus a tracker re-run (no measured run time)",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {SHARED_SOURCE_NOT_RETRIEVED:EO::6964}, with clause inventory, ending and savings open; assigned to this action only."
+        }
+      ],
+      "overlaps_with": [],
+      "prerequisites": [],
+      "tracker_reach_orders": 3,
+      "tracker_kind": "one_source",
+      "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
+      "evidence": [
+        {
+          "quote": "| 3 | one source | Retrieve shared source EO::6964 |",
+          "source": "jobs/readiness-tracker/output/TRACKER.md"
+        },
+        {
+          "quote": "SHARED_SOURCE_NOT_RETRIEVED:EO::6964",
+          "source": "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv"
+        }
+      ]
+    },
+    {
+      "id": "acquire.shared.EO_6910",
+      "kind": "acquisition",
+      "description": "Retrieve shared source EO::6910 (tracker reach 3 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": null,
+      "cost_override_usd": 0,
+      "cost_units": null,
+      "unlocks": [
+        {
+          "orders": 3,
+          "rate_key": "filed_per_attempt.no.fr",
+          "delay_days": 2,
+          "delay_basis": "estimate: one machine fetch of a single source plus a tracker re-run (no measured run time)",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {SHARED_SOURCE_NOT_RETRIEVED:EO::6910}, with clause inventory, ending and savings open; assigned to this action only."
+        }
+      ],
+      "overlaps_with": [],
+      "prerequisites": [],
+      "tracker_reach_orders": 3,
+      "tracker_kind": "one_source",
+      "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
+      "evidence": [
+        {
+          "quote": "| 3 | one source | Retrieve shared source EO::6910 |",
+          "source": "jobs/readiness-tracker/output/TRACKER.md"
+        },
+        {
+          "quote": "SHARED_SOURCE_NOT_RETRIEVED:EO::6910",
+          "source": "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv"
+        }
+      ]
+    },
+    {
+      "id": "acquire.shared.CFR_26_CFR_458.324",
+      "kind": "acquisition",
+      "description": "Retrieve shared source CFR::26 CFR 458.324 (tracker reach 2 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": null,
+      "cost_override_usd": 0,
+      "cost_units": null,
+      "unlocks": [
+        {
+          "orders": 2,
+          "rate_key": "filed_per_attempt.no.fr",
+          "delay_days": 2,
+          "delay_basis": "estimate: one machine fetch of a single source plus a tracker re-run (no measured run time)",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324}, with clause inventory, ending and savings open; assigned to this action only."
+        }
+      ],
+      "overlaps_with": [],
+      "prerequisites": [],
+      "tracker_reach_orders": 2,
+      "tracker_kind": "one_source",
+      "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
+      "evidence": [
+        {
+          "quote": "| 2 | one source | Retrieve shared source CFR::26 CFR 458.324 |",
+          "source": "jobs/readiness-tracker/output/TRACKER.md"
+        },
+        {
+          "quote": "SHARED_SOURCE_NOT_RETRIEVED:CFR::26 CFR 458.324",
+          "source": "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv"
+        }
+      ]
+    },
+    {
+      "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+      "kind": "acquisition",
+      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 881 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": "production.per_attempt",
+      "cost_override_usd": null,
+      "cost_units": 78,
+      "unlocks": [
+        {
+          "orders": 63,
+          "rate_key": "filed_per_attempt.no.fr",
+          "delay_days": 2,
+          "delay_basis": "estimate: agent page check of a located original, then tracker re-run",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {ONLY_COMPILED_TRANSCRIPTION_FOUND, ORIGINAL_FOUND_NEEDS_PAGE_CHECK}, with clause inventory, ending and savings open; assigned to this action only."
+        },
+        {
+          "orders": 15,
+          "rate_key": "filed_per_attempt.yes.fr",
+          "delay_days": 2,
+          "delay_basis": "estimate: agent page check of a located original, then tracker re-run",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {ONLY_COMPILED_TRANSCRIPTION_FOUND, ORIGINAL_FOUND_NEEDS_PAGE_CHECK}, with clause inventory, ending and savings open; assigned to this action only."
+        }
+      ],
+      "overlaps_with": [],
+      "prerequisites": [
+        "agent time to check pages, one order at a time (cost_units orders)"
+      ],
+      "tracker_reach_orders": 881,
+      "tracker_kind": "agent_check",
+      "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
+      "evidence": [
+        {
+          "quote": "| 881 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |",
+          "source": "jobs/readiness-tracker/output/TRACKER.md"
+        },
+        {
+          "quote": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+          "source": "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv"
+        }
+      ]
+    },
+    {
+      "id": "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+      "kind": "acquisition",
+      "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 10 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": "production.per_attempt",
+      "cost_override_usd": null,
+      "cost_units": 0,
+      "unlocks": [],
+      "overlaps_with": [],
+      "prerequisites": [
+        "agent time to check pages, one order at a time (cost_units orders)"
+      ],
+      "tracker_reach_orders": 10,
+      "tracker_kind": "agent_check",
+      "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
+      "evidence": [
+        {
+          "quote": "| 10 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |",
+          "source": "jobs/readiness-tracker/output/TRACKER.md"
+        },
+        {
+          "quote": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+          "source": "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv"
+        }
+      ]
+    },
+    {
+      "id": "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+      "kind": "acquisition",
+      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2435 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": null,
+      "cost_override_usd": 0,
+      "cost_units": null,
+      "unlocks": [
+        {
+          "orders": 3,
+          "rate_key": "filed_per_attempt.no.fr",
+          "delay_days": 3,
+          "delay_basis": "estimate: GitHub Actions fetch job (fr-originals route) and tracker re-run; era fr only because the tracker text says orders from 1936 on were printed in the Federal Register",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {NO_OFFICIAL_SOURCE_LOCATED, ONLY_COMPILED_TRANSCRIPTION_FOUND}, with clause inventory, ending and savings open; assigned to this action only."
+        },
+        {
+          "orders": 1,
+          "rate_key": "filed_per_attempt.yes.fr",
+          "delay_days": 3,
+          "delay_basis": "estimate: GitHub Actions fetch job (fr-originals route) and tracker re-run; era fr only because the tracker text says orders from 1936 on were printed in the Federal Register",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {NO_OFFICIAL_SOURCE_LOCATED, ONLY_COMPILED_TRANSCRIPTION_FOUND}, with clause inventory, ending and savings open; assigned to this action only."
+        }
+      ],
+      "overlaps_with": [],
+      "prerequisites": [],
+      "tracker_reach_orders": 2435,
+      "tracker_kind": "machine_job",
+      "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
+      "evidence": [
+        {
+          "quote": "| 2,435 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |",
+          "source": "jobs/readiness-tracker/output/TRACKER.md"
+        },
+        {
+          "quote": "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "source": "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv"
+        }
+      ]
+    },
+    {
+      "id": "zero_agent.opus_media_refetch",
+      "kind": "zero_agent",
+      "description": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.correction",
+      "cost_key": null,
+      "cost_override_usd": 0,
+      "unlocks": [],
+      "prerequisites": [],
+      "note": "Clears the Opus-media step, which the claim-ready stratum does not gate on, so no unlock is counted. 431 decided orders carry this blocker.",
+      "basis": "Tracker reach 431 from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; decided count computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv.",
+      "evidence": [
+        {
+          "quote": "| 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |",
+          "source": "jobs/readiness-tracker/output/TRACKER.md"
+        }
+      ]
+    },
+    {
+      "id": "acquire.nea_continuation_notices",
+      "kind": "acquisition",
+      "description": "Fetch the yearly National Emergencies Act continuation notices for emergency-dependent YES orders, so their current basis can be cited.",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.yes.fr",
+      "cost_key": null,
+      "cost_override_usd": 0,
+      "unlocks": [],
+      "overlaps_with": [
+        "production.claim_ready.yes.fr",
+        "acquire.current_law_sections"
+      ],
+      "yield_lift_not_counted": {
+        "orders": 334,
+        "applies_to": [
+          "production.claim_ready.yes.fr"
+        ],
+        "why": "These YES orders are already in the claim-ready strata; the action raises their yield but moves no order into a stratum, and no measured yield change exists."
+      },
+      "prerequisites": [],
+      "basis": "Orders counted from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: YES, in a claim-ready stratum, blockers include CURRENT_BASIS_UNPROVED.",
+      "evidence": [
+        {
+          "quote": "Emergency-dependent YES orders lack the yearly National Emergencies Act continuation notices",
+          "source": "research/excavator/claude-tribonian-2026-11-04/REPORT.md"
+        }
+      ]
+    },
+    {
+      "id": "acquire.current_law_sections",
+      "kind": "acquisition",
+      "description": "Retrieve current text of the U.S. Code and CFR sections and parent orders that YES orders cite for their current basis.",
+      "orders": 0,
+      "rate_key": "filed_per_attempt.yes.fr",
+      "cost_key": null,
+      "cost_override_usd": 0,
+      "unlocks": [],
+      "overlaps_with": [
+        "production.claim_ready.yes.fr",
+        "acquire.nea_continuation_notices"
+      ],
+      "yield_lift_not_counted": {
+        "orders": 338,
+        "applies_to": [
+          "production.claim_ready.yes.fr"
+        ],
+        "why": "Polya F7 reach (upper bound, counts one-step advances not yield) and it overlaps the NEA action; Polya reports 0 orders whose only open steps this frame advances."
+      },
+      "prerequisites": [],
+      "basis": "Polya reach from jobs/polya/output/COMPARE.json (frame F7_aux_current_predicate_table, decided_not_ready_reachable); see jobs/polya/README.md: reach is not yield.",
+      "evidence": [
+        {
+          "quote": "\"frame\": \"F7_aux_current_predicate_table\"",
+          "source": "jobs/polya/output/COMPARE.json"
+        },
+        {
+          "quote": "The current texts of parent orders and statutes are not held",
+          "source": "research/excavator/claude-tribonian-2026-11-04/REPORT.md"
+        }
+      ]
+    }
+  ]
+}

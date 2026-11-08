@@ -199,7 +199,9 @@ def assign_unlocks(orders, specs, excluded):
 def build(repo, write_ids=True):
     repo = Path(repo)
     orders = load_orders(repo)
-    rec_ids = recovery_ids(repo)
+    attempted_recovery_ids = recovery_ids(repo)
+    not_ready = {o["instrument_id"] for o in orders}
+    rec_ids = [iid for iid in attempted_recovery_ids if iid in not_ready]
     rec_set = set(rec_ids)
     actions = []
     strata_dir = repo / "jobs/bentham/output/strata"
@@ -272,16 +274,16 @@ def build(repo, write_ids=True):
     aid = "recovery.custody_stranded"
     actions.append({
         "id": aid, "kind": "recovery",
-        "description": ("Reviewed claims that passed blind review but failed the checker at completion, almost always because a cited source "
-                        "was held only as a hash (custody_record_only). They need re-preparation and fresh review, not new drafting, so the "
-                        "cost is review.per_submitted. DISPOSITION.json lists %d distinct orders with outcome rejected_mechanical; the "
-                        "REPORT text says 47 (a one-order difference left unexplained)." % len(rec_ids)),
+        "description": ("Prior rejected-mechanical reviewed claims still marked not ready by the current tracker. "
+                        "They need re-preparation and fresh review, not new drafting, so the cost is review.per_submitted. "
+                        "DISPOSITION.json lists %d distinct historical orders; %d remain not ready."
+                        % (len(attempted_recovery_ids), len(rec_ids))),
         "orders": len(rec_ids), "order_ids_path": save_ids(aid, rec_ids),
         "rate_key": "filed_per_attempt.correction", "cost_key": "review.per_submitted",
         "unlocks": [],
         "prerequisites": ["source bytes held for the cited sources (jobs/cotton-capture-custody, jobs/astra-source-retention)",
                           "kit.py prepare for exactly these ids, then fresh blind review or owner-approved reuse"],
-        "basis": "Computed from %s: orders with outcome rejected_mechanical, de-duplicated. %d of them also sit in a claim-ready stratum and were removed from it." % (DISPOSITION, recovered_overlap),
+        "basis": "Computed from %s: orders with outcome rejected_mechanical, de-duplicated, then filtered to ready_for_human_review=no in %s. %d also sit in a claim-ready stratum and were removed from it." % (DISPOSITION, TRACKER_CSV, recovered_overlap),
         "evidence": evidence(repo, [(DISPOSITION, '"outcome": "rejected_mechanical"'),
                                     (TRIBONIAN_REPORT, "47 reviewed claims are blocked by source custody")])})
 
