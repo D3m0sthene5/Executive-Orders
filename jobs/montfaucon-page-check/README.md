@@ -3,6 +3,10 @@
 Code-only consumer. No research checks or generated outputs are supplied here.
 `job.py` reads only `research/montfaucon/CHECKS.jsonl` and
 `research/montfaucon/checks/*.jsonl`; batch and worklist files are never inputs.
+The first two reviewed batches and their control, cost and source receipts
+are under `research/montfaucon/` (`REPORT_M001.md` and `REPORT_M002.md`).
+The runner publishes derived output on the merge target; a research branch
+must not carry its own generated `jobs/*/output/` files into main.
 It emits separate official and ProQuest replica fragment files, `OUTCOMES.json`
 for all valid pass/fail/unsure outcomes, and a rejection receipt. Only validated final
 passes count in the readiness tracker, which revalidates against current inputs.
