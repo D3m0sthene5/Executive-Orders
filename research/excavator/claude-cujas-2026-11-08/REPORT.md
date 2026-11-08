@@ -1,8 +1,23 @@
-# Cujas wave, 2026-11-08: Photius-stale recheck, batch c01
+# Cujas wave, 2026-11-08: Photius-stale recheck, batches c01-c03
 
 Named for Jacques Cujas, who restored corrupted legal texts by collating manuscripts. The owner approved the recheck (D-20261108-photius-recheck).
 
-**Result: 21 claims filed** (`research/readiness/claims/claude-2026-11-08-cujas-c01.jsonl`). In the completion's tracker replay, ready goes from 1,023 to 1,044. No status, census or codebook changed. Certified: **0**.
+**Result: 68 claims filed in 3 batches of 25**, in `research/readiness/claims/claude-2026-11-08-cujas-c0{1,2,3}.jsonl`:
+
+| Batch | Orders | Filed | Not filed | Controls | Worker $ |
+|---|---|---:|---|---|---:|
+| c01 | 25 of the 99%-or-more band | 21 | arm A rejected EO 8256, 8402, 8497, 8525 | EO 8452, 8562 caught by both arms | 8.48 |
+| c02 | last 13 at 99%+, first 12 at 95-99% | 23 | producer blocked EO 8070; both arms rejected EO 8907 | EO 9009, 8046 caught by both arms | 6.88 |
+| c03 | next 25 at 95-99% | 24 | producer blocked EO 8413 | EO 8368, 8369 caught by both arms | 5.00* |
+
+\*c03 is the `claude -p` total_cost_usd, because `bentham usage` refused to write the c01-c03 table: a transcript string appeared in a field. List price ran about 1.3 times these figures in c01 and c02.
+
+- **Completions:** 0 exceptions in every batch. Each completion's tracker replay starts from main's 1,023 ready and counts only its own batch: +21, +23 and +24. The published tracker should read about **1,091** after the merge and rerun.
+- **Gate:** `recovery.custody_stranded` (proxy) said PILOT after c01, then CONTINUE after c02 and again after c03 (68 of 75 filed). `recovery.photius_stale` itself is refused as unranked.
+- **Unchanged:** no status, census or codebook change. Certified: **0**.
+- **Not done:** 92 stale orders remain, mostly in the 95-99% band, plus the 6 lowest.
+- **Cost:** about $39 total, of which about $16 was coordinator (Opus).
+- **Budget history:** the cap went $35 → $22 at 17:46Z (the first c02 run was stopped, unreviewed; its folder was rebuilt from scratch) → $45 at 17:51Z.
 
 ## Route (Haloander h01)
 - 160 of the 193 Photius-stale orders still need recheck: 38 at 99% or more, 116 at 95-99% and 6 at 80-95%. Of the rest, 25 were already ready, 25 were refiled by Haloander and 8 have no claim.
@@ -15,7 +30,7 @@ Named for Jacques Cujas, who restored corrupted legal texts by collating manuscr
   - Under the both-uphold rule, 21 claims file. `kit.py complete --publish` ran with 0 exceptions.
 - **Gate:** `recovery.photius_stale` is not a ranked Bentham action, so the gate refuses it. The nearest measured action, `recovery.custody_stranded` (same route), gives **PILOT** (25 of 30 attempts; probability of beating the next action 1.00).
 
-## Stopped
+## Stopped (then resumed)
 At 17:46Z the coordinating session lowered the cap from $35 to $22. Batch c02 (13 orders at 99% or more and 12 at 95-99%) was prepared and carried. Its producer was stopped before review, and its partial `applied-v1` was removed. Its packet is kept for the next wave, but it is stale once claim-kit rebuilds.
 
 ## Free work
