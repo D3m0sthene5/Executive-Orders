@@ -6,11 +6,11 @@ New York date: 2026-11-08. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Numbered series: ready for human review 1,023 of 14,998 orders (6.8%)**
+**Numbered series: ready for human review 1,091 of 14,998 orders (7.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42505120933-1:296109dfe15c983e68cf9d82d1c1916aa5bf3cf3324d22b6a4e19a84f21a861a` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42512910166-1:6d25e25f1de83acf60d61a130ad0b600cb3e00dc66fa5ec4344d7db02fdb7ee5` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -18,7 +18,7 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 4,301. The other 10,697 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 666, 'transcription_dependent': 357}. Provisional working texts do not authenticate originals.
+Ready by text evidence: {'original_supported': 666, 'transcription_dependent': 425}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 827; quotation rechecks: 827. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 248. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 1816}.
@@ -26,10 +26,10 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-07; intervening runs may be absent.
-- claim-checker: claims_all_checks_passed: 1414 → 1425; claims_mechanical_fail: 258 → 247; claims_mechanical_pass: 1500 → 1511; held_distinct_sha256: 56961 → 56988
+- claim-checker: claim_lines_found: 1760 → 1828; claims_all_checks_passed: 1414 → 1493; claims_checked: 1760 → 1828; claims_gate_passed: 1670 → 1738
 - domesday-register: orders: 14972 → 14998; with_any_text_file: 14882 → 14908; with_date: 14909 → 14986; with_title: 14885 → 14943
 - gessner-cards: one_step_from_ready: 219 → 223; president_unknown_no_date: 138 → 63; presidents_derived_from_date: 4932 → 4947; presidents_from_register: 9927 → 9987
-- readiness-tracker: original_replacement_obligations: 867 → 827; quotation_recheck_obligations: 867 → 827; ready_for_human_review: 1020 → 1023; text_step_provisional_working_text: 281 → 248
+- readiness-tracker: original_replacement_obligations: 867 → 827; quotation_recheck_obligations: 867 → 827; ready_for_human_review: 1020 → 1091; text_step_provisional_working_text: 281 → 248
 - selden-fr-citers: bytes_downloaded: 8156887 → 0; documents_examined_this_run: 83 → 0; requests: 343 → 0; targets_searched_this_run: 194 → 192
 - source-ladder: attempts_logged: 45 → 91; bytes_downloaded: 861192611 → 45212086; distinct_new_source_hashes: 38 → 27; embedded_cite_items: 11 → 9
 - tischendorf-originals: bytes_downloaded: 27441440056 → 19722195578; leads: 492 → 633; replacement_strong: 25 → 65; replacement_targets: 843 → 719
@@ -69,4 +69,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42505120933)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42512910166)
