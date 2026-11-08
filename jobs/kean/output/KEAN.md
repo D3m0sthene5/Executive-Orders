@@ -48,13 +48,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 255; `search` finds the rest)
+## Newest results (6 of 254; `search` finds the rest)
 
-- 2026-11-08 F-20261108-montfaucon-control-binding **failed**: Low-tier blind page reviewers on Panama 1922 and July 1940 Federal Register controls in pilot m001 Lesson: On multi-order printed pages, bind the quoted operative sentence to its own order number and closing. A control-only retest cannot rehabilitate a model that misses the same control in a full assignme…
 - 2026-11-08 F-20261108-cujas-usage **analysis**: Measure Cujas wave cost for week-allowance calibration Lesson: With a $22 cap one 25-order batch is the most a fresh coordinator can do; batch setup is cheap once inputs are checked out, so the next wave should run 3+ batches in one session.
 - 2026-11-08 F-20261108-cujas-photius-recheck **partly worked**: Cujas c01: page-check 25 Photius-stale orders (>=99% band) against their GPO printings by the Haloander h01 r… Lesson: Own Tribonian claims are replaced by agent 'claude' with a later-sorting file name; Tribonian sheets are on origin/claude/tribonian-state. Arm A rejects orders with FR 'Revoked by' notes the claim do…
 - 2026-11-08 F-20261108-cujas-c02-c03 **worked**: Cujas c02 and c03: 50 more Photius-stale orders (13 at >=99%, 37 at 95-99%) by the same route, with a produce… Lesson: The FR 'Revoked by' producer note removed the arm-A-only rejections seen in c01. Running prepare, carry, producer, arms, reveal and finish_pair --publish as one unattended chain costs the coordinator…
 - 2026-11-08 F-20261108-board-fetch-not-run **partly worked**: Confirm the 58 board-report fetch requests Haloander queued (FETCH_QUEUE 1,120 -> 1,178) ran Lesson: A queue append does not trigger source-ladder; dispatch it explicitly after enqueueing, then verify output/STATUS.json.
 - 2026-11-07 F-20261107-ready-drop-193-photius-witness **analysis**: Explain ready 1,185 -> 992 between tracker generations 6d4b5f6357 (2026-11-06 22:18) and f6e5180880 (2026-11-… Lesson: A new official witness invalidates frozen working-text confirmations by design; Photius's local measure ran on the older Lachmann output and missed it. The 193 now have an official printing, so the s…
+- 2026-11-07 F-20261107-photius-encyclopedie-worth **analysis**: Priced the Photius (289 agents) and Encyclopedie campaigns at Necker list prices and set each against its mea… Lesson: Photius was worth it as an evidence investment; Encyclopedie as protective infrastructure, valued in risk avoided rather than orders. Neither moved ready; confirm Photius in W after the next publishe…
 
-Register: 71 owner decisions, 30 answered questions, 255 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 71 owner decisions, 30 answered questions, 254 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
