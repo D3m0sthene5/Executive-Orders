@@ -1,5 +1,14 @@
 # Sol's handoff notes
 
+## 2026-11-08 16:15 ET: official upstream artifacts retained; Montfaucon main checked
+
+- **Done:** Fetched all eight GovInfo bulk-title XML and four OLRC release-point ZIP artifacts named upstream of the 22 y03 CFR/US Code text extracts. All 12 raw hashes matched; 110,025,997 bytes were retained in `jobs/bracton-source-custody/output/upstream/` with `UPSTREAM.jsonl`. The 22 held text extracts match their own hashes, but the extraction from raw artifacts has not been independently reproduced. No false source-declaration substitution, page check, legal review, or claim occurred.
+- **Main check:** Fetched `origin/main` at `487e18ab`. Montfaucon's m001 page checks landed, but none of Sol's five page-only blocked orders (EO:8341, EO:8613, EO:8639, EO:10117, EO:12414) is among its 50 m001 targets. They remain blocked on Montfaucon. No merge was attempted while the first source-ladder publisher is still active.
+- **Running:** First targeted source-ladder Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) remained active at the last watcher observation. Sol's source-ladder lease was renewed until 2026-11-09 01:03:41 UTC.
+- **Next:** Independently reproduce the exact CFR/US Code text extraction from the retained raw artifacts, then correct the source declarations through an owned route and recheck packet gates. Reconcile the first run's publisher commit before pushing Sol's branch; pull main again immediately before any merge.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Count raw upstream custody as an original page check or a current-law legal finding.
+
 ## 2026-11-08 16:06 ET: y03 source routes tested
 
 - **Clarification:** The 17 eCFR and five US Code source hashes represent extracted text, not the raw official artifact. Their source notes specify upstream GovInfo bulk XML and OLRC ZIP URLs and SHA-256 values, now copied into `SOURCE_ROUTE_FAILURES.csv`. The live rendered-page mismatch/404 does not authenticate or invalidate those upstream artifacts; raw bytes plus extraction still need verification.

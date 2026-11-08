@@ -10,6 +10,14 @@ Wayback capture URL, together with its capture time.
 `output/SOURCES.jsonl` registers the retained bytes with the existing claim
 checker. These are APP editorial transcriptions, not original Executive Orders.
 
+`output/upstream/` retains eight exact GovInfo eCFR bulk-title XML files and
+four exact OLRC release-point ZIP files named in Theophilus source notes.
+`output/UPSTREAM.jsonl` records each verified upstream hash. The held CFR and
+US Code text extracts match their own hashes, but their extraction from these
+raw artifacts has not yet been independently reproduced. These upstream
+artifacts are not registered in `SOURCES.jsonl` as substitutes for those
+extracts, and they do not establish a current-law predicate or page check.
+
 The public Federal Register and National Mediation Board PDFs for the staged
 Bracton packets were independently re-fetched and hash-checked into local job
 caches. Those caches are not committed in this staging change. A fresh checkout
