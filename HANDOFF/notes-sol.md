@@ -1,5 +1,12 @@
 # Sol's handoff notes
 
+## 2026-11-08 16:53 ET: first source acquisition published
+
+- **Done:** Source-ladder run [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) published a successful source-ladder receipt on Sol's remote branch despite the overall multi-job workflow failure. Exact official FR issue PDFs were retained for EO:10053 (1949-04-22, SHA-256 `ad3bb2b7...`) and EO:10578 (1954-11-24, `2683bcce...`), with machine locators of medium confidence. No Sol page check occurred. Four shared EO routes and two other rank-6 original routes each ended after one attempt; CFR::26 CFR 458.324 is `retry_later`. `research/bracton/ACQUISITIONS.csv` names the state and next need for each. Montfaucon m003 landed on main but did not cover Sol's five named page-check blocks.
+- **Running:** Automatic Arsenale requeue of stale unrelated downstream jobs may still advance the remote Sol branch. A local picker change makes a future nonempty `source_only` dispatch select source-ladder alone; the targeted manual picker check selected exactly that job.
+- **Next:** Finish and commit r8-n02 staging, rebase local work onto the published remote branch without rewriting its history, push the source-only picker and queued URLs, then dispatch the next targeted source run. Refresh current main and blocked-order page-check status before any merge. Keep Claude-family reviews after Monday 6 PM ET reset.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+
 ## 2026-11-08 16:43 ET: first nonboard rank-8 packet source-ready
 
 - **Done:** Prepared `research/bracton/r8-n01/packet-v3` for 25 rank-8 cases outside the 146 board orders. Seventy-nine official FR issue PDFs and 23 archived APP captures matched frozen SHA-256 values, with the APP bytes and provenance retained in Sol's custody job. Exact tracked text/context files were loaded. Fresh `dispatch-v3.json` passed 25/25 with 128 distinct custody checks, zero mandatory source blocks, and no Kean lease conflicts. These are existing Claude claims, so Sol may only file isolated replacement proposals. Eight live APP routes yielded hash mismatches, and two named Opus archive members remain unstaged; they are optional to the current gate and listed in `SOURCE_ROUTE_FAILURES.csv`. No producer may cite them until custody passes. No model, page check, claim, or status change occurred.
