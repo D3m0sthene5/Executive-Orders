@@ -26,6 +26,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "claim-kit"))
 import working_text as W
 import factual_events as F
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "montfaucon-page-check"))
 
 STEPS = [
     ("provisional_status", "Has a provisional YES/NO status"),
@@ -102,7 +103,8 @@ J = {
                                        # flagged needs_page_check count; acceptable_as_original stays false on every record.
                                        "jobs/photius-gpo-volumes/output/FRAGMENTS.jsonl",
                                        "jobs/photius-csc-printings/output/FRAGMENTS.jsonl",
-                                       "jobs/photius-free-printings/output/FRAGMENTS.jsonl"],
+                                       "jobs/photius-free-printings/output/FRAGMENTS.jsonl",
+                                       "jobs/montfaucon-page-check/output/FRAGMENTS_OFFICIAL.jsonl"],
     # Richardson's Messages and Papers: a printed compilation transcribed from records and newspapers, not the
     # signed or officially printed original. A lead only; it never counts as the original text.
     # The American Presidency Project (app-executive-orders) is the same class: an editorial web transcription
@@ -124,7 +126,8 @@ J = {
     # a 5% sample adjudicated by Opus) is written with grade archival_replica_checked and needs_page_check false. It
     # credits the text step like an official printing, and the row carries the flag REPLICA_CHECKED_PROQUEST_BYTES
     # because the bytes are ProQuest's until NARA M1118 or the owner's Hein facts re-point them.
-    "checked_replica_fragments": ["jobs/photius-replica-check/output/FRAGMENTS.jsonl"],
+    "checked_replica_fragments": ["jobs/photius-replica-check/output/FRAGMENTS.jsonl",
+                                  "jobs/montfaucon-page-check/output/FRAGMENTS_REPLICA.jsonl"],
     # Standalone working-text confirmations (jobs/lachmann). The agent-reviewed file is read second, so its line for an
     # instrument replaces the machine line. They can only make the text step `provisional`, never an original.
     "working_text_confirmations": ["jobs/lachmann/output/CONFIRMATIONS.jsonl",
@@ -270,7 +273,12 @@ def load_exhausted(root):
 
 def load_job_outputs(root):
     """Read the other jobs' committed outputs; missing ones are reported, not fatal."""
+    import page_check as M
     used, problems = {}, []
+    montfaucon, montfaucon_rejected = M.assemble(Path(root))
+    problems.extend('MONTFAUCON_REJECTED:' + row['record'] + ':' + row['reason']
+                    for row in montfaucon_rejected)
+    montfaucon_valid = {lane: {M.digest(row) for row in rows} for lane, rows in montfaucon.items()}
 
     def existing(paths):
         return [os.path.join(root, p) for p in paths if os.path.exists(os.path.join(root, p))]
@@ -300,6 +308,9 @@ def load_job_outputs(root):
         problems += more
         ids = set()
         for r in rows:
+            if job == 'montfaucon-page-check' and M.digest(r) not in montfaucon_valid['official']:
+                problems.append('INVALID_MONTFAUCON_OFFICIAL_FRAGMENT')
+                continue
             if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str):
                 official[r["instrument_id"]].append(r.get("data") if isinstance(r.get("data"), dict) else {})
                 ids.add(r["instrument_id"])
@@ -328,6 +339,9 @@ def load_job_outputs(root):
         problems += more
         ids = set()
         for r in rows:
+            if job == 'montfaucon-page-check' and M.digest(r) not in montfaucon_valid['replica']:
+                problems.append('INVALID_MONTFAUCON_REPLICA_FRAGMENT')
+                continue
             if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str):
                 checked_replica[r["instrument_id"]].append(r.get("data") if isinstance(r.get("data"), dict) else {})
                 ids.add(r["instrument_id"])
@@ -1077,4 +1091,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

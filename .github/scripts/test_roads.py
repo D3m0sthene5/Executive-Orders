@@ -2,7 +2,7 @@
 import os, subprocess, sys
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
-for name in ('family-rules','case-bundles','daily-digest','_lib','claim-drafts','readiness-tracker','lachmann','pinakes-proquest-ingest','csc-annual-reports','early-ranger-transcriptions','early-ranger-reparse','early-ranger-triage','early-ranger-original-items','early-ranger-full-pages','lewis-originals','valla','early-ranger-workbench','census-candidates','claim-kit','neyman'):
+for name in ('family-rules','case-bundles','daily-digest','_lib','claim-drafts','readiness-tracker','montfaucon-page-check','lachmann','pinakes-proquest-ingest','csc-annual-reports','early-ranger-transcriptions','early-ranger-reparse','early-ranger-triage','early-ranger-original-items','early-ranger-full-pages','lewis-originals','valla','early-ranger-workbench','census-candidates','claim-kit','neyman'):
     folder=root/'jobs'/name
     if not any(folder.glob('test_*.py')):continue
     code="""import socket, unittest, sys
@@ -31,3 +31,4 @@ subprocess.run([sys.executable,str(root/'.github/scripts/test_job_summary.py')],
 
 subprocess.run([sys.executable,str(root/'.github/scripts/test_writer_queue.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 subprocess.run([sys.executable,str(root/'.github/scripts/test_arsenale.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+
