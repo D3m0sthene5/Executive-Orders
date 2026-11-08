@@ -1,0 +1,10 @@
+# Rank 6 source leads, 2026-11-08
+
+These are discovery leads for `source-ladder`, not page-checked originals or authenticated citations. Sol has not compared an original page. Montfaucon owns the page checks.
+
+- **EO 10053.** The [National Archives 1949 disposition table](https://www.archives.gov/federal-register/executive-orders/1949.html) lists a Federal Register citation whose page number conflicts with the order's placement in the [April 22, 1949 govinfo issue](https://www.govinfo.gov/content/pkg/FR-1949-04-22/pdf/FR-1949-04-22.pdf). The issue URL is queued for exact-byte acquisition; the page citation needs Montfaucon's check.
+- **EO 10578.** The [National Archives 1954 disposition table](https://www.archives.gov/federal-register/executive-orders/1954.html) points to 19 FR 7551 on November 24, 1954. The [govinfo issue](https://www.govinfo.gov/content/pkg/FR-1954-11-24/pdf/FR-1954-11-24.pdf) is queued for exact-byte acquisition. The original page remains unchecked.
+- **EO 11633.** The [National Archives 1971 disposition table](https://www.archives.gov/federal-register/executive-orders/1971.html) gives 36 FR 32197, while the [National Archives codification page](https://www.archives.gov/federal-register/codification/executive-order/11633.html) gives 36 FR 23197. The [December 7, 1971 govinfo issue](https://www.govinfo.gov/content/pkg/FR-1971-12-07/pdf/FR-1971-12-07.pdf) is queued; Montfaucon must resolve the page conflict.
+- **EO 8947.** The [National Archives 1941 disposition table](https://www.archives.gov/federal-register/executive-orders/1941.html) says the order was not received for Federal Register publication. The public [American Presidency Project transcription](https://www.presidency.ucsb.edu/documents/executive-order-8947-revocation-executive-order-no-1474-february-16-1912-withdrawing) is a discovery lead, not an official original. An official compilation or archival copy is still needed.
+
+The first source-ladder run `42510818817` has the original four rank-6 identifiers. `source-requests-v2.jsonl` adds three direct govinfo issue routes for a subsequent run; no earlier queue line was rewritten.
