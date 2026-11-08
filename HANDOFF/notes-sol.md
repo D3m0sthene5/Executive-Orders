@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 16:43 ET: first nonboard rank-8 packet source-ready
+
+- **Done:** Prepared `research/bracton/r8-n01/packet-v3` for 25 rank-8 cases outside the 146 board orders. Seventy-nine official FR issue PDFs and 23 archived APP captures matched frozen SHA-256 values, with the APP bytes and provenance retained in Sol's custody job. Exact tracked text/context files were loaded. Fresh `dispatch-v3.json` passed 25/25 with 128 distinct custody checks, zero mandatory source blocks, and no Kean lease conflicts. These are existing Claude claims, so Sol may only file isolated replacement proposals. Eight live APP routes yielded hash mismatches, and two named Opus archive members remain unstaged; they are optional to the current gate and listed in `SOURCE_ROUTE_FAILURES.csv`. No producer may cite them until custody passes. No model, page check, claim, or status change occurred.
+- **Running:** First targeted source-ladder Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) remained active at the last watcher observation. Source-ladder lease lasts until 2026-11-09 01:03:41 UTC.
+- **Next:** Reconcile the first run's publisher commit and current main before pushing Sol's branch. Continue bounded source acquisition for the 37 board reports without records and the other 52 nonboard rank-8 cases. Refresh all packet seals before Monday's producer/reviewer work.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Infer a legal outcome from the machine gate or cite the ten optional unverified source routes.
+
 ## 2026-11-08 16:26 ET: bounded CFR/US Code extraction content audit
 
 - **Done:** `research/bracton/yes-y03/EXTRACTION_AUDIT.csv` compares 22 held text extracts with the 12 exact raw official artifacts without editing source declarations. All raw and held text hashes match their respective records. Sixteen of 17 CFR extracts appear once as contiguous whitespace-normalized text in the raw XML; the remaining CFR part has 971/972 sampled 30-word chunks present. The five US Code section extracts are not contiguous as formatted, though their chunks largely occur in the raw ZIP XML. This corroborates content but does not reproduce extraction bytes or establish a legal predicate. The 22 source tasks remain blocked at the claim-kit gate.

@@ -1,6 +1,6 @@
-# Bracton source custody: 81 fixed APP captures
+# Bracton source custody: 104 fixed APP captures
 
-`output/captures/` contains the exact HTML response bodies from 78 Common Crawl
+`output/captures/` contains the exact HTML response bodies from 101 Common Crawl
 WARC records and three Wayback captures already named in
 `jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl`.
 Each body was re-fetched through Cotton's `fetch_capture`, checked against the
