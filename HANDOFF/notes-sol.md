@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 15:59 ET: six YES/FR orders source-ready and reserved
+
+- **Done:** Selected six rank-9 YES/FR orders from the y03 source triage (EO:10111, EO:10431, EO:10444, EO:10457, EO:10670, EO:10718). Nine official FR issue PDFs and two APP archive captures matched their frozen SHA-256 values. Used `kit.py next` with an exact exclusion list to reserve only these six to `sol-bracton`, then prepared `research/bracton/yes-y04/packet-v1`. Fresh `dispatch-v1.json` passed 6/6 with 11 distinct custody checks, zero source blocks, and no Kean lease conflict. No original page check, producer, reviewer, claim, or status change occurred.
+- **Running:** First targeted source-ladder Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) was still active at the last watcher observation.
+- **Next:** Reconcile the run's publisher commit and current main, acquire further y03 sources, and refresh y04 immediately before producer work after Monday's Claude reset.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Treat a passing research gate as legal review or file a claim without two fresh blind arms and controls.
+
 ## 2026-11-08 15:53 ET: next YES/FR acquisition packet triaged
 
 - **Done:** Prepared `research/bracton/yes-y03/packet-v1` research-only for 25 rank-9 orders, excluding reserved EO:10538 and all Cujas identities. The packet is source blocked 25/25 and lists 156 distinct missing or different-hash source tasks. `SOURCE_TRIAGE.csv` summarizes per-order source tasks and the first required URL. No new reservation, producer, reviewer, page check, claim, or status change occurred.
