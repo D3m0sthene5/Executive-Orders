@@ -10,7 +10,7 @@ New York date: 2026-11-07. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
 
-Generation: `42441586939-1:c9a6319f807f767b4a84d0629fd960122ebd0dafe4c8568ee1a1f0250969bcb4` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42444903074-1:3f0a4051ebb78681b3727b274877b5dc6ad654c4ad668b8415e773f4d0ba9e05` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -27,12 +27,12 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 Comparison snapshot: 2026-11-06; intervening runs may be absent.
 - claim-checker: claim_lines_found: 1732 → 1760; claims_all_checks_passed: 1579 → 1414; claims_checked: 1732 → 1760; claims_gate_passed: 1642 → 1670
-- claim-drafts: decided_orders_with_draft: 4291 → 4298; drafts_whose_only_remaining_gaps_are_judgment_fields: 1145 → 1148; fragment_orders_not_in_universe: 66 → 41; of_which_decided: 1145 → 1148
+- claim-drafts: decided_orders_with_draft: 4291 → 4301; drafts_whose_only_remaining_gaps_are_judgment_fields: 1145 → 1151; fragment_orders_not_in_universe: 66 → 41; of_which_decided: 1145 → 1151
 - clause-drafts: clauses_total: 70615 → 71268; fragments_from_app_transcription: 4964 → 4983; fragments_written: 9761 → 9789; ocr_fragments_with_candidate_fr_page: 60 → 58
 - duodecim-tableiv: captures_discovered_internet_archive: unavailable → 99; captures_discovered_unt: unavailable → 2; control_error_rate: unavailable → 0.0; controls_errors: unavailable → 0
 - family-rules: saved_texts_scanned: 51201 → 82522
 - gessner-cards: not_researched: 10700 → 10697; ready_for_human_review: 1185 → 1020; with_provisional_status: 4298 → 4301
-- kean: decisions: 45 → 67; findings: 211 → 250; open_owner_questions: 3 → 17
+- kean: decisions: 45 → 71; findings: 211 → 250; open_owner_questions: 3 → 13
 - lachmann: assessed: 5832 → 2551; complete_text_confirmed: 2104 → 1330; confirmed: 1011 → 732; identity_confirmed: 2493 → 1256
 - official-fixity: carried_forward: 5158 → 7124; checked_this_run: 1 → 0; files: 5159 → 7124; orders_with_a_gpo_matched_file: 5070 → 5220
 - photius-csc-printings: checked: unavailable → 145; counting_as_official_printing: unavailable → 6; fragments: unavailable → 145; located_rows: unavailable → 803
@@ -80,4 +80,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42441586939)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42444903074)
