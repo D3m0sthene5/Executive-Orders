@@ -49,3 +49,19 @@ blind third reader. Both controlled readers caught all three challenges.
 Their sealed reviews, controls and adjudications are under `reviews/m004/`;
 `GATE_M004.*` and `COST.md` preserve the fourth checkpoint and unknown
 actual cash cost.
+
+`checks/m005-fr-modern-1968-1988.jsonl` adds 50 public GovInfo Federal
+Register checks: 35 pass, 10 fail, 5 unsure. `REPORT_M005.md` identifies the
+truncated annexes and manuals, wrong printed pinpoint, and uncertified dense
+tables. Both controlled readers caught all three challenges; their two
+disagreements received independent blind adjudication. Sealed evidence is
+under `reviews/m005/`. `GATE_M005.*` and `COST.md` preserve the fifth
+checkpoint and unknown actual spend.
+
+`checks/m006-fr-modern-1937-1994.jsonl` adds 50 public GovInfo Federal
+Register checks: 26 pass, 18 fail, 6 unsure. `REPORT_M006.md` identifies
+wrong issue and printed page citations, missing order spans and uncertified
+tables. Both blind readers caught all three controls; two verdict disagreements
+received a fresh third reading. Sealed evidence is under `reviews/m006/`;
+`GATE_M006.*` and `COST.md` preserve the sixth checkpoint and unknown
+actual spend.

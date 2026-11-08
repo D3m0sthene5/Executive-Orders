@@ -48,13 +48,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 258; `search` finds the rest)
+## Newest results (6 of 260; `search` finds the rest)
 
 - 2026-11-08 F-20261108-montfaucon-control-binding **failed**: Low-tier blind page reviewers on Panama 1922 and July 1940 Federal Register controls in pilot m001 Lesson: On multi-order printed pages, bind the quoted operative sentence to its own order number and closing. A control-only retest cannot rehabilitate a model that misses the same control in a full assignme…
 - 2026-11-08 F-20261108-cujas-usage **analysis**: Measure Cujas wave cost for week-allowance calibration Lesson: With a $22 cap one 25-order batch is the most a fresh coordinator can do; batch setup is cheap once inputs are checked out, so the next wave should run 3+ batches in one session.
 - 2026-11-08 F-20261108-cujas-photius-recheck **partly worked**: Cujas c01: page-check 25 Photius-stale orders (>=99% band) against their GPO printings by the Haloander h01 r… Lesson: Own Tribonian claims are replaced by agent 'claude' with a later-sorting file name; Tribonian sheets are on origin/claude/tribonian-state. Arm A rejects orders with FR 'Revoked by' notes the claim do…
 - 2026-11-08 F-20261108-cujas-c02-c03 **worked**: Cujas c02 and c03: 50 more Photius-stale orders (13 at >=99%, 37 at 95-99%) by the same route, with a produce… Lesson: The FR 'Revoked by' producer note removed the arm-A-only rejections seen in c01. Running prepare, carry, producer, arms, reveal and finish_pair --publish as one unattended chain costs the coordinator…
 - 2026-11-08 F-20261108-board-fetch-not-run **partly worked**: Confirm the 58 board-report fetch requests Haloander queued (FETCH_QUEUE 1,120 -> 1,178) ran Lesson: A queue append does not trigger source-ladder; dispatch it explicitly after enqueueing, then verify output/STATUS.json.
-- 2026-11-08 F-20261108-3 **worked**: Two blind controlled readers checked 50 1951-1967 Federal Register source fragments; a fresh blind third read… Lesson: Separate a complete source-page match from text authentication: retain exact printed and held number, signer and date glyph differences, seek an independent image ruling for plausible OCR substitutio…
+- 2026-11-08 F-20261108-5 **worked**: Two blind controlled readers checked 50 remaining Federal Register original-page targets from 1937 to 1994, w… Lesson: A PDF OCR layer matching held text does not certify table row associations in print. A wrong title in worklist metadata does not defeat a page check when the printed and held order identity and opera…
 
-Register: 71 owner decisions, 30 answered questions, 258 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 71 owner decisions, 30 answered questions, 260 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

@@ -67,3 +67,29 @@ held glyphs and the reason the discrepancy is recognition noise. There is
 no per-context/model token or cash telemetry. The Bentham $0.38/attempt
 figure is a planning proxy; the ledger's `usd: null` is **unknown**, not
 zero. See `GATE_M004.*`.
+
+## m005 — 50 Federal Register targets, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order readers and a separate blind third reader for EO:11974 and EO:12279 | unknown | unknown | unknown |
+| Coordinator | GovInfo retrieval, SHA-256 checks, page rendering, source and held-text pinning, record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught all three controls before production. No m005 model
+output was quarantined. Actual per-context/model token and cash telemetry was
+unavailable. `usd: null` in the ledger means **unknown**; the Bentham
+$0.38/attempt input is a planning proxy and its `spent_usd: 0` a parser
+artifact, not measured spend. See `GATE_M005.*`.
+
+## m006 — 50 Federal Register targets, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order readers and a separate blind third reader for EO:8269 and EO:12705 | unknown | unknown | unknown |
+| Coordinator | GovInfo issue retrieval, SHA-256 checks, page rendering, source and held-text pinning, record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught all three controls before production. No m006 model
+output was quarantined. Actual per-context/model token and cash telemetry was
+unavailable. `usd: null` in the ledger means **unknown**; the Bentham
+$0.38/attempt input is a planning proxy and its `spent_usd: 0` a parser
+artifact, not measured spend. See `GATE_M006.*`.
