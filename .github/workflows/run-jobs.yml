@@ -39,7 +39,7 @@ on:
         required: false
         default: ""
       source_only:
-        description: "Optional comma-separated source-ladder wanted IDs; passes through to its existing JOB_ONLY filter"
+        description: "Comma-separated source-ladder wanted IDs; run only that job and publish its results"
         required: false
         default: ""
 
@@ -106,6 +106,7 @@ jobs:
           DIAGNOSTIC: ${{ github.event.inputs.diagnostic }}
           REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}
           INPUT_DOWNSTREAM: ${{ github.event.inputs.downstream }}
+          INPUT_SOURCE_ONLY: ${{ github.event.inputs.source_only }}
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}

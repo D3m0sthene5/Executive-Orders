@@ -15,6 +15,8 @@ Pushes stay light (owner, 2026-10-28: adding a file must not mean waiting on the
   history, not from output files, which the picker's checkout omits.
 - A manual run runs the named job(s), separated by spaces or commas, plus their consumers.
   Manual diagnostics run only the requested jobs; the workflow retains receipts without publishing.
+  A source_only manual run executes source-ladder alone, using the requested wanted IDs, and publishes
+  its result without starting the full consumer chain. Consumers need a separate refresh.
   An Arsenale re-queue (a manual run with requeue_depth > 0) runs exactly the jobs it names, and
   marks the names in its downstream input as downstream-only, as the refused run had them.
 Picked jobs are ordered so that any job listed in a job's after.txt runs before it. Folders
@@ -265,7 +267,8 @@ def main():
         picked = daily_jobs()
     elif os.environ.get("EVENT") == "workflow_dispatch":
         # An Arsenale re-queue (requeue_depth > 0) reruns exactly the refused jobs.
-        consumers = os.environ.get("DIAGNOSTIC") != "true" and not requeue_depth()
+        source_only = bool((os.environ.get("INPUT_SOURCE_ONLY") or "").strip())
+        consumers = os.environ.get("DIAGNOSTIC") != "true" and not requeue_depth() and not source_only
         picked = []
         for name in re.split(r"[\s,]+", os.environ.get("INPUT_JOB") or ""):
             name = name.strip().strip("/").removeprefix("jobs/")
@@ -276,6 +279,8 @@ def main():
             picked.append(name)
         if not picked:
             sys.exit("Type at least one job name.")
+        if source_only and picked != ["source-ladder"]:
+            sys.exit("source_only requires exactly job=source-ladder.")
     else:
         # A push: only jobs whose own code changed, nothing downstream. The next sweep does the rest.
         changed = changed_files(os.environ.get("BEFORE"), os.environ["AFTER"])
