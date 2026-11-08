@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 16:16 ET: 25-order board packet source preflight passed
+
+- **Done:** Prepared `research/bracton/board-b02/packet-v3` for 25 disjoint rank-8 board cases (EO:10032 through EO:10306, exact member list in `PACKET.json`). The partial clone initially lacked frozen dossiers and text extracts. After materializing those exact tracked files, 24 official FR issue PDFs and 20 NMB report PDFs matched their frozen SHA-256 values and were staged in untracked local caches. A fresh `dispatch-v4.json` passed 25/25 with 74 distinct custody checks, zero mandatory source blocks, and no Kean lease conflicts. No original page was checked. No producer, reviewer, claim or status change was made. The packet is a Justinian-claim replacement-proposal route and must be refreshed after shared inputs change.
+- **Running:** First targeted source-ladder Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) was still executing at the last watcher observation. Local source hints and queue additions remain unpublished until its result is published.
+- **Next:** Read the run's published source receipts, reconcile the branch with its runner commit and current main, and continue bounded source batches. After Monday's Claude reset, confirm fresh packets and leases, then assign bounded producer and blinded reviewer tasks with planted controls.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Treat the 25/25 machine preflight as legal review or portable source custody; do not page-check originals or write Montfaucon's records.
+
 ## 2026-11-08 15:57 ET: direct shared-source hint and EO 12285 report located
 
 - **Done:** Staged an exact `CFR::26 CFR 458.324` source-ladder URL hint to the official 1955 Federal Register issue, with a passing routing test. The earlier 1955 publication does not answer 1959–1960 applicability. Found a Reagan Library archival bundle containing EO:12285's commission final report and an official 1982 Federal Register notice of its September 21, 1981 submission; two validated requests are in the append-only fetch queue. Identified catalog holdings for EO:4314's 1925 booklet but no verified full scan. No page check, claim, or blind review was made. The full source-ladder test file has two unrelated PDF extraction failures in this embedded Python environment because `pypdf` is absent; the new targeted test passes.
