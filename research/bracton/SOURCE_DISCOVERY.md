@@ -1,3 +1,12 @@
+# Rank 2–4 GPO compilation scan leads, 2026-11-08
+
+The first targeted source-ladder run proposed `EO::6868`, `EO::6910`, and `EO::6964` exhausted after one automated route each. A separate read-only search located public scans of the historical GPO compilations. These are candidate complete-printing custody routes, not retained source bytes or page checks:
+
+- **EO 6868 and EO 6910:** [1934 Executive Orders 6690–6935A compilation index](https://en.wikisource.org/wiki/Index:Executive_Orders_6690-6935.djvu). The [direct Commons DjVu scan](https://commons.wikimedia.org/wiki/Special:Redirect/file/Executive_Orders_6690-6935.djvu) responded HTTP 200 with `image/vnd.djvu` and 16,809,160 bytes on a HEAD request.
+- **EO 6964:** [1935 Executive Orders 6936–7081 compilation index](https://en.wikisource.org/wiki/Index:Executive_Orders_6936-7081.djvu). The [direct Commons DjVu scan](https://commons.wikimedia.org/wiki/Special:Redirect/file/Executive_Orders_6936-7081.djvu) responded HTTP 200 with `image/vnd.djvu` and 13,317,553 bytes on a HEAD request.
+
+Both Commons files are described as HathiTrust-derived scans of GPO printings. The exact bytes, printing identity, and relevant order locations remain to be verified through a custody route; Montfaucon owns any original page checks. These scans do not establish later legal effect.
+
 # Rank 6 source leads, 2026-11-08
 
 These are discovery leads for `source-ladder`, not page-checked originals or authenticated citations. Sol has not compared an original page. Montfaucon owns the page checks.
