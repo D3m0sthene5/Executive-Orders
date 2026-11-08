@@ -38,3 +38,18 @@ account for this Codex run. The aggregate Codex goal counter is not a
 per-model bill. The m002 Bentham checkpoint uses the planning proxy
 $0.38/attempt, not measured spend. Its `spent_usd: 0` is a parser artifact for
 unknown `usd: null`, not zero cost. See `GATE_M002.*`.
+
+## m003 — 50 Federal Register targets, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order readers and one separate blind third reader for EO:10020 and EO:10214 | unknown | unknown | unknown |
+| Coordinator | GovInfo issue retrieval, page rendering, manual boundary examination, assembly, validation and integration | unknown | unknown | unknown |
+
+Both readers caught all three controls before production. No m003 reader
+output was quarantined. Their sealed 50-row files and control answers are in
+`reviews/m003/`; the two original scope judgments remain visible beside the
+adjudicator's decisions. No per-context/model token or cash telemetry was
+exposed. The $0.38/attempt Bentham input is a planning proxy. `usd: null` in
+the ledger means **unknown**; the gate's `spent_usd: 0` is a parser artifact.
+See `GATE_M003.*`.
