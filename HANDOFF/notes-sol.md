@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 16:06 ET: y03 source routes tested
+
+- **Done:** The full y03 acquisition pass matched 69/69 official FR issue PDFs and 45/45 APP archive captures with frozen metadata. Forty-three new APP exact bodies and provenance rows were retained in Sol's custody job; two were already staged for y04. Direct live fetches of the remaining source references failed exact custody: 20 APP hash mismatches, 17 dated eCFR hash mismatches, and five House US Code HTTP 404 responses. `research/bracton/yes-y03/SOURCE_ROUTE_FAILURES.csv` records the exact expected sources and outcomes. Each of the 19 y03 orders outside source-ready y04 retains at least one of these source needs. No page check or legal finding was made.
+- **Running:** First targeted source-ladder Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) remained active at the last watcher observation. Sol's existing source-ladder lease was renewed until 2026-11-09 01:03:41 UTC.
+- **Next:** Find exact dated archival bytes or separately authenticated official substitutes for the 42 nonmatching routes; reconcile the source run's publisher commit and current main before pushing the branch. Refresh gates after main changes and before Monday's producer/reviewer work.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Convert current live bytes into proof of the frozen source, or treat unavailable live routes as an order rejection.
+
 ## 2026-11-08 15:59 ET: six YES/FR orders source-ready and reserved
 
 - **Done:** Selected six rank-9 YES/FR orders from the y03 source triage (EO:10111, EO:10431, EO:10444, EO:10457, EO:10670, EO:10718). Nine official FR issue PDFs and two APP archive captures matched their frozen SHA-256 values. Used `kit.py next` with an exact exclusion list to reserve only these six to `sol-bracton`, then prepared `research/bracton/yes-y04/packet-v1`. Fresh `dispatch-v1.json` passed 6/6 with 11 distinct custody checks, zero source blocks, and no Kean lease conflict. No original page check, producer, reviewer, claim, or status change occurred.
