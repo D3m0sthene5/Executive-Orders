@@ -19,3 +19,22 @@ gate parser's handling of an unknown `usd` cell and must not be read as actual
 spend. The ranking's page-check action has no measured prior rate, so
 `bentham.py gate` cannot run on it directly; the direct gate run uses a declared
 uniform Beta(1,1) prior. See `GATE_M001.json` and `GATE_M001.md`.
+
+## m002 — 50 Federal Register targets, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent 50-order reader contexts, five separate third-reader adjudications, and two supplemental EO:7624 crosswalk examinations by the original readers | unknown | unknown | unknown |
+| Coordinator | PDF and page-image acquisition, GPO crosswalk retrieval, record assembly, validation, and integration | unknown | unknown | unknown |
+
+Both readers caught all three planted controls before their production review.
+There was no quarantined m002 model output. Each sealed review file has its
+SHA-256 in `REPORT_M002.md`; initial EO:7624 uncertainty was retained in both
+sealed files, with later supplements recorded separately in its final record.
+
+The platform again exposed no per-context/model token or cash telemetry.
+`jobs/bentham/sessions.py` reads local Claude Code transcript usage and cannot
+account for this Codex run. The aggregate Codex goal counter is not a
+per-model bill. The m002 Bentham checkpoint uses the planning proxy
+$0.38/attempt, not measured spend. Its `spent_usd: 0` is a parser artifact for
+unknown `usd: null`, not zero cost. See `GATE_M002.*`.
