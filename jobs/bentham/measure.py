@@ -387,10 +387,19 @@ def scan_other_waves(repo: Path) -> tuple[list[dict], list[dict]]:
                 skipped.append({"source": rel, "reason": "shape differs from tribonian-disposition/v1"})
                 continue
             pool = doc.get("pool_into_rates") is True
+            und = doc.get("undecided_measure")
+            if isinstance(und, dict) and isinstance(und.get("attempted"), int) and isinstance(und.get("filed"), int):
+                # Owner decision 2026-11-08 (A-20261107-undecided-measure): a wave may report its random sample of
+                # the undecided stratum. Filed means status adopted and claim canonical; overlay proposals do not count.
+                undecided = {"attempted": und["attempted"], "filed": und["filed"], "source": rel}
+            else:
+                undecided = None
             entry = {"wave": d.name,
                      "attempted": sum(b.get("attempted") or 0 for b in doc["batches"]),
                      "filed": sum(b.get("claims_filed") or 0 for b in doc["batches"]),
                      "source": rel, "pooled_into_rates": False}
+            if undecided:
+                entry["undecided_measure"] = undecided
             if pool:
                 bl = d / "tools" / "batches.json"
                 if not bl.is_file():
@@ -425,6 +434,13 @@ def measure(repo: Path | None = None) -> dict:
     all_rows = rows + [r for w in pooled for r in w.pop("rows")]
     rates = compute_rates(repo, all_rows, status, [w["source"] for w in pooled],
                           [w["wave"] for w in pooled if w.get("sample_of_remaining")])
+    und = [w["undecided_measure"] for w in more if w.get("undecided_measure")]
+    if und:
+        n, d = sum(u["filed"] for u in und), sum(u["attempted"] for u in und)
+        ev = _quotes(repo, [('"undecided_measure"', u["source"]) for u in und])
+        rates.append(_rate_row("filed_per_attempt.undecided", n, d, "+".join(u["source"] for u in und), ev, "undecided",
+                               "Random samples of the undecided stratum reported by waves (owner decision 2026-11-08); "
+                               "filed = status adopted and claim canonical."))
     context = costs.pop("_context")
     return {"rates": rates, "costs": costs, "context": context,
             "price_table": PRICE_TABLE, "waves": waves + more, "skipped": skipped}
