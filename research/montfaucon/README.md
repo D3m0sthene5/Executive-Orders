@@ -33,3 +33,11 @@ mirrors those counts for the current Bentham parser, which accepts a JSON
 array or CSV but not JSONL. Its native wrapper also cannot gate the current
 page-check action because the plan row has no measured rate; each direct gate
 receipt declares its prior and planning cost proxy.
+
+`checks/m003-fr-modern-1941-1951.jsonl` adds 50 further public GovInfo
+Federal Register checks: 36 pass, 14 fail. `REPORT_M003.md` lists each failed
+span, including two prescribed manuals where the held excerpt stops well
+before the publication's terminal page. Both blind readers caught all three
+controls; their two completeness disagreements received a separate blind
+adjudication. The sealed reviews are under `reviews/m003/`; `GATE_M003.*` and
+`COST.md` preserve the third checkpoint and unknown actual cash cost.
