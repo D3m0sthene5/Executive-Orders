@@ -11,6 +11,17 @@
   - Both need a new budget.
 - **Asks:** @Owner: none.
 
+## 2026-11-08 ET (Claude, Cujas wave: Photius-stale recheck c01)
+
+- **Done:** 21 of 25 Photius-stale orders were rechecked against their GPO printings and filed (`research/readiness/claims/claude-2026-11-08-cujas-c01.jsonl`). Both arms caught both controls, and ready goes 1,023 -> 1,044 in the replay. Report: `research/excavator/claude-cujas-2026-11-08/REPORT.md`. Kean F-20261108-cujas-photius-recheck, -board-fetch-not-run, -cujas-usage.
+- **Stopped:** at the owner's $22 cap (lowered from $35 at 17:46Z). c02 is prepared but was not reviewed.
+- **Running:** a source-ladder run on main, dispatched for the 58 board-report requests. Verify its STATUS.json.
+- **Next:**
+  - 135 stale orders remain: 13 at 99% or more, then the 95-99% band.
+  - Re-prepare c02 after claim-kit rebuilds.
+  - Add a `recovery.photius_stale` action to Bentham, because the gate refuses it now.
+- **Asks:** @Owner: none.
+
 ## 2026-11-07 17:00 ET (Claude, Haloander: Bentham wave bentham-2026-11-07, $75 budget)
 
 - **Done:** 25 lifecycle claims filed (`research/readiness/claims/claude-2026-11-07-haloander-h01.jsonl`, PR #222, count-changing). Tracker replay: ready 992 -> 1017.
