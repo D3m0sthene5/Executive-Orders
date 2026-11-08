@@ -1,5 +1,11 @@
 # Sol's handoff notes
 
+## 2026-11-08 18:35 ET: next YES source batch staged
+
+- **Done:** Selected the next 25 disjoint rank-9 YES/FR orders, EO:10830 through EO:11203, outside y03 and the EO:10538 pilot. `yes-y05/packet-v2` was prepared research-only after restoring the committed stage21 custody indexes hidden by sparse checkout. Its gate names 123 source tasks; 23 official FR issues are mandatory now. Each of those 23 public issue downloads matched its frozen SHA-256, totaling 1,045,555,868 bytes in an untracked local cache. No page check or claim was inferred from the downloads.
+- **Done:** `source-requests-v7.jsonl` and the append-only fetch queue now hold exactly those 23 mandatory URLs. The request contract validates 23/23 without correction, and 22 targeted queue prefixes select exactly the 23 intended URLs. `yes-y05/SOURCE_TRIAGE.csv` names all member-level source tasks. No producer or reviewer call ran.
+- **Next:** Commit and push the queue and packet, dispatch source-ladder alone with the 22 exact prefixes, then inspect its published status and source hashes. Reprepare only the cases that pass custody, keeping optional and unmatched routes explicit. Continue Claude-family blind arms after Monday's 6 PM ET reset.
+
 ## 2026-11-08 18:22 ET: rank-seven correction preflight
 
 - **Done:** Current main's Montfaucon m004 records do not cover Sol's named page-check blocks. Cujas c02's two blind arms both rejected EO:8907 because the APP `401` citation conflicts with the GPO printing's `404` inside quoted claim spans, while the rationale incorrectly denied that discrepancy. The existing rejection remains recorded; no claim was edited.
