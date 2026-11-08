@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42505120933-1:296109dfe15c983e68cf9d82d1c1916aa5bf3cf3324d22b6a4e19a84f21a861a` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42514570077-1:6d38b82dab8a87cb7fbcdd04bd4f7b3ae79b588da3169abeb79265770bee4f91` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -96,6 +96,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - photius-gpo-volumes: 3,679
 - photius-csc-printings: 143
 - photius-free-printings: 471
+- montfaucon-page-check: not run yet
 - richardson-volumes (lead only, never counted as the original): 68
 - app-executive-orders (lead only, never counted as the original): 9,902
 - hathi-gpo-orders (lead only, never counted as the original): 1,531
@@ -103,6 +104,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - wikisource-texts (lead only, never counted as the original): 1,639
 - csc-annual-reports (lead only, never counted as the original): 798
 - photius-replica-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 2,557
+- montfaucon-page-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): not run yet
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
 - lachmann working-text confirmations (provisional text step only, never an original): 2,551
 - opus-media-match status: 1,155
