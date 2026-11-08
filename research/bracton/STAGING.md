@@ -13,10 +13,13 @@
 
 Montfaucon (`sol/montfaucon-2026-11-08`) owns ranks #10 and #13 and all page-check records. Sol writes claims only. A #1–#9 order held solely for a missing page check is recorded as blocked on Montfaucon with its order and source, then retried in a later batch after that check lands on main. Cujas has finished: its 68 filed claims stay excluded, while recovery EO:8538 and EO:8907 return to rank #7. The 92 other unfinished Photius orders form a separate stratum after #1–#9 in `PHOTIUS_POST_RANK9_ROSTER.csv`. The seven lowest-coverage orders in `compare_193.csv` are excluded by the owner. `BASELINE.csv` retains the earlier Cujas exclusion flag as a dated snapshot; this paragraph and `RECOVERY_TRIAGE.csv` supersede it for current assignments.
 
+The rank-7 preflight on EO:14012, EO:8538 and EO:8907 found that claim-kit rejects EO:8538 and EO:8907 before packet preparation because their working-text confirmations changed or are invalid. `r7-corrections/PREFLIGHT_BLOCKS.csv` names their GPO printings and the additional EO 8905 note / 401-versus-404 quoted-span issues. EO:14012 alone passed a fresh research dispatch with a free lease. This did not reconfirm either stale text or alter a claim. Montfaucon's merged m004 page-check batch covers none of Sol's previously named page-check blocks.
+
 ## Disjoint packets
 
 | Packet | Orders | Frozen packet SHA-256 | Fresh offline dispatch | Scope |
 |---|---|---|---|---|
+| `r7-corrections/packet-v4` | EO:14012 | `c16d89bd555bc5acd2cd8d11b24b5af24b1b9506b01eb15cbad8a611fd73b0e0` | `dispatch-v1.json`: pass, 1/1, 8 custody checks, free lease | Rank-7 isolated replacement proposal after the Claude reset. The prior claim denied the section 6 revocation end found by Theophilus arm B. No producer or reviewer has used this packet. |
 | `pilot-b01/packet-v1` | EO:10010, EO:10923, EO:10944 | `409cb1272600d3158faf694660e352e5774acd5b921b750f9230f577b86fada6` | `dispatch-v3.json`: pass, 3/3, 14 distinct custody checks | One-step-away board corrections, isolated replacement proposals for Justinian R3 claims; owner adoption remains separate. |
 | `pilot-y02/packet-v1` | EO:10538 | `528349db40c2b6789dad45e84664114a7dfa956798fa5611833545cef8129948` | `dispatch-v2.json`: pass, 1/1, 2 distinct custody checks | Claim-ready YES/FR pilot, reserved to `sol-bracton` in `CLAIM_KIT_LOCK.json`. |
 | `yes-y04/packet-v1` | EO:10111, EO:10431, EO:10444, EO:10457, EO:10670, EO:10718 | `23193395ac6d787769ffddc1acd7be88850a2e39216708258720cf08c59f74e4` | `dispatch-v1.json`: pass, 6/6, 11 distinct custody checks, no lease conflicts | Rank-9 YES/FR producer packet, reserved to `sol-bracton` in `CLAIM_KIT_LOCK.json`. No producer or reviewer has used the packet. |

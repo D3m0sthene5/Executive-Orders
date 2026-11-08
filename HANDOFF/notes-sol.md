@@ -1,5 +1,11 @@
 # Sol's handoff notes
 
+## 2026-11-08 18:22 ET: rank-seven correction preflight
+
+- **Done:** Current main's Montfaucon m004 records do not cover Sol's named page-check blocks. Cujas c02's two blind arms both rejected EO:8907 because the APP `401` citation conflicts with the GPO printing's `404` inside quoted claim spans, while the rationale incorrectly denied that discrepancy. The existing rejection remains recorded; no claim was edited.
+- **Done:** Claim-kit preflight rejects EO:8538 and EO:8907 as changed or invalid working-text confirmations. `r7-corrections/PREFLIGHT_BLOCKS.csv` names their exact GPO printings and outstanding issues. EO:14012 alone was prepared as `r7-corrections/packet-v4`; fresh `dispatch-v1.json` passed 1/1, eight custody checks, and a free lease. No Sol source page check, producer, reviewer, or claim was made.
+- **Next:** After the Claude reset, compare EO:8538 and EO:8907 word by word against their GPO printings through the authorized review route; seek a valid working-text confirmation and fix the respective EO 8905 and quoted-citation defects before a new packet. Use the EO:14012 packet for a bounded replacement proposal and two independent blind arms with planted controls. Recheck current main and packet seals first.
+
 ## 2026-11-08 18:05 ET: nine board reports retained; n03 clean packet expanded
 
 - **Done:** [Source-only run 42531642782](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42531642782) succeeded and published direct NMB PDFs for EO:9918, 9922, 9923, 9929, 9936, 9940, 9948, 9991 and 10078. `ACQUISITIONS.csv` holds their exact hashes. Report identity, transmittal dates and legal effects remain for review. No page check or claim was made.
