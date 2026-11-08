@@ -393,6 +393,56 @@ class Checks(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     M.validate(self.root, record)
 
+    def test_tischendorf_govinfo_fr_issue_qualification_is_narrow(self):
+        folder = self.root / 'jobs/tischendorf-originals/output'
+        folder.mkdir(parents=True, exist_ok=True)
+        source = copy.deepcopy(self.source)
+        source['grade'] = 'machine_read_government_printed_copy'
+        del source['data']['grade']  # Actual Tischendorf legacy shape.
+        source['data']['route'] = 'official/fr_issue_by_date'
+        source['data']['match'] = {'source_kind': 'govinfo scan of the printed Federal Register daily issue'}
+        source['data']['url'] = 'https://www.govinfo.gov/content/pkg/FR-1936-12-22/pdf/FR-1936-12-22.pdf'
+        source['data']['page_or_item'] = 'Federal Register 1936-12-22; PDF pages 1-1'
+        fragment = folder / 'FRAGMENTS.jsonl'
+        for name in ('text.txt', 'page.png'):
+            (folder/name).write_bytes((self.fragment.parent/name).read_bytes())
+        record = copy.deepcopy(self.record)
+        target = record['target']
+        target.update(fragment_path='jobs/tischendorf-originals/output/FRAGMENTS.jsonl',
+                      url=source['data']['url'], page_or_item=source['data']['page_or_item'])
+        target['page_images'][0].update(path='jobs/tischendorf-originals/output/page.png',
+                                        source_url=target['url'], cited_scope=target['page_or_item'])
+
+        def run(candidate):
+            fragment.write_text(json.dumps(candidate)+'\n', encoding='utf-8')
+            target['fragment_sha256'] = M.digest(candidate)
+            target['url'] = candidate['data']['url']
+            target['page_images'][0]['source_url'] = target['url']
+            for item in record['reviews']:
+                item['target_sha256'] = M.digest(target)
+            return M.validate(self.root, record)
+
+        lane, derived = run(source)
+        self.assertEqual(lane, 'official')
+        self.assertEqual(derived['grade'], 'official_printing')
+        self.assertFalse(derived['data']['location_verified'])
+        self.assertEqual(source['grade'], 'machine_read_government_printed_copy')
+        for field, value in (
+                ('route', 'lead/ia_fulltext'),
+                ('url', 'https://example.org/FR-1936-12-22.pdf'),
+                ('kind', 'non-government publication'),
+                ('grade', 'csc_report_lead')):
+            with self.subTest(field=field):
+                changed = copy.deepcopy(source)
+                if field == 'kind':
+                    changed['data']['match']['source_kind'] = value
+                elif field == 'grade':
+                    changed['grade'] = value
+                else:
+                    changed['data'][field] = value
+                with self.assertRaises(ValueError):
+                    run(changed)
+
 
 if __name__ == '__main__':
     unittest.main()

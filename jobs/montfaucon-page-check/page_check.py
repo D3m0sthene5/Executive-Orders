@@ -75,13 +75,21 @@ def validate(root, record, source_cache=None):
         and data.get('match', {}).get('source_kind') == 'government-printed compilation of executive orders'
         and source.get('grade') == 'machine_read_government_printed_copy'
         and data.get('grade') in (None, 'machine_read_government_printed_copy'))
+    qualified_fr = (lane == 'official' and job == 'tischendorf-originals'
+        and data.get('route') == 'official/fr_issue_by_date'
+        and data.get('match', {}).get('source_kind') == 'govinfo scan of the printed Federal Register daily issue'
+        and isinstance(data.get('url'), str)
+        and re.fullmatch(r'https://www\.govinfo\.gov/content/pkg/FR-(\d{4}-\d{2}-\d{2})/pdf/FR-\1\.pdf',
+                         data['url']) is not None
+        and source.get('grade') == 'machine_read_government_printed_copy'
+        and data.get('grade') in (None, 'machine_read_government_printed_copy'))
     rechecked_replica = (lane == 'replica' and job == 'photius-replica-check'
         and source.get('grade') == data.get('grade') == 'archival_replica_check_failed_or_pending'
         and record.get('adjudication') == 'new_independent_page_check')
-    if passing and not legacy and not qualified_gpo and (source.get('grade') != data.get('grade') or not isinstance(data.get('grade'), str)):
+    if passing and not legacy and not qualified_gpo and not qualified_fr and (source.get('grade') != data.get('grade') or not isinstance(data.get('grade'), str)):
         raise ValueError('missing or conflicting immutable grade')
     allowed_grade = 'official_printing' if lane == 'official' else 'archival_replica_checked'
-    if passing and not legacy and not rechecked_replica and not qualified_gpo and data['grade'] != allowed_grade:
+    if passing and not legacy and not rechecked_replica and not qualified_gpo and not qualified_fr and data['grade'] != allowed_grade:
         raise ValueError('source grade not admitted for this lane')
     if passing and lane == 'official' and data.get('match', {}).get('source_kind') == 'non-government publication':
         raise ValueError('non-government publication')
@@ -168,7 +176,7 @@ def validate(root, record, source_cache=None):
         return lane, None
     result = copy.deepcopy(source)
     result.update(produced_by='montfaucon-page-check', acceptable_as_original=False)
-    if legacy or rechecked_replica or qualified_gpo:
+    if legacy or rechecked_replica or qualified_gpo or qualified_fr:
         result['grade'] = result['data']['grade'] = allowed_grade
     result['data'].update(location_verified=False, needs_page_check=False,
                           acceptable_as_original=False, montfaucon_record_sha256=digest(record))
