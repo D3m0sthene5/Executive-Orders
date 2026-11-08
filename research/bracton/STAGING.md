@@ -3,13 +3,15 @@
 ## State
 
 - Base: main `883bd8f78f12ac4c1cf6625d74a20f4b56480360` after the new source-ladder result. The frozen claim-kit corpus was last published from main `67b6adeeb902d91a5ead9e4684c09207c442f87a` and reports a successful run.
-- Budget: $300 API-equivalent ceiling for the campaign. No Bracton producer or reviewer model call has started. Bracton worker spend is therefore zero; coordinator usage is unmeasured. Cujas has a separate capped batch and is excluded from this budget receipt.
+- Budget: no dollar cap under the owner's 2026-11-08 exhaustive #1–#9 goal. Running model cost is in `COST.md`. No Bracton producer or reviewer model call has started. Cujas is a separate wave.
 - Phase: evidence and assignment staging only. No claim, status, census, codebook, human review, or certified count changed. Certified count remains 0.
 - Timing: the owner chose staging now and Claude-family blind review after the Monday, 2026-11-09, 6 PM ET usage reset. Recheck main, reservations, packet freshness, and the dispatch gate immediately before production.
 
 ## Refreshed ranking
 
-`plan/PLAN.md` is Bentham's $300 recomputation. The historical recovery list contained 48 mechanically rejected orders, but the current tracker already marks 39 ready. `jobs/bentham/candidates.py` now filters that recovery action to the 9 still not ready. The top measured agent actions are recovery (9, estimated $3.60) and one-step-away correction (223, estimated $144). YES/FR production is rank 9 and must pass its own gate and remaining-budget check before spending.
+`plan/PLAN.md` records the earlier capped pilot. The current `jobs/bentham/output/PLAN.md` is the uncapped recomputation. The historical recovery list contained 48 mechanically rejected orders, but the current tracker already marks 39 ready. `jobs/bentham/candidates.py` now filters that recovery action to the 9 still not ready. Ranks #7–#9 are recovery (9), one-step-away correction (223), and YES/FR production (338). Each production action must pass its own gate.
+
+Montfaucon (`sol/montfaucon-2026-11-08`) owns ranks #10 and #13 and all page-check records. Sol writes claims only. A #1–#9 order held solely for a missing page check is recorded as blocked on Montfaucon with its order and source, then retried in a later batch after that check lands on main. Sol excludes all 193 identities in `research/photius-193-recheck/compare_193.csv` while Cujas is active, including recovery EO:8538 and EO:8907.
 
 ## Disjoint packets
 
@@ -32,5 +34,5 @@ The Valla v2 schema acceptance fix is required for `kit.py prepare` with existin
 
 1. Pull the latest main and Cujas outcome. If any shared input changes, prepare a new immutable packet; never renew a stale seal. Confirm the Sol YES lock and acquire short-lived Kean leases for dispatched orders.
 2. Re-run `kit.py dispatch-check` on exact intended members. Ensure all selected later-event and current-law sources have custody, not just mandatory originals.
-3. Follow Bentham rank and budget gate: triage the nine still-not-ready recovery cases, then run a small board correction pilot under the owner board rule. Keep YES staged until its ranking and measured gate justify spending.
+3. Follow Bentham rank and diagnostic gate: triage the nine still-not-ready recovery cases, then run a small board correction pilot under the owner board rule. Continue through the full YES stratum, recording each member's outcome.
 4. Use a different model family for blinded independent reviews, with planted controls. File only both-upheld claims through `kit.py complete --publish` and report actual checker and tracker changes. Do not represent AI review as human certification.

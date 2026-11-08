@@ -38,6 +38,10 @@ on:
         description: "Set by Arsenale: re-queued jobs that keep the downstream-only web-search budget"
         required: false
         default: ""
+      source_only:
+        description: "Optional comma-separated source-ladder wanted IDs; passes through to its existing JOB_ONLY filter"
+        required: false
+        default: ""
 
 # Each stage asks for its own permissions; only publish can write.
 permissions:
@@ -215,6 +219,7 @@ jobs:
       - name: Run the jobs
         env:
           JOBS: ${{ matrix.jobs }}
+          JOB_ONLY: ${{ inputs.source_only }}
           # Jobs running only because a job they read changed; web-search jobs among them get a small budget.
           DOWNSTREAM_ONLY: ${{ needs.plan.outputs.downstream }}
           TRIGGER: ${{ github.event_name }} by ${{ github.actor }}
