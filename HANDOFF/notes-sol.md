@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 16:26 ET: bounded CFR/US Code extraction content audit
+
+- **Done:** `research/bracton/yes-y03/EXTRACTION_AUDIT.csv` compares 22 held text extracts with the 12 exact raw official artifacts without editing source declarations. All raw and held text hashes match their respective records. Sixteen of 17 CFR extracts appear once as contiguous whitespace-normalized text in the raw XML; the remaining CFR part has 971/972 sampled 30-word chunks present. The five US Code section extracts are not contiguous as formatted, though their chunks largely occur in the raw ZIP XML. This corroborates content but does not reproduce extraction bytes or establish a legal predicate. The 22 source tasks remain blocked at the claim-kit gate.
+- **Running:** First targeted source-ladder Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) remained active at the last watcher observation.
+- **Next:** Reproduce the exact extraction/formatting from raw XML and ZIP or create a correctly authenticated source declaration through an owned route, then recheck the gate. Continue ranks #1–#9 before the 92-order Photius continuation.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Count normalized content matching as an original page check, byte-exact derivation, or legal review.
+
 ## 2026-11-08 16:24 ET: Cujas continuation roster added after ranks #1–#9
 
 - **Done:** Reconciled `compare_193.csv`, Cujas's three merged claim files (68 unique filed orders), and current main `487e18ab` readiness. Of 193 compared orders, 93 are ready and 100 remain unready. The seven lowest-coverage IDs include six unready and one already ready; EO:8538 and EO:8907 are already in Bracton rank #7. Excluding those disjoint sets yields exactly 92 orders in `research/bracton/PHOTIUS_POST_RANK9_ROSTER.csv`. `PHOTIUS_POST_RANK9.md` states the word-by-word GPO comparison, two fresh blind arms, planted controls, and priority after #1–#9. Reopened the two rank-7 overlap entries in `RECOVERY_TRIAGE.csv`. No producer, reviewer, claim, page check, or status change occurred.
