@@ -25,6 +25,15 @@ EO::6964 as source leads. The printing identities and relevant order pages
 have not been verified. Neither scan is registered in `SOURCES.jsonl` or
 treated as a page check, accepted transcription or legal finding.
 
+`output/raw_xml/` holds two exact Internet Archive DjVu OCR XML files whose
+hashes were frozen by Tischendorf for EO:6437 and EO:6530. They are
+registered in `SOURCES.jsonl` as raw-byte custody with their actual XML
+download URLs, and in `UPSTREAM.jsonl` with the distinct details-page URLs
+that the older fragments cited. The URL mismatch is explicit. These OCR
+files are not page images, verified order printings, page-check records or
+legal findings. EO:6743's analogous file server returned HTTP 500 and is
+not registered here.
+
 The public Federal Register and National Mediation Board PDFs for the staged
 Bracton packets were independently re-fetched and hash-checked into local job
 caches. Those caches are not committed in this staging change. A fresh checkout
