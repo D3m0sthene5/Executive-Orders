@@ -27,7 +27,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "claim-kit"))
 import working_text as W
 import factual_events as F
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "montfaucon-page-check"))
-import page_check as M
 
 STEPS = [
     ("provisional_status", "Has a provisional YES/NO status"),
@@ -274,6 +273,7 @@ def load_exhausted(root):
 
 def load_job_outputs(root):
     """Read the other jobs' committed outputs; missing ones are reported, not fatal."""
+    import page_check as M
     used, problems = {}, []
     montfaucon, montfaucon_rejected = M.assemble(Path(root))
     problems.extend('MONTFAUCON_REJECTED:' + row['record'] + ':' + row['reason']
@@ -1091,4 +1091,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
