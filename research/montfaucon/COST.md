@@ -53,3 +53,17 @@ adjudicator's decisions. No per-context/model token or cash telemetry was
 exposed. The $0.38/attempt Bentham input is a planning proxy. `usd: null` in
 the ledger means **unknown**; the gate's `spent_usd: 0` is a parser artifact.
 See `GATE_M003.*`.
+
+## m004 — 50 Federal Register targets, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order readers and a separate blind third reader for four OCR-substitution disagreements | unknown | unknown | unknown |
+| Coordinator | GovInfo retrieval, image rendering, source/hash checking, record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught all three controls before production. No m004 output was
+quarantined. All four third-reader findings include the exact printed and
+held glyphs and the reason the discrepancy is recognition noise. There is
+no per-context/model token or cash telemetry. The Bentham $0.38/attempt
+figure is a planning proxy; the ledger's `usd: null` is **unknown**, not
+zero. See `GATE_M004.*`.

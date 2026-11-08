@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 ET: Montfaucon m004 reviewed, OCR disputes adjudicated
+
+- **Done:** m003 is in PR #228 pending final Road and integration gates. The next 50 distinct 1951–1967 GovInfo Federal Register originals in m004 have 42 pass, 8 fail, zero unsure/invalid. Both blind gpt-6.1-sol readers caught all three controls. A fresh blind third reader inspected four plausible OCR substitutions of an order number, signer initial or date and classified them as recognition noise with exact printed/held differences retained. `research/montfaucon/REPORT_M004.md`, `checks/m004-fr-modern-1951-1967.jsonl` and sealed `reviews/m004/` hold the evidence. Local assembly accepts all 200 m001–m004 records, 144 official fragments, no rejection. No claim, status, census, codebook, source fragment, held OCR or restricted ProQuest byte changed.
+- **Gate/cost:** Conditional direct Bentham CONTINUE after m004 42/50, using Beta(1,1), $0.38/attempt plan proxy; native action gate still lacks ranked measured rate. Actual per-model tokens and USD unavailable, recorded unknown in `COST.md`.
+- **Running:** Main `Run jobs` dispatch 42520223756 remains in its long station; published main Montfaucon output for m001+m002 has 100 outcomes and 66 official fragments. Await downstream tracker generation for the exact before/after. m004 research records are local and not yet merged. Next 50 FR m005 public scans are fetched and SHA-verified in scratch only; no m005 review started.
+- **Next:** Merge m003 after exact Road/Mission/output checks and latest Bracton/Cujas reread. File m004 as its own source-family PR without branch outputs; continue remaining original blockers. Ten rank-13 replica outcomes from PR #194 remain carried, not reread.
+- **Asks:** @Owner: none.
+
 ## 2026-11-08 ET: Montfaucon m003 reviewed, manual boundaries adjudicated
 
 - **Done:** m002 merged in PR #227 after Ubuntu and Windows Road success, Mission checks and a clean output-only comparison against main. m003 checks the next 50 distinct 1941–1951 GovInfo Federal Register originals: 36 pass, 14 fail, zero unsure/invalid. Two blind gpt-6.1-sol readers caught all three controls. Their only disagreements, EO:10020 and 10214, concerned the complete prescribed Manual for Courts-Martial; a fresh blind third reader inspected opening, held cutoff and terminal pages and found both held excerpts incomplete. The exact missing spans, hashes and sealed readings are in `research/montfaucon/REPORT_M003.md` and `checks/m003-fr-modern-1941-1951.jsonl`. Local assembly accepts all 150 m001–m003 records, 102 official fragments, zero rejections. No claim, status, census, codebook, source fragment, held OCR or restricted ProQuest bytes changed.
