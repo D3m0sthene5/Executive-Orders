@@ -10,7 +10,7 @@ New York date: 2026-11-08. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42519208512-1:bd3ebc80fe561e5645c09fee226949e82ca6cd4369a71d57e4dc267248230009` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42520100072-1:f0ff1e6510613866237b499e74eb4735f2715de58001ad367bd07f7b9552fce4` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -29,7 +29,7 @@ Comparison snapshot: 2026-11-07; intervening runs may be absent.
 - claim-checker: claim_lines_found: 1760 → 1828; claims_all_checks_passed: 1414 → 1493; claims_checked: 1760 → 1828; claims_gate_passed: 1670 → 1738
 - domesday-register: orders: 14972 → 14998; with_any_text_file: 14882 → 14908; with_date: 14909 → 14986; with_title: 14885 → 14943
 - gessner-cards: one_step_from_ready: 219 → 223; president_unknown_no_date: 138 → 63; presidents_derived_from_date: 4932 → 4947; presidents_from_register: 9927 → 9987
-- kean: findings: 250 → 254
+- kean: findings: 250 → 255
 - lachmann: assessed: 2551 → 2395; complete_text_confirmed: 1330 → 1276; confirmed: 732 → 703; identity_confirmed: 1256 → 1208
 - readiness-tracker: original_replacement_obligations: 867 → 834; quotation_recheck_obligations: 867 → 834; ready_for_human_review: 1020 → 1091; text_step_provisional_working_text: 281 → 255
 - selden-fr-citers: bytes_downloaded: 8156887 → 0; documents_examined_this_run: 83 → 0; requests: 343 → 0; targets_searched_this_run: 194 → 192
@@ -71,4 +71,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42519208512)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42520100072)
