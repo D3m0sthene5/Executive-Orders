@@ -1,5 +1,10 @@
 # Sol's handoff notes
 
+## 2026-11-08 18:49 ET: y07 source queue staged locally
+
+- **Done:** `yes-y07/packet-v1` covers another 25 disjoint rank-9 orders, EO:11589 through EO:11988, against the full stage21 custody indexes. Its research gate names 127 source tasks, including 21 mandatory official FR issues. All 21 public issue downloads matched frozen SHA-256 (801,888,783 bytes in untracked local cache). `source-requests-v9.jsonl` validates 21/21; 21 exact prefixes select the intended URLs. No producer or reviewer ran.
+- **Next:** Keep the committed y06 and new y07 queue local until the active y05 source-only run publishes. Fetch/rebase Sol after y05, push the queued requests, then run y06 and y07 source selections serially and inspect their source receipts. Reprepare source-ready subsets only after registration.
+
 ## 2026-11-08 18:44 ET: y06 staged while y05 source run executes
 
 - **Done:** `yes-y06/packet-v1` covers the next 25 disjoint rank-9 orders, EO:11223 through EO:11582. With the committed stage21 custody indexes present, the research gate cleared EO:11269 and named 24 source-blocked members, 149 distinct recovery tasks, 21 mandatory official FR issue tasks. The clean `packet-ready-v1` for EO:11269 passed fresh dispatch with 35 custody checks and a free lease. No producer or reviewer used it.
