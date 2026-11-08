@@ -31,6 +31,8 @@ The Cujas c01/c02 Photius batch uses different identities; its published branch 
 
 `pilot-y01/packet-v1` preserves an exploratory five-order YES packet. All five were source blocked before acquisition. No producer saw it and no reservation was made for its other four orders. `pilot-y02` is the selected one-order subset with a passing fresh check.
 
+`yes-y03/packet-v1` is a research-only acquisition packet for the next 25 rank-9 YES/FR orders, disjoint from reserved EO:10538. All 25 are currently source blocked, so this is not a producer assignment. `yes-y03/SOURCE_TRIAGE.csv` records their per-order source task counts and first required URL; the packet lists all 156 distinct missing or different-hash source tasks. No new lock was taken. Recheck the source gate and reserve each selected order after acquisition, before any producer work.
+
 ## Source custody and handoff
 
 The first board dispatch check failed on missing exact original bytes. Nine public PDF files from govinfo and the National Mediation Board reproduced their frozen hashes. Four changed APP pages could not be reproduced from their live URLs; their fixed Common Crawl WARC ranges did reproduce the frozen hashes. Those four exact response bodies and WARC pointers are committed under `jobs/bracton-source-custody/`. The ten verified PDFs (nine board, one YES) are held in local `jobs/fr-originals/fr-originals-cache/` and `jobs/source-ladder/source-ladder-cache/` paths named by their existing `SOURCES.jsonl` records. They are untracked. A fresh checkout must re-fetch and hash-check them before dispatch; never treat this receipt as portable custody.

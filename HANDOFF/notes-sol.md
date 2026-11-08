@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 15:53 ET: next YES/FR acquisition packet triaged
+
+- **Done:** Prepared `research/bracton/yes-y03/packet-v1` research-only for 25 rank-9 orders, excluding reserved EO:10538 and all Cujas identities. The packet is source blocked 25/25 and lists 156 distinct missing or different-hash source tasks. `SOURCE_TRIAGE.csv` summarizes per-order source tasks and the first required URL. No new reservation, producer, reviewer, page check, claim, or status change occurred.
+- **Running:** First targeted source-ladder Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) was still active at the last watcher observation.
+- **Next:** Acquire and authenticate the y03 source tasks in bounded groups, then recheck the gate and reserve selected orders. Reconcile the first run's publisher commit before pushing Sol's local branch. Refresh packets against main before production after Monday's Claude reset.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Send a producer from this source-blocked packet, infer a legal current predicate from a citation, or write Montfaucon page-check records.
+
 ## 2026-11-08 15:48 ET: all source-record-present board cases staged
 
 - **Done:** Prepared `research/bracton/board-b05/packet-v2` (25 orders) and `board-b06/packet-v2` (six orders), completing packet staging for all 109 board cases with report source records at this snapshot. Thirty-one official FR issue PDFs and ten NMB reports were re-fetched or cached and SHA-256 matched; thirty-two APP archive captures were reproduced against frozen hashes, with provenance and bytes retained in Sol's custody job. Exact tracked text and context files were materialized. Fresh `dispatch-v2.json` receipts passed 25/25 and 6/6 with 69 and 14 distinct custody checks, zero mandatory source blocks, and free Kean leases. These are Justinian-owned replacement-proposal routes. No original page check, producer, reviewer, claim, or status change occurred.
