@@ -1,0 +1,13 @@
+{
+  "posterior_mean": 0.6730769230769231,
+  "interval80": [0.588639272703952, 0.7545851174810496],
+  "prob_better": 1.0,
+  "attempted": 50,
+  "filed": 34,
+  "spent_usd": 0.0,
+  "breakeven_yield": 0.058795067486577916,
+  "decision": "CONTINUE",
+  "reason": "probability the wave beats the next-best action is 1.00, at least 0.2",
+  "invocation": "python -I jobs/bentham/gate.py --batches research/montfaucon/BATCHES.json --prior-rate 0.5 --prior-strength 2 --cost-per-attempt 0.38 --next-best 0.1547238618067839 --window 1 --json",
+  "inputs_note": "Uniform Beta(1,1) prior; $0.38/order and next-best value 0.1547238618067839 from current Bentham PLAN.json. Batch USD is unknown. The raw gate spent_usd zero is an unknown-value parser artifact, not measured zero spend."
+}
