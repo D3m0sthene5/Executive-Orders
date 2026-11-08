@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 17:17 ET: second source run and n02 packet
+
+- **Done:** Targeted source-only [run 42528093766](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42528093766) selected only source-ladder and published a successful receipt: 13 newly found source records, including four direct rank-6 official issue routes, the 1955 CFR shared issue, three NMB board reports, the Truman receipt letter, NMB annual report, BLS bulletin, Reagan archival bundle and 1982 FR notice. `research/bracton/ACQUISITIONS.csv` names each state. Several PDF text extracts are partial; the historical CFR issue does not establish 1959–1960 applicability. Retained two public 1934/1935 GPO compilation DjVu candidates by SHA-256 in Sol raw upstream custody only; identity and order pages remain unverified. No page-check record or claim was made.
+- **Done:** Prepared disjoint `research/bracton/r8-n02/packet-v5` for 25 existing Claude rank-8 cases. Fresh dispatch passed 25/25 with 115 custody checks and no lease conflict. Forty-four relevant exact APP archive captures resolve through Sol custody, 43 newly registered. Twelve optional source routes remain uncited. No producer or reviewer tokens used; model cost ledger stays at $0 measured worker spend.
+- **Running:** `r8-n03` is preparing the final 27 nonboard rank-8 cases as packets of 25 and 2. Automatic unrelated Arsenale requeue may still advance the remote Sol branch.
+- **Next:** Commit n02 and the acquisition ledger, then reconcile the latest source publisher on Sol's remote branch before pushing. Refresh the board-report coverage snapshot and packet seals after source publication; keep Claude-family blind reviews after Monday 6 PM ET reset. Montfaucon still owns the five named missing page checks and all original page checks.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+
 ## 2026-11-08 16:53 ET: first source acquisition published
 
 - **Done:** Source-ladder run [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) published a successful source-ladder receipt on Sol's remote branch despite the overall multi-job workflow failure. Exact official FR issue PDFs were retained for EO:10053 (1949-04-22, SHA-256 `ad3bb2b7...`) and EO:10578 (1954-11-24, `2683bcce...`), with machine locators of medium confidence. No Sol page check occurred. Four shared EO routes and two other rank-6 original routes each ended after one attempt; CFR::26 CFR 458.324 is `retry_later`. `research/bracton/ACQUISITIONS.csv` names the state and next need for each. Montfaucon m003 landed on main but did not cover Sol's five named page-check blocks.
