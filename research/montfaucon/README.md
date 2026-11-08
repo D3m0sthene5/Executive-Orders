@@ -41,3 +41,11 @@ before the publication's terminal page. Both blind readers caught all three
 controls; their two completeness disagreements received a separate blind
 adjudication. The sealed reviews are under `reviews/m003/`; `GATE_M003.*` and
 `COST.md` preserve the third checkpoint and unknown actual cash cost.
+
+`checks/m004-fr-modern-1951-1967.jsonl` adds 50 further public GovInfo
+Federal Register checks: 42 pass, 8 fail. `REPORT_M004.md` names each wrong
+or truncated span and four plausible OCR substitutions resolved by a fresh
+blind third reader. Both controlled readers caught all three challenges.
+Their sealed reviews, controls and adjudications are under `reviews/m004/`;
+`GATE_M004.*` and `COST.md` preserve the fourth checkpoint and unknown
+actual cash cost.
