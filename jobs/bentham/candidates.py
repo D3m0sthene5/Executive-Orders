@@ -199,8 +199,15 @@ def assign_unlocks(orders, specs, excluded):
 def build(repo, write_ids=True):
     repo = Path(repo)
     orders = load_orders(repo)
-    rec_ids = recovery_ids(repo)
+    with open(repo / TRACKER_CSV, encoding="utf-8", newline="") as fh:
+        ready_ids = {r["instrument_id"] for r in csv.DictReader(fh) if r.get("ready_for_human_review") == "yes"}
+    # A recovery order that is now ready has nothing left to recover.
+    rec_ids = [i for i in recovery_ids(repo) if i not in ready_ids]
     rec_set = set(rec_ids)
+    stale_ids = [o["instrument_id"] for o in orders
+                 if "working_text:prior_confirmation_stale" in o.get("working_text_policy_errors", "")
+                 and o["instrument_id"] not in rec_set]
+    stale_set = set(stale_ids)
     actions = []
     strata_dir = repo / "jobs/bentham/output/strata"
 
@@ -216,7 +223,7 @@ def build(repo, write_ids=True):
     held = 0
     recovered_overlap = 0
     for o in orders:
-        if o["instrument_id"] in rec_set:
+        if o["instrument_id"] in rec_set or o["instrument_id"] in stale_set:
             if in_claim_ready_stratum(o):
                 recovered_overlap += 1
             continue
@@ -244,7 +251,7 @@ def build(repo, write_ids=True):
                 TRACKER_CSV, status, ">=" if e == "fr" else "<", FR_START),
             "evidence": csv_ev})
     # one step away
-    one = [o["instrument_id"] for o in orders if one_step_away(o) and o["instrument_id"] not in rec_set]
+    one = [o["instrument_id"] for o in orders if one_step_away(o) and o["instrument_id"] not in rec_set | stale_set]
     aid = "production.one_step_away"
     actions.append({
         "id": aid, "kind": "production",
@@ -281,9 +288,24 @@ def build(repo, write_ids=True):
         "unlocks": [],
         "prerequisites": ["source bytes held for the cited sources (jobs/cotton-capture-custody, jobs/astra-source-retention)",
                           "kit.py prepare for exactly these ids, then fresh blind review or owner-approved reuse"],
-        "basis": "Computed from %s: orders with outcome rejected_mechanical, de-duplicated. %d of them also sit in a claim-ready stratum and were removed from it." % (DISPOSITION, recovered_overlap),
+        "basis": "Computed from %s: orders with outcome rejected_mechanical, de-duplicated, dropping those now ready. %d of them also sit in a claim-ready stratum and were removed from it." % (DISPOSITION, recovered_overlap),
         "evidence": evidence(repo, [(DISPOSITION, '"outcome": "rejected_mechanical"'),
                                     (TRIBONIAN_REPORT, "47 reviewed claims are blocked by source custody")])})
+
+    # B2. stale working-text confirmations (Photius 2026-11-07; Haloander h01 and Cujas route, D-20261108-photius-recheck)
+    aid = "recovery.working_text_stale"
+    actions.append({
+        "id": aid, "kind": "recovery",
+        "description": ("Decided, not-ready orders whose filed claim pins a working-text confirmation that no longer matches the current "
+                        "Lachmann record (working_text:prior_confirmation_stale), typically because a new official printing joined the "
+                        "witnesses. Route: a producer compares the transcription word by word with the official printing, then two blind "
+                        "arms with planted controls (owner decision D-20261108-photius-recheck). Never re-frozen by script."),
+        "orders": len(stale_ids), "order_ids_path": save_ids(aid, stale_ids),
+        "rate_key": "filed_per_attempt.correction", "cost_key": "review.per_submitted",
+        "unlocks": [], "prerequisites": ["the official printing named in the Lachmann record's skipped witnesses is held"],
+        "basis": "Computed from %s: provisional_status yes/no, ready_for_human_review=no, working_text_policy_errors contains "
+                 "working_text:prior_confirmation_stale; recovery.custody_stranded members excluded." % TRACKER_CSV,
+        "evidence": evidence(repo, [(TRACKER_CSV, "working_text_policy_errors")])})
 
     # C/D. acquisitions and zero-agent actions from the tracker table
     rows = tracker_rows(repo)
