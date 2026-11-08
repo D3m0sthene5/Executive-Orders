@@ -1,10 +1,10 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,020 of 14,998 orders (6.8%)**
+**Numbered series: ready for human review 1,023 of 14,998 orders (6.8%)**
 
-Unnumbered series (class catalogued_unnumbered, a separate denominator): not measured yet; `jobs/domesday-register/output/UNNUMBERED_SUMMARY.json` is missing.
+Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42444903074-1:3f0a4051ebb78681b3727b274877b5dc6ad654c4ad668b8415e773f4d0ba9e05` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42461806071-1:977fa6820b1112ba8247d2f65f901f5bca61269237fad668f4f1aa2364016564` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -12,20 +12,20 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 4,301. The other 10,697 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 663, 'transcription_dependent': 357}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 867; quotation rechecks: 867. These remain work after readiness.
+Ready by text evidence: {'original_supported': 666, 'transcription_dependent': 357}. Provisional working texts do not authenticate originals.
+Outstanding original replacement obligations: 827; quotation rechecks: 827. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 281. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 1816}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 248. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 1816}.
 
 ## Steps finished (orders with a provisional status)
 
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 4,301 | 4,301 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 3,519 | 4,301 | 81.8% |
-| Complete inventory of the order's operative clauses | 1,264 | 4,301 | 29.4% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,045 | 4,301 | 24.3% |
-| Savings clauses and surviving effects closed | 1,251 | 4,301 | 29.1% |
+| Original or explicitly reviewed provisional working text saved | 3,474 | 4,301 | 80.8% |
+| Complete inventory of the order's operative clauses | 1,271 | 4,301 | 29.6% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,048 | 4,301 | 24.4% |
+| Savings clauses and surviving effects closed | 1,258 | 4,301 | 29.2% |
 | Search for later contrary sources recorded, no open conflicts | 2,874 | 4,301 | 66.8% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 825 | 15.2% |
@@ -34,8 +34,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 2,269 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
-| 594 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 2,435 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 881 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 10 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 10 | one source | Retrieve shared source EO::4314 |
@@ -52,15 +52,15 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `NO_PROVISIONAL_STATUS` | 0 | 10,697 |
 | `NO_CLAUSE_INVENTORY` | 2,771 | 2,771 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,771 | 2,771 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 803 | 2,435 |
 | `FIRST_END_UNPROVED` | 2,401 | 2,401 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 757 | 2,269 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 543 | 1,751 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 548 | 1,630 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,244 | 1,244 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 222 | 594 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 263 | 881 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 370 | 370 |
-| `CLAIM_CHECK_FAILED` | 227 | 227 |
-| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 224 | 224 |
+| `CLAIM_CHECK_FAILED` | 220 | 220 |
+| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 217 | 217 |
 | `OPUS_MEDIA_NONE_CITED` | 198 | 198 |
 | `FIRST_END_UNRESOLVED` | 184 | 184 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
@@ -91,7 +91,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - ofr-compilations: 500
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
-- tischendorf-originals: 687
+- tischendorf-originals: 701
 - mabillon-held-printings: 2,015
 - photius-gpo-volumes: 3,679
 - photius-csc-printings: 143
