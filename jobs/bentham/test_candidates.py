@@ -11,7 +11,7 @@ import candidates as C  # noqa: E402
 
 STEPS = ["provisional_status", "original_text", "clause_inventory", "ending_or_current_basis", "savings_residuals",
          "counterevidence", "shared_sources", "opus_media"]
-HEADER = (["instrument_id", "provisional_status", "ready_for_human_review", "claim_present", "blockers"]
+HEADER = (["instrument_id", "provisional_status", "ready_for_human_review", "claim_present", "blockers", "working_text_policy_errors"]
           + ["step_" + s for s in STEPS])
 NONGATE = "NO_CLAUSE_INVENTORY|FIRST_END_UNPROVED|SAVINGS_RESIDUALS_NOT_CLOSED"
 
@@ -24,6 +24,10 @@ def row(eo, status, orig, counter, blockers, claim="no", clause="open", end="ope
 
 
 ROWS = [
+    # a filed claim whose working-text confirmation went stale (Photius 2026-11-07), and a ready custody-recovery order
+    dict(row(9060, "no", "done", "done", "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED|" + NONGATE, claim="yes"),
+         working_text_policy_errors="working_text:prior_confirmation_stale"),
+    dict(row(9051, "no", "done", "done", "", claim="yes"), ready_for_human_review="yes"),
     # claim-ready strata
     row(9000, "no", "done", "done", NONGATE),
     row(9001, "no", "provisional", "done", NONGATE),
@@ -87,6 +91,7 @@ def make_repo(root):
     w(C.DISPOSITION, json.dumps({"schema": "tribonian-disposition/v1", "batches": [
         {"batch": "a", "not_filed": [{"instrument_id": "EO:9050", "outcome": "rejected_mechanical", "reason": ""},
                                      {"instrument_id": "EO:77", "outcome": "rejected_mechanical", "reason": ""},
+                                     {"instrument_id": "EO:9051", "outcome": "rejected_mechanical", "reason": ""},
                                      {"instrument_id": "EO:78", "outcome": "blocked", "reason": "x"}]},
         {"batch": "b", "not_filed": [{"instrument_id": "EO:77", "outcome": "rejected_mechanical", "reason": ""}]}]}, indent=2))
     w(C.TRIBONIAN_REPORT, "x\n47 reviewed claims are blocked by source custody. y\nEmergency-dependent YES orders lack the yearly National Emergencies Act continuation notices.\nThe current texts of parent orders and statutes are not held.\n")
@@ -134,10 +139,18 @@ class CandidatesTest(unittest.TestCase):
     def test_recovery(self):
         r = self.by["recovery.custody_stranded"]
         self.assertEqual(r["kind"], "recovery")
-        self.assertEqual(r["orders"], 2)  # EO:77 counted once
+        self.assertEqual(r["orders"], 2)  # EO:77 counted once; EO:9051 is ready now and drops out
         self.assertEqual(r["cost_key"], "review.per_submitted")
         self.assertIn("review", r["description"])
         self.assertEqual(self.ids("recovery.custody_stranded"), {"EO:9050", "EO:77"})
+
+    def test_working_text_stale_recovery(self):
+        r = self.by["recovery.working_text_stale"]
+        self.assertEqual((r["kind"], r["cost_key"], r["rate_key"]), ("recovery", "review.per_submitted", "filed_per_attempt.correction"))
+        self.assertEqual(self.ids("recovery.working_text_stale"), {"EO:9060"})
+        for aid in self.by:
+            if aid.startswith("production."):
+                self.assertNotIn("EO:9060", self.ids(aid), aid)
 
     def unlock_total(self, aid):
         return sum(u["orders"] for u in self.by[aid]["unlocks"])
