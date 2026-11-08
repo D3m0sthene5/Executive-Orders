@@ -18,6 +18,13 @@ raw artifacts has not yet been independently reproduced. These upstream
 artifacts are not registered in `SOURCES.jsonl` as substitutes for those
 extracts, and they do not establish a current-law predicate or page check.
 
+`output/upstream/` also holds two exact public Commons DjVu scans described
+as 1934 and 1935 GPO Executive Order compilations. Their SHA-256 and DjVu
+magic were checked, and `UPSTREAM.jsonl` names EO::6868, EO::6910 and
+EO::6964 as source leads. The printing identities and relevant order pages
+have not been verified. Neither scan is registered in `SOURCES.jsonl` or
+treated as a page check, accepted transcription or legal finding.
+
 The public Federal Register and National Mediation Board PDFs for the staged
 Bracton packets were independently re-fetched and hash-checked into local job
 caches. Those caches are not committed in this staging change. A fresh checkout

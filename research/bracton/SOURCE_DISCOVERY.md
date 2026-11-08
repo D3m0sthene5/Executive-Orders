@@ -1,11 +1,11 @@
 # Rank 2–4 GPO compilation scan leads, 2026-11-08
 
-The first targeted source-ladder run proposed `EO::6868`, `EO::6910`, and `EO::6964` exhausted after one automated route each. A separate read-only search located public scans of the historical GPO compilations. These are candidate complete-printing custody routes, not retained source bytes or page checks:
+The first targeted source-ladder run proposed `EO::6868`, `EO::6910`, and `EO::6964` exhausted after one automated route each. A separate search located public scans of the historical GPO compilations. Raw DjVu bytes were then retained in Sol's `jobs/bracton-source-custody/output/upstream/` and hashed; they remain candidate printing leads, not verified order pages or page checks:
 
 - **EO 6868 and EO 6910:** [1934 Executive Orders 6690–6935A compilation index](https://en.wikisource.org/wiki/Index:Executive_Orders_6690-6935.djvu). The [direct Commons DjVu scan](https://commons.wikimedia.org/wiki/Special:Redirect/file/Executive_Orders_6690-6935.djvu) responded HTTP 200 with `image/vnd.djvu` and 16,809,160 bytes on a HEAD request.
 - **EO 6964:** [1935 Executive Orders 6936–7081 compilation index](https://en.wikisource.org/wiki/Index:Executive_Orders_6936-7081.djvu). The [direct Commons DjVu scan](https://commons.wikimedia.org/wiki/Special:Redirect/file/Executive_Orders_6936-7081.djvu) responded HTTP 200 with `image/vnd.djvu` and 13,317,553 bytes on a HEAD request.
 
-Both Commons files are described as HathiTrust-derived scans of GPO printings. The exact bytes, printing identity, and relevant order locations remain to be verified through a custody route; Montfaucon owns any original page checks. These scans do not establish later legal effect.
+Both Commons files are described as HathiTrust-derived scans of GPO printings. The 1934 file has SHA-256 `411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc`; the 1935 file has `b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617`. The printing identity and relevant order locations remain to be verified; Montfaucon owns any original page checks. Neither scan is registered as accepted source text or establishes later legal effect.
 
 # Rank 6 source leads, 2026-11-08
 
