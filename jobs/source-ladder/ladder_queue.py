@@ -31,6 +31,7 @@ SHARED = "research/stage20/output/SHARED_SOURCE_CASE_REVIEW_QUEUE.csv"
 STATUTE = "research/stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv"
 STATUTE_INDEX = "research/stage20/output/STATUTE_FETCH_INDEX.csv"
 HINTS = "research/stage14/QUEUES/INDEXED_CACHED_EO_SOURCE_HINTS.csv"
+SHARED_SOURCE_HINTS = "research/readiness/SHARED_SOURCE_URL_HINTS.csv"
 OPUS_REFETCH = "jobs/opus-media-match/output/REFETCH_LIST.jsonl"
 
 
@@ -192,6 +193,22 @@ def load_hints(repo):
     return out
 
 
+def load_shared_source_hints(repo):
+    """Exact Stage 20 authority to official source URL discovery leads."""
+    path = Path(repo) / SHARED_SOURCE_HINTS
+    if not path.exists():
+        return {}
+    out = {}
+    for row in read_csv(path):
+        authority = (row.get("authority") or "").strip()
+        url = (row.get("url") or "").strip()
+        if authority and url.startswith("https://"):
+            out.setdefault(authority, [])
+            if url not in out[authority]:
+                out[authority].append(url)
+    return out
+
+
 def citation_key(authority):
     """Merge spellings like '48 U.S.C. 863' and '48 U.S.C. 863)'."""
     kind, p = fetch_ladder.parse_citation(authority)
@@ -211,6 +228,7 @@ def shared_source_wanted(repo, eo_index=None, hints=None):
         for r in read_csv(repo / STATUTE_INDEX):
             if r.get("source_url", "").startswith("https://"):
                 known_urls["STAT::" + r["citation"]] = r["source_url"]
+    direct_hints = load_shared_source_hints(repo)
     groups = {}
     for r in read_csv(repo / SHARED):
         auth, cited = r["authority"].strip(), r["cited_in"].strip()
@@ -225,6 +243,10 @@ def shared_source_wanted(repo, eo_index=None, hints=None):
     for key, g in groups.items():
         auth = min(g["authorities"], key=lambda a: (a.rstrip(").;, ") != a, len(a)))  # cleanest spelling
         urls = [known_urls[a] for a in g["authorities"] if a in known_urls]
+        for authority in g["authorities"]:
+            for url in direct_hints.get(authority, []):
+                if url not in urls:
+                    urls.append(url)
         w = fetch_ladder.Wanted(wanted_id=auth, instrument_ids=sorted(g["ids"]), urls=urls,
                                 citation=auth, step="shared_sources", requested_by="stage20 shared-source queue",
                                 extra={"authorities": g["authorities"]})

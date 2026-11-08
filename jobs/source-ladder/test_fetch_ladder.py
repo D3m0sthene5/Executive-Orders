@@ -376,6 +376,24 @@ class QueueAndIndexTests(Base):
         self.assertEqual(got, {"STAT::66 Stat. 259": ["EO:1", "EO:2"], "USC::48 U.S.C. 863": ["EO:4", "EO:5"]})
         self.assertTrue(all(w.step == "shared_sources" for w in items))
 
+    def test_shared_queue_uses_exact_authority_url_hint(self):
+        out = self.tmp / "research/stage20/output"
+        out.mkdir(parents=True)
+        (out / "SHARED_SOURCE_CASE_REVIEW_QUEUE.csv").write_text(
+            "authority,cited_in,source_already_retrieved\n"
+            "CFR::26 CFR 458.324,EO:10801,no\n"
+            "CFR::26 CFR 458.325,EO:10876,no\n", encoding="utf-8")
+        hints = self.tmp / "research/readiness/SHARED_SOURCE_URL_HINTS.csv"
+        hints.parent.mkdir(parents=True)
+        hints.write_text(
+            "authority,url\n"
+            "CFR::26 CFR 458.324,https://www.govinfo.gov/content/pkg/FR-1955-05-05/pdf/FR-1955-05-05.pdf\n",
+            encoding="utf-8")
+        items = {w.wanted_id: w for w in ladder_queue.shared_source_wanted(self.tmp)}
+        self.assertEqual(items["CFR::26 CFR 458.324"].urls, [
+            "https://www.govinfo.gov/content/pkg/FR-1955-05-05/pdf/FR-1955-05-05.pdf"])
+        self.assertEqual(items["CFR::26 CFR 458.325"].urls, [])
+
     def test_index(self):
         self.assertEqual(ofr_index.normalize_number("7933-a"), "7933A")
         self.assertEqual(ofr_index.normalize_number("10571", "-A Assignment of Frequencies"), "10571A")
