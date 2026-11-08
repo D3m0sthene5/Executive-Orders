@@ -18,3 +18,11 @@ rows name missing opening/closing pages and remain as negative outcomes.
 
 The 193 Cujas Photius-stale identities are excluded from the worklist.
 ProQuest restricted files were not read or modified.
+
+`checks/m002-fr-modern-1937-1940.jsonl` adds 50 public GovInfo Federal
+Register checks: 32 pass, 18 fail. `REPORT_M002.md` lists the failed spans,
+the five blind adjudications, the contemporary GPO catalog identity crosswalk
+for the unnumbered EO:7624 printing, and the sealed reviewer/control receipts
+under `reviews/m002/`. `GATE_M002.*` and `COST.md` record the second 50-order
+checkpoint and its unmeasured actual cost. The original source fragment and
+held OCR files remain immutable.
