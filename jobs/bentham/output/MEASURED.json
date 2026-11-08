@@ -233,6 +233,30 @@
         ]
       },
       "note": "Correction batches re-attempt orders that earlier batches blocked or rejected, so this rate is conditional on a prior failure and is not comparable to the others."
+    },
+    {
+      "key": "filed_per_attempt.undecided",
+      "value": 0.1,
+      "num": 3,
+      "den": 30,
+      "unit": "share",
+      "source": "research/excavator/claude-haloander-2026-11-07/evidence/DISPOSITION.json",
+      "evidence": [
+        {
+          "quote": "\"undecided_measure\"",
+          "source": "research/excavator/claude-haloander-2026-11-07/evidence/DISPOSITION.json"
+        }
+      ],
+      "population": "tribonian-2026-11-04",
+      "pool": "undecided",
+      "n_studies": 1,
+      "by_wave": {
+        "tribonian-2026-11-04": [
+          0,
+          0
+        ]
+      },
+      "note": "Random samples of the undecided stratum reported by waves (owner decision 2026-11-08); filed = status adopted and claim canonical."
     }
   ],
   "costs": {
@@ -376,6 +400,18 @@
       "production_filed": 492,
       "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json",
       "pooled_into_rates": true
+    },
+    {
+      "wave": "claude-haloander-2026-11-07",
+      "attempted": 58,
+      "filed": 28,
+      "source": "research/excavator/claude-haloander-2026-11-07/evidence/DISPOSITION.json",
+      "pooled_into_rates": false,
+      "undecided_measure": {
+        "attempted": 30,
+        "filed": 3,
+        "source": "research/excavator/claude-haloander-2026-11-07/evidence/DISPOSITION.json"
+      }
     },
     {
       "wave": "claude-icecore-2026-11-05",
