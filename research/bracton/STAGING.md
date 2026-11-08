@@ -3,7 +3,7 @@
 ## State
 
 - Base: main `883bd8f78f12ac4c1cf6625d74a20f4b56480360` after the new source-ladder result. The frozen claim-kit corpus was last published from main `67b6adeeb902d91a5ead9e4684c09207c442f87a` and reports a successful run.
-- Budget: no dollar cap under the owner's 2026-11-08 exhaustive #1–#9 goal. Running model cost is in `COST.md`. No Bracton producer or reviewer model call has started. Cujas is a separate wave.
+- Budget: no dollar cap under the owner's exhaustive #1–#9 goal and subsequent 92-order Photius stratum. Running model cost is in `COST.md`. No Bracton producer or reviewer model call has started. Cujas's 68 filed claims remain separate.
 - Phase: evidence and assignment staging only. No claim, status, census, codebook, human review, or certified count changed. Certified count remains 0.
 - Timing: the owner chose staging now and Claude-family blind review after the Monday, 2026-11-09, 6 PM ET usage reset. Recheck main, reservations, packet freshness, and the dispatch gate immediately before production.
 
@@ -11,7 +11,7 @@
 
 `plan/PLAN.md` records the earlier capped pilot. The current `jobs/bentham/output/PLAN.md` is the uncapped recomputation. The historical recovery list contained 48 mechanically rejected orders, but the current tracker already marks 39 ready. `jobs/bentham/candidates.py` now filters that recovery action to the 9 still not ready. Ranks #7–#9 are recovery (9), one-step-away correction (223), and YES/FR production (338). Each production action must pass its own gate.
 
-Montfaucon (`sol/montfaucon-2026-11-08`) owns ranks #10 and #13 and all page-check records. Sol writes claims only. A #1–#9 order held solely for a missing page check is recorded as blocked on Montfaucon with its order and source, then retried in a later batch after that check lands on main. Sol excludes all 193 identities in `research/photius-193-recheck/compare_193.csv` while Cujas is active, including recovery EO:8538 and EO:8907.
+Montfaucon (`sol/montfaucon-2026-11-08`) owns ranks #10 and #13 and all page-check records. Sol writes claims only. A #1–#9 order held solely for a missing page check is recorded as blocked on Montfaucon with its order and source, then retried in a later batch after that check lands on main. Cujas has finished: its 68 filed claims stay excluded, while recovery EO:8538 and EO:8907 return to rank #7. The 92 other unfinished Photius orders form a separate stratum after #1–#9 in `PHOTIUS_POST_RANK9_ROSTER.csv`. The seven lowest-coverage orders in `compare_193.csv` are excluded by the owner. `BASELINE.csv` retains the earlier Cujas exclusion flag as a dated snapshot; this paragraph and `RECOVERY_TRIAGE.csv` supersede it for current assignments.
 
 ## Disjoint packets
 
@@ -28,7 +28,7 @@ Montfaucon (`sol/montfaucon-2026-11-08`) owns ranks #10 and #13 and all page-che
 
 The five board packets b02–b06 and pilot b01 cover all 109 board cases with a report source record in `BOARD_REPORT_STATUS.csv` at this staging snapshot. The remaining 37 have no report source record and stay in source acquisition. For b05–b06, 31 official FR issue PDFs and 10 NMB reports matched their frozen hashes in untracked local caches. Thirty-two exact APP archive captures and their provenance were added to `jobs/bracton-source-custody/output/`; those are editorial transcriptions, not original orders. Source hash matching is not an original page check.
 
-The Cujas c01/c02 Photius batch uses different identities; its published branch report lists c01 as 21 filed, with c02 paused before review. Cujas's source-ladder job advanced main while these packets were staged. The board packet has no ownership transfer or active order lease; acquire leases before its producer assignment and confirm no intervening work.
+Cujas completed c01–c03 and filed 68 claims on main. Its remaining roster is reconciled in `PHOTIUS_POST_RANK9.md`. The board packets have no ownership transfer or active order leases; acquire leases before producer assignment and confirm no intervening work.
 
 `pilot-y01/packet-v1` preserves an exploratory five-order YES packet. All five were source blocked before acquisition. No producer saw it and no reservation was made for its other four orders. `pilot-y02` is the selected one-order subset with a passing fresh check.
 
@@ -54,14 +54,14 @@ The Valla v2 schema acceptance fix is required for `kit.py prepare` with existin
 
 ## Monday continuation
 
-1. Pull the latest main and Cujas outcome. If any shared input changes, prepare a new immutable packet; never renew a stale seal. Confirm the Sol YES lock and acquire short-lived Kean leases for dispatched orders.
+1. Pull the latest main, including Montfaucon outcomes. If any shared input changes, prepare a new immutable packet; never renew a stale seal. Confirm the Sol YES lock and acquire short-lived Kean leases for dispatched orders.
 2. Re-run `kit.py dispatch-check` on exact intended members. Ensure all selected later-event and current-law sources have custody, not just mandatory originals.
 3. Follow Bentham rank and diagnostic gate: triage the nine still-not-ready recovery cases, then run a small board correction pilot under the owner board rule. Continue through the full YES stratum, recording each member's outcome.
 4. Use a different model family for blinded independent reviews, with planted controls. File only both-upheld claims through `kit.py complete --publish` and report actual checker and tracker changes. Do not represent AI review as human certification.
 
 ## Exhaustive-goal update, 2026-11-08
 
-The `sol/bracton-2026-11-08` branch supersedes this receipt's earlier branch and $300 plan. `BASELINE.csv` lists all 570 current members of ranks #7–#9 (9 recovery, 223 one-step, 338 YES/FR), with exactly EO:8538 and EO:8907 excluded under Cujas. `RECOVERY_TRIAGE.csv` records the nine recovery dispositions. `BLOCKED_MONTFAUCON.csv` names three recovery orders and exact FR source issues whose page reading is the only current route around an OCR/checker block. No page-check record was made here.
+The `sol/bracton-2026-11-08` branch supersedes this receipt's earlier branch and $300 plan. `BASELINE.csv` lists the 570 members of ranks #7–#9 (9 recovery, 223 one-step, 338 YES/FR) at its tracker generation. Its historical Cujas exclusion of EO:8538 and EO:8907 is superseded by their reopened rank-7 triage. `RECOVERY_TRIAGE.csv` records the nine recovery dispositions. `BLOCKED_MONTFAUCON.csv` names three recovery orders and exact FR source issues whose page reading is the only current route around an OCR/checker block. No page-check record was made here.
 
 The first targeted source-ladder Run jobs invocation is [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817), with nine selected source identities in `ACQUISITIONS.csv`. Its source outcomes must be read from the published `jobs/source-ladder/output/STATUS.json`, `RESULTS.csv`, and `SOURCES.jsonl`; the run was still executing when this update was written. A workflow-file push also started a separate valla/kean/bentham/example-hello run on this branch; remove its incidental branch outputs before a PR. Keep the target run's pinned input stable until publication.
 

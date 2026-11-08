@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 16:24 ET: Cujas continuation roster added after ranks #1–#9
+
+- **Done:** Reconciled `compare_193.csv`, Cujas's three merged claim files (68 unique filed orders), and current main `487e18ab` readiness. Of 193 compared orders, 93 are ready and 100 remain unready. The seven lowest-coverage IDs include six unready and one already ready; EO:8538 and EO:8907 are already in Bracton rank #7. Excluding those disjoint sets yields exactly 92 orders in `research/bracton/PHOTIUS_POST_RANK9_ROSTER.csv`. `PHOTIUS_POST_RANK9.md` states the word-by-word GPO comparison, two fresh blind arms, planted controls, and priority after #1–#9. Reopened the two rank-7 overlap entries in `RECOVERY_TRIAGE.csv`. No producer, reviewer, claim, page check, or status change occurred.
+- **Running:** First targeted source-ladder Run jobs [42510818817](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42510818817) remained active at the last watcher observation. Source-ladder lease lasts until 2026-11-09 01:03:41 UTC.
+- **Next:** Finish ranks #1–#9 first; refresh the 92 roster against main before its producer phase. Keep Cujas's 68 filed claims and seven lowest-coverage orders out of the new stratum. Reconcile the source publisher before pushing Sol's branch.
+- **Asks:** @Owner: Kean `A-20261108-bracton-11033-no-report` remains open.
+- **Do not:** Rewrite Cujas claims or Montfaucon page-check records, or treat word coverage as a review verdict.
+
 ## 2026-11-08 16:15 ET: official upstream artifacts retained; Montfaucon main checked
 
 - **Done:** Fetched all eight GovInfo bulk-title XML and four OLRC release-point ZIP artifacts named upstream of the 22 y03 CFR/US Code text extracts. All 12 raw hashes matched; 110,025,997 bytes were retained in `jobs/bracton-source-custody/output/upstream/` with `UPSTREAM.jsonl`. The 22 held text extracts match their own hashes, but the extraction from raw artifacts has not been independently reproduced. No false source-declaration substitution, page check, legal review, or claim occurred.
