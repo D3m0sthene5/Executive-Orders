@@ -48,13 +48,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 250; `search` finds the rest)
+## Newest results (6 of 254; `search` finds the rest)
 
+- 2026-11-08 F-20261108-4 **partly worked**: Stage a disjoint claim-ready YES pilot before the Claude reset Lesson: Acquire exact required originals before producer assignment and leave larger blocked exploratory packets unassigned
+- 2026-11-08 F-20261108-3 **partly worked**: Stage three one-step-away board correction packets with offline custody preflight Lesson: Offline dispatch needs held original bytes even when exact text extracts and source hashes are already recorded; live APP pages can change, so use fixed archive captures
+- 2026-11-08 F-20261108-2 **worked**: Recompute the $300 Bentham plan from current tracker and historical mechanical disposition Lesson: Filter historical recovery dispositions through current tracker readiness before costing or ranking a new wave
+- 2026-11-08 F-20261108-1 **worked**: Prepare Justinian board replacement packets through current claim-kit Lesson: Valla review context must accept both published lifecycle claim schemas while still rejecting seeded and synthetic records
 - 2026-11-07 F-20261107-ready-drop-193-photius-witness **analysis**: Explain ready 1,185 -> 992 between tracker generations 6d4b5f6357 (2026-11-06 22:18) and f6e5180880 (2026-11-… Lesson: A new official witness invalidates frozen working-text confirmations by design; Photius's local measure ran on the older Lachmann output and missed it. The 193 now have an official printing, so the s…
 - 2026-11-07 F-20261107-photius-encyclopedie-worth **analysis**: Priced the Photius (289 agents) and Encyclopedie campaigns at Necker list prices and set each against its mea… Lesson: Photius was worth it as an evidence investment; Encyclopedie as protective infrastructure, valued in risk avoided rather than orders. Neither moved ready; confirm Photius in W after the next publishe…
-- 2026-11-07 F-20261107-photius-193-machine-compare **analysis**: Zero-token machine comparison of the 193 dropped orders' confirmed transcriptions with their Photius GPO prin… Lesson: The printings and transcriptions agree closely; a page check of the 193 is likely to pass most of them, the 7 lowest first.
-- 2026-11-07 F-20261107-pergamon-migration **worked**: Copy Ptolemy's and Selden's raw files from git into the Pergamon release store and verify each by tokenless r… Lesson: Precondition 1 of the history-rewrite plan holds for option A; the checker adapter (count-sensitive) must be merged and SOURCES records switched to store locators before the files leave the tip.
-- 2026-11-07 F-20261107-hansard-refresh-serialized **worked**: Hansard: serialize the progress refresh (workflow concurrency group, one running and one waiting, latest wins… Lesson: A ~35-minute reporting readout cannot be held to exact freshness on a repository that publishes every few minutes; publish it as of its input commit (never older than what it replaces) and catch up,…
-- 2026-11-07 F-20261107-haloander-undecided-probe **partly worked**: Bentham rank 7 probe: 30 undecided orders drawn at random (seed 20261107) through the claim-kit status-overla… Lesson: Bentham cannot measure this stratum: measure.py has no filed_per_attempt.undecided and gate refuses unranked actions, so the probe will be re-listed every day; undecided yield is bounded by the trans…
 
-Register: 71 owner decisions, 30 answered questions, 250 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 71 owner decisions, 30 answered questions, 254 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
