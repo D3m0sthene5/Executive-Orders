@@ -48,13 +48,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 250; `search` finds the rest)
+## Newest results (6 of 253; `search` finds the rest)
 
+- 2026-11-08 F-20261108-cujas-usage **analysis**: Measure Cujas wave cost for week-allowance calibration Lesson: With a $22 cap one 25-order batch is the most a fresh coordinator can do; batch setup is cheap once inputs are checked out, so the next wave should run 3+ batches in one session.
+- 2026-11-08 F-20261108-cujas-photius-recheck **partly worked**: Cujas c01: page-check 25 Photius-stale orders (>=99% band) against their GPO printings by the Haloander h01 r… Lesson: Own Tribonian claims are replaced by agent 'claude' with a later-sorting file name; Tribonian sheets are on origin/claude/tribonian-state. Arm A rejects orders with FR 'Revoked by' notes the claim do…
+- 2026-11-08 F-20261108-board-fetch-not-run **partly worked**: Confirm the 58 board-report fetch requests Haloander queued (FETCH_QUEUE 1,120 -> 1,178) ran Lesson: A queue append does not trigger source-ladder; dispatch it explicitly after enqueueing, then verify output/STATUS.json.
 - 2026-11-07 F-20261107-ready-drop-193-photius-witness **analysis**: Explain ready 1,185 -> 992 between tracker generations 6d4b5f6357 (2026-11-06 22:18) and f6e5180880 (2026-11-… Lesson: A new official witness invalidates frozen working-text confirmations by design; Photius's local measure ran on the older Lachmann output and missed it. The 193 now have an official printing, so the s…
 - 2026-11-07 F-20261107-photius-encyclopedie-worth **analysis**: Priced the Photius (289 agents) and Encyclopedie campaigns at Necker list prices and set each against its mea… Lesson: Photius was worth it as an evidence investment; Encyclopedie as protective infrastructure, valued in risk avoided rather than orders. Neither moved ready; confirm Photius in W after the next publishe…
 - 2026-11-07 F-20261107-photius-193-machine-compare **analysis**: Zero-token machine comparison of the 193 dropped orders' confirmed transcriptions with their Photius GPO prin… Lesson: The printings and transcriptions agree closely; a page check of the 193 is likely to pass most of them, the 7 lowest first.
-- 2026-11-07 F-20261107-pergamon-migration **worked**: Copy Ptolemy's and Selden's raw files from git into the Pergamon release store and verify each by tokenless r… Lesson: Precondition 1 of the history-rewrite plan holds for option A; the checker adapter (count-sensitive) must be merged and SOURCES records switched to store locators before the files leave the tip.
-- 2026-11-07 F-20261107-hansard-refresh-serialized **worked**: Hansard: serialize the progress refresh (workflow concurrency group, one running and one waiting, latest wins… Lesson: A ~35-minute reporting readout cannot be held to exact freshness on a repository that publishes every few minutes; publish it as of its input commit (never older than what it replaces) and catch up,…
-- 2026-11-07 F-20261107-haloander-undecided-probe **partly worked**: Bentham rank 7 probe: 30 undecided orders drawn at random (seed 20261107) through the claim-kit status-overla… Lesson: Bentham cannot measure this stratum: measure.py has no filed_per_attempt.undecided and gate refuses unranked actions, so the probe will be re-listed every day; undecided yield is bounded by the trans…
 
-Register: 71 owner decisions, 30 answered questions, 250 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 71 owner decisions, 30 answered questions, 253 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
