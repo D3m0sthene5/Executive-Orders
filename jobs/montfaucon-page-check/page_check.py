@@ -32,7 +32,7 @@ def safe_path(root, relative):
 def validate(root, record, source_cache=None):
     """Return (lane, derived fragment), or reject. Reviews pin the whole record target."""
     root = root.resolve()
-    if record.get('schema') != 'montfaucon-page-check/v1' or record.get('final') not in ('pass', 'fail', 'unsure'):
+    if record.get('schema') != 'montfaucon-page-check/v1' or record.get('final') not in ('pass', 'fail', 'unsure', 'blocked'):
         raise ValueError('invalid final verdict')
     passing = record['final'] == 'pass'
     target = record['target']
@@ -58,6 +58,14 @@ def validate(root, record, source_cache=None):
         raise ValueError('source fragment changed or ambiguous')
     source = matches[0]
     data = source['data']
+    # A lead can name a page while declaring no immutable scan hash or held
+    # transcription. Such a record may retain a negative finding, never credit.
+    negative_missing = not passing and (not data.get('sha256') or not data.get('text_path'))
+    if record['final'] == 'blocked' or negative_missing:
+        missing = record.get('missing')
+        if (not isinstance(missing, dict) or
+                not all(isinstance(missing.get(k), str) and missing[k].strip() for k in ('item', 'reason'))):
+            raise ValueError('negative lead requires named missing source or span')
     legacy = ('grade' not in source and 'grade' not in data and lane == 'official'
               and (LEGACY_OFFICIAL.get(job) == data.get('route') or
                    (job == 'fr-originals' and data.get('route') in
@@ -80,6 +88,16 @@ def validate(root, record, source_cache=None):
     images = target.get('page_images', [])
     if not isinstance(images, list) or (passing and not images):
         raise ValueError('passing check requires nonempty held page_images')
+    if negative_missing and record['final'] != 'blocked' and not images:
+        raise ValueError('unhashed fail or unsure requires inspected page image')
+    if negative_missing and not data.get('sha256') and images:
+        inspected = record.get('inspection_source')
+        if (not isinstance(inspected, dict) or
+                not isinstance(inspected.get('url'), str) or not inspected['url'].startswith('https://') or
+                not isinstance(inspected.get('sha256'), str) or
+                not re.fullmatch('[0-9a-f]{64}', inspected['sha256']) or
+                any(not image.get('url', '').startswith(inspected['url'] + '#page=') for image in images)):
+            raise ValueError('unhashed source requires pinned inspection PDF and page URLs')
     labels = set()
     for image in images:
         validate_image(root, image, job, lane)
@@ -93,18 +111,28 @@ def validate(root, record, source_cache=None):
         raise ValueError('wrong instrument or kind')
     for key in ('sha256', 'url', 'page_or_item', 'text_sha256', 'text_path'):
         if key == 'text_sha256' and key not in data:
+            if negative_missing and target.get(key) not in (None, ''):
+                raise ValueError('invented held text SHA-256 pin')
             continue  # The exact held text bytes are still hashed below.
+        if negative_missing and key in ('sha256', 'text_sha256', 'text_path'):
+            if target.get(key) != data.get(key):
+                raise ValueError('changed missing source ' + key)
+            continue
         if not isinstance(target.get(key), str) or not target[key] or target[key] != data.get(key):
             raise ValueError('changed or missing source ' + key)
-    if not all(re.fullmatch('[0-9a-f]{64}', target[key]) for key in ('sha256', 'text_sha256', 'fragment_sha256')):
+    required_hashes = ('fragment_sha256',) if negative_missing else ('sha256', 'text_sha256', 'fragment_sha256')
+    if not all(isinstance(target.get(key), str) and re.fullmatch('[0-9a-f]{64}', target[key]) for key in required_hashes):
         raise ValueError('invalid SHA-256 pin')
-    text = safe_path(root, (source_path.parent / target['text_path']).relative_to(root).as_posix())
-    text_parts = text.relative_to(root).parts
-    if text_parts[:2] != ('jobs', job) and text_parts[:2] != ('research', 'montfaucon') and not (
-            lane == 'replica' and text_parts[:2] == ('jobs', 'pinakes-proquest-ingest')):
-        raise ValueError('held text outside declared dependencies')
-    if hashlib.sha256(text.read_bytes()).hexdigest() != target['text_sha256']:
-        raise ValueError('held text changed')
+    if target.get('text_path'):
+        text = safe_path(root, (source_path.parent / target['text_path']).relative_to(root).as_posix())
+        text_parts = text.relative_to(root).parts
+        if text_parts[:2] != ('jobs', job) and text_parts[:2] != ('research', 'montfaucon') and not (
+                lane == 'replica' and text_parts[:2] == ('jobs', 'pinakes-proquest-ingest')):
+            raise ValueError('held text outside declared dependencies')
+        if not isinstance(target.get('text_sha256'), str) or not re.fullmatch('[0-9a-f]{64}', target['text_sha256']):
+            raise ValueError('invalid held text SHA-256 pin')
+        if hashlib.sha256(text.read_bytes()).hexdigest() != target['text_sha256']:
+            raise ValueError('held text changed')
     reviews = record['reviews']
     if not isinstance(reviews, list) or len(reviews) != 2:
         raise ValueError('two independent reviews required')
@@ -117,7 +145,7 @@ def validate(root, record, source_cache=None):
     examined_reviews = reviews + ([adjudicator] if disagreement else [])
     contexts, verdicts = set(), []
     for review in examined_reviews:
-        if review.get('verdict') not in ('pass', 'fail', 'unsure') or review.get('target_sha256') != digest(target):
+        if review.get('verdict') not in ('pass', 'fail', 'unsure', 'blocked') or review.get('target_sha256') != digest(target):
             raise ValueError('review does not pin exact target')
         verdicts.append(review['verdict'])
         if review['verdict'] == 'pass':

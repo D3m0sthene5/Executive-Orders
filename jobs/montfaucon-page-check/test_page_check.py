@@ -187,6 +187,79 @@ class Checks(unittest.TestCase):
         self.assertEqual(json.loads((output/'REJECTIONS.json').read_text()), [])
         self.assertEqual(json.loads((output/'OUTCOMES.json').read_text())[0]['final'], 'unsure')
 
+    def test_unhashed_lead_retains_failed_page_and_blocked_missing_text_without_credit(self):
+        folder = self.root / 'jobs/photius-free-printings/output'
+        folder.mkdir(parents=True)
+        source = dict(instrument_id='EO:1419', kind='original_representation',
+            grade='official_printing_lead', data=dict(
+                route='free/internet_archive_official_publication', sha256='',
+                url='https://archive.org/details/panama/page/n121',
+                page_or_item='GPO Panama volume, leaf 121',
+                grade='official_printing_lead', needs_page_check=True))
+        fragment = folder / 'FRAGMENTS.jsonl'
+        fragment.write_text(json.dumps(source)+'\n', encoding='utf-8')
+        image = folder / 'page.png'
+        image.write_bytes(b'wrong cited page image')
+        pdf_url = 'https://archive.org/download/panama/panama.pdf'
+        target = dict(fragment_path='jobs/photius-free-printings/output/FRAGMENTS.jsonl',
+            fragment_sha256=M.digest(source), sha256='', url=source['data']['url'],
+            page_or_item=source['data']['page_or_item'], text_path=None, text_sha256=None,
+            page_images=[dict(path='jobs/photius-free-printings/output/page.png',
+                sha256=hashlib.sha256(image.read_bytes()).hexdigest(),
+                url=pdf_url+'#page=122', source_url=source['data']['url'],
+                page_or_item='PDF page 122', cited_scope=source['data']['page_or_item'],
+                provenance='official_government_printing')])
+        record = dict(schema='montfaucon-page-check/v1', instrument_id='EO:1419',
+            lane='official', final='fail', target=target,
+            missing=dict(item='immutable held original text', reason='source fragment names no held text'),
+            inspection_source=dict(url=pdf_url, sha256='b'*64), reviews=[])
+        for context in ('first', 'second'):
+            record['reviews'].append(dict(context_id=context, reviewer='model', verdict='fail',
+                target_sha256=M.digest(target), evidence='the cited image is a different order',
+                number_seen='not on cited page', date_seen='not on cited page',
+                signature_seen='not on cited page', first_words='different order',
+                last_words='different order'))
+        self.assertEqual(M.validate(self.root, record), ('official', None))
+        blocked = copy.deepcopy(record)
+        blocked['final'] = 'blocked'
+        for review in blocked['reviews']:
+            review['verdict'] = 'blocked'
+        self.assertEqual(M.validate(self.root, blocked), ('official', None))
+        checks = self.root / 'research/montfaucon/CHECKS.jsonl'
+        checks.parent.mkdir(parents=True)
+        checks.write_text(json.dumps(blocked)+'\n', encoding='utf-8')
+        outcomes = []
+        lanes, rejected = M.assemble(self.root, outcomes)
+        self.assertEqual((lanes, rejected, outcomes[0]['final']),
+                         ({'official': [], 'replica': []}, [], 'blocked'))
+        output = self.root / 'negative-output'
+        run = subprocess.run([sys.executable, str(Path(__file__).with_name('job.py'))],
+            env={**os.environ, 'REPO_ROOT': str(self.root), 'OUTPUT_DIR': str(output)},
+            capture_output=True, text=True)
+        self.assertEqual(run.returncode, 0, run.stderr)
+        self.assertEqual((output/'FRAGMENTS_OFFICIAL.jsonl').read_text(), '')
+        self.assertEqual(json.loads((output/'OUTCOMES.json').read_text())[0]['final'], 'blocked')
+        for change in ('missing', 'image', 'inspection', 'fragment', 'pass'):
+            with self.subTest(change=change):
+                bad = copy.deepcopy(record)
+                if change == 'missing':
+                    del bad['missing']
+                elif change == 'image':
+                    bad['target']['page_images'] = []
+                elif change == 'inspection':
+                    bad['inspection_source']['sha256'] = 'not-a-sha'
+                elif change == 'fragment':
+                    bad['target']['fragment_sha256'] = 'a'*64
+                else:
+                    bad['final'] = 'pass'
+                    for review in bad['reviews']:
+                        review.update(verdict='pass', identity_confirmed=True,
+                            complete_start_and_closing=True, cited_pages_confirmed=True,
+                            wording_compared=True, image_source_and_page_confirmed=True,
+                            substantive_differences=[])
+                with self.assertRaises(ValueError):
+                    M.validate(self.root, bad)
+
     def test_pass_requires_explicit_checks_and_no_differences(self):
         for field in ('identity_confirmed', 'complete_start_and_closing', 'cited_pages_confirmed', 'wording_compared', 'image_source_and_page_confirmed'):
             record = copy.deepcopy(self.record)
