@@ -10,7 +10,7 @@ New York date: 2026-11-09. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42705404531-1:35fe12c4b8e89bd79173738e836032745965c614dd27ee55b2c2ddc7e348ead5` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42711809594-1:af1c6340180e4519e64610100438e2d377c2c73b1c962ad4ae746626acdf8d92` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -27,10 +27,11 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 Comparison snapshot: 2026-11-08; intervening runs may be absent.
 - claim-checker: claims_all_checks_passed: 1473 → 1660; claims_mechanical_fail: 267 → 80; claims_mechanical_pass: 1559 → 1746; held_distinct_sha256: 56996 → 56911
+- claim-drafts: orders_with_any_conflict: 928 → 929
 - duodecim-tableiv: captures_discovered_unt: 2 → 0
 - family-rules: saved_texts_scanned: 82591 → 82852
 - gessner-cards: one_step_from_ready: 217 → 216; ready_for_human_review: 1083 → 1179
-- kean: decisions: 71 → 74; findings: 264 → 276; open_owner_questions: 13 → 0
+- kean: decisions: 71 → 74; findings: 264 → 286; open_owner_questions: 13 → 1
 - lachmann: assessed: 2395 → 2360; complete_text_confirmed: 1276 → 1396; confirmed: 703 → 807; identity_confirmed: 1208 → 1146
 - lambertini: counterevidence_records: 1245 → 1244; decided_orders_with_draft: 4291 → 4301; packet_targets: 840 → 846; packets: 114 → 120
 - mabillon-held-printings: lead: 244 → 250; passages: 2460 → 2482; strong: 1771 → 1787; targets: 2015 → 2037
@@ -66,4 +67,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42705404531)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42718825638)
