@@ -1,7 +1,7 @@
 {
   "generated_from": {
-    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "59ae07bcda65a1f54f68f4184cf469d79bf815263519874542f85f60290b65af",
-    "jobs/readiness-tracker/output/TRACKER.md": "b02082fe956b18af1642474edc76b92a1b22ffe64f88b5a3588d3b886d6c2daa",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "bf766bd07cd4631ae1bf3ec7b314f73af00a9f8100e1dc33438a026a6f975cd6",
+    "jobs/readiness-tracker/output/TRACKER.md": "eec5d9fdac7b7ac6535dc3eba89f2b30bb6d776451b82a5de983ee5afc833ca0",
     "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "e40badb00a39073bf0a1feb34b03fce6e8746bdf1fd4706db9780757548f11a7",
     "jobs/polya/output/CANDIDATE_ACTIONS.json": "f9fa2f6820637d92e2e1c198420ebc5bb462351e1dd56865ba3aea26b6927333",
     "jobs/polya/output/COMPARE.json": "8c5854417efb1bb5528ae454262faabb37b698052dbcb38037f9ba59443206d8",
@@ -9,7 +9,7 @@
     "research/excavator/claude-tribonian-2026-11-04/REPORT.md": "6ae4b9e7ebfda4b74f02dc670f483fcea4b1874528c378448786641bcc073fd8"
   },
   "pool": {
-    "decided_not_ready_orders": 3218,
+    "decided_not_ready_orders": 3118,
     "held_by_unretrieved_source_or_quarantine": 21
   },
   "notes": [
@@ -93,8 +93,8 @@
     {
       "id": "recovery.custody_stranded",
       "kind": "recovery",
-      "description": "Reviewed claims that passed blind review but failed the checker at completion, almost always because a cited source was held only as a hash (custody_record_only). They need re-preparation and fresh review, not new drafting, so the cost is review.per_submitted. DISPOSITION.json lists 10 distinct orders with outcome rejected_mechanical; the REPORT text says 47 (a one-order difference left unexplained).",
-      "orders": 10,
+      "description": "Reviewed claims that passed blind review but failed the checker at completion, almost always because a cited source was held only as a hash (custody_record_only). They need re-preparation and fresh review, not new drafting, so the cost is review.per_submitted. DISPOSITION.json lists 8 distinct orders with outcome rejected_mechanical; the REPORT text says 47 (a one-order difference left unexplained).",
+      "orders": 8,
       "order_ids_path": "jobs/bentham/output/strata/recovery.custody_stranded.txt",
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "review.per_submitted",
@@ -103,7 +103,7 @@
         "source bytes held for the cited sources (jobs/cotton-capture-custody, jobs/astra-source-retention)",
         "kit.py prepare for exactly these ids, then fresh blind review or owner-approved reuse"
       ],
-      "basis": "Computed from research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json: orders with outcome rejected_mechanical, de-duplicated, dropping those now ready. 134 of them also sit in a claim-ready stratum and were removed from it.",
+      "basis": "Computed from research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json: orders with outcome rejected_mechanical, de-duplicated, dropping those now ready. 34 of them also sit in a claim-ready stratum and were removed from it.",
       "evidence": [
         {
           "quote": "\"outcome\": \"rejected_mechanical\"",
@@ -119,7 +119,7 @@
       "id": "recovery.working_text_stale",
       "kind": "recovery",
       "description": "Decided, not-ready orders whose filed claim pins a working-text confirmation that no longer matches the current Lachmann record (working_text:prior_confirmation_stale), typically because a new official printing joined the witnesses. Route: a producer compares the transcription word by word with the official printing, then two blind arms with planted controls (owner decision D-20261108-photius-recheck). Never re-frozen by script.",
-      "orders": 124,
+      "orders": 26,
       "order_ids_path": "jobs/bentham/output/strata/recovery.working_text_stale.txt",
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "review.per_submitted",

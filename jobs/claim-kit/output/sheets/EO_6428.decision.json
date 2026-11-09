@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "85de9923203e3e21e942eb45f336422bf599063c6cf376c3b8b8d8d497c74fb0",
+  "dossier_sha256": "8d254e1b23c16a446eb743beb8daace4d1d724fa9c41d3e85462d6519d3601d9",
   "instrument_id": "EO:6428",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,20 +34,108 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
+        "complete_text_confirmed": true,
         "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "identity_confirmed": true,
         "instrument_id": "EO:6428",
         "pages_confirmed": false,
-        "sha256": "83727c4e4fb309f8961d91e53f9bdb003eedc774c3f1c142efe373ec5c8d417f",
-        "text_path": "jobs/tischendorf-originals/output/texts/EO_6428.txt",
-        "text_sha256": "39d1b359dd43951a2e4e5ec043c10f2059483c9ffd5cb01303499b9cbf041bb5"
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6428",
+              "requires_page_check": false,
+              "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6428.txt",
+              "text_sha256": "4ed943fb961a4a9f35af4ddbb6f6d3acdd1ed74d86caf8864c8c5324ce7c55e9",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6251-6479.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": " soc  Executive Order  Cope oF Fair CoMPETITION FOR THE Woop Piva INDUSTRY  An a",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT.",
+              "matched_date": "November 14, 1933",
+              "matched_number": "No. 6428",
+              "pages_detail": {},
+              "register_date": "1933-11-14",
+              "register_number": "6428",
+              "similarity": [
+                {
+                  "agrees": false,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.7783,
+                  "length_ratio": 1.0988,
+                  "producer": "app-executive-orders",
+                  "sha256": "cd7286fdec04304a23f6d1d89d50c70974406fcc5dea3d26e7af793b9c666e4c"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/tischendorf-originals/output/texts/EO_6428.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6428.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "text_chars": 1353
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6428",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6428.txt",
+            "text_sha256": "4ed943fb961a4a9f35af4ddbb6f6d3acdd1ed74d86caf8864c8c5324ce7c55e9",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6428.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "cd7286fdec04304a23f6d1d89d50c70974406fcc5dea3d26e7af793b9c666e4c",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6428-code-fair-competition-for-the-wood-plug-industry.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6428.txt",
+        "text_sha256": "4ed943fb961a4a9f35af4ddbb6f6d3acdd1ed74d86caf8864c8c5324ce7c55e9"
       }
     ],
     "quotation_recheck_required": true,
