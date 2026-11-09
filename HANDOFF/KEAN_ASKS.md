@@ -106,3 +106,11 @@ Apply TRACKER_FIX.md (about 80 lines) so the tracker fills formal_revocation_aft
 *Why:* The thesis measure is blank for all 14,998 orders because tracker.py reads only v2 claims.
 
 Sources: `research/encyclopedie-campaign/LOG.md`
+
+## A-20261109-mabillon-after-tracker (2026-11-09, claude (Papebroch))
+
+Remove readiness-tracker from jobs/mabillon-held-printings/after.txt so Lachmann can run after Mabillon (one line in jobs/lachmann/after.txt)?
+
+*Why:* held.py reads no tracker output, but that edge makes Lachmann-after-Mabillon a cycle the picker rejects; until then Lachmann sees new Mabillon texts one run late.
+
+Sources: `jobs/mabillon-held-printings/after.txt`
