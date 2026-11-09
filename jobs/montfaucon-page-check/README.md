@@ -8,7 +8,7 @@ are under `research/montfaucon/` (`REPORT_M001.md` and `REPORT_M002.md`).
 The runner publishes derived output on the merge target; a research branch
 must not carry its own generated `jobs/*/output/` files into main.
 It emits separate official and ProQuest replica fragment files, `OUTCOMES.json`
-for all valid pass/fail/unsure outcomes, and a rejection receipt. Only validated final
+for all valid pass/fail/unsure/blocked outcomes, and a rejection receipt. Only validated final
 passes count in the readiness tracker, which revalidates against current inputs.
 Source records remain unchanged; model page review never authenticates an
 original, verifies its location or confers human review.
@@ -45,9 +45,10 @@ Each pass explicitly sets `identity_confirmed`, `complete_start_and_closing`,
 not findings inferred from nonempty observation strings.
 Two distinct contexts are a required recorded independence boundary; the code
 does not claim it can establish how a model context was actually operated.
-Use `final=fail` or `unsure` to retain negative outcomes without credit.
-Both reviews still pin the held source and text; negative records may omit a
-page-image pin where missing images are the reason they cannot pass. Explicitly
+Use `final=fail`, `unsure`, or `blocked` to retain negative outcomes without credit.
+Both reviews still pin the exact target; a negative record with an existing
+held text must pin those bytes too. Negative records may omit a page-image
+pin where missing images are the reason they cannot pass. Explicitly
 record unobserved identity/boundary details as such. Agreeing reviews determine
 the final verdict. Any disagreement requires an `adjudicator` object with the
 same review fields, exact target hash, and a third distinct context. The final
@@ -55,6 +56,18 @@ verdict must equal the adjudicator's verdict. Passing adjudication must affirm
 every pass check and no substantive differences. Both original opinions remain
 in the record and derived fragment. Without the third review, disagreement is
 rejected and earns no credit. An adjudicator is not accepted for an agreeing pair.
+
+An incomplete lead may declare no source SHA or held text path. For a negative
+result only, the target must mirror those exact empty source fields and pin the
+immutable fragment hash, source URL and cited scope. It must also name the
+missing scan, page or held text in `missing: {item, reason}`. A fail or unsure
+from such a lead requires an inspected page image. If its declared source SHA
+is empty, `inspection_source: {url, sha256}` pins the public PDF examined;
+each image URL must identify a page of that PDF. A blocked finding may have
+no image when the scan itself is missing. Two independent reviews, exact
+target hashes and third-reader adjudication on disagreement still apply.
+This format yields an `OUTCOMES.json` negative receipt and **no derived
+original or replica fragment**. Empty source SHA or held text can never pass.
 
 Duplicate exact-source records all lose credit, even a pass paired with a
 negative: the key pins instrument, lane, fragment path, source SHA, URL and cited
@@ -67,7 +80,7 @@ tracker's existing checked-replica lane. No legal grade or human certification
 is inferred from model review. Add code changes before any research results.
 Matching top-level/data grades `official_printing` (official lane) and
 `archival_replica_checked` (replica lane) are admitted. Other missing grades and lead
-grades are rejected; their source identity must first be established through a
+grades are rejected for passes; their source identity must first be established through a
 separate approved process. An explicit exception admits ungraded legacy FR,
 OFR 1974, Isthmian 1911 and Indian Reservations 1912 fragments only from their
 exact known official route strings. With both reviews and held image provenance
