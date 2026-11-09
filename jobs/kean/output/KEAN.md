@@ -48,13 +48,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 254; `search` finds the rest)
+## Newest results (6 of 256; `search` finds the rest)
 
+- 2026-11-08 F-20261108-6 **worked**: Stage disjoint rank-nine YES/FR packets before the Claude review reset Lesson: Use the frozen historical baseline for scope, explicit ownership routing, and refreshed source gates after each publication; staging does not file claims
+- 2026-11-08 F-20261108-5 **worked**: Targeted source-only retrieval for Bracton y05 including EO 10865 full Federal Register issue Lesson: The pool per-response guard can block an issue even when the ladder per-file and whole-run budgets allow it; audit the published source index and bound targeted retries by order
 - 2026-11-08 F-20261108-4 **partly worked**: Stage a disjoint claim-ready YES pilot before the Claude reset Lesson: Acquire exact required originals before producer assignment and leave larger blocked exploratory packets unassigned
 - 2026-11-08 F-20261108-3 **partly worked**: Stage three one-step-away board correction packets with offline custody preflight Lesson: Offline dispatch needs held original bytes even when exact text extracts and source hashes are already recorded; live APP pages can change, so use fixed archive captures
 - 2026-11-08 F-20261108-2 **worked**: Recompute the $300 Bentham plan from current tracker and historical mechanical disposition Lesson: Filter historical recovery dispositions through current tracker readiness before costing or ranking a new wave
 - 2026-11-08 F-20261108-1 **worked**: Prepare Justinian board replacement packets through current claim-kit Lesson: Valla review context must accept both published lifecycle claim schemas while still rejecting seeded and synthetic records
-- 2026-11-07 F-20261107-ready-drop-193-photius-witness **analysis**: Explain ready 1,185 -> 992 between tracker generations 6d4b5f6357 (2026-11-06 22:18) and f6e5180880 (2026-11-… Lesson: A new official witness invalidates frozen working-text confirmations by design; Photius's local measure ran on the older Lachmann output and missed it. The 193 now have an official printing, so the s…
-- 2026-11-07 F-20261107-photius-encyclopedie-worth **analysis**: Priced the Photius (289 agents) and Encyclopedie campaigns at Necker list prices and set each against its mea… Lesson: Photius was worth it as an evidence investment; Encyclopedie as protective infrastructure, valued in risk avoided rather than orders. Neither moved ready; confirm Photius in W after the next publishe…
 
-Register: 71 owner decisions, 30 answered questions, 254 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 71 owner decisions, 30 answered questions, 256 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
