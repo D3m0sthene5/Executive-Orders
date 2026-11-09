@@ -1157,10 +1157,16 @@ def _runner_inventory_for_item_scan(path, repo):
                 or not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", manifest["base_commit"])):
             return None
         scope, inputs = manifest["scope"], manifest["inputs"]
-        if (not isinstance(scope, dict) or set(scope) != {"roots", "patterns", "exclude"}
+        # Valla's freshness scope adds its audited read closure and two certificate flags (result_freshness.scope);
+        # accept exactly those optional keys, typed, and nothing else (Gutenberg, 2026-11-09).
+        optional_lists, optional_flags = {"referenced_files"}, {"dynamic_complete", "implementation_certified",
+                                                                "fallback_inventory"}
+        if (not isinstance(scope, dict) or not {"roots", "patterns", "exclude"} <= set(scope)
+                or set(scope) - {"roots", "patterns", "exclude"} - optional_lists - optional_flags
+                or any(type(scope[k]) is not bool for k in optional_flags & set(scope))
                 or scope["exclude"] != f"jobs/{manifest['job']}/output"
                 or not all(isinstance(scope[k], list) and all(relative(v) for v in scope[k])
-                           for k in ("roots", "patterns"))
+                           for k in ("roots", "patterns", *sorted(optional_lists & set(scope))))
                 or not isinstance(inputs, dict)
                 or not all(relative(k) and isinstance(v, str)
                            and re.fullmatch(r"(?:100644|100755|120000|160000):(?:[0-9a-f]{40}|[0-9a-f]{64})", v)

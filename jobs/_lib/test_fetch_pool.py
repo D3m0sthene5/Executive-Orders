@@ -132,10 +132,14 @@ class RobotsWildcardTests(unittest.TestCase):
         import urllib.robotparser
         # Older stdlib ignores '*' and '$' outright; 3.13 ranks a wildcard rule by matched length, not rule length,
         # so a broad 'Allow: /*' overrides a specific Disallow (RFC 9309 ranks by pattern length: Disallow wins).
+        # What the stdlib answers differs by Python version (CI runs 3.12, which ignores wildcards; 3.13 mis-ranks
+        # them), so only fetch_pool's own answer is asserted; both cases are ones some stdlib version gets wrong.
         r='User-agent: *\nAllow: /*\nDisallow: /docs/secret/\n'
         rp=urllib.robotparser.RobotFileParser();rp.parse(r.splitlines())
-        self.assertTrue(rp.can_fetch(self.UA,'https://test/docs/secret/x'))  # stdlib wrongly allows
+        rp.can_fetch(self.UA,'https://test/docs/secret/x')  # recorded, not asserted: version-dependent
         self.assertTrue(self._blocked(r,'/docs/secret/x'))
+        self.assertTrue(self._blocked('User-agent: *\nDisallow: /*.pdf$\n','/a/b.pdf'))
+        self.assertFalse(self._blocked('User-agent: *\nDisallow: /*.pdf$\n','/a/b.pdf.html'))
     def test_error_statuses_unchanged(self):
         for status,blocked in ((404,False),(410,False),(401,True),(403,True)):
             def net(u,h,t,s=status):return s,{},io.BytesIO(b'')

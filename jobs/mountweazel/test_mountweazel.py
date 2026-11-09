@@ -558,6 +558,27 @@ class CheckTests(Base):
             p.write_text(json.dumps(obj))
             self.assertFalse(mw.check(repo, fx.parent)["ok"])
 
+    def test_valla_scope_manifest_in_attempts_is_not_a_leak(self):
+        """CI on PR #242 (2026-11-09): jobs/_attempts/valla/<run>/RUNNER_INPUTS.json lists a fixture filename as an
+        input; Valla's scope carries referenced_files and certificate flags, which the validator refused."""
+        repo = self.make_repo(self.tmp / "none")
+        p = repo / "jobs/_attempts/valla/42282006697-1/RUNNER_INPUTS.json"
+        p.parent.mkdir(parents=True)
+
+        def valla(**scope_extra):
+            m = self.runner_manifest()
+            m["job"] = "valla"
+            m["scope"] = {"roots": ["jobs/valla"], "patterns": [], "exclude": "jobs/valla/output",
+                          "referenced_files": ["jobs/valla/premises.json"], "dynamic_complete": True,
+                          "implementation_certified": False, **scope_extra}
+            return m
+        p.write_text(json.dumps(valla()))
+        self.assertTrue(mw.check(repo, self.tmp / "none")["ok"])
+        for bad in (valla(referenced_files=["jobs/mountweazel/fixtures/MW-C1/MW-C1-01.seeded.json"]),
+                    valla(unexpected_key=[]), valla(dynamic_complete="yes"), valla(referenced_files=["/abs/path"])):
+            p.write_text(json.dumps(bad))
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"], bad["scope"])
+
     def test_valid_runner_inventory_still_scans_raw_planted_text(self):
         repo = self.make_repo(self.tmp / "none")
         p = repo / "oversized/runner-freshness/portfolio-repair-check-inputs.json"
