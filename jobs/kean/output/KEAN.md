@@ -48,13 +48,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 267; `search` finds the rest)
+## Newest results (6 of 268; `search` finds the rest)
 
 - 2026-11-09 F-20261109-gutenberg-tsiolkovsky **worked**: Gutenberg item 6: credit Tsiolkovsky's work-hours by channel (the lines each event changed in the moved step'… Lesson: Lines changed in a step's inputs are a proxy for evidence delivered, not proof of cause; a runner result's credit belongs to the campaign that changed the job's code or inputs.
 - 2026-11-09 F-20261109-gutenberg-skipped-witness **worked**: Gutenberg item 3: the narrowest correct stale-confirmation rule for working_text (prior_confirmation_stale),… Lesson: A skipped witness is information (an official printing now exists), not a change in what was confirmed: flag it for the h01 page check rather than void the confirmation. The switch is the owner's (A-…
+- 2026-11-09 F-20261109-gutenberg-quo-warranto **partly worked**: Gutenberg item 2: narrow the input declarations of claim-checker, readiness-tracker, claim-kit and claim-draf… Lesson: Never narrow a declaration by reading code; record the reads (AUDIT_READS) and declare what the record shows. After one more clean report run on main, set AUDIT_READS to enforce so an undeclared read…
 - 2026-11-09 F-20261109-gutenberg-kean-measures **worked**: Gutenberg item 5: optional structured measures on Kean findings (wave, usd by role and model, orders attempte… Lesson: Record a wave's cost with kean.py add-measures from bentham usage output, not in prose. lean_coordination's cost at stake is an upper bound: before Gutenberg every claude -p worker was labelled coord…
 - 2026-11-09 F-20261109-gutenberg-digest **worked**: Gutenberg item 7: stop daily-digest going stale whenever any job publishes: narrow its reads, or an as-of rea… Lesson: A readout of many jobs should be an as-of readout, never narrowed: narrowing a digest's reads would hide real changes.
 - 2026-11-09 F-20261109-gutenberg-davy **worked**: Gutenberg item 4: a free daily health check (Davy, jobs/davy-chain-health) of the claim-drafts -> claim-kit c… Lesson: Read the Chain health line at the top of HANDOFF/KEAN.md before preparing a batch; a FAIL names the validator and its message. Per-dossier fingerprints are not re-read (claim-kit's build does that).
-- 2026-11-09 F-20261109-gutenberg-carnot **partly worked**: Gutenberg waste patterns: real tooling for lean_coordination, revere_phase_handoff and idle_cache_avoidance (… Lesson: The tools exist; the savings do not until a two-arm add-test measures them. Run the next wave with PROTOCOL.md as the after arm of lean_coordination.
 
-Register: 71 owner decisions, 30 answered questions, 267 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 71 owner decisions, 30 answered questions, 268 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
