@@ -93,3 +93,16 @@ output was quarantined. Actual per-context/model token and cash telemetry was
 unavailable. `usd: null` in the ledger means **unknown**; the Bentham
 $0.38/attempt input is a planning proxy and its `spent_usd: 0` a parser
 artifact, not measured spend. See `GATE_M006.*`.
+
+## m007 — 50 Panama GPO-volume leads, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order page readers | unknown | unknown | unknown |
+| Coordinator | Public GPO PDF acquisition, SHA-256 and page-image checks, negative-record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught all three controls and agreed on all 50 production
+findings. The source-locator lane stopped at its Bentham gate. Actual model
+tokens and cash telemetry were unavailable. `usd: null` means **unknown**;
+$0.38/attempt is a planning proxy, and the direct gate's `spent_usd: 0` is a
+parser artifact, not measured spend. See `GATE_M007.*`.
