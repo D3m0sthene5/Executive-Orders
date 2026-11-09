@@ -15,7 +15,8 @@ Pushes stay light (owner, 2026-10-28: adding a file must not mean waiting on the
   history, not from output files, which the picker's checkout omits.
 - A manual run runs the named job(s), separated by spaces or commas, plus their consumers.
   Manual diagnostics run only the requested jobs; the workflow retains receipts without publishing.
-  An Arsenale re-queue (a manual run with requeue_depth > 0) runs exactly the jobs it names, and
+  An Arsenale re-queue (a manual run with requeue_depth > 0) or a Riquet continuation (continuation > 0)
+  runs exactly the jobs it names, and
   marks the names in its downstream input as downstream-only, as the refused run had them.
 Picked jobs are ordered so that any job listed in a job's after.txt runs before it. Folders
 starting with "_" (the template) are never run. The result goes to the step output "jobs" as a
@@ -226,6 +227,14 @@ def requeue_depth():
     return int(value)
 
 
+def continuation():
+    """Riquet continuation number of a manual run (0 for an ordinary run)."""
+    value = (os.environ.get("CONTINUATION") or "0").strip()
+    if not re.fullmatch(r"[0-9]{1,2}", value):
+        sys.exit(f"Invalid continuation: {value!r}")
+    return int(value)
+
+
 def daily_jobs():
     return sorted(name for name in os.listdir("jobs")
                   if not name.startswith("_") and runnable(name) and os.path.isfile(os.path.join("jobs", name, "DAILY")))
@@ -264,17 +273,22 @@ def main():
     elif event == "schedule":
         picked = daily_jobs()
     elif os.environ.get("EVENT") == "workflow_dispatch":
-        # An Arsenale re-queue (requeue_depth > 0) reruns exactly the refused jobs.
-        consumers = os.environ.get("DIAGNOSTIC") != "true" and not requeue_depth()
+        # An Arsenale re-queue (requeue_depth > 0) reruns exactly the refused jobs, and a Riquet
+        # continuation (continuation > 0) runs exactly the jobs an earlier run deferred.
+        consumers = os.environ.get("DIAGNOSTIC") != "true" and not requeue_depth() and not continuation()
         picked = []
         for name in re.split(r"[\s,]+", os.environ.get("INPUT_JOB") or ""):
             name = name.strip().strip("/").removeprefix("jobs/")
             if not name:
                 continue
             if not runnable(name):
+                if requeue_depth() or continuation():
+                    # A job renamed or removed since the earlier run queued it: skip it, keep the rest.
+                    print(f"::warning::Skipping '{name}': it is no longer a runnable job.")
+                    continue
                 sys.exit(f"There is no job called '{name}'. It needs jobs/{name}/job.sh or job.py.")
             picked.append(name)
-        if not picked:
+        if not picked and not (requeue_depth() or continuation()):
             sys.exit("Type at least one job name.")
     else:
         # A push: only jobs whose own code changed, nothing downstream. The next sweep does the rest.

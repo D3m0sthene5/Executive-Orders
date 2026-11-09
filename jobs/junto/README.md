@@ -146,3 +146,19 @@ NORTON is an owner-seeded domain finder for exact shared factual obligations. Se
 `jobs/norton/README.md` and catalog entry `norton_shared_factual_obligations`. Its
 seven-order pilot remains unverified and earns no savings credit. Frozen proposal
 snapshots and renumbering maps preserve parallel ledgers; use stable saver keys.
+
+## Rumford: measured waste from the project's own telemetry (2026-11-09)
+
+Junto's finders need raw session pages kept outside the repository, so in practice nobody fed them. By 2026-11-09 Junto had 21 candidates from 2026-10-20, no tests, and a scoreboard last written 2026-10-24. Nothing scheduled the job.
+
+`evidence.py` (Rumford, after Count Rumford, who measured where a fire's heat was lost before redesigning the fireplace) closes that gap with data that is already committed:
+- **Input.** It reads research/bentham/usage/<wave>/AGENT_USAGE.csv, which `bentham.py usage` writes for every wave, and prices each row at list price (jobs/necker-costs/PRICES.json).
+- **Signals.** It measures three, each tied to a saver key:
+  - `lean_coordination`: main sessions above half of a wave's cost;
+  - `revere_phase_handoff`: main-session calls averaging more than 300k cached tokens;
+  - `idle_cache_avoidance`: a 1-hour cache held while the session is less than 30% active.
+- **Outputs.** output/EVIDENCE.json and output/OPEN_TESTS.md list the savers by **cost at stake**: dollars measured in the pattern, never a saving and never a score. Each comes with the two-arm `add-test` that would settle it.
+- **Where it shows.** Bentham's PLAN.md lists them, so every wave sees them before it spends. The hard rule above is unchanged: only `add-test` verifies a saving.
+- **Schedule.** The job now runs daily (DAILY), and again when new usage or prices land (triggers.txt). Bentham runs after it (jobs/bentham/after.txt).
+
+Caveat: Bentham labels every main session "coordinator", including lane sessions that did the work themselves. So `lean_coordination` measures work not delegated, not coordination alone.

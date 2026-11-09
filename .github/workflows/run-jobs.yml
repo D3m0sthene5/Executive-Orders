@@ -38,6 +38,10 @@ on:
         description: "Set by Arsenale: re-queued jobs that keep the downstream-only web-search budget"
         required: false
         default: ""
+      continuation:
+        description: "Set by Riquet when it continues the deferred part of a long run (0 for an ordinary run)"
+        required: false
+        default: "0"
 
 # Each stage asks for its own permissions; only publish can write.
 permissions:
@@ -65,6 +69,7 @@ jobs:
       downstream: ${{ steps.pick.outputs.downstream }}
       input_commit: ${{ steps.plan.outputs.input_commit }}
       matrix: ${{ steps.plan.outputs.matrix }}
+      deferred: ${{ steps.plan.outputs.deferred }}
     steps:
       # Keep job code/data in this non-cone bootstrap. In particular, a cone
       # checkout of jobs/ includes every nested output generation before the
@@ -73,7 +78,9 @@ jobs:
       # for unaudited versions whose dynamic reads are not closed by declarations.
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          # Read-only, like execute: Riquet reads recent STATUS.json history (not checked
+          # out) to estimate each job's duration. Diagnostics keep no credentials.
+          persist-credentials: ${{ !inputs.diagnostic }}
           # No lock is held while executing. Production executes the branch tip
           # at plan time (pinned below for every station); diagnostics remain
           # pinned to their original event commit.
@@ -88,6 +95,7 @@ jobs:
             /HANDOFF/**
             /jobs/**
             !/jobs/*/output/**
+            /jobs/*/output/STATUS.json
 
       - uses: actions/setup-python@v5
         with:
@@ -101,6 +109,7 @@ jobs:
           INPUT_JOB: ${{ github.event.inputs.job }}
           DIAGNOSTIC: ${{ github.event.inputs.diagnostic }}
           REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}
+          CONTINUATION: ${{ github.event.inputs.continuation }}
           INPUT_DOWNSTREAM: ${{ github.event.inputs.downstream }}
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
@@ -137,6 +146,9 @@ jobs:
         if: steps.pick.outputs.jobs != ''
         env:
           JOBS: ${{ steps.pick.outputs.jobs }}
+          DIAGNOSTIC: ${{ github.event.inputs.diagnostic }}
+          CONTINUATION: ${{ github.event.inputs.continuation }}
+          REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}
         run: python .github/scripts/arsenale.py plan
 
       - name: Summarize an empty selection
@@ -332,11 +344,14 @@ jobs:
           bash .github/scripts/commit_results.sh
 
       # Bounded: a re-queued run carries requeue_depth; at depth 2 nothing is dispatched.
+      # Riquet: the jobs the plan deferred continue here, counted by continuation, not depth.
       - name: Re-queue refused jobs on the current branch
         if: always() && !inputs.diagnostic && steps.publish.outcome != 'skipped'
         env:
           GH_TOKEN: ${{ github.token }}
           REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}
+          CONTINUATION: ${{ github.event.inputs.continuation }}
+          DEFERRED: ${{ needs.plan.outputs.deferred }}
           DOWNSTREAM_ONLY: ${{ needs.plan.outputs.downstream }}
           BRANCH: ${{ github.ref_name }}
         run: python .github/scripts/arsenale.py requeue --workflow run-jobs.yml
