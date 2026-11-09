@@ -65,3 +65,43 @@ tables. Both blind readers caught all three controls; two verdict disagreements
 received a fresh third reading. Sealed evidence is under `reviews/m006/`;
 `GATE_M006.*` and `COST.md` preserve the sixth checkpoint and unknown
 actual spend.
+
+`checks/m007-photius-free-panama.jsonl` records 50 public GPO Panama-volume
+lead checks: 0 pass, 49 fail on wrong cited pages, 1 blocked for missing held
+original text. Both blind readers caught three controls and agreed throughout.
+Each negative outcome pins the inspected PDF, exact source fragment and page
+image; none confers original-text credit. The sealed audit is under
+`reviews/m007/`; `REPORT_M007.md`, `GATE_M007.*` and `COST.md` record the
+source-locator stop and unknown actual cost.
+
+`checks/m008-mixed-held-originals.jsonl` records 50 distinct held-original
+targets in GovInfo Federal Register issues and government report volumes:
+1 third-adjudicated pass, 16 fail, 33 unsure. Both blind readers caught all
+three controls; their sealed observations and the third review are under
+`reviews/m008/`. `REPORT_M008.md` names every exact cited scope and reason.
+`GATE_M008.*` and `COST.md` record the low-yield source-family stop and
+unknown actual cost. Only the one fully checked GovInfo printing yields an
+official fragment; no result is a human or legal certification.
+
+`checks/m009-held-1936-and-reports.jsonl` records 50 distinct held targets:
+0 pass, 47 fail, 1 unsure and 2 blocked. Both blind readers caught all
+three controls. They separately revisited EO:3083 source provenance and
+agreed that the complete numbered circular is not proven to be an issued
+original printing. The two blocked orders need the exact 1911 Isthmian
+GPO scan, PDF pages 28–29. The 50-row `REPORT_M009.md`, sealed evidence
+under `reviews/m009/`, `GATE_M009.*` and `COST.md` document each span,
+the low-yield source diagnosis and unknown actual cost. No result yields
+original-text credit or a human/legal certification.
+
+`checks/m010-annual-report-negatives.jsonl` adds 50 distinct Tischendorf
+held-text annual-report targets: 0 pass, 50 fail. Both blind readers rejected
+all three controls and agreed on every verdict. The cited and neighboring
+leaves plus three volume title pages are sealed in `images/m010/` and pinned
+as negative inspection evidence in each record; the scanned reports are
+not issued EO originals. The 1902 and 1904 title pages visibly name the
+Government Printing Office, despite the immutable machine source-kind label
+`non-government publication`. The 1915 title page names the Civil Service
+Commission but does not prove the printer. `REPORT_M010.md`, `reviews/m010/`,
+`GATE_M010.*` and `COST.md` give every exact reason, the low-yield diagnosis
+and unknown actual cost. Local assembly reaches 500 outcomes, 206 official
+fragments and zero rejects. The owner directed a stop after m010.
