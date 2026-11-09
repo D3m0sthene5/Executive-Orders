@@ -43,6 +43,19 @@ SAVERS = {
         "test": "Two comparable waves on the same route (same claim-kit route, same reviewer setup): one run as before, "
                 "one with the lean-coordination brief. Compare coordinator plus worker dollars per filed claim, and "
                 "rejects per attempt (quality must not fall).",
+        # Gutenberg (2026-11-09): the tool and the ready test. No saving is claimed until add-test measures one.
+        "tool": "jobs/carnot-coordinator/PROTOCOL.md sections 1-2 (worker.py, await_run.py)",
+        "candidate": "C-20261109-1",
+        "arms": {"before": "a wave whose prompt does not include PROTOCOL.md (the Cujas or Haloander shape)",
+                 "after": "the next wave on the same route whose prompt includes PROTOCOL.md"},
+        "matched_on": "same route (Haloander h01 page check), batch size 25, same producer and reviewer models, "
+                      "planted controls 2 per batch, same budget cap",
+        "measure": "bentham.py usage --wave W --phase P --reported-costs RUN/COSTS.log per arm; units = filed claims; "
+                   "accepted/rejected = blind-review verdicts",
+        "add_test": "junto.py add-test --candidate C-20261109-1 --unit-of-work filed_claim --matched-on '<as above>' "
+                    "--before-usd X --before-units N --before-session S --before-accepted A --before-rejected R "
+                    "--after-usd Y --after-units M --after-session T --after-accepted B --after-rejected Q "
+                    "--test-cost-usd 0 --complete-costs",
     },
     "revere_phase_handoff": {
         "what": "End a long coordinator context at a phase boundary and continue in a fresh session from the "
@@ -50,12 +63,33 @@ SAVERS = {
         "unit": "coordinator call",
         "test": "Same wave phase run twice: once continuing the long session, once handed off to a fresh session at "
                 "the phase boundary. Compare coordinator dollars per completed batch.",
+        "tool": "jobs/carnot-coordinator/handoff.py (context check at 300,000 tokens per call; write packet)",
+        "candidate": "C-20261020-1",
+        "arms": {"before": "batch k+1 run in the coordinator session that ran batch k (context > 300k per call)",
+                 "after": "batch k+1 run by a fresh coordinator from handoff.py's packet"},
+        "matched_on": "consecutive batches of one wave, same route and models, same batch size; the fresh arm's setup "
+                      "(reading the packet and checking out inputs) is counted in its cost",
+        "measure": "bentham.py usage with --session-id per arm; units = completed batches (filed or reviewed)",
+        "add_test": "junto.py add-test --candidate C-20261020-1 --unit-of-work completed_batch --matched-on '<as above>' "
+                    "--before-usd X --before-units 1 --before-session S --after-usd Y --after-units 1 "
+                    "--after-session T --test-cost-usd 0 --complete-costs",
     },
     "idle_cache_avoidance": {
         "what": "Do not hold a 1-hour prompt cache across long idle waits; let it lapse or end the turn and resume.",
         "unit": "coordinator hour",
         "test": "Two waits of the same length on the same kind of GitHub run: one holding the session, one ending the "
                 "turn and resuming. Compare dollars per hour of wait.",
+        "tool": "jobs/carnot-coordinator/await_run.py (background, ends the turn) and handoff.py for waits over ~55 min",
+        "candidate": "C-20261020-2",
+        "arms": {"before": "a coordinator that waits on a multi-hour run in its session (checks or a held turn)",
+                 "after": "a coordinator that writes a packet and stops; a fresh session resumes when await_run exits"},
+        "matched_on": "the same workflow (run-jobs daily selection or a claim-kit rebuild), waits within 20% of each "
+                      "other in length, the same coordinator model",
+        "measure": "dollars from the end of dispatch to the first productive call after the run ends (cache writes "
+                   "and reads of the resume included), per wait hour",
+        "add_test": "junto.py add-test --candidate C-20261020-2 --unit-of-work wait_hour --matched-on '<as above>' "
+                    "--before-usd X --before-units H1 --before-session S --after-usd Y --after-units H2 "
+                    "--after-session T --test-cost-usd 0 --complete-costs",
     },
 }
 
@@ -178,6 +212,15 @@ def render(evidence):
         waves = ", ".join(f"{w['wave']} ${w['usd']:.2f}" for w in s["waves"]) or "none measured"
         lines.append(f"| `{s['saver_key']}`: {s['what']} | ${s['cost_at_stake_usd']:.2f} | {waves} | "
                      f"Unit: {s['unit']}. {s['test']} Record with `junto.py add-test`. |")
+    lines += ["", "## Ready two-arm tests (Gutenberg, 2026-11-09)", "",
+              "Each saver below has a tool a wave coordinator uses (`jobs/carnot-coordinator/PROTOCOL.md`) and a test "
+              "ready to run. No saving is claimed for any of them until its test is measured and recorded.", ""]
+    for s in evidence["savers"]:
+        if not s.get("arms"):
+            continue
+        lines += [f"### `{s['saver_key']}` ({s['candidate']})", "",
+                  f"- Tool: {s['tool']}", f"- Before arm: {s['arms']['before']}", f"- After arm: {s['arms']['after']}",
+                  f"- Matched on: {s['matched_on']}", f"- Measure: {s['measure']}", f"- Record: `{s['add_test']}`", ""]
     lines += ["", "| Wave | Agents | Cost | Main-session share | Large-context main-session calls |",
               "|---|---:|---:|---:|---:|"]
     for w in evidence["waves"]:

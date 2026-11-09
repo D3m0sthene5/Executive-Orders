@@ -98,3 +98,23 @@ class GutenbergKeanTest(unittest.TestCase):
             self.assertEqual(w["w-kean"]["coordinator_share"], 0.8)
             lean = next(s for s in e["savers"] if s["saver_key"] == "lean_coordination")
             self.assertEqual({x["wave"] for x in lean["waves"]}, {"w-csv", "w-kean"})
+
+
+class GutenbergReadyTests(unittest.TestCase):
+    def test_every_saver_has_a_ready_two_arm_test_on_a_real_candidate(self):
+        import json as _j
+        from pathlib import Path as _P
+        here = _P(__file__).resolve().parent
+        sys.path.insert(0, str(here))
+        import evidence as E
+        ids = {_j.loads(l)["candidate_id"] for l in (here / "ledger/candidates.jsonl").read_text().splitlines() if l.strip()}
+        for key, s in E.SAVERS.items():
+            for field in ("tool", "candidate", "arms", "matched_on", "measure", "add_test"):
+                self.assertTrue(s.get(field), (key, field))
+            self.assertEqual(set(s["arms"]), {"before", "after"})
+            self.assertIn(s["candidate"], ids, key)
+            self.assertIn("--candidate " + s["candidate"], s["add_test"])
+            self.assertTrue((here.parents[1] / s["tool"].split(" ")[0]).exists(), s["tool"])
+        text = E.render(E.measure(here.parents[1]))
+        self.assertEqual(text.count("### `"), len(E.SAVERS))
+        self.assertIn("No saving is claimed", text)
