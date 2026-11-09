@@ -1,0 +1,155 @@
+{
+ "wave": "gutenberg-2026-11-09",
+ "generated_from": "Claude Code session transcripts via Hamilton profile.py (jobs/hamilton-token-audit); per-call usage_records, sanitized by jobs/bentham/sessions.py",
+ "phase_source": "--phase gutenberg",
+ "filters": {
+  "session_id_prefix": null,
+  "since": null
+ },
+ "token_categories_note": "fresh_input, cache_read, cache_write and output are separate, nonoverlapping categories and are never summed together. Null means no value observed.",
+ "totals": {
+  "agents": 2,
+  "calls": 270,
+  "fresh_input": 553,
+  "cache_read": 97423512,
+  "cache_write_5m": 0,
+  "cache_write_1h": 519256,
+  "cache_write_unclassified": 0,
+  "output": 238472,
+  "usd_list": 28.318536
+ },
+ "totals_by_phase": {
+  "gutenberg": {
+   "agents": 2,
+   "calls": 270,
+   "fresh_input": 553,
+   "cache_read": 97423512,
+   "cache_write_5m": 0,
+   "cache_write_1h": 519256,
+   "cache_write_unclassified": 0,
+   "output": 238472,
+   "usd_list": 28.318536
+  }
+ },
+ "totals_by_model_family": {
+  "haiku": {
+   "agents": 1,
+   "calls": 1,
+   "fresh_input": 2,
+   "cache_read": 26220,
+   "cache_write_5m": 0,
+   "cache_write_1h": 11128,
+   "cache_write_unclassified": 0,
+   "output": 4,
+   "usd_list": 0.00249
+  },
+  "opus": {
+   "agents": 1,
+   "calls": 269,
+   "fresh_input": 551,
+   "cache_read": 97397292,
+   "cache_write_5m": 0,
+   "cache_write_1h": 508128,
+   "cache_write_unclassified": 0,
+   "output": 238468,
+   "usd_list": 28.316046
+  }
+ },
+ "totals_by_model": {
+  "claude-haiku-5-5": {
+   "agents": 1,
+   "calls": 1,
+   "fresh_input": 2,
+   "cache_read": 26220,
+   "cache_write_5m": 0,
+   "cache_write_1h": 11128,
+   "cache_write_unclassified": 0,
+   "output": 4,
+   "usd_list": 0.00249
+  },
+  "claude-opus-5-5": {
+   "agents": 1,
+   "calls": 269,
+   "fresh_input": 551,
+   "cache_read": 97397292,
+   "cache_write_5m": 0,
+   "cache_write_1h": 508128,
+   "cache_write_unclassified": 0,
+   "output": 238468,
+   "usd_list": 28.316046
+  }
+ },
+ "totals_by_phase_and_family": {
+  "gutenberg|haiku": {
+   "agents": 1,
+   "calls": 1,
+   "fresh_input": 2,
+   "cache_read": 26220,
+   "cache_write_5m": 0,
+   "cache_write_1h": 11128,
+   "cache_write_unclassified": 0,
+   "output": 4,
+   "usd_list": 0.00249
+  },
+  "gutenberg|opus": {
+   "agents": 1,
+   "calls": 269,
+   "fresh_input": 551,
+   "cache_read": 97397292,
+   "cache_write_5m": 0,
+   "cache_write_1h": 508128,
+   "cache_write_unclassified": 0,
+   "output": 238468,
+   "usd_list": 28.316046
+  }
+ },
+ "totals_by_role": {
+  "coordinator": {
+   "agents": 1,
+   "calls": 269,
+   "fresh_input": 551,
+   "cache_read": 97397292,
+   "cache_write_5m": 0,
+   "cache_write_1h": 508128,
+   "cache_write_unclassified": 0,
+   "output": 238468,
+   "usd_list": 28.316046
+  },
+  "worker": {
+   "agents": 1,
+   "calls": 1,
+   "fresh_input": 2,
+   "cache_read": 26220,
+   "cache_write_5m": 0,
+   "cache_write_1h": 11128,
+   "cache_write_unclassified": 0,
+   "output": 4,
+   "usd_list": 0.00249
+  }
+ },
+ "prices": {
+  "source": "jobs/necker-costs/PRICES.json",
+  "basis": "list price per call: exact model, cache-write class, fast mode (usage.speed) and Haiku 5.5 long-prompt rates; API-equivalent estimate, not an invoice"
+ },
+ "notes": [
+  "Agents counted per grouping can overlap across groupings when one agent used several models.",
+  "Main (coordinator) transcripts are partial: they can span work earlier than the labelled phase.",
+  "Output tokens may be a lower bound where a call never recorded a final count.",
+  "Tokens are what transcripts recorded; they are not an invoice."
+ ],
+ "crosscheck": {
+  "tolerance": "max(0.01 USD, 0.01 x reported)",
+  "sessions": [
+   {
+    "session_id": "7ae35ad7-0516-4b0a-9ebf-818ee6cdb05d",
+    "label": "r",
+    "reported_usd": 0.00249,
+    "source_kind": "claude -p result",
+    "computed_usd": 0.00249,
+    "diff_usd": -0.0,
+    "tolerance_usd": 0.01,
+    "verdict": "agrees"
+   }
+  ]
+ }
+}
