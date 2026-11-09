@@ -6,6 +6,9 @@
 - Budget: no dollar cap under the owner's exhaustive #1–#9 goal and subsequent 92-order Photius stratum. Running model cost is in `COST.md`. No Bracton producer or reviewer model call has started. Cujas's 68 filed claims remain separate.
 - Phase: evidence and assignment staging only. No claim, status, census, codebook, human review, or certified count changed. Certified count remains 0.
 - Timing: the owner chose staging now and Claude-family blind review after the Monday, 2026-11-09, 6 PM ET usage reset. Recheck main, reservations, packet freshness, and the dispatch gate immediately before production.
+- Rank-9 coverage: `YES_ROSTER_COVERAGE.csv` maps all 338 historical YES/FR members to disjoint staging packets; 133 have passing dispatch receipts at this snapshot. Four members have existing-claim owner routes (EO:13054, EO:13373, EO:13472, EO:13540). Each packet still needs a fresh gate after new source publications or main changes.
+- Source publication plan: `SOURCE_RUN_PLAN.csv` partitions the three unpublished y05 issues and the required y09/y10/y11/y16/y17 official sources into at most 750,000,000 expected bytes per source-only run. Prefixes sharing an order stay together; each publication must be audited by URL and exact hash before its packet is rechecked. Y08's source-only run is [42540412515](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42540412515).
+- Montfaucon: main's m005 and m006 checks do not cover any of the eight orders named in `BLOCKED_MONTFAUCON.csv`; those page checks remain with Montfaucon.
 
 ## Refreshed ranking
 
