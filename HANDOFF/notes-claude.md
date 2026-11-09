@@ -37,7 +37,7 @@
   - hook bypasses.
   All are fixed and tested: sudo jobs are untraced, traced jobs get gc.auto=0, the trace streams through gzip with a cap, and the record is written after STATUS.json. Tests: test_ariadne 19, test_ockham_hook 6, test_rattle_watch 10.
 - **Next:**
-  - Read the first hosted records: closure size vs materialized, the overhead from `job_seconds` vs `last_untraced_success_seconds`, and any silent misses.
+  - First hosted record (claim-checker, run 42573865370): no measurable overhead (1,500 s traced vs 2,017 s untraced), and the closure is 65,188 of 194,293 materialized files. One harmless silent miss (root listing lacks `.claude`). F-20261109-ariadne-first-hosted-record. Collect more records next.
   - Then build the narrowing change: restore only a stable closure for an unchanged `narrow_signature`, with the trace as referee.
 - **Valla certificate:** already stale on main before this PR. Both certificates match 11fd9f42e2, and 14 later in-scope commits changed the signature, so Valla runs on the fallback. The PR adds `ariadne.py` to `VALLA_CERTIFICATE_ROOTS` but does not re-certify; that needs an audit of those commits (F-20261109-valla-certificate-stale-on-main).
 - **Merged with main's Quo Warranto and Rattle Watch changes (2026-11-09):**

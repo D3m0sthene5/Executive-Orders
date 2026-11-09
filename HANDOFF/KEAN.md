@@ -49,7 +49,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 280; `search` finds the rest)
+## Newest results (6 of 281; `search` finds the rest)
 
 - 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
 - 2026-11-09 F-20261109-gutenberg-valla-pilot-chain **partly worked**: Find why the Valla bounded pilot check fails on every PR (seen on #242 and the sol/montfaucon branches) Lesson: A failing non-required check can hide later failures for days; when it turns red, read every step, not only the first failing one. Next: decide in Valla whether a schema-v2 re-tag file is a productio…
@@ -58,4 +58,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-09 F-20261109-gutenberg-rattle-watch **worked**: Adversarial audit of Rattle Watch (run_jobs.py heartbeat and stall stop, F-20261028-3): premises that a finis… Lesson: A watchdog must bound its own waits: the runner's join on a job's output was the one wait nothing watched. Judge activity by the job's own counters, not the machine's.
 - 2026-11-09 F-20261109-gutenberg-quo-warranto **partly worked**: Gutenberg item 2: narrow the input declarations of claim-checker, readiness-tracker, claim-kit and claim-draf… Lesson: Never narrow a declaration by reading code; record the reads (AUDIT_READS) and declare what the record shows. After one more clean report run on main, set AUDIT_READS to enforce so an undeclared read…
 
-Register: 74 owner decisions, 45 answered questions, 280 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 74 owner decisions, 45 answered questions, 281 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
