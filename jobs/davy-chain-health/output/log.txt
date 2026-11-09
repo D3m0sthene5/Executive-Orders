@@ -1,0 +1,16 @@
+test_declared_path_missing (test_davy.DavyTests.test_declared_path_missing) ... ok
+test_every_real_check_takes_validator_and_population (test_davy.DavyTests.test_every_real_check_takes_validator_and_population) ... ok
+test_identity_case_variant_detected (test_davy.DavyTests.test_identity_case_variant_detected)
+Haloander break 3: EO:7933a in one input and EO:7933A in another, with no declared alias. ... ok
+test_pass (test_davy.DavyTests.test_pass) ... ok
+test_population_failure_marks_dependents (test_davy.DavyTests.test_population_failure_marks_dependents) ... ok
+test_stale_drafts_named_plainly (test_davy.DavyTests.test_stale_drafts_named_plainly)
+Haloander break 2: drafts built for 4,291 while the ledger holds 4,301. ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.010s
+
+OK
+claim-drafts -> claim-kit chain: all 2 checks pass
+claim-drafts -> claim-kit chain: FAIL in drafts - ValueError: Draft summary population stale
+claim-drafts -> claim-kit chain: FAIL in declarations - ValueError: claim-drafts/needs.txt declares research/stage19/output, which is not on main; claim-drafts/needs.txt declares research/stage20/output, which is not on main; claim-drafts/needs.txt declares research/stage21/sources_index, which 
