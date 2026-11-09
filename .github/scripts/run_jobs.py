@@ -340,9 +340,23 @@ def main():
             if (folder / "requirements.txt").is_file():
                 code = command([sys.executable, "-m", "pip", "install", "--quiet", "-r",
                                 str(folder / "requirements.txt")], out / "install-log.txt", env)
+            audit = None
             if code == 0:
                 args = ["bash", str(folder / "job.sh")] if (folder / "job.sh").is_file() else [sys.executable, str(folder / "job.py")]
+                if (folder / "AUDIT_READS").is_file() and not (folder / "job.sh").is_file():
+                    # Quo Warranto (Gutenberg, 2026-11-09): record every read; undeclared reads fail the job below.
+                    audit = scratch.parent / (name + "-reads.json")
+                    audit.parent.mkdir(parents=True, exist_ok=True)
+                    args = [sys.executable, str(repo / ".github/scripts/read_audit.py"), "run", "--record", str(audit),
+                            "--", str(folder / "job.py")]
                 code = command(args, out / "log.txt", env, watch)
+            if code == 0 and audit is not None:
+                verdict = command([sys.executable, str(repo / ".github/scripts/read_audit.py"), "check", "--job", name,
+                                   "--record", str(audit), "--report", str(out / "READ_AUDIT.json")],
+                                  out / "read-audit-log.txt", env)
+                # AUDIT_READS holding "report" records without enforcing (used once, to derive a declaration).
+                if (folder / "AUDIT_READS").read_text(encoding="utf-8").split("#", 1)[0].strip() != "report":
+                    code = verdict
             cache_code = subprocess.run([sys.executable, str(repo / "jobs/_lib/cache_cap.py"), str(cache), str(cap)]).returncode
             if code == 0 and cache_code:
                 code = cache_code
