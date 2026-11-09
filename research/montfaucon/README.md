@@ -65,3 +65,11 @@ tables. Both blind readers caught all three controls; two verdict disagreements
 received a fresh third reading. Sealed evidence is under `reviews/m006/`;
 `GATE_M006.*` and `COST.md` preserve the sixth checkpoint and unknown
 actual spend.
+
+`checks/m007-photius-free-panama.jsonl` records 50 public GPO Panama-volume
+lead checks: 0 pass, 49 fail on wrong cited pages, 1 blocked for missing held
+original text. Both blind readers caught three controls and agreed throughout.
+Each negative outcome pins the inspected PDF, exact source fragment and page
+image; none confers original-text credit. The sealed audit is under
+`reviews/m007/`; `REPORT_M007.md`, `GATE_M007.*` and `COST.md` record the
+source-locator stop and unknown actual cost.
