@@ -422,5 +422,149 @@ class DanglingSignatureTest(unittest.TestCase):
         self.assertFalse(L.dangling_before_signature("restored to the public domain.\nHERBERT HOOVER\nThe White House,"))
 
 
+class MabillonPages(unittest.TestCase):
+    """Papebroch (2026-11-09): page-record rule for Mabillon held printings that need a page check (leads)."""
+    HOOVER = '4731703.proc.001.umich.edu; printed pages 285-285; scanned images 295-295'
+
+    def setup_repo(self, body=GOOD, loc=HOOVER, marker='heading', grade='machine_read_government_printed_copy',
+                   acceptable=False, src_sha='a' * 64, rows=1):
+        d = tempfile.TemporaryDirectory()
+        self.addCleanup(d.cleanup)
+        out = pathlib.Path(d.name) / 'jobs/mabillon-held-printings/output'
+        (out / 'texts').mkdir(parents=True)
+        raw = body.encode('utf-8')
+        (out / 'texts/EO_5077.txt').write_bytes(raw)
+        tsha = hashlib.sha256(raw).hexdigest()
+        frag = {'instrument_id': 'EO:5077', 'kind': 'original_representation', 'grade': grade,
+                'acceptable_as_original': acceptable, 'produced_by': 'mabillon-held-printings',
+                'data': {'url': 'https://archive.org/details/4731703.proc.001.umich.edu', 'sha256': 'a' * 64,
+                         'page_or_item': loc, 'text_path': 'texts/EO_5077.txt', 'text_sha256': tsha,
+                         'needs_page_check': True, 'route': 'held/ia_hoover',
+                         'match': {'marker': marker, 'score': 0.42, 'source_kind': '1974 GPO compilation'}},
+                'sources': [{'url': 'u', 'sha256': src_sha, 'page_or_item': loc}]}
+        with (out / 'FRAGMENTS.jsonl').open('w', encoding='utf-8') as fh:
+            for _ in range(rows):
+                fh.write(json.dumps(frag) + '\n')
+        rec = {'instrument_id': 'EO:5077', 'grade': 'machine_read_government_printed_copy', 'sha256': 'a' * 64,
+               'text_sha256': tsha, 'text_path': 'jobs/mabillon-held-printings/output/texts/EO_5077.txt',
+               'declaration_path': 'jobs/mabillon-held-printings/output/FRAGMENTS.jsonl', 'requires_page_check': True}
+        return d.name, L.make_witness(rec, body, 'mabillon-held-printings')
+
+    def check(self, **kw):
+        repo, w = self.setup_repo(**kw)
+        return L.pages_test(ORDER, w, L.Pinakes('/x'), {}, repo)
+
+    def test_all_recorded_facts_confirm_pages(self):
+        ok, why, ev = self.check()
+        self.assertTrue(ok, why)
+        self.assertEqual(ev['printed_pages'], 'printed pages 285-285')
+        self.assertEqual(ev['marker'], 'heading')
+
+    def test_hole_no_rule_for_producer_is_closed(self):
+        self.assertNotIn('pages:no_page_record_rule_for_mabillon-held-printings', self.check()[1])
+
+    def test_scanned_pages_only_is_not_a_printed_page_record(self):
+        ok, why, _ = self.check(loc='Executive_Orders_6936-7081.djvu; scanned pages 216-217; closing number tag 7000')
+        self.assertFalse(ok)
+        self.assertIn('pages:mabillon_printed_pages_not_recorded', why)
+        self.assertIn('pages:mabillon_printed_pages_not_recorded',
+                      self.check(loc='Federal Register 1936-06-25; PDF pages 1-1; printed page None')[1])
+        self.assertIn('pages:mabillon_printed_pages_not_recorded', self.check(loc='printed pages 290-285')[1])
+        self.assertTrue(self.check(loc='Federal Register 1936-06-25; PDF pages 1-1; printed page 4021')[0])
+
+    def test_closing_tag_marker_is_not_an_own_heading(self):
+        ok, why, _ = self.check(marker='closing_number_tag')
+        self.assertFalse(ok)
+        self.assertIn('pages:mabillon_own_heading_not_recorded', why)
+        self.assertIn('pages:mabillon_own_heading_not_recorded', self.check(marker=None)[1])
+
+    def test_number_must_be_in_first_page_window(self):
+        ok, why, _ = self.check(body=('filler words ' * 200) + GOOD)
+        self.assertFalse(ok)
+        self.assertIn('pages:number_not_in_first_page_text', why)
+
+    def test_fragment_must_be_mabillons_own_exact_row(self):
+        self.assertIn('pages:mabillon_fragment_grade_or_flag_mismatch', self.check(acceptable=None)[1])
+        self.assertIn('pages:mabillon_fragment_grade_or_flag_mismatch', self.check(grade='government_printed_copy')[1])
+        self.assertIn('pages:mabillon_source_sha_not_declared', self.check(src_sha='9' * 64)[1])
+        self.assertIn('pages:mabillon_fragment_record_ambiguous', self.check(rows=2)[1])
+        repo, w = self.setup_repo()
+        other = dict(w, text_sha256='c' * 64)
+        self.assertEqual(L.pages_test(ORDER, other, L.Pinakes('/x'), {}, repo)[1], ['pages:mabillon_fragment_record_missing'])
+        moved = dict(w, text_path='jobs/elsewhere/EO_5077.txt')
+        self.assertEqual(L.pages_test(ORDER, moved, L.Pinakes('/x'), {}, repo)[1], ['pages:mabillon_fragment_record_missing'])
+
+    def test_unnumbered_order_has_no_rule(self):
+        repo, w = self.setup_repo()
+        self.assertIn('pages:mabillon_unnumbered_order_no_rule',
+                      L.pages_test(dict(ORDER, number=''), w, L.Pinakes('/x'), {}, repo)[1])
+
+    def test_passage_alone_opens_with_the_order(self):
+        """Papebroch hole 2: Mabillon's old provenance header preceded the passage, so the start test never saw the
+        order. Written as the passage alone the same text passes start and end; under the header it does not."""
+        header = ('Instrument: EO:5077\nSource: https://archive.org/x\nSHA-256 of the source file: ' + 'a' * 64 +
+                  '\nLocation: ' + self.HOOVER + '\nGovernment-printed passage saved by hathi-gpo-orders (1974 GPO '
+                  'compilation); machine OCR, may contain recognition errors and neighbouring text.\n\n')
+        repo, w = self.setup_repo()
+        rec, _ = L.assess(ORDER, ['ONLY_COMPILED_TRANSCRIPTION_FOUND'], [w], L.Pinakes('/x'), {}, repo, StubIndex())
+        self.assertTrue(rec['confirmed'], rec['reasons'])
+        self.assertIs(rec['pages_confirmed'], True)
+        self.assertFalse(rec['acceptable_as_original'])
+        # the same order under the retired header: the header fills the 400-character start window
+        long_title = dict(ORDER, title='Designating Viola B. Pugh to sign land patents')
+        self.assertFalse(L.start_test(L.body_of(header + 'Mrs. Viola B. Pugh is hereby designated.'), long_title)[0])
+
+    def test_failed_mabillon_page_check_blocks_confirmation(self):
+        repo, w = self.setup_repo(marker='closing_number_tag')
+        rec, _ = L.assess(ORDER, ['ONLY_COMPILED_TRANSCRIPTION_FOUND'], [w], L.Pinakes('/x'), {}, repo, StubIndex())
+        self.assertTrue(rec['identity_confirmed'] and rec['complete_text_confirmed'])
+        self.assertIs(rec['pages_confirmed'], False)
+        self.assertFalse(rec['confirmed'])
+        self.assertFalse(rec['acceptable_as_original'])
+
+
+class PassOverPrinting(unittest.TestCase):
+    """Papebroch hole 3: once Mabillon texts verify, the printing outranks the transcription, so a printing the tests
+    cannot read must not discard the transcription's passing confirmation; nothing else is passed over."""
+    BAD = ('DEPOSITED BY THE\nUNITED STATES\n' + 'illegible ocr line\n' * 30)
+
+    def test_failed_printing_passes_to_next_witness(self):
+        p = witness(self.BAD, 'mabillon-held-printings', sha='c' * 64, tsha='d' * 64,
+                    grade='machine_read_government_printed_copy', requires=False)
+        t = witness(GOOD, 'app-executive-orders', requires=False)
+        rec, chosen = L.assess(ORDER, [], [p, t], L.Pinakes('/x'), {}, '/x', StubIndex())
+        self.assertTrue(rec['confirmed'])
+        self.assertIs(chosen, t)
+        self.assertEqual(rec['text_sha256'], 'b' * 64)
+        self.assertEqual(rec['evidence']['passed_over'][0]['producer'], 'mabillon-held-printings')
+        self.assertTrue(rec['evidence']['passed_over'][0]['reasons'])
+        self.assertEqual(len(rec['witnesses']), 2)  # the printing stays listed
+        self.assertFalse(rec['acceptable_as_original'])
+
+    def test_printing_that_passes_is_kept(self):
+        p = witness(GOOD, 'mabillon-held-printings', sha='c' * 64, tsha='d' * 64,
+                    grade='machine_read_government_printed_copy', requires=False)
+        t = witness(GOOD, 'app-executive-orders', requires=False)
+        rec, chosen = L.assess(ORDER, [], [p, t], L.Pinakes('/x'), {}, '/x', StubIndex())
+        self.assertIs(chosen, p)
+        self.assertNotIn('passed_over', rec['evidence'])
+
+    def test_no_pass_over_for_other_grades(self):
+        bad = witness(self.BAD, 'p1', sha='c' * 64, tsha='d' * 64, grade='mirror_transcription', requires=False)
+        good = witness(GOOD, 'p2', grade='compiled_transcription_lead', requires=False)
+        rec, chosen = L.assess(ORDER, [], [bad, good], L.Pinakes('/x'), {}, '/x', StubIndex())
+        self.assertIs(chosen, bad)
+        self.assertFalse(rec['confirmed'])
+
+    def test_all_fail_reports_the_best_ranked(self):
+        p = witness(self.BAD, 'mabillon-held-printings', sha='c' * 64, tsha='d' * 64,
+                    grade='machine_read_government_printed_copy', requires=False)
+        t = witness(self.BAD + ' x', 'app-executive-orders', requires=False)
+        rec, chosen = L.assess(ORDER, [], [p, t], L.Pinakes('/x'), {}, '/x', StubIndex())
+        self.assertFalse(rec['confirmed'])
+        self.assertIs(chosen, p)
+        self.assertNotIn('passed_over', rec['evidence'])
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -37,7 +37,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 JOBS = HERE.parent
 sys.path.insert(0, str(JOBS / "_lib"))
-from fetch_pool import FetchPool, FetchError  # noqa: E402
+from fetch_pool import FetchPool, FetchError, robots_rules, robots_allows, _rule_regex  # noqa: E402
 
 JOB = "duodecim-tableiv"
 UA = "EO-Road-System/1.0 (Duodecim Table IV; owner-run research)"
@@ -161,46 +161,8 @@ def jsonl_lines(rows):
 
 # ------------------------------------------------------------------------------------------------ network ---------
 
-def robots_rules(text, ua):
-    """Allow/Disallow rules that apply to `ua` from a robots.txt body, with the `*` and `$` wildcards that the
-    standard library's urllib.robotparser does not understand (webharvest.gov's rules use them). The group naming
-    the agent's product token wins over `*`. Returns [(allow, pattern)]."""
-    token = ua.split("/")[0].split()[0].lower()
-    groups, cur, seen_rule = [], None, False
-    for raw in text.splitlines():
-        line = raw.split("#", 1)[0].strip()
-        if ":" not in line:
-            continue
-        k, v = (x.strip() for x in line.split(":", 1))
-        k = k.lower()
-        if k == "user-agent":
-            if cur is None or seen_rule:
-                cur, seen_rule = {"agents": [], "rules": []}, False
-                groups.append(cur)
-            cur["agents"].append(v.lower())
-        elif k in ("allow", "disallow") and cur is not None:
-            seen_rule = True
-            if v:
-                cur["rules"].append((k == "allow", v))
-    named = [g for g in groups if any(a and a != "*" and a in token for a in g["agents"])]
-    star = [g for g in groups if "*" in g["agents"]]
-    return [r for g in (named or star) for r in g["rules"]]
 
-
-def _rule_regex(pattern):
-    out = "".join(".*" if c == "*" else re.escape(c) for c in pattern.rstrip("$"))
-    return re.compile(out + ("$" if pattern.endswith("$") else ""))
-
-
-def robots_allows(rules, path):
-    """Longest matching rule wins; Allow wins a tie; no matching rule allows."""
-    best = None
-    for allow, pat in rules:
-        if _rule_regex(pat).match(path):
-            key = (len(pat), allow)
-            if best is None or key > best[0]:
-                best = (key, allow)
-    return True if best is None else best[1]
+# robots_rules / robots_allows now live in jobs/_lib/fetch_pool.py (imported above, shared by every job).
 
 
 class Fetcher:

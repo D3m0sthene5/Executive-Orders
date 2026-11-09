@@ -536,5 +536,38 @@ def token_is_never_written_down():
     assert r["ran"] is False and r["blocked_by_robots"] is True and len(seen) == calls_before and secret not in json.dumps(r)
 
 
+@test
+def courtlistener_api_proceeds_only_on_a_4xx_robots_answer():
+    """Owner 2026-11-09 (A-20261107-courtlistener-robots): RFC 9309 reads a 401/403 robots.txt as unavailable, so the
+    documented, token-authenticated API may be called. An explicit Disallow rule still blocks."""
+    import types
+    secret = "tok-SECRET-123"
+    calls = []
+
+    def ok(url, headers, timeout):
+        calls.append(url)
+        return 200, {}, FakeBody(json.dumps({"count": 3}).encode())
+
+    class Pool:
+        def __init__(self, disallow_all, wild):
+            self.robots = {"https://www.courtlistener.com": types.SimpleNamespace(disallow_all=disallow_all, wild=wild)}
+
+        def _origin(self, url):
+            return "https://www.courtlistener.com", "www.courtlistener.com"
+
+        def allowed(self, url):
+            raise courts.FetchError("blocked_by_robots_txt")
+    r = courts.api_crosscheck(Pool(True, None), secret, [("EO:1", 1)], 5, ok, sleep=lambda s: None)
+    assert r["ran"] is True and calls and "RFC 9309" in r["robots_basis"] and secret not in json.dumps(r)
+    calls.clear()
+    r = courts.api_crosscheck(Pool(False, [(False, "/api/")]), secret, [("EO:1", 1)], 5, ok, sleep=lambda s: None)
+    assert r["ran"] is False and r["blocked_by_robots"] is True and not calls
+    class NoRobots:
+        def allowed(self, url):
+            raise courts.FetchError("robots unavailable: 503")
+    r = courts.api_crosscheck(NoRobots(), secret, [("EO:1", 1)], 5, ok, sleep=lambda s: None)
+    assert r["ran"] is False and not calls
+
+
 if __name__ == "__main__":
     print(f"{len(PASSED)} tests passed: " + ", ".join(PASSED))

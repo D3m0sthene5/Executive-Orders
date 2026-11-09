@@ -64,6 +64,77 @@ REQUIRED = {
     "asks": ("id", "date", "asked_by", "question", "why", "status"),
     "findings": ("id", "date", "by", "tried", "expected", "result", "verdict", "lesson", "sources"),
 }
+# Gutenberg (2026-11-09): optional structured numbers on a finding, so Bentham and Junto read wave costs and yields
+# instead of hand-typed prose. Every field is optional except wave; unknown keys are errors.
+MEASURE_KEYS = {"wave", "usd", "orders", "controls", "note"}
+USD_KEYS = {"total", "by_role", "by_model", "basis"}
+USD_BASES = ("list_price", "reported_cost", "mixed")
+ORDER_KEYS = ("attempted", "submitted", "filed")
+CONTROL_KEYS = ("planted", "missed")
+SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9._-]{1,80}$")
+
+
+def _amount(v):
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and v == v and 0 <= v < 1e7
+
+
+def validate_measures(m):
+    """Errors in a finding's measures object (empty list when valid or absent)."""
+    if m is None:
+        return []
+    if not isinstance(m, dict):
+        return ["measures must be an object"]
+    e = [f"measures: unknown key {k}" for k in sorted(set(m) - MEASURE_KEYS)]
+    if not isinstance(m.get("wave"), str) or not SLUG_RE.match(m["wave"]):
+        e.append("measures.wave must be a lower-case slug such as cujas-2026-11-08")
+    u = m.get("usd")
+    if u is not None:
+        if not isinstance(u, dict):
+            e.append("measures.usd must be an object")
+        else:
+            e += [f"measures.usd: unknown key {k}" for k in sorted(set(u) - USD_KEYS)]
+            if u.get("basis") not in USD_BASES:
+                e.append(f"measures.usd.basis must be one of {', '.join(USD_BASES)}")
+            if "total" in u and not _amount(u["total"]):
+                e.append("measures.usd.total must be a nonnegative number")
+            for part in ("by_role", "by_model"):
+                d = u.get(part)
+                if d is None:
+                    continue
+                if not isinstance(d, dict) or not d or not all(isinstance(k, str) and k and _amount(v) for k, v in d.items()):
+                    e.append(f"measures.usd.{part} must map names to nonnegative numbers")
+                elif _amount(u.get("total")) and abs(sum(d.values()) - u["total"]) > max(0.01, 0.01 * u["total"]):
+                    e.append(f"measures.usd.{part} sums to {sum(d.values()):.2f}, not total {u['total']:.2f}")
+            if not any(k in u for k in ("total", "by_role", "by_model")):
+                e.append("measures.usd needs total, by_role or by_model")
+    for key, names in (("orders", ORDER_KEYS), ("controls", CONTROL_KEYS)):
+        d = m.get(key)
+        if d is None:
+            continue
+        if not isinstance(d, dict) or set(d) - set(names) or not d:
+            e.append(f"measures.{key} may hold only {', '.join(names)}")
+            continue
+        if not all(isinstance(v, int) and not isinstance(v, bool) and v >= 0 for v in d.values()):
+            e.append(f"measures.{key} values must be nonnegative integers")
+            continue
+        chain = [d[k] for k in names if k in d]
+        if chain != sorted(chain, reverse=True):
+            e.append(f"measures.{key} must satisfy {' >= '.join(names)}")
+    if "note" in m and not isinstance(m["note"], str):
+        e.append("measures.note must be text")
+    return e
+
+
+def wave_measures(rows):
+    """{wave: measures} from the current revision of every finding that carries them (newest finding wins)."""
+    out = {}
+    for f in sorted(current(rows), key=lambda r: (r.get("date", ""), r.get("id", ""))):
+        m = f.get("measures")
+        if isinstance(m, dict) and not validate_measures(m):
+            out[m["wave"]] = dict(m, finding=f["id"])
+    return out
+
+
 SEARCH_GLOBS = (":(glob)HANDOFF/*.md", ":(glob)research/**/*.md", ":(glob)jobs/*/README.md", ":(glob)jobs/*/README.txt",
                 "AGENTS.md", "CLAUDE.md", "README.md", "PROGRESS.md", ":(glob)jobs/kean/register/*.jsonl")
 
@@ -204,6 +275,8 @@ def check(repo):
                 errors.append(f"ask {r.get('id')}: answered without an answer")
             if kind == "findings" and r.get("verdict") not in VERDICTS:
                 errors.append(f"finding {r.get('id')}: verdict must be one of {', '.join(VERDICTS)}")
+            if kind == "findings":
+                errors += [f"finding {r.get('id')}: {x}" for x in validate_measures(r.get("measures"))]
 
     tracked = repo.tracked()
     # Every owner ruling file has a decision.
@@ -266,6 +339,36 @@ def strip_drift(text):
     return re.sub(re.escape(DRIFT_BEGIN) + r".*?" + re.escape(DRIFT_END), "", text, flags=re.S)
 
 
+HEALTH = "jobs/davy-chain-health/output/HEALTH.json"
+
+
+def chain_health(repo):
+    """Gutenberg: Davy's daily claim-drafts -> claim-kit health verdict, one line, so a break is seen at session start."""
+    try:
+        h = json.loads(open(os.path.join(str(repo), HEALTH), encoding="utf-8").read())
+    except (OSError, ValueError):
+        return None
+    if not isinstance(h, dict) or h.get("verdict") not in ("pass", "fail"):
+        return None
+    mark = "FAIL" if h["verdict"] == "fail" else "pass"
+    return (f"**Chain health ({mark}, {str(h.get('checked_utc', ''))[:16]}Z, as of `{str(h.get('input_commit') or '')[:10]}`):** "
+            + _one(str(h.get("summary", "")), 300)
+            + (" Fix it before preparing a paid batch (`" + HEALTH.replace("HEALTH.json", "HEALTH.md") + "`)."
+               if h["verdict"] == "fail" else ""))
+
+
+def _measures_arg(text):
+    raw = open(text[1:], encoding="utf-8").read() if text.startswith("@") else text
+    try:
+        m = json.loads(raw)
+    except ValueError as exc:
+        raise SystemExit(f"--measures is not JSON: {exc}") from None
+    errs = validate_measures(m)
+    if errs:
+        raise SystemExit("--measures refused: " + "; ".join(errs))
+    return m
+
+
 def render_brief(repo, reg=None):
     if reg is None:
         reg = {k: load(repo, k) for k in FILES}
@@ -287,6 +390,10 @@ def render_brief(repo, reg=None):
     w("- **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and")
     w("  owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.")
     w("")
+    health = chain_health(repo)
+    if health:
+        w(health)
+        w("")
     w(f"## Waiting for the owner ({len(open_asks)})")
     w("")
     if open_asks:
@@ -458,6 +565,10 @@ def main(argv=None):
         f.add_argument("--" + x, required=True)
     f.add_argument("--verdict", required=True, choices=VERDICTS); f.add_argument("--source", action="append", required=True)
     f.add_argument("--keyword", action="append", default=[]); f.add_argument("--date"); f.add_argument("--id")
+    f.add_argument("--measures", help="JSON object, or @FILE: wave, usd {total, by_role, by_model, basis}, "
+                                      "orders {attempted, submitted, filed}, controls {planted, missed}")
+    am = sub.add_parser("add-measures", help="attach structured numbers to an existing finding (new revision)")
+    am.add_argument("--id", required=True); am.add_argument("--measures", required=True)
     args = ap.parse_args(argv)
     repo = Repo(args.root)
 
@@ -530,6 +641,14 @@ def main(argv=None):
         rec = {"id": args.id or next_id(rows, "F", day), "rev": 0, "date": day, "by": args.by, "tried": args.tried,
                "expected": args.expected, "result": args.result, "verdict": args.verdict, "lesson": args.lesson,
                "sources": args.source, "keywords": args.keyword}
+        if args.measures:
+            rec["measures"] = _measures_arg(args.measures)
+        append(repo, "findings", rec)
+    elif args.cmd == "add-measures":
+        cur = {r["id"]: r for r in current(load(repo, "findings"))}
+        if args.id not in cur:
+            raise SystemExit(f"no finding {args.id}")
+        rec = dict(cur[args.id], rev=cur[args.id].get("rev", 0) + 1, measures=_measures_arg(args.measures))
         append(repo, "findings", rec)
     print(f"recorded {rec['id']}")
     write_brief(repo)

@@ -29,6 +29,17 @@ def safe_path(root, relative):
     return path
 
 
+def mabillon_legacy_header(source):
+    """The provenance header mabillon-held-printings wrote above each passage until 2026-11-09, rebuilt from the
+    source fragment's own fields (every byte of it came from them; checked on all 2,015 committed files)."""
+    data = source['data']
+    kind = (data.get('match') or {}).get('source_kind')
+    return (f"Instrument: {source['instrument_id']}\nSource: {data.get('url')}\nSHA-256 of the source file: "
+            f"{data.get('sha256')}\nLocation: {data.get('page_or_item')}\nGovernment-printed passage saved by "
+            f"hathi-gpo-orders ({kind}); machine OCR, may contain recognition errors and neighbouring text.\n\n"
+            ).encode('utf-8')
+
+
 def validate(root, record, source_cache=None):
     """Return (lane, derived fragment), or reject. Reviews pin the whole record target."""
     root = root.resolve()
@@ -159,11 +170,16 @@ def validate(root, record, source_cache=None):
             raise ValueError('invalid held text SHA-256 pin')
         held = text.read_bytes()
         if body_scope:
-            if b'\n\n' not in held:
-                raise ValueError('held text body delimiter missing')
-            if hashlib.sha256(held).hexdigest() != target['text_file_sha256']:
+            if hashlib.sha256(held).hexdigest() == target['text_sha256']:
+                # Since 2026-11-09 Mabillon writes the passage alone. The header it used to prepend was built only
+                # from fields of the pinned source fragment, so rebuild it and still require the pinned full file.
+                whole = mabillon_legacy_header(source) + held
+            else:
+                if b'\n\n' not in held:
+                    raise ValueError('held text body delimiter missing')
+                whole, held = held, held.split(b'\n\n', 1)[1]
+            if hashlib.sha256(whole).hexdigest() != target['text_file_sha256']:
                 raise ValueError('held text file changed')
-            held = held.split(b'\n\n', 1)[1]
         if hashlib.sha256(held).hexdigest() != target['text_sha256']:
             raise ValueError('held text changed')
     reviews = record['reviews']

@@ -1,3 +1,28 @@
+## 2026-11-09 ET (Claude, Papebroch: finish #185, Mabillon text hash and Lachmann page rule)
+
+- **Done:** branch `claude/papebroch-mabillon-pages`, one PR that supersedes #185 (#185 is left for the owner to close).
+  - Mabillon writes the passage alone, so `text_sha256` is the hash of the file and every fragment row stays byte-identical.
+  - Lachmann has a page rule for Mabillon leads, and passes over a machine-read printing it cannot confirm.
+  - Montfaucon still verifies its 13 header-era m009 pins.
+  - Kean F-20261109-papebroch-mabillon-lachmann lists the six holes.
+- **Measured** locally, main against the branch on the same inputs: confirmations 715 -> 776 (0 lost), tracker fields identical, ready 1,083 -> 1,083. The one claim that cites a Mabillon source checks identically.
+- **Confirmed on Actions:** run 42562555069 (Mabillon, then Lachmann, on one station) gives 776 of 2,409 confirmed, 86 pinned to Mabillon. The full diagnostic 42557956624 (old order) matches main: Lachmann 715, claim-checker 1,473/267/1,738, ready 1,083.
+- **Owner ruling** D-20261109-impact-scoped-checks (not wired): never rerun claim-checker over every claim when a change reaches only some. Finding F-20261109-full-rerun-for-one-claim. Even a one-claim run costs about 9.5 minutes of source-index setup.
+- **Owner answered** A-20261109-mabillon-after-tracker (yes): Lachmann now runs after Mabillon, and Mabillon no longer waits for the tracker (D-20261109-mabillon-after-tracker, wired). #185 is closed.
+- **Asks:** @Owner: none.
+
+## 2026-11-09 ET (Claude, Gutenberg wave: seven tool items and three waste patterns, PR #242)
+
+- **Done (PR #242, stacks on #239):**
+  - Bentham prices from `jobs/necker-costs/PRICES.json`; the old table ran 1.3x-1.9x high (Tribonian $673 -> $346); `bentham.py usage --reported-costs` cross-checks each session within max(1 cent, 1%).
+  - Quo Warranto read audit (`AUDIT_READS`, report mode): claim-drafts had 8,367 undeclared reads and claim-checker 1; both now declared. Lachmann's FRAGMENTS reads declared.
+  - Lachmann skipped-witness switch (`jobs/claim-kit/WORKING_TEXT_SWITCHES.json`, default void); recommendation `flag` restores 126 orders with a recheck flag.
+  - Davy daily chain health (verdict in STATUS and the Kean brief); per-job `AS_OF_READOUT` for daily-digest and Davy.
+  - Kean structured `measures` read by Bentham and Junto; Tsiolkovsky channel-weighted credit; Carnot coordinator kit with ready two-arm Junto tests.
+- **Running:** child session `session_014fYW9tDCreZgtp1XP1tTpj` works the #185 Mabillon/Lachmann rule in its own PR.
+- **Next:** after one clean report run on main, set the five `AUDIT_READS` files to enforce. Narrowing the wide globs soundly needs versioning by record kind or STATUS result (freshness change). Run the next wave with `jobs/carnot-coordinator/PROTOCOL.md` as the after arm of lean_coordination.
+- **Asks:** @Owner: A-20261109-skipped-witness (set the switch to flag?).
+
 ## 2026-11-08 ET (Claude, Haloander follow-up: owner said yes to all four asks)
 
 - **Done:**

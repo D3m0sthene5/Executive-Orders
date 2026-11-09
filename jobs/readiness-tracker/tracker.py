@@ -16,6 +16,7 @@ the research ledger.
 
 import collections
 import csv
+import datetime
 import glob
 import hashlib
 import json
@@ -489,6 +490,87 @@ def counting_confirmations(root, jobs, index):
     return counting, dict(sorted(rejected.items()))
 
 
+# Filed-claim rule for formal_revocation_after_earlier_cessation (TRACKER_FIX.md; Kean A-20261107-tracker-thesis-fix).
+# Reads only claim fields; touches no status, step, blocker or count other than this one column.
+EO_NUM_RE = re.compile(r"\b(?:EO|Executive\s+Orders?)(?:\s*Nos?\.?)?\s*:?\s*(\d{1,5}[A-Z]?)\b")
+
+
+def is_date(s):
+    try:
+        return bool(s) and datetime.date.fromisoformat(s).isoformat() == s
+    except ValueError:
+        return False
+
+
+def classify_mechanism(text):
+    t = (text or "").lower()
+    # Negated wording names a mechanism only to deny it ("not a revocation or supersession of EO 9278").
+    t = re.sub(r"\b(not|no|neither|nor)\s+(a\s+|an\s+|the\s+)?(express\s+)?(revocation|supersession|revoked|superseded"
+               r"|amendment|second end|end)\b[^;.)]*", " ", t)
+    if re.search(r"strik|substitut|deletes? (this|the|item)|deletion|amendment by|^amend$|inserts? a different"
+                 r"|to read as follows|amended to read", t):
+        return "amendment_treated_as_end"
+    if "implied" in t:
+        return "implied_supersession"
+    if re.search(r"revo|supersed|supersess|rescind|rescission", t):
+        return "formal"
+    if re.search(r"statut|joint res|s\.\s?j\.\s?res|act of congress|legislat|public law|pub\.\s?l", t):
+        return "statutory"
+    if re.search(r"own[_ -]terms|expir|sunset|fixed[_ ]term|fixed[_ ]period|until|single[_ ]day|fiscal|date[_ ]cap"
+                 r"|cessation_date|of term|fixed[_ ]date|fixed[_ ]end|period", t):
+        return "own_terms"
+    if re.search(r"exhaust|perform|one[_ -]time|self[_ ]executing|dispositive|completed|successor appointed", t):
+        return "exhaustion"
+    if re.search(r"discontinu|terminat|lapse|abolish|ceased", t):
+        return "termination_by_later_instrument_or_body_end"
+    if "report" in t:
+        return "report_deadline"
+    return "other"
+
+
+def v1_formal_after_cessation(claim):
+    """The rule TRACKER_FIX.md proposes for v1 claims, using only the claim's own fields.
+
+    True: the whole-order end is exact and is an own-terms, exhaustion, implied-supersession or termination end
+    (not a revocation, and not a route an owner ruling keeps open), and the earliest instrument listed as an
+    express revocation or supersession on every operative clause takes effect after that end, without naming a
+    different order "as amended" instead of this one (TC09). False: the whole-order end is itself an express
+    revocation or supersession, or the earliest such instrument takes effect on or before the end. None otherwise.
+    """
+    w = claim.get("whole_order_end") if isinstance(claim.get("whole_order_end"), dict) else None
+    if not w or not is_date(w.get("date", "")):
+        return None
+    route = classify_mechanism(" ".join(str(w.get(k, "")) for k in ("mechanism", "mechanism_note", "mechanism_detail")))
+    if route == "formal":
+        return False
+    if route not in ("own_terms", "exhaustion", "implied_supersession", "termination_by_later_instrument_or_body_end"):
+        return None
+    me = claim.get("instrument_id", "").split(":", 1)[-1]
+    clauses = [c for c in claim.get("operative_clauses") or [] if isinstance(c, dict)]
+    if not clauses:
+        return None
+    per = []
+    for c in clauses:
+        acts = {}
+        for e in c.get("later_events") or []:
+            if not isinstance(e, dict) or not is_date(str(e.get("effective_date", ""))):
+                continue
+            mech = " ".join(str(e.get(k, "")) for k in ("mechanism", "mechanism_detail"))
+            if classify_mechanism(mech) != "formal":
+                continue
+            named = set(EO_NUM_RE.findall(mech)) - set(EO_NUM_RE.findall(str(e.get("actor", ""))))
+            if "as amended" in mech.lower() and named and me not in named:
+                continue  # revokes another (parent) order as amended, not this one by name
+            for a in EO_NUM_RE.findall(str(e.get("actor", ""))) or [str(e.get("actor", ""))]:
+                acts[a] = min(acts.get(a, "9999"), e["effective_date"])
+        per.append(acts)
+    common = set.intersection(*[set(a) for a in per])
+    if not common:
+        return None
+    first = min(max(a[x] for a in per) for x in common)
+    return first > w["date"]
+
+
 def build(root, *, planning_closures=None):
     # In-memory counterfactuals only; ordinary jobs never supply this argument.
     if planning_closures is not None:
@@ -554,8 +636,10 @@ def build(root, *, planning_closures=None):
         status = d["provisional_substantive_status"] if d else None
         steps, blockers = {}, collections.defaultdict(list)
         opus_media_note = ""
+        skipped_witness_flag_mode = W.skipped_witness_mode(root) == "flag"
         claim = claims.get(i)
-        working_errors, dependent_texts = W.policy(claim, root, working_index) if claim else ([], [])
+        recheck_flags = []
+        working_errors, dependent_texts = W.policy(claim, root, working_index, recheck_flags) if claim else ([], [])
         factual_errors = F.claim_errors(claim, root) if claim else []
         policy_errors = working_errors + factual_errors
         gate_errors = claim_gate.validate_claim(claim, expected_status=status) if claim else None
@@ -756,8 +840,12 @@ def build(root, *, planning_closures=None):
             ready = False
             steps["ending_or_current_basis"] = False
             blockers["ending_or_current_basis"].append("FIRST_END_UNRESOLVED")
-        later_formal = (claim_gate.derived(claim)["formal_revocation_after_earlier_cessation"]
-                        if v2 and hasattr(claim_gate, "derived") else None)
+        if v2 and hasattr(claim_gate, "derived"):
+            later_formal = claim_gate.derived(claim)["formal_revocation_after_earlier_cessation"]
+        elif claim is not None and not gate_errors and not contested:
+            later_formal = v1_formal_after_cessation(claim)
+        else:
+            later_formal = None
         if i in holds:
             ready = False
             steps['counterevidence'] = False
@@ -785,6 +873,9 @@ def build(root, *, planning_closures=None):
             "provisional_text_method": text_provisional["method"] if text_provisional else "",
             "provisional_text_sha256": text_provisional["text_sha256"] if text_provisional else "",
             "working_text_policy_errors": "|".join(working_errors),
+            # Gutenberg: present only under the owner's skipped-witness switch ("flag"), so default outputs are unchanged.
+            **({"working_text_recheck_flags": "|".join(dict.fromkeys(recheck_flags))}
+               if skipped_witness_flag_mode else {}),
             "factual_event_policy_errors": "|".join(factual_errors),
             "claim_record_errors": "|".join(claim_level),
             "opus_media_applicability_note": opus_media_note,

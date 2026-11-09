@@ -63,3 +63,58 @@ class RumfordTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class GutenbergKeanTest(unittest.TestCase):
+    """Item 5: Junto reads Kean measures for waves with no usage table, and prefers per-call usd_list."""
+
+    def test_kean_wave_and_usd_list(self):
+        import json as _j
+        import shutil
+        import tempfile
+        from pathlib import Path as _P
+        here = _P(__file__).resolve().parents[2]
+        with tempfile.TemporaryDirectory() as t:
+            root = _P(t)
+            for rel in ("jobs/necker-costs/PRICES.json", "jobs/kean/kean.py"):
+                (root / rel).parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy(here / rel, root / rel)
+            reg = root / "jobs/kean/register"
+            reg.mkdir(parents=True)
+            (reg / "findings.jsonl").write_text(_j.dumps({"id": "F-1", "rev": 0, "date": "2026-11-09", "measures": {
+                "wave": "w-kean", "usd": {"total": 10.0, "by_role": {"coordinator": 8.0, "worker": 2.0},
+                                          "basis": "list_price"}}}) + "\n")
+            u = root / "research/bentham/usage/w-csv"
+            u.mkdir(parents=True)
+            (u / "AGENT_USAGE.csv").write_text(
+                "role,model,fresh_input,cache_read,cache_write_5m,cache_write_1h,cache_write_unclassified,output,"
+                "calls,wall_seconds,active_seconds,usd_list\n"
+                "coordinator,claude-opus-5-5,0,1000000,0,0,0,0,1,10,10,7.5\n")
+            sys.path.insert(0, str(here / "jobs/junto"))
+            import evidence as E
+            e = E.measure(root)
+            w = {x["wave"]: x for x in e["waves"]}
+            self.assertEqual(w["w-csv"]["usd"], 7.5)  # usd_list kept, not the 0.20 table price
+            self.assertEqual(w["w-kean"]["coordinator_share"], 0.8)
+            lean = next(s for s in e["savers"] if s["saver_key"] == "lean_coordination")
+            self.assertEqual({x["wave"] for x in lean["waves"]}, {"w-csv", "w-kean"})
+
+
+class GutenbergReadyTests(unittest.TestCase):
+    def test_every_saver_has_a_ready_two_arm_test_on_a_real_candidate(self):
+        import json as _j
+        from pathlib import Path as _P
+        here = _P(__file__).resolve().parent
+        sys.path.insert(0, str(here))
+        import evidence as E
+        ids = {_j.loads(l)["candidate_id"] for l in (here / "ledger/candidates.jsonl").read_text().splitlines() if l.strip()}
+        for key, s in E.SAVERS.items():
+            for field in ("tool", "candidate", "arms", "matched_on", "measure", "add_test"):
+                self.assertTrue(s.get(field), (key, field))
+            self.assertEqual(set(s["arms"]), {"before", "after"})
+            self.assertIn(s["candidate"], ids, key)
+            self.assertIn("--candidate " + s["candidate"], s["add_test"])
+            self.assertTrue((here.parents[1] / s["tool"].split(" ")[0]).exists(), s["tool"])
+        text = E.render(E.measure(here.parents[1]))
+        self.assertEqual(text.count("### `"), len(E.SAVERS))
+        self.assertIn("No saving is claimed", text)

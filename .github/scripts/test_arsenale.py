@@ -507,6 +507,30 @@ class ParallelPublicationTests(StationFixture):
         self.assertEqual(publication["published_as_of"]["beta"]["input_commit"], self.input_commit)
         self.assertIn("research/beta/request.txt", publication["published_as_of"]["beta"]["changed_paths_sample"])
 
+    def test_per_job_as_of_readout_in_run_jobs(self):
+        """Gutenberg item 7: jobs/<name>/AS_OF_READOUT opts one job into Hansard's rule outside the refresh workflow."""
+        self.put("jobs/beta/AS_OF_READOUT", "daily-digest-like readout\n")
+        self.input_commit = self.commit("beta reads everything; publish it as of its input commit")
+        values, stations = self.plan()
+        artifacts, _ = self.execute(stations, sleep="0")
+        self.advance("research/beta/request.txt", "beta input v2\n")
+        result, report, _ = self.publish(values["check_order"].split(), artifacts)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn("data inputs advanced since for: beta", self.subject())
+        self.assertIn("Per-job as-of readout", self.subject())
+        self.assertEqual(report["publication"]["published_as_of"]["beta"]["input_commit"], self.input_commit)
+
+    def test_per_job_as_of_does_not_extend_to_other_jobs(self):
+        self.put("jobs/beta/AS_OF_READOUT", "only beta\n")
+        self.input_commit = self.commit("beta only")
+        values, stations = self.plan()
+        artifacts, _ = self.execute(stations, sleep="0")
+        self.advance("research/alpha/request.txt", "alpha input v2\n")
+        result, report, _ = self.publish(values["check_order"].split(), artifacts)
+        self.assertEqual(result.returncode, 3, result.stdout + result.stderr)
+        self.assertIn("alpha", report["publication"]["refused"])
+        self.assertNotIn("alpha", report["publication"].get("published_as_of", {}))
+
     def test_refresh_still_refuses_code_drift_and_its_consumers(self):
         self.assertTrue(arsenale.as_of_acceptable(
             [{"reason": "inputs_changed", "changed_path_count": 1,

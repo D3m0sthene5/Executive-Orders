@@ -1,10 +1,10 @@
 {
   "generated_from": {
-    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "107505d8a4b33d149cc799d28c49170628020c7b4cd8dd0e3a192c299eb74192",
-    "jobs/readiness-tracker/output/TRACKER.md": "99e1a568adc954cca8a68c0a32f2be091bd9d5890f32d02e073b7e4d5967820d",
-    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "3fe9716ae7ebe90b58d0538af273a9844b734add2226d92cbd3ef070a374a989",
-    "jobs/polya/output/CANDIDATE_ACTIONS.json": "29cf22d5522b6ced73085419c8438c150b4a948ffb54617b38fc1d82601481b0",
-    "jobs/polya/output/COMPARE.json": "8ec65cab87bd0ffdfaef4b98fec5f53a6bf66876cfa1b69d9b601d9195272dd3",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "59ae07bcda65a1f54f68f4184cf469d79bf815263519874542f85f60290b65af",
+    "jobs/readiness-tracker/output/TRACKER.md": "b02082fe956b18af1642474edc76b92a1b22ffe64f88b5a3588d3b886d6c2daa",
+    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "e40badb00a39073bf0a1feb34b03fce6e8746bdf1fd4706db9780757548f11a7",
+    "jobs/polya/output/CANDIDATE_ACTIONS.json": "f9fa2f6820637d92e2e1c198420ebc5bb462351e1dd56865ba3aea26b6927333",
+    "jobs/polya/output/COMPARE.json": "8c5854417efb1bb5528ae454262faabb37b698052dbcb38037f9ba59443206d8",
     "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json": "688bd3c450081288a998382e30e330ed0b51e8bfc6ce712090a6c46f9eeeee4d",
     "research/excavator/claude-tribonian-2026-11-04/REPORT.md": "6ae4b9e7ebfda4b74f02dc670f483fcea4b1874528c378448786641bcc073fd8"
   },
@@ -308,7 +308,7 @@
     {
       "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
-      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 676 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 675 includes undecided orders, which unlock nothing until they have a provisional status)",
       "orders": 0,
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "production.per_attempt",
@@ -334,12 +334,12 @@
       "prerequisites": [
         "agent time to check pages, one order at a time (cost_units orders)"
       ],
-      "tracker_reach_orders": 676,
+      "tracker_reach_orders": 675,
       "tracker_kind": "agent_check",
       "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
       "evidence": [
         {
-          "quote": "| 676 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |",
+          "quote": "| 675 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |",
           "source": "jobs/readiness-tracker/output/TRACKER.md"
         },
         {
@@ -379,7 +379,7 @@
     {
       "id": "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
       "kind": "acquisition",
-      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2223 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2222 includes undecided orders, which unlock nothing until they have a provisional status)",
       "orders": 0,
       "rate_key": "filed_per_attempt.correction",
       "cost_key": null,
@@ -396,12 +396,12 @@
       ],
       "overlaps_with": [],
       "prerequisites": [],
-      "tracker_reach_orders": 2223,
+      "tracker_reach_orders": 2222,
       "tracker_kind": "machine_job",
       "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
       "evidence": [
         {
-          "quote": "| 2,223 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |",
+          "quote": "| 2,222 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |",
           "source": "jobs/readiness-tracker/output/TRACKER.md"
         },
         {
@@ -472,7 +472,7 @@
         "acquire.nea_continuation_notices"
       ],
       "yield_lift_not_counted": {
-        "orders": 338,
+        "orders": 319,
         "applies_to": [
           "production.claim_ready.yes.fr"
         ],

@@ -261,8 +261,8 @@
   ],
   "costs": {
     "production.per_attempt": {
-      "usd": 0.37586947089337164,
-      "total_usd": 391.2801191999999,
+      "usd": 0.17818236637848225,
+      "total_usd": 185.48784340000003,
       "denominator": 1041,
       "tokens": {
         "fresh_input": 7612,
@@ -279,8 +279,8 @@
       "basis": "Production-phase agents of 34 batches with a tally, divided by 1041 orders attempted in those non-correction batches. Producer batches without a tally (o25) are excluded from numerator and denominator. Model family taken from each agent's recorded model."
     },
     "review.per_submitted": {
-      "usd": 0.3994551201768488,
-      "total_usd": 248.46108474999997,
+      "usd": 0.230801507073955,
+      "total_usd": 143.5585374,
       "denominator": 622,
       "tokens": {
         "fresh_input": 3278,
@@ -297,8 +297,8 @@
       "basis": "Review-phase agents whose batches are all tallied production batches, divided by 622 blind-review verdicts (upheld + rejected, summed from blind_review_verdicts in DISPOSITION); one verdict is one claim version judged, so re-reviews of revised versions and planted controls count. Excluded review agents (paired trial arms, re-review, untallied batches): lind-a03-A, lind-a03-B, lind-c01-A, lind-c01-B, lind-c02-A, lind-c02-B, lind-c03-A, lind-c03-B, rereview-n01. Model family taken from each agent's recorded model."
     },
     "coordination.per_attempt": {
-      "usd": 0.031767855667627284,
-      "total_usd": 33.07033775,
+      "usd": 0.016408664361191164,
+      "total_usd": 17.0814196,
       "denominator": 1041,
       "tokens": {
         "fresh_input": 434,
@@ -315,8 +315,8 @@
       "basis": "Coordinator agent, divided by 1041 production orders attempted. Lower bound: the coordinator transcript covers only the period after a context compaction. Model family taken from each agent's recorded model."
     },
     "wave.per_attempt": {
-      "usd": 0.6463127201729105,
-      "total_usd": 672.8115416999999,
+      "usd": 0.33249548549471664,
+      "total_usd": 346.12780040000007,
       "denominator": 1041,
       "tokens": {
         "fresh_input": 11324,
@@ -333,8 +333,8 @@
       "basis": "production.per_attempt + review.per_submitted x submit share (622/1041 = 0.5975 verdicts per attempted order) + coordination.per_attempt."
     },
     "wave.per_filed_dossier": {
-      "usd": 1.3675031335365853,
-      "total_usd": 672.8115416999999,
+      "usd": 0.7035117894308944,
+      "total_usd": 346.12780040000007,
       "denominator": 492,
       "tokens": {
         "fresh_input": 11324,
@@ -351,8 +351,8 @@
       "basis": "Same total as wave.per_attempt divided by 492 claims filed in production batches. A filed claim is not a certified dossier."
     },
     "correction.per_attempt": {
-      "usd": 0.5474954421686747,
-      "total_usd": 45.4421217,
+      "usd": 0.2527747337349398,
+      "total_usd": 20.9803029,
       "denominator": 83,
       "tokens": {
         "fresh_input": 944,
@@ -376,20 +376,74 @@
     "attempts": 1041,
     "basis": "Production-phase agents of the tallied batches: (fresh input + cache read + cache write) and model calls ('calls' column) divided by orders attempted. A turn is one model call."
   },
+  "kean_waves": [
+    {
+      "wave": "cujas-2026-11-08",
+      "finding": "F-20261108-cujas-usage",
+      "usd_total": 23.27,
+      "usd_basis": "mixed",
+      "usd_by_role": {
+        "coordinator": 7.83,
+        "worker": 15.44
+      },
+      "usd_by_model": {
+        "claude-opus-5-5": 20.22,
+        "claude-sonnet-5-5": 3.05
+      },
+      "orders": {
+        "attempted": 75,
+        "filed": 68,
+        "submitted": 73
+      },
+      "controls": {
+        "missed": 0,
+        "planted": 6
+      },
+      "coordinator_share": 0.3365,
+      "usd_per_attempted": 0.3103,
+      "usd_per_filed": 0.3422,
+      "filed_per_attempt": 0.9067
+    },
+    {
+      "wave": "gutenberg-2026-11-09",
+      "finding": "F-20261109-gutenberg-carnot",
+      "usd_total": 28.32,
+      "usd_basis": "list_price",
+      "usd_by_role": {
+        "coordinator": 28.32,
+        "worker": 0.0
+      },
+      "usd_by_model": {
+        "claude-haiku-5-5": 0.0,
+        "claude-opus-5-5": 28.32
+      },
+      "orders": {},
+      "controls": {},
+      "coordinator_share": 1.0
+    },
+    {
+      "wave": "haloander-2026-11-07",
+      "finding": "F-20261107-haloander-recovery",
+      "usd_total": 62.55,
+      "usd_basis": "list_price",
+      "usd_by_role": {
+        "coordinator": 45.23,
+        "worker": 17.32
+      },
+      "usd_by_model": {
+        "claude-haiku-5-5": 0.0,
+        "claude-opus-5-5": 55.06,
+        "claude-sonnet-5-5": 7.49
+      },
+      "orders": {},
+      "controls": {},
+      "coordinator_share": 0.7231
+    }
+  ],
   "price_table": {
-    "sonnet": {
-      "input": 3.0,
-      "output": 15.0,
-      "cache_read": 0.3,
-      "cache_write": 3.75
-    },
-    "opus": {
-      "input": 5.0,
-      "output": 25.0,
-      "cache_read": 0.5,
-      "cache_write": 6.25
-    },
-    "source": "assumption: Anthropic API list prices; plan allowances are not published"
+    "source": "jobs/necker-costs/PRICES.json",
+    "retrieved": "2026-11-06",
+    "basis": "per exact model; 5-minute and 1-hour cache writes at their own rates"
   },
   "waves": [
     {
