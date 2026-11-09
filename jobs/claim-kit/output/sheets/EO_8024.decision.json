@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3c2f3f37b665146363a795c31bb4e46fac6a8910e177dcc6eea0d136c01e87b9",
+  "dossier_sha256": "383d8fdb8289748fc8fabbb693161afed5876dc16ce95f775053c8980b41133b",
   "instrument_id": "EO:8024",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,30 +34,30 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified. No confident operative boundary found; unstructured text retained for review.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
         "complete_text_confirmed": true,
-        "grade": "mirror_transcription",
+        "grade": "machine_read_government_printed_copy",
         "identity_confirmed": true,
         "instrument_id": "EO:8024",
-        "pages_confirmed": true,
+        "pages_confirmed": false,
         "prior_confirmation": {
           "fragments": [
             {
               "acceptable_as_original": false,
               "complete_text": null,
-              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
-              "grade": "mirror_transcription",
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
               "instrument_id": "EO:8024",
-              "requires_page_check": true,
-              "sha256": "ed01c8ff4541502084b580ddcaed9ebf8d8ed75396a7f5dc7d7b6df4702496af",
-              "text_path": "jobs/app-executive-orders/output/texts/executive-order-8024-exemption-percy-baker-from-compulsory-retirement-for-age.txt",
-              "text_sha256": "5f831d64c315994836ff800af23b8f22c9fb51c0bb525a42024adf04c6a26f1b",
-              "url": "https://www.presidency.ucsb.edu/documents/executive-order-8024-exemption-percy-baker-from-compulsory-retirement-for-age"
+              "requires_page_check": false,
+              "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_8024.txt",
+              "text_sha256": "ce23e79d8bd38fe864eb9da957999004f7c03b5b5d11f1551673ad709263c23b",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_7262-8027.djvu"
             }
           ],
           "record": {
@@ -66,58 +66,58 @@
             "confirmed": true,
             "evidence": {
               "complete_detail": {
-                "end_cue_kind": "signature",
+                "end_cue_kind": "dated_line",
                 "start_kind": "title_words"
               },
               "complete_route": "own_start_and_end",
-              "first_cue_snippet": "Whereas, in my judgment, the public interest requires that Percy A. Baker, super",
-              "identity_detail": {
-                "source_heading": "Executive Order 8024—Exemption of Percy A. Baker From Compulsory Retirement for Age",
-                "source_heading_producer": "app-executive-orders",
-                "title_overlap_body_opening": 0.8333,
-                "title_overlap_heading": 1.0
-              },
-              "identity_route": "source_heading",
-              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "first_cue_snippet": "DEPOSITED BY THE UNITED STATES OF AMERICA  pec 30 \"38  Executive Order  EXEMPTIO",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "for a period of one year ending December 31, 1939.",
               "matched_date": "December 9, 1938",
-              "matched_number": null,
-              "pages_detail": {
-                "app_date": "1938-12-09",
-                "app_heading": "Executive Order 8024—Exemption of Percy A. Baker From Compulsory Retirement for ",
-                "app_subject_overlap": 0.8333
-              },
+              "matched_number": "No. 8024",
+              "pages_detail": {},
               "register_date": "1938-12-09",
               "register_number": "8024",
-              "similarity": [],
-              "skipped_witnesses": [
+              "similarity": [
                 {
-                  "grade": "machine_read_government_printed_copy",
-                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_8024.txt",
-                  "why": "text_hash_mismatch"
-                },
+                  "agrees": false,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.7,
+                  "length_ratio": 1.2427,
+                  "producer": "app-executive-orders",
+                  "sha256": "ed01c8ff4541502084b580ddcaed9ebf8d8ed75396a7f5dc7d7b6df4702496af"
+                }
+              ],
+              "skipped_witnesses": [
                 {
                   "grade": "official_printing",
                   "text_path": "jobs/photius-gpo-volumes/output/texts/EO_8024.txt",
                   "why": "grade_not_in_working_text_policy"
                 }
               ],
-              "source_heading": "Executive Order 8024—Exemption of Percy A. Baker From Compulsory Retirement for Age",
-              "text_chars": 760
+              "text_chars": 946
             },
-            "grade": "mirror_transcription",
+            "grade": "machine_read_government_printed_copy",
             "identity_confirmed": true,
             "instrument_id": "EO:8024",
             "method": "machine",
-            "pages_confirmed": true,
+            "pages_confirmed": null,
             "reasons": [],
-            "requires_page_check": true,
+            "requires_page_check": false,
             "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
             "schema": "eo-lachmann-confirmation/v1",
-            "sha256": "ed01c8ff4541502084b580ddcaed9ebf8d8ed75396a7f5dc7d7b6df4702496af",
+            "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
             "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
-            "text_path": "jobs/app-executive-orders/output/texts/executive-order-8024-exemption-percy-baker-from-compulsory-retirement-for-age.txt",
-            "text_sha256": "5f831d64c315994836ff800af23b8f22c9fb51c0bb525a42024adf04c6a26f1b",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_8024.txt",
+            "text_sha256": "ce23e79d8bd38fe864eb9da957999004f7c03b5b5d11f1551673ad709263c23b",
             "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_8024.txt"
+              },
               {
                 "grade": "mirror_transcription",
                 "producer": "app-executive-orders",
@@ -128,6 +128,16 @@
           },
           "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
         },
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8024.txt",
+        "text_sha256": "ce23e79d8bd38fe864eb9da957999004f7c03b5b5d11f1551673ad709263c23b"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "mirror_transcription",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8024",
+        "pages_confirmed": false,
         "sha256": "ed01c8ff4541502084b580ddcaed9ebf8d8ed75396a7f5dc7d7b6df4702496af",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-8024-exemption-percy-baker-from-compulsory-retirement-for-age.txt",
         "text_sha256": "5f831d64c315994836ff800af23b8f22c9fb51c0bb525a42024adf04c6a26f1b"
@@ -151,16 +161,6 @@
         "sha256": "ed01c8ff4541502084b580ddcaed9ebf8d8ed75396a7f5dc7d7b6df4702496af",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-8024-ed01c8ff45.txt",
         "text_sha256": "fb67cdc220e0f15067840db84136335581957a4d625158f2cfc76284e39b1f8a"
-      },
-      {
-        "complete_text_confirmed": false,
-        "grade": "compiled_transcription_lead",
-        "identity_confirmed": false,
-        "instrument_id": "EO:8024",
-        "pages_confirmed": false,
-        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8024.txt",
-        "text_sha256": "db89901da17f1bf68cabb26b8bbb3a4e960ad81ea8d97f392f35d4923a3ccf07"
       }
     ],
     "quotation_recheck_required": true,

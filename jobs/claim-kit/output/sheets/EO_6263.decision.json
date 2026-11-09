@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "f59a7efc5af158a8a61d2f29313c6a64f547cdd52d26e873d2fe65badcd3a867",
+  "dossier_sha256": "e97334bdacc6d3003a4ee90e74842e4f15e5cdcd186ceabb569d485b3ba7990d",
   "instrument_id": "EO:6263",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,12 +34,105 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
     "target provision not located: EO:7167"
   ],
   "working_text": {
     "confirmations": [
+      {
+        "complete_text_confirmed": true,
+        "grade": "machine_read_government_printed_copy",
+        "identity_confirmed": true,
+        "instrument_id": "EO:6263",
+        "pages_confirmed": false,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6263",
+              "requires_page_check": false,
+              "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6263.txt",
+              "text_sha256": "c20a27afcf661aaf630675415493f25da510fd2e98a2f05e3e1de38b022ab84b",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6251-6479.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "dated_line",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": " al AG  Executive Order  EXEMPTION OF JOE SMITH FROM COMPULSORY RETIREMENT FOR A",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "continued in the service until August 31, 1935;",
+              "matched_date": "August 30, 1933",
+              "matched_number": "No. 6263",
+              "pages_detail": {},
+              "register_date": "1933-08-30",
+              "register_number": "6263",
+              "similarity": [
+                {
+                  "agrees": true,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.863,
+                  "length_ratio": 1.1,
+                  "producer": "app-executive-orders",
+                  "sha256": "5d7b50aaae403e9f710460fd25b5969fb6f9f4c81e665c5ac9ff19e29d2a6271"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6263.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "text_chars": 1438
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6263",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6263.txt",
+            "text_sha256": "c20a27afcf661aaf630675415493f25da510fd2e98a2f05e3e1de38b022ab84b",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6263.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "5d7b50aaae403e9f710460fd25b5969fb6f9f4c81e665c5ac9ff19e29d2a6271",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6263-exemption-joe-smith-from-compulsory-retirement-for-age.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6263.txt",
+        "text_sha256": "c20a27afcf661aaf630675415493f25da510fd2e98a2f05e3e1de38b022ab84b"
+      },
       {
         "complete_text_confirmed": false,
         "grade": "mirror_transcription",
@@ -69,16 +162,6 @@
         "sha256": "5d7b50aaae403e9f710460fd25b5969fb6f9f4c81e665c5ac9ff19e29d2a6271",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6263-5d7b50aaae.txt",
         "text_sha256": "f9d3f49e96ba3d3ce74b29134687f74bbe47d70931652970880aafe003b7c44f"
-      },
-      {
-        "complete_text_confirmed": false,
-        "grade": "compiled_transcription_lead",
-        "identity_confirmed": false,
-        "instrument_id": "EO:6263",
-        "pages_confirmed": false,
-        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6263.txt",
-        "text_sha256": "e913c14a4d1c83635337943aad2302b3f02489b7dd5db67cd693e416d5acc181"
       },
       {
         "complete_text_confirmed": false,
