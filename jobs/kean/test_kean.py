@@ -5,6 +5,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -205,6 +206,27 @@ class KeanTest(unittest.TestCase):
             self.run_cli("add-ask", "--question", q, "--why", "w", "--asked-by", "Claude", "--date", "2026-10-28")
         ids = [r["id"] for r in kean.current(kean.load(kean.Repo(self.root), "asks"))]
         self.assertEqual(ids, ["A-20261028-1", "A-20261028-2"])
+
+
+class ChainHealthTest(unittest.TestCase):
+    """Gutenberg item 4: Davy's verdict appears at the top of the brief; absent or malformed files show nothing."""
+
+    def test_line(self):
+        import tempfile, json as _j
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import kean as K
+        with tempfile.TemporaryDirectory() as t:
+            self.assertIsNone(K.chain_health(t))
+            p = Path(t) / K.HEALTH
+            p.parent.mkdir(parents=True)
+            p.write_text("{bad")
+            self.assertIsNone(K.chain_health(t))
+            p.write_text(_j.dumps({"verdict": "fail", "summary": "FAIL in drafts - Draft summary population stale",
+                                   "checked_utc": "2026-11-09T06:00:00Z", "input_commit": "abc"}))
+            line = K.chain_health(t)
+            self.assertIn("Chain health (FAIL", line)
+            self.assertIn("Draft summary population stale", line)
+            self.assertIn("before preparing a paid batch", line)
 
 
 if __name__ == "__main__":

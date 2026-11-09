@@ -395,6 +395,13 @@ def main():
                       "generation_id": generation}
             if refusal:
                 status["blocked_reason"] = refusal
+            # Gutenberg: a health-check job publishes its own pass/fail verdict (output/VERDICT.json) and STATUS says it.
+            if (result / "VERDICT.json").is_file():
+                try:
+                    v = json.loads((result / "VERDICT.json").read_text(encoding="utf-8"))
+                    status["job_verdict"] = {"verdict": str(v.get("verdict")), "summary": str(v.get("summary"))[:500]}
+                except (OSError, ValueError, AttributeError):
+                    status["job_verdict"] = {"verdict": "unreadable", "summary": "unreadable VERDICT.json"}
             write(result / "STATUS.json", status)
             if captured:
                 shutil.copyfile(inputs, result / freshness.MANIFEST)

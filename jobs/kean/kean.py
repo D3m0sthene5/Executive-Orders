@@ -266,6 +266,24 @@ def strip_drift(text):
     return re.sub(re.escape(DRIFT_BEGIN) + r".*?" + re.escape(DRIFT_END), "", text, flags=re.S)
 
 
+HEALTH = "jobs/davy-chain-health/output/HEALTH.json"
+
+
+def chain_health(repo):
+    """Gutenberg: Davy's daily claim-drafts -> claim-kit health verdict, one line, so a break is seen at session start."""
+    try:
+        h = json.loads(open(os.path.join(str(repo), HEALTH), encoding="utf-8").read())
+    except (OSError, ValueError):
+        return None
+    if not isinstance(h, dict) or h.get("verdict") not in ("pass", "fail"):
+        return None
+    mark = "FAIL" if h["verdict"] == "fail" else "pass"
+    return (f"**Chain health ({mark}, {str(h.get('checked_utc', ''))[:16]}Z, as of `{str(h.get('input_commit') or '')[:10]}`):** "
+            + _one(str(h.get("summary", "")), 300)
+            + (" Fix it before preparing a paid batch (`" + HEALTH.replace("HEALTH.json", "HEALTH.md") + "`)."
+               if h["verdict"] == "fail" else ""))
+
+
 def render_brief(repo, reg=None):
     if reg is None:
         reg = {k: load(repo, k) for k in FILES}
@@ -287,6 +305,10 @@ def render_brief(repo, reg=None):
     w("- **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and")
     w("  owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.")
     w("")
+    health = chain_health(repo)
+    if health:
+        w(health)
+        w("")
     w(f"## Waiting for the owner ({len(open_asks)})")
     w("")
     if open_asks:
