@@ -13,6 +13,7 @@ import sys
 import threading
 import time
 
+import ariadne
 import result_freshness as freshness
 
 LIMIT = 95 * 1024 * 1024
@@ -388,7 +389,7 @@ def main():
         started = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         inputs = repo / "oversized/runner-freshness" / (name + "-inputs.json")
         code, blocked, active, stopped, captured = 1, [], False, False, False
-        generation = None
+        generation, traced = None, None
         watch = None  # never carry the previous job's Rattle Watch report into this job's STATUS
         file_limit = LIMIT
         try:
@@ -444,7 +445,11 @@ def main():
                     audit.parent.mkdir(parents=True, exist_ok=True)
                     args = [sys.executable, str(repo / ".github/scripts/read_audit.py"), "run", "--record", str(audit),
                             "--", str(folder / "job.py")]
-                code = command(args, out / "log.txt", env, watch)
+                # Ariadne (shadow): with ARIADNE_TRACE=1 on Linux, record which tracked files the job reads.
+                args, job_env, trace = ariadne.wrap(args, name, token, folder, env)
+                began = time.monotonic()
+                code = command(args, out / "log.txt", job_env, watch)
+                traced = (trace, code, time.monotonic() - began, watch["usual"])
             if code == 0 and audit is not None:
                 # AUDIT_READS holding "report" records without enforcing (used once, to derive a declaration).
                 mode = "report" if (folder / "AUDIT_READS").read_text(encoding="utf-8").split("#", 1)[0].strip() == "report" else "enforce"
@@ -505,6 +510,8 @@ def main():
                 except (OSError, ValueError, AttributeError):
                     status["job_verdict"] = {"verdict": "unreadable", "summary": "unreadable VERDICT.json"}
             write(result / "STATUS.json", status)
+            if traced:
+                ariadne.finish(name, repo, *traced)  # after STATUS.json: parsing is not job time
             if captured:
                 shutil.copyfile(inputs, result / freshness.MANIFEST)
             record = {"job": name, "exit_code": code, "publish_output": code == 0}

@@ -6,6 +6,8 @@
 
 **Spend tokens where Bentham says (owner, 2026-11-05):** before any agent wave, read `jobs/bentham/output/PLAN.md` (rebuilt daily from measured yields, costs and the orders each action unlocks) and run ranked actions in rank order within the owner's budget. After each batch run `python3 -I jobs/bentham/bentham.py gate --action ID --batches FILE` and stop on STOP. When the wave ends, run `bentham.py usage --wave NAME --phase LABEL` and commit the sanitized output so the next plan is measured on it. See `jobs/bentham/README.md`.
 
+**Lean tree (2026-11-08):** never list or search the whole ~194,000-file tree; name the folder you need. The root `.ignore` keeps Grep out of outputs and data unless you give their path, and `.claude/hooks/ockham_lean_tree.py` refuses bare `git ls-files`, `find .`, `ls -R` and root-wide `**` globs. Details in `AGENTS.md`.
+
 At the beginning of every session read `HANDOFF/KEAN.md`, `HANDOFF/README.md`, the newest entry of each agent's notes (including `HANDOFF/notes-astra.md`), plus `AGENTS.md`. GitHub is the coordination and evidence base; use it instead of asking the owner to transfer chat transcripts.
 
 Before leaving, write the latest concise work summary and actionable requests to `HANDOFF/notes-claude.md` only. Do not edit Astra/Codex notes. For scripts too large for the current execution environment, commit a bounded job under `jobs/<name>/` with `needs.txt`; use GitHub Actions and verify its `output/STATUS.json`.

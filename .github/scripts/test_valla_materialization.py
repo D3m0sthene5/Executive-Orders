@@ -42,7 +42,7 @@ class VallaMaterializationTests(unittest.TestCase):
         self.old_bytecode = sys.dont_write_bytecode
         sys.dont_write_bytecode = True
         self.addCleanup(setattr, sys, 'dont_write_bytecode', self.old_bytecode)
-        for name in ('materialize_job_inputs.py', 'result_freshness.py', 'run_jobs.py', 'run_jobs.sh'):
+        for name in ('materialize_job_inputs.py', 'result_freshness.py', 'run_jobs.py', 'ariadne.py', 'run_jobs.sh'):
             self.copy(SCRIPTS / name, '.github/scripts/' + name)
         for name in ('valla.py', 'premises.json', 'job.py', 'needs.txt', 'inputs.txt', 'triggers.txt'):
             source = SOURCE / 'jobs/valla' / name
@@ -326,7 +326,7 @@ class VallaMaterializationTests(unittest.TestCase):
     def test_changed_implementation_resolver_and_materializer_both_decline_certificate(self):
         for path in ('jobs/valla/valla.py', 'jobs/valla/inputs.txt', 'jobs/_lib/cache_cap.py',
                      '.github/scripts/result_freshness.py', '.github/scripts/materialize_job_inputs.py',
-                     '.github/scripts/run_jobs.py', '.github/scripts/run_jobs.sh',
+                     '.github/scripts/run_jobs.py', '.github/scripts/ariadne.py', '.github/scripts/run_jobs.sh',
                      '.github/workflows/run-jobs.yml'):
             with self.subTest(path=path):
                 file = self.repo / path
