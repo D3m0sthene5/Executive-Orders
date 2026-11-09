@@ -650,11 +650,23 @@
   "note": "A planted opinion missing here with complete_run true means the bulk scan missed it."
  },
  "api_crosscheck": {
-  "ran": false,
-  "blocked_by_robots": true,
-  "reason": "robots check of www.courtlistener.com failed",
-  "detail": "blocked_by_robots_txt",
-  "token_used": false,
+  "ran": true,
+  "requests": 2,
+  "answered": 1,
+  "counts_present": 1,
+  "rows": [
+   {
+    "eo": "EO:10340",
+    "search_index_count": 4,
+    "bulk_scan_clusters": 9
+   },
+   {
+    "eo": "EO:9066",
+    "error": "HTTP 429 (rate limited); stopped"
+   }
+  ],
+  "robots_basis": "robots.txt answered 4xx (RFC 9309 unavailable); documented authenticated API, owner ruling",
+  "note": "The search index tokenises numbers and matches phrases loosely; a count is a rough bound, not a recall test.",
   "from_cache": false
  },
  "opinion_level": {
@@ -932,5 +944,5 @@
   "false_hit_rate_on_negatives": 0.0,
   "stream_control_recall": 1.0
  },
- "generated_utc": "2026-11-07T06:18:06Z"
+ "generated_utc": "2026-11-09T14:07:40Z"
 }
