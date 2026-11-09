@@ -1,19 +1,19 @@
 test_margin_rejects_a_near_twin (test_held.HeldTests.test_margin_rejects_a_near_twin) ... ok
 test_own_segment_cuts_neighbours (test_held.HeldTests.test_own_segment_cuts_neighbours) ... ok
 test_real_run_controls (test_held.HeldTests.test_real_run_controls)
-On the committed data the planted controls pass and no false pair is accepted. ... controls: {"positives": 88, "positives_confirmed": 86, "negatives": 6899, "negatives_accepted": 0, "false_accept_upper95": 0.0004, "neighbour_also_printed_on_passage": 11, "negatives_by_route": {"commons_gpo_ocr": 1950, "commons_gpo_volume": 2517, "govinfo_fr": 158, "ia_hoover": 2274}, "sensitivity": 0.977, "passed": true}
+On the committed data the planted controls pass and no false pair is accepted. ... controls: {"positives": 88, "positives_confirmed": 86, "negatives": 6834, "negatives_accepted": 0, "false_accept_upper95": 0.0004, "neighbour_also_printed_on_passage": 11, "negatives_by_route": {"commons_gpo_ocr": 1950, "commons_gpo_volume": 2452, "govinfo_fr": 158, "ia_hoover": 2274}, "sensitivity": 0.977, "passed": true}
 ok
 test_upper_bound (test_held.HeldTests.test_upper_bound) ... ok
 
 ----------------------------------------------------------------------
-Ran 4 tests in 65.564s
+Ran 4 tests in 72.725s
 
 OK
 # Mabillon held printings: official printings already held, proved by text
 
-Government-printed passages held by hathi-gpo-orders: 2482. Orders without a counted original among them: 2037, of which 870 are in Mabillon's frame.
+Government-printed passages held by hathi-gpo-orders: 2460. Orders without a counted original among them: 2015, of which 870 are in Mabillon's frame.
 Frame orders located with every strong check passed: **762**; leads: 108.
-Planted controls: 86/88 true pairs confirmed; 0/6899 false pairs accepted (95% upper bound on the false-accept rate 0.0004); passed.
+Planted controls: 86/88 true pairs confirmed; 0/6834 false pairs accepted (95% upper bound on the false-accept rate 0.0004); passed.
 
 | Route | Verdict | In frame | Orders |
 |---|---|---|---:|
@@ -21,9 +21,9 @@ Planted controls: 86/88 true pairs confirmed; 0/6899 false pairs accepted (95% u
 | commons_gpo_ocr | lead | yes | 44 |
 | commons_gpo_ocr | strong | no | 213 |
 | commons_gpo_ocr | strong | yes | 419 |
-| commons_gpo_volume | lead | no | 106 |
+| commons_gpo_volume | lead | no | 100 |
 | commons_gpo_volume | lead | yes | 49 |
-| commons_gpo_volume | strong | no | 485 |
+| commons_gpo_volume | strong | no | 469 |
 | commons_gpo_volume | strong | yes | 270 |
 | govinfo_fr | lead | yes | 13 |
 | govinfo_fr | strong | yes | 41 |
@@ -35,12 +35,12 @@ Planted controls: 86/88 true pairs confirmed; 0/6899 false pairs accepted (95% u
 Strong rule: Tischendorf's (own number heading or closing tag on the pages (an OCR-damaged or mid-line heading only with a text score >= 0.6; in a compilation that prints no numbers, the signing date), text fingerprint score >= 0.5, distinctive fingerprint (>= 8 rare shingles), government-printed source, and no planted control failed this run); scored on the order's own printed segment (between the previous closing number tag and its own); and the claimed order's text beats every order numbered within 3 of it by at least 0.15.
 
 Machine locations, not authentication. The readiness tracker does not read this job yet.
-controls: {"positives": 88, "positives_confirmed": 86, "negatives": 6899, "negatives_accepted": 0, "false_accept_upper95": 0.0004, "neighbour_also_printed_on_passage": 11, "negatives_by_route": {"commons_gpo_ocr": 1950, "commons_gpo_volume": 2517, "govinfo_fr": 158, "ia_hoover": 2274}, "sensitivity": 0.977, "passed": true}
+controls: {"positives": 88, "positives_confirmed": 86, "negatives": 6834, "negatives_accepted": 0, "false_accept_upper95": 0.0004, "neighbour_also_printed_on_passage": 11, "negatives_by_route": {"commons_gpo_ocr": 1950, "commons_gpo_volume": 2452, "govinfo_fr": 158, "ia_hoover": 2274}, "sensitivity": 0.977, "passed": true}
 # Mabillon held printings: official printings already held, proved by text
 
-Government-printed passages held by hathi-gpo-orders: 2482. Orders without a counted original among them: 2037, of which 870 are in Mabillon's frame.
+Government-printed passages held by hathi-gpo-orders: 2460. Orders without a counted original among them: 2015, of which 870 are in Mabillon's frame.
 Frame orders located with every strong check passed: **762**; leads: 108.
-Planted controls: 86/88 true pairs confirmed; 0/6899 false pairs accepted (95% upper bound on the false-accept rate 0.0004); passed.
+Planted controls: 86/88 true pairs confirmed; 0/6834 false pairs accepted (95% upper bound on the false-accept rate 0.0004); passed.
 
 | Route | Verdict | In frame | Orders |
 |---|---|---|---:|
@@ -48,9 +48,9 @@ Planted controls: 86/88 true pairs confirmed; 0/6899 false pairs accepted (95% u
 | commons_gpo_ocr | lead | yes | 44 |
 | commons_gpo_ocr | strong | no | 213 |
 | commons_gpo_ocr | strong | yes | 419 |
-| commons_gpo_volume | lead | no | 106 |
+| commons_gpo_volume | lead | no | 100 |
 | commons_gpo_volume | lead | yes | 49 |
-| commons_gpo_volume | strong | no | 485 |
+| commons_gpo_volume | strong | no | 469 |
 | commons_gpo_volume | strong | yes | 270 |
 | govinfo_fr | lead | yes | 13 |
 | govinfo_fr | strong | yes | 41 |
