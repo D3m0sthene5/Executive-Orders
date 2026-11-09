@@ -1,41 +1,41 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-11-06T05:19:11Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-11-09T12:15:54Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 3521 orders** (clark_identified 13, clark_identified_not_in_universe 42, transcription_only 3466).
+**Scope: 2494 orders** (clark_identified 1, clark_identified_not_in_universe 17, transcription_only 2476).
 
 ## Where they stand on the ladder
 
 | Route | Status | Orders |
 |---|---|---:|
-| proquest_phrase_search | manual_lead | 2479 |
-| proquest_local | pinakes_file_record_pages_unchecked | 286 |
-| gpo_bound_volumes | in_volume_range_not_found | 169 |
-| federal_register | queued_result_not_published | 128 |
-| federal_register | in_ofr_catalog_no_citation | 121 |
-| ofr_hoover_compilation | in_volume_range_not_found | 115 |
-| federal_register | retrieval_recorded_needs_review | 115 |
-| federal_register | fr_era_not_in_ofr_catalog | 84 |
-| federal_register | queued_not_attempted_budget | 22 |
-| proquest_supplied_link | awaiting_acquisition | 2 |
+| proquest_phrase_search | manual_lead | 2154 |
+| proquest_local | pinakes_file_record_pages_unchecked | 142 |
+| federal_register | fr_era_not_in_ofr_catalog | 81 |
+| federal_register | retrieval_recorded_needs_review | 75 |
+| federal_register | in_ofr_catalog_no_citation | 16 |
+| federal_register | queued_result_not_published | 13 |
+| gpo_bound_volumes | in_volume_range_not_found | 6 |
+| federal_register | queued_retry_later | 5 |
+| federal_register | not_queued | 1 |
+| proquest_supplied_link | awaiting_acquisition | 1 |
 
 ## ProQuest folder
 
-2750 PDF files (2750 unique by SHA-256) cover 2750 orders; 286 of them are in Lewis's scope and 2464 belong to orders outside it (Clark's no-text orders, mostly). 2440 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 288 for orders in this scope.
+2750 PDF files (2750 unique by SHA-256) cover 2750 orders; 142 of them are in Lewis's scope and 2608 belong to orders outside it (Clark's no-text orders, mostly). 2440 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 143 for orders in this scope.
 
 Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2750 inventory records; missing values are unknown, not verification failures or successful checks. Pinakes order records are reused without rereading PDFs or duplicating its fragments.
 
 ## Proposed fetch requests
 
-0 requests for the source-ladder job in `PROPOSED_FETCH_REQUESTS.jsonl` (validated with the source-ladder request contract: True). To enqueue them: `python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-originals/output/PROPOSED_FETCH_REQUESTS.jsonl --queue research/readiness/FETCH_QUEUE.jsonl`.
+1 requests for the source-ladder job in `PROPOSED_FETCH_REQUESTS.jsonl` (validated with the source-ladder request contract: True). To enqueue them: `python jobs/source-ladder/request_contract.py enqueue --input jobs/lewis-originals/output/PROPOSED_FETCH_REQUESTS.jsonl --queue research/readiness/FETCH_QUEUE.jsonl`.
 
 ## Next actions by owner
 
 | Owner | Orders |
 |---|---:|
-| owner | 2481 |
-| agent_check | 890 |
-| machine_job | 150 |
+| owner | 2155 |
+| agent_check | 320 |
+| machine_job | 19 |
 
 ## First twenty rows
 
@@ -44,7 +44,6 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 | EO:1 | 1862-02-14 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:2 | 1862-02-27 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:3 | 1865-04-29 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:4 | 1865-05-09 | proquest_local | pinakes_file_record_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:5 | 1866-04-13 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:6 | 1868-07-20 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:8 | 1872-04-16 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
@@ -52,19 +51,20 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 | EO:9 | 1873-01-17 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:9-2 | 1873-01-28 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:11 | 1873-08-05 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:13 | 1874-03-09 | proquest_local | pinakes_file_record_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:16 | 1874-05-29 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:17 | 1874-08-31 | proquest_local | pinakes_file_record_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:18 | 1875-07-31 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:19 | 1875-11-22 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:20 | 1876-08-21 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:21 | 1881 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:22 | 1884-04-09 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:23-1 | 1885 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:24 | 1885-11-25 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:25 | 1885 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:27 | 1887-10-24 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 
 ## Web search (online stage)
 
-100 of 3521 targets advanced this run (2939 never searched yet); 730 of 1500 requests used. 8315 hits on file, 91 pages confirmed to name the order (58 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+100 of 2494 targets advanced this run (1850 never searched yet); 492 of 1500 requests used. 9682 hits on file, 101 pages confirmed to name the order (65 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
@@ -72,12 +72,12 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 | bing_rss | blocked_by_robots_txt |
 | brave_api | blocked_by_robots_txt |
 | brave_html | blocked_by_robots_txt |
-| duckduckgo_html | error |
-| duckduckgo_lite | error |
+| duckduckgo_html | http_403 |
+| duckduckgo_lite | http_403 |
 | federal_register_api | ok |
 | google_books | http_429 |
 | google_cse | needs_key |
-| govinfo_search_page | ok |
+| govinfo_search_page | blocked_by_robots_txt |
 | hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
 | loc_books | http_429 |
