@@ -1,8 +1,8 @@
 # Mabillon held printings: official printings already held, proved by text
 
-Government-printed passages held by hathi-gpo-orders: 2460. Orders without a counted original among them: 2015, of which 870 are in Mabillon's frame.
+Government-printed passages held by hathi-gpo-orders: 2482. Orders without a counted original among them: 2037, of which 870 are in Mabillon's frame.
 Frame orders located with every strong check passed: **762**; leads: 108.
-Planted controls: 86/88 true pairs confirmed; 0/6834 false pairs accepted (95% upper bound on the false-accept rate 0.0004); passed.
+Planted controls: 86/88 true pairs confirmed; 0/6899 false pairs accepted (95% upper bound on the false-accept rate 0.0004); passed.
 
 | Route | Verdict | In frame | Orders |
 |---|---|---|---:|
@@ -10,9 +10,9 @@ Planted controls: 86/88 true pairs confirmed; 0/6834 false pairs accepted (95% u
 | commons_gpo_ocr | lead | yes | 44 |
 | commons_gpo_ocr | strong | no | 213 |
 | commons_gpo_ocr | strong | yes | 419 |
-| commons_gpo_volume | lead | no | 100 |
+| commons_gpo_volume | lead | no | 106 |
 | commons_gpo_volume | lead | yes | 49 |
-| commons_gpo_volume | strong | no | 469 |
+| commons_gpo_volume | strong | no | 485 |
 | commons_gpo_volume | strong | yes | 270 |
 | govinfo_fr | lead | yes | 13 |
 | govinfo_fr | strong | yes | 41 |
