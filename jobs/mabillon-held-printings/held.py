@@ -354,13 +354,15 @@ def main(out=None, root=REPO):
             continue
         strong = v == "strong"
         tp = f"texts/{re.sub(r'[^A-Za-z0-9]+', '_', iid)}.txt"
-        header = (f"Instrument: {iid}\nSource: {d.get('url')}\nSHA-256 of the source file: {d.get('sha256')}\n"
-                  f"Location: {d.get('page_or_item')}\nGovernment-printed passage saved by hathi-gpo-orders "
-                  f"({GOV_ROUTES[h['route']]}); machine OCR, may contain recognition errors and neighbouring text.\n\n")
-        (out / tp).write_text(header + text, encoding="utf-8")
+        # The file is the government-printed passage alone, so text_sha256 is the hash of the file as written (every
+        # consumer verifies text_path against it). Its provenance (source URL and SHA-256, location, route, source
+        # kind, match) is in this fragment, not in the file: until 2026-11-09 the file also carried a header built
+        # only from those fields (montfaucon-page-check rebuilds it to verify older page-check pins).
+        body = text.encode("utf-8")
+        (out / tp).write_bytes(body)
         data = {"url": d.get("url"), "sha256": d.get("sha256"), "page_or_item": d.get("page_or_item"),
                 "source_id": f"{JOB}:{iid}:{(d.get('sha256') or '')[:12]}", "text_path": tp,
-                "text_sha256": hashlib.sha256(text.encode()).hexdigest(),
+                "text_sha256": hashlib.sha256(body).hexdigest(),
                 "signing_date": reg.get("date", ""), "title": reg.get("title", ""), "route": f"held/{h['route']}",
                 "location_confidence": "high" if strong else "medium", "location_verified": False,
                 "needs_page_check": not strong,

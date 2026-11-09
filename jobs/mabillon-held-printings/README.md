@@ -51,6 +51,15 @@ replaced), 244 leads.
 `acceptable_as_original: false`, `needs_page_check` false only for strong), `SOURCES.jsonl`, `FINDS.csv` (every
 passage: verdict, score, marker), `texts/`, `SUMMARY.json`, `REPORT.md`.
 
+Each `texts/EO_N.txt` is the government-printed passage alone, and `data.text_sha256` is the SHA-256 of that file as
+written, which is what every consumer verifies. Its provenance stays in the fragment: source `url` and `sha256` (also
+in `sources`), `page_or_item`, `route`, `match` (score, own-number marker, `source_kind`, reference) and the
+`confidence_note`. Until 2026-11-09 the file also began with a five-line header built only from those fields, while
+`text_sha256` covered the passage alone, so no file matched its own hash and Lachmann, the claim checker and the
+fragment cache skipped every Mabillon text (Kean F-20261106-ready-drop-26-mabillon-hash). The hash value of every
+existing fragment is unchanged by the fix; `montfaucon-page-check` rebuilds the retired header to verify page checks
+pinned before it.
+
 ## What it does not do
 
 No network, no status, identity, census, codebook or count change. The tracker does not read this job until the

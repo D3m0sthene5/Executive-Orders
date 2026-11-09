@@ -26,7 +26,12 @@ set `target.text_hash_scope=body_after_first_blank_line` and pin both the
 declared body hash in `target.text_sha256` and the entire held file in
 `target.text_file_sha256`. The validator checks both raw byte hashes and
 requires the delimiter. Other jobs use the whole-file text hash and cannot
-declare this scope.
+declare this scope. Since 2026-11-09 Mabillon writes the passage alone (its
+`text_sha256` is then the whole-file hash, so new records need no scope). A
+record pinned with this scope still validates when the held file is exactly
+the pinned body: the retired header is rebuilt from the pinned source
+fragment's own fields (`mabillon_legacy_header`) and header plus body must
+hash to the pinned `text_file_sha256`.
 `target.page_images` is a nonempty array for passes. Include every page from
 the start through the closing, each with held `path` (repository relative),
 `sha256`, image `url`, `source_url`, unique `page_or_item`, `cited_scope`, and
