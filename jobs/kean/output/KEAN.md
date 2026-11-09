@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (13)
+## Waiting for the owner (14)
 
-**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**, **A-20261108-lean-main**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -48,13 +48,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 264; `search` finds the rest)
+## Newest results (6 of 268; `search` finds the rest)
 
+- 2026-11-08 F-20261109-valla-certificate-stale-on-main **analysis**: Checked the Valla materialization certificates against main while fixing PR 243's Road tests (runner fixtures… Lesson: Re-certify Valla only after auditing the 14 in-scope commits since 11fd9f42e2 (procedure: research/progress/integration-20261104/VALLA_CERTIFICATE.md); any runner change, including Ariadne, needs tha…
+- 2026-11-08 F-20261108-ockham-agent-search **partly worked**: Stress-tested repo-carried ways to keep agents out of bulk files: a root .ignore in a scratch repo against Cl… Lesson: Use .ignore for ripgrep tools (Claude Grep, Codex rg, VS Code) plus the Claude hook and AGENTS.md rule; API connectors need a tree change, an owner decision (see ask A-20261108-lean-main).
 - 2026-11-08 F-20261108-montfaucon-control-binding **failed**: Low-tier blind page reviewers on Panama 1922 and July 1940 Federal Register controls in pilot m001 Lesson: On multi-order printed pages, bind the quoted operative sentence to its own order number and closing. A control-only retest cannot rehabilitate a model that misses the same control in a full assignme…
 - 2026-11-08 F-20261108-cujas-usage **analysis**: Measure Cujas wave cost for week-allowance calibration Lesson: With a $22 cap one 25-order batch is the most a fresh coordinator can do; batch setup is cheap once inputs are checked out, so the next wave should run 3+ batches in one session.
 - 2026-11-08 F-20261108-cujas-photius-recheck **partly worked**: Cujas c01: page-check 25 Photius-stale orders (>=99% band) against their GPO printings by the Haloander h01 r… Lesson: Own Tribonian claims are replaced by agent 'claude' with a later-sorting file name; Tribonian sheets are on origin/claude/tribonian-state. Arm A rejects orders with FR 'Revoked by' notes the claim do…
 - 2026-11-08 F-20261108-cujas-c02-c03 **worked**: Cujas c02 and c03: 50 more Photius-stale orders (13 at >=99%, 37 at 95-99%) by the same route, with a produce… Lesson: The FR 'Revoked by' producer note removed the arm-A-only rejections seen in c01. Running prepare, carry, producer, arms, reveal and finish_pair --publish as one unattended chain costs the coordinator…
-- 2026-11-08 F-20261108-board-fetch-not-run **partly worked**: Confirm the 58 board-report fetch requests Haloander queued (FETCH_QUEUE 1,120 -> 1,178) ran Lesson: A queue append does not trigger source-ladder; dispatch it explicitly after enqueueing, then verify output/STATUS.json.
-- 2026-11-08 F-20261108-9 **stopped at gate**: Two fresh blind controlled readers inspected 50 distinct held annual-report leads across three SHA-verified p… Lesson: Agency annual-report reprints and abstracts are not issued EO originals, and whole-page OCR containing neighboring entries is not a faithful held order. The machine non-government source-kind label i…
 
-Register: 71 owner decisions, 30 answered questions, 264 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 71 owner decisions, 30 answered questions, 268 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
