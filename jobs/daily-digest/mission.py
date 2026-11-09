@@ -9,6 +9,7 @@ from __future__ import annotations
 import collections
 import csv
 import datetime as dt
+import fnmatch
 import hashlib
 import importlib.util
 import io
@@ -58,8 +59,21 @@ def git(root, *args):
     return subprocess.check_output(["git", "-C", str(root), *args]).decode().strip()
 
 
-def readiness_witness(root, captured=None, producer="tracker"):
-    """Bind committed canonical inputs using scoped Git metadata, not a corpus scan."""
+def in_scope(path, declared):
+    """The runner's rule for a recorded read scope (.github/scripts/result_freshness.py select)."""
+    parts = path.split("/")
+    ancestors = ("/".join(parts[:i]) for i in range(1, len(parts) + 1))
+    excluded = path == declared["exclude"] or path.startswith(declared["exclude"] + "/")
+    return not excluded and (any(a in declared["roots"] for a in ancestors)
+                             or any(fnmatch.fnmatchcase(path, p) for p in declared["patterns"]))
+
+
+def readiness_witness(root, captured=None, producer="tracker", declared=None):
+    """Bind committed canonical inputs using scoped Git metadata, not a corpus scan.
+
+    With ``declared`` (the producer's recorded read scope), only the canonical files inside
+    that scope must match: a file the producer never reads cannot change its generation.
+    """
     path = "research/readiness"
     tree = git(root, "rev-parse", "HEAD:" + path)
     require(re.fullmatch(r"[0-9a-f]{40,64}", tree)
@@ -77,6 +91,11 @@ def readiness_witness(root, captured=None, producer="tracker"):
                 mode, kind, oid = header.split()
                 require(kind == "blob", "unsupported canonical readiness entry")
                 current[relative] = mode + ":" + oid
+        if declared is not None:
+            require(isinstance(declared, dict) and isinstance(declared.get("exclude"), str)
+                    and all(isinstance(declared.get(k), list) for k in ("roots", "patterns")),
+                    producer + " read scope is invalid")
+            current = {p: value for p, value in current.items() if in_scope(p, declared)}
         consumed = {p: value for p, value in captured.items() if p == path or p.startswith(path + "/")}
         require(current == consumed, producer + " did not consume the current canonical readiness tree")
     return {"path": path, "git_tree": tree}
@@ -151,7 +170,8 @@ def build(root, dashboard, capcom=None):
         require(manifest["inputs"].get(relative) == "100644:" + actual,
                 "tracker captured a different checker generation: " + filename)
     readiness_inputs = readiness_witness(root, manifest["inputs"])
-    readiness_witness(root, checker_manifest["inputs"], "checker")
+    # Since Justinian A2 (2026-11-06) the checker records only the files its scope declares.
+    readiness_witness(root, checker_manifest["inputs"], "checker", checker_manifest.get("scope"))
     freshness = dashboard.get("freshness", {})
     require(freshness.get("claim_receipts", {}).get("state") == "claim_versions_match"
             and not freshness.get("discrepancies"), "current records require a checker/tracker refresh")
