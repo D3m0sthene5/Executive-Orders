@@ -28,10 +28,13 @@ What the numbers mean
   them in would describe a population that no longer exists. For a yes/no stratum in which such a sample
   has at least ``MIN_SAMPLE`` attempts, the rate is the sample's alone; the pooled figure stays in the
   row's ``pooled_alternative`` and note. With fewer attempts the stratum is pooled as usual.
-* Costs are API-equivalent dollars computed from recorded token counts and an assumed list
-  price table. They are not an invoice, and plan allowances are not published.
-  The coordinator figure is a lower bound (its transcript starts after a context compaction).
-  Cache writes of both 5-minute and 1-hour kinds are priced at the one cache_write rate.
+* Costs are API-equivalent dollars computed from recorded token counts at the list prices in
+  jobs/necker-costs/PRICES.json (pricing.py), per exact model, with 5-minute and 1-hour cache writes
+  at their own rates. A row that sessions.py priced per call (``usd_list``) is used as is. Before
+  2026-11-09 (Gutenberg) a private table of Opus 5 / Sonnet 4.x rates was used here; it ran 1.3x to
+  1.9x high against the sessions' own reported costs. They are not an invoice, and plan allowances
+  are not published. The coordinator figure is a lower bound (its transcript starts after a context
+  compaction).
 
 Run: ``python3 -I jobs/bentham/measure.py [--out PATH]``
 """
@@ -45,6 +48,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pricing  # noqa: E402
+
 WAVE = "tribonian-2026-11-04"
 WAVE_DIR = "research/excavator/claude-tribonian-2026-11-04"
 DISPOSITION = f"{WAVE_DIR}/evidence/DISPOSITION.json"
@@ -56,11 +62,6 @@ FR_FIRST = 7532
 CORRECTION_BATCHES = ("c01", "c02", "c03")
 MIN_SAMPLE = 30  # Bentham's own threshold for ranking a stratum
 
-PRICE_TABLE = {
-    "sonnet": {"input": 3.0, "output": 15.0, "cache_read": 0.30, "cache_write": 3.75},
-    "opus": {"input": 5.0, "output": 25.0, "cache_read": 0.50, "cache_write": 6.25},
-    "source": "assumption: Anthropic API list prices; plan allowances are not published",
-}
 PHASE_FAMILY = {"production": "sonnet", "review": "opus", "coordination": "opus",
                 "correction": "sonnet", "integration": "sonnet"}
 TOKEN_KEYS = ("fresh_input", "cache_read", "cache_write", "output")
@@ -242,6 +243,7 @@ def load_usage(repo: Path) -> list[dict]:
         rows = []
         for r in rd:
             cw = sum(_int(r.get(k)) for k in ("cache_write_5m", "cache_write_1h", "cache_write_unclassified"))
+            raw = {k: _int(r.get(k)) for k in pricing.CATS}
             fam = None
             m = (r.get("model") or "").lower()
             for f_ in ("opus", "sonnet"):
@@ -254,23 +256,40 @@ def load_usage(repo: Path) -> list[dict]:
                 raise MeasureError(f"agent {r.get('agent_id')}: no model and unknown phase {r['phase']!r}")
             rows.append({"agent": r.get("agent_id"), "phase": r["phase"], "batch": r["batch"] or "",
                          "family": fam, "recorded": recorded, "calls": _int(r.get("calls")),
+                         "model": (r.get("model") or "").strip(), "raw": raw, "usd_list": r.get("usd_list"),
                          "tokens": {"fresh_input": _int(r["fresh_input"]), "cache_read": _int(r["cache_read"]),
                                     "cache_write": cw, "output": _int(r["output"])}})
         return rows
 
 
-def usd(family: str, tokens: dict, prices=PRICE_TABLE) -> float:
-    p = prices[family]
-    return (tokens["fresh_input"] * p["input"] + tokens["output"] * p["output"]
-            + tokens["cache_read"] * p["cache_read"] + tokens["cache_write"] * p["cache_write"]) / 1e6
+_PRICES: dict = {}
 
 
-def _group(rows: list[dict]) -> tuple[float, dict, int]:
+def prices_for(repo: Path) -> "pricing.Prices":
+    key = str(Path(repo).resolve())
+    if key not in _PRICES:
+        try:
+            _PRICES[key] = pricing.Prices.load(repo)
+        except pricing.PricingError as e:
+            raise MeasureError(str(e)) from None
+    return _PRICES[key]
+
+
+def usd(row: dict, prices: "pricing.Prices") -> float:
+    """List-price dollars of one usage row; an unpriced model is an error, never a guess."""
+    fields = dict(row["raw"], model=row.get("model") or "", usd_list=row.get("usd_list"))
+    total, flags = prices.row_usd(fields, family_hint=row["family"])
+    if total is None:
+        raise MeasureError(f"agent {row.get('agent')}: model {row.get('model')!r} is not in {pricing.REL}")
+    return total
+
+
+def _group(rows: list[dict], prices: "pricing.Prices") -> tuple[float, dict, int]:
     tok = {k: 0 for k in TOKEN_KEYS}
     total = 0.0
     inferred = 0
     for r in rows:
-        total += usd(r["family"], r["tokens"])
+        total += usd(r, prices)
         inferred += 0 if r["recorded"] else 1
         for k in TOKEN_KEYS:
             tok[k] += r["tokens"][k]
@@ -288,6 +307,7 @@ def _cost(total, tok, denom, per, source, basis, inferred):
 
 def compute_costs(repo: Path, doc: dict, rows: list[dict], usage: list[dict]) -> dict:
     _need(repo, SUMMARY)  # summary is the cross-check source; fail clearly if absent
+    prices = prices_for(repo)
     prod_batches = [b for b in doc["batches"] if b.get("attempted") and b["batch"] not in CORRECTION_BATCHES]
     pset = {b["batch"] for b in prod_batches}
     attempts = sum(b["attempted"] for b in prod_batches)
@@ -308,20 +328,20 @@ def compute_costs(repo: Path, doc: dict, rows: list[dict], usage: list[dict]) ->
     skipped_rev = sorted(u["batch"] for u in usage if u["phase"] == "review" and not (batches_of(u) and batches_of(u) <= pset))
 
     costs = {}
-    t, k, inf = _group(prod_u)
+    t, k, inf = _group(prod_u, prices)
     costs["production.per_attempt"] = _cost(
         t, k, attempts, "attempted_order", USAGE,
         f"Production-phase agents of {len(prod_u)} batches with a tally, divided by {attempts} orders attempted in "
         f"those non-correction batches. Producer batches without a tally ({', '.join(skipped_prod) or 'none'}) are "
         "excluded from numerator and denominator.", inf)
-    t, k, inf = _group(rev_u)
+    t, k, inf = _group(rev_u, prices)
     costs["review.per_submitted"] = _cost(
         t, k, submitted, "submitted_claim", USAGE,
         f"Review-phase agents whose batches are all tallied production batches, divided by {submitted} blind-review "
         "verdicts (upheld + rejected, summed from blind_review_verdicts in DISPOSITION); one verdict is one claim "
         "version judged, so re-reviews of revised versions and planted controls count. Excluded review agents "
         f"(paired trial arms, re-review, untallied batches): {', '.join(skipped_rev) or 'none'}.", inf)
-    t, k, inf = _group(coord_u)
+    t, k, inf = _group(coord_u, prices)
     costs["coordination.per_attempt"] = _cost(
         t, k, attempts, "attempted_order", USAGE,
         f"Coordinator agent, divided by {attempts} production orders attempted. Lower bound: the coordinator "
@@ -346,7 +366,7 @@ def compute_costs(repo: Path, doc: dict, rows: list[dict], usage: list[dict]) ->
             "basis": f"Same total as wave.per_attempt divided by {filed} claims filed in production batches. "
                      "A filed claim is not a certified dossier."}
     if corr_u and corr_attempts:
-        t, k, inf = _group(corr_u)
+        t, k, inf = _group(corr_u, prices)
         costs["correction.per_attempt"] = _cost(
             t, k, corr_attempts, "attempted_order", USAGE,
             f"Correction-production agents ({len(corr_u)}), divided by {corr_attempts} orders attempted in "
@@ -443,7 +463,8 @@ def measure(repo: Path | None = None) -> dict:
                                "filed = status adopted and claim canonical."))
     context = costs.pop("_context")
     return {"rates": rates, "costs": costs, "context": context,
-            "price_table": PRICE_TABLE, "waves": waves + more, "skipped": skipped}
+            "price_table": {"source": pricing.REL, "retrieved": prices_for(repo).retrieved,
+                            "basis": "per exact model; 5-minute and 1-hour cache writes at their own rates"}, "waves": waves + more, "skipped": skipped}
 
 
 def main(argv=None) -> int:

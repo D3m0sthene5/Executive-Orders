@@ -10,6 +10,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import measure as M  # noqa: E402
 
+REPO = Path(__file__).resolve().parents[2]
+
 USAGE_COLS = ["agent_id", "role", "phase", "batch", "model", "fresh_input", "cache_read", "cache_write_5m",
               "cache_write_1h", "cache_write_unclassified", "output"]
 
@@ -38,6 +40,7 @@ def build(root: Path, with_usage_model=True):
         {"batch": "o02", "attempted": None, "claims_filed": 0, "state": "prepared_not_started",
          "blind_review_verdicts": {}}], "totals": {"claims_filed": 6, "batches": 4}}
     base = M.WAVE_DIR
+    write(root, "jobs/necker-costs/PRICES.json", (REPO / "jobs/necker-costs/PRICES.json").read_text(encoding="utf-8"))
     write(root, M.DISPOSITION, json.dumps(disp, indent=1))
     write(root, M.BATCHES, json.dumps(ids, indent=1))
     write(root, M.SUMMARY, "{}")
@@ -112,32 +115,77 @@ class T(unittest.TestCase):
 
     def test_cost_arithmetic(self):
         c = self.m["costs"]
-        # production: p1 sonnet = (100*3 + 200000*15 + 1e6*.3 + 5e5*3.75)/1e6 ; p2 = 1e6*3.75/1e6
-        p1 = (100 * 3 + 200000 * 15 + 1_000_000 * 0.30 + 500_000 * 3.75) / 1e6
-        self.assertAlmostEqual(c["production.per_attempt"]["total_usd"], p1 + 3.75)
+        # PRICES.json list prices. Sonnet 5.5: input 2, cache read 0.10, 5m write 2.5, 1h write 4, output 10.
+        # p1 = (100*2 + 1e6*0.10 + 5e5*2.5 + 200000*10)/1e6 ; p2 is a 1-hour write = 1e6*4/1e6
+        p1 = (100 * 2 + 1_000_000 * 0.10 + 500_000 * 2.5 + 200_000 * 10) / 1e6
+        self.assertAlmostEqual(c["production.per_attempt"]["total_usd"], p1 + 4.0)
         self.assertEqual(c["production.per_attempt"]["denominator"], 7)  # o02 untallied, excluded
-        self.assertAlmostEqual(c["production.per_attempt"]["usd"], (p1 + 3.75) / 7)
-        rv = (2_000_000 * 0.50 + 100_000 * 25) / 1e6  # opus; lind arm excluded
+        self.assertAlmostEqual(c["production.per_attempt"]["usd"], (p1 + 4.0) / 7)
+        rv = (2_000_000 * 0.20 + 100_000 * 20) / 1e6  # Opus 5.5: cache read 0.20, output 20; lind arm excluded
         self.assertAlmostEqual(c["review.per_submitted"]["total_usd"], rv)
         self.assertEqual(c["review.per_submitted"]["denominator"], 7)  # verdicts 4 + 3, not c01's 1
-        self.assertAlmostEqual(c["coordination.per_attempt"]["usd"], 25.0 / 7)
+        self.assertAlmostEqual(c["coordination.per_attempt"]["usd"], 20.0 / 7)
         share = 7 / 7
         expect = c["production.per_attempt"]["usd"] + c["review.per_submitted"]["usd"] * share \
             + c["coordination.per_attempt"]["usd"]
         self.assertAlmostEqual(c["wave.per_attempt"]["usd"], expect)
         self.assertAlmostEqual(c["wave.per_filed_dossier"]["usd"], c["wave.per_attempt"]["total_usd"] / 5)
-        self.assertAlmostEqual(c["correction.per_attempt"]["usd"], 15.0 / 2)
+        self.assertAlmostEqual(c["correction.per_attempt"]["usd"], 10.0 / 2)
         self.assertEqual(c["review.per_submitted"]["tokens"]["cache_read"], 2_000_000)
         self.assertEqual(c["production.per_attempt"]["tokens"]["cache_write"], 500_000 + 1_000_000)
-        self.assertEqual(self.m["price_table"]["sonnet"]["cache_write"], 3.75)
-        self.assertTrue(self.m["price_table"]["source"].startswith("assumption"))
+        self.assertEqual(self.m["price_table"]["source"], "jobs/necker-costs/PRICES.json")
+
+    def test_gutenberg_no_private_price_table(self):
+        """Hole 1b: Bentham priced with its own stale table. It must read Necker's only."""
+        src = (REPO / "jobs/bentham/measure.py").read_text(encoding="utf-8")
+        self.assertNotIn("PRICE_TABLE = {", src)
+        self.assertNotRegex(src, r'"cache_write":\s*[0-9]')
+
+    def test_gutenberg_usd_list_column_wins(self):
+        """A row sessions.py priced per call (fast mode, long prompts) is used as is, not repriced."""
+        with tempfile.TemporaryDirectory() as t:
+            root = Path(t)
+            build(root)
+            p = root / M.USAGE
+            with p.open(encoding="utf-8") as fh:
+                rows = list(csv.DictReader(fh))
+            with p.open("w", newline="", encoding="utf-8") as f:
+                w = csv.DictWriter(f, USAGE_COLS + ["usd_list"])
+                w.writeheader()
+                for r in rows:
+                    r["usd_list"] = "1.5" if r["agent_id"] == "k1" else ""
+                    w.writerow(r)
+            M._PRICES.clear()
+            c = M.measure(root)["costs"]
+            self.assertAlmostEqual(c["coordination.per_attempt"]["total_usd"], 1.5)
+
+    def test_gutenberg_unpriced_model_is_error(self):
+        with tempfile.TemporaryDirectory() as t:
+            root = Path(t)
+            build(root)
+            p = root / M.USAGE
+            p.write_text(p.read_text(encoding="utf-8").replace("k1,coordinator,coordination,,claude-opus-5-5",
+                                                               "k1,coordinator,coordination,,claude-opus-9-9"), encoding="utf-8")
+            with self.assertRaises(M.MeasureError) as cm:
+                M.measure(root)
+            self.assertIn("claude-opus-9-9", str(cm.exception))
+
+    def test_gutenberg_missing_prices_is_error(self):
+        with tempfile.TemporaryDirectory() as t:
+            root = Path(t)
+            build(root)
+            (root / "jobs/necker-costs/PRICES.json").unlink()
+            M._PRICES.clear()
+            with self.assertRaises(M.MeasureError) as cm:
+                M.measure(root)
+            self.assertIn("PRICES.json", str(cm.exception))
 
     def test_family_fallback_by_phase(self):
         with tempfile.TemporaryDirectory() as t:
             root = Path(t)
             build(root, with_usage_model=False)
             c = M.measure(root)["costs"]
-            self.assertAlmostEqual(c["review.per_submitted"]["total_usd"], (2_000_000 * 0.50 + 100_000 * 25) / 1e6)
+            self.assertAlmostEqual(c["review.per_submitted"]["total_usd"], (2_000_000 * 0.20 + 100_000 * 20) / 1e6)
             self.assertIn("inferred from phase", c["review.per_submitted"]["basis"])
 
     def test_evidence_quotes_present(self):

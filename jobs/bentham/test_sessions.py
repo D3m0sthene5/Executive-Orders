@@ -159,17 +159,22 @@ class SessionsTest(unittest.TestCase):
     def test_guard_refuses_leak_and_writes_nothing(self):
         forbidden = sessions.content_strings(self.cfg / "projects" / "-work" / (self.s1 + ".jsonl"))
         self.assertIn(SECRET_USER, forbidden)
-        row = {c: "" for c in sessions.COLUMNS}
-        row["coverage_notes"] = "x " + SECRET_REPLY
-        with self.assertRaises(sessions.GuardError):
-            sessions.write_outputs(self.out, [row], {"wave": "w"}, forbidden)
-        self.assertFalse((self.out / "AGENT_USAGE.csv").exists())
+        for col in sessions.DERIVED_COLUMNS + ("_derived",):
+            row = {c: "" for c in sessions.COLUMNS}
+            row[col] = ["x " + SECRET_REPLY] if col == "_derived" else "x " + SECRET_REPLY
+            with self.assertRaises(sessions.GuardError, msg=col):
+                sessions.write_outputs(self.out, [row], {"wave": "w"}, forbidden)
+            self.assertFalse((self.out / "AGENT_USAGE.csv").exists())
+        with self.assertRaises(sessions.GuardError):  # a model key in the summary is derived too
+            sessions.write_outputs(self.out, [], {"totals_by_model": {"x " + SECRET_REPLY: {}}}, forbidden)
 
     def test_cli_refuses_leaky_phase_label_inside_repo(self):
         repo = Path(self.tmp.name) / "repo"
         (repo / "jobs" / "hamilton-token-audit").mkdir(parents=True)
         (repo / "jobs" / "hamilton-token-audit" / "profile.py").write_text(
             (sessions.HAMILTON).read_text())
+        (repo / "jobs" / "necker-costs").mkdir(parents=True)
+        (repo / "jobs" / "necker-costs" / "PRICES.json").write_text((sessions.REPO_ROOT / sessions.pricing.REL).read_text())
         env = {**os.environ, "REPO_ROOT": str(repo), "CLAUDE_CONFIG_DIR": str(self.cfg), "HOME": self.tmp.name}
         leak = "SECRET-ASSISTANT-REPLY"  # shorter than guard length, so use the full string
         out = repo / "usage"
@@ -191,6 +196,142 @@ class SessionsTest(unittest.TestCase):
         s = json.loads((self.out / "SUMMARY.json").read_text())
         self.assertEqual(s["totals"]["agents"], 3)
         self.assertEqual(list(s["totals_by_phase"]), ["review"])
+
+
+class GutenbergTest(unittest.TestCase):
+    """Holes found on 2026-11-09 in real Haloander and Cujas usage; each test pins one closed."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.cfg = Path(self.tmp.name) / "cfg"
+        self.proj = self.cfg / "projects" / "-work"
+        self.out = Path(self.tmp.name) / "out"
+        self.sid = "33333333-aaaa-bbbb-cccc-000000000003"
+        self.wid = "44444444-aaaa-bbbb-cccc-000000000004"
+        # coordinator: 2 Opus calls; worker (claude -p): 1 Sonnet call with a 1-hour write
+        write_jsonl(self.proj / (self.sid + ".jsonl"), [
+            user("2026-11-09T10:00:00.000Z", SECRET_USER, sid=self.sid),
+            asst("2026-11-09T10:00:10.000Z", "c1", "claude-opus-5-5", usage(10, 1_000_000, 0, 1000, w1=100_000), sid=self.sid),
+            asst("2026-11-09T10:00:20.000Z", "c2", "claude-opus-5-5", usage(10, 1_000_000, 0, 1000), sid=self.sid)])
+        write_jsonl(self.proj / (self.wid + ".jsonl"), [
+            user("2026-11-09T10:01:00.000Z", SECRET_USER + " worker", sid=self.wid),
+            asst("2026-11-09T10:01:10.000Z", "w1", "claude-sonnet-5-5", usage(2, 2_000_000, 0, 20_000, w1=80_000), sid=self.wid)])
+        # list price: opus 5.5 input 4, read .2, 1h 8, out 20; sonnet 5.5 input 2, read .1, 1h 4, out 10
+        self.coord_usd = (20 * 4 + 2_000_000 * 0.2 + 100_000 * 8 + 2000 * 20) / 1e6
+        self.work_usd = (2 * 2 + 2_000_000 * 0.1 + 80_000 * 4 + 20_000 * 10) / 1e6
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def run_(self, reported=()):
+        return sessions.run("w", self.out, phase="p", claude_dirs=[self.cfg], reported_paths=reported)
+
+    def rows(self):
+        with (self.out / "AGENT_USAGE.csv").open() as f:
+            return {r["session_id"]: r for r in csv.DictReader(f)}
+
+    def test_columns_all_classified(self):
+        cols = set(sessions.COLUMNS)
+        self.assertEqual(cols, set(sessions.DERIVED_COLUMNS) | set(sessions.STRUCTURAL_COLUMNS))
+        self.assertFalse(set(sessions.DERIVED_COLUMNS) & set(sessions.STRUCTURAL_COLUMNS))
+
+    def test_list_price_per_call(self):
+        s, _, _ = self.run_()
+        r = self.rows()
+        self.assertAlmostEqual(float(r[self.sid]["usd_list"]), self.coord_usd, places=6)
+        self.assertAlmostEqual(float(r[self.wid]["usd_list"]), self.work_usd, places=6)
+        self.assertAlmostEqual(s["totals"]["usd_list"], self.coord_usd + self.work_usd, places=6)
+        self.assertEqual(s["prices"]["source"], "jobs/necker-costs/PRICES.json")
+
+    def test_fast_mode_and_haiku_long_prompt(self):
+        P = sessions.pricing.Prices.load(sessions.REPO_ROOT)
+        t = {"fresh_input": 1000, "output": 1000}
+        self.assertAlmostEqual(P.call_usd("claude-opus-5-5", t, fast=True), 2 * P.call_usd("claude-opus-5-5", t))
+        short = P.call_usd("claude-haiku-5-5", {"fresh_input": 100_000})
+        long_ = P.call_usd("claude-haiku-5-5", {"fresh_input": 100_001})
+        self.assertAlmostEqual(short, 100_000 * 0.10 / 1e6)
+        self.assertAlmostEqual(long_, 100_001 * 0.50 / 1e6)
+        self.assertIsNone(P.call_usd("claude-unknown-1", t))
+
+    def test_trailing_partial_line_accepted_and_noted(self):
+        """Hole 1a: Haloander's live transcript ended in a half-written line; Hamilton refused the file."""
+        p = self.proj / (self.sid + ".jsonl")
+        p.write_text(p.read_text() + '{"type": "assistant", "message": {"id": "c3", "us')
+        hp = sessions.load_hamilton()
+        with self.assertRaises(ValueError):
+            hp.load(p)  # Hamilton's own behaviour is unchanged
+        self.run_()
+        r = self.rows()[self.sid]
+        self.assertEqual(r["malformed_lines"], "1")
+        self.assertIn("trailing line only", r["coverage_notes"])
+        self.assertAlmostEqual(float(r["usd_list"]), self.coord_usd, places=6)
+
+    def test_interior_bad_line_is_lower_bound(self):
+        p = self.proj / (self.sid + ".jsonl")
+        lines = p.read_text().splitlines()
+        p.write_text("\n".join(lines[:2] + ["not json at all"] + lines[2:]) + "\n")
+        self.run_()
+        self.assertIn("lower bound", self.rows()[self.sid]["coverage_notes"])
+
+    def test_own_table_read_back_does_not_refuse(self):
+        """Hole 1c: Cujas c01-c03 refused because the coordinator had read rows of its earlier table."""
+        self.run_()
+        earlier = self.rows()[self.wid]
+        line = next(ln for ln in (self.out / "AGENT_USAGE.csv").read_text().splitlines() if self.wid in ln)
+        summary_note = "Tokens are what transcripts recorded; they are not an invoice."
+        p = self.proj / (self.sid + ".jsonl")
+        p.write_text(p.read_text() + json.dumps(user("2026-11-09T10:02:00.000Z", result=line, sid=self.sid)) + "\n"
+                     + json.dumps(user("2026-11-09T10:02:01.000Z", result=summary_note, sid=self.sid)) + "\n"
+                     + json.dumps(user("2026-11-09T10:02:02.000Z", result=earlier["started_utc"], sid=self.sid)) + "\n")
+        self.run_()  # must not raise GuardError
+        self.assertIn(self.wid, self.rows())
+
+    def test_crosscheck_and_worker_role(self):
+        log = Path(self.tmp.name) / "COORDINATOR_LOG.txt"
+        log.write_text("producer-c01 %s cost %.7f turns 1 ms 5\n" % (self.wid, self.work_usd / 2)  # earlier, superseded
+                       + "producer-c01-r %s cost %.7f turns 1 ms 5\n" % (self.wid, self.work_usd))
+        s, _, _ = self.run_([log])
+        xc = {e["session_id"]: e for e in s["crosscheck"]["sessions"]}
+        self.assertEqual(xc[self.wid]["verdict"], "agrees")
+        r = self.rows()[self.wid]
+        self.assertEqual((r["role"], r["worker_label"]), ("worker", "producer-c01-r"))
+        self.assertEqual(self.rows()[self.sid]["role"], "coordinator")
+        self.assertIn("worker", s["totals_by_role"])
+
+    def test_crosscheck_json_result_and_disagreement_exit_3(self):
+        res = Path(self.tmp.name) / "reviewer.json"
+        res.write_text(json.dumps({"type": "result", "session_id": self.wid, "total_cost_usd": self.work_usd * 1.5}))
+        ghost = Path(self.tmp.name) / "ghost.json"
+        ghost.write_text(json.dumps({"type": "result", "session_id": "55555555-aaaa-bbbb-cccc-000000000005",
+                                     "total_cost_usd": 1.0}))
+        env = {**os.environ, "CLAUDE_CONFIG_DIR": str(self.cfg), "HOME": self.tmp.name}
+        p = subprocess.run([sys.executable, "-I", str(HERE / "sessions.py"), "--wave", "w", "--phase", "p",
+                            "--out", str(self.out), "--reported-costs", str(res), "--reported-costs", str(ghost)],
+                           env=env, capture_output=True, text=True)
+        self.assertEqual(p.returncode, 3, p.stderr)
+        s = json.loads((self.out / "SUMMARY.json").read_text())
+        v = {e["session_id"][:8]: e["verdict"] for e in s["crosscheck"]["sessions"]}
+        self.assertEqual(v, {"44444444": "disagrees", "55555555": "no_transcript"})
+        # tolerance: 1 cent or 1 percent, whichever is larger
+        xc = next(e for e in s["crosscheck"]["sessions"] if e["verdict"] == "disagrees")
+        self.assertAlmostEqual(xc["tolerance_usd"], max(0.01, 0.01 * self.work_usd * 1.5), places=6)
+
+    def test_since_makes_crosscheck_not_comparable(self):
+        log = Path(self.tmp.name) / "log.txt"
+        log.write_text("w %s cost %.7f\n" % (self.wid, self.work_usd))
+        s, _, _ = sessions.run("w", self.out, phase="p", claude_dirs=[self.cfg], reported_paths=[log],
+                               since=sessions.parse_ts("2026-11-09T10:00:00Z"))
+        self.assertEqual(s["crosscheck"]["sessions"][0]["verdict"], "not_comparable")
+
+    def test_bentham_usage_propagates_exit_code(self):
+        """Hole 1d: `bentham.py usage` exited 0 even when sessions.py refused to write."""
+        env = {**os.environ, "CLAUDE_CONFIG_DIR": str(self.cfg), "HOME": self.tmp.name}
+        res = Path(self.tmp.name) / "r.json"
+        res.write_text(json.dumps({"type": "result", "session_id": self.wid, "total_cost_usd": 99.0}))
+        p = subprocess.run([sys.executable, "-I", str(HERE / "bentham.py"), "usage", "--wave", "w", "--phase", "p",
+                            "--out", str(self.out), "--claude-dir", str(self.cfg), "--reported-costs", str(res)],
+                           env=env, capture_output=True, text=True)
+        self.assertEqual(p.returncode, 3, p.stderr)
 
 
 if __name__ == "__main__":
