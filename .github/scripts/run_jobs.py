@@ -80,6 +80,10 @@ STALL_MINUTES = 20
 STALL_EXIT = 124
 CPU_IDLE_SECONDS = 1.0          # less CPU than this across the stall window counts as idle
 NET_IDLE_BYTES = 256 * 1024     # less network traffic than this across the stall window counts as idle
+IO_IDLE_BYTES = 256 * 1024      # less of the job's own read+write I/O than this across the window counts as idle
+ORPHAN_GRACE_SECONDS = 10       # after the job exits, how long its output pipe may stay open before holders are stopped
+OVERRUN_FACTOR = 3              # warn once when a run takes this many times its last successful duration ...
+OVERRUN_FLOOR_SECONDS = 1800    # ... and at least this long
 WEB_SEARCH_LIBRARY = "jobs/_lib/eo_websearch.py"
 PUSH_WEB_REQUESTS = 12          # web requests allowed to a search job that runs only downstream of a push
 
@@ -109,6 +113,40 @@ def tree_cpu_seconds(pid):
                 tree.add(child)
                 frontier.append(child)
     return sum(times.get(p, 0) for p in tree) / tick if pid in times else None
+
+
+def tree_io_bytes(pid):
+    """Bytes read plus written by a process and its descendants (Linux /proc/<pid>/io rchar+wchar: disk, pipes and
+    sockets), or None where unreadable. Unlike machine-wide network bytes, this is the job's own activity
+    (Gutenberg, 2026-11-09)."""
+    try:
+        parents = {}
+        for entry in os.listdir("/proc"):
+            if entry.isdigit():
+                try:
+                    with open(f"/proc/{entry}/stat", encoding="utf-8") as fh:
+                        parents[int(entry)] = int(fh.read().rsplit(")", 1)[1].split()[1])
+                except (OSError, ValueError, IndexError):
+                    continue
+    except OSError:
+        return None
+    tree, frontier = {pid}, [pid]
+    while frontier:
+        parent = frontier.pop()
+        for child, ppid in parents.items():
+            if ppid == parent and child not in tree:
+                tree.add(child)
+                frontier.append(child)
+    total, seen = 0, False
+    for p in tree:
+        try:
+            with open(f"/proc/{p}/io", encoding="utf-8") as fh:
+                f = dict(line.split(":", 1) for line in fh if ":" in line)
+            total += int(f["rchar"]) + int(f["wchar"])
+            seen = True
+        except (OSError, ValueError, KeyError):
+            continue
+    return total if seen else None
 
 
 def net_bytes():
@@ -159,16 +197,22 @@ def _minutes(seconds):
 
 
 def is_stalled(samples, silent_seconds, stall_seconds):
-    """True when the job printed nothing and used no CPU or network across the whole stall window."""
+    """True when the job printed nothing and used no CPU and no I/O across the whole stall window.
+
+    Samples are (time, cpu, net) or (time, cpu, net, io). When the job's own I/O counters (io) are readable they
+    decide; the machine-wide network figure is used only when they are not, since other traffic on the runner
+    (its own log streaming, for one) can mask a real hang (Gutenberg)."""
     if silent_seconds < stall_seconds or not samples:
         return False
-    now, cpu_now, net_now = samples[-1]
+    now, cpu_now, net_now, io_now = (tuple(samples[-1]) + (None,))[:4]
     base = [s for s in samples if s[0] <= now - stall_seconds]
     if not base or cpu_now is None or base[-1][1] is None:
         return False  # cannot tell without CPU readings; never stop a job on silence alone
-    _, cpu_then, net_then = base[-1]
+    _, cpu_then, net_then, io_then = (tuple(base[-1]) + (None,))[:4]
     if cpu_now - cpu_then >= CPU_IDLE_SECONDS:
         return False
+    if io_now is not None and io_then is not None:
+        return io_now - io_then < IO_IDLE_BYTES
     if net_now is not None and net_then is not None and net_now - net_then >= NET_IDLE_BYTES:
         return False
     return True
@@ -179,10 +223,12 @@ def heartbeat_line(name, elapsed, usual, silent, samples):
     parts[0] += f" (last successful run {_minutes(usual)})" if usual is not None else " (no earlier successful run)"
     parts.append(f"last output {_minutes(silent)} ago")
     if len(samples) >= 2:
-        (t0, c0, n0), (t1, c1, n1) = samples[-2], samples[-1]
+        (t0, c0, n0, i0), (t1, c1, n1, i1) = [(tuple(x) + (None,))[:4] for x in samples[-2:]]
         span = _minutes(t1 - t0)
         if c0 is not None and c1 is not None:
             parts.append(f"CPU {c1 - c0:.1f}s in the last {span}")
+        if i0 is not None and i1 is not None:
+            parts.append(f"job I/O {(i1 - i0) / 1e6:.1f} MB in the last {span}")
         if n0 is not None and n1 is not None:
             parts.append(f"network {(n1 - n0) / 1e6:.1f} MB in the last {span}")
     return ", ".join(parts)
@@ -208,42 +254,89 @@ def _stop(process, group):
 def _watched(process, stream, watch):
     clock, sleep = watch.get("clock", time.monotonic), watch.get("sleep", time.sleep)
     cpu_of, net_of = watch.get("cpu", tree_cpu_seconds), watch.get("net", net_bytes)
+    io_of = watch.get("io", tree_io_bytes)
     beat, stall = watch["heartbeat"], watch["stall_minutes"] * 60
-    lock, state = threading.Lock(), {"last": clock()}
+    grace = watch.get("orphan_grace", ORPHAN_GRACE_SECONDS)
+    lock, state = threading.Lock(), {"last": clock(), "max_silent": 0.0}
+    report = watch.setdefault("report", {})
 
     def reader():
-        for line in process.stdout:
-            print(line, end="", flush=True)
-            stream.write(line)
-            with lock:
-                state["last"] = clock()
+        try:
+            for line in process.stdout:
+                print(line, end="", flush=True)
+                try:
+                    stream.write(line)
+                except ValueError:  # log closed after an orphan was stopped
+                    pass
+                with lock:
+                    state["last"] = clock()
+        except (OSError, ValueError):
+            pass
 
     thread = threading.Thread(target=reader, daemon=True)
     thread.start()
     start = clock()
-    samples = [(start, cpu_of(process.pid), net_of())]
+    samples = [(start, cpu_of(process.pid), net_of(), io_of(process.pid))]
     next_beat = start + beat
+    usual = watch.get("usual")
+    warned = False
     while process.poll() is None:
         sleep(min(5.0, beat))
         now = clock()
         if now < next_beat:
             continue
         next_beat = now + beat
-        samples.append((now, cpu_of(process.pid), net_of()))
+        samples.append((now, cpu_of(process.pid), net_of(), io_of(process.pid)))
         samples = samples[-(int(stall // beat) + 3):]
         with lock:
             silent = now - state["last"]
-        print(heartbeat_line(watch["name"], now - start, watch.get("usual"), silent, samples), flush=True)
+            state["max_silent"] = max(state["max_silent"], silent)
+        print(heartbeat_line(watch["name"], now - start, usual, silent, samples), flush=True)
+        if (not warned and usual and now - start > max(OVERRUN_FACTOR * usual, OVERRUN_FLOOR_SECONDS)):
+            # A busy loop is never idle, so the stall rule cannot see it: say so once, never stop on it.
+            warned = True
+            print(f"::warning::Rattle Watch: {watch['name']} has run {_minutes(now - start)}, over {OVERRUN_FACTOR}x its "
+                  f"last successful run ({_minutes(usual)}); check for a busy loop or a grown input.", flush=True)
         if is_stalled(samples, silent, stall):
-            message = (f"Rattle Watch stopped {watch['name']}: no output, CPU or network activity for "
+            message = (f"Rattle Watch stopped {watch['name']}: no output, CPU or I/O activity for "
                        f"{watch['stall_minutes']} minutes (exit {STALL_EXIT}).")
             print("::error::" + message, flush=True)
             stream.write(message + "\n")
             _stop(process, watch.get("group", False))
             thread.join(timeout=10)
+            report.update(elapsed_seconds=round(now - start, 1), max_silent_seconds=round(state["max_silent"], 1),
+                          stalled=True, overrun_warned=warned, orphans_stopped=False)
             return STALL_EXIT
-    thread.join()
-    return process.wait()
+    code = process.wait()
+    # The job has exited. A background child it left behind can hold the output pipe open forever, and an
+    # unbounded join would then hang the whole station without a heartbeat (Gutenberg: shown with a 25 s child).
+    thread.join(timeout=grace)
+    orphans = thread.is_alive()
+    if orphans:
+        print(f"::warning::Rattle Watch: {watch['name']} exited (code {code}) but left process(es) holding its "
+              f"output; stopping them so the station can continue.", flush=True)
+        _stop_group_after_exit(process, watch.get("group", False))
+        thread.join(timeout=grace)
+    report.update(elapsed_seconds=round(clock() - start, 1), max_silent_seconds=round(state["max_silent"], 1),
+                  stalled=False, overrun_warned=warned, orphans_stopped=orphans,
+                  usual_seconds=round(usual, 1) if usual else None)
+    return code
+
+
+def _stop_group_after_exit(process, group):
+    """Stop what remains of the job's process group after its leader exited (posix process groups only)."""
+    if not (group and hasattr(os, "killpg")):
+        try:
+            process.stdout.close()  # cannot reach the holders; release our end so the reader ends
+        except OSError:
+            pass
+        return
+    for sig, wait in ((signal.SIGTERM, 5), (signal.SIGKILL, 0)):
+        try:
+            os.killpg(process.pid, sig)
+        except (ProcessLookupError, PermissionError):
+            return
+        time.sleep(wait)
 
 
 def command(args, log, env=None, watch=None):
@@ -257,6 +350,7 @@ def command(args, log, env=None, watch=None):
                     print(line, end="", flush=True)
                     stream.write(line)
                 return process.wait()
+            watch.setdefault("report", {})  # shared with the copy below, so the caller sees what was observed
             return _watched(process, stream, {**watch, "group": group})
         except BaseException:
             _stop(process, group)
@@ -295,6 +389,7 @@ def main():
         inputs = repo / "oversized/runner-freshness" / (name + "-inputs.json")
         code, blocked, active, stopped, captured = 1, [], False, False, False
         generation = None
+        watch = None  # never carry the previous job's Rattle Watch report into this job's STATUS
         file_limit = LIMIT
         try:
             blocked = [dep for dep in freshness.lines(folder / "after.txt") if dep in failed]
@@ -335,7 +430,7 @@ def main():
                 print(f"[Rattle Watch] {name} runs only because a job it reads changed on this push: web search "
                       f"limited to {PUSH_WEB_REQUESTS} requests; its daily run does the full search.", flush=True)
             watch = {"name": name, "heartbeat": heartbeat, "stall_minutes": stall_minutes(folder),
-                     "usual": last_success_seconds(backup)}
+                     "usual": last_success_seconds(backup), "report": {}}
             code = 0
             if (folder / "requirements.txt").is_file():
                 code = command([sys.executable, "-m", "pip", "install", "--quiet", "-r",
@@ -396,6 +491,12 @@ def main():
                       "generation_id": generation}
             if refusal:
                 status["blocked_reason"] = refusal
+            # Gutenberg: what Rattle Watch saw, so a stall or a left-behind process is named in STATUS, not just exit 124.
+            rw = (watch or {}).get("report") or {}
+            if rw:
+                status["rattle_watch"] = dict(rw, stall_minutes=watch["stall_minutes"])
+                if rw.get("stalled"):
+                    status["stopped_by"] = "rattle_watch_stall"
             # Gutenberg: a health-check job publishes its own pass/fail verdict (output/VERDICT.json) and STATUS says it.
             if (result / "VERDICT.json").is_file():
                 try:
