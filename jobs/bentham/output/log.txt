@@ -31,6 +31,14 @@ test_cost_arithmetic (test_measure.T.test_cost_arithmetic) ... ok
 test_era_and_suffix (test_measure.T.test_era_and_suffix) ... ok
 test_evidence_quotes_present (test_measure.T.test_evidence_quotes_present) ... ok
 test_family_fallback_by_phase (test_measure.T.test_family_fallback_by_phase) ... ok
+test_gutenberg_kean_waves (test_measure.T.test_gutenberg_kean_waves)
+Item 5: wave costs and yields come from Kean findings' structured measures, not prose. ... ok
+test_gutenberg_missing_prices_is_error (test_measure.T.test_gutenberg_missing_prices_is_error) ... ok
+test_gutenberg_no_private_price_table (test_measure.T.test_gutenberg_no_private_price_table)
+Hole 1b: Bentham priced with its own stale table. It must read Necker's only. ... ok
+test_gutenberg_unpriced_model_is_error (test_measure.T.test_gutenberg_unpriced_model_is_error) ... ok
+test_gutenberg_usd_list_column_wins (test_measure.T.test_gutenberg_usd_list_column_wins)
+A row sessions.py priced per call (fast mode, long prompts) is used as is, not repriced. ... ok
 test_mismatch_is_error_not_guess (test_measure.T.test_mismatch_is_error_not_guess) ... ok
 test_missing_file_is_clear_error (test_measure.T.test_missing_file_is_clear_error) ... ok
 test_other_waves_and_skipped (test_measure.T.test_other_waves_and_skipped) ... ok
@@ -39,6 +47,19 @@ test_sample_of_remaining_sets_stratum_rate (test_measure.T.test_sample_of_remain
 test_stratification (test_measure.T.test_stratification) ... ok
 test_undecided_measure_sets_undecided_rate (test_measure.T.test_undecided_measure_sets_undecided_rate) ... ok
 test_waves (test_measure.T.test_waves) ... ok
+test_bentham_usage_propagates_exit_code (test_sessions.GutenbergTest.test_bentham_usage_propagates_exit_code)
+Hole 1d: `bentham.py usage` exited 0 even when sessions.py refused to write. ... ok
+test_columns_all_classified (test_sessions.GutenbergTest.test_columns_all_classified) ... ok
+test_crosscheck_and_worker_role (test_sessions.GutenbergTest.test_crosscheck_and_worker_role) ... ok
+test_crosscheck_json_result_and_disagreement_exit_3 (test_sessions.GutenbergTest.test_crosscheck_json_result_and_disagreement_exit_3) ... ok
+test_fast_mode_and_haiku_long_prompt (test_sessions.GutenbergTest.test_fast_mode_and_haiku_long_prompt) ... ok
+test_interior_bad_line_is_lower_bound (test_sessions.GutenbergTest.test_interior_bad_line_is_lower_bound) ... ok
+test_list_price_per_call (test_sessions.GutenbergTest.test_list_price_per_call) ... ok
+test_own_table_read_back_does_not_refuse (test_sessions.GutenbergTest.test_own_table_read_back_does_not_refuse)
+Hole 1c: Cujas c01-c03 refused because the coordinator had read rows of its earlier table. ... ok
+test_since_makes_crosscheck_not_comparable (test_sessions.GutenbergTest.test_since_makes_crosscheck_not_comparable) ... ok
+test_trailing_partial_line_accepted_and_noted (test_sessions.GutenbergTest.test_trailing_partial_line_accepted_and_noted)
+Hole 1a: Haloander's live transcript ended in a half-written line; Hamilton refused the file. ... ok
 test_cli_end_to_end (test_sessions.SessionsTest.test_cli_end_to_end) ... ok
 test_cli_refuses_leaky_phase_label_inside_repo (test_sessions.SessionsTest.test_cli_refuses_leaky_phase_label_inside_repo) ... ok
 test_discovery_finds_main_and_subagents (test_sessions.SessionsTest.test_discovery_finds_main_and_subagents) ... ok
@@ -51,7 +72,7 @@ test_subagent_attribution_and_counts (test_sessions.SessionsTest.test_subagent_a
 test_totals_by_family_and_phase_map (test_sessions.SessionsTest.test_totals_by_family_and_phase_map) ... ok
 
 ----------------------------------------------------------------------
-Ran 51 tests in 0.383s
+Ran 66 tests in 0.621s
 
 OK
 
@@ -94,17 +115,17 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 4 | acquire.shared.EO_6910 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 5 | acquire.shared.CFR_26_CFR_458.324 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 6 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
-| 7 | recovery.working_text_stale | recovery | 124 | 79.2 | 0.0 | $50 | 159.9 | $50 |
-| 8 | recovery.custody_stranded | recovery | 10 | 6.4 | 0.0 | $3.99 | 159.9 | $54 |
-| 9 | production.one_step_away | production | 217 | 138.6 | 0.0 | $140 | 98.8 | $194 |
-| 10 | production.claim_ready.yes.fr | production | 351 | 81.9 | 0.0 | $227 | 36.1 | $421 |
-| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 1.3 | $7.89 | 16.1 | $429 |
-| 12 | status_assignment.undecided | status_assignment | 10697 | 1069.7 | 0.0 | $6,914 | 15.5 | $7,342 |
-| 13 | production.claim_ready.no.fr | production | 1024 | 34.1 | 0.0 | $662 | 5.2 | $8,004 |
-| 14 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $8,004 |
-| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $8,004 |
-| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $8,004 |
-| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $8,004 |
+| 7 | recovery.custody_stranded | recovery | 10 | 6.4 | 0.0 | $2.31 | 276.7 | $2.31 |
+| 8 | recovery.working_text_stale | recovery | 124 | 79.2 | 0.0 | $29 | 276.7 | $31 |
+| 9 | production.one_step_away | production | 217 | 138.6 | 0.0 | $72 | 192.0 | $103 |
+| 10 | production.claim_ready.yes.fr | production | 351 | 81.9 | 0.0 | $117 | 70.2 | $220 |
+| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 1.3 | $3.74 | 33.9 | $224 |
+| 12 | status_assignment.undecided | status_assignment | 10697 | 1069.7 | 0.0 | $3,557 | 30.1 | $3,780 |
+| 13 | production.claim_ready.no.fr | production | 1024 | 34.1 | 0.0 | $340 | 10.0 | $4,121 |
+| 14 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,121 |
+| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $4,121 |
+| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,121 |
+| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,121 |
 
 Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
 
@@ -114,11 +135,19 @@ Untested savers that would lower every cost above (Junto, measured cost at stake
 - `revere_phase_handoff`: $230 spent in this pattern (unverified)
 - `idle_cache_avoidance`: $137 spent in this pattern (unverified)
 
+Measured waves (Kean findings' structured measures; list-price dollars; not pooled into the rates above):
+
+| Wave | $ total | Coordinator share | Attempted | Filed | $ per filed | Controls missed |
+|---|---:|---:|---:|---:|---:|---:|
+| cujas-2026-11-08 | $23 | 34% | 75 | 68 | $0.34 | 0 of 6 |
+| gutenberg-2026-11-09 | $28 | 100% |  |  |  |  |
+| haloander-2026-11-07 | $63 | 72% |  |  |  |  |
+
 Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting is not published):
 
 - cache_read_weight_1.0: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK, recovery.custody_stranded ...
 - cache_read_weight_0.1: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK, recovery.custody_stranded ...
-- **Rank flips against the dollar ranking: 10** cache_read_weight_1.0: recovery.custody_stranded before recovery.working_text_stale; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.working_text_stale; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.one_step_away; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.claim_ready.yes.fr; cache_read_weight_0.1: recovery.custody_stranded before recovery.working_text_stale
+- **Rank flips against the dollar ranking: 8** cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.working_text_stale; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.one_step_away; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.claim_ready.yes.fr; cache_read_weight_0.1: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_0.1: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.working_text_stale
 
 The choice of actions within budget does not change between 30- and 180-day discounts.
 
