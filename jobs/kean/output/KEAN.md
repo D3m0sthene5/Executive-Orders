@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (13)
+## Waiting for the owner (14)
 
-**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**, **A-20261109-mabillon-after-tracker**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -18,7 +18,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 - **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
-## Owner decisions not yet carried out by the tools (24)
+## Owner decisions not yet carried out by the tools (25)
 
 - **D-20261021-report-deadline** (partly wired): A board order whose only command is to report within a deadline ends on its express revocation (usually EO 12553), not when the board reports; record the report date and standstill end as later events with a 'functionally spent' note. Checked 2026-11-06 (Justinian F3): assemble.py:554 refuses a report deadline as an end; AGENT_PROTOCOL.md:47. No tool records the report date as a later_event or the 'functionally spent' note. Where it treats a cleanup revocation as the end it is superseded b…
 - **D-20261021-strike-and-insert** (not wired): A clause amended by striking and inserting words continues, amended, until the parent order ends; record the text before and after. 43 clauses in 26 committed claims that treat amendment as an end need re-checking. Checked 2026-11-06 (Justinian F3): no code or instruction; claim_gate/checker validate later_events structure only, with no amendment-versus-end logic. research/justinian/RULINGS_WIRING.csv.
@@ -44,17 +44,18 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261107-encyclopedie-youngstown** (partly wired): Owner approved, autonomously: the full anonymous Youngstown run over CourtListener's public bulk opinions and improved opinion-level holding detection. The owner creates the CourtListener token and adds the secret; the workflow line passing COURTLISTENER_TOKEN and API_DATA_GOV_KEY is PR 206 for own… Full run 42318378954 started on enc/courts; holding-detection work assigned; PR 206 open.
 - **D-20261108-board-rule** (partly wired): For R3 re-tagged Presidential Emergency Board orders: the board command ends by completion of its task on the held report's transmittal-letter date; the order's own no-change sentence ends at the end of the 30th day after it (inclusive; exclusive stated); EO 12553/12379 stay as formal disposition;… No production run yet; next wave: pilot on the 79 held reports.
 - **D-20261108-photius-recheck** (not wired): Run the remaining Photius-stale orders through the Haloander h01 route (producer comparison against the GPO printing, two blind arms with planted controls), never a scripted re-freeze. Not yet run: the 2026-11-07 wave budget (75 USD) was spent; about 0.20 USD per order in workers plus coordination.
+- **D-20261109-impact-scoped-checks** (not wired): Never rerun claim-checker or another costly consumer over every claim when a change reaches only some: rerun only the affected claims; full runs only for the consumer's own code or rules, said explicitly. Soundness first: read-audited dependency map (#242), planted controls, periodic full run. Not built; meanwhile pick affected claims by hand (checker.py --claims).
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 264; `search` finds the rest)
+## Newest results (6 of 266; `search` finds the rest)
 
+- 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
+- 2026-11-09 F-20261109-full-rerun-for-one-claim **analysis**: Full 50-min claim-checker diagnostic (1,828 claims) to test a Mabillon change Lesson: Check only the claims a change can reach (checker.py --claims); see D-20261109-impact-scoped-checks.
 - 2026-11-08 F-20261108-montfaucon-control-binding **failed**: Low-tier blind page reviewers on Panama 1922 and July 1940 Federal Register controls in pilot m001 Lesson: On multi-order printed pages, bind the quoted operative sentence to its own order number and closing. A control-only retest cannot rehabilitate a model that misses the same control in a full assignme…
 - 2026-11-08 F-20261108-cujas-usage **analysis**: Measure Cujas wave cost for week-allowance calibration Lesson: With a $22 cap one 25-order batch is the most a fresh coordinator can do; batch setup is cheap once inputs are checked out, so the next wave should run 3+ batches in one session.
 - 2026-11-08 F-20261108-cujas-photius-recheck **partly worked**: Cujas c01: page-check 25 Photius-stale orders (>=99% band) against their GPO printings by the Haloander h01 r… Lesson: Own Tribonian claims are replaced by agent 'claude' with a later-sorting file name; Tribonian sheets are on origin/claude/tribonian-state. Arm A rejects orders with FR 'Revoked by' notes the claim do…
 - 2026-11-08 F-20261108-cujas-c02-c03 **worked**: Cujas c02 and c03: 50 more Photius-stale orders (13 at >=99%, 37 at 95-99%) by the same route, with a produce… Lesson: The FR 'Revoked by' producer note removed the arm-A-only rejections seen in c01. Running prepare, carry, producer, arms, reveal and finish_pair --publish as one unattended chain costs the coordinator…
-- 2026-11-08 F-20261108-board-fetch-not-run **partly worked**: Confirm the 58 board-report fetch requests Haloander queued (FETCH_QUEUE 1,120 -> 1,178) ran Lesson: A queue append does not trigger source-ladder; dispatch it explicitly after enqueueing, then verify output/STATUS.json.
-- 2026-11-08 F-20261108-9 **stopped at gate**: Two fresh blind controlled readers inspected 50 distinct held annual-report leads across three SHA-verified p… Lesson: Agency annual-report reprints and abstracts are not issued EO originals, and whole-page OCR containing neighboring entries is not a faithful held order. The machine non-government source-kind label i…
 
-Register: 71 owner decisions, 30 answered questions, 264 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 72 owner decisions, 30 answered questions, 266 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
