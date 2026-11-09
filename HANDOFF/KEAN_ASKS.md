@@ -17,4 +17,4 @@ May claim-checker's download cache cap rise from 1,024 MB to 2,048 MB (a CACHE_M
 
 *Why:* Each run evicts about 487 MB of extracted texts and verified downloads at the 1 GB cap, so about 22 claims are rechecked and their sources re-downloaded every run (most of a selective run's 144-567 s). It uses about 1 GB more of the repository's shared Actions cache, which may evict other jobs' caches sooner.
 
-Sources: `jobs/claim-checker/output/SELECTION.json`
+Sources: `jobs/claim-checker/README.md`
