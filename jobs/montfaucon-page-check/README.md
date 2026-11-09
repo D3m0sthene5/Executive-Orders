@@ -95,6 +95,15 @@ is `machine_read_government_printed_copy` (the legacy data grade may be absent,
 but cannot conflict); both page examinations and full held
 image provenance are still mandatory. Generic IA fulltext and non-government
 publications remain excluded. The source grade and codebook remain unchanged.
+Tischendorf `official/fr_issue_by_date` rows also qualify for derived
+`official_printing` only when their immutable source kind says `govinfo scan
+of the printed Federal Register daily issue`, their URL identifies the
+matching dated GovInfo FR issue PDF, and their source grade is
+`machine_read_government_printed_copy` (with no conflicting data grade).
+This admits a newly checked official issue witness without changing its
+machine-read source fragment. A date-only locator or OCR match alone still
+earns no credit: the two page examinations, complete image span and held
+text hash are required. The source grade and codebook stay unchanged.
 One explicit replica recheck exception accepts the existing Photius
 `archival_replica_check_failed_or_pending` source grade when the new record sets
 `adjudication=new_independent_page_check`, pins a held ProQuest image, and both
