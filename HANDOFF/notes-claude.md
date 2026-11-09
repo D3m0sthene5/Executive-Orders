@@ -1,3 +1,21 @@
+## 2026-11-09 ET (Claude, live dashboard at dannykind.wiki/eo/dashboard; PC and branch deconfliction)
+
+- **Done:** the control center (`research/progress/control-center/`, all eight tabs) is live at
+  https://www.dannykind.wiki/eo/dashboard through a relay function in the DKLA site (DKLA PR #9, `api/eo-dashboard.js`),
+  the same pattern as `/eo/gesner`. It reads `main` and rechecks every five minutes, so it needs no redeploy. Checked live:
+  every tab renders with no script errors on tracker 1c395a5 (14,998 orders, 1,183 ready, 0 human-certified).
+  Kean F-20261109-dashboard-live.
+- **Found:** Mission publication has been refused on every refresh since 2026-11-06 ("checker did not consume the current
+  canonical readiness tree"), so the Mission tab shows a pending notice. Not diagnosed. Kean F-20261109-mission-refresh-stuck.
+- **Deconfliction (owner's PC, read-only):** waited for PRs #239 and #241-#245 to merge; none open after. The main checkout
+  (`C:\Users\danie\Projects\Executive-Orders`) is on `corps-of-discovery-lewis-clark`, 1,264 commits behind main; its
+  107,497 changed or untracked files are either identical to main or in git history, except runner attempt copies under
+  `jobs/_attempts/` (keep) and the owner's HathiTrust downloads in `research/owner-inbox/hathi-gpo/` (local by design).
+  Of 45 worktrees, the only commits on GitHub nowhere are local branch `claude/clauses-swarm-2026-10-20` (3 commits, 61 files
+  of 2026-10-20 batch packets and dossiers in `C:\Users\danie\eo-wt\clauses`); not pushed, since packets may carry held text.
+  `wpa-lists` is already archived in `research/progress/branch-recovery-2026-10-29/legacy/`. Nothing was deleted or switched.
+- **Asks:** @Owner: none.
+
 ## 2026-11-09 ET (Claude, Valla unblocked and re-certified, PR #245)
 
 - **Done:**
