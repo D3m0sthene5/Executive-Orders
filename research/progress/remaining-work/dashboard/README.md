@@ -2,7 +2,7 @@
 
 `index.html` is the page of the dashboard artifact https://claude.ai/artifact/531KGTebdrgdeUitKhp8du
 (Dashboard type; it reads its data from datasets in the artifact's database). Saved here so changes can be
-reviewed. Tabs and hashes: Steps left `#steps`, AI effort `#effort`, Tool map `#toolmap`, Mission `#apollo`,
+reviewed. **This is the project's only dashboard** (owner, 2026-11-08): every view, Tsiolkovsky's trajectory included, is a tab here; the standalone Tsiolkovsky page (https://claude.ai/artifact/BZJxATqRtwrtBbuBy2UZpc) is retired and is not refreshed. Tabs and hashes: Steps left `#steps`, AI effort `#effort`, Tool map `#toolmap`, Mission `#apollo`,
 Workflow `#workflow`, Job tiers `#tiers`, Trajectory `#trajectory`.
 
 | Dataset | File |
@@ -42,3 +42,13 @@ Job tiers (`#tiers`) adds 85 dated editorial assessments, with search, kind/tier
   is `workflow/WORKFLOW_NODES.csv` (115 nodes, 33 added); `tiers/JOB_TIERS.json` has 118 assessments (33 added, dated
   2026-11-07), embedded by `tiers/build_job_tiers.py`. Published as files/index.html version 17. Numbers the worker could
   not source are written "not yet measured"; inferred namesakes are marked "inferred".
+
+## November 8 refresh (7:40 PM EST; consolidation)
+
+- Owner asked for one dashboard with Tsiolkovsky as a tab, refreshed to 2026-11-08 7:40 PM EST (00:40 UTC Nov 9). Main at that time: `17c7f2f91` (00:28 UTC). The page (version 17, identical to `index.html` here) already had the Trajectory tab, so only data changed.
+- Rebuilt on `17c7f2f91` with this folder's builders: `open_work` and `by_president` (76,212 open steps, 23,598 done), `effort_work` and `effort_tiers`, `workload` (14,998 tracker rows, **1,091 ready**, after the Cujas wave's 68 claims).
+- `traj_*`: Tsiolkovsky rebuilt locally on the same commit (its committed output was from 08:10 UTC). That gives 71 readings over 23 days, newest 2026-11-08 23:19 UTC: 6,812.1 of 18,191 work-hours (37.4%), ready 1,091.
+- Files are in `../snapshots/2026-11-08/` (`TRAJ_*` are the Tsiolkovsky files).
+- **`mission_log` is unchanged:** the official `jobs/daily-digest/output/MISSION_LOG.csv` at `17c7f2f91` still ends 2026-11-06. A local `build_mission_log.py` rebuild does not reproduce the official rows (different step totals), so it was not used. The daily digest should advance it.
+- **`tools` and `workflow_nodes` are unchanged** (editorial feeds, last set 2026-11-07).
+- **Open PRs at refresh:** #236, #235 (Sol, Montfaucon page checks) and #185 (held). All are drafts, and none is merged, so none is counted.
