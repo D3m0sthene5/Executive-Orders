@@ -32,6 +32,29 @@
 - **Next:** after one clean report run on main, set the five `AUDIT_READS` files to enforce. Narrowing the wide globs soundly needs versioning by record kind or STATUS result (freshness change). Run the next wave with `jobs/carnot-coordinator/PROTOCOL.md` as the after arm of lean_coordination.
 - **Asks:** @Owner: A-20261109-skipped-witness (set the switch to flag?).
 
+## 2026-11-08 ET (Claude, Ariadne and Ockham: lean tree for CI and agents)
+
+- **Done (branch `claude/ariadne-lean-tree`, PR to main):**
+  - **Ariadne, shadow mode** (`.github/scripts/ariadne.py`). Traces each run-jobs job with strace on Linux and writes `oversized/runner-freshness/ariadne/<job>.json` (90-day download, never committed). Each record holds the job's closure, its required directories and its silent misses.
+  - **Ockham, for agents.** Root `.ignore` for ripgrep tools; `.claude/settings.json` hook `ockham_lean_tree.py` refuses whole-tree listings; Lean-tree rule added to AGENTS.md and CLAUDE.md.
+- **Why:** the materialize step costs 206-246s per station, even for a 7s job, because 103 of 106 jobs restore all of jobs/**. Main tracks 194,167 files, ~97% bulk. Kean: F-20261108-ariadne-checkout-cost, -ockham-agent-search, -ariadne-python-hooks.
+- **Review:** an independent Sonnet reviewer (general-purpose subagent, 142,447 tokens, 5.8 min, same model family) found:
+  - sudo jobs would fail under a non-root tracer;
+  - detached git gc would keep strace alive;
+  - no trace size cap;
+  - parse time counted in STATUS timings;
+  - hook bypasses.
+  All are fixed and tested: sudo jobs are untraced, traced jobs get gc.auto=0, the trace streams through gzip with a cap, and the record is written after STATUS.json. Tests: test_ariadne 19, test_ockham_hook 6, test_rattle_watch 10.
+- **Next:**
+  - First hosted record (claim-checker, run 42573865370): no measurable overhead (1,500 s traced vs 2,017 s untraced), and the closure is 65,188 of 194,293 materialized files. One harmless silent miss (root listing lacks `.claude`). F-20261109-ariadne-first-hosted-record. Collect more records next.
+  - Then build the narrowing change: restore only a stable closure for an unchanged `narrow_signature`, with the trace as referee.
+- **Valla certificate:** already stale on main before this PR. Both certificates match 11fd9f42e2, and 14 later in-scope commits changed the signature, so Valla runs on the fallback. The PR adds `ariadne.py` to `VALLA_CERTIFICATE_ROOTS` but does not re-certify; that needs an audit of those commits (F-20261109-valla-certificate-stale-on-main).
+- **Merged with main's Quo Warranto and Rattle Watch changes (2026-11-09):**
+  - Ariadne wraps the Quo Warranto command, so both run on `AUDIT_READS` jobs. Quo Warranto enforces declared reads for 5 Python jobs with an audit hook; Ariadne measures every job at syscall level for narrowing.
+  - The runner now waits on `ariadne.py supervise`, not strace. A child shim records the job's own exit code, and leftovers are detached after 5s, so Rattle Watch's leftover cleanup behaves as it does untraced.
+  - PR #245 also recomputes the Valla certificates; whichever PR merges second must recompute them.
+- **Asks:** @Owner A-20261108-lean-main (pack or move bulk outputs out of main's tree; needed only to reach GitHub-API connectors).
+
 ## 2026-11-08 ET (Claude, Haloander follow-up: owner said yes to all four asks)
 
 - **Done:**

@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (0)
+## Waiting for the owner (1)
 
-Nothing.
+**A-20261108-lean-main**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -50,6 +50,7 @@ Nothing.
 <!-- kean:drift -->
 <!-- /kean:drift -->
 ## Newest results (6 of 279; `search` finds the rest)
+## Newest results (6 of 281; `search` finds the rest)
 
 - 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 - 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
@@ -59,3 +60,4 @@ Nothing.
 - 2026-11-09 F-20261109-gutenberg-rattle-watch **worked**: Adversarial audit of Rattle Watch (run_jobs.py heartbeat and stall stop, F-20261028-3): premises that a finis… Lesson: A watchdog must bound its own waits: the runner's join on a job's output was the one wait nothing watched. Judge activity by the job's own counters, not the machine's.
 
 Register: 74 owner decisions, 45 answered questions, 279 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 74 owner decisions, 45 answered questions, 281 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

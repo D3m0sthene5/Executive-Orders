@@ -1,0 +1,23 @@
+# Ockham's lean tree (2026-11-08): what default code search skips.
+#
+# This file changes nothing in Git: every path below stays tracked, pinned and
+# checked out exactly as before. It is read by ripgrep and tools built on it
+# (Claude Code's Grep, Codex and other agents' `rg`, VS Code search), so a
+# repository-wide search returns code and notes instead of ~97% job outputs,
+# data, attempt receipts, scans and frozen work papers. Search one of these on
+# purpose by naming it (`rg term jobs/claim-kit/output`, or Grep with that path)
+# or with `rg -uu`. See .claude/hooks/ockham_lean_tree.py for the listing guard.
+
+jobs/*/output/
+jobs/*/data/
+jobs/*/work/
+jobs/_attempts/
+/research/excavator/
+/research/production/
+/research/stage*/
+/research/releases/
+/ProQuest Pre-1937 Orders/
+/releases/
+/*.part0?
+/oversized/
+/.job-cache/
