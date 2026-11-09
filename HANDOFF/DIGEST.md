@@ -10,7 +10,7 @@ New York date: 2026-11-09. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42625839172-1:0f1b9e59733bc7ad085551917ba4a026149908a4eaeb1017daa8fb2e4d74d961` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42689042297-1:d1cf1a4dbdc755a985f0bc17af2596ef021ad9ec0bfab5d0fa7cfbda8f458815` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -37,6 +37,7 @@ Comparison snapshot: 2026-11-08; intervening runs may be absent.
 - selden-fr-acting: bytes_downloaded: 2794249410 → 2729289189; pages_attempted: 66 → 65; pages_carried_forward: 739 → 740; requests: 131 → 129
 - selden-fr-citers: bytes_downloaded: 0 → 856889; requests: 0 → 80; targets_searched_this_run: 192 → 9; targets_searched_total: 13524 → 13533
 - shepard-citations: edges: 10597 → 10667; edges_with_census_actor: 6584 → 6657; edges_with_census_target: 7590 → 7661; land_targets: 3549 → 3536
+- source-ladder: attempts_logged: 59 → 55; bytes_downloaded: 635954446 → 86666375; distinct_new_source_hashes: 29 → 44; embedded_cite_items: 14 → 9
 - tischendorf-originals: bytes_downloaded: 19722195578 → 8180733529; leads: 633 → 603; replacement_strong: 65 → 39; replacement_targets: 719 → 699
 - tsiolkovsky-trajectory: W_hours: 6812.1 → 6817.3; a_hours_per_day2_latest: -3.15 → -47.85; days: 23 → 24; generations: 71 → 74
 - valla: active_claims: 1445 → 1530
@@ -64,4 +65,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42625839172)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42689042297)
