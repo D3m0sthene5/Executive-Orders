@@ -1,0 +1,45 @@
+{
+ "schema": "davy-chain-health/1",
+ "verdict": "pass",
+ "summary": "claim-drafts -> claim-kit chain: all 6 checks pass",
+ "input_commit": "13047e1caad126e93732463f41d8382b1330fcb1",
+ "checked_utc": "2026-11-09T09:03:19Z",
+ "checks": [
+  {
+   "check": "population",
+   "result": "PASS",
+   "detail": "census 14998 ids, 4301 decided (contract 4bc1d8765d1f)",
+   "seconds": 0.1
+  },
+  {
+   "check": "drafts",
+   "result": "PASS",
+   "detail": "exact coverage and statuses passed",
+   "seconds": 0.3
+  },
+  {
+   "check": "dossiers",
+   "result": "PASS",
+   "detail": "summary counts and index membership/statuses match the decided population (fingerprints not re-read)",
+   "seconds": 0.0
+  },
+  {
+   "check": "identity_case",
+   "result": "PASS",
+   "detail": "no undeclared letter-case variants across 4301 ids",
+   "seconds": 0.3
+  },
+  {
+   "check": "declarations",
+   "result": "PASS",
+   "detail": "literal declarations exist; read audits: none published yet",
+   "seconds": 0.1
+  },
+  {
+   "check": "unit_tests",
+   "result": "PASS",
+   "detail": "claim-drafts and claim-kit unit tests pass",
+   "seconds": 97.6
+  }
+ ]
+}
