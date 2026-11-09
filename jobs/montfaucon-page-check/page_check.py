@@ -83,13 +83,21 @@ def validate(root, record, source_cache=None):
                          data['url']) is not None
         and source.get('grade') == 'machine_read_government_printed_copy'
         and data.get('grade') in (None, 'machine_read_government_printed_copy'))
+    qualified_mab_fr = (lane == 'official' and job == 'mabillon-held-printings'
+        and data.get('route') == 'held/govinfo_fr'
+        and data.get('match', {}).get('source_kind') == 'govinfo scan of the printed Federal Register daily issue'
+        and isinstance(data.get('url'), str)
+        and re.fullmatch(r'https://www\.govinfo\.gov/content/pkg/FR-(\d{4}-\d{2}-\d{2})/pdf/FR-\1\.pdf',
+                         data['url']) is not None
+        and source.get('grade') == 'machine_read_government_printed_copy'
+        and data.get('grade') in (None, 'machine_read_government_printed_copy'))
     rechecked_replica = (lane == 'replica' and job == 'photius-replica-check'
         and source.get('grade') == data.get('grade') == 'archival_replica_check_failed_or_pending'
         and record.get('adjudication') == 'new_independent_page_check')
-    if passing and not legacy and not qualified_gpo and not qualified_fr and (source.get('grade') != data.get('grade') or not isinstance(data.get('grade'), str)):
+    if passing and not legacy and not qualified_gpo and not qualified_fr and not qualified_mab_fr and (source.get('grade') != data.get('grade') or not isinstance(data.get('grade'), str)):
         raise ValueError('missing or conflicting immutable grade')
     allowed_grade = 'official_printing' if lane == 'official' else 'archival_replica_checked'
-    if passing and not legacy and not rechecked_replica and not qualified_gpo and not qualified_fr and data['grade'] != allowed_grade:
+    if passing and not legacy and not rechecked_replica and not qualified_gpo and not qualified_fr and not qualified_mab_fr and data['grade'] != allowed_grade:
         raise ValueError('source grade not admitted for this lane')
     if passing and lane == 'official' and data.get('match', {}).get('source_kind') == 'non-government publication':
         raise ValueError('non-government publication')
@@ -131,6 +139,16 @@ def validate(root, record, source_cache=None):
     required_hashes = ('fragment_sha256',) if negative_missing else ('sha256', 'text_sha256', 'fragment_sha256')
     if not all(isinstance(target.get(key), str) and re.fullmatch('[0-9a-f]{64}', target[key]) for key in required_hashes):
         raise ValueError('invalid SHA-256 pin')
+    body_scope = (job == 'mabillon-held-printings'
+                  and target.get('text_hash_scope') == 'body_after_first_blank_line')
+    if target.get('text_hash_scope') is not None and not body_scope:
+        raise ValueError('unsupported held text hash scope')
+    if body_scope:
+        if (not isinstance(target.get('text_file_sha256'), str) or
+                not re.fullmatch('[0-9a-f]{64}', target['text_file_sha256'])):
+            raise ValueError('missing full held text file SHA-256 pin')
+    elif target.get('text_file_sha256') is not None:
+        raise ValueError('unexpected full held text file SHA-256 pin')
     if target.get('text_path'):
         text = safe_path(root, (source_path.parent / target['text_path']).relative_to(root).as_posix())
         text_parts = text.relative_to(root).parts
@@ -139,7 +157,14 @@ def validate(root, record, source_cache=None):
             raise ValueError('held text outside declared dependencies')
         if not isinstance(target.get('text_sha256'), str) or not re.fullmatch('[0-9a-f]{64}', target['text_sha256']):
             raise ValueError('invalid held text SHA-256 pin')
-        if hashlib.sha256(text.read_bytes()).hexdigest() != target['text_sha256']:
+        held = text.read_bytes()
+        if body_scope:
+            if b'\n\n' not in held:
+                raise ValueError('held text body delimiter missing')
+            if hashlib.sha256(held).hexdigest() != target['text_file_sha256']:
+                raise ValueError('held text file changed')
+            held = held.split(b'\n\n', 1)[1]
+        if hashlib.sha256(held).hexdigest() != target['text_sha256']:
             raise ValueError('held text changed')
     reviews = record['reviews']
     if not isinstance(reviews, list) or len(reviews) != 2:
@@ -176,7 +201,7 @@ def validate(root, record, source_cache=None):
         return lane, None
     result = copy.deepcopy(source)
     result.update(produced_by='montfaucon-page-check', acceptable_as_original=False)
-    if legacy or rechecked_replica or qualified_gpo or qualified_fr:
+    if legacy or rechecked_replica or qualified_gpo or qualified_fr or qualified_mab_fr:
         result['grade'] = result['data']['grade'] = allowed_grade
     result['data'].update(location_verified=False, needs_page_check=False,
                           acceptable_as_original=False, montfaucon_record_sha256=digest(record))
