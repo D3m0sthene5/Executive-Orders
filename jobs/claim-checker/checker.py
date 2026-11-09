@@ -43,6 +43,7 @@ sys.path.insert(0, str(HERE.parent / "claim-kit"))
 import working_text as W  # noqa: E402
 import factual_events as F  # noqa: E402
 REC.global_phase = False  # imports done; later global windows are explicit (Context: gate and tracker)
+_LOAD_CONFIRMATIONS = W.load_confirmations  # the real loader; main() memoises it per run and restores it
 
 JOB_NAME = "claim-checker"
 SCHEMA = "eo-claim-check/v1"
@@ -1409,12 +1410,20 @@ def main(argv=None):
     print(f"Loading inputs from {repo} ...")
     ctx = Context(repo, HERE, cache)
     with REC.summarized():
-        ctx.confirmations = W.load_confirmations(ctx.repo)
+        ctx.confirmations = _LOAD_CONFIRMATIONS(ctx.repo)
     PG.trace_context(ctx, REC, W)
-    real_load_confirmations = W.load_confirmations
+    # Within this run the confirmation files do not change: every claim reads one recorded table.
     W.load_confirmations = lambda r: ctx.confirmations if pathlib.Path(r).resolve() == ctx.repo \
-        else real_load_confirmations(r)
+        else _LOAD_CONFIRMATIONS(r)
     S.TRACE = REC
+    try:
+        return _main_checked(args, ctx, repo, out, cache, limit, csv_all, csv_max_mb, untraced, paths, t0, timings)
+    finally:
+        W.load_confirmations = _LOAD_CONFIRMATIONS
+        S.TRACE = S._NoTrace()
+
+
+def _main_checked(args, ctx, repo, out, cache, limit, csv_all, csv_max_mb, untraced, paths, t0, timings):
     timings["load_inputs_s"] = round(time.time() - t0, 1)
     print(f"  universe: {len(ctx.raw['universe'])} orders; provisional statuses: {len(ctx.raw['statuses'])}")
     print(f"  held source copies indexed: {sum(ctx.index.origin_counts.values())} "

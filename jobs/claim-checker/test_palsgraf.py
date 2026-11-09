@@ -277,6 +277,43 @@ class PalsgrafTests(unittest.TestCase):
                                         "data": dict(source, complete_text=False)}) + "\n")
         self.planted(change, [1, 2, 3, 4])  # every line cites the original's SHA-256 (a fragment hash lookup)
 
+    def confirmed_working_claim(self):
+        """A transcription-dependent claim that reuses a Lachmann confirmation (jobs/lachmann/output)."""
+        rel = "jobs/app-executive-orders/output/texts/EO_90001.txt"
+        path = self.repo / rel
+        path.parent.mkdir(parents=True)
+        path.write_text(T.ORIGINAL_TEXT, encoding="utf-8")
+        source = dict(T.good_claim()["original_representation"], text_path=rel,
+                      text_sha256=T.sha(T.ORIGINAL_TEXT.encode()), grade="mirror_transcription",
+                      acceptable_as_original=False, instrument_id="EO:90001",
+                      char_start=0, char_end=len(T.ORIGINAL_TEXT), quote=T.ORIGINAL_TEXT)
+        (path.parent.parent / "FRAGMENTS.jsonl").write_text(json.dumps(
+            {"kind": "original_representation", "instrument_id": "EO:90001", "data": source}) + "\n")
+        record = dict(C.W.confirmation(source), schema=C.W.CONFIRMATION_SCHEMA, method="machine",
+                      acceptable_as_original=False, confirmed=True, identity_confirmed=True,
+                      complete_text_confirmed=True, requires_page_check=False)
+        conf = self.repo / C.W.CONFIRMATION_PATHS[0]
+        conf.parent.mkdir(parents=True)
+        conf.write_text(json.dumps(record) + "\n", "utf-8")
+        prior = C.W.matching_confirmation(source, self.repo, index=C.W.Index(self.repo))
+        self.assertIsNotNone(prior)
+        claim = T.good_claim()
+        claim["original_representation"] = source
+        claim["working_text"] = C.W.blank([source], prior)
+        self.write_claims(self.lines + [claim])
+        return conf, record
+
+    def test_lachmann_confirmation_of_another_order_selects_nothing(self):
+        conf, record = self.confirmed_working_claim()
+        other = dict(record, instrument_id="EO:90004")
+        self.planted(lambda: conf.write_text(conf.read_text("utf-8") + json.dumps(other) + "\n", "utf-8"), [])
+
+    def test_changed_lachmann_confirmation_selects_its_claim(self):
+        conf, record = self.confirmed_working_claim()
+        changed = dict(record, pages_confirmed=True, note="re-reviewed")
+        out, sel = self.planted(lambda: conf.write_text(json.dumps(changed) + "\n", "utf-8"), [4])
+        self.assertIn("working_text:prior_confirmation_stale", (out / "CLAIM_CHECKS.csv").read_text("utf-8"))
+
     # ------------------------------------------------------------- trace io
     def read_trace(self, out):
         with gzip.open(out / PG.TRACE_FILE, "rt", encoding="utf-8") as fh:
