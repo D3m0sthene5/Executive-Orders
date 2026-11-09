@@ -142,7 +142,15 @@ class Recorder:
         except TypeError:
             return None
         p = os.path.abspath(p)
-        if any(p == e or p.startswith(e + os.sep) for e in self.excluded) or "__pycache__" in p:
+        if "__pycache__" in p:
+            # The import system reads a module's cached bytecode and only stats its source, so a read of
+            # the .pyc stands for the source file: a changed .py must change the fingerprint.
+            try:
+                import importlib.util
+                p = os.path.abspath(importlib.util.source_from_cache(p))
+            except (ValueError, NotImplementedError):
+                return None
+        if any(p == e or p.startswith(e + os.sep) for e in self.excluded):
             return None
         return p
 

@@ -205,6 +205,15 @@ class PalsgrafTests(unittest.TestCase):
         out, sel = self.go(prior=base)
         self.assertEqual((sel["mode"], sel["reason"]), ("full", "code_or_rules_changed"))
 
+    def test_code_loaded_from_bytecode_is_still_a_global_dependency(self):
+        # Production imports the gate and norton/model.py from __pycache__; their sources must be recorded.
+        self.baseline()
+        out = self.baseline()  # the second load uses bytecode written by the first
+        code = self.read_trace(out)["code"]
+        for f in (T.REAL_GATE, T.REAL_REPO / "jobs/norton/model.py", T.REAL_REPO / "jobs/claim-kit/working_text.py"):
+            self.assertIn("f:" + str(f.resolve()), code)
+        self.assertFalse([d for d in code if "__pycache__" in d])
+
     def test_setting_change_forces_a_full_run(self):
         base = self.baseline()
         out, sel = self.go(prior=base, CLAIM_CHECKER_TEXT_PACK=str(self.tmp / "nope.gz"))
