@@ -1,3 +1,24 @@
+## 2026-11-09 ET (Claude, Palsgraf: claim-checker rechecks only what a change can reach)
+
+- **Done (PR from `claude/palsgraf-impact`, not merged):** carried out D-20261109-impact-scoped-checks for claim-checker (`jobs/claim-checker/palsgraf.py`, README section "Which claims a run rechecks").
+  - Each claim's inputs are recorded with fingerprints in `output/DEPENDENCY_TRACE.json.gz`: table lookups, files opened, listed and stat'ed, and memo replays. A claim is reused only if its line bytes and every fingerprint are unchanged. Network-touched, date-against-today and crashed claims always rerun.
+  - A full run happens on a code, rule or setting change, on a missing trace, or weekly (reconciled: `BLOCKED.json` on any difference). The case is recorded in `output/SELECTION.json`; STATUS.json is the runner's and was not changed.
+  - Also fixed: the quote search re-normalised one 27 MB FR volume once per record citing it.
+- **Measured:**
+  - One-claim run (the Mabillon case): 490 s -> 23.5 s.
+  - Full runs: 1,902.6-3,021.6 s on the runner with the old code; 642.5 s warm and 1,036.8 s cold with the new code.
+  - Selective runs on the runner: 144.4 s for a regular run and 566.7 s for a read-only-cache diagnostic, each rechecking 40 of 1,828 claims.
+  - Every selective run was byte-identical to its full reference, on the runner and on local real-data replays (6 of 6). The runner's full output was byte-identical to main's old-code output.
+  - Kean F-20261109-palsgraf-impact-selection.
+- **Holes found and closed (tests pin each):**
+  - Gate, tracker and norton sources were imported via .pyc and so were missing from the code record.
+  - A leaked per-run confirmation patch.
+  - #242's same-size owner switch was memoised per process.
+- **Not changed:** claim-kit (it already caches its per-text parse; it aggregates across orders) and claim-drafts (a per-draft trace is a moderate change; it gains the memo fix). See the Kean wiring note. No status, census, codebook, claim or certified count (0) changed.
+- **Workers:** 1 Sonnet survey of claim-kit and claim-drafts, about 113k tokens, about 1 min.
+- **Bentham:** this was owner-assigned infrastructure, not a ranked production action; PLAN.md was read and no wave was run.
+- **Asks:** @Owner: A-20261109-claim-checker-cache (raise the cache cap to 2 GB to stop re-download churn).
+
 ## 2026-11-09 ET (Claude, Papebroch: finish #185, Mabillon text hash and Lachmann page rule)
 
 - **Done:** branch `claude/papebroch-mabillon-pages`, one PR that supersedes #185 (#185 is left for the owner to close).
