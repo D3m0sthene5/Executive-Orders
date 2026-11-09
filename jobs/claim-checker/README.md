@@ -59,6 +59,9 @@ judged a date against today, or crashed. Checked in full, and said so in `output
 example of each changed input, and timings. The previous output is read from `JOB_PRIOR_OUTPUT_DIR` (the
 runner sets it), `CLAIM_CHECKER_PRIOR_OUTPUT_DIR`, or the output folder itself.
 
+The download cache is capped at 2,048 MB (`CACHE_MB`, owner D-20261109-claim-checker-cache): at 1 GB about 487 MB
+of extracted texts and verified downloads were evicted each run, and the claims that read them were rechecked.
+
 To test a change to a producer's fragments, texts or hashes, run the checker as usual: it checks only the
 claims that change can reach. To check one claim file by hand, `--claims FILE` still works (untraced).
 
