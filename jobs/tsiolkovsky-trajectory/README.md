@@ -96,7 +96,7 @@ order, not proof of cause; `CREDITS.csv` records the rule used for every row.
 | `MISSION.csv` | Apollo 11 milestones on the work-hours scale |
 | `GENERATIONS.jsonl`, `SUMMARY.json` | Per-generation measurements (the carry-forward cache) and the headline |
 
-The **Tsiolkovsky Trajectory** dashboard (https://claude.ai/artifact/BZJxATqRtwrtBbuBy2UZpc) draws these files.
+The **Trajectory tab** of the project dashboard (https://claude.ai/artifact/531KGTebdrgdeUitKhp8du#trajectory) draws these files. The standalone Tsiolkovsky Trajectory page (https://claude.ai/artifact/BZJxATqRtwrtBbuBy2UZpc) was retired on 2026-11-08 at the owner's request: there is one dashboard, and Tsiolkovsky is its tab. Do not refresh the standalone page.
 Its data files are attached copies, so refreshing it means uploading the new CSVs.
 
 It runs daily and after the tracker, in zero model tokens. Readings already measured are carried forward from

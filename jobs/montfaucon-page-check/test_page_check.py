@@ -443,6 +443,85 @@ class Checks(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     run(changed)
 
+    def test_mabillon_body_hash_and_govinfo_qualification_are_narrow(self):
+        folder = self.root / 'jobs/mabillon-held-printings/output'
+        folder.mkdir(parents=True, exist_ok=True)
+        full = b'Mabillon source metadata\n\nheld text'
+        body = b'held text'
+        (folder / 'text.txt').write_bytes(full)
+        (folder / 'page.png').write_bytes((self.fragment.parent / 'page.png').read_bytes())
+        source = copy.deepcopy(self.source)
+        source['grade'] = 'machine_read_government_printed_copy'
+        del source['data']['grade']
+        source['data'].update(
+            route='held/govinfo_fr',
+            match={'source_kind': 'govinfo scan of the printed Federal Register daily issue'},
+            url='https://www.govinfo.gov/content/pkg/FR-1936-06-25/pdf/FR-1936-06-25.pdf',
+            page_or_item='Federal Register 1936-06-25; PDF pages 1-1',
+            text_sha256=hashlib.sha256(body).hexdigest())
+        fragment = folder / 'FRAGMENTS.jsonl'
+        record = copy.deepcopy(self.record)
+        target = record['target']
+        target.update(fragment_path='jobs/mabillon-held-printings/output/FRAGMENTS.jsonl',
+                      sha256=source['data']['sha256'], url=source['data']['url'],
+                      page_or_item=source['data']['page_or_item'],
+                      text_sha256=source['data']['text_sha256'],
+                      text_hash_scope='body_after_first_blank_line',
+                      text_file_sha256=hashlib.sha256(full).hexdigest())
+        target['page_images'][0].update(path='jobs/mabillon-held-printings/output/page.png',
+                                        source_url=target['url'], cited_scope=target['page_or_item'])
+
+        def run(candidate, checked=record):
+            fragment.write_text(json.dumps(candidate) + '\n', encoding='utf-8')
+            checked['target']['fragment_sha256'] = M.digest(candidate)
+            for review in checked['reviews']:
+                review['target_sha256'] = M.digest(checked['target'])
+            return M.validate(self.root, checked)
+
+        lane, derived = run(source)
+        self.assertEqual(lane, 'official')
+        self.assertEqual(derived['grade'], 'official_printing')
+        self.assertFalse(derived['data']['location_verified'])
+        self.assertEqual(source['grade'], 'machine_read_government_printed_copy')
+
+        negative = copy.deepcopy(record)
+        negative['final'] = 'fail'
+        for review in negative['reviews']:
+            review['verdict'] = 'fail'
+        self.assertIsNone(run(source, negative)[1])
+
+        for field, value in (
+                ('route', 'held/commons_gpo_volume'),
+                ('url', 'https://example.org/FR-1936-06-25.pdf'),
+                ('kind', 'non-government publication'),
+                ('grade', 'csc_report_lead')):
+            with self.subTest(field=field):
+                changed = copy.deepcopy(source)
+                if field == 'kind':
+                    changed['data']['match']['source_kind'] = value
+                elif field == 'grade':
+                    changed['grade'] = value
+                else:
+                    changed['data'][field] = value
+                with self.assertRaises(ValueError):
+                    run(changed)
+
+        for field, value in (
+                ('text_hash_scope', 'whole_file'),
+                ('text_file_sha256', '0' * 64),
+                ('text_sha256', '0' * 64)):
+            with self.subTest(field=field):
+                changed = copy.deepcopy(record)
+                changed['target'][field] = value
+                with self.assertRaises(ValueError):
+                    run(source, changed)
+        (folder / 'text.txt').write_bytes(b'Changed header\n\nheld text')
+        with self.assertRaisesRegex(ValueError, 'held text file changed'):
+            run(source)
+        (folder / 'text.txt').write_bytes(b'header without delimiter')
+        with self.assertRaisesRegex(ValueError, 'body delimiter missing'):
+            run(source)
+
 
 if __name__ == '__main__':
     unittest.main()

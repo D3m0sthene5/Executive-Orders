@@ -93,3 +93,55 @@ output was quarantined. Actual per-context/model token and cash telemetry was
 unavailable. `usd: null` in the ledger means **unknown**; the Bentham
 $0.38/attempt input is a planning proxy and its `spent_usd: 0` a parser
 artifact, not measured spend. See `GATE_M006.*`.
+
+## m007 — 50 Panama GPO-volume leads, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order page readers | unknown | unknown | unknown |
+| Coordinator | Public GPO PDF acquisition, SHA-256 and page-image checks, negative-record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught all three controls and agreed on all 50 production
+findings. The source-locator lane stopped at its Bentham gate. Actual model
+tokens and cash telemetry were unavailable. `usd: null` means **unknown**;
+$0.38/attempt is a planning proxy, and the direct gate's `spent_usd: 0` is a
+parser artifact, not measured spend. See `GATE_M007.*`.
+
+## m008 — 50 held GovInfo and government-report targets, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order page readers and a fresh blind third reader for EO:7520 | unknown | unknown | unknown |
+| Coordinator | Public issue/report PDF and text-layer retrieval, SHA-256 checks, page rendering, source/held-text pinning, record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught three controls. The third adjudicated the one verdict
+disagreement. Actual per-context/model token and cash telemetry was unavailable.
+`usd: null` means **unknown**. Bentham's $0.38/attempt is a planning proxy;
+`spent_usd: 0` in the direct gate is a parser artifact, not measured spend.
+See `GATE_M008.*`.
+
+## m009 — 50 held issue and government-report targets, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order page readers, plus independent EO:3083 source-provenance follow-ups | unknown | unknown | unknown |
+| Coordinator | Public issue/report PDF and text-layer retrieval, SHA-256 checks, page rendering, source and held-text pinning, record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught three controls; no verdict disagreement remained after their
+independent source-provenance supplements. Actual per-model token and cash
+telemetry was unavailable. `usd: null` means **unknown**. Bentham's
+$0.38/attempt is a planning proxy; `spent_usd: 0` in the direct gate is a
+parser artifact, not measured spend. See `GATE_M009.*`.
+
+## m010 — 50 held Civil Service Commission report leads, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| Codex blind readers (exact model identifier unavailable) | Two independent controlled 50-order page readers | unknown | unknown | unknown |
+| Coordinator | Public report PDF and text-layer retrieval, SHA-256 checks, page and title-leaf rendering, source/held-text pinning, record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught all three controls and agreed on every production verdict.
+Exact model identity and per-model token/cash telemetry were unavailable.
+`usd: null` means **unknown**. Bentham's $0.38/attempt is a planning proxy;
+`spent_usd: 0` in the direct gate is a parser artifact, not measured spend.
+See `GATE_M010.*`.

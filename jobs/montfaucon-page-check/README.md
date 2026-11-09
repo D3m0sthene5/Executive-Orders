@@ -20,6 +20,13 @@ The target contains repository-relative `fragment_path`, `fragment_sha256`
 escaping), and exact source-data `sha256`, `url`, `page_or_item`, `text_path`,
 `text_sha256`. The held text path uses the source fragment directory as its
 base, must stay inside the repository and must hash to the pinned value.
+Mabillon held printings declare `data.text_sha256` over the body after the
+first blank-line delimiter in a metadata-header text file. For this one job,
+set `target.text_hash_scope=body_after_first_blank_line` and pin both the
+declared body hash in `target.text_sha256` and the entire held file in
+`target.text_file_sha256`. The validator checks both raw byte hashes and
+requires the delimiter. Other jobs use the whole-file text hash and cannot
+declare this scope.
 `target.page_images` is a nonempty array for passes. Include every page from
 the start through the closing, each with held `path` (repository relative),
 `sha256`, image `url`, `source_url`, unique `page_or_item`, `cited_scope`, and
@@ -104,6 +111,11 @@ This admits a newly checked official issue witness without changing its
 machine-read source fragment. A date-only locator or OCR match alone still
 earns no credit: the two page examinations, complete image span and held
 text hash are required. The source grade and codebook stay unchanged.
+The same narrow dated-issue qualification applies to `mabillon-held-printings`
+only with its exact `held/govinfo_fr` route, GovInfo Federal Register URL,
+Federal Register source kind and machine-read government-printing grade.
+An independently passing complete page check is still required; the immutable
+source fragment and codebook are unchanged.
 One explicit replica recheck exception accepts the existing Photius
 `archival_replica_check_failed_or_pending` source grade when the new record sets
 `adjudication=new_independent_page_check`, pins a held ProQuest image, and both

@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-08 19:19 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-08 21:44 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 **Readiness generation is behind the current records.** The published ready count below is retained with its generation date. New or changed claims require matching checker receipts and a tracker refresh before they can advance readiness.
 
@@ -10,8 +10,8 @@ Generated 2026-11-08 19:19 EST. Legal cutoff: **2026-10-14** (America/New_York).
 |---|---:|---|
 | Numbered series: working identities | 14,998 | Bibliographic inventory; historical census remains incomplete. Every proportion below is of this series |
 | Unnumbered series (catalogued_unnumbered), observed | 2,334 | Lower bound; estimated total 4,101 to 5,095 (95% interval); a separate denominator with no readiness count |
-| **Ready for human review, published** | **1,091** | Every applicable tracker step passed or was documented exhausted; independent human verification is separate |
-| Ready with original-supported text | 666 | Tracker's text-evidence tier |
+| **Ready for human review, published** | **1,083** | Every applicable tracker step passed or was documented exhausted; independent human verification is separate |
+| Ready with original-supported text | 658 | Tracker's text-evidence tier |
 | Ready dependent on provisional transcriptions | 425 | Explicit working-text limitations remain |
 | Provisional YES / NO | 405 / 3,895 | Current status register, unique admitted identities |
 | Without a provisional status | 10,698 | Working identities without a recognized YES/NO |
@@ -19,8 +19,8 @@ Generated 2026-11-08 19:19 EST. Legal cutoff: **2026-10-14** (America/New_York).
 | Superseded or repeated claim lines | 298 | Difference between valid lines and unique orders |
 | Human-certified whole histories, published register | 0 | Separate Stage19 human-review record; never inferred from AI passes |
 
-Tracker generation: **2026-11-08 19:19 EST**; input commit `8d71db2329220662481a501ce44f6f1e96778740`.
-[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42533599946).
+Tracker generation: **2026-11-08 21:44 EST**; input commit `83f4f635bca08cc60be908b68001c3fac704a284`.
+[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42546031242).
 
 ## Receipt coverage and freshness
 
@@ -30,7 +30,7 @@ Tracker generation: **2026-11-08 19:19 EST**; input commit `8d71db2329220662481a
 | Current claim lines without a matching receipt | 0 |
 | Latest claim per order with a matching checker receipt | 1,530 / 1,530 |
 | Distinct orders whose latest claim lacks a matching receipt | 0 |
-| Original-replacement / quotation-recheck obligations | 834 / 834 |
+| Original-replacement / quotation-recheck obligations | 848 / 848 |
 
 Receipt matching checks canonical claim content hashes. A matching receipt may record a failure; coverage is not an approval count. Readiness always comes from the tracker.
 
@@ -43,10 +43,10 @@ Input differences requiring a refresh or correction:
 
 | Step | Done / applicable |
 |---|---:|
-| Original or approved working text | 3,489 / 4,301 |
-| Operative clause inventory | 1,339 / 4,301 |
-| Ending or current legal basis | 1,116 / 4,301 |
-| Surviving effects | 1,326 / 4,301 |
+| Original or approved working text | 3,545 / 4,301 |
+| Operative clause inventory | 1,325 / 4,301 |
+| Ending or current legal basis | 1,108 / 4,301 |
+| Surviving effects | 1,312 / 4,301 |
 | Counterevidence review | 2,874 / 4,301 |
 | Shared cited sources | 212 / 236 |
 | Opus evidence images | 125 / 825 |
@@ -68,12 +68,12 @@ File acquisition and machine text do not establish legal conclusions or independ
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `8d71db2329220662481a501ce44f6f1e96778740`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `83f4f635bca08cc60be908b68001c3fac704a284`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
-| Readiness | 2026-11-08 19:19 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
-| Claim checker | 2026-11-08 19:19 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
+| Readiness | 2026-11-08 21:44 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
+| Claim checker | 2026-11-08 21:43 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
 | ProQuest ingestion | 2026-11-08 11:50 EST | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
 | Web-source custody | 2026-11-08 15:04 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
 

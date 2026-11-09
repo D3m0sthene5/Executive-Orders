@@ -26,12 +26,6 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 
 Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
 
-Untested savers that would lower every cost above (Junto, measured cost at stake in past waves; not savings until a two-arm `junto.py add-test` verifies them; see jobs/junto/output/OPEN_TESTS.md):
-
-- `lean_coordination`: $620 spent in this pattern (unverified)
-- `revere_phase_handoff`: $230 spent in this pattern (unverified)
-- `idle_cache_avoidance`: $137 spent in this pattern (unverified)
-
 Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting is not published):
 
 - cache_read_weight_1.0: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK, recovery.working_text_stale ...
