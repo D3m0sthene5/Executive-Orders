@@ -1,0 +1,130 @@
+{
+ "schema": "junto.rumford/1",
+ "what_this_is": "Measured dollars spent in each pattern (cost at stake), from committed Bentham usage. Not a saving; never a Junto score. Only junto.py add-test with two measured arms verifies a saving.",
+ "thresholds": {
+  "coordinator_share": 0.5,
+  "large_context_tokens_per_call": 300000,
+  "idle_active_ratio": 0.3
+ },
+ "waves": [
+  {
+   "wave": "dorotheus",
+   "source": "research/bentham/usage/dorotheus/AGENT_USAGE.csv",
+   "agents": 49,
+   "usd": 87.72,
+   "coordinator_usd": 87.72,
+   "large_context_cache_read_usd": 26.72,
+   "idle_cache_hold_usd": 1.78,
+   "large_context_calls": 182,
+   "coordinator_calls": 1788,
+   "coordinator_share": 1.0
+  },
+  {
+   "wave": "encyclopedie-2026-11-06",
+   "source": "research/bentham/usage/encyclopedie-2026-11-06/AGENT_USAGE.csv",
+   "agents": 19,
+   "usd": 215.46,
+   "coordinator_usd": 57.81,
+   "large_context_cache_read_usd": 38.78,
+   "idle_cache_hold_usd": 0.0,
+   "large_context_calls": 397,
+   "coordinator_calls": 397,
+   "coordinator_share": 0.268
+  },
+  {
+   "wave": "justinian",
+   "source": "research/bentham/usage/justinian/AGENT_USAGE.csv",
+   "agents": 7,
+   "usd": 27.67,
+   "coordinator_usd": 27.67,
+   "large_context_cache_read_usd": 16.0,
+   "idle_cache_hold_usd": 0.0,
+   "large_context_calls": 241,
+   "coordinator_calls": 366,
+   "coordinator_share": 1.0
+  },
+  {
+   "wave": "photius",
+   "source": "research/bentham/usage/photius/AGENT_USAGE.csv",
+   "agents": 289,
+   "usd": 749.24,
+   "coordinator_usd": 504.89,
+   "large_context_cache_read_usd": 148.35,
+   "idle_cache_hold_usd": 135.41,
+   "large_context_calls": 1518,
+   "coordinator_calls": 2846,
+   "coordinator_share": 0.674
+  }
+ ],
+ "savers": [
+  {
+   "what": "Main sessions (Bentham's 'coordinator' rows) that do bounded work themselves, poll GitHub, or carry long turns: delegate bounded tasks to cheaper workers, wait with one background watcher, keep turns short.",
+   "unit": "filed claim (or completed task)",
+   "test": "Two comparable waves on the same route (same claim-kit route, same reviewer setup): one run as before, one with the lean-coordination brief. Compare coordinator plus worker dollars per filed claim, and rejects per attempt (quality must not fall).",
+   "saver_key": "lean_coordination",
+   "status": "unverified",
+   "cost_at_stake_usd": 620.28,
+   "waves": [
+    {
+     "wave": "dorotheus",
+     "usd": 87.72
+    },
+    {
+     "wave": "justinian",
+     "usd": 27.67
+    },
+    {
+     "wave": "photius",
+     "usd": 504.89
+    }
+   ]
+  },
+  {
+   "what": "End a long coordinator context at a phase boundary and continue in a fresh session from the handoff notes (Revere), instead of carrying hundreds of thousands of tokens into every call.",
+   "unit": "coordinator call",
+   "test": "Same wave phase run twice: once continuing the long session, once handed off to a fresh session at the phase boundary. Compare coordinator dollars per completed batch.",
+   "saver_key": "revere_phase_handoff",
+   "status": "unverified",
+   "cost_at_stake_usd": 229.85,
+   "waves": [
+    {
+     "wave": "dorotheus",
+     "usd": 26.72
+    },
+    {
+     "wave": "encyclopedie-2026-11-06",
+     "usd": 38.78
+    },
+    {
+     "wave": "justinian",
+     "usd": 16.0
+    },
+    {
+     "wave": "photius",
+     "usd": 148.35
+    }
+   ]
+  },
+  {
+   "what": "Do not hold a 1-hour prompt cache across long idle waits; let it lapse or end the turn and resume.",
+   "unit": "coordinator hour",
+   "test": "Two waits of the same length on the same kind of GitHub run: one holding the session, one ending the turn and resuming. Compare dollars per hour of wait.",
+   "saver_key": "idle_cache_avoidance",
+   "status": "unverified",
+   "cost_at_stake_usd": 137.19,
+   "waves": [
+    {
+     "wave": "dorotheus",
+     "usd": 1.78
+    },
+    {
+     "wave": "photius",
+     "usd": 135.41
+    }
+   ]
+  }
+ ],
+ "unpriced_models": {
+  "?": 3
+ }
+}

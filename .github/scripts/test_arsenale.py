@@ -113,7 +113,148 @@ class PlanTests(unittest.TestCase):
                 self.assertIn([name], [s["jobs"] for s in result["stations"]])
 
 
+class RiquetSegmentTests(unittest.TestCase):
+    """Long after.txt chains run in segments of at most SEGMENT_MINUTES estimated minutes."""
+
+    def plan(self, order, after, minutes, budget=45):
+        result = arsenale.plan(order, scopes={n: {"roots": [], "patterns": [], "exclude": f"jobs/{n}/output"} for n in order},
+                               after_of=lambda n: after.get(n, []))
+        return arsenale.segment(result, budget, lambda n: minutes.get(n))
+
+    def test_long_chain_keeps_its_head_and_defers_the_rest_in_order(self):
+        after = {"b": ["a"], "c": ["b"], "d": ["c"]}
+        r = self.plan(["a", "b", "c", "d", "x"], after, {"a": 20, "b": 20, "c": 50, "d": 5, "x": 30})
+        self.assertEqual([s["jobs"] for s in r["stations"]], [["a", "b"], ["x"]])
+        self.assertEqual(r["deferred"], ["c", "d"])
+        self.assertEqual(set(r["check_order"]), {"a", "b", "x"})
+        self.assertEqual([s["station"] for s in r["stations"]], [1, 2])
+        full = arsenale.plan(["a", "b", "c", "d", "x"], scopes={n: {"roots": [], "patterns": [], "exclude": f"jobs/{n}/output"}
+                             for n in "abcdx"}, after_of=lambda n: after.get(n, []))
+        self.assertEqual(r["check_order"], [j for j in full["check_order"] if j in {"a", "b", "x"}])  # filtered, not reordered
+
+    def test_a_long_first_job_still_runs_and_unknown_jobs_use_the_default(self):
+        r = self.plan(["a", "b"], {"b": ["a"]}, {"a": 200})
+        self.assertEqual(r["stations"][0]["jobs"], ["a"])
+        self.assertEqual(r["deferred"], ["b"])
+        self.assertEqual(r["estimates"]["b"], arsenale.DEFAULT_JOB_MINUTES)
+        short = self.plan(["a", "b", "c"], {"b": ["a"], "c": ["b"]}, {})  # 3 x 10 default minutes fit
+        self.assertEqual(short["deferred"], [])
+
+    def test_a_long_job_does_not_hold_short_stations_hostage(self):
+        # publish waits for every station: a 90-minute head waits for a run of its own
+        r = self.plan(["long", "a", "b"], {"b": ["a"]}, {"long": 90, "a": 20, "b": 20})
+        self.assertEqual([s["jobs"] for s in r["stations"]], [["a", "b"]])
+        self.assertEqual(r["deferred"], ["long"])
+        self.assertEqual(r["long_heads"], ["long"])
+        # when every station is headed by a long job, they run together: progress is guaranteed
+        both = self.plan(["l1", "l2"], {}, {"l1": 90, "l2": 70})
+        self.assertEqual(sorted(j for s in both["stations"] for j in s["jobs"]), ["l1", "l2"])
+        self.assertEqual(both["deferred"], [])
+
+    def test_every_segment_makes_progress_until_the_chain_is_done(self):
+        after = {"b": ["a"], "c": ["b"], "d": ["c"], "e": ["d"]}
+        minutes = {"a": 40, "b": 40, "c": 40, "d": 40, "e": 40, "z": 100}
+        todo, runs = ["a", "b", "c", "d", "e", "z"], 0
+        while todo:
+            r = self.plan(todo, {k: [d for d in v if d in todo] for k, v in after.items()}, minutes)
+            kept = [j for s in r["stations"] for j in s["jobs"]]
+            self.assertTrue(kept)
+            todo, runs = r["deferred"], runs + 1
+            self.assertLess(runs, 10)
+        self.assertEqual(runs, 6)  # five 40-minute links one by one, then the long job alone
+
+    def test_budget_halves_with_each_requeue_generation_and_tolerates_bad_settings(self):
+        with mock.patch.dict(os.environ, {"REQUEUE_DEPTH": "0", "ARSENALE_SEGMENT_MINUTES": "", "CONTINUATION": "0",
+                                          "DIAGNOSTIC": "false"}):
+            self.assertEqual(arsenale.segment_budget(), arsenale.SEGMENT_MINUTES)
+            os.environ["REQUEUE_DEPTH"] = "2"
+            self.assertEqual(arsenale.segment_budget(), arsenale.SEGMENT_MINUTES / 4)
+            os.environ.update(REQUEUE_DEPTH="0", ARSENALE_SEGMENT_MINUTES="lots")
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(arsenale.segment_budget(), arsenale.SEGMENT_MINUTES)
+            os.environ.update(ARSENALE_SEGMENT_MINUTES="0")
+            self.assertEqual(arsenale.segment_budget(), 0)
+
+    def test_budget_zero_runs_everything(self):
+        r = self.plan(["a", "b"], {"b": ["a"]}, {"a": 500, "b": 500}, budget=0)
+        self.assertEqual(r["deferred"], [])
+        self.assertEqual(r["stations"][0]["jobs"], ["a", "b"])
+
+    def test_recorded_minutes_reads_the_last_published_status(self):
+        with tempfile.TemporaryDirectory() as temporary, contextlib.chdir(temporary):
+            for args in (["init", "-q", "-b", "main"], ["config", "user.email", "t@example.invalid"], ["config", "user.name", "t"]):
+                subprocess.run(["git", *args], check=True)
+            Path("jobs/a/output").mkdir(parents=True)
+            for finished in ("01:30:30", "01:05:00"):  # a slow run, then a fast (cached) one
+                Path("jobs/a/output/STATUS.json").write_text(json.dumps(
+                    {"started_utc": "2026-11-07T01:00:00Z", "finished_utc": f"2026-11-07T{finished}Z"}))
+                subprocess.run(["git", "add", "-A"], check=True)
+                subprocess.run(["git", "commit", "-qm", "x"], check=True)
+            self.assertAlmostEqual(arsenale.recorded_minutes("a"), 30.5)  # the longest recent run, not the latest
+            self.assertAlmostEqual(arsenale.recorded_minutes("a", runs=1), 5.0)
+            self.assertIsNone(arsenale.recorded_minutes("missing"))
+
+    def test_plan_command_writes_the_deferred_output_and_respects_diagnostics(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            out = Path(temporary) / "out"
+            fake = {"stations": [{"station": 1, "jobs": ["a", "b"], "cache": "x"}], "order": ["a", "b"],
+                    "check_order": ["a", "b"], "after_edges": [("a", "b")], "cross_station_reads": [], "merged_for_order": []}
+            base = {"JOBS": "a b", "GITHUB_OUTPUT": str(out), "GITHUB_STEP_SUMMARY": str(Path(temporary) / "s.md")}
+            with contextlib.chdir(temporary), mock.patch.object(arsenale, "plan", return_value=fake), \
+                    mock.patch.object(arsenale, "recorded_minutes", return_value=40), \
+                    mock.patch.object(arsenale, "git", return_value=subprocess.CompletedProcess([], 0, "abc\n", "")), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                for env, expected in ((dict(base), "b"), (dict(base, DIAGNOSTIC="true"), ""),
+                                      (dict(base, CONTINUATION=str(arsenale.MAX_CONTINUATIONS)), "")):
+                    out.write_text("")
+                    with mock.patch.dict(os.environ, env, clear=False):
+                        os.environ.pop("ARSENALE_SEGMENT_MINUTES", None)
+                        arsenale.command_plan(None)
+                    values = dict(line.split("=", 1) for line in out.read_text().splitlines())
+                    self.assertEqual(values["deferred"], expected, env)
+
+
 class RequeueTests(unittest.TestCase):
+    def test_deferred_jobs_continue_without_spending_requeue_depth(self):
+        d = arsenale.requeue_plan([], 0, ["c"], "run-jobs.yml", "main", deferred=["c", "d"], continuation=0)
+        self.assertEqual(d["command"], ["gh", "workflow", "run", "run-jobs.yml", "--ref", "main",
+                                        "-f", "job=c d", "-f", "requeue_depth=0", "-f", "downstream=c",
+                                        "-f", "continuation=1"])
+        both = arsenale.requeue_plan(["a"], 1, [], "run-jobs.yml", "main", deferred=["a", "c"], continuation=3)
+        self.assertEqual(both["jobs"], ["a", "c"])
+        self.assertIn("requeue_depth=2", both["command"])
+        self.assertIn("continuation=4", both["command"])
+        capped = arsenale.requeue_plan(["a"], arsenale.MAX_REQUEUE_DEPTH, [], "run-jobs.yml", "main", deferred=["c"])
+        self.assertEqual((capped["jobs"], capped["dropped_at_requeue_limit"]), (["c"], ["a"]))
+        retry_only = arsenale.requeue_plan(["a"], 0, [], "run-jobs.yml", "main", continuation=2)
+        self.assertIn("continuation=2", retry_only["command"])  # a retry inside a continuation keeps its count
+
+    def test_deferred_jobs_after_a_failed_job_are_held_back(self):
+        after = {"c": ["b"], "d": ["c"], "e": ["x"]}
+        attempts = [{"job": "a", "publish_output": True}, {"job": "b", "publish_output": False}]
+        self.assertEqual(arsenale.blocked_by_failures(["c", "d", "e"], attempts, lambda n: after.get(n, [])), ["c", "d"])
+
+    def test_requeue_command_continues_deferred_jobs(self):
+        with tempfile.TemporaryDirectory() as temporary, contextlib.chdir(temporary):
+            arsenale.write_json(arsenale.REPORT, {"publication": {"outcome": "pushed", "refused": {}}})
+            arsenale.write_json(arsenale.RECEIPTS / "ATTEMPTS.json", [{"job": "a", "publish_output": True}])
+            ran = subprocess.CompletedProcess([], 0, "", "")
+            with mock.patch.dict(os.environ, {"REQUEUE_DEPTH": "0", "BRANCH": "main", "DEFERRED": "b",
+                                              "CONTINUATION": "0"}), \
+                    mock.patch.object(arsenale, "after", return_value=["a"]), \
+                    mock.patch.object(arsenale.subprocess, "run", return_value=ran) as run, \
+                    contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(arsenale.main(["requeue", "--workflow", "run-jobs.yml"]), 0)
+            self.assertIn("continuation=1", run.call_args.args[0])
+            self.assertIn("job=b", run.call_args.args[0])
+            # A run whose results never reached the branch does not continue.
+            arsenale.write_json(arsenale.REPORT, {"publication": {"outcome": "push-failed", "refused": {}}})
+            with mock.patch.dict(os.environ, {"REQUEUE_DEPTH": "0", "BRANCH": "main", "DEFERRED": "b"}), \
+                    mock.patch.object(arsenale.subprocess, "run") as run, contextlib.redirect_stdout(io.StringIO()):
+                arsenale.main(["requeue", "--workflow", "run-jobs.yml"])
+            run.assert_not_called()
+            self.assertEqual(arsenale.read_json(arsenale.REPORT)["requeue"]["reason"], "nothing_refused")
+
     def test_first_refusal_dispatches_exactly_the_refused_jobs(self):
         decision = arsenale.requeue_plan(["beta", "gamma"], 0, ["gamma"], "run-jobs.yml", "claude/x")
         self.assertTrue(decision["dispatch"])
@@ -169,6 +310,16 @@ class RequeueTests(unittest.TestCase):
             bad = subprocess.run([sys.executable, str(SCRIPTS / "pick_jobs.py")], cwd=ROOT, capture_output=True,
                                  env=dict(env, REQUEUE_DEPTH="x"), text=True)
             self.assertNotEqual(bad.returncode, 0)
+            output.unlink()
+            subprocess.run([sys.executable, str(SCRIPTS / "pick_jobs.py")], cwd=ROOT, check=True, capture_output=True,
+                           env=dict(env, REQUEUE_DEPTH="0", CONTINUATION="1", INPUT_DOWNSTREAM=""))
+            continued = dict(line.split("=", 1) for line in output.read_text().splitlines())
+            self.assertEqual(continued["jobs"], "readiness-tracker clark-discovery")  # exactly the deferred jobs
+            output.unlink()
+            gone = subprocess.run([sys.executable, str(SCRIPTS / "pick_jobs.py")], cwd=ROOT, capture_output=True, text=True,
+                                  env=dict(env, REQUEUE_DEPTH="0", CONTINUATION="1", INPUT_JOB="no-such-job readiness-tracker"))
+            self.assertEqual(gone.returncode, 0, gone.stderr)  # a job removed since it was queued is skipped
+            self.assertEqual(dict(l.split("=", 1) for l in output.read_text().splitlines())["jobs"], "readiness-tracker")
 
 
 class StationFixture(unittest.TestCase):
