@@ -23,6 +23,8 @@ subprocess.run([sys.executable,str(root/'.github/scripts/test_valla_materializat
 
 subprocess.run([sys.executable,str(root/'.github/scripts/test_pick_jobs.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 subprocess.run([sys.executable,str(root/'.github/scripts/test_rattle_watch.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+subprocess.run([sys.executable,str(root/'.github/scripts/test_ariadne.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+subprocess.run([sys.executable,str(root/'.github/scripts/test_ockham_hook.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 subprocess.run([sys.executable,str(root/'.github/scripts/test_input_attributes.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 
 subprocess.run([sys.executable,str(root/'.github/scripts/test_r1_r4_integration.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})

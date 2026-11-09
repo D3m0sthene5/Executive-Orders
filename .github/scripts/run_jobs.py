@@ -13,6 +13,7 @@ import sys
 import threading
 import time
 
+import ariadne
 import result_freshness as freshness
 
 LIMIT = 95 * 1024 * 1024
@@ -294,7 +295,7 @@ def main():
         started = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         inputs = repo / "oversized/runner-freshness" / (name + "-inputs.json")
         code, blocked, active, stopped, captured = 1, [], False, False, False
-        generation = None
+        generation, traced = None, None
         file_limit = LIMIT
         try:
             blocked = [dep for dep in freshness.lines(folder / "after.txt") if dep in failed]
@@ -342,7 +343,11 @@ def main():
                                 str(folder / "requirements.txt")], out / "install-log.txt", env)
             if code == 0:
                 args = ["bash", str(folder / "job.sh")] if (folder / "job.sh").is_file() else [sys.executable, str(folder / "job.py")]
-                code = command(args, out / "log.txt", env, watch)
+                # Ariadne (shadow): with ARIADNE_TRACE=1 on Linux, record which tracked files the job reads.
+                args, job_env, trace = ariadne.wrap(args, name, token, folder, env)
+                began = time.monotonic()
+                code = command(args, out / "log.txt", job_env, watch)
+                traced = (trace, code, time.monotonic() - began, watch["usual"])
             cache_code = subprocess.run([sys.executable, str(repo / "jobs/_lib/cache_cap.py"), str(cache), str(cap)]).returncode
             if code == 0 and cache_code:
                 code = cache_code
@@ -382,6 +387,8 @@ def main():
             if refusal:
                 status["blocked_reason"] = refusal
             write(result / "STATUS.json", status)
+            if traced:
+                ariadne.finish(name, repo, *traced)  # after STATUS.json: parsing is not job time
             if captured:
                 shutil.copyfile(inputs, result / freshness.MANIFEST)
             record = {"job": name, "exit_code": code, "publish_output": code == 0}

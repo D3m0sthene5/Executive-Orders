@@ -224,9 +224,16 @@ jobs:
           JOBS: ${{ matrix.jobs }}
         run: python .github/scripts/materialize_job_inputs.py
 
+      # Ariadne (shadow): strace lets the runner record which tracked files each job reads
+      # (.github/scripts/ariadne.py). Without strace the jobs simply run untraced.
+      - name: Install the Ariadne tracer
+        continue-on-error: true
+        run: command -v strace >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq strace; }
+
       - name: Run the jobs
         env:
           JOBS: ${{ matrix.jobs }}
+          ARIADNE_TRACE: "1"
           # Jobs running only because a job they read changed; web-search jobs among them get a small budget.
           DOWNSTREAM_ONLY: ${{ needs.plan.outputs.downstream }}
           TRIGGER: ${{ github.event_name }} by ${{ github.actor }}

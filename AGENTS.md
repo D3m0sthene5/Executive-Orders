@@ -6,6 +6,8 @@
 
 **Spend tokens where Bentham says (owner, 2026-11-05):** before any agent wave, read `jobs/bentham/output/PLAN.md` (rebuilt daily from measured yields, costs and the orders each action unlocks) and run ranked actions in rank order within the owner's budget. After each batch run `python3 -I jobs/bentham/bentham.py gate --action ID --batches FILE` and stop on STOP. When the wave ends, run `bentham.py usage --wave NAME --phase LABEL` and commit the sanitized output so the next plan is measured on it. See `jobs/bentham/README.md`.
 
+**Lean tree (2026-11-08):** about 97% of the ~194,000 tracked files are job outputs, data, attempt receipts and frozen work papers. Never list or search the whole tree: no bare `git ls-files`, `find .`, `ls -R`, or root-wide `**` glob. Name the folder you need (`git ls-files -- jobs/<name> | head`, `rg term jobs/<name>`). The root `.ignore` makes ripgrep-based search skip outputs and data unless you name them; for Claude Code, `.claude/hooks/ockham_lean_tree.py` refuses the whole-tree commands. Check out only what you need (`git clone --filter=blob:none --sparse`, then `git sparse-checkout set --no-cone` with the folders).
+
 Before doing project work in any session, read `HANDOFF/README.md` and the latest relevant notes in `HANDOFF/`, beginning with the newest entries. Check the current GitHub `main` state; do not rely on an older conversational summary.
 
 **Standing rule from the project owner (2026-10-17):** Read `HANDOFF/README.md` in the Executive-Orders repo at the start of every session, and leave your notes in `HANDOFF/notes-astra.md` before you stop. Run scripts that are too big for your container as jobs under `jobs/`.

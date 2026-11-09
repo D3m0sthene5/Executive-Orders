@@ -3,9 +3,9 @@ on:
   # Once per change: pull requests, and pushes to main. A pull-request commit no longer runs twice.
   push:
     branches: [main]
-    paths: ['jobs/family-rules/**', 'jobs/case-bundles/**', 'jobs/daily-digest/**', 'jobs/_lib/**', 'jobs/claim-drafts/**', 'jobs/source-ladder/**', 'jobs/early-ranger-*/**', '.github/**', 'research/stage19/code/**']
+    paths: ['jobs/family-rules/**', 'jobs/case-bundles/**', 'jobs/daily-digest/**', 'jobs/_lib/**', 'jobs/claim-drafts/**', 'jobs/source-ladder/**', 'jobs/early-ranger-*/**', '.github/**', '.claude/**', 'research/stage19/code/**']
   pull_request:
-    paths: ['jobs/**', '.github/**', 'research/readiness/rules/**', 'research/stage19/code/**']
+    paths: ['jobs/**', '.github/**', '.claude/**', 'research/readiness/rules/**', 'research/stage19/code/**']
 permissions:
   contents: read
 # Superseded read-only tests can stop; acquisition/publication runs have their
@@ -27,6 +27,7 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /.github/
+            /.claude/
             /jobs/
             !/jobs/*/output/
             /research/stage19/code/
