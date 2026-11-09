@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "acf94e795ee94cd3eb54c02c46eb01af306cf217466375e5904d07198c20464c",
+  "dossier_sha256": "fd909df9f864d38d2095bdac8f074775bb03eb7930e72be2393ba3791580453f",
   "instrument_id": "EO:6945",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,30 +34,30 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified. No confident operative boundary found; unstructured text retained for review.",
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
         "complete_text_confirmed": true,
-        "grade": "machine_read_government_printed_copy",
+        "grade": "mirror_transcription",
         "identity_confirmed": true,
         "instrument_id": "EO:6945",
-        "pages_confirmed": false,
+        "pages_confirmed": true,
         "prior_confirmation": {
           "fragments": [
             {
               "acceptable_as_original": false,
               "complete_text": null,
-              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
-              "grade": "machine_read_government_printed_copy",
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
               "instrument_id": "EO:6945",
-              "requires_page_check": false,
-              "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
-              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6945.txt",
-              "text_sha256": "c66417b01d4047c2a0ce44f2ca622bbd7180c9970c1e12330f989ad69d041906",
-              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6936-7081.djvu"
+              "requires_page_check": true,
+              "sha256": "264f19a8b65085afcd7aeaa917a44a8cd4a209ba2eb9a6d149adfc4a7a8cee9c",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6945-amending-code-fair-competition-for-the-distilled-spirits-rectifying.txt",
+              "text_sha256": "b05f2814c8550aa8a62025b0dc77ea4e50007fdbf101b712bd2d6d5d99f82551",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6945-amending-code-fair-competition-for-the-distilled-spirits-rectifying"
             }
           ],
           "record": {
@@ -70,54 +70,54 @@
                 "start_kind": "title_words"
               },
               "complete_route": "own_start_and_end",
-              "first_cue_snippet": "LIRCeITEe BY THE UNITED STATLS OF AMERICA  FES 1? Sf  2 / Ab  Executive Order  A",
-              "identity_detail": {},
-              "identity_route": "a_number_and_date",
-              "last_cue_snippet": "FRANKLIN D ROOSEVELT",
+              "first_cue_snippet": "Whereas the Federal Alcohol Control Administration has submitted for my approval",
+              "identity_detail": {
+                "source_heading": "Executive Order 6945—Amending Code of Fair Competition for the Distilled Spirits Rectifying Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
               "matched_date": "January 10, 1935",
-              "matched_number": "No. 6945",
-              "pages_detail": {},
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1935-01-10",
+                "app_heading": "Executive Order 6945—Amending Code of Fair Competition for the Distilled Spirits",
+                "app_subject_overlap": 1.0
+              },
               "register_date": "1935-01-10",
               "register_number": "6945",
-              "similarity": [
-                {
-                  "agrees": false,
-                  "grade": "mirror_transcription",
-                  "jaccard": 0.7412,
-                  "length_ratio": 1.2312,
-                  "producer": "app-executive-orders",
-                  "sha256": "264f19a8b65085afcd7aeaa917a44a8cd4a209ba2eb9a6d149adfc4a7a8cee9c"
-                }
-              ],
+              "similarity": [],
               "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6945.txt",
+                  "why": "text_hash_mismatch"
+                },
                 {
                   "grade": "official_printing",
                   "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6945.txt",
                   "why": "grade_not_in_working_text_policy"
                 }
               ],
-              "text_chars": 1101
+              "source_heading": "Executive Order 6945—Amending Code of Fair Competition for the Distilled Spirits Rectifying Industry",
+              "text_chars": 888
             },
-            "grade": "machine_read_government_printed_copy",
+            "grade": "mirror_transcription",
             "identity_confirmed": true,
             "instrument_id": "EO:6945",
             "method": "machine",
-            "pages_confirmed": null,
+            "pages_confirmed": true,
             "reasons": [],
-            "requires_page_check": false,
+            "requires_page_check": true,
             "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
             "schema": "eo-lachmann-confirmation/v1",
-            "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
+            "sha256": "264f19a8b65085afcd7aeaa917a44a8cd4a209ba2eb9a6d149adfc4a7a8cee9c",
             "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
-            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6945.txt",
-            "text_sha256": "c66417b01d4047c2a0ce44f2ca622bbd7180c9970c1e12330f989ad69d041906",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6945-amending-code-fair-competition-for-the-distilled-spirits-rectifying.txt",
+            "text_sha256": "b05f2814c8550aa8a62025b0dc77ea4e50007fdbf101b712bd2d6d5d99f82551",
             "witnesses": [
-              {
-                "grade": "machine_read_government_printed_copy",
-                "producer": "mabillon-held-printings",
-                "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
-                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6945.txt"
-              },
               {
                 "grade": "mirror_transcription",
                 "producer": "app-executive-orders",
@@ -128,9 +128,9 @@
           },
           "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
         },
-        "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6945.txt",
-        "text_sha256": "c66417b01d4047c2a0ce44f2ca622bbd7180c9970c1e12330f989ad69d041906"
+        "sha256": "264f19a8b65085afcd7aeaa917a44a8cd4a209ba2eb9a6d149adfc4a7a8cee9c",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6945-amending-code-fair-competition-for-the-distilled-spirits-rectifying.txt",
+        "text_sha256": "b05f2814c8550aa8a62025b0dc77ea4e50007fdbf101b712bd2d6d5d99f82551"
       }
     ],
     "quotation_recheck_required": true,

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3898eb49566a303a3f56a2bc1bc91bf7cae02e981ddffce8c693bdd84d94d503",
+  "dossier_sha256": "1015ce225541723e8bff582ca84ec750f92c40fc844f62e8fef83b015b711746",
   "instrument_id": "EO:6620B",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,30 +34,30 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified. No confident operative boundary found; unstructured text retained for review.",
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
         "complete_text_confirmed": true,
-        "grade": "machine_read_government_printed_copy",
+        "grade": "mirror_transcription",
         "identity_confirmed": true,
         "instrument_id": "EO:6620B",
-        "pages_confirmed": false,
+        "pages_confirmed": true,
         "prior_confirmation": {
           "fragments": [
             {
               "acceptable_as_original": false,
               "complete_text": null,
-              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
-              "grade": "machine_read_government_printed_copy",
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
               "instrument_id": "EO:6620B",
-              "requires_page_check": false,
-              "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
-              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6620B.txt",
-              "text_sha256": "d435012ce574e33620d12467a5f6025017e627d99bb170c9e8e77e40126b5fbe",
-              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6480-6689.djvu"
+              "requires_page_check": true,
+              "sha256": "9214eca2a67a5e499792c431c8747226cd6896ce8939b4ec7c017aaa89f2ca94",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6620-b-code-fair-competition-for-the-hotel-industry-modification-executive.txt",
+              "text_sha256": "9589959fec76d90e9b5d5bcf5b7c9b8649ea422edf02e8cbb76f5d5b38e235d2",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6620-b-code-fair-competition-for-the-hotel-industry-modification-executive"
             }
           ],
           "record": {
@@ -70,54 +70,54 @@
                 "start_kind": "title_words"
               },
               "complete_route": "own_start_and_end",
-              "first_cue_snippet": "DEPOSITED BY THE UNITED STATES OF AMERICA  APR 4 \"3  a Aé  ry  Executive Order  ",
-              "identity_detail": {},
-              "identity_route": "a_number_and_date",
-              "last_cue_snippet": "FRANKLIN D ROOSEVELT",
+              "first_cue_snippet": "A Code of Fair Competition for the Hotel Industry having been approved by me on ",
+              "identity_detail": {
+                "source_heading": "Executive Order 6620-B—Code of Fair Competition for the Hotel Industry, Modification of Executive Order of November 17, ",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 0.875,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
               "matched_date": "February 26, 1934",
-              "matched_number": "No. 6620-B",
-              "pages_detail": {},
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1934-02-26",
+                "app_heading": "Executive Order 6620-B—Code of Fair Competition for the Hotel Industry, Modifica",
+                "app_subject_overlap": 1.0
+              },
               "register_date": "1934-02-26",
               "register_number": "6620B",
-              "similarity": [
-                {
-                  "agrees": false,
-                  "grade": "mirror_transcription",
-                  "jaccard": 0.7984,
-                  "length_ratio": 1.1555,
-                  "producer": "app-executive-orders",
-                  "sha256": "9214eca2a67a5e499792c431c8747226cd6896ce8939b4ec7c017aaa89f2ca94"
-                }
-              ],
+              "similarity": [],
               "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6620B.txt",
+                  "why": "text_hash_mismatch"
+                },
                 {
                   "grade": "official_printing",
                   "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6620B.txt",
                   "why": "grade_not_in_working_text_policy"
                 }
               ],
-              "text_chars": 1683
+              "source_heading": "Executive Order 6620-B—Code of Fair Competition for the Hotel Industry, Modification of Executive Order of November 17, ",
+              "text_chars": 1465
             },
-            "grade": "machine_read_government_printed_copy",
+            "grade": "mirror_transcription",
             "identity_confirmed": true,
             "instrument_id": "EO:6620B",
             "method": "machine",
-            "pages_confirmed": null,
+            "pages_confirmed": true,
             "reasons": [],
-            "requires_page_check": false,
+            "requires_page_check": true,
             "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
             "schema": "eo-lachmann-confirmation/v1",
-            "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+            "sha256": "9214eca2a67a5e499792c431c8747226cd6896ce8939b4ec7c017aaa89f2ca94",
             "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
-            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6620B.txt",
-            "text_sha256": "d435012ce574e33620d12467a5f6025017e627d99bb170c9e8e77e40126b5fbe",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6620-b-code-fair-competition-for-the-hotel-industry-modification-executive.txt",
+            "text_sha256": "9589959fec76d90e9b5d5bcf5b7c9b8649ea422edf02e8cbb76f5d5b38e235d2",
             "witnesses": [
-              {
-                "grade": "machine_read_government_printed_copy",
-                "producer": "mabillon-held-printings",
-                "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
-                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6620B.txt"
-              },
               {
                 "grade": "mirror_transcription",
                 "producer": "app-executive-orders",
@@ -128,16 +128,6 @@
           },
           "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
         },
-        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6620B.txt",
-        "text_sha256": "d435012ce574e33620d12467a5f6025017e627d99bb170c9e8e77e40126b5fbe"
-      },
-      {
-        "complete_text_confirmed": false,
-        "grade": "mirror_transcription",
-        "identity_confirmed": false,
-        "instrument_id": "EO:6620B",
-        "pages_confirmed": false,
         "sha256": "9214eca2a67a5e499792c431c8747226cd6896ce8939b4ec7c017aaa89f2ca94",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-6620-b-code-fair-competition-for-the-hotel-industry-modification-executive.txt",
         "text_sha256": "9589959fec76d90e9b5d5bcf5b7c9b8649ea422edf02e8cbb76f5d5b38e235d2"

@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "20739a0725098a4e8106b6998b2c342da4cd6fa559481ef42e22593a38e94b01",
+  "dossier_sha256": "11b51cd8c9cff019e80d6a64c016317f50b6444faea074ef02c9bdf760cfd0a9",
   "instrument_id": "EO:6543G",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -77,18 +77,6 @@
               "matched_date": "December 30, 1933",
               "matched_number": "No. 6543-G",
               "pages_detail": {},
-              "passed_over": [
-                {
-                  "grade": "machine_read_government_printed_copy",
-                  "producer": "mabillon-held-printings",
-                  "reasons": [
-                    "pages:mabillon_printed_pages_not_recorded",
-                    "pages:mabillon_own_heading_not_recorded"
-                  ],
-                  "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
-                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6543G.txt"
-                }
-              ],
               "register_date": "1933-12-30",
               "register_number": "6543G",
               "similarity": [
@@ -101,7 +89,13 @@
                   "sha256": "41d601dc9e0b74f3408ca571293c4cad363665e8c79bae32b5ecdd2e2f9a6cd5"
                 }
               ],
-              "skipped_witnesses": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6543G.txt",
+                  "why": "text_hash_mismatch"
+                }
+              ],
               "text_chars": 1289
             },
             "grade": "machine_read_government_printed_copy",
@@ -123,12 +117,6 @@
                 "producer": "hathi-gpo-orders",
                 "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
                 "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6543G.txt"
-              },
-              {
-                "grade": "machine_read_government_printed_copy",
-                "producer": "mabillon-held-printings",
-                "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
-                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6543G.txt"
               },
               {
                 "grade": "mirror_transcription",

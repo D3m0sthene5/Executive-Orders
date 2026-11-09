@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "cbd216a3edeb165502f00bf8e3f2d4a8453e2d2accb00340350b5c45fe5e58c5",
+  "dossier_sha256": "336443b1dfbbeaaf940af138f5d76494d0c181e4fa4b24091748973331a0b125",
   "instrument_id": "EO:8019",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,26 +34,100 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
-        "instrument_id": "EO:8019",
-        "pages_confirmed": false,
-        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8019.txt",
-        "text_sha256": "460fb88cee53d88fb2ad33acd6de659f9f1bd071c6247cbc0744217dafb3c0e5"
-      },
-      {
-        "complete_text_confirmed": false,
+        "complete_text_confirmed": true,
         "grade": "mirror_transcription",
-        "identity_confirmed": false,
+        "identity_confirmed": true,
         "instrument_id": "EO:8019",
-        "pages_confirmed": false,
+        "pages_confirmed": true,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
+              "instrument_id": "EO:8019",
+              "requires_page_check": true,
+              "sha256": "13fc060265ac03224befeb22987865b66ee8b70809f26f40a7bd40005c7ded76",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-8019-exemption-george-m-lewis-from-compulsory-retirement-for-age.txt",
+              "text_sha256": "bcd0f1d17d8db6a46ca39eba3f1091d02e374e00db817bbc992630d3094eb151",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-8019-exemption-george-m-lewis-from-compulsory-retirement-for-age"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "Whereas, in my judgment, the public interest requires that George M. Lewis, cler",
+              "identity_detail": {
+                "source_heading": "Executive Order 8019—Exemption of George M. Lewis From Compulsory Retirement for Age",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 0.8333,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "matched_date": "December 2, 1938",
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1938-12-02",
+                "app_heading": "Executive Order 8019—Exemption of George M. Lewis From Compulsory Retirement for",
+                "app_subject_overlap": 0.8333
+              },
+              "register_date": "1938-12-02",
+              "register_number": "8019",
+              "similarity": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_8019.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_8019.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "source_heading": "Executive Order 8019—Exemption of George M. Lewis From Compulsory Retirement for Age",
+              "text_chars": 716
+            },
+            "grade": "mirror_transcription",
+            "identity_confirmed": true,
+            "instrument_id": "EO:8019",
+            "method": "machine",
+            "pages_confirmed": true,
+            "reasons": [],
+            "requires_page_check": true,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "13fc060265ac03224befeb22987865b66ee8b70809f26f40a7bd40005c7ded76",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-8019-exemption-george-m-lewis-from-compulsory-retirement-for-age.txt",
+            "text_sha256": "bcd0f1d17d8db6a46ca39eba3f1091d02e374e00db817bbc992630d3094eb151",
+            "witnesses": [
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "13fc060265ac03224befeb22987865b66ee8b70809f26f40a7bd40005c7ded76",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-8019-exemption-george-m-lewis-from-compulsory-retirement-for-age.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
         "sha256": "13fc060265ac03224befeb22987865b66ee8b70809f26f40a7bd40005c7ded76",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-8019-exemption-george-m-lewis-from-compulsory-retirement-for-age.txt",
         "text_sha256": "bcd0f1d17d8db6a46ca39eba3f1091d02e374e00db817bbc992630d3094eb151"
@@ -77,6 +151,16 @@
         "sha256": "13fc060265ac03224befeb22987865b66ee8b70809f26f40a7bd40005c7ded76",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-8019-13fc060265.txt",
         "text_sha256": "46b1c15af51072eff0767acc9961399b0615798635de0e625966758a340ca88e"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8019",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8019.txt",
+        "text_sha256": "884b0c2ed5fdb66b734b0af901289f1c17700c64c2046f120fa83d010ce62c94"
       }
     ],
     "quotation_recheck_required": true,

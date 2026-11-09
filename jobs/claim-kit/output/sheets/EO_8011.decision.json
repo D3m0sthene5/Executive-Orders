@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "66cfe74f49d5a43c0ee6c3ab683cff1d35b40d78c932d6768534ff9bc8892aeb",
+  "dossier_sha256": "e959f54f4c17ef8cfcdee68b654caad32b84285f1c65df77a65892d920f2903b",
   "instrument_id": "EO:8011",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,7 +34,7 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified. No confident operative boundary found; unstructured text retained for review.",
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
     "target provision not located: EO:8287"
   ],
@@ -42,23 +42,23 @@
     "confirmations": [
       {
         "complete_text_confirmed": true,
-        "grade": "machine_read_government_printed_copy",
+        "grade": "mirror_transcription",
         "identity_confirmed": true,
         "instrument_id": "EO:8011",
-        "pages_confirmed": false,
+        "pages_confirmed": true,
         "prior_confirmation": {
           "fragments": [
             {
               "acceptable_as_original": false,
               "complete_text": null,
-              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
-              "grade": "machine_read_government_printed_copy",
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
               "instrument_id": "EO:8011",
-              "requires_page_check": false,
-              "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
-              "text_path": "jobs/mabillon-held-printings/output/texts/EO_8011.txt",
-              "text_sha256": "221db14e7e7dba83ebbc6e43549492a8d91763b02d7a8ec9abe5d6f3a8d03c38",
-              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_7262-8027.djvu"
+              "requires_page_check": true,
+              "sha256": "fe08bee0942162da8f169fc30139b12de3d21cb05d5457cbd7b4722e36af8f55",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-8011-exemption-arthur-h-chase-from-compulsory-retirement-for-age.txt",
+              "text_sha256": "9d5e46a429480eb338c5a7feec9c5e6ef3e2f1f320836894b8bd44380afc52cc",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-8011-exemption-arthur-h-chase-from-compulsory-retirement-for-age"
             }
           ],
           "record": {
@@ -67,58 +67,58 @@
             "confirmed": true,
             "evidence": {
               "complete_detail": {
-                "end_cue_kind": "dated_line",
+                "end_cue_kind": "signature",
                 "start_kind": "title_words"
               },
               "complete_route": "own_start_and_end",
-              "first_cue_snippet": "Brews S BY THE ULITLD STATES OF AMERICA  iit 2 3g  8/ At  Executive Order  EXEMP",
-              "identity_detail": {},
-              "identity_route": "a_number_and_date",
-              "last_cue_snippet": "a period of one year ending November 30, 1939.",
+              "first_cue_snippet": "Whereas, in my judgment, the public interest requires that Arthur H. Chase, seni",
+              "identity_detail": {
+                "source_heading": "Executive Order 8011—Exemption of Arthur H. Chase From Compulsory Retirement for Age",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 0.8333,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
               "matched_date": "November 19, 1938",
-              "matched_number": "No. 8011",
-              "pages_detail": {},
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1938-11-19",
+                "app_heading": "Executive Order 8011—Exemption of Arthur H. Chase From Compulsory Retirement for",
+                "app_subject_overlap": 0.8333
+              },
               "register_date": "1938-11-19",
               "register_number": "8011",
-              "similarity": [
-                {
-                  "agrees": false,
-                  "grade": "mirror_transcription",
-                  "jaccard": 0.6978,
-                  "length_ratio": 1.2784,
-                  "producer": "app-executive-orders",
-                  "sha256": "fe08bee0942162da8f169fc30139b12de3d21cb05d5457cbd7b4722e36af8f55"
-                }
-              ],
+              "similarity": [],
               "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_8011.txt",
+                  "why": "text_hash_mismatch"
+                },
                 {
                   "grade": "official_printing",
                   "text_path": "jobs/photius-gpo-volumes/output/texts/EO_8011.txt",
                   "why": "grade_not_in_working_text_policy"
                 }
               ],
-              "text_chars": 871
+              "source_heading": "Executive Order 8011—Exemption of Arthur H. Chase From Compulsory Retirement for Age",
+              "text_chars": 679
             },
-            "grade": "machine_read_government_printed_copy",
+            "grade": "mirror_transcription",
             "identity_confirmed": true,
             "instrument_id": "EO:8011",
             "method": "machine",
-            "pages_confirmed": null,
+            "pages_confirmed": true,
             "reasons": [],
-            "requires_page_check": false,
+            "requires_page_check": true,
             "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
             "schema": "eo-lachmann-confirmation/v1",
-            "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+            "sha256": "fe08bee0942162da8f169fc30139b12de3d21cb05d5457cbd7b4722e36af8f55",
             "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
-            "text_path": "jobs/mabillon-held-printings/output/texts/EO_8011.txt",
-            "text_sha256": "221db14e7e7dba83ebbc6e43549492a8d91763b02d7a8ec9abe5d6f3a8d03c38",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-8011-exemption-arthur-h-chase-from-compulsory-retirement-for-age.txt",
+            "text_sha256": "9d5e46a429480eb338c5a7feec9c5e6ef3e2f1f320836894b8bd44380afc52cc",
             "witnesses": [
-              {
-                "grade": "machine_read_government_printed_copy",
-                "producer": "mabillon-held-printings",
-                "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
-                "text_path": "jobs/mabillon-held-printings/output/texts/EO_8011.txt"
-              },
               {
                 "grade": "mirror_transcription",
                 "producer": "app-executive-orders",
@@ -129,16 +129,6 @@
           },
           "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
         },
-        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8011.txt",
-        "text_sha256": "221db14e7e7dba83ebbc6e43549492a8d91763b02d7a8ec9abe5d6f3a8d03c38"
-      },
-      {
-        "complete_text_confirmed": false,
-        "grade": "mirror_transcription",
-        "identity_confirmed": false,
-        "instrument_id": "EO:8011",
-        "pages_confirmed": false,
         "sha256": "fe08bee0942162da8f169fc30139b12de3d21cb05d5457cbd7b4722e36af8f55",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-8011-exemption-arthur-h-chase-from-compulsory-retirement-for-age.txt",
         "text_sha256": "9d5e46a429480eb338c5a7feec9c5e6ef3e2f1f320836894b8bd44380afc52cc"
@@ -162,6 +152,16 @@
         "sha256": "fe08bee0942162da8f169fc30139b12de3d21cb05d5457cbd7b4722e36af8f55",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-8011-fe08bee094.txt",
         "text_sha256": "9d095e742ec1bc84a4411362cdfccf5ba9ffea114948c3333308bd75728e89ab"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8011",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8011.txt",
+        "text_sha256": "63fa658ee0d214eeac0f5fbaccf436940981f3e594c12a307425290e719f7127"
       },
       {
         "complete_text_confirmed": false,

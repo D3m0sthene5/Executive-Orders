@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "87ff7db0aba1ab2b6c2b1c109756620301fda31547f383e4fcaedbc006cfa380",
+  "dossier_sha256": "2d70a076697be2748aafd723e85bd206f84d4c503cbbb6dfc263c5bf85f682c4",
   "instrument_id": "EO:6578",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -40,14 +40,97 @@
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "complete_text_confirmed": true,
+        "grade": "mirror_transcription",
+        "identity_confirmed": true,
         "instrument_id": "EO:6578",
-        "pages_confirmed": false,
-        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6578.txt",
-        "text_sha256": "19c05325fa9c04efc63431db76996e772cee68ef61e09bd1cd0af04bf0c24581"
+        "pages_confirmed": true,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
+              "instrument_id": "EO:6578",
+              "requires_page_check": true,
+              "sha256": "eb28ca5b91b8bea197e79d66b2b4d6fc975760cce6dfdd7039036689ea4df95b",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6578-code-fair-competition-for-the-construction-industry.txt",
+              "text_sha256": "2df69e0133b015f60e635c36cf860734ee4fa1f93e93c0e0d98d95783ad9cb56",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6578-code-fair-competition-for-the-construction-industry"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "An application having been duly made, pursuant to and in full compliance with th",
+              "identity_detail": {
+                "source_heading": "Executive Order 6578—Code of Fair Competition for the Construction Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "matched_date": "Jan. 31, 1934",
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1934-01-31",
+                "app_heading": "Executive Order 6578—Code of Fair Competition for the Construction Industry",
+                "app_subject_overlap": 1.0
+              },
+              "register_date": "1934-01-31",
+              "register_number": "6578",
+              "similarity": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6578.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6578.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "source_heading": "Executive Order 6578—Code of Fair Competition for the Construction Industry",
+              "text_chars": 1225
+            },
+            "grade": "mirror_transcription",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6578",
+            "method": "machine",
+            "pages_confirmed": true,
+            "reasons": [],
+            "requires_page_check": true,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "eb28ca5b91b8bea197e79d66b2b4d6fc975760cce6dfdd7039036689ea4df95b",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6578-code-fair-competition-for-the-construction-industry.txt",
+            "text_sha256": "2df69e0133b015f60e635c36cf860734ee4fa1f93e93c0e0d98d95783ad9cb56",
+            "witnesses": [
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "eb28ca5b91b8bea197e79d66b2b4d6fc975760cce6dfdd7039036689ea4df95b",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6578-code-fair-competition-for-the-construction-industry.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "eb28ca5b91b8bea197e79d66b2b4d6fc975760cce6dfdd7039036689ea4df95b",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6578-code-fair-competition-for-the-construction-industry.txt",
+        "text_sha256": "2df69e0133b015f60e635c36cf860734ee4fa1f93e93c0e0d98d95783ad9cb56"
       }
     ],
     "quotation_recheck_required": true,

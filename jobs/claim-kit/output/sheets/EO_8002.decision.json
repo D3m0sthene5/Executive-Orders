@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "b3e6353fdbbcf5d8e70f6ad3920d3a49c5ee1b7f0af0eb10abd3ff025e27f37e",
+  "dossier_sha256": "729cdcb9479b5124b8c7dd0106cc11bd6f960845be1ef792d4887ad17332939e",
   "instrument_id": "EO:8002",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,29 +34,30 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
         "complete_text_confirmed": true,
-        "grade": "machine_read_government_printed_copy",
+        "grade": "mirror_transcription",
         "identity_confirmed": true,
         "instrument_id": "EO:8002",
-        "pages_confirmed": false,
+        "pages_confirmed": true,
         "prior_confirmation": {
           "fragments": [
             {
               "acceptable_as_original": false,
               "complete_text": null,
-              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
-              "grade": "machine_read_government_printed_copy",
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
               "instrument_id": "EO:8002",
-              "requires_page_check": false,
-              "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
-              "text_path": "jobs/mabillon-held-printings/output/texts/EO_8002.txt",
-              "text_sha256": "b593bc54dddc76c3b4c20ad97afc23e6832a777ba5ba76b38f30baeb5e260f75",
-              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_7262-8027.djvu"
+              "requires_page_check": true,
+              "sha256": "9d605efeb35192014e36943437f614904cf0dfcbbed8afc719977e47f29d789a",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-8002-exemption-harry-peale-from-compulsory-retirement-for-age.txt",
+              "text_sha256": "be5d9307a63c25783c609b1f645011f0578aed923638356ecf2d2ae46bcb19a4",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-8002-exemption-harry-peale-from-compulsory-retirement-for-age"
             }
           ],
           "record": {
@@ -65,58 +66,58 @@
             "confirmed": true,
             "evidence": {
               "complete_detail": {
-                "end_cue_kind": "dated_line",
+                "end_cue_kind": "signature",
                 "start_kind": "title_words"
               },
               "complete_route": "own_start_and_end",
-              "first_cue_snippet": " ¥/ AG  Executive @rder  EXEMPTION OF Harry PEALE FRoM COMPULSORY RETIREMENT FOR",
-              "identity_detail": {},
-              "identity_route": "a_number_and_date",
-              "last_cue_snippet": "for a period of six months ending July 31, 1939.",
+              "first_cue_snippet": "Whereas, in my judgment, the public interest requires that Harry Peale, architec",
+              "identity_detail": {
+                "source_heading": "Executive Order 8002—Exemption of Harry Peale From Compulsory Retirement for Age",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 0.8333,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
               "matched_date": "November 7, 1938",
-              "matched_number": "No. 8002",
-              "pages_detail": {},
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1938-11-07",
+                "app_heading": "Executive Order 8002—Exemption of Harry Peale From Compulsory Retirement for Age",
+                "app_subject_overlap": 0.8333
+              },
               "register_date": "1938-11-07",
               "register_number": "8002",
-              "similarity": [
-                {
-                  "agrees": false,
-                  "grade": "mirror_transcription",
-                  "jaccard": 0.7803,
-                  "length_ratio": 1.1852,
-                  "producer": "app-executive-orders",
-                  "sha256": "9d605efeb35192014e36943437f614904cf0dfcbbed8afc719977e47f29d789a"
-                }
-              ],
+              "similarity": [],
               "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_8002.txt",
+                  "why": "text_hash_mismatch"
+                },
                 {
                   "grade": "official_printing",
                   "text_path": "jobs/photius-gpo-volumes/output/texts/EO_8002.txt",
                   "why": "grade_not_in_working_text_policy"
                 }
               ],
-              "text_chars": 838
+              "source_heading": "Executive Order 8002—Exemption of Harry Peale From Compulsory Retirement for Age",
+              "text_chars": 700
             },
-            "grade": "machine_read_government_printed_copy",
+            "grade": "mirror_transcription",
             "identity_confirmed": true,
             "instrument_id": "EO:8002",
             "method": "machine",
-            "pages_confirmed": null,
+            "pages_confirmed": true,
             "reasons": [],
-            "requires_page_check": false,
+            "requires_page_check": true,
             "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
             "schema": "eo-lachmann-confirmation/v1",
-            "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+            "sha256": "9d605efeb35192014e36943437f614904cf0dfcbbed8afc719977e47f29d789a",
             "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
-            "text_path": "jobs/mabillon-held-printings/output/texts/EO_8002.txt",
-            "text_sha256": "b593bc54dddc76c3b4c20ad97afc23e6832a777ba5ba76b38f30baeb5e260f75",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-8002-exemption-harry-peale-from-compulsory-retirement-for-age.txt",
+            "text_sha256": "be5d9307a63c25783c609b1f645011f0578aed923638356ecf2d2ae46bcb19a4",
             "witnesses": [
-              {
-                "grade": "machine_read_government_printed_copy",
-                "producer": "mabillon-held-printings",
-                "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
-                "text_path": "jobs/mabillon-held-printings/output/texts/EO_8002.txt"
-              },
               {
                 "grade": "mirror_transcription",
                 "producer": "app-executive-orders",
@@ -127,16 +128,6 @@
           },
           "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
         },
-        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8002.txt",
-        "text_sha256": "b593bc54dddc76c3b4c20ad97afc23e6832a777ba5ba76b38f30baeb5e260f75"
-      },
-      {
-        "complete_text_confirmed": false,
-        "grade": "mirror_transcription",
-        "identity_confirmed": false,
-        "instrument_id": "EO:8002",
-        "pages_confirmed": false,
         "sha256": "9d605efeb35192014e36943437f614904cf0dfcbbed8afc719977e47f29d789a",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-8002-exemption-harry-peale-from-compulsory-retirement-for-age.txt",
         "text_sha256": "be5d9307a63c25783c609b1f645011f0578aed923638356ecf2d2ae46bcb19a4"
@@ -160,6 +151,16 @@
         "sha256": "9d605efeb35192014e36943437f614904cf0dfcbbed8afc719977e47f29d789a",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-8002-9d605efeb3.txt",
         "text_sha256": "ddeb4d5b084d4bfe9ad52183c144da137f6a6ba5d3383aca26b7ee20379b1aba"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:8002",
+        "pages_confirmed": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_8002.txt",
+        "text_sha256": "d0c89709aca931b6bdd263b1a219b399dcac647241d05ea3a15a88c458c534db"
       }
     ],
     "quotation_recheck_required": true,

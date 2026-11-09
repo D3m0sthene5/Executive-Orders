@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "d4e178a4c2f2afa1006f00da165e108ddd6c17f9f30cf096b376818ffa93bc98",
+  "dossier_sha256": "b1e48e1f5d1c25dc57bf8657bacd4008dbb90625ecffac66c35f3a78c931a96f",
   "instrument_id": "EO:6331C",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -40,14 +40,97 @@
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "complete_text_confirmed": true,
+        "grade": "mirror_transcription",
+        "identity_confirmed": true,
         "instrument_id": "EO:6331C",
-        "pages_confirmed": false,
-        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6331C.txt",
-        "text_sha256": "d121efed209178817ddf88869b09d0db01f0fcc777b8604fb0dd8bb68e684cc0"
+        "pages_confirmed": true,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
+              "instrument_id": "EO:6331C",
+              "requires_page_check": true,
+              "sha256": "4cff4adebac777577a8c824dc6889b85699cdadd6f2a324ff974f03f2869210e",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6331-c-code-fair-competition-for-the-heat-exchange-industry.txt",
+              "text_sha256": "da37b221e8abfbb912b87934a3c6aae5f15a4e7902768ca6c23c01055d0daa1e",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6331-c-code-fair-competition-for-the-heat-exchange-industry"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "An application having been duly made, pursuant to and in full compliance with th",
+              "identity_detail": {
+                "source_heading": "Executive Order 6331-C—Code of Fair Competition for the Heat Exchange Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "matched_date": "October 11, 1933",
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1933-10-11",
+                "app_heading": "Executive Order 6331-C—Code of Fair Competition for the Heat Exchange Industry",
+                "app_subject_overlap": 1.0
+              },
+              "register_date": "1933-10-11",
+              "register_number": "6331C",
+              "similarity": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6331C.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6331C.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "source_heading": "Executive Order 6331-C—Code of Fair Competition for the Heat Exchange Industry",
+              "text_chars": 1226
+            },
+            "grade": "mirror_transcription",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6331C",
+            "method": "machine",
+            "pages_confirmed": true,
+            "reasons": [],
+            "requires_page_check": true,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "4cff4adebac777577a8c824dc6889b85699cdadd6f2a324ff974f03f2869210e",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6331-c-code-fair-competition-for-the-heat-exchange-industry.txt",
+            "text_sha256": "da37b221e8abfbb912b87934a3c6aae5f15a4e7902768ca6c23c01055d0daa1e",
+            "witnesses": [
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "4cff4adebac777577a8c824dc6889b85699cdadd6f2a324ff974f03f2869210e",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6331-c-code-fair-competition-for-the-heat-exchange-industry.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "4cff4adebac777577a8c824dc6889b85699cdadd6f2a324ff974f03f2869210e",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6331-c-code-fair-competition-for-the-heat-exchange-industry.txt",
+        "text_sha256": "da37b221e8abfbb912b87934a3c6aae5f15a4e7902768ca6c23c01055d0daa1e"
       }
     ],
     "quotation_recheck_required": true,

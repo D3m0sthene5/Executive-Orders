@@ -60,7 +60,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "70513ec257a27bcad5aaa1f7f9d8ed77d3e3a9488fa73fc1f4f34344a7e6b3ac",
+  "dossier_sha256": "8fa3549c9666a8fb13b5b45ed77a36cdd44f7e6f1238010e5c043c7270f37f3f",
   "instrument_id": "EO:6487A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -82,14 +82,97 @@
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "complete_text_confirmed": true,
+        "grade": "mirror_transcription",
+        "identity_confirmed": true,
         "instrument_id": "EO:6487A",
-        "pages_confirmed": false,
-        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6487A.txt",
-        "text_sha256": "9b3452a6c3e306e67d0df70f84c72021fa3f8185aaa7ce3145c7200b345698c8"
+        "pages_confirmed": true,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
+              "instrument_id": "EO:6487A",
+              "requires_page_check": true,
+              "sha256": "4165857ea2510bab33e55f71997a394c7d786053477757bf5115c0b06daf175f",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6487-approval-code-fair-competition-for-the-alcoholic-beverage-wholesale.txt",
+              "text_sha256": "f642cf7a37c731bb5b850580ab0a8808231966d2af39835aa038500dfbeb9793",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6487-approval-code-fair-competition-for-the-alcoholic-beverage-wholesale"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "Whereas, the Secretary of Agriculture having submitted for my approval & Code of",
+              "identity_detail": {
+                "source_heading": "Executive Order 6487-A—Approval of Code of Fair Competition for the Alcoholic Beverage Wholesale Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "matched_date": "December 9, 1933",
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1933-12-09",
+                "app_heading": "Executive Order 6487-A—Approval of Code of Fair Competition for the Alcoholic Be",
+                "app_subject_overlap": 1.0
+              },
+              "register_date": "1933-12-09",
+              "register_number": "6487A",
+              "similarity": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6487A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6487A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "source_heading": "Executive Order 6487-A—Approval of Code of Fair Competition for the Alcoholic Beverage Wholesale Industry",
+              "text_chars": 1698
+            },
+            "grade": "mirror_transcription",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6487A",
+            "method": "machine",
+            "pages_confirmed": true,
+            "reasons": [],
+            "requires_page_check": true,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "4165857ea2510bab33e55f71997a394c7d786053477757bf5115c0b06daf175f",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6487-approval-code-fair-competition-for-the-alcoholic-beverage-wholesale.txt",
+            "text_sha256": "f642cf7a37c731bb5b850580ab0a8808231966d2af39835aa038500dfbeb9793",
+            "witnesses": [
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "4165857ea2510bab33e55f71997a394c7d786053477757bf5115c0b06daf175f",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6487-approval-code-fair-competition-for-the-alcoholic-beverage-wholesale.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "4165857ea2510bab33e55f71997a394c7d786053477757bf5115c0b06daf175f",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6487-approval-code-fair-competition-for-the-alcoholic-beverage-wholesale.txt",
+        "text_sha256": "f642cf7a37c731bb5b850580ab0a8808231966d2af39835aa038500dfbeb9793"
       }
     ],
     "quotation_recheck_required": true,

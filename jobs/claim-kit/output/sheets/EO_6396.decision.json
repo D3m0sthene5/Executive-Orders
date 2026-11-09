@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "b6fa40015cd818740e8ed20a2d1f744973f6bf54f54f1b6c5ca020d8232e9605",
+  "dossier_sha256": "2e7f08852bbf616424bc48537fabab3e9146bdcb6e4eda2bc59481995f2912f5",
   "instrument_id": "EO:6396",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,29 +34,30 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
         "complete_text_confirmed": true,
-        "grade": "machine_read_government_printed_copy",
+        "grade": "mirror_transcription",
         "identity_confirmed": true,
         "instrument_id": "EO:6396",
-        "pages_confirmed": false,
+        "pages_confirmed": true,
         "prior_confirmation": {
           "fragments": [
             {
               "acceptable_as_original": false,
               "complete_text": null,
-              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
-              "grade": "machine_read_government_printed_copy",
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
               "instrument_id": "EO:6396",
-              "requires_page_check": false,
-              "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
-              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6396.txt",
-              "text_sha256": "7e78c789ae2fa5339e5be2622299856726394f8f41a02413937261028c09b7dc",
-              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6251-6479.djvu"
+              "requires_page_check": true,
+              "sha256": "655bc35cd12eed959a5bc106e3c6c80e0874ac74142ef3d4c10ce806ebf08183",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6396-code-fair-competition-for-the-office-equipment-manufacturers-industry.txt",
+              "text_sha256": "017ef1a618a7f432da5c4aa5b784eb5729a3fa19e28c9e1189e92428492c1184",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6396-code-fair-competition-for-the-office-equipment-manufacturers-industry"
             }
           ],
           "record": {
@@ -69,54 +70,54 @@
                 "start_kind": "title_words"
               },
               "complete_route": "own_start_and_end",
-              "first_cue_snippet": "NS   5 / AG  Executibe @rder  CopE oF Farr COMPETITION FOR THE OFFICE EQUIPMENT ",
-              "identity_detail": {},
-              "identity_route": "a_number_and_date",
-              "last_cue_snippet": "FRANKLIN D. ROOSEVELT.",
+              "first_cue_snippet": "An application having been duly made, pursuant to and in full compliance with th",
+              "identity_detail": {
+                "source_heading": "Executive Order 6396—Code of Fair Competition for the Office Equipment Manufacturers Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
               "matched_date": "November 4, 1933",
-              "matched_number": "No. 6396",
-              "pages_detail": {},
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1933-11-04",
+                "app_heading": "Executive Order 6396—Code of Fair Competition for the Office Equipment Manufactu",
+                "app_subject_overlap": 1.0
+              },
               "register_date": "1933-11-04",
               "register_number": "6396",
-              "similarity": [
-                {
-                  "agrees": false,
-                  "grade": "mirror_transcription",
-                  "jaccard": 0.7404,
-                  "length_ratio": 1.119,
-                  "producer": "app-executive-orders",
-                  "sha256": "655bc35cd12eed959a5bc106e3c6c80e0874ac74142ef3d4c10ce806ebf08183"
-                }
-              ],
+              "similarity": [],
               "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6396.txt",
+                  "why": "text_hash_mismatch"
+                },
                 {
                   "grade": "official_printing",
                   "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6396.txt",
                   "why": "grade_not_in_working_text_policy"
                 }
               ],
-              "text_chars": 1392
+              "source_heading": "Executive Order 6396—Code of Fair Competition for the Office Equipment Manufacturers Industry",
+              "text_chars": 1250
             },
-            "grade": "machine_read_government_printed_copy",
+            "grade": "mirror_transcription",
             "identity_confirmed": true,
             "instrument_id": "EO:6396",
             "method": "machine",
-            "pages_confirmed": null,
+            "pages_confirmed": true,
             "reasons": [],
-            "requires_page_check": false,
+            "requires_page_check": true,
             "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
             "schema": "eo-lachmann-confirmation/v1",
-            "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+            "sha256": "655bc35cd12eed959a5bc106e3c6c80e0874ac74142ef3d4c10ce806ebf08183",
             "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
-            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6396.txt",
-            "text_sha256": "7e78c789ae2fa5339e5be2622299856726394f8f41a02413937261028c09b7dc",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6396-code-fair-competition-for-the-office-equipment-manufacturers-industry.txt",
+            "text_sha256": "017ef1a618a7f432da5c4aa5b784eb5729a3fa19e28c9e1189e92428492c1184",
             "witnesses": [
-              {
-                "grade": "machine_read_government_printed_copy",
-                "producer": "mabillon-held-printings",
-                "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
-                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6396.txt"
-              },
               {
                 "grade": "mirror_transcription",
                 "producer": "app-executive-orders",
@@ -127,9 +128,9 @@
           },
           "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
         },
-        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6396.txt",
-        "text_sha256": "7e78c789ae2fa5339e5be2622299856726394f8f41a02413937261028c09b7dc"
+        "sha256": "655bc35cd12eed959a5bc106e3c6c80e0874ac74142ef3d4c10ce806ebf08183",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6396-code-fair-competition-for-the-office-equipment-manufacturers-industry.txt",
+        "text_sha256": "017ef1a618a7f432da5c4aa5b784eb5729a3fa19e28c9e1189e92428492c1184"
       }
     ],
     "quotation_recheck_required": true,

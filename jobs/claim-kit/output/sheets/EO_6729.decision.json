@@ -46,7 +46,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "9538cd72dbc7835a28a17732367230cd343592dc0f0d0d6c62b8047f278cb9d0",
+  "dossier_sha256": "899e7c23a3a09def48c1451e9260093b20928b9e53271092289f54bdf58e2bd1",
   "instrument_id": "EO:6729",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -62,26 +62,100 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
-        "instrument_id": "EO:6729",
-        "pages_confirmed": false,
-        "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6729.txt",
-        "text_sha256": "b365e11c7bd653a4b8ee18f8a077295ae2f111577c215c11634dfd554747bbbf"
-      },
-      {
-        "complete_text_confirmed": false,
+        "complete_text_confirmed": true,
         "grade": "mirror_transcription",
-        "identity_confirmed": false,
+        "identity_confirmed": true,
         "instrument_id": "EO:6729",
-        "pages_confirmed": false,
+        "pages_confirmed": true,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
+              "instrument_id": "EO:6729",
+              "requires_page_check": true,
+              "sha256": "03fb919b24d666c099fe6c5561690ceeb2b0a96b69afd084985f5dc99e7d5663",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6729-code-fair-competition-for-the-canning-industry.txt",
+              "text_sha256": "186eb0e062eeeea94d2b32274e3d2b83dfa545747d255ace1ad34378bcb992d2",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6729-code-fair-competition-for-the-canning-industry"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "An application having been duly made, pursuant to and in full compliance with th",
+              "identity_detail": {
+                "source_heading": "Executive Order 6729—Code of Fair Competition for the Canning Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "matched_date": "May 29, 1934",
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1934-05-29",
+                "app_heading": "Executive Order 6729—Code of Fair Competition for the Canning Industry",
+                "app_subject_overlap": 1.0
+              },
+              "register_date": "1934-05-29",
+              "register_number": "6729",
+              "similarity": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6729.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6729.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "source_heading": "Executive Order 6729—Code of Fair Competition for the Canning Industry",
+              "text_chars": 1853
+            },
+            "grade": "mirror_transcription",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6729",
+            "method": "machine",
+            "pages_confirmed": true,
+            "reasons": [],
+            "requires_page_check": true,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "03fb919b24d666c099fe6c5561690ceeb2b0a96b69afd084985f5dc99e7d5663",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6729-code-fair-competition-for-the-canning-industry.txt",
+            "text_sha256": "186eb0e062eeeea94d2b32274e3d2b83dfa545747d255ace1ad34378bcb992d2",
+            "witnesses": [
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "03fb919b24d666c099fe6c5561690ceeb2b0a96b69afd084985f5dc99e7d5663",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6729-code-fair-competition-for-the-canning-industry.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
         "sha256": "03fb919b24d666c099fe6c5561690ceeb2b0a96b69afd084985f5dc99e7d5663",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-6729-code-fair-competition-for-the-canning-industry.txt",
         "text_sha256": "186eb0e062eeeea94d2b32274e3d2b83dfa545747d255ace1ad34378bcb992d2"
@@ -105,6 +179,16 @@
         "sha256": "03fb919b24d666c099fe6c5561690ceeb2b0a96b69afd084985f5dc99e7d5663",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6729-03fb919b24.txt",
         "text_sha256": "393b081ffe2750c2a12ece4c92c6475f22ae9db268206d60c5b2ccd4de4d9849"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "compiled_transcription_lead",
+        "identity_confirmed": false,
+        "instrument_id": "EO:6729",
+        "pages_confirmed": false,
+        "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6729.txt",
+        "text_sha256": "a8867ef82381ecbb1b148f9da447394b13db8f05060560d3f2e5b52e0ab5e54f"
       }
     ],
     "quotation_recheck_required": true,

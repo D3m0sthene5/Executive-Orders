@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "cbb2a2ec9a70040c9d53f859f79958ee183700761c903ef7e8706e09e47f637b",
+  "dossier_sha256": "f4e87106b2b41d92d28c1c6a6ba09ece08d6e88d93415bc3e09f5345fc79aceb",
   "instrument_id": "EO:6756F",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -90,19 +90,98 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "complete_text_confirmed": true,
+        "grade": "mirror_transcription",
+        "identity_confirmed": true,
         "instrument_id": "EO:6756F",
-        "pages_confirmed": false,
-        "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6756F.txt",
-        "text_sha256": "ba715654a5510724da7bb4eddc0ebb7cc9df9d999f58ec610cb575823f473fcc"
+        "pages_confirmed": true,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
+              "instrument_id": "EO:6756F",
+              "requires_page_check": true,
+              "sha256": "712b23d1fa5ab47199b5bf45ba678c496a39b6eb80ce51bf5d670bac64e8d067",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6756-f-approval-amendments-the-code-fair-competition-for-the-brewing.txt",
+              "text_sha256": "f91683ba4f1000d44ca7131fe1050b4cf6480c1070290cb4d4b5db761a5f5074",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6756-f-approval-amendments-the-code-fair-competition-for-the-brewing"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "Whereas, the Federal Alcohol Control Administration has submitted for my approva",
+              "identity_detail": {
+                "source_heading": "Executive Order 6756-F—Approval of Amendments to the Code of Fair Competition for the Brewing Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "matched_date": "June 29, 1934",
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1934-06-29",
+                "app_heading": "Executive Order 6756-F—Approval of Amendments to the Code of Fair Competition fo",
+                "app_subject_overlap": 1.0
+              },
+              "register_date": "1934-06-29",
+              "register_number": "6756F",
+              "similarity": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6756F.txt",
+                  "why": "text_hash_mismatch"
+                }
+              ],
+              "source_heading": "Executive Order 6756-F—Approval of Amendments to the Code of Fair Competition for the Brewing Industry",
+              "text_chars": 1843
+            },
+            "grade": "mirror_transcription",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6756F",
+            "method": "machine",
+            "pages_confirmed": true,
+            "reasons": [],
+            "requires_page_check": true,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "712b23d1fa5ab47199b5bf45ba678c496a39b6eb80ce51bf5d670bac64e8d067",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6756-f-approval-amendments-the-code-fair-competition-for-the-brewing.txt",
+            "text_sha256": "f91683ba4f1000d44ca7131fe1050b4cf6480c1070290cb4d4b5db761a5f5074",
+            "witnesses": [
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "712b23d1fa5ab47199b5bf45ba678c496a39b6eb80ce51bf5d670bac64e8d067",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6756-f-approval-amendments-the-code-fair-competition-for-the-brewing.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "712b23d1fa5ab47199b5bf45ba678c496a39b6eb80ce51bf5d670bac64e8d067",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6756-f-approval-amendments-the-code-fair-competition-for-the-brewing.txt",
+        "text_sha256": "f91683ba4f1000d44ca7131fe1050b4cf6480c1070290cb4d4b5db761a5f5074"
       }
     ],
     "quotation_recheck_required": true,

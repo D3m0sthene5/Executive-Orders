@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "034898d90f4b12caeda9f3efea8415fc32b720092014e466b7ab4550fe0b3ccd",
+  "dossier_sha256": "208ec94424fbfd55216deae0d5d69fd3ee0824c2e9e6a447b08fd8d5610eeb96",
   "instrument_id": "EO:6509",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -40,14 +40,97 @@
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "complete_text_confirmed": true,
+        "grade": "mirror_transcription",
+        "identity_confirmed": true,
         "instrument_id": "EO:6509",
-        "pages_confirmed": false,
-        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6509.txt",
-        "text_sha256": "902d11bb0a2f2e64290a849b6e2a8e2f559ff3adc14a6e62092360054d7573ff"
+        "pages_confirmed": true,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
+              "instrument_id": "EO:6509",
+              "requires_page_check": true,
+              "sha256": "8b83d36e4b59e37495f10d5410868516b0e39d0d1cf4f72023ef6c3af77a969d",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6509-code-fair-competition-for-the-dry-and-polishing-mop-manufacturing.txt",
+              "text_sha256": "0f59dce6c8b3267fa5f496ecdabcf251e05d318fde55704b09bbff8a54e56a15",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6509-code-fair-competition-for-the-dry-and-polishing-mop-manufacturing"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "An application having been duly made, pursuant to and in full compliance with th",
+              "identity_detail": {
+                "source_heading": "Executive Order 6509—Code of Fair Competition for the Dry and Polishing Mop Manufacturing Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "matched_date": "December 15, 1933",
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1933-12-15",
+                "app_heading": "Executive Order 6509—Code of Fair Competition for the Dry and Polishing Mop Manu",
+                "app_subject_overlap": 1.0
+              },
+              "register_date": "1933-12-15",
+              "register_number": "6509",
+              "similarity": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6509.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6509.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "source_heading": "Executive Order 6509—Code of Fair Competition for the Dry and Polishing Mop Manufacturing Industry",
+              "text_chars": 1252
+            },
+            "grade": "mirror_transcription",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6509",
+            "method": "machine",
+            "pages_confirmed": true,
+            "reasons": [],
+            "requires_page_check": true,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "8b83d36e4b59e37495f10d5410868516b0e39d0d1cf4f72023ef6c3af77a969d",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6509-code-fair-competition-for-the-dry-and-polishing-mop-manufacturing.txt",
+            "text_sha256": "0f59dce6c8b3267fa5f496ecdabcf251e05d318fde55704b09bbff8a54e56a15",
+            "witnesses": [
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "8b83d36e4b59e37495f10d5410868516b0e39d0d1cf4f72023ef6c3af77a969d",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6509-code-fair-competition-for-the-dry-and-polishing-mop-manufacturing.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "8b83d36e4b59e37495f10d5410868516b0e39d0d1cf4f72023ef6c3af77a969d",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6509-code-fair-competition-for-the-dry-and-polishing-mop-manufacturing.txt",
+        "text_sha256": "0f59dce6c8b3267fa5f496ecdabcf251e05d318fde55704b09bbff8a54e56a15"
       }
     ],
     "quotation_recheck_required": true,

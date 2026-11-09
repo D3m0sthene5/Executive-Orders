@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "ca77ce8ed364f7022c2c1b39bf43cab17d7f0a32e8e7d46df7b6ba39691d0eee",
+  "dossier_sha256": "1d7c0e3e1fd5b452b1f7f12cf21c2d86bffab2d62eea434058d7b21fd35e8ba2",
   "instrument_id": "EO:6426",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,30 +34,30 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.",
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
         "complete_text_confirmed": true,
-        "grade": "machine_read_government_printed_copy",
+        "grade": "mirror_transcription",
         "identity_confirmed": true,
         "instrument_id": "EO:6426",
-        "pages_confirmed": false,
+        "pages_confirmed": true,
         "prior_confirmation": {
           "fragments": [
             {
               "acceptable_as_original": false,
               "complete_text": null,
-              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
-              "grade": "machine_read_government_printed_copy",
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
               "instrument_id": "EO:6426",
-              "requires_page_check": false,
-              "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
-              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6426.txt",
-              "text_sha256": "e97f53efba0375a3d1b1152688763e7f0a503ef4d1e740b53207c13ca5984710",
-              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6251-6479.djvu"
+              "requires_page_check": true,
+              "sha256": "718adf630eb3babc7b95560322d5e0fbe0c7e1acd61c0328c8eddd31174b579b",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6426-code-fair-competition-for-the-air-transport-industry.txt",
+              "text_sha256": "ccf47442df35f2b5064ef72b299677def41fde0a83c366fe622ccffeee2439cc",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6426-code-fair-competition-for-the-air-transport-industry"
             }
           ],
           "record": {
@@ -70,54 +70,54 @@
                 "start_kind": "title_words"
               },
               "complete_route": "own_start_and_end",
-              "first_cue_snippet": "NEPOSITED BY THE wOiTED STAL in fre  pec 11 133  o | AG  Executive Order  CoprE ",
-              "identity_detail": {},
-              "identity_route": "a_number_and_date",
-              "last_cue_snippet": "FRANKLIN D. ROOSEVELT.",
+              "first_cue_snippet": "An application having been duly made, pursuant to and in full compliance with th",
+              "identity_detail": {
+                "source_heading": "Executive Order 6426—Code of Fair Competition for the Air Transport Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
               "matched_date": "November 14, 1933",
-              "matched_number": "No. 6426",
-              "pages_detail": {},
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1933-11-14",
+                "app_heading": "Executive Order 6426—Code of Fair Competition for the Air Transport Industry",
+                "app_subject_overlap": 1.0
+              },
               "register_date": "1933-11-14",
               "register_number": "6426",
-              "similarity": [
-                {
-                  "agrees": false,
-                  "grade": "mirror_transcription",
-                  "jaccard": 0.7773,
-                  "length_ratio": 1.1438,
-                  "producer": "app-executive-orders",
-                  "sha256": "718adf630eb3babc7b95560322d5e0fbe0c7e1acd61c0328c8eddd31174b579b"
-                }
-              ],
+              "similarity": [],
               "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6426.txt",
+                  "why": "text_hash_mismatch"
+                },
                 {
                   "grade": "official_printing",
                   "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6426.txt",
                   "why": "grade_not_in_working_text_policy"
                 }
               ],
-              "text_chars": 1410
+              "source_heading": "Executive Order 6426—Code of Fair Competition for the Air Transport Industry",
+              "text_chars": 1244
             },
-            "grade": "machine_read_government_printed_copy",
+            "grade": "mirror_transcription",
             "identity_confirmed": true,
             "instrument_id": "EO:6426",
             "method": "machine",
-            "pages_confirmed": null,
+            "pages_confirmed": true,
             "reasons": [],
-            "requires_page_check": false,
+            "requires_page_check": true,
             "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
             "schema": "eo-lachmann-confirmation/v1",
-            "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+            "sha256": "718adf630eb3babc7b95560322d5e0fbe0c7e1acd61c0328c8eddd31174b579b",
             "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
-            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6426.txt",
-            "text_sha256": "e97f53efba0375a3d1b1152688763e7f0a503ef4d1e740b53207c13ca5984710",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6426-code-fair-competition-for-the-air-transport-industry.txt",
+            "text_sha256": "ccf47442df35f2b5064ef72b299677def41fde0a83c366fe622ccffeee2439cc",
             "witnesses": [
-              {
-                "grade": "machine_read_government_printed_copy",
-                "producer": "mabillon-held-printings",
-                "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
-                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6426.txt"
-              },
               {
                 "grade": "mirror_transcription",
                 "producer": "app-executive-orders",
@@ -128,9 +128,9 @@
           },
           "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
         },
-        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6426.txt",
-        "text_sha256": "e97f53efba0375a3d1b1152688763e7f0a503ef4d1e740b53207c13ca5984710"
+        "sha256": "718adf630eb3babc7b95560322d5e0fbe0c7e1acd61c0328c8eddd31174b579b",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6426-code-fair-competition-for-the-air-transport-industry.txt",
+        "text_sha256": "ccf47442df35f2b5064ef72b299677def41fde0a83c366fe622ccffeee2439cc"
       }
     ],
     "quotation_recheck_required": true,

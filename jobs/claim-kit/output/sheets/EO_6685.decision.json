@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "7681c530e6453e88f4d446db20701dcde84f59096f9b8a0ca62ee9124bf1fb5c",
+  "dossier_sha256": "a46fb0ef1b35cc564be0f3e6b1c31a443ee6e460020b98e4e961d56e42766c96",
   "instrument_id": "EO:6685",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,26 +34,100 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
+    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
-        "instrument_id": "EO:6685",
-        "pages_confirmed": false,
-        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6685.txt",
-        "text_sha256": "6992f15d950d674c54dc2d6d2ddf1e45d4530dc825feeb91b79994d8ea198e84"
-      },
-      {
-        "complete_text_confirmed": false,
+        "complete_text_confirmed": true,
         "grade": "mirror_transcription",
-        "identity_confirmed": false,
+        "identity_confirmed": true,
         "instrument_id": "EO:6685",
-        "pages_confirmed": false,
+        "pages_confirmed": true,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
+              "instrument_id": "EO:6685",
+              "requires_page_check": true,
+              "sha256": "e0b08c94a1ab7f6a2e6d02eb2c16cd084c120fd82674f2ccf7d87083963a1ea5",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6685-amendments-the-code-fair-competition-for-the-distilled-spirits.txt",
+              "text_sha256": "d56186e7478f3197578f403be573822dd53445cd5bf3866943c80aeb3d1988e1",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6685-amendments-the-code-fair-competition-for-the-distilled-spirits"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "A recommendation having been made by the Code Authority pursuant to the Code of ",
+              "identity_detail": {
+                "source_heading": "Executive Order 6685—Amendments to the Code of Fair Competition for the Distilled Spirits Rectifying Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 0.875,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "matched_date": "April 20, 1934",
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1934-04-20",
+                "app_heading": "Executive Order 6685—Amendments to the Code of Fair Competition for the Distille",
+                "app_subject_overlap": 1.0
+              },
+              "register_date": "1934-04-20",
+              "register_number": "6685",
+              "similarity": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6685.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6685.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "source_heading": "Executive Order 6685—Amendments to the Code of Fair Competition for the Distilled Spirits Rectifying Industry",
+              "text_chars": 1627
+            },
+            "grade": "mirror_transcription",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6685",
+            "method": "machine",
+            "pages_confirmed": true,
+            "reasons": [],
+            "requires_page_check": true,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "e0b08c94a1ab7f6a2e6d02eb2c16cd084c120fd82674f2ccf7d87083963a1ea5",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6685-amendments-the-code-fair-competition-for-the-distilled-spirits.txt",
+            "text_sha256": "d56186e7478f3197578f403be573822dd53445cd5bf3866943c80aeb3d1988e1",
+            "witnesses": [
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "e0b08c94a1ab7f6a2e6d02eb2c16cd084c120fd82674f2ccf7d87083963a1ea5",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6685-amendments-the-code-fair-competition-for-the-distilled-spirits.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
         "sha256": "e0b08c94a1ab7f6a2e6d02eb2c16cd084c120fd82674f2ccf7d87083963a1ea5",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-6685-amendments-the-code-fair-competition-for-the-distilled-spirits.txt",
         "text_sha256": "d56186e7478f3197578f403be573822dd53445cd5bf3866943c80aeb3d1988e1"

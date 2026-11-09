@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "b42b3d1f8483b5b45f4dbb75ee20151fc59ef1c864e508361ef4bbb0457504f5",
+  "dossier_sha256": "62b2116a8ef718b2a43eef9cf0d323295576f928569fcca7339c9991047284a5",
   "instrument_id": "EO:6473A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -96,14 +96,97 @@
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "complete_text_confirmed": true,
+        "grade": "mirror_transcription",
+        "identity_confirmed": true,
         "instrument_id": "EO:6473A",
-        "pages_confirmed": false,
-        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6473A.txt",
-        "text_sha256": "9d18ca65407a6ac6aedb65c834c0e38af625e2a2620f9f526f300d87e65b4cf4"
+        "pages_confirmed": true,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
+              "grade": "mirror_transcription",
+              "instrument_id": "EO:6473A",
+              "requires_page_check": true,
+              "sha256": "a00b28dd1250b97c14550ddb284e6cb367214c08bff3e08521b97309ec019e71",
+              "text_path": "jobs/app-executive-orders/output/texts/executive-order-6473-approval-code-fair-competition-for-the-brewing-industry.txt",
+              "text_sha256": "c9010a66ddbd4267f6f12c33da5301973558c0479da3402bd9f5845dbe239411",
+              "url": "https://www.presidency.ucsb.edu/documents/executive-order-6473-approval-code-fair-competition-for-the-brewing-industry"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "Whereas, the Secretary of Agriculture having submitted for my approval a Code of",
+              "identity_detail": {
+                "source_heading": "Executive Order 6473-A—Approval of Code of Fair Competition for the Brewing Industry",
+                "source_heading_producer": "app-executive-orders",
+                "title_overlap_body_opening": 1.0,
+                "title_overlap_heading": 1.0
+              },
+              "identity_route": "source_heading",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "matched_date": "December 4, 1933",
+              "matched_number": null,
+              "pages_detail": {
+                "app_date": "1933-12-04",
+                "app_heading": "Executive Order 6473-A—Approval of Code of Fair Competition for the Brewing Indu",
+                "app_subject_overlap": 1.0
+              },
+              "register_date": "1933-12-04",
+              "register_number": "6473A",
+              "similarity": [],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_6473A.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6473A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "source_heading": "Executive Order 6473-A—Approval of Code of Fair Competition for the Brewing Industry",
+              "text_chars": 1746
+            },
+            "grade": "mirror_transcription",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6473A",
+            "method": "machine",
+            "pages_confirmed": true,
+            "reasons": [],
+            "requires_page_check": true,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "a00b28dd1250b97c14550ddb284e6cb367214c08bff3e08521b97309ec019e71",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-6473-approval-code-fair-competition-for-the-brewing-industry.txt",
+            "text_sha256": "c9010a66ddbd4267f6f12c33da5301973558c0479da3402bd9f5845dbe239411",
+            "witnesses": [
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "a00b28dd1250b97c14550ddb284e6cb367214c08bff3e08521b97309ec019e71",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6473-approval-code-fair-competition-for-the-brewing-industry.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "a00b28dd1250b97c14550ddb284e6cb367214c08bff3e08521b97309ec019e71",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6473-approval-code-fair-competition-for-the-brewing-industry.txt",
+        "text_sha256": "c9010a66ddbd4267f6f12c33da5301973558c0479da3402bd9f5845dbe239411"
       },
       {
         "complete_text_confirmed": false,
