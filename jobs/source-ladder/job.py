@@ -245,8 +245,16 @@ def main():
 
     sys.path.insert(0, str(repo / "jobs/_lib"))
     from fetch_pool import FetchPool, prune
+    # A source-only dispatch is bounded to named wanted IDs. Official issue PDFs
+    # in that lane can exceed the pool's general 100 MB per-response guard.
+    # Keep broad sweeps at 100 MB; cap targeted responses below the 800 MB
+    # default whole-run budget and the Fetcher 1.5 GB per-file ceiling.
+    max_file_mb = env_int("JOB_MAX_FILE_MB") or (500 if os.environ.get("JOB_ONLY") else 100)
+    if not 1 <= max_file_mb <= 500:
+        raise ValueError("JOB_MAX_FILE_MB must be between 1 and 500")
     pool = FetchPool(cache / "pool", workers=env_int("JOB_WORKERS") or 12,
                      user_agent=fetch_ladder.USER_AGENT, min_interval=1.0, offline=offline,
+                     max_bytes=max_file_mb * 1_000_000,
                      max_cache_bytes=int(os.environ.get("JOB_CACHE_MB","2048"))*1024*1024//2)
     class PooledFetcher(fetch_ladder.Fetcher):
         def _wait(self, host):
