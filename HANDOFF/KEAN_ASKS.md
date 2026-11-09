@@ -106,3 +106,11 @@ Apply TRACKER_FIX.md (about 80 lines) so the tracker fills formal_revocation_aft
 *Why:* The thesis measure is blank for all 14,998 orders because tracker.py reads only v2 claims.
 
 Sources: `research/encyclopedie-campaign/LOG.md`
+
+## A-20261109-skipped-witness (2026-11-09, Claude)
+
+May the skipped-witness switch in jobs/claim-kit/WORKING_TEXT_SWITCHES.json be set to "flag"? Today ("void") a frozen Lachmann confirmation goes stale when any field differs; 126 orders are now blocked only because Lachmann added a skipped witness (mostly a Photius GPO printing) that it never compared. Under "flag" those 126 return to the ready path with a visible recheck flag; every other difference still voids. Recommendation: yes, flag. It re-freezes nothing and does not discharge D-20261108-photius-recheck: the h01 page check stays owed and the flag lists the orders it covers.
+
+*Why:* Evidence-policy change; only the owner may switch it. Measured on all 1,530 claims (F-20261109-gutenberg-skipped-witness).
+
+Sources: `jobs/claim-kit/WORKING_TEXT_SWITCHES.json`

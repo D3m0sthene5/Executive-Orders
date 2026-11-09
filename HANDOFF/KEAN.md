@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (13)
+## Waiting for the owner (14)
 
-**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**, **A-20261109-skipped-witness**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -48,13 +48,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 260; `search` finds the rest)
+## Newest results (6 of 267; `search` finds the rest)
 
-- 2026-11-08 F-20261108-montfaucon-control-binding **failed**: Low-tier blind page reviewers on Panama 1922 and July 1940 Federal Register controls in pilot m001 Lesson: On multi-order printed pages, bind the quoted operative sentence to its own order number and closing. A control-only retest cannot rehabilitate a model that misses the same control in a full assignme…
-- 2026-11-08 F-20261108-cujas-usage **analysis**: Measure Cujas wave cost for week-allowance calibration Lesson: With a $22 cap one 25-order batch is the most a fresh coordinator can do; batch setup is cheap once inputs are checked out, so the next wave should run 3+ batches in one session.
-- 2026-11-08 F-20261108-cujas-photius-recheck **partly worked**: Cujas c01: page-check 25 Photius-stale orders (>=99% band) against their GPO printings by the Haloander h01 r… Lesson: Own Tribonian claims are replaced by agent 'claude' with a later-sorting file name; Tribonian sheets are on origin/claude/tribonian-state. Arm A rejects orders with FR 'Revoked by' notes the claim do…
-- 2026-11-08 F-20261108-cujas-c02-c03 **worked**: Cujas c02 and c03: 50 more Photius-stale orders (13 at >=99%, 37 at 95-99%) by the same route, with a produce… Lesson: The FR 'Revoked by' producer note removed the arm-A-only rejections seen in c01. Running prepare, carry, producer, arms, reveal and finish_pair --publish as one unattended chain costs the coordinator…
-- 2026-11-08 F-20261108-board-fetch-not-run **partly worked**: Confirm the 58 board-report fetch requests Haloander queued (FETCH_QUEUE 1,120 -> 1,178) ran Lesson: A queue append does not trigger source-ladder; dispatch it explicitly after enqueueing, then verify output/STATUS.json.
-- 2026-11-08 F-20261108-5 **worked**: Two blind controlled readers checked 50 remaining Federal Register original-page targets from 1937 to 1994, w… Lesson: A PDF OCR layer matching held text does not certify table row associations in print. A wrong title in worklist metadata does not defeat a page check when the printed and held order identity and opera…
+- 2026-11-09 F-20261109-gutenberg-tsiolkovsky **worked**: Gutenberg item 6: credit Tsiolkovsky's work-hours by channel (the lines each event changed in the moved step'… Lesson: Lines changed in a step's inputs are a proxy for evidence delivered, not proof of cause; a runner result's credit belongs to the campaign that changed the job's code or inputs.
+- 2026-11-09 F-20261109-gutenberg-skipped-witness **worked**: Gutenberg item 3: the narrowest correct stale-confirmation rule for working_text (prior_confirmation_stale),… Lesson: A skipped witness is information (an official printing now exists), not a change in what was confirmed: flag it for the h01 page check rather than void the confirmation. The switch is the owner's (A-…
+- 2026-11-09 F-20261109-gutenberg-kean-measures **worked**: Gutenberg item 5: optional structured measures on Kean findings (wave, usd by role and model, orders attempte… Lesson: Record a wave's cost with kean.py add-measures from bentham usage output, not in prose. lean_coordination's cost at stake is an upper bound: before Gutenberg every claude -p worker was labelled coord…
+- 2026-11-09 F-20261109-gutenberg-digest **worked**: Gutenberg item 7: stop daily-digest going stale whenever any job publishes: narrow its reads, or an as-of rea… Lesson: A readout of many jobs should be an as-of readout, never narrowed: narrowing a digest's reads would hide real changes.
+- 2026-11-09 F-20261109-gutenberg-davy **worked**: Gutenberg item 4: a free daily health check (Davy, jobs/davy-chain-health) of the claim-drafts -> claim-kit c… Lesson: Read the Chain health line at the top of HANDOFF/KEAN.md before preparing a batch; a FAIL names the validator and its message. Per-dossier fingerprints are not re-read (claim-kit's build does that).
+- 2026-11-09 F-20261109-gutenberg-carnot **partly worked**: Gutenberg waste patterns: real tooling for lean_coordination, revere_phase_handoff and idle_cache_avoidance (… Lesson: The tools exist; the savings do not until a two-arm add-test measures them. Run the next wave with PROTOCOL.md as the after arm of lean_coordination.
 
-Register: 71 owner decisions, 30 answered questions, 260 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 71 owner decisions, 30 answered questions, 267 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
