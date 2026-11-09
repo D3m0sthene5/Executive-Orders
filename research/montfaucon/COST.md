@@ -132,3 +132,16 @@ independent source-provenance supplements. Actual per-model token and cash
 telemetry was unavailable. `usd: null` means **unknown**. Bentham's
 $0.38/attempt is a planning proxy; `spent_usd: 0` in the direct gate is a
 parser artifact, not measured spend. See `GATE_M009.*`.
+
+## m010 — 50 held Civil Service Commission report leads, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| Codex blind readers (exact model identifier unavailable) | Two independent controlled 50-order page readers | unknown | unknown | unknown |
+| Coordinator | Public report PDF and text-layer retrieval, SHA-256 checks, page and title-leaf rendering, source/held-text pinning, record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught all three controls and agreed on every production verdict.
+Exact model identity and per-model token/cash telemetry were unavailable.
+`usd: null` means **unknown**. Bentham's $0.38/attempt is a planning proxy;
+`spent_usd: 0` in the direct gate is a parser artifact, not measured spend.
+See `GATE_M010.*`.

@@ -92,3 +92,16 @@ GPO scan, PDF pages 28–29. The 50-row `REPORT_M009.md`, sealed evidence
 under `reviews/m009/`, `GATE_M009.*` and `COST.md` document each span,
 the low-yield source diagnosis and unknown actual cost. No result yields
 original-text credit or a human/legal certification.
+
+`checks/m010-annual-report-negatives.jsonl` adds 50 distinct Tischendorf
+held-text annual-report targets: 0 pass, 50 fail. Both blind readers rejected
+all three controls and agreed on every verdict. The cited and neighboring
+leaves plus three volume title pages are sealed in `images/m010/` and pinned
+as negative inspection evidence in each record; the scanned reports are
+not issued EO originals. The 1902 and 1904 title pages visibly name the
+Government Printing Office, despite the immutable machine source-kind label
+`non-government publication`. The 1915 title page names the Civil Service
+Commission but does not prove the printer. `REPORT_M010.md`, `reviews/m010/`,
+`GATE_M010.*` and `COST.md` give every exact reason, the low-yield diagnosis
+and unknown actual cost. Local assembly reaches 500 outcomes, 206 official
+fragments and zero rejects. The owner directed a stop after m010.
