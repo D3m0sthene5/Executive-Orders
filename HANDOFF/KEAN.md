@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (14)
+## Waiting for the owner (2)
 
-**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**, **A-20261108-lean-main**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261109-skipped-witness**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -48,13 +48,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 268; `search` finds the rest)
+## Newest results (6 of 278; `search` finds the rest)
 
-- 2026-11-08 F-20261109-valla-certificate-stale-on-main **analysis**: Checked the Valla materialization certificates against main while fixing PR 243's Road tests (runner fixtures… Lesson: Re-certify Valla only after auditing the 14 in-scope commits since 11fd9f42e2 (procedure: research/progress/integration-20261104/VALLA_CERTIFICATE.md); any runner change, including Ariadne, needs tha…
-- 2026-11-08 F-20261108-ockham-agent-search **partly worked**: Stress-tested repo-carried ways to keep agents out of bulk files: a root .ignore in a scratch repo against Cl… Lesson: Use .ignore for ripgrep tools (Claude Grep, Codex rg, VS Code) plus the Claude hook and AGENTS.md rule; API connectors need a tree change, an owner decision (see ask A-20261108-lean-main).
-- 2026-11-08 F-20261108-montfaucon-control-binding **failed**: Low-tier blind page reviewers on Panama 1922 and July 1940 Federal Register controls in pilot m001 Lesson: On multi-order printed pages, bind the quoted operative sentence to its own order number and closing. A control-only retest cannot rehabilitate a model that misses the same control in a full assignme…
-- 2026-11-08 F-20261108-cujas-usage **analysis**: Measure Cujas wave cost for week-allowance calibration Lesson: With a $22 cap one 25-order batch is the most a fresh coordinator can do; batch setup is cheap once inputs are checked out, so the next wave should run 3+ batches in one session.
-- 2026-11-08 F-20261108-cujas-photius-recheck **partly worked**: Cujas c01: page-check 25 Photius-stale orders (>=99% band) against their GPO printings by the Haloander h01 r… Lesson: Own Tribonian claims are replaced by agent 'claude' with a later-sorting file name; Tribonian sheets are on origin/claude/tribonian-state. Arm A rejects orders with FR 'Revoked by' notes the claim do…
-- 2026-11-08 F-20261108-cujas-c02-c03 **worked**: Cujas c02 and c03: 50 more Photius-stale orders (13 at >=99%, 37 at 95-99%) by the same route, with a produce… Lesson: The FR 'Revoked by' producer note removed the arm-A-only rejections seen in c01. Running prepare, carry, producer, arms, reveal and finish_pair --publish as one unattended chain costs the coordinator…
+- 2026-11-09 F-20261109-gutenberg-valla-pilot-chain **partly worked**: Find why the Valla bounded pilot check fails on every PR (seen on #242 and the sol/montfaucon branches) Lesson: A failing non-required check can hide later failures for days; when it turns red, read every step, not only the first failing one. Next: decide in Valla whether a schema-v2 re-tag file is a productio…
+- 2026-11-09 F-20261109-gutenberg-tsiolkovsky **worked**: Gutenberg item 6: credit Tsiolkovsky's work-hours by channel (the lines each event changed in the moved step'… Lesson: Lines changed in a step's inputs are a proxy for evidence delivered, not proof of cause; a runner result's credit belongs to the campaign that changed the job's code or inputs.
+- 2026-11-09 F-20261109-gutenberg-skipped-witness **worked**: Gutenberg item 3: the narrowest correct stale-confirmation rule for working_text (prior_confirmation_stale),… Lesson: A skipped witness is information (an official printing now exists), not a change in what was confirmed: flag it for the h01 page check rather than void the confirmation. The switch is the owner's (A-…
+- 2026-11-09 F-20261109-gutenberg-rattle-watch **worked**: Adversarial audit of Rattle Watch (run_jobs.py heartbeat and stall stop, F-20261028-3): premises that a finis… Lesson: A watchdog must bound its own waits: the runner's join on a job's output was the one wait nothing watched. Judge activity by the job's own counters, not the machine's.
+- 2026-11-09 F-20261109-gutenberg-quo-warranto **partly worked**: Gutenberg item 2: narrow the input declarations of claim-checker, readiness-tracker, claim-kit and claim-draf… Lesson: Never narrow a declaration by reading code; record the reads (AUDIT_READS) and declare what the record shows. After one more clean report run on main, set AUDIT_READS to enforce so an undeclared read…
+- 2026-11-09 F-20261109-gutenberg-kean-measures **worked**: Gutenberg item 5: optional structured measures on Kean findings (wave, usd by role and model, orders attempte… Lesson: Record a wave's cost with kean.py add-measures from bentham usage output, not in prose. lean_coordination's cost at stake is an upper bound: before Gutenberg every claude -p worker was labelled coord…
 
-Register: 71 owner decisions, 30 answered questions, 268 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 72 owner decisions, 43 answered questions, 278 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

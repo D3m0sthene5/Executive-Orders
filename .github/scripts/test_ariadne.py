@@ -6,6 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 from unittest import mock
 
@@ -252,7 +253,13 @@ class Switches(unittest.TestCase):
                 mock.patch.object(ariadne.subprocess, "run", return_value=mock.Mock(returncode=0)):
             env = {"GIT_CONFIG_COUNT": "1", "GIT_CONFIG_KEY_0": "user.name", "GIT_CONFIG_VALUE_0": "x"}
             command, traced_env, trace = ariadne.wrap(["python", "job.py"], "a", "t", None, env)
-        self.assertEqual(command[0], "/usr/bin/strace-ok")
+        # The runner waits on the supervisor, which runs strace over the child shim, which runs the job.
+        self.assertEqual(command[:3], [sys.executable, "-I", str(SCRIPTS / "ariadne.py")])
+        self.assertEqual(command[3], "supervise")
+        strace_at = command.index("/usr/bin/strace-ok")
+        self.assertEqual(command[strace_at - 1], "--")
+        self.assertEqual(command[3 + 1], command[command.index("child") + 1])  # one shared exit-code file
+        self.assertLess(strace_at, command.index("child"))
         self.assertEqual(command[-3:], ["--", "python", "job.py"])
         self.assertTrue(command[command.index("-o") + 1].startswith("|exec gzip -1 > "))
         self.assertIn(trace.name, command[command.index("-o") + 1])
@@ -262,6 +269,53 @@ class Switches(unittest.TestCase):
         self.assertEqual((traced_env["GIT_CONFIG_KEY_0"], traced_env["GIT_CONFIG_KEY_1"], traced_env["GIT_CONFIG_VALUE_1"],
                           traced_env["GIT_CONFIG_KEY_2"], traced_env["GIT_CONFIG_VALUE_2"]),
                          ("user.name", "gc.auto", "0", "maintenance.auto", "false"))
+
+
+class Supervision(unittest.TestCase):
+    """The runner waits on the job's own exit, never on processes it left behind."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.code = Path(self.tmp.name, "job.exit")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_child_records_the_jobs_exit_code(self):
+        self.assertEqual(ariadne.child(self.code, [sys.executable, "-c", "raise SystemExit(3)"]), 3)
+        self.assertEqual(self.code.read_text(encoding="utf-8"), "3")
+
+    def test_supervisor_returns_the_jobs_code_through_the_child_shim(self):
+        shim = [sys.executable, "-I", str(SCRIPTS / "ariadne.py"), "child", str(self.code), "--",
+                sys.executable, "-c", "raise SystemExit(5)"]
+        run = subprocess.run([sys.executable, "-I", str(SCRIPTS / "ariadne.py"), "supervise", str(self.code), "--",
+                              *shim])
+        self.assertEqual(run.returncode, 5)
+
+    @unittest.skipUnless(os.name == "posix", "signals to the tracer are POSIX")
+    def test_supervisor_stops_waiting_for_leftovers_after_the_job_exits(self):
+        # A stand-in for strace that, like strace -f with a leftover tracee, keeps running after the job's
+        # exit code is written, until it is told to detach (SIGINT).
+        stand_in = ("import pathlib, signal, sys, time\n"
+                    "signal.signal(signal.SIGINT, lambda *a: sys.exit(0))\n"
+                    f"pathlib.Path({str(self.code)!r}).write_text('7')\n"
+                    "time.sleep(60)\n")
+        began = time.monotonic()
+        self.assertEqual(ariadne.supervise(self.code, [sys.executable, "-c", stand_in], linger=0.5), 7)
+        self.assertLess(time.monotonic() - began, 20)
+
+    @unittest.skipUnless(os.name == "posix", "signal deaths are POSIX")
+    def test_a_signal_death_is_reported_as_the_same_signal(self):
+        shim = [sys.executable, "-I", str(SCRIPTS / "ariadne.py"), "child", str(self.code), "--",
+                sys.executable, "-c", "import os, signal; os.kill(os.getpid(), signal.SIGTERM)"]
+        run = subprocess.run([sys.executable, "-I", str(SCRIPTS / "ariadne.py"), "supervise", str(self.code), "--",
+                              *shim])
+        self.assertEqual(run.returncode, -15)
+
+    def test_the_shims_own_read_is_not_a_job_read(self):
+        lines = [f'1 openat(AT_FDCWD<{ROOT}>, ".github/scripts/ariadne.py", O_RDONLY) = 3<{ROOT}/x>',
+                 f'1 openat(AT_FDCWD<{ROOT}>, ".github/scripts/run_jobs.py", O_RDONLY) = 3<{ROOT}/y>']
+        self.assertEqual(ariadne.accesses(lines, ROOT, "jobs/a/output")["read"], {".github/scripts/run_jobs.py"})
 
 
 if __name__ == "__main__":

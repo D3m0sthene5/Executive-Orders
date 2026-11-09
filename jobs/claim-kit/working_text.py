@@ -225,6 +225,76 @@ def matching_confirmation(ref, repo, records=None, index=None):
                  key=lambda r: json.dumps(r, sort_keys=True)))
 
 
+# Lachmann skipped-witness rule (Gutenberg, 2026-11-09; owner switch, default "void" = the rule before that date).
+# A frozen prior confirmation is compared with the current Lachmann record. Under "void", any difference makes it
+# stale. On 2026-11-07 one Photius GPO printing joined evidence.skipped_witnesses of 193 confirmations whose verdict,
+# grade, text and used witnesses were unchanged, and all 193 left the ready count (F-20261107-ready-drop-193-photius-
+# witness; on 2026-11-09, 628 confirmations of 126 orders still differ only there). Under "flag", the only tolerated
+# difference is skipped witnesses ADDED with a known reason; Lachmann never compared them, so what was confirmed did
+# not change. Each addition is returned as a recheck flag instead (an official printing now exists: the h01 page
+# check of D-20261108-photius-recheck is the substantive follow-up). Anything else stays stale: a removed or edited
+# skipped witness, an unknown reason, any other field, the fragments list or the source file.
+SWITCHES_PATH = 'jobs/claim-kit/WORKING_TEXT_SWITCHES.json'
+SKIPPED_WITNESS_MODES = ('void', 'flag')
+TOLERATED_SKIP_REASONS = frozenset({'grade_not_in_working_text_policy', 'text_hash_mismatch'})
+
+
+_MODE_CACHE = {}
+
+
+def skipped_witness_mode(repo):
+    """The owner's switch; a missing, unreadable or unknown value keeps today's behaviour ("void")."""
+    path = Path(repo) / SWITCHES_PATH
+    try:
+        st = path.stat()
+        stamp = (str(path.resolve()), st.st_mtime_ns, st.st_size)
+    except OSError:
+        return 'void'
+    if stamp not in _MODE_CACHE:
+        try:
+            mode = json.loads(path.read_text(encoding='utf-8')).get('skipped_witness_addition')
+        except (OSError, ValueError, AttributeError):
+            mode = None
+        _MODE_CACHE.clear()
+        _MODE_CACHE[stamp] = mode if mode in SKIPPED_WITNESS_MODES else 'void'
+    return _MODE_CACHE[stamp]
+
+
+def _canon(w):
+    return json.dumps(w, sort_keys=True)
+
+
+def confirmation_drift(prior, current, mode='void'):
+    """("same" | "flag" | "stale", added skipped witnesses). Never "flag" under mode "void"."""
+    if current == prior:
+        return 'same', []
+    if mode != 'flag' or not isinstance(prior, dict) or not isinstance(current, dict):
+        return 'stale', []
+    try:
+        pw = list(prior['record']['evidence']['skipped_witnesses'])
+        cw = list(current['record']['evidence']['skipped_witnesses'])
+    except (KeyError, TypeError):
+        return 'stale', []
+    remaining = [_canon(w) for w in cw]
+    for w in pw:
+        if _canon(w) not in remaining:
+            return 'stale', []          # a prior skipped witness was removed or edited
+        remaining.remove(_canon(w))
+    added = [json.loads(w) for w in remaining]
+    if not added or any(not isinstance(w, dict) or w.get('why') not in TOLERATED_SKIP_REASONS for w in added):
+        return 'stale', []
+    # Everything except the skipped-witness list must be identical.
+    p2, c2 = deepcopy(prior), deepcopy(current)
+    p2['record']['evidence']['skipped_witnesses'] = c2['record']['evidence']['skipped_witnesses'] = []
+    if p2 != c2:
+        return 'stale', []
+    return 'flag', added
+
+
+def recheck_flag(w):
+    return 'working_text:skipped_witness_added_recheck:' + str(w.get('grade')) + ':' + str(w.get('why'))
+
+
 def require_current_confirmation(dossier, repo, records=None, index=None):
     prior = dossier.get('working_text_confirmation')
     if prior is None:
@@ -232,8 +302,10 @@ def require_current_confirmation(dossier, repo, records=None, index=None):
     original = dossier.get('evidence', {}).get(dossier.get('original_source_id'), {})
     ref = original.get('source', {})
     current = matching_confirmation(ref, repo, records, index)
-    if current != prior:
+    state, added = confirmation_drift(prior, current, skipped_witness_mode(repo))
+    if state == 'stale':
         raise ValueError('changed or invalid working-text confirmation: ' + str(dossier.get('instrument_id')))
+    return [recheck_flag(w) for w in added]
 
 
 def blank(disclosed_refs, prior=None):
@@ -250,8 +322,10 @@ def blank(disclosed_refs, prior=None):
                               for ref in distinct.values()]}
 
 
-def policy(claim, repo, index=None):
+def policy(claim, repo, index=None, flags=None):
     """Return (errors, exact dependent refs). Bytes/quotes are additional checks.
+
+    ``flags``, when a list, receives non-blocking recheck flags (the owner's skipped-witness switch only).
 
     No claim may relabel a derivative as original. Identity/completeness are
     explicit producer confirmations pinned to the declared representation; the
@@ -339,10 +413,13 @@ def policy(claim, repo, index=None):
             if key(ref) not in current_by_key:
                 current_by_key[key(ref)] = matching_confirmation(ref, repo, records=reused_records, index=index)
             current = current_by_key[key(ref)]
-            if current != prior:
+            state, added = confirmation_drift(prior, current, skipped_witness_mode(repo))
+            if state == 'stale':
                 errors.append('working_text:prior_confirmation_stale')
-            elif c != blank([ref], current)['confirmations'][0]:
+            elif c != blank([ref], prior)['confirmations'][0]:
                 errors.append('working_text:prior_confirmation_changed')
+            elif added and flags is not None:
+                flags.extend(recheck_flag(w) for w in added)
         if c.get('identity_confirmed') is not True or c.get('complete_text_confirmed') is not True:
             errors.append('working_text:identity_and_complete_text_confirmation_required')
         if any(r['requires_page_check'] for r in index.match(ref)) and c.get('pages_confirmed') is not True:

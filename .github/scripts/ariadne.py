@@ -28,9 +28,14 @@ cannot trace on this machine, jobs run exactly as before.
 
 What tracing must not change, and how it is kept out:
 - sudo: a non-root tracer stops setuid from working, so a job whose scripts mention sudo runs untraced.
-- detached children: strace -f waits for every traced process. Git's automatic gc detaches and can run for
-  minutes in a blobless clone full of lazily fetched packs, so traced jobs run with gc.auto=0 and
-  maintenance.auto=false (an ephemeral runner never needs either; outputs do not depend on them).
+- leftover processes: strace -f waits for every traced process, so the runner never waits on strace
+  itself. It waits on `ariadne.py supervise`, which runs strace over `ariadne.py child`; the child shim
+  records the job's own exit code. Once the job exits, the supervisor gives strace LINGER_SECONDS, then
+  detaches it from anything left behind and exits with the job's code (re-raising its signal if it died
+  of one). Leftovers then meet Rattle Watch's cleanup exactly as they would untraced. Git's automatic gc
+  is the common leftover in a blobless clone full of lazily fetched packs, so traced jobs also run with
+  gc.auto=0 and maintenance.auto=false (an ephemeral runner never needs either; outputs do not depend on
+  them).
 - disk: the trace streams through gzip -1, and a trace over ARIADNE_MAX_TRACE_MB compressed is not parsed.
 - outcome: wrap() and finish() never raise, and run_jobs.py records after writing STATUS.json, so parsing
   does not count toward the job's recorded duration. Tracing itself slows a job; the record keeps both its
@@ -47,9 +52,11 @@ import posixpath
 import re
 import shlex
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
+import time
 
 SCHEMA = 1
 RECORDS = Path("oversized/runner-freshness/ariadne")
@@ -59,6 +66,8 @@ LIST_LIMIT = 200  # silent misses and listed directories kept in the record; cou
 MAX_TRACE_MB = 1024  # compressed; larger traces are not parsed
 PRIVILEGED = re.compile(r"\bsudo\b")
 NO_DETACHED_GIT = (("gc.auto", "0"), ("maintenance.auto", "false"))
+LINGER_SECONDS = 5  # after the job exits, how long strace may keep tracing leftovers before it detaches
+SELF = ".github/scripts/ariadne.py"  # the child shim's own read of this file is not the job's
 
 # Path argument position for each syscall Ariadne reads; *at variants take a directory fd just before it.
 OPENS = {"open": 0, "creat": 0, "openat": 1, "openat2": 1}
@@ -139,10 +148,55 @@ def wrap(args, name, token, folder=None, env=None):
         for i, (key, value) in enumerate(NO_DETACHED_GIT, start=count):
             traced_env[f"GIT_CONFIG_KEY_{i}"], traced_env[f"GIT_CONFIG_VALUE_{i}"] = key, value
         traced_env["GIT_CONFIG_COUNT"] = str(count + len(NO_DETACHED_GIT))
-        return [exe, *STRACE_FLAGS, "-o", sink(trace), "--", *args], traced_env, trace
+        code_file = where / (name + ".exit")
+        code_file.unlink(missing_ok=True)
+        me = str(Path(__file__).resolve())
+        traced = [exe, *STRACE_FLAGS, "-o", sink(trace), "--",
+                  sys.executable, "-I", me, "child", str(code_file), "--", *args]
+        return [sys.executable, "-I", me, "supervise", str(code_file), "--", *traced], traced_env, trace
     except Exception as exc:
         print(f"[Ariadne] {name}: tracing not set up ({type(exc).__name__}: {exc}); it runs untraced.", flush=True)
         return args, env, None
+
+
+def exit_like(code):
+    """Exit status matching a subprocess return code: re-raise a signal death (negative code) on ourselves."""
+    if code < 0 and hasattr(signal, "SIGKILL"):
+        signal.signal(-code, signal.SIG_DFL)
+        os.kill(os.getpid(), -code)
+        return 128 - code  # only if the signal did not end this process
+    return code
+
+
+def child(code_file, argv):
+    """Inside the trace: run the job, write its own exit code to code_file, exit as it did."""
+    code = subprocess.call(argv)
+    Path(code_file).write_text(str(code), encoding="utf-8")
+    return exit_like(code)
+
+
+def supervise(code_file, argv, linger=LINGER_SECONDS):
+    """Outside the trace: run strace, and once the job has exited stop waiting for its leftovers."""
+    code_file = Path(code_file)
+    tracer_process = subprocess.Popen(argv)
+    while tracer_process.poll() is None:
+        if code_file.is_file():
+            try:
+                tracer_process.wait(timeout=linger)
+            except subprocess.TimeoutExpired:
+                print("[Ariadne] the job exited but left traced processes; detaching the tracer from them.",
+                      flush=True)
+                tracer_process.send_signal(signal.SIGINT)  # strace detaches its tracees and exits
+                try:
+                    tracer_process.wait(timeout=30)
+                except subprocess.TimeoutExpired:
+                    tracer_process.kill()
+                    tracer_process.wait()
+            break
+        time.sleep(0.1)
+    if code_file.is_file():
+        return exit_like(int(code_file.read_text(encoding="utf-8").strip()))
+    return exit_like(tracer_process.returncode)
 
 
 # ------------------------------------------------------------------ reading strace output
@@ -288,7 +342,7 @@ def accesses(lines, repo, own_output):
             continue
         rel = path[len(root) + 1:]
         top = rel.split("/", 1)[0]
-        if top in SKIPPED_ROOTS or rel == own_output or rel.startswith(own_output + "/"):
+        if top in SKIPPED_ROOTS or rel == SELF or rel == own_output or rel.startswith(own_output + "/"):
             continue
         if ok:
             found[kind].add(rel)
@@ -472,3 +526,11 @@ def finish(name, repo, trace, exit_code, seconds, usual_seconds):
                 Path(trace).unlink(missing_ok=True)
         except OSError:
             pass
+
+
+if __name__ == "__main__":
+    # `ariadne.py supervise CODE_FILE -- strace ...` and `ariadne.py child CODE_FILE -- JOB...`, built by wrap().
+    mode, code_path, separator, *command = sys.argv[1:]
+    if mode not in {"supervise", "child"} or separator != "--" or not command:
+        sys.exit("usage: ariadne.py supervise|child CODE_FILE -- COMMAND...")
+    sys.exit((supervise if mode == "supervise" else child)(code_path, command))

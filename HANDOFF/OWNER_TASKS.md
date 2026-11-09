@@ -65,3 +65,11 @@ repository. Drop saved PDFs in `research/owner-inbox/hein/<volume>-<block>.pdf`,
 | `nara/` | NARA correspondence |
 
 Only hashes, page references and extracted text leave these folders.
+
+## 6. From the open Kean asks (answered 2026-11-09, Gutenberg)
+
+| Task | Where | What it unlocks |
+|---|---|---|
+| Send the drafted request to the Library of Congress about its Hein-origin CFR, Federal Register and U.S. Code scans (A-20261107-loc-hein) | `research/encyclopedie-campaign/LOG.md` (drafted request) | Permission for targeted pulls of the U.S. Code EO tables 1934-1988 and 3 CFR 1940-1995; no pulls until LOC answers |
+| Complete the bracketed identity line and send the data request to Kenneth Lowande (A-20261107-lowande-email) | `research/bayle-prior-art/lowande-poznansky/REQUEST_EMAIL.md` | The order-level dataset, its 20 missing revocations and 65 misattributions, as controls once the bytes are held |
+| Transcribe the 15 hardest OCR-pilot passages on the worksheet (A-20261107-ocr-reference-rule, D-20261106-encyclopedie-ocr-reference) | the OCR pilot worksheet in `research/encyclopedie-campaign/` | The "invents nothing on clean passages" arm of the OCR adoption test |

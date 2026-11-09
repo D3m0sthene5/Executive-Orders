@@ -1,3 +1,15 @@
+## 2026-11-09 ET (Claude, Gutenberg wave: seven tool items and three waste patterns, PR #242)
+
+- **Done (PR #242, stacks on #239):**
+  - Bentham prices from `jobs/necker-costs/PRICES.json`; the old table ran 1.3x-1.9x high (Tribonian $673 -> $346); `bentham.py usage --reported-costs` cross-checks each session within max(1 cent, 1%).
+  - Quo Warranto read audit (`AUDIT_READS`, report mode): claim-drafts had 8,367 undeclared reads and claim-checker 1; both now declared. Lachmann's FRAGMENTS reads declared.
+  - Lachmann skipped-witness switch (`jobs/claim-kit/WORKING_TEXT_SWITCHES.json`, default void); recommendation `flag` restores 126 orders with a recheck flag.
+  - Davy daily chain health (verdict in STATUS and the Kean brief); per-job `AS_OF_READOUT` for daily-digest and Davy.
+  - Kean structured `measures` read by Bentham and Junto; Tsiolkovsky channel-weighted credit; Carnot coordinator kit with ready two-arm Junto tests.
+- **Running:** child session `session_014fYW9tDCreZgtp1XP1tTpj` works the #185 Mabillon/Lachmann rule in its own PR.
+- **Next:** after one clean report run on main, set the five `AUDIT_READS` files to enforce. Narrowing the wide globs soundly needs versioning by record kind or STATUS result (freshness change). Run the next wave with `jobs/carnot-coordinator/PROTOCOL.md` as the after arm of lean_coordination.
+- **Asks:** @Owner: A-20261109-skipped-witness (set the switch to flag?).
+
 ## 2026-11-08 ET (Claude, Ariadne and Ockham: lean tree for CI and agents)
 
 - **Done (branch `claude/ariadne-lean-tree`, PR to main):**
@@ -15,7 +27,13 @@
   - Read the first hosted records: closure size vs materialized, the overhead from `job_seconds` vs `last_untraced_success_seconds`, and any silent misses.
   - Then build the narrowing change: restore only a stable closure for an unchanged `narrow_signature`, with the trace as referee.
 - **Valla certificate:** already stale on main before this PR. Both certificates match 11fd9f42e2, and 14 later in-scope commits changed the signature, so Valla runs on the fallback. The PR adds `ariadne.py` to `VALLA_CERTIFICATE_ROOTS` but does not re-certify; that needs an audit of those commits (F-20261109-valla-certificate-stale-on-main).
+- **Merged with main's Quo Warranto and Rattle Watch changes (2026-11-09):**
+  - Ariadne wraps the Quo Warranto command, so both run on `AUDIT_READS` jobs. Quo Warranto enforces declared reads for 5 Python jobs with an audit hook; Ariadne measures every job at syscall level for narrowing.
+  - The runner now waits on `ariadne.py supervise`, not strace. A child shim records the job's own exit code, and leftovers are detached after 5s, so Rattle Watch's leftover cleanup behaves as it does untraced.
+  - PR #245 also recomputes the Valla certificates; whichever PR merges second must recompute them.
 - **Asks:** @Owner A-20261108-lean-main (pack or move bulk outputs out of main's tree; needed only to reach GitHub-API connectors).
+
+## 2026-11-08 ET (Claude, Haloander follow-up: owner said yes to all four asks)
 
 - **Done:**
   - Recorded the four decisions: `research/readiness/owner_rulings/2026-11-08-haloander-decisions.md`; Kean D-20261108-haloander-adopt, -board-rule, -undecided-measure, -photius-recheck. All four asks are answered.
