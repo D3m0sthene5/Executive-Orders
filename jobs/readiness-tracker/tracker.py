@@ -554,8 +554,10 @@ def build(root, *, planning_closures=None):
         status = d["provisional_substantive_status"] if d else None
         steps, blockers = {}, collections.defaultdict(list)
         opus_media_note = ""
+        skipped_witness_flag_mode = W.skipped_witness_mode(root) == "flag"
         claim = claims.get(i)
-        working_errors, dependent_texts = W.policy(claim, root, working_index) if claim else ([], [])
+        recheck_flags = []
+        working_errors, dependent_texts = W.policy(claim, root, working_index, recheck_flags) if claim else ([], [])
         factual_errors = F.claim_errors(claim, root) if claim else []
         policy_errors = working_errors + factual_errors
         gate_errors = claim_gate.validate_claim(claim, expected_status=status) if claim else None
@@ -785,6 +787,9 @@ def build(root, *, planning_closures=None):
             "provisional_text_method": text_provisional["method"] if text_provisional else "",
             "provisional_text_sha256": text_provisional["text_sha256"] if text_provisional else "",
             "working_text_policy_errors": "|".join(working_errors),
+            # Gutenberg: present only under the owner's skipped-witness switch ("flag"), so default outputs are unchanged.
+            **({"working_text_recheck_flags": "|".join(dict.fromkeys(recheck_flags))}
+               if skipped_witness_flag_mode else {}),
             "factual_event_policy_errors": "|".join(factual_errors),
             "claim_record_errors": "|".join(claim_level),
             "opus_media_applicability_note": opus_media_note,
