@@ -214,6 +214,18 @@ class PalsgrafTests(unittest.TestCase):
             self.assertIn("f:" + str(f.resolve()), code)
         self.assertFalse([d for d in code if "__pycache__" in d])
 
+    def test_owner_switch_flip_of_the_same_size_forces_a_full_run(self):
+        if not hasattr(C.W, "SWITCHES_PATH"):
+            self.skipTest("working_text has no owner switch")
+        sw = self.repo / C.W.SWITCHES_PATH
+        sw.parent.mkdir(parents=True, exist_ok=True)
+        sw.write_text('{"skipped_witness_addition": "void"}', "utf-8")
+        base = self.baseline()
+        sw.write_text('{"skipped_witness_addition": "flag"}', "utf-8")  # same byte length
+        out, sel = self.go(prior=base)
+        self.assertEqual((sel["mode"], sel["reason"]), ("full", "code_or_rules_changed"))
+        self.assertTrue(any(c.endswith("WORKING_TEXT_SWITCHES.json") for c in sel["changed_code_or_rules"]), sel)
+
     def test_setting_change_forces_a_full_run(self):
         base = self.baseline()
         out, sel = self.go(prior=base, CLAIM_CHECKER_TEXT_PACK=str(self.tmp / "nope.gz"))
@@ -351,6 +363,13 @@ class DecideTests(unittest.TestCase):
         self.assertEqual((sel["reason"], sel["would_reuse"], sel["recheck"]), ("periodic_full_reconcile", ["A"], ["A", "N"]))
         sel = PG.decide(self.trace(last_full=None), ["A"], fp.get, {"a": 1})
         self.assertEqual(sel["reason"], "periodic_full_reconcile")
+
+    def test_a_stat_of_a_file_opened_elsewhere_becomes_a_content_dependency(self):
+        # The stat-then-memo idiom: unit A opened the file, unit B only stat'ed it (a memo hit).
+        entries = {"A": {"deps": ["f:/x", "s:/x"]}, "B": {"deps": ["s:/x", "s:/y"]}, "C": {"deps": ["s:/z"]}}
+        PG.close_stat_memos(entries, {"f:/z"})
+        self.assertEqual(entries["B"]["deps"], ["f:/x", "s:/x", "s:/y"])
+        self.assertEqual(entries["C"]["deps"], ["f:/z", "s:/z"])  # opened in a global window
 
     def test_fingerprints_of_files_stats_and_tables(self):
         with tempfile.TemporaryDirectory() as d:

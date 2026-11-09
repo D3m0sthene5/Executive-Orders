@@ -192,11 +192,16 @@ class Recorder:
             self.global_reads.add(dep)
 
     def on_stat(self, path):
-        if self._busy or not self.stack:
+        if self._busy or not (self.stack or self.global_phase):
             return
         p = self._path(path)
-        if p is not None:
-            self.add(self._kind(p, "s") + ":" + p)
+        if p is None:
+            return
+        dep = self._kind(p, "s") + ":" + p
+        if self.stack:
+            self.add(dep)
+        else:
+            self.global_reads.add(dep)
 
 
 class _Null:
@@ -234,12 +239,12 @@ def install():
     real_stat, real_lstat = os.stat, os.lstat
 
     def stat(path, *a, **k):
-        if rec.stack and not rec._busy:
+        if (rec.stack or rec.global_phase) and not rec._busy:
             rec.on_stat(path)
         return real_stat(path, *a, **k)
 
     def lstat(path, *a, **k):
-        if rec.stack and not rec._busy:
+        if (rec.stack or rec.global_phase) and not rec._busy:
             rec.on_stat(path)
         return real_lstat(path, *a, **k)
 
@@ -469,6 +474,19 @@ def code_deps(repo, rec):
             if any(f.startswith(r + os.sep) for r in roots):
                 deps.add("f:" + f)
     return sorted(d for d in deps if d[:2] in ("f:", "s:", "l:", "e:"))
+
+
+def close_stat_memos(entries, global_reads):
+    """A module that memoises a file by its stat (path, mtime, size) reads it once per process; later units
+    only stat it, and a same-size edit keeps the stat fingerprint. So wherever a file was opened anywhere in
+    the run, a unit that stat'ed it also depends on its bytes. Mutates entries' dep lists in place."""
+    opened = {d[2:] for d in global_reads if d.startswith("f:")}
+    for e in entries.values():
+        opened.update(d[2:] for d in e["deps"] if d.startswith("f:"))
+    for e in entries.values():
+        extra = {"f:" + d[2:] for d in e["deps"] if d.startswith("s:") and d[2:] in opened}
+        if extra:
+            e["deps"] = sorted(set(e["deps"]) | extra)
 
 
 # ------------------------------------------------------------------- trace io

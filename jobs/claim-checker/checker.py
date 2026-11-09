@@ -450,6 +450,10 @@ class Context:
         with REC.global_window():
             self.gate = load_gate(self.repo)
             self.step_for_gate_error, self.step_mapping_from = load_step_mapper(self.repo)
+            # The owner's working-text switch is a rule (memoised per process by working_text): read it here
+            # so a change to it forces a full run.
+            if hasattr(W, "skipped_witness_mode"):
+                self.skipped_witness_mode = W.skipped_witness_mode(self.repo)
         roots = [r for r in os.environ.get("CLAIM_CHECKER_CACHE_ROOTS", "").split(os.pathsep) if r]
         with REC.summarized():
             self.universe = load_universe(self.repo)
@@ -1579,6 +1583,7 @@ def _main_checked(args, ctx, repo, out, cache, limit, csv_all, csv_max_mb, untra
         end_fps = PG.Fingerprinter(ctx.raw, REC)
         end_fps.memo = {d: fp for d, fp in fps.memo.items()
                         if not (d[2:].startswith(str(cache) + os.sep) or d.startswith("v:"))}
+        PG.close_stat_memos(entries, REC.global_reads)
         code = PG.code_deps(repo, REC)
         full = sel["mode"] == "full"
         last_full = ({"utc": PG.utc_now().isoformat().replace("+00:00", "Z"),
