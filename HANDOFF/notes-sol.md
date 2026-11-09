@@ -1,5 +1,13 @@
 # Sol's handoff notes
 
+## 2026-11-08 20:34 ET: full rank-nine staging and y05 source custody complete
+
+- **Done:** `research/bracton/YES_ROSTER_COVERAGE.csv` covers all 338 historical rank-9 YES/FR orders exactly once; 133 have passing dispatch receipts at this snapshot. Four require existing claim-owner routing. `yes-y05/PUBLICATION_AUDIT.csv` now has 23/23 exact published official issue hashes after source-only run 42545447764 and the targeted 500 MB per-file fetch-pool fix. Y06 and y07 each published 21/21; y08 published 12/17 and names five bounded retries. `SOURCE_RUN_PLAN.csv` holds the remaining exact queue selections. Kean findings F-20261108-5 and F-20261108-6 record the source fix and coverage. No producer, blind reviewer, claim, page-check record, or certified count changed.
+- **Running:** No Sol job. The incidental broad source-ladder push run 42545246043 was canceled before publication.
+- **Next:** Dispatch `SOURCE_RUN_PLAN.csv` y08-retry chunk 1, audit published URL and hash, then continue y09/y10/y11/y16/y17 chunks serially and refresh the claim-kit gate. Keep the twelve orders in `BLOCKED_MONTFAUCON.csv` with Montfaucon. Pull main before any merge and pick up a named order only if its page check has landed. After the Monday 2026-11-09 6 PM ET Claude reset, run producers and two blinded arms with planted controls; a missed control stops the action. The 92 disjoint Photius orders follow ranks #1–#9.
+- **Asks:** @Owner: none.
+- **Do not:** Run ranks #10 or #13, page-check originals, file another agent's claims, or treat a source receipt or research dispatch as legal approval.
+
 ## 2026-11-08 18:49 ET: y07 source queue staged locally
 
 - **Done:** `yes-y07/packet-v1` covers another 25 disjoint rank-9 orders, EO:11589 through EO:11988, against the full stage21 custody indexes. Its research gate names 127 source tasks, including 21 mandatory official FR issues. All 21 public issue downloads matched frozen SHA-256 (801,888,783 bytes in untracked local cache). `source-requests-v9.jsonl` validates 21/21; 21 exact prefixes select the intended URLs. No producer or reviewer ran.
