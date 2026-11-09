@@ -42,6 +42,17 @@ class CheckTest(unittest.TestCase):
         self.assertEqual(QW.check("j", {"globs": ["jobs/*/x"]}, scope(patterns=["jobs/?/x"]))["verdict"],
                          "undeclared_reads")
 
+    def test_name_enumeration_accepted_only_when_its_globs_are(self):
+        """claim-kit (run 42547330397) lists jobs/* and then globs each job's outputs."""
+        rec = {"globs": ["jobs/*", "jobs/*/output/FRAGMENTS*.jsonl", "jobs/a/output/FRAGMENTS*.jsonl"]}
+        ok = scope(patterns=["jobs/*/output/FRAGMENTS*.jsonl"])
+        r = QW.check("j", rec, ok)
+        self.assertEqual((r["verdict"], r["enumerations"]), ("covered", ["jobs/*"]))
+        rec["globs"].append("jobs/*/secret/*.csv")
+        self.assertEqual(QW.check("j", rec, ok)["verdict"], "undeclared_reads")
+        self.assertEqual(QW.check("j", {"globs": ["jobs/*"]}, ok)["verdict"], "undeclared_reads")  # nothing under it
+        self.assertEqual(QW.check("j", {"globs": ["jobs/*.py", "jobs/x.py"]}, ok)["verdict"], "undeclared_reads")
+
     def test_glob_under_root(self):
         self.assertEqual(QW.check("j", {"globs": ["research/readiness/claims/*.jsonl"]},
                                   scope(["research/readiness"]))["verdict"], "covered")
@@ -128,7 +139,7 @@ class RunTest(unittest.TestCase):
 class RunnerWiringTest(unittest.TestCase):
     def test_runner_enforces_unless_report(self):
         src = (HERE / "run_jobs.py").read_text(encoding="utf-8")
-        for needle in ('read_audit.py"), "run"', '!= "report"', "code = verdict"):
+        for needle in ('read_audit.py"), "run"', '"QUO_WARRANTO_MODE": mode', "code = verdict"):
             self.assertTrue(needle in src, needle)
 
 

@@ -236,9 +236,19 @@ def check(name, record, scope=None, repo=None, prior=None):
     for p in record.get("opened", []):
         if not ignored(p, name, prior) and not covered_file(p, scope):
             v.append({"kind": "file", "path": p})
+    enumerations = []
     for g in record.get("globs", []):
-        if not ignored(g, name, prior) and not covered_glob(g, scope):
-            v.append({"kind": "glob", "path": g})
+        if ignored(g, name, prior) or covered_glob(g, scope):
+            continue
+        # A bare name enumeration ("jobs/*") feeds the globs recorded under it; each of those is judged itself, and a
+        # new directory with no matching file changes no read. Accept it only when every such glob is covered.
+        parts = g.split("/")
+        under = [h for h in record.get("globs", []) if h != g and h.startswith(_literal_prefix(g) + "/")]
+        if parts[-1] == "*" and not (set(_literal_prefix(g)) & WILD) and len(parts) == len(_literal_prefix(g).split("/")) + 1 \
+                and under and all(ignored(h, name, prior) or covered_glob(h, scope) for h in under):
+            enumerations.append(g)
+            continue
+        v.append({"kind": "glob", "path": g})
     globs = record.get("globs", [])
     for d in record.get("listed", []):
         if d == "." or ignored(d, name, prior):
@@ -260,7 +270,8 @@ def check(name, record, scope=None, repo=None, prior=None):
                     if not ignored(a, name, prior) and not covered_file(a.rstrip("/"), scope) \
                             and not covered_glob(a.rstrip("/") + "/*", scope):
                         v.append({"kind": "git_path", "path": a})
-    return {"schema": SCHEMA, "job": name, "violations": v, "opened": len(record.get("opened", [])),
+    return {"schema": SCHEMA, "job": name, "violations": v, "enumerations": enumerations,
+            "opened": len(record.get("opened", [])),
             "globs": record.get("globs", []), "listed": len(record.get("listed", [])),
             "children": len(record.get("children", [])), "verdict": "covered" if not v else "undeclared_reads"}
 
@@ -296,6 +307,9 @@ def main(argv=None):
     record = json.loads(Path(a.record).read_text(encoding="utf-8"))
     rep = check(a.job, record)
     rep["groups"] = groups(record, a.job)
+    if os.environ.get("QUO_WARRANTO_MODE") == "report":
+        # Report mode derives a declaration: keep every read so a narrower one can be proven against it.
+        rep["opened_paths"] = sorted(p for p in record.get("opened", []) if not ignored(p, a.job))
     Path(a.report).write_text(json.dumps(rep, indent=1) + "\n", encoding="utf-8")
     # A compact read summary in the job log, so a declaration can be derived from a run whose artifacts expire.
     for g, n in sorted(rep["groups"].items()):

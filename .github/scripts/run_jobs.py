@@ -351,11 +351,12 @@ def main():
                             "--", str(folder / "job.py")]
                 code = command(args, out / "log.txt", env, watch)
             if code == 0 and audit is not None:
+                # AUDIT_READS holding "report" records without enforcing (used once, to derive a declaration).
+                mode = "report" if (folder / "AUDIT_READS").read_text(encoding="utf-8").split("#", 1)[0].strip() == "report" else "enforce"
                 verdict = command([sys.executable, str(repo / ".github/scripts/read_audit.py"), "check", "--job", name,
                                    "--record", str(audit), "--report", str(out / "READ_AUDIT.json")],
-                                  out / "read-audit-log.txt", env)
-                # AUDIT_READS holding "report" records without enforcing (used once, to derive a declaration).
-                if (folder / "AUDIT_READS").read_text(encoding="utf-8").split("#", 1)[0].strip() != "report":
+                                  out / "read-audit-log.txt", {**env, "QUO_WARRANTO_MODE": mode})
+                if mode != "report":
                     code = verdict
             cache_code = subprocess.run([sys.executable, str(repo / "jobs/_lib/cache_cap.py"), str(cache), str(cap)]).returncode
             if code == 0 and cache_code:
