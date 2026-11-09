@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "86e1cd40c96636fe6d09dd3ac996cd2a46591c1e422609e37031be7f7e057d2f",
+  "dossier_sha256": "4087759d56a3a0737e212311c879145ea21433a34a00f4b8f6c53025f4389a25",
   "instrument_id": "EO:6513H",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,20 +34,102 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
+        "complete_text_confirmed": true,
         "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "identity_confirmed": true,
         "instrument_id": "EO:6513H",
         "pages_confirmed": false,
-        "sha256": "9f87af5b0225351234f5e9c3bb5e26aa48761a3c1690bddcf245c1dbfeba53f4",
-        "text_path": "jobs/tischendorf-originals/output/texts/EO_6513H.txt",
-        "text_sha256": "ec7aa1e96c284153ffb6bbbe0e55ca9a79f72045db1990bc7163dbcc895499f1"
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6513H",
+              "requires_page_check": false,
+              "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6513H.txt",
+              "text_sha256": "59bf55add0d0cc947729b98f2024c10f28855b9b32f68c3ed4bedbb728bf3457",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6480-6689.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "JU DY TRE  JAN  13 '34  Executibe Order  Cover or Fair ComPEtITION FUR DRESSING ",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "FRANKLIN D ROOSEVELT",
+              "matched_date": "December 18 1933",
+              "matched_number": "No. 6513-H",
+              "pages_detail": {},
+              "register_date": "1933-12-18",
+              "register_number": "6513H",
+              "similarity": [
+                {
+                  "agrees": false,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.7464,
+                  "length_ratio": 1.1231,
+                  "producer": "app-executive-orders",
+                  "sha256": "b4c7940cb7234263c16a3bcd18ae52304e50ad95fa4976c2a9563c2aea1fef28"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/tischendorf-originals/output/texts/EO_6513H.txt",
+                  "why": "text_hash_mismatch"
+                }
+              ],
+              "text_chars": 1390
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6513H",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6513H.txt",
+            "text_sha256": "59bf55add0d0cc947729b98f2024c10f28855b9b32f68c3ed4bedbb728bf3457",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6513H.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "b4c7940cb7234263c16a3bcd18ae52304e50ad95fa4976c2a9563c2aea1fef28",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6513-h-code-fair-competition-for-the-fur-dressing-and-fur-dyeing-industry.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6513H.txt",
+        "text_sha256": "59bf55add0d0cc947729b98f2024c10f28855b9b32f68c3ed4bedbb728bf3457"
       }
     ],
     "quotation_recheck_required": true,

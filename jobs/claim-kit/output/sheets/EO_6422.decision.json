@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "d84367d31e32ce0cb9982c77b53b6b3ba8fd5eb7eabb244fab0a8dd32beec42e",
+  "dossier_sha256": "05936ba157d87c7d67cbf0388eb9dc8c6d8792d26fff229aab29e1cf9baa89e0",
   "instrument_id": "EO:6422",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,20 +34,108 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
+        "complete_text_confirmed": true,
         "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "identity_confirmed": true,
         "instrument_id": "EO:6422",
         "pages_confirmed": false,
-        "sha256": "7232c1e083e34e75b35d8d0a4d7b437f6d0ab6df18557fb7ab637cfd72cca4d3",
-        "text_path": "jobs/tischendorf-originals/output/texts/EO_6422.txt",
-        "text_sha256": "beaca8b85427541126cc52266cac3de35814407d4943cac2181a8d54152eb1a1"
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6422",
+              "requires_page_check": false,
+              "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6422.txt",
+              "text_sha256": "4ccbc6d7b4444fbc0b7890cb295d5410bda30f841985c467c4193978752d2f1f",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6251-6479.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": " Executive Order  CoprE or Farr CoMPETITION FOR THE HaArRpwoop DISTILLATION INDU",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT,",
+              "matched_date": "November 10, 1933",
+              "matched_number": "No. 6422",
+              "pages_detail": {},
+              "register_date": "1933-11-10",
+              "register_number": "6422",
+              "similarity": [
+                {
+                  "agrees": false,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.7225,
+                  "length_ratio": 1.1204,
+                  "producer": "app-executive-orders",
+                  "sha256": "eedc0e3df6987bb53c412fc6b6117e0b4bccbf9a26ad237614b538380baece9b"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/tischendorf-originals/output/texts/EO_6422.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6422.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "text_chars": 1388
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6422",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6422.txt",
+            "text_sha256": "4ccbc6d7b4444fbc0b7890cb295d5410bda30f841985c467c4193978752d2f1f",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6422.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "eedc0e3df6987bb53c412fc6b6117e0b4bccbf9a26ad237614b538380baece9b",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6422-code-fair-competition-for-the-hardwood-distillation-industry.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6422.txt",
+        "text_sha256": "4ccbc6d7b4444fbc0b7890cb295d5410bda30f841985c467c4193978752d2f1f"
       }
     ],
     "quotation_recheck_required": true,
