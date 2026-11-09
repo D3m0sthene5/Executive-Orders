@@ -14,6 +14,7 @@
 - **Next:**
   - Read the first hosted records: closure size vs materialized, the overhead from `job_seconds` vs `last_untraced_success_seconds`, and any silent misses.
   - Then build the narrowing change: restore only a stable closure for an unchanged `narrow_signature`, with the trace as referee.
+- **Valla certificate:** already stale on main before this PR. Both certificates match 11fd9f42e2, and 14 later in-scope commits changed the signature, so Valla runs on the fallback. The PR adds `ariadne.py` to `VALLA_CERTIFICATE_ROOTS` but does not re-certify; that needs an audit of those commits (F-20261109-valla-certificate-stale-on-main).
 - **Asks:** @Owner A-20261108-lean-main (pack or move bulk outputs out of main's tree; needed only to reach GitHub-API connectors).
 
 - **Done:**

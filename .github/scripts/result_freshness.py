@@ -27,7 +27,8 @@ NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 VALLA_CERTIFICATE_ROOTS = ['jobs/valla', 'jobs/_lib',
                            '.github/scripts/materialize_job_inputs.py',
                            '.github/scripts/result_freshness.py',
-                           '.github/scripts/run_jobs.py', '.github/scripts/run_jobs.sh',
+                           '.github/scripts/run_jobs.py', '.github/scripts/ariadne.py',
+                           '.github/scripts/run_jobs.sh',
                            '.github/workflows/run-jobs.yml']
 
 
