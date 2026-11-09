@@ -39,3 +39,12 @@ affected unit lets a stale result publish, which is worse than the wasted run. T
 - a periodic full run that reconciles against the selective results.
 
 No status, census, codebook, claim or certified count (0) changes under this ruling.
+
+## Measured after the ruling (same day)
+
+The one affected claim was rechecked locally with `checker.py --claims` (one claim line), against the old
+header-format Mabillon files and the new passage-alone files: identical PER_CLAIM output, all checks passed, 7 of 7
+quotations exact. Each one-claim run still took 549-578 s, against 3,021.6 s for all 1,828 claims. About a fifth of
+the full cost is fixed setup: building the source index (every held copy and committed volume) before any claim is
+read. A sound fix therefore needs two parts: selection of the affected claims, and a source index that is built once
+per input commit and reused (or built only for the sources the selected claims cite).
