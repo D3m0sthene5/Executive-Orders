@@ -7,7 +7,8 @@
   - Kean F-20261109-papebroch-mabillon-lachmann lists the six holes.
 - **Measured** locally, main against the branch on the same inputs: confirmations 715 -> 776 (0 lost), tracker fields identical, ready 1,083 -> 1,083. The one claim that cites a Mabillon source checks identically.
 - **Owner ruling** D-20261109-impact-scoped-checks (not wired): never rerun claim-checker over every claim when a change reaches only some. Finding F-20261109-full-rerun-for-one-claim. Even a one-claim run costs about 9.5 minutes of source-index setup.
-- **Asks:** @Owner: A-20261109-mabillon-after-tracker. Until it is answered, Lachmann sees new Mabillon texts one run late.
+- **Owner answered** A-20261109-mabillon-after-tracker (yes): Lachmann now runs after Mabillon, and Mabillon no longer waits for the tracker (D-20261109-mabillon-after-tracker, wired). #185 is closed.
+- **Asks:** @Owner: none.
 
 ## 2026-11-08 ET (Claude, Haloander follow-up: owner said yes to all four asks)
 

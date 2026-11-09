@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (14)
+## Waiting for the owner (13)
 
-**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**, **A-20261109-mabillon-after-tracker**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -58,4 +58,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-08 F-20261108-cujas-photius-recheck **partly worked**: Cujas c01: page-check 25 Photius-stale orders (>=99% band) against their GPO printings by the Haloander h01 r… Lesson: Own Tribonian claims are replaced by agent 'claude' with a later-sorting file name; Tribonian sheets are on origin/claude/tribonian-state. Arm A rejects orders with FR 'Revoked by' notes the claim do…
 - 2026-11-08 F-20261108-cujas-c02-c03 **worked**: Cujas c02 and c03: 50 more Photius-stale orders (13 at >=99%, 37 at 95-99%) by the same route, with a produce… Lesson: The FR 'Revoked by' producer note removed the arm-A-only rejections seen in c01. Running prepare, carry, producer, arms, reveal and finish_pair --publish as one unattended chain costs the coordinator…
 
-Register: 72 owner decisions, 30 answered questions, 266 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 73 owner decisions, 31 answered questions, 266 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
