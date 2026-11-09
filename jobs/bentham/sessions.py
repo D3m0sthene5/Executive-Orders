@@ -39,9 +39,33 @@ Neither is a measure of invoiced cost. A main transcript can span earlier work t
 label it with; it is marked ``partial``. A category with no observed value stays null, not zero.
 Output tokens from a transcript that never recorded a final count may be a lower bound.
 
+Gutenberg (2026-11-09)
+----------------------
+* **Prices.** Every call is priced at list price from jobs/necker-costs/PRICES.json (pricing.py), with
+  its own model, cache-write class, fast mode (``usage.speed``) and Haiku 5.5 long-prompt rule. Rows
+  carry ``usd_list``; SUMMARY.json carries dollars by phase, role, family and model.
+* **Formats.** A line that is not JSON no longer refuses the whole transcript (Hamilton raised
+  "malformed supported transcript export"). The usual cause is the transcript of a session that is
+  still writing, read while ``bentham.py usage`` runs inside it: its last line is half written. Valid
+  lines are handed to Hamilton unchanged; the row says how many lines were dropped and whether only
+  the trailing one was, and a row with an interior bad line is marked a lower bound.
+* **Cross-check.** ``--reported-costs FILE`` (repeatable) reads the sessions' own cost: a
+  ``claude -p --output-format json`` result (``session_id``, ``total_cost_usd``; cumulative across
+  ``--resume``, as measured on Cujas and Haloander), one per line or one per file, or a log line
+  ``LABEL SESSION-UUID cost USD``. For each session the computed total over all its rows must lie
+  within ``max(TOLERANCE_USD, TOLERANCE_SHARE x reported)``; SUMMARY.json lists each comparison and
+  the command exits 3 (outputs still written) when one does not. A session named in a reported cost
+  is a headless worker: its role is ``worker`` and ``worker_label`` holds the log label, not
+  ``coordinator``. A ``--since`` filter makes the comparison not comparable, and it is skipped.
+* **Guard.** The leak guard now checks every value derived from a transcript (model, agent type,
+  role, Hamilton error text, worker label) rather than the whole output text. The whole-text check
+  refused Cujas c01-c03 because the coordinator had read rows of its own earlier usage table back
+  into its context; those rows, timestamps, counts, operator labels and this tool's constant notes
+  cannot carry transcript content. Every output column is classified, and a test fails if one is not.
+
 Usage:
     python3 -I jobs/bentham/sessions.py --wave NAME (--phase LABEL | --phase-map FILE) --out DIR
-        [--session-id ID] [--since ISO] [--claude-dir DIR ...]
+        [--session-id ID] [--since ISO] [--claude-dir DIR ...] [--reported-costs FILE ...]
 
 ``--phase-map`` is JSON mapping a key to a phase label. Keys are tried in order: an agent id, then
 ``session:<session id>``, then ``role:<agent type>`` (main agents have role ``coordinator``), then
@@ -59,6 +83,9 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pricing  # noqa: E402
+
 REPO_ROOT = Path(os.environ.get("REPO_ROOT") or Path(__file__).resolve().parents[2])
 HAMILTON = REPO_ROOT / "jobs" / "hamilton-token-audit" / "profile.py"
 GAP_CAP_SECONDS = 300
@@ -67,7 +94,20 @@ MIN_GUARD_LEN = 16
 COLUMNS = ["agent_id", "role", "phase", "batch", "model", "started_utc", "finished_utc", "wall_seconds", "calls",
            "fresh_input", "cache_read", "cache_write_5m", "cache_write_1h", "cache_write_unclassified", "output",
            "tool_uses", "bash_calls", "coverage_notes", "hamilton_status",
-           "session_id", "active_seconds", "agent_type"]
+           "session_id", "active_seconds", "agent_type",
+           "usd_list", "usd_unpriced_calls", "reported_usd", "worker_label", "malformed_lines"]
+# Leak-guard classes (Gutenberg). DERIVED values come from transcript records or meta files and are checked
+# against transcript content. STRUCTURAL values are numbers, reformatted timestamps, the ids this tool exists to
+# write, operator labels (--wave, --phase, phase map) and this tool's own constant notes; they cannot carry content.
+DERIVED_COLUMNS = ("role", "model", "agent_type", "worker_label")  # plus Hamilton's error text, in row["_derived"]
+STRUCTURAL_COLUMNS = ("agent_id", "phase", "batch", "started_utc", "finished_utc", "wall_seconds", "calls",
+                      "fresh_input", "cache_read", "cache_write_5m", "cache_write_1h", "cache_write_unclassified",
+                      "output", "tool_uses", "bash_calls", "coverage_notes", "hamilton_status", "session_id", "active_seconds",
+                      "usd_list", "usd_unpriced_calls", "reported_usd", "malformed_lines")
+TOLERANCE_USD = 0.01
+TOLERANCE_SHARE = 0.01
+UUID = r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+LOG_COST = re.compile(r"^(\S+)\s+(?:resume\s+)?(" + UUID + r")\s+cost\s+([0-9]+(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?)\b")
 CATS = ["fresh_input", "cache_read", "cache_write_5m", "cache_write_1h", "cache_write_unclassified", "output"]
 MODEL_NAME = re.compile(r"^claude-[a-z0-9.-]+$")  # a model name that happens to be a whole content string is not private
 SAFE_LABEL = re.compile(r"[^A-Za-z0-9_.:+-]")
@@ -256,26 +296,79 @@ def active_seconds(stamps):
     return total
 
 
+def load_events(hp, path):
+    """Hamilton's loader; lines that are not JSON are dropped and counted instead of refusing the file.
+
+    Returns (events, malformed, trailing_only). Valid lines go to Hamilton unchanged, in a temporary copy.
+    """
+    try:
+        return hp.load(path), 0, False
+    except ValueError as err:
+        if "malformed supported transcript export" not in str(err):
+            raise
+    lines = [ln for ln in path.read_text(errors="replace").splitlines() if ln.strip()]
+    good, bad_at = [], []
+    for i, ln in enumerate(lines):
+        try:
+            json.loads(ln)
+        except json.JSONDecodeError:
+            bad_at.append(i)
+            continue
+        good.append(ln)
+    with tempfile.TemporaryDirectory() as td:
+        tmp = Path(td) / "transcript.jsonl"
+        tmp.write_text("\n".join(good) + ("\n" if good else ""))
+        events = hp.load(tmp)
+    return events, len(bad_at), bad_at == [len(lines) - 1]
+
+
+def call_speeds(events):
+    """message id -> usage.speed, for fast-mode pricing (Hamilton's records do not keep it)."""
+    out = {}
+    for _, kind, body in events:
+        msg = body.get("message") if kind == "assistant" else None
+        if isinstance(msg, dict) and isinstance(msg.get("usage"), dict) and msg.get("id"):
+            sp = msg["usage"].get("speed")
+            if sp:
+                out[msg["id"]] = sp
+    return out
+
+
+def call_tokens(r):
+    tk = r["tokens"]
+    total = r.get("cache_creation_tokens")
+    w5, w1 = tk.get("write5m"), tk.get("write1h")
+    unc = 0
+    if total is not None and w5 is None and w1 is None:
+        unc = total
+    elif total is not None:
+        unc = max(total - (w5 or 0) - (w1 or 0), 0)
+    return {"fresh_input": tk.get("input"), "cache_read": tk.get("read"), "cache_write_5m": w5,
+            "cache_write_1h": w1, "cache_write_unclassified": unc, "output": tk.get("output")}
+
+
 def add_tok(acc, key, value):
     if value is not None:
         acc[key] = acc.get(key, 0) + value
 
 
-def read_agent(hp, t, since):
+def read_agent(hp, t, since, prices=None):
     """Return (row, cells). cells: one dict per model with token categories, for the summaries."""
-    events = hp.load(t["path"])
-    events = [e for e in events if (e[2].get("message") or {}).get("model") != "<synthetic>"]
-    synthetic = len(hp.load(t["path"])) - len(events)
+    loaded, malformed, trailing_only = load_events(hp, t["path"])
+    events = [e for e in loaded if (e[2].get("message") or {}).get("model") != "<synthetic>"]
+    synthetic = len(loaded) - len(events)
     if since:
         events = [e for e in events if (parse_ts(e[0]) or since) >= since]
-    status = "ok"
+    status, err_text = "ok", ""
     try:
         prof = hp.profile(events, label=t["agent_id"])
         records = prof["usage_records"]
     except (ValueError, KeyError, TypeError) as err:
-        status = "fallback: Hamilton refused (%s: %s); last-usage-per-message extraction" % (
-            type(err).__name__, str(err)[:80])
+        err_text = "%s: %s" % (type(err).__name__, str(err)[:80])
+        status = "fallback: Hamilton refused (%s); last-usage-per-message extraction" % err_text
         records = fallback_records(events)
+    speeds = call_speeds(events)
+    usd_total, unpriced = (0.0 if prices else None), 0
     stamps = [d for d in (parse_ts(e[0]) for e in events) if d]
     per_model = collections.OrderedDict()
     for r in records:
@@ -283,6 +376,13 @@ def read_agent(hp, t, since):
         m = r.get("model") or "unknown"
         c = per_model.setdefault(m, {"calls": 0})
         c["calls"] += 1
+        if prices:
+            v = prices.call_usd(m, call_tokens(r), fast=speeds.get(r.get("message_id")) == "fast")
+            if v is None:
+                unpriced += 1
+            else:
+                usd_total += v
+                c["usd_list"] = c.get("usd_list", 0.0) + v
         add_tok(c, "fresh_input", tk.get("input"))
         add_tok(c, "cache_read", tk.get("read"))
         add_tok(c, "cache_write_5m", tk.get("write5m"))
@@ -300,6 +400,12 @@ def read_agent(hp, t, since):
         notes.append("%d zero-usage client-generated '<synthetic>' message(s) excluded" % synthetic)
     if since:
         notes.append("calls before --since excluded")
+    if malformed:
+        notes.append("%d line(s) not JSON dropped (%s)" % (
+            malformed, "the trailing line only: a transcript still being written" if trailing_only
+            else "interior lines: token totals are a lower bound"))
+    if unpriced:
+        notes.append("%d call(s) of a model PRICES.json does not list: dollars are a lower bound" % unpriced)
     if len(per_model) > 1:
         notes.append("%d models in one transcript; row model is the most-called" % len(per_model))
     dominant = max(per_model, key=lambda m: per_model[m]["calls"]) if per_model else ""
@@ -311,7 +417,10 @@ def read_agent(hp, t, since):
            "tool_uses": count_tools(events)[0], "bash_calls": count_tools(events)[1],
            "coverage_notes": "; ".join(notes), "hamilton_status": status,
            "session_id": t["session_id"], "active_seconds": round(active_seconds(stamps), 3) if stamps else "",
-           "agent_type": t["agent_type"] or ""}
+           "agent_type": t["agent_type"] or "",
+           "usd_list": round(usd_total, 6) if usd_total is not None else "", "usd_unpriced_calls": unpriced,
+           "reported_usd": "", "worker_label": "", "malformed_lines": malformed,
+           "_derived": [err_text] if err_text else []}
     for cat in CATS:
         vals = [c[cat] for c in per_model.values() if cat in c]
         row[cat] = sum(vals) if vals else ""
@@ -332,23 +441,27 @@ def phase_for(t, phase, phase_map):
 def totals_into(acc, cell):
     acc["agents"] = acc.get("agents", 0)
     acc["calls"] = acc.get("calls", 0) + cell["calls"]
+    if "usd_list" in cell:
+        acc["usd_list"] = acc.get("usd_list", 0.0) + cell["usd_list"]
     for c in CATS:
         if c in cell:
             acc[c] = acc.get(c, 0) + cell[c]
 
 
 def finish(acc):
-    return {"agents": acc.get("agents", 0), "calls": acc.get("calls", 0), **{c: acc.get(c) for c in CATS}}
+    out = {"agents": acc.get("agents", 0), "calls": acc.get("calls", 0), **{c: acc.get(c) for c in CATS}}
+    out["usd_list"] = round(acc["usd_list"], 6) if "usd_list" in acc else None
+    return out
 
 
 def summarize(wave, rows_cells, phase_source, since, session_id):
-    by_phase, by_family, by_model, by_pf, overall = {}, {}, {}, {}, {}
+    by_phase, by_family, by_model, by_pf, by_role, overall = {}, {}, {}, {}, {}, {}
     agents_seen = collections.defaultdict(set)
     for row, per_model in rows_cells:
         for model, cell in per_model.items():
             fam = family(model)
             for d, key in ((by_phase, row["phase"]), (by_family, fam), (by_model, model),
-                           (by_pf, "%s|%s" % (row["phase"], fam)), (overall, "all")):
+                           (by_pf, "%s|%s" % (row["phase"], fam)), (by_role, row["role"]), (overall, "all")):
                 acc = d.setdefault(key, {}) if d is not overall else overall
                 totals_into(acc, cell)
                 agents_seen[(id(d), key)].add(row["agent_id"] + "@" + row["session_id"])
@@ -376,6 +489,9 @@ def summarize(wave, rows_cells, phase_source, since, session_id):
         "totals_by_model_family": fin(by_family),
         "totals_by_model": fin(by_model),
         "totals_by_phase_and_family": fin(by_pf),
+        "totals_by_role": fin(by_role),
+        "prices": {"source": pricing.REL, "basis": "list price per call: exact model, cache-write class, fast mode "
+                   "(usage.speed) and Haiku 5.5 long-prompt rates; API-equivalent estimate, not an invoice"},
         "notes": ["Agents counted per grouping can overlap across groupings when one agent used several models.",
                   "Main (coordinator) transcripts are partial: they can span work earlier than the labelled phase.",
                   "Output tokens may be a lower bound where a call never recorded a final count.",
@@ -385,12 +501,85 @@ def summarize(wave, rows_cells, phase_source, since, session_id):
 
 # ---------------------------------------------------------------- guard and write
 
-def guard(texts, forbidden):
-    for name, text in texts.items():
+def derived_values(rows, summary):
+    """Every string this tool writes that came from a transcript record or meta file."""
+    vals = []
+    for r in rows:
+        vals += [str(r.get(c) or "") for c in DERIVED_COLUMNS] + list(r.get("_derived") or [])
+    for key in ("totals_by_model", "totals_by_role"):
+        vals += list(summary.get(key) or {})
+    return [v for v in vals if v]
+
+
+def guard(values, forbidden):
+    """Refuse if any transcript-derived value contains a string from transcript message content."""
+    for v in values:
         for s in forbidden:
-            if s in text:
-                raise GuardError("refusing to write %s: it contains a string from transcript message content "
-                                 "(%d characters, not shown)" % (name, len(s)))
+            if s in v:
+                raise GuardError("refusing to write: a value taken from a transcript record contains a string from "
+                                 "transcript message content (%d characters, not shown)" % len(s))
+
+
+def read_reported(paths):
+    """session id -> {"usd", "label", "kind"} from claude -p JSON results or 'LABEL SESSION cost USD' log lines.
+
+    The last value for a session wins: claude -p reports the session's cumulative cost, including earlier
+    --resume invocations (measured on Cujas and Haloander: the last logged value equals the whole session).
+    """
+    out = {}
+
+    def take(rec, name):
+        if isinstance(rec, dict) and rec.get("type") == "result" and re.fullmatch(UUID, str(rec.get("session_id") or "")) \
+                and isinstance(rec.get("total_cost_usd"), (int, float)) and not isinstance(rec.get("total_cost_usd"), bool):
+            out[rec["session_id"]] = {"usd": float(rec["total_cost_usd"]), "label": label(Path(name).stem),
+                                      "kind": "claude -p result"}
+            return True
+        return False
+
+    for p in paths:
+        p = Path(p)
+        text = p.read_text(errors="replace")
+        try:
+            if take(json.loads(text), p.name):
+                continue
+        except json.JSONDecodeError:
+            pass
+        for line in text.splitlines():
+            st = line.strip()
+            if st.startswith("{"):
+                try:
+                    if take(json.loads(st), p.name):
+                        continue
+                except json.JSONDecodeError:
+                    pass
+            m = LOG_COST.match(st)
+            if m:
+                out[m.group(2)] = {"usd": float(m.group(3)), "label": label(m.group(1)), "kind": "cost log line"}
+    return out
+
+
+def crosscheck(rows, reported, since):
+    """Compare each reported session cost with the computed list-price total over all of its rows."""
+    by_session = collections.defaultdict(list)
+    for r in rows:
+        by_session[r["session_id"]].append(r)
+    out = []
+    for sid, rep in sorted(reported.items()):
+        rs = by_session.get(sid)
+        e = {"session_id": sid, "label": rep["label"], "reported_usd": round(rep["usd"], 6), "source_kind": rep["kind"]}
+        if not rs:
+            e.update(verdict="no_transcript", note="no transcript of this session was found on this machine")
+        elif since:
+            e.update(verdict="not_comparable", note="--since dropped calls; the reported cost covers the whole session")
+        elif any(r["usd_list"] == "" or r["usd_unpriced_calls"] for r in rs):
+            e.update(verdict="not_comparable", note="a call of this session has no list price")
+        else:
+            comp = sum(r["usd_list"] for r in rs)
+            tol = max(TOLERANCE_USD, TOLERANCE_SHARE * rep["usd"])
+            e.update(computed_usd=round(comp, 6), diff_usd=round(comp - rep["usd"], 6), tolerance_usd=round(tol, 6),
+                     verdict="agrees" if abs(comp - rep["usd"]) <= tol else "disagrees")
+        out.append(e)
+    return out
 
 
 def render(rows, summary):
@@ -403,8 +592,8 @@ def render(rows, summary):
 
 
 def write_outputs(out, rows, summary, forbidden):
+    guard(derived_values(rows, summary), forbidden)
     texts = render(rows, summary)
-    guard(texts, forbidden)
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     for name, text in texts.items():
@@ -412,14 +601,21 @@ def write_outputs(out, rows, summary, forbidden):
     return sorted(texts)
 
 
-def run(wave, out, phase=None, phase_map=None, session_id=None, since=None, claude_dirs=()):
+def run(wave, out, phase=None, phase_map=None, session_id=None, since=None, claude_dirs=(), reported_paths=()):
     hp = load_hamilton()
+    prices = pricing.Prices.load(REPO_ROOT)
+    reported = read_reported(reported_paths)
     transcripts = discover(claude_dirs, session_id)
     rows_cells, forbidden = [], set()
     for t in transcripts:
-        row, per_model = read_agent(hp, t, since)
+        row, per_model = read_agent(hp, t, since, prices)
         row["phase"] = phase_for(t, phase, phase_map or {})
         row["batch"] = label(wave)
+        rep = reported.get(t["session_id"])
+        if rep and t["kind"] == "main":
+            # A session that a claude -p result reports on is a headless worker, not the coordinator. Its transcript's
+            # entrypoint field cannot tell (it carries the parent's value; checked 2026-11-09).
+            row["role"], row["worker_label"], row["reported_usd"] = "worker", rep["label"], round(rep["usd"], 6)
         if since and not row["calls"]:
             continue
         rows_cells.append((row, per_model))
@@ -429,7 +625,10 @@ def run(wave, out, phase=None, phase_map=None, session_id=None, since=None, clau
     rows_cells.sort(key=lambda rc: (rc[0]["started_utc"], rc[0]["agent_id"]))
     source = "--phase %s" % label(phase) if phase else "--phase-map"
     summary = summarize(label(wave), rows_cells, source, since, session_id)
-    written = write_outputs(out, [r for r, _ in rows_cells], summary, forbidden)
+    rows = [r for r, _ in rows_cells]
+    summary["crosscheck"] = {"tolerance": "max(%s USD, %s x reported)" % (TOLERANCE_USD, TOLERANCE_SHARE),
+                             "sessions": crosscheck(rows, reported, since)}
+    written = write_outputs(out, rows, summary, forbidden)
     return summary, written, len(transcripts)
 
 
@@ -443,18 +642,28 @@ def main(argv=None):
     ap.add_argument("--session-id", help="keep only sessions whose id starts with this")
     ap.add_argument("--since", help="ISO timestamp; calls before it are excluded")
     ap.add_argument("--claude-dir", action="append", default=[], help="extra Claude config directory (holds projects/)")
+    ap.add_argument("--reported-costs", action="append", default=[],
+                    help="claude -p JSON result(s) or a 'LABEL SESSION cost USD' log, for the cross-check")
     a = ap.parse_args(argv)
     since = parse_ts(a.since) if a.since else None
     if a.since and since is None:
         ap.error("--since is not an ISO timestamp")
     pmap = json.loads(Path(a.phase_map).read_text()) if a.phase_map else None
     try:
-        summary, written, n = run(a.wave, a.out, a.phase, pmap, a.session_id, since, a.claude_dir)
-    except GuardError as err:
+        summary, written, n = run(a.wave, a.out, a.phase, pmap, a.session_id, since, a.claude_dir, a.reported_costs)
+    except (GuardError, pricing.PricingError) as err:
         print(str(err), file=sys.stderr)
         return 2
+    xc = summary["crosscheck"]["sessions"]
+    bad = [e for e in xc if e["verdict"] == "disagrees"]
     print(json.dumps({"transcripts": n, "agents": summary["totals"]["agents"], "calls": summary["totals"]["calls"],
+                      "usd_list": summary["totals"]["usd_list"],
+                      "crosscheck": {v: sum(1 for e in xc if e["verdict"] == v) for v in sorted({e["verdict"] for e in xc})},
                       "wrote": [str(Path(a.out) / w) for w in written]}, indent=1))
+    if bad:
+        print("cross-check: %d session(s) disagree with their reported cost beyond tolerance; see SUMMARY.json "
+              "crosscheck (outputs written)" % len(bad), file=sys.stderr)
+        return 3
     return 0
 
 

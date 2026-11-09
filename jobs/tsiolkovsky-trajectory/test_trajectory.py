@@ -81,5 +81,48 @@ class EndToEnd(unittest.TestCase):
             self.assertEqual(s["generations"], 2)
 
 
+class ChannelCreditTest(unittest.TestCase):
+    """Gutenberg item 6: credit follows the lines each event changed in the step's own inputs."""
+
+    def ev(self, kind, campaign, lines, channels=("evidence",)):
+        return {"kind": kind, "campaign": campaign, "agent": "a", "lines": lines, "channels": list(channels)}
+
+    def test_weighted_by_lines_and_conserved(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as root:
+            ev = [self.ev("merge", "Photius", {"jobs/photius-gpo/output/FRAGMENTS.jsonl": 900}),
+                  self.ev("merge", "Notes", {"HANDOFF/notes-claude.md": 50}, channels=()),
+                  self.ev("merge", "Small", {"jobs/x/output/FRAGMENTS.jsonl": 100})]
+            rows = T.channel_credit(root, ev, "original_text", 100.0)
+            got = {r["to"]: r["min"] for r in rows}
+            self.assertEqual(set(got), {"Photius", "Small"})       # an event that changed no step input gets nothing
+            self.assertAlmostEqual(got["Photius"], 90.0)
+            self.assertAlmostEqual(sum(got.values()), 100.0)
+            self.assertEqual(T.channel_credit(root, ev[1:2], "original_text", 5.0), [])  # caller falls back
+
+    def test_runner_result_passes_to_campaign_behind_it(self):
+        import os, tempfile
+        with tempfile.TemporaryDirectory() as root:
+            os.makedirs(os.path.join(root, "jobs/lachmann"))
+            with open(os.path.join(root, "jobs/lachmann/inputs.txt"), "w") as fh:
+                fh.write("jobs/*/output/FRAGMENTS*.jsonl\n")
+            ev = [self.ev("merge", "Photius", {"jobs/photius-gpo/output/FRAGMENTS.jsonl": 900}),
+                  self.ev("machine", "machine:lachmann", {"jobs/lachmann/output/CONFIRMATIONS.jsonl": 400})]
+            rows = T.channel_credit(root, ev, "clause_inventory", -30.0)
+            self.assertEqual([(r["to"], r["rule"], r["via"]) for r in rows],
+                             [("Photius", "channel_via_inputs", "machine:lachmann")])
+            # a campaign that changed the job's code in the interval wins over its inputs
+            ev.insert(1, self.ev("merge", "Lachmann fix", {"jobs/lachmann/lachmann.py": 10}))
+            rows = T.channel_credit(root, ev, "clause_inventory", -30.0)
+            self.assertEqual([r["to"] for r in rows], ["Lachmann fix"])
+
+    def test_rules_change_is_disclosed(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as root:
+            ev = [self.ev("merge", "P", {"jobs/p/output/FRAGMENTS.jsonl": 9}),
+                  self.ev("merge", "Stricter tracker", {"jobs/readiness-tracker/tracker.py": 9}, channels=("rules",))]
+            self.assertTrue(all(r["rule"].endswith("+rules_changed") for r in T.channel_credit(root, ev, "original_text", 1.0)))
+
+
 if __name__ == "__main__":
     unittest.main()

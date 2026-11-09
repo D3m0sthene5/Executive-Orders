@@ -590,7 +590,16 @@ def as_of_acceptable(problems, candidates):
     return True
 
 
-def fresh_subset(ref, names, report_path, as_of=None):
+def as_of_jobs(names):
+    """Gutenberg (2026-11-09): jobs that opt in, by jobs/<name>/AS_OF_READOUT, to Hansard's as-of publication in any
+    workflow. A readout of many jobs (daily-digest reads every job's STATUS.json; Davy reads the claim-kit chain)
+    cannot narrow its reads, so data drift during its run would refuse it forever on a busy main. The same rule
+    applies as in the refresh workflow: data-only drift is published as of the input commit; code changes,
+    concurrent output and refused producers stay refused."""
+    return {n for n in names if Path("jobs", n, "AS_OF_READOUT").is_file()}
+
+
+def fresh_subset(ref, names, report_path, as_of=None, allowed=None):
     """Fresh subset: drop refused jobs and recheck the rest until the check passes.
 
     The final check over exactly the published set passes, which is the same
@@ -621,7 +630,8 @@ def fresh_subset(ref, names, report_path, as_of=None):
             by_job = {n: [p for p in final["problems"] if p.get("job") == n] for n in bad}
             # Consumers whose only problem is a refused producer are re-judged after
             # that producer is dropped; data-only drift is accepted as of its commit.
-            hard = {n for n, problems in by_job.items() if not as_of_acceptable(problems, remaining)}
+            hard = {n for n, problems in by_job.items()
+                    if (allowed is not None and n not in allowed) or not as_of_acceptable(problems, remaining)}
             if not hard:
                 as_of.clear()
                 as_of.update(by_job)
@@ -712,7 +722,10 @@ def command_publish(args):
     check_report = RECEIPTS / "publication-check.json"
     record = {"started_utc": now(), "candidates": candidates, "push_attempts": 0}
     refused, fresh, outcome = {}, [], None
-    as_of = {} if os.environ.get("ARSENALE_AS_OF_READOUT") == "1" else None
+    global_as_of = os.environ.get("ARSENALE_AS_OF_READOUT") == "1"
+    per_job = as_of_jobs(candidates)
+    as_of = {} if global_as_of or per_job else None
+    allowed = None if global_as_of else per_job
     pool = list(candidates)
     remote = f"origin/{branch}"
     for attempt in range(1, PUSH_ATTEMPTS + 1):
@@ -736,7 +749,7 @@ def command_publish(args):
                 outcome = "records-only"
                 break
         # Each push attempt rechecks against the newest tip; the set only shrinks.
-        fresh, newly, rounds, _ = fresh_subset(remote, pool, check_report, as_of)
+        fresh, newly, rounds, _ = fresh_subset(remote, pool, check_report, as_of, allowed)
         refused.update(newly)
         pool = list(fresh)
         record["freshness_rounds"] = record.get("freshness_rounds", 0) + rounds
@@ -754,7 +767,8 @@ def command_publish(args):
         message = ["-m", "Results of job(s): " + " ".join(fresh), "-m", "Run: " + run_url]
         if as_of:
             message += ["-m", "As of their input commits; data inputs advanced since for: "
-                        + " ".join(sorted(as_of)) + ". A catch-up refresh is queued (Hansard)."]
+                        + " ".join(sorted(as_of)) + (". A catch-up refresh is queued (Hansard)." if global_as_of
+                                                     else ". Per-job as-of readout (AS_OF_READOUT); its next run catches up.")]
         git("commit", "-q", *message)
         record["push_attempts"] = attempt
         push = git("push", "-q", "origin", f"HEAD:{branch}", check=False)

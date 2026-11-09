@@ -206,6 +206,7 @@ def plan(args):
               "discount_half_life_days": HALF_LIFE_DAYS, "sensitivity": flips,
               "allowance": adata or {"usd_per_week": None, "note": "not recorded; see README"},
               "price_table": measured.get("price_table"), "waves": measured.get("waves"),
+              "kean_waves": measured.get("kean_waves") or [],
               "what_this_is_not": "A ranking of expected yield per API-equivalent dollar from measured past waves. "
                                   "It changes no status, claim or count and authorizes no dispatch by itself."}
     (out / "PLAN.json").write_text(json.dumps(result, indent=2, default=str) + "\n")
@@ -271,6 +272,17 @@ def report(r):
                   "not savings until a two-arm `junto.py add-test` verifies them; see jobs/junto/output/OPEN_TESTS.md):", ""]
         for s in r["junto_savers"]:
             lines.append(f"- `{s['saver_key']}`: {fmt_usd(s['cost_at_stake_usd'])} spent in this pattern ({s['status']})")
+    if r.get("kean_waves"):
+        lines += ["", "Measured waves (Kean findings' structured measures; list-price dollars; not pooled into the rates "
+                  "above):", "", "| Wave | $ total | Coordinator share | Attempted | Filed | $ per filed | Controls missed |",
+                  "|---|---:|---:|---:|---:|---:|---:|"]
+        for w in r["kean_waves"]:
+            o, c = w.get("orders") or {}, w.get("controls") or {}
+            share = f"{100 * w['coordinator_share']:.0f}%" if w.get("coordinator_share") is not None else ""
+            per = fmt_usd(w["usd_per_filed"]) if w.get("usd_per_filed") is not None else ""
+            missed = f"{c['missed']} of {c['planted']}" if "planted" in c and "missed" in c else ""
+            lines.append(f"| {w['wave']} | {fmt_usd(w['usd_total']) if w.get('usd_total') is not None else ''} | {share} | "
+                         f"{o.get('attempted', '')} | {o.get('filed', '')} | {per} | {missed} |")
     win = r.get("window_token_rankings") or {}
     if win.get("orders"):
         lines += ["", "Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting "
@@ -313,8 +325,16 @@ def gate(args):
 
 
 def usage(args):
-    cmd = [sys.executable, "-I", str(HERE / "sessions.py"), "--wave", args.wave, "--phase", args.phase,
+    cmd = [sys.executable, "-I", str(HERE / "sessions.py"), "--wave", args.wave,
            "--out", args.out or str(REPO / "research" / "bentham" / "usage" / args.wave)]
+    cmd += ["--phase", args.phase] if args.phase else ["--phase-map", args.phase_map]
+    for flag, val in (("--session-id", args.session_id), ("--since", args.since)):
+        if val:
+            cmd += [flag, val]
+    for d in args.claude_dir:
+        cmd += ["--claude-dir", d]
+    for f in args.reported_costs:
+        cmd += ["--reported-costs", f]
     return subprocess.run(cmd).returncode
 
 
@@ -346,8 +366,15 @@ def main(argv=None):
     s.add_argument("--window", type=int, default=2)
     s = sub.add_parser("usage")
     s.add_argument("--wave", required=True)
-    s.add_argument("--phase", required=True)
+    g = s.add_mutually_exclusive_group(required=True)
+    g.add_argument("--phase")
+    g.add_argument("--phase-map")
     s.add_argument("--out")
+    s.add_argument("--session-id")
+    s.add_argument("--since")
+    s.add_argument("--claude-dir", action="append", default=[])
+    s.add_argument("--reported-costs", action="append", default=[],
+                   help="claude -p JSON results or a 'LABEL SESSION cost USD' log; sessions.py cross-checks against them")
     s = sub.add_parser("calibrate", help="record a measured weekly allowance")
     s.add_argument("--run-usd", type=float, required=True, help="API-equivalent cost of the run (from usage)")
     s.add_argument("--percent-used", type=float, required=True, help="change in Settings > Usage weekly percent")
@@ -359,4 +386,6 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
-    main()
+    rc = main()
+    # Gutenberg: `usage` returns sessions.py's exit code, which used to be dropped (a refused write exited 0).
+    sys.exit(rc if isinstance(rc, int) else 0)
