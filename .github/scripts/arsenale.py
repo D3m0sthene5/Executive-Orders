@@ -16,6 +16,18 @@ publish  (lock)     Check out the latest branch tip, unpack every bundle, decide
                     with a bounded retry. Stale jobs are refused, recorded, and
                     re-queued by a bounded workflow_dispatch of exactly those jobs.
 
+Riquet (2026-11-09) bounds each run's freshness window. Plan keeps at most SEGMENT_MINUTES
+of estimated work per station (the longest of each job's last ESTIMATE_RUNS published runs).
+A station headed by a longer job waits for a run of its own while shorter stations exist,
+because publish waits for every station. Publish then dispatches the deferred jobs as a
+continuation run (workflow input ``continuation``) on the branch it has just updated. Jobs
+after a failed job are held back, exactly as run_jobs.py blocks them inside a station.
+Continuations do not spend re-queue depth; a re-queued retry runs with half the budget per
+generation. MAX_CONTINUATIONS bounds the chain, and the last continuation runs whatever is
+left whole. On the 2026-11-09 daily selection, one 37-job station of about 414 estimated
+minutes, beyond the 350-minute execute timeout, became 7 runs of at most 45 minutes each,
+apart from single jobs that are longer by themselves.
+
 Freshness is decided by the existing guard (result_freshness.py), unchanged.
 Two declared reads across stations are possible without an after.txt edge (for
 example daily-digest reads jobs/*/output/STATUS.json). Such a reader sees the
@@ -49,6 +61,15 @@ REPORT = RECEIPTS / "ARSENALE.json"
 BUNDLE = "bundle.tar"
 STATION = "STATION.json"
 MAX_REQUEUE_DEPTH = 2           # an original run plus at most two re-queued generations
+# Riquet (2026-11-09): a station's results are checked for freshness only when the whole
+# run publishes, so a long after.txt chain gives its early jobs a window of hours in which
+# main moves and they are refused as stale (Haloander lost about 9 hours to this on
+# 2026-11-07). Plan runs at most this many estimated minutes of each station now and
+# dispatch the rest as a continuation after this run publishes; 0 turns it off.
+SEGMENT_MINUTES = 45
+DEFAULT_JOB_MINUTES = 10        # estimate for a job with no recorded run
+ESTIMATE_RUNS = 3               # estimate from the longest of the job's last few published runs
+MAX_CONTINUATIONS = 12          # continuation runs per original run (then run the rest whole)
 PUSH_ATTEMPTS = 5
 RECORD_ONLY = re.compile(r"/output/(STATUS\.json|log\.txt|install-log\.txt|RUNNER_INPUTS\.json)$")
 TOKEN = re.compile(r"^[A-Za-z0-9._-]+$")
@@ -219,16 +240,141 @@ def plan(order, scopes=None, after_of=None):
             "merged_for_order": merges}
 
 
+def status_minutes(text):
+    """Minutes between a STATUS.json's started_utc and finished_utc, or None."""
+    from datetime import datetime
+    try:
+        status = json.loads(text)
+        start = datetime.fromisoformat(status["started_utc"].replace("Z", "+00:00"))
+        end = datetime.fromisoformat(status["finished_utc"].replace("Z", "+00:00"))
+    except (ValueError, KeyError, TypeError, AttributeError):
+        return None
+    minutes = (end - start).total_seconds() / 60
+    return minutes if minutes >= 0 else None
+
+
+HISTORY_SECONDS = 120           # total time the plan may spend reading STATUS.json history
+_history_deadline = [None]
+
+
+def recorded_minutes(name, ref="HEAD", runs=ESTIMATE_RUNS):
+    """The longest of the job's last ``runs`` published runs, or None if none is recorded.
+
+    The longest, not the latest: a cached, runtime-only or early-failing run is short, and an
+    under-estimate would put a long job back into a short segment. The current STATUS.json is
+    read from the checkout (the plan job materializes it); older versions come from history,
+    read best-effort within HISTORY_SECONDS and never prompting for credentials.
+    """
+    path = f"jobs/{name}/output/STATUS.json"
+    found = []
+    try:
+        current = status_minutes(Path(path).read_text(encoding="utf-8"))
+    except OSError:
+        current = None
+    if current is not None:
+        found.append(current)
+    if _history_deadline[0] is None:
+        _history_deadline[0] = time.monotonic() + HISTORY_SECONDS
+    if runs > 1 and time.monotonic() < _history_deadline[0]:
+        env = dict(os.environ, GIT_TERMINAL_PROMPT="0", GCM_INTERACTIVE="never")
+        quiet = dict(capture_output=True, text=True, env=env, timeout=30)
+        try:
+            commits = subprocess.run(["git", "log", f"-{runs}", "--format=%H", ref, "--", path], **quiet).stdout.split()
+            for commit in commits:
+                if time.monotonic() >= _history_deadline[0]:
+                    break
+                shown = subprocess.run(["git", "show", f"{commit}:{path}"], **quiet)
+                minutes = status_minutes(shown.stdout) if shown.returncode == 0 else None
+                if minutes is not None:
+                    found.append(minutes)
+        except (OSError, subprocess.SubprocessError):
+            pass
+    return max(found) if found else None
+
+
+def segment(result, budget, estimate):
+    """Riquet: keep each station's leading jobs up to ``budget`` estimated minutes; defer the rest.
+
+    A station always keeps its first job, however long. Deferred jobs keep pick order, so the
+    continuation run orders them by after.txt again, and they read the published outputs of
+    the jobs kept here. The check order is filtered, never reordered: every constraint among
+    the kept jobs still holds. ``budget`` <= 0 keeps everything.
+    """
+    if budget <= 0:
+        return dict(result, deferred=[], estimates={}, long_heads=[])
+    estimates = {}
+    for station in result["stations"]:
+        for name in station["jobs"]:
+            minutes = estimate(name)
+            estimates[name] = round(DEFAULT_JOB_MINUTES if minutes is None else minutes, 1)
+    # Publish waits for every station, so one station whose first job alone exceeds the budget
+    # would hold every other station's results for its whole duration. Such stations wait for
+    # a later run while any station fits; when none fits, they run together.
+    long_heads = [s for s in result["stations"] if estimates[s["jobs"][0]] > budget]
+    held_stations = long_heads if len(long_heads) < len(result["stations"]) else []
+    kept, deferred = [], []
+    for station in result["stations"]:
+        if station in held_stations:
+            deferred.extend(station["jobs"])
+            continue
+        total = 0.0
+        for i, name in enumerate(station["jobs"]):
+            if i == 0 or total + estimates[name] <= budget:
+                total += estimates[name]
+                kept.append(name)
+            else:
+                deferred.extend(station["jobs"][i:])
+                break
+    keep = set(kept)
+    stations = [dict(s, jobs=[j for j in s["jobs"] if j in keep]) for s in result["stations"]]
+    stations = [s for s in stations if s["jobs"]]
+    for i, s in enumerate(stations):
+        s["station"] = i + 1
+        s["cache"] = hashlib.sha256(" ".join(sorted(s["jobs"])).encode()).hexdigest()[:12]
+    order_index = {n: i for i, n in enumerate(result["order"])}
+    deferred = sorted(deferred, key=order_index.get)
+    return dict(result, stations=stations, check_order=[j for j in result["check_order"] if j in keep],
+                deferred=deferred, estimates=estimates, long_heads=[s["jobs"][0] for s in held_stations])
+
+
+def segment_budget():
+    """Estimated minutes per station for this run: 0 (no split) for diagnostics and the last
+    continuation; halved for each re-queue generation, so a refused retry runs smaller and
+    is checked sooner instead of meeting the same moving branch again."""
+    if os.environ.get("DIAGNOSTIC") == "true" or continuation_count() >= MAX_CONTINUATIONS:
+        return 0
+    try:
+        budget = float(os.environ.get("ARSENALE_SEGMENT_MINUTES") or SEGMENT_MINUTES)
+    except ValueError:
+        print(f"::warning::Riquet: ARSENALE_SEGMENT_MINUTES is not a number; using {SEGMENT_MINUTES}.")
+        budget = SEGMENT_MINUTES
+    try:
+        depth = max(0, int(os.environ.get("REQUEUE_DEPTH") or 0))
+    except ValueError:
+        depth = 0
+    return budget / (2 ** depth) if budget > 0 else 0
+
+
+def continuation_count():
+    try:
+        return int(os.environ.get("CONTINUATION") or 0)
+    except ValueError:
+        return MAX_CONTINUATIONS
+
+
 def command_plan(args):
     order = names_from(os.environ.get("JOBS"))
     commit = git("rev-parse", "HEAD").stdout.strip()
     result = plan(order)
+    budget = segment_budget()
+    result = segment(result, budget, recorded_minutes)
     result.update(schema=1, input_commit=commit, planned_utc=now())
     write_json(RECEIPTS / "ARSENALE_PLAN.json", result)
     matrix = {"include": [{"station": s["station"], "jobs": " ".join(s["jobs"]), "cache": s["cache"]}
                           for s in result["stations"]]}
     output_github(input_commit=commit, check_order=" ".join(result["check_order"]),
-                  matrix=json.dumps(matrix, separators=(",", ":")), stations=len(result["stations"]))
+                  matrix=json.dumps(matrix, separators=(",", ":")), stations=len(result["stations"]),
+                  deferred=" ".join(result["deferred"]))
     lines = [f"Arsenale plan at `{commit[:12]}`: {len(order)} job(s) in {len(result['stations'])} station(s)."]
     for station in result["stations"]:
         lines.append(f"- Station {station['station']}: " + " -> ".join(f"`{j}`" for j in station["jobs"]))
@@ -236,6 +382,13 @@ def command_plan(args):
         lines.append(f"- `{reader}` reads `{producer}`'s base output; it is checked before `{producer}`.")
     for merged in result["merged_for_order"]:
         lines.append("- Merged stations to keep a valid check order: " + ", ".join(f"`{j}`" for j in merged))
+    if result["deferred"]:
+        lines.append(f"- Riquet: {len(result['deferred'])} later job(s) run in a continuation after this run "
+                     f"publishes, so no station runs more than about {budget:g} estimated minutes: "
+                     + ", ".join(f"`{j}` ({result['estimates'].get(j, '?')} min)" for j in result["deferred"]))
+    if result.get("long_heads"):
+        lines.append("- Riquet: stations headed by a job longer than the budget wait for a run of their own: "
+                     + ", ".join(f"`{j}`" for j in result["long_heads"]))
     print("\n".join(lines))
     step_summary("\n".join(["## Arsenale plan", "", *lines, ""]))
     return 0
@@ -648,22 +801,57 @@ def command_publish(args):
 
 
 # ------------------------------------------------------------------ requeueing
-def requeue_plan(refused, depth, downstream, workflow, ref, limit=MAX_REQUEUE_DEPTH):
-    """Return the exact dispatch for refused jobs, or why there is none (bounded)."""
+def requeue_plan(refused, depth, downstream, workflow, ref, limit=MAX_REQUEUE_DEPTH, deferred=(), continuation=0):
+    """Return the exact dispatch for refused and deferred jobs, or why there is none (bounded).
+
+    Refused jobs count against the re-queue depth; Riquet's deferred jobs count against the
+    continuation depth instead, so splitting a long run never uses up its retries.
+    """
     refused = names_from(" ".join(refused))
-    if not refused:
+    deferred = [n for n in names_from(" ".join(deferred)) if n not in set(refused)]
+    if not refused and not deferred:
         return {"dispatch": False, "reason": "nothing_refused"}
-    if depth >= limit:
-        return {"dispatch": False, "reason": "requeue_limit_reached", "depth": depth, "limit": limit, "jobs": refused}
-    fields = {"job": " ".join(refused), "requeue_depth": str(depth + 1)}
+    dropped = []
+    if refused and depth >= limit:
+        dropped, refused = refused, []
+        if not deferred:
+            return {"dispatch": False, "reason": "requeue_limit_reached", "depth": depth, "limit": limit, "jobs": dropped}
+    jobs = refused + deferred
+    new_depth = depth + 1 if refused else depth
+    fields = {"job": " ".join(jobs), "requeue_depth": str(new_depth)}
     if workflow == "run-jobs.yml":
-        fields["downstream"] = " ".join(n for n in refused if n in set(downstream))
+        fields["downstream"] = " ".join(n for n in jobs if n in set(downstream))
+        if deferred or continuation:
+            fields["continuation"] = str(continuation + 1 if deferred else continuation)
     args = ["gh", "workflow", "run", workflow, "--ref", ref]
     for key, value in fields.items():
         if key == "job" and workflow != "run-jobs.yml":
             continue
         args += ["-f", f"{key}={value}"]
-    return {"dispatch": True, "depth": depth + 1, "limit": limit, "jobs": refused, "command": args}
+    decision = {"dispatch": True, "depth": new_depth, "limit": limit, "jobs": jobs, "command": args}
+    if deferred:
+        decision.update(deferred=deferred, continuation=continuation + 1)
+    if dropped:
+        decision["dropped_at_requeue_limit"] = dropped
+    return decision
+
+
+def blocked_by_failures(deferred, attempts, after_of=None):
+    """Deferred jobs that depend (through after.txt) on a job of this run that did not succeed.
+
+    Inside one station run_jobs.py blocks a job whose current-run dependency failed; a
+    continuation must not run it either, on a stale or failed predecessor's output.
+    """
+    after_of = after_of or after
+    failed = {r.get("job") for r in attempts if r.get("publish_output") is not True}
+    blocked, changed = set(), True
+    while changed:
+        changed = False
+        for name in deferred:
+            if name not in blocked and any(dep in failed or dep in blocked for dep in after_of(name)):
+                blocked.add(name)
+                changed = True
+    return [n for n in deferred if n in blocked]
 
 
 def command_requeue(args):
@@ -675,15 +863,25 @@ def command_requeue(args):
         depth = int(os.environ.get("REQUEUE_DEPTH") or 0)
     except ValueError:
         depth = MAX_REQUEUE_DEPTH
+    deferred = names_from(os.environ.get("DEFERRED"))
+    held = blocked_by_failures(deferred, read_json(RECEIPTS / "ATTEMPTS.json", []) or []) if deferred else []
+    if deferred and publication.get("outcome") not in ("pushed", "unchanged", "no-results", "records-only"):
+        held = list(deferred)  # this run's results did not reach the branch; the next sweep starts over
+    deferred = [n for n in deferred if n not in held]
     decision = requeue_plan(refused, depth, names_from(os.environ.get("DOWNSTREAM_ONLY")),
-                            args.workflow, os.environ.get("REQUEUE_REF") or os.environ.get("BRANCH", ""))
+                            args.workflow, os.environ.get("REQUEUE_REF") or os.environ.get("BRANCH", ""),
+                            deferred=deferred, continuation=continuation_count())
+    if held:
+        decision["deferred_held_back"] = held
+        print("::warning::Riquet: not continuing " + " ".join(held) + ": a job they follow did not succeed in this run.")
     if decision["dispatch"]:
         result = subprocess.run(decision["command"], capture_output=True, text=True)
         decision.update(returncode=result.returncode, stderr=result.stderr.strip()[-500:], dispatched_utc=now())
         if result.returncode:
             print(f"::error::Re-queue dispatch failed: {result.stderr.strip()}")
         else:
-            print(f"Re-queued {' '.join(decision['jobs'])} at depth {decision['depth']} of {decision['limit']}.")
+            print(f"Re-queued {' '.join(decision['jobs'])} at depth {decision['depth']} of {decision['limit']}"
+                  + (f", continuation {decision['continuation']}." if decision.get("continuation") else "."))
     elif decision["reason"] == "requeue_limit_reached":
         print(f"::warning::Refused jobs {' '.join(decision['jobs'])} were not re-queued: the re-queue limit "
               f"({decision['limit']}) is reached. Their next scheduled or manual run publishes them.")

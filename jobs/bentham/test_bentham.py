@@ -49,6 +49,21 @@ class ScoreTests(unittest.TestCase):
         self.assertAlmostEqual(s["cost_usd"], 6.5)
 
 
+
+class JuntoSaversInPlan(unittest.TestCase):
+    def test_junto_savers_are_listed_and_absent_evidence_is_harmless(self):
+        import json, tempfile
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / "EVIDENCE.json"
+            path.write_text(json.dumps({"savers": [{"saver_key": "lean_coordination", "cost_at_stake_usd": 12.5,
+                                                    "status": "unverified"}, {"saver_key": "x", "cost_at_stake_usd": 0}]}))
+            savers = B.junto_savers(path)
+            self.assertEqual([s["saver_key"] for s in savers], ["lean_coordination"])
+            self.assertEqual(B.junto_savers(Path(d) / "missing.json"), [])
+            text = B.report({"ranked": [], "unranked": [], "budget_usd": 0, "discount_half_life_days": 60, "allowance": {}, "sensitivity": [], "junto_savers": savers})
+            self.assertIn("`lean_coordination`", text)
+            self.assertIn("not savings until", text)
+
 if __name__ == "__main__":
     unittest.main()
 

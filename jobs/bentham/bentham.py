@@ -200,7 +200,8 @@ def plan(args):
         s["share_of_week"] = None if week is None or s["cost_usd"] is None else round(s["cost_usd"] / week, 3)
     out = Path(args.out or os.environ.get("OUTPUT_DIR") or HERE / "output")
     out.mkdir(parents=True, exist_ok=True)
-    result = {"ranked": ranked, "unranked": unranked, "budget_usd": args.budget_usd,
+    junto = junto_savers()
+    result = {"ranked": ranked, "unranked": unranked, "budget_usd": args.budget_usd, "junto_savers": junto,
               "window_token_rankings": window, "context": measured.get("context"),
               "discount_half_life_days": HALF_LIFE_DAYS, "sensitivity": flips,
               "allowance": adata or {"usd_per_week": None, "note": "not recorded; see README"},
@@ -217,6 +218,19 @@ def plan(args):
 
 def fmt_usd(v):
     return "free" if v == 0 else (f"${v:,.2f}" if v < 10 else f"${v:,.0f}")
+
+
+JUNTO_EVIDENCE = "jobs/junto/output/EVIDENCE.json"
+
+
+def junto_savers(path=None):
+    """Junto's untested savers ranked by measured cost at stake (Rumford), or [] if absent."""
+    try:
+        data = json.loads(Path(path or REPO / JUNTO_EVIDENCE).read_text(encoding="utf-8"))
+        return [{"saver_key": s["saver_key"], "cost_at_stake_usd": s["cost_at_stake_usd"], "status": s["status"]}
+                for s in data.get("savers", []) if s.get("cost_at_stake_usd")]
+    except (OSError, ValueError, KeyError, TypeError):
+        return []
 
 
 def report(r):
@@ -252,6 +266,11 @@ def report(r):
                   f"{ctx['context_tokens_per_attempt']:,.0f} tokens, of which {ctx['cache_read_tokens_per_attempt']:,.0f} "
                   f"cache reads" + (f"; {turns:.1f} model turns." if turns else ".") +
                   " Smaller packets and fewer turns lower every production cost above."]
+    if r.get("junto_savers"):
+        lines += ["", "Untested savers that would lower every cost above (Junto, measured cost at stake in past waves; "
+                  "not savings until a two-arm `junto.py add-test` verifies them; see jobs/junto/output/OPEN_TESTS.md):", ""]
+        for s in r["junto_savers"]:
+            lines.append(f"- `{s['saver_key']}`: {fmt_usd(s['cost_at_stake_usd'])} spent in this pattern ({s['status']})")
     win = r.get("window_token_rankings") or {}
     if win.get("orders"):
         lines += ["", "Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting "
