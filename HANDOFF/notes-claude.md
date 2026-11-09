@@ -1,3 +1,12 @@
+## 2026-11-08 ET (Claude, Valla unblocked and re-certified)
+
+- **Done:**
+  - Valla had failed every run since 2026-11-06. It refused the R3 re-tag file because its claims are schema v2, and Valla accepted only v1. Schema v2 is canonical (owner ruling R2) and #174 was owner-merged, so the file stays where it is. Valla now accepts exactly claim_gate's schemas, and three new tests would have caught the failure.
+  - Re-certified the materialization certificate: 15 in-scope commits audited, read closure unchanged, `valla`=6c931c2c…, reader=7daf3916….
+  - Audit: `research/progress/integration-20261104/VALLA_RECERTIFICATION_20261108.md`. Kean: F-20261108-valla-v2-claims-blocker, F-20261108-valla-recertified.
+- **Next:** if PR #243 (Ariadne) merges after this PR, recompute both certificates on the merged tree and audit `ariadne.py`. After merge, confirm Valla's first run publishes (`jobs/valla/output/STATUS.json`).
+- **Asks:** @Owner: none.
+
 ## 2026-11-08 ET (Claude, Haloander follow-up: owner said yes to all four asks)
 
 - **Done:**
