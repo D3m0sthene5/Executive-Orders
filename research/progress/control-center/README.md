@@ -1,6 +1,6 @@
 # Executive Orders production control center
 
-[Open the hosted control center](https://executive-orders-production-atlas.d3mosth3n3s.chatgpt.site) (owner sign-in) · [Sol production assignment](SOL_SESSION.md) · [Sol observability goals](SOL_OBSERVABILITY.md) · [Canonical tracker](../../../jobs/readiness-tracker/output/TRACKER.md)
+[Open the live control center](https://www.dannykind.wiki/eo/dashboard) (public, noindex; relayed from this folder on `main` by DKLA `api/eo-dashboard.js`, so a new file the page loads must also be added to that relay's list) · [older hosted snapshot](https://executive-orders-production-atlas.d3mosth3n3s.chatgpt.site) (owner sign-in) · [Sol production assignment](SOL_SESSION.md) · [Sol observability goals](SOL_OBSERVABILITY.md) · [Canonical tracker](../../../jobs/readiness-tracker/output/TRACKER.md)
 
 Start with **Production flow** for the first-missing-check conveyor, an overlapping-work toggle, checkpoint job/cost detail, recovered campaign/role costs and explicit measurement coverage. See [count and cost contracts](FLOW_REDESIGN.md).
 

@@ -2,7 +2,7 @@
 
 **Agents start here:** read [`HANDOFF/`](HANDOFF/README.md) for the latest notes (Claude lanes are the production path; Astra and Codex are engaged only for named different-family reviews, owner ruling R11), and add your own before you stop. Run scripts that are too big for a chat's container through the [shared runner in `jobs/`](jobs/README.md).
 
-**Production control center (snapshot):** the [ChatGPT Site](https://executive-orders-production-atlas.edgyglove8.chatgpt.site) (owner sign-in) is a snapshot last refreshed by Astra's Mission work of 2026-11-04 (PR #144); it is not the live control point. Current coordination is in [`HANDOFF/COORDINATION.md`](HANDOFF/COORDINATION.md) and [`HANDOFF/KEAN.md`](HANDOFF/KEAN.md). The [repository edition](research/progress/control-center/README.md) and the [Sol dossier assignment](research/progress/control-center/SOL_SESSION.md) are kept for reference.
+**Production control center:** live at [dannykind.wiki/eo/dashboard](https://www.dannykind.wiki/eo/dashboard) (all eight tabs, read from `main`; DKLA PR #9). The older [ChatGPT Site](https://executive-orders-production-atlas.edgyglove8.chatgpt.site) (owner sign-in) is a snapshot last refreshed by Astra's Mission work of 2026-11-04 (PR #144); it is not the live control point. Current coordination is in [`HANDOFF/COORDINATION.md`](HANDOFF/COORDINATION.md) and [`HANDOFF/KEAN.md`](HANDOFF/KEAN.md). The [repository edition](research/progress/control-center/README.md) and the [Sol dossier assignment](research/progress/control-center/SOL_SESSION.md) are kept for reference.
 
 **Current dashboard:** [Research progress and recent work](research/progress/README.md) · [Generated counts, receipt freshness, and source generations](jobs/daily-digest/output/DASHBOARD.md).
 
