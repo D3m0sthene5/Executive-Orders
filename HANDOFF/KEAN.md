@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (1)
+## Waiting for the owner (2)
 
-**A-20261109-claim-checker-cache**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261109-claim-checker-cache**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 277; `search` finds the rest)
+## Newest results (6 of 285; `search` finds the rest)
 
+- 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 - 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
 - 2026-11-09 F-20261109-palsgraf-impact-selection **worked**: Palsgraf: claim-checker records each claim's inputs (table lookups, files opened/listed/stat'ed, memo replays… Lesson: Record dependencies at the value level while the unit runs, then recompute every fingerprint each run; never trust a hand-made map or a stat. Volatile units (network, today) always rerun. Measure bef…
 - 2026-11-09 F-20261109-gutenberg-valla-pilot-chain **partly worked**: Find why the Valla bounded pilot check fails on every PR (seen on #242 and the sol/montfaucon branches) Lesson: A failing non-required check can hide later failures for days; when it turns red, read every step, not only the first failing one. Next: decide in Valla whether a schema-v2 re-tag file is a productio…
 - 2026-11-09 F-20261109-gutenberg-tsiolkovsky **worked**: Gutenberg item 6: credit Tsiolkovsky's work-hours by channel (the lines each event changed in the moved step'… Lesson: Lines changed in a step's inputs are a proxy for evidence delivered, not proof of cause; a runner result's credit belongs to the campaign that changed the job's code or inputs.
 - 2026-11-09 F-20261109-gutenberg-skipped-witness **worked**: Gutenberg item 3: the narrowest correct stale-confirmation rule for working_text (prior_confirmation_stale),… Lesson: A skipped witness is information (an official printing now exists), not a change in what was confirmed: flag it for the h01 page check rather than void the confirmation. The switch is the owner's (A-…
-- 2026-11-09 F-20261109-gutenberg-rattle-watch **worked**: Adversarial audit of Rattle Watch (run_jobs.py heartbeat and stall stop, F-20261028-3): premises that a finis… Lesson: A watchdog must bound its own waits: the runner's join on a job's output was the one wait nothing watched. Judge activity by the job's own counters, not the machine's.
 
-Register: 74 owner decisions, 45 answered questions, 277 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 74 owner decisions, 45 answered questions, 285 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

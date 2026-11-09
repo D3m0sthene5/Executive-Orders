@@ -26,6 +26,10 @@ MAX_INDEX_PACKAGES = 2000
 PACKAGE_SHEETS = ('decisions.csv', 'clauses.csv')
 REASON_FIELDS = {'research_rationale', 'rationale', 'reason', 'mechanism', 'legal_basis',
                  'earlier_end_check', 'scope_check', 'independent_command_check', 'savings_check'}
+# Exactly the claim schemas research/stage19/code/claim_gate.py accepts: immutable v1 and v2
+# (owner ruling R2, 2026-11-06; Kean D-20261106-justinian-r2). A canonical v2 claim (the R3
+# re-tag) is a production claim; refusing it stopped every run from 2026-11-06.
+CLAIM_SCHEMAS = ('eo-lifecycle-claim/v1', 'eo-lifecycle-claim/v2')
 
 
 def canon(v):
@@ -84,7 +88,7 @@ def walk(obj, pointer=''):
 
 
 def production_claim(c):
-    return (isinstance(c, dict) and c.get('schema') == 'eo-lifecycle-claim/v1'
+    return (isinstance(c, dict) and c.get('schema') in CLAIM_SCHEMAS
             and str(c.get('instrument_id', '')).startswith('EO:')
             and not any(c.get(k) for k in ('SEEDED', 'seeded', 'synthetic')))
 

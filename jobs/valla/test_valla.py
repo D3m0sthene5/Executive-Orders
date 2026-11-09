@@ -1,6 +1,7 @@
 """Fail-closed lineage, false grouping and explicit component-review boundaries."""
 import copy
 import json
+import re
 from pathlib import Path
 import tempfile
 import subprocess
@@ -375,6 +376,40 @@ class VallaTests(unittest.TestCase):
         with mock.patch.object(V, 'MAX_INDEX_PACKAGES', 1):
             self.assertEqual(len(V.attach(self.repo, self.IDS)['package_scan']['relevant_packages']), 1)
         self.assertEqual(V.build(self.repo, exclude=[self.repo / 'research/excavator/a'])['package_scan']['tracked_packages_loaded'], 1)
+
+
+class ClaimSchemaTests(unittest.TestCase):
+    """Valla failed every run from 2026-11-06: it refused the canonical schema v2 R3 re-tag."""
+
+    def test_v2_claim_is_a_production_winner_and_v1_line_stays_in_history(self):
+        with tempfile.TemporaryDirectory() as temp:
+            claims = Path(temp) / 'research/readiness/claims'; claims.mkdir(parents=True)
+            v1 = {'schema': 'eo-lifecycle-claim/v1', 'instrument_id': 'EO:1', 'research_rationale': 'Old.'}
+            v2 = {'schema': 'eo-lifecycle-claim/v2', 'instrument_id': 'EO:1', 'research_rationale': 'Re-tag.',
+                  'formal_disposition': {'instrument': 'EO:12553', 'date': '1986-02-25'}}
+            (claims / 'a.jsonl').write_text(V.canon(v1) + '\n')
+            (claims / 'b-retag.jsonl').write_text(V.canon(v2) + '\n')
+            active, history = V.active_claims(temp)
+            self.assertEqual(active['EO:1']['claim'], v2)
+            self.assertEqual([h['path'] for h in history], ['research/readiness/claims/a.jsonl',
+                                                            'research/readiness/claims/b-retag.jsonl'])
+            for bad in ({**v2, 'seeded': True}, {**v2, 'schema': 'eo-lifecycle-claim/v3'}):
+                (claims / 'c.jsonl').write_text(V.canon(bad) + '\n')
+                with self.assertRaises(ValueError):
+                    V.active_claims(temp)
+
+    def test_schemas_are_exactly_the_claim_gates(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('claim_gate', V.REPO / 'research/stage19/code/claim_gate.py')
+        gate = importlib.util.module_from_spec(spec); spec.loader.exec_module(gate)
+        self.assertEqual(set(V.CLAIM_SCHEMAS),
+                         {getattr(gate, k) for k in dir(gate) if re.fullmatch(r'SCHEMA_V\d+', k)})
+
+    def test_every_canonical_claim_loads(self):
+        if not (V.REPO / 'research/readiness/claims').is_dir():
+            self.skipTest('canonical claims not checked out')
+        active, history = V.active_claims(V.REPO)
+        self.assertTrue(active and len(history) >= len(active))
 
 
 if __name__ == '__main__':

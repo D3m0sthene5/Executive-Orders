@@ -10,7 +10,7 @@ New York date: 2026-11-09. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42578344662-1:5492ef64f926809c48129285a39cc9a2225ef3ff537cbe9df61aca617ad257f9` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42579109796-1:aecd0fc91ec58d7c99a210c30f95a7d02458d06bbca3baa3bc087e6eab5ead0d` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -27,8 +27,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 Comparison snapshot: 2026-11-08; intervening runs may be absent.
 - claim-checker: claims_all_checks_passed: 1473 → 1666; claims_mechanical_fail: 267 → 74; claims_mechanical_pass: 1559 → 1752; held_distinct_sha256: 56996 → 56874
-- claim-drafts: orders_with_any_conflict: 928 → 929
-- kean: decisions: 71 → 74; findings: 264 → 277; open_owner_questions: 13 → 1
+- gessner-cards: ready_for_human_review: 1083 → 1183
+- kean: decisions: 71 → 74; findings: 264 → 276; open_owner_questions: 13 → 0
 - lachmann: assessed: 2395 → 2409; complete_text_confirmed: 1276 → 1384; confirmed: 703 → 776; identity_confirmed: 1208 → 1185
 - lambertini: counterevidence_records: 1245 → 1244; decided_orders_with_draft: 4291 → 4301; packet_targets: 840 → 846; packets: 114 → 120
 - mabillon-held-printings: lead: 244 → 250; passages: 2460 → 2482; strong: 1771 → 1787; targets: 2015 → 2037
@@ -51,7 +51,7 @@ Comparison snapshot: 2026-11-08; intervening runs may be absent.
 
 ## Open asks for the owner (Kean register)
 
-- A-20261109-claim-checker-cache (2026-11-09, claude (Palsgraf)): May claim-checker's download cache cap rise from 1,024 MB to 2,048 MB (a CACHE_MB file in jobs/claim-checker)?
+- A-20261108-lean-main (2026-11-08, claude): Should bulk job outputs, data and attempt receipts (~163,000 of main's 194,167 files) be packed into fewer files or moved out of main's tree, accepting that path-based pins and citations must then be re-issued?
 
 ## Published output status
 
@@ -61,4 +61,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42578344662)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42579109796)
