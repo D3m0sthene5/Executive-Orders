@@ -51,7 +51,10 @@ offline controls passed
 mode=full orders in register snapshot: 14913; workers=1; token absent
 offline controls passed
 API CROSS-CHECK NOT RUN: COURTLISTENER_TOKEN is set but the robots check of www.courtlistener.com failed (blocked_by_robots_txt); no request was made
-18 tests passed: citation_shapes, derive_and_pick, sentence_bounds_ignore_abbreviations, class_rules, opinion_level_binding, opinion_level_controls_improve_on_the_sentence_level, segments_reassemble_exactly, row_scanner_owns_each_row_once, csv_dialect_of_the_bulk_files, http_source_resumes_and_counts_failures, listing_and_snapshot, rows_dates_signals_selection, record_formats_match_the_claim_kit_conventions, planted_controls, whole_job_offline, pass_two_cache_is_keyed_by_the_wanted_ids, job_fails_when_requests_fail, token_is_never_written_down
+API cross-check proceeds: robots.txt answered 4xx (RFC 9309 unavailable); documented authenticated API, owner ruling
+API CROSS-CHECK NOT RUN: COURTLISTENER_TOKEN is set but the robots check of www.courtlistener.com failed (blocked_by_robots_txt); no request was made
+API CROSS-CHECK NOT RUN: COURTLISTENER_TOKEN is set but the robots check of www.courtlistener.com failed (robots unavailable: 503); no request was made
+19 tests passed: citation_shapes, derive_and_pick, sentence_bounds_ignore_abbreviations, class_rules, opinion_level_binding, opinion_level_controls_improve_on_the_sentence_level, segments_reassemble_exactly, row_scanner_owns_each_row_once, csv_dialect_of_the_bulk_files, http_source_resumes_and_counts_failures, listing_and_snapshot, rows_dates_signals_selection, record_formats_match_the_claim_kit_conventions, planted_controls, whole_job_offline, pass_two_cache_is_keyed_by_the_wanted_ids, job_fails_when_requests_fail, token_is_never_written_down, courtlistener_api_proceeds_only_on_a_4xx_robots_answer
 mode=full orders in register snapshot: 14913; workers=2; token present
 offline controls passed
 snapshot 2026-09-30: opinions 55.25 GB, clusters 2.47 GB, dockets 5.14 GB, citations 0.13 GB, courts 0.00 GB
@@ -298,5 +301,5 @@ opinions pass: 206 segments done, 0 failed, 0 not started; 14203 opinions print 
 [dockets+citations] 19/21 segments (0 failed)
 [dockets+citations] 20/21 segments (0 failed)
 [dockets+citations] 21/21 segments (0 failed)
-API CROSS-CHECK NOT RUN: COURTLISTENER_TOKEN is set but the robots check of www.courtlistener.com failed (blocked_by_robots_txt); no request was made
-{"mode": "full", "complete": true, "opinions_segments_done": 206, "opinions_printing_a_register_order": 14203, "order_clusters_found": 19867, "clusters_by_class": {"mentioned": 16851, "enjoined_vacated_invalidated": 1249, "upheld": 497, "interpreted": 1270}, "requests": 720, "request_failures": 0, "seconds": 5605}
+API cross-check proceeds: robots.txt answered 4xx (RFC 9309 unavailable); documented authenticated API, owner ruling
+{"mode": "full", "complete": true, "opinions_segments_done": 206, "opinions_printing_a_register_order": 14203, "order_clusters_found": 19867, "clusters_by_class": {"mentioned": 16851, "enjoined_vacated_invalidated": 1249, "upheld": 497, "interpreted": 1270}, "requests": 720, "request_failures": 0, "seconds": 6286}
