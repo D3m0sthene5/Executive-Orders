@@ -62,6 +62,19 @@ Each change is credited only to events that touched that step's kind of input:
 - text and sources → job outputs and source folders;
 - the rules (tracker, checker and claim-kit code, owner rulings) → any step.
 
+**Channel weights (Gutenberg, 2026-11-09; the default; `TSIOLKOVSKY_CREDIT=even` restores the earlier rule):**
+- A step's change goes only to events that changed that step's own tracker inputs (`STEP_INPUTS`: producer
+  FRAGMENTS and texts and Lachmann's output for the text steps; claims, factual records and Lachmann confirmations
+  for the claim steps), split by the lines each changed there (`git diff --numstat` against the first parent).
+- A runner result passes its share to the merged campaign behind it: one that changed the job's code in the same
+  interval (`channel_via_code`), else one that changed the job's declared inputs there (`channel_via_inputs`).
+- When a rule (tracker, checker, claim-kit code, owner ruling) also changed in the interval, the row's rule ends in
+  `+rules_changed`: lines of code and lines of evidence are not comparable, so the split is disclosed, not guessed.
+- Validated on the 2026-11-07 backlog generation (6d4b5f6357 -> f6e5180880): Photius lane GPO gets 176.6 of the 207.2
+  original-text hours (the even split gave the Photius lanes about 13), and the 44.7-hour claim-step loss from the
+  stale Lachmann confirmations goes to the same lane through Lachmann's inputs instead of to unrelated merges.
+  Lines changed are a proxy for evidence delivered, not proof of cause.
+
 **Fallbacks:**
 - No eligible event: the rules events, then everything that landed together.
 - Only a re-check or a bare re-run: the most recent qualifying events, recorded as `deferred`.

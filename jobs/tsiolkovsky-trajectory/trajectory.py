@@ -42,6 +42,7 @@ so (`shared_with`). This is attribution by landing order, not proof of causation
 """
 import collections
 import csv
+import fnmatch
 import datetime as dt
 import io
 import json
@@ -239,7 +240,104 @@ STEP_CHANNELS = {"census": ("census",), "provisional_status": ("status",), "orig
                  "counterevidence": ("claims", "evidence")}
 INSTRUMENTS = {"readiness-tracker", "daily-digest", "gessner-cards", "kean", "bentham", "example-hello", "domesday-register",
                "dagron-collection-manifest", "tsiolkovsky-trajectory", "census-candidates", "hamilton-token-audit"}
+CREDIT_MODE = os.environ.get("TSIOLKOVSKY_CREDIT", "channel_weighted")  # "even" reproduces the rule before 2026-11-09
 LAUNCH = "Launch pad (work held before the first tracker reading: Stages 1-17 census, statuses and sources)"
+
+
+# Gutenberg (2026-11-09): channel-weighted credit. A step's change is credited only to the events that changed that
+# step's own tracker inputs, in proportion to the lines they changed there (git diff --numstat against the first
+# parent). Before, every event on any channel shared the change evenly: on 2026-11-07 the +207 work-hours of
+# original_text went to about 32 events at 6.5 h each, and the Photius lanes that delivered the printings got about
+# 13 h. A runner result commit then passes its credit to the merged campaign behind it: one that changed the job's
+# code in the same interval, else one that changed the job's declared inputs in that interval (Lachmann's 11-07
+# rerun inherits from the Photius printings it re-read), else it stays with the machine.
+STEP_INPUTS = {
+    "text": ("jobs/*/output/FRAGMENTS*", "jobs/*/data/*FRAGMENTS*", "jobs/*/output/texts/*", "jobs/lachmann/output/*",
+             "research/stage21/*", "research/stage20/*", "research/stage19/output/*", "research/pre-1937-sources/*",
+             "ProQuest Pre-1937 Orders/*", "releases/*", "research/salvage/*"),
+    "claims": ("research/readiness/claims/*", "research/readiness/factual/*", "jobs/lachmann/output/CONFIRMATIONS*",
+               "jobs/lachmann/output/AGENT_CONFIRMATIONS*"),
+    "census": ("research/stage15/CENSUS/*",),
+    "status": ("research/progress/*", "research/excavator/*/ADOPTION_ROWS.csv", "research/excavator/*/PROPOSED_STATUS_ROWS.csv"),
+}
+STEP_INPUT_KIND = {"census": "census", "provisional_status": "status", "original_text": "text", "shared_sources": "text",
+                   "opus_media": "text", "clause_inventory": "claims", "ending_or_current_basis": "claims",
+                   "savings_residuals": "claims", "counterevidence": "claims"}
+
+
+def changed_lines(root, commit):
+    """{path: lines added + deleted} against the first parent; a binary file counts 1."""
+    try:
+        text = git(root, "diff", "--numstat", "--no-renames", f"{commit}^1", commit)
+    except RuntimeError:
+        return {}
+    out = {}
+    for line in text.splitlines():
+        parts = line.split("\t", 2)
+        if len(parts) == 3:
+            a, d, path = parts
+            out[path] = (int(a) if a.isdigit() else 0) + (int(d) if d.isdigit() else 0) or 1
+    return out
+
+
+def step_weight(event, step):
+    pats = STEP_INPUTS.get(STEP_INPUT_KIND.get(step, "text"), ())
+    return sum(n for path, n in event.get("lines", {}).items() if any(fnmatch.fnmatchcase(path, p) for p in pats))
+
+
+def job_declared(root, job):
+    """(roots, patterns) a job declares, read from its needs/inputs/triggers files in the working tree."""
+    def lines(name):
+        p = os.path.join(root, "jobs", job, name)
+        if not os.path.isfile(p):
+            return []
+        with open(p, encoding="utf-8") as fh:
+            return [s for ln in fh if (s := ln.split("#", 1)[0].strip())]
+    return lines("needs.txt"), lines("inputs.txt") + lines("triggers.txt")
+
+
+def behind(root, machine_event, earlier):
+    """[(campaign, agent, weight, how)] for a runner result: the campaign that changed the job's code, else its inputs."""
+    job = machine_event["campaign"].split(":", 1)[1]
+    own, out_dir = f"jobs/{job}/", f"jobs/{job}/output/"
+    code = [(e, sum(n for p, n in e["lines"].items() if p.startswith(own) and not p.startswith(out_dir)))
+            for e in earlier if e["kind"] in ("merge", "commit")]
+    code = [(e, w) for e, w in code if w]
+    if code:
+        return [(e["campaign"], e["agent"], w, "via_code") for e, w in code]
+    roots, pats = job_declared(root, job)
+
+    def declared(p):
+        return not p.startswith(out_dir) and (any(p == r or p.startswith(r.rstrip("/") + "/") for r in roots)
+                                              or any(fnmatch.fnmatchcase(p, x) for x in pats))
+    ups = [(e, sum(n for p, n in e["lines"].items() if declared(p))) for e in earlier if e["kind"] in ("merge", "commit")]
+    ups = [(e, w) for e, w in ups if w]
+    return [(e["campaign"], e["agent"], w, "via_inputs") for e, w in ups]
+
+
+def channel_credit(root, ev, step, v):
+    """Credit rows for one step's change v by channel weight, or [] when no event changed the step's inputs."""
+    actors = [e for e in ev if e["kind"] != "verification"]
+    weighted = [(e, step_weight(e, step)) for e in actors]
+    weighted = [(e, w) for e, w in weighted if w > 0]
+    total = sum(w for _, w in weighted)
+    # Rule changes (tracker, checker, claim-kit code, owner rulings) move steps too, but lines of code are not
+    # comparable to lines of evidence; when one landed in the interval the row says so instead of guessing a split.
+    tag = "+rules_changed" if any("rules" in e.get("channels", ()) for e in actors) else ""
+    rows = []
+    for e, w in weighted:
+        share = v * w / total
+        if e["kind"] == "machine":
+            idx = ev.index(e)
+            upstream = behind(root, e, ev[:idx])
+            ut = sum(x[2] for x in upstream)
+            if upstream:
+                for camp, agent, uw, how in upstream:
+                    rows.append({"to": camp, "agent": agent, "step": step, "min": share * uw / ut,
+                                 "rule": "channel_" + how + tag, "via": e["campaign"]})
+                continue
+        rows.append({"to": e["campaign"], "agent": e["agent"], "step": step, "min": share, "rule": "channel_weighted" + tag})
+    return rows
 
 
 def touched_channels(root, commit):
@@ -268,17 +366,19 @@ def events_between(root, a, b):
             producers = [j for j in campaign.split("|") if j and j not in INSTRUMENTS]
             if len(producers) > 1:
                 producers = [j for j in producers if j != "claim-checker"]
-            for j in producers:  # one event per producing job
+            lines = changed_lines(root, h) if producers else {}
+            for j in producers:  # one event per producing job, holding only that job's changed outputs
                 verify = j == "claim-checker"
+                own = {p: n for p, n in lines.items() if p.startswith(f"jobs/{j}/")}
                 out.append({"commit": h, "utc": t, "kind": "verification" if verify else kind, "agent": "runner",
                             "campaign": "machine:" + j, "pr": None, "subject": subj[:160],
-                            "channels": ["claims"] if verify else ["evidence"]})
+                            "channels": ["claims"] if verify else ["evidence"], "lines": own})
         elif kind in ("merge", "commit"):
             ch = sorted(touched_channels(root, h))
             if kind == "commit" and not ch:
                 continue  # notes, Kean and handoff commits move no step
             out.append({"commit": h, "utc": t, "kind": kind, "agent": agent, "campaign": campaign, "pr": pr,
-                        "subject": subj[:160], "channels": ch})
+                        "subject": subj[:160], "channels": ch, "lines": changed_lines(root, h)})
     return out
 
 
@@ -329,6 +429,11 @@ def build(root, out, prior=None):
             for k, v in d_step.items():
                 if abs(v) < 1e-6:
                     continue
+                if CREDIT_MODE == "channel_weighted":
+                    weighted_rows = channel_credit(root, ev, k, v)
+                    if weighted_rows:
+                        credit_rows += weighted_rows
+                        continue
                 want = set(STEP_CHANNELS.get(k, ("evidence",)))
                 actors = [e for e in ev if e["kind"] != "verification"]
                 elig = [e for e in actors if want & set(e["channels"])]
