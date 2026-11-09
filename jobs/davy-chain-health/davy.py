@@ -90,13 +90,23 @@ def check_identity_case(P, pop):
     return "no undeclared letter-case variants across %d ids" % len(spell)
 
 
+def on_main(entry):
+    """True if the path is tracked at HEAD, checked out or not. Davy runs in a sparse checkout, so a working-tree
+    test reported real paths as missing (first Actions run, 2026-11-09)."""
+    if (REPO / entry).exists():
+        return True
+    p = subprocess.run(["git", "-C", str(REPO), "ls-tree", "--name-only", "HEAD", "--", entry.rstrip("/")],
+                       capture_output=True, text=True)
+    return p.returncode == 0 and bool(p.stdout.strip())
+
+
 def check_declarations(P, pop):
     problems, audits = [], []
     for job in CHAIN:
         folder = REPO / "jobs" / job
         for f in ("needs.txt", "inputs.txt", "triggers.txt"):
             for entry in _lines(folder / f):
-                if not any(c in entry for c in "*?[") and not (REPO / entry).exists():
+                if not any(c in entry for c in "*?[") and not on_main(entry):
                     problems.append("%s/%s declares %s, which is not on main" % (job, f, entry))
         rep = folder / "output/READ_AUDIT.json"
         if rep.is_file():

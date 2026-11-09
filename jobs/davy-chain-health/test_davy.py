@@ -71,6 +71,32 @@ class DavyTests(unittest.TestCase):
         pop["id_aliases"] = {"EO:7933a": "EO:7933A"}
         self.assertIn("no undeclared", davy.check_identity_case(P, pop))
 
+    def test_declared_path_tracked_but_not_checked_out_is_on_main(self):
+        """Found on Davy's first Actions run: a sparse checkout made tracked roots look absent."""
+        import subprocess
+        root = Path(self.tmp.name) / "repo"
+        (root / "jobs/claim-kit").mkdir(parents=True)
+        (root / "jobs/claim-drafts").mkdir(parents=True)
+        (root / "research/stage19/output").mkdir(parents=True)
+        (root / "research/stage19/output/x.csv").write_text("a\n")
+        (root / "jobs/claim-drafts/needs.txt").write_text("research/stage19/output\nresearch/gone\n")
+        subprocess.run(["git", "init", "-q", str(root)], check=True)
+        subprocess.run(["git", "-C", str(root), "add", "-A"], check=True)
+        subprocess.run(["git", "-C", str(root), "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "x"], check=True)
+        import shutil
+        shutil.rmtree(root / "research/stage19")  # tracked, not checked out
+        old = davy.REPO
+        davy.REPO = root
+        try:
+            sys.path.insert(0, str(davy.KIT))
+            import population as P
+            with self.assertRaises(ValueError) as cm:
+                davy.check_declarations(P, None)
+            self.assertIn("research/gone", str(cm.exception))
+            self.assertNotIn("research/stage19/output", str(cm.exception))
+        finally:
+            davy.REPO = old
+
     def test_declared_path_missing(self):
         root = Path(self.tmp.name)
         (root / "jobs/claim-kit").mkdir(parents=True)
