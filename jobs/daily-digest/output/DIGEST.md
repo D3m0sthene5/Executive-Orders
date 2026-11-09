@@ -10,7 +10,7 @@ New York date: 2026-11-08. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42543813554-1:c35567373fe322decc5aeea026534f3564037714987497c1050b5088ab95e67b` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42546031242-1:1f8606acf720e4cc8ab45bca42a3997a77657009dc02e262c50bd5bb6373089e` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -33,13 +33,13 @@ Comparison snapshot: 2026-11-07; intervening runs may be absent.
 - domesday-register: orders: 14972 → 14998; with_any_text_file: 14882 → 14908; with_date: 14909 → 14986; with_title: 14885 → 14943
 - family-rules: saved_texts_scanned: 82522 → 82591
 - gessner-cards: one_step_from_ready: 219 → 217; president_unknown_no_date: 138 → 63; presidents_derived_from_date: 4932 → 4947; presidents_from_register: 9927 → 9987
-- kean: findings: 250 → 261
+- kean: findings: 250 → 262
 - lachmann: assessed: 2551 → 2395; complete_text_confirmed: 1330 → 1276; confirmed: 732 → 703; identity_confirmed: 1256 → 1208
 - readiness-tracker: original_replacement_obligations: 867 → 848; quotation_recheck_obligations: 867 → 848; ready_for_human_review: 1020 → 1083; text_step_provisional_working_text: 281 → 255
 - selden-fr-citers: bytes_downloaded: 8156887 → 0; documents_examined_this_run: 83 → 0; requests: 343 → 0; targets_searched_this_run: 194 → 192
 - source-ladder: attempts_logged: 45 → 59; bytes_downloaded: 861192611 → 635954446; distinct_new_source_hashes: 38 → 29; embedded_cite_items: 11 → 14
 - tischendorf-originals: bytes_downloaded: 27441440056 → 19722195578; leads: 492 → 633; replacement_strong: 25 → 65; replacement_targets: 843 → 719
-- tsiolkovsky-trajectory: W_hours: 6630.8 → 6791.2; a_hours_per_day2_latest: -93.05 → -6.64; days: 21 → 23; generations: 41 → 63
+- tsiolkovsky-trajectory: W_hours: 6630.8 → 6812.1; a_hours_per_day2_latest: -93.05 → -3.15; days: 21 → 23; generations: 41 → 71
 
 ## Top shared unlocks
 
@@ -75,4 +75,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42543813554)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42546031242)
