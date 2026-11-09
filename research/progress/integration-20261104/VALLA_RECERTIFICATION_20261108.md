@@ -93,3 +93,29 @@ committed tree.
   `output_branch_check.py`, all outside `VALLA_CERTIFICATE_ROOTS`. They plan, bundle and publish rather
   than read Valla's inputs, so this audit leaves the roots unchanged. A change to how a station chooses
   its checkout would still bypass the certificate, and that boundary is the owner's to set.
+
+## Addendum (2026-11-09): recomputed after merging main into the PR
+
+The first certificate above (`6c931c2c…`/`7daf3916…`) was proved in production before main was merged.
+Run-jobs run 42564703293 on the PR head c156ee1b0b took the certified narrow route
+(`implementation_certified` true, 779 inputs, 717 roots, 713 referenced files). Valla **succeeded** with
+1,530 active claims, its first success since 2026-11-06.
+
+Main then gained two in-scope changes. Merge 31f74e676c brought them in:
+
+| Commits on main | File | Effect on Valla |
+|---|---|---|
+| 1383cf4929 Rattle Watch audit; d5ae9fb838, a8458bac06 Quo Warranto | `.github/scripts/run_jobs.py` | Stall detection by the job's own I/O; stops processes left holding a finished job's output; adds the `rattle_watch` and `job_verdict` fields to STATUS. A job with `jobs/<name>/AUDIT_READS` runs under `read_audit.py`; Valla has none, so it runs as `python job.py` as before. No input change. |
+| 18a26013e3, 7a71bb2c4e fetch_pool robots wildcards | `jobs/_lib/fetch_pool.py` (+test) | Not imported by Valla. It enters only the reader digest. |
+
+`result_freshness.py`, `materialize_job_inputs.py`, `run_jobs.sh`, `run-jobs.yml` and `jobs/valla` did not
+change on main. On the merged tree, `scope('valla')` selects 781 files. The two files added since
+run 42564703293's 779 inputs are `.github/scripts/read_audit.py` and its test. They come in through the whole
+`.github/scripts` freshness root that `scope()` keeps for Valla; Valla's own reads are unchanged.
+
+Certificates at the merged head:
+
+- `valla` = `00d6fd73b71d4ed1cee996eb000acb6222c6dc7ad79ea6d90fc9c5541576c18f`
+- `valla_fallback_reader` = `372c6ce6b221a3b2617c7823749b153267da6f62feb2dd99e98ab33c5dc796b5`
+
+PR #243 was still open at this merge, so the merge-order note above still applies.

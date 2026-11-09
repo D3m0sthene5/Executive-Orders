@@ -48,13 +48,13 @@ Nothing.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 276; `search` finds the rest)
+## Newest results (6 of 277; `search` finds the rest)
 
+- 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 - 2026-11-09 F-20261109-gutenberg-valla-pilot-chain **partly worked**: Find why the Valla bounded pilot check fails on every PR (seen on #242 and the sol/montfaucon branches) Lesson: A failing non-required check can hide later failures for days; when it turns red, read every step, not only the first failing one. Next: decide in Valla whether a schema-v2 re-tag file is a productio…
 - 2026-11-09 F-20261109-gutenberg-tsiolkovsky **worked**: Gutenberg item 6: credit Tsiolkovsky's work-hours by channel (the lines each event changed in the moved step'… Lesson: Lines changed in a step's inputs are a proxy for evidence delivered, not proof of cause; a runner result's credit belongs to the campaign that changed the job's code or inputs.
 - 2026-11-09 F-20261109-gutenberg-skipped-witness **worked**: Gutenberg item 3: the narrowest correct stale-confirmation rule for working_text (prior_confirmation_stale),… Lesson: A skipped witness is information (an official printing now exists), not a change in what was confirmed: flag it for the h01 page check rather than void the confirmation. The switch is the owner's (A-…
 - 2026-11-09 F-20261109-gutenberg-rattle-watch **worked**: Adversarial audit of Rattle Watch (run_jobs.py heartbeat and stall stop, F-20261028-3): premises that a finis… Lesson: A watchdog must bound its own waits: the runner's join on a job's output was the one wait nothing watched. Judge activity by the job's own counters, not the machine's.
 - 2026-11-09 F-20261109-gutenberg-quo-warranto **partly worked**: Gutenberg item 2: narrow the input declarations of claim-checker, readiness-tracker, claim-kit and claim-draf… Lesson: Never narrow a declaration by reading code; record the reads (AUDIT_READS) and declare what the record shows. After one more clean report run on main, set AUDIT_READS to enforce so an undeclared read…
-- 2026-11-09 F-20261109-gutenberg-kean-measures **worked**: Gutenberg item 5: optional structured measures on Kean findings (wave, usd by role and model, orders attempte… Lesson: Record a wave's cost with kean.py add-measures from bentham usage output, not in prose. lean_coordination's cost at stake is an upper bound: before Gutenberg every claude -p worker was labelled coord…
 
-Register: 72 owner decisions, 44 answered questions, 276 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 72 owner decisions, 44 answered questions, 277 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
