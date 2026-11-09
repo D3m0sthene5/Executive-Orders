@@ -123,9 +123,11 @@ class SwitchTests(unittest.TestCase):
         self.assertEqual(W.confirmation_drift(self.prior, cur, 'flag')[0], 'stale')
         self.assertEqual(W.confirmation_drift(self.prior, None, 'flag')[0], 'stale')
 
-    def test_committed_switch_is_default(self):
+    def test_committed_switch_matches_the_owner_decision(self):
+        """Owner 2026-11-09 (A-20261109-skipped-witness): flag. A flag without the ruling file would be unauthorised."""
         here = Path(__file__).resolve().parents[2]
-        self.assertEqual(W.skipped_witness_mode(here), 'void')
+        self.assertEqual(W.skipped_witness_mode(here), 'flag')
+        self.assertTrue((here / 'research/readiness/owner_rulings/2026-11-09-skipped-witness-flag.md').is_file())
 
 
 if __name__ == '__main__':
