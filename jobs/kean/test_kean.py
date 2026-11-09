@@ -5,6 +5,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -205,6 +206,79 @@ class KeanTest(unittest.TestCase):
             self.run_cli("add-ask", "--question", q, "--why", "w", "--asked-by", "Claude", "--date", "2026-10-28")
         ids = [r["id"] for r in kean.current(kean.load(kean.Repo(self.root), "asks"))]
         self.assertEqual(ids, ["A-20261028-1", "A-20261028-2"])
+
+
+class ChainHealthTest(unittest.TestCase):
+    """Gutenberg item 4: Davy's verdict appears at the top of the brief; absent or malformed files show nothing."""
+
+    def test_line(self):
+        import tempfile, json as _j
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import kean as K
+        with tempfile.TemporaryDirectory() as t:
+            self.assertIsNone(K.chain_health(t))
+            p = Path(t) / K.HEALTH
+            p.parent.mkdir(parents=True)
+            p.write_text("{bad")
+            self.assertIsNone(K.chain_health(t))
+            p.write_text(_j.dumps({"verdict": "fail", "summary": "FAIL in drafts - Draft summary population stale",
+                                   "checked_utc": "2026-11-09T06:00:00Z", "input_commit": "abc"}))
+            line = K.chain_health(t)
+            self.assertIn("Chain health (FAIL", line)
+            self.assertIn("Draft summary population stale", line)
+            self.assertIn("before preparing a paid batch", line)
+
+
+class MeasuresTest(unittest.TestCase):
+    """Gutenberg item 5: optional structured numbers on findings; old findings stay valid."""
+
+    def setUp(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import kean as K
+        self.K = K
+        self.ok = {"wave": "cujas-2026-11-08",
+                   "usd": {"total": 23.27, "by_role": {"coordinator": 7.83, "worker": 15.44},
+                           "by_model": {"claude-opus-5-5": 20.22, "claude-sonnet-5-5": 3.05}, "basis": "mixed"},
+                   "orders": {"attempted": 75, "submitted": 73, "filed": 68}, "controls": {"planted": 6, "missed": 0}}
+
+    def test_absent_and_valid(self):
+        self.assertEqual(self.K.validate_measures(None), [])
+        self.assertEqual(self.K.validate_measures(self.ok), [])
+        self.assertEqual(self.K.validate_measures({"wave": "w1", "usd": {"total": 1, "basis": "list_price"}}), [])
+
+    def test_each_refusal(self):
+        import copy
+        cases = [
+            (lambda m: m.update(extra=1), "unknown key extra"),
+            (lambda m: m.update(wave="Cujas wave"), "slug"),
+            (lambda m: m["usd"].update(basis="guess"), "basis"),
+            (lambda m: m["usd"].update(total=-1), "nonnegative"),
+            (lambda m: m["usd"]["by_role"].update(coordinator=99), "sums to"),
+            (lambda m: m["orders"].update(filed=80), "attempted >= submitted >= filed"),
+            (lambda m: m["controls"].update(missed=7), "planted >= missed"),
+            (lambda m: m["orders"].update(filed=1.5), "integers"),
+            (lambda m: m["usd"].pop("total") and m["usd"].pop("by_role") and m["usd"].pop("by_model"), "needs total"),
+        ]
+        for mutate, needle in cases:
+            m = copy.deepcopy(self.ok)
+            mutate(m)
+            errs = self.K.validate_measures(m)
+            self.assertTrue(any(needle in e for e in errs), (needle, errs))
+
+    def test_wave_measures_newest_valid_revision(self):
+        rows = [{"id": "F-1", "rev": 0, "date": "2026-11-08", "measures": dict(self.ok)},
+                {"id": "F-1", "rev": 1, "date": "2026-11-08", "measures": dict(self.ok, note="revised")},
+                {"id": "F-2", "rev": 0, "date": "2026-11-09", "measures": {"wave": "bad wave"}},
+                {"id": "F-3", "rev": 0, "date": "2026-11-09"}]
+        w = self.K.wave_measures(rows)
+        self.assertEqual(list(w), ["cujas-2026-11-08"])
+        self.assertEqual(w["cujas-2026-11-08"]["note"], "revised")
+        self.assertEqual(w["cujas-2026-11-08"]["finding"], "F-1")
+
+    def test_real_register_checks_clean(self):
+        root = Path(__file__).resolve().parents[2]
+        errors, _ = self.K.check(self.K.Repo(str(root)))
+        self.assertEqual([e for e in errors if "measures" in e], [])
 
 
 if __name__ == "__main__":

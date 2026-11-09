@@ -5,3 +5,7 @@ jobs/claim-kit/working_text.py
 # ordinary selected producer runs without scheduling any upstream acquisition.
 jobs/*/data/*FRAGMENTS*.jsonl
 jobs/*/data/*.txt
+# Gutenberg 2026-11-09: W.Index (lachmann.run) globs every producer output FRAGMENTS file and reads the witness texts
+# they name; these were undeclared, so a changed producer output could leave a stale Lachmann result publishable.
+jobs/*/output/FRAGMENTS*.jsonl
+jobs/*/output/texts/*

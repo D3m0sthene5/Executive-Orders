@@ -913,6 +913,49 @@ class TrackerTest(unittest.TestCase):
             "lachmann working-text confirmations (provisional text step only, never an original)"])
 
 
+    def _v1_claim(self, n, end_mech, revoke_date):
+        c = copy.deepcopy(COMPLETE_NO_CLAIM)
+        c["instrument_id"] = f"EO:{n}"
+        c["whole_order_end"]["mechanism"] = end_mech
+        c["operative_clauses"][0]["first_end"]["mechanism"] = end_mech
+        if revoke_date:
+            c["operative_clauses"][0]["later_events"] = [{
+                "date": revoke_date, "effective_date": revoke_date, "actor": "EO 99",
+                "mechanism": "revoked by EO 99", "source": SRC}]
+        return c
+
+    def test_formal_revocation_column_filled_from_v1_claims_and_nothing_else_changes(self):
+        claims = [self._v1_claim(2, "expired by own terms", "1951-01-01"),   # yes: revoked after the earlier end
+                  self._v1_claim(3, "expired by own terms", "1949-01-01"),   # no: revoked before the end
+                  self._v1_claim(4, "expired by own terms", None)]           # blank: no revocation listed
+        with_fix, s_with = self.run_tracker(claims=claims)
+        real = tracker.v1_formal_after_cessation
+        tracker.v1_formal_after_cessation = lambda claim: None
+        try:
+            without_fix, s_without = self.run_tracker(claims=claims)
+        finally:
+            tracker.v1_formal_after_cessation = real
+        col = "formal_revocation_after_earlier_cessation"
+        self.assertEqual({k: v[col] for k, v in with_fix.items()},
+                         {"EO:1": "", "EO:2": "yes", "EO:3": "no", "EO:4": ""})
+        self.assertTrue(all(v[col] == "" for v in without_fix.values()))
+        self.assertEqual(set(with_fix), set(without_fix))
+        for k in with_fix:
+            a = {c: x for c, x in with_fix[k].items() if c != col}
+            b = {c: x for c, x in without_fix[k].items() if c != col}
+            self.assertEqual(a, b, k)
+        sa = {c: x for c, x in s_with.items() if c != col}
+        sb = {c: x for c, x in s_without.items() if c != col}
+        self.assertEqual(sa, sb)
+        self.assertEqual(s_with[col], 1)
+
+    def test_formal_revocation_column_blank_when_claim_fails_gate(self):
+        bad = self._v1_claim(2, "expired by own terms", "1951-01-01")
+        bad["research_rationale"] = ""
+        orders, _ = self.run_tracker(claims=[bad])
+        self.assertEqual(orders["EO:2"]["formal_revocation_after_earlier_cessation"], "")
+
+
 class ExhaustionAssuranceTests(unittest.TestCase):
     setUp = TrackerTest.setUp
     tearDown = TrackerTest.tearDown

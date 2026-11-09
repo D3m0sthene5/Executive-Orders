@@ -44,6 +44,12 @@ before and after a run, then
 - Yields come from one wave so far (2026-11-04: 492 of 1,041 production orders filed; 53 of 83 corrections). Every
   attempted production order was a Federal Register-era order, so pre-1937 strata have no measured yield yet.
 - Costs are API-equivalent at list prices, not invoices; the coordinator's tokens are a lower bound.
+- **Prices (Gutenberg, 2026-11-09):** every dollar comes from `jobs/necker-costs/PRICES.json` through `pricing.py`
+  (per exact model, 5-minute and 1-hour cache writes apart, fast mode and Haiku 5.5 long prompts per call). The old
+  private table (Opus 5 / Sonnet 4.x rates) ran 1.3x-1.9x high per session and 1.94x on the Tribonian wave
+  ($673 -> $346). Pass each worker's `claude -p` result or the wave's cost log to
+  `bentham.py usage --reported-costs FILE`: the run cross-checks every reported session within max(1 cent, 1%), exits
+  3 on a disagreement (outputs still written), and labels those sessions `worker` instead of `coordinator`.
 - Fecundity counts an order only when one action alone clears what stands between it and a draftable stratum.
 - Nothing here changes a status, claim, codebook grade or count, or dispatches anything by itself. Certified: 0.
 
