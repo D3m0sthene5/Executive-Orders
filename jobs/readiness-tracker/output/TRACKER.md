@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42557370654-1:c2820277bc027369f87406206cab8cea9ce7a6b5e5d02e2431477f9a698b0604` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42564646150-1:68c99efe247b9a222871ba7b9fda7ead58853c05f5db01f304ba0df1aeb6dfe8` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -34,8 +34,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 2,223 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
-| 676 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 2,222 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 675 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 10 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 10 | one source | Retrieve shared source EO::4314 |
@@ -53,10 +53,10 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `NO_CLAUSE_INVENTORY` | 2,771 | 2,771 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,771 | 2,771 |
 | `FIRST_END_UNPROVED` | 2,401 | 2,401 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 731 | 2,223 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 731 | 2,222 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 547 | 1,623 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,244 | 1,244 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 192 | 676 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 192 | 675 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 370 | 370 |
 | `OPUS_MEDIA_NONE_CITED` | 198 | 198 |
@@ -96,7 +96,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - photius-gpo-volumes: 3,679
 - photius-csc-printings: 143
 - photius-free-printings: 471
-- montfaucon-page-check: 205
+- montfaucon-page-check: 206
 - richardson-volumes (lead only, never counted as the original): 68
 - app-executive-orders (lead only, never counted as the original): 9,902
 - hathi-gpo-orders (lead only, never counted as the original): 1,531

@@ -6,6 +6,17 @@
   - Audit: `research/progress/integration-20261104/VALLA_RECERTIFICATION_20261108.md`. Kean: F-20261108-valla-v2-claims-blocker, F-20261108-valla-recertified.
 - **Next:** if PR #243 (Ariadne) merges after this PR, recompute both certificates on the merged tree and audit `ariadne.py`. After merge, confirm Valla's first run publishes (`jobs/valla/output/STATUS.json`).
 - **Asks:** @Owner: none.
+## 2026-11-09 ET (Claude, Gutenberg wave: seven tool items and three waste patterns, PR #242)
+
+- **Done (PR #242, stacks on #239):**
+  - Bentham prices from `jobs/necker-costs/PRICES.json`; the old table ran 1.3x-1.9x high (Tribonian $673 -> $346); `bentham.py usage --reported-costs` cross-checks each session within max(1 cent, 1%).
+  - Quo Warranto read audit (`AUDIT_READS`, report mode): claim-drafts had 8,367 undeclared reads and claim-checker 1; both now declared. Lachmann's FRAGMENTS reads declared.
+  - Lachmann skipped-witness switch (`jobs/claim-kit/WORKING_TEXT_SWITCHES.json`, default void); recommendation `flag` restores 126 orders with a recheck flag.
+  - Davy daily chain health (verdict in STATUS and the Kean brief); per-job `AS_OF_READOUT` for daily-digest and Davy.
+  - Kean structured `measures` read by Bentham and Junto; Tsiolkovsky channel-weighted credit; Carnot coordinator kit with ready two-arm Junto tests.
+- **Running:** child session `session_014fYW9tDCreZgtp1XP1tTpj` works the #185 Mabillon/Lachmann rule in its own PR.
+- **Next:** after one clean report run on main, set the five `AUDIT_READS` files to enforce. Narrowing the wide globs soundly needs versioning by record kind or STATUS result (freshness change). Run the next wave with `jobs/carnot-coordinator/PROTOCOL.md` as the after arm of lean_coordination.
+- **Asks:** @Owner: A-20261109-skipped-witness (set the switch to flag?).
 
 ## 2026-11-08 ET (Claude, Haloander follow-up: owner said yes to all four asks)
 

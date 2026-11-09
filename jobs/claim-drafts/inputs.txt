@@ -3,5 +3,52 @@ jobs/claim-checker/checker.py
 jobs/claim-checker/sources.py
 jobs/readiness-tracker/tracker.py
 jobs/claim-kit/working_text.py
+jobs/claim-kit/WORKING_TEXT_SWITCHES.json
 jobs/claim-kit/factual_events.py
 jobs/norton/model.py
+# Quo Warranto (Gutenberg, diagnostic run 42547330397): claim-drafts imports the checker's source loader and
+# performed 8,367 reads it did not declare, so a stale draft generation could publish. Declared now:
+# the checker's own read patterns, each input job's STATUS.json and SUMMARY.json (drafts.py names the job
+# and notes a failed last run), and statute PDFs. Versioning by record kind or by STATUS 'result' would
+# narrow this soundly; it needs a freshness change, not a declaration edit.
+ProQuest Pre-1937 Orders/**
+jobs/*/data/**
+jobs/*/data/**/FRAGMENTS*.jsonl
+jobs/*/output/*.csv
+jobs/*/output/FRAGMENTS*.jsonl
+jobs/*/output/SOURCES*.jsonl
+jobs/*/output/raw/**
+jobs/*/output/texts/**
+jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl
+jobs/claim-checker/job.py
+jobs/claim-checker/proquest_inputs.py
+jobs/lachmann/output/*.jsonl
+jobs/official-fixity/output/MATCHED_BY_SHA256.json
+jobs/pinakes-proquest-ingest/output/*
+jobs/source-ladder/embedded_cites.py
+jobs/source-ladder/fetch_ladder.py
+jobs/source-ladder/report_dates.py
+jobs/source-ladder/request_contract.py
+releases/opus_stage11_complete/**
+releases/source_books/**
+research/pre-1937-sources/ProQuest Pre-1937 Orders/**
+research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv
+research/readiness/claims/*
+research/readiness/factual/*
+research/readiness/factual/**
+research/readiness/owner_rulings/*
+research/stage14/QUEUES/OFFICIAL_DIRECT_DOCUMENT_FETCH_MANIFEST.csv
+research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv
+research/stage18/SOURCE_MANIFEST.json
+research/stage19/code/claim_gate.py
+research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
+research/stage20/output/STATUTE_FETCH_INDEX.csv
+research/stage21/original_sources/ACQUISITION_LOG.jsonl
+research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv
+research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv
+jobs/*/output/STATUS.json
+jobs/*/output/SUMMARY.json
+jobs/*/output/pdf/**
+jobs/cotton-capture-custody/output/captures/**
+jobs/astra-source-retention/output/pages/**
+jobs/astra-source-retention/output/derivatives/**

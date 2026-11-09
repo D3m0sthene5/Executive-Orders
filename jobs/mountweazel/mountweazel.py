@@ -46,6 +46,14 @@ ALLOWED_DOCS = frozenset({"research/plans/MOUNTWEAZEL_DESIGN.md", "jobs/mountwea
                           "jobs/mountweazel/mountweazel.py", "jobs/mountweazel/test_mountweazel.py"})
 ALLOWED_DOC_PREFIXES = ("HANDOFF/",)  # notes may name batch ids and markers; planted text is still checked there
 PLANT_ID_RE = re.compile(rb"\bMW-[A-Z]\d+-\d{2}\b")
+# Exact, reviewed byte strings that name a seeding marker without carrying a plant: other tools' tests
+# that prove they refuse a SEEDED card.  Only these bytes, in only this file, skip the marker scan;
+# a plant id, planted text or exact item copy in the same file still fails.
+MARKER_MENTIONS = {
+    "research/hollerith-drivers/test_driver.py": (b'write_card(tmp, {"instrument_id": "SEEDED:EO:100"})',),
+}
+# A finished excavator wave's scored plant list; see revealed_plant_ids.
+REVEALED_PLANTS_HEADER = ["packet", "plant_id", "defect_type", "arm", "caught", "caught_strict"]
 VERDICTS = ("accept", "reject", "block_justified", "block_not_justified")
 FLAG_VERDICTS = ("reject", "block_not_justified")
 SCHEMA_BATCH = "review-practice-batch/v1"  # deliberately free of the tool name: reviewers see this file
@@ -312,17 +320,32 @@ def _resync_whole(claim):
 PROVENANCE_ONLY = ("claim_kit",)
 
 
-def claim_card(claim):
+def card_layout(claims):
+    """Every top-level key any of these claims carries (minus provenance), for one shared card layout.
+
+    Real claims gain optional fields over time (v2's formal_disposition and retag, rare provenance
+    blocks); a card that showed only the keys its own claim has would let a reviewer tell items apart
+    by layout.  Seeding derives the layout from the current real pool plus the batch's plants."""
+    keys = set()
+    for c in claims:
+        if isinstance(c, dict):
+            keys.update(k for k in c if k not in PROVENANCE_ONLY)
+    return tuple(sorted(keys))
+
+
+def claim_card(claim, layout=()):
     """Reviewer presentation only; never use this view as a canonical claim.
 
     Preserve substantive working-text disclosures, source notes and source-grade labels.
-    Absent disclosures or notes are shown as null in every card, so the optional keys alone
-    cannot identify a real item. Pool, fixture and review fingerprints retain
-    their original payloads, including the absent/present distinction.
+    Absent disclosures or notes, and any key of `layout` the claim lacks, are shown as null in
+    every card, so the optional keys alone cannot identify a real item. Pool, fixture and review
+    fingerprints retain their original payloads, including the absent/present distinction.
     """
     body = {k: v for k, v in claim.items() if k not in PROVENANCE_ONLY}
     body.setdefault("working_text", None)
     body.setdefault("source_notes", None)
+    for k in layout:
+        body.setdefault(k, None)
     return body
 
 
@@ -676,6 +699,7 @@ def seed_cmd(args):
         fail(f"only {len(reals)} real items available for {n_real} slots")
 
     entries = [("plant", p) for p in plants] + [("real", oid) for oid in reals]
+    layout = card_layout([r["claim"] for r in pool.values()] + [p["payload"] for p in plants]) if track == "C" else ()
     entries.sort(key=lambda e: h(args.seed, "order", e[1]["base_order"] if e[0] == "plant" else e[1], e[0]))
 
     batch_dir, key_dir = out_root / batch_id / "batch", out_root / batch_id / "key"
@@ -692,7 +716,7 @@ def seed_cmd(args):
         if track == "C":
             # Assembly provenance (claim-kit's block) is not claim content, and only some real
             # claims carry it, so showing it would let a reviewer tell plants from real items.
-            body = claim_card(body)
+            body = claim_card(body, layout)
             packet = {"item_id": item_id, "track": "C", "claim": body}
         else:
             packet = {"item_id": item_id, "track": "S", **body}
@@ -732,7 +756,7 @@ def seed_cmd(args):
                                    "reason": "text", "confidence": "0-1"},
                 "item_sha256": item_files}
     if track == "C":
-        manifest["claim_presentation"] = "working_text is always shown; null means no disclosure was supplied. source_notes is always shown; null means no source notes were supplied. Source-grade labels are unchanged."
+        manifest["claim_presentation"] = "working_text is always shown; null means no disclosure was supplied. source_notes is always shown; null means no source notes were supplied. Every other top-level field that any current real claim carries is shown on every card; null means this claim does not carry it. Source-grade labels are unchanged."
     (batch_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     batch_sha = hashlib.sha256(canonical(item_files).encode()).hexdigest()
     body = {"schema": SCHEMA_KEY, "batch_id": batch_id, "track": track, "seed": args.seed, "batch_sha256": batch_sha,
@@ -1133,10 +1157,16 @@ def _runner_inventory_for_item_scan(path, repo):
                 or not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", manifest["base_commit"])):
             return None
         scope, inputs = manifest["scope"], manifest["inputs"]
-        if (not isinstance(scope, dict) or set(scope) != {"roots", "patterns", "exclude"}
+        # Valla's freshness scope adds its audited read closure and two certificate flags (result_freshness.scope);
+        # accept exactly those optional keys, typed, and nothing else (Gutenberg, 2026-11-09).
+        optional_lists, optional_flags = {"referenced_files"}, {"dynamic_complete", "implementation_certified",
+                                                                "fallback_inventory"}
+        if (not isinstance(scope, dict) or not {"roots", "patterns", "exclude"} <= set(scope)
+                or set(scope) - {"roots", "patterns", "exclude"} - optional_lists - optional_flags
+                or any(type(scope[k]) is not bool for k in optional_flags & set(scope))
                 or scope["exclude"] != f"jobs/{manifest['job']}/output"
                 or not all(isinstance(scope[k], list) and all(relative(v) for v in scope[k])
-                           for k in ("roots", "patterns"))
+                           for k in ("roots", "patterns", *sorted(optional_lists & set(scope))))
                 or not isinstance(inputs, dict)
                 or not all(relative(k) and isinstance(v, str)
                            and re.fullmatch(r"(?:100644|100755|120000|160000):(?:[0-9a-f]{40}|[0-9a-f]{64})", v)
@@ -1157,8 +1187,10 @@ def _runner_inventory_for_item_scan(path, repo):
 def _runner_diagnostic_for_item_scan(path, repo):
     """Recognize an archived unittest report of an inventory false positive.
 
-    Only the exact scanner diagnostic is an annotation. Every raw byte still
-    undergoes planted-text, seeded-marker and exact-item checks.
+    Only the exact scanner diagnostic is an annotation: the one-line inventory
+    form, or the JSON report `check` prints (see _check_report_diagnostics).
+    The returned view replaces the raw bytes for the batch-item-id and marker
+    scans only; every raw byte still undergoes planted-text and exact-item checks.
     """
     try:
         rel = path.relative_to(repo).as_posix()
@@ -1168,9 +1200,12 @@ def _runner_diagnostic_for_item_scan(path, repo):
                 r"|\.job-cache/runner-prior/[A-Za-z0-9._-]+/portfolio-repair-check)"
                 r"/tests/mountweazel\.log", rel):
             return None
-        lines, changed = [], False
+        text, changed = _check_report_diagnostics(path.read_text(encoding="utf-8"))
+        if text is None:
+            return None
+        lines = []
         prefix = "AssertionError: False is not true : "
-        for line in path.read_text(encoding="utf-8").splitlines(keepends=True):
+        for line in text.splitlines(keepends=True):
             if line.startswith(prefix):
                 report = ast.literal_eval(line[len(prefix):].strip())
                 if (not isinstance(report, list) or not report
@@ -1190,7 +1225,118 @@ def _runner_diagnostic_for_item_scan(path, repo):
         return None
 
 
-def scan_file(path, needles, plant_hashes, markers=True, item_id_data=None):
+_CHECK_REPORT_KEYS = {"ok", "fixtures_checked", "files_scanned", "leak_needles", "problems", "problem_count"}
+
+
+def _check_report_diagnostics(text):
+    """Annotate the JSON report `check` prints when a unittest assertion echoes it.
+
+    Returns (text, changed), or (None, False) when such a report is malformed.  Only rows whose
+    problem is exactly a batch-item-id or seeded-marker finding, at a plain relative path that names
+    no plant id or marker, are rewritten; any other byte of the log is scanned as written."""
+    start, out, changed = "AssertionError: 1 != 0 : ", [], False
+    markers = {"marker " + m.decode() for m in SEEDED_MARKERS}
+    pos = 0
+    while True:
+        i = text.find(start + "{", pos)
+        if i < 0:
+            out.append(text[pos:])
+            return "".join(out), changed
+        j = i + len(start)
+        report, end = json.JSONDecoder().raw_decode(text, j)
+        problems = report.get("problems") if isinstance(report, dict) else None
+        if (set(report) != _CHECK_REPORT_KEYS or report["ok"] is not False or not isinstance(problems, list)
+                or not problems
+                or not all(isinstance(row, dict) and set(row) == {"where", "problem"}
+                           and isinstance(row["where"], str) and isinstance(row["problem"], str)
+                           and re.fullmatch(r"[A-Za-z0-9._/-]+", row["where"])
+                           and ".." not in row["where"].split("/")
+                           and not PLANT_ID_RE.search(row["where"].encode())
+                           and not any(m in row["where"].encode() for m in SEEDED_MARKERS)
+                           and (re.fullmatch(r"batch item id MW-[A-Z]\d+-\d{2}", row["problem"])
+                                or row["problem"] in markers)
+                           for row in problems)):
+            return None, False
+        report = dict(report, problems=[dict(row, problem="[scanner diagnostic]") for row in problems])
+        out.append(text[pos:j] + json.dumps(report, indent=1))
+        pos, changed = end, True
+
+
+def revealed_plant_ids(repo):
+    """Plant ids whose answer key has been revealed, proven by repository evidence.
+
+    A plant id is revealed only when it is listed in research/excavator/<wave>/PLANTS.csv, the
+    scored plant list a finished wave writes (exact header, every row `MW-Xn:MW-Xn-nn`, a
+    mountweazel defect type and yes/no catch results, which need the opened key), and the same wave
+    folder holds after-reveal review records (<wave>/<packet>/reviews/AFTER_REVEAL_*.jsonl with at
+    least one review whose verdict is an after-reveal verdict).  A malformed list proves nothing.
+    Mentions of a revealed id are not leaks; markers, planted text and exact copies still are."""
+    revealed = set()
+    for plants in sorted((Path(repo) / "research" / "excavator").glob("*/PLANTS.csv")):
+        wave = plants.parent
+        try:
+            with open(plants, newline="", encoding="utf-8") as fh:
+                rows = list(csv.reader(fh))
+            if not rows or rows[0] != REVEALED_PLANTS_HEADER:
+                continue
+            ids, ok = set(), True
+            for row in rows[1:]:
+                if len(row) != len(REVEALED_PLANTS_HEADER):
+                    ok = False
+                    break
+                rec = dict(zip(REVEALED_PLANTS_HEADER, row))
+                if rec["caught"] not in ("yes", "no") or rec["caught_strict"] not in ("yes", "no"):
+                    ok = False
+                    break
+                m = re.fullmatch(r"(MW-[A-Z]\d+):((MW-[A-Z]\d+)-\d{2})", rec["plant_id"])
+                if m:
+                    if m.group(1) != m.group(3) or not re.fullmatch(r"mountweazel_D\d+", rec["defect_type"]):
+                        ok = False
+                        break
+                    ids.add(m.group(2))
+                elif PLANT_ID_RE.search(row_bytes := ",".join(row).encode("utf-8")) or b"MW-" in row_bytes:
+                    ok = False
+                    break
+            if not ok or not ids:
+                continue
+            proven = False
+            for review in sorted(wave.glob("*/reviews/AFTER_REVEAL_*.jsonl")):
+                for line in review.read_text(encoding="utf-8").splitlines():
+                    if not line.strip():
+                        continue
+                    obj = json.loads(line)
+                    if (isinstance(obj, dict) and isinstance(obj.get("review_id"), str)
+                            and isinstance(obj.get("verdict"), str) and obj["verdict"].endswith("_after_reveal")):
+                        proven = True
+            if proven:
+                revealed |= ids
+        except (OSError, UnicodeError, ValueError, csv.Error):
+            continue
+    return frozenset(revealed)
+
+
+def _unrevealed_id(data, revealed):
+    for m in PLANT_ID_RE.finditer(data):
+        if m.group(0).decode() not in revealed:
+            return m.group(0).decode()
+    return None
+
+
+def _marker_view(rel, path):
+    """The file's bytes minus its exact reviewed marker mentions (MARKER_MENTIONS), or None."""
+    mentions = MARKER_MENTIONS.get(rel)
+    if not mentions:
+        return None
+    try:
+        data = path.read_bytes()
+    except OSError:
+        return None
+    for m in mentions:
+        data = data.replace(m, b"")
+    return data
+
+
+def scan_file(path, needles, plant_hashes, markers=True, item_id_data=None, marker_data=None, revealed=frozenset()):
     hits = []
     try:
         size = path.stat().st_size
@@ -1204,17 +1350,20 @@ def scan_file(path, needles, plant_hashes, markers=True, item_id_data=None):
             if not buf:
                 break
             data = tail + buf
-            for m in SEEDED_MARKERS if markers else ():
+            for m in SEEDED_MARKERS if markers and marker_data is None else ():
                 if m in data:
                     hits.append("marker " + m.decode())
-            if markers and item_id_data is None and b"MW-" in data and PLANT_ID_RE.search(data):
-                hits.append("batch item id " + PLANT_ID_RE.search(data).group(0).decode())
+            if markers and item_id_data is None and b"MW-" in data and _unrevealed_id(data, revealed):
+                hits.append("batch item id " + _unrevealed_id(data, revealed))
             for nd in needles:
                 if nd in data:
                     hits.append("planted text " + nd[:40].decode("utf-8", "replace"))
             tail = data[-overlap:]
-    if markers and item_id_data is not None and PLANT_ID_RE.search(item_id_data):
-        hits.append("batch item id " + PLANT_ID_RE.search(item_id_data).group(0).decode())
+    if markers and item_id_data is not None and _unrevealed_id(item_id_data, revealed):
+        hits.append("batch item id " + _unrevealed_id(item_id_data, revealed))
+    for m in SEEDED_MARKERS if markers and marker_data is not None else ():
+        if m in marker_data:
+            hits.append("marker " + m.decode())
     if plant_hashes and path.suffix in (".jsonl", ".json"):
         try:
             text = path.read_text(encoding="utf-8")
@@ -1250,6 +1399,7 @@ def check(repo, fixtures_dir):
     repo, fixtures_dir = Path(repo), Path(fixtures_dir)
     problems, plant_hashes, needles = [], set(), set()
     fixture_files = sorted(fixtures_dir.rglob("*.seeded.json")) if fixtures_dir.is_dir() else []
+    layout = None
     for fp in fixture_files:
         try:
             fx = json.loads(fp.read_text(encoding="utf-8"))
@@ -1275,6 +1425,20 @@ def check(repo, fixtures_dir):
             if "source_notes" not in payload:
                 card.pop("source_notes")
                 plant_hashes.add(sha(card))
+            # The shared card layout seeding now uses (current real pool plus plants).
+            if layout is None:
+                try:
+                    pool = load_claim_pool(repo, gate=load_gate() is not None)
+                except (OSError, ValueError, KeyError, TypeError):
+                    pool = {}
+                payloads = []
+                for other in fixture_files:
+                    try:
+                        payloads.append(_deflag(json.loads(other.read_text(encoding="utf-8")).get("seeded_payload") or {}))
+                    except (OSError, ValueError, AttributeError):
+                        pass
+                layout = card_layout([r["claim"] for r in pool.values()] + payloads)
+            plant_hashes.add(sha(claim_card(_deflag(payload), layout)))
         plant_hashes.add(sha({k: v for k, v in payload.items() if k not in ("schema", "instrument_id")}))
         if isinstance(fx.get("leak_needles"), list):
             needles.update(n.encode("utf-8") for n in fx["leak_needles"])
@@ -1290,6 +1454,7 @@ def check(repo, fixtures_dir):
         # repository.  Such a needle cannot show a leak: the plant's marker and exact-item-copy checks still do.
         blobs = real_claim_blobs(repo, plant_hashes)
         needles = {nd for nd in needles if not any(nd in b for b in blobs)}
+    revealed = revealed_plant_ids(repo)
     scanned = 0
     for root in scan_roots(repo, fixtures_dir):
         for f in iter_files(root):
@@ -1298,11 +1463,14 @@ def check(repo, fixtures_dir):
             scanned += 1
             rel = str(f.relative_to(repo)) if inside(f, repo) else str(f)
             allowed = rel in ALLOWED_DOCS or rel.startswith(ALLOWED_DOC_PREFIXES)
-            item_view = _runner_inventory_for_item_scan(f, repo)
+            item_view, marker_view = _runner_inventory_for_item_scan(f, repo), _marker_view(rel, f)
             if item_view is None:
+                # An archived scanner report: its own findings are annotations for both scans.
                 item_view = _runner_diagnostic_for_item_scan(f, repo)
+                if item_view is not None:
+                    marker_view = item_view
             hits = scan_file(f, needles, plant_hashes, markers=not allowed,
-                             item_id_data=item_view)
+                             item_id_data=item_view, marker_data=marker_view, revealed=revealed)
             for hit in hits:
                 problems.append({"where": str(f.relative_to(repo)) if inside(f, repo) else str(f), "problem": hit})
     mw_out = repo / "jobs" / "mountweazel" / "output"

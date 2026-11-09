@@ -58,6 +58,16 @@ python3 -I jobs/mountweazel/test_mountweazel.py
   omitted from the batch-item-ID scan. The manifest is still scanned for seeded markers, planted text and
   exact payload copies. IDs in other fields or paths still fail; malformed manifests and duplicate JSON keys
   receive no exception. This narrow recognition of metadata does not authenticate a runner manifest.
+  Revealed plants (owner, Kean ask A-20261107-mountweazel-plants-leak): a plant id is revealed only when it is
+  listed in `research/excavator/<wave>/PLANTS.csv` (exact scored header, `MW-Xn:MW-Xn-nn` rows, yes/no catch
+  results) and that wave folder holds `*/reviews/AFTER_REVEAL_*.jsonl` with an `*_after_reveal` verdict. Mentions
+  of a revealed id anywhere pass; any other id still fails, and markers, planted text and exact copies are still
+  checked for every plant. Archived `portfolio-repair-check` test logs that echo `check`'s own JSON report are
+  annotations for the id and marker scans only. `MARKER_MENTIONS` lists exact reviewed byte strings in named
+  files (another tool's refusal test) that skip the marker scan only.
+  Track C cards now share one layout derived from the current real pool plus the batch's plants: any top-level
+  field a real claim carries (for example v2's `formal_disposition` and `retag`) is shown on every card, null when
+  absent.
 
 ## The flag the claim checker rejects
 

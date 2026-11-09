@@ -329,6 +329,17 @@ class ApiRefused(SystemExit):
     to report, not a step to skip."""
 
 
+def robots_unavailable_4xx(pool, url):
+    """True only when fetch_pool refused url because the host's robots.txt answered 401 or 403 (disallow_all set, no
+    parsed rules), never for an explicit Disallow rule."""
+    try:
+        origin, _ = pool._origin(url)
+        rp = pool.robots.get(origin)
+    except (AttributeError, TypeError, ValueError):
+        return False
+    return bool(rp is not None and getattr(rp, "disallow_all", False) and getattr(rp, "wild", "x") is None)
+
+
 def api_crosscheck(pool, token, orders, limit, transport, sleep=time.sleep):
     """Token only. Phrase-search counts from CourtListener's search index for a few orders, beside the bulk-scan counts.
     Requests are 13 s apart (the documented default is 5 a minute, 50 an hour, 125 a day). Never prints or returns the
@@ -336,17 +347,29 @@ def api_crosscheck(pool, token, orders, limit, transport, sleep=time.sleep):
     use of the token cannot pass silently; a 429 stops the step with the partial result."""
     if not token:
         return {"ran": False, "reason": "COURTLISTENER_TOKEN not set"}
+    robots_basis, refusal = "robots.txt allows", None
     try:
         pool.allowed(API_SEARCH)
-    except FetchError as e:
+    except FetchError as err:
+        refusal = str(err)
+        if robots_unavailable_4xx(pool, API_SEARCH):
+            # Owner, 2026-11-09 (A-20261107-courtlistener-robots): a robots file answered with 401/403 is "unavailable"
+            # under RFC 9309 section 2.3.1.3, which lets a crawler access the site; and this is CourtListener's documented
+            # REST API, called with the owner's own token at its documented rate. Only this API, only on a 4xx robots
+            # answer; an explicit Disallow rule, a 5xx or a network failure still blocks, and fetch_pool's default for
+            # every other job is unchanged.
+            robots_basis = "robots.txt answered 4xx (RFC 9309 unavailable); documented authenticated API, owner ruling"
+            log("API cross-check proceeds: " + robots_basis)
+            refusal = None
+    if refusal is not None:
         # A policy refusal, not a token failure: no request is made. It is recorded where a reader looks (log, SUMMARY,
         # CONTROLS) so the owner can decide; the job's real results are not held back by it. On 2026-11-07 the robots
         # file of www.courtlistener.com answered HTTP 403 (CloudFront) to the runner, which the fetch pool reads as
         # "disallow all".
         log("API CROSS-CHECK NOT RUN: COURTLISTENER_TOKEN is set but the robots check of www.courtlistener.com failed ("
-            + str(e)[:140] + "); no request was made")
+            + refusal[:140] + "); no request was made")
         return {"ran": False, "blocked_by_robots": True, "reason": "robots check of www.courtlistener.com failed",
-                "detail": str(e)[:140], "token_used": False}
+                "detail": refusal[:140], "token_used": False}
     out, used = [], 0
     for eo, bulk_clusters in orders:
         if used >= limit:
@@ -390,7 +413,8 @@ def api_crosscheck(pool, token, orders, limit, transport, sleep=time.sleep):
         raise ApiRefused("COURTLISTENER_TOKEN is set but every API cross-check request failed: " +
                          "; ".join(sorted({r.get("error", "") for r in out}))[:200])
     return {"ran": True, "requests": used, "answered": len(ok), "counts_present": sum(1 for r in ok if r["search_index_count"] is not None),
-            "rows": out, "note": "The search index tokenises numbers and matches phrases loosely; a count is a rough bound, not a recall test."}
+            "rows": out, "robots_basis": robots_basis,
+            "note": "The search index tokenises numbers and matches phrases loosely; a count is a rough bound, not a recall test."}
 
 
 def cached_crosscheck(cache, pool, token, orders, limit, transport, sleep=time.sleep):

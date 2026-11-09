@@ -112,3 +112,65 @@ class JobSettings(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class GutenbergHoles(unittest.TestCase):
+    """Rattle Watch audit (Gutenberg, 2026-11-09): each test pins one hole closed."""
+
+    def run_cmd(self, args, watch):
+        with tempfile.TemporaryDirectory() as t:
+            log = Path(t) / "log.txt"
+            start = time.monotonic()
+            code = run_jobs.command(args, log, None, watch)
+            return code, log.read_text(), time.monotonic() - start
+
+    def test_orphan_holding_the_pipe_no_longer_hangs_the_station(self):
+        """Before: a job that left `sleep` holding stdout kept the runner waiting until the child ended (25 s
+        measured; forever for a daemon), with no heartbeat."""
+        watch = {"name": "leaver", "heartbeat": 0.2, "stall_minutes": 20, "usual": None, "orphan_grace": 1}
+        code, log, took = self.run_cmd(["bash", "-c", "echo started; (sleep 120 &); echo done"], watch)
+        self.assertEqual(code, 0)
+        self.assertIn("done", log)
+        self.assertLess(took, 15)
+        self.assertTrue(watch["report"]["orphans_stopped"])
+
+    def test_own_io_decides_over_machine_network_noise(self):
+        """Before: other traffic on the machine (net) kept a hung job alive. The job's own I/O now decides."""
+        idle = [(0, 1.0, 0, 100), (61, 1.0, 10_000_000, 100)]
+        self.assertTrue(run_jobs.is_stalled(idle, 61, 60))
+        busy = [(0, 1.0, 0, 100), (61, 1.0, 0, 100 + 10_000_000)]
+        self.assertFalse(run_jobs.is_stalled(busy, 61, 60))
+        old_shape = [(0, 1.0, 0), (61, 1.0, 10_000_000)]  # no io reading: network still counts, as before
+        self.assertFalse(run_jobs.is_stalled(old_shape, 61, 60))
+
+    def test_tree_io_reads_this_process(self):
+        v = run_jobs.tree_io_bytes(os.getpid())
+        if v is not None:  # Linux
+            self.assertGreater(v, 0)
+
+    def test_overrun_warns_once_and_never_stops(self):
+        counter = {"cpu": 0.0}
+
+        def cpu(pid):
+            counter["cpu"] += 5.0
+            return counter["cpu"]
+        old = run_jobs.OVERRUN_FLOOR_SECONDS
+        run_jobs.OVERRUN_FLOOR_SECONDS = 0.5
+        try:
+            watch = {"name": "slow", "heartbeat": 0.2, "stall_minutes": 1 / 60, "usual": 0.1, "cpu": cpu,
+                     "net": lambda: 0, "io": lambda pid: None}
+            code, log, _ = self.run_cmd([sys.executable, "-c", "import time; time.sleep(2); print('ok')"], watch)
+        finally:
+            run_jobs.OVERRUN_FLOOR_SECONDS = old
+        self.assertEqual(code, 0)
+        self.assertEqual(watch["report"]["overrun_warned"], True)
+
+    def test_stall_report_reaches_status(self):
+        watch = {"name": "hung", "heartbeat": 0.2, "stall_minutes": 1 / 60, "usual": None,
+                 "cpu": lambda pid: 1.0, "net": lambda: 0, "io": lambda pid: 5}
+        code, _, _ = self.run_cmd([sys.executable, "-c", "import time; time.sleep(60)"], watch)
+        self.assertEqual(code, run_jobs.STALL_EXIT)
+        self.assertTrue(watch["report"]["stalled"])
+        src = (SCRIPTS / "run_jobs.py").read_text(encoding="utf-8")
+        for needle in ('status["rattle_watch"]', 'status["stopped_by"] = "rattle_watch_stall"', "watch = None"):
+            self.assertTrue(needle in src, needle)
