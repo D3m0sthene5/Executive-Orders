@@ -522,6 +522,57 @@ class Checks(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'body delimiter missing'):
             run(source)
 
+    def test_mabillon_passage_alone_still_verifies_header_era_pins(self):
+        """Papebroch (2026-11-09): Mabillon now writes the passage alone. A record pinned while the file carried the
+        provenance header still validates only if the rebuilt header plus the held bytes is the pinned full file."""
+        folder = self.root / 'jobs/mabillon-held-printings/output'
+        folder.mkdir(parents=True, exist_ok=True)
+        body = b'held text\n\nsecond paragraph'
+        (folder / 'page.png').write_bytes((self.fragment.parent / 'page.png').read_bytes())
+        source = copy.deepcopy(self.source)
+        source['grade'] = 'machine_read_government_printed_copy'
+        del source['data']['grade']
+        source['data'].update(
+            route='held/govinfo_fr',
+            match={'source_kind': 'govinfo scan of the printed Federal Register daily issue'},
+            url='https://www.govinfo.gov/content/pkg/FR-1936-06-25/pdf/FR-1936-06-25.pdf',
+            page_or_item='Federal Register 1936-06-25; PDF pages 1-1',
+            text_sha256=hashlib.sha256(body).hexdigest())
+        full = M.mabillon_legacy_header(source) + body
+        self.assertTrue(full.startswith(b'Instrument: ' + source['instrument_id'].encode() + b'\nSource: https://www.govinfo'))
+        fragment = folder / 'FRAGMENTS.jsonl'
+        record = copy.deepcopy(self.record)
+        target = record['target']
+        target.update(fragment_path='jobs/mabillon-held-printings/output/FRAGMENTS.jsonl',
+                      sha256=source['data']['sha256'], url=source['data']['url'],
+                      page_or_item=source['data']['page_or_item'], text_sha256=source['data']['text_sha256'],
+                      text_hash_scope='body_after_first_blank_line', text_file_sha256=hashlib.sha256(full).hexdigest())
+        target['page_images'][0].update(path='jobs/mabillon-held-printings/output/page.png',
+                                        source_url=target['url'], cited_scope=target['page_or_item'])
+
+        def run(candidate=source, checked=record):
+            fragment.write_text(json.dumps(candidate) + '\n', encoding='utf-8')
+            checked['target']['fragment_sha256'] = M.digest(candidate)
+            for review in checked['reviews']:
+                review['target_sha256'] = M.digest(checked['target'])
+            return M.validate(self.root, checked)
+
+        (folder / 'text.txt').write_bytes(full)           # the file as it was when the pages were checked
+        self.assertEqual(run()[0], 'official')
+        (folder / 'text.txt').write_bytes(body)           # the passage alone, as Mabillon now writes it
+        self.assertEqual(run()[0], 'official')
+        (folder / 'text.txt').write_bytes(body + b' ')    # a changed passage fails both readings
+        with self.assertRaises(ValueError):
+            run()
+        (folder / 'text.txt').write_bytes(body)
+        moved = copy.deepcopy(source)                      # the rebuilt header binds the fragment's own fields
+        moved['data']['page_or_item'] = 'Federal Register 1936-06-25; PDF pages 2-2'
+        changed = copy.deepcopy(record)
+        changed['target']['page_or_item'] = moved['data']['page_or_item']
+        changed['target']['page_images'][0]['cited_scope'] = moved['data']['page_or_item']
+        with self.assertRaisesRegex(ValueError, 'held text file changed'):
+            run(moved, changed)
+
 
 if __name__ == '__main__':
     unittest.main()

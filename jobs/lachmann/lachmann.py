@@ -723,6 +723,85 @@ def _complete_test(order, chosen, others, identity_route=None):
     return False, None, reasons, ev
 
 
+MABILLON_PRODUCER = 'mabillon-held-printings'
+MABILLON_FRAGMENTS = 'jobs/mabillon-held-printings/output/FRAGMENTS.jsonl'
+MABILLON_GRADE = 'machine_read_government_printed_copy'
+# "printed pages 285-286" (1974 GPO Hoover compilation) or "printed page 4021" (Federal Register issue)
+_PRINTED_PAGES = re.compile(r'\bprinted pages? (\d+)(?:-(\d+))?(?![0-9A-Za-z])')
+_SHA = re.compile(r'[0-9a-f]{64}')
+_MABILLON_ROWS = {}
+
+
+def mabillon_rows(repo):
+    """Mabillon's own fragment rows, (instrument_id, sha256, text_sha256) -> [row]; read once per repository."""
+    key = str(Path(repo).resolve())
+    if key not in _MABILLON_ROWS:
+        rows = defaultdict(list)
+        p = Path(repo) / MABILLON_FRAGMENTS
+        if p.is_file():
+            with p.open(encoding='utf-8') as fh:
+                for line in fh:
+                    try:
+                        row = json.loads(line)
+                    except ValueError:
+                        continue
+                    d = row.get('data') if isinstance(row, dict) and isinstance(row.get('data'), dict) else None
+                    if d is not None and row.get('kind') == 'original_representation':
+                        rows[(row.get('instrument_id'), d.get('sha256'), d.get('text_sha256'))].append(row)
+        _MABILLON_ROWS[key] = rows
+    return _MABILLON_ROWS[key]
+
+
+def mabillon_pages_test(order, chosen, repo):
+    """(confirmed, reasons, evidence) for a Mabillon held printing that needs a page check (a lead).
+
+    Pages are confirmed only from facts the fragment records and the held text shows, never from the register:
+    the fragment is Mabillon's own row for exactly this text (grade, false original flag, same text path); its source
+    SHA-256 is declared in the data and in sources; its location names printed page numbers, not only scanned
+    images; its own-number marker is a heading (the passage opens with the order, not only its closing tag); and the
+    order's number is in the first page window of the text. A fact not recorded is a reason, not a pass. This is a
+    machine working-text page confirmation; it never authenticates the printing."""
+    ev, reasons = {}, []
+    iid = order['instrument_id']
+    rows = mabillon_rows(repo).get((iid, chosen['sha256'], chosen['text_sha256']), [])
+    want_path = Path(MABILLON_FRAGMENTS).parent
+    rows = [r for r in rows if isinstance(r['data'].get('text_path'), str)
+            and (want_path / r['data']['text_path']).as_posix() == chosen['text_path']]
+    if len(rows) != 1:
+        return False, ['pages:mabillon_fragment_record_missing' if not rows else 'pages:mabillon_fragment_record_ambiguous'], ev
+    row = rows[0]
+    d = row['data']
+    match = d.get('match') if isinstance(d.get('match'), dict) else {}
+    loc = d.get('page_or_item') if isinstance(d.get('page_or_item'), str) else ''
+    ev.update(page_or_item=loc[:120] or None, route=d.get('route'), marker=match.get('marker'),
+              match_score=match.get('score'), source_kind=match.get('source_kind'))
+    if (row.get('produced_by') != MABILLON_PRODUCER or row.get('grade') != MABILLON_GRADE
+            or chosen['grade'] != MABILLON_GRADE or row.get('acceptable_as_original') is not False):
+        reasons.append('pages:mabillon_fragment_grade_or_flag_mismatch')
+    srcs = row.get('sources') if isinstance(row.get('sources'), list) else []
+    if (not isinstance(d.get('sha256'), str) or not _SHA.fullmatch(d['sha256'])
+            or not any(isinstance(x, dict) and x.get('sha256') == d['sha256'] for x in srcs)):
+        reasons.append('pages:mabillon_source_sha_not_declared')
+    pm = _PRINTED_PAGES.search(loc)
+    if pm and (pm.group(2) is None or int(pm.group(1)) <= int(pm.group(2))):
+        ev['printed_pages'] = pm.group(0)
+    else:
+        reasons.append('pages:mabillon_printed_pages_not_recorded')
+    if match.get('marker') != 'heading':
+        reasons.append('pages:mabillon_own_heading_not_recorded')
+    if not chosen['body'].strip():
+        reasons.append('pages:extracted_text_empty')
+    first = chosen['body'][:PAGE_ONE_WINDOW]
+    if order['number']:
+        hit = number_matches(first, order['number'], order['suffix'])
+        ev['first_page_match'] = hit[0][0] if hit else None
+        if not hit:
+            reasons.append('pages:number_not_in_first_page_text')
+    else:
+        reasons.append('pages:mabillon_unnumbered_order_no_rule')
+    return not reasons, reasons, ev
+
+
 def pages_test(order, chosen, pinakes, app_docs, repo):
     """(confirmed, reasons, evidence) for a chosen text whose fragment requires a page check."""
     ev, reasons = {}, []
@@ -776,13 +855,46 @@ def pages_test(order, chosen, pinakes, app_docs, repo):
         if ov is None or ov < TITLE_OVERLAP:
             reasons.append('pages:app_subject_not_in_text')
         return not reasons, reasons, ev
+    if producer == MABILLON_PRODUCER:
+        return mabillon_pages_test(order, chosen, repo)
     return False, ['pages:no_page_record_rule_for_' + producer], ev
 
 
 # ---------------------------------------------------------------------------
 # Assessment of one order
 
+# A machine-read government printing (whole OCR pages) is preferred as the representation, but these deterministic
+# tests often cannot read it (dates lost to OCR, neighbouring orders on the page). Failing to read the printing is not
+# evidence against the next witness, so when the printing is not confirmed the next witness in rank order is assessed
+# by the same tests; the printing stays listed, and passed_over records why it was not used. Only this grade is passed
+# over: a lower-ranked witness never stands in for a failed transcription, replica or lead of another kind.
+PASS_OVER_GRADES = frozenset(('machine_read_government_printed_copy',))
+
+
+def ranked(witnesses):
+    return sorted(witnesses, key=lambda w: (GRADE_RANK.get(w['grade'], 99), -len(w['body']), w['producer'], w['sha256'], w['text_path']))
+
+
 def assess(order, blockers, witnesses, pinakes, app_docs, repo, index, skipped_here=()):
+    """One confirmation per order: the best-ranked witness, or (Papebroch, 2026-11-09) the first after machine-read
+    government printings that the tests could not confirm."""
+    first, passed = None, []
+    for w in (ranked(witnesses) or [None]):
+        rec, chosen = _assess_with(order, blockers, witnesses, w, pinakes, app_docs, repo, index, skipped_here)
+        if first is None:
+            first = (rec, chosen)
+        if rec['confirmed'] or w is None or w['grade'] not in PASS_OVER_GRADES:
+            break
+        passed.append({'producer': w['producer'], 'grade': w['grade'], 'sha256': w['sha256'],
+                       'text_path': w['text_path'], 'reasons': rec['reasons']})
+    if not rec['confirmed']:
+        rec, chosen = first
+    elif passed:
+        rec['evidence']['passed_over'] = passed
+    return rec, chosen
+
+
+def _assess_with(order, blockers, witnesses, chosen, pinakes, app_docs, repo, index, skipped_here=()):
     iid = order['instrument_id']
     rec_out = OrderedDict([('schema', SCHEMA), ('instrument_id', iid)])
     if not witnesses:
@@ -792,7 +904,6 @@ def assess(order, blockers, witnesses, pinakes, app_docs, repo, index, skipped_h
                        evidence={'skipped_witnesses': list(skipped_here)}, reasons=['no_valid_witness'],
                        ruling=RULING, standing_note=W.NOTE)
         return rec_out, None
-    chosen = pick_chosen(witnesses)
     others = []
     for w in sorted(witnesses, key=lambda w: (GRADE_RANK.get(w['grade'], 99), w['producer'], w['sha256'])):
         if w is not chosen and independent(chosen, w):

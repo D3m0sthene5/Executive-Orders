@@ -1,5 +1,6 @@
 """Offline tests for Mabillon held printings: segmenting, the neighbour margin, the error bound, and the real run."""
 import collections
+import hashlib
 import json
 import os
 import sys
@@ -59,6 +60,17 @@ class HeldTests(unittest.TestCase):
             self.assertEqual(s["controls"]["negatives_accepted"], 0)
             frags = [json.loads(x) for x in (Path(d) / "FRAGMENTS.jsonl").read_text().splitlines()]
             self.assertTrue(all(f["acceptable_as_original"] is False for f in frags))
+            for f in frags:
+                # Papebroch hole 1: the file is the passage alone and text_sha256 is the hash of the file as written
+                # (until 2026-11-09 it was the hash of the passage under a provenance header, so no file verified).
+                body = (Path(d) / f["data"]["text_path"]).read_bytes()
+                self.assertEqual(hashlib.sha256(body).hexdigest(), f["data"]["text_sha256"], f["instrument_id"])
+                self.assertFalse(body.startswith(b"Instrument: "), f["instrument_id"])
+                # nothing loses provenance: what the header said is in the fragment
+                dd = f["data"]
+                self.assertTrue(dd["url"] and dd["sha256"] and dd["page_or_item"] and dd["match"]["source_kind"])
+                self.assertEqual(f["sources"], [{"url": dd["url"], "sha256": dd["sha256"],
+                                                 "page_or_item": dd["page_or_item"]}])
             self.assertTrue(all(f["data"]["needs_page_check"] == (f["confidence_note"].find("Every strong") < 0)
                                 for f in frags))
 
