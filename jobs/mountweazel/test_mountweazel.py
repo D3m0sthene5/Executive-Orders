@@ -142,6 +142,18 @@ class SeedTests(Base):
         self.assertEqual(shapes[True], shapes[False])
         self.assertTrue(0.15 <= key["seeded_share"] <= 0.35)
 
+    def test_optional_top_level_fields_do_not_tell_plants_from_real_items(self):
+        # Synthetic pool where only some real claims carry optional v2 fields.
+        claim = json.loads(json.dumps({"schema": "eo-lifecycle-claim/v1", "instrument_id": "EO:1", "x": 1}))
+        pool = {f"EO:{i}": {"claim": dict(claim, instrument_id=f"EO:{i}"), "path": "p.jsonl", "line": i} for i in range(1, 5)}
+        pool["EO:4"]["claim"].update(retag={"note": "r"}, formal_disposition={"date": "1935-06-14"})
+        layout = mw.card_layout([r["claim"] for r in pool.values()])
+        self.assertEqual({tuple(sorted(mw.claim_card(r["claim"], layout))) for r in pool.values()}, {tuple(sorted(
+            ["schema", "instrument_id", "x", "retag", "formal_disposition", "working_text", "source_notes"]))})
+        self.assertIsNone(mw.claim_card(pool["EO:1"]["claim"], layout)["retag"])
+        self.assertEqual(mw.claim_card(pool["EO:4"]["claim"], layout)["retag"], {"note": "r"})
+        self.assertNotIn("retag", pool["EO:1"]["claim"])  # originals unchanged
+
     def test_order_appears_once_per_batch_and_exclusions_hold(self):
         out, _ = self.seed("a")
         key = json.loads((out / "key" / "KEY.sealed.json").read_text())
@@ -384,6 +396,110 @@ class CheckTests(Base):
         report[0]["where"] = "research/readiness/claims/real.jsonl"
         path.write_text("AssertionError: False is not true : " + repr(report) + "\n")
         self.assertIsNone(mw._runner_diagnostic_for_item_scan(path, repo))
+        self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+
+    def write_wave(self, repo, plant="MW-C720:MW-C720-01", reveal=True, wave="w1"):
+        root = repo / "research/excavator" / wave
+        root.mkdir(parents=True, exist_ok=True)
+        (root / "PLANTS.csv").write_text("packet,plant_id,defect_type,arm,caught,caught_strict\n"
+                                         "y01,y01:EO:10153,date_shift_end,A,yes,yes\n"
+                                         f"y01,{plant},mountweazel_D3,A,no,no\n")
+        if reveal:
+            (root / "ux1/reviews").mkdir(parents=True, exist_ok=True)
+            (root / "ux1/reviews/AFTER_REVEAL_A.jsonl").write_text(json.dumps(
+                {"review_id": "ux1-A-AR", "verdict": "upheld_after_reveal"}) + "\n")
+        return root
+
+    def test_revealed_plant_id_mentions_pass_but_unrevealed_ids_fail(self):
+        repo = self.make_repo(self.tmp / "none")
+        note = repo / "jobs/kean/register/asks.jsonl"
+        note.parent.mkdir(parents=True)
+        note.write_text(json.dumps({"question": "PLANTS.csv names seeded item MW-C720-01."}) + "\n")
+        # No reveal evidence anywhere: the prose mention is a leak.
+        self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+        # A plant list without after-reveal reviews proves nothing; both files still fail.
+        root = self.write_wave(repo, reveal=False)
+        where = {p["where"] for p in mw.check(repo, self.tmp / "none")["problems"]}
+        self.assertEqual(where, {"jobs/kean/register/asks.jsonl", "research/excavator/w1/PLANTS.csv"})
+        # Reviews that are not after-reveal reviews prove nothing either.
+        (root / "ux1/reviews").mkdir(parents=True)
+        (root / "ux1/reviews/AFTER_REVEAL_A.jsonl").write_text(json.dumps({"review_id": "r", "verdict": "upheld"}) + "\n")
+        self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+        # After reveal, mentions of the revealed id anywhere are not leaks.
+        self.write_wave(repo)
+        self.assertEqual(mw.revealed_plant_ids(repo), {"MW-C720-01"})
+        self.assertTrue(mw.check(repo, self.tmp / "none")["ok"], mw.check(repo, self.tmp / "none")["problems"])
+        # An unrevealed id beside a revealed one still fails, as do markers next to a revealed id.
+        for extra in (" and MW-C720-02", " and MW-C1-01", " SEEDED:EO:1"):
+            note.write_text(json.dumps({"question": "MW-C720-01" + extra}) + "\n")
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"], extra)
+        note.write_text(json.dumps({"question": "MW-C720-01"}) + "\n")
+        # A malformed plant list (batch prefix does not match the item) reveals nothing.
+        self.write_wave(repo, plant="MW-C9:MW-C720-01")
+        self.assertEqual(mw.revealed_plant_ids(repo), frozenset())
+        self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+        # A plant list outside research/excavator/<wave>/ reveals nothing.
+        shutil.rmtree(repo / "research/excavator")
+        self.write_wave(repo / "jobs", wave="w2")
+        self.assertEqual(mw.revealed_plant_ids(repo), frozenset())
+
+    def test_revealed_plant_text_and_exact_copies_still_fail(self):
+        out, fx = self.seed("a", n=12)
+        repo = self.make_repo(fx)
+        key = json.loads((out / "key/KEY.sealed.json").read_text())
+        plant = next(i["item_id"] for i in key["items"] if i["is_seeded"])
+        self.write_wave(repo, plant=f"MW-C1:{plant}")
+        self.assertIn(plant, mw.revealed_plant_ids(repo))
+        self.assertTrue(mw.check(repo, fx.parent)["ok"])
+        fixture = json.loads((fx / f"{plant}.seeded.json").read_text())
+        target = repo / "jobs/other/claims.jsonl"
+        target.write_text(json.dumps(mw._deflag(fixture["seeded_payload"])) + "\n")
+        problems = {p["problem"] for p in mw.check(repo, fx.parent)["problems"]}
+        self.assertIn("exact copy of a planted item", problems)
+        target.write_text(json.dumps(fixture["seeded_payload"]) + "\n")
+        self.assertTrue(any(p.startswith("marker") for p in
+                            {p["problem"] for p in mw.check(repo, fx.parent)["problems"]}))
+
+    def test_archived_check_report_is_annotation_but_other_findings_fail(self):
+        repo = self.make_repo(self.tmp / "none")
+        path = repo / "jobs/_attempts/portfolio-repair-check/123-1/tests/mountweazel.log"
+        path.parent.mkdir(parents=True)
+        report = {"ok": False, "fixtures_checked": 16, "files_scanned": 9, "leak_needles": 1, "problem_count": 2,
+                  "problems": [{"where": "jobs/kean/register/asks.jsonl", "problem": "batch item id MW-C1-01"},
+                               {"where": "research/x/test.py", "problem": "marker SEEDED:"}]}
+        head = "FAIL: test\nAssertionError: 1 != 0 : "
+        path.write_text(head + json.dumps(report, indent=1) + "\n\n----\nFAILED (failures=1)\n")
+        self.assertTrue(mw.check(repo, self.tmp / "none")["ok"], mw.check(repo, self.tmp / "none")["problems"])
+        for extra in ("actual item MW-C1-01\n", "SEEDED:EO:1\n"):
+            path.write_text(head + json.dumps(report, indent=1) + "\n" + extra)
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"], extra)
+        for bad in ({"where": "jobs/x/MW-C1-01.json", "problem": "marker SEEDED:"},
+                    {"where": "jobs/x.json", "problem": "planted text SEEDED:EO:1"},
+                    {"where": "jobs/x.json", "problem": "batch item id MW-C1-01", "extra": 1}):
+            path.write_text(head + json.dumps(dict(report, problems=[bad]), indent=1) + "\n")
+            self.assertIsNone(mw._runner_diagnostic_for_item_scan(path, repo))
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"], bad)
+        # The same report anywhere else is not an archived runner log.
+        other = repo / "jobs/other/output/mountweazel.log"
+        other.write_text(head + json.dumps(report, indent=1) + "\n")
+        path.unlink()
+        self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
+
+    def test_reviewed_marker_mention_is_exact(self):
+        repo = self.make_repo(self.tmp / "none")
+        rel = "research/hollerith-drivers/test_driver.py"
+        mention = mw.MARKER_MENTIONS[rel][0].decode()
+        p = repo / rel
+        p.parent.mkdir(parents=True)
+        p.write_text("card = " + mention + "\n")
+        self.assertTrue(mw.check(repo, self.tmp / "none")["ok"])
+        for extra in ('x = {"instrument_id": "SEEDED:EO:200"}\n', "MW-C1-01\n"):
+            p.write_text("card = " + mention + "\n" + extra)
+            self.assertFalse(mw.check(repo, self.tmp / "none")["ok"], extra)
+        other = repo / "research/other/test_driver.py"
+        other.parent.mkdir(parents=True)
+        other.write_text("card = " + mention + "\n")
+        p.unlink()
         self.assertFalse(mw.check(repo, self.tmp / "none")["ok"])
 
     def test_runner_manifest_exception_rejects_invalid_or_duplicate_structure(self):
