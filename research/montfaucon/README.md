@@ -82,3 +82,13 @@ three controls; their sealed observations and the third review are under
 `GATE_M008.*` and `COST.md` record the low-yield source-family stop and
 unknown actual cost. Only the one fully checked GovInfo printing yields an
 official fragment; no result is a human or legal certification.
+
+`checks/m009-held-1936-and-reports.jsonl` records 50 distinct held targets:
+0 pass, 47 fail, 1 unsure and 2 blocked. Both blind readers caught all
+three controls. They separately revisited EO:3083 source provenance and
+agreed that the complete numbered circular is not proven to be an issued
+original printing. The two blocked orders need the exact 1911 Isthmian
+GPO scan, PDF pages 28–29. The 50-row `REPORT_M009.md`, sealed evidence
+under `reviews/m009/`, `GATE_M009.*` and `COST.md` document each span,
+the low-yield source diagnosis and unknown actual cost. No result yields
+original-text credit or a human/legal certification.
