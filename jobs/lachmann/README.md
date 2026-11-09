@@ -30,7 +30,10 @@ Witnesses are the fragment declarations that `working_text.Index` loads (read-on
 Producer wrappers (comment headers, Wikisource page chrome) are removed before any test, because they name the order.
 One representation is chosen: government_printed_copy, machine_read_government_printed_copy,
 government_printed_reproduction, archival_replica_scan_pending_codebook, compiled_transcription, mirror_transcription,
-compiled_transcription_lead; ties go to the longest text.
+compiled_transcription_lead; ties go to the longest text. One exception (2026-11-09): when the chosen witness is a
+machine-read government printing (whole OCR pages, for example Mabillon's held printings) and the tests do not confirm
+it, the next witness in that order is assessed by the same tests. Its confirmation records each printing passed over,
+with its reasons, in `evidence.passed_over`; the printing stays in `witnesses`. No other grade is passed over.
 
 - **identity_confirmed**: (a) the chosen text names the register number as an order number and the register's full date
   appears; or (b) an unnumbered order whose date appears, whose title-word overlap is at least 0.6 and which has an
@@ -58,7 +61,13 @@ compiled_transcription_lead; ties go to the longest text.
   probably handwritten, and the number (or date) is in the first 1,500 characters. No per-page text is held, so the
   fallback in the brief is used. American Presidency Project texts: the page record in `DOCUMENTS.jsonl` or
   `MIRROR_DOCUMENTS.jsonl` with the same sha256 has a heading naming the number, the register date, the held `text_sha256`,
-  and subject words found in the text (the check in `jobs/claim-kit/AGENT_PROTOCOL.md`). Other producers have no page rule
+  and subject words found in the text (the check in `jobs/claim-kit/AGENT_PROTOCOL.md`). Mabillon held printings
+  (`mabillon-held-printings` leads, 2026-11-09): only from facts the fragment records and the text shows: Mabillon's own
+  single fragment row for exactly this text (grade `machine_read_government_printed_copy`, `acceptable_as_original`
+  false, same text path), the source SHA-256 declared in the data and in `sources`, printed page numbers in
+  `page_or_item` (scanned-image numbers alone are not a page record), the match's own-number marker a heading (a closing
+  tag alone does not show where the order starts), and the order's number in the first 1,500 characters; a missing
+  fact is a `pages:mabillon_*` reason, never a pass. Other producers have no page rule
   and stay false, so a Wikisource text that requires a page check stays unconfirmed even when route (d) holds.
 - A partial register date (year only or year and month) cannot be matched and fails with `identity:register_date_incomplete`.
 
