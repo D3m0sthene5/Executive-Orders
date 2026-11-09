@@ -96,4 +96,54 @@ class PoolTests(unittest.TestCase):
             for url in ['http://test/a','https://user:pass@test/a','file:///a']:
                 with self.assertRaises(FetchError):p.fetch(url)
             (Path(d)/'big').write_bytes(b'x'*100);self.assertEqual(prune(d,20)['bytes_retained'],0)
+class RobotsWildcardTests(unittest.TestCase):
+    UA='eo-test/1.0'
+    def _blocked(self,robots,path,ua=None):
+        def net(u,h,t):return 200,{},io.BytesIO(robots.encode() if u.endswith('robots.txt') else b'body')
+        with tempfile.TemporaryDirectory() as d:
+            p=FetchPool(d,transport=net,min_interval=0,user_agent=ua or self.UA)
+            try:p.allowed('https://test'+path);return False
+            except FetchError as e:
+                self.assertIn('blocked_by_robots_txt',str(e));return True
+    def test_star_in_middle(self):
+        r='User-agent: *\nDisallow: /congress*/replay\n'
+        self.assertTrue(self._blocked(r,'/congress109/replay/x'))
+        self.assertFalse(self._blocked(r,'/congress109/other'))
+    def test_dollar_anchor(self):
+        r='User-agent: *\nDisallow: /*.pdf$\n'
+        self.assertTrue(self._blocked(r,'/a/b.pdf'))
+        self.assertFalse(self._blocked(r,'/a/b.pdf?x=1'))
+        self.assertFalse(self._blocked(r,'/a/b.pdfx'))
+    def test_longest_match_allow_vs_disallow(self):
+        r='User-agent: *\nDisallow: /docs/\nAllow: /docs/public/\n'
+        self.assertFalse(self._blocked(r,'/docs/public/a'))
+        self.assertTrue(self._blocked(r,'/docs/private/a'))
+        r2='User-agent: *\nAllow: /docs/\nDisallow: /docs/secret/\n'
+        self.assertTrue(self._blocked(r2,'/docs/secret/a'))
+    def test_equal_length_allow_wins(self):
+        r='User-agent: *\nDisallow: /page\nAllow: /page\n'
+        self.assertFalse(self._blocked(r,'/page'))
+    def test_user_agent_group_selection(self):
+        r='User-agent: *\nDisallow: /\n\nUser-agent: eo-test\nDisallow: /private*\n'
+        self.assertFalse(self._blocked(r,'/open'))
+        self.assertTrue(self._blocked(r,'/private/x'))
+        self.assertTrue(self._blocked(r,'/open',ua='other-bot/1'))
+    def test_urllib_robotparser_gets_wildcard_wrong(self):
+        import urllib.robotparser
+        # Older stdlib ignores '*' and '$' outright; 3.13 ranks a wildcard rule by matched length, not rule length,
+        # so a broad 'Allow: /*' overrides a specific Disallow (RFC 9309 ranks by pattern length: Disallow wins).
+        r='User-agent: *\nAllow: /*\nDisallow: /docs/secret/\n'
+        rp=urllib.robotparser.RobotFileParser();rp.parse(r.splitlines())
+        self.assertTrue(rp.can_fetch(self.UA,'https://test/docs/secret/x'))  # stdlib wrongly allows
+        self.assertTrue(self._blocked(r,'/docs/secret/x'))
+    def test_error_statuses_unchanged(self):
+        for status,blocked in ((404,False),(410,False),(401,True),(403,True)):
+            def net(u,h,t,s=status):return s,{},io.BytesIO(b'')
+            with tempfile.TemporaryDirectory() as d:
+                p=FetchPool(d,transport=net,min_interval=0)
+                if blocked:self.assertRaises(FetchError,p.allowed,'https://test/a')
+                else:p.allowed('https://test/a')
+        def net5(u,h,t):return 503,{},io.BytesIO(b'')
+        with tempfile.TemporaryDirectory() as d:
+            self.assertRaises(FetchError,FetchPool(d,transport=net5,min_interval=0).allowed,'https://test/a')
 if __name__=='__main__':unittest.main()

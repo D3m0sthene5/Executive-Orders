@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (13)
+## Waiting for the owner (1)
 
-**A-20261106-1**, **A-20261106-2**, **A-20261106-dagron-nyu**, **A-20261106-pothier**, **A-20261107-cap-mirror**, **A-20261107-claimkit-court-fragments**, **A-20261107-courtlistener-robots**, **A-20261107-fetchpool-wildcards**, **A-20261107-loc-hein**, **A-20261107-lowande-email**, **A-20261107-mountweazel-plants-leak**, **A-20261107-ocr-reference-rule**, **A-20261107-tracker-thesis-fix**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261107-mountweazel-plants-leak**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -57,4 +57,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-09 F-20261109-gutenberg-kean-measures **worked**: Gutenberg item 5: optional structured measures on Kean findings (wave, usd by role and model, orders attempte… Lesson: Record a wave's cost with kean.py add-measures from bentham usage output, not in prose. lean_coordination's cost at stake is an upper bound: before Gutenberg every claude -p worker was labelled coord…
 - 2026-11-09 F-20261109-gutenberg-digest **worked**: Gutenberg item 7: stop daily-digest going stale whenever any job publishes: narrow its reads, or an as-of rea… Lesson: A readout of many jobs should be an as-of readout, never narrowed: narrowing a digest's reads would hide real changes.
 
-Register: 72 owner decisions, 31 answered questions, 273 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 72 owner decisions, 43 answered questions, 273 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

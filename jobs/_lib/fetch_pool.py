@@ -10,6 +10,36 @@ import urllib.error, urllib.parse, urllib.request, urllib.robotparser
 from pathlib import Path
 
 class FetchError(RuntimeError):pass
+
+def robots_rules(text,ua):
+    """[(allow,pattern)] for `ua` from a robots.txt body, keeping `*` and `$` wildcards that urllib.robotparser ignores.
+    The group naming the agent's product token wins over `*` (RFC 9309 2.2.1)."""
+    token=ua.split('/')[0].split()[0].lower() if ua.split() else ''
+    groups,cur,seen=[],None,False
+    for raw in text.splitlines():
+        line=raw.split('#',1)[0].strip()
+        if ':' not in line:continue
+        k,v=(x.strip() for x in line.split(':',1));k=k.lower()
+        if k=='user-agent':
+            if cur is None or seen:cur,seen={'agents':[],'rules':[]},False;groups.append(cur)
+            cur['agents'].append(v.lower())
+        elif k in ('allow','disallow') and cur is not None:
+            seen=True
+            if v:cur['rules'].append((k=='allow',v))
+    named=[g for g in groups if any(a and a!='*' and a in token for a in g['agents'])]
+    star=[g for g in groups if '*' in g['agents']]
+    return [r for g in (named or star) for r in g['rules']]
+def _rule_regex(pattern):
+    body=''.join('.*' if c=='*' else re.escape(c) for c in pattern.rstrip('$'))
+    return re.compile(body+('$' if pattern.endswith('$') else ''),re.S)
+def robots_allows(rules,path):
+    """Longest matching rule wins; Allow wins a tie; no matching rule allows (RFC 9309 2.2.2)."""
+    best=None
+    for allow,pat in rules:
+        if _rule_regex(pat).match(path):
+            key=(len(pat),allow)
+            if best is None or key>best[0]:best=(key,allow)
+    return True if best is None else best[1]
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self,*a,**k):return None
 
@@ -75,13 +105,18 @@ class FetchPool:
                 finally:body.close()
                 with self.lock:self.requests+=1
                 rp=urllib.robotparser.RobotFileParser()
-                if status==200 and len(raw)<=500000:rp.parse(raw.decode('utf-8','replace').splitlines())
+                rp.wild=None
+                if status==200 and len(raw)<=500000:
+                    txt=raw.decode('utf-8','replace');rp.parse(txt.splitlines());rp.wild=robots_rules(txt,self.user_agent)
                 elif status in (404,410):rp.allow_all=True
                 elif status in (401,403):rp.disallow_all=True
                 else:raise FetchError('robots unavailable: '+str(status))
                 self.robots[origin]=rp
             rp=self.robots[origin]
-        if not rp.can_fetch(self.user_agent,url):raise FetchError('blocked_by_robots_txt')
+        if rp.wild is None:ok=rp.can_fetch(self.user_agent,url)  # allow_all / disallow_all (4xx) exactly as before
+        else:
+            u=urllib.parse.urlsplit(url);ok=robots_allows(rp.wild,(u.path or '/')+('?'+u.query if u.query else ''))
+        if not ok:raise FetchError('blocked_by_robots_txt')
         rate=rp.request_rate(self.user_agent)
         return max(float(rp.crawl_delay(self.user_agent) or 0),rate.seconds/rate.requests if rate else 0)
     def _paths(self,url):
