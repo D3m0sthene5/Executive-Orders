@@ -28,9 +28,10 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 Comparison snapshot: 2026-11-08; intervening runs may be absent.
 - claim-checker: claims_all_checks_passed: 1473 → 1660; claims_mechanical_fail: 267 → 80; claims_mechanical_pass: 1559 → 1746; held_distinct_sha256: 56996 → 56911
 - duodecim-tableiv: captures_discovered_unt: 2 → 0
+- family-rules: saved_texts_scanned: 82591 → 82852
 - gessner-cards: one_step_from_ready: 217 → 216; ready_for_human_review: 1083 → 1179
-- kean: decisions: 71 → 74; findings: 264 → 276; open_owner_questions: 13 → 0
-- lachmann: assessed: 2395 → 2408; complete_text_confirmed: 1276 → 1383; confirmed: 703 → 775; identity_confirmed: 1208 → 1184
+- kean: decisions: 71 → 74; findings: 264 → 286; open_owner_questions: 13 → 1
+- lachmann: assessed: 2395 → 2360; complete_text_confirmed: 1276 → 1396; confirmed: 703 → 807; identity_confirmed: 1208 → 1146
 - lambertini: counterevidence_records: 1245 → 1244; decided_orders_with_draft: 4291 → 4301; packet_targets: 840 → 846; packets: 114 → 120
 - mabillon-held-printings: lead: 244 → 250; passages: 2460 → 2482; strong: 1771 → 1787; targets: 2015 → 2037
 - readiness-tracker: formal_revocation_after_earlier_cessation: 0 → 33; original_replacement_obligations: 848 → 849; quotation_recheck_obligations: 848 → 849; ready_for_human_review: 1083 → 1179
@@ -65,4 +66,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42695517765)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42711595284)
