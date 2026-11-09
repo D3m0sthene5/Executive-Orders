@@ -1,5 +1,5 @@
 # NEYMAN frame
 
-13,649 known unfinished orders; 2,696 actual joint cells; 24 prospective attempts.
+13,915 known unfinished orders; 2,937 actual joint cells; 24 prospective attempts.
 
 No product of marginal probabilities. Historical census recovery is excluded and remains incompletely bounded. Sampling does not replace exhaustive research.

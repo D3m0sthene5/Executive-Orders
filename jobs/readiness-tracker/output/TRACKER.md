@@ -1,10 +1,10 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,083 of 14,998 orders (7.2%)**
+**Numbered series: ready for human review 1,183 of 14,998 orders (7.9%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42564646150-1:68c99efe247b9a222871ba7b9fda7ead58853c05f5db01f304ba0df1aeb6dfe8` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42570902277-1:ac7f6d1a84710e26c609204cc5c5108ad767e04e531af510b4522c3291ec3134` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -12,10 +12,10 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 4,301. The other 10,697 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 658, 'transcription_dependent': 425}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 848; quotation rechecks: 848. These remain work after readiness.
+Ready by text evidence: {'original_supported': 658, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
+Outstanding original replacement obligations: 847; quotation rechecks: 847. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 255. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 1689}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 254. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 1630}.
 
 ## Steps finished (orders with a provisional status)
 
@@ -23,9 +23,9 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 4,301 | 4,301 | 100.0% |
 | Original or explicitly reviewed provisional working text saved | 3,545 | 4,301 | 82.4% |
-| Complete inventory of the order's operative clauses | 1,325 | 4,301 | 30.8% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,108 | 4,301 | 25.8% |
-| Savings clauses and surviving effects closed | 1,312 | 4,301 | 30.5% |
+| Complete inventory of the order's operative clauses | 1,425 | 4,301 | 33.1% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,208 | 4,301 | 28.1% |
+| Savings clauses and surviving effects closed | 1,412 | 4,301 | 32.8% |
 | Search for later contrary sources recorded, no open conflicts | 2,874 | 4,301 | 66.8% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 825 | 15.2% |
@@ -61,10 +61,10 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `CURRENT_BASIS_UNPROVED` | 370 | 370 |
 | `OPUS_MEDIA_NONE_CITED` | 198 | 198 |
 | `FIRST_END_UNRESOLVED` | 184 | 184 |
-| `CLAIM_CHECK_FAILED` | 166 | 166 |
-| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 163 | 163 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
 | `CLAIM_INCOMPLETE` | 88 | 88 |
+| `CLAIM_CHECK_FAILED` | 66 | 66 |
+| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 63 | 63 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 24 | 24 |
@@ -92,7 +92,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
 - tischendorf-originals: 701
-- mabillon-held-printings: 2,015
+- mabillon-held-printings: 2,037
 - photius-gpo-volumes: 3,679
 - photius-csc-printings: 143
 - photius-free-printings: 471
@@ -106,7 +106,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - photius-replica-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 2,557
 - montfaucon-page-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 0
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
-- lachmann working-text confirmations (provisional text step only, never an original): 2,395
+- lachmann working-text confirmations (provisional text step only, never an original): 2,409
 - opus-media-match status: 1,155
 - source-ladder: 821
 - claim-checker: 1,530

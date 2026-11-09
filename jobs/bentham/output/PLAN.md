@@ -12,17 +12,17 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 4 | acquire.shared.EO_6910 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 5 | acquire.shared.CFR_26_CFR_458.324 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 6 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
-| 7 | recovery.working_text_stale | recovery | 124 | 79.2 | 0.0 | $50 | 159.9 | $50 |
-| 8 | recovery.custody_stranded | recovery | 10 | 6.4 | 0.0 | $3.99 | 159.9 | $54 |
-| 9 | production.one_step_away | production | 217 | 138.6 | 0.0 | $140 | 98.8 | $194 |
-| 10 | production.claim_ready.yes.fr | production | 351 | 81.9 | 0.0 | $227 | 36.1 | $421 |
-| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 1.3 | $7.89 | 16.1 | $429 |
-| 12 | status_assignment.undecided | status_assignment | 10697 | 1069.7 | 0.0 | $6,914 | 15.5 | $7,342 |
-| 13 | production.claim_ready.no.fr | production | 1024 | 34.1 | 0.0 | $662 | 5.2 | $8,004 |
-| 14 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $8,004 |
-| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $8,004 |
-| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $8,004 |
-| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $8,004 |
+| 7 | recovery.custody_stranded | recovery | 10 | 6.4 | 0.0 | $2.31 | 276.7 | $2.31 |
+| 8 | recovery.working_text_stale | recovery | 124 | 79.2 | 0.0 | $29 | 276.7 | $31 |
+| 9 | production.one_step_away | production | 217 | 138.6 | 0.0 | $72 | 192.0 | $103 |
+| 10 | production.claim_ready.yes.fr | production | 351 | 81.9 | 0.0 | $117 | 70.2 | $220 |
+| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 1.3 | $3.74 | 33.9 | $224 |
+| 12 | status_assignment.undecided | status_assignment | 10697 | 1069.7 | 0.0 | $3,557 | 30.1 | $3,780 |
+| 13 | production.claim_ready.no.fr | production | 1024 | 34.1 | 0.0 | $340 | 10.0 | $4,121 |
+| 14 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,121 |
+| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $4,121 |
+| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,121 |
+| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,121 |
 
 Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
 
@@ -32,11 +32,19 @@ Untested savers that would lower every cost above (Junto, measured cost at stake
 - `revere_phase_handoff`: $230 spent in this pattern (unverified)
 - `idle_cache_avoidance`: $137 spent in this pattern (unverified)
 
+Measured waves (Kean findings' structured measures; list-price dollars; not pooled into the rates above):
+
+| Wave | $ total | Coordinator share | Attempted | Filed | $ per filed | Controls missed |
+|---|---:|---:|---:|---:|---:|---:|
+| cujas-2026-11-08 | $23 | 34% | 75 | 68 | $0.34 | 0 of 6 |
+| gutenberg-2026-11-09 | $28 | 100% |  |  |  |  |
+| haloander-2026-11-07 | $63 | 72% |  |  |  |  |
+
 Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting is not published):
 
 - cache_read_weight_1.0: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK, recovery.custody_stranded ...
 - cache_read_weight_0.1: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK, recovery.custody_stranded ...
-- **Rank flips against the dollar ranking: 10** cache_read_weight_1.0: recovery.custody_stranded before recovery.working_text_stale; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.working_text_stale; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.one_step_away; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.claim_ready.yes.fr; cache_read_weight_0.1: recovery.custody_stranded before recovery.working_text_stale
+- **Rank flips against the dollar ranking: 8** cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.working_text_stale; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.one_step_away; cache_read_weight_1.0: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before production.claim_ready.yes.fr; cache_read_weight_0.1: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.custody_stranded; cache_read_weight_0.1: acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK before recovery.working_text_stale
 
 The choice of actions within budget does not change between 30- and 180-day discounts.
 
