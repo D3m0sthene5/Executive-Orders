@@ -1,0 +1,45 @@
+{
+ "schema": "davy-chain-health/1",
+ "verdict": "fail",
+ "summary": "claim-drafts -> claim-kit chain: FAIL in declarations - ValueError: claim-drafts/needs.txt declares research/stage19/output, which is not on main; claim-drafts/needs.txt declares research/stage20/output, which is not on main; claim-drafts/needs.txt declares research/stage21/sources_index, which ",
+ "input_commit": "f56b6d0cb8618293b245ffacf84781940a9464ff",
+ "checked_utc": "2026-11-09T05:02:06Z",
+ "checks": [
+  {
+   "check": "population",
+   "result": "PASS",
+   "detail": "census 14998 ids, 4301 decided (contract 4bc1d8765d1f)",
+   "seconds": 0.2
+  },
+  {
+   "check": "drafts",
+   "result": "PASS",
+   "detail": "exact coverage and statuses passed",
+   "seconds": 0.6
+  },
+  {
+   "check": "dossiers",
+   "result": "PASS",
+   "detail": "summary counts and index membership/statuses match the decided population (fingerprints not re-read)",
+   "seconds": 0.0
+  },
+  {
+   "check": "identity_case",
+   "result": "PASS",
+   "detail": "no undeclared letter-case variants across 4301 ids",
+   "seconds": 0.5
+  },
+  {
+   "check": "declarations",
+   "result": "FAIL",
+   "detail": "ValueError: claim-drafts/needs.txt declares research/stage19/output, which is not on main; claim-drafts/needs.txt declares research/stage20/output, which is not on main; claim-drafts/needs.txt declares research/stage21/sources_index, which is not on main; claim-drafts/needs.txt declares research/stage21/original_sources, which is not on main; claim-drafts/needs.txt declares research/stage20/sources, which is not on main; claim-drafts/needs.txt declares research/stage18, which is not on main; claim-drafts/needs.txt declares research/stage14/QUEUES, which is not on main; claim-drafts/needs.txt declares rele",
+   "seconds": 0.0
+  },
+  {
+   "check": "unit_tests",
+   "result": "PASS",
+   "detail": "claim-drafts and claim-kit unit tests pass",
+   "seconds": 100.8
+  }
+ ]
+}
