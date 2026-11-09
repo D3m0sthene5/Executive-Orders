@@ -73,3 +73,12 @@ Each negative outcome pins the inspected PDF, exact source fragment and page
 image; none confers original-text credit. The sealed audit is under
 `reviews/m007/`; `REPORT_M007.md`, `GATE_M007.*` and `COST.md` record the
 source-locator stop and unknown actual cost.
+
+`checks/m008-mixed-held-originals.jsonl` records 50 distinct held-original
+targets in GovInfo Federal Register issues and government report volumes:
+1 third-adjudicated pass, 16 fail, 33 unsure. Both blind readers caught all
+three controls; their sealed observations and the third review are under
+`reviews/m008/`. `REPORT_M008.md` names every exact cited scope and reason.
+`GATE_M008.*` and `COST.md` record the low-yield source-family stop and
+unknown actual cost. Only the one fully checked GovInfo printing yields an
+official fragment; no result is a human or legal certification.

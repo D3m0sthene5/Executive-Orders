@@ -106,3 +106,16 @@ findings. The source-locator lane stopped at its Bentham gate. Actual model
 tokens and cash telemetry were unavailable. `usd: null` means **unknown**;
 $0.38/attempt is a planning proxy, and the direct gate's `spent_usd: 0` is a
 parser artifact, not measured spend. See `GATE_M007.*`.
+
+## m008 — 50 held GovInfo and government-report targets, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order page readers and a fresh blind third reader for EO:7520 | unknown | unknown | unknown |
+| Coordinator | Public issue/report PDF and text-layer retrieval, SHA-256 checks, page rendering, source/held-text pinning, record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught three controls. The third adjudicated the one verdict
+disagreement. Actual per-context/model token and cash telemetry was unavailable.
+`usd: null` means **unknown**. Bentham's $0.38/attempt is a planning proxy;
+`spent_usd: 0` in the direct gate is a parser artifact, not measured spend.
+See `GATE_M008.*`.
