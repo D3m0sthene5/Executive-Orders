@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-09 18:19 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-09 18:26 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 **Readiness generation is behind the current records.** The published ready count below is retained with its generation date. New or changed claims require matching checker receipts and a tracker refresh before they can advance readiness.
 
@@ -68,7 +68,7 @@ File acquisition and machine text do not establish legal conclusions or independ
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `29aac8b636167214214df4704a8438a73516b6ad`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `f50164c0667a5f311bad0a92dd2044a8eeeaaf29`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
