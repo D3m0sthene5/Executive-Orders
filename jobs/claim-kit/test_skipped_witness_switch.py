@@ -127,7 +127,12 @@ class SwitchTests(unittest.TestCase):
         """Owner 2026-11-09 (A-20261109-skipped-witness): flag. A flag without the ruling file would be unauthorised."""
         here = Path(__file__).resolve().parents[2]
         self.assertEqual(W.skipped_witness_mode(here), 'flag')
-        self.assertTrue((here / 'research/readiness/owner_rulings/2026-11-09-skipped-witness-flag.md').is_file())
+        ruling = 'research/readiness/owner_rulings/2026-11-09-skipped-witness-flag.md'
+        if not (here / ruling).is_file():  # sparse checkouts (Road CI) hold no research/: ask git whether it is tracked
+            import subprocess
+            tracked = subprocess.run(['git', '-C', str(here), 'ls-files', '--error-unmatch', ruling],
+                                     capture_output=True).returncode == 0
+            self.assertTrue(tracked, ruling)
 
 
 if __name__ == '__main__':
