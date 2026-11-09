@@ -119,3 +119,16 @@ disagreement. Actual per-context/model token and cash telemetry was unavailable.
 `usd: null` means **unknown**. Bentham's $0.38/attempt is a planning proxy;
 `spent_usd: 0` in the direct gate is a parser artifact, not measured spend.
 See `GATE_M008.*`.
+
+## m009 — 50 held issue and government-report targets, 2026-11-08
+
+| Model tier | Work charged to this batch | Input tokens | Output tokens | API-equivalent USD |
+|---|---|---:|---:|---:|
+| gpt-6.1-sol | Two independent controlled 50-order page readers, plus independent EO:3083 source-provenance follow-ups | unknown | unknown | unknown |
+| Coordinator | Public issue/report PDF and text-layer retrieval, SHA-256 checks, page rendering, source and held-text pinning, record assembly and integration | unknown | unknown | unknown |
+
+Both readers caught three controls; no verdict disagreement remained after their
+independent source-provenance supplements. Actual per-model token and cash
+telemetry was unavailable. `usd: null` means **unknown**. Bentham's
+$0.38/attempt is a planning proxy; `spent_usd: 0` in the direct gate is a
+parser artifact, not measured spend. See `GATE_M009.*`.
