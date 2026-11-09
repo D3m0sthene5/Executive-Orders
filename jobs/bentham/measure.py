@@ -435,6 +435,48 @@ def scan_other_waves(repo: Path) -> tuple[list[dict], list[dict]]:
     return waves, skipped
 
 
+KEAN = "jobs/kean/kean.py"
+
+
+def kean_waves(repo: Path) -> list[dict]:
+    """Gutenberg item 5: per-wave cost and yield from Kean findings' structured ``measures`` (kean.py wave_measures).
+
+    Read instead of hand-typed prose. A wave without orders reports cost only; nothing here is pooled into the
+    Tribonian-measured rates or costs above, which keep their own evidence rules.
+    """
+    import importlib.util
+    path = Path(repo) / KEAN
+    if not path.is_file():
+        return []
+    spec = importlib.util.spec_from_file_location("kean_for_bentham", path)
+    K = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(K)
+    try:
+        rows = K.load(K.Repo(str(repo)), "findings")
+    except ValueError as e:
+        raise MeasureError(f"Kean register unreadable: {e}") from None
+    out = []
+    for wave, m in sorted(K.wave_measures(rows).items()):
+        usd = m.get("usd") or {}
+        total = usd.get("total")
+        if total is None and usd.get("by_role"):
+            total = sum(usd["by_role"].values())
+        orders = m.get("orders") or {}
+        roles = usd.get("by_role") or {}
+        e = {"wave": wave, "finding": m["finding"], "usd_total": total, "usd_basis": usd.get("basis"),
+             "usd_by_role": roles, "usd_by_model": usd.get("by_model") or {}, "orders": orders,
+             "controls": m.get("controls") or {}}
+        if total is not None and roles.get("coordinator") is not None and total:
+            e["coordinator_share"] = round(roles["coordinator"] / total, 4)
+        for k in ("attempted", "filed"):
+            if total is not None and orders.get(k):
+                e[f"usd_per_{k}"] = round(total / orders[k], 4)
+        if orders.get("attempted") and "filed" in orders:
+            e["filed_per_attempt"] = round(orders["filed"] / orders["attempted"], 4)
+        out.append(e)
+    return out
+
+
 def measure(repo: Path | None = None) -> dict:
     repo = Path(repo) if repo else repo_root()
     doc = _json(repo, DISPOSITION)
@@ -462,7 +504,7 @@ def measure(repo: Path | None = None) -> dict:
                                "Random samples of the undecided stratum reported by waves (owner decision 2026-11-08); "
                                "filed = status adopted and claim canonical."))
     context = costs.pop("_context")
-    return {"rates": rates, "costs": costs, "context": context,
+    return {"rates": rates, "costs": costs, "context": context, "kean_waves": kean_waves(repo),
             "price_table": {"source": pricing.REL, "retrieved": prices_for(repo).retrieved,
                             "basis": "per exact model; 5-minute and 1-hour cache writes at their own rates"}, "waves": waves + more, "skipped": skipped}
 

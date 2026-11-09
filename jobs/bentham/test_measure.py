@@ -180,6 +180,24 @@ class T(unittest.TestCase):
                 M.measure(root)
             self.assertIn("PRICES.json", str(cm.exception))
 
+    def test_gutenberg_kean_waves(self):
+        """Item 5: wave costs and yields come from Kean findings' structured measures, not prose."""
+        import shutil
+        with tempfile.TemporaryDirectory() as t:
+            root = Path(t)
+            build(root)
+            (root / "jobs/kean/register").mkdir(parents=True)
+            shutil.copy(REPO / "jobs/kean/kean.py", root / "jobs/kean/kean.py")
+            m = {"wave": "w1", "usd": {"total": 20.0, "by_role": {"coordinator": 5.0, "worker": 15.0}, "basis": "list_price"},
+                 "orders": {"attempted": 10, "submitted": 9, "filed": 8}, "controls": {"planted": 2, "missed": 0}}
+            (root / "jobs/kean/register/findings.jsonl").write_text(json.dumps(
+                {"id": "F-1", "rev": 0, "date": "2026-11-09", "measures": m}) + "\n" + json.dumps(
+                {"id": "F-2", "rev": 0, "date": "2026-11-09", "measures": {"wave": "BAD"}}) + "\n", encoding="utf-8")
+            M._PRICES.clear()
+            k = M.measure(root)["kean_waves"]
+            self.assertEqual([w["wave"] for w in k], ["w1"])  # invalid measures are skipped, not guessed
+            self.assertEqual((k[0]["usd_per_filed"], k[0]["coordinator_share"], k[0]["filed_per_attempt"]), (2.5, 0.25, 0.8))
+
     def test_family_fallback_by_phase(self):
         with tempfile.TemporaryDirectory() as t:
             root = Path(t)

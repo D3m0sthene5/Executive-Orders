@@ -66,8 +66,19 @@ def load_prices(repo):
 
 
 def price(row, prices):
-    """API list-price dollars for one usage row, or None for an unpriced model."""
+    """API list-price dollars for one usage row, or None for an unpriced model.
+
+    Gutenberg: a row Bentham priced per call (``usd_list``: exact model, fast mode, Haiku long prompts) keeps that
+    total; its category split is still taken from the table, scaled to that total.
+    """
     model = (row.get("model") or "").strip()
+    pre = row.get("usd_list")
+    if pre not in (None, ""):
+        usd, parts = price(dict(row, usd_list=""), prices)
+        if usd is None:
+            return float(pre), {k: 0.0 for k in TOKEN_FIELDS}
+        scale = float(pre) / usd if usd else 0.0
+        return float(pre), {k: v * scale for k, v in parts.items()}
     for pattern, m in prices:
         if pattern.search(model):
             n = {k: float(row.get(k) or 0) for k in TOKEN_FIELDS}
@@ -77,6 +88,21 @@ def price(row, prices):
             return usd, {k: v * m.get({"fresh_input": "input", "cache_write_unclassified": "cache_write_5m"}.get(k, k), 0) / 1e6
                          for k, v in n.items()}
     return None, None
+
+
+KEAN = "jobs/kean/kean.py"
+
+
+def kean_measures(repo):
+    """{wave: measures} from Kean findings (jobs/kean/kean.py wave_measures), or {} when Kean is absent."""
+    import importlib.util
+    path = Path(repo) / KEAN
+    if not path.is_file():
+        return {}
+    spec = importlib.util.spec_from_file_location("kean_for_junto", path)
+    K = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(K)
+    return K.wave_measures(K.load(K.Repo(str(repo)), "findings"))
 
 
 def measure(repo):
@@ -111,6 +137,19 @@ def measure(repo):
         for k in ("usd", "coordinator_usd", "large_context_cache_read_usd", "idle_cache_hold_usd"):
             wave[k] = round(wave[k], 2)
         waves.append(wave)
+    # Gutenberg item 5: waves known only from Kean findings' structured measures (no committed usage table).
+    have = {w["wave"] for w in waves}
+    for name, m in sorted(kean_measures(repo).items()):
+        usd = m.get("usd") or {}
+        roles = usd.get("by_role") or {}
+        total = usd.get("total", sum(roles.values()) if roles else None)
+        if name in have or total is None or "coordinator" not in roles:
+            continue
+        waves.append({"wave": name, "source": "Kean " + m["finding"], "agents": None, "usd": round(total, 2),
+                      "coordinator_usd": round(roles["coordinator"], 2), "large_context_cache_read_usd": 0.0,
+                      "idle_cache_hold_usd": 0.0, "large_context_calls": 0, "coordinator_calls": None,
+                      "coordinator_share": round(roles["coordinator"] / total, 3) if total else None,
+                      "note": "from Kean measures: coordinator share only; per-call patterns need a usage table"})
     at_stake = {
         "lean_coordination": [(w["wave"], w["coordinator_usd"]) for w in waves
                               if w["coordinator_share"] is not None and w["coordinator_share"] > COORDINATOR_SHARE],
@@ -143,7 +182,8 @@ def render(evidence):
               "|---|---:|---:|---:|---:|"]
     for w in evidence["waves"]:
         share = "n/a" if w["coordinator_share"] is None else f"{w['coordinator_share']:.0%}"
-        lines.append(f"| {w['wave']} | {w['agents']} | ${w['usd']:.2f} | {share} | {w['large_context_calls']} |")
+        agents = "" if w["agents"] is None else w["agents"]
+        lines.append(f"| {w['wave']} | {agents} | ${w['usd']:.2f} | {share} | {w['large_context_calls']} |")
     if evidence["unpriced_models"]:
         lines += ["", "Unpriced models (tokens not counted): " + ", ".join(f"{k} ({v})" for k, v in evidence["unpriced_models"].items())]
     return "\n".join(lines) + "\n"

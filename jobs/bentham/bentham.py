@@ -206,6 +206,7 @@ def plan(args):
               "discount_half_life_days": HALF_LIFE_DAYS, "sensitivity": flips,
               "allowance": adata or {"usd_per_week": None, "note": "not recorded; see README"},
               "price_table": measured.get("price_table"), "waves": measured.get("waves"),
+              "kean_waves": measured.get("kean_waves") or [],
               "what_this_is_not": "A ranking of expected yield per API-equivalent dollar from measured past waves. "
                                   "It changes no status, claim or count and authorizes no dispatch by itself."}
     (out / "PLAN.json").write_text(json.dumps(result, indent=2, default=str) + "\n")
@@ -271,6 +272,17 @@ def report(r):
                   "not savings until a two-arm `junto.py add-test` verifies them; see jobs/junto/output/OPEN_TESTS.md):", ""]
         for s in r["junto_savers"]:
             lines.append(f"- `{s['saver_key']}`: {fmt_usd(s['cost_at_stake_usd'])} spent in this pattern ({s['status']})")
+    if r.get("kean_waves"):
+        lines += ["", "Measured waves (Kean findings' structured measures; list-price dollars; not pooled into the rates "
+                  "above):", "", "| Wave | $ total | Coordinator share | Attempted | Filed | $ per filed | Controls missed |",
+                  "|---|---:|---:|---:|---:|---:|---:|"]
+        for w in r["kean_waves"]:
+            o, c = w.get("orders") or {}, w.get("controls") or {}
+            share = f"{100 * w['coordinator_share']:.0f}%" if w.get("coordinator_share") is not None else ""
+            per = fmt_usd(w["usd_per_filed"]) if w.get("usd_per_filed") is not None else ""
+            missed = f"{c['missed']} of {c['planted']}" if "planted" in c and "missed" in c else ""
+            lines.append(f"| {w['wave']} | {fmt_usd(w['usd_total']) if w.get('usd_total') is not None else ''} | {share} | "
+                         f"{o.get('attempted', '')} | {o.get('filed', '')} | {per} | {missed} |")
     win = r.get("window_token_rankings") or {}
     if win.get("orders"):
         lines += ["", "Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting "
