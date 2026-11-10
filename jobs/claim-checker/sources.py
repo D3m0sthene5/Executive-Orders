@@ -26,6 +26,7 @@ folder and re-hashed (see ``TextReader.materialize``).
 """
 
 import collections
+import contextlib
 import csv
 import gzip
 import hashlib
@@ -104,6 +105,21 @@ def file_sha256(path):
 #                 locator, and they are fetched and re-hashed here when reachable (else treated as unverified)
 #   record_only   only a custody record (hash, maybe text): the bytes are in no committed place
 CUSTODY_KINDS = ("repo_file", "opus_release", "job_cache", "pergamon_store", "record_only")
+
+# Palsgraf (palsgraf.py) sets this to its recorder while it traces a claim, so that a memo hit below replays
+# the file reads that filled the memo. The default does nothing.
+class _NoTrace:
+    def capture(self, key):
+        return contextlib.nullcontext()
+
+    def replay(self, key):
+        pass
+
+    def volatile(self, reason):
+        pass
+
+
+TRACE = _NoTrace()
 
 
 class HeldCopy:
@@ -752,8 +768,12 @@ class TextReader:
             store.popitem(last=False)
 
     def _zip_usable(self, zpath):
+        key = ("zip", str(zpath))
         if zpath not in self._zip_ok:
-            self._zip_ok[zpath] = zpath.is_file() and not is_lfs_pointer(zpath) and zipfile.is_zipfile(zpath)
+            with TRACE.capture(key):
+                self._zip_ok[zpath] = zpath.is_file() and not is_lfs_pointer(zpath) and zipfile.is_zipfile(zpath)
+        else:
+            TRACE.replay(key)
         return self._zip_ok[zpath]
 
     def materialize(self, copy):
@@ -797,7 +817,10 @@ class TextReader:
             return None
         key = str(path)
         if key not in self._sha_of_path:
-            self._sha_of_path[key] = file_sha256(path)
+            with TRACE.capture(("sha", key)):
+                self._sha_of_path[key] = file_sha256(path)
+        else:
+            TRACE.replay(("sha", key))
         return self._sha_of_path[key]
 
     def read_bytes(self, copy):
@@ -831,14 +854,17 @@ class TextReader:
             key = f"{zpath}:{member}"
             if key not in self._sha_of_path:
                 try:
-                    with zipfile.ZipFile(zpath) as z:
-                        h = hashlib.sha256()
-                        with z.open(member) as fh:
-                            for chunk in iter(lambda: fh.read(1 << 20), b""):
-                                h.update(chunk)
-                    self._sha_of_path[key] = h.hexdigest()
+                    with TRACE.capture(("sha", key)):
+                        with zipfile.ZipFile(zpath) as z:
+                            h = hashlib.sha256()
+                            with z.open(member) as fh:
+                                for chunk in iter(lambda: fh.read(1 << 20), b""):
+                                    h.update(chunk)
+                        self._sha_of_path[key] = h.hexdigest()
                 except KeyError:
                     continue
+            else:
+                TRACE.replay(("sha", key))
             return self._sha_of_path[key] == copy.sha256
         return None
 
@@ -867,7 +893,12 @@ class TextReader:
         key = (copy.origin, copy.sha256, str(copy.text_path), str(copy.local_path))
         if key in self._texts:
             self._texts.move_to_end(key)
+            TRACE.replay(("texts", key))
             return self._texts[key]
+        with TRACE.capture(("texts", key)):
+            return self._texts_uncached(copy, key)
+
+    def _texts_uncached(self, copy, key):
         out, reasons = [], []
         # 1. Extracted text recorded alongside the source (job SOURCES.jsonl text_path, Opus .txt).
         tp = copy.text_path
@@ -887,27 +918,37 @@ class TextReader:
             else:
                 reasons.append("recorded text_path not on this machine")
         # 2. Our own extraction from the saved bytes (after checking their hash).
-        cached = self._pages_by_sha.get(copy.sha256) or self._cached(copy.sha256)
+        cached = self._pages_by_sha.get(copy.sha256)
         if cached:
+            TRACE.replay(("pages", copy.sha256))
             self._remember(self._pages_by_sha, copy.sha256, cached)
             out.append(cached)
         else:
-            data, where = self.read_bytes(copy)
-            if data is None:
-                reasons.append(where)
-            elif hashlib.sha256(data).hexdigest() != copy.sha256:
-                reasons.append(f"saved bytes at {where} do not hash to the record; text not used")
-            else:
-                pages, how = bytes_to_pages(data)
-                if pages is None:
-                    reasons.append(how)
-                else:
-                    self._store(copy.sha256, pages, how)
-                    self._remember(self._pages_by_sha, copy.sha256, (pages, how))
-                    out.append((pages, how))
+            with TRACE.capture(("pages", copy.sha256)):
+                self._extract(copy, out, reasons)
         # 3. The committed Opus text pack (GitHub runs, where the Opus zip is absent).
         if not out and copy.sha256 in self.packed:
             out.append(self.packed[copy.sha256])
         result = (out, "; ".join(reasons))
         self._remember(self._texts, key, result)
         return result
+
+    def _extract(self, copy, out, reasons):
+        cached = self._cached(copy.sha256)
+        if cached:
+            self._remember(self._pages_by_sha, copy.sha256, cached)
+            out.append(cached)
+            return
+        data, where = self.read_bytes(copy)
+        if data is None:
+            reasons.append(where)
+        elif hashlib.sha256(data).hexdigest() != copy.sha256:
+            reasons.append(f"saved bytes at {where} do not hash to the record; text not used")
+        else:
+            pages, how = bytes_to_pages(data)
+            if pages is None:
+                reasons.append(how)
+            else:
+                self._store(copy.sha256, pages, how)
+                self._remember(self._pages_by_sha, copy.sha256, (pages, how))
+                out.append((pages, how))

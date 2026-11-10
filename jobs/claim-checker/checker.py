@@ -21,6 +21,7 @@ import csv
 import datetime as dt
 import glob
 import gzip
+import hashlib
 import importlib.util
 import inspect
 import io
@@ -33,10 +34,16 @@ import time
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
+import palsgraf as PG  # noqa: E402  (first: it records what the imports below read)
+# Record only when this module is the checker itself (job.py, tests); another job that loads it under its own
+# name (claim-drafts) gets an inert recorder and no process-wide hook.
+REC = PG.install() if __name__ in ("__main__", "checker") else PG.Recorder()
 import sources as S  # noqa: E402
 sys.path.insert(0, str(HERE.parent / "claim-kit"))
 import working_text as W  # noqa: E402
 import factual_events as F  # noqa: E402
+REC.global_phase = False  # imports done; later global windows are explicit (Context: gate and tracker)
+_LOAD_CONFIRMATIONS = W.load_confirmations  # the real loader; main() memoises it per run and restores it
 
 JOB_NAME = "claim-checker"
 SCHEMA = "eo-claim-check/v1"
@@ -395,8 +402,10 @@ def load_step_mapper(repo):
     return fallback, "fallback copy in checker.py"
 
 
-def read_claims(paths, repo):
-    """[(claim_key, file_rel, line, claim_or_None, parse_error)] in tracker order (file name, then line)."""
+def read_claims(paths, repo, line_sha=None):
+    """[(claim_key, file_rel, line, claim_or_None, parse_error)] in tracker order (file name, then line).
+
+    line_sha, if a dict, receives {claim_key: SHA-256 of the line's exact bytes} (Palsgraf's unit key)."""
     out = []
     for path in paths:
         path = pathlib.Path(path)
@@ -410,6 +419,8 @@ def read_claims(paths, repo):
             out.append((f"{rel}:0", rel, 0, None, f"claim file could not be read: {type(exc).__name__}: {exc}"[:200]))
             continue
         for n, raw in enumerate(data.split(b"\n"), 1):
+            if line_sha is not None:
+                line_sha[f"{rel}:{n}"] = hashlib.sha256(raw).hexdigest()
             try:
                 line = raw.decode("utf-8-sig" if n == 1 else "utf-8")
             except UnicodeDecodeError as exc:
@@ -434,16 +445,25 @@ class Context:
         self.repo = pathlib.Path(repo).resolve()
         self.job_dir = pathlib.Path(job_dir)
         self.cache_dir = pathlib.Path(cache_dir)
-        self.universe = load_universe(self.repo)
-        self.statuses = load_statuses(self.repo)
-        self.signing, self.signing_counts = load_signing(self.repo)
-        self.gate = load_gate(self.repo)
-        self.step_for_gate_error, self.step_mapping_from = load_step_mapper(self.repo)
+        # Palsgraf: the code and rules (gate, tracker mapping) are global inputs; the tables below are read
+        # per claim only through recorded lookups (palsgraf.trace_context), so their files are not.
+        with REC.global_window():
+            self.gate = load_gate(self.repo)
+            self.step_for_gate_error, self.step_mapping_from = load_step_mapper(self.repo)
+            # The owner's working-text switch is a rule (memoised per process by working_text): read it here
+            # so a change to it forces a full run.
+            if hasattr(W, "skipped_witness_mode"):
+                self.skipped_witness_mode = W.skipped_witness_mode(self.repo)
         roots = [r for r in os.environ.get("CLAIM_CHECKER_CACHE_ROOTS", "").split(os.pathsep) if r]
-        self.index = index or S.build_index(self.repo, self.job_dir, roots, exclude_jobs=(JOB_NAME,))
+        with REC.summarized():
+            self.universe = load_universe(self.repo)
+            self.statuses = load_statuses(self.repo)
+            self.signing, self.signing_counts = load_signing(self.repo)
+            self.index = index or S.build_index(self.repo, self.job_dir, roots, exclude_jobs=(JOB_NAME,))
+            self.gpo_matched = load_gpo_matched(self.repo)
+            self.archive_captures = load_archive_captures(self.repo)
+            self.working_text_index = W.Index(self.repo)
         self.reader = S.TextReader(self.cache_dir, packed=self.index.packed_texts)
-        self.gpo_matched = load_gpo_matched(self.repo)
-        self.archive_captures = load_archive_captures(self.repo)
         self._prepared = collections.OrderedDict()  # recently used source texts, normalised once
         self.today = today or dt.datetime.now(dt.timezone.utc).date()
         try:
@@ -452,17 +472,19 @@ class Context:
         except ImportError:
             self.pypdf = None
         self.not_held = []  # (claim_key, field, ref) for --fetch
-        self.working_text_index = W.Index(self.repo)
 
     def prepared(self, copy, pages, how):
-        key = (copy.origin, copy.sha256, str(copy.text_path), how)
-        prep = self._prepared.get(key)
-        if prep is None:
-            prep = self._prepared[key] = Prepared(pages)
+        # Keyed by the pages object itself: every copy of one SHA-256 shares the text reader's pages, so a
+        # volume registered under many records is normalised once, not once per record (a 27 MB Federal
+        # Register volume cited through 64 records took 470 s). The entry holds the pages, so the id is live.
+        key = id(pages)
+        hit = self._prepared.get(key)
+        if hit is None or hit[0] is not pages:
+            hit = self._prepared[key] = (pages, Prepared(pages))
             while len(self._prepared) > 32:
                 self._prepared.popitem(last=False)
         self._prepared.move_to_end(key)
-        return prep
+        return hit[1]
 
     def prepared_texts(self, copies):
         """[(Prepared, how, copy)] for every readable text of the copies, and the reasons for any missing."""
@@ -502,6 +524,7 @@ def verify_by_download(url, sha, cache_dir):
     store = pathlib.Path(cache_dir) / "verified" / (sha[:2] + "/" + sha + ".bin")
     if store.is_file():
         return hashlib.sha256(store.read_bytes()).hexdigest() == sha
+    S.TRACE.volatile("network_verify")  # the answer depends on a server and the run's download budget
     if _VERIFY["left"] is None:
         _VERIFY["left"] = int(os.environ.get("CLAIM_CHECKER_VERIFY_DOWNLOADS", "400") or 0)
     if _VERIFY["left"] <= 0:
@@ -611,6 +634,7 @@ def verify_by_archive(sha, capture, cache_dir):
     store = pathlib.Path(cache_dir) / "verified" / (sha[:2] + "/" + sha + ".bin")
     if store.is_file():
         return hashlib.sha256(store.read_bytes()).hexdigest() == sha
+    S.TRACE.volatile("network_archive")
     archive = capture.get("archive")
     if archive == "common-crawl":
         try:
@@ -862,6 +886,7 @@ def check_dates(claim, ctx, rows):
             if d is None:
                 _row(rows, step, "date_valid", path, "fail", "not_iso_date", f"{val!r} is not an ISO date or date-time")
             elif d > ctx.today:
+                S.TRACE.volatile("today")  # judged against today's date: recheck every run
                 _row(rows, step, "date_valid", path, "fail", "in_the_future", f"{val} is after today ({ctx.today})")
             else:
                 _row(rows, step, "date_valid", path, "pass", "valid_activity_date",
@@ -1362,15 +1387,51 @@ def write_report(out, per_claim, summary):
     (out / "REPORT.md").write_text("\n".join(lines), "utf-8")
 
 
+def _row_key(r):
+    return f"{r['check']}\t{r['result']}\t{r['status']}"
+
+
+def _summary_counts(stats):
+    """The SUMMARY.json counts, from per-claim row counters (identical to counting every row)."""
+    total = collections.Counter()
+    for c in stats:
+        total.update(c)
+    by_check = collections.defaultdict(collections.Counter)
+    by_status = collections.defaultdict(collections.Counter)
+    for k, n in total.items():
+        check, result, status = k.split("\t")
+        by_check[check][result] += n
+        by_status[check][status] += n
+    return total, by_check, by_status
+
+
+def _palsgraf_mode(args, limit, csv_all):
+    """None when selection may run; otherwise why this run is checked in full (and not traced)."""
+    if os.environ.get("CLAIM_CHECKER_PALSGRAF", "").strip().lower() in ("0", "off", "no", "false"):
+        return "disabled_by_CLAIM_CHECKER_PALSGRAF"
+    if args.fetch:
+        return "fetch_mode"
+    if args.claims:
+        return "custom_claims_glob"
+    if limit is not None:
+        return "job_limit"
+    if csv_all:
+        return "csv_all_rows"
+    return None
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Mechanical checks of research/readiness claims.")
     ap.add_argument("--fetch", action="store_true",
                     help="try to download not-held sources through jobs/source-ladder (off by default)")
     ap.add_argument("--claims", default=os.environ.get("CLAIM_CHECKER_CLAIMS"),
                     help="glob of claim files (default research/readiness/claims/*.jsonl)")
+    ap.add_argument("--full", action="store_true", default=os.environ.get("CLAIM_CHECKER_FULL", "").strip() in
+                    ("1", "yes", "true"), help="check every claim and reconcile against the previous trace")
     args = ap.parse_args(argv)
 
     t0 = time.time()
+    timings = {}
     repo = pathlib.Path(os.environ.get("REPO_ROOT", ".")).resolve()
     out = pathlib.Path(os.environ.get("OUTPUT_DIR") or (HERE / "output")).resolve()
     cache = pathlib.Path(os.environ.get("JOB_CACHE_DIR") or (out.parent / f"{JOB_NAME}-cache")).resolve()
@@ -1385,12 +1446,32 @@ def main(argv=None):
     except ValueError:
         csv_max_mb = CSV_MAX_MB_DEFAULT
     csv_all = os.environ.get("CLAIM_CHECKER_CSV_ALL_ROWS", "").strip() in ("1", "yes", "true")
+    untraced = _palsgraf_mode(args, limit, csv_all)
+    REC.excluded += [str(out)]
+    REC.existence_only += [str(cache)]  # extracted texts and verified downloads are content-addressed
     pattern = args.claims or str(repo / P["claims"])
-    paths = sorted(glob.glob(pattern), key=lambda p: (pathlib.Path(p).name, p))
+    with REC.summarized():
+        paths = sorted(glob.glob(pattern), key=lambda p: (pathlib.Path(p).name, p))
 
     print(f"Loading inputs from {repo} ...")
     ctx = Context(repo, HERE, cache)
-    print(f"  universe: {len(ctx.universe)} orders; provisional statuses: {len(ctx.statuses)}")
+    with REC.summarized():
+        ctx.confirmations = _LOAD_CONFIRMATIONS(ctx.repo)
+    PG.trace_context(ctx, REC, W)
+    # Within this run the confirmation files do not change: every claim reads one recorded table.
+    W.load_confirmations = lambda r: ctx.confirmations if pathlib.Path(r).resolve() == ctx.repo \
+        else _LOAD_CONFIRMATIONS(r)
+    S.TRACE = REC
+    try:
+        return _main_checked(args, ctx, repo, out, cache, limit, csv_all, csv_max_mb, untraced, paths, t0, timings)
+    finally:
+        W.load_confirmations = _LOAD_CONFIRMATIONS
+        S.TRACE = S._NoTrace()
+
+
+def _main_checked(args, ctx, repo, out, cache, limit, csv_all, csv_max_mb, untraced, paths, t0, timings):
+    timings["load_inputs_s"] = round(time.time() - t0, 1)
+    print(f"  universe: {len(ctx.raw['universe'])} orders; provisional statuses: {len(ctx.raw['statuses'])}")
     print(f"  held source copies indexed: {sum(ctx.index.origin_counts.values())} "
           f"({', '.join(f'{k} {v}' for k, v in sorted(ctx.index.origin_counts.items()))})")
     for n in ctx.index.notes:
@@ -1400,7 +1481,9 @@ def main(argv=None):
             print(f"  note: skipped {k[len('unreadable:'):]}")
     print(f"  pypdf: {ctx.pypdf or 'NOT installed (PDF quotations cannot be checked)'}")
 
-    claims = read_claims(paths, repo)
+    line_sha = {}
+    with REC.summarized():
+        claims = read_claims(paths, repo, line_sha)
     total_lines = len(claims)
     if limit is not None:
         claims = claims[:limit]
@@ -1408,38 +1491,88 @@ def main(argv=None):
     for key, _, _, claim, _ in claims:
         if claim is not None and isinstance(claim.get("instrument_id"), str):
             last_for[claim["instrument_id"]] = key
-    all_rows, per_claim, pending = [], [], []
+
+    # Palsgraf: which claims can the change since the previous trace reach?
+    t1 = time.time()
+    sett = PG.settings(repo, cache)
+    fps = PG.Fingerprinter(ctx.raw, REC)
+    prior_dirs = [os.environ.get("CLAIM_CHECKER_PRIOR_OUTPUT_DIR"), os.environ.get("JOB_PRIOR_OUTPUT_DIR"), str(out)]
+    with REC.summarized():
+        trace, trace_from = PG.load_trace(prior_dirs) if not untraced else (None, None)
+    parsed = [line_sha[k] for k, _, _, c, _ in claims if c is not None]
+    if untraced:
+        sel = {"mode": "full", "reason": untraced, "recheck": parsed, "reuse": [], "why": {}, "would_reuse": [],
+               "changed_code": [], "changed_dep_kinds": {}}
+    else:
+        sel = PG.decide(trace, parsed, fps, sett, forced_full="forced_full" if args.full else None)
+        if trace is None:
+            sel["previous_trace"] = trace_from
+    reuse = set(sel["reuse"])
+    prior_claims = (trace or {}).get("claims", {})
+    prior_table = (trace or {}).get("deps", [])
+    timings["select_s"] = round(time.time() - t1, 1)
+    print(f"  Palsgraf: {sel['mode']} ({sel['reason']}); recheck {len(sel['recheck'])}, reuse {len(reuse)} "
+          f"of {len(parsed)} claim lines; {fps.bytes_hashed / 1e6:.0f} MB hashed to compare inputs")
+
+    t2 = time.time()
+    all_rows, per_claim, pending, stats, entries = [], [], [], [], {}
     checker_errors = 0
     for key, file_rel, line, claim, err in claims:
         if claim is None:
             all_rows.append({"claim_key": key, "instrument_id": "", "effective_for_tracker": "no",
                              "step": "claim_record", "check": "parse", "field": "", "result": "fail",
                              "status": "not_json_object", "detail": err})
+            stats.append(collections.Counter({"parse\tfail\tnot_json_object": 1}))
             per_claim.append({"claim_key": key, "file": file_rel, "line": line, "parse_error": err,
                               "all_checks_passed": False, "mechanical_result": "fail", "gate_passed": False,
                               "failures": ["parse:not_json_object"]})
             print(f"  could not read claim {key}: {err}")
             continue
-        ctx.not_held = []
         effective = last_for.get(claim.get("instrument_id")) == key
-        try:
-            rows, errors, status = check_claim(claim, ctx)
-            summary = summarise_claim(key, file_rel, line, claim, rows, errors, status, ctx)
-        except Exception as exc:  # noqa: BLE001 - one bad claim must not stop the run
-            checker_errors += 1
-            print(f"  CHECKER ERROR on claim {key}: {type(exc).__name__}: {exc} (reported; run continues)")
-            rows = [{"step": "claim_record", "check": "checker_error", "field": "", "result": "fail",
-                     "status": type(exc).__name__,
-                     "detail": f"the checker failed on this claim: {type(exc).__name__}: {exc}"[:600]}]
-            summary = error_summary(key, file_rel, line, claim, exc, ctx)
-            ctx.not_held = []
+        iid = claim.get("instrument_id")
+        lsha = line_sha[key]
+        old = prior_claims.get(lsha) if lsha in reuse else None
+        ctx.not_held = []
+        if old is not None:
+            summary = {"claim_key": key, "file": file_rel, "line": line, **old["summary"]}
+            if old.get("checker_error"):
+                checker_errors += 1
+            rows = old["rows"]
+            row_stats = collections.Counter(old["stats"])
+            entries[lsha] = dict(old, deps=[prior_table[i][0] for i in old["deps"]])
+        else:
+            error = None
+            with REC.claim() as deps:
+                try:
+                    rows, errors, status = check_claim(claim, ctx)
+                    summary = summarise_claim(key, file_rel, line, claim, rows, errors, status, ctx)
+                except Exception as exc:  # noqa: BLE001 - one bad claim must not stop the run
+                    checker_errors += 1
+                    error = exc
+                    REC.volatile("checker_error")
+                    print(f"  CHECKER ERROR on claim {key}: {type(exc).__name__}: {exc} (reported; run continues)")
+                    rows = [{"step": "claim_record", "check": "checker_error", "field": "", "result": "fail",
+                             "status": type(exc).__name__,
+                             "detail": f"the checker failed on this claim: {type(exc).__name__}: {exc}"[:600]}]
+                    summary = error_summary(key, file_rel, line, claim, exc, ctx)
+                    ctx.not_held = []
+            row_stats = collections.Counter(_row_key(r) for r in rows)
+            if lsha not in entries:
+                stored = {k: v for k, v in summary.items() if k not in ("claim_key", "file", "line")}
+                entries[lsha] = {"deps": sorted(deps), "summary": stored,
+                                 "rows": [r for r in rows if r["result"] != "pass"], "stats": dict(row_stats),
+                                 "volatile": sorted(d[2:] for d in deps if d.startswith("v:"))}
+                if error is not None:
+                    entries[lsha]["checker_error"] = True
+            rows = [r for r in rows if r["result"] != "pass"] if not csv_all else rows
         summary["effective_for_tracker"] = effective
         per_claim.append(summary)
-        iid = claim.get("instrument_id")
+        stats.append(row_stats)
         for r in rows:
             all_rows.append({"claim_key": key, "instrument_id": iid if isinstance(iid, str) else json.dumps(iid),
                              "effective_for_tracker": "yes" if effective else "no", **r})
         pending += [(key, iid, f, r) for f, r in ctx.not_held]
+    timings["check_s"] = round(time.time() - t2, 1)
 
     out.mkdir(parents=True, exist_ok=True)
     attempts = run_fetch(ctx, pending, out) if args.fetch else None
@@ -1448,9 +1581,7 @@ def main(argv=None):
     if csv_mode not in ("all_rows", "non_pass_rows"):
         print(f"  NOTE: CLAIM_CHECKS.csv would exceed {csv_max_mb:g} MB; wrote {csv_mode} ({len(csv_rows)} rows)")
     checked = [c for c in per_claim if "parse_error" not in c]
-    src = collections.Counter(r["status"] for r in all_rows if r["check"] == "source_held")
-    quo = collections.Counter(r["status"] for r in all_rows if r["check"] == "quote_verbatim")
-    ident = collections.Counter(r["status"] for r in all_rows if r["check"] == "source_identity")
+    total, by_check, by_status = _summary_counts(stats)
     summary = {
         "schema": SCHEMA, "job": JOB_NAME, "legal_cutoff": LEGAL_CUTOFF,
         "claim_files": [pathlib.Path(p).name for p in paths],
@@ -1465,19 +1596,19 @@ def main(argv=None):
         "claims_gate_passed": sum(c["gate_passed"] for c in checked),
         "steps_checker_passed_effective_claims": {
             s: sum(c["steps"][s]["checker_passed"] for c in checked if c.get("effective_for_tracker")) for s in STEPS},
-        "check_results": {c: dict(sorted(collections.Counter(r["result"] for r in all_rows if r["check"] == c).items()))
+        "check_results": {c: dict(sorted(by_check[c].items()))
                           for c in MECHANICAL_CHECKS + ["structural_gate", "parse", "checker_error"]},
-        "source_status_counts": dict(sorted(src.items())),
-        "source_identity_counts": dict(sorted(ident.items())),
-        "quote_status_counts": dict(sorted(quo.items())),
+        "source_status_counts": dict(sorted(by_status["source_held"].items())),
+        "source_identity_counts": dict(sorted(by_status["source_identity"].items())),
+        "quote_status_counts": dict(sorted(by_status["quote_verbatim"].items())),
         "source_status_policy": SOURCE_STATUS_RESULT,
-        "claim_checks_csv": {"mode": csv_mode, "rows_written": len(csv_rows), "rows_total": len(all_rows),
+        "claim_checks_csv": {"mode": csv_mode, "rows_written": len(csv_rows), "rows_total": sum(total.values()),
                              "max_mb": csv_max_mb,
                              "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; "
                                      "per-check pass counts are in PER_CLAIM.json check_counts"},
         "held_copies_indexed_by_origin": dict(sorted(ctx.index.origin_counts.items())),
-        "held_distinct_sha256": len(ctx.index.by_sha),
-        "opus_text_pack_texts": len(ctx.index.packed_texts),
+        "held_distinct_sha256": len(ctx.raw["index"].by_sha),
+        "opus_text_pack_texts": len(ctx.raw["packed"]),
         "signing_dates_loaded": dict(sorted(ctx.signing_counts.items())),
         "gate_error_step_mapping_from": ctx.step_mapping_from,
         "pypdf_available": bool(ctx.pypdf),
@@ -1486,6 +1617,45 @@ def main(argv=None):
     }
     write_outputs(out, csv_rows, per_claim, summary)
     write_report(out, per_claim, summary)
+
+    # The trace the next run compares against, and the reconciliation of a periodic full run.
+    t3 = time.time()
+    reconcile = None
+    if not untraced:
+        end_fps = PG.Fingerprinter(ctx.raw, REC)
+        end_fps.memo = {d: fp for d, fp in fps.memo.items()
+                        if not (d[2:].startswith(str(cache) + os.sep) or d.startswith("v:"))}
+        PG.close_stat_memos(entries, REC.global_reads)
+        code = PG.code_deps(repo, REC)
+        full = sel["mode"] == "full"
+        last_full = ({"utc": PG.utc_now().isoformat().replace("+00:00", "Z"),
+                      "generation": os.environ.get("JOB_GENERATION_ID"), "reason": sel["reason"]}
+                     if full else trace.get("last_full"))
+        if sel.get("would_reuse"):
+            mismatched = [s for s in sel["would_reuse"]
+                          if s in entries and PG.comparable(entries[s]) != PG.comparable(prior_claims.get(s, {}))]
+            reconcile = {"compared": len(sel["would_reuse"]), "mismatched": len(mismatched),
+                         "mismatched_line_sha256": mismatched[:100]}
+        with REC.quiet():
+            PG.write_trace(out, PG.build_trace(entries, end_fps, code, sett, last_full))
+    timings["trace_s"] = round(time.time() - t3, 1)
+    timings["total_s"] = round(time.time() - t0, 1)
+    keys_of = collections.defaultdict(list)
+    for k, v in line_sha.items():
+        keys_of[v].append(k)
+    selection = {
+        "schema": "eo-claim-checker-selection/v1", "ruling": "research/readiness/owner_rulings/2026-11-09-impact-scoped-checks.md",
+        "mode": sel["mode"], "reason": sel["reason"], "claim_lines": len(parsed),
+        "rechecked": len(sel["recheck"]), "reused": len(reuse), "recheck_reasons": sel["why"],
+        "changed_input_kinds": sel.get("changed_dep_kinds", {}), "changed_input_examples": sel.get("changed_examples", []),
+        "changed_code_or_rules": sel.get("changed_code", []), "previous_trace": trace_from,
+        "previous_last_full": (trace or {}).get("last_full"),
+        "rechecked_claim_keys": sorted(k for s in sel["recheck"] for k in keys_of.get(s, []))[:500],
+        "reconcile": reconcile, "bytes_hashed_to_compare": fps.bytes_hashed, "timings": timings,
+        "generation_id": os.environ.get("JOB_GENERATION_ID"),
+        "note": "Selection decides only which claims are recomputed; results are those a full run gives.",
+    }
+    (out / PG.SELECTION_FILE).write_text(json.dumps(selection, indent=1, ensure_ascii=False) + "\n", "utf-8")
 
     print("")
     print(f"Checked {summary['claims_checked']} claim(s) from {len(paths)} file(s)"
@@ -1501,7 +1671,15 @@ def main(argv=None):
         print(f"  Checker errors: {checker_errors} claim(s) could not be fully checked; see REPORT.md")
     if attempts is not None:
         print(f"  Fetch attempts: {summary['fetch']}")
+    print(f"  Palsgraf: {sel['mode']} ({sel['reason']}): rechecked {len(sel['recheck'])}, reused {len(reuse)}; "
+          f"timings {timings}")
     print(f"  Outputs in {out} ({time.time() - t0:.1f}s). These are mechanical checks, not legal findings.")
+    if reconcile and reconcile["mismatched"]:
+        (out / "BLOCKED.json").write_text(json.dumps({
+            "reason": f"Palsgraf reconcile failed: {reconcile['mismatched']} of {reconcile['compared']} claims the "
+                      "selector would have reused came out different in this full run (a missed dependency). "
+                      "See SELECTION.json; fix palsgraf.py before trusting selective runs."}, indent=1) + "\n", "utf-8")
+        sys.exit(f"Palsgraf reconcile failed on {reconcile['mismatched']} claim(s); see SELECTION.json")
     return summary
 
 

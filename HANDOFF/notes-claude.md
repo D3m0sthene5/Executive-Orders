@@ -27,6 +27,49 @@
   - When Accursius F3/F5/F6 merge, the undecided routes turn advisory. Commit a fresh `larrey.py backtest` to
     re-enable them.
   - `kit.py overlay-prepare`, `sheet` and `status-sheet` still bypass admission (pre-existing).
+## 2026-11-09 ET (Claude, Palsgraf: claim-checker rechecks only what a change can reach)
+
+- **Done (PR from `claude/palsgraf-impact`, not merged):** carried out D-20261109-impact-scoped-checks for claim-checker (`jobs/claim-checker/palsgraf.py`, README section "Which claims a run rechecks").
+  - Each claim's inputs are recorded with fingerprints in `output/DEPENDENCY_TRACE.json.gz`: table lookups, files opened, listed and stat'ed, and memo replays. A claim is reused only if its line bytes and every fingerprint are unchanged. Network-touched, date-against-today and crashed claims always rerun.
+  - A full run happens on a code, rule or setting change, on a missing trace, or weekly (reconciled: `BLOCKED.json` on any difference). The case is recorded in `output/SELECTION.json`; STATUS.json is the runner's and was not changed.
+  - Also fixed: the quote search re-normalised one 27 MB FR volume once per record citing it.
+- **Measured:**
+  - One-claim run (the Mabillon case): 490 s -> 23.5 s.
+  - Full runs: 1,902.6-3,021.6 s on the runner with the old code; 642.5 s warm and 1,036.8 s cold with the new code.
+  - Selective runs on the runner: 144.4 s for a regular run and 566.7 s for a read-only-cache diagnostic, each rechecking 40 of 1,828 claims.
+  - Every selective run was byte-identical to its full reference, on the runner and on local real-data replays (6 of 6). The runner's full output was byte-identical to main's old-code output.
+  - Kean F-20261109-palsgraf-impact-selection.
+- **Holes found and closed (tests pin each):**
+  - Gate, tracker and norton sources were imported via .pyc and so were missing from the code record.
+  - A leaked per-run confirmation patch.
+  - #242's same-size owner switch was memoised per process.
+- **Not changed:** claim-kit (it already caches its per-text parse; it aggregates across orders) and claim-drafts (a per-draft trace is a moderate change; it gains the memo fix). See the Kean wiring note. No status, census, codebook, claim or certified count (0) changed.
+- **Workers:** 1 Sonnet survey of claim-kit and claim-drafts, about 113k tokens, about 1 min.
+- **Bentham:** this was owner-assigned infrastructure, not a ranked production action; PLAN.md was read and no wave was run.
+- **Asks:** @Owner: A-20261109-claim-checker-cache answered yes; `jobs/claim-checker/CACHE_MB` is 2048 (D-20261109-claim-checker-cache). Check the next selective run's `changed_input_kinds.e` (was about 22).
+## 2026-11-10 ET (Claude, Linnaeus: no-lead undecided orders by type; Cruden FR/Statutes number search; Pacioli, PR #281)
+
+- **Task:** Track 4 (owner-approved): type the 4,174 undecided orders with no ending or current-law lead, find one
+  bulk source per type, build jobs for the best. Plus owner Tier A #6 (double-entry reconciliation). Report:
+  `research/linnaeus/REPORT.md`. Kean F-20261110-linnaeus-no-lead-types, -linnaeus-bulk-sources, -cruden-fr-concordance,
+  -pacioli-double-entry, -linnaeus-hostile-review, -nalimov-acquisition-coverage, -frdoc-actors-dropped.
+- **Measured:** 4,174 no-lead (exact). 1,096 already have a Pothier decided lead no kit code reads; 260 a held but
+  unrouted ending lead; 2,818 unsourced (665 one-person waivers left to Ulpian). M1118 film-gap overlap 1,037.
+  NARA HTML disposition tables add 0 beyond the FR API notes later-events holds; Lord 1944 has no later dispositions;
+  BLM MLRS has no order-number field; FS-612 names 7 by number in a later row; NEA reaches 0.
+- **Built (PR [#281](https://github.com/D3m0sthene5/Executive-Orders/pull/281), all zero-token, tests in road tests):**
+  `jobs/linnaeus-types` (run 42854906849); `jobs/cruden-fr-concordance` (final run 42887085843, cruden-locate-4,
+  controls passed): of 2,110 targets 256 get a pinned located citation, 111 date-confirmed, 21 a dated acting sentence
+  (about 80% right by my reading); Nalimov's 962 decided orders: 31 / 6 / 2. `jobs/pacioli-double-entry` (run
+  42860052386): 629 orders with an agreed whole ending (367 undecided, 118 decided-not-ready), 604 with the actor's
+  text held; 59 orders on the disagreement list. Bentham: `acquire.cruden_fr_statute_concordance` (lift not counted).
+- **Review:** Fable 5.2, fresh context, two passes, 226,102 tokens: 3 blockers and 9 majors in Cruden v1, then
+  over-refusals in v2; all fixed with regression tests before anything was published as acting.
+- **Requests:** (1) owner merge of #281 (registers Cruden fragments with the claim kit; no status or count change).
+  (2) The biggest lever is routing, not sources: Pothier leads, 260 held ending edges, 4,070 `FRDOC:` acting fragments
+  that `jobs/claim-kit/inputs.py` `NON_EO_ACTOR` drops, and the 170 of Nalimov's 180 "official copies" that are already
+  held. Proposed as its own session. (3) Cruden's 80 MB extract cap refused 39 citations as unverifiable; raise it or
+  rely on PREMIS only if the owner prefers.
 ## 2026-11-10 ET (Claude, Ulpian: Jacquard L1 correction PR; D-20261110-ulpian-jacquard-l1-correction)
 
 - **Decision:** the owner answered A-20261110-ulpian-outer-bound with "accept all three". The coordinating session
