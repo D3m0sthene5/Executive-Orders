@@ -1,10 +1,9 @@
-## 2026-11-10 UTC: MOMMSEN-IV proposed Photius P4 wiring
+## 2026-11-10 C15 scope-correction candidate, validation pending
 
-- **Done:** One C11-authorized code proposal accepts only trusted final-pass Photius replicas, keeps false original authentication and ProQuest disclosure, and preserves unrelated frozen confirmation objects. Local paired readiness replay1156 to1156; published main1223 remains separate. No claim, status, source grade or human certification change.
-- **Validation:** Focused native tests and legacy-checker Windows parity retained under research/excavator/mommsen-4-2026-11-10/code-p4/. Initial194-order frozen-object regression caught and corrected before publication.
-- **Limitation:** Superseded untracked WIP.patch was mistakenly deleted; exact bytes unavailable, explicitly labeled reconstruction retained. Final patch and tests remain intact.
-- **Next:** Claude exact-head review, then owner code-merge decision. The lane has no code merge grant.
-- **Recorded:** F-20261110-mommsen4-p4-wiring. **Asks:** @Owner: none.
+- ALL tracker runtime/test hunks restored to target main. Only five claim-kit runtime files and three focused test files remain. No prior test/replay approves this revised combined head.
+- Old d2 commit and all available packet artifacts retained; WIP17233-byte draft and0ed intermediate losses are disclosed separately and not reconstructed as originals.
+- Native focused gates, exact revised replay, append-only reconciliation, PR body/new-head publication and Claude full-diff review remain required in a fresh context. Owner code merge only.
+- **Asks:** @Owner: none.
 
 ## 2026-11-05 UTC / November4 ET: stable main integration and native publication complete
 
