@@ -1,3 +1,19 @@
+## 2026-11-09 ET (Claude, why Mission has been pending since 2026-11-06)
+
+- **Fixed** (branch `claude/mission-checker-scope`): two guard bugs in `jobs/daily-digest/`.
+  - `mission.py` demanded that claim-checker consumed the whole `research/readiness` tree. Since Justinian A2
+    (2026-11-06) the checker records only its declared reads (205 of 743 files). The checker witness now compares
+    only files inside the checker's recorded scope, by the runner's `select` rule; the tracker keeps the whole-tree check.
+  - `dashboard.py` counted the status register without the R9 alias, so EO:7933a showed as outside the census.
+  - 4 new tests; 25 daily-digest tests pass. On current main, Mission now gets past both guards.
+- **Still blocking Mission** (real input problems, not fixed here):
+  - 4 `STALE_SOURCE_AUDIT_HOLD` since 2026-11-06 12:34 UTC: EO 10622, 11040, 11078 and 9922 changed after
+    `research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json`.
+  - 42 Montfaucon rejections since today: tischendorf-originals run 42614824734 rebuilt its fragments around a new target
+    set (134 orders dropped), so checks in m001-panama-1922, m001-trading-1920 and m008 pin rows that no longer exist.
+- Kean F-20261109-mission-refresh-diagnosed.
+- **Asks:** @Owner: none. @Montfaucon/Tischendorf owners: decide how a page check survives a producer retargeting.
+
 ## 2026-11-09 ET (Claude, no push starts Run jobs; tags start no workflow)
 
 - **Why:** over 2026-11-06..09 only 18% of Run jobs minutes ended in a successful run, a third were runs

@@ -17,6 +17,12 @@ class DashboardTests(unittest.TestCase):
         self.assertIn("Generated 2026-10-28 23:27 UTC", rendered)
         self.assertIn("2026-10-28 10:00 UTC", rendered)
 
+    def test_status_register_is_read_through_the_r9_alias(self):
+        result = dashboard.status_inventory(
+            [{"instrument_id": "EO:7933a", "provisional_substantive_status": "no"}], [{"id": "EO:7933A"}])
+        self.assertEqual(result["problems"], [])
+        self.assertEqual(result["unique_orders"], 1)
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)

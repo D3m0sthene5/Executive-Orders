@@ -115,6 +115,48 @@ class MissionTests(unittest.TestCase):
         manifest['inputs']['research/readiness/rules.json']='100644:'+mission.git(self.root,'hash-object','--no-filters','--','research/readiness/rules.json')
         manifest['inputs_sha256']=mission.digest(manifest['inputs']);self.doc(mission.TRACKER+'RUNNER_INPUTS.json',manifest)
         with self.assertRaisesRegex(ValueError,'checker did not consume the current canonical readiness tree'):self.build()
+    def scoped_checker(self,patterns):
+        # A checker generation that records only its declared reads (Justinian A2, 2026-11-06).
+        self.put('research/readiness/claims/a.jsonl',b'{}\n')
+        self.commit_fixture('scoped claim')
+        blob=lambda n:'100644:'+mission.git(self.root,'hash-object','--no-filters','--',n)
+        checker=self.manifest('claim-checker',{'research/readiness/claims/a.jsonl':blob('research/readiness/claims/a.jsonl')})
+        checker['scope']={'roots':[],'patterns':patterns,'exclude':'jobs/claim-checker/output'}
+        self.doc(mission.CHECKER+'RUNNER_INPUTS.json',checker);self.recapture_tracker()
+    def commit_fixture(self,message):
+        subprocess.run(['git','-C',str(self.root),'add','research/readiness'],check=True)
+        subprocess.run(['git','-C',str(self.root),'-c','user.name=fixture','-c','user.email=fixture@example.invalid','commit','-qm',message],check=True)
+    def recapture_tracker(self):
+        manifest=json.loads((self.root/mission.TRACKER/'RUNNER_INPUTS.json').read_text())
+        for name in mission.git(self.root,'ls-files','research/readiness').splitlines()+[mission.CHECKER+'RUNNER_INPUTS.json']:
+            manifest['inputs'][name]='100644:'+mission.git(self.root,'hash-object','--no-filters','--',name)
+        manifest['inputs_sha256']=mission.digest(manifest['inputs']);self.doc(mission.TRACKER+'RUNNER_INPUTS.json',manifest)
+    def test_scoped_checker_ignores_canonical_files_it_does_not_read(self):
+        self.scoped_checker(['research/readiness/claims/*'])
+        self.assertEqual(self.build()['latest']['ready_for_human_review'],1)
+        self.put('research/readiness/rules.json',b'{"fixture": false}\n');self.commit_fixture('rule outside the checker scope')
+        self.recapture_tracker()
+        self.assertEqual(self.build()['latest']['ready_for_human_review'],1)
+    def test_scoped_checker_still_refuses_a_new_claim_in_its_scope(self):
+        self.scoped_checker(['research/readiness/claims/*'])
+        self.put('research/readiness/claims/a.jsonl',b'{"new": true}\n');self.commit_fixture('new claim')
+        self.recapture_tracker()
+        with self.assertRaisesRegex(ValueError,'checker did not consume the current canonical readiness tree'):self.build()
+        self.put('research/readiness/claims/b.jsonl',b'{}\n')
+        self.put('research/readiness/claims/a.jsonl',b'{}\n');self.commit_fixture('claim added in scope')
+        self.recapture_tracker()
+        with self.assertRaisesRegex(ValueError,'checker did not consume the current canonical readiness tree'):self.build()
+    def test_malformed_checker_scope_refuses(self):
+        self.scoped_checker('research/readiness/claims/*')
+        with self.assertRaisesRegex(ValueError,'checker read scope is invalid'):self.build()
+    def test_scope_rule_matches_the_runner(self):
+        import importlib.util
+        spec=importlib.util.spec_from_file_location('result_freshness',REPO/'.github/scripts/result_freshness.py')
+        freshness=importlib.util.module_from_spec(spec);spec.loader.exec_module(freshness)
+        declared=json.loads((REPO/mission.CHECKER/'RUNNER_INPUTS.json').read_text())['scope']
+        paths=[l.split('\t',1)[1] for l in mission.git(REPO,'ls-tree','-r','HEAD','--','research/readiness','jobs/claim-checker').splitlines()]
+        entries={p:'x' for p in paths+['research/readiness/claims','jobs/claim-checker/output/x.csv']}
+        self.assertEqual({p for p in entries if mission.in_scope(p,declared)},set(freshness.select(entries,declared)))
     def test_dirty_canonical_inputs_cannot_be_stamped_as_committed(self):
         self.put('research/readiness/new-claim.jsonl',b'{}\n')
         with self.assertRaisesRegex(ValueError,'uncommitted changes'):self.build()
