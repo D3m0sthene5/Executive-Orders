@@ -1,10 +1,10 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,248 of 14,998 orders (8.3%)**
+**Numbered series: ready for human review 1,247 of 14,998 orders (8.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42862860004-1:fe8d8c78cc7d6ecee87374de3d97171c344c2c308bc9c2040181ef2057245fab` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42872364618-1:de38824a90c7fe431edee8370ebad9804ef0a54ae2d01719b51c80d72f3f6d7d` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -12,7 +12,7 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 4,307. The other 10,691 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 723, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
+Ready by text evidence: {'original_supported': 722, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 845; quotation rechecks: 845. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 252. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1551}.
@@ -24,7 +24,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Has a provisional YES/NO status | 4,307 | 4,307 | 100.0% |
 | Original or explicitly reviewed provisional working text saved | 3,549 | 4,307 | 82.4% |
 | Complete inventory of the order's operative clauses | 1,488 | 4,307 | 34.5% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,277 | 4,307 | 29.6% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,276 | 4,307 | 29.6% |
 | Savings clauses and surviving effects closed | 1,475 | 4,307 | 34.2% |
 | Search for later contrary sources recorded, no open conflicts | 2,880 | 4,307 | 66.9% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
@@ -63,7 +63,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `OPUS_MEDIA_NONE_CITED` | 161 | 161 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
 | `CLAIM_INCOMPLETE` | 82 | 82 |
-| `CLAIM_CHECK_FAILED` | 66 | 66 |
+| `CLAIM_CHECK_FAILED` | 67 | 67 |
 | `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 63 | 63 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |

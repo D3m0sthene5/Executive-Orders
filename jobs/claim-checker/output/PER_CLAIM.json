@@ -886,15 +886,15 @@
   "EO:10229": {
    "claim_key": "research/readiness/claims/claude-2026-11-04-tribonian-o13.jsonl:1",
    "claim_sha256": "42e7e019e9235e0b7361a72736cb7bdb2b1b5638069c8a0e17148d622a18fea2",
-   "mechanical_result": "pass",
+   "mechanical_result": "pass_with_unverified",
    "gate_passed": true,
-   "all_checks_passed": true,
+   "all_checks_passed": false,
    "text_evidence_tier": "original_supported",
    "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
    "steps_checker_passed": {
     "original_text": true,
     "clause_inventory": true,
-    "ending_or_current_basis": true,
+    "ending_or_current_basis": false,
     "savings_residuals": true,
     "counterevidence": true
    }
@@ -116408,9 +116408,9 @@
    "provisional_status": "no",
    "text_evidence_tier": "original_supported",
    "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
-   "mechanical_result": "pass",
+   "mechanical_result": "pass_with_unverified",
    "gate_passed": true,
-   "all_checks_passed": true,
+   "all_checks_passed": false,
    "gate_errors": [],
    "gate_claim_level_errors": [],
    "steps": {
@@ -116428,9 +116428,9 @@
     },
     "ending_or_current_basis": {
      "present": true,
-     "mechanical": "pass",
+     "mechanical": "pass_with_unverified",
      "gate": "pass",
-     "checker_passed": true
+     "checker_passed": false
     },
     "savings_residuals": {
      "present": true,
@@ -116447,7 +116447,8 @@
    },
    "check_counts": {
     "source_held": {
-     "pass": 5
+     "pass": 4,
+     "skip": 1
     },
     "source_identity": {
      "pass": 2
@@ -116472,7 +116473,9 @@
    },
    "failures": [],
    "failures_total": 0,
-   "unverified": [],
+   "unverified": [
+    "source_held:custody_record_only@operative_clauses[0].first_end.source"
+   ],
    "effective_for_tracker": true
   },
   {
