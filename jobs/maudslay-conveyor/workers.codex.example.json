@@ -1,16 +1,16 @@
 {
   "_note": "Codex workers for this PC, where `claude -p` is not usable (the Claude CLI is not installed or logged in). 'program' is a pattern resolved at run time: environment variables expanded, then the newest matching codex.exe by modification time. Every call is a fresh `codex exec --json` session in its own folder outside the repository; its rollout file is the mid-run token meter, so item_tokens is enforced while it runs.",
-  "_prices_note": "PLACEHOLDERS. The owner sets prices_usd_per_mtok (input, cached_input, output) from jobs/necker-costs/PRICES.json. Until they are numbers, the conveyor refuses these workers.",
+  "_prices_note": "Owner choice 2026-11-10: OpenAI API list prices. gpt-6.1-sol, Standard, short context (the conveyor caps context at 120k, below the 272k long-context tier): $2.00 input, $0.10 cached input, $10.00 output per 1M tokens. Source: https://developers.openai.com/api/docs/pricing (read 2026-11-10). Subscription usage is not billed at these rates; they are API-equivalent, as Bentham's dollars are.",
   "producer": {"command": "codex", "program": "%LOCALAPPDATA%/OpenAI/Codex/bin/*/codex.exe", "model": "gpt-6.1-sol",
                "model_family": "OpenAI", "reasoning_effort": "medium", "item_usd": 3, "item_tokens": 2000000,
                "auto_compact_tokens": 120000, "tool_output_tokens": 6000, "network": false,
-               "prices_usd_per_mtok": {"input": null, "cached_input": null, "output": null}},
+               "prices_usd_per_mtok": {"input": 2.0, "cached_input": 0.1, "output": 10.0}},
   "reviewer_A": {"command": "codex", "program": "%LOCALAPPDATA%/OpenAI/Codex/bin/*/codex.exe", "model": "gpt-6.1-sol",
                  "model_family": "OpenAI", "reasoning_effort": "high", "item_usd": 12, "item_tokens": 6000000,
                  "auto_compact_tokens": 120000, "tool_output_tokens": 6000, "network": false,
-                 "prices_usd_per_mtok": {"input": null, "cached_input": null, "output": null}},
+                 "prices_usd_per_mtok": {"input": 2.0, "cached_input": 0.1, "output": 10.0}},
   "reviewer_B": {"command": "codex", "program": "%LOCALAPPDATA%/OpenAI/Codex/bin/*/codex.exe", "model": "gpt-6.1-sol",
                  "model_family": "OpenAI", "reasoning_effort": "high", "item_usd": 12, "item_tokens": 6000000,
                  "auto_compact_tokens": 120000, "tool_output_tokens": 6000, "network": false,
-                 "prices_usd_per_mtok": {"input": null, "cached_input": null, "output": null}}
+                 "prices_usd_per_mtok": {"input": 2.0, "cached_input": 0.1, "output": 10.0}}
 }
