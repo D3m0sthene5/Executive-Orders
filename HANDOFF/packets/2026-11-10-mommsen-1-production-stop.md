@@ -32,3 +32,5 @@ Await owner approval and green CI for PR254; reconcile main, merge tool fix, ret
 ## Attribution correction
 
 `handoff.py` read the machine-global Claude transcript for its context count and "newest notes entry" field. Those two automated fields belong to another session and are not MOMMSEN-I telemetry. MOMMSEN-I's current Codex context size is unknown. The MOMMSEN-I note is the first entry in `HANDOFF/notes-codex.md`. All branch, commit, file-status and next-step fields above were taken from this worktree.
+
+PR #254 head was updated to 9d73971ea2fe with a one-line road-test sparse-manifest read repair; see Kean F-20261110-mommsen1-road-test-sparse-fixture and CI_ROAD_FAILURE.md. New CI is required.
