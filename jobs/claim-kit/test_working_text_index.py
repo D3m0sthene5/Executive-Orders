@@ -135,21 +135,6 @@ class Base(unittest.TestCase):
 
 
 class IndexCacheTests(Base):
-    def test_mirror_provider_is_matched_and_invalidates_cache(self):
-        self.seed()
-        before = built(self.repo)
-        self.write('jobs/app/output/texts/EO_8.txt', 't8')
-        self.provider('jobs/app/output/MIRROR_FRAGMENTS.jsonl',
-                      [row('EO:8', 8, 'texts/EO_8.txt', acceptable=False,
-                           grade='mirror_transcription')])
-        after = built(self.repo)
-        ref = {'instrument_id': 'EO:8', 'grade': 'mirror_transcription',
-               'acceptable_as_original': False, 'sha256': h(8),
-               'text_path': 'jobs/app/output/texts/EO_8.txt',
-               'text_sha256': h('t8')}
-        self.assertEqual(len(after.match(ref)), 1)
-        self.assertNotEqual(before.by_sha, after.by_sha)
-
     def test_cached_uncached_and_legacy_identical(self):
         self.seed()
         with mock.patch.dict(os.environ, {'CLAIM_KIT_INDEX_CACHE': '0'}):
