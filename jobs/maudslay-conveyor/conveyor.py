@@ -717,8 +717,21 @@ def caught(rec, terms=DATE_TERMS):
     "update") counts."""
     if not rec or rec.get("verdict") != "rejected":
         return False
-    text = json.dumps(rec.get("defects") or [], ensure_ascii=False).lower()
-    return bool(set(re.findall(r"[a-z_]+", text)) & set(terms))
+    return bool(defect_words(rec.get("defects")) & set(terms))
+
+
+def defect_words(defects):
+    """Whole words of a review's defects, plus every run of a dotted field path joined by underscores, so a field
+    named the usual way ("whole_order_end.source.quote", "operative_clauses[2].first_end.source") also yields
+    "whole_order_end_source", "whole_order_end_source_quote" and "first_end_source"."""
+    text = re.sub(r"\[\d+\]", "", json.dumps(defects or [], ensure_ascii=False).lower())
+    words = set(re.findall(r"[a-z_]+", text))
+    for path in re.findall(r"[a-z_]+(?:\.[a-z_]+)+", text):
+        parts = path.split(".")
+        for i in range(len(parts)):
+            for j in range(i + 2, len(parts) + 1):
+                words.add("_".join(parts[i:j]))
+    return words
 
 
 # Typed plants (--controls typed; Respondendi RULE.md control kinds, Whitworth I4). Each kind has the whole words or
@@ -731,12 +744,15 @@ TYPED_TERMS = {
     # rejection for some other reason count as naming the planted defect (review of 89422dce85).
     "later_event_removed": frozenset({"later_event", "later_events", "amendment", "amendments", "amended", "amends",
                                       "omitted", "omits"}),
+    # Each kind also counts the exact field path the plant changes, as a reviewer names it (defect_words joins
+    # dotted paths): a partial plant edits whole_order_end.source.quote, so an honest "quote not found in the
+    # held text" rejection names that field even when it does not say "partial".
     "partial_as_whole": frozenset({"partial", "partially", "insofar", "qualifier", "qualified", "except", "exception",
-                                   "excepted"}),
-    "wrong_order_text": frozenset({"original_operative_text", "original_source", "identity", "wrong_order",
-                                   "another_order"}),
+                                   "excepted", "whole_order_end_source_quote"}),
+    "wrong_order_text": frozenset({"original_operative_text", "original_source", "original_source_quote", "identity",
+                                   "wrong_order", "another_order"}),
     "ending_source_swapped": frozenset({"ending_source", "evidence_id", "provision", "whole_order_end_source",
-                                        "first_end_source"}),
+                                        "first_end_source", "text_path"}),
 }
 TYPED_STATUS = ("later_event_removed", "partial_as_whole", "wrong_order_text", "ending_source_swapped")
 TYPED_DEFECT = {
