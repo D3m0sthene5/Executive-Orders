@@ -1,0 +1,3 @@
+Rejected and sealed [REVIEW.json](/C:/Users/danie/eo-wt/mommsen-2/research/excavator/mommsen2-2026-11-10/b03/packet-v2/reviews/arm2/REVIEW.json).
+
+The original supports immediate repeal on January 12, 1906; February 12 and the claimed administrative wind-down are unsupported. Mechanical `raw_path_missing` failures are preserved separately; the designated PDF hash matched and its complete page was visually inspected.

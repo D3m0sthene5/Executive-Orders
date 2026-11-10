@@ -1,0 +1,17 @@
+﻿# EO393 exact-candidate independent source review
+
+Verdict: rejected. Canonical claim SHA256: e1dfbda896e33357fa315ba3e12b19fed7bf4c15ab219330859f77783f2a14f8. Input file SHA256: 27c0934c49b057de71d4e8d94ced6625ef0456766053130437f067ed0149ffe3.
+
+The pinned candidate was available and reviewed. No verdict from the earlier unavailable-path attempt was consulted. The maintained blind verifier ran before source interpretation, using precisely the assigned pin, source root and two source allowlists. MECHANICAL.json preserves exit-1 refusal: missing raw_path in all five source references and quote_not_exact_slice in original_representation. The first unprivileged Python invocation could not execute (access denied); the authorized escalated invocation ran successfully and returned that substantive refusal. No candidate or source reference was repaired.
+
+The supplied raw PDF independently hashed to 4151116ad1c3ae8b08a9216f8591ca14e0d71ef20805c9250405d88aa6365eda before and after examination. Existing pdftoppm rendered PDF80/printed67 and the cited predecessor PDF75/printed62 into this directory; both complete pages were visually inspected with view_image. No PDF copy was made.
+
+PDF80 contains one complete repeal sentence, Theodore Roosevelt signature, and White House January 12, 1906 dateline. It repeals the November 15, 1905 appointment order immediately in the operative present. It contains no administrative period, delayed effective date, delegated implementation, independent command, schedule, express savings or future performance condition. The candidate's January 13 first cessation and whole-order ending, its one-day implementation theory, and its altered original-representation signature date are unsupported. January 12 is the supported earlier completion date. Completed cancellation and its continuing legal consequences remain separate from an unperformed duty.
+
+The predecessor permits temporary appointments in specified circumstances and possible conversion to permanent appointments on a certificate. Its full page supplies context for the repealed permission, not evidence of any actual appointment or implementation delay. EO393 does not expressly undo particular appointments or require removals, payments or new appointments. No particular surviving rights under other law are decided here.
+
+The two allowed metadata CSVs map EO393 to January 12, 1906, the same subject, and PDF80/printed67. Since the volume prints no EO number, identity rests on that mapping plus independently checked date, full body and signature. The candidate's described bounded machine searches were not rerun and are not treated as exhaustive proof. The direct source contradiction suffices to reject this exact version.
+
+Reviewer: mommsen-2-b05-arm2-control-v2. Family: OpenAI. Assigned model: gpt-6.1-sol, medium; separate fresh context. No delegated worker. First recorded clock: 2026-11-10 06:27:24 UTC; source examination complete: 06:28:40 UTC. Final seal clock is recorded in SEAL.json. Measured model token usage and cash cost: unknown.
+
+Only this assigned output directory was written. No git operation, reservation, code edit, fetch, publication, status adoption or human certification occurred. Coordinator retains Kean/notes responsibility. REVIEW.json records the substantive whole-case verdict; MECHANICAL.json remains a refusal independently of it. Stop after sealing.

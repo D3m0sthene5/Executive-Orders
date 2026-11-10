@@ -1,0 +1,5 @@
+# MOMMSEN-I PR 254 road-test failure, 2026-11-10
+
+The completed Linux and Windows road-test jobs in GitHub run 42757240277 both failed in `jobs/daily-digest/test_mission.py::test_scope_rule_matches_the_runner` with `FileNotFoundError` for `jobs/claim-checker/output/RUNNER_INPUTS.json`. The file is tracked at PR head 77a4d2478e, but `.github/workflows/road-tests.yml` uses sparse checkout and explicitly excludes `/jobs/*/output/`. The test reads the excluded working-tree file even though the Git blob remains available. This is unrelated to the claim-kit filename guard and occurs on the baseline road-test route. It blocks green PR heads for lane production.
+
+The smallest repair is in the test only: read the tracked manifest from `git show HEAD:jobs/claim-checker/output/RUNNER_INPUTS.json` through the existing `mission.git` helper. That keeps the comparison with the runner's declared scope, avoids changing `.github/`, and does not alter production behavior. Re-run the road tests on the updated PR head. No claim-quality result is inferred from this CI repair.
