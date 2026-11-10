@@ -1,6 +1,6 @@
 # Daily research digest
 
-New York date: 2026-11-09. Generated mechanically; all findings remain provisional.
+New York date: 2026-11-10. Generated mechanically; all findings remain provisional.
 
 ## Tracker headline
 
@@ -25,25 +25,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 ## Changes since the previous day
 
-Comparison snapshot: 2026-11-08; intervening runs may be absent.
-- claim-checker: claims_all_checks_passed: 1473 → 1660; claims_mechanical_fail: 267 → 80; claims_mechanical_pass: 1559 → 1746; held_distinct_sha256: 56996 → 56911
-- claim-drafts: orders_with_any_conflict: 928 → 929
-- duodecim-tableiv: captures_discovered_unt: 2 → 0
-- family-rules: saved_texts_scanned: 82591 → 82852
-- gessner-cards: one_step_from_ready: 217 → 216; ready_for_human_review: 1083 → 1179
-- kean: decisions: 71 → 74; findings: 264 → 286; open_owner_questions: 13 → 1
-- lachmann: assessed: 2395 → 2360; complete_text_confirmed: 1276 → 1396; confirmed: 703 → 807; identity_confirmed: 1208 → 1146
-- lambertini: counterevidence_records: 1245 → 1244; decided_orders_with_draft: 4291 → 4301; packet_targets: 840 → 846; packets: 114 → 120
-- mabillon-held-printings: lead: 244 → 250; passages: 2460 → 2482; strong: 1771 → 1787; targets: 2015 → 2037
-- readiness-tracker: formal_revocation_after_earlier_cessation: 0 → 33; original_replacement_obligations: 848 → 882; quotation_recheck_obligations: 848 → 882; ready_for_human_review: 1083 → 1179
-- selden-fr-acting: bytes_downloaded: 2794249410 → 2729289189; pages_attempted: 66 → 65; pages_carried_forward: 739 → 740; requests: 131 → 129
-- selden-fr-citers: bytes_downloaded: 0 → 856889; requests: 0 → 80; targets_searched_this_run: 192 → 9; targets_searched_total: 13524 → 13533
-- shepard-citations: edges: 10597 → 10667; edges_with_census_actor: 6584 → 6657; edges_with_census_target: 7590 → 7661; land_targets: 3549 → 3536
-- source-ladder: attempts_logged: 59 → 55; bytes_downloaded: 635954446 → 86666375; distinct_new_source_hashes: 29 → 44; embedded_cite_items: 14 → 9
-- tischendorf-originals: bytes_downloaded: 19722195578 → 8180733529; leads: 633 → 603; replacement_strong: 65 → 39; replacement_targets: 719 → 699
-- tsiolkovsky-trajectory: W_hours: 6812.1 → 6817.3; a_hours_per_day2_latest: -3.15 → -47.85; days: 23 → 24; generations: 71 → 74
-- valla: active_claims: 1445 → 1530
-- x1-class-engine: modern_families_5_plus: 196 → 197; pre1937_orders: 8014 → 8040
+Comparison snapshot: 2026-11-09; intervening runs may be absent.
+- x1-class-engine: modern_families_5_plus: 197 → 205
 
 ## Top shared unlocks
 
@@ -67,4 +50,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42744828527)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42757245929)

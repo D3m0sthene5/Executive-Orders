@@ -1,6 +1,6 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `09788451dfff184eeef24985525a26808c5bf990173033332709c8d1ef5090d2`.
+Legal cutoff: 2026-10-14. Inputs: `3c25a42344fb32b342d3a9b530795457d6aa62ace61cbfa519d8cc507df12bad`.
 
 Verified committed tracker: 14,998 identities; 10,697 undecided; 1179 ready for human review.
 
