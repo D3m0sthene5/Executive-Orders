@@ -1,3 +1,26 @@
+## 2026-11-10 ET (Claude, Linnaeus: no-lead undecided orders by type; Cruden FR/Statutes number search; Pacioli, PR #281)
+
+- **Task:** Track 4 (owner-approved): type the 4,174 undecided orders with no ending or current-law lead, find one
+  bulk source per type, build jobs for the best. Plus owner Tier A #6 (double-entry reconciliation). Report:
+  `research/linnaeus/REPORT.md`. Kean F-20261110-linnaeus-no-lead-types, -linnaeus-bulk-sources, -cruden-fr-concordance,
+  -pacioli-double-entry, -linnaeus-hostile-review, -nalimov-acquisition-coverage, -frdoc-actors-dropped.
+- **Measured:** 4,174 no-lead (exact). 1,096 already have a Pothier decided lead no kit code reads; 260 a held but
+  unrouted ending lead; 2,818 unsourced (665 one-person waivers left to Ulpian). M1118 film-gap overlap 1,037.
+  NARA HTML disposition tables add 0 beyond the FR API notes later-events holds; Lord 1944 has no later dispositions;
+  BLM MLRS has no order-number field; FS-612 names 7 by number in a later row; NEA reaches 0.
+- **Built (PR [#281](https://github.com/D3m0sthene5/Executive-Orders/pull/281), all zero-token, tests in road tests):**
+  `jobs/linnaeus-types` (run 42854906849); `jobs/cruden-fr-concordance` (final run 42887085843, cruden-locate-4,
+  controls passed): of 2,110 targets 256 get a pinned located citation, 111 date-confirmed, 21 a dated acting sentence
+  (about 80% right by my reading); Nalimov's 962 decided orders: 31 / 6 / 2. `jobs/pacioli-double-entry` (run
+  42860052386): 629 orders with an agreed whole ending (367 undecided, 118 decided-not-ready), 604 with the actor's
+  text held; 59 orders on the disagreement list. Bentham: `acquire.cruden_fr_statute_concordance` (lift not counted).
+- **Review:** Fable 5.2, fresh context, two passes, 226,102 tokens: 3 blockers and 9 majors in Cruden v1, then
+  over-refusals in v2; all fixed with regression tests before anything was published as acting.
+- **Requests:** (1) owner merge of #281 (registers Cruden fragments with the claim kit; no status or count change).
+  (2) The biggest lever is routing, not sources: Pothier leads, 260 held ending edges, 4,070 `FRDOC:` acting fragments
+  that `jobs/claim-kit/inputs.py` `NON_EO_ACTOR` drops, and the 170 of Nalimov's 180 "official copies" that are already
+  held. Proposed as its own session. (3) Cruden's 80 MB extract cap refused 39 citations as unverifiable; raise it or
+  rely on PREMIS only if the owner prefers.
 ## 2026-11-10 ET (Claude, Ulpian: Jacquard L1 correction PR; D-20261110-ulpian-jacquard-l1-correction)
 
 - **Decision:** the owner answered A-20261110-ulpian-outer-bound with "accept all three". The coordinating session
