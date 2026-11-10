@@ -141,7 +141,11 @@ def check(plan, repo=REPO):
     if SPEND_WORDS.search(json.dumps(obj)):
         no.append("objective names spend or activity as a goal; spend is a limit, never an objective")
 
-    actions = bentham_actions(repo)
+    try:
+        actions = bentham_actions(repo)
+    except (OSError, ValueError) as exc:
+        actions = {}
+        no.append(f"Bentham's plan is unreadable or missing ({BENTHAM_PLAN}: {type(exc).__name__}); materialize it first")
     stage = plan.get("stage")
     if stage not in STAGE_CAPS:
         no.append("stage must be 0, 1 or 2")
@@ -192,7 +196,11 @@ def check(plan, repo=REPO):
         no.append(f"stage {stage} allows a budget of {caps['budget_units']} units; the plan asks {limits.get('chain_budget_units')}")
 
     answered = plan.get("acknowledged_findings") or {}
-    lessons = matching_findings(repo, plan)
+    try:
+        lessons = matching_findings(repo, plan)
+    except (OSError, ValueError) as exc:
+        lessons = []
+        no.append(f"the Kean register is unreadable or missing ({FINDINGS}: {type(exc).__name__}); lessons cannot be checked")
     for r in lessons:
         how = answered.get(r["id"])
         if not isinstance(how, str) or len(how.strip()) < 25:

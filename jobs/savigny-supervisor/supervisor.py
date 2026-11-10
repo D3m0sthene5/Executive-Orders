@@ -169,7 +169,8 @@ class Chain:
         fh = open(out, "w", encoding="utf-8")
         proc = subprocess.Popen(self.command(agent, last), stdin=subprocess.PIPE, stdout=fh, stderr=subprocess.STDOUT,
                                 cwd=str(self.lanes.get(agent) or self.root) if not self.fake else str(self.root),
-                                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+                                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+                                start_new_session=os.name != "nt")
         proc.stdin.write(self.prompt(agent, turn).encode("utf-8"))
         proc.stdin.close()
         a.update(turns=turn, started=self.clock(), out=str(out), pid=proc.pid)
@@ -180,7 +181,14 @@ class Chain:
         proc, _ = self.running[agent]
         if proc.poll() is None:
             # The whole tree: killing only the coordinator would leave its workers running and spending.
-            subprocess.run(["taskkill", "/T", "/F", "/PID", str(proc.pid)], capture_output=True)
+            if os.name == "nt":
+                subprocess.run(["taskkill", "/T", "/F", "/PID", str(proc.pid)], capture_output=True)
+            else:
+                import signal
+                try:
+                    os.killpg(proc.pid, signal.SIGKILL)   # the turn runs in its own session (start_new_session)
+                except (ProcessLookupError, PermissionError):
+                    proc.kill()
             try:
                 proc.wait(timeout=30)
             except subprocess.TimeoutExpired:

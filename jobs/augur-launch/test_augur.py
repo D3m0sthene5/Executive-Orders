@@ -136,6 +136,18 @@ class AugurRuleTests(unittest.TestCase):
             self.assertEqual(augur.check(sign(plan), repo)[0], [])
 
 
+class MissingInputTests(unittest.TestCase):
+    def test_missing_bentham_plan_or_kean_register_refuses_instead_of_crashing(self):
+        with tempfile.TemporaryDirectory() as d:
+            repo = make_repo(d, runs=SCRIPTED_PASSED)
+            (Path(repo) / augur.BENTHAM_PLAN).unlink()
+            (Path(repo) / augur.FINDINGS).unlink()
+            no = augur.check(sign(good_plan()), repo)[0]
+        text = " ".join(no)
+        self.assertIn("Bentham's plan is unreadable or missing", text)
+        self.assertIn("the Kean register is unreadable or missing", text)
+
+
 class LastNightTests(unittest.TestCase):
     """The plan that ran on 2026-11-09/10, written as an Augur plan, is refused for the reasons it failed."""
 
