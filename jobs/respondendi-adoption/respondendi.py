@@ -1038,7 +1038,7 @@ def qualify(repo, completion, admission_paths, params, statuses, census, adopted
             "review_families": families,
             "pins": base_pins + receipt_pins + control_pins + bundle_pins + [pin(repo, p) for p in admitted]})
     return accepted, refused, {"completion": crel, "review_set": set_size, "controls": sorted(control_ids),
-                               "control_kinds": sorted(kinds), "families": families}
+                               "control_kinds": sorted(kinds), "families": families, "agent": manifest.get("agent")}
 
 
 def gather(repo, completions, admission_paths, params, adopted_ok=frozenset(), plan_date=None):
@@ -1057,12 +1057,14 @@ def gather(repo, completions, admission_paths, params, adopted_ok=frozenset(), p
     return accepted, refused, facts, state
 
 
-def stratum_of(repo, params, prompts, families):
+def stratum_of(repo, params, prompts, families, agents=()):
     """Process fingerprint: a change of prompt, checklist, kit code, rule or model family is a new process; each
     member's stratum adds its lot kind, text basis and tier (see member_stratum)."""
     if not prompts:
         raise Refused("name the producer and reviewer prompt files (--prompt); they define the process stratum")
-    return canon({"rule_id": params["rule_id"], "families": sorted(families),
+    # The producing agent is part of the process: a script producer (Nalimov) and a model producer never share
+    # an audit stratum, whatever prompt files the planner names.
+    return canon({"rule_id": params["rule_id"], "families": sorted(families), "agents": sorted({str(a) for a in agents}),
                   "prompts": sorted(sha(path_in(repo, p).read_bytes()) for p in prompts),
                   "checklist": sha(path_in(repo, CHECKLIST).read_bytes()) if path_in(repo, CHECKLIST).is_file() else None,
                   "kit": {p: sha(path_in(repo, p).read_bytes()) for p in KIT_PROCESS_FILES if path_in(repo, p).is_file()}})[:16]
@@ -1199,7 +1201,7 @@ def plan(repo, lot, completions, admission_paths, prompts, date=None, write=Fals
     auth = authorization(repo) if write else None
     accepted, refused, facts, _ = gather(repo, completions, admission_paths, params, plan_date=date)
     families = sorted({f for fact in facts for f in fact["families"]})
-    process = stratum_of(repo, params, prompts, families)
+    process = stratum_of(repo, params, prompts, families, [fact.get("agent") for fact in facts])
     states = {}
     for m in accepted:
         m["stratum"] = member_stratum(process, m)

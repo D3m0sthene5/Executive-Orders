@@ -39,6 +39,22 @@ The kind comes from the decision's `basis_evidence_ids`, never from the producer
 
 A new claim kind that fits none of these needs an amendment of `RULE.md` (a new hash and owner decision).
 
+**Strata are per producer.** The process fingerprint includes the completion manifest's `agent`, the model families,
+the named prompt or code files, `UNDECIDED_CHECKLIST.md`, the kit's overlay, completion, assembly and batch code, and
+the rule. A script producer such as Nalimov (`agent` `nalimov-script`) therefore starts its own probation stratum and
+never shares audit statistics with model producers. Planners should still pass the drafter's code as `--prompt`
+(for Nalimov: `jobs/nalimov-tablebase/drafter.py` and `predicate.py`), so that a change to it opens a new stratum.
+
+**Nalimov's express drafts (PR #279)** map to `express_named_revocation`:
+- `STATUS_DECISION.json` basis `[ACT:<order>><actor>]`, plus `ACTOR_TEXT:<actor>` when official;
+- the whole-order end is the ACT actor at the actor's date, with the ACT provision as its quote;
+- `material_gaps` is empty.
+
+Clause-level `task_completed` ends for clauses that only revoke other orders are lifecycle detail; the status kind is
+fixed by the ACT basis. Nalimov vendors `named_end_in`, `_segments` and `_later_acts` with a parity test. Any change
+to them here, or to RULE.md's express parameters, must be mirrored there: Respondendi re-checks every claim with its
+own copy regardless.
+
 ## Gaps in the Maudslay conveyor as merged (#269, main at a1cb3f9ea9)
 
 1. **No status-overlay route.** Members carry decided-order `packet` claim references and no `overlay_bundle`, so an

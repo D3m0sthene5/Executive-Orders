@@ -858,6 +858,21 @@ class Audits(Base):
         self.fx.build_wave("u02")
         self.assertIn("stopped", self.reasons(self.fx.plan(lot="lot-two", write=False), "EO:6"))
 
+    def test_a_different_producer_starts_its_own_stratum(self):
+        first = R.plan_of(self.root, "lot-one")["members"][0]["stratum"]
+        self.fx.ids, self.fx.controls = ["EO:6", "EO:7", "EO:8"], ["EO:7", "EO:8"]
+        self.fx.build_wave("u02")
+        rel = WAVE + "/u02/completion/COMPLETION.json"
+        manifest = json.loads(self.fx.path(rel).read_text(encoding="utf-8"))
+        manifest["agent"] = "nalimov-script"
+        self.fx.wjson(rel, manifest)
+        inputs = WAVE + "/u02/completion/complete-v1/INPUTS.json"
+        self.fx.wjson(inputs, {"preserved_receipts": {rel: sha(self.fx.path(rel).read_bytes())}})
+        out = self.fx.plan(lot="lot-two", write=False)
+        self.assertTrue(out["strata"])
+        self.assertNotIn(first, out["strata"])
+        self.assertTrue(all(st["probation"] for st in out["strata"].values()))
+
     def test_agreeing_audits_of_unadopted_plans_do_not_count(self):
         stratum = R.plan_of(self.root, "lot-one")["members"][0]["stratum"]
         fake = "".join(json.dumps({"lot": f"never-{i}", "stratum": stratum, "instrument_id": f"EO:{100 + i}",
