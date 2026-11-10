@@ -65,9 +65,9 @@ def main():
     published = json.loads(published_raw)
     reader = checker.read_claims
 
-    def selected(paths, repo):
+    def selected(paths, repo, *args, **kwargs):
         effective = {}
-        for row in reader(paths, repo):
+        for row in reader(paths, repo, *args, **kwargs):
             if row[3] and row[3].get("instrument_id") in IDS:
                 effective[row[3]["instrument_id"]] = row
         assert set(effective) == IDS

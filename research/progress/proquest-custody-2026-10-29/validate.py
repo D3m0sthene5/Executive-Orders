@@ -43,8 +43,8 @@ def main():
     published = json.loads((ROOT / tracker.J["checker"]).read_text())
     original_reader = checker.read_claims
 
-    def selected(paths, repo):
-        rows = original_reader(paths, repo)
+    def selected(paths, repo, *args, **kwargs):
+        rows = original_reader(paths, repo, *args, **kwargs)
         result = [r for r in rows if r[3] and r[3].get("instrument_id") in IDS]
         assert len(result) == 3, "Review changed claim selection before rerunning"
         return result
