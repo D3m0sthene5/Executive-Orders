@@ -179,6 +179,119 @@ def unlocated_reason(source_event):
     if proposal.get('mechanism')==NAME_MATCH_MECHANISM:return NAME_MATCH_LEAD
     return TARGET_NOT_LOCATED
 
+ACTING_ROLE='acting_instrument_text'
+NON_CENSUS_ACTOR='non_census_instrument'
+UNNAMED_ACTING='held acting text does not print this order\'s number; not routed (owner ruling D-20261021-unnamed-instruments)'
+ACTOR_TEXT_LIMIT=50000
+WINDOW_RADIUS=1500
+WINDOW_CAP=12
+# An executive-order citation that may precede the target's number: "Executive Order(s)", "Ex. Ord.", "E.O.", or a
+# bare "Order(s)" right after punctuation or a function word (a strike-and-insert quote: '"Orders 13354 and 13355').
+# "Public Land Order 2748" and "Secretary's Order 2748" are other instruments and never qualify.
+_CUE=(r'(?:E[ ]?x[ ]?e[ ]?c[ ]?u[ ]?t[ ]?i[ ]?v[ ]?e[ \t\n]{1,3}O[ ]?r[ ]?d[ ]?e[ ]?r[ ]?s?|\bEx\.[ \t\n]{0,2}Ords?\.|\bE\.[ ]?O\.(?:\x27?s)?|\bEOs?'
+      r'|(?:^|[^\w\s][ \t\n]{0,2}|\b(?:the|and|or|of|in|by|thereof|under)[ \t\n]{1,3})Orders?)')
+_NUMWORD=r'(?:Nos?\.?|Numbers?|Numbered)'
+_ITEM=(r'\d{1,5}[A-Z]?(?:,?[ \t\n]{1,3}(?:of|dated)[ \t\n]{1,3}[A-Z][a-z]{2,8}\.?[ \t\n]{1,3}\d{1,2},?[ \t\n]{1,3}\d{4})?'
+       r'(?:,?[ \t\n]{1,3}as[ \t\n]{1,3}amended)?')
+_SEP=r'[ \t\n]{0,3}[,;]?[ \t\n]{0,3}(?:(?:and|or|&)[ \t\n]{1,3})?'
+_PRECEDES=re.compile(_CUE+r'[ \t\n]{0,3}(?:'+_NUMWORD+r'[ \t\n]{0,3})?(?:'+_ITEM+_SEP+r'(?:'+_NUMWORD+r'[ \t\n]{0,3})?){0,8}\Z',re.I)
+
+def target_mentions(iid, text):
+    """Exact spans where a held text prints the census order iid by number, as an executive-order citation.
+
+    A lexical lead, never a finding: it only decides whether a held acting text names the order (owner ruling
+    D-20261021-unnamed-instruments: an instrument that does not name the order does not end it)."""
+    m=re.fullmatch(r'EO:(\d+)([A-Za-z]?)',iid or '')
+    if not m or not isinstance(text,str):return []
+    number=re.escape(m[1])+(re.escape(m[2]) if m[2] else '')
+    found=[]
+    for hit in re.finditer(r'(?<![\w.,/$\u00a7-])'+number+r'(?![\w]|[.,]\d)',text):
+        a=max(0,hit.start()-220)
+        # A word character stands in for the text cut off before the window, so '^' is only the text's start.
+        before=('w' if a else '')+text[a:hit.start()]
+        if _PRECEDES.search(before):found.append((hit.start(),hit.end()))
+    return found
+
+def context_windows(text, spans, radius=WINDOW_RADIUS):
+    """Merged exact windows of text around spans, widened to whole lines; [(char_start, char_end)]."""
+    windows=[]
+    for start,end in sorted(spans):
+        if type(start) is not int or type(end) is not int or not 0<=start<end<=len(text):continue
+        a=max(0,start-radius);b=min(len(text),end+radius)
+        line=text.rfind('\n',max(0,a-200),a)
+        a=line+1 if line>=0 else a
+        line=text.find('\n',b,min(len(text),b+200))
+        b=line+1 if line>=0 else b
+        if windows and a<=windows[-1][1]:windows[-1]=(windows[-1][0],max(b,windows[-1][1]))
+        else:windows.append((a,b))
+    return windows
+
+def _actor_context(iid, actor, ar, acts, evidence, missing):
+    """ACTOR_TEXT evidence for one held actor text: the whole text up to ACTOR_TEXT_LIMIT bytes, else exact windows
+    around each printed mention of the target and each located provision. A non-census acting text is routed
+    only when it prints the target's number. Returns the actor_contexts entry, or None when not routed."""
+    text=ar['text'];acting=ar.get('role')==ACTING_ROLE
+    mentions=target_mentions(iid,text)
+    if acting and not mentions:
+        missing.append(UNNAMED_ACTING+': '+actor)
+        return None
+    key='ACTOR_TEXT:'+actor
+    base={'source':ar['source'],'actor_id':actor,'names_target':bool(mentions)}
+    if acting:
+        base.update(actor_kind=NON_CENSUS_ACTOR,grade=ar.get('grade'),acceptable_as_original=False,
+                    notice='Held text of a later instrument outside the executive-order census, under its own identity. '
+                           'It prints this order\'s number; exact span only, no legal effect asserted.')
+    if len(text.encode('utf-8'))<=ACTOR_TEXT_LIMIT:
+        evidence[key]=dict(base,id=key,text=text,char_start=0,char_end=len(text),role='actor_context')
+        return {'actor_id':actor,'evidence_id':key,'names_target':bool(mentions)}
+    spans=list(mentions)
+    for a in acts:
+        source=a.get('actor_source') if isinstance(a.get('actor_source'),dict) else {}
+        if a.get('actor_id')==actor and source.get('text_sha256')==ar['source'].get('text_sha256'):
+            spans.append((a.get('char_start'),a.get('char_end')))
+    windows=context_windows(text,spans)
+    entry={'actor_id':actor,'text_sha256':ar['source']['text_sha256'],'names_target':bool(mentions),
+           'evidence_ids':[],'windows_omitted':max(0,len(windows)-WINDOW_CAP),'full_text_chars':len(text)}
+    for start,end in windows[:WINDOW_CAP]:
+        wid=key+'@'+str(start)
+        evidence[wid]=dict(base,id=wid,text=text[start:end],char_start=start,char_end=end,role='actor_context_window',
+                           names_target=any(s<end and e>start for s,e in mentions))
+        entry['evidence_ids'].append(wid)
+    if acting:
+        # The held file itself is the full text; its hash is pinned through the window records.
+        entry['held_text_path']=ar['text_path']
+        if entry['windows_omitted']:
+            missing.append('Large acting text of '+actor+' has '+str(len(windows))+' passages naming this order; '
+                           'read the held text at '+ar['text_path']+' for the rest.')
+    else:
+        entry['overflow']='actor-texts/'+filename(actor)+'.json'
+        missing.append('Large actor context must be read at '+entry['overflow']+' before deciding scope/savings.')
+    return entry
+
+def select_acting_texts(repo, rows, wanted):
+    """{actor: held acting text record} for the wanted non-census actors; one text per actor, read and hashed.
+
+    The first readable declaration wins in (graded first, text path) order; an empty or placeholder text is
+    refused. Returns (selected, refused) where refused lists 'actor: reason' strings."""
+    by_actor=collections.defaultdict(list)
+    for r in rows:
+        if r.get('instrument_id') in wanted and r.get('role')==ACTING_ROLE:by_actor[r['instrument_id']].append(r)
+    selected={};refused=[]
+    for actor,choices in sorted(by_actor.items()):
+        for r in sorted(choices,key=lambda r:(r.get('grade') is None,r['text_path'])):
+            try:text=safe_read(repo,r['text_path'])
+            except (OSError,ValueError,UnicodeError) as e:
+                refused.append(actor+': unreadable '+r['text_path']+' ('+type(e).__name__+')');continue
+            digest=hashlib.sha256(text.encode()).hexdigest()
+            if digest!=r['source'].get('text_sha256'):
+                refused.append(actor+': text hash changed '+r['text_path']);continue
+            conflict=identity_conflict(actor,r,text)
+            if conflict:
+                refused.append(actor+': '+conflict);continue
+            selected[actor]=dict(r,source=dict(r['source'],text_path=r['text_path'],text_sha256=digest,signing_date=None,filing_date=None),text=text)
+            break
+    return selected,refused
+
 def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, known_actors=None, prior_confirmation=None):
     draft=corpus['drafts'].get(iid,{})
     d=draft.get('_draft',{})
@@ -220,14 +333,8 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
     for actor in sorted({a['actor_id'] for a in acts}|set(known_actors or [])):
         ar=selected.get(actor)
         if not ar:continue
-        key='ACTOR_TEXT:'+actor
-        if len(ar['text'].encode('utf-8'))<=50000:
-            evidence[key]={'id':key,'source':ar['source'],'text':ar['text'],'char_start':0,'char_end':len(ar['text']),'actor_id':actor,'role':'actor_context'}
-            actor_contexts.append({'actor_id':actor,'evidence_id':key})
-        else:
-            pointer='actor-texts/'+filename(actor)+'.json'
-            actor_contexts.append({'actor_id':actor,'overflow':pointer,'text_sha256':ar['source']['text_sha256']})
-            missing.append('Large actor context must be read at '+pointer+' before deciding scope/savings.')
+        context=_actor_context(iid,actor,ar,acts,evidence,missing)
+        if context:actor_contexts.append(context)
     # Current-law evidence keeps exact held-text offsets. A citation alone cannot be a predicate.
     current=[]
     for n,frag in enumerate(corpus.get('current_law',{}).get(iid,[])):
@@ -323,11 +430,16 @@ def build(repo, out, cache=None):
     # Clause-level citations often declare the same file hundreds of times with
     # different page labels. Preserve every declaration, parse each actual held
     # order/artifact/text once, and choose its best original/locator candidate.
+    acting_rows=[r for r in corpus.get('acting_texts',[]) if r.get('instrument_id') not in universe]
     with ShardedJsonl(out/'TEXT_REPRESENTATIONS.jsonl') as fh:
         for r in declared:
             line(fh,r)
             key=(r['instrument_id'],r['text_path'],r['source'].get('sha256'),r['source'].get('text_sha256'))
             if key not in seen_texts:seen_texts.add(key);text_records.append(r)
+        # Held texts of non-census acting instruments, under their own identity (role acting_instrument_text).
+        # They are never scanned as orders; the status overlay selects them by their CLAUSES source.
+        for r in acting_rows:line(fh,r)
+    counts['acting_text_representations']=len(acting_rows)
     counts['declared_text_representations']=len(declared)
     counts['distinct_held_text_artifacts']=len(text_records)
     with ShardedJsonl(out/'TEXT_CLAUSES.jsonl') as all_clauses:
@@ -420,11 +532,21 @@ def build(repo, out, cache=None):
                 if child!=a['actor_id']:
                     pairs.setdefault((child,a['actor_id'],a['target_id']),{'target_id':child,'actor_id':a['actor_id'],'parent_id':a['target_id']})
     actors_by=collections.defaultdict(list);missing_sources=[];located_pairs={}
+    acting_selected,acting_refused=select_acting_texts(repo,acting_rows,{a for _,a,_ in pairs if a not in universe})
+    for reason in acting_refused:warnings.append('acting text refused: '+reason)
+    unnamed_pairs=set();acting_used=set()
     for pair_no,(key,p) in enumerate(sorted(pairs.items(),key=lambda kv:(kv[0][1],kv[0][0],str(kv[0][2]))),1):
         if pair_no%2000==0:print(f'claim-kit: located {pair_no}/{len(pairs)} known provision pairs',flush=True)
         target,actor,parent=key
         if actor not in universe:
-            missing_by[target].append('Acting identity absent from census: '+actor);continue
+            ar=acting_selected.get(actor)
+            if ar is None:
+                missing_by[target].append('Acting identity absent from census: '+actor);continue
+            if not target_mentions(target,ar['text']):
+                # A held statute, rule or land order that does not print the order's number does not end it.
+                unnamed_pairs.add((target,actor));missing_by[target].append(UNNAMED_ACTING+': '+actor);continue
+            # Held and named: its exact text enters the target's dossier as ACTOR_TEXT. No ACT record is made.
+            acting_used.add(actor);counts['acting_text_pairs_named']+=1;continue
         ar=selected.get(actor)
         # Explicit provisions were already located in the whole-text pass. Reuse
         # them; rescanning a shared parent for every amender creates a quadratic
@@ -467,7 +589,12 @@ def build(repo, out, cache=None):
         for pair,values in sorted(all_variants.items()):
             for variant in values.values():line(fh,variant)
     known_actors_by=collections.defaultdict(set)
-    for target,actor,_ in pairs:known_actors_by[target].add(actor)
+    for target,actor,_ in pairs:
+        if (target,actor) not in unnamed_pairs:known_actors_by[target].add(actor)
+    counts['acting_text_pairs_unnamed']=len(unnamed_pairs);counts['acting_texts_selected']=len(acting_used)
+    for actor in set(acting_selected)-acting_used:del acting_selected[actor]  # free texts that name no order
+    # Decided dossiers see the same actor texts the overlay will select: census texts plus named acting texts.
+    context_texts=dict(selected);context_texts.update({a:acting_selected[a] for a in acting_used})
     counts['known_pairs']=len({(t,a) for t,a,_ in pairs});counts['located_actor_pairs']=sum(map(len,actors_by.values()))
     counts['orders_with_held_text']=len(selected);counts['generic_references_excluded']=generic_total
     confirmation_records=W.load_confirmations(repo)
@@ -504,11 +631,16 @@ def build(repo, out, cache=None):
                          'known_actor_ids':sorted(known_actors_by.get(iid,[]))})
                 line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),**({'factual_obligations':corpus['factual_obligations'][iid]} if corpus.get('factual_obligations',{}).get(iid) else {}),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
                 continue
-            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid),prior)
+            dossier=package(iid,corpus,context_texts,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid),prior)
             name=filename(iid)
             dump(out/'dossiers'/(name+'.json'),dossier)
             dump(out/'sheets'/(name+'.decision.json'),blank_sheet(dossier))
             index.append({'instrument_id':iid,'status':corpus['statuses'][iid], 'dossier':'dossiers/'+name+'.json','clauses':len(dossier['clauses']),'actors':len(acts),'missing':len(dossier['missing']),'conflicts':len(dossier['conflicts']),'fingerprint':dossier['fingerprint']})
+        for actor in sorted(acting_used):
+            # Not a segmentation: the frozen overlay selects an actor's held text by its CLAUSES source.
+            line(cf,{'instrument_id':actor,'source':acting_selected[actor]['source'],'clauses':[],'role':ACTING_ROLE,
+                     'method':'acting_text_not_segmented',
+                     'notes':'Held text of a non-census acting instrument; context only, never an order or a clause inventory.'})
     decided=set(corpus['statuses']);family_rows=[]
     for key,ids in families.items():
         ids=sorted(ids&decided)

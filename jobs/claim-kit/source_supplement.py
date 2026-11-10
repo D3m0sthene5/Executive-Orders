@@ -6,9 +6,9 @@ and date; every member still needs ordinary source checks and independent review
 Undecided members (no provisional status) keep their status-overlay route: the
 excerpt is added inside a new sealed copy of the parent packet's frozen overlay
 evidence, so the status decision, its independent review and owner adoption run
-on exactly the dossier the producer reads. The status gates are unchanged: a
-supplement excerpt is citable held evidence, but a NO still needs an ACT:, TERM:
-or ACTOR_TEXT: basis and a YES a CURRENT: basis.
+on exactly the dossier the producer reads. A supplement excerpt is citable held
+evidence; a NO needs an ACT:, TERM: or ACTOR_TEXT: basis, or a SUPPLEMENT: excerpt
+marked ``basis_eligible`` (see ``basis_mark``), and a YES a CURRENT: basis.
 """
 import argparse
 from copy import deepcopy
@@ -25,6 +25,67 @@ import working_text as W
 SCHEMA = 'eo-source-excerpt-declarations/v1'
 EVIDENCE_SUPPLEMENT_SCHEMA = 'eo-status-overlay-evidence-supplement/v1'
 SOURCE_KEYS = {'url', 'sha256', 'text_path', 'text_sha256', 'page_or_item', 'local_path'}
+# Official government printings of later instruments, as their producers declare them in SOURCES.jsonl: the
+# govinfo Federal Register issue scan, the govinfo Statutes at Large granule, an official FR page of a later
+# instrument. A transcription, a federalregister.gov text rendering, a code or table listing is not on this list.
+OFFICIAL_GRADE_PREFIXES = ('government_printed_federal_register_issue', 'government_printed_statutes_at_large')
+OFFICIAL_ROLES = {'official_federal_register_page_of_a_later_instrument'}
+
+
+def official_declarations(repo):
+    """{(text_path, raw sha256): declaration} for held official printings declared in jobs/*/output/SOURCES.jsonl."""
+    repo = Path(repo).resolve()
+    found = {}
+    for path in sorted(repo.glob('jobs/*/output/SOURCES.jsonl')):
+        decl = path.relative_to(repo).as_posix()
+        with path.open(encoding='utf-8') as fh:
+            for line in fh:
+                try:
+                    row = json.loads(line)
+                except ValueError:
+                    continue
+                if not isinstance(row, dict) or not isinstance(row.get('text_path'), str):
+                    continue
+                grade = str(row.get('grade') or '')
+                if not (grade.startswith(OFFICIAL_GRADE_PREFIXES) or row.get('role') in OFFICIAL_ROLES):
+                    continue
+                raw = row['text_path']
+                try:
+                    anchor = repo if raw.startswith(('jobs/', 'research/')) else path.parent
+                    rel = (anchor / raw).resolve().relative_to(repo).as_posix()
+                except (OSError, ValueError):
+                    continue
+                if isinstance(row.get('sha256'), str):
+                    found.setdefault((rel, row['sha256'].lower()), {
+                        'declaration_path': decl, 'grade': row.get('grade'), 'role': row.get('role'),
+                        'text_sha256': row.get('text_sha256'), 'instrument_ids': row.get('instrument_ids')})
+    return found
+
+
+def basis_mark(repo, source, excerpt, iid, official=None, index=None):
+    """Whether a held excerpt may be cited as a status basis for iid (``basis_eligible``), and why.
+
+    Eligible only when the excerpt prints iid's number (owner ruling D-20261021-unnamed-instruments) and its
+    held text is an official printing: an official original representation in the fragment index, or a
+    producer-declared official government printing of the same text file and raw bytes. derive() has already
+    verified both the raw-byte and the text hash. A mark is a gate input, not a finding that the text ends
+    the order; producers and independent reviewers judge that."""
+    from build import target_mentions
+    official = official_declarations(repo) if official is None else official
+    index = index or fragment_cache.shared(repo)
+    rel = B.safe(repo, source['text_path']).relative_to(Path(repo).resolve()).as_posix()
+    declaration = None
+    if index.exact_official(dict(source, text_path=rel)):
+        declaration = {'declaration_path': 'fragment-index:official_original_representation', 'grade': None}
+    else:
+        match = official.get((rel, str(source.get('sha256') or '').lower()))
+        if match and match.get('text_sha256') in (None, source.get('text_sha256')):
+            declaration = {'declaration_path': match['declaration_path'], 'grade': match['grade']}
+            if match.get('role'):
+                declaration['role'] = match['role']
+    names = bool(target_mentions(iid, excerpt))
+    return {'names_target': names, 'official_declaration': declaration,
+            'basis_eligible': bool(names and declaration)}
 ENTRY_KEYS = {'alias', 'instrument_ids', 'actor_id', 'reason', 'source', 'char_start', 'char_end'}
 
 
@@ -88,6 +149,7 @@ def derive(repo, dossiers, declaration, provenance, undecided=None):
                                  'frozen parent evidence missing or mismatched for ' + iid)
     aliases = set()
     index = fragment_cache.shared(repo)
+    official = None
     for entry in entries:
         if not isinstance(entry, dict) or set(entry) != ENTRY_KEYS:
             raise ValueError('invalid source declaration fields')
@@ -120,10 +182,16 @@ def derive(repo, dossiers, declaration, provenance, undecided=None):
         for iid in ids:
             if eid in result[iid]['evidence']:
                 raise ValueError('source evidence ID collision')
+            if official is None:
+                official = official_declarations(repo)
+            mark = basis_mark(repo, source, text[start:end], iid, official, index)
+            if held is not None:
+                # A registered working text is never an official printing.
+                mark.update(official_declaration=None, basis_eligible=False)
             result[iid]['evidence'][eid] = {
                 'id': eid, 'source': deepcopy(held or source), 'text': text[start:end],
                 'char_start': start, 'char_end': end, 'actor_id': entry['actor_id'],
-                'role': 'unreviewed_source_excerpt', 'purpose': entry['reason'],
+                'role': 'unreviewed_source_excerpt', 'purpose': entry['reason'], **mark,
                 'notice': 'Exact held excerpt only. Actor identity, scope, date, legal meaning and application require research and independent review.'}
     for iid, d in result.items():
         d['source_supplement'] = {

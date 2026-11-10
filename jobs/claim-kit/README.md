@@ -37,6 +37,16 @@ Unattributed book dumps never become order originals. Richardson and editorial
 codifications remain derivative leads. Missing local files, unsafe paths and hash
 mismatches are reported. No network request or LFS download occurs inside the kit.
 
+Acting texts of instruments outside the census (public land orders, statutes, agency
+Federal Register documents) are declared with `role: acting_instrument_text` and
+`instrument_ids: [acting instrument, target orders...]`, or by a later-event fragment
+that carries `text_path`. They keep that identity (`PLO:`, `STAT:`, `PL:`, `FRDOC:` ...),
+are never an order's own text, and enter a target's dossier as `ACTOR_TEXT:` only when
+they print the target's number (owner ruling D-20261021-unnamed-instruments); no `ACT:`
+record is made for them. An actor text over 50,000 bytes is cited by exact windows,
+`ACTOR_TEXT:<actor>@<char_start>`, around each printed mention and located provision;
+every `ACTOR_TEXT` record carries `names_target`.
+
 Parser cache keys include code, source/text hashes, identity and date metadata.
 The bounded runner cache can resume unchanged evidence; it is not a source custody
 certificate. Source text hashes and offsets are verified again in assembly.

@@ -681,7 +681,7 @@ def _decision_errors(decision, evidence):
               or isinstance(record.get("meta"), dict)
               and record["meta"].get("basis_code") == "ofr_codification_1989_in_force"):
             errors.append("historical_editorial_snapshot_cannot_establish_status:" + ident)
-    if status == "no" and not any(ident.startswith(("ACT:", "TERM:", "ACTOR_TEXT:")) and ident in records for ident in basis):
+    if status == "no" and not any((ident.startswith(("ACT:", "TERM:", "ACTOR_TEXT:")) or ident.startswith("SUPPLEMENT:") and isinstance(records.get(ident), dict) and records[ident].get("basis_eligible") is True) and ident in records for ident in basis):
         errors.append("snapshot_only_or_missing_ending_basis")
     if status == "yes":
         if not any(ident.startswith("CURRENT:") and ident in records for ident in basis):

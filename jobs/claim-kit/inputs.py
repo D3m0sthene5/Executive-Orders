@@ -122,7 +122,15 @@ def _boolean(value):
 
 
 # Longest names first, so "compiled_transcription_lead" is not read as "compiled_transcription".
-NON_EO_ACTOR = re.compile(r"(?:PLO|PROC|STAT|PL|PUBRES|ACT|NOTICE|MEMORANDUM|PRES_DETERMINATION):[A-Za-z0-9_.:/ -]{1,60}")
+NON_EO_ACTOR = re.compile(r"(?:PLO|PROC|STAT|PL|PUBRES|ACT|NOTICE|MEMORANDUM|PRES_DETERMINATION|FRDOC|FRPAGE|FS_REG|CANAL_ZONE_ORDER):[A-Za-z0-9_.:/ -]{1,60}")
+# A held text of a later instrument that is not a census order (a public land order, a statute, an agency
+# Federal Register document). Producers declare it with instrument_ids = [acting instrument, target orders...]
+# so it is never read as the target's own text. It keeps that honest identity; it enters a target's dossier
+# only as context, and only when it prints the target's number (claim-kit build.py).
+ACTING_ROLE = "acting_instrument_text"
+ACTING_ROLES = {ACTING_ROLE, "official_federal_register_page_of_a_later_instrument"}
+# Legal text only: a JSON record is never an acting text.
+ACTING_SUFFIXES = {".txt", ".xml", ".html", ".htm"}
 SPECIFIC_DERIVATIVE_GRADES = ("compiled_transcription_lead", "compiled_transcription", "mirror_transcription")
 
 
@@ -193,6 +201,7 @@ class _Collector:
         self.text_keys = set()
         self.pair_keys = set()
         self.registered = set()
+        self.acting = {}
 
     def identity(self, value):
         # Exact census forms only; never rewrite suffixes or infer identities.
@@ -224,20 +233,7 @@ class _Collector:
         if not source.get("url") and not source.get("archival_id"):
             self.warnings.append(f"{origin}: {iid} text lacks source URL/archive id: {rel}")
             return
-        if rel not in self.hashes:
-            try:
-                with path.open("rb") as fh:
-                    first = fh.read(65536)
-                    if first.startswith(LFS_MAGIC):
-                        self.hashes[rel] = None
-                    else:
-                        digest = hashlib.sha256(first)
-                        for block in iter(lambda: fh.read(1024 * 1024), b""):
-                            digest.update(block)
-                        self.hashes[rel] = digest.hexdigest()
-            except OSError:
-                self.hashes[rel] = None
-        actual = self.hashes[rel]
+        actual = self.held_sha(path, rel)
         if actual is None:
             self.warnings.append(f"{origin}: text unavailable (LFS pointer or unreadable): {rel}")
             return
@@ -271,6 +267,77 @@ class _Collector:
         if key not in self.text_keys:
             self.text_keys.add(key)
             self.texts.append(row)
+
+    def add_acting_text(self, actor, raw, base, source, origin, targets, grade=None, declared_by="sources"):
+        """A held text of a non-census acting instrument, under its own identity; never an order's own text."""
+        if (not isinstance(actor, str) or actor in self.universe or not NON_EO_ACTOR.fullmatch(actor)
+                or not isinstance(raw, str)):
+            return
+        path = _path(self.repo, base, raw)
+        if path is None or path.suffix.lower() not in ACTING_SUFFIXES or not path.is_file():
+            self.warnings.append(f"{origin}: acting text of {actor} missing, unsafe or not plain text: {raw}")
+            return
+        rel = path.relative_to(self.repo).as_posix()
+        if not (HEX64.fullmatch(str(source.get("sha256") or "")) and source.get("url")):
+            self.warnings.append(f"{origin}: acting text of {actor} lacks original-byte sha256 or URL: {rel}")
+            return
+        actual = self.held_sha(path, rel)
+        if actual is None or (source.get("text_sha256") and source["text_sha256"] != actual):
+            self.warnings.append(f"{origin}: acting text of {actor} unavailable or text_sha256 mismatch: {rel}")
+            return
+        key = (actor, rel)
+        row = self.acting.get(key)
+        ref = {"url": source["url"], "sha256": source["sha256"].lower(), "page_or_item": source.get("page_or_item"),
+               "text_path": rel, "text_sha256": actual, "grade": grade, "acceptable_as_original": False,
+               "instrument_id": actor, "role": ACTING_ROLE}
+        if row is None or (row["declared_by"] != "sources" and declared_by == "sources"):
+            # A producer's SOURCES declaration (which carries the grade) outranks a fragment's bare citation.
+            old = row or {}
+            row = {"instrument_id": actor, "text_path": rel, "source": ref, "grade": grade,
+                   "acceptable_as_original": False, "role": ACTING_ROLE, "requires_page_check": False,
+                   "signing_date": None, "filing_date": None, "declared_by": declared_by,
+                   "declared_targets": list(old.get("declared_targets", [])),
+                   "origins": list(old.get("origins", []))}
+            self.acting[key] = row
+        row["declared_targets"] = sorted(set(row["declared_targets"]) | {t for t in targets if t in self.universe})
+        row["origins"] = sorted(set(row["origins"]) | {origin})
+
+    def acting_declaration(self, record, base, origin):
+        """SOURCES rows shaped [acting instrument, target orders...] with an acting-text role."""
+        ids = record.get("instrument_ids")
+        if (record.get("role") not in ACTING_ROLES or not isinstance(ids, list) or len(ids) < 2
+                or not all(isinstance(i, str) for i in ids)):
+            return
+        actor, targets = ids[0], [t for t in ids[1:] if t in self.universe]
+        if actor in self.universe or not NON_EO_ACTOR.fullmatch(actor):
+            return
+        self.add_acting_text(actor, record.get("text_path"), base, _source(record), origin, targets,
+                             record.get("grade"), "sources")
+        for target in targets:
+            row = {"target_id": target, "actor_id": actor, "source_event": {
+                "kind": "held_acting_text_declaration", "input_origin": origin, "role": record.get("role"),
+                "text_path": record.get("text_path"), "source_id": record.get("source_id")}}
+            key = _canonical(row)
+            if key not in self.pair_keys:
+                self.pair_keys.add(key)
+                self.pairs.append(row)
+
+    def held_sha(self, path, rel):
+        """sha256 of a held file, or None for an LFS pointer or unreadable file (memoized per path)."""
+        if rel not in self.hashes:
+            try:
+                with path.open("rb") as fh:
+                    first = fh.read(65536)
+                    if first.startswith(LFS_MAGIC):
+                        self.hashes[rel] = None
+                    else:
+                        digest = hashlib.sha256(first)
+                        for block in iter(lambda: fh.read(1024 * 1024), b""):
+                            digest.update(block)
+                        self.hashes[rel] = digest.hexdigest()
+            except OSError:
+                self.hashes[rel] = None
+        return self.hashes[rel]
 
     def registered_grade(self, iid, ref):
         """The single working-text grade the producer registered for this exact text, if any."""
@@ -342,7 +409,7 @@ class _Collector:
                                 original_context, local_dates, inherited_acceptable, provenance,
                                 local_quality)
 
-    def add_pair(self, target, event, origin):
+    def add_pair(self, target, event, origin, base=None):
         if not isinstance(event, dict):
             return
         proposal = event.get("proposal") if isinstance(event.get("proposal"), dict) else event
@@ -357,6 +424,12 @@ class _Collector:
                                              and NON_EO_ACTOR.fullmatch(raw_actor) else None)
         if not target or not actor or actor == target:
             return
+        if base is not None and actor not in self.universe and isinstance(event.get("text_path"), str):
+            # A later-event fragment that quotes a held text of a non-census acting instrument (Selden).
+            self.add_acting_text(actor, event["text_path"], base,
+                                 {"url": event.get("source_url"), "sha256": event.get("source_sha256"),
+                                  "page_or_item": event.get("page_or_item")}, origin, [target],
+                                 declared_by="fragment")
         row = {"target_id": target, "actor_id": actor,
                "source_event": dict(event, input_origin=origin)}
         parent = self.identity(event.get("parent_id") or meta.get("parent_id") or
@@ -423,7 +496,7 @@ class _Collector:
             self.walk_texts(frag, base, origin)
         if kind in EVENT_KINDS:
             for event in rows:
-                self.add_pair(iid, event, origin)
+                self.add_pair(iid, event, origin, base)
         if kind in CURRENT_KINDS and iid:
             for row in rows:
                 if isinstance(row, dict):
@@ -524,6 +597,7 @@ def load_corpus(repo):
             if path.name.startswith("FRAGMENTS") or record.get("kind"):
                 collector.fragment(record, path.parent, origin)
             else:
+                collector.acting_declaration(record, path.parent, origin)
                 collector.walk_texts(record, path.parent, origin)
     # Keep actual catalog dates, not a publication date recast as filing date.
     catalog_dates = {}
@@ -606,9 +680,19 @@ def load_corpus(repo):
             record[key] = record.get(key) or dates.get(key)
     collector.texts.sort(key=lambda r: (r["instrument_id"], r["text_path"], _canonical(r)))
     collector.pairs.sort(key=lambda r: (r["target_id"], r["actor_id"], _canonical(r)))
+    # A fragment-only binding takes the grade of a SOURCES declaration of the same held text and bytes.
+    declared = {(r["text_path"], r["source"]["sha256"]): r for r in collector.acting.values()
+                if r["declared_by"] == "sources"}
+    for row in collector.acting.values():
+        match = declared.get((row["text_path"], row["source"]["sha256"]))
+        if row["declared_by"] == "fragment" and match:
+            row["source"].update({k: match["source"][k] for k in ("url", "page_or_item", "grade")})
+            row["grade"] = match["grade"]
+    acting_texts = sorted(collector.acting.values(), key=lambda r: (r["instrument_id"], r["text_path"]))
     return {"universe": universe, "statuses": statuses, "drafts": drafts,
             "texts": collector.texts, "pairs": collector.pairs,
             "registered_working_texts": sorted(collector.registered),
+            "acting_texts": acting_texts,
             "current_law": dict(collector.current), "machine_searches": searches,
             "status_histories": collector.status_histories,
             "factual_obligations": dict(collector.factual_obligations),
