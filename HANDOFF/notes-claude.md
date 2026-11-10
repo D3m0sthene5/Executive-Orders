@@ -29,6 +29,30 @@
 - **Recorded:** Kean F-20261110-accursius-f3-current, -f4-acting-texts, -f5-own-text, -f6-working-text,
   -f7-artifacts, -wave. No owner ask: the existing rulings covered every case. Cost 182 USD list (Bentham usage).
   Human-certified 0.
+## 2026-11-10 ET (Claude, NALIMOV: script-completed claims, PR #279)
+
+- **Done (PR #279, draft):** `jobs/nalimov-tablebase/` drafts a whole claim by script for an express named
+  revocation, from held hashed records only, or names its blocker. `prescreen.py` runs the kit's assembler and the
+  actual checker on every draft. Packets are batched by acting instrument, with typed controls. The Maudslay conveyor
+  gained `--producer nalimov` (drafter replaces the producer stage), `--controls typed` (five control kinds) and
+  list-price measures by stage (Whitworth I4/I6). Report: `research/nalimov/REPORT.md`. No model ran on any order.
+- **Measured on main (854514831e outputs):** express named revocation: 720 candidates, 12 complete drafts, 8 pass
+  every checker step. Decided 0 of 2,732; amendment-only 0 of 601 (F5 not merged); own terms 0. Packets 4.8k tokens
+  per claim. Projected 0.10-0.42 USD per adopted status vs 7.71 measured. Kean F-20261110-nalimov-census.
+- **Review:** Fable 5.2 found 7 blocking defects in v1 (17 of 36 drafts wrong), then 2 small ones in v2. All fixed.
+  Kean F-20261110-nalimov-review-v1. The independent review is in the side-session notes folder (`nalimov/REVIEW.md`).
+- **Conveyor status-overlay stage (in #279):** undecided orders now run status review, overlay-propose and working
+  claims, then the conveyor's unchanged review and completion stages, published as replacement_proposal. A delegated
+  Opus worker built it; Fable reviewed it (one blocker, O1, fixed). 76 conveyor tests and 36 Nalimov tests pass. It
+  has run only against the fake kit. Kean F-20261110-nalimov-overlay-stage.
+- **Reach (the real question):** this route covers dozens of orders: express 12 now, ≤19 with F3-F7, ≤41 with
+  sources. One-question tiers (measured, not built) reach about 201 express and about 700-800 project-wide (coarse
+  2,088). See `TALLY.json`, `TIERS.json`, `POOL_TALLY.json` and the two acquisition lists in `research/nalimov/`.
+- **Waiting on the owner:** A-20261110-nalimov-calibration rev 1. Sign plan sha `4c19799f…` (8 orders), accept a
+  script as producer, and decide whether a model producer's reconfirmation may be mechanical.
+- **Next:** run the calibration batch once signed (first real-kit test of the overlay path); rebase onto Larrey #280
+  and Accursius F3-F7 as they merge; then build the tiers in the coordinator-approved order: unlocated acting texts
+  (F4), one-time commands, recorded amendments, own terms before the end, current-law notes (F3).
 ## 2026-11-10 ET (Claude, Larrey triage gate, PR #280)
 
 - **Built:** `jobs/larrey-triage`, a zero-token check on every order before any agent is dispatched to it.

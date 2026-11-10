@@ -745,6 +745,12 @@ def _decision_errors(decision, evidence):
             errors.append("status_basis_not_exact_held_evidence:" + ident)
         elif record.get("kind") == "report_deadline":
             errors.append("report_deadline_cannot_establish_status:" + ident)
+        elif (ident.startswith("ACTOR_TEXT:") and (record.get("actor_kind") == "non_census_instrument"
+                                                     or not str(record.get("actor_id") or "").startswith("EO:"))
+              and record.get("basis_eligible") is not True):
+            # A held text of a non-census instrument (land order, statute, agency FR document) is a basis only
+            # as an official printing in which the lexical check found the order's number; otherwise a lead.
+            errors.append("non_census_actor_text_is_a_lead_not_a_basis:" + ident)
         elif (record.get("basis_code") == "ofr_codification_1989_in_force"
               or isinstance(record.get("meta"), dict)
               and record["meta"].get("basis_code") == "ofr_codification_1989_in_force"):
@@ -766,8 +772,11 @@ def _decision_errors(decision, evidence):
         # A parent's end is evidence for the surviving consequence, never the order's own end.
         if record.get("role") != own_text.PARENT_ROLE or record.get("parent_id") not in parents:
             errors.append("parent_end_requires_own_text_amends_parent_basis:" + ident)
-    valid_no = [ident for ident in basis if ident in records and ident.startswith(NO_BASIS_PREFIXES)
-                and (not ident.startswith("OWN_TEXT:") or own_text.verify(dossier, ident))]
+    valid_no = [ident for ident in basis if ident in records and (
+        ident.startswith(NO_BASIS_PREFIXES) and (not ident.startswith("OWN_TEXT:") or own_text.verify(dossier, ident))
+        # A held, hash-verified official SUPPLEMENT text that names the order (Accursius F4).
+        or ident.startswith("SUPPLEMENT:") and isinstance(records.get(ident), dict)
+        and records[ident].get("basis_eligible") is True)]
     if status == "no" and not valid_no:
         errors.append("snapshot_only_or_missing_ending_basis")
     if status == "yes":
