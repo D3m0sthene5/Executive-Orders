@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 301; `search` finds the rest)
+## Newest results (6 of 302; `search` finds the rest)
 
 - 2026-11-10 F-20261110-mommsen2-road-sparse-ci **partly worked**: PR 252 claim publication against the road-tests sparse checkout. Lesson: Read the committed runner declaration with git show when the worktree file is absent. This one-test fallback keeps the existing scope comparison and allows claim PR CI without changing .github.
+- 2026-11-10 F-20261110-mommsen1-wave-zturn2 **partly worked**: Finish source-passing6606G; stop old range on two zero-claim cohorts; source-gate20 new6750-6904 members; reb… Lesson: Preserve already-native-published files under explicit exception; automatic-review rejection was not bypassed. Disclose historical source-retirement CI conflict, retain append-only lines. Source scre…
 - 2026-11-10 F-20261110-mommsen1-wave-zturn1 **partly worked**: C4 ordinary source gates on109 unattempted eligible decided-not-ready EO6000-6749 members in five retained co… Lesson: Count actual source gates and running workers; do not pad6producers with failed-source orders or treat predispatch holds as completed legal investigations. Preserve unranked no-stratum gate refusals…
 - 2026-11-10 F-20261110-mommsen1-wave-turn1 **partly worked**: Continue S-1-1 production through source gates, four bounded producers, two blind arms, strict control adjudi… Lesson: Load required consumer inputs and supply native review schema before dispatch. Preserve historical scientific records; clerical provenance conversion belongs to explicit deterministic attestations, n…
 - 2026-11-10 F-20261110-mommsen1-wave-production **partly worked**: Photius official-print recheck then claim_ready.no.fr batches under the owner wave Lesson: Preserve source reviews but reprepare any packet after Valla context changes. When first-end and residual evidence is absent, block and hand off rather than infer a cessation. Treat unknown cost as u…
 - 2026-11-10 F-20261110-mommsen1-turn1-takeover **stopped at gate**: Reconstruct desktop MOMMSEN-I production state and continue only authorized work under current SAVIGNY direct… Lesson: Do not restart quality-stopped pools or infer merge authority from predecessor summaries. Preserve unfinished reservations and exact receipts; treat global usage/context as unattributed. In isolated…
-- 2026-11-10 F-20261110-mommsen1-road-test-sparse-fixture **stopped at gate**: Run road tests on PR254 head 77a4d2478e Lesson: Read the tracked runner manifest through git show in this test; leave the workflow and production runner untouched.
 
-Register: 77 owner decisions, 47 answered questions, 301 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 47 answered questions, 302 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
