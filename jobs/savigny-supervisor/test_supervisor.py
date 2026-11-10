@@ -31,7 +31,7 @@ class SupervisorTests(unittest.TestCase):
         for name in ("savigny.md", "savigny-turn.md", "lane.md", "lane-turn.md"):
             (self.root / "prompts" / name).write_text("prompt {AGENT} {TURN} {N}", encoding="utf-8")
         (self.root / "lanes.json").write_text(json.dumps({"lanes": {"mommsen-1": None}}), encoding="utf-8")
-        (self.root / "limits.json").write_text(json.dumps(LIMITS), encoding="utf-8")
+        self.write_plan(LIMITS)
         self.clock = Clock()
         self.readings = {"_savigny": {"units": 0}, "mommsen-1": {"units": 0, "filed": 0, "reviews_last_hour": 0}}
         self.chains = []
@@ -44,8 +44,13 @@ class SupervisorTests(unittest.TestCase):
         S.STAGGER, S.SHORT_TURN = self.old
         self.tmp.cleanup()
 
+    def write_plan(self, limits, lanes=1):
+        plan = {"limits": limits, "actions": [{"id": "production.x", "lanes": lanes, "orders": 30}]}
+        (self.root / "WAVE.json").write_text(json.dumps(plan), encoding="utf-8")
+
     def chain(self):
-        c = S.Chain(self.root, fake=True, metered=lambda: json.loads(json.dumps(self.readings)), clock=self.clock)
+        c = S.Chain(self.root, fake=True, metered=lambda: json.loads(json.dumps(self.readings)), clock=self.clock,
+                    preflight=lambda plan: ([], {"verdict": "PASS"}))
         c.turn_context = lambda agent: 0
         self.chains.append(c)
         return c
@@ -66,10 +71,9 @@ class SupervisorTests(unittest.TestCase):
 
     def test_refuses_to_start_without_every_limit(self):
         for key in LIMITS:
-            (self.root / "limits.json").write_text(json.dumps({k: v for k, v in LIMITS.items() if k != key}),
-                                                   encoding="utf-8")
+            self.write_plan({k: v for k, v in LIMITS.items() if k != key})
             with self.assertRaises(SystemExit) as e:
-                S.Chain(self.root, fake=True)
+                S.Chain(self.root, fake=True, preflight=lambda plan: ([], {}))
             self.assertIn(key, str(e.exception))
 
     def test_spend_without_a_claim_pauses_the_lane_and_kills_its_turn(self):
@@ -137,11 +141,27 @@ class SupervisorTests(unittest.TestCase):
         self.finish(c)
 
     def test_every_turn_is_a_fresh_session(self):
-        c = S.Chain(self.root, fake=False, metered=lambda: self.readings, clock=self.clock)
+        c = S.Chain(self.root, fake=False, metered=lambda: self.readings, clock=self.clock,
+                    preflight=lambda plan: ([], {}))
         c.codex = lambda: "codex.exe"
         cmd = c.command("mommsen-1", self.root / "last.md")
         self.assertEqual(cmd[:2], ["codex.exe", "exec"])
         self.assertNotIn("resume", cmd)
+
+    def test_refuses_without_a_plan_or_when_augur_refuses_or_lanes_exceed_the_plan(self):
+        (self.root / "WAVE.json").unlink()
+        with self.assertRaisesRegex(SystemExit, "WAVE.json missing"):
+            S.Chain(self.root, fake=True)
+        self.write_plan(LIMITS)
+        with self.assertRaisesRegex(SystemExit, "Augur refuses this wave"):
+            S.Chain(self.root, fake=True, preflight=lambda plan: (["not in Bentham"], {}))
+        (self.root / "lanes.json").write_text(json.dumps({"lanes": {"mommsen-1": None, "mommsen-2": None}}), encoding="utf-8")
+        with self.assertRaisesRegex(SystemExit, "approved plan allows 1"):
+            S.Chain(self.root, fake=True, preflight=lambda plan: ([], {}))
+
+    def test_real_augur_runs_when_no_preflight_is_injected(self):
+        with self.assertRaisesRegex(SystemExit, "Augur refuses this wave"):
+            S.Chain(self.root, fake=True)      # the stub plan names no Bentham action, no review, no premortem
 
     def test_paused_lane_is_not_restarted(self):
         c = self.chain()

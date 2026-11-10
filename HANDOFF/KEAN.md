@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 294; `search` finds the rest)
+## Newest results (6 of 295; `search` finds the rest)
 
+- 2026-11-10 F-20261110-why-warnings-missed **analysis**: Checked what the project already knew before the overnight Codex wave launched (2026-11-09 21:45 ET), and why… Lesson: A lessons register stops nothing unless a gate enforces it at the decision point. jobs/augur-launch/augur.py refuses a wave unless: its objective is an outcome; its actions are Bentham's; it ramps fr…
 - 2026-11-10 F-20261110-mommsen2-road-sparse-ci **partly worked**: PR 252 claim publication against the road-tests sparse checkout. Lesson: Read the committed runner declaration with git show when the worktree file is absent. This one-test fallback keeps the existing scope comparison and allows claim PR CI without changing .github.
 - 2026-11-10 F-20261110-mommsen-unranked-pools **failed**: Overnight Codex wave 2026-11-09/10: SAVIGNY coordinating MOMMSEN-1..5 (gpt-6.1-sol xhigh, headless) on pools… Lesson: Never assign agents to orders outside a Bentham action, and never treat an unranked gate refusal as advice. Now enforced: claim-kit admission (jobs/claim-kit/admission.py) refuses next and prepare on…
 - 2026-11-10 F-20261110-codex-token-split **analysis**: Measured every Codex rollout from the overnight wave of 2026-11-09/10 (317 sessions): tokens by role and lane… Lesson: The waste was coordination, not production. (1) Never resume a long session: start each turn fresh from a handoff packet and cap per-call context (120k). (2) Expensive models must not do clerical wor…
 - 2026-11-09 F-20261110-papinian-photius-overlap **analysis**: Papinian pool 1b: recovery.working_text_stale (26 orders, EO 7912-8025) Lesson: A Bentham stratum and a named campaign can be the same orders under two names; split lanes by order ids, not by action names.
 - 2026-11-09 F-20261110-papinian-nea-notices **analysis**: Papinian YES pool (production.claim_ready.yes.fr): producers worked batches y01-y09 by the original_plus_boun… Lesson: Bentham's acquire.nea_continuation_notices (listed free, 0 orders) is the largest single unlock left in the YES stratum: enqueue the annual Federal Register continuation notices for each live IEEPA/N…
-- 2026-11-09 F-20261110-papinian-board-custody **analysis**: Papinian pool 2 pilot: apply owner ruling D-20261108-board-rule to the R3 Presidential Emergency Board orders… Lesson: Bentham's one_step_away rate assumes production can close FIRST_END_UNRESOLVED, but for board orders the step is a byte-custody gap, not research: commit or release-store the report PDFs (and give th…
 
-Register: 75 owner decisions, 45 answered questions, 294 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 295 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
