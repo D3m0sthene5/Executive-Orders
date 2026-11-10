@@ -677,6 +677,10 @@ def _decision_errors(decision, evidence):
             errors.append("status_basis_not_exact_held_evidence:" + ident)
         elif record.get("kind") == "report_deadline":
             errors.append("report_deadline_cannot_establish_status:" + ident)
+        elif ident.startswith(("ACTOR_TEXT:", "SUPPLEMENT:")) and record.get("names_target") is False:
+            # A statute or order that does not name the target does not end it; the instrument that names
+            # it does (D-20261021-unnamed-instruments). Such a held text stays a disclosed lead.
+            errors.append("unnamed_instrument_cannot_end_order:" + ident)
         elif (record.get("basis_code") == "ofr_codification_1989_in_force"
               or isinstance(record.get("meta"), dict)
               and record["meta"].get("basis_code") == "ofr_codification_1989_in_force"):

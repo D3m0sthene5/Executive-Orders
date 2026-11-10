@@ -330,5 +330,22 @@ class SupplementEligibilityTests(unittest.TestCase):
         self.assertFalse(mark["basis_eligible"])  # federalregister.gov text is not the official edition
 
 
+
+
+class UnnamedInstrumentGateTests(unittest.TestCase):
+    """D-20261021-unnamed-instruments: a held acting text that does not name the order is never a NO basis."""
+
+    def test_actor_text_that_does_not_name_the_order_is_refused(self):
+        base = TO.OverlayTests("test_held_actor_context_can_support_manual_review_of_ocr_missed_provision")
+        base.setUp()
+        self.addCleanup(base.doCleanups)
+        base.evidence["base_dossier"]["evidence"]["ACTOR_TEXT:EO:5"]["names_target"] = False
+        base.reseal_changed_fixture_evidence()
+        base.decision["basis_evidence_ids"] = ["ACTOR_TEXT:EO:5"]
+        base.review = base.accepted_review(base.decision)
+        base.review["checked_evidence_ids"].append("ACTOR_TEXT:EO:5")
+        base.assert_rejects("unnamed_instrument_cannot_end_order:ACTOR_TEXT:EO:5")
+
+
 if __name__ == "__main__":
     unittest.main()
