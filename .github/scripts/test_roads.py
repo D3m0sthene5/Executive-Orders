@@ -2,7 +2,7 @@
 import os, subprocess, sys
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
-for name in ('family-rules','case-bundles','daily-digest','_lib','claim-drafts','readiness-tracker','montfaucon-page-check','lachmann','pinakes-proquest-ingest','csc-annual-reports','early-ranger-transcriptions','early-ranger-reparse','early-ranger-triage','early-ranger-original-items','early-ranger-full-pages','lewis-originals','valla','early-ranger-workbench','census-candidates','claim-kit','neyman','carnot-coordinator','savigny-supervisor','augur-launch','linnaeus-types','cruden-fr-concordance','pacioli-double-entry'):
+for name in ('family-rules','case-bundles','daily-digest','_lib','claim-drafts','readiness-tracker','montfaucon-page-check','lachmann','pinakes-proquest-ingest','csc-annual-reports','early-ranger-transcriptions','early-ranger-reparse','early-ranger-triage','early-ranger-original-items','early-ranger-full-pages','lewis-originals','valla','early-ranger-workbench','census-candidates','claim-kit','neyman','carnot-coordinator','savigny-supervisor','augur-launch','linnaeus-types','cruden-fr-concordance','pacioli-double-entry','respondendi-adoption'):
     folder=root/'jobs'/name
     if not any(folder.glob('test_*.py')):continue
     code="""import socket, unittest, sys
@@ -35,4 +35,5 @@ subprocess.run([sys.executable,str(root/'.github/scripts/test_writer_queue.py')]
 subprocess.run([sys.executable,str(root/'.github/scripts/test_arsenale.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 # Trigger policy (owner, 2026-11-09): no push starts Run jobs, no tag starts any workflow.
 subprocess.run([sys.executable,str(root/'.github/scripts/test_workflow_triggers.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
-
+# Ulpian outer bound (2026-11-10): arithmetic, screens and the owner lock.
+subprocess.run([sys.executable,'-I',str(root/'jobs/ulpian-outer-bound/test_ulpian.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})

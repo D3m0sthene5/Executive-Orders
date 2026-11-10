@@ -382,6 +382,28 @@ class GateAndReadiness(Fixture):
         self.assertTrue(any("U.S. Code" in r for r in repos))
         self.assertFalse(any("eCFR" in r for r in repos))  # search_complete is false
 
+    def test_machine_hits_count_every_mentions_row_not_only_predicate_leads(self):
+        """EO 10195: two usc MENTIONS rows named the order, none a predicate lead, and the draft read 0 hits."""
+        shutil.rmtree(self.repo)
+        self.repo = make_repo(self.repo, cl_sample=False)
+        cl = self.repo / "jobs/current-law/output"
+        fields = ["mention_id", "system", "instrument_id", "is_predicate_lead", "citation"]
+        write_csv(cl / "MENTIONS.csv", [
+            {"mention_id": "usc:a", "system": "usc", "instrument_id": "EO:200", "is_predicate_lead": "no", "citation": "26 U.S.C. 112 note"},
+            {"mention_id": "usc:b", "system": "usc", "instrument_id": "EO:200", "is_predicate_lead": "no", "citation": "26 U.S.C. 112"},
+            {"mention_id": "usc:c", "system": "usc", "instrument_id": "EO:200", "is_predicate_lead": "yes", "citation": "5 U.S.C. 1"},
+            {"mention_id": "ecfr:d", "system": "ecfr", "instrument_id": "EO:200", "is_predicate_lead": "no", "citation": "5 CFR 1"},
+            {"mention_id": "usc:e", "system": "usc", "instrument_id": "EO:999", "is_predicate_lead": "no", "citation": "x"}], fields)
+        self.reload()
+        usc = [m for m in self.draft("EO:200")["_draft"]["proposals"]["later_source_search_machine"]
+               if m["search_id"] == "current-law:usc"][0]
+        self.assertEqual(usc["machine_hits_for_this_order"], 3)  # every usc row naming EO 200, predicate or not
+        self.assertEqual(usc["machine_fragment_items_for_this_order_all_systems"], 1)  # the old count, kept under its own name
+        # an order with fragments but no MENTIONS row of its own reads 0 rows
+        none = [m for m in self.draft("EO:100")["_draft"]["proposals"]["later_source_search_machine"]
+                if m["search_id"] == "current-law:usc"][0]
+        self.assertEqual(none["machine_hits_for_this_order"], 0)
+
     def test_compress_errors(self):
         self.assertEqual(D.compress_errors(["clause_0_state", "clause_1_state", "schema"]),
                          ["clause_*_state x2", "schema"])

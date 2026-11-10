@@ -277,15 +277,20 @@ class Run:
         self.failures.append({"kind": kind, "key": key, "reason": reason, "detail": str(detail)[:300],
                               "instrument_ids": sorted(ids)})
 
-    def add(self, source_id, ids, url, text_name, raw, route, item, notes):
+    def add(self, source_id, ids, url, text_name, raw, route, item, notes, extracted_from=None):
+        """Record one held text. A notice keeps instrument_ids = the orders it names. A U.S. Code or
+        CFR section is declared by its own identity (``extracted_from`` given): see section_identity."""
         (self.out / "texts" / text_name).write_bytes(raw)
         h = sha(raw)
         prev = self.previous.get(source_id)
         when = prev["retrieved_utc"] if prev and prev.get("sha256") == h else now_utc()
-        self.sources.append({"source_id": source_id, "instrument_ids": sorted(set(ids)), "url": url, "sha256": h,
-                             "bytes": len(raw), "content_type": "text/plain", "retrieved_utc": when, "route": route,
-                             "page_or_item": item, "text_path": f"texts/{text_name}",
-                             "cache_path": f"texts/{text_name}", "notes": notes})
+        rec = {"source_id": source_id, "instrument_ids": sorted(set(ids)), "url": url, "sha256": h,
+               "bytes": len(raw), "content_type": "text/plain", "retrieved_utc": when, "route": route,
+               "page_or_item": item, "text_path": f"texts/{text_name}",
+               "cache_path": f"texts/{text_name}", "notes": notes}
+        if extracted_from is not None:
+            rec.update(section_identity(ids, item, *extracted_from))
+        self.sources.append(rec)
 
     # ---- notices
     def notices(self, register):
@@ -364,7 +369,7 @@ class Run:
                              f"{title} U.S.C. {sec}",
                              f"Section element with its notes, extracted from OLRC release point {self.usc_rp} "
                              f"({url}, zip sha256 {zsha}). Current-law leads cite this section as a possible current basis; "
-                             "no legal finding.")
+                             "no legal finding.", extracted_from=(url, zsha))
 
     # ---- CFR
     def ecfr_date(self, title_no):
@@ -436,10 +441,52 @@ class Run:
                     self.add(f"cfr:t{title}:{s or 'part' + p}", ids, human, name, text.encode(), route, label,
                              f"Text extracted from {url} (response sha256 {rsha}); eCFR date {date} ({dsrc}). "
                              "Bulk-title route reflects the current GovInfo copy, not necessarily this date. "
-                             "Current-law leads cite this CFR text as a possible current basis; no legal finding.")
+                             "Current-law leads cite this CFR text as a possible current basis; no legal finding.",
+                             extracted_from=(url, rsha))
                 else:
                     r = errs.get((p, s), ("unknown", ""))
                     self.fail("cfr", label, r[0], r[1], ids)
+
+
+SECTION_IDENTITY_NOTE = (
+    "instrument_ids is empty because this is the text of a U.S. Code or CFR section, not of any order. "
+    "mentioned_instrument_ids lists the orders whose current-law leads cite this section; "
+    "extracted_from is the official artifact (url, sha256) the text was cut from, and citation names the section.")
+_FROM_RE = (re.compile(r"Text extracted from (\S+) \(response sha256 ([0-9a-f]{64})\)"),
+            re.compile(r"\((https://\S+\.zip), zip sha256 ([0-9a-f]{64})\)"))
+
+
+def section_identity(ids, citation, origin_url, origin_sha):
+    """Fields that declare a section text by its own identity (Respondendi fix F3, 2026-11-10).
+
+    A singleton instrument_ids made the claim kit read a CFR section as the citing order's own text
+    (and its mention scan invent ACT records). The citing orders move to mentioned_instrument_ids."""
+    return {"instrument_ids": [], "mentioned_instrument_ids": sorted(set(ids)), "citation": citation,
+            "item_extract": "citation", "extracted_from": {"url": origin_url, "sha256": origin_sha},
+            "identity_note": SECTION_IDENTITY_NOTE}
+
+
+def redeclare(row):
+    """Rewrite one SOURCES.jsonl row of an earlier run to section_identity (idempotent, offline)."""
+    if row.get("source_id", "").split(":")[0] not in ("usc", "cfr") or row.get("item_extract"):
+        return row
+    for pattern in _FROM_RE:
+        m = pattern.search(row.get("notes") or "")
+        if m:
+            out = dict(row)
+            out.update(section_identity(row.get("instrument_ids") or [], row.get("page_or_item"), m.group(1), m.group(2)))
+            return out
+    return row
+
+
+def redeclare_file(path):
+    path = Path(path)
+    rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    new = [redeclare(r) for r in rows]
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        for r in new:
+            f.write(json.dumps(r, ensure_ascii=False, sort_keys=False) + "\n")
+    return sum(1 for a, b in zip(rows, new) if a is not b)
 
 
 def write_outputs(run, orders, notice_stats, usc_plan, cfr_plan, bad):
@@ -454,7 +501,8 @@ def write_outputs(run, orders, notice_stats, usc_plan, cfr_plan, bad):
     with open(out / "FAILURES.jsonl", "w", encoding="utf-8") as f:
         for r in fails:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
-    covered = {i for r in srcs if r["source_id"].split(":")[0] in ("usc", "cfr") for i in r["instrument_ids"]}
+    covered = {i for r in srcs if r["source_id"].split(":")[0] in ("usc", "cfr")
+               for i in r.get("mentioned_instrument_ids", r["instrument_ids"])}
     reasons = {}
     for r in fails:
         reasons[r["reason"]] = reasons.get(r["reason"], 0) + 1
@@ -506,3 +554,7 @@ def run_job(repo, out, cache, workers, transport=None, interval=1.0, previous_pa
     s = write_outputs(run, orders, ns, usc_plan, cfr_plan, bad)
     print(json.dumps(s, indent=1), flush=True)
     return s
+
+
+if __name__ == "__main__" and len(sys.argv) == 3 and sys.argv[1] == "--redeclare":
+    print("rows redeclared:", redeclare_file(sys.argv[2]))
