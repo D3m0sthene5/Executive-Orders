@@ -1,6 +1,6 @@
 {
  "schema": "larrey.backtest/v1",
- "generated_at": "2026-11-10T18:07:58Z",
+ "generated_at": "2026-11-10T18:38:04Z",
  "sources": {
   "undecided": [
    "research/excavator/claude-papinian-2026-11-10/u01b",
@@ -18,7 +18,9 @@
  "method": "Gates evaluated on each order's frozen dossier (overlay EVIDENCE.json base_dossier, or the decoded PACKET.json dossier) as the producer received it; outcomes from the same folders (dispatch checks, producer decisions, independent status reviews, both-arm replacement proposals, completion publishable claims).",
  "calibrated_code_sha256": {
   "jobs/claim-kit/status_overlay.py": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
-  "jobs/claim-kit/assemble.py": "537cc4a1d49ea92693f11459343f1820f7d866a538f4ba36de48283ef1660385"
+  "jobs/claim-kit/build.py": "7e78671bd701e05170a777e544458a92d90f843ff8883fc1d24f6be8876cd0ea",
+  "jobs/claim-kit/assemble.py": "537cc4a1d49ea92693f11459343f1820f7d866a538f4ba36de48283ef1660385",
+  "jobs/claim-kit/working_text.py": "dc080946b792b437ae1f544583fa36800af215dd152e91501326ad67f6d3c761"
  },
  "undecided": {
   "orders": 120,
@@ -336,36 +338,6 @@
     "successes_lost": 0,
     "successes": 33
    },
-   "no_page_check_owed": {
-    "gates": [
-     "no_page_check_owed"
-    ],
-    "admitted": 102,
-    "filed": {
-     "kept_out": 0,
-     "of": 9
-    },
-    "status_accepted": {
-     "kept_out": 0,
-     "of": 13
-    },
-    "producer_status_only": {
-     "kept_out": 0,
-     "of": 11
-    },
-    "failed_after_dispatch": {
-     "kept_out": 14,
-     "of": 73
-    },
-    "dispatch_blocked": {
-     "kept_out": 4,
-     "of": 14
-    },
-    "failures_kept_out": 18,
-    "failures": 87,
-    "successes_lost": 0,
-    "successes": 33
-   },
    "status_basis_record": {
     "gates": [
      "status_basis_record"
@@ -422,6 +394,36 @@
      "of": 14
     },
     "failures_kept_out": 0,
+    "failures": 87,
+    "successes_lost": 0,
+    "successes": 33
+   },
+   "no_page_check_owed": {
+    "gates": [
+     "no_page_check_owed"
+    ],
+    "admitted": 102,
+    "filed": {
+     "kept_out": 0,
+     "of": 9
+    },
+    "status_accepted": {
+     "kept_out": 0,
+     "of": 13
+    },
+    "producer_status_only": {
+     "kept_out": 0,
+     "of": 11
+    },
+    "failed_after_dispatch": {
+     "kept_out": 14,
+     "of": 73
+    },
+    "dispatch_blocked": {
+     "kept_out": 4,
+     "of": 14
+    },
+    "failures_kept_out": 18,
     "failures": 87,
     "successes_lost": 0,
     "successes": 33
@@ -525,33 +527,9 @@
    {
     "gates": [
      "original_usable",
-     "no_page_check_owed"
-    ],
-    "admitted": 358,
-    "filed": {
-     "kept_out": 0,
-     "of": 61
-    },
-    "submitted_not_filed": {
-     "kept_out": 0,
-     "of": 36
-    },
-    "blocked": {
-     "kept_out": 12,
-     "of": 273
-    },
-    "failures_kept_out": 12,
-    "failures": 273,
-    "successes_lost": 0,
-    "successes": 97
-   },
-   {
-    "gates": [
-     "original_usable",
-     "no_page_check_owed",
      "clause_inventory_present"
     ],
-    "admitted": 358,
+    "admitted": 370,
     "filed": {
      "kept_out": 0,
      "of": 61
@@ -561,10 +539,10 @@
      "of": 36
     },
     "blocked": {
-     "kept_out": 12,
+     "kept_out": 0,
      "of": 273
     },
-    "failures_kept_out": 12,
+    "failures_kept_out": 0,
     "failures": 273,
     "successes_lost": 0,
     "successes": 97
@@ -572,11 +550,10 @@
    {
     "gates": [
      "original_usable",
-     "no_page_check_owed",
      "clause_inventory_present",
      "nea_notice_if_emergency"
     ],
-    "admitted": 262,
+    "admitted": 274,
     "filed": {
      "kept_out": 0,
      "of": 61
@@ -586,10 +563,10 @@
      "of": 36
     },
     "blocked": {
-     "kept_out": 108,
+     "kept_out": 96,
      "of": 273
     },
-    "failures_kept_out": 108,
+    "failures_kept_out": 96,
     "failures": 273,
     "successes_lost": 0,
     "successes": 97
@@ -614,28 +591,6 @@
      "of": 273
     },
     "failures_kept_out": 0,
-    "failures": 273,
-    "successes_lost": 0,
-    "successes": 97
-   },
-   "no_page_check_owed": {
-    "gates": [
-     "no_page_check_owed"
-    ],
-    "admitted": 358,
-    "filed": {
-     "kept_out": 0,
-     "of": 61
-    },
-    "submitted_not_filed": {
-     "kept_out": 0,
-     "of": 36
-    },
-    "blocked": {
-     "kept_out": 12,
-     "of": 273
-    },
-    "failures_kept_out": 12,
     "failures": 273,
     "successes_lost": 0,
     "successes": 97
@@ -696,7 +651,6 @@
   ],
   "decided_lifecycle": [
    "original_usable",
-   "no_page_check_owed",
    "clause_inventory_present",
    "nea_notice_if_emergency"
   ]
@@ -1270,68 +1224,12 @@
    "respondendi_best_status": "unknown"
   },
   {
-   "instrument_id": "EO:10199",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y11",
-   "outcome": "blocked",
-   "blocker": "Packet's ORIGINAL source for 15 FR 9217 carries no official_printing grade although the page-check fragment (jobs/montfaucon-page-check/output/FRAGMENTS_OFFICIA"
-  },
-  {
-   "instrument_id": "EO:10854",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y10",
-   "outcome": "blocked",
-   "blocker": "Original location unresolved and later amendments unlisted: the held extraction puts the text of EO 10854 about 5,000 characters into 24 FR 9565 with the clause"
-  },
-  {
    "instrument_id": "EO:11023",
    "route": "decided_lifecycle",
    "wave": "papinian",
    "batch": "y01",
    "outcome": "blocked",
    "blocker": "Text of Public Law 107-372 and the repealed 1948 Act, needed for per-clause state of EO 12608 Sec. 10 and EO 13341 amendments."
-  },
-  {
-   "instrument_id": "EO:11060",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y03",
-   "outcome": "blocked",
-   "blocker": "Original page check missing: the official location (27 FR 10925, PDF page 3, confidence medium) is flagged as requiring a separate page or image check before th"
-  },
-  {
-   "instrument_id": "EO:11155",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y12",
-   "outcome": "blocked",
-   "blocker": "Page image check of 29 FR 6909 (pages 3-4) and corrected clause inventory for sections 3 and 4."
-  },
-  {
-   "instrument_id": "EO:11177",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y07",
-   "outcome": "blocked",
-   "blocker": "Official-source page location requires a separate page or image check (packet record: location confidence medium, requires_page_check true, 29 FR 13097 PDF page"
-  },
-  {
-   "instrument_id": "EO:11845",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y02",
-   "outcome": "blocked",
-   "blocker": "Official FR page image for 40 FR 13299 not held (requires_page_check true, location confidence low)."
-  },
-  {
-   "instrument_id": "EO:12234",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y12",
-   "outcome": "blocked",
-   "blocker": "Official Executive Order 13286 text as packet evidence; page check of 45 FR 58801; current U.S. Code text of the authority statutes."
   },
   {
    "instrument_id": "EO:12281",
@@ -1358,14 +1256,6 @@
    "blocker": "Census-registered National Emergencies Act continuation notices for the Iran emergency (EO 12170) through 2026-10-14; located provision records for EO 12379 and"
   },
   {
-   "instrument_id": "EO:12333",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y02",
-   "outcome": "blocked",
-   "blocker": "Official FR page image (46 FR 59941) not held; 161-clause machine inventory and unread amending orders."
-  },
-  {
    "instrument_id": "EO:12396",
    "route": "decided_lifecycle",
    "wave": "papinian",
@@ -1374,36 +1264,12 @@
    "blocker": "Current text of 10 U.S.C. 618, 624, 629, 5721, 6323, 3918, 8918, 526, 603, 644 not held."
   },
   {
-   "instrument_id": "EO:12500",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y06",
-   "outcome": "blocked",
-   "blocker": "Current text or clause-by-clause comparison of EO 12163 as amended through 2026-10-14; page check of EO 12500; statute text on the International Development Coo"
-  },
-  {
    "instrument_id": "EO:12608",
    "route": "decided_lifecycle",
    "wave": "papinian",
    "batch": "y02",
    "outcome": "blocked",
    "blocker": "No held source for the continuing effect of the section 1 savings sentence; 62-clause inventory undecided; ledger YES not supported by the held text."
-  },
-  {
-   "instrument_id": "EO:12656",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y01",
-   "outcome": "blocked",
-   "blocker": "Page-image check, scope of EO 13603 partial revocation (2012-03-16), and EO 13286 actor context."
-  },
-  {
-   "instrument_id": "EO:12883",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y14",
-   "outcome": "blocked",
-   "blocker": "Original representation fails the claim kit's working-text policy: the packet's ORIGINAL:EO:12883 (58 FR 63281, govinfo FR-1993-12-01 whole-issue PDF sha256 1d3"
   },
   {
    "instrument_id": "EO:12938",
@@ -2118,14 +1984,6 @@
    "blocker": "National Emergencies Act continuation notices through 2026-10-14 for the emergency declared in EO 13894 as expanded by EO 14312 section 4 are not held as citabl"
   },
   {
-   "instrument_id": "EO:9586",
-   "route": "decided_lifecycle",
-   "wave": "papinian",
-   "batch": "y04",
-   "outcome": "blocked",
-   "blocker": "Official page/image check of 10 FR 8523 and a corrected inventory."
-  },
-  {
    "instrument_id": "EO:9998",
    "route": "decided_lifecycle",
    "wave": "papinian",
@@ -2367,6 +2225,20 @@
    }
   ],
   "basis": "list-price worker dollars (jobs/necker-costs/PRICES.json via the waves' own cost tools); coordinator dollars excluded"
+ },
+ "bentham": {
+  "undecided": {
+   "yield_lift": 2.0451,
+   "cost_lift": 1.5757,
+   "basis": "yield: (120 attempted / 57 admitted) x (33+1)/(33+2); cost: Model P on status_assignment.undecided (Papinian u01b+u02+u03)",
+   "projection": true
+  },
+  "decided": {
+   "yield_lift": 1.3367,
+   "cost_lift": 1.2529,
+   "basis": "yield: (370 attempted / 274 admitted) x (97+1)/(97+2); cost: Model P on production.claim_ready.yes.fr (Papinian y01-y14)",
+   "projection": true
+  }
  },
  "kit_rules_loaded": []
 }

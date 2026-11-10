@@ -35,15 +35,27 @@ PROBE_ORDERS = 30
 LARREY = "jobs/larrey-triage/larrey.py"
 
 
+_LOADED = {}
+
+
 def _larrey(repo):
-    """Larrey's module from this checkout, or None when the checkout does not carry it (the kit's fixtures)."""
+    """Larrey's module from this checkout (loaded once per file), or None when the checkout does not carry it.
+
+    A project checkout (AGENTS.md at its root) must carry it: a sparse checkout that leaves jobs/larrey-triage out
+    is refused rather than let through untriaged, as for Bentham's plan. The kit's own fixtures have neither."""
     path = Path(repo) / LARREY
     if not path.is_file():
+        if (Path(repo) / "AGENTS.md").is_file():
+            raise ValueError(f"Larrey triage code missing from this checkout ({LARREY}); add jobs/larrey-triage to "
+                             "the sparse checkout (claim-kit work is triaged before dispatch)")
         return None
-    spec = importlib.util.spec_from_file_location("larrey_triage", path)
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
+    key = (str(path.resolve()), path.stat().st_mtime_ns)
+    if key not in _LOADED:
+        spec = importlib.util.spec_from_file_location("larrey_triage", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        _LOADED[key] = mod
+    return _LOADED[key]
 
 
 def triage(repo, action):

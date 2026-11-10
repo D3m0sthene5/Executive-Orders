@@ -48,10 +48,14 @@ class FeatureTests(unittest.TestCase):
     def test_basis_kinds_mirror_status_overlay(self):
         d = dossier("EO:1", records=[
             ("TERM:EO:1:a", held(kind="report_deadline")),          # a report deadline is never a basis
-            ("ACT:EO:1>EO:2:effective#0", held()),                  # effective wording is not a basis
             ("ACT:EO:1>EO:3", {"source": {}, "text": "x"}),        # no text path: not exact held evidence
+            ("TERM:EO:1:c", held(basis_code="ofr_codification_1989_in_force")),   # editorial snapshot
         ])
         self.assertEqual(KF.from_dossier(d)["basis_kinds"], [])
+        # an ACT's effective-wording record is exact held text starting with ACT:; status_overlay accepts it
+        d["evidence"]["ACT:EO:1>EO:2:effective#0"] = held()
+        self.assertEqual(KF.from_dossier(d)["basis_kinds"], ["ACT"])
+        del d["evidence"]["ACT:EO:1>EO:2:effective#0"]
         d["evidence"]["ACTOR_TEXT:EO:4"] = held()
         d["evidence"]["TERM:EO:1:b"] = held(kind="fixed_term")
         f = KF.from_dossier(d)
@@ -136,14 +140,18 @@ class Fixture:
         for rel in ("jobs/larrey-triage/larrey.py", "jobs/llull/llull.py", "jobs/llull/kit_features.py"):
             (self.root / rel).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(REPO / rel, self.root / rel)
-        for rel in ("jobs/claim-kit/status_overlay.py", "jobs/claim-kit/assemble.py"):
+        for rel in self.KIT:
             (self.root / rel).parent.mkdir(parents=True, exist_ok=True)
             (self.root / rel).write_text("# kit code v1\n", encoding="utf-8")
+        (self.root / "AGENTS.md").write_text("project root\n", encoding="utf-8")
         self.calibrate()
+
+    KIT = ("jobs/claim-kit/status_overlay.py", "jobs/claim-kit/build.py", "jobs/claim-kit/assemble.py",
+           "jobs/claim-kit/working_text.py")
 
     def calibrate(self, lost=0):
         bt = {"calibrated_code_sha256": {rel: hashlib.sha256((self.root / rel).read_bytes()).hexdigest()
-                                         for rel in ("jobs/claim-kit/status_overlay.py", "jobs/claim-kit/assemble.py")},
+                                         for rel in self.KIT},
               "undecided": {"curve": [{"successes": 33, "successes_lost": lost}]},
               "decided": {"curve": [{"successes": 97, "successes_lost": 0}]}}
         (self.root / L.BACKTEST).write_text(json.dumps(bt), encoding="utf-8")
@@ -188,7 +196,7 @@ class TriageTests(_Base):
         dl = lambda i: v[("decided_lifecycle", i)]
         uf = lambda i: v[("undecided_full", i)]
         self.assertEqual(dl("EO:9001")["admit"], "yes")
-        self.assertEqual(dl("EO:9002")["reasons"], "page_check_owed")
+        self.assertEqual(dl("EO:9002")["admit"], "yes")             # a page check is no gate on the decided route
         self.assertEqual(dl("EO:9003")["admit"], "yes")
         self.assertEqual(dl("EO:9004")["reasons"], "original_not_usable:archival_replica_checked")
         self.assertEqual((dl("EO:9005")["admit"], dl("EO:9005")["admit_hard_only"], dl("EO:9005")["reasons"]),
@@ -198,11 +206,11 @@ class TriageTests(_Base):
         self.assertEqual(uf("EO:8002")["reasons"], "soft:no_later_order_text_held")
         self.assertIn("no_status_basis_record", uf("EO:8003")["reasons"])
         self.assertTrue(uf("EO:8004")["reasons"].startswith("original_not_usable:mirror_transcription"))
-        self.assertTrue(uf("EO:8005")["reasons"].startswith("page_check_owed"))
+        self.assertEqual((uf("EO:8005")["admit_hard_only"], uf("EO:8005")["reasons"]), ("yes", "soft:page_check_owed"))
         self.assertEqual(uf("EO:8006")["reasons"], "soft:no_later_order_text_held")
-        self.assertEqual(reasons["decided_lifecycle"]["admitted"], 2)
+        self.assertEqual(reasons["decided_lifecycle"]["admitted"], 3)
         self.assertEqual(reasons["undecided_full"]["admitted"], 1)
-        self.assertEqual(reasons["undecided_full"]["admitted_hard_only"], 3)
+        self.assertEqual(reasons["undecided_full"]["admitted_hard_only"], 4)
         self.assertEqual(reasons["undecided_full"]["reasons_sole"]["soft:no_later_order_text_held"], 2)
         self.assertTrue((out / "TODO.md").read_text(encoding="utf-8").startswith("# Larrey triage"))
 
@@ -212,7 +220,7 @@ class TriageTests(_Base):
         (_, _, pools), _ = self.run_triage(strata_dir=Path(self.tmp.name) / "jobs/bentham/output/strata")
         p = pools["status_assignment.undecided"]
         self.assertEqual((p["members"], p["admitted"], p["no_verdict_kept_out"]), (3, 1, 1))
-        self.assertEqual(p["top_reasons"], {"soft:no_later_order_text_held": 1, "no_compiled_inputs": 1})
+        self.assertEqual(p["top_reasons"], {"soft:no_later_order_text_held": 1, "no_verdict_on_route": 1})
         self.assertIsNone(pools["production.one_step_away"]["route"])
 
     def test_gates_file_carries_the_whitworth_fields(self):
@@ -265,7 +273,7 @@ class AdmittedTests(_Base):
         self.assertTrue(rec["larrey_enforced"])
         os.environ["LARREY_LEVEL"] = "hard"
         ok, _, rec = L.admitted(self.tmp.name, "probe.status_assignment.undecided")
-        self.assertEqual(ok, {"EO:8001", "EO:8002", "EO:8006"})
+        self.assertEqual(ok, {"EO:8001", "EO:8002", "EO:8005", "EO:8006"})
         self.assertEqual(rec["larrey_level"], "hard")
         os.environ["LARREY_LEVEL"] = "off"
         with self.assertRaisesRegex(ValueError, "LARREY_LEVEL"):
@@ -287,18 +295,34 @@ class AdmittedTests(_Base):
         self.assertIsNone(ok)
         self.assertFalse(rec["larrey_enforced"])
         self.assertIsNotNone(L.admitted(self.tmp.name, "production.claim_ready.no.fr")[0])
-        # the job's own re-run back-test (output/BACKTEST.json) wins over the committed one
+        # the job's own re-run back-test can switch a route off, never on
+        self.f.calibrate(lost=0)
         bt = json.loads((Path(self.tmp.name) / L.BACKTEST).read_text(encoding="utf-8"))
+        job = Path(self.tmp.name) / L.OUTPUT / "BACKTEST.json"
+        bt["undecided"]["curve"][-1]["successes_lost"] = 2
+        job.write_text(json.dumps(bt), encoding="utf-8")
+        self.assertFalse(L.admitted(self.tmp.name, "status_assignment.undecided")[2]["larrey_enforced"])
         bt["undecided"]["curve"][-1]["successes_lost"] = 0
-        (Path(self.tmp.name) / L.OUTPUT / "BACKTEST.json").write_text(json.dumps(bt), encoding="utf-8")
-        self.assertTrue(L.admitted(self.tmp.name, "status_assignment.undecided")[2]["larrey_enforced"])
+        bt["calibrated_code_sha256"] = {}                          # a clean re-run on other code re-enables nothing
+        job.write_text(json.dumps(bt), encoding="utf-8")
+        (Path(self.tmp.name) / "jobs/claim-kit/build.py").write_text("# v2\n", encoding="utf-8")
+        self.assertFalse(L.admitted(self.tmp.name, "status_assignment.undecided")[2]["larrey_enforced"])
+
+    def test_changed_gate_code_makes_the_output_stale(self):
+        self.run_triage()
+        summary = Path(self.tmp.name) / L.OUTPUT / "SUMMARY.json"
+        s = json.loads(summary.read_text(encoding="utf-8"))
+        s["code_sha256"]["jobs/llull/llull.py"] = "0" * 64
+        summary.write_text(json.dumps(s), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "gate code changed"):
+            L.admitted(self.tmp.name, "status_assignment.undecided")
 
     def test_refusal_names_the_missing_input_and_fails_closed(self):
         self.run_triage()
         ok, why, _ = L.admitted(self.tmp.name, "status_assignment.undecided")
         msg = L.refusal("status_assignment.undecided", ["EO:8001", "EO:8003", "EO:7777"], ok, why)
         self.assertIn("2 orders are kept out", msg)
-        self.assertIn("EO:7777 (no_compiled_inputs)", msg)
+        self.assertIn("EO:7777 (no_verdict_on_route)", msg)
         self.assertIn("no_status_basis_record", msg)
         self.assertIsNone(L.refusal("status_assignment.undecided", ["EO:8001"], ok, why))
 
@@ -312,6 +336,12 @@ class AdmittedTests(_Base):
         self.f.strata("status_assignment.undecided", ["EO:8001", "EO:8002", "EO:8003"])
         with self.assertRaisesRegex(ValueError, "Larrey triage missing"):
             admission.admit(root, "status_assignment.undecided", ["EO:8001"], {})
+        code = root / "jobs/larrey-triage/larrey.py"
+        saved = code.read_bytes()
+        code.unlink()                                       # a project checkout that leaves Larrey out is refused
+        with self.assertRaisesRegex(ValueError, "Larrey triage code missing"):
+            admission.admit(root, "status_assignment.undecided", ["EO:8001"], {})
+        code.write_bytes(saved)
         self.run_triage()
         self.assertEqual(admission.admit(root, "status_assignment.undecided", ["EO:8001"], {}), {"EO:8001"})
         with self.assertRaisesRegex(ValueError, "kept out of status_assignment.undecided by Larrey"):
@@ -328,7 +358,7 @@ class AdmittedTests(_Base):
         self.f.strata("status_assignment.undecided", ["EO:8001", "EO:8002", "EO:8003", "EO:8004"])
         self.run_triage()
         bt = json.loads((Path(self.tmp.name) / L.BACKTEST).read_text(encoding="utf-8"))
-        bt["undecided"] = {"curve": [{"successes": 33, "successes_lost": 0}]}
+        bt["bentham"] = {"undecided": {"yield_lift": 2.0, "cost_lift": 1.5, "basis": "fixture"}}
         (Path(self.tmp.name) / L.BACKTEST).write_text(json.dumps(bt), encoding="utf-8")
         actions = [{"id": "status_assignment.undecided", "kind": "status_assignment", "orders": 4,
                     "order_ids_path": "jobs/bentham/output/strata/status_assignment.undecided.txt",
@@ -342,9 +372,12 @@ class AdmittedTests(_Base):
         measured = {"rates": [{"key": "r", "value": 0.1, "num": 9, "den": 90, "source": "s"}],
                     "costs": {"c": {"usd": 0.5, "per": "attempted order"}}}
         s = bentham.score(measured, a)
-        self.assertEqual(s["cost_usd"], 0.5)                       # one admitted order is paid for
-        self.assertAlmostEqual(s["expected_now"], round(min(1.0, 4 * 0.1 * 34 / 35), 1))
+        self.assertEqual(s["cost_usd"], 0.75)                      # one admitted order x 0.5 x cost lift 1.5
+        self.assertAlmostEqual(s["expected_now"], 0.2)             # one admitted order x 0.1 x yield lift 2.0
         self.assertTrue(any("Larrey triage" in n for n in s["notes"]))
+        measured["rates"][0]["gated"] = True                        # a rate measured on gated draws: no lift
+        s = bentham.score(measured, a)
+        self.assertEqual((s["cost_usd"], s["expected_now"]), (0.5, 0.1))
 
 
 class KitRulesTests(unittest.TestCase):
@@ -392,6 +425,10 @@ class ActionRouteTests(unittest.TestCase):
         self.assertEqual(L.action_route("production.claim_ready.no.fr"), "decided_lifecycle")
         self.assertIsNone(L.action_route("recovery.custody_stranded"))
         self.assertIsNone(L.action_route("production.one_step_away"))
+
+    def test_backtest_operating_points_are_the_route_gates(self):
+        for ladder, route in ((L.UNDECIDED_LADDER, "undecided_full"), (L.DECIDED_LADDER, "decided_lifecycle")):
+            self.assertEqual(set(ladder[-1]), set(L.ROUTES[route]["hard"] + L.ROUTES[route]["soft"]))
 
     def test_every_route_gate_is_registered_in_llull_with_a_reason(self):
         for spec in L.ROUTES.values():

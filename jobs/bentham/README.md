@@ -25,9 +25,11 @@ the cost of a 30-order probe, which the gate then runs and measures. A cost that
 action unranked.
 
 **Larrey triage (2026-11-10).** For an action Larrey triages (`jobs/larrey-triage`), `orders` is the number of members
-its zero-token check admits, and cost is priced on those only; the plan shows "admitted of members". The expected
-dossiers stay the untriaged rate over all members times the back-test's retained share of successes (a projection,
-noted in the plan, until a gated wave measures it). An action whose route Larrey does not enforce is unchanged.
+its zero-token check admits; the plan shows "admitted of members". Yield per admitted order is the measured rate
+times Larrey's back-test `yield_lift` (its rate among admitted orders over its rate among all attempted), and cost
+per attempt is the measured cost times `cost_lift` (review stays while producers go), both capped by the action's
+own members/admitted ratio. These are projections, noted in the plan, until a gated wave measures the rate (a rate
+row marked `"gated": true` turns them off). An action whose route Larrey does not enforce is unchanged.
 
 ## During a wave
 

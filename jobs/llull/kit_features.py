@@ -35,6 +35,17 @@ NEA_BEFORE = "2025-10-14"
 NOTICE_PREFIXES = ("NOTICE:", "NEA_NOTICE:")
 
 
+def _editorial(rec):
+    """status_overlay refuses the 1989 OFR codification snapshot as a status basis."""
+    meta = rec.get("meta") if isinstance(rec.get("meta"), dict) else {}
+    return "ofr_codification_1989_in_force" in (rec.get("basis_code"), meta.get("basis_code"))
+
+
+def _basis(rec):
+    """A record status_overlay would accept as a basis: exact held evidence, not a report deadline, not editorial."""
+    return _held(rec) and rec.get("kind") != "report_deadline" and not _editorial(rec)
+
+
 def _held(rec):
     """An exact held record, as status_overlay requires of a basis: a source with a text path, and text."""
     if not isinstance(rec, dict):
@@ -128,11 +139,13 @@ def from_dossier(d, status=None, rules=None):
     orig = recs.get(d.get("original_source_id") or "") if d.get("original_source_id") else None
     kinds, actor_text, notice = set(), False, False
     for k, v in recs.items():
-        if not isinstance(v, dict) or ":effective#" in k:
+        if not isinstance(v, dict):
             continue
         if k.startswith(NOTICE_PREFIXES) and _held(v):
             notice = True
-        if k.startswith(BASIS_PREFIXES) and _held(v) and v.get("kind") != "report_deadline":
+        # An ACT's effective-wording record (ACT:...:effective#n) starts with ACT: and is exact held text, so
+        # status_overlay accepts it like its parent; it is counted the same way.
+        if k.startswith(BASIS_PREFIXES) and _basis(v):
             kinds.add(k.split(":", 1)[0])
             if k.startswith("ACTOR_TEXT:"):
                 actor_text = True
@@ -161,13 +174,13 @@ def from_overlay(inputs, terms, acts, clause, actor_ok, lead=None, rules=None, r
     orig = inputs.get("selected") or None
     kinds = set()
     for t in terms:
-        if _held(t) and t.get("kind") != "report_deadline":
+        if _basis(t):
             kinds.add("TERM")
     actors = set(inputs.get("known_actor_ids") or [])
     for a in acts:
         actors.add(a.get("actor_id"))
         for v in [a] + list(a.get("alternative_provisions") or []):
-            if _held({"source": v.get("actor_source"), "text": v.get("provision_text")}):
+            if _basis(dict(v, source=v.get("actor_source"), text=v.get("provision_text"))):
                 kinds.add("ACT")
     actor_text = any(isinstance(x, str) and actor_ok(x) for x in actors)
     if actor_text:
@@ -176,7 +189,7 @@ def from_overlay(inputs, terms, acts, clause, actor_ok, lead=None, rules=None, r
     for frag in (lead or {}).get("current_law_leads") or []:
         # build.package frames CURRENT:{iid}#{n} from a lead with exact text, offsets and a source (F3's leads).
         if isinstance(frag, dict) and all(k in frag for k in ("text", "char_start", "char_end", "source")) \
-                and _held(frag):
+                and _basis(frag):
             kinds.add("CURRENT")
         current += 1
     nclauses = len((clause or {}).get("clauses") or [])
@@ -267,10 +280,3 @@ def load(repo, out_rel=KIT_OUT, rules=None):
         result[iid] = from_overlay(r, terms.get(iid, []), acts.get(iid, []), clause_rows.get(iid), actor_ok,
                                    leads.get(iid), rules=rules, read_text=read_text)
     return result
-
-
-def fingerprint(repo, out_rel=KIT_OUT):
-    """SHA-256 of the compiled SUMMARY.json the features were read from (None when absent)."""
-    import hashlib
-    p = Path(repo) / out_rel / "SUMMARY.json"
-    return hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None

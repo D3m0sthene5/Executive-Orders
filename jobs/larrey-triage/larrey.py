@@ -19,6 +19,7 @@ import glob
 import hashlib
 import json
 import os
+import warnings
 import re
 import sys
 from collections import Counter, defaultdict
@@ -37,26 +38,29 @@ GATES_FILE = "GATES.jsonl"
 # Each route lists its gates (names in Llull's GATES registry). Hard gates are what the route itself requires:
 # without them the kit cannot accept the result whatever the agent finds. Soft gates are measured predictors,
 # chosen from the back-test curve (BACKTEST.json); `LARREY_LEVEL=hard` applies the hard gates only.
+# A page check is soft, not hard: status_overlay and assemble accept a producer's page confirmation, and 296 filed
+# orders still carry requires_page_check. On the decided route it is no gate at all (independent review, S1).
 ROUTES = {
     "status_only": {
         "title": "undecided order, status-only tier (independent status review; no lifecycle sheet)",
-        "hard": ["original_usable", "no_page_check_owed", "status_basis_record"],
-        "soft": ["later_order_text_held"],
-        "calibrated_on": "jobs/claim-kit/status_overlay.py",
+        "hard": ["original_usable", "status_basis_record"],
+        "soft": ["no_page_check_owed", "later_order_text_held"],
+        "calibrated_on": ["jobs/claim-kit/status_overlay.py", "jobs/claim-kit/build.py"],
     },
     "undecided_full": {
         "title": "undecided order, status plus whole-lifecycle sheet (Haloander/Papinian overlay route)",
-        "hard": ["original_usable", "no_page_check_owed", "status_basis_record", "clause_inventory_present"],
-        "soft": ["later_order_text_held"],
-        "calibrated_on": "jobs/claim-kit/status_overlay.py",
+        "hard": ["original_usable", "status_basis_record", "clause_inventory_present"],
+        "soft": ["no_page_check_owed", "later_order_text_held"],
+        "calibrated_on": ["jobs/claim-kit/status_overlay.py", "jobs/claim-kit/build.py"],
     },
     "decided_lifecycle": {
         "title": "decided (provisional YES/NO) order, whole-lifecycle dossier",
-        "hard": ["original_usable", "no_page_check_owed", "clause_inventory_present"],
+        "hard": ["original_usable", "clause_inventory_present"],
         "soft": ["nea_notice_if_emergency"],
-        "calibrated_on": "jobs/claim-kit/assemble.py",
+        "calibrated_on": ["jobs/claim-kit/assemble.py", "jobs/claim-kit/working_text.py"],
     },
 }
+CODE_FILES = ("jobs/larrey-triage/larrey.py", "jobs/llull/kit_features.py", "jobs/llull/llull.py")
 
 # reason code, what would admit the order, and the Bentham action that acquires it (if one exists)
 REASONS = {
@@ -191,8 +195,7 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
     summary = {"schema": SCHEMA, "generated_at": now(),
                "inputs": {"claim_kit_summary_sha256": sha_file(repo / KIT_SUMMARY),
                           "tracker_sha256": sha_file(repo / "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv")},
-               "code_sha256": {p: sha_file(repo / p) for p in ("jobs/larrey-triage/larrey.py",
-                                                                "jobs/llull/kit_features.py", "jobs/llull/llull.py")},
+               "code_sha256": {p: sha_file(HERE.parents[1] / p) for p in CODE_FILES},
                "routes": {k: {kk: v[kk] for kk in ("title", "hard", "soft")} for k, v in ROUTES.items()},
                "calibration": calib,
                "orders_with_compiled_inputs": len(feats), "tracker_orders": len(rows),
@@ -207,37 +210,44 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
 
 
 def backtest_path(repo):
-    """The newest back-test: the job's own (output/BACKTEST.json, re-run on every job run), else the committed one,
-    else the one beside this code (a data checkout that is another worktree)."""
-    for p in (Path(repo) / OUTPUT / "BACKTEST.json", Path(repo) / BACKTEST, HERE / "BACKTEST.json"):
+    """The committed back-test (reviewed; it pins the kit code), else the one beside this code (a data checkout
+    that is another worktree)."""
+    for p in (Path(repo) / BACKTEST, HERE / "BACKTEST.json"):
         if p.exists():
             return p
     return None
 
 
-def calibration(repo, bt_path=None):
-    """Per route: enforced only while the kit code its gates mirror is the code the back-test ran on, and that
-    back-test lost no success at the operating point. The job re-runs the back-test on every run, so a merged
-    route change (an Accursius fix) recalibrates without new code; a back-test that now loses a success turns
-    the route advisory until someone looks."""
-    bt, p = {}, (Path(bt_path) if bt_path and Path(bt_path).exists() else backtest_path(repo))
+def _lost(bt, route):
+    curve = (bt.get("decided" if route == "decided_lifecycle" else "undecided") or {}).get("curve") or []
+    return curve[-1]["successes_lost"] if curve else None
+
+
+def calibration(repo, job_backtest=None):
+    """Per route: enforced only while (1) every kit file its gates mirror is byte-identical to the file the
+    committed back-test ran on, and (2) that back-test, and the job's own re-run of it on the current code
+    (output/BACKTEST.json) when present, lose no success at the operating point.
+
+    The job's re-run can only switch a route off, never on: the frozen outcomes were produced under the old kit
+    rules, so a looser new rule cannot show up there as a lost success. Re-enabling a route after a kit change
+    takes a committed `larrey.py backtest` (zero tokens), i.e. someone who checked that the gates still mirror it.
+    """
+    bt, p = {}, backtest_path(repo)
     if p is not None:
         bt = json.loads(p.read_text(encoding="utf-8"))
+    job = {}
+    jp = Path(job_backtest) if job_backtest else Path(repo) / OUTPUT / "BACKTEST.json"
+    if jp.exists():
+        job = json.loads(jp.read_text(encoding="utf-8"))
     hashes = bt.get("calibrated_code_sha256", {})
     out = {}
     for route, spec in ROUTES.items():
-        rel = spec["calibrated_on"]
-        cur = sha_file(Path(repo) / rel)
-        curve = (bt.get("decided" if route == "decided_lifecycle" else "undecided") or {}).get("curve") or []
-        lost = curve[-1]["successes_lost"] if curve else None
-        where = None
-        if p is not None:
-            try:
-                where = p.resolve().relative_to(Path(repo).resolve()).as_posix()
-            except ValueError:
-                where = str(p)
-        out[route] = {"file": rel, "backtest": where, "backtested_sha256": hashes.get(rel), "current_sha256": cur,
-                      "successes_lost": lost, "enforced": bool(cur) and hashes.get(rel) == cur and lost == 0}
+        files = {rel: {"backtested_sha256": hashes.get(rel), "current_sha256": sha_file(Path(repo) / rel)}
+                 for rel in spec["calibrated_on"]}
+        same = all(f["current_sha256"] and f["current_sha256"] == f["backtested_sha256"] for f in files.values())
+        lost, job_lost = _lost(bt, route), (_lost(job, route) if job else None)
+        out[route] = {"files": files, "successes_lost": lost, "job_backtest_successes_lost": job_lost,
+                      "enforced": same and lost == 0 and job_lost in (None, 0)}
     return out
 
 
@@ -276,7 +286,7 @@ def action_pools(repo, verdicts, strata_dir=None):
             c = Counter(_code(x) for v in vs if v["admit"] == "no" for x in v["reasons"].split(";") if x)
             missing_ids = [i for i in ids if (route, i) not in by]
             if missing_ids:
-                c["no_compiled_inputs"] += len(missing_ids)
+                c["no_verdict_on_route"] += len(missing_ids)
             rec.update(admitted=sum(v["admit"] == "yes" for v in vs),
                        admitted_hard_only=sum(v["admit_hard_only"] == "yes" for v in vs),
                        no_verdict_kept_out=missing, top_reasons=dict(c.most_common(8)))
@@ -352,9 +362,16 @@ def admitted(repo, action):
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     if summary.get("inputs", {}).get("claim_kit_summary_sha256") != sha_file(repo / KIT_SUMMARY):
         raise ValueError(f"Larrey triage is stale: computed on other claim-kit outputs than {KIT_SUMMARY}; {rerun}")
+    code = {rel: sha_file(HERE.parents[1] / rel) for rel in CODE_FILES}
+    if summary.get("code_sha256") != code:
+        raise ValueError(f"Larrey triage is stale: the gate code changed since {OUTPUT} was written; {rerun}")
     receipt["larrey_summary_sha256"] = sha_file(summary_path)
+    receipt["tracker_current"] = (summary.get("inputs", {}).get("tracker_sha256")
+                                  == sha_file(repo / "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"))
     receipt["larrey_enforced"] = calibration(repo).get(route, {}).get("enforced", False)
     if not receipt["larrey_enforced"]:
+        warnings.warn(f"Larrey triage is advisory for {route} (kit code changed since the committed back-test, or "
+                      f"the back-test loses a success): {action} is not triaged; see jobs/larrey-triage/README.md")
         return None, {}, receipt
     key = "admit_hard_only" if lv == "hard" else "admit"
     rows = verdicts_for(repo, route)
@@ -367,7 +384,7 @@ def refusal(action, ids, ok, why):
     out = sorted(set(ids) - ok)
     if not out:
         return None
-    shown = ", ".join(f"{i} ({why.get(i) or 'no_compiled_inputs'})" for i in out[:8]) + (" ..." if len(out) > 8 else "")
+    shown = ", ".join(f"{i} ({why.get(i) or 'no_verdict_on_route'})" for i in out[:8]) + (" ..." if len(out) > 8 else "")
     return (f"{len(out)} orders are kept out of {action} by Larrey triage (a missing input, not a decision): {shown}. "
             f"See jobs/larrey-triage/output/TODO.md")
 
@@ -415,6 +432,8 @@ def undecided_outcomes(repo):
                 e = json.loads(ev.read_text(encoding="utf-8"))
                 sd = json.loads((ev.parent / "STATUS_DECISION.json").read_text(encoding="utf-8"))
                 iid = e["instrument_id"]
+                if iid in rows:
+                    raise ValueError("order attempted in two back-test waves: " + iid)
                 rows[iid] = {"wave": wave, "batch": b, "dispatched": disp is None or iid in disp,
                              "producer_status": bool(sd.get("approved") is True
                                                      and sd.get("recommended_provisional_status") in ("yes", "no")),
@@ -504,9 +523,8 @@ UNDECIDED_LADDER = [
      "later_order_text_held"],
 ]
 DECIDED_LADDER = [
-    [], ["original_usable"], ["original_usable", "no_page_check_owed"],
-    ["original_usable", "no_page_check_owed", "clause_inventory_present"],
-    ["original_usable", "no_page_check_owed", "clause_inventory_present", "nea_notice_if_emergency"],
+    [], ["original_usable"], ["original_usable", "clause_inventory_present"],
+    ["original_usable", "clause_inventory_present", "nea_notice_if_emergency"],
 ]
 
 
@@ -527,8 +545,8 @@ def backtest(repo=REPO, diagnosis=None, write=True, out_path=None):
                         "decoded PACKET.json dossier) as the producer received it; outcomes from the same folders "
                         "(dispatch checks, producer decisions, independent status reviews, both-arm replacement "
                         "proposals, completion publishable claims).",
-              "calibrated_code_sha256": {spec["calibrated_on"]: sha_file(repo / spec["calibrated_on"])
-                                         for spec in ROUTES.values()},
+              "calibrated_code_sha256": {rel: sha_file(repo / rel) for spec in ROUTES.values()
+                                         for rel in spec["calibrated_on"]},
               "undecided": {"orders": len(und), "outcomes": dict(Counter(r["outcome"] for r in und.values())),
                             "by_wave": {w: dict(Counter(r["outcome"] for r in und.values() if r["wave"] == w))
                                         for w in ("papinian", "haloander")},
@@ -569,6 +587,7 @@ def backtest(repo=REPO, diagnosis=None, write=True, out_path=None):
     result["operating_point"] = {"undecided_full": op, "decided_lifecycle": DECIDED_LADDER[-1]}
     result["kept_out"] = kept_rows
     result["costs"] = measured_costs(repo)
+    result["bentham"] = bentham_lifts(repo, result)
     result["kit_rules_loaded"] = _kf().KitRules(_kf().CODE_KIT).loaded
     if write:
         _write(Path(out_path) if out_path else repo / BACKTEST, json.dumps(result, indent=1) + "\n")
@@ -588,7 +607,6 @@ def measured_costs(repo):
             m = COST_LINE.match(line)
             if not m:
                 continue
-            batch = m["label"].rsplit("-", 2)
             b = next((x for x in m["label"].split("-") if re.fullmatch(r"(u\d+b?|u23|u02u03|y\d+|c\d+|r\d+b?)", x)), None)
             if b:
                 by[b][m["role"]] += float(m["usd"])
@@ -604,6 +622,36 @@ def measured_costs(repo):
 
 
 # ---------------------------------------------------------------- projection
+
+def bentham_lifts(repo, bt):
+    """What Bentham needs to rank a triaged action from a rate measured on untriaged draws (independent review B1).
+
+    yield_lift: the back-test's success rate among admitted orders over its rate among all attempted orders,
+    times the rule-of-succession retained share. The pool's admitted share differs from the draws' (24% against
+    33-52%), so scaling the members by the old rate would overstate; the conditional rate does not depend on it.
+    cost_lift: Model P cost per admitted attempt over the measured cost per attempt (review stays, producers go).
+    Both are projections until a gated wave measures the rate itself (a rate row marked "gated" turns them off).
+    """
+    proj = project(repo, bt)
+    out = {}
+    for key, route_name in (("undecided", "status_assignment.undecided (Papinian u01b+u02+u03)"),
+                            ("decided", "production.claim_ready.yes.fr (Papinian y01-y14)")):
+        op = bt[key]["curve"][-1]
+        n, a = bt[key]["orders"], op["admitted"]
+        k, m = op["successes"] - op["successes_lost"], op["successes"]
+        share = (k + 1) / (m + 2)
+        r = proj["routes"].get(route_name) or {}
+        att, kept = r.get("attempted"), r.get("kept_out_attempted")
+        usd = r.get("worker_usd_measured")
+        with_p = (r.get("usd_per_adopted_with_P") or r.get("usd_per_filed_with_P") or 0) * \
+            (r.get("adopted_statuses") or r.get("filed") or 0)
+        cost_lift = ((with_p / (att - kept)) / (usd / att)) if att and usd and att > kept else None
+        out[key] = {"yield_lift": round((n / a) * share, 4) if a else None,
+                    "cost_lift": round(cost_lift, 4) if cost_lift else None,
+                    "basis": f"yield: ({n} attempted / {a} admitted) x ({k}+1)/({m}+2); cost: Model P on {route_name}",
+                    "projection": True}
+    return out
+
 
 def project(repo=REPO, bt=None):
     """Projected cost per adopted status with the gate against without it, from the back-test and measured costs.

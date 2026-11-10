@@ -402,29 +402,30 @@ def apply_triage(repo, actions):
 
     For an action Larrey triages (output current for these claim-kit outputs, route calibrated), `orders` becomes
     the admitted count and `orders_before_triage` keeps the member count; `triage` carries the kept-out reasons and
-    the back-test's retained share of successes. Bentham then prices only reachable orders and projects the
-    action's yield as the untriaged rate over all members times that share (bentham.score; a projection until a
-    gated wave measures it). The strata files keep every member: admission applies Larrey itself.
-    Returns a note for the plan, or None when the checkout carries no Larrey output.
+    the back-test's yield and cost lifts. bentham.score then prices only admitted orders and projects their yield
+    as the untriaged rate times the yield lift (the back-test's success rate among admitted orders relative to all
+    attempted), and their cost as the measured cost per attempt times the cost lift (Model P). Both are
+    projections until a gated wave measures the rate. The strata files keep every member: admission applies Larrey.
+    Returns a note for the plan, or None when the checkout carries no Larrey code.
     """
     path = Path(repo) / LARREY_DIR / "larrey.py"
-    if not path.is_file() or not (Path(repo) / LARREY_VERDICTS).is_file():
+    if not path.is_file():
         return None
+    if not (Path(repo) / LARREY_VERDICTS).is_file():
+        return ("Larrey triage output absent: triaged actions are priced on all members, while claim-kit admission "
+                "refuses them until `larrey.py triage` runs.")
     import importlib.util
     spec = importlib.util.spec_from_file_location("larrey_triage", path)
     L = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(L)
-    retained = {}
+    lifts = {}
     bt = L.backtest_path(repo)
     if bt is not None and bt.is_file():
-        b = json.loads(bt.read_text(encoding="utf-8"))
+        b = json.loads(bt.read_text(encoding="utf-8")).get("bentham") or {}
         for route, key in (("undecided_full", "undecided"), ("status_only", "undecided"),
                            ("decided_lifecycle", "decided")):
-            last = ((b.get(key) or {}).get("curve") or [None])[-1]
-            if last:
-                k, n = last["successes"] - last["successes_lost"], last["successes"]
-                retained[route] = {"kept": k, "of": n, "share": round((k + 1) / (n + 2), 4),
-                                   "basis": "rule of succession (kept+1)/(of+2) on the Larrey back-test"}
+            if b.get(key):
+                lifts[route] = b[key]
     applied, skipped = [], []
     for a in actions:
         if not a.get("order_ids_path") or not L.action_route(a["id"]):
@@ -444,12 +445,12 @@ def apply_triage(repo, actions):
                if l.strip()]
         reach = [i for i in ids if i in ok]
         reasons = Counter(L._code(r) for i in ids if i not in ok
-                          for r in (why.get(i) or "no_compiled_inputs").split(";") if r)
+                          for r in (why.get(i) or "no_verdict_on_route").split(";") if r)
         a["orders_before_triage"] = len(ids)
         a["orders"] = len(reach)
         a["triage"] = {"applied": True, "route": receipt["larrey_route"], "level": receipt["larrey_level"],
                        "kept_out": len(ids) - len(reach), "top_reasons": dict(reasons.most_common(6)),
-                       "retained_success_share": retained.get(receipt["larrey_route"]), "source": LARREY_VERDICTS}
+                       "lifts": lifts.get(receipt["larrey_route"]), "source": LARREY_VERDICTS}
         applied.append(a["id"])
     if not applied and not skipped:
         return None
