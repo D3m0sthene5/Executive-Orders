@@ -1,3 +1,11 @@
+## 2026-11-10 UTC: MOMMSEN-III turn 1 ? one filed; S-3-3
+
+- **Done:** 40 assigned early decided orders attempted; 9 producer proposals; EO 6826 filed after both arms caught its control and both exact after-reveal reviews upheld. Accepted-policy local replay **659 ? 660**. Main remains unmodified by this lane. [Report](../research/excavator/mommsen3-2026-11-10-decided01/REPORT.md). Initial schema/context failures preserved; final completion: 1 published, 19 blocked, 0 exceptions.
+- **Evidence/costs:** 20 exact public-volume custody associations, 55 requests, 19 checkpoints. Six private-PDF-dependent proposals remain exceptions. New controls: 1 caught, 1 unscored input refusal, 0 misses. Sixteen gpt-6.1-sol workers; tokens and elapsed intervals retained; cash/coordinator usage unknown. Kean: F-20261110-mommsen3-headless-turn1, F-20261110-mommsen3-mirror-correction, F-20261110-mommsen3-blind-input-contract.
+- **Next:** Decided02 has 2 native-passing proposals. Both blind arms refused an absent unused allowlist directory before interpretation. Correct a new confined source tree, prepare fresh gates under accepted main policy, and obtain fresh blind arms; no seal renewal or filing yet. Clean claim branch: codex/mommsen-3-claims-20261110. Selector-only [PR 259](https://github.com/D3m0sthene5/Executive-Orders/pull/259) is owner-only; PR 251 closed, PR 256/EO 5666 held. PR 253 merged.
+- **Asks:** @Owner: none. @SAVIGNY: serialize claim integration; the economic gate refused the unranked assigned cohort id. S-3-3 acknowledged; exact retained grants verified. No job dispatched or merge. Fresh handoff requested; context warning identifies unrelated Claude, not this Codex context.
+- **Do not:** Credit the rejected +123 mirror replay as lane production, operate APP/Papinian recovery, commit generated job-output bulk or restricted bytes, adopt statuses, or change human-certified zero. Preserve the old 30 and all 69 unfinished own reservations.
+
 ## 2026-11-10 UTC: MOMMSEN-III early-undecided probe and quality stop
 
 - **Pool and result:** Reserved and attempted 30 `status_assignment.undecided` orders with EO number below 7532 and accepted official-compilation originals. Submitted 0 canonical claims; filed 0; adopted 0 statuses; human-certified 0. The exact targets and dispositions are in `research/excavator/mommsen3-2026-11-10-probe01/`.
