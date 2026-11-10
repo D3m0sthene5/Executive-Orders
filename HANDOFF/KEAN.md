@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 299; `search` finds the rest)
+## Newest results (6 of 300; `search` finds the rest)
 
+- 2026-11-10 F-20261110-mommsen4-turn4-c15 **partly worked**: Apply C15 scope cut without renewing tests or repeating production in an over-threshold context. Lesson: A scope-corrected candidate needs its own exact-version gates; old test receipts cannot approve the revised combined head. Keep lost versions distinct and preserved versions immutable.
 - 2026-11-10 F-20261110-mommsen4-turn3 **partly worked**: Continue exact assigned dossiers and C11 wiring while respecting changing ownership and native source gates. Lesson: Read directive timing against native reservation receipts; a later own key is not grandfathered. A source pass, software test or retained proposal is not a claim or a caught control.
 - 2026-11-10 F-20261110-mommsen4-turn2 **partly worked**: Resume the three unaffected archive proposals through fresh native gates, then produce a disjoint lower-range… Lesson: A custody pass is not assembly, source-grade authority, lifecycle proof or filing. Preserve exact native refusals, set aside the affected authority item, retain meaningful fresh alternate research an…
 - 2026-11-10 F-20261110-mommsen4-turn1 **partly worked**: Produce two disjoint25-order decided-not-ready cohorts in EO2000-3999 using exact held archival replicas and… Lesson: Check authoritative cross-worktree reservations before dispatch; a main-only lock is insufficient. Retain failed starts and collided work as costs, reprepare disjoint packet boundaries, and never tur…
 - 2026-11-10 F-20261110-mommsen4-source-publication **worked**: Publish completed independent source receipts while holding only the affected engineering item. Lesson: Isolate a held engineering item from authorized source reporting without publishing its bytes or deleting any version.
 - 2026-11-10 F-20261110-mommsen4-p4-wiring **partly worked**: Wire existing D-20261106-photius-p4 through exact trusted final-pass claim-kit provenance under C11. Lesson: Derived index metadata must preserve unrelated frozen declaration objects exactly. Final-pass provenance is not legal proof or permission to renew seals. Never delete superseded worker artifacts.
-- 2026-11-10 F-20261110-mommsen4-engineering-hold **stopped at gate**: Apply S10-6 item-only retention hold after discovering it during turn3 closeout. Lesson: Preserve every version and check directives before phase publication. A held engineering item never authorizes deleting receipts, claiming reconstructed originals or pausing independent source work.
 
-Register: 75 owner decisions, 45 answered questions, 299 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 300 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
