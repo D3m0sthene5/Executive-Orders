@@ -52,8 +52,20 @@ _I = re.I | re.S
 AMEND = re.compile(
     r"\b(?:is|are)\s+(?:hereby\s+)?(?:further\s+)?(?:amended|modified|revised)\b"
     r"|\bhereby\s+(?:further\s+)?(?:amend|modify)\b"
-    r"|\bshall\s+be\s+(?:further\s+)?(?:amended|modified|revised|inserted|added|renumbered|redesignated|deleted|struck)\b"
+    # "shall be amended by deleting ..." is this order's instruction; a bare "regulations shall be amended"
+    # directs someone to amend later (a continuing command; EO 1624).
+    r"|\bshall\s+be\s+(?:further\s+)?(?:amended|modified|revised)\s+(?:by|to\s+read|as\s+follows)\b"
+    r"|\bshall\s+be\s+(?:inserted|added|renumbered|redesignated|deleted|struck)\b"
     r"|\bto\s+read\s+as\s+follows\b", _I)
+# Standing land, custody and tenure commands that the blind audit (2026-11-10, 40 positives) found the
+# first classifier missed: "be, and the same are hereby, withdrawn" (EO 4531), "reserved and set apart"
+# (EO 7489), "so as to withdraw permanently" (EO 1426), "does not terminate the tenure" (EO 10668).
+STANDING = (r"\b(?:is|are|be)\b[\s,]*(?:and\s+the\s+same\s+(?:is|are)[\s,]+)?hereby[\s,]+(?:temporarily\s+|"
+            r"permanently\s+)?(?:withdrawn|reserved|set\s+apart|held)\b"
+            r"|\b(?:reserved|withdrawn)\s+and\s+(?:set\s+apart|reserved|held)\b"
+            r"|\buntil\s+(?:this\s+order\s+is|otherwise)\s+(?:revoked|modified)\b|\buntil\s+further\s+(?:order|notice)\b"
+            r"|\bso\s+as\s+to\s+(?:permanently\s+|temporarily\s+)?(?:withdraw|reserve|set\s+apart|include)\b"
+            r"|\btenure\b|\bpersons\s+(?:already|heretofore)\s+(?:designated|appointed)\b")
 SPENT = re.compile(
     r"\b(?:is|are)\s+(?:hereby\s+)?(?:revoked|rescinded|superseded|abolished|terminated|vacated|restored|"
     r"excluded|eliminated|annulled|canceled|cancelled)\b"
@@ -72,8 +84,8 @@ CONTINUING = re.compile(
     # Pothier's further-provision markers for amending orders (PD-CS-RULES only-content test).
     r"|\bthe\s+effect\s+of\s+(?:this|the\s+above|these|such)\s+(?:amendments?|order)\b"
     r"|\b(?:present|existing)\s+(?:incumbents?|occupants?)\b|\bpersons\s+now\s+(?:holding|serving|employed)\b"
-    r"|\bit\s+is\s+further\s+ordered\b|\bincumbents?\b", _I)
-CONTINUING_IN_INSTRUCTION = re.compile(
+    r"|\bit\s+is\s+further\s+ordered\b|\bincumbents?\b|" + STANDING, _I)
+CONTINUING_IN_INSTRUCTION = re.compile(STANDING + r"|"
     r"\bshall\b|\bmust\b|\b(?:is|are)\s+hereby\s+(?:established|created|directed|authorized|withdrawn|reserved|"
     r"designated|delegated|assigned|required|prohibited)\b"
     # "is hereby modified to the extent of authorizing the Secretary to approve ...": a grant of
@@ -140,7 +152,7 @@ def _classify(sentence):
 
 
 STRONG = re.compile(r"\bshall\b|\bmust\b|\b(?:is|are)\s+(?:hereby\s+)?(?:established|created|directed|authorized|"
-                    r"withdrawn|reserved|designated|delegated|empowered)\b", _I)
+                    r"withdrawn|reserved|designated|delegated|empowered)\b|" + STANDING, _I)
 RECITAL = re.compile(r"(?m)^\W*Whereas\b", re.I)
 
 
@@ -236,7 +248,11 @@ def classify(iid, text, clauses, signing_date=None):
                 plain = _strip_quotes(sentence)
                 if not (TOP_HEADING.search(sentence) and (AMEND.search(_instruction(plain)) or SPENT.search(plain)
                                                           or EFFECTIVE.search(plain) or CONSTRUCTION.search(plain))):
-                    rows.append({"char_start": a, "char_end": b, "label": "inserted"})
+                    # Unquoted inserted text has no reliable end. A command in it may be this order's own
+                    # (EO 1624: "the regulations ... shall be amended so as to provide"), so it is ambiguous
+                    # and the order does not qualify (blind audit 2026-11-10).
+                    rows.append({"char_start": a, "char_end": b,
+                                 "label": "ambiguous" if _strong_command(sentence) else "inserted"})
                     continue
                 inserted = False
             label = _classify(sentence)
@@ -288,7 +304,7 @@ def classify(iid, text, clauses, signing_date=None):
                 break
     labels = {r["label"] for r in rows}
     operative = [r for r in rows if r["label"] in {"amend", "spent"}]
-    if not operative or "continuing" in labels:
+    if not operative or "continuing" in labels or "ambiguous" in labels:
         return None, rows
     kind = "amends_parent" if all(r["label"] == "amend" for r in operative) else "spent_on_issue"
     return kind, rows

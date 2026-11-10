@@ -93,6 +93,21 @@ class ClassifierTests(unittest.TestCase):
                          ("amends_parent", "2010-09-30", "relative_to_signing"))
         self.assertEqual(T.records("EO:7066", original(DEFERRED_EVENT, "1935-06-07"), []), {})
 
+    def test_blind_audit_false_positives_stay_out(self):
+        # Shapes the 2026-11-10 blind read found continuing (EO 4531, 7489, 1426, 1624).
+        standing = ("It is hereby ordered that the following-described lands be, and the same are hereby, withdrawn "
+                    "from settlement and held for the use of the Navy Department until this order is revoked.\n")
+        refuge = ("The following lands are hereby reserved and set apart for the use of the Department of "
+                  "Agriculture as an addition to the Elk Refuge.\n")
+        so_as = ("The Executive order of July 31, 1879, is hereby amended so as to withdraw permanently the "
+                 "following land for the Pima and Maricopa Indians.\n")
+        unquoted = ("Schedule A, Subdivision VII, paragraph 4, of the Civil Service Rules\nis hereby amended to read as "
+                    "follows:\nAll employees on star routes in post offices of the fourth class.\nThe regulations governing "
+                    "the appointment of postmasters of the\nfourth class shall be amended so as to provide that all "
+                    "appointments be made from eligible registers.\n")
+        for iid, text in (("EO:4531", standing), ("EO:7489", refuge), ("EO:1426", so_as), ("EO:1624", unquoted)):
+            self.assertEqual(T.records(iid, original(text, "1926-01-01"), []), {}, iid)
+
     def test_records_need_the_full_original_span(self):
         partial = dict(original(REVOKE_ONLY), char_end=40)
         self.assertEqual(T.records("EO:12379", partial, []), {})
