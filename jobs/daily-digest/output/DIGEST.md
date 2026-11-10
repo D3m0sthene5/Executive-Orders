@@ -10,7 +10,7 @@ New York date: 2026-11-10. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42818802851-1:5f223a82b88650f458a9db0e7344be43ae64c79172dd3d7dca402117f6fea9e7` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42862860004-1:fe8d8c78cc7d6ecee87374de3d97171c344c2c308bc9c2040181ef2057245fab` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -32,11 +32,13 @@ Comparison snapshot: 2026-11-09; intervening runs may be absent.
 - eumenes-nmb-reports: manifest_records: unavailable → 119; orders_covered: unavailable → 126; published: unavailable → 119
 - gessner-cards: not_researched: 10697 → 10691; one_step_from_ready: 216 → 215; ready_for_human_review: 1179 → 1248; with_provisional_status: 4301 → 4307
 - kean: decisions: 74 → 75; findings: 286 → 292; open_owner_questions: 1 → 2
+- official-fixity: carried_forward: 7124 → 7116; files: 7124 → 7116
 - readiness-tracker: orders_with_provisional_status: 4301 → 4307; original_replacement_obligations: 882 → 845; quotation_recheck_obligations: 882 → 845; ready_for_human_review: 1179 → 1248
 - selden-fr-acting: bytes_downloaded: 2729289189 → 1139195521; requests: 129 → 82
 - selden-fr-citers: bytes_downloaded: 856889 → 855827; requests: 80 → 71; targets_searched_this_run: 9 → 0; targets_total: 13379 → 13220
 - selden-statutes: attempted: 1956 → 1941; bytes_downloaded: 419580437 → 399769600; committed_pdf_bytes: 182079919 → 169760052; held: 1931 → 1916
 - shepard-citations: land_targets: 3536 → 3534; land_targets_with_any_edge: 1051 → 1049; land_targets_with_ending_candidate: 616 → 615
+- source-ladder: attempts_logged: 55 → 50; bytes_downloaded: 86666375 → 66385834; distinct_new_source_hashes: 44 → 47; found: 870 → 920
 - tischendorf-originals: bytes_downloaded: 8180733529 → 2456099185; leads: 603 → 624; replacement_strong: 39 → 71; replacement_targets: 699 → 734
 - x1-class-engine: modern_families_5_plus: 197 → 205
 
@@ -62,4 +64,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42818802851)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42862860004)
