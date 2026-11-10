@@ -69,6 +69,7 @@ class Index:
         self.official = {}
         self.official_by_sha = {}
         paths = set(self.repo.glob('jobs/*/output/FRAGMENTS*.jsonl'))
+        paths.update(self.repo.glob('jobs/*/output/MIRROR_FRAGMENTS*.jsonl'))
         paths.update(self.repo.glob('jobs/*/data/**/FRAGMENTS*.jsonl'))
         for path in sorted(paths):
             if path.parts[-3] == 'claim-kit':
