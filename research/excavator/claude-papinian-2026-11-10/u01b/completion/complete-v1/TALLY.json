@@ -1,0 +1,97 @@
+{
+  "attempted": 6,
+  "claims_published": 0,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:11816",
+      "planted_claim_sha256": "86eae6d30d4268c2d29bdfb7a74fda0843f773b4b01ab6e24460b6911552b8bd",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 3,
+    "eligible": 3
+  },
+  "eligible": [
+    "EO:9674",
+    "EO:11957",
+    "EO:12348"
+  ],
+  "eligible_per_attempt": 0.5,
+  "exceptions": 0,
+  "finished_utc": "2026-11-10T07:34:40.481138+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "267b81c6c5af610c4959bcd3ca468c9336a073b2755be46f8742c949ecf66df1",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:9674",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:11726",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"research_rationale (Member checks, scope_check)\", \"claim_says\": \"'The corrected inventory has 19 clauses: Sec. 1, Sec. 2(a), the lead of Sec. 2(b) and items (1) to (10), Sec. 3(a) to (c), Sec. 4 and Sec. 5.'\", \"source_says\": \"The list it gives counts 18 (1+1+1+10+3+1+1), and operative_clauses and inventory_overrides each contain 18 scope ids.\", \"problem\": \"The stated inventory size contradicts both its own list and the claim's clause inventory.\"}], \"B\": [{\"field\": \"research_rationale (Member checks, scope_check)\", \"claim_says\": \"\\\"The corrected inventory has 19 clauses: Sec. 1, Sec. 2(a), the lead of Sec. 2(b) and items (1) to (10), Sec. 3(a) to (c), Sec. 4 and Sec. 5.\\\"\", \"source_says\": \"The enumeration and operative_clauses both contain 18 clauses\", \"problem\": \"Internal inconsistency in the stated clause count.\"}, {\"field\": \"operative_clauses[EO:11726#sec1].later_events\", \"claim_says\": \"Only EO 11748 (December 4, 1973) recorded; rationale and searches silent on the U.S. Code hits\", \"source_says\": \"Held 15 U.S.C. 761 note (jobs/theophilus-sources/output/texts/usc-t15-s761.txt, in the dossier chain): Pub. L. 93-153, title IV, sec. 404, Nov. 16, 1973, 87 Stat. 590, directed that the Director of the Energy Policy Office be appointed by the President with the advice and consent of the Senate\", \"problem\": \"A legislative later event changing Sec. 1 (\\\"designated or appointed by the President\\\") is omitted, and the claim's own U.S. Code search returned 4 hits for this order that the claim never addresses.\"}]}"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:11728",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"operative_clauses[EO:11728#whole].judgment_reason; first_end.source.page_or_item, whole_order_end.source.page_or_item and savings_residuals.source.page_or_item\", \"claim_says\": \"EO 13294 Sec. 2 cited as '(68 FR 15917)'; page_or_item '68 FR 15917, PDF pages 1-3'\", \"source_says\": \"In the held text, 68 FR 15917 is EO 13293 (National Defense Service Medal). EO 13294 and its Sec. 2 are on PDF page 3, headed '15919Federal Register ... Executive Order 13294 of March 28, 2003'.\", \"problem\": \"The page check fails: the claim cites the start of a different order instead of 68 FR 15919. It carries the file's location record over without correcting it.\"}], \"B\": [{\"field\": \"operative_clauses[EO:11728#whole].judgment_reason (and the propagated page_or_item of first_end.source, whole_order_end.source and savings_residuals.source)\", \"claim_says\": \"EO 13294 Sec. 2 revocation quoted and cited as \\\"(68 FR 15917)\\\"; page_or_item \\\"68 FR 15917, PDF pages 1-3\\\"\", \"source_says\": \"Held text jobs/fr-originals/data/full_run/texts/EO_13294.txt: page 15917 is Executive Order 13293 (National Defense Service Medal); Executive Order 13294 and its Sec. 2 are on PDF page 3, printed page 68 FR 15919\", \"problem\": \"Wrong Federal Register citation for the ending instrument: the cited page is a different order.\"}]}"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:11816",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": \"no record for this exact version\", \"B\": \"no record for this exact version\"}"
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "6812a0de7bc97f0373066fb147a868bacca1e743dc9f522719061b8e3a519382",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:11957",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "c7d0e8a16e27e59ee091186075dce7f97734531b665f6b5b04cd625b7a868cef",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:12348",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    }
+  ],
+  "packet_loads": {},
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 3,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-10T07:30:12.171296+00:00",
+  "submitted": 3,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 268.31299999996554
+}

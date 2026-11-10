@@ -20,6 +20,22 @@
 - **Morning list:** EO 506 (not a valid blind review), lane I's seven old-name claims, the owner-assignment decision
   record (no in-repo source yet), and PR256 (EO 5666 adoption).
 
+
+## 2026-11-10 ET (Claude, PAPINIAN production lane)
+
+- **Filed:** 63 canonical lifecycle claims, merged in PR #257 (48) and PR #261 (15); local replay ready 1,179 ->
+  1,237. custody_stranded 2 of 7, own-claim corrections 6 of 23, claim_ready.yes.fr 55 of 347 (all worked).
+  18 controls planted, 0 missed. Human-certified 0. Report: `research/excavator/claude-papinian-2026-11-10/REPORT.md`.
+- **Undecided (EO >= 7532):** 90 orders, 0 canonical; 6 isolated replacement proposals. Gate STOP after u23.
+- **Not run:** board-rule pilot (report PDFs are custody records only); working_text_stale (MOMMSEN-I's Photius-193).
+- **Cost:** 296.95 USD list (workers 246.09, coordinator 50.86). Workers ran as Agent-tool subagents because
+  `claude -p` is not logged in on this PC. Kean F-20261110-papinian-wave (measures).
+- **Asks:** @Owner: A-20261110-papinian-board-bytes (store the 101 NMB report PDFs for the checker; adopt corrected
+  Justinian board claims), A-20261110-papinian-adopt-u01b and A-20261110-papinian-adopt-u23 (6 NO statuses).
+- **Next lever:** acquisitions, not production: NEA continuation notices (F-20261110-papinian-nea-notices) and an
+  official EO 13286 (F-20261110-papinian-eo13286-mirror), then re-run the blocked YES orders (still reserved).
+- **Correction:** PR #257's table says y01-y09 submitted 56; the producers submitted 64 (filed 40 is right).
+
 ## 2026-11-09 ET (Claude, why Mission has been pending since 2026-11-06)
 
 - **Fixed** (branch `claude/mission-checker-scope`): two guard bugs in `jobs/daily-digest/`.
