@@ -1,3 +1,24 @@
+## 2026-11-10 ET (Claude, RESPONDENDI v2: one approval for every kind of undecided order)
+
+- **Owner follow-up:** v1's single lot (620 orders) was "really really disappointing"; v2 covers every kind under one
+  approval. Four tracks: this one (Respondendi), Accursius (claim-kit F3-F7), Ulpian (outer-bound ask), Linnaeus (bulk sources).
+- **Built (PR #270):** `jobs/respondendi-adoption/RULE.md` v2 (sha b3774309...), kinds:
+  - express revocation and own terms: active;
+  - spent on issue, incl. amendment-only: opens with F5;
+  - YES with a current source: opens with F3;
+  - working-text basis: opens with F6.
+  Activation is `UNDECIDED_ROUTES` in `jobs/claim-kit/status_overlay.py` on GitHub's main (agreed with Accursius, who
+  adds the names in the F3 and F5/F6 PRs). 67 tests.
+- **Red team (separate Fable 5.2, two rounds):** every blocker it found is fixed; the remaining known limits are listed
+  in REPORT.md section 7. Reach after the fixes: 468 orders today, 1,468 once F3, F5 and F6 merge; own terms 0 for now;
+  9,223 unreached on held leads (sources, not adoption, are the limit). Replay: 5 of 9 past adoptions qualify.
+- **Cost:** wave total 325.04 USD list (v2 added the red team's 28.66 and about 24 of coordinator time).
+  Kean F-20261110-respondendi-v2.
+- **Asks:** @Owner: A-20261110-respondendi-standing-rule-v2, which supersedes A-20261110-respondendi-standing-rule
+  (v1). Recommended yes.
+- **Do not:** record the approval for the owner. For the next undecided wave, follow `UNDECIDED_CHECKLIST.md`: typed
+  controls planted on each kind, an ADMISSION.json, and evidence files in the lot's `audit-evidence/` folder.
+
 ## 2026-11-10 ET (Claude, RESPONDENDI: why undecided orders fail, and a standing adoption rule)
 
 - **Diagnosis (Fable 5.2 high, 14 workers):** of Papinian's 84 failed undecided attempts, 0 were unknowable;
