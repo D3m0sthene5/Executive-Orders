@@ -1,0 +1,96 @@
+{
+ "wave": "nalimov-calibration-2026-11-10",
+ "author": "claude-opus-5-5",
+ "stage": 0,
+ "objective": {
+  "metric": "verified_claims_per_unit",
+  "text": "Measure, on 30 script-drafted express-revocation claims, how many both blind verifiers uphold and the status reviewer accepts, with every planted control caught, per API-equivalent dollar, against the full undecided route (Papinian: 7.71 USD per adopted status)."
+ },
+ "actions": [
+  {
+   "id": "status_assignment.undecided",
+   "orders": 30,
+   "lanes": 1,
+   "ids": [
+    "EO:7910",
+    "EO:8277",
+    "EO:8378",
+    "EO:8403",
+    "EO:8455",
+    "EO:8514",
+    "EO:8541",
+    "EO:8571",
+    "EO:9432",
+    "EO:9662",
+    "EO:9866",
+    "EO:9885",
+    "EO:9925",
+    "EO:10014",
+    "EO:10513",
+    "EO:10779",
+    "EO:10940",
+    "EO:11056",
+    "EO:11232",
+    "EO:11245",
+    "EO:11274",
+    "EO:12314",
+    "EO:12331",
+    "EO:12625",
+    "EO:13176",
+    "EO:13575",
+    "EO:13765",
+    "EO:13805",
+    "EO:13925",
+    "EO:13964"
+   ]
+  }
+ ],
+ "configuration": {
+  "orchestrator": "nalimov-tablebase",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "nalimov-script",
+  "verifier_models": {
+   "A": "claude-sonnet-5-5",
+   "B": "claude-opus-5-5",
+   "S": "claude-sonnet-5-5"
+  }
+ },
+ "limits": {
+  "chain_budget_units": 1500000,
+  "spend_per_claim_units": 60000,
+  "no_claim_minutes": 40,
+  "context_kill_tokens": 120000,
+  "reviews_per_hour": 12,
+  "coordinator_units_per_hour": 300000
+ },
+ "premortem": [
+  {
+   "failure": "The drafter fills a wrong field (an inventory gap, an earlier end, a partial scope) and verifiers who see only the small packet uphold it.",
+   "guard": "The drafter refuses any order with another act, an ending own term, a missing named instrument, a conflict, a current-law hit it cannot read or a section heading outside its clauses; replay on Papinian's 90 frozen dossiers completed only EO 11957, 12348 and 9245, each adopted by the owner after full review. Every session carries typed controls including real drafter-shaped decoys; any missed control stops the batch. Respondendi audits every member cross-family while the stratum is on probation."
+  },
+  {
+   "failure": "The packet leaves out evidence the full dossier holds, so verifiers cannot see what would defeat the claim (common-mode omission).",
+   "guard": "Packets carry every other held act on the order, every catalog and U.S. Code witness and the full actor text or exact windows; the drafter refuses orders whose dossier holds anything it does not put in the packet; the cross-family audit reads the full sources."
+  },
+  {
+   "failure": "Coordinator tokens dominate again (54% on the Codex wave).",
+   "guard": "Drafting, packets, controls, scoring and installation are scripts; the coordinator reads SCORE.json and ADJUDICATE.json only; coordinator_units_per_hour 300k and a 1.5M chain budget."
+  },
+  {
+   "failure": "Evidence changes between the census (reference checkout 854514831e) and the kit's prepare on main.",
+   "guard": "Drafts are made from the prepared packet's own frozen evidence; install refuses a draft whose evidence_sha256 differs from the packet's."
+  },
+  {
+   "failure": "Verifier sessions run long or re-read large contexts.",
+   "guard": "Sessions hold at most 12 genuine targets (about 48k tokens of packet); context_kill_tokens 120k; one fresh session per arm per session."
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261110-papinian-undecided-u23": "Lifecycle rejections came from skipped U.S. Code notes, amendments and inventory errors. The drafter refuses any order with a current-law hit it cannot read as an ended-status note naming the same actor, any other act on the order, and any section heading or operative words outside its clauses; verifiers get checklist items 5-8 for exactly these.",
+  "F-20261110-papinian-undecided-u01b": "Drafts are made only from packets the kit prepares on main with its current status_overlay code (kit.py prepare --action status_assignment.undecided); the census used the kit's own freezer on main's compiled outputs. Adoption runs through Respondendi's standing rule once the owner approves it, otherwise by a named owner decision.",
+  "F-20261110-mommsen-unranked-pools": "All 30 orders are inside Bentham's ranked status_assignment.undecided action (checked against strata/status_assignment.undecided.txt); one lane, 30 orders, prepared through the kit's admission gate, which caps probes at 30.",
+  "F-20261107-haloander-undecided-probe": "The action is now ranked with a measured rate (filed_per_attempt.undecided, 3 of 30). The transcription refusal does not bite here: every drafted order has an acceptable original with no page check owed; adoption is the named bound and goes to Respondendi or the owner.",
+  "F-20261028-4": "Every order is prepared fresh from main's current claim-kit outputs right before drafting; no packet older than the kit generation is reused, and install refuses evidence whose fingerprint changed since drafting.",
+  "F-20261018-7": "No fetching: the run reads only held, hashed texts already frozen in the kit's evidence, so there are no host success rates or URL hashes to forecast."
+ }
+}
