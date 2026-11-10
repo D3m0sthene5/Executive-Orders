@@ -35,4 +35,5 @@ subprocess.run([sys.executable,str(root/'.github/scripts/test_writer_queue.py')]
 subprocess.run([sys.executable,str(root/'.github/scripts/test_arsenale.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 # Trigger policy (owner, 2026-11-09): no push starts Run jobs, no tag starts any workflow.
 subprocess.run([sys.executable,str(root/'.github/scripts/test_workflow_triggers.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
-
+# Ulpian outer bound (2026-11-10): arithmetic, screens and the owner lock.
+subprocess.run([sys.executable,'-I',str(root/'jobs/ulpian-outer-bound/test_ulpian.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
