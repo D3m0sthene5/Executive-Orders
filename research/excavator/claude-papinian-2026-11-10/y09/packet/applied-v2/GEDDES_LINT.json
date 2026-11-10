@@ -1,0 +1,145 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "C:\\Users\\danie\\eo-wt\\papinian\\research\\excavator\\claude-papinian-2026-11-10\\y09\\packet\\PACKET.json",
+  "seconds": 69.313,
+  "files_read": 62381,
+  "file_reads": 124974,
+  "packet_fingerprint": "730da0220768bcce4292e8d1c305558104cb44e12847b026f3f31279639c3c20",
+  "claims_checked": 6,
+  "defect_flags": 1,
+  "coverage_gaps": 8,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 6,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:12353",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "387bacee096bdda06ec2d74715fb0d4c4337464e",
+          "tracked_files": 63287,
+          "verified_files": 62375,
+          "missing_or_changed_files": 912,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:12478",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "387bacee096bdda06ec2d74715fb0d4c4337464e",
+          "tracked_files": 63287,
+          "verified_files": 62375,
+          "missing_or_changed_files": 912,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:9158",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "387bacee096bdda06ec2d74715fb0d4c4337464e",
+          "tracked_files": 63287,
+          "verified_files": 62375,
+          "missing_or_changed_files": 912,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 4,
+      "instrument_id": "EO:10979",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "387bacee096bdda06ec2d74715fb0d4c4337464e",
+          "tracked_files": 63287,
+          "verified_files": 62375,
+          "missing_or_changed_files": 912,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 5,
+      "instrument_id": "EO:12561",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "387bacee096bdda06ec2d74715fb0d4c4337464e",
+          "tracked_files": 63287,
+          "verified_files": 62375,
+          "missing_or_changed_files": 912,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 6,
+      "instrument_id": "EO:13830",
+      "flags": [
+        {
+          "code": "unaddressed_citing_instrument",
+          "scope_id": "whole",
+          "field": "claim",
+          "span": "EO:10189 (1950-12-06)",
+          "detail": "Held EO:10189 (1950-12-06) revokes EO 4601, which this order amends or modifies; the claim never mentions EO:10189 in its ends, events, reasoning, searches or gaps.",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-10189-amendment-executive-order-no-4601-march-1-1927-prescribing.txt",
+            "text_sha256": "25a2ae18ee490fe46cabd048a3462f5c83667f372619333ad70533c7c9d2caa1",
+            "char_start": 2338,
+            "char_end": 2530,
+            "quote": "Executive Order No. 9615 of September 14, 1945, making certain time limitations imposed by the said paragraph 8 of Executive Order No. 4601 inapplicable to certain cases, is hereby superseded.",
+            "instrument_id": "EO:10189",
+            "date": "1950-12-06",
+            "identity_basis": "app_publisher_listing",
+            "cited_order": "EO:4601"
+          },
+          "flag_id": "6190eff9776f5d5d"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "387bacee096bdda06ec2d74715fb0d4c4337464e",
+          "tracked_files": 63287,
+          "verified_files": 62375,
+          "missing_or_changed_files": 912,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
