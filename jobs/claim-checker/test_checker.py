@@ -788,6 +788,40 @@ class CheckerTests(unittest.TestCase):
         rows, _, _ = C.check_claim(claim, self.ctx)
         self.assertTrue(rows_for(rows, 'working_text_policy', 'fail'))
 
+    def replica_claim(self, registered_for='EO:90001'):
+        claim = self.working_claim()
+        source = claim['original_representation']
+        source['grade'] = 'archival_replica_checked'
+        for clause in claim['operative_clauses']:
+            clause['original_source']['grade'] = 'archival_replica_checked'
+            clause['original_source']['instrument_id'] = registered_for
+        source['instrument_id'] = registered_for
+        claim.pop('working_text')
+        claim['informational_flags'] = ['REPLICA_CHECKED_PROQUEST_BYTES']
+        (self.repo / 'jobs/app-executive-orders/output/FRAGMENTS.jsonl').unlink()
+        fragment = self.repo / 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'
+        fragment.parent.mkdir(parents=True)
+        fragment.write_text(json.dumps({'kind': 'original_representation', 'instrument_id': registered_for,
+            'produced_by': 'photius-replica-check', 'grade': 'archival_replica_checked',
+            'acceptable_as_original': False,
+            'data': dict(source, needs_page_check=False, check={'final': 'pass'})}) + '\n')
+        self.ctx.working_text_index = C.W.Index(self.repo)
+        return claim, source
+
+    def test_checked_replica_changed_held_bytes_fail(self):
+        # Review of #284, blocking finding 1: a P4 pass must not waive the held-bytes and quote checks.
+        claim, source = self.replica_claim()
+        held = self.repo / source['text_path']
+        held.write_bytes(held.read_bytes() + b' appended after the check')
+        policy_errors, _ = C.W.policy(claim, self.repo, self.ctx.working_text_index)
+        self.assertTrue(any(e.endswith('working_text_text_hash_mismatch') for e in policy_errors), policy_errors)
+
+    def test_checked_replica_of_another_order_is_refused(self):
+        # Review of #284, blocking finding 2: another order's passing replica is not this order's original.
+        claim, _ = self.replica_claim(registered_for='EO:90004')
+        policy_errors, _ = C.W.policy(claim, self.repo, self.ctx.working_text_index)
+        self.assertIn('original_representation:checked_replica_wrong_order', policy_errors)
+
     def test_working_text_does_not_waive_custody_only_or_missing_ending(self):
         claim = self.working_claim()
         original_sha = claim['original_representation']['sha256']

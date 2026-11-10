@@ -355,6 +355,25 @@ def blank(disclosed_refs, prior=None):
                               for ref in distinct.values()]}
 
 
+def _held_quote_errors(repo, path, ref):
+    """The held bytes hash to the reference's text_sha256 and contain its quote at its exact span."""
+    errors = []
+    try:
+        raw = _child(repo, ref.get('text_path')).read_bytes()
+        text = raw.decode('utf-8')
+        if hashlib.sha256(raw).hexdigest() != ref.get('text_sha256'):
+            errors.append(path + ':working_text_text_hash_mismatch')
+        start, end = ref.get('char_start'), ref.get('char_end')
+        if (type(start) is not int or type(end) is not int or not 0 <= start < end <= len(text)
+                or text[start:end] != ref.get('quote')):
+            errors.append(path + ':working_text_quote_mismatch')
+        if path == 'original_representation' and (start != 0 or end != len(text)):
+            errors.append(path + ':working_text_incomplete_representation_span')
+    except (OSError, ValueError, UnicodeError, TypeError):
+        errors.append(path + ':working_text_missing_bytes')
+    return errors
+
+
 def policy(claim, repo, index=None, flags=None):
     """Return (errors, exact dependent refs). Bytes/quotes are additional checks.
 
@@ -378,7 +397,16 @@ def policy(claim, repo, index=None, flags=None):
         flagged = ref.get('acceptable_as_original') is False or ref.get('grade') in GRADES
         # Recognition must not trust a claim-controlled path: an alias cannot
         # erase the derivative classification attached to the actual source hash.
-        if (not known_derivative_hash and not flagged) or index.exact_official(ref) or checked_replica(ref, index):
+        if (not known_derivative_hash and not flagged) or index.exact_official(ref):
+            continue
+        if checked_replica(ref, index):
+            # Photius P4: a checked replica needs no working-text grade, disclosure or confirmation, but it is
+            # still this order's text and its held bytes must still be exactly what the claim quotes
+            # (independent review of #284, blocking findings 1 and 2).
+            if path == 'original_representation' or path.endswith('.original_source'):
+                if ref.get('instrument_id') != claim.get('instrument_id'):
+                    errors.append(path + ':checked_replica_wrong_order')
+            errors.extend(_held_quote_errors(repo, path, ref))
             continue
         dependent.append(ref)
         if ref.get('acceptable_as_original') is not False or ref.get('grade') not in GRADES:
@@ -394,19 +422,7 @@ def policy(claim, repo, index=None, flags=None):
                 errors.append(path + ':working_text_wrong_order')
         if any(r.get('complete_text') is False for r in exact):
             errors.append(path + ':working_text_known_incomplete')
-        try:
-            raw = _child(repo, ref.get('text_path')).read_bytes()
-            text = raw.decode('utf-8')
-            if hashlib.sha256(raw).hexdigest() != ref.get('text_sha256'):
-                errors.append(path + ':working_text_text_hash_mismatch')
-            start, end = ref.get('char_start'), ref.get('char_end')
-            if (type(start) is not int or type(end) is not int or not 0 <= start < end <= len(text)
-                    or text[start:end] != ref.get('quote')):
-                errors.append(path + ':working_text_quote_mismatch')
-            if path == 'original_representation' and (start != 0 or end != len(text)):
-                errors.append(path + ':working_text_incomplete_representation_span')
-        except (OSError, ValueError, UnicodeError, TypeError):
-            errors.append(path + ':working_text_missing_bytes')
+        errors.extend(_held_quote_errors(repo, path, ref))
     for n, clause in enumerate(claim.get('operative_clauses', []) if isinstance(claim, dict) else []):
         if not isinstance(clause, dict):
             continue
