@@ -6,11 +6,11 @@ New York date: 2026-11-10. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Numbered series: ready for human review 1,247 of 14,998 orders (8.3%)**
+**Numbered series: ready for human review 1,248 of 14,998 orders (8.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42872364618-1:de38824a90c7fe431edee8370ebad9804ef0a54ae2d01719b51c80d72f3f6d7d` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42873244302-1:3bcb002fbc2058c0abef45b7ddd80a50e3f47a816cc045c2208b73377e3a87b1` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -18,7 +18,7 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 4,307. The other 10,691 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 722, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
+Ready by text evidence: {'original_supported': 723, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 845; quotation rechecks: 845. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 252. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1551}.
@@ -27,14 +27,14 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 Comparison snapshot: 2026-11-09; intervening runs may be absent.
 - cassiodorus: pages_kept_total: 294 → 296
-- claim-checker: claim_lines_found: 1828 → 1897; claims_all_checks_passed: 1660 → 1734; claims_checked: 1828 → 1897; claims_gate_passed: 1738 → 1807
+- claim-checker: claim_lines_found: 1828 → 1897; claims_all_checks_passed: 1660 → 1735; claims_checked: 1828 → 1897; claims_gate_passed: 1738 → 1807
 - cotton-capture-custody: not_web_sources: 1175 → 1240; wanted_hashes: 1932 → 1997
 - eumenes-nmb-reports: manifest_records: unavailable → 119; orders_covered: unavailable → 126; published: unavailable → 119
 - family-rules: saved_texts_scanned: 82852 → 83308
-- gessner-cards: not_researched: 10697 → 10691; ready_for_human_review: 1179 → 1247; with_provisional_status: 4301 → 4307
+- gessner-cards: not_researched: 10697 → 10691; one_step_from_ready: 216 → 215; ready_for_human_review: 1179 → 1248; with_provisional_status: 4301 → 4307
 - kean: decisions: 74 → 75; findings: 286 → 292; open_owner_questions: 1 → 2
 - official-fixity: carried_forward: 7124 → 7116; files: 7124 → 7116
-- readiness-tracker: orders_with_provisional_status: 4301 → 4307; original_replacement_obligations: 882 → 845; quotation_recheck_obligations: 882 → 845; ready_for_human_review: 1179 → 1247
+- readiness-tracker: orders_with_provisional_status: 4301 → 4307; original_replacement_obligations: 882 → 845; quotation_recheck_obligations: 882 → 845; ready_for_human_review: 1179 → 1248
 - selden-fr-acting: bytes_downloaded: 2729289189 → 1139195521; requests: 129 → 82
 - selden-fr-citers: bytes_downloaded: 856889 → 855827; requests: 80 → 71; targets_searched_this_run: 9 → 0; targets_total: 13379 → 13220
 - selden-statutes: attempted: 1956 → 1941; bytes_downloaded: 419580437 → 399769600; committed_pdf_bytes: 182079919 → 169760052; held: 1931 → 1916
@@ -65,4 +65,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42872364618)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42873244302)
