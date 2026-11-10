@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 291; `search` finds the rest)
+## Newest results (6 of 295; `search` finds the rest)
 
 - 2026-11-10 F-20261110-mommsen3-undecided-selector **analysis**: Reserve a 30-order early undecided probe with kit.py next --scope undecided and an out-of-pool exclusion list. Lesson: Skip unpinned history rows before constructing undecided selector entries; source and status gates remain unchanged.
+- 2026-11-10 F-20261110-mommsen3-undecided-probe01 **stopped at gate**: Thirty early undecided orders with accepted official compilations and history-event leads, fresh claim-kit pa… Lesson: Accepted original plus event leads is insufficient by itself: prove first end, scope, savings and current predicate before canonical filing. Keep status proposals isolated for owner adoption; do not…
+- 2026-11-10 F-20261110-mommsen3-undecided-original-gate **analysis**: Screen the 30 reserved early undecided orders against the current status-overlay decision gate and their froz… Lesson: Route this probe through the accepted-original subset; held working-text status assignment remains a separate blocked policy change, not a source-page claim.
+- 2026-11-10 F-20261110-mommsen3-selector-replay **worked**: Skip undecided status-history rows lacking a fingerprint before creating selector entries, then run kit.py ne… Lesson: An in-pool exclusion cannot prevent an exception thrown while constructing candidates; validate candidate history before constructing its selector row.
 - 2026-11-10 F-20261110-mommsen3-mirror-replay **worked**: Add APP MIRROR_FRAGMENTS declarations to the existing exact working-text index and replay readiness-tracker l… Lesson: A producer mirror file can be present and exact yet omitted by a filename-specific consumer glob; compare local tracker rows, not just provider counts.
 - 2026-11-10 F-20261110-mommsen3-mirror-fragments **analysis**: Run readiness-tracker locally with current code and exact tracker provider folders materialized. Lesson: Include explicit mirror fragment declarations in the exact working-text index before accepting or rejecting dependent filed claims.
-- 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
-- 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
-- 2026-11-09 F-20261109-mission-refresh-stuck **analysis**: Checked why the dashboard's Mission tab says 'Pending mission publication' after the 2026-11-09 runs settled. Lesson: The freshness guard is working as designed, but every refresh since 2026-11-06 is refused, so something upstream (checker inputs versus the canonical readiness tree) needs a fix before Mission moves…
 
-Register: 75 owner decisions, 45 answered questions, 291 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 295 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
