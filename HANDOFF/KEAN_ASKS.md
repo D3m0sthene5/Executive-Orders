@@ -18,3 +18,19 @@ The board rule (D-20261108-board-rule) cannot run: the 101 held National Mediati
 *Why:* 173 one_step_away orders (Bentham rank 9, about 138 dossiers estimated) wait on this; no production spend can close them until the report bytes are checkable and the replacement route has an adoption step.
 
 Sources: `research/excavator/claude-haloander-2026-11-07/evidence/R3_BOARD_REPORTS.csv`
+
+## A-20261110-papinian-adopt-u01b (2026-11-10, Claude)
+
+Adopt the provisional NO status of EO 9674, EO 11957 and EO 12348? Each was proposed under the claim-kit status-overlay route, accepted by an independent AI status reviewer, and upheld by two independent blind AI lifecycle arms whose planted control (EO 11816) both caught; the reviewed claims are in research/excavator/claude-papinian-2026-11-10/u01b/overlay/REPLACEMENT_PROPOSAL.jsonl (owner acceptance false). Recommended: yes, as for A-20261107-haloander-adopt. These are provisional statuses from AI review; human certification stays 0.
+
+*Why:* Under A-20261107-undecided-measure an undecided order counts as filed only after adoption; until then these 3 reviewed dossiers add 0 to ready.
+
+Sources: `research/excavator/claude-papinian-2026-11-10/u01b/overlay/REPLACEMENT_PROPOSAL.jsonl`
+
+## A-20261110-papinian-adopt-u23 (2026-11-10, Claude)
+
+Adopt the provisional NO status of EO 9245, EO 10679 and EO 11962 (as for A-20261110-papinian-adopt-u01b)? Each was accepted by an independent AI status reviewer and upheld by two independent blind AI lifecycle arms whose planted control (EO 10938) both caught; claims in research/excavator/claude-papinian-2026-11-10/u02/overlay/REPLACEMENT_PROPOSAL.jsonl (owner acceptance false). Recommended: yes. Provisional statuses from AI review; human certification stays 0.
+
+*Why:* Undecided orders count as filed only after adoption (A-20261107-undecided-measure); these 3 reviewed dossiers add 0 to ready until then.
+
+Sources: `research/excavator/claude-papinian-2026-11-10/u02/overlay/REPLACEMENT_PROPOSAL.jsonl`
