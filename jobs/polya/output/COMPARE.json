@@ -1,12 +1,12 @@
 {
  "schema": "polya/1",
- "repo_head": "a757eaf47556c79052c5767af78c4af819d970c8",
+ "repo_head": "97d287c63f4cb759f6faf78de30a2ce822ac2167",
  "pool": {
   "orders": 14998,
-  "ready": 1179,
-  "not_ready": 13819,
-  "decided_not_ready": 3122,
-  "undecided": 10697
+  "ready": 1248,
+  "not_ready": 13750,
+  "decided_not_ready": 3059,
+  "undecided": 10691
  },
  "rules": [
   "counts are measured from committed job outputs at repo_head",
@@ -14,15 +14,15 @@
   "AI statuses are hypotheses; no codebook change; no tier promotion; certified stays 0"
  ],
  "stack": {
-  "decided_not_ready": 3122,
-  "all_open_steps_have_a_frame_unit": 192,
+  "decided_not_ready": 3059,
+  "all_open_steps_have_a_frame_unit": 187,
   "uncovered_step_sets_top": [
    {
     "steps_no_frame_reaches": [
      "clause_inventory",
      "savings_residuals"
     ],
-    "orders": 763
+    "orders": 743
    },
    {
     "steps_no_frame_reaches": [
@@ -47,11 +47,11 @@
      "savings_residuals",
      "opus_media"
     ],
-    "orders": 516
+    "orders": 480
    },
    {
     "steps_no_frame_reaches": [],
-    "orders": 192
+    "orders": 187
    },
    {
     "steps_no_frame_reaches": [
@@ -60,7 +60,7 @@
      "savings_residuals",
      "opus_media"
     ],
-    "orders": 97
+    "orders": 92
    }
   ],
   "reading": "an order can only be made ready by stacking units from several frames; steps no frame reaches stay per-order work"
@@ -68,43 +68,43 @@
  "reading": "Reach counts are upper bounds on one-step advances.  Frames overlap, so reaches must not be added.  A frame beats the order baseline only if few units reach many orders (high Gini, top-10/100 coverage) AND the step they advance is the one that blocks readiness.  Yield is not estimated here.",
  "step_matrix": {
   "provisional_status": {
-   "open_in_not_ready": 10697,
+   "open_in_not_ready": 10691,
    "open_in_decided_not_ready": 0,
    "views_that_reach_orders_with_this_step_open": {
-    "F1/NO_hypothesis_for_undecided": 1698
+    "F1/NO_hypothesis_for_undecided": 1692
    }
   },
   "original_text": {
-   "open_in_not_ready": 2243,
-   "open_in_decided_not_ready": 736,
+   "open_in_not_ready": 2300,
+   "open_in_decided_not_ready": 741,
    "views_that_reach_orders_with_this_step_open": {
-    "F3/claim_kit_source_family": 731
+    "F3/claim_kit_source_family": 736
    }
   },
   "clause_inventory": {
-   "open_in_not_ready": 13578,
-   "open_in_decided_not_ready": 2881,
+   "open_in_not_ready": 13510,
+   "open_in_decided_not_ready": 2819,
    "views_that_reach_orders_with_this_step_open": {
-    "F4/x1_text_cluster": 914
+    "F4/x1_text_cluster": 911
    }
   },
   "ending_or_current_basis": {
-   "open_in_not_ready": 13794,
-   "open_in_decided_not_ready": 3097,
+   "open_in_not_ready": 13721,
+   "open_in_decided_not_ready": 3030,
    "views_that_reach_orders_with_this_step_open": {
-    "F1/ending_of_decided_NO": 807,
-    "F2/actor_provision_record": 1081,
-    "F4/claim_kit_family": 1952,
-    "F7/current_law_citation": 319
+    "F1/ending_of_decided_NO": 801,
+    "F2/actor_provision_record": 1064,
+    "F4/claim_kit_family": 1896,
+    "F7/current_law_citation": 276
    }
   },
   "savings_residuals": {
-   "open_in_not_ready": 13591,
-   "open_in_decided_not_ready": 2894,
+   "open_in_not_ready": 13523,
+   "open_in_decided_not_ready": 2832,
    "views_that_reach_orders_with_this_step_open": {}
   },
   "counterevidence": {
-   "open_in_not_ready": 12124,
+   "open_in_not_ready": 12118,
    "open_in_decided_not_ready": 1427,
    "views_that_reach_orders_with_this_step_open": {}
   },
@@ -116,8 +116,8 @@
    }
   },
   "opus_media": {
-   "open_in_not_ready": 700,
-   "open_in_decided_not_ready": 700,
+   "open_in_not_ready": 663,
+   "open_in_decided_not_ready": 663,
    "views_that_reach_orders_with_this_step_open": {}
   }
  },
@@ -129,21 +129,21 @@
    "unit": "one executive order",
    "polya_move": "baseline: the formulation every prior plan used",
    "advances_step": "all steps of that order",
-   "orders_reachable": 13819,
+   "orders_reachable": 13750,
    "pct_not_ready_reachable": 1.0,
-   "decided_not_ready_reachable": 3122,
+   "decided_not_ready_reachable": 3059,
    "pct_decided_not_ready_reachable": 1.0,
-   "units": 13819,
+   "units": 13750,
    "gini": 0.0,
    "max_unit": 1,
    "overlap_factor": 1.0,
    "coverage_all_views": {
     "top10": 0.0007,
-    "top100": 0.0072,
+    "top100": 0.0073,
     "greedy10": 0.0007,
-    "greedy100": 0.0072
+    "greedy100": 0.0073
    },
-   "reached_with_le2_open_steps": 246,
+   "reached_with_le2_open_steps": 245,
    "median_open_steps_of_reached": 5,
    "reached_with_no_other_open_step_upper_bound": [
     [
@@ -156,28 +156,28 @@
     {
      "view": "orders",
      "advances_step": "n/a (see note)",
-     "pool_size": 13819,
-     "units": 13819,
-     "distinct_orders_reached": 13819,
+     "pool_size": 13750,
+     "units": 13750,
+     "distinct_orders_reached": 13750,
      "gini": 0.0,
      "max": 1,
      "median": 1,
      "coverage": {
       "top10": 0.0007,
-      "top100": 0.0072,
+      "top100": 0.0073,
       "greedy10": 0.0007,
-      "greedy100": 0.0072
+      "greedy100": 0.0073
      },
-     "reached_with_le2_open_steps": 246,
+     "reached_with_le2_open_steps": 245,
      "reached_with_no_other_open_step_upper_bound": null,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 13578,
-      "counterevidence": 12124,
-      "ending_or_current_basis": 13794,
-      "opus_media": 700,
-      "original_text": 2243,
-      "provisional_status": 10697,
-      "savings_residuals": 13591,
+      "clause_inventory": 13510,
+      "counterevidence": 12118,
+      "ending_or_current_basis": 13721,
+      "opus_media": 663,
+      "original_text": 2300,
+      "provisional_status": 10691,
+      "savings_residuals": 13523,
       "shared_sources": 24
      },
      "hypothetical_completion_potential": null,
@@ -191,26 +191,26 @@
    "unit": "one acting instrument that revokes/supersedes/terminates others",
    "polya_move": "change the unknown: solve the actor, not the target",
    "advances_step": "ending_or_current_basis (decided NO) / provisional_status (undecided)",
-   "orders_reachable": 2505,
+   "orders_reachable": 2493,
    "pct_not_ready_reachable": 0.1813,
-   "decided_not_ready_reachable": 807,
-   "pct_decided_not_ready_reachable": 0.2585,
-   "units": 1736,
-   "gini": 0.3916,
+   "decided_not_ready_reachable": 801,
+   "pct_decided_not_ready_reachable": 0.2619,
+   "units": 1730,
+   "gini": 0.3913,
    "max_unit": 242,
-   "overlap_factor": 1.24,
+   "overlap_factor": 1.241,
    "coverage_all_views": {
-    "top10": 0.0365,
-    "top100": 0.0706,
-    "greedy10": 0.0365,
-    "greedy100": 0.0727
+    "top10": 0.0367,
+    "top100": 0.0708,
+    "greedy10": 0.0367,
+    "greedy100": 0.0729
    },
-   "reached_with_le2_open_steps": 211,
+   "reached_with_le2_open_steps": 210,
    "median_open_steps_of_reached": 5,
    "reached_with_no_other_open_step_upper_bound": [
     [
      "ending_of_decided_NO",
-     183
+     182
     ],
     [
      "NO_hypothesis_for_undecided",
@@ -305,29 +305,29 @@
      "advances_step": [
       "ending_or_current_basis"
      ],
-     "pool_size": 3122,
-     "units": 353,
-     "distinct_orders_reached": 807,
-     "gini": 0.5791,
+     "pool_size": 3059,
+     "units": 352,
+     "distinct_orders_reached": 801,
+     "gini": 0.5784,
      "max": 242,
      "median": 1,
      "coverage": {
-      "top10": 0.1265,
-      "top100": 0.2034,
-      "greedy10": 0.1265,
-      "greedy100": 0.2082
+      "top10": 0.1291,
+      "top100": 0.2059,
+      "greedy10": 0.1291,
+      "greedy100": 0.2109
      },
-     "reached_with_le2_open_steps": 211,
-     "reached_with_no_other_open_step_upper_bound": 183,
+     "reached_with_le2_open_steps": 210,
+     "reached_with_no_other_open_step_upper_bound": 182,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 599,
+      "clause_inventory": 594,
       "counterevidence": 167,
       "opus_media": 147,
-      "original_text": 28,
-      "savings_residuals": 615,
+      "original_text": 35,
+      "savings_residuals": 610,
       "shared_sources": 7
      },
-     "hypothetical_completion_potential": 183,
+     "hypothetical_completion_potential": 182,
      "realized_integrated_ready_change": null
     },
     {
@@ -335,10 +335,10 @@
      "advances_step": [
       "provisional_status"
      ],
-     "pool_size": 10697,
-     "units": 1383,
-     "distinct_orders_reached": 1698,
-     "gini": 0.3081,
+     "pool_size": 10691,
+     "units": 1378,
+     "distinct_orders_reached": 1692,
+     "gini": 0.3083,
      "max": 52,
      "median": 1,
      "coverage": {
@@ -350,11 +350,11 @@
      "reached_with_le2_open_steps": 0,
      "reached_with_no_other_open_step_upper_bound": 0,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 1698,
-      "counterevidence": 1698,
-      "ending_or_current_basis": 1698,
-      "original_text": 57,
-      "savings_residuals": 1698
+      "clause_inventory": 1692,
+      "counterevidence": 1692,
+      "ending_or_current_basis": 1692,
+      "original_text": 61,
+      "savings_residuals": 1692
      },
      "hypothetical_completion_potential": 0,
      "realized_integrated_ready_change": null
@@ -367,26 +367,26 @@
    "unit": "one acting order whose target-naming provision is not located",
    "polya_move": "auxiliary element: the missing link is the actor's located provision",
    "advances_step": "ending_or_current_basis",
-   "orders_reachable": 1081,
-   "pct_not_ready_reachable": 0.0782,
-   "decided_not_ready_reachable": 1081,
-   "pct_decided_not_ready_reachable": 0.3463,
-   "units": 1466,
-   "gini": 0.4036,
+   "orders_reachable": 1064,
+   "pct_not_ready_reachable": 0.0774,
+   "decided_not_ready_reachable": 1064,
+   "pct_decided_not_ready_reachable": 0.3478,
+   "units": 1463,
+   "gini": 0.4013,
    "max_unit": 132,
-   "overlap_factor": 2.463,
+   "overlap_factor": 2.485,
    "coverage_all_views": {
-    "top10": 0.025,
-    "top100": 0.0391,
-    "greedy10": 0.0274,
-    "greedy100": 0.0476
+    "top10": 0.0249,
+    "top100": 0.0382,
+    "greedy10": 0.0273,
+    "greedy100": 0.047
    },
-   "reached_with_le2_open_steps": 92,
+   "reached_with_le2_open_steps": 86,
    "median_open_steps_of_reached": 4,
    "reached_with_no_other_open_step_upper_bound": [
     [
      "actor_provision_record",
-     82
+     76
     ]
    ],
    "top20_units": [
@@ -404,7 +404,7 @@
     },
     {
      "unit": "actor_provision_record|EO:12107",
-     "orders": 33
+     "orders": 29
     },
     {
      "unit": "actor_provision_record|EO:9830",
@@ -455,12 +455,12 @@
      "orders": 12
     },
     {
-     "unit": "actor_provision_record|EO:12963",
+     "unit": "actor_provision_record|EO:7968",
      "orders": 12
     },
     {
-     "unit": "actor_provision_record|EO:7968",
-     "orders": 12
+     "unit": "actor_provision_record|EO:12963",
+     "orders": 11
     },
     {
      "unit": "actor_provision_record|EO:12610",
@@ -477,29 +477,29 @@
      "advances_step": [
       "ending_or_current_basis"
      ],
-     "pool_size": 3122,
-     "units": 1466,
-     "distinct_orders_reached": 1081,
-     "gini": 0.4036,
+     "pool_size": 3059,
+     "units": 1463,
+     "distinct_orders_reached": 1064,
+     "gini": 0.4013,
      "max": 132,
      "median": 1,
      "coverage": {
-      "top10": 0.1108,
-      "top100": 0.173,
-      "greedy10": 0.1214,
-      "greedy100": 0.2108
+      "top10": 0.1118,
+      "top100": 0.1716,
+      "greedy10": 0.1226,
+      "greedy100": 0.2112
      },
-     "reached_with_le2_open_steps": 92,
-     "reached_with_no_other_open_step_upper_bound": 82,
+     "reached_with_le2_open_steps": 86,
+     "reached_with_no_other_open_step_upper_bound": 76,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 988,
+      "clause_inventory": 977,
       "counterevidence": 388,
-      "opus_media": 243,
-      "original_text": 176,
-      "savings_residuals": 997,
+      "opus_media": 238,
+      "original_text": 177,
+      "savings_residuals": 986,
       "shared_sources": 11
      },
-     "hypothetical_completion_potential": 82,
+     "hypothetical_completion_potential": 76,
      "realized_integrated_ready_change": null
     }
    ]
@@ -510,19 +510,19 @@
    "unit": "one held source document",
    "polya_move": "generalize: one document read serves every order it contains or cites",
    "advances_step": "original_text / shared_sources",
-   "orders_reachable": 755,
-   "pct_not_ready_reachable": 0.0546,
-   "decided_not_ready_reachable": 755,
-   "pct_decided_not_ready_reachable": 0.2418,
-   "units": 514,
-   "gini": 0.3125,
+   "orders_reachable": 760,
+   "pct_not_ready_reachable": 0.0553,
+   "decided_not_ready_reachable": 760,
+   "pct_decided_not_ready_reachable": 0.2484,
+   "units": 519,
+   "gini": 0.3105,
    "max_unit": 50,
    "overlap_factor": 1.0,
    "coverage_all_views": {
     "top10": 0.0156,
-    "top100": 0.0247,
+    "top100": 0.0248,
     "greedy10": 0.0156,
-    "greedy100": 0.0247
+    "greedy100": 0.0248
    },
    "reached_with_le2_open_steps": 1,
    "median_open_steps_of_reached": 5,
@@ -624,26 +624,26 @@
      "advances_step": [
       "original_text"
      ],
-     "pool_size": 13819,
-     "units": 509,
-     "distinct_orders_reached": 731,
-     "gini": 0.2983,
+     "pool_size": 13750,
+     "units": 514,
+     "distinct_orders_reached": 736,
+     "gini": 0.2963,
      "max": 50,
      "median": 1,
      "coverage": {
-      "top10": 0.0154,
-      "top100": 0.0233,
-      "greedy10": 0.0154,
-      "greedy100": 0.0233
+      "top10": 0.0155,
+      "top100": 0.0234,
+      "greedy10": 0.0155,
+      "greedy100": 0.0234
      },
      "reached_with_le2_open_steps": 0,
      "reached_with_no_other_open_step_upper_bound": 0,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 731,
+      "clause_inventory": 736,
       "counterevidence": 712,
-      "ending_or_current_basis": 731,
-      "opus_media": 9,
-      "savings_residuals": 731
+      "ending_or_current_basis": 736,
+      "opus_media": 12,
+      "savings_residuals": 736
      },
      "hypothetical_completion_potential": 0,
      "realized_integrated_ready_change": null
@@ -653,7 +653,7 @@
      "advances_step": [
       "shared_sources"
      ],
-     "pool_size": 13819,
+     "pool_size": 13750,
      "units": 5,
      "distinct_orders_reached": 24,
      "gini": 0.3167,
@@ -685,26 +685,26 @@
    "unit": "one legal family or X1 text cluster",
    "polya_move": "analogy: prove the rule once, check each member briefly",
    "advances_step": "ending_or_current_basis / clause_inventory",
-   "orders_reachable": 2787,
-   "pct_not_ready_reachable": 0.2017,
-   "decided_not_ready_reachable": 2030,
-   "pct_decided_not_ready_reachable": 0.6502,
-   "units": 1619,
-   "gini": 0.694,
-   "max_unit": 1039,
-   "overlap_factor": 2.535,
+   "orders_reachable": 2728,
+   "pct_not_ready_reachable": 0.1984,
+   "decided_not_ready_reachable": 1974,
+   "pct_decided_not_ready_reachable": 0.6453,
+   "units": 1608,
+   "gini": 0.6895,
+   "max_unit": 998,
+   "overlap_factor": 2.499,
    "coverage_all_views": {
-    "top10": 0.1311,
-    "top100": 0.1541,
-    "greedy10": 0.1334,
-    "greedy100": 0.1706
+    "top10": 0.1284,
+    "top100": 0.1521,
+    "greedy10": 0.1308,
+    "greedy100": 0.1676
    },
-   "reached_with_le2_open_steps": 214,
+   "reached_with_le2_open_steps": 209,
    "median_open_steps_of_reached": 4,
    "reached_with_no_other_open_step_upper_bound": [
     [
      "claim_kit_family",
-     186
+     181
     ],
     [
      "x1_text_cluster",
@@ -714,23 +714,23 @@
    "top20_units": [
     {
      "unit": "claim_kit_family|own_term:condition",
-     "orders": 1039
+     "orders": 998
     },
     {
      "unit": "claim_kit_family|own_term:until_event",
-     "orders": 608
+     "orders": 594
     },
     {
      "unit": "claim_kit_family|own_term:report_deadline",
-     "orders": 553
+     "orders": 540
     },
     {
      "unit": "claim_kit_family|own_term:fixed_term",
-     "orders": 529
+     "orders": 512
     },
     {
      "unit": "claim_kit_family|own_term:sunset_date",
-     "orders": 174
+     "orders": 168
     },
     {
      "unit": "claim_kit_family|actor:EO:12553",
@@ -742,7 +742,7 @@
     },
     {
      "unit": "claim_kit_family|own_term:emergency_duration",
-     "orders": 56
+     "orders": 55
     },
     {
      "unit": "x1_text_cluster|X1C0004:land_withdrawal_general",
@@ -770,11 +770,11 @@
     },
     {
      "unit": "claim_kit_family|actor:EO:12608",
-     "orders": 24
+     "orders": 23
     },
     {
      "unit": "claim_kit_family|actor:EO:13118",
-     "orders": 23
+     "orders": 22
     },
     {
      "unit": "claim_kit_family|actor:EO:14148",
@@ -799,29 +799,29 @@
      "advances_step": [
       "ending_or_current_basis"
      ],
-     "pool_size": 3122,
-     "units": 1404,
-     "distinct_orders_reached": 1952,
-     "gini": 0.7156,
-     "max": 1039,
+     "pool_size": 3059,
+     "units": 1394,
+     "distinct_orders_reached": 1896,
+     "gini": 0.7105,
+     "max": 998,
      "median": 1,
      "coverage": {
-      "top10": 0.5407,
-      "top100": 0.5721,
-      "greedy10": 0.5448,
-      "greedy100": 0.6057
+      "top10": 0.5371,
+      "top100": 0.5685,
+      "greedy10": 0.541,
+      "greedy100": 0.6012
      },
-     "reached_with_le2_open_steps": 214,
-     "reached_with_no_other_open_step_upper_bound": 186,
+     "reached_with_le2_open_steps": 209,
+     "reached_with_no_other_open_step_upper_bound": 181,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 1741,
+      "clause_inventory": 1690,
       "counterevidence": 549,
-      "opus_media": 514,
-      "original_text": 167,
-      "savings_residuals": 1756,
+      "opus_media": 482,
+      "original_text": 179,
+      "savings_residuals": 1705,
       "shared_sources": 15
      },
-     "hypothetical_completion_potential": 186,
+     "hypothetical_completion_potential": 181,
      "realized_integrated_ready_change": null
     },
     {
@@ -829,27 +829,27 @@
      "advances_step": [
       "clause_inventory"
      ],
-     "pool_size": 13819,
-     "units": 215,
-     "distinct_orders_reached": 914,
-     "gini": 0.4592,
+     "pool_size": 13750,
+     "units": 214,
+     "distinct_orders_reached": 911,
+     "gini": 0.4602,
      "max": 82,
      "median": 2,
      "coverage": {
-      "top10": 0.021,
-      "top100": 0.0499,
-      "greedy10": 0.021,
-      "greedy100": 0.0499
+      "top10": 0.0211,
+      "top100": 0.0501,
+      "greedy10": 0.0211,
+      "greedy100": 0.0501
      },
      "reached_with_le2_open_steps": 0,
      "reached_with_no_other_open_step_upper_bound": 0,
      "remaining_open_steps_by_kind": {
-      "counterevidence": 914,
-      "ending_or_current_basis": 914,
+      "counterevidence": 911,
+      "ending_or_current_basis": 911,
       "opus_media": 3,
       "original_text": 80,
-      "provisional_status": 757,
-      "savings_residuals": 914
+      "provisional_status": 754,
+      "savings_residuals": 911
      },
      "hypothetical_completion_potential": 0,
      "realized_integrated_ready_change": null
@@ -862,21 +862,21 @@
    "unit": "one owner decision or codebook reading question",
    "polya_move": "work backwards to the precondition nobody can compute: a human ruling",
    "advances_step": "the gated blocker (reach is a ceiling)",
-   "orders_reachable": 12072,
-   "pct_not_ready_reachable": 0.8736,
-   "decided_not_ready_reachable": 1375,
-   "pct_decided_not_ready_reachable": 0.4404,
+   "orders_reachable": 12054,
+   "pct_not_ready_reachable": 0.8767,
+   "decided_not_ready_reachable": 1363,
+   "pct_decided_not_ready_reachable": 0.4456,
    "units": 6,
-   "gini": 0.6195,
-   "max_unit": 10697,
-   "overlap_factor": 1.3,
+   "gini": 0.6176,
+   "max_unit": 10691,
+   "overlap_factor": 1.31,
    "coverage_all_views": {
-    "top10": 0.8736,
-    "top100": 0.8736,
-    "greedy10": 0.8736,
-    "greedy100": 0.8736
+    "top10": 0.8767,
+    "top100": 0.8767,
+    "greedy10": 0.8767,
+    "greedy100": 0.8767
    },
-   "reached_with_le2_open_steps": 162,
+   "reached_with_le2_open_steps": 163,
    "median_open_steps_of_reached": 5,
    "reached_with_no_other_open_step_upper_bound": [
     [
@@ -887,23 +887,23 @@
    "top20_units": [
     {
      "unit": "owner_or_codebook_question|Q_batch_adoption_of_reviewed_status_overlays (owner yes/no)",
-     "orders": 10697
+     "orders": 10691
     },
     {
      "unit": "owner_or_codebook_question|Q_compiled_transcription_as_acceptable_copy (codebook reading only)",
-     "orders": 2167
+     "orders": 2224
     },
     {
      "unit": "owner_or_codebook_question|Q_send_ProQuest_NYU_access_request (owner; ceiling)",
-     "orders": 1430
+     "orders": 1449
     },
     {
      "unit": "owner_or_codebook_question|Q_medium_low_confidence_page_location_rule",
-     "orders": 703
+     "orders": 737
     },
     {
      "unit": "owner_or_codebook_question|Q_report_deadline_own_term_end_reading",
-     "orders": 560
+     "orders": 548
     },
     {
      "unit": "owner_or_codebook_question|Q_contrary_machine_lead_disposition_rule",
@@ -914,28 +914,28 @@
     {
      "view": "owner_or_codebook_question",
      "advances_step": "n/a (see note)",
-     "pool_size": 13819,
+     "pool_size": 13750,
      "units": 6,
-     "distinct_orders_reached": 12072,
-     "gini": 0.6195,
-     "max": 10697,
-     "median": 703,
+     "distinct_orders_reached": 12054,
+     "gini": 0.6176,
+     "max": 10691,
+     "median": 737,
      "coverage": {
-      "top10": 0.8736,
-      "top100": 0.8736,
-      "greedy10": 0.8736,
-      "greedy100": 0.8736
+      "top10": 0.8767,
+      "top100": 0.8767,
+      "greedy10": 0.8767,
+      "greedy100": 0.8767
      },
-     "reached_with_le2_open_steps": 162,
+     "reached_with_le2_open_steps": 163,
      "reached_with_no_other_open_step_upper_bound": null,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 11909,
-      "counterevidence": 11595,
-      "ending_or_current_basis": 12065,
-      "opus_media": 168,
-      "original_text": 2240,
-      "provisional_status": 10697,
-      "savings_residuals": 11917,
+      "clause_inventory": 11890,
+      "counterevidence": 11585,
+      "ending_or_current_basis": 12046,
+      "opus_media": 162,
+      "original_text": 2297,
+      "provisional_status": 10691,
+      "savings_residuals": 11898,
       "shared_sources": 1
      },
      "hypothetical_completion_potential": null,
@@ -949,21 +949,21 @@
    "unit": "one missing input type",
    "polya_move": "decompose the unknown by data type; build each producer once",
    "advances_step": "original_text / ending_or_current_basis / clause_inventory",
-   "orders_reachable": 3122,
-   "pct_not_ready_reachable": 0.2259,
-   "decided_not_ready_reachable": 3122,
+   "orders_reachable": 3059,
+   "pct_not_ready_reachable": 0.2225,
+   "decided_not_ready_reachable": 3059,
    "pct_decided_not_ready_reachable": 1.0,
    "units": 12,
-   "gini": 0.5043,
-   "max_unit": 1639,
+   "gini": 0.5105,
+   "max_unit": 1633,
    "overlap_factor": 1.95,
    "coverage_all_views": {
-    "top10": 0.2259,
-    "top100": 0.2259,
-    "greedy10": 0.2259,
-    "greedy100": 0.2259
+    "top10": 0.2225,
+    "top100": 0.2225,
+    "greedy10": 0.2225,
+    "greedy100": 0.2225
    },
-   "reached_with_le2_open_steps": 246,
+   "reached_with_le2_open_steps": 245,
    "median_open_steps_of_reached": 4,
    "reached_with_no_other_open_step_upper_bound": [
     [
@@ -978,7 +978,7 @@
    "top20_units": [
     {
      "unit": "missing_input_type|OTHER",
-     "orders": 1639
+     "orders": 1633
     },
     {
      "unit": "missing_input_type|ORIGINAL_text",
@@ -986,15 +986,15 @@
     },
     {
      "unit": "missing_input_type|ACT_actor_provision",
-     "orders": 950
+     "orders": 936
     },
     {
      "unit": "missing_input_type|CURRENT_predicate",
-     "orders": 623
+     "orders": 572
     },
     {
      "unit": "sole_missing_type|NONE_listed_missing (judgment only)",
-     "orders": 549
+     "orders": 546
     },
     {
      "unit": "sole_missing_type|ONLY_OTHER",
@@ -1002,11 +1002,11 @@
     },
     {
      "unit": "sole_missing_type|ONLY_ACT_actor_provision",
-     "orders": 305
+     "orders": 297
     },
     {
      "unit": "sole_missing_type|ONLY_CURRENT_predicate",
-     "orders": 262
+     "orders": 221
     },
     {
      "unit": "missing_input_type|LARGE_ACTOR_CONTEXT_read",
@@ -1029,27 +1029,27 @@
     {
      "view": "missing_input_type",
      "advances_step": "n/a (see note)",
-     "pool_size": 3122,
+     "pool_size": 3059,
      "units": 6,
-     "distinct_orders_reached": 2573,
-     "gini": 0.4231,
-     "max": 1639,
-     "median": 623,
+     "distinct_orders_reached": 2513,
+     "gini": 0.4303,
+     "max": 1633,
+     "median": 572,
      "coverage": {
-      "top10": 0.8242,
-      "top100": 0.8242,
-      "greedy10": 0.8242,
-      "greedy100": 0.8242
+      "top10": 0.8215,
+      "top100": 0.8215,
+      "greedy10": 0.8215,
+      "greedy100": 0.8215
      },
-     "reached_with_le2_open_steps": 124,
+     "reached_with_le2_open_steps": 123,
      "reached_with_no_other_open_step_upper_bound": null,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 2449,
+      "clause_inventory": 2390,
       "counterevidence": 1377,
-      "ending_or_current_basis": 2554,
-      "opus_media": 540,
-      "original_text": 736,
-      "savings_residuals": 2458,
+      "ending_or_current_basis": 2490,
+      "opus_media": 503,
+      "original_text": 741,
+      "savings_residuals": 2399,
       "shared_sources": 21
      },
      "hypothetical_completion_potential": null,
@@ -1058,27 +1058,27 @@
     {
      "view": "sole_missing_type",
      "advances_step": "n/a (see note)",
-     "pool_size": 3122,
+     "pool_size": 3059,
      "units": 6,
-     "distinct_orders_reached": 1643,
-     "gini": 0.3714,
-     "max": 549,
-     "median": 262,
+     "distinct_orders_reached": 1591,
+     "gini": 0.3854,
+     "max": 546,
+     "median": 221,
      "coverage": {
-      "top10": 0.5263,
-      "top100": 0.5263,
-      "greedy10": 0.5263,
-      "greedy100": 0.5263
+      "top10": 0.5201,
+      "top100": 0.5201,
+      "greedy10": 0.5201,
+      "greedy100": 0.5201
      },
      "reached_with_le2_open_steps": 218,
      "reached_with_no_other_open_step_upper_bound": null,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 1430,
+      "clause_inventory": 1378,
       "counterevidence": 411,
-      "ending_or_current_basis": 1623,
-      "opus_media": 484,
-      "original_text": 8,
-      "savings_residuals": 1442,
+      "ending_or_current_basis": 1567,
+      "opus_media": 452,
+      "original_text": 14,
+      "savings_residuals": 1390,
       "shared_sources": 16
      },
      "hypothetical_completion_potential": null,
@@ -1092,19 +1092,19 @@
    "unit": "one USC/CFR provision slice",
    "polya_move": "auxiliary problem: build the current-law predicate table once",
    "advances_step": "ending_or_current_basis for YES orders",
-   "orders_reachable": 319,
-   "pct_not_ready_reachable": 0.0231,
-   "decided_not_ready_reachable": 319,
-   "pct_decided_not_ready_reachable": 0.1022,
-   "units": 2060,
-   "gini": 0.2296,
-   "max_unit": 20,
-   "overlap_factor": 8.818,
+   "orders_reachable": 276,
+   "pct_not_ready_reachable": 0.0201,
+   "decided_not_ready_reachable": 276,
+   "pct_decided_not_ready_reachable": 0.0902,
+   "units": 1988,
+   "gini": 0.2294,
+   "max_unit": 16,
+   "overlap_factor": 9.841,
    "coverage_all_views": {
-    "top10": 0.0058,
-    "top100": 0.0105,
-    "greedy10": 0.0063,
-    "greedy100": 0.0169
+    "top10": 0.0051,
+    "top100": 0.0095,
+    "greedy10": 0.0058,
+    "greedy100": 0.0158
    },
    "reached_with_le2_open_steps": 0,
    "median_open_steps_of_reached": 3,
@@ -1117,7 +1117,7 @@
    "top20_units": [
     {
      "unit": "current_law_citation|10 U.S.C. subtitle A, pt. II, ch. 57 note",
-     "orders": 20
+     "orders": 16
     },
     {
      "unit": "current_law_citation|50 U.S.C. 1701 note",
@@ -1129,7 +1129,7 @@
     },
     {
      "unit": "current_law_citation|3 U.S.C. 301 note",
-     "orders": 9
+     "orders": 8
     },
     {
      "unit": "current_law_citation|15 CFR 744.8",
@@ -1149,10 +1149,6 @@
     },
     {
      "unit": "current_law_citation|31 CFR part 591",
-     "orders": 7
-    },
-    {
-     "unit": "current_law_citation|5 U.S.C. 4504 note",
      "orders": 7
     },
     {
@@ -1194,6 +1190,10 @@
     {
      "unit": "current_law_citation|40 CFR 35.10025",
      "orders": 6
+    },
+    {
+     "unit": "current_law_citation|42 U.S.C. 4321 note",
+     "orders": 6
     }
    ],
    "views": [
@@ -1202,26 +1202,26 @@
      "advances_step": [
       "ending_or_current_basis"
      ],
-     "pool_size": 378,
-     "units": 2060,
-     "distinct_orders_reached": 319,
-     "gini": 0.2296,
-     "max": 20,
+     "pool_size": 327,
+     "units": 1988,
+     "distinct_orders_reached": 276,
+     "gini": 0.2294,
+     "max": 16,
      "median": 1,
      "coverage": {
-      "top10": 0.2116,
-      "top100": 0.3836,
-      "greedy10": 0.2302,
-      "greedy100": 0.619
+      "top10": 0.2141,
+      "top100": 0.4006,
+      "greedy10": 0.2446,
+      "greedy100": 0.6636
      },
      "reached_with_le2_open_steps": 0,
      "reached_with_no_other_open_step_upper_bound": 0,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 319,
+      "clause_inventory": 276,
       "counterevidence": 16,
-      "opus_media": 143,
+      "opus_media": 110,
       "original_text": 4,
-      "savings_residuals": 318
+      "savings_residuals": 275
      },
      "hypothetical_completion_potential": 0,
      "realized_integrated_ready_change": null
@@ -1234,21 +1234,21 @@
    "unit": "one source URL the reviewer reads, or one near-ready step set",
    "polya_move": "work backwards: start from what the independent human must check",
    "advances_step": "reviewer cost / ready",
-   "orders_reachable": 351,
-   "pct_not_ready_reachable": 0.0254,
-   "decided_not_ready_reachable": 351,
-   "pct_decided_not_ready_reachable": 0.1124,
-   "units": 483,
-   "gini": 0.5115,
-   "max_unit": 193,
-   "overlap_factor": 2.946,
+   "orders_reachable": 345,
+   "pct_not_ready_reachable": 0.0251,
+   "decided_not_ready_reachable": 345,
+   "pct_decided_not_ready_reachable": 0.1128,
+   "units": 472,
+   "gini": 0.5107,
+   "max_unit": 188,
+   "overlap_factor": 2.91,
    "coverage_all_views": {
     "top10": 0.0185,
-    "top100": 0.0208,
+    "top100": 0.0207,
     "greedy10": 0.0192,
-    "greedy100": 0.0254
+    "greedy100": 0.0251
    },
-   "reached_with_le2_open_steps": 246,
+   "reached_with_le2_open_steps": 245,
    "median_open_steps_of_reached": 1,
    "reached_with_no_other_open_step_upper_bound": [
     [
@@ -1263,7 +1263,7 @@
    "top20_units": [
     {
      "unit": "near_ready_open_step_set|ending_or_current_basis",
-     "orders": 193
+     "orders": 188
     },
     {
      "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf",
@@ -1274,12 +1274,12 @@
      "orders": 21
     },
     {
-     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
-     "orders": 12
+     "unit": "near_ready_open_step_set|opus_media",
+     "orders": 15
     },
     {
-     "unit": "near_ready_open_step_set|opus_media",
-     "orders": 11
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1982-08-19/pdf/FR-1982-08-19.pdf",
+     "orders": 12
     },
     {
      "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1985-10-02/pdf/FR-1985-10-02.pdf",
@@ -1290,16 +1290,12 @@
      "orders": 10
     },
     {
-     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1973-03-27/pdf/FR-1973-03-27.pdf",
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-2025-01-28/pdf/2025-01901.pdf",
      "orders": 8
     },
     {
      "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1979-01-03/pdf/FR-1979-01-03.pdf",
-     "orders": 8
-    },
-    {
-     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-2025-01-28/pdf/2025-01901.pdf",
-     "orders": 8
+     "orders": 7
     },
     {
      "unit": "near_ready_open_step_set|clause_inventory+ending_or_current_basis",
@@ -1340,32 +1336,36 @@
     {
      "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1944-06-17/pdf/FR-1944-06-17.pdf",
      "orders": 4
+    },
+    {
+     "unit": "reviewer_source_url|https://www.govinfo.gov/content/pkg/FR-1946-02-06/pdf/FR-1946-02-06.pdf",
+     "orders": 4
     }
    ],
    "views": [
     {
      "view": "reviewer_source_url",
      "advances_step": "n/a (see note)",
-     "pool_size": 1530,
-     "units": 1737,
-     "distinct_orders_reached": 1530,
-     "gini": 0.4688,
+     "pool_size": 1593,
+     "units": 1809,
+     "distinct_orders_reached": 1593,
+     "gini": 0.4624,
      "max": 238,
      "median": 1,
      "coverage": {
-      "top10": 0.4072,
-      "top100": 0.5908,
-      "greedy10": 0.4242,
-      "greedy100": 0.6464
+      "top10": 0.3936,
+      "top100": 0.5725,
+      "greedy10": 0.4099,
+      "greedy100": 0.624
      },
-     "reached_with_le2_open_steps": 1425,
+     "reached_with_le2_open_steps": 1493,
      "reached_with_no_other_open_step_upper_bound": null,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 110,
+      "clause_inventory": 105,
       "counterevidence": 18,
-      "ending_or_current_basis": 326,
-      "opus_media": 13,
-      "savings_residuals": 123,
+      "ending_or_current_basis": 316,
+      "opus_media": 17,
+      "savings_residuals": 118,
       "shared_sources": 1
      },
      "hypothetical_completion_potential": null,
@@ -1374,25 +1374,25 @@
     {
      "view": "near_ready_open_step_set",
      "advances_step": "n/a (see note)",
-     "pool_size": 3122,
+     "pool_size": 3059,
      "units": 8,
-     "distinct_orders_reached": 245,
-     "gini": 0.7526,
-     "max": 193,
+     "distinct_orders_reached": 244,
+     "gini": 0.7439,
+     "max": 188,
      "median": 6,
      "coverage": {
-      "top10": 0.0785,
-      "top100": 0.0785,
-      "greedy10": 0.0785,
-      "greedy100": 0.0785
+      "top10": 0.0798,
+      "top100": 0.0798,
+      "greedy10": 0.0798,
+      "greedy100": 0.0798
      },
-     "reached_with_le2_open_steps": 245,
+     "reached_with_le2_open_steps": 244,
      "reached_with_no_other_open_step_upper_bound": null,
      "remaining_open_steps_by_kind": {
       "clause_inventory": 8,
       "counterevidence": 11,
-      "ending_or_current_basis": 221,
-      "opus_media": 12,
+      "ending_or_current_basis": 216,
+      "opus_media": 16,
       "savings_residuals": 21,
       "shared_sources": 1
      },
@@ -1407,21 +1407,21 @@
    "unit": "one blocker category (possibly many research actions)",
    "polya_move": "specialize: inspect cases sharing one recorded blocker category",
    "advances_step": "research grouping; no readiness implication",
-   "orders_reachable": 9406,
-   "pct_not_ready_reachable": 0.6807,
-   "decided_not_ready_reachable": 216,
-   "pct_decided_not_ready_reachable": 0.0692,
-   "units": 13,
-   "gini": 0.9175,
-   "max_unit": 9190,
+   "orders_reachable": 9347,
+   "pct_not_ready_reachable": 0.6798,
+   "decided_not_ready_reachable": 215,
+   "pct_decided_not_ready_reachable": 0.0703,
+   "units": 14,
+   "gini": 0.9232,
+   "max_unit": 9132,
    "overlap_factor": 1.0,
    "coverage_all_views": {
-    "top10": 0.6804,
-    "top100": 0.6807,
-    "greedy10": 0.6804,
-    "greedy100": 0.6807
+    "top10": 0.6795,
+    "top100": 0.6798,
+    "greedy10": 0.6795,
+    "greedy100": 0.6798
    },
-   "reached_with_le2_open_steps": 216,
+   "reached_with_le2_open_steps": 215,
    "median_open_steps_of_reached": 5,
    "reached_with_no_other_open_step_upper_bound": [
     [
@@ -1432,19 +1432,19 @@
    "top20_units": [
     {
      "unit": "sole_blocker|NO_PROVISIONAL_STATUS",
-     "orders": 9190
+     "orders": 9132
     },
     {
      "unit": "sole_blocker|FIRST_END_UNRESOLVED",
-     "orders": 173
+     "orders": 174
     },
     {
      "unit": "sole_blocker|CLAIM_INCOMPLETE:ending_or_current_basis",
-     "orders": 20
+     "orders": 14
     },
     {
      "unit": "sole_blocker|OPUS_MEDIA_REFETCH_NEEDED",
-     "orders": 7
+     "orders": 10
     },
     {
      "unit": "sole_blocker|OPUS_MEDIA_PARTLY_RESOLVED",
@@ -1481,33 +1481,37 @@
     {
      "unit": "sole_blocker|OPEN_SOURCE_AUDIT:fcabadd3f793",
      "orders": 1
+    },
+    {
+     "unit": "sole_blocker|OPUS_MEDIA_NONE_CITED",
+     "orders": 1
     }
    ],
    "views": [
     {
      "view": "sole_blocker",
      "advances_step": "n/a (see note)",
-     "pool_size": 13819,
-     "units": 13,
-     "distinct_orders_reached": 9406,
-     "gini": 0.9175,
-     "max": 9190,
-     "median": 2,
+     "pool_size": 13750,
+     "units": 14,
+     "distinct_orders_reached": 9347,
+     "gini": 0.9232,
+     "max": 9132,
+     "median": 1,
      "coverage": {
-      "top10": 0.6804,
-      "top100": 0.6807,
-      "greedy10": 0.6804,
-      "greedy100": 0.6807
+      "top10": 0.6795,
+      "top100": 0.6798,
+      "greedy10": 0.6795,
+      "greedy100": 0.6798
      },
-     "reached_with_le2_open_steps": 216,
+     "reached_with_le2_open_steps": 215,
      "reached_with_no_other_open_step_upper_bound": null,
      "remaining_open_steps_by_kind": {
-      "clause_inventory": 9192,
-      "counterevidence": 9200,
-      "ending_or_current_basis": 9383,
-      "opus_media": 11,
-      "provisional_status": 9190,
-      "savings_residuals": 9190
+      "clause_inventory": 9134,
+      "counterevidence": 9142,
+      "ending_or_current_basis": 9320,
+      "opus_media": 15,
+      "provisional_status": 9132,
+      "savings_residuals": 9132
      },
      "hypothetical_completion_potential": null,
      "realized_integrated_ready_change": null
@@ -1516,10 +1520,10 @@
   }
  ],
  "input_snapshot": {
-  "repo_head": "a757eaf47556c79052c5767af78c4af819d970c8",
+  "repo_head": "97d287c63f4cb759f6faf78de30a2ce822ac2167",
   "input_files_sha256": {
    "jobs/claim-kit/output/FAMILIES.json": "32594f1648ff94e4c0afbb04e6cee17e6b1f30441ba9a6a5265e195bf1d91e39",
-   "jobs/claim-kit/output/MISSING_SOURCES.jsonl": "79d46515354eced748f09e4e7fa4759b5100a0a0861a3c99399310e069081d24",
+   "jobs/claim-kit/output/MISSING_SOURCES.jsonl": "099dac7c878163199afcf3fcf192b72fbd402694f0adc02e84201aa7ad6a37bb",
    "jobs/claim-kit/output/dossiers/EO_10005.json": "fb2791a670f6b3942c9ea6a58b4de83939efa086ff9110df06ba5e573383c804",
    "jobs/claim-kit/output/dossiers/EO_10009.json": "66adf9357f0e34709094e859238acf8fbe936a142d092365521c47dd3cdc6df0",
    "jobs/claim-kit/output/dossiers/EO_1001.json": "f47d7f273d5d384523590f874ddd1be17c83f5689b6af3f5795cda0040afc817",
@@ -1530,8 +1534,8 @@
    "jobs/claim-kit/output/dossiers/EO_10019.json": "650818553d4b98c1e92bfb56310c62c092642a119140c3d48f6ed25b1e3edf0b",
    "jobs/claim-kit/output/dossiers/EO_10021.json": "4502640d5402b77e7f0e49ceb78f5ac044509866382c071537603b135f788e19",
    "jobs/claim-kit/output/dossiers/EO_10023.json": "3b78ef21c40f09410697ab5f46e07ff8e6c7f37ea25847ac93ec463a01d6364f",
-   "jobs/claim-kit/output/dossiers/EO_10029.json": "8b0aeec635495beb27a6b1ad1614b14516a249a5bbcf270345652bfa08449653",
-   "jobs/claim-kit/output/dossiers/EO_10032.json": "0f9d78bbd543fafaeaa63914eef2becae1634499f1e158b5a2583b8ef83e0e63",
+   "jobs/claim-kit/output/dossiers/EO_10029.json": "e2cfbd7a612caba093e2e5189cc708cfe75cebb2e5deb1547563e7e3e1d98404",
+   "jobs/claim-kit/output/dossiers/EO_10032.json": "a2f95230279f12107222607f6bd990b476149eec2389ef1424cf744a44aa8ad9",
    "jobs/claim-kit/output/dossiers/EO_10033.json": "0d6e41e94cf34d2f645d51dfcc4434c3e47595b146319e022e4c5d220e5bb839",
    "jobs/claim-kit/output/dossiers/EO_10034.json": "a5972964735545b7a6ce229e0278233fb467d204d36e7e8b4db505d34853e014",
    "jobs/claim-kit/output/dossiers/EO_10035.json": "719b361a7ab48b69e8a18b394c59538c40cbc74da6a9514ab493a1c004708e36",
@@ -1548,7 +1552,7 @@
    "jobs/claim-kit/output/dossiers/EO_10053.json": "5484310ed7a3c6849f3edc7734555b37dc10f4855e176feed815bbbfb31c4982",
    "jobs/claim-kit/output/dossiers/EO_10054.json": "18a58fc045aea3775b85d469b2c55493c0604e79500b742d173ac94d535900c2",
    "jobs/claim-kit/output/dossiers/EO_10055.json": "c73969a59204c72d37a42e3276e608a845fe16f3174244bb0f4c201afe1418c0",
-   "jobs/claim-kit/output/dossiers/EO_10056.json": "11a48a9f183d821af15f33c85e947e68fbacf39c5423dc067cf03bcdb2f955d5",
+   "jobs/claim-kit/output/dossiers/EO_10056.json": "3792eb875148236a6aab1712cacecd9b76b47e847e7733c7f8f0e27e0d436a5a",
    "jobs/claim-kit/output/dossiers/EO_10057.json": "3a3d2a9636bce25a59449fa6d833a34a808d0cc3188cb00e0db0aa687d81f8e9",
    "jobs/claim-kit/output/dossiers/EO_10059.json": "deda676837a602339fdb3374685664f6f305d4d2536bbc50301658bc2c6b20f2",
    "jobs/claim-kit/output/dossiers/EO_1006.json": "5e3509e6ff5d529b8eb06378152fac621348d0c35d6de7e3140d6c4fe3e1051a",
@@ -1584,7 +1588,7 @@
    "jobs/claim-kit/output/dossiers/EO_10112.json": "fa65f4c5d1979645900874fbe364025174032c7834c8f7a44b18ef30ad66b88d",
    "jobs/claim-kit/output/dossiers/EO_10113.json": "8a6e48f0d943b4ee3b985d2bd336b6f0e24eb5b4637d0c3b7366b9c6b8309eb9",
    "jobs/claim-kit/output/dossiers/EO_10114.json": "1d559352be21668fa8b58908552eb3a2dcb969b24f490f53391db983837f7584",
-   "jobs/claim-kit/output/dossiers/EO_10117.json": "d137d40b85584480412b6ad96fbd60d53e3294521530cc15879fd96137ac8f93",
+   "jobs/claim-kit/output/dossiers/EO_10117.json": "f7ccb05b6239a07c243f81f19d319637b1e72c561c0acf2be310d5fa93b4c4cd",
    "jobs/claim-kit/output/dossiers/EO_10118.json": "cdcce6a6bf2e46fc71607fd5da213315a5033ee5650f9e43605c2cff6bacd9ac",
    "jobs/claim-kit/output/dossiers/EO_10119.json": "db6b2bd0955cff5151bdaf80c27b17cc0efc9a99d02c5ee808bf950f8f851f26",
    "jobs/claim-kit/output/dossiers/EO_1012.json": "ae05bfed7da9ff8d918c0d7b3d31338e988f2714a4747c85d0341efff098476b",
@@ -1597,7 +1601,7 @@
    "jobs/claim-kit/output/dossiers/EO_10127.json": "0e902446d435c2d37d5c47d434f565e154d157f31d4e251d88f2607aff4fed8b",
    "jobs/claim-kit/output/dossiers/EO_10128.json": "fd24a3930b4b8fab40088290eced2ab2931d8178222482111276d8678d17ecbb",
    "jobs/claim-kit/output/dossiers/EO_10129.json": "2fccef70d9e8900eb44da5c91c9e904e9fe551ff6f088cf7119dffd24d7a1464",
-   "jobs/claim-kit/output/dossiers/EO_10130.json": "229550f48c7ebb6c1f50c0c7c20e057321c01953c5e49fdbc1d802db38456f3d",
+   "jobs/claim-kit/output/dossiers/EO_10130.json": "f543a5789ee52b676c3949fa00c17d32b747db649c001787b11e60bad81ec0ae",
    "jobs/claim-kit/output/dossiers/EO_10131.json": "9bd958d5cf9c075868ad5b28b9b4a8d41af32205b3487da12a376ef4d5a0ba7a",
    "jobs/claim-kit/output/dossiers/EO_10132.json": "9e68454f16f3b445fc34538e195045063504c4c8ed23371ab91f1257128bf286",
    "jobs/claim-kit/output/dossiers/EO_10134.json": "69e498c712e519cfab2a4c86624219bdc6392a96cffdd4abbe2f8bc821e44e8c",
@@ -2346,7 +2350,7 @@
    "jobs/claim-kit/output/dossiers/EO_11467.json": "c367d64bdd76390ed2dc0fde0e152b9b0fc2fa69de9a5ae1afe952cdb91af582",
    "jobs/claim-kit/output/dossiers/EO_11468.json": "492cf3f80d8dc058177e0c94ed7f2fb271be086d4a00cbafc13035cd0a6d9197",
    "jobs/claim-kit/output/dossiers/EO_11469.json": "08bf1cec5d7014cd13f1e45d87a645306d0dbce91f42fc483f6cc47c7b0bd529",
-   "jobs/claim-kit/output/dossiers/EO_11471.json": "1be8b6f1958a940b3262651269194ce38254c1adc4fdd73c473855bce2b588db",
+   "jobs/claim-kit/output/dossiers/EO_11471.json": "f0d65c26b60cf2ee539e934d244c030c0f74a3a951d82cdebbe71fa4578c251e",
    "jobs/claim-kit/output/dossiers/EO_11472.json": "c0ffa4a9c49b0eb8a30440ca97dc38f8b4ca81565cf54b86af72b8aad267245a",
    "jobs/claim-kit/output/dossiers/EO_11474.json": "b05e98f49be8da0bb16868b2db640f2d9b4502c86d5bb9ee3a26ff375bb6939c",
    "jobs/claim-kit/output/dossiers/EO_11475.json": "7aceadf210d4f42369a674c540b2883236fcfff0147df99b338cd26561beb66e",
@@ -2473,7 +2477,7 @@
    "jobs/claim-kit/output/dossiers/EO_11693.json": "7b8ff0813a6eb70929f9214c5e083ae58f01b0c8a82bcce8788d81b7ee8c346f",
    "jobs/claim-kit/output/dossiers/EO_11694.json": "515163021aee2cb93b4865cde0b2d3d8bf7576e603412cdc15a70a7e893c1da0",
    "jobs/claim-kit/output/dossiers/EO_11696.json": "16e184a6ccd19aaeaa99d5c119fe82933d3698107ed8f7cd0cb6f99c28ba5d30",
-   "jobs/claim-kit/output/dossiers/EO_11698.json": "391192b9a32c86b3459dc4bdb78dc3bfb02ebc0262ac885d05ce569cf210fdce",
+   "jobs/claim-kit/output/dossiers/EO_11698.json": "de0013e3e7deef1485eeb01ceb8cc00e47903549d39a006587e6b0a1e1bf0f8c",
    "jobs/claim-kit/output/dossiers/EO_11699.json": "4d11891349227e20062d02c1984d5988f5a0ebb08d8cb1aa7e7f4cc8d7c67607",
    "jobs/claim-kit/output/dossiers/EO_117.json": "b62e0121945ba069f39443043a50d3276fa66dd2f3000673f871d31615db35b6",
    "jobs/claim-kit/output/dossiers/EO_11700.json": "4b870a0003406dbd1b5d51a6b8d2e59e4ba682479b5a73e87e6c6df40e440dca",
@@ -2643,7 +2647,7 @@
    "jobs/claim-kit/output/dossiers/EO_12021.json": "44dec0e0ea2fd03b2308d6f5c7891fdbe626110932ddca25960e6e4e22786b48",
    "jobs/claim-kit/output/dossiers/EO_12022.json": "172373f6f50aefde2de3ade36c8773c9f7fc0247818f969b3eacc4de5786630a",
    "jobs/claim-kit/output/dossiers/EO_12023.json": "86b423f61c2867a975c378312f0f3b535ec07b1423c93ea2c0bb1ccfdf43b072",
-   "jobs/claim-kit/output/dossiers/EO_12024.json": "d16f811e0075f97d7df408d8955d5591ffddf616ad79a3a0f911abee06300fee",
+   "jobs/claim-kit/output/dossiers/EO_12024.json": "782f88f88ecc16f8eaaf3e5343ba717400b66ede87c8a954bd411ae8b216c28f",
    "jobs/claim-kit/output/dossiers/EO_12025.json": "65363bc73acbf83821501df2646e1f12d3989346c75370611d060decc2e20bdf",
    "jobs/claim-kit/output/dossiers/EO_12028.json": "076a2ee951d96fa5ae2127482bcc42fc016fe7944f3d1561953145da48facc70",
    "jobs/claim-kit/output/dossiers/EO_1203.json": "e0c91fb927d748b0b58874518070c1680b5d27ecd6e172442160d43ba3f573fd",
@@ -2828,7 +2832,7 @@
    "jobs/claim-kit/output/dossiers/EO_12330.json": "7cfe0193610bd6976277377c47e9fe0784568cd0537ed2702bae45c95b8cd0a1",
    "jobs/claim-kit/output/dossiers/EO_12332.json": "f6a9abb8ba13547cda7e2e73be15354c605c271ca599ed639f84d4375ac892f3",
    "jobs/claim-kit/output/dossiers/EO_12333.json": "2bb11edc23b42f99cc6e5055432af99a09bbdca29c7c3a23a894eee4986c0e79",
-   "jobs/claim-kit/output/dossiers/EO_12335.json": "7a8e6ceffbee7372ae7f8dc7733c7839a29b36e2fb2ddd285bd5a0f804e304fd",
+   "jobs/claim-kit/output/dossiers/EO_12335.json": "c07208f0a3dbe2da6bb5914b449038b91954271a191249c184f23e7c230e18aa",
    "jobs/claim-kit/output/dossiers/EO_12339.json": "b22f08067bf036e21120cff8670282d71ac1e98c0202a1c3f91d24e579e71298",
    "jobs/claim-kit/output/dossiers/EO_12341.json": "0f07f708beeabf3d8ed7196997817f63a936b28d8ac3921369d84827d1da00f5",
    "jobs/claim-kit/output/dossiers/EO_12344.json": "3620a799955e789660602948da4d607ef0abc6c4e2b0f1e9c51b94d361dcbdac",
@@ -2860,12 +2864,12 @@
    "jobs/claim-kit/output/dossiers/EO_12393.json": "9076c9723727e5ca73c8e6815cedad2158a36798be37e6788df8f12bacab0026",
    "jobs/claim-kit/output/dossiers/EO_12395.json": "605f26e22e35f32d4d245ba14237c5d502b28a04cb838800a08e7f1b52889e80",
    "jobs/claim-kit/output/dossiers/EO_12396.json": "b1ee1f2df8cdbebf75ad6d5ffb03a99ddfcb0ec243e589ad3c572089d8e082ec",
-   "jobs/claim-kit/output/dossiers/EO_12397.json": "4b0c0945c376f2a549bd71b2506f86310fe87108d9e415fb6256eb0f15949ba0",
+   "jobs/claim-kit/output/dossiers/EO_12397.json": "49a2fa97859b622f05543c1083e361040462ed405c6d550dd0e1a4e5166b1eab",
    "jobs/claim-kit/output/dossiers/EO_12398.json": "eebec4518f655a7bf554493788effae2b33d24e53abe42a93459e8c05995de5d",
    "jobs/claim-kit/output/dossiers/EO_12399.json": "f3a3a3c21e90e7240dadd82fed20a7af18a95a854d6e602318d5fc63297d9554",
    "jobs/claim-kit/output/dossiers/EO_12400.json": "642b1b80d79546389212e58e441a3bacd4b032b77bddd1051858310789513a27",
    "jobs/claim-kit/output/dossiers/EO_12401.json": "93afe40348661efb927d7507c4eb8ca424cdef9d58c146a0dc314e6500a1ad32",
-   "jobs/claim-kit/output/dossiers/EO_12402.json": "50f74f97c89af51607a8e96110aab975d6d2309c8aaccee98ccd5c1d514e84d1",
+   "jobs/claim-kit/output/dossiers/EO_12402.json": "502cb40cd73c559726972084b2c5469e7226232f3b7f23246aa55b6d60833901",
    "jobs/claim-kit/output/dossiers/EO_12403.json": "2523f51f8511631eea2bd2851fe51027c2761d35772cd0439e34055749095ab8",
    "jobs/claim-kit/output/dossiers/EO_12405.json": "44e95b7ff9f6697f1c6dfdeebb7c0f32dc8e6b38fd221bc9fdc860001b632a6f",
    "jobs/claim-kit/output/dossiers/EO_12409.json": "117e50cc9134feb552dca8b0788a5ac81080239b5502a626142b7d9c7fded370",
@@ -5823,8 +5827,8 @@
    "jobs/claim-kit/output/dossiers/ID_f8ae2fda1ec49d7f5a67831a.json": "4b8271867cd511ede2eb99938c2809a99c3034c0b341bbd975d3fb4f84d14fa8",
    "jobs/current-law/output/MENTIONS.csv": "52503465d1ea87885aeb94d12db4d62b16f83d1e9bd7a0644459ffbb5f081850",
    "jobs/later-events/output/EDGES.csv": "664f2ed0aab8b992dac635ddf3df4313ee67fab03697cd46d39488cc6d65b11a",
-   "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "fe781151a55f3df0b3843510d372e823782706d7f6eef0af1e9b16ecedb13366",
-   "jobs/x1-class-engine/output/CLUSTER_MEMBERS.csv": "0326ce640ce9028df38937ba251c2b0f79116e65426f24ebf55b447de66e0f8f",
+   "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "ffa82d3c1815139fbd33dbc149bdf5f8f8adc00169c22dc208dee8ec1d23fedd",
+   "jobs/x1-class-engine/output/CLUSTER_MEMBERS.csv": "2c14d53881682b8429773d63ffeecd09b5e4fb98b43a949f893081fb21f0a82b",
    "research/readiness/claims/astra-2026-10-17-p12553a.jsonl": "b3b4e784cc1822e2aa90e3191db43ec2c90887398b9477b23bb27abc1160dfe8",
    "research/readiness/claims/astra-2026-10-17-p12553b.jsonl": "2c650f156a5961e1a290c472451ae143d9931aea300a1e3de97bc9ef71695c24",
    "research/readiness/claims/astra-2026-10-17-p3originals.jsonl": "bb72c432d2e5e463bb4bd552b5f09654758ffee8031bc05b28897a29444ec55b",
@@ -5936,6 +5940,9 @@
    "research/readiness/claims/claude-2026-11-08-cujas-c02.jsonl": "1ff6ec3a327b83cdb756318a7e62f660740518d23c8d29faa88ef5a40708dfed",
    "research/readiness/claims/claude-2026-11-08-cujas-c03.jsonl": "f19a76e190c9bea63eaa9ad34a136ba994059b0582b2adb67f457da24ae9f525",
    "research/readiness/claims/claude-2026-11-08-haloander-ux.jsonl": "325b8279d5a7247d746acb588fac32d5c8e0c657b70664832d3f61a460703e59",
+   "research/readiness/claims/claude-2026-11-10-papinian-c01.jsonl": "cfcb3794809633510ca00bae815069b922062b510e3b2673dc7f735482a42628",
+   "research/readiness/claims/claude-2026-11-10-papinian-u01b.jsonl": "ceac3f3970df99165d96965493ee9ec0e3bafebe1d89ed35069a4d37f861021f",
+   "research/readiness/claims/claude-2026-11-10-papinian-u02.jsonl": "bb8404d47c17194f2271aa909ecb51c018960f8c05c885310469790272c58396",
    "research/readiness/claims/claude-b0-producer-2026-10-29-nira.jsonl": "ac1c897c17c2b6b459c89f1fb5ff119dd4edf1a98d2c1644913d69f66b5c225d",
    "research/readiness/claims/claude-bowditch-y2-01-2026-10-20.jsonl": "b057707650d20d09ff326f37f3007a141508e7b28ac0db587397dde28b0ab4f4",
    "research/readiness/claims/claude-bowditch-y2-02-2026-10-20.jsonl": "dbb0df83d958c2de069ffe925202c666e21644cf077bd959954847d21e467f24",
@@ -5988,11 +5995,26 @@
    "research/readiness/claims/codex-swarm-2026-10-21.jsonl": "308a4657e4c70d4f31a6352be0811a5e49836062420abdad5519748a5278c8b5",
    "research/readiness/claims/dorotheus-2026-11-06-sample.jsonl": "c4f4e33ab94a38b1ce7006ca3c9225e2a56e033b92d9dad946c63f61ce2a8e01",
    "research/readiness/claims/dorotheus-2026-11-06-yesprobe.jsonl": "95042ac85bf07ac0a8d1c8706880d2ee7a218e3967f23cd77832d7cf43fdfeac",
-   "research/readiness/claims/justinian-2026-11-06-r3-retag.jsonl": "aceb6ac54454b40c83545ca42961a4537ec5cc53d9afd0bf85e1f103da5b864a"
+   "research/readiness/claims/justinian-2026-11-06-r3-retag.jsonl": "aceb6ac54454b40c83545ca42961a4537ec5cc53d9afd0bf85e1f103da5b864a",
+   "research/readiness/claims/papinian-2026-11-10-r01b.jsonl": "d50263ec5c69cbe596b8ea9e16806acbb13292598485cf0688765ea155c4d293",
+   "research/readiness/claims/papinian-2026-11-10-y01.jsonl": "68c626aaa2908760cf04833312cb770d0f2c25cb421b56b2d5d36a5fc4dd25b7",
+   "research/readiness/claims/papinian-2026-11-10-y02.jsonl": "2e63eb56b929c237490687a6add7088344d92b482e4723c0e0f309f062aed0c1",
+   "research/readiness/claims/papinian-2026-11-10-y03.jsonl": "84211f454a305b74acb8f1a8a307bd0ffc4f135e8774ca1dd4a9f772fe7979fd",
+   "research/readiness/claims/papinian-2026-11-10-y04.jsonl": "666ee31a644f6012a9cdf8f5d44952c1af9a54812b59e90373c71b1c2eeebb9c",
+   "research/readiness/claims/papinian-2026-11-10-y05.jsonl": "7543f24e474d0dfe3059d1ec9a6349d929c685adfe114aa74ae73e075a922e44",
+   "research/readiness/claims/papinian-2026-11-10-y06.jsonl": "f201aa6d9c62bdacaace4ed50fd485473361304cfcbfa6c67101dd87922e9525",
+   "research/readiness/claims/papinian-2026-11-10-y07.jsonl": "3270b9f8c7af273e1074ea901e98ad243f452865085414c51874f0081e817f5d",
+   "research/readiness/claims/papinian-2026-11-10-y08.jsonl": "80cd17fc4250babccd6aa33cbbc109c40564daee69420cbcbd85557599aa3328",
+   "research/readiness/claims/papinian-2026-11-10-y09.jsonl": "554aec52f2381d3bf4a2685d2ec87920fe780820d1785bfa7327179925366c81",
+   "research/readiness/claims/papinian-2026-11-10-y10.jsonl": "8974cac8d17c19a9d5feb344059b62d5c55e36d34a7078d74215e8ba44b0086f",
+   "research/readiness/claims/papinian-2026-11-10-y11.jsonl": "b7e997145643e631192571df4486c98f5cf946fa7870864ef5e5d190ec1695ae",
+   "research/readiness/claims/papinian-2026-11-10-y12.jsonl": "3e7422b2f0914c834b65ae08eda1a958ab8aae8da415ddf9902ce8fd792b5064",
+   "research/readiness/claims/papinian-2026-11-10-y13.jsonl": "23029c04f6026c187dfe10257147a26baa8e45f2344a03a939d2c9c742b1bcd2",
+   "research/readiness/claims/papinian-2026-11-10-y14.jsonl": "4ebb74dcd6c93485d2dc24a54801745072cde0dbde354ff3febf015f005f7520"
   },
-  "snapshot_sha256": "60af89fdc2fedc344c1fa061175e86ebbb9898f35db7567f1be480a7ff8ec917",
+  "snapshot_sha256": "e6cebf88db31933bc2a6ec48104a3c72e9676056b7ff4fd1957a78f01a96e225",
   "basis": "Exact consumed bytes; repo_head alone does not establish output freshness."
  },
- "distinct_not_ready_orders_reached_across_nonbaseline_frames": 13819,
+ "distinct_not_ready_orders_reached_across_nonbaseline_frames": 13750,
  "realized_integrated_ready_change": null
 }

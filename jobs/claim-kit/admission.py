@@ -13,17 +13,57 @@ Now `kit.py next` and `batch.prepare` ask. In a checkout that holds Bentham's pl
   counted from the reservations that carry the action, until Bentham has measured it;
 - replacement proposals (corrections to orders that already have a claim) are not new production and are exempt.
 
+Larrey triage (jobs/larrey-triage, 2026-11-10): an order the action lists is still refused when Larrey's zero-token
+check finds that it lacks an input its route needs (a usable original, no page check owed, a status basis record, a
+clause inventory, ...), so that no agent is paid to discover that. The refusal names the missing input. A checkout
+that carries jobs/larrey-triage/larrey.py but no current triage output is refused (re-run `larrey.py triage`);
+`LARREY_LEVEL=hard` applies only the gates the route itself requires. Actions Larrey does not triage, and routes
+whose kit code changed since Larrey's back-test, are unchanged.
+
 A checkout without jobs/bentham/ (the kit's own test fixtures) is not checked. A checkout that has jobs/bentham/
 but no PLAN.json is refused, so that a sparse checkout cannot skip the check by leaving the plan out.
 Nothing here ranks, decides a status or changes a count.
 """
 
+import importlib.util
 import json
 from pathlib import Path
 
 PLAN = "jobs/bentham/output/PLAN.json"
 STRATA = "jobs/bentham/output/strata"
 PROBE_ORDERS = 30
+LARREY = "jobs/larrey-triage/larrey.py"
+
+
+_LOADED = {}
+
+
+def _larrey(repo):
+    """Larrey's module from this checkout (loaded once per file), or None when the checkout does not carry it.
+
+    A project checkout (AGENTS.md at its root) must carry it: a sparse checkout that leaves jobs/larrey-triage out
+    is refused rather than let through untriaged, as for Bentham's plan. The kit's own fixtures have neither."""
+    path = Path(repo) / LARREY
+    if not path.is_file():
+        if (Path(repo) / "AGENTS.md").is_file():
+            raise ValueError(f"Larrey triage code missing from this checkout ({LARREY}); add jobs/larrey-triage to "
+                             "the sparse checkout (claim-kit work is triaged before dispatch)")
+        return None
+    key = (str(path.resolve()), path.stat().st_mtime_ns)
+    if key not in _LOADED:
+        spec = importlib.util.spec_from_file_location("larrey_triage", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        _LOADED[key] = mod
+    return _LOADED[key]
+
+
+def triage(repo, action):
+    """(Larrey's admitted set, or None when it does not triage this action; reasons by kept-out id; receipt)."""
+    mod = _larrey(repo)
+    if mod is None:
+        return None, {}, {"larrey_route": None, "larrey_enforced": False}
+    return mod.admitted(repo, action)
 
 
 def applies(repo):
@@ -80,6 +120,12 @@ def admit(repo, action, ids, reservations):
     if outside:
         shown = ", ".join(outside[:10]) + (" ..." if len(outside) > 10 else "")
         raise ValueError(f"{len(outside)} orders are not in Bentham action {action}: {shown}")
+    ok, why, _ = triage(repo, action)
+    if ok is not None:
+        msg = _larrey(repo).refusal(action, ids, ok, why)
+        if msg:
+            raise ValueError(msg)
+        allowed = allowed & ok
     if is_probe(item, group):
         used = {iid for iid, v in reservations.items() if isinstance(v, dict) and v.get("action") == action}
         if len(used | set(ids)) > PROBE_ORDERS:
@@ -92,15 +138,20 @@ def capacity(repo, action, reservations):
     """(allowed member set, how many more orders may be reserved under action, or None for no cap)."""
     item, group = entry(repo, action)
     allowed = members(repo, action)
+    ok, _, _ = triage(repo, action)
+    if ok is not None:
+        allowed = allowed & ok
     if not is_probe(item, group):
         return allowed, None
     used = {iid for iid, v in reservations.items() if isinstance(v, dict) and v.get("action") == action}
     return allowed, max(0, PROBE_ORDERS - len(used))
 
 
-def record(dest, action, ids, agent):
+def record(dest, action, ids, agent, repo=None):
     """The admission receipt beside a prepared packet (not inside it, so packet seals are unchanged)."""
     Path(dest).mkdir(parents=True, exist_ok=True)
-    (Path(dest) / "ADMISSION.json").write_text(json.dumps(
-        {"schema": "eo-claim-kit-admission/v1", "bentham_action": action, "agent": agent,
-         "instrument_ids": sorted(ids)}, indent=1) + "\n", encoding="utf-8")
+    rec = {"schema": "eo-claim-kit-admission/v1", "bentham_action": action, "agent": agent,
+           "instrument_ids": sorted(ids)}
+    if repo is not None:
+        rec["triage"] = triage(repo, action)[2]   # which Larrey verdicts admitted these orders
+    (Path(dest) / "ADMISSION.json").write_text(json.dumps(rec, indent=1) + "\n", encoding="utf-8")

@@ -18,6 +18,7 @@ Environment (all optional except OUTPUT_DIR / REPO_ROOT):
 import json
 import os
 import pathlib
+import shutil
 import subprocess
 import sys
 import time
@@ -75,6 +76,7 @@ def main():
     import ecfr_scan
     import eo_refs
     import net
+    import usc_extracts
     import usc_scan
 
     started = time.time()
@@ -104,6 +106,14 @@ def main():
     search_complete = bool(summary.get("ecfr", {}).get("search_complete"))
     book.mark_search_confirmation(search_complete)
     frags = book.fragments()
+    # Attributed .txt extracts of the U.S. Code notes and sections that carry
+    # leads, so the claim kit can cite an exact held slice (usc_extracts.py).
+    for sub in (usc_extracts.NOTE_DIR, usc_extracts.SECTION_DIR):
+        if (out / sub).is_dir():
+            shutil.rmtree(out / sub)  # this job's own generated extracts; rebuilt below
+    held, extract_rows = book.extracts.write(out, book.sources)
+    summary["usc_text_extracts"] = dict(usc_extracts.attach(frags, held), extracts=len(extract_rows),
+                                        ambiguous_locators=len(book.extracts.ambiguous))
     if book.eo_notes:
         for sid in {n["source_id"] for n in book.eo_notes}:
             if sid in book.sources:
@@ -120,7 +130,7 @@ def main():
     build.write_csv(out / "MENTIONS.csv", book.mentions, build.MENTION_FIELDS)
     build.write_csv(out / "EVENT_CANDIDATES.csv", book.events, build.EVENT_FIELDS)
     build.write_jsonl(out / "FRAGMENTS.jsonl", frags)
-    build.write_jsonl(out / "SOURCES.jsonl", list(book.sources.values()))
+    build.write_jsonl(out / "SOURCES.jsonl", list(book.sources.values()) + extract_rows)
     if book.eo_notes:
         build.write_jsonl(out / "USC_EO_NOTES.jsonl", book.eo_notes)
     if book.search_hits:
@@ -232,7 +242,12 @@ def scan_usc(fetcher, book, limit, summary, usc_scan, net):
                     poi = (f"{rec['citation']}" + (f"; note '{rec.get('note_heading', rec.get('heading', ''))[:90]}' [USLM note id {rec['note_id']}]" if rec.get("note_id") else "")
                            + f"; {member} (sha256 {member_sha}) in {name}")
                     if kind == "mention":
-                        book.add_mention(rec, "usc", "usc_release_point_xml_zip", edition, sid, poi, checked_through)
+                        container_text = rec.pop("_container_text", None)
+                        row = book.add_mention(rec, "usc", "usc_release_point_xml_zip", edition, sid, poi, checked_through)
+                        if container_text and row["instrument_id"] and row["is_predicate_lead"] == "yes":
+                            book.extracts.add(poi, container_text, sid, rec.get("citation", ""),
+                                              "note" if rec.get("location_kind") == "note" else "section",
+                                              note_id=rec.get("note_id", ""), container_id=rec.get("container_id", ""))
                     elif kind == "event":
                         if book.add_event(rec, "usc", edition, sid, poi) is not None:
                             kept["event"] += 1
@@ -240,6 +255,8 @@ def scan_usc(fetcher, book, limit, summary, usc_scan, net):
                         ids = [book.u.map(*split_norm(s))[0] for s in rec["subjects"]]
                         book.eo_notes.append(dict(rec, instrument_ids=[i for i in ids if i], edition=edition,
                                                   source_id=sid, page_or_item=poi))
+                        book.extracts.add(poi, rec["text"], sid, rec.get("citation", ""), "note",
+                                          note_id=rec.get("note_id", ""), printed_ids=[i for i in ids if i])
                 info["titles"].append({"member": member, "sha256": member_sha, "bytes": hr.n, "zip": name,
                                        "mentions": counts["mention"], "events": kept["event"],
                                        "printed_eo_notes": counts["eo_note"], "seconds": round(time.time() - t0, 1)})

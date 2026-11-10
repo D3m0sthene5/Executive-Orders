@@ -22,6 +22,186 @@
 - **Next:** run the calibration batch once signed (first real-kit test of the overlay path); rebase onto Larrey #280
   and Accursius F3-F7 as they merge; then build the tiers in the coordinator-approved order: unlocated acting texts
   (F4), one-time commands, recorded amendments, own terms before the end, current-law notes (F3).
+## 2026-11-10 ET (Claude, Larrey triage gate, PR #280)
+
+- **Built:** `jobs/larrey-triage`, a zero-token check on every order before any agent is dispatched to it.
+  - Six new Llull gates (`jobs/llull/kit_features.py`) read what the claim kit would freeze into the dossier.
+  - They are combined per route (undecided full, status-only, decided lifecycle).
+  - Output: `output/GATES.jsonl`, one line per (order, route) with pass, missing gate ids and gates_commit
+    (Whitworth I1), plus `TODO.md`, the acquisition to-do list.
+  - Wired into claim-kit `admission.py` (kit next, prepare, and so the Maudslay conveyor) and Bentham.
+  - Accursius F5/F6 rules are called through the kit's own functions when present (Whitworth I2).
+- **Back-test** on the frozen packets, at the operating point:
+  - Undecided: 63 of 87 failures kept out, 0 of 33 successes lost.
+  - Decided: 96 of 273 kept out (NEA notices), 0 of 97 lost.
+- **Pools on main:**
+  - status_assignment.undecided: 2,546 of 10,697 admitted.
+  - claim_ready.yes.fr: 255 of 351.
+  - claim_ready.no.fr: 1,033 of 1,034.
+- **Projection** (not measured): $3.74 → $3.22 per filed claim with the producer-only model ($2.48 all-in). Bentham
+  undecided goes from 30.1 to 39.0 dossiers per $100. Review is 61% of undecided spend, so $1 per filed claim needs
+  cheaper review too. Kean F-20261110-larrey-triage.
+- **Review:** independent Fable 5.2 reviewer (about 256k tokens, 18 min, read-only) at
+  `side-session-notes/.../larrey/REVIEW.md`. It found one blocker (Bentham overstated undecided yield 1.4-2.6x) and
+  five should-fix items, all fixed in 00cd02900e.
+- **Ask:** A-20261110-larrey-soft-probe, whether to run a 30-order probe of the soft gate `later_order_text_held`
+  (it alone defers 1,014 orders).
+- **Next:**
+  - After merging PR #280, run the job on main (`gh workflow run run-jobs.yml --ref main -f job=larrey-triage -f only=true`): the PR carries no output, and admission refuses triaged actions until it exists.
+  - When Accursius F3/F5/F6 merge, the undecided routes turn advisory. Commit a fresh `larrey.py backtest` to
+    re-enable them.
+  - `kit.py overlay-prepare`, `sheet` and `status-sheet` still bypass admission (pre-existing).
+## 2026-11-09 ET (Claude, Palsgraf: claim-checker rechecks only what a change can reach)
+
+- **Done (PR from `claude/palsgraf-impact`, not merged):** carried out D-20261109-impact-scoped-checks for claim-checker (`jobs/claim-checker/palsgraf.py`, README section "Which claims a run rechecks").
+  - Each claim's inputs are recorded with fingerprints in `output/DEPENDENCY_TRACE.json.gz`: table lookups, files opened, listed and stat'ed, and memo replays. A claim is reused only if its line bytes and every fingerprint are unchanged. Network-touched, date-against-today and crashed claims always rerun.
+  - A full run happens on a code, rule or setting change, on a missing trace, or weekly (reconciled: `BLOCKED.json` on any difference). The case is recorded in `output/SELECTION.json`; STATUS.json is the runner's and was not changed.
+  - Also fixed: the quote search re-normalised one 27 MB FR volume once per record citing it.
+- **Measured:**
+  - One-claim run (the Mabillon case): 490 s -> 23.5 s.
+  - Full runs: 1,902.6-3,021.6 s on the runner with the old code; 642.5 s warm and 1,036.8 s cold with the new code.
+  - Selective runs on the runner: 144.4 s for a regular run and 566.7 s for a read-only-cache diagnostic, each rechecking 40 of 1,828 claims.
+  - Every selective run was byte-identical to its full reference, on the runner and on local real-data replays (6 of 6). The runner's full output was byte-identical to main's old-code output.
+  - Kean F-20261109-palsgraf-impact-selection.
+- **Holes found and closed (tests pin each):**
+  - Gate, tracker and norton sources were imported via .pyc and so were missing from the code record.
+  - A leaked per-run confirmation patch.
+  - #242's same-size owner switch was memoised per process.
+- **Not changed:** claim-kit (it already caches its per-text parse; it aggregates across orders) and claim-drafts (a per-draft trace is a moderate change; it gains the memo fix). See the Kean wiring note. No status, census, codebook, claim or certified count (0) changed.
+- **Workers:** 1 Sonnet survey of claim-kit and claim-drafts, about 113k tokens, about 1 min.
+- **Bentham:** this was owner-assigned infrastructure, not a ranked production action; PLAN.md was read and no wave was run.
+- **Asks:** @Owner: A-20261109-claim-checker-cache answered yes; `jobs/claim-checker/CACHE_MB` is 2048 (D-20261109-claim-checker-cache). Check the next selective run's `changed_input_kinds.e` (was about 22).
+## 2026-11-10 ET (Claude, Linnaeus: no-lead undecided orders by type; Cruden FR/Statutes number search; Pacioli, PR #281)
+
+- **Task:** Track 4 (owner-approved): type the 4,174 undecided orders with no ending or current-law lead, find one
+  bulk source per type, build jobs for the best. Plus owner Tier A #6 (double-entry reconciliation). Report:
+  `research/linnaeus/REPORT.md`. Kean F-20261110-linnaeus-no-lead-types, -linnaeus-bulk-sources, -cruden-fr-concordance,
+  -pacioli-double-entry, -linnaeus-hostile-review, -nalimov-acquisition-coverage, -frdoc-actors-dropped.
+- **Measured:** 4,174 no-lead (exact). 1,096 already have a Pothier decided lead no kit code reads; 260 a held but
+  unrouted ending lead; 2,818 unsourced (665 one-person waivers left to Ulpian). M1118 film-gap overlap 1,037.
+  NARA HTML disposition tables add 0 beyond the FR API notes later-events holds; Lord 1944 has no later dispositions;
+  BLM MLRS has no order-number field; FS-612 names 7 by number in a later row; NEA reaches 0.
+- **Built (PR [#281](https://github.com/D3m0sthene5/Executive-Orders/pull/281), all zero-token, tests in road tests):**
+  `jobs/linnaeus-types` (run 42854906849); `jobs/cruden-fr-concordance` (final run 42887085843, cruden-locate-4,
+  controls passed): of 2,110 targets 256 get a pinned located citation, 111 date-confirmed, 21 a dated acting sentence
+  (about 80% right by my reading); Nalimov's 962 decided orders: 31 / 6 / 2. `jobs/pacioli-double-entry` (run
+  42860052386): 629 orders with an agreed whole ending (367 undecided, 118 decided-not-ready), 604 with the actor's
+  text held; 59 orders on the disagreement list. Bentham: `acquire.cruden_fr_statute_concordance` (lift not counted).
+- **Review:** Fable 5.2, fresh context, two passes, 226,102 tokens: 3 blockers and 9 majors in Cruden v1, then
+  over-refusals in v2; all fixed with regression tests before anything was published as acting.
+- **Requests:** (1) owner merge of #281 (registers Cruden fragments with the claim kit; no status or count change).
+  (2) The biggest lever is routing, not sources: Pothier leads, 260 held ending edges, 4,070 `FRDOC:` acting fragments
+  that `jobs/claim-kit/inputs.py` `NON_EO_ACTOR` drops, and the 170 of Nalimov's 180 "official copies" that are already
+  held. Proposed as its own session. (3) Cruden's 80 MB extract cap refused 39 citations as unverifiable; raise it or
+  rely on PREMIS only if the owner prefers.
+## 2026-11-10 ET (Claude, Ulpian: Jacquard L1 correction PR; D-20261110-ulpian-jacquard-l1-correction)
+
+- **Decision:** the owner answered A-20261110-ulpian-outer-bound with "accept all three". The coordinating session
+  recorded it on PR #271 (commit 366f65010f). The rule hash is `ulpian-rule-sha256:57a95ba0...`, and the decisions are
+  D-20261110-ulpian-life-bound, -no-floor and -jacquard-l1-correction.
+- **Done:** read the 42 Jacquard L1 rows with two blind arms (Sonnet 5.5 and Fable 5.2) and 3 planted controls.
+  - The arms agreed on 42 of 42, and both caught all 3 controls.
+  - **9 kept**, each on a quoted dated fact; **33 returned** to undecided.
+  - The ledger goes from 4,307 to 4,274, and the Jacquard wave-1 contract entry from 174 to 141, when the owner merges.
+  - Files: `research/ulpian/jacquard-l1-correction/`. The correction PR is stacked on #271 because it pins the ruling.
+- **Found:** wave 2 adopted 582 L1R statuses on the same card. 527 of them are dated on or after 1904-05-03, and 26
+  have no exact date.
+- **Asks:** @Owner: A-20261110-ulpian-l1r-correction (extend the reading to wave 2). Kean
+  F-20261110-ulpian-jacquard-l1-correction.
+
+## 2026-11-10 ET (Claude, Ulpian: outer bound for one-person orders, Track 3; ask A-20261110-ulpian-outer-bound)
+
+- **Asked:** draft the owner ask for an "outer bound" on one-person orders (a named person's latest possible death
+  ends the order) and measure it. Deliverable is an ask and a design, not adoption. Branch `claude/ulpian-outer-bound`.
+- **Found:** the bound is already the rule (TR-CS-WAIVER; Pothier PD-CS-ONE-PERSON M1, 99 leads, none adopted). What
+  is missing is an adoption route. The new part, a flat adulthood floor of 14, adds at most 20 orders and fails the
+  evidence rule. Its 1883-1900 source did not govern the 1907-1918 orders. The limits bound examinations that the
+  orders waive. It would be a presumption standing in for evidence.
+- **Measured (zero tokens, `jobs/ulpian-outer-bound/ulpian.py measure`):**
+  - 1,178 undecided candidates; 270 pass every gate (one person, one command, clean text, legible date).
+  - **37 are bounded on a quoted fact** (the lot): all waivers, dated 1913-1933, with bounds from 1986 to 2026-03-10.
+  - 233 have no quoted fact. Their required ages run from 4 to 33 years; this is a reading list, not a yield.
+  - 25 post-1936 retirement exemptions need their held texts.
+  - 42 of the 48 Jacquard L1 NOs the owner merged rested on the "at least 14" premise.
+- **Review:** Fable 5.2, separate context, two rounds, 98 held texts read, about 355k tokens. Round 1 found the floor
+  fatal; it also found that tier 1 bypassed the predicate (65 of 99 failed), and gates were missing. All fixed. Round 2
+  found the lot sound in substance; it held 4 rows for a page check (now gated) and fixed 3 sentences.
+  `research/ulpian/REVIEW.md`.
+- **Ask A-20261110-ulpian-outer-bound:** (1) approve RULE.md v2 as the Respondendi lot `ulpian-life-bound` (yes);
+  (2) decline the flat floor; (3) correct the Jacquard L1 rows by reading. `ulpian.py tag` refuses until a decision
+  cites the rule hash.
+- **For Respondendi v2:** the lot slot is the `respondendi_lot` block in `jobs/ulpian-outer-bound/RULE.md`.
+- **Open:** the lifespan source (Guinness or GRG) is not held. The Jacquard L1 rows need a reading, and 9 sound Pothier
+  leads that false screen hits keep out need individual review.
+- **Asks:** @Owner: A-20261110-ulpian-outer-bound. Kean F-20261110-ulpian-outer-bound.
+## 2026-11-10 ET (Claude, RESPONDENDI v2: Ulpian lot added; Maudslay interface I5)
+
+- **Ulpian:** the owner-approved life-bound lot (D-20261110-ulpian-life-bound) is now the v2 kind `ulpian_life_bound`.
+  It opens once PR #271 is on GitHub's main (Respondendi checks Ulpian's rule hash, decision and ruling there and
+  reads CLASS.csv from main). 16 of 37 members are reachable (15 also need F6). The claim gate's
+  `not_later_than_without_formal_disposition` may refuse its claims: Ulpian, check that.
+- **I5:** `jobs/respondendi-adoption/INTERFACE.md` lists every file and field `plan` reads. The merged Maudslay
+  conveyor is not yet compatible: it has no status-overlay route, its controls are untyped date shifts, and undecided
+  batches must publish as replacement proposals. `plan` now finds Maudslay's manifest layout. Kean F-20261110-respondendi-i5.
+- **Rule:** sha e15ae99b..., 70 tests; ask A-20261110-respondendi-standing-rule-v2 revised (rev 1) to that hash.
+  Reach: 468 today, 1,484 once PR #271, F3, F5 and F6 merge.
+- **Asks:** @Owner: A-20261110-respondendi-standing-rule-v2 (rev 1). @Nalimov: map each claim kind you draft to an
+  INTERFACE.md lot kind, or send it for a rule amendment.
+
+## 2026-11-10 ET (Claude, RESPONDENDI v2: one approval for every kind of undecided order)
+
+- **Owner follow-up:** v1's single lot (620 orders) was "really really disappointing"; v2 covers every kind under one
+  approval. Four tracks: this one (Respondendi), Accursius (claim-kit F3-F7), Ulpian (outer-bound ask), Linnaeus (bulk sources).
+- **Built (PR #270):** `jobs/respondendi-adoption/RULE.md` v2 (sha b3774309...), kinds:
+  - express revocation and own terms: active;
+  - spent on issue, incl. amendment-only: opens with F5;
+  - YES with a current source: opens with F3;
+  - working-text basis: opens with F6.
+  Activation is `UNDECIDED_ROUTES` in `jobs/claim-kit/status_overlay.py` on GitHub's main (agreed with Accursius, who
+  adds the names in the F3 and F5/F6 PRs). 67 tests.
+- **Red team (separate Fable 5.2, two rounds):** every blocker it found is fixed; the remaining known limits are listed
+  in REPORT.md section 7. Reach after the fixes: 468 orders today, 1,468 once F3, F5 and F6 merge; own terms 0 for now;
+  9,223 unreached on held leads (sources, not adoption, are the limit). Replay: 5 of 9 past adoptions qualify.
+- **Cost:** wave total 325.04 USD list (v2 added the red team's 28.66 and about 24 of coordinator time).
+  Kean F-20261110-respondendi-v2.
+- **Asks:** @Owner: A-20261110-respondendi-standing-rule-v2, which supersedes A-20261110-respondendi-standing-rule
+  (v1). Recommended yes.
+- **Do not:** record the approval for the owner. For the next undecided wave, follow `UNDECIDED_CHECKLIST.md`: typed
+  controls planted on each kind, an ADMISSION.json, and evidence files in the lot's `audit-evidence/` folder.
+
+## 2026-11-10 ET (Claude, RESPONDENDI: why undecided orders fail, and a standing adoption rule)
+
+- **Diagnosis (Fable 5.2 high, 14 workers):** of Papinian's 84 failed undecided attempts, 0 were unknowable;
+  held evidence supports a status for 65 (59 conservative). Causes: route or tool defect 37, missing later event 24,
+  rule too strict 13, producer error 10. No undecided order can get a YES (no CURRENT records); self-executing and
+  amendment-only orders have no NO basis; held Selden/statute/PLO texts never reach the dossier; the text gate refuses
+  6,052 orders; valid status decisions are discarded when the lifecycle sheet is blocked (9 of 26 in Papinian).
+  `research/excavator/claude-respondendi-2026-11-10/REPORT.md`, `DIAGNOSIS.csv`. Kean F-20261110-respondendi-diagnosis.
+- **Built:** `jobs/respondendi-adoption/` (plan -> cross-family audit -> adjudicate -> adopt; status-only tier;
+  reversal with source-audit holds; verify; owner report; 42 tests, wired into road-tests). It refuses every write
+  until the owner approves RULE.md's exact sha. v1 covers one lot (express named revocations, 687 orders) and audits
+  every member until the 5% bound (59 audits), after the red team showed the first draft did not bound its error
+  (F-20261110-respondendi-redteam). `UNDECIDED_CHECKLIST.md` for producers, arms and coordinators.
+- **Throughput:** 7.5% today (16 of 212); 17-24% with the rule and status-only tier; 45-60% for EO >= 7532 after
+  the routing fixes (F3-F7 in the report, each its own PR because they touch pinned kit files).
+- **Cost:** 272.57 USD list (workers 254.53 Fable 5.2, coordinator 18.04). F-20261110-respondendi-wave.
+- **Asks:** @Owner: A-20261110-respondendi-standing-rule (approve RULE.md sha 85a99023..., recommended yes).
+- **Do not:** record the approval for the owner; adopt anything from past waves (none meets v1's typed controls).
+## 2026-11-10 ET (Claude coordinator, afternoon: guards merged, six tracks, Whitworth line contract)
+
+- **Merged today (owner):** #265 admission and agent-chain stop rules, #266 Papinian rulings (+6 NO statuses),
+  #267 Pergamon board-report store (eumenes job ran green on main), #268 Augur probe floor, #269 Maudslay conveyor.
+  Ready 1,179 -> 1,248, decided 4,301 -> 4,307 in 24 hours; human-certified 0.
+- **Running sessions:** Respondendi (rule v2 over every lot kind; PR #270), Accursius (claim-kit F3-F7; #272-#274),
+  Ulpian (life-bound lot; owner answered "accept all three", recorded in #271 commit 366f65010f; Jacquard L1
+  correction PR next), Linnaeus (bulk sources by type plus disposition-table reconciliation), Larrey (triage gate
+  before dispatch), Nalimov (script-drafted claims, model verifies, batched by acting instrument).
+- **Whitworth (`research/plans/WHITWORTH_LINE_2026-11-10.md`, F-20261110-whitworth-forecast):** interfaces I1-I6
+  between the parts, a registered forecast (first ~30-order calibration batch at most 1.00 USD per filed claim and
+  per adopted status; baselines 7.71 / 4.71 / 3.92), a stop rule (above 2.50 USD or any missed control), and an
+  end-to-end gauge test the coordinator adds before the calibration batch. Review every track PR against it.
+- **Owner pending:** M1118 purchase decision; GitGuardian false positives on #255; Respondendi rule approval.
+
 
 ## 2026-11-10 ET (Claude, overnight Codex wave failed; claim-kit admission guard, PR #265)
 

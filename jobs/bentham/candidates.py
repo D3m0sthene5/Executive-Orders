@@ -33,6 +33,7 @@ POLYA_ACTIONS = "jobs/polya/output/CANDIDATE_ACTIONS.json"
 POLYA_COMPARE = "jobs/polya/output/COMPARE.json"
 DISPOSITION = "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
 TRIBONIAN_REPORT = "research/excavator/claude-tribonian-2026-11-04/REPORT.md"
+LINNAEUS_SUMMARY = "jobs/linnaeus-types/output/SUMMARY.json"
 
 # Blockers that describe steps the claim-ready stratum leaves open on purpose, or the Opus-media step, which
 # the stratum definition does not gate on. They never stop an order from joining the stratum.
@@ -381,14 +382,105 @@ def build(repo, write_ids=True):
         "evidence": evidence(repo, [(POLYA_COMPARE, '"frame": "F7_aux_current_predicate_table"'),
                                     (TRIBONIAN_REPORT, "The current texts of parent orders and statutes are not held")])})
 
-    inputs = [TRACKER_CSV, TRACKER_MD, SHARED_CSV, POLYA_ACTIONS, POLYA_COMPARE, DISPOSITION, TRIBONIAN_REPORT]
+    # Linnaeus (2026-11-10): the undecided orders with no ending or current-law lead, typed and matched to bulk
+    # sources (jobs/linnaeus-types). Cruden searches the 1936-1993 Federal Register and the Statutes at Large by
+    # order number for the unsourced ones. Undecided orders unlock no stratum until they have a status, and no
+    # measured yield exists yet, so the lift is listed, not counted.
+    try:
+        lt = json.loads(read_text(repo, LINNAEUS_SUMMARY))
+    except (OSError, ValueError):
+        lt = None
+    if lt:
+        actions.append({
+            "id": "acquire.cruden_fr_statute_concordance", "kind": "acquisition",
+            "description": ("Search the 1936-1993 Federal Register and the Statutes at Large by order number for undecided "
+                            "orders no held finding aid names with an ending word (jobs/cruden-fr-concordance; zero model tokens), so "
+                            "producers on the undecided route can cite the later instrument's own sentence."),
+            "orders": 0, "rate_key": "filed_per_attempt.undecided", "cost_key": None, "cost_override_usd": 0,
+            "unlocks": [], "overlaps_with": ["status_assignment.undecided"],
+            "yield_lift_not_counted": {"orders": lt.get("cruden_targets"), "applies_to": ["status_assignment.undecided"],
+                                       "why": "Undecided orders unlock no stratum until they have a status, and Cruden's "
+                                              "yield (orders gaining a located acting sentence) is unmeasured until its "
+                                              "first run's SUMMARY.json."},
+            "prerequisites": ["jobs/linnaeus-types output on the branch"],
+            "basis": "Target count from %s (cruden_targets)." % LINNAEUS_SUMMARY,
+            "evidence": evidence(repo, [(LINNAEUS_SUMMARY, '"cruden_targets"')])})
+
+    triage_note = apply_triage(repo, actions) if write_ids else None
+    inputs = [TRACKER_CSV, TRACKER_MD, SHARED_CSV, POLYA_ACTIONS, POLYA_COMPARE, DISPOSITION, TRIBONIAN_REPORT,
+              LARREY_VERDICTS, LINNAEUS_SUMMARY]
     gen = {p: sha256(repo / p) for p in inputs if (repo / p).exists()}
     return {"generated_from": gen,
             "pool": {"decided_not_ready_orders": len(orders), "held_by_unretrieved_source_or_quarantine": held},
             "notes": ["Unlock counts are additive across acquisition actions (one assignment per order); orders needing two acquisitions are uncounted.",
                       "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE (orders absent from the OFR catalog) has no tracker action, so no acquisition is proposed for it.",
-                      "Polya counts reach, not yield; they are cited, never added."],
+                      "Polya counts reach, not yield; they are cited, never added."] + ([triage_note] if triage_note else []),
             "actions": actions}
+
+
+LARREY_DIR = "jobs/larrey-triage"
+LARREY_VERDICTS = LARREY_DIR + "/output/GATES.jsonl"
+
+
+def apply_triage(repo, actions):
+    """Larrey: an action's dispatchable orders are the members its zero-token triage admits.
+
+    For an action Larrey triages (output current for these claim-kit outputs, route calibrated), `orders` becomes
+    the admitted count and `orders_before_triage` keeps the member count; `triage` carries the kept-out reasons and
+    the back-test's yield and cost lifts. bentham.score then prices only admitted orders and projects their yield
+    as the untriaged rate times the yield lift (the back-test's success rate among admitted orders relative to all
+    attempted), and their cost as the measured cost per attempt times the cost lift (Model P). Both are
+    projections until a gated wave measures the rate. The strata files keep every member: admission applies Larrey.
+    Returns a note for the plan, or None when the checkout carries no Larrey code.
+    """
+    path = Path(repo) / LARREY_DIR / "larrey.py"
+    if not path.is_file():
+        return None
+    if not (Path(repo) / LARREY_VERDICTS).is_file():
+        return ("Larrey triage output absent: triaged actions are priced on all members, while claim-kit admission "
+                "refuses them until `larrey.py triage` runs.")
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("larrey_triage", path)
+    L = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(L)
+    lifts = {}
+    bt = L.backtest_path(repo)
+    if bt is not None and bt.is_file():
+        b = json.loads(bt.read_text(encoding="utf-8")).get("bentham") or {}
+        for route, key in (("undecided_full", "undecided"), ("status_only", "undecided"),
+                           ("decided_lifecycle", "decided")):
+            if b.get(key):
+                lifts[route] = b[key]
+    applied, skipped = [], []
+    for a in actions:
+        if not a.get("order_ids_path") or not L.action_route(a["id"]):
+            continue
+        try:
+            ok, why, receipt = L.admitted(repo, a["id"])
+        except ValueError as exc:
+            skipped.append(a["id"])
+            a["triage"] = {"applied": False, "reason": str(exc)}
+            continue
+        if ok is None:
+            skipped.append(a["id"])
+            a["triage"] = {"applied": False, "reason": "route not enforced: kit code changed since Larrey's back-test",
+                           "receipt": receipt}
+            continue
+        ids = [l.strip() for l in (Path(repo) / a["order_ids_path"]).read_text(encoding="utf-8").splitlines()
+               if l.strip()]
+        reach = [i for i in ids if i in ok]
+        reasons = Counter(L._code(r) for i in ids if i not in ok
+                          for r in (why.get(i) or "no_verdict_on_route").split(";") if r)
+        a["orders_before_triage"] = len(ids)
+        a["orders"] = len(reach)
+        a["triage"] = {"applied": True, "route": receipt["larrey_route"], "level": receipt["larrey_level"],
+                       "kept_out": len(ids) - len(reach), "top_reasons": dict(reasons.most_common(6)),
+                       "lifts": lifts.get(receipt["larrey_route"]), "source": LARREY_VERDICTS}
+        applied.append(a["id"])
+    if not applied and not skipped:
+        return None
+    return ("Larrey triage: orders are those its zero-token check admits for %s%s." % (
+        ", ".join(applied) or "no action", ("; not applied to " + ", ".join(skipped)) if skipped else ""))
 
 
 def candidates(repo, write_ids=True):

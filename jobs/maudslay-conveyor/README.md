@@ -53,6 +53,10 @@ That matters twice:
 
 ## Stages
 
+Larrey triage applies at the first two stages without a conveyor change: `kit.py next` reserves only orders Larrey
+admits for the action, and `kit.py prepare` refuses a kept-out order (with `--ids` too) and names the missing input
+(`jobs/larrey-triage/README.md`).
+
 Each stage writes a record to `BATCH/LEDGER.jsonl`, an append-only log. A re-run skips every stage and every worker
 already done.
 

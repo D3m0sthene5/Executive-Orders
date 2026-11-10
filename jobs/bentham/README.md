@@ -24,6 +24,13 @@ Bentham refuses to guess. A stratum whose yield rests on fewer than 30 measured 
 the cost of a 30-order probe, which the gate then runs and measures. A cost that has not been measured leaves the
 action unranked.
 
+**Larrey triage (2026-11-10).** For an action Larrey triages (`jobs/larrey-triage`), `orders` is the number of members
+its zero-token check admits; the plan shows "admitted of members". Yield per admitted order is the measured rate
+times Larrey's back-test `yield_lift` (its rate among admitted orders over its rate among all attempted), and cost
+per attempt is the measured cost times `cost_lift` (review stays while producers go), both capped by the action's
+own members/admitted ratio. These are projections, noted in the plan, until a gated wave measures the rate (a rate
+row marked `"gated": true` turns them off). An action whose route Larrey does not enforce is unchanged.
+
 ## During a wave
 
 After each batch, append `{batch, attempted, submitted, filed, controls_missed, usd}` to a JSON or CSV file and run
