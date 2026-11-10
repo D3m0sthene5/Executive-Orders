@@ -1,3 +1,25 @@
+## 2026-11-10 ET (Claude, overnight Codex wave failed; claim-kit admission guard, PR #265)
+
+- **What happened:** SAVIGNY (coordinator) and MOMMSEN-1..5 (gpt-6.1-sol xhigh, headless) ran from about 00:04 to
+  04:24 ET. They used about half the owner's weekly Codex allowance and filed 12 claims, all on branches, none
+  merged. 494 of the 593 orders they reserved were in no Bentham action: Claude wrote those pools into the prompts,
+  and Savigny extended them by EO range. 57% of the decided orders below EO 7532 have no accepted source text.
+  Claude's ruling C-5 wrongly treated Bentham's unranked refusal as advice. Published ready went 1,183 to 1,238 in
+  24 hours, all from Papinian (#257, #261). Kean F-20261110-mommsen-unranked-pools.
+- **Stopped:** STOP file at 04:24 ET; the running lane turns and their workers were killed.
+  `C:\Users\danie\eo-wt\_savigny` keeps the logs, prompts and state. Worktrees mommsen-1..5 keep their work.
+- **Fix (PR #265):** `jobs/claim-kit/admission.py`. kit next and prepare must name a Bentham action; orders outside
+  it are refused; a probe or unranked action is capped at 30 orders across all agents. 31 tests. Backtest: it
+  refuses 494 of the 593 orders reserved overnight. The supervisor (outside the repo) now pauses a lane after 2 hours
+  of running turns without a new filed claim, and kills whole process trees.
+- **Waiting on the owner:**
+  - Claim PRs #252, #260 and #255 (#255 needs the GitGuardian false positive dismissed).
+  - Code PR #263 (Mabillon text_path), which Claude reviewed and approved.
+  - Code PR #262 (claim-kit replica grade), once its tracker hunks are removed.
+  - After #263 and #262 merge: one run each of mabillon-held-printings and the replica route.
+- **Morning list:** EO 506 (not a valid blind review), lane I's seven old-name claims, the owner-assignment decision
+  record (no in-repo source yet), and PR256 (EO 5666 adoption).
+
 ## 2026-11-09 ET (Claude, why Mission has been pending since 2026-11-06)
 
 - **Fixed** (branch `claude/mission-checker-scope`): two guard bugs in `jobs/daily-digest/`.
