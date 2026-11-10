@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (1)
+## Waiting for the owner (2)
 
-**A-20261108-lean-main**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-mommsen1-grant-source**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 291; `search` finds the rest)
+## Newest results (6 of 292; `search` finds the rest)
 
 - 2026-11-10 F-20261110-mommsen1-wave-production **partly worked**: Photius official-print recheck then claim_ready.no.fr batches under the owner wave Lesson: Preserve source reviews but reprepare any packet after Valla context changes. When first-end and residual evidence is absent, block and hand off rather than infer a cessation. Treat unknown cost as u…
+- 2026-11-10 F-20261110-mommsen1-turn1-takeover **stopped at gate**: Reconstruct desktop MOMMSEN-I production state and continue only authorized work under current SAVIGNY direct… Lesson: Do not restart quality-stopped pools or infer merge authority from predecessor summaries. Preserve unfinished reservations and exact receipts; treat global usage/context as unattributed. In isolated…
 - 2026-11-10 F-20261110-mommsen1-road-test-sparse-fixture **stopped at gate**: Run road tests on PR254 head 77a4d2478e Lesson: Read the tracked runner manifest through git show in this test; leave the workflow and production runner untouched.
 - 2026-11-10 F-20261110-mommsen1-claim-filename-gate **stopped at gate**: Complete MOMMSEN-I NO01 with agent mommsen-1 and the owner-required canonical claim filename mommsen1-2026-11… Lesson: Allow the compact Mommsen lane alias in the own-agent filename gate; keep all other ownership checks and publication requirements unchanged
 - 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 - 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
-- 2026-11-09 F-20261109-mission-refresh-stuck **analysis**: Checked why the dashboard's Mission tab says 'Pending mission publication' after the 2026-11-09 runs settled. Lesson: The freshness guard is working as designed, but every refresh since 2026-11-06 is refused, so something upstream (checker inputs versus the canonical readiness tree) needs a fix before Mission moves…
 
-Register: 76 owner decisions, 45 answered questions, 291 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 76 owner decisions, 45 answered questions, 292 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
