@@ -1,27 +1,20 @@
-"""Nalimov tablebase: script-completed claims, small verification packets, batched by acting instrument.
+"""Nalimov tablebase: script-completed claims and small verification packets, batched by acting instrument.
 
     python -I jobs/nalimov-tablebase/nalimov.py census  --data CHECKOUT --out research/nalimov/census [--evidence-cache DIR]
     python -I jobs/nalimov-tablebase/nalimov.py draft   --packet BATCH/packet --out SCRATCH/drafts [--mentions CSV]
-    python -I jobs/nalimov-tablebase/nalimov.py install --packet BATCH/packet --drafts SCRATCH/drafts --only-upheld SCORE.json
-    python -I jobs/nalimov-tablebase/nalimov.py sessions --drafts SCRATCH/drafts --scratch SCRATCH/verify --key-dir KEYS/batch
-    python -I jobs/nalimov-tablebase/nalimov.py run     --scratch SCRATCH/verify --key-dir KEYS/batch --workers WORKERS.json [--parallel 2]
-    python -I jobs/nalimov-tablebase/nalimov.py record-usage --scratch SCRATCH/verify --label s001-A --model M --family F --tokens N
-    python -I jobs/nalimov-tablebase/nalimov.py score   --scratch SCRATCH/verify --key-dir KEYS/batch [--usd-per-mtok X]
-    python -I jobs/nalimov-tablebase/nalimov.py measure --evidence DIR --out research/nalimov/MEASURES.json
+    python -I jobs/nalimov-tablebase/nalimov.py measure --evidence DIR --out research/nalimov/MEASURES.json [--only PRESCREEN.json]
 
-Route (see README.md): prepare the batch with the kit (`kit.py prepare --action status_assignment.undecided`), `draft`
-in place of producers, `sessions` + `run` (or hand-run agents and `record-usage`) + `score` in place of the blind
-arms' research, then `install` only the upheld drafts and continue with the kit's own apply, batch-check, status review
-(the verifier's recorded verdict is not a status review; see README), overlay-propose and completion. Nothing here
-files, adopts or certifies.
+Production runs through the Maudslay conveyor (`jobs/maudslay-conveyor/conveyor.py run ... --producer nalimov`): the
+drafter replaces the producer stage, the overlay stage carries undecided members through the kit's status review and
+overlay-propose, and every review, control, reveal, agreement and completion stage is the conveyor's own. This file
+keeps the zero-token tools: the census, a standalone draft of a prepared packet (for inspection), and packet measures.
+Nothing here files, adopts or certifies.
 """
 from __future__ import annotations
 
 import argparse
 import csv
 import json
-import os
-import secrets
 import sys
 from pathlib import Path
 
@@ -29,7 +22,6 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import drafter as D  # noqa: E402
 import packets as K  # noqa: E402
-import verify as V  # noqa: E402
 
 csv.field_size_limit(1 << 30)
 
@@ -90,98 +82,6 @@ def draft_packet(packet, out, mentions_csv=None):
     return summary
 
 
-def load_drafts(drafts):
-    """(complete drafts, their evidence) from a draft folder."""
-    drafts = Path(drafts)
-    done, evidence = [], {}
-    for folder in sorted(p for p in drafts.iterdir() if p.is_dir()):
-        dr = D.Draft(json.loads((folder / "DRAFT.json").read_text(encoding="utf-8")))
-        if not dr.ok:
-            continue
-        ev_path = Path((folder / "EVIDENCE.path").read_text(encoding="utf-8").strip())
-        evidence[dr["instrument_id"]] = json.loads(ev_path.read_text(encoding="utf-8"))
-        done.append(dr)
-    return done, evidence
-
-
-def draft_sha(dr):
-    return K.sha(K.canon(dict(dr)))
-
-
-def install(packet, drafts, score_path):
-    """Write the drafts that were upheld into the packet: their decisions.csv row and clauses.csv rows replace the
-    prepared ones, and STATUS_DECISION.json is filled in place. Every other member is left as prepared.
-
-    Everything is checked before anything is written: the batch did not stop; each member was upheld by both arms
-    and, when a status reader ran, accepted by it; the draft is byte-for-byte the one verified (draft_sha256 and the
-    recomputed packet entry_id equal SCORE.json's); the packet's evidence and dossier fingerprints are unchanged; the
-    prepared row is still unworked (outcome unresolved, not approved) and STATUS_DECISION.json is still blank. Then the
-    two CSV files are replaced atomically, the decision files last, and INSTALL.json records the score's sha256 and
-    the installed ids."""
-    packet, drafts = Path(packet), Path(drafts)
-    raw = Path(score_path).read_bytes()
-    score = json.loads(raw)
-    if score.get("stop"):
-        raise ValueError("the verification batch stopped (" + "; ".join(score.get("stop_reasons") or ["missed control"])
-                         + "): nothing from it is installed")
-    dfields, drows = read_csv(packet / "decisions.csv")
-    cfields, crows = read_csv(packet / "clauses.csv")
-    plan = []
-    for g in score["genuine"]:
-        if g["outcome"] != "upheld":
-            continue
-        iid = g["instrument_id"]
-        if "status_review" in g and (g["status_review"] or {}).get("verdict") != "accept":
-            raise ValueError(f"{iid}: upheld by both arms but not accepted by the status reader; adjudicate first")
-        folder = drafts / slug(iid)
-        dr = D.Draft(json.loads((folder / "DRAFT.json").read_text(encoding="utf-8")))
-        if not dr.ok or dr.decoy:
-            raise ValueError(f"{iid}: the draft folder does not hold a complete genuine draft")
-        if g.get("draft_sha256") != draft_sha(dr):
-            raise ValueError(f"{iid}: the draft changed after it was verified")
-        ev_dir = packet / "undecided" / slug(iid)
-        ev = json.loads((ev_dir / "EVIDENCE.json").read_text(encoding="utf-8"))
-        if K.entry(dr, ev)["entry_id"] != g["entry_id"]:
-            raise ValueError(f"{iid}: the verified packet entry does not match this draft and evidence")
-        if dr["decision"].get("evidence_sha256") != ev.get("fingerprint"):
-            raise ValueError(f"{iid}: the packet's frozen evidence changed since drafting")
-        prepared = next((r for r in drows if r["instrument_id"] == iid), None)
-        if prepared is None or dr["row"]["dossier_sha256"] != prepared["dossier_sha256"]:
-            raise ValueError(f"{iid}: dossier fingerprint differs from the prepared row")
-        if prepared.get("outcome") != "unresolved" or prepared.get("approved") not in ("", "false"):
-            raise ValueError(f"{iid}: the prepared row was already worked ({prepared.get('agent')}, {prepared.get('outcome')})")
-        blank = json.loads((ev_dir / "STATUS_DECISION.json").read_text(encoding="utf-8"))
-        if blank.get("approved") or blank.get("recommended_provisional_status") or blank.get("basis_evidence_ids"):
-            raise ValueError(f"{iid}: STATUS_DECISION.json is no longer blank")
-        plan.append((iid, prepared, dr, ev_dir))
-    for iid, prepared, dr, _ in plan:
-        prepared.clear()
-        prepared.update({k: dr["row"].get(k, "") for k in dfields})
-        crows = [c for c in crows if c["instrument_id"] != iid] + [{k: c.get(k, "") for k in cfields} for c in dr["clauses"]]
-    for name, fields, rows in (("decisions.csv", dfields, drows), ("clauses.csv", cfields, crows)):
-        tmp = packet / (name + ".nalimov-tmp")
-        write_csv(tmp, fields, rows)
-        os.replace(tmp, packet / name)
-    for iid, _, dr, ev_dir in plan:
-        dump(ev_dir / "STATUS_DECISION.json", dr["decision"])
-    receipt = {"schema": "nalimov-install/v1", "score_sha256": K.sha(raw.decode("utf-8")),
-               "installed": [p[0] for p in plan], "drafter": D.DRAFTER_VERSION}
-    dump(packet / "NALIMOV_INSTALL.json", receipt)
-    return receipt
-
-
-def make_sessions(drafts, scratch, salt, key_dir, size=K.SESSION_TARGETS, decoys=None, status=True):
-    done, evidence = load_drafts(drafts)
-    sess, key = K.build(done, evidence, salt, decoys=decoys, size=size)
-    shas = {dr["instrument_id"]: draft_sha(dr) for dr in done}
-    for info in key["sessions"].values():
-        for g in info["genuine"]:
-            g["draft_sha256"] = shas[g["instrument_id"]]
-    V.prepare(sess, key, scratch, salt, key_dir, status=status)
-    return {"sessions": len(sess), "genuine": len(done), "controls": sum(len(v["controls"]) for v in key["sessions"].values()),
-            "measures": {s["session"]: K.measure(s) for s in sess}}
-
-
 def measure(evidence_dir, out, size=K.SESSION_TARGETS, salt="nalimov-measure", mentions_csv=None, sessions_out=None,
             only=None):
     """Verification packet size against the frozen dossier each worker reads today, on real frozen evidence."""
@@ -208,7 +108,8 @@ def measure(evidence_dir, out, size=K.SESSION_TARGETS, salt="nalimov-measure", m
             decoys.append((kind, dr, ev))
     sess, key = K.build(done, evidence, salt, decoys=decoys, size=size)
     if sessions_out:  # the measured packets, for inspection; outside the repository (they carry held text)
-        V.check_scratch(sessions_out)
+        if Path(sessions_out).resolve().is_relative_to(HERE.parents[1]):
+            raise ValueError('sessions_out must be outside the repository (packets carry held text)')
         Path(sessions_out).mkdir(parents=True, exist_ok=True)
         for s_ in sess:
             dump(Path(sessions_out) / f"{s_['session']}.json", s_)
@@ -253,38 +154,6 @@ def main(argv=None):
     d.add_argument("--packet", required=True)
     d.add_argument("--out", required=True)
     d.add_argument("--mentions")
-    i = sub.add_parser("install")
-    i.add_argument("--packet", required=True)
-    i.add_argument("--drafts", required=True)
-    i.add_argument("--only-upheld", required=True, help="the SCORE.json of the verification batch")
-    s = sub.add_parser("sessions")
-    s.add_argument("--drafts", required=True)
-    s.add_argument("--scratch", required=True, help="new folder outside the repository for the worker folders")
-    s.add_argument("--key-dir", required=True, help="new folder outside the repository and the scratch tree; holds "
-                                                    "the salt and the sealed key")
-    s.add_argument("--size", type=int, default=K.SESSION_TARGETS)
-    s.add_argument("--no-status-reader", action="store_true", help="omit the third, status-only reader (S)")
-    r = sub.add_parser("run")
-    r.add_argument("--scratch", required=True)
-    r.add_argument("--key-dir", required=True)
-    r.add_argument("--workers", required=True)
-    r.add_argument("--parallel", type=int, default=2)
-    u = sub.add_parser("record-usage")
-    u.add_argument("--scratch", required=True)
-    u.add_argument("--label", required=True)
-    u.add_argument("--model", required=True)
-    u.add_argument("--family", required=True)
-    u.add_argument("--tokens", type=int, required=True)
-    u.add_argument("--usd", type=float)
-    u.add_argument("--seconds", type=float)
-    u.add_argument("--tool-uses", type=int)
-    sc = sub.add_parser("score")
-    sc.add_argument("--scratch", required=True)
-    sc.add_argument("--key-dir", required=True)
-    sc.add_argument("--usd-per-mtok", type=float)
-    rv = sub.add_parser("reveal")
-    rv.add_argument("--scratch", required=True)
-    rv.add_argument("--key-dir", required=True)
     m = sub.add_parser("measure")
     m.add_argument("--evidence", required=True)
     m.add_argument("--out", required=True)
@@ -299,27 +168,6 @@ def main(argv=None):
     elif a.cmd == "draft":
         res = draft_packet(a.packet, a.out, a.mentions)
         print(json.dumps({"complete": len(res["complete"]), "blocked": len(res["blocked"])}))
-    elif a.cmd == "install":
-        print(json.dumps(install(a.packet, a.drafts, a.only_upheld)))
-    elif a.cmd == "sessions":
-        kd = V.check_key_dir(a.key_dir, V.check_scratch(a.scratch))
-        kd.mkdir(parents=True, exist_ok=True)
-        sp = kd / "SALT"
-        if not sp.exists():
-            sp.write_text(secrets.token_hex(16) + "\n", encoding="utf-8")
-        print(json.dumps(make_sessions(a.drafts, a.scratch, sp.read_text(encoding="utf-8").strip(), kd, a.size,
-                                       status=not a.no_status_reader), indent=1))
-    elif a.cmd == "run":
-        print(json.dumps(V.run(a.scratch, a.workers, a.key_dir, a.parallel), indent=1))
-    elif a.cmd == "record-usage":
-        print(json.dumps(V.record_usage(a.scratch, a.label, a.model, a.family, a.tokens, a.usd, a.seconds, a.tool_uses)))
-    elif a.cmd == "score":
-        res = V.score(a.scratch, a.key_dir, a.usd_per_mtok)
-        print(json.dumps({k: res[k] for k in ("genuine_claims", "upheld_by_both", "to_adjudicate", "controls_planted",
-                                              "controls_caught", "stop", "stop_reasons", "tokens_per_genuine_claim",
-                                              "usd_per_upheld_claim")}))
-    elif a.cmd == "reveal":
-        print(json.dumps(V.reveal(a.scratch, a.key_dir), indent=1))
     elif a.cmd == "measure":
         print(json.dumps({k: v for k, v in measure(a.evidence, a.out, mentions_csv=a.mentions,
                                                              sessions_out=a.sessions_out, only=a.only).items() if k != "sessions_detail"}, indent=1))

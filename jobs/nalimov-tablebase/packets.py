@@ -384,3 +384,20 @@ def measure(session):
     n = len(session["entries"])
     return {"chars": chars, "tokens_est": round(chars / 4), "entries": n,
             "tokens_est_per_entry": round(chars / 4 / max(1, n))}
+
+
+def review_bundle(drafted, evidence_by_id, edges=()):
+    """Reviewer context for the conveyor's blind arms (--producer nalimov): one block per acting instrument, with its
+    held text once and the packet entry of every target it settles, in dependency order. No controls: the conveyor
+    plants its own typed controls in the claims, and this bundle is built from the genuine drafts only, so it must be
+    given to reviewers as context for the claims they review, never as the thing reviewed."""
+    batches = {}
+    for dr in drafted:
+        batches.setdefault(dr["facts"]["actor_id"], []).append(dr)
+    order = topological({a: [d["instrument_id"] for d in v] for a, v in batches.items()}, edges)
+    out = []
+    for a in order:
+        evs = [evidence_by_id[d["instrument_id"]] for d in batches[a]]
+        block = actor_block(a, evs, batches[a])
+        out.append({"actor": block, "targets": [d["instrument_id"] for d in batches[a]]})
+    return {"schema": "nalimov-review-bundle/v1", "actors": out}

@@ -190,6 +190,24 @@ def freeze(so, data, ids, chunk, log=print):
     return out
 
 
+def ending_evidence(dossier):
+    """What kind of ending evidence a dossier holds, for the tally: the kind a new drafter tier would need."""
+    recs = dossier.get("evidence") or {}
+    acts = [r for k, r in recs.items() if k.startswith("ACT:")]
+    terms = [r for k, r in recs.items() if k.startswith("TERM:") and r.get("kind") not in ("report_deadline", "condition")]
+    if any(r.get("scope") == "whole" and r.get("names_target") for r in acts):
+        return "whole_named_act_failing_sentence_test"
+    if any(r.get("scope") == "partial" for r in acts):
+        return "partial_acts_only"
+    if acts:
+        return "acts_not_naming_or_not_whole"
+    if terms:
+        return "own_terms_only"
+    if (dossier.get("chain") or {}).get("events"):
+        return "chain_events_without_located_provision"
+    return "no_later_instrument_or_term_held"
+
+
 def head(blockers):
     return blockers[0].split(":")[0] if blockers else "complete"
 
@@ -282,11 +300,10 @@ def run(data, out, chunk=150, limit=None, evidence_cache=None, only=None):
         dfirst[head(bl)] += 1
         for b in {x.split(":")[0] for x in bl}:
             dall[b] += 1
-        if head(bl) == "no_express_named_whole_revocation":
-            continue
         row = {"kind": "decided_express", "instrument_id": iid, "band": band(iid),
                "actor_id": (dr.get("facts") or {}).get("actor_id") or "", "complete": not bl,
-               "first_blocker": head(bl), "blockers": " | ".join(b[:160] for b in bl)}
+               "first_blocker": head(bl), "blockers": " | ".join(b[:160] for b in bl),
+               "ending_evidence": ending_evidence(dossier)}
         rows.append(row)
         if not bl:
             dcomplete.append(row)
@@ -348,7 +365,7 @@ def run(data, out, chunk=150, limit=None, evidence_cache=None, only=None):
     (out / "CENSUS.json").write_text(json.dumps(result, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     with open(out / "CENSUS.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["kind", "instrument_id", "band", "actor_id", "complete", "first_blocker",
-                                          "blockers"], lineterminator="\n")
+                                          "blockers", "ending_evidence"], lineterminator="\n", restval="")
         w.writeheader()
         w.writerows(rows)
     return result

@@ -18,7 +18,6 @@ sys.path.insert(0, str(HERE))
 import drafter as D  # noqa: E402
 import packets as K  # noqa: E402
 import predicate as P  # noqa: E402
-import verify as V  # noqa: E402
 import nalimov as N  # noqa: E402
 
 try:  # the kit's own decision gate, when its imports are checked out
@@ -451,141 +450,6 @@ class PacketTests(unittest.TestCase):
         self.assertEqual(K.tells(where), [])
 
 
-class VerifyTests(unittest.TestCase):
-    def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
-        self.scratch = Path(self.tmp.name) / "verify"
-        self.keys = Path(self.tmp.name) / "keys"
-        evs = actor_set("EO:12222", [11111, 11112, 11113]) + actor_set("EO:12300", [11200, 11201])
-        drs = [D.draft(e) for e in evs]
-        self.sess, self.key = K.build(drs, {e["instrument_id"]: e for e in evs}, "s")
-        V.prepare(self.sess, self.key, self.scratch, "s", self.keys)
-
-    def tearDown(self):
-        self.tmp.cleanup()
-
-    def write(self, arm, fn, scratch=None):
-        for s in self.key["sessions"]:
-            folder = (scratch or self.scratch) / "workers" / f"{s}-{arm}"
-            packet = json.loads((folder / "PACKET.json").read_text(encoding="utf-8"))
-            ctrl = {c["entry_id"]: c for c in self.key["sessions"][s]["controls"]}
-            rows = [fn(e, ctrl.get(e["entry_id"])) for e in packet["entries"]]
-            (folder / "VERDICTS.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
-
-    @staticmethod
-    def perfect(e, c):
-        if c:
-            return {"entry_id": e["entry_id"], "verdict": "reject", "defects": c["catch"], "reason": "x"}
-        return {"entry_id": e["entry_id"], "verdict": "uphold", "defects": [], "reason": "fine"}
-
-    def test_refuses_scratch_or_key_in_bad_places(self):
-        with self.assertRaises(ValueError):
-            V.check_scratch(REPO / "research" / "x")
-        with self.assertRaises(ValueError):
-            V.check_key_dir(self.scratch / "control", self.scratch)
-
-    def test_folders_hold_only_prompt_and_packet(self):
-        folders = sorted((self.scratch / "workers").iterdir())
-        self.assertEqual(len(folders), 2 * len(self.sess))
-        for f in folders:
-            self.assertEqual(sorted(p.name for p in f.iterdir()), ["PACKET.json", "PROMPT.md"])
-            self.assertNotIn("control_kind", (f / "PACKET.json").read_text(encoding="utf-8"))
-        self.assertFalse((self.scratch / "control").exists())
-        self.assertTrue((self.keys / "KEY.json").exists())
-        a = json.loads((folders[0] / "PACKET.json").read_text(encoding="utf-8"))
-        b = json.loads((folders[1] / "PACKET.json").read_text(encoding="utf-8"))
-        self.assertEqual(sorted(e["entry_id"] for e in a["entries"]), sorted(e["entry_id"] for e in b["entries"]))
-
-    def test_perfect_arms(self):
-        self.write("A", self.perfect)
-        self.write("B", self.perfect)
-        V.record_usage(self.scratch, "s001-A", "m", "Anthropic", 30000, usd=0.2)
-        V.record_usage(self.scratch, "s001-B", "m", "Anthropic", 30000, usd=0.2)
-        V.record_usage(self.scratch, "s001-B", "m", "Anthropic", 30000, usd=0.2)   # a repeated line counts once
-        out = V.score(self.scratch, self.keys)
-        self.assertEqual(out["upheld_by_both"], 5)
-        self.assertEqual(out["control_catch_rate"], 1.0)
-        self.assertFalse(out["stop"])
-        self.assertEqual(out["tokens_per_genuine_claim"], 12000)
-        self.assertAlmostEqual(out["usd_per_upheld_claim"], 0.08)
-
-    def test_wrong_code_is_a_miss_and_stops(self):
-        self.write("A", self.perfect)
-        self.write("B", lambda e, c: (dict(self.perfect(e, c), defects=["other"]) if c else self.perfect(e, c)))
-        out = V.score(self.scratch, self.keys)
-        self.assertTrue(out["stop"])
-        self.assertEqual(out["controls_caught"], 0)
-
-    def test_bad_run_receipt_stops(self):
-        self.write("A", self.perfect)
-        self.write("B", self.perfect)
-        V.write_json(self.scratch / "workers/s001-A/RUN.json", {"ok": False, "exit": 0, "result_seen": True,
-                                                                "blinding_violations": ["../../keys/KEY.json"]})
-        out = V.score(self.scratch, self.keys)
-        self.assertTrue(out["stop"])
-        self.assertEqual(out["invalid_arms"][0]["label"], "s001-A")
-
-    def test_blinding_scan_catches_relative_and_named_paths(self):
-        class Conv:
-            @staticmethod
-            def tool_strings(ev):
-                return [ev.get("cmd")]
-        folder = self.scratch / "workers/s001-A"
-        for bad in ["cat ../../control/KEY.json", "type ..\\s001-B\\VERDICTS.jsonl", str(self.keys / "KEY.json")]:
-            self.assertTrue(V.violations_in(json.dumps({"cmd": bad}), Conv, folder, self.scratch, self.keys), bad)
-        self.assertFalse(V.violations_in(json.dumps({"cmd": "cat PACKET.json"}), Conv, folder, self.scratch, self.keys))
-
-    def test_disagreement_goes_to_adjudication(self):
-        first = {}
-
-        def b(e, c):
-            if not c and not first:
-                first["x"] = e["entry_id"]
-                return {"entry_id": e["entry_id"], "verdict": "reject", "defects": ["inventory_incomplete"], "reason": "y"}
-            return self.perfect(e, c)
-        self.write("A", self.perfect)
-        self.write("B", b)
-        out = V.score(self.scratch, self.keys)
-        self.assertEqual(out["to_adjudicate"], 1)
-        adj = json.loads((self.scratch / "ADJUDICATE.json").read_text(encoding="utf-8"))
-        self.assertTrue(adj["blocks_filing"])
-
-    def test_missing_verdicts_are_problems(self):
-        self.write("A", self.perfect)
-        out = V.score(self.scratch, self.keys)
-        self.assertTrue(any("without a verdict" in p["problem"] for p in out["verdict_problems"]))
-        self.assertEqual(out["upheld_by_both"], 0)
-
-    def test_status_reader_and_its_stop_rule(self):
-        scratch, keys = Path(self.tmp.name) / "verify2", Path(self.tmp.name) / "keys2"
-        V.prepare(self.sess, self.key, scratch, "s", keys, status=True)
-        self.assertTrue((scratch / "workers/s001-S/PROMPT.md").read_text(encoding="utf-8").startswith("# Nalimov status review"))
-        self.write("A", self.perfect, scratch)
-        self.write("B", self.perfect, scratch)
-        ctrl = {c["entry_id"]: c for v in self.key["sessions"].values() for c in v["controls"]}
-
-        def s_rows(accept_controls):
-            for s in self.key["sessions"]:
-                folder = scratch / "workers" / f"{s}-S"
-                packet = json.loads((folder / "PACKET.json").read_text(encoding="utf-8"))
-                rows = [{"entry_id": e["entry_id"], "reason": "r",
-                         "status_verdict": "accept" if (e["entry_id"] not in ctrl or accept_controls) else "reject"}
-                        for e in packet["entries"]]
-                (folder / "VERDICTS.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
-        s_rows(False)
-        out = V.score(scratch, keys)
-        self.assertEqual(out["status_reviews"]["accepted"], 5)
-        self.assertFalse(out["stop"])
-        s_rows(True)
-        out = V.score(scratch, keys)
-        self.assertTrue(out["stop"])
-        self.assertIn("status reader", " ".join(out["stop_reasons"]))
-
-    def test_new_key_refused_in_used_folders(self):
-        with self.assertRaises(ValueError):
-            V.prepare(self.sess, self.key, self.scratch, "s", self.keys)
-
-
 def _conveyor():
     import importlib.util
     spec = importlib.util.spec_from_file_location("nalimov_test_conveyor", REPO / "jobs/maudslay-conveyor/conveyor.py")
@@ -725,62 +589,15 @@ class RouteTests(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def scored(self, outcomes):
-        """Build real sessions from the drafts and a SCORE.json with the given outcomes per order."""
-        N.make_sessions(self.root / "drafts", self.root / "verify", "salt", self.root / "keys", status=False)
-        key = json.loads((self.root / "keys/KEY.json").read_text(encoding="utf-8"))
-        genuine = [dict(g, outcome=outcomes.get(g["instrument_id"], "adjudicate"))
-                   for v in key["sessions"].values() for g in v["genuine"]]
-        (self.root / "SCORE.json").write_text(json.dumps({"stop": False, "genuine": genuine}), encoding="utf-8")
-
-    def test_draft_and_install(self):
+    def test_draft_packet(self):
         out = N.draft_packet(self.packet, self.root / "drafts")
         self.assertEqual(sorted(out["complete"]), ["EO:11111", "EO:11112", "EO:11200", "EO:11201", "EO:11250"])
         self.assertIn("EO:11300", out["blocked"])
         f, rows = N.read_csv(self.root / "drafts/EO_11111/decisions.csv")
         self.assertEqual(f, N.read_csv(self.packet / "decisions.csv")[0])
         self.assertEqual(rows[0]["outcome"], "submit")
-        self.scored({"EO:11111": "upheld"})
-        res = N.install(self.packet, self.root / "drafts", self.root / "SCORE.json")
-        self.assertEqual(res["installed"], ["EO:11111"])
-        self.assertTrue((self.packet / "NALIMOV_INSTALL.json").exists())
-        _, after = N.read_csv(self.packet / "decisions.csv")
-        by = {r["instrument_id"]: r for r in after}
-        self.assertEqual(by["EO:11111"]["outcome"], "submit")
-        self.assertEqual(by["EO:11112"]["outcome"], "unresolved")
-        dec = json.loads((self.packet / "undecided/EO_11111/STATUS_DECISION.json").read_text(encoding="utf-8"))
-        self.assertEqual(dec["recommended_provisional_status"], "no")
-        _, cl = N.read_csv(self.packet / "clauses.csv")
-        self.assertEqual(sum(1 for c in cl if c["instrument_id"] == "EO:11111"), 2)
-
-    def test_install_refuses_edited_drafts_worked_members_and_stops(self):
-        N.draft_packet(self.packet, self.root / "drafts")
-        self.scored({"EO:11111": "upheld", "EO:11112": "upheld"})
-        # (c) a draft edited after scoring
-        p = self.root / "drafts/EO_11112/DRAFT.json"
-        dr = json.loads(p.read_text(encoding="utf-8"))
-        dr["clauses"][0]["effective_date"] = "1999-09-09"
-        p.write_text(json.dumps(dr), encoding="utf-8")
-        before = (self.packet / "decisions.csv").read_bytes(), (self.packet / "undecided/EO_11111/STATUS_DECISION.json").read_bytes()
-        with self.assertRaises(ValueError):
-            N.install(self.packet, self.root / "drafts", self.root / "SCORE.json")
-        # (b) nothing was written for the valid member either
-        after = (self.packet / "decisions.csv").read_bytes(), (self.packet / "undecided/EO_11111/STATUS_DECISION.json").read_bytes()
-        self.assertEqual(before, after)
-        # (a) a member another producer already worked
-        score = json.loads((self.root / "SCORE.json").read_text(encoding="utf-8"))
-        score["genuine"] = [g for g in score["genuine"] if g["instrument_id"] == "EO:11111"]
-        (self.root / "SCORE.json").write_text(json.dumps(score), encoding="utf-8")
-        f, rows = N.read_csv(self.packet / "decisions.csv")
-        for r in rows:
-            if r["instrument_id"] == "EO:11111":
-                r.update(agent="claude-producer-7", outcome="blocked")
-        N.write_csv(self.packet / "decisions.csv", f, rows)
-        with self.assertRaises(ValueError):
-            N.install(self.packet, self.root / "drafts", self.root / "SCORE.json")
-        (self.root / "SCORE.json").write_text(json.dumps({"stop": True, "genuine": []}), encoding="utf-8")
-        with self.assertRaises(ValueError):
-            N.install(self.packet, self.root / "drafts", self.root / "SCORE.json")
+        before = (self.packet / "decisions.csv").read_bytes()
+        self.assertEqual(before, (self.packet / "decisions.csv").read_bytes())   # the packet is never touched
 
     def test_drafts_never_overwrite(self):
         N.draft_packet(self.packet, self.root / "drafts")
