@@ -147,6 +147,18 @@ class TargetMentionTests(unittest.TestCase):
             with self.subTest(iid=iid, text=text):
                 self.assertFalse(self.names(iid, text))
 
+    def test_agency_document_state_and_unit_contexts(self):
+        self.assertFalse(self.names("EO:17", "Initiative (Executive Order 17-\n03), Missouri proposes"))
+        self.assertFalse(self.names("EO:72", "sections 2 and 6 of the Executive Order 72 hours after all injunctions"))
+        agency = lambda iid, text: bool(B.target_mentions(iid, text, None, True))
+        self.assertFalse(agency("EO:106", "OCRM received the State of Alaska's request to incorporate Executive Order 106, House Bills"))
+        self.assertFalse(agency("EO:192", "The Philippines established the Bureau through the DENR, under Executive Order 192. Its"))
+        self.assertFalse(agency("EO:31", "clean energy requirements within the State including Executive Order 31 on energy"))
+        self.assertFalse(agency("EO:145", "the EPA is finalizing the incorporation by reference Executive Order 145 and the part of 310 CMR 7.00"))
+        # The same contexts in a land order or statute are geography, not a state order.
+        self.assertTrue(self.names("EO:5327", "lands in the State of Montana withdrawn by Executive Order No. 5327 dated April 15, 1930, are"))
+        self.assertTrue(agency("EO:5158", "The Cedar Keys National Wildlife Refuge was established by Executive Order 5158 on July 16, 1929"))
+
     def test_printed_date_must_match_the_signing_year(self):
         self.assertFalse(self.names("EO:1318", "Executive Order 1318 of March 31, 1999, and", "1911-03-02"))
         self.assertFalse(self.names("EO:1322", "through Executive Order 1322 of August 17, 2001 (3 CFR", "1911-04-01"))

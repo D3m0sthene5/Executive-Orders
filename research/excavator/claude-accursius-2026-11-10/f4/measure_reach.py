@@ -57,6 +57,7 @@ def main():
     ap.add_argument("--repo", required=True)
     ap.add_argument("--code", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--old-csv", help="the first REACH_ORDERS.csv (commit 04acdce567), for the reviewer's sample")
     ap.add_argument("--cache", help="optional pickle of the corpus subset, outside the repository")
     args = ap.parse_args()
     repo, code, dest = Path(args.repo).resolve(), Path(args.code).resolve(), Path(args.out).resolve()
@@ -77,7 +78,10 @@ def main():
     kit = repo / "jobs/claim-kit/output"
     leads = {r["instrument_id"]: r for r in rows(kit, "STATUS_LEADS")}
     undecided = set(leads)
-    known = {r["instrument_id"]: set(r.get("known_actor_ids") or []) for r in rows(kit, "OVERLAY_INPUTS")}
+    known, signed = {}, {}
+    for r in rows(kit, "OVERLAY_INPUTS"):
+        known[r["instrument_id"]] = set(r.get("known_actor_ids") or [])
+        signed[r["instrument_id"]] = (r.get("selected") or {}).get("signing_date")
     acts = collections.defaultdict(list)
     for a in rows(kit, "ACTING_PROVISIONS"):
         if a.get("target_id") in undecided:
@@ -99,7 +103,7 @@ def main():
         if ar is None:
             pair_stats["no_held_text" + ("_undecided" if undec else "")] += 1
             continue
-        mentions = B.target_mentions(target, ar["text"])
+        mentions = B.target_mentions(target, ar["text"], signed.get(target), actor.startswith("FRDOC:"))
         if not mentions:
             pair_stats["held_unnamed" + ("_undecided" if undec else "")] += 1
             continue
@@ -107,8 +111,9 @@ def main():
         if not undec:
             continue
         evidence, missing = {}, []
-        ctx = B._actor_context(target, actor, ar, [], evidence, missing)
+        ctx = B._actor_context(target, actor, ar, [], evidence, missing, signed.get(target))
         by_order[target].append({
+            "basis_eligible": any(e.get("basis_eligible") for e in evidence.values()),
             "actor_id": actor, "kind": actor.split(":")[0], "job": job_of(ar.get("origins", [])),
             "grade": (ar.get("grade") or "")[:60], "evidence_ids": sorted(evidence),
             "window": "evidence_ids" in ctx, "ending_verb_near_number": ending_near(ar["text"], mentions),
@@ -137,9 +142,9 @@ def main():
         for actor in sorted(actors):
             ar = {"text": texts[actor], "source": census_sources[actor], "text_path": census_sources[actor]["text_path"]}
             evidence, missing = {}, []
-            ctx = B._actor_context(iid, actor, ar, acts.get(iid, []), evidence, missing)
-            named = [e for e in evidence.values() if e["names_target"]]
-            mentions = B.target_mentions(iid, ar["text"])
+            ctx = B._actor_context(iid, actor, ar, acts.get(iid, []), evidence, missing, signed.get(iid))
+            named = [e for e in evidence.values() if e.get("prints_number_lexical")]
+            mentions = B.target_mentions(iid, ar["text"], signed.get(iid)) or []
             overflow.setdefault(iid, []).append({
                 "actor_id": actor, "windows": len(evidence), "windows_naming_target": len(named),
                 "evidence_ids": sorted(evidence), "ending_verb_near_number": ending_near(ar["text"], mentions)})
@@ -170,9 +175,9 @@ def main():
             for iid in entry["instrument_ids"]:
                 if iid not in undecided:
                     continue
-                mark = S.basis_mark(repo, src, text[entry["char_start"]:entry["char_end"]], iid, official)
+                mark = S.basis_mark(repo, src, text, entry["char_start"], entry["char_end"], iid, official)
                 supp["undecided_member_excerpts"] += 1
-                supp["names_target"] += mark["names_target"]
+                supp["prints_number_lexical"] += bool(mark["prints_number_lexical"])
                 supp["official"] += bool(mark["official_declaration"])
                 supp["basis_eligible"] += mark["basis_eligible"]
                 if mark["basis_eligible"]:
@@ -190,12 +195,33 @@ def main():
             by_kind[r["kind"]].add(iid)
             by_job_end[(r["job"], r["ending_verb_near_number"])].add(iid)
     ending_any = {iid for iid, recs in by_order.items() if any(r["ending_verb_near_number"] for r in recs)}
+    eligible_nc = {iid for iid, recs in by_order.items() if any(r["basis_eligible"] for r in recs)}
+    eligible_nc_end = {iid for iid in eligible_nc if any(r["basis_eligible"] and r["ending_verb_near_number"] for r in by_order[iid])}
+    basis_any = eligible_nc | gain_ov
+    lead_only = gain_nc - basis_any
+    # The reviewer's false-positive sample: the 130 FRDOC rows (99 orders) below EO 7000 in the first REACH_ORDERS.csv.
+    old_low, still = [], []
+    if args.old_csv:
+        with open(args.old_csv, encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                n = r["instrument_id"][3:]
+                if r["actor_id"].startswith("FRDOC") and n.isdigit() and int(n) < 7000:
+                    old_low.append((r["instrument_id"], r["actor_id"]))
+        now = {(iid, r["actor_id"]) for iid, recs in by_order.items() for r in recs}
+        still = [pair for pair in old_low if pair in now]
+        contexts = []
+        for iid, actor in still:
+            text = selected[actor]["text"]
+            for s0, e0 in (B.target_mentions(iid, text, signed.get(iid), actor.startswith("FRDOC:")) or [])[:2]:
+                contexts.append(f"{iid} {actor} | " + text[max(0, s0 - 110):e0 + 70].replace("\n", " "))
+        (dest / "LOW_FRDOC_REMAINING.txt").write_text("\n".join(contexts) + "\n", encoding="utf-8")
     ov_end = {iid for iid in gain_ov if any(r["ending_verb_near_number"] and r["windows_naming_target"] for r in overflow[iid])}
     result = {
         "schema": "accursius-f4-reach/v1", "repo_head_note": "reference worktree (origin/main 854514831e with outputs)",
         "proxy": ("branch inputs.load_corpus + build.select_acting_texts/target_mentions/_actor_context on main data; "
                   "known actors and ACT records from the main compiled kit (generation 2026-11-10T10:36Z); "
-                  "no corpus rebuild"),
+                  "no corpus rebuild. Version 2 (after the F4 review): pairs only from event fragments, lexical check v2, "
+                  "non-census records basis_eligible only as official printings, window bytes capped"),
         "seconds": {"load_corpus": round(t_corpus, 1), "select_acting_texts": round(t_select, 1)},
         "undecided_orders_in_kit": len(undecided),
         "acting_text_declarations_non_census": len(acting_rows),
@@ -217,6 +243,16 @@ def main():
         "of_which_ending_verb_near_number_overflow": len(ov_end),
         "undecided_gaining_any_new_actor_text_naming_them": len(gain_nc | gain_ov),
         "undecided_gaining_any_with_ending_verb": len(ending_any | ov_end),
+        "undecided_gaining_basis_eligible_non_census_record": len(eligible_nc),
+        "of_which_ending_verb_near_number_basis_eligible": len(eligible_nc_end),
+        "undecided_gaining_census_overflow_window_naming_them (gate as on main)": len(gain_ov),
+        "undecided_gaining_any_citable_basis_record": len(basis_any),
+        "undecided_gaining_lead_only_records": len(lead_only),
+        "lead_only_by_source_job": {k: len(v & lead_only) for k, v in sorted(by_job.items())},
+        "basis_eligible_by_source_job": {k: len({iid for iid, recs in by_order.items() if any(r["job"] == k and r["basis_eligible"] for r in recs)}) for k in sorted(by_job)},
+        "reviewer_sample_low_frdoc_rows_before": len(old_low),
+        "reviewer_sample_low_frdoc_rows_remaining": len(still),
+        "reviewer_sample_low_frdoc_orders_remaining": len({i for i, _ in still}),
         "supplement_existing_declarations": dict(supp), "supplement_basis_eligible_orders": len(supp_orders),
         "diagnosed": {},
         "notice": "Machine reach of citable records only. Whether a record supports a NO is the producers' and reviewers' judgment.",
@@ -227,21 +263,21 @@ def main():
             "non_census": by_order.get(iid, []),
             "overflow": overflow.get(iid, []),
             "non_census_pairs": sorted(a for t, a in nc_pairs if t == iid),
-            "unnamed_held": sorted(a for t, a in nc_pairs if t == iid and a in selected and not B.target_mentions(iid, selected[a]["text"])),
+            "number_not_found_held": sorted(a for t, a in nc_pairs if t == iid and a in selected and not B.target_mentions(iid, selected[a]["text"], signed.get(iid), a.startswith("FRDOC:"))),
             "kit_known_actors": sorted(known.get(iid, set())),
         }
     dest.mkdir(parents=True, exist_ok=True)
     (dest / "REACH.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     with (dest / "REACH_ORDERS.csv").open("w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["instrument_id", "route", "actor_id", "source_job", "evidence_ids", "ending_verb_near_number"])
+        w.writerow(["instrument_id", "route", "actor_id", "source_job", "evidence_ids", "ending_verb_near_number", "basis_eligible"])
         for iid in sorted(by_order):
             for r in by_order[iid]:
-                w.writerow([iid, "non_census_acting_text", r["actor_id"], r["job"], " ".join(r["evidence_ids"]), r["ending_verb_near_number"]])
+                w.writerow([iid, "non_census_acting_text", r["actor_id"], r["job"], " ".join(r["evidence_ids"]), r["ending_verb_near_number"], r["basis_eligible"]])
         for iid in sorted(gain_ov):
             for r in overflow[iid]:
                 if r["windows_naming_target"]:
-                    w.writerow([iid, "census_overflow_window", r["actor_id"], "", " ".join(r["evidence_ids"]), r["ending_verb_near_number"]])
+                    w.writerow([iid, "census_overflow_window", r["actor_id"], "", " ".join(r["evidence_ids"]), r["ending_verb_near_number"], "gate_as_on_main"])
     print(json.dumps({k: v for k, v in result.items() if k != "diagnosed"}, indent=1, sort_keys=True))
 
 

@@ -222,8 +222,13 @@ _QUALIFIED=re.compile(r'(?:\b(?:'+_STATES+r')|\bState|\bGovernor|\bCommonwealth|
                       r'(?:\x27s|’s)?[ \t\n]{0,3}(?:Emergency[ \t\n]{1,3})?\Z')
 # What follows the number: a hyphenated or comma-grouped number ("17-03", "1991-31", "12, 731"), a citation of the
 # Federal Register, CFR, Statutes or U.S. Code ("9066, 7 F.R. 1407"), or a governor as issuer.
-_FOLLOWS_OTHER=re.compile(r'(?:[ ]?-[ ]?\d|,[ ]\d{3}\b|[ \t\n]{0,2}(?:F\.[ ]?R\.|FR\b|C\.?F\.?R\.?\b|Stat\.|U\.[ ]?S\.[ ]?C\.))')
+_FOLLOWS_OTHER=re.compile(r'(?:[ ]?-[ \t\n]{0,2}\d|,[ ]\d{3}\b|[ \t\n]{0,2}(?:F\.[ ]?R\.|FR\b|C\.?F\.?R\.?\b|Stat\.|U\.[ ]?S\.[ ]?C\.)'
+                          r'|[ \t\n]{1,2}(?:hours?|days?|months?|years?|minutes?|percent)\b)')
 _GOVERNOR_AFTER=re.compile(r'\bGovernor\b')
+# Agency Federal Register documents also discuss state programs (implementation plans, state codes): there a
+# state, governor or foreign context in the same sentence, or a state citation right after, refuses the match.
+_AGENCY_STATE_BEFORE=re.compile(r'(?i)\b(?:governor|commonwealth|philippines?|state|states\x27|SIP)\b(?:\x27s)?')
+_AGENCY_STATE_AFTER=re.compile(r'(?i)\b(?:CMR|SIP|state|governor)\b')
 _DATE_AFTER=re.compile(r'\A[ \t\n]{0,2}(?:,|\()?[ \t\n]{0,2}(?:(?:of|dated|on|signed[ \t\n]+on|issued[ \t\n]+on|was[ \t\n]+issued[ \t\n]+on)[ \t\n]{1,3})?'
                        r'(?:'+_MONTH+r'[ \t\n]{1,3}\d{1,2},?[ \t\n]{0,3}(?P<year>\d{4})|(?P<vol>\d{1,3})[ \t\n]{1,2}F\.?[ ]?R\.?[ \t\n]{1,2}\d)',re.I)
 # Regulatory-review boilerplate of modern rules: an old order number here is a dropped-digit misprint of a modern one
@@ -243,7 +248,7 @@ def _dropped_digit(number, others):
     """True when number is another printed five-digit order number with one digit dropped (1266 for 12866)."""
     return any(len(o)==len(number)+1 and any(o[:i]+o[i+1:]==number for i in range(len(o))) for o in others)
 
-def target_mentions(iid, text, signing_date=None):
+def target_mentions(iid, text, signing_date=None, agency=False):
     """Exact spans where a held text prints census order iid by number as an executive-order citation, or None
     when iid has no plain number form (EO:106½, EO:23-1, EO:UN:...).
 
@@ -252,7 +257,8 @@ def target_mentions(iid, text, signing_date=None):
     of the FR, CFR, Statutes or U.S. Code, a bare year after a comma, a state, governor's or foreign order, a
     printed date or FR volume that contradicts the order's signing year, and a dropped-digit misprint of a modern
     order. A miss means only that this check found no number: the text may cite the order by date or in
-    garbled OCR."""
+    garbled OCR. ``agency`` (an agency Federal Register document) also refuses a state, governor or foreign
+    context in the same sentence before the citation, or a state citation within 80 characters after it."""
     m=re.fullmatch(r'EO:(\d+)([A-Za-z]?)',iid or '')
     if not m or not isinstance(text,str):return None
     digits,suffix=m[1],m[2]
@@ -270,6 +276,9 @@ def target_mentions(iid, text, signing_date=None):
         cue=_PRECEDES.search(before)
         if not cue:continue
         if _QUALIFIED.search(before[max(0,cue.start()-60):cue.start()]):continue
+        if agency:
+            sentence=re.split(r'[.;:]\s',before[max(0,cue.start()-160):cue.start()])[-1]
+            if _AGENCY_STATE_BEFORE.search(sentence) or _AGENCY_STATE_AFTER.search(after[:80]):continue
         if 1700<=int(digits)<=2100 and re.search(r',[ \t\n]{0,3}\Z',before):continue  # "Executive Order 6910, 1934"
         date=_DATE_AFTER.match(after)
         if date and signed:
@@ -308,7 +317,7 @@ def _actor_context(iid, actor, ar, acts, evidence, missing, signing_date=None):
     and WINDOW_BYTES bytes. A non-census acting text is routed only when the lexical check finds the number, and is
     basis_eligible only when it is also an official printing. Returns the actor_contexts entry, or None."""
     text=ar['text'];acting=ar.get('role')==ACTING_ROLE
-    mentions=target_mentions(iid,text,signing_date) or []
+    mentions=target_mentions(iid,text,signing_date,actor.startswith('FRDOC:')) or []
     if acting and not mentions:
         missing.append('Acting text of '+actor+': '+NOT_FOUND_LEXICAL+ar['text_path'])
         return None
@@ -641,7 +650,7 @@ def build(repo, out, cache=None):
             ar=acting_selected.get(actor)
             if ar is None:
                 missing_by[target].append('Acting identity absent from census: '+actor);continue
-            if not target_mentions(target,ar['text'],selected.get(target,{}).get('signing_date')):
+            if not target_mentions(target,ar['text'],selected.get(target,{}).get('signing_date'),actor.startswith('FRDOC:')):
                 # A lexical miss is not a finding: the text may cite the order by date or in garbled OCR.
                 unnamed_pairs.add((target,actor))
                 missing_by[target].append('Acting text of '+actor+': '+NOT_FOUND_LEXICAL+ar['text_path']);continue
