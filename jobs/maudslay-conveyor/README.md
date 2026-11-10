@@ -73,6 +73,40 @@ already done.
 | complete | Writes the review records and manifest, then runs `kit.py complete`, adding `--publish` only when asked. The publication mode is `own_claims`, or `replacement_proposal` when `--replacement-proposal` is given. With `--replacement-proposal`, `--publication-mode own_claims` is allowed only when every order's existing canonical claim is in a `research/readiness/claims/<agent>-*.jsonl` file whose prefix is this run's `--agent` (Papinian's c01 precedent). Otherwise the run is refused before any work, naming the orders and their owning files. Under owner ruling D-20261110-papinian-board-bytes, another agent's corrected claims become canonical only by a named owner decision. If a `complete-vN/PUBLICATION.json` already says `written: true` (a run killed after publishing), that publication is adopted and recorded instead | nira-sweep `make_completion.py` |
 | measure | Writes `MEASURES.json`, upserts the batch line in `RUN/BATCHES.json`, and runs `bentham.py gate` | Bentham README "During a wave" |
 
+### Undecided orders: the status-overlay stage
+
+For an undecided member, `kit.py apply` returns `awaiting_status_review` and no claim. Between check and plant the
+conveyor carries such a member through the kit's overlay route. Each step is a ledger record, skipped on resume.
+
+| Step | What it does |
+|---|---|
+| status_install | The producer's `STATUS_DECISION.json` goes into `packet/undecided/EO_N/`, only over the kit's blank sheet (the blank is kept in `prepared/undecided/`) |
+| status_gate | The kit's `_decision_errors` decides who reaches the status reviewer |
+| status_review | Fresh `reviewer_S` sessions, one per `--review-chunk`, with the usual blinding scan and caps; each folder holds only the prompt (`prompts/status_review.txt`) and blank sheets from `kit overlay-review-sheet`. The reviewer's name (default `maudslay-status-reviewer-BATCH`, or `reviewer_S.reviewer_name`) must differ from both arms, `--agent` and the producer |
+| status_take | The review is copied to `overlay/EO_N/review-vK/` and must pass the kit's `_review_errors` and say accept |
+| overlay_propose | `kit overlay-propose` with the producer's lifecycle sheet into a new `proposal-vK`; a complete bundle left by a killed run is adopted, never rewritten |
+| overlay_assemble | Mechanical reconfirmation (`RECONFIRMATION.json`, only when the sheet differs from the producer's approved one in `approved`, `dossier_sha256` and `whole_order_status` alone), then `kit overlay-assemble` and `kit overlay-check` |
+
+The working claims then join the existing plant → review → controls → reveal → agree → complete path, unchanged. An
+overlay member carries `overlay_bundle` (evidence, decision, review, proposal refs) and must publish as
+`replacement_proposal`; `own_claims` is refused before any producer is paid. A status reject leaves the order
+unresolved. The minimum budget counts the status-reviewer sessions.
+
+### Producer routes and controls
+
+- **`--producer nalimov`.** The Nalimov drafter (`jobs/nalimov-tablebase/drafter.py`) replaces the producer stage at
+  zero tokens. Orders it refuses stay unresolved with its blocker, and there are no repair rounds. Each blind folder
+  gets `NALIMOV_CONTEXT.json`, holding only the cited acting orders' held text. It carries no claim content, so it
+  cannot reveal a plant by comparison.
+- **`--controls typed`.** The default for the Nalimov route and for every undecided batch. It plants five kinds: date
+  shift, later event removed, partial end presented as whole, wrong order's text, and swapped ending source.
+  - Each kind has its own catch terms.
+  - Each set gets at least two kinds, one of them status-determining.
+  - Each `CONTROL_ADJUDICATION` records `control_kind`.
+  - Date-only plants (`--controls date`) remain for other worker batches.
+- **MEASURES.json** adds the draft and status_review stages, list-price dollars from
+  `jobs/necker-costs/PRICES.json`, and dollars per filed claim. Dollars per adopted status are filled after adoption.
+
 ## Blinding is checked, not just asked for
 
 Workers must emit events: Claude runs `--output-format stream-json --verbose`, and Codex runs `--json`. The conveyor

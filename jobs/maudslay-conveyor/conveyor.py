@@ -13,6 +13,9 @@ resumable state machine.
 
 Stages, each recorded in BATCH/LEDGER.jsonl and skipped on a re-run once done: reserve, prepare, dispatch, render,
 produce, collect, check (with repair rounds), plant, review, controls, reveal, agree, complete, measure. See README.md.
+Undecided orders (status unset; the kit's apply leaves them awaiting_status_review) take the status-overlay route
+between check and plant: status_install, status_gate, status_review (an independent status reviewer), status_take,
+overlay_propose (with producer reconfirmation) and overlay_assemble; their working claims then join plant unchanged.
 
 Workers never run inside the repository: each gets a fresh, empty folder under the scratch root (outside the
 repository), so no worker loads the repository's CLAUDE.md or AGENTS.md. Review sets, the sealed control key and
@@ -160,6 +163,13 @@ def read_jsonl(path):
             except ValueError:
                 pass
     return out
+
+
+def read_text_or(path, default=""):
+    try:
+        return Path(path).read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return default
 
 
 def write_jsonl(path, rows):
@@ -862,6 +872,8 @@ class Batch:
         sessions = -(-n // chunk) if chunk else 1
         prod = 0.0 if self.cfg.get("producer") == "nalimov" else float(self.cap("producer", "usd"))
         review = sum(float(self.cap(f"reviewer_{a}", "usd")) * (sessions + 1) for a in "AB")
+        if "undecided" in str(self.cfg.get("action") or ""):
+            review += float(self.cap("reviewer_A", "usd")) * sessions   # status-reviewer sessions (overlay stage)
         return round(n * prod * (1 + int(self.cfg.get("repair_rounds") or 0)) + review, 2)
 
     def check_budget(self):
@@ -1053,6 +1065,12 @@ class Batch:
         own = re.escape(Path(folder).name.lower())
         rules = [(path_forms(self.scratch), re.compile(rf"^/workers/{own}(/.*)?$"), "outside its own folder"),
                  (path_forms(self.keys), None, "control folder")]
+        if role == "reviewer_S":
+            # The status reviewer reads each member's frozen evidence and the producer's status decision, nothing else.
+            batch = path_forms(self.dir) + [self.rel(self.dir).lower()]
+            rules.append((batch, re.compile(r"^/packet(/packet\.json|/undecided(/[^/]+(/(evidence|status_decision)\.json)?)?)?$"),
+                          "batch material"))
+            return rules
         if role.startswith("reviewer"):
             batch = path_forms(self.dir) + [self.rel(self.dir).lower()]
             rules.append((batch, re.compile(r"^/packet(/packet\.json|/undecided(/[^/]+(/evidence\.json)?)?)?$"),
@@ -1404,7 +1422,7 @@ class Batch:
                "<<SCRATCH_ROOT>>": self.scratch.as_posix()}
         for k, v in sub.items():
             t = t.replace(k, v)
-        return t + extra
+        return t + self.undecided_note(iid, folder) + extra
 
     def render(self, targets, views):
         cap = int(self.cfg["prompt_cap_chars"])
@@ -1429,6 +1447,7 @@ class Batch:
             fields, rows = read_csv(self.dir / "prepared" / name)
             write_csv(folder / name, fields, [r for r in rows if r.get("instrument_id") == iid])
         (folder / "RATIONALES.json").write_text("{}\n", encoding="utf-8")
+        self.seed_status_decision(iid, folder)
 
     def produce_round(self, rnd, iids, views, folders, errors=None):
         items = []
@@ -1642,6 +1661,384 @@ class Batch:
                     "claims": len(claims)}
         return self.ledger.once(key, go)
 
+    # -- status overlay (undecided orders) ----------------------------------------------------------------
+    # The hand route of the Papinian u01b and Haloander waves, as stages: the producer's status decision is installed
+    # in the packet, an independent status reviewer accepts or rejects it, the kit builds an isolated proposal bundle
+    # (overlay-propose), the producer's lifecycle sheet is reconfirmed for the new working dossier, and the kit
+    # assembles and checks the working claim. The conveyor judges nothing: the kit's own gates decide, and a member
+    # any step refuses stays unresolved with the reason. No status is assigned, adopted or published here.
+
+    def undecided_dir(self, iid):
+        return self.packet / "undecided" / slug(iid)
+
+    def undecided(self, ids):
+        return [i for i in ids if (self.undecided_dir(i) / "EVIDENCE.json").exists()]
+
+    def undecided_note(self, iid, folder):
+        """Extra producer instructions for an undecided order (empty for a decided one)."""
+        d = self.undecided_dir(iid)
+        if not (d / "EVIDENCE.json").exists():
+            return ""
+        if Path(folder).is_dir() and not (Path(folder) / "STATUS_DECISION.json").exists():
+            # A repair round: the status decision was installed from the first round and is not repaired here.
+            return ("\n\nUNDECIDED ORDER: " + iid + "'s status decision was taken from your first round; this repair "
+                    "concerns the lifecycle sheet only. Do not write a STATUS_DECISION.json.")
+        return ("\n\nUNDECIDED ORDER: " + iid + " has no settled whole-order status, so you also write its status "
+                "decision.\nSTATUS EVIDENCE: " + (d / "EVIDENCE.json").as_posix() + "\nSTATUS DECISION: "
+                + (Path(folder) / "STATUS_DECISION.json").as_posix() + "\n"
+                "STATUS EVIDENCE is the frozen evidence (load it once in a script; never cat it whole). STATUS DECISION is "
+                "a blank sheet in your folder: fill it in place, keeping schema, instrument_id, history_sha256 and "
+                "evidence_sha256 unchanged. Set agent to " + self.cfg["agent"] + "; recommended_provisional_status yes or "
+                "no; basis_evidence_ids the exact held evidence ids the status rests on (for no, an ACT:, TERM: or "
+                "ACTOR_TEXT: record that ends the whole order; for yes, a CURRENT: record and "
+                "current_predicate_checked_through 2026-10-14); observations_reviewed every id in "
+                "history_packet.history.observation_ids; conflict_resolutions an explicit reason for every history flag; "
+                "material_gaps [] only when none remains; approved, identity_confirmed, basis_review_confirmed, "
+                "earlier_endings_checked, partial_scope_checked and savings_checked true only when done; and a "
+                "substantive rationale true of this order. If you block or leave the order unresolved, leave the status "
+                "decision blank. An independent status reviewer checks it; your decisions.csv row stays the lifecycle "
+                "sheet as usual.")
+
+    def seed_status_decision(self, iid, folder):
+        """A producer of an undecided order gets the packet's blank STATUS_DECISION.json in its own folder."""
+        src = self.undecided_dir(iid) / "STATUS_DECISION.json"
+        if (self.undecided_dir(iid) / "EVIDENCE.json").exists() and src.exists():
+            shutil.copyfile(src, Path(folder) / "STATUS_DECISION.json")
+
+    @staticmethod
+    def blank_decision(d):
+        """True for the kit's blank producer sheet (status_overlay.extend_decision): nothing judged yet."""
+        return (isinstance(d, dict) and d.get("approved") is False and not d.get("recommended_provisional_status")
+                and not str(d.get("rationale") or "").strip() and not d.get("basis_evidence_ids")
+                and not d.get("observations_reviewed"))
+
+    def install_status_decisions(self, produced, ids):
+        """Copy each producer's STATUS_DECISION.json (from its own folder) into the packet's undecided/EO_N/, only
+        over the kit's blank sheet; a non-blank packet sheet that differs is refused, never overwritten. The blank is
+        kept in prepared/undecided/. Producer folders are only read."""
+        installed, skipped, refused = [], {}, {}
+        for iid in self.undecided(ids):
+            pkt = self.undecided_dir(iid) / "STATUS_DECISION.json"
+            folder = (produced.get(iid) or {}).get("folder")
+            src = Path(folder) / "STATUS_DECISION.json" if folder else None
+            if not src or not src.exists():
+                skipped[iid] = "the producer wrote no status decision"
+                continue
+            new, cur = read_json(src), read_json(pkt)
+            if not isinstance(new, dict):
+                skipped[iid] = "the producer's STATUS_DECISION.json is not one JSON object"
+            elif isinstance(cur, dict) and canon(new) == canon(cur):
+                if self.blank_decision(cur):
+                    skipped[iid] = "the producer left the status decision blank"
+                else:
+                    installed.append(iid)  # installed by an earlier run
+            elif cur is None or self.blank_decision(cur):
+                keep = self.dir / "prepared" / "undecided" / f"{slug(iid)}.STATUS_DECISION.blank.json"
+                if pkt.exists() and not keep.exists():
+                    keep.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(pkt, keep)
+                tmp = pkt.with_name(pkt.name + ".tmp")
+                shutil.copyfile(src, tmp)
+                os.replace(tmp, pkt)
+                installed.append(iid)
+            else:
+                refused[iid] = ("the packet's STATUS_DECISION.json is neither the kit's blank sheet nor this "
+                                "producer's; not installed")
+        return {"installed": installed, "skipped": skipped, "refused": refused}
+
+    def awaiting_status(self, chk):
+        """Members kit apply assembled no claim for because their status is unset (outcome awaiting_status_review)."""
+        audit = read_json(self.repo / chk["applied"] / "AUDIT.json", []) or []
+        return sorted(r["instrument_id"] for r in audit if isinstance(r, dict)
+                      and r.get("outcome") == "awaiting_status_review" and not r.get("errors"))
+
+    def kit_overlay(self):
+        """The claim kit's own status gates (jobs/claim-kit/status_overlay.py: _decision_errors, _review_errors), from
+        the batch's repository, else from the conveyor's own checkout (a fixture repository holds no kit)."""
+        for root in (self.repo, REPO):
+            folder = root / "jobs/claim-kit"
+            if (folder / "status_overlay.py").exists():
+                break
+        else:
+            raise Fail(f"the status-overlay route needs {self.repo / 'jobs/claim-kit/status_overlay.py'}")
+        if str(folder) not in sys.path:
+            sys.path.insert(0, str(folder))
+        import importlib
+        mod = importlib.import_module("status_overlay")
+        self.gate_module = Path(mod.__file__).resolve().as_posix()
+        return mod
+
+    def status_reviewer_name(self):
+        w = self.workers.get("reviewer_S") or {}
+        return str(w.get("reviewer_name") or f"maudslay-status-reviewer-{self.name}").strip()
+
+    def check_status_reviewer(self):
+        """The status reviewer must differ by name from the producer and from both blind arms (Respondendi)."""
+        name = self.status_reviewer_name()
+        others = {self.reviewer_name(a): f"blind arm {a}" for a in "AB"}
+        others[self.cfg["agent"]] = "the producer agent (--agent)"
+        if self.cfg.get("producer") == "nalimov":
+            others[getattr(nalimov_drafter(self.repo), "AGENT", "nalimov-script")] = "the Nalimov drafter"
+        for other, who in others.items():
+            if name.casefold() == str(other).strip().casefold():
+                raise Fail(f"the status reviewer's name {name!r} equals {who}'s; the status reviewer must be distinct "
+                           "by name from the producer and from both blind arms (set reviewer_S.reviewer_name)")
+
+    def check_overlay_publication(self):
+        """Undecided members complete only as an isolated replacement proposal outside canonical readiness."""
+        if (self.cfg.get("publication_mode") or "own_claims") != "replacement_proposal":
+            raise Fail("undecided orders go out through the status-overlay route, which the kit completes only as an "
+                       "isolated replacement_proposal publication (claim-kit COMPLETION.md); this batch's publication "
+                       "mode is own_claims. Start a new batch with --replacement-proposal and a --publication path under "
+                       "research/ outside research/readiness")
+        pub = Path(self.cfg["publication"]).as_posix()
+        if not pub.startswith("research/") or pub.startswith("research/readiness/"):
+            raise Fail(f"--publication {pub} must be under research/ and outside research/readiness for a replacement "
+                       "proposal (claim-kit COMPLETION.md); start a new batch with such a path")
+
+    def status_gate(self, waiting):
+        """Which awaiting members go to the status reviewer: those whose installed decision passes the kit's own
+        producer gate (status_overlay._decision_errors). Zero tokens."""
+        so = self.kit_overlay()
+        refused = (self.ledger.data("status_install") or {}).get("refused") or {}
+        review, notes = [], {}
+        for iid in waiting:
+            if iid in refused:
+                notes[iid] = "status decision not installed: " + refused[iid]
+                continue
+            d = self.undecided_dir(iid)
+            ev, dec = read_json(d / "EVIDENCE.json"), read_json(d / "STATUS_DECISION.json")
+            try:
+                errs = so._decision_errors(dec, ev)
+            except (ValueError, KeyError, TypeError, AttributeError) as exc:
+                errs = [f"{type(exc).__name__}: {exc}"]
+            if errs:
+                notes[iid] = "the producer's status decision fails the kit's status gate: " + "; ".join(map(str, errs[:8]))
+            else:
+                review.append(iid)
+        return {"review": review, "notes": notes, "gate_module": self.gate_module}
+
+    def status_sheets(self, folder, part, name):
+        """The status reviewer's folder: one blank STATUS_REVIEW_EO_N.json per member, from kit overlay-review-sheet."""
+        for iid in part:
+            d = self.undecided_dir(iid)
+            out = Path(folder) / f"STATUS_REVIEW_{slug(iid)}.json"
+            rc, _ = self.tool("kit", ["overlay-review-sheet", "--evidence", d / "EVIDENCE.json", "--decision",
+                                      d / "STATUS_DECISION.json", "--reviewer", name, "--write", out],
+                              log=f"status-sheet-{Path(folder).name}-{slug(iid)}")
+            if rc or not out.exists():
+                raise Fail(f"kit overlay-review-sheet failed for {iid} (exit {rc}); see logs/status-sheet-*")
+
+    def status_prompt(self, folder, part):
+        w = self.workers["reviewer_S"]
+        folder = Path(folder)
+        members = "\n".join(
+            f"MEMBER: {iid} | EVIDENCE: {(self.undecided_dir(iid) / 'EVIDENCE.json').as_posix()} | DECISION: "
+            f"{(self.undecided_dir(iid) / 'STATUS_DECISION.json').as_posix()} | SHEET: "
+            f"{(folder / ('STATUS_REVIEW_' + slug(iid) + '.json')).as_posix()}" for iid in part)
+        t = (PROMPTS / "status_review.txt").read_text(encoding="utf-8")
+        sub = {"<<REPO>>": self.repo.as_posix(), "<<REPO_BASH>>": bash_path(self.repo), "<<MEMBERS>>": members,
+               "<<REVIEWER>>": self.status_reviewer_name(), "<<MODEL_FAMILY>>": w.get("model_family", ""),
+               "<<SCRATCH>>": (folder / "scratch").as_posix(), "<<BATCH>>": self.rel(self.dir),
+               "<<SCRATCH_ROOT>>": self.scratch.as_posix()}
+        for k, v in sub.items():
+            t = t.replace(k, v)
+        return t
+
+    def status_review(self, members):
+        """One fresh status-reviewer session per --review-chunk members, each in its own folder holding only its
+        prompt and the blank review sheets. Returns {iid: worker record}. No control exists yet (plant comes later)."""
+        name = self.status_reviewer_name()
+        chunk = int(self.cfg.get("review_chunk") or 0) or len(members)
+        parts = [members[i:i + chunk] for i in range(0, len(members), chunk)]
+        items = [{"key": f"status_review:S{k}", "label": f"{self.name}-status-review-S{k}", "role": "reviewer_S",
+                  "id": f"S{k}", "setup": lambda folder, part=part: self.status_sheets(folder, part, name),
+                  "render": lambda folder, part=part: self.status_prompt(folder, part)} for k, part in enumerate(parts)]
+        res = self.pool(items, "status_review", retry_failed=True)
+        bad = {k: r["blinding_violations"] for k, r in res.items() if r.get("blinding_violations")}
+        if bad:
+            raise Stop(f"status review: blinding broken, session(s) {sorted(bad)} named forbidden paths: "
+                       f"{next(iter(bad.values()))[:2]}; this batch cannot be completed")
+        failed = [k for k, r in res.items() if not r.get("ok")]
+        if failed:
+            raise Stop(f"status review: worker(s) {failed} did not finish; re-run to retry them")
+        return {iid: res[f"S{k}"] for k, part in enumerate(parts) for iid in part}
+
+    @staticmethod
+    def next_version(base, stem):
+        k = 1
+        while (base / f"{stem}-v{k}").exists():
+            k += 1
+        return base / f"{stem}-v{k}"
+
+    def take_status_review(self, iid, rec):
+        """Copy one filled review into BATCH/overlay/EO_N/review-vK/ and test it with the kit's own review gate
+        (status_overlay._review_errors). Accepted only if the reviewer accepted and the gate passes."""
+        so = self.kit_overlay()
+        src = Path(rec["folder"]) / f"STATUS_REVIEW_{slug(iid)}.json"
+        if not src.exists():
+            raise Fail(f"scratch lost: {rec.get('label')} finished, but its review sheet {src.as_posix()} is gone")
+        base = self.dir / "overlay" / slug(iid)
+        dest = next((d / "STATUS_REVIEW.json" for d in sorted(base.glob("review-v*"))
+                     if (d / "STATUS_REVIEW.json").exists() and fsha(d / "STATUS_REVIEW.json") == fsha(src)), None)
+        if dest is None:
+            dest = self.next_version(base, "review") / "STATUS_REVIEW.json"
+            dest.parent.mkdir(parents=True)
+            shutil.copyfile(src, dest)
+        review = read_json(dest)
+        d = self.undecided_dir(iid)
+        ev, dec = read_json(d / "EVIDENCE.json"), read_json(d / "STATUS_DECISION.json")
+        name = self.status_reviewer_name()
+        reason = None
+        if not isinstance(review, dict):
+            reason = "the status review is not one JSON object"
+        elif str(review.get("reviewer") or "").strip() != name:
+            reason = f"the status review names reviewer {review.get('reviewer')!r}, not the status reviewer {name!r}"
+        elif review.get("decision") == "reject":
+            reason = ("the independent status reviewer rejected the producer's status decision: "
+                      + str(review.get("rationale") or "")[:600])
+        else:
+            try:
+                errs = so._review_errors(review, dec, ev)
+            except (ValueError, KeyError, TypeError, AttributeError) as exc:
+                errs = [f"{type(exc).__name__}: {exc}"]
+            if errs:
+                reason = "the status review fails the kit's review gate: " + "; ".join(map(str, errs[:8]))
+        return {"accepted": reason is None, "reason": reason, "review": self.rel(dest), "reviewer": name,
+                "decision": review.get("decision") if isinstance(review, dict) else None}
+
+    def overlay_propose(self, iid, review_rel, applied_rel):
+        """kit overlay-propose with the producer's applied lifecycle sheet, into a new BATCH/overlay/EO_N/proposal-vK
+        (a complete bundle from an interrupted earlier call on the same inputs is adopted, never written twice)."""
+        d = self.undecided_dir(iid)
+        sheet = self.repo / applied_rel / "decisions" / f"{slug(iid)}.json"
+        review = self.repo / review_rel
+        if not sheet.exists():
+            return {"error": f"kit apply wrote no lifecycle sheet for {iid} ({self.rel(sheet)})"}
+        want = {"STATUS_REVIEW.json": read_json(review), "STATUS_DECISION.json": read_json(d / "STATUS_DECISION.json"),
+                "EVIDENCE.json": read_json(d / "EVIDENCE.json"), "LIFECYCLE_SOURCE_DECISION.json": read_json(sheet)}
+        base = self.dir / "overlay" / slug(iid)
+        for b in sorted(base.glob("proposal-v*")):
+            if (b / "TELEMETRY.json").exists() and all(canon(read_json(b / n)) == canon(v) for n, v in want.items()):
+                return {"bundle": self.rel(b), "adopted": True}
+        dest = self.next_version(base, "proposal")
+        rc, out = self.tool("kit", ["overlay-propose", "--evidence", d / "EVIDENCE.json", "--decision",
+                                    d / "STATUS_DECISION.json", "--review", review, "--lifecycle-sheet", sheet,
+                                    "--write", dest], log=f"overlay-propose-{slug(iid)}-{dest.name}")
+        if rc or not (dest / "PROMOTION_PROPOSAL.json").exists():
+            err = read_text_or(self.dir / "logs" / f"overlay-propose-{slug(iid)}-{dest.name}.err")
+            return {"error": f"kit overlay-propose refused it (exit {rc}): {(out.strip() or err.strip())[-600:]}"}
+        # A kill right after this record leaves a written bundle for the next run to adopt.
+        self.ledger.mark(f"overlay_bundle:{slug(iid)}", "written", bundle=self.rel(dest))
+        return {"bundle": self.rel(dest), "adopted": False}
+
+    def overlay_assemble(self, iid, bundle_rel, applied_rel):
+        """Producer reconfirmation, then kit overlay-assemble and overlay-check, all inside the bundle.
+
+        write_bundle resets the lifecycle sheet's `approved` because the working dossier (with the reviewed working
+        status) is a new version. The conveyor reconfirms mechanically only when the bundle's sheet equals the
+        producer's own approved applied sheet in everything but approved, dossier_sha256 and whole_order_status; it
+        writes that on a copy (LIFECYCLE_DECISION.reconfirmed.json) with RECONFIRMATION.json saying it was the script."""
+        bundle = self.repo / bundle_rel
+        work = read_json(bundle / "LIFECYCLE_DECISION.json")
+        src = read_json(self.repo / applied_rel / "decisions" / f"{slug(iid)}.json")
+        envelope = ("approved", "dossier_sha256", "whole_order_status")
+        strip = lambda s: {k: v for k, v in s.items() if k not in envelope} if isinstance(s, dict) else None
+        if not isinstance(work, dict) or not isinstance(src, dict) or strip(work) is None or strip(work) != strip(src):
+            return {"error": "the bundle's lifecycle sheet differs from the producer's applied sheet beyond the status "
+                             "envelope; producer reconfirmation is needed and the script does not give it"}
+        if src.get("approved") is not True:
+            return {"error": "the producer's applied lifecycle sheet is not approved; nothing to reconfirm"}
+        producer = self.cfg.get("producer") or "workers"
+        note = {"schema": "maudslay-producer-reconfirmation/v1", "instrument_id": iid, "producer": producer,
+                "reconfirmed_by": "maudslay-conveyor (script)", "kind": "script_reconfirmation",
+                "source_sheet_sha256": canon(src), "working_sheet_sha256": canon(work),
+                "changed_fields": sorted(k for k in envelope if work.get(k) != src.get(k)),
+                "note": ("The Nalimov drafter is a script producer; this script reconfirmation is its own." if producer ==
+                         "nalimov" else "A mechanical reconfirmation for a model producer: the working sheet equals the "
+                         "producer's own approved sheet except approved, dossier_sha256 and whole_order_status (the "
+                         "reviewed status envelope). It is not a new producer judgment.")}
+        sheet = dict(work, approved=True)
+        note["reconfirmed_sheet_sha256"] = canon(sheet)
+        for name, value in (("RECONFIRMATION.json", note), ("LIFECYCLE_DECISION.reconfirmed.json", sheet)):
+            p = bundle / name
+            if not p.exists():
+                write_json(p, value)
+            elif canon(read_json(p)) != canon(value):
+                return {"error": f"{self.rel(p)} exists with other content; not overwritten"}
+        claims = bundle / "CLAIMS.working.jsonl"
+        if not claims.exists():
+            rc, out = self.tool("kit", ["overlay-assemble", bundle, "--sheet", bundle / "LIFECYCLE_DECISION.reconfirmed.json",
+                                        "--write", claims], log=f"overlay-assemble-{slug(iid)}-{bundle.name}")
+            if rc or not claims.exists():
+                err = read_text_or(self.dir / "logs" / f"overlay-assemble-{slug(iid)}-{bundle.name}.err")
+                return {"error": f"kit overlay-assemble refused it (exit {rc}): {(out.strip() or err.strip())[-600:]}"}
+        rc, out = self.tool("kit", ["overlay-check", bundle, claims], log=f"overlay-check-{slug(iid)}-{bundle.name}")
+        rows = read_jsonl(claims)
+        if rc or len(rows) != 1:
+            err = read_text_or(self.dir / "logs" / f"overlay-check-{slug(iid)}-{bundle.name}.err")
+            return {"error": f"kit overlay-check failed (exit {rc}): {(out.strip() or err.strip())[-600:]}"}
+        return {"claims": self.rel(claims), "claim_sha256": canon(rows[0]), "reconfirmation": self.rel(bundle / "RECONFIRMATION.json")}
+
+    def overlay_stage(self, chk):
+        """The status-overlay route for every awaiting member. Returns ({iid: {"bundle", "claims"}}, {iid: reason})."""
+        waiting = self.awaiting_status(chk)
+        if not waiting:
+            return {}, {}
+        self.check_overlay_publication()
+        L = self.ledger
+        gate = L.once("status_gate", lambda: self.status_gate(waiting))
+        notes = dict(gate["notes"])
+        if not gate["review"]:
+            return {}, notes
+        records = self.status_review(gate["review"])
+        overlay = {}
+        for iid in gate["review"]:
+            s = slug(iid)
+            take = L.once(f"status_take:{s}", lambda iid=iid: self.take_status_review(iid, records[iid]))
+            if not take["accepted"]:
+                notes[iid] = take["reason"]
+                continue
+            prop = L.once(f"overlay_propose:{s}", lambda iid=iid, r=take["review"]: self.overlay_propose(iid, r, chk["applied"]))
+            if prop.get("error"):
+                notes[iid] = prop["error"]
+                continue
+            asm = L.once(f"overlay_assemble:{s}", lambda iid=iid, b=prop["bundle"]: self.overlay_assemble(iid, b, chk["applied"]))
+            if asm.get("error"):
+                notes[iid] = asm["error"]
+                continue
+            overlay[iid] = {"bundle": prop["bundle"], "claims": asm["claims"]}
+        return overlay, notes
+
+    def nalimov_context(self, ids):
+        """--producer nalimov: the actor-batched held text of the genuine drafts (packets.review_bundle), from the
+        DRAFT.json files of the draft folders and the packet's frozen evidence. Built from genuine drafts only, so it
+        carries no control material. None when nothing can be built."""
+        evidence, drafted = {}, []
+        for iid in sorted(ids):
+            dr = read_json(self.scratch / "workers" / f"{self.name}-draft-{slug(iid)}" / "DRAFT.json")
+            ev = read_json(self.undecided_dir(iid) / "EVIDENCE.json")
+            if isinstance(dr, dict) and not dr.get("blockers") and dr.get("facts") and isinstance(ev, dict):
+                drafted.append(dr)
+                evidence[iid] = ev
+        if not drafted:
+            return None
+        nalimov_drafter(self.repo)  # puts jobs/nalimov-tablebase on sys.path
+        import importlib
+        try:
+            return importlib.import_module("packets").review_bundle(drafted, evidence)
+        except (ValueError, KeyError, TypeError) as exc:
+            print(json.dumps({"batch": self.name, "nalimov_context": f"not built: {type(exc).__name__}: {exc}"}))
+            return None
+
+    def reviewer_context(self, folder, src, mode):
+        """NALIMOV_CONTEXT.json in a blind-review folder (--producer nalimov only), for that set's orders."""
+        if mode != "blind" or self.cfg.get("producer") != "nalimov":
+            return
+        ctx = self.nalimov_context({c.get("instrument_id") for c in read_jsonl(src)})
+        if ctx:
+            write_json(Path(folder) / "NALIMOV_CONTEXT.json", ctx)
+
     # -- review -------------------------------------------------------------------------------------------
     def reviewer_name(self, arm):
         return f"maudslay-blind-reviewer-{self.name}-{arm}"
@@ -1674,6 +2071,11 @@ class Batch:
                "<<REVIEWER>>": self.reviewer_name(arm), "<<MODEL_FAMILY>>": w.get("model_family", ""), "<<MODE>>": mode}
         for k, v in sub.items():
             t = t.replace(k, v)
+        if (folder / "NALIMOV_CONTEXT.json").exists():
+            t += ("\n\nCONTEXT: " + (folder / "NALIMOV_CONTEXT.json").as_posix() + " (in your own folder) holds, for each "
+                  "acting instrument the claims cite, its held text once (whole, or windows of a long text). It is a "
+                  "convenience copy of held source text, not evidence and not a verdict: check every claim against the "
+                  "held source bytes as above and judge it on its merits.")
         return t
 
     def run_reviews(self, mode, sets):
@@ -1685,7 +2087,8 @@ class Batch:
             arm = name[0]
             items.append({"key": f"{tag}:{name}", "label": f"{self.name}-{tag}-{name}", "role": f"reviewer_{arm}",
                           "id": name, "render": lambda folder, arm=arm: self.reviewer_prompt(arm, folder, mode),
-                          "setup": lambda folder, src=src: shutil.copyfile(src, folder / dest)})
+                          "setup": lambda folder, src=src: (shutil.copyfile(src, folder / dest),
+                                                            self.reviewer_context(folder, src, mode))})
         res = self.pool(items, tag, retry_failed=True)
         bad = {k: r["blinding_violations"] for k, r in res.items() if r.get("blinding_violations")}
         if bad:
@@ -1747,7 +2150,9 @@ class Batch:
 
     # -- completion manifest (port of research/excavator/claude-nira-sweep-2026-10-29/make_completion.py,
     #    with Papinian finish_pair.py's two-arm rule) -----------------------------------------------------
-    def manifest(self, applied, key, agree, adjudicator, pub, files):
+    def manifest(self, applied, key, agree, adjudicator, pub, files, overlay=None, notes=None):
+        """overlay: {iid: {"bundle", "claims"}} for undecided members on the status-overlay route; notes: {iid: reason}
+        for members that route left unresolved."""
         ref = lambda p, line=None: dict({"path": self.rel(p), "sha256": fsha(p)}, **({"line": line} if line else {}))
         lines = lambda p: {r.get("claim_sha256"): (i, r) for i, r in enumerate(read_jsonl(p), 1)}
         cpath = applied / "CLAIMS.proposed.jsonl"
@@ -1757,6 +2162,13 @@ class Batch:
                 c = json.loads(l)
                 claims[c["instrument_id"]] = (i, canon(c))
                 agents.add((c.get("claim_kit") or {}).get("agent"))
+        overlay, notes = overlay or {}, notes or {}
+        cfile = {iid: cpath for iid in claims}
+        for iid, o in overlay.items():
+            p = self.repo / o["claims"]
+            c = read_jsonl(p)[0]
+            claims[iid], cfile[iid] = (1, canon(c)), p
+            agents.add((c.get("claim_kit") or {}).get("agent"))
         if len(agents) != 1:
             raise Fail(f"claims name more than one producer agent: {sorted(map(str, agents))}")
         idx = {k: lines(p) for k, p in files.items()}
@@ -1767,7 +2179,8 @@ class Batch:
         for row in drows:
             iid = row["instrument_id"]
             if row["outcome"] != "submit" or iid not in claims:
-                reason = row.get("unresolved_material_gaps") or row.get("research_rationale") or row["outcome"]
+                reason = (notes.get(iid) or row.get("unresolved_material_gaps") or row.get("research_rationale")
+                          or row["outcome"])
                 members.append({"instrument_id": iid, "outcome": "blocked", "reason": reason})
                 continue
             line, sha = claims[iid]
@@ -1779,8 +2192,11 @@ class Batch:
             hit = idx[(mode, a["arm"])].get(sha)
             if not hit:
                 raise Fail(f"no {mode} record for {iid} in arm {a['arm']}")
-            m = {"instrument_id": iid, "outcome": "submit", "claim_sha256": sha, "claim": ref(cpath, line),
+            m = {"instrument_id": iid, "outcome": "submit", "claim_sha256": sha, "claim": ref(cfile[iid], line),
                  "publication_kind": "whole_case", "packet": pk}
+            if iid in overlay:
+                bundle = self.repo / overlay[iid]["bundle"]
+                m["overlay_bundle"] = {k: ref(bundle / n) for k, n in OVERLAY_FILES.items()}
             m["after_reveal_review" if iid in ctrl else "review"] = ref(files[(mode, a["arm"])], hit[0])
             members.append(m)
         out = self.packet / "completion"
@@ -1795,17 +2211,20 @@ class Batch:
             hit = idx[("BLIND_REVIEW", "A")][k["planted"]]
             rr = ref(files[("BLIND_REVIEW", "A")], hit[0])
             ap = out / f"CONTROL_ADJUDICATION_{slug(iid)}.json"
-            ap.write_text(json.dumps({"instrument_id": iid, "planted_claim_sha256": k["planted"], "review": rr,
-                                      "adjudicator": adjudicator, "caught": True, "scoring": "strict",
-                                      "rationale": f"Planted version: {k['defect']}. Rule fixed in advance: both "
-                                      "independent blind arms (A and B) rejected that exact planted hash and named a "
-                                      "date field or the word date in their defects."}, indent=1, ensure_ascii=False)
+            ap.write_text(json.dumps(control_adjudication(k, iid, rr, adjudicator), indent=1, ensure_ascii=False)
                           + "\n", encoding="utf-8")
             controls.append({"instrument_id": iid, "planted_claim_sha256": k["planted"], "seed": ref(sp),
                              "review": rr, "adjudication": ref(ap)})
         receipts = [ref(p) for p in (files[("BLIND_REVIEW", "B")], files[("AFTER_REVEAL", "B")],
                                      self.packet / "ASSESSMENT.jsonl", self.dir / "ADJUDICATION.json")
                     if Path(p).exists()]
+        overlaid = [m["instrument_id"] for m in members if "overlay_bundle" in m]
+        if overlaid:
+            # Respondendi (INTERFACE.md) reads both arms' blind and after-reveal files from the receipts.
+            receipts += [ref(files[(md, "A")]) for md in ("BLIND_REVIEW", "AFTER_REVEAL") if files[(md, "A")].exists()]
+            if (self.cfg.get("publication_mode") or "own_claims") != "replacement_proposal":
+                raise Fail(f"overlay members {overlaid} carry an unadopted working status; the kit completes them only "
+                           "as an isolated replacement_proposal publication, never own_claims (COMPLETION.md)")
         pf = self.workers["producer"].get("model_family", "unknown")
         fams = {self.workers[f"reviewer_{a}"].get("model_family", "unknown").casefold() for a in "AB"}
         indep = "different_family" if pf.casefold() not in fams else "same_family_separate_context"
@@ -1815,6 +2234,29 @@ class Batch:
         man["publication"] = {"mode": self.cfg.get("publication_mode") or "own_claims", "path": pub}
         write_json(out / "COMPLETION.json", man)
         return out / "COMPLETION.json", man
+
+
+# The four whole-file references of a completion member on the status-overlay route (claim-kit COMPLETION.md).
+OVERLAY_FILES = {"evidence": "EVIDENCE.json", "decision": "STATUS_DECISION.json", "review": "STATUS_REVIEW.json",
+                 "proposal": "PROMOTION_PROPOSAL.json"}
+
+
+def control_adjudication(k, iid, review_ref, adjudicator):
+    """One CONTROL_ADJUDICATION record: the rule fixed in advance, and the control kind (Respondendi's catalogue
+    names every date plant date_shift; plant_type keeps the conveyor's own sub-kind)."""
+    kind = k.get("type") or "date_shift_end"
+    rec = {"instrument_id": iid, "planted_claim_sha256": k["planted"], "review": review_ref,
+           "adjudicator": adjudicator, "caught": True, "scoring": "strict",
+           "control_kind": "date_shift" if kind.startswith("date_shift") else kind, "plant_type": kind}
+    if kind.startswith("date_shift"):
+        rec["rationale"] = (f"Planted version: {k['defect']}. Rule fixed in advance: both independent blind arms (A and "
+                            "B) rejected that exact planted hash and named a date field or the word date in their defects.")
+    else:
+        terms = ", ".join(k.get("catch_terms") or sorted(TYPED_TERMS.get(kind, ())))
+        rec["rationale"] = (f"Planted {kind} control: {k['defect']}. Rule fixed in advance: both independent blind arms "
+                            "(A and B) rejected that exact planted hash and named this typed defect in their defects "
+                            f"(a whole word or field name among: {terms}).")
+    return rec
 
 
 def check_plan(augur_module, plan, repo):
@@ -1827,7 +2269,7 @@ def load_workers(path):
     if not isinstance(raw, dict):
         raise Fail(f"workers file {path} is not a JSON object")
     out = {}
-    for role in ("producer", "reviewer_A", "reviewer_B"):
+    for role in ("producer", "reviewer_A", "reviewer_B") + (("reviewer_S",) if isinstance(raw.get("reviewer_S"), dict) else ()):
         w = raw.get(role) or (raw.get("reviewer") if role.startswith("reviewer") else None)
         if not isinstance(w, dict) or not w.get("model"):
             raise Fail(f"workers file needs a {role} (or reviewer) entry with a model")
@@ -1842,6 +2284,9 @@ def load_workers(path):
             raise Fail(f"{role}: command must be 'claude', 'codex' or a non-empty list")
         w.setdefault("model_family", {"claude": "Anthropic", "codex": "OpenAI"}.get(w["family"], "unknown"))
         out[role] = w
+    if "reviewer_S" not in out:
+        # The status reviewer (undecided orders) reuses reviewer_A's worker definition under its own reviewer name.
+        out["reviewer_S"] = dict(out["reviewer_A"], reused_from="reviewer_A")
     return out
 
 
@@ -1869,6 +2314,9 @@ def _run(b, cfg):
         b.augur()
         b.check_budget()
         b.check_ownership()
+        b.check_status_reviewer()
+        if "undecided" in str(cfg.get("action") or ""):
+            b.check_overlay_publication()   # an undecided action: refuse own_claims before anything is reserved
         b.reap()
         b.verify_scratch()
     except Fail as f:
@@ -1881,6 +2329,8 @@ def _run(b, cfg):
         res = L.once("reserve", b.reserve)
         ids = state["ids"] = res["ids"]
         prep = L.once("prepare", lambda: b.prepare(ids))
+        if b.undecided(ids):
+            b.check_overlay_publication()   # before any producer is paid
         views = prep["views"]
         targets = [i for i in prep["dispatchable"] if i in ids and views.get(i)]
         no_view = [i for i in prep["dispatchable"] if not views.get(i)]
@@ -1903,7 +2353,8 @@ def _run(b, cfg):
             n = len({r["key"] for r in L.rows if str(r.get("key", "")).startswith("dispatch:")})
             L.once(f"dispatch:{n + 1}", lambda: b.dispatch(pending))
         if nalimov:
-            produced = L.once("draft", lambda: b.draft_round(go))
+            # The ledger adds wall_seconds to a stage's data: keep only the per-order entries.
+            produced = {k: v for k, v in L.once("draft", lambda: b.draft_round(go)).items() if isinstance(v, dict)}
         else:
             results = b.produce_round(0, go, views, {})
             produced = b.produced_map(results)
@@ -1914,6 +2365,9 @@ def _run(b, cfg):
         for iid in no_view:
             produced[iid] = {"reason": "Geddes view failed; no producer launched"}
         folders = {iid: v["folder"] for iid, v in produced.items() if v.get("folder")}
+        if b.undecided(ids):
+            # The producers' status decisions go into the packet once, from the first round's folders.
+            L.once("status_install", lambda: b.install_status_decisions(produced, ids))
         demoted = dict(L.data("demoted") or {})
         col = b.collect(prep, produced, demoted)
         state["submitted"] = len(col["submit"])
@@ -1924,7 +2378,7 @@ def _run(b, cfg):
         while True:
             chk = b.apply_and_check(col["sheets_fingerprint"])
             if not chk["failures"]:
-                if not chk["claims"]:
+                if not chk["claims"] and not b.awaiting_status(chk):
                     raise Stop("check: zero claims assembled", quality=True)
                 break
             failing = [i for i in chk["failures"] if i in col["submit"]]
@@ -1950,7 +2404,13 @@ def _run(b, cfg):
                 raise Stop("check: zero orders submittable after the mechanical checks", quality=True)
         applied = b.repo / chk["applied"]
         claims = read_jsonl(applied / "CLAIMS.proposed.jsonl")
+        # Undecided members: status review, overlay proposal and working claim; those claims join every later stage.
+        overlay, overlay_notes = b.overlay_stage(chk)
+        claims += [read_jsonl(b.repo / o["claims"])[0] for o in overlay.values()]
         state["submitted"] = len(claims)
+        if not claims:
+            raise Stop("overlay: zero claims assembled (every undecided order was left unresolved: "
+                       + "; ".join(f"{i}: {r[:120]}" for i, r in sorted(overlay_notes.items())[:3]) + ")", quality=True)
         kp = b.keys / f"{b.name}.json"
 
         def plant():
@@ -2065,7 +2525,7 @@ def _run(b, cfg):
                 write_jsonl(files[("AFTER_REVEAL", a)], after_recs[a])
             if decisions:
                 shutil.copyfile(b.keys / "ADJUDICATION.json", b.dir / "ADJUDICATION.json")
-            mpath, man = b.manifest(applied, key, agree, adj, cfg["publication"], files)
+            mpath, man = b.manifest(applied, key, agree, adj, cfg["publication"], files, overlay, overlay_notes)
             k = 1
             while (b.packet / f"complete-v{k}").exists():
                 k += 1
@@ -2170,6 +2630,17 @@ def write_measures(b, cfg, state, done, verdict, stopped=None):
         stages["draft"] = {"workers": 0, "tokens": 0, "usd": 0.0, "usd_list_price": 0.0,
                            "orders_drafted": sum(1 for v in drafted.values() if isinstance(v, dict) and v.get("folder")),
                            "orders_refused": sum(1 for v in drafted.values() if isinstance(v, dict) and not v.get("folder"))}
+    gate = b.ledger.data("status_gate")
+    if gate is not None:
+        rows = {r["key"]: r["data"] for r in b.ledger.rows if r.get("status") == "done" and isinstance(r.get("data"), dict)}
+        took = [v for k, v in rows.items() if k.startswith("status_take:")]
+        stages["overlay"] = {"workers": 0, "tokens": 0, "usd": 0.0, "usd_list_price": 0.0,
+                             "orders_to_status_review": len(gate.get("review") or []),
+                             "orders_refused_at_status_gate": len(gate.get("notes") or {}),
+                             "status_reviews_accepted": sum(1 for v in took if v.get("accepted")),
+                             "status_reviews_not_accepted": sum(1 for v in took if not v.get("accepted")),
+                             "working_claims": sum(1 for k, v in rows.items()
+                                                   if k.startswith("overlay_assemble:") and v.get("claims"))}
     stages["adjudication"] = {"workers": 0, "usd": None, "note": "coordinator adjudication time is not measured here"}
     usd = sum(s["usd"] for s in stages.values() if isinstance(s.get("usd"), (int, float)))
     lp_all = [s.get("usd_list_price") for k, s in stages.items() if k != "adjudication"]
@@ -2233,8 +2704,10 @@ def build_config(a, repo):
                "publication": f"research/readiness/claims/{given['agent']}-{datetime.now(timezone.utc).date()}-"
                               f"{name}-{a.batch}.jsonl", "producer": "workers"}
         cfg.update(given)
-        # The Nalimov producer route plants typed controls unless told otherwise; worker batches keep date plants.
-        cfg.setdefault("controls", "typed" if cfg.get("producer") == "nalimov" else "date")
+        # Typed controls by default for the Nalimov route and for every undecided batch (Respondendi adopts only with
+        # typed controls); other worker batches keep date plants unless told otherwise.
+        typed = cfg.get("producer") == "nalimov" or "undecided" in str(cfg.get("action") or "")
+        cfg.setdefault("controls", "typed" if typed else "date")
     for k in ("workers", "tools"):
         if cfg.get(k):
             p = Path(cfg[k])

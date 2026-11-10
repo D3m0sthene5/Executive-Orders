@@ -831,6 +831,207 @@ class CodexProgramTests(ConveyorCase):
             self.assertTrue(all(b.cap(r, "tokens") for r in ("producer", "reviewer_A", "reviewer_B")))
 
 
+def nalimov_fixtures():
+    """jobs/nalimov-tablebase/test_nalimov.py's evidence builders (make_evidence, actor_set)."""
+    sys.path.insert(0, str(C.REPO / "jobs/nalimov-tablebase"))
+    import test_nalimov as TN
+    return TN
+
+
+class OverlayTests(ConveyorCase):
+    """Undecided orders through the status-overlay stage: apply leaves them awaiting_status_review; the producer's
+    status decision is installed, an independent status reviewer accepts or rejects it, the (fake) kit proposes and
+    assembles an isolated working claim, and that claim goes through plant, blind review, controls, reveal and complete.
+    The kit's own status gates (status_overlay._decision_errors and _review_errors) are the real ones."""
+    UNDECIDED = ["EO:11111", "EO:11112", "EO:11113"]
+    PUB = "research/excavator/maudslay-test/PROPOSAL-b01.jsonl"
+
+    def setUp(self):
+        super().setUp()
+        TN = nalimov_fixtures()
+        evs = TN.actor_set("EO:12222", [11111, 11112, 11113]) + TN.actor_set("EO:12300", [11200, 11201])
+        (self.repo / "FAKE_EVIDENCE").mkdir()
+        mapping = {}
+        for e in evs:
+            rel = f"FAKE_EVIDENCE/{e['instrument_id'].replace(':', '_')}.json"
+            (self.repo / rel).write_text(json.dumps(e), encoding="utf-8")
+            mapping[e["instrument_id"]] = rel
+        self.kit({"undecided": mapping})
+        # The Nalimov drafter (--producer nalimov) is loaded from the batch's repository, as in production.
+        d = self.repo / "jobs/nalimov-tablebase"
+        d.mkdir(parents=True)
+        for name in ("drafter.py", "predicate.py", "packets.py"):
+            (d / name).write_bytes((C.REPO / "jobs/nalimov-tablebase" / name).read_bytes())
+
+    def overlay_args(self, *extra, ids=None):
+        return ("--ids", *(ids or self.UNDECIDED + ["EO:1"]), "--replacement-proposal", "--publication", self.PUB) + extra
+
+    def run_overlay(self, *extra, ids=None, kill=None):
+        return self.run_proc(*self.overlay_args(*extra, ids=ids), kill=kill)
+
+    def manifest(self):
+        return json.loads((self.bdir / "packet/completion/COMPLETION.json").read_text(encoding="utf-8"))
+
+    def adjudications(self):
+        return [json.loads(p.read_text(encoding="utf-8"))
+                for p in (self.bdir / "packet/completion").glob("CONTROL_ADJUDICATION_*.json")]
+
+    def assert_overlay_member(self, m):
+        self.assertEqual(m["outcome"], "submit")
+        ob = m["overlay_bundle"]
+        self.assertEqual(set(ob), {"evidence", "decision", "review", "proposal"})
+        folders = {Path(r["path"]).parent.as_posix() for r in ob.values()}
+        self.assertEqual(len(folders), 1)
+        folder = folders.pop()
+        self.assertTrue(folder.endswith(f"overlay/{m['instrument_id'].replace(':', '_')}/proposal-v1"), folder)
+        self.assertEqual({k: Path(r["path"]).name for k, r in ob.items()}, C.OVERLAY_FILES)
+        for r in ob.values():
+            self.assertEqual(C.fsha(self.repo / r["path"]), r["sha256"])
+        self.assertEqual(m["claim"]["path"], folder + "/CLAIMS.working.jsonl")
+        return self.repo / folder
+
+    def test_worker_producers_complete_through_the_overlay(self):
+        self.assertEqual(self.run_overlay("--publish"), C.EXIT_DONE, self.run_state())
+        man = self.manifest()
+        self.assertEqual(man["publication"], {"mode": "replacement_proposal", "path": self.PUB})
+        by = {m["instrument_id"]: m for m in man["members"]}
+        for iid in self.UNDECIDED:
+            bundle = self.assert_overlay_member(by[iid])
+            rc = json.loads((bundle / "RECONFIRMATION.json").read_text(encoding="utf-8"))
+            self.assertEqual((rc["producer"], rc["kind"]), ("workers", "script_reconfirmation"))
+            self.assertTrue(json.loads((bundle / "LIFECYCLE_DECISION.reconfirmed.json").read_text())["approved"])
+            self.assertFalse(json.loads((bundle / "LIFECYCLE_DECISION.json").read_text())["approved"])  # kit's own
+            review = json.loads((bundle / "STATUS_REVIEW.json").read_text(encoding="utf-8"))
+            self.assertEqual((review["reviewer"], review["decision"]), ("maudslay-status-reviewer-b01", "accept"))
+        self.assertNotIn("overlay_bundle", by["EO:1"])  # the decided order keeps the ordinary route
+        self.assertTrue(by["EO:1"]["claim"]["path"].endswith("CLAIMS.proposed.jsonl"))
+        self.assertEqual(sorted(c["instrument_id"] for c in jl(self.repo / self.PUB)), sorted(self.UNDECIDED + ["EO:1"]))
+        receipts = {Path(r["path"]).name for r in man["receipts"]}
+        self.assertTrue({"BLIND_REVIEW_A.jsonl", "BLIND_REVIEW_B.jsonl", "AFTER_REVEAL_A.jsonl",
+                         "AFTER_REVEAL_B.jsonl"} <= receipts)
+        # The producers' status decisions were installed in the packet, with the kit's blank kept.
+        dec = json.loads((self.bdir / "packet/undecided/EO_11111/STATUS_DECISION.json").read_text(encoding="utf-8"))
+        self.assertEqual((dec["recommended_provisional_status"], dec["agent"]), ("no", "testagent"))
+        self.assertTrue((self.bdir / "prepared/undecided/EO_11111.STATUS_DECISION.blank.json").exists())
+        # One status-review session for the three orders, in its own folder: its prompt and the blank sheets.
+        st = self.worker_calls("status_reviewer")
+        self.assertEqual(len(st), 1)
+        self.assertEqual(st[0]["files"], ["PROMPT.txt"] + [f"STATUS_REVIEW_{i.replace(':', '_')}.json" for i in self.UNDECIDED])
+        for kind in ("producer", "reviewer"):
+            self.assertEqual(len(self.worker_calls(kind)), 4)
+        m = json.loads((self.bdir / "MEASURES.json").read_text(encoding="utf-8"))
+        self.assertEqual(m["stages"]["status_review"]["workers"], 1)
+        self.assertEqual((m["stages"]["overlay"]["working_claims"], m["stages"]["overlay"]["status_reviews_accepted"]), (3, 3))
+        self.assertAlmostEqual(m["totals"]["usd"], 4 * 0.5 + 4 * 0.5 + 0.5)
+        self.assertEqual((m["totals"]["filed"], m["human_certified"]), (4, 0))
+        adj = self.adjudications()
+        self.assertTrue(adj)
+        for a in adj:
+            self.assertEqual(a["control_kind"], "date_shift")
+            self.assertIn("date", a["rationale"])
+        # No status was written anywhere outside the isolated proposal: no readiness claim, no progress file.
+        self.assertFalse((self.repo / "research/readiness").exists())
+        self.assertFalse((self.repo / "research/progress").exists())
+
+    def test_nalimov_producer_completes_through_the_overlay_with_typed_controls(self):
+        ids = ["EO:11111", "EO:11112", "EO:11200", "EO:11201"]
+        self.assertEqual(self.run_overlay("--producer", "nalimov", "--publish", ids=ids), C.EXIT_DONE, self.run_state())
+        self.assertEqual(self.worker_calls("producer"), [])  # the drafter, zero tokens
+        man = self.manifest()
+        self.assertEqual(man["publication"]["mode"], "replacement_proposal")
+        for m in man["members"]:
+            bundle = self.assert_overlay_member(m)
+            self.assertEqual(json.loads((bundle / "RECONFIRMATION.json").read_text())["producer"], "nalimov")
+        self.assertEqual(len(jl(self.repo / self.PUB)), 4)
+        kinds = {a["control_kind"] for a in self.adjudications()}
+        self.assertGreaterEqual(len(kinds), 2)
+        self.assertTrue(kinds & set(C.TYPED_STATUS))
+        for a in self.adjudications():
+            if a["control_kind"] != "date_shift":
+                self.assertIn(a["control_kind"], a["rationale"])
+        # Blind arms got the drafter's actor-batched context; the after-reveal sessions did not.
+        for arm in "AB":
+            folder = self.scratch / "workers" / f"b01-review-{arm}0"
+            ctx = json.loads((folder / "NALIMOV_CONTEXT.json").read_text(encoding="utf-8"))
+            self.assertEqual(ctx["schema"], "nalimov-review-bundle/v2")
+            self.assertEqual({a["actor_id"] for a in ctx["actor_texts"]}, {"EO:12222", "EO:12300"})
+            self.assertNotIn("control_kind", json.dumps(ctx))
+            self.assertNotIn("decisive", json.dumps(ctx))     # held text only: no claim content to compare plants with
+            self.assertIn("NALIMOV_CONTEXT.json", (folder / "PROMPT.txt").read_text(encoding="utf-8"))
+            self.assertFalse((self.scratch / "workers" / f"b01-reveal-{arm}R" / "NALIMOV_CONTEXT.json").exists())
+        decision = json.loads((self.bdir / "packet/undecided/EO_11111/STATUS_DECISION.json").read_text(encoding="utf-8"))
+        self.assertEqual(decision["agent"], "nalimov-script")
+
+    def test_a_status_reviewer_reject_leaves_the_order_unresolved(self):
+        self.scenario({"status_reviewer": {"reject": ["EO:11112"]}, "status_decision": {"EO:11113": "blank"}})
+        self.assertEqual(self.run_overlay("--publish"), C.EXIT_DONE, self.run_state())
+        by = {m["instrument_id"]: m for m in self.manifest()["members"]}
+        self.assert_overlay_member(by["EO:11111"])
+        self.assertEqual(by["EO:11112"]["outcome"], "blocked")
+        self.assertIn("independent status reviewer rejected", by["EO:11112"]["reason"])
+        self.assertEqual(by["EO:11113"]["outcome"], "blocked")  # a blank decision never reaches the status reviewer
+        self.assertIn("fails the kit's status gate", by["EO:11113"]["reason"])
+        self.assertEqual(list((self.bdir / "overlay/EO_11112").glob("proposal-v*")), [])
+        self.assertEqual(sorted(c["instrument_id"] for c in jl(self.repo / self.PUB)), ["EO:1", "EO:11111"])
+        sheets = self.worker_calls("status_reviewer")[0]["files"]
+        self.assertNotIn("STATUS_REVIEW_EO_11113.json", sheets)
+
+    def test_a_status_reviewer_named_like_an_arm_is_refused(self):
+        self.workers(CLAUDE_FAKE)
+        w = json.loads((self.repo / "workers.json").read_text())
+        w["reviewer_S"] = dict(w["reviewer"], reviewer_name="maudslay-blind-reviewer-b01-A")
+        (self.repo / "workers.json").write_text(json.dumps(w))
+        self.assertEqual(self.run_overlay(), C.EXIT_FAILED)
+        self.assertIn("status reviewer's name", self.run_state()["data"]["reason"])
+        self.assertEqual((self.calls(), self.worker_calls()), ([], []))
+
+    def test_own_claims_is_refused_for_undecided_orders_before_producers(self):
+        self.assertEqual(self.run_proc("--ids", *self.UNDECIDED, "--publication", self.PUB), C.EXIT_FAILED)
+        self.assertIn("replacement_proposal", self.run_state()["data"]["reason"])
+        self.assertEqual(self.worker_calls(), [])
+
+    def test_resume_after_a_kill_mid_overlay_writes_no_second_proposal(self):
+        self.assertEqual(self.run_overlay("--parallel", "1", kill="overlay_bundle:EO_11112:written"), 137)
+        self.assertTrue((self.bdir / "overlay/EO_11112/proposal-v1/TELEMETRY.json").exists())
+        self.assertEqual(self.run_overlay("--parallel", "1", "--publish"), C.EXIT_DONE, self.run_state())
+        for iid in self.UNDECIDED:
+            d = self.bdir / "overlay" / iid.replace(":", "_")
+            self.assertEqual(sorted(p.name for p in d.glob("proposal-v*")), ["proposal-v1"], iid)
+            self.assertEqual(sorted(p.name for p in d.glob("review-v*")), ["review-v1"], iid)
+        self.assertEqual(len(self.worker_calls("status_reviewer")), 1)  # the finished status review was not rerun
+        props = [c for c in self.calls("overlay-propose") if any("EO_11112" in a for a in c["argv"])]
+        self.assertEqual(len(props), 1)
+        self.assertTrue(C.Ledger(self.bdir / "LEDGER.jsonl").data("overlay_propose:EO_11112")["adopted"])
+        self.assertEqual(len(jl(self.repo / self.PUB)), 4)
+
+    def test_status_reviewer_may_read_only_its_members_evidence_and_decisions(self):
+        with contextlib.redirect_stdout(io.StringIO()), mock.patch.object(C, "run", lambda cfg, repo: cfg):
+            cfg = C.main(self.args(*self.overlay_args()))
+        b = C.Batch(cfg, self.repo)
+        rules = b.rules_for("reviewer_S", b.scratch / "workers" / "b01-status-review-S0")
+        batch = "research/excavator/maudslay-test/b01"
+        self.assertEqual(C.scan([f"cat {batch}/packet/undecided/EO_5/EVIDENCE.json",
+                                 f"cat {batch}/packet/undecided/EO_5/STATUS_DECISION.json"], rules), [])
+        for bad in (f"cat {batch}/packet/decisions.csv", f"ls {batch}/overlay", f"cat {batch}/packet/applied-v1/AUDIT.json",
+                    f"cat {(self.control / 'b01.json').as_posix()}"):
+            self.assertTrue(C.scan([bad], rules), bad)
+        self.assertEqual(b.status_reviewer_name(), "maudslay-status-reviewer-b01")
+        self.assertEqual(b.workers["reviewer_S"]["reused_from"], "reviewer_A")
+
+
+class ControlAdjudicationTests(unittest.TestCase):
+    def test_control_kind_and_rationale(self):
+        date = C.control_adjudication({"planted": "p", "type": "date_shift_end", "defect": "moved"}, "EO:1", {}, "x")
+        self.assertEqual((date["control_kind"], date["plant_type"]), ("date_shift", "date_shift_end"))
+        self.assertIn("named a date field", date["rationale"])
+        typed = C.control_adjudication({"planted": "p", "type": "partial_as_whole", "defect": C.TYPED_DEFECT[
+            "partial_as_whole"], "catch_terms": sorted(C.TYPED_TERMS["partial_as_whole"])}, "EO:1", {}, "x")
+        self.assertEqual(typed["control_kind"], "partial_as_whole")
+        self.assertIn("partial_as_whole", typed["rationale"])
+        self.assertNotIn("date field", typed["rationale"])
+        self.assertIn("insofar", typed["rationale"])
+
+
 KIT_HOME = Path(os.environ.get("MAUDSLAY_KIT_HOME") or C.REPO)
 KIT_NEEDS = ("jobs/claim-kit/test_build.py", "jobs/claim-kit/test_dispatch.py", "jobs/norton/model.py",
              "jobs/claim-checker/checker.py", "jobs/later-events/later_events.py", "jobs/geddes/geddes.py",

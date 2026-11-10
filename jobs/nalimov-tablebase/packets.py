@@ -387,10 +387,11 @@ def measure(session):
 
 
 def review_bundle(drafted, evidence_by_id, edges=()):
-    """Reviewer context for the conveyor's blind arms (--producer nalimov): one block per acting instrument, with its
-    held text once and the packet entry of every target it settles, in dependency order. No controls: the conveyor
-    plants its own typed controls in the claims, and this bundle is built from the genuine drafts only, so it must be
-    given to reviewers as context for the claims they review, never as the thing reviewed."""
+    """Reviewer context for the conveyor's blind arms (--producer nalimov): each acting instrument's held text once
+    (whole, or exact windows), in dependency order. Held source text only: no claim content. The drafter's chosen
+    decisive sentence and its target mapping are left out, because the conveyor plants controls by changing exactly
+    those claim fields, and a context built from the genuine drafts would let a reviewer spot a plant by comparison
+    instead of by checking the source (a mechanical tell)."""
     batches = {}
     for dr in drafted:
         batches.setdefault(dr["facts"]["actor_id"], []).append(dr)
@@ -399,5 +400,6 @@ def review_bundle(drafted, evidence_by_id, edges=()):
     for a in order:
         evs = [evidence_by_id[d["instrument_id"]] for d in batches[a]]
         block = actor_block(a, evs, batches[a])
-        out.append({"actor": block, "targets": [d["instrument_id"] for d in batches[a]]})
-    return {"schema": "nalimov-review-bundle/v1", "actors": out}
+        block.pop("decisive", None)
+        out.append(block)
+    return {"schema": "nalimov-review-bundle/v2", "actor_texts": out}
