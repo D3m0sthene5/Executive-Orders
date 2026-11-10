@@ -1,3 +1,32 @@
+## 2026-11-10 ET (Claude, Larrey triage gate, branch larrey-triage)
+
+- **Built:** `jobs/larrey-triage`, a zero-token check on every order before any agent is dispatched to it.
+  - Six new Llull gates (`jobs/llull/kit_features.py`) read what the claim kit would freeze into the dossier.
+  - They are combined per route (undecided full, status-only, decided lifecycle).
+  - Output: `output/GATES.jsonl`, one line per (order, route) with pass, missing gate ids and gates_commit
+    (Whitworth I1), plus `TODO.md`, the acquisition to-do list.
+  - Wired into claim-kit `admission.py` (kit next, prepare, and so the Maudslay conveyor) and Bentham.
+  - Accursius F5/F6 rules are called through the kit's own functions when present (Whitworth I2).
+- **Back-test** on the frozen packets, at the operating point:
+  - Undecided: 63 of 87 failures kept out, 0 of 33 successes lost.
+  - Decided: 96 of 273 kept out (NEA notices), 0 of 97 lost.
+- **Pools on main:**
+  - status_assignment.undecided: 2,546 of 10,697 admitted.
+  - claim_ready.yes.fr: 255 of 351.
+  - claim_ready.no.fr: 1,033 of 1,034.
+- **Projection** (not measured): $3.74 → $3.22 per filed claim with the producer-only model ($2.48 all-in). Bentham
+  undecided goes from 30.1 to 39.0 dossiers per $100. Review is 61% of undecided spend, so $1 per filed claim needs
+  cheaper review too. Kean F-20261110-larrey-triage.
+- **Review:** independent Fable 5.2 reviewer (about 256k tokens, 18 min, read-only) at
+  `side-session-notes/.../larrey/REVIEW.md`. It found one blocker (Bentham overstated undecided yield 1.4-2.6x) and
+  five should-fix items, all fixed in 00cd02900e.
+- **Ask:** A-20261110-larrey-soft-probe, whether to run a 30-order probe of the soft gate `later_order_text_held`
+  (it alone defers 1,014 orders).
+- **Next:**
+  - When Accursius F3/F5/F6 merge, the undecided routes turn advisory. Commit a fresh `larrey.py backtest` to
+    re-enable them.
+  - `kit.py overlay-prepare`, `sheet` and `status-sheet` still bypass admission (pre-existing).
+
 ## 2026-11-10 ET (Claude, overnight Codex wave failed; claim-kit admission guard, PR #265)
 
 - **What happened:** SAVIGNY (coordinator) and MOMMSEN-1..5 (gpt-6.1-sol xhigh, headless) ran from about 00:04 to
