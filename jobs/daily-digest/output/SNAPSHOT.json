@@ -4064,33 +4064,33 @@
       "check_results": {
         "checker_error": {},
         "date_after_signing": {
-          "pass": 11087
+          "pass": 11142
         },
         "date_valid": {
-          "pass": 35483
+          "pass": 35672
         },
         "factual_event_policy": {},
         "order_exists": {
-          "pass": 13405
+          "pass": 13430
         },
         "parse": {},
         "quote_verbatim": {
           "fail": 7,
-          "pass": 29832
+          "pass": 29997
         },
         "source_held": {
-          "pass": 23171,
+          "pass": 23287,
           "skip": 3
         },
         "source_identity": {
-          "pass": 9393
+          "pass": 9448
         },
         "structural_gate": {
           "fail": 733,
-          "pass": 1801
+          "pass": 1807
         },
         "working_text_policy": {
-          "fail": 1074,
+          "fail": 962,
           "pass": 647
         }
       },
@@ -4098,8 +4098,8 @@
         "max_mb": 50.0,
         "mode": "non_pass_rows",
         "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
-        "rows_total": 126636,
-        "rows_written": 1817
+        "rows_total": 127135,
+        "rows_written": 1705
       },
       "claim_files": [
         "astra-2026-10-17-p12553a.jsonl",
@@ -4214,6 +4214,8 @@
         "claude-2026-11-08-cujas-c03.jsonl",
         "claude-2026-11-08-haloander-ux.jsonl",
         "claude-2026-11-10-papinian-c01.jsonl",
+        "claude-2026-11-10-papinian-u01b.jsonl",
+        "claude-2026-11-10-papinian-u02.jsonl",
         "claude-b0-producer-2026-10-29-nira.jsonl",
         "claude-bowditch-y2-01-2026-10-20.jsonl",
         "claude-bowditch-y2-02-2026-10-20.jsonl",
@@ -4283,13 +4285,13 @@
         "papinian-2026-11-10-y13.jsonl",
         "papinian-2026-11-10-y14.jsonl"
       ],
-      "claim_lines_found": 1891,
-      "claims_all_checks_passed": 1723,
-      "claims_checked": 1891,
+      "claim_lines_found": 1897,
+      "claims_all_checks_passed": 1735,
+      "claims_checked": 1897,
       "claims_checker_errors": 0,
-      "claims_gate_passed": 1801,
-      "claims_mechanical_fail": 80,
-      "claims_mechanical_pass": 1809,
+      "claims_gate_passed": 1807,
+      "claims_mechanical_fail": 74,
+      "claims_mechanical_pass": 1821,
       "claims_mechanical_unverified": 2,
       "claims_parse_errors": 0,
       "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
@@ -4305,6 +4307,7 @@
         "jobs/cotton-capture-custody/output/SOURCES.jsonl": 756,
         "jobs/current-law/output/SOURCES.jsonl": 110,
         "jobs/duodecim-tableiv/output/SOURCES.jsonl": 16,
+        "jobs/eumenes-nmb-reports/output/SOURCES.jsonl": 119,
         "jobs/family-rule-sources/output/SOURCES.jsonl": 2,
         "jobs/family-rule-tail/output/SOURCES.jsonl": 1,
         "jobs/fr-originals/output/SOURCES.jsonl": 6497,
@@ -4315,7 +4318,7 @@
         "jobs/isthmian-canal-1911/data/PROVENANCE.json": 1,
         "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": 105,
         "jobs/later-events/output/SOURCES.jsonl": 17528,
-        "jobs/lewis-originals/output/SOURCES.jsonl": 376,
+        "jobs/lewis-originals/output/SOURCES.jsonl": 7,
         "jobs/mabillon-held-printings/output/SOURCES.jsonl": 2037,
         "jobs/numbered-early-orders/output/SOURCES.jsonl": 197,
         "jobs/ofr-codification-1989/data/PROVENANCE.json": 1,
@@ -4331,7 +4334,7 @@
         "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
         "jobs/selden-fr-acting/output/SOURCES.jsonl": 1361,
         "jobs/selden-fr-citers/output/SOURCES.jsonl": 4820,
-        "jobs/selden-statutes/output/SOURCES.jsonl": 1931,
+        "jobs/selden-statutes/output/SOURCES.jsonl": 1916,
         "jobs/shepard-citations/output/SOURCES.jsonl": 24,
         "jobs/source-ladder/output/SOURCES.jsonl": 870,
         "jobs/theophilus-sources/output/SOURCES.jsonl": 1438,
@@ -4346,15 +4349,15 @@
         "stage21_acquisition_log": 385,
         "stage21_custody": 385
       },
-      "held_distinct_sha256": 56911,
+      "held_distinct_sha256": 56538,
       "job": "claim-checker",
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
       "opus_text_pack_texts": 0,
-      "orders_with_claim": 1587,
+      "orders_with_claim": 1593,
       "pypdf_available": true,
       "quote_status_counts": {
-        "exact": 29821,
+        "exact": 29986,
         "normalised": 11,
         "not_found": 7
       },
@@ -4367,13 +4370,13 @@
         "stage21_crosswalk": 402
       },
       "source_identity_counts": {
-        "recorded_for_this_order": 9393
+        "recorded_for_this_order": 9448
       },
       "source_status_counts": {
         "custody_record_only": 3,
-        "gpo_published_hash_match": 9862,
+        "gpo_published_hash_match": 9975,
         "held_bytes_in_release_or_repo": 103,
-        "held_bytes_verified": 13206
+        "held_bytes_verified": 13209
       },
       "source_status_policy": {
         "custody_record_only": "skip",
@@ -4382,11 +4385,11 @@
         "held_bytes_verified": "pass"
       },
       "steps_checker_passed_effective_claims": {
-        "clause_inventory": 1477,
-        "counterevidence": 1465,
-        "ending_or_current_basis": 1440,
-        "original_text": 1488,
-        "savings_residuals": 1464
+        "clause_inventory": 1488,
+        "counterevidence": 1476,
+        "ending_or_current_basis": 1451,
+        "original_text": 1499,
+        "savings_residuals": 1475
       }
     },
     "claim-drafts": {
@@ -4412,10 +4415,10 @@
           "order_exists:not_in_universe": 123,
           "quote_verbatim:exact": 66448,
           "quote_verbatim:too_short_to_verify": 4829,
-          "source_held:custody_record_only": 31501,
+          "source_held:custody_record_only": 27190,
           "source_held:gpo_published_hash_match": 12621,
           "source_held:held_bytes_in_release_or_repo": 828,
-          "source_held:held_bytes_verified": 33198,
+          "source_held:held_bytes_verified": 37509,
           "source_identity:recorded_for_this_order": 78148,
           "working_text_policy:invalid_working_text": 112790
         },
@@ -4424,12 +4427,12 @@
           "pass": 8523,
           "pass_with_unverified": 1031
         },
-        "note": "jobs/claim-checker imported; 112031 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 112033 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
       "decided_orders_with_draft": 4301,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 1151,
-      "elapsed_seconds": 1491.4,
+      "elapsed_seconds": 739.5,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 8086,
@@ -4524,7 +4527,7 @@
         "sources_read:app-executive-orders": 792,
         "sources_read:app-transcriptions": 9902,
         "sources_read:astra-source-retention": 314,
-        "sources_read:cassiodorus": 294,
+        "sources_read:cassiodorus": 296,
         "sources_read:clark-discovery": 295,
         "sources_read:clause-drafts": 9789,
         "sources_read:cotton-capture-custody": 756,
@@ -4540,7 +4543,7 @@
         "sources_read:indian-reservations-1912": 0,
         "sources_read:isthmian-canal-1911": 0,
         "sources_read:later-events": 17528,
-        "sources_read:lewis-originals": 485,
+        "sources_read:lewis-originals": 487,
         "sources_read:mabillon-held-printings": 2037,
         "sources_read:namier": 0,
         "sources_read:norton": 0,
@@ -5105,7 +5108,7 @@
         "decided": 3359,
         "universe": 14972
       },
-      "input_commit": "a757eaf47556c79052c5767af78c4af819d970c8",
+      "input_commit": "27f619496974e13b1cdbe9a53ba10633a904d91d",
       "jsonl_shard_sha256": {
         "ACTING_PROVISIONS.jsonl": "f2ce84342bec070ed8cb6d7c74bda7d4b31deff6c9e3a9a72c62923c4903236a",
         "ACTING_PROVISIONS.part0001.jsonl": "512c5df0142fb0de9b2e2f6dc60bed4238d3c15a919ba4d6ff1ecaaf4b6cafc1",
@@ -5113,13 +5116,13 @@
         "ASSEMBLED_CLAIMS.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "CHAINS.jsonl": "4ed24f080c85441b34ed7107fe27aca9267dc1a483491653e8a86291dc4b4df5",
         "CLAUSES.jsonl": "90af954a58465106f964ebfb9824fb87b2c385489c03fdc181e2954c775a5772",
-        "MISSING_SOURCES.jsonl": "79d46515354eced748f09e4e7fa4759b5100a0a0861a3c99399310e069081d24",
-        "OVERLAY_INPUTS.jsonl": "315cb02130d70a86321ea598ec102a2d470aff934995b5ac1bd63ef0dd74c01b",
-        "OVERLAY_INPUTS.part0001.jsonl": "f88a87da358cc6eee1cb18c5f057cf34de61f5235c52b4403321cad063ca3943",
-        "OVERLAY_INPUTS.part0002.jsonl": "9b0692674efff81df1226e8081722cfd4c18038d46241181cc68fd9433685815",
+        "MISSING_SOURCES.jsonl": "099dac7c878163199afcf3fcf192b72fbd402694f0adc02e84201aa7ad6a37bb",
+        "OVERLAY_INPUTS.jsonl": "34a6bb948d7b7b53c3242148decf5207497a53a24e78cfb24921f870c6db61ac",
+        "OVERLAY_INPUTS.part0001.jsonl": "405fa63b22878b1b9e2ddd5ff1e2415df3cb181bea8f725e959d3fefe05690ea",
+        "OVERLAY_INPUTS.part0002.jsonl": "b215c1c778a0cd7141a89035a320c45eb3ad47d9df050da7fb3d2aa8442862d3",
         "OWN_TERMS.jsonl": "a3430d787a820c444a15fe1b4277719d1fb4875067a93367a379e1cfa3715e04",
         "OWN_TERMS.part0001.jsonl": "9f9f5facc1d36faac3e97f09357c8c96382a092f70aa5804982946d6db88e4d7",
-        "STATUS_LEADS.jsonl": "bd3a1f34171212d07936048645a0f0cb0dbeb160d6f068f3037f010610058b4d",
+        "STATUS_LEADS.jsonl": "fe7f5d8804c917e6a2befcd44c71248ba272ec284ad30db74ed80499669501da",
         "TEXT_CLAUSES.jsonl": "c59b8ab1681b6781eb9f4c39a2ab62d05b39afd1a0fa8d72649c81e92668cf03",
         "TEXT_CLAUSES.part0001.jsonl": "6948575443a7ccbcc543da965648a797b1b3332b2f5313846816d013c0dcfb8a",
         "TEXT_CLAUSES.part0002.jsonl": "6a0819a2a5146bfcc7e6a228c7643839d0a6b7878bbb7b4c8388d5c18277a863",
@@ -5371,7 +5374,6 @@
         "jobs/montfaucon-page-check/output/FRAGMENTS_OFFICIAL.jsonl: held text missing: jobs/montfaucon-page-check/output/texts/EO_9988.txt",
         "jobs/montfaucon-page-check/output/FRAGMENTS_OFFICIAL.jsonl: held text missing: jobs/montfaucon-page-check/output/texts/EO_9993.txt",
         "jobs/montfaucon-page-check/output/FRAGMENTS_OFFICIAL.jsonl: held text missing: jobs/montfaucon-page-check/output/texts/undated-x_IR1912-p37-2_white-mountain-or-san-carios-reservation.txt",
-        "jobs/norton/output/FRAGMENTS.jsonl: factual obligation rejected: NORTON input changed: jobs/fr-pages/output/STATUS.json",
         "jobs/photius-gpo-volumes/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/photius-gpo-volumes/output/texts/EO_5660.txt; skipped",
         "jobs/photius-gpo-volumes/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/photius-gpo-volumes/output/texts/EO_5661.txt; skipped",
         "jobs/photius-gpo-volumes/output/FRAGMENTS.jsonl: text_sha256 mismatch: jobs/photius-gpo-volumes/output/texts/EO_5662.txt; skipped",
@@ -7423,7 +7425,7 @@
           "rows": 5977
         }
       },
-      "commit": "6c3ae322539758ae53cb2a9d531cc731b135535e",
+      "commit": "5339180c9f1b20a9b97ac13559e5efec651dc03f",
       "schema": "dagron-collection-manifest/v1"
     },
     "domesday-register": {
@@ -7454,7 +7456,7 @@
         "classed": 22,
         "web_confirmed_page": 27
       },
-      "generated_utc": "2026-11-09T23:45:38Z",
+      "generated_utc": "2026-11-10T11:08:13Z",
       "job": "domesday-register",
       "lewis": {
         "routed": 2452,
@@ -7975,6 +7977,13 @@
       "run_utc": "2026-10-22T18:24:59Z",
       "seconds": 184.9
     },
+    "eumenes-nmb-reports": {
+      "manifest_records": 119,
+      "missing_in_store": [],
+      "no_source_ladder_record": [],
+      "orders_covered": 126,
+      "published": 119
+    },
     "family-rule-sources": {
       "attempts_logged": 0,
       "bytes_downloaded": 0,
@@ -8137,7 +8146,7 @@
       "committed_pdfs": 28,
       "distinct_pages": 30,
       "failures": 0,
-      "generated_utc": "2026-11-10T05:25:01Z",
+      "generated_utc": "2026-11-10T11:11:39Z",
       "job": "fr-pages",
       "note": "Location leads with confidence labels; a person checks the PDF pages. No status, count or codebook change.",
       "pages_held": 30,
@@ -8180,27 +8189,27 @@
         "disagree": 0
       },
       "human_certified": 0,
-      "not_researched": 10697,
+      "not_researched": 10691,
       "numbered_series_orders": 14998,
-      "one_step_from_ready": 214,
+      "one_step_from_ready": 215,
       "orders": 14998,
       "president_left_uncertain_transition_day": 1,
       "president_unknown_no_date": 63,
       "presidents_derived_from_date": 4947,
       "presidents_from_register": 9987,
       "readiness_rows_missing_from_register": [],
-      "ready_for_human_review": 1238,
-      "register_generated_utc": "2026-11-09T23:45:38Z",
-      "tracker_commit": "21b182e359103b4633ed0d1d2663d00387708382",
-      "tracker_finished_utc": "2026-11-10T08:47:03Z",
+      "ready_for_human_review": 1248,
+      "register_generated_utc": "2026-11-10T11:08:13Z",
+      "tracker_commit": "d2436ef5671145cefd637366a3e6e55fcdb392e6",
+      "tracker_finished_utc": "2026-11-10T13:22:16Z",
       "tracker_result": "succeeded",
-      "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42779860160",
+      "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42818802851",
       "unnumbered_series_estimate_95": [
         4101,
         5095
       ],
       "unnumbered_series_observed": 2334,
-      "with_provisional_status": 4301
+      "with_provisional_status": 4307
     },
     "gratian-niebuhr-leads": {
       "date_leads": 63,
@@ -8853,20 +8862,21 @@
         "S4_conflict -> none_after_bounded_search": 26,
         "S4_conflict -> transferred_or_accrued": 29,
         "S8_acting_not_EO -> none_after_bounded_search": 2,
-        "S8_acting_text_does_not_name_order -> none_after_bounded_search": 32,
+        "S8_acting_text_does_not_name_order -> none_after_bounded_search": 36,
         "S8_acting_text_does_not_name_order -> transferred_or_accrued": 14,
         "S8_acting_text_not_held -> none_after_bounded_search": 16,
         "S8_acting_text_not_held -> transferred_or_accrued": 5,
         "S9_multiple_acting -> none_after_bounded_search": 4,
         "S9_multiple_acting -> transferred_or_accrued": 12,
         "S9_no_end_candidate -> continuing_independent": 6,
-        "S9_no_end_candidate -> none_after_bounded_search": 156,
-        "S9_no_end_candidate -> transferred_or_accrued": 608,
-        "Y0_no_later_events -> none_after_bounded_search": 11,
-        "Y1_later_events -> none_after_bounded_search": 9,
-        "Y1_later_events -> transferred_or_accrued": 1,
-        "Y3_own_savings_lead -> none_after_bounded_search": 2,
-        "Y4_conflict -> none_after_bounded_search": 3,
+        "S9_no_end_candidate -> none_after_bounded_search": 158,
+        "S9_no_end_candidate -> transferred_or_accrued": 610,
+        "Y0_no_later_events -> none_after_bounded_search": 41,
+        "Y0_no_later_events -> transferred_or_accrued": 2,
+        "Y1_later_events -> none_after_bounded_search": 19,
+        "Y1_later_events -> transferred_or_accrued": 3,
+        "Y3_own_savings_lead -> none_after_bounded_search": 6,
+        "Y4_conflict -> none_after_bounded_search": 6,
         "Y4_conflict -> transferred_or_accrued": 1
       },
       "counterevidence_by_class": {
@@ -8923,7 +8933,7 @@
       "packets_covering_half_of_targets": 3,
       "pool_LAMBC": 422,
       "pool_LAMBS": 44,
-      "repo_head": "a757eaf47",
+      "repo_head": "5339180c9",
       "rules": [
         "prefills and draft search records are leads a reader confirms; nothing here closes a step",
         "writes no claim, EXHAUSTED line, status or tier; codebook unchanged; certified stays 0",
@@ -8939,11 +8949,11 @@
         "S8_acting_text_does_not_name_order": 32,
         "S8_acting_text_not_held": 75,
         "S9_multiple_acting": 21,
-        "S9_no_end_candidate": 2043,
-        "Y0_no_later_events": 102,
-        "Y1_later_events": 145,
-        "Y3_own_savings_lead": 28,
-        "Y4_conflict": 99
+        "S9_no_end_candidate": 2041,
+        "Y0_no_later_events": 66,
+        "Y1_later_events": 133,
+        "Y3_own_savings_lead": 24,
+        "Y4_conflict": 96
       },
       "schema": "lambertini/1"
     },
@@ -9066,7 +9076,7 @@
         "owner": 2177
       },
       "fragments_written": 0,
-      "generated_utc": "2026-11-09T23:34:54Z",
+      "generated_utc": "2026-11-10T11:01:37Z",
       "handoff": {
         "all_proposals": 68,
         "states": {
@@ -12802,24 +12812,24 @@
     },
     "readiness-tracker": {
       "claims_by_schema": {
-        "eo-lifecycle-claim/v1": 1403,
+        "eo-lifecycle-claim/v1": 1409,
         "eo-lifecycle-claim/v2": 184
       },
       "decided_by_steps_done": {
-        "1/6": 712,
-        "1/7": 4,
-        "2/6": 617,
-        "2/7": 60,
+        "1/6": 711,
+        "1/7": 5,
+        "2/6": 621,
+        "2/7": 61,
         "2/8": 3,
-        "3/6": 743,
-        "3/7": 414,
+        "3/6": 735,
+        "3/7": 413,
         "3/8": 32,
         "4/6": 28,
-        "4/7": 57,
+        "4/7": 56,
         "4/8": 156,
-        "5/6": 198,
+        "5/6": 199,
         "5/8": 21,
-        "6/6": 1205,
+        "6/6": 1215,
         "6/7": 8,
         "6/8": 1,
         "7/7": 29,
@@ -12828,31 +12838,31 @@
       },
       "decided_orders_blocked_by": {
         "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 0,
-        "CLAIM_CHECK_FAILED": 71,
+        "CLAIM_CHECK_FAILED": 66,
         "CLAIM_INCOMPLETE": 82,
         "CURRENT_BASIS_UNPROVED": 315,
         "FIRST_END_UNPROVED": 2399,
         "FIRST_END_UNRESOLVED": 184,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
         "NO_CLAUSE_INVENTORY": 2714,
-        "NO_OFFICIAL_SOURCE_LOCATED": 547,
+        "NO_OFFICIAL_SOURCE_LOCATED": 548,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1244,
         "NO_PROVISIONAL_STATUS": 0,
-        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 728,
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 734,
         "OPEN_SOURCE_AUDIT": 6,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 161,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
         "OPUS_MEDIA_REFETCH_NEEDED": 431,
-        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 189,
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 194,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 2714,
         "SHARED_SOURCE_NOT_RETRIEVED": 24,
-        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 68
+        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 63
       },
       "formal_revocation_after_earlier_cessation": 33,
-      "generation_id": "42779860160-1:4e959ad7876249395817e0989e0d9cdbe0a2b751d6eacd037cd2dfa87cc6f1ce",
+      "generation_id": "42818802851-1:5f223a82b88650f458a9db0e7344be43ae64c79172dd3d7dca402117f6fea9e7",
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
         "LOC_items_with_original_page_images": 3,
         "LOC_transcribed_items": 0,
@@ -12868,46 +12878,8 @@
         "STALE_SOURCE_AUDIT_HOLD:EO:11040: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
         "STALE_SOURCE_AUDIT_HOLD:EO:11078: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
         "STALE_SOURCE_AUDIT_HOLD:EO:9922: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:1:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:2:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:3:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:4:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:5:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:6:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:7:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:8:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:9:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:10:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:11:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:13:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:2:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:4:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:5:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:6:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:10:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:11:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:12:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:13:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m008-mixed-held-originals.jsonl:6:source fragment changed or ambiguous",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
         "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
         "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT"
       ],
@@ -12940,7 +12912,7 @@
         },
         "job_outputs_used": {
           "app-executive-orders (lead only, never counted as the original)": 9902,
-          "claim-checker": 1587,
+          "claim-checker": 1593,
           "csc-annual-reports (lead only, never counted as the original)": 798,
           "fr-originals": 6497,
           "hathi-gpo-orders (lead only, never counted as the original)": 1531,
@@ -12949,7 +12921,7 @@
           "lachmann working-text confirmations (provisional text step only, never an original)": 2360,
           "mabillon-held-printings": 2037,
           "machine later-source search": 6938,
-          "montfaucon-page-check": 185,
+          "montfaucon-page-check": 204,
           "montfaucon-page-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent)": 0,
           "numbered-early-orders (lead only, never counted as the original)": 184,
           "ofr-compilations": 500,
@@ -12962,7 +12934,7 @@
           "pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade)": 2750,
           "richardson-volumes (lead only, never counted as the original)": 68,
           "source-ladder": 870,
-          "tischendorf-originals": 721,
+          "tischendorf-originals": 698,
           "wikisource-texts (lead only, never counted as the original)": 1639
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
@@ -13031,41 +13003,41 @@
       ],
       "orders_blocked_by": {
         "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 10,
-        "CLAIM_CHECK_FAILED": 71,
+        "CLAIM_CHECK_FAILED": 66,
         "CLAIM_INCOMPLETE": 82,
         "CURRENT_BASIS_UNPROVED": 315,
         "FIRST_END_UNPROVED": 2399,
         "FIRST_END_UNRESOLVED": 184,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
         "NO_CLAUSE_INVENTORY": 2714,
-        "NO_OFFICIAL_SOURCE_LOCATED": 1540,
+        "NO_OFFICIAL_SOURCE_LOCATED": 1566,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 1244,
-        "NO_PROVISIONAL_STATUS": 10697,
-        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2167,
+        "NO_PROVISIONAL_STATUS": 10691,
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2227,
         "OPEN_SOURCE_AUDIT": 6,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 161,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
         "OPUS_MEDIA_REFETCH_NEEDED": 431,
-        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 703,
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 737,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 2714,
         "SHARED_SOURCE_NOT_RETRIEVED": 24,
-        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 68
+        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 63
       },
       "orders_total": 14998,
-      "orders_with_provisional_status": 4301,
-      "original_replacement_obligations": 882,
-      "quotation_recheck_obligations": 882,
+      "orders_with_provisional_status": 4307,
+      "original_replacement_obligations": 845,
+      "quotation_recheck_obligations": 845,
       "ready_by_text_evidence_tier": {
-        "original_supported": 713,
+        "original_supported": 723,
         "transcription_dependent": 525
       },
       "ready_by_tier": {
-        "complete_claim": 1238
+        "complete_claim": 1248
       },
-      "ready_for_human_review": 1238,
+      "ready_for_human_review": 1248,
       "rejected_working_text_confirmations": {
         "grade_not_a_working_text_grade": 2,
         "not_confirmed": 1551
@@ -13075,13 +13047,13 @@
           "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
           "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND",
           "kind": "machine_job",
-          "orders_unblocked": 2167
+          "orders_unblocked": 2227
         },
         {
           "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
           "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
           "kind": "agent_check",
-          "orders_unblocked": 703
+          "orders_unblocked": 737
         },
         {
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
@@ -13135,33 +13107,33 @@
       "status_contested": 0,
       "step_done_among_decided": {
         "clause_inventory": {
-          "applicable": 4301,
-          "done": 1477
+          "applicable": 4307,
+          "done": 1488
         },
         "counterevidence": {
-          "applicable": 4301,
-          "done": 2874
+          "applicable": 4307,
+          "done": 2880
         },
         "ending_or_current_basis": {
-          "applicable": 4301,
-          "done": 1267
+          "applicable": 4307,
+          "done": 1277
         },
         "opus_media": {
           "applicable": 788,
           "done": 125
         },
         "original_text": {
-          "applicable": 4301,
-          "done": 3548,
-          "provisional": 17
+          "applicable": 4307,
+          "done": 3549,
+          "provisional": 16
         },
         "provisional_status": {
-          "applicable": 4301,
-          "done": 4301
+          "applicable": 4307,
+          "done": 4307
         },
         "savings_residuals": {
-          "applicable": 4301,
-          "done": 1464
+          "applicable": 4307,
+          "done": 1475
         },
         "shared_sources": {
           "applicable": 236,
@@ -13169,14 +13141,14 @@
         }
       },
       "text_step_from_checked_replica": 1968,
-      "text_step_provisional_working_text": 284,
+      "text_step_provisional_working_text": 252,
       "unnumbered_series_estimate_95": [
         4101,
         5095
       ],
       "unnumbered_series_observed": 2334,
       "whole_end_date_kind": {
-        "exact": 1237,
+        "exact": 1243,
         "not_later_than": 184
       },
       "working_text_confirmations_counting": 807
@@ -14234,7 +14206,7 @@
       "wpa_entries_parsed": 155
     },
     "selden-fr-acting": {
-      "bytes_downloaded": 1153355666,
+      "bytes_downloaded": 1139195521,
       "controls": {
         "false_location_rate": 0.0,
         "false_locations": 0,
@@ -14247,7 +14219,7 @@
       },
       "extracts_committed_bytes": 255048664,
       "failures": 1,
-      "generated_utc": "2026-11-10T05:58:40Z",
+      "generated_utc": "2026-11-10T12:05:41Z",
       "issues_gpo_premis_match": 804,
       "issues_gpo_premis_other": {
         "mismatch": 804
@@ -14262,7 +14234,7 @@
       "pairs": 1009,
       "pairs_acting_on_target": 653,
       "pairs_located": 739,
-      "requests": 103,
+      "requests": 82,
       "wanted_by_type": {
         "ACT": 1,
         "CANAL_ZONE_ORDER": 6,
@@ -14275,7 +14247,7 @@
       "wanted_pages": 828
     },
     "selden-fr-citers": {
-      "bytes_downloaded": 856889,
+      "bytes_downloaded": 855827,
       "citations": 19726,
       "citations_acting_on_target": 5534,
       "committed_text_bytes": 182590553,
@@ -14293,41 +14265,41 @@
       "failures": 0,
       "fragments": 8097,
       "fragments_relocated_with_new_locator": 0,
-      "generated_utc": "2026-11-09T05:12:25Z",
+      "generated_utc": "2026-11-10T11:58:12Z",
       "job": "selden-fr-citers",
       "legal_cutoff": "2026-10-14",
       "limits": "Leads only: a printed relation word near a citation. 1994 on only (full-text search coverage).",
       "orders_with_a_citing_document": 1784,
       "orders_with_an_acting_citation": 1096,
-      "requests": 80,
+      "requests": 71,
       "sources_carried": 4820,
       "sources_kept": 4820,
-      "targets_searched_this_run": 9,
+      "targets_searched_this_run": 0,
       "targets_searched_total": 13533,
-      "targets_total": 13379
+      "targets_total": 13220
     },
     "selden-statutes": {
       "acting_pairs": 143,
       "acting_pairs_located": 30,
-      "attempted": 1956,
-      "bytes_downloaded": 419580437,
-      "committed_pdf_bytes": 182079919,
+      "attempted": 1941,
+      "bytes_downloaded": 399769600,
+      "committed_pdf_bytes": 169760052,
       "failures": 25,
       "failures_by_reason": {
         "FetchError": 25
       },
-      "generated_utc": "2026-11-06T17:57:07Z",
-      "held": 1931,
+      "generated_utc": "2026-11-10T12:01:19Z",
+      "held": 1916,
       "job": "selden-statutes",
       "limits": "Leads only. A cited statute is not shown to end or carry the order. No status, census, codebook or count change. Certified: 0.",
-      "orders_with_held_basis_statute": 4130,
-      "page_number_not_printed": 86,
-      "page_number_printed": 1828,
-      "pdf_committed": 81,
-      "requests": 45,
+      "orders_with_held_basis_statute": 4132,
+      "page_number_not_printed": 84,
+      "page_number_printed": 1815,
+      "pdf_committed": 75,
+      "requests": 31,
       "wanted_acting": 60,
-      "wanted_orders_basis": 4139,
-      "wanted_statutes": 1956
+      "wanted_orders_basis": 4141,
+      "wanted_statutes": 1941
     },
     "shepard-citations": {
       "blm_fetch": {
@@ -14374,7 +14346,7 @@
         "entries": 796,
         "texts_with_codification_guide": 363
       },
-      "generated_utc": "2026-11-10T05:24:53Z",
+      "generated_utc": "2026-11-10T11:11:30Z",
       "held_texts": {
         "date_mentions": 2106,
         "number_mentions": 9837,
@@ -14923,7 +14895,7 @@
       },
       "reserves_indexed": 182,
       "reserves_resolved": 180,
-      "seconds": 66.7,
+      "seconds": 80.1,
       "skipped_already_in_later_events_or_codification": {
         "shepard_blm_plo_table": 155,
         "shepard_fr_contents": 479,
@@ -15154,15 +15126,14 @@
     "tischendorf-originals": {
       "by_route_and_verdict": {
         "corroborate/fr-originals|lead": 7,
-        "corroborate/fr-originals|strong": 25,
         "corroborate/isthmian-canal-1911|lead": 1,
-        "lead/ia_fulltext|lead": 573,
-        "official/fr_issue_by_date|lead": 10,
-        "official/fr_issue_by_date|strong": 90,
-        "official/ia_fulltext|lead": 12,
-        "official/ia_fulltext|strong": 3
+        "lead/ia_fulltext|lead": 574,
+        "official/fr_issue_by_date|lead": 12,
+        "official/fr_issue_by_date|strong": 70,
+        "official/ia_fulltext|lead": 30,
+        "official/ia_fulltext|strong": 4
       },
-      "bytes_downloaded": 8180733529,
+      "bytes_downloaded": 2456099185,
       "controls": {
         "accepted_negatives": [],
         "negatives": 120,
@@ -15173,37 +15144,37 @@
       },
       "counted_by_tracker": false,
       "job": "tischendorf-originals",
-      "leads": 603,
+      "leads": 624,
       "order_errors": 0,
       "prior_state_from": "git_head",
-      "replacement_strong": 39,
-      "replacement_targets": 699,
+      "replacement_strong": 71,
+      "replacement_targets": 734,
       "replacement_targets_ready": 520,
       "request_caps": {
         "fr_by_date": 1500,
         "ia_fulltext": 7500,
         "total": 9000
       },
-      "requests": 2437,
+      "requests": 534,
       "requests_by_route": {
-        "fr_by_date": 201,
-        "ia_fulltext": 1740
+        "fr_by_date": 95,
+        "ia_fulltext": 323
       },
       "run_counts": {
-        "attempted_corroborate": 94,
-        "attempted_fr_by_date": 72,
-        "attempted_ia_fulltext": 2364,
-        "carried_strong": 29,
+        "attempted_corroborate": 69,
+        "attempted_fr_by_date": 45,
+        "attempted_ia_fulltext": 2386,
+        "carried_strong": 36,
         "ia_not_distinctive": 66
       },
-      "seconds": 1683,
-      "strong": 118,
+      "seconds": 569,
+      "strong": 74,
       "strong_rules": "own number heading or closing tag on the pages (an OCR-damaged or mid-line heading only with a text score >= 0.6; in a compilation that prints no numbers, the signing date), text fingerprint score >= 0.5, distinctive fingerprint (>= 8 rare shingles), government-printed source, and no planted control failed this run",
-      "targets": 2921,
+      "targets": 2901,
       "targets_by_route": {
-        "corroborate": 94,
-        "fr_by_date": 396,
-        "ia_fulltext": 2431
+        "corroborate": 69,
+        "fr_by_date": 379,
+        "ia_fulltext": 2453
       },
       "what_this_is_not": "No status, identity, census, codebook or readiness change. Strong finds are machine locations; the tracker counts them only after this job is registered there.",
       "workers": 24

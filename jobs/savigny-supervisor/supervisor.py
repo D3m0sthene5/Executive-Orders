@@ -8,10 +8,11 @@ reports about itself.
 
   python -I jobs/savigny-supervisor/supervisor.py --root C:/Users/danie/eo-wt/_savigny
 
-The runtime folder (--root) holds lanes.json, limits.json, prompts/, status/, inbox/, directives/, logs/ and
-state.json. See README.md. The supervisor refuses to start without a chain budget in limits.json.
+The runtime folder (--root) holds WAVE.json (the run's plan), lanes.json, prompts/, status/, inbox/, directives/,
+logs/ and state.json. See README.md. The supervisor refuses to start unless WAVE.json passes Augur
+(jobs/augur-launch/augur.py). The plan's limits are the run's limits.
 
-Limits (limits.json; all required keys are listed in LIMIT_KEYS):
+Limits (WAVE.json "limits"; all required keys are listed in LIMIT_KEYS):
 - chain_budget_units: total usage units for the whole run. At 100%, every turn is killed and STOP is written.
 - spend_per_claim_units: units a lane may spend since its last new verified claim. Over it, the lane is paused.
 - no_claim_minutes: minutes of running turns since a lane's last new verified claim. Over it, the lane is paused.
@@ -33,6 +34,8 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "carnot-coordinator"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "augur-launch"))
+import augur  # noqa: E402
 import meter  # noqa: E402
 
 COORD = "_savigny"
@@ -73,7 +76,7 @@ def write_json(path, data):
 class Chain:
     """One run of the chain over a runtime folder. Construct, then call run()."""
 
-    def __init__(self, root, fake=False, metered=None, clock=None):
+    def __init__(self, root, fake=False, metered=None, clock=None, preflight=None):
         self.root = Path(root)
         self.fake = fake
         self.metered = metered or self.measure          # tests inject a fake meter
@@ -82,10 +85,22 @@ class Chain:
         if not cfg or not cfg.get("lanes"):
             raise SystemExit("lanes.json must name the lanes and their worktrees: {\"lanes\": {name: path}}")
         self.lanes = dict(cfg["lanes"])
-        self.limits = read_json(self.root / "limits.json", {})
+        # Augur: the run's plan (WAVE.json) must pass the launch checks now, computed here rather than read from a
+        # receipt an agent could write. The limits come from the approved plan: one source, nothing to drift.
+        plan = read_json(self.root / "WAVE.json", None)
+        if not plan:
+            raise SystemExit("WAVE.json missing: every run needs a plan that passes jobs/augur-launch/augur.py check")
+        refusals, receipt = (preflight or augur.check)(plan)
+        if refusals:
+            raise SystemExit("Augur refuses this wave:\n- " + "\n- ".join(refusals))
+        planned = sum(int(a.get("lanes") or 0) for a in plan.get("actions") or [])
+        if len(self.lanes) > planned:
+            raise SystemExit(f"lanes.json has {len(self.lanes)} lanes; the approved plan allows {planned}")
+        write_json(self.root / "augur-receipt.json", receipt)
+        self.limits = dict(plan.get("limits") or {})
         missing = [k for k in LIMIT_KEYS if not isinstance(self.limits.get(k), (int, float)) or self.limits[k] <= 0]
         if missing:
-            raise SystemExit("limits.json needs positive values for: " + ", ".join(missing))
+            raise SystemExit("WAVE.json limits need positive values for: " + ", ".join(missing))
         for d in ("inbox", "status", "directives", "logs"):
             (self.root / d).mkdir(exist_ok=True)
         self.state = read_json(self.root / "state.json", {})
@@ -154,7 +169,8 @@ class Chain:
         fh = open(out, "w", encoding="utf-8")
         proc = subprocess.Popen(self.command(agent, last), stdin=subprocess.PIPE, stdout=fh, stderr=subprocess.STDOUT,
                                 cwd=str(self.lanes.get(agent) or self.root) if not self.fake else str(self.root),
-                                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+                                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+                                start_new_session=os.name != "nt")
         proc.stdin.write(self.prompt(agent, turn).encode("utf-8"))
         proc.stdin.close()
         a.update(turns=turn, started=self.clock(), out=str(out), pid=proc.pid)
@@ -165,7 +181,14 @@ class Chain:
         proc, _ = self.running[agent]
         if proc.poll() is None:
             # The whole tree: killing only the coordinator would leave its workers running and spending.
-            subprocess.run(["taskkill", "/T", "/F", "/PID", str(proc.pid)], capture_output=True)
+            if os.name == "nt":
+                subprocess.run(["taskkill", "/T", "/F", "/PID", str(proc.pid)], capture_output=True)
+            else:
+                import signal
+                try:
+                    os.killpg(proc.pid, signal.SIGKILL)   # the turn runs in its own session (start_new_session)
+                except (ProcessLookupError, PermissionError):
+                    proc.kill()
             try:
                 proc.wait(timeout=30)
             except subprocess.TimeoutExpired:

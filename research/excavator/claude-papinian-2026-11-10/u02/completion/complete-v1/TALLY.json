@@ -1,0 +1,121 @@
+{
+  "attempted": 10,
+  "claims_published": 0,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:10938",
+      "planted_claim_sha256": "7fea5fe081546dff93dcbe3198716bf04d7a01526674a578a493f0d6514d2219",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 7,
+    "eligible": 3
+  },
+  "eligible": [
+    "EO:9245",
+    "EO:10679",
+    "EO:11962"
+  ],
+  "eligible_per_attempt": 0.3,
+  "exceptions": 0,
+  "finished_utc": "2026-11-10T09:06:56.665383+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "12887ca3d043aede77e7e35e245ab5b7e39fc4097e63f862b3d1b8b70b19dddc",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:9245",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:10195",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"research_rationale (earlier_end_check) and later_source_search\", \"claim_says\": \"'The current-law searches (U.S. Code and eCFR) had no hit naming EO 10195.' and 'no other held instrument revokes or amends it'.\", \"source_says\": \"The held current-law output for U.S. Code release point 119-121 (jobs/current-law/output/ORDERS_CURRENT_LAW.csv usc_mentions=2; MENTIONS.csv rows usc:afc4fb452c4c, usc:2f4691150073) names EO 10195 twice in 26 U.S.C. 112 notes. The Amendments note records that the statute provided 'June 25, 1950, shall be considered the date of the commencing of combatant activities in the combat zone designated in Executive Order 10195' (later struck).\"}, {\"field\": \"operative_clauses[0].later_events and savings_residuals.reason\", \"claim_says\": \"later_events is empty; the designation and its accrued tax effects ran from June 27, 1950 to Jan. 31, 1955.\", \"source_says\": \"The held note shows a statute overriding the order's June 27, 1950 commencement designation with June 25, 1950. That is a legislative event on this clause and needs its own date, actor, mechanism and source. It is not recorded or addressed.\"}], \"B\": [{\"field\": \"research_rationale (Member checks: earlier_end_check)\", \"problem\": \"misdescribes the U.S. Code search\", \"claim_says\": \"The current-law searches (U.S. Code and eCFR) had no hit naming EO 10195.\", \"source_says\": \"jobs/current-law/output/MENTIONS.csv (U.S. Code release point 119-121) has two hits naming EO 10195 at 26 U.S.C. 112 note: the Amendments note and the printed text of EO 10585.\"}, {\"field\": \"operative_clauses[EO:10195#whole].later_events, savings_residuals.reason and research_rationale\", \"problem\": \"unaddressed statutory event affecting the order's commencement-date designation\", \"claim_says\": \"later_events []; the designation runs from the June 27, 1950 commencement date to Jan. 31, 1955, and the tax consequences for service 'within June 27, 1950 to Jan. 31, 1955 accrued'.\", \"source_says\": \"The held 26 U.S.C. 112 Amendments note records that the Code provided 'except that June 25, 1950, shall be considered the date of the commencing of combatant activities in the combat zone designated in Executive Order 10195' (later struck). By statute, the order's June 27, 1950 commencement date was displaced, under section 112(c)(3), the provision EO 10585 itself invokes. The claim neither records nor analyses this.\"}, {\"field\": \"operative_clauses[EO:10195#whole].first_end.source and whole_order_end.source\", \"problem\": \"the quote is not the operative provision\", \"claim_says\": \"quote = the whole EO_10585.txt file (chars 0-5959), including unrelated Civil Aeronautics Board regulations\", \"source_says\": \"The operative sentence designating 'January 31, 1955, as of midnight thereof' is a short span within the file.\"}]}"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:10472",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"operative_clauses[EO:10472#sec1].later_events\", \"claim_says\": \"[] ; EO 10937 is disclosed but 'not cited as a later event here'.\", \"source_says\": \"EO 10937 of May 3, 1961 (26 FR 3915) amends section 1 'to read as follows' (25 members, not more than 15 of one party, at least 18 farmers, terms expiring 1962-1964). The OFR note reads 'Amended by: EO 10937, May 3, 1961'. Owner ruling 2026-10-21-strike-and-insert requires such an amendment to be a later_event with the before and after text.\"}, {\"field\": \"judgment_reason / research_rationale\", \"claim_says\": \"'Its Federal Register copy is held only as a custody record'.\", \"source_says\": \"The FR text is held at jobs/fr-originals/data/full_run/texts/EO_10937.txt, the same folder as the claim's other FR sources. It is the actor_source of dossier evidence ACT:EO:10472>EO:10937, and an APP transcription is also held.\"}], \"B\": [{\"field\": \"operative_clauses[EO:10472#sec1].later_events\", \"problem\": \"a known amendment is not recorded as a later event, contrary to the owner ruling of 2026-10-21 on strike-and-insert amendments, which the claim itself invokes\", \"claim_says\": \"later_events []. EO 10937 is mentioned only in prose, with a request that the reviewer note the change of substance.\", \"source_says\": \"EO 10937 (May 3, 1961, 26 FR 3915) orders that section 1 'be, and it is hereby, amended to read as follows', changing the Commission to 25 members, not more than 15 of one party and at least 18 farmers, with new term dates. Under the ruling, the amendment is a later_event recording the text before and after.\"}, {\"field\": \"operative_clauses[EO:10472#sec1].judgment_reason and research_rationale\", \"problem\": \"the stated reason for not citing EO 10937 is wrong\", \"claim_says\": \"its Federal Register copy is held only as a custody record, so it is not cited as a later event\", \"source_says\": \"The frozen DOSSIER's evidence ACT:EO:10472>EO:10937 cites the held FR text jobs/fr-originals/data/full_run/texts/EO_10937.txt (sha256 66c42af3..., 26 FR 3915, re-hashed and matching). An APP transcription is also held.\"}]}"
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "b82fae8f0445eda832d5893d7e0ebb0c8f013db2cefc166de3224a0511a23ff4",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:10679",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:10816",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"operative_clauses[0].first_end and operative_clauses[2].first_end\", \"claim_says\": \"First end 1961-09-20 by EO 10964, mechanism 'express_replacement_of_text'; later_events empty.\", \"source_says\": \"EO 10964 para. 1(B) deletes section 4 paragraphs including (i) 'and inserting in lieu thereof' new text, and para. 4 restates section 8(c) and (d) 'to read as follows'. Under owner ruling 2026-10-21-strike-and-insert these clauses continue, amended, until the parent ends (1972-06-01 under EO 11652 Secs. 14-15). EO 10964 must be recorded as a later_event with before and after text, not as a first end.\"}, {\"field\": \"research_rationale (earlier_end_check)\", \"claim_says\": \"'Paragraphs 2 and 3 are not touched by any held later amendment' and, in the same check, 'clauses 1 and 3 ended on 1961-09-20 under EO 10964'.\", \"source_says\": \"These statements contradict each other: EO 10964 para. 4 rewrites the section 8(d) sentence set by paragraph 3.\"}, {\"field\": \"research_rationale\", \"claim_says\": \"EO 10964 'rewrote parts of sections 4, 5, 8 and 13'; the OFR cross-reference to EO 10865 is not mentioned.\", \"source_says\": \"EO 10964 also amends section 6 and adds a new section 19 (paras. 3, 6, 7). The OFR disposition note for EO 10816 cross-references 'EO 10865, February 20, 1960', which the claim never addresses (minor; held EO 10865 text does not name EO 10501 or 10816).\"}], \"B\": [{\"field\": \"operative_clauses[EO:10816#1].first_end and operative_clauses[EO:10816#3].first_end\", \"problem\": \"treats a strike-and-insert or restatement as the end of a clause, contrary to the owner ruling of 2026-10-21 on strike-and-insert amendments\", \"claim_says\": \"first end 1961-09-20 by EO 10964, 'express_replacement_of_text'\", \"source_says\": \"EO 10964 1(B) deletes section 4 paragraphs '(a), (e), (g), (h), and (i) and inserting in lieu thereof the following'. Its new (h) restates the rule that EO 10816 added as (i). EO 10964 para. 4 amends section 8(c) and (d) 'to read as follows'. Under the ruling, the clause continues, amended, until the parent order ends; the amendment is a later_event. The parent, EO 10501, ended 1972-06-01 under EO 11652 secs. 14-15.\"}, {\"field\": \"research_rationale (Member checks: earlier_end_check)\", \"problem\": \"internally inconsistent\", \"claim_says\": \"'Paragraphs 2 and 3 are not touched by any held later amendment' and, in the same check, 'clauses 1 and 3 ended on 1961-09-20 under EO 10964'\", \"source_says\": \"EO 10964 para. 4 rewrites section 8(d), which is the text paragraph 3 restated.\"}, {\"field\": \"operative_clauses[EO:10816#1/#3].first_end.source\", \"problem\": \"the quote is the whole file, not the provision\", \"claim_says\": \"EO_10964.txt chars 0-15228 (includes an unrelated trade-agreement proclamation)\", \"source_says\": \"The operative amendments are paras. 1(B) and 4 of EO 10964.\"}, {\"field\": \"research_rationale (Member checks: earlier_end_check)\", \"problem\": \"minor misstatement\", \"claim_says\": \"EO 10964 rewr"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:10938",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"B\": [{\"field\": \"operative_clauses[EO:10938#sec3] (inventory and first_end)\", \"problem\": \"Section 4 is an operative command but is not its own clause. It is merged into the section 3 clause, whose first_end gives it EO 11460 express revocation on 1969-03-20. By the claim's own scope_check, section 4 was a one-time revocation that was completed in 1961 and not affected by EO 11460, so the structured first_end (actor, mechanism, date) is wrong for that command and contradicts the rationale.\", \"claim_says\": \"sec3 span (chars 1999-2868) includes 'S ec. 4. Executive Order No. 10656 of February 6, 1956, is hereby revoked.'; first_end 1969-03-20, actor EO:11460, express_revocation. scope_check: section 4 'is a completed one-time revocation executed on signing in 1961'.\", \"source_says\": \"EO_10938.txt: section 4 is a separate command signed May 4, 1961, with no deferred date. Its own end is performance on 1961-05-04, not EO 11460. Split it into its own clause with that end; the whole-order end stays 1969-03-20.\"}]}"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:11202",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"operative_clauses (inventory)\", \"claim_says\": \"Four clauses beginning at Sec. 1 item (1) (EO_11202.txt chars 1147-2251), inventory_overrides empty; scope_check says every clause (Sec. 1 items (1)-(4), Sec. 2, Sec. 3) is covered.\", \"source_says\": \"EO_11202.txt chars 875-1147 hold the order's operative command, Sec. 1 lead-in: 'The appointment of an employee occupying a Student Trainee position ... shall be converted to a career-conditional o r career appointment if he:'. It is in no clause; items (1)-(4) are only its conditions. The inventory omits an operative command.\"}], \"B\": [{\"field\": \"operative_clauses (inventory)\", \"problem\": \"incomplete inventory: the order's operative conversion command is in no clause\", \"claim_says\": \"Four clauses, starting at Sec. 1 item (1) (char 1147), with the fourth covering item (4) through Sec. 3; scope_check lists 'Sec. 1 items (1)-(4), Sec. 2 definition and Sec. 3 regulation direction'.\", \"source_says\": \"EO_11202.txt chars ~905-1146: 'S ection  1. The appointment of an employee occupying a Student Trainee position in a shortage occupation that is excepted from the competitive service under Schedule B of the Civil Service Rules shall be converted to a career-conditional o r career appointment if he:' This is the command itself. Items (1)-(3) are only its conditions.\"}]}"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:11813",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"operative_clauses (inventory)\", \"claim_says\": \"Four clauses beginning at Sec. 2 item (1) (EO_11813.txt chars 1639-2831), inventory_overrides empty; clause 4 covers 'Secs. 3 to 5'.\", \"source_says\": \"EO_11813.txt chars 837-1639 hold Section 1 (definition of 'cooperative education') and the Sec. 2 operative command ('the appointment of a cooperative education student under Schedule B ... may be converted noncompetitively to a career-conditional or career appointment if the student:'). Neither is in any clause, although the claim's own independent_command_check lists both as parts of the order.\"}], \"B\": [{\"field\": \"operative_clauses (inventory)\", \"problem\": \"incomplete inventory: Section 1 and the operative conversion command of Section 2 are in no clause\", \"claim_says\": \"Four clauses, starting at Sec. 2 item (1) (char 1639), with the fourth covering item (4) through Sec. 5; independent_command_check treats 'Sections 1 (definition), 2 (conversion rule)' as covered.\", \"source_says\": \"EO_11813.txt: Sec. 1 (the definition of 'cooperative education') and the Sec. 2 lead-in 'Under this order, the appointment of a cooperative education student under Schedule B of the civil service rules may be converted noncompetitively to a career-conditional or career appointment if the student:' come before char 1639 and fall in no clause.\"}, {\"field\": \"operative_clauses[EO:11813#4]\", \"problem\": \"internally inconsistent\", \"claim_says\": \"The clause includes Sec. 4 ('Executive Order No. 11202 ... is hereby revoked.') with first end 1977-10-26, yet scope_check says that revocation 'was executed on Oct. 7, 1974 and is a performed act'.\", \"source_says\": \"Sec. 4 is a one-time revocation, effective immediately on Oct. 7, 1974 (Sec. 5).\"}]}"
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "claim_sha256": "1e29014b647e2047c19130d7f3571ab1c9fa85e3f00b044e6b10aad0a2158c1b",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:11962",
+      "outcome": "eligible",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:12576",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"research_rationale (earlier_end_check)\", \"claim_says\": \"'no held U.S. Code note or CFR text names it (current-law:usc and current-law:ecfr had no hit)'.\", \"source_says\": \"The frozen DOSSIER machine_searches record 4 hits for current-law:usc and 4 for current-law:ecfr. The held 5 U.S.C. 5569 note (jobs/current-law/output/MENTIONS.csv usc:782565931f29) states EO 12576 'was superseded by Ex. Ord. No. 12598, June 17, 1987, 52 F.R. 23421'. The search description is false and the note is not addressed, although it agrees with the end.\"}], \"B\": [{\"field\": \"research_rationale (Member checks: earlier_end_check)\", \"problem\": \"misdescribes the U.S. Code search\", \"claim_says\": \"no held U.S. Code note or CFR text names it (current-law:usc and current-law:ecfr had no hit)\", \"source_says\": \"The held U.S. Code search (release point 119-121, jobs/current-law/output/MENTIONS.csv) has two hits at 5 U.S.C. 5569 note: 'Ex. Ord. No. 12576, Dec. 2, 1986, 51 F.R. 43721, relating to victims of terrorism compensation, was superseded by Ex. Ord. No. 12598, June 17, 1987, 52 F.R. 23421, set out below.' and the printed text of EO 12598 sec. 6. The frozen DOSSIER also records 4 machine hits for current-law:usc.\"}]}"
+    }
+  ],
+  "packet_loads": {},
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 3,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-10T09:01:44.839489+00:00",
+  "submitted": 3,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 311.8279999999795
+}

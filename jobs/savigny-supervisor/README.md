@@ -35,7 +35,9 @@ claim files. None depends on what an agent reports about itself.
 | `coordinator_units_per_hour`: the coordinator's own spend per hour | 1,000,000 | The coordinator runs only when there is news (a lane turn ended, a pause), never on a timer. |
 | `chain_budget_units`: total for the run; at 100%, everything is killed and STOP is written | set by the owner, required | No run starts open-ended. |
 
-`limits.json` must set every one of these to a positive number; the supervisor refuses to start otherwise.
+The limits live in the run's plan, `WAVE.json` (`"limits"`). The supervisor runs Augur's launch check on that plan at
+startup (`jobs/augur-launch/augur.py`), and refuses to start if Augur refuses, if any limit is missing, or if
+`lanes.json` names more lanes than the plan approved.
 Usage units = 0.1 x cached input + 1 x uncached input + 4 x output (meter.py), an explicit approximation of how a
 plan meters usage. For scale, last night's run measured about 148M units.
 
@@ -56,7 +58,7 @@ plan meters usage. For scale, last night's run measured about 148M units.
 
 ## Runtime folder (`--root`)
 
-`lanes.json` (`{"lanes": {"mommsen-1": "C:/Users/danie/eo-wt/mommsen-1", ...}}`), `limits.json`, `prompts/`
+`WAVE.json` (the plan Augur checks), `lanes.json` (`{"lanes": {"mommsen-1": "C:/Users/danie/eo-wt/mommsen-1", ...}}`), `prompts/`
 (`savigny.md`, `savigny-turn.md`, `lane.md`, `lane-turn.md`), `status/`, `inbox/`, `directives/`, `logs/`,
 `state.json`. To stop everything, create an empty `STOP`. `PAUSE-<agent>` pauses one agent. Keep owner grants in
 the runtime folder, never in this repository.
