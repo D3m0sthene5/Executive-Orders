@@ -1,0 +1,3 @@
+EO393 and EO506: **blocked**. Card access and Python execution were denied; current policy prevents escalation.
+
+Recorded in [FINAL_REVIEW.json](/C:/Users/danie/eo-wt/mommsen-2/research/excavator/mommsen2-2026-11-10/b03/packet-v2/reviews/arm1/FINAL_REVIEW.json) and [AFTER_REVEAL_393.json](/C:/Users/danie/eo-wt/mommsen-2/research/excavator/mommsen2-2026-11-10/b03/packet-v2/reviews/arm1/AFTER_REVEAL_393.json). Failed verifier attempts are preserved separately. The sealed control review remains unchanged.
