@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (2)
+## Waiting for the owner (4)
 
-**A-20261108-lean-main**, **A-20261110-ulpian-l1r-correction**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-l1r-correction**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -52,13 +52,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 303; `search` finds the rest)
+## Newest results (6 of 309; `search` finds the rest)
 
 - 2026-11-10 F-20261110-why-warnings-missed **analysis**: Checked what the project already knew before the overnight Codex wave launched (2026-11-09 21:45 ET), and why… Lesson: A lessons register stops nothing unless a gate enforces it at the decision point. jobs/augur-launch/augur.py refuses a wave unless: its objective is an outcome; its actions are Bentham's; it ramps fr…
+- 2026-11-10 F-20261110-whitworth-forecast **analysis**: Whitworth: fixed the interfaces between the six parts of the next production line (Linnaeus, Accursius, Larre… Lesson: Score the first batch against this forecast whatever the result; no larger batch before an end-to-end gauge test is green and the calibration batch is scored
 - 2026-11-10 F-20261110-ulpian-outer-bound **partly worked**: Track 3 (Ulpian): an outer-bound rule for one-person orders (civil-service waivers etc.): latest possible dea… Lesson: One-person orders are bounded only by facts in their own text; adulthood is not shown by an appointment. Per order, compute the required age r (order date minus 1904-05-02) and look for a dated prese…
 - 2026-11-10 F-20261110-ulpian-jacquard-l1-correction **worked**: Re-read the 42 Jacquard L1 provisional NO statuses dated on or after 1904-05-03 (D-20261110-ulpian-jacquard-l… Lesson: A lot card's stated basis must be checked when the rule behind it changes: one declined premise reached about 570 merged statuses. When a planted control is built by appending a sentence, check first…
-- 2026-11-10 F-20261110-papinian-wave **worked**: Papinian production lane (2026-11-10 two-lane wave, Opus coordinator): Bentham pools custody_stranded, one_st… Lesson: The YES stratum yields about 16% at about 3.3 USD per filed claim; reviewer cost (two Opus arms) is about 70% of worker cost. Most YES blocks are acquisitions, not research: NEA continuation notices…
-- 2026-11-10 F-20261110-papinian-undecided-u23 **stopped at gate**: Scale the undecided probe after the gate said CONTINUE: u02 and u03 (60 more EO >= 7532 orders, seed papinian… Lesson: Status review is the easy half: 16 of 17 NO statuses were accepted, but only 6 of 16 lifecycle claims survived both arms. Producers on the undecided route skip U.S. Code notes and later amendments; g…
-- 2026-11-10 F-20261110-papinian-undecided-u01b **partly worked**: Papinian pool 4: 30-order status_assignment.undecided probe (EO >= 7532, seed papinian-2026-11-10-undecided)… Lesson: The undecided route needs claim-kit outputs compiled with the current status_overlay code; check prepare on one order before drawing a batch. Yield is bounded by owner adoption (ask A-20261110-papini…
+- 2026-11-10 F-20261110-respondendi-wave **worked**: Owner-requested research workflow (Fable 5.2 on High) to lift the undecided-status bottleneck permanently and… Lesson: Fable 5.2 at high effort costs about 25-30 USD per deep-reading worker (cache reads at 1 USD per million dominate); a 14-worker research storm is about 255 USD. Use it for diagnosis that needs whole-…
+- 2026-11-10 F-20261110-respondendi-v2 **worked**: Respondendi v2 at the owner's request: one standing approval for every kind of undecided order (express revoc… Lesson: Breadth without a measured error bound is not breadth: each red-team screen removed a way to adopt a wrong status and cost reach (3,465 claimed in the v2 draft, 1,468 after). The reach that remains i…
 
-Register: 80 owner decisions, 49 answered questions, 303 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 80 owner decisions, 49 answered questions, 309 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
