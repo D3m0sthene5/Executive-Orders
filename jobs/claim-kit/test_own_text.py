@@ -298,7 +298,7 @@ class OverlayRouteTests(_OverlayFixture):
         self.assertEqual(self.base.propose()["recommended_provisional_status"], "yes")
 
     def test_routes_constant_names_the_live_routes(self):
-        self.assertEqual(O.UNDECIDED_ROUTES, frozenset({"current", "own_text"}))
+        self.assertEqual(O.UNDECIDED_ROUTES, frozenset({"current", "own_text", "working_text"}))
         self.assertIn("OWN_TEXT:", O.NO_BASIS_PREFIXES)
 
 
