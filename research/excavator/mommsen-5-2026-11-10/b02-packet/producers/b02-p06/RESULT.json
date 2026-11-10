@@ -1,0 +1,122 @@
+{
+  "producer": "b02-p06",
+  "lane": "mommsen-5",
+  "instrument_ids": [
+    "EO:500"
+  ],
+  "started_utc": "2026-11-10T06:41:15.198992+00:00",
+  "started_utc_qualification": "First successfully captured UTC timestamp after initial protocol/view/source reads; exact session start not available.",
+  "finished_utc": "2026-11-10T06:43:57.892984+00:00",
+  "actual_model": null,
+  "model_qualification": "Requested gpt-6.1-sol medium; actual precise model/version and effort not exposed. Runtime identifies this assistant as Codex.",
+  "tokens": null,
+  "cash": null,
+  "human_certified": 0,
+  "outcomes": [
+    {
+      "instrument_id": "EO:500",
+      "outcome": "blocked",
+      "approved": false,
+      "candidate_end": "1906-09-03 inclusive, close of day; first instant outside window 1906-09-04",
+      "reasoning": "Complete one-page archival replica visually inspected, including operative text, signature/date, handwritten number 500 and later filing stamp. One command excuses Washington Navy Yard employees from work on Monday September 3, 1906. Annual language describes the 1894 Act in the recital; it does not extend this command to future years. Candidate own-term cessation is the close of 1906-09-03, with first post-window instant 1906-09-04; no performance assumption is needed for that temporal scope. This remains a blocked whole-case proposal because earlier-end coverage and required rendering method are not closed. No claim is ready; no original authentication or human certification.",
+      "material_blockers": [
+        "No supplied search establishes coverage of possible earlier cessation between signing on 1906-08-29 and the close of 1906-09-03. The OFR catalogue begins in 1937; the saved-text search describes 17,521 texts but does not establish complete contemporary coverage. No network acquisition authorized.",
+        "Specified fitz/installed-Poppler rendering route unavailable: Python lacks fitz; pdftoppm/pdfinfo/mutool not on PATH. Complete embedded scan image was visually inspected via pypdf and view_image instead; strict rendering-method compliance remains outstanding."
+      ],
+      "scope_correction": "EO:500#dated-excusal, ORIGINAL:EO:500 offsets 34:325",
+      "actor_findings": "All six full held actor texts read. References to EO 500 occur only in editorial related-order lists, supplying no operative actor change.",
+      "savings": "No express savings or residual command appears in the complete page. Historical excuse for absence on the named day and any independently established accrued consequence are distinct from prospective work-excusal authority; do not infer that accrued consequences were extinguished. No payroll, actual attendance, payment or independent statutory-right finding is made."
+    }
+  ],
+  "source_pages_visually_checked": true,
+  "visual_method": "pypdf extracted sole embedded complete-page Im0 image, 3232x4680; saved lossless PNG in tmp/pdfs/b02-p06 and inspected using view_image. PDF content stream confirmed sole visible scan image and invisible OCR text. No page crop; no PDF edit. fitz/Poppler requirement not fully satisfied.",
+  "sources_actually_inspected": [
+    {
+      "path": "jobs/pinakes-proquest-ingest/output/texts/EO_500.txt",
+      "sha256": "9691de7f4ec1340049c0743b85f169ec1bb32bb0401c2bf3fdb1f334c8466c85",
+      "extent": "entire held text"
+    },
+    {
+      "path": "jobs/wikisource-texts/output/texts/EO_1122.txt",
+      "sha256": "76c9ad6e33eb7ffb87e0e2a32bc022d6fff343cbfb59443778fd42935e97c896",
+      "extent": "entire held text"
+    },
+    {
+      "path": "jobs/wikisource-texts/output/texts/EO_1243.txt",
+      "sha256": "d72d2dd74e6c37700f6b99ea7239c63e18144db883c543e56b500fa69ef701f7",
+      "extent": "entire held text"
+    },
+    {
+      "path": "jobs/wikisource-texts/output/texts/EO_1404.txt",
+      "sha256": "2ec13260ee23c31b8455c0874eb27daa5b3f5c2cffb87ed82bdb215d2b375541",
+      "extent": "entire held text"
+    },
+    {
+      "path": "jobs/wikisource-texts/output/texts/EO_1574.txt",
+      "sha256": "ded56942cae171dbf5f8b3e96db1237bbcf88425c8042d37313d14da7fec2025",
+      "extent": "entire held text"
+    },
+    {
+      "path": "jobs/wikisource-texts/output/texts/EO_677.txt",
+      "sha256": "823987d032693e2fda5daec316f17fcdf0288341b62497c33ab4c8ce0f57948b",
+      "extent": "entire held text"
+    },
+    {
+      "path": "jobs/wikisource-texts/output/texts/EO_926.txt",
+      "sha256": "50d21d80161464958ac8590c78a9271c206018fb9c8dc3dd8e5ec9f0184913be",
+      "extent": "entire held text"
+    },
+    {
+      "path": "ProQuest Pre-1937 Orders/PT1-1906-EO-500.pdf",
+      "sha256": "86cfa760936b9911af9c73fcfdbce4e31b12b20953f7c3701acab25a5c406024",
+      "pages": [
+        1
+      ],
+      "extent": "entire sole scanned page visually inspected; full PDF OCR and content stream inspected"
+    }
+  ],
+  "context_read": [
+    "jobs/claim-kit/AGENT_PROTOCOL.md",
+    "jobs/claim-kit/BATCH.md",
+    "research/excavator/mommsen-5-2026-11-10/b02-packet/views/EO_500.md",
+    "PACKET.json prior_research/orders/EO:500 (no prior research located)",
+    "DISPATCH.fresh-v1.json EO:500 included as dispatchable, no legal approval",
+    "owner rulings: evidence-not-convenience, until-and-further-exempt, transcription-as-text, provisional-with-unchecked-original, report-deadline, strike-and-insert, jacquard-and-working-texts"
+  ],
+  "searches_read_not_adopted": [
+    "current-law:usc",
+    "current-law:ecfr",
+    "later-events:ofr_catalog"
+  ],
+  "failed_attempts": [
+    {
+      "attempt": "Specified Python sandbox execution",
+      "result": "Access denied; ordinary escalation then allowed interpreter execution."
+    },
+    {
+      "attempt": "fitz page rendering",
+      "result": "ModuleNotFoundError: No module named fitz; no installation attempted."
+    },
+    {
+      "attempt": "Installed renderer discovery",
+      "result": "pdftoppm, pdfinfo, mutool not found on PATH; no renderer found in checked dkla-tools directory."
+    },
+    {
+      "attempt": "rg bounded search",
+      "result": "rg unavailable; used bounded direct file reads."
+    },
+    {
+      "attempt": "Get-Date -AsUTC",
+      "result": "Unsupported parameter; used Python datetime UTC."
+    }
+  ],
+  "files_written": [
+    "decisions.csv",
+    "clauses.csv",
+    "RESULT.json"
+  ],
+  "claim_written": false,
+  "apply_or_complete_run": false,
+  "git_mutations": false,
+  "network_fetches": false
+}

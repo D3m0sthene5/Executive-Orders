@@ -1,0 +1,1490 @@
+{
+  "schema": "eo-source-blocked-work/v1",
+  "instrument_id": "EO:1489",
+  "state": "source_blocked",
+  "reason": "Mandatory original/inventory custody gate failed; no producer dispatched.",
+  "source_requests": [
+    {
+      "instrument_id": "EO:1489",
+      "citation": "Exact held original or working witness for EO:1489",
+      "urls": [
+        "https://archive.org/details/panamacanalr14192021isth/page/n610",
+        "https://en.wikisource.org/wiki/Executive_Order_1489",
+        "https://en.wikisource.org/wiki/Executive_Order_2451"
+      ],
+      "step": "original_text",
+      "requested_by": "mommsen-5",
+      "extra": {
+        "request_id": "mommsen-5-20261110-b02-EO-1489-custody",
+        "request_sha256": "245f748f552dc8f5f597a53cdb34c20936c97142e4867d5d8533d3e85b76555c",
+        "request_schema": "eo-source-request/v1",
+        "original_request": {
+          "request_id": "mommsen-5-20261110-b02-EO-1489-custody",
+          "instrument_id": "EO:1489",
+          "citation": "Exact held original or working witness for EO:1489",
+          "urls": [
+            "https://archive.org/details/panamacanalr14192021isth/page/n610",
+            "https://en.wikisource.org/wiki/Executive_Order_1489",
+            "https://en.wikisource.org/wiki/Executive_Order_2451"
+          ],
+          "step": "original_text",
+          "requested_by": "mommsen-5",
+          "note": "Native mandatory dispatch refused custody for exact selected source hashes 71843cc5892ed4667ffb2d51533aa7596cf3cf4b2fd0abafc0163cf6668dc543,74f258ac61ad2648516bac759475cd0ed5f7a6c9d09df9076d214483674af2b9,b66afc95b4df150bd4ab0d6773c7fe6d3d9a94198cb7b0e815cb750a9922792f. Recover/register matching lawful held bytes or preserve the block; do not substitute another source version or infer original authentication. research\\excavator\\mommsen-5-2026-11-10\\b02-packet\\DISPATCH_CHECK.json"
+        },
+        "request_corrections": [],
+        "queue_note": "Native mandatory dispatch refused custody for exact selected source hashes 71843cc5892ed4667ffb2d51533aa7596cf3cf4b2fd0abafc0163cf6668dc543,74f258ac61ad2648516bac759475cd0ed5f7a6c9d09df9076d214483674af2b9,b66afc95b4df150bd4ab0d6773c7fe6d3d9a94198cb7b0e815cb750a9922792f. Recover/register matching lawful held bytes or preserve the block; do not substitute another source version or infer original authentication. research\\excavator\\mommsen-5-2026-11-10\\b02-packet\\DISPATCH_CHECK.json",
+        "task_id": "mommsen-5-20261110-b02-EO-1489-custody:original_text"
+      },
+      "status": "valid",
+      "task_id": "mommsen-5-20261110-b02-EO-1489-custody:original_text"
+    }
+  ],
+  "result_paths": [
+    "research\\excavator\\mommsen-5-2026-11-10\\b02-packet\\DISPATCH_CHECK.json"
+  ],
+  "route_fingerprint": "ada1a67eda050976ca23d95c43eda5d46137fc723d02d23e63abfb98a2db6a2e",
+  "source_results": [
+    {
+      "source_gate_member": {
+        "blockers": [
+          {
+            "checks": [
+              {
+                "check": "source_held",
+                "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+                "field": "source",
+                "result": "skip",
+                "status": "custody_record_only",
+                "step": "claim_record"
+              }
+            ],
+            "evidence_id": "CLAUSES:EO:1489#whole",
+            "kind": "required_source_custody",
+            "source": {
+              "archival_id": "wikisource:en:revision/3901657",
+              "page_or_item": "Executive Order 1489; Wikisource revision 3901657",
+              "sha256": "b66afc95b4df150bd4ab0d6773c7fe6d3d9a94198cb7b0e815cb750a9922792f",
+              "text_path": "jobs/wikisource-texts/output/texts/EO_1489.txt",
+              "text_sha256": "30dad81263926cc6ffef92aaf93ccb3da0a18866e4a8890fc2036ada6502fc7b",
+              "url": "https://en.wikisource.org/wiki/Executive_Order_1489"
+            }
+          },
+          {
+            "checks": [
+              {
+                "check": "source_held",
+                "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+                "field": "source",
+                "result": "skip",
+                "status": "custody_record_only",
+                "step": "claim_record"
+              }
+            ],
+            "evidence_id": "ORIGINAL:EO:1489",
+            "kind": "required_source_custody",
+            "source": {
+              "archival_id": "wikisource:en:revision/3901657",
+              "page_or_item": "Executive Order 1489; Wikisource revision 3901657",
+              "sha256": "b66afc95b4df150bd4ab0d6773c7fe6d3d9a94198cb7b0e815cb750a9922792f",
+              "text_path": "jobs/wikisource-texts/output/texts/EO_1489.txt",
+              "text_sha256": "30dad81263926cc6ffef92aaf93ccb3da0a18866e4a8890fc2036ada6502fc7b",
+              "url": "https://en.wikisource.org/wiki/Executive_Order_1489"
+            }
+          }
+        ],
+        "instrument_id": "EO:1489",
+        "readiness_scope": {
+          "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+          "dossier_reported_questions": [
+            "Official-source page location requires a separate page/image check before original confirmation.",
+            "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
+            "target provision not located: EO:2451",
+            "target provision not located: EO:3434"
+          ],
+          "legal_requirement_coverage": "unknown",
+          "recorded_source_blocks": [],
+          "required_evidence_ids": [
+            "CLAUSES:EO:1489#whole",
+            "ORIGINAL:EO:1489"
+          ],
+          "scientific_approval": false,
+          "unresolved_research": [
+            {
+              "availability": "held_lead_not_official_original",
+              "instrument_id": "EO:1489",
+              "kind": "official_original",
+              "reason": "Held representation is a lead",
+              "shared_key": "EO:1489",
+              "task_id": "TASK:5c64f9a52422c2446b0d452c"
+            },
+            {
+              "availability": "held_text_images_not_confirmed",
+              "instrument_id": "EO:1489",
+              "kind": "official_page_image",
+              "reason": "Explicit original page/image confirmation still required",
+              "shared_key": "b66afc95b4df150bd4ab0d6773c7fe6d3d9a94198cb7b0e815cb750a9922792f",
+              "task_id": "TASK:c9dad2e86d6a4916b7915771"
+            },
+            {
+              "availability": "held_not_loaded",
+              "instrument_id": "EO:1489",
+              "kind": "locate_held_provision",
+              "reason": "target provision not located: EO:2451",
+              "shared_key": "EO:2451",
+              "task_id": "TASK:a4eb00b07b40b866d50915cc"
+            },
+            {
+              "availability": "held_not_loaded",
+              "instrument_id": "EO:1489",
+              "kind": "locate_held_provision",
+              "reason": "target provision not located: EO:3434",
+              "shared_key": "EO:3434",
+              "task_id": "TASK:8f725b4d48977919486bab83"
+            }
+          ],
+          "unusable_declared_source_ids": [
+            "ACTOR_TEXT:EO:2451",
+            "ACTOR_TEXT:EO:3434",
+            "CLAUSES:EO:1489#whole",
+            "ORIGINAL:EO:1489"
+          ]
+        },
+        "research_tasks": [
+          {
+            "availability": "held_lead_not_official_original",
+            "instrument_id": "EO:1489",
+            "kind": "official_original",
+            "reason": "Held representation is a lead",
+            "shared_key": "EO:1489",
+            "task_id": "TASK:5c64f9a52422c2446b0d452c"
+          },
+          {
+            "availability": "held_text_images_not_confirmed",
+            "instrument_id": "EO:1489",
+            "kind": "official_page_image",
+            "reason": "Explicit original page/image confirmation still required",
+            "shared_key": "b66afc95b4df150bd4ab0d6773c7fe6d3d9a94198cb7b0e815cb750a9922792f",
+            "task_id": "TASK:c9dad2e86d6a4916b7915771"
+          },
+          {
+            "availability": "held_not_loaded",
+            "instrument_id": "EO:1489",
+            "kind": "locate_held_provision",
+            "reason": "target provision not located: EO:2451",
+            "shared_key": "EO:2451",
+            "task_id": "TASK:a4eb00b07b40b866d50915cc"
+          },
+          {
+            "availability": "held_not_loaded",
+            "instrument_id": "EO:1489",
+            "kind": "locate_held_provision",
+            "reason": "target provision not located: EO:3434",
+            "shared_key": "EO:3434",
+            "task_id": "TASK:8f725b4d48977919486bab83"
+          }
+        ],
+        "sources": [
+          {
+            "checks": [
+              {
+                "check": "source_held",
+                "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+                "field": "source",
+                "result": "skip",
+                "status": "custody_record_only",
+                "step": "claim_record"
+              }
+            ],
+            "evidence_id": "ACTOR_TEXT:EO:2451",
+            "required": false,
+            "source": {
+              "archival_id": "wikisource:en:revision/1810258",
+              "page_or_item": "Executive Order 2451; Wikisource revision 1810258",
+              "sha256": "74f258ac61ad2648516bac759475cd0ed5f7a6c9d09df9076d214483674af2b9",
+              "text_path": "jobs/wikisource-texts/output/texts/EO_2451.txt",
+              "text_sha256": "5713fdc692bfc9554864393f376bebf0b166b1a359e1e0437e5fe45dda3556f7",
+              "url": "https://en.wikisource.org/wiki/Executive_Order_2451"
+            }
+          },
+          {
+            "checks": [
+              {
+                "check": "source_held",
+                "detail": "no saved copy with sha256 71843cc5892e... and no saved copy of https://archive.org/details/panamacanalr14192021isth/page/n610",
+                "field": "source",
+                "result": "fail",
+                "status": "not_held",
+                "step": "claim_record"
+              }
+            ],
+            "evidence_id": "ACTOR_TEXT:EO:3434",
+            "required": false,
+            "source": {
+              "page_or_item": "Panama Canal record (The Panama Canal, Balboa Heights, Canal Zone {etc.} :: [s.n.], 1908-1941), Internet Archive panamacanalr14192021isth, scan leaves 611-612",
+              "sha256": "71843cc5892ed4667ffb2d51533aa7596cf3cf4b2fd0abafc0163cf6668dc543",
+              "text_path": "jobs/tischendorf-originals/output/texts/EO_3434.txt",
+              "text_sha256": "2dc47b66bf8840f782c7adcd0fcd455d35246cfda0755f2995c44af34f1019d4",
+              "url": "https://archive.org/details/panamacanalr14192021isth/page/n610"
+            }
+          },
+          {
+            "checks": [
+              {
+                "check": "source_held",
+                "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+                "field": "source",
+                "result": "skip",
+                "status": "custody_record_only",
+                "step": "claim_record"
+              }
+            ],
+            "evidence_id": "CLAUSES:EO:1489#whole",
+            "required": true,
+            "source": {
+              "archival_id": "wikisource:en:revision/3901657",
+              "page_or_item": "Executive Order 1489; Wikisource revision 3901657",
+              "sha256": "b66afc95b4df150bd4ab0d6773c7fe6d3d9a94198cb7b0e815cb750a9922792f",
+              "text_path": "jobs/wikisource-texts/output/texts/EO_1489.txt",
+              "text_sha256": "30dad81263926cc6ffef92aaf93ccb3da0a18866e4a8890fc2036ada6502fc7b",
+              "url": "https://en.wikisource.org/wiki/Executive_Order_1489"
+            }
+          },
+          {
+            "checks": [
+              {
+                "check": "source_held",
+                "detail": "recorded in jobs/wikisource-texts/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+                "field": "source",
+                "result": "skip",
+                "status": "custody_record_only",
+                "step": "claim_record"
+              }
+            ],
+            "evidence_id": "ORIGINAL:EO:1489",
+            "required": true,
+            "source": {
+              "archival_id": "wikisource:en:revision/3901657",
+              "page_or_item": "Executive Order 1489; Wikisource revision 3901657",
+              "sha256": "b66afc95b4df150bd4ab0d6773c7fe6d3d9a94198cb7b0e815cb750a9922792f",
+              "text_path": "jobs/wikisource-texts/output/texts/EO_1489.txt",
+              "text_sha256": "30dad81263926cc6ffef92aaf93ccb3da0a18866e4a8890fc2036ada6502fc7b",
+              "url": "https://en.wikisource.org/wiki/Executive_Order_1489"
+            }
+          }
+        ],
+        "state": "source_blocked"
+      }
+    }
+  ],
+  "input_fingerprint": "46d0e9218f6362d991f53ea4533ed53b818d38a4d4a7cea1a276b7f71ee761cf",
+  "prior_research": {
+    "automatic_approvals": 0,
+    "current_rulings": [
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-eo-10449-never-constituted.md",
+        "sha256": "afbe942e861289ad7358acb3c8260d21998dfdb5d04bda0e2b9c6260a2440d2e",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-proquest-request.md",
+        "sha256": "6de10eab9fe73fb9123b6a3457404cd4c159a93184d0e46baef187858fdbc110",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-report-deadline.md",
+        "sha256": "2633fc4daadac1068d7552bb2dca4b284b3e05ecc8147bef708b4fe2799ac3fa",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md",
+        "sha256": "d55f7adef0dc99a6f42bf7092b1a3fa301fff1e6bae157e1998a0a1a6be538fe",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-strike-and-insert.md",
+        "sha256": "8a6fd5b502fa1305440c45381283bcdf3df0cb705448609915e1311a70758c3e",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+        "sha256": "ba0a6a6f2a2c1c8e2668643e3f59a6213d57acdc5aff541483e7c708c8f26aaf",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-unnamed-instruments.md",
+        "sha256": "49241925ea08e81f050232702cf33714beea8f239aa43ea8f2d587be3cdb0752",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-21-until-and-further-exempt.md",
+        "sha256": "49c23f47c1ee2b313bcad5b34deed3b4a986e1d2de6fdd10d68d77fad440bdcc",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-28-evidence-not-convenience.md",
+        "sha256": "431dce967782bc1e1fc808f4a460721a182eebecdb3955324786cbb539f7d91f",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-28-light-pushes.md",
+        "sha256": "d4c8d59ba459e471178859ab9bd3b8bc4b40393be1a8f3b1c8865c1a6a68fa1a",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-28-merge-permission.md",
+        "sha256": "a40aba7dd8bf5644707c6fa5a4b31e8199e7341a471d45005cd3dee6f3ae7f52",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-29-final-cross-stream-integration.md",
+        "sha256": "b51f5e7678e09422401418d60e696f17c17539448f5dc76c1d398804afd5605e",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-29-integration-merge-permission.md",
+        "sha256": "bb9d840c4658d91f0b1769acdcc6dcebe6c127264a9d248483b5f2cc35f41b6e",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-29-tiered-delegation.md",
+        "sha256": "20a27c48ee4b86711151ed632bcbab14028197e4a3430ad1431c86c004629cd6",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+        "sha256": "e130336c09baf2bb805a6625b2f80b30fb6ccef7149bfb812e450529bb502e37",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-11-04-delegated-answers-to-open-asks.md",
+        "sha256": "84b9c32be2de651c55ac695c67ac2fd4c63bd26411bfaba55d0de581ba7fe69d",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-11-05-brave-paid-search.md",
+        "sha256": "18480bcc5c0c827117936d3d499cbd4babfb1ca9d3ad69890e37f631643d8307",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-11-05-empty-status-history.md",
+        "sha256": "847e1a26d505fc2b1187e8d9e1f26cd0265a846a6a16a62eb96ce571bdd84704",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-11-06-encyclopedie-campaign.md",
+        "sha256": "4e0b8ce1a99e07bd4ac0347952d9eb9d14ced658eab109b1efdbf375bcbd317d",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-11-06-provisional-with-unchecked-original.md",
+        "sha256": "720dff65cd83d1075d29745b1dd5d4e75de68ff2a77c771918c0192e545dcae9",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-11-08-haloander-decisions.md",
+        "sha256": "af4e855585da52d30659668a1bf26dcc86afce17c71b6446bd8e17f810da2668",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-11-09-impact-scoped-checks.md",
+        "sha256": "d8859d6f5d32c07904a3d2ed90d2cd99667e069b7ae3e7ac45b5c07f2746bf58",
+        "state": "unqualified"
+      },
+      {
+        "expected_sha256": null,
+        "path": "research/readiness/owner_rulings/2026-11-09-skipped-witness-flag.md",
+        "sha256": "7df1c78e91984366005e724bef457c10e36bf34612c855f10f5c995dace82a23",
+        "state": "unqualified"
+      }
+    ],
+    "discovery_issues": [],
+    "discovery_scope": "Current materialized research files; unmaterialized work is not inferred absent. No Git history read.",
+    "excluded_control_records": [],
+    "input_file_pins": {
+      "research/readiness/owner_rulings/2026-10-21-eo-10449-never-constituted.md": "afbe942e861289ad7358acb3c8260d21998dfdb5d04bda0e2b9c6260a2440d2e",
+      "research/readiness/owner_rulings/2026-10-21-proquest-request.md": "6de10eab9fe73fb9123b6a3457404cd4c159a93184d0e46baef187858fdbc110",
+      "research/readiness/owner_rulings/2026-10-21-report-deadline.md": "2633fc4daadac1068d7552bb2dca4b284b3e05ecc8147bef708b4fe2799ac3fa",
+      "research/readiness/owner_rulings/2026-10-21-status-proposal-adoption.md": "d55f7adef0dc99a6f42bf7092b1a3fa301fff1e6bae157e1998a0a1a6be538fe",
+      "research/readiness/owner_rulings/2026-10-21-strike-and-insert.md": "8a6fd5b502fa1305440c45381283bcdf3df0cb705448609915e1311a70758c3e",
+      "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md": "ba0a6a6f2a2c1c8e2668643e3f59a6213d57acdc5aff541483e7c708c8f26aaf",
+      "research/readiness/owner_rulings/2026-10-21-unnamed-instruments.md": "49241925ea08e81f050232702cf33714beea8f239aa43ea8f2d587be3cdb0752",
+      "research/readiness/owner_rulings/2026-10-21-until-and-further-exempt.md": "49c23f47c1ee2b313bcad5b34deed3b4a986e1d2de6fdd10d68d77fad440bdcc",
+      "research/readiness/owner_rulings/2026-10-28-evidence-not-convenience.md": "431dce967782bc1e1fc808f4a460721a182eebecdb3955324786cbb539f7d91f",
+      "research/readiness/owner_rulings/2026-10-28-light-pushes.md": "d4c8d59ba459e471178859ab9bd3b8bc4b40393be1a8f3b1c8865c1a6a68fa1a",
+      "research/readiness/owner_rulings/2026-10-28-merge-permission.md": "a40aba7dd8bf5644707c6fa5a4b31e8199e7341a471d45005cd3dee6f3ae7f52",
+      "research/readiness/owner_rulings/2026-10-29-final-cross-stream-integration.md": "b51f5e7678e09422401418d60e696f17c17539448f5dc76c1d398804afd5605e",
+      "research/readiness/owner_rulings/2026-10-29-integration-merge-permission.md": "bb9d840c4658d91f0b1769acdcc6dcebe6c127264a9d248483b5f2cc35f41b6e",
+      "research/readiness/owner_rulings/2026-10-29-tiered-delegation.md": "20a27c48ee4b86711151ed632bcbab14028197e4a3430ad1431c86c004629cd6",
+      "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md": "e130336c09baf2bb805a6625b2f80b30fb6ccef7149bfb812e450529bb502e37",
+      "research/readiness/owner_rulings/2026-11-04-delegated-answers-to-open-asks.md": "84b9c32be2de651c55ac695c67ac2fd4c63bd26411bfaba55d0de581ba7fe69d",
+      "research/readiness/owner_rulings/2026-11-05-brave-paid-search.md": "18480bcc5c0c827117936d3d499cbd4babfb1ca9d3ad69890e37f631643d8307",
+      "research/readiness/owner_rulings/2026-11-05-empty-status-history.md": "847e1a26d505fc2b1187e8d9e1f26cd0265a846a6a16a62eb96ce571bdd84704",
+      "research/readiness/owner_rulings/2026-11-06-encyclopedie-campaign.md": "4e0b8ce1a99e07bd4ac0347952d9eb9d14ced658eab109b1efdbf375bcbd317d",
+      "research/readiness/owner_rulings/2026-11-06-provisional-with-unchecked-original.md": "720dff65cd83d1075d29745b1dd5d4e75de68ff2a77c771918c0192e545dcae9",
+      "research/readiness/owner_rulings/2026-11-08-haloander-decisions.md": "af4e855585da52d30659668a1bf26dcc86afce17c71b6446bd8e17f810da2668",
+      "research/readiness/owner_rulings/2026-11-09-impact-scoped-checks.md": "d8859d6f5d32c07904a3d2ed90d2cd99667e069b7ae3e7ac45b5c07f2746bf58",
+      "research/readiness/owner_rulings/2026-11-09-skipped-witness-flag.md": "7df1c78e91984366005e724bef457c10e36bf34612c855f10f5c995dace82a23"
+    },
+    "notice": "Prior producer/reviewer assertions, not new findings or automatic approval. Reuse only after checking the exact version, source, proposition and scope. Rejected versions and contradictory assertions remain visible; whole-case review is still required.",
+    "orders": {
+      "EO:1420": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "829896a5729472c5a23855f14167494effdf0900870db0a0f0d64a814e551bf9",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "64943df37d03f8e7d6219e01e34fa20bdb0f7d3c4c2f8cb3d731c6d323006e27",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1420#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1489": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "71f6632c1a1adac57baaed33877720ca85c44523e0023e424eb6c6a2659b7326",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "e3c2e79eb68a0dec13f8cc81eabfbd2fa3a1fe2c4461f945073e16c632f9d89b",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1489#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1532": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "d647e60d4e712499ab2e202fc43878c7c109912ffa16dcca633029990ce67989",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "a4102997fa58674a5cc9634b9137470df5e74381a35b13ab2063a4ede4381d25",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1532#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1605": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "fcbe50a68e731be9609e98b14dc724e395687c8d96b673e369136435e3beeef6",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "e55779986b03abd27dc4b13bbaacb54f521dd3825679c74a4cf2965144bb669f",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1605#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1656": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "c87bc5efb32cb843a13e56450d1c67e3b14290c65225b0b6e6e762ff7b02e00e",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "a5c6e6f7056ebd9514d9a0e2267c47eeea85de2699e57434d1de4c7ae788071c",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1656#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1704": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "0932b605c27113978f53ca0e5e20dab937f9cd4acc8885f2766bb6469934a707",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "0396f2317f95cbc61b696f442de55de75b1a09bdd70957b8e37dba6902a220da",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1704#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1749": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "f6f2e3f795af76de6d8633efd73d4e6e383a2660710cee86c78e8ad987279c21",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "738db84ce4de2df3e66ab2710cdb2abe29b79aef7649c230101f53a6aa8e22c5",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1749#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1752": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "3d861b71dbd138b302206ef35406d60f6d9b591bca62a85f6dba05aef14cc14c",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "4fc24efe8c6b1c3514b3194821129c95aa09bb94f6c9174d0a6fcf5720041184",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1752#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1817": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "de6f6573a8901bfe893719ca08d792bcd38dc57e51ed805a747bb21935dbd2f7",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "ff63ca8b7d8bbb6e84fab6cd95b453fc492e046e0fe0be0572f7ea31d28f30ef",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1817#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1885": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "bd92d7324cedf4231d1ab8faa6b77b6a4ac45e4b29e09aa96ce07d71ef834935",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "1b5729fdabcbb20540ce212f566d67504cb4064206ec0546b5dc5a15b8d66f91",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:1885:b9f08b39752e45eb@53a5bdb80fa405da",
+                "TERM:EO:1885:b9f08b39752e45eb@058556db14bf0b4c"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+                "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+              ],
+              "scope_id": "EO:1885#sec1",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "971af2ff2f7934cc0d683e37af37dcccade39e49cfe13206c5343e8527e65b1a",
+              "dossier_pointer": "/lifecycle_obligations/1",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1885#sec2",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "7aefb7743263258be5f480662a10e02b419c8fc1fe446f8354173e620646f426",
+              "dossier_pointer": "/lifecycle_obligations/2",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:1885:7987dd60c052f56d@53a5bdb80fa405da",
+                "TERM:EO:1885:7987dd60c052f56d@058556db14bf0b4c"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:1885#sec3",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1898": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "10d39357d42c196e77d1a70e8ccea4b1e6c8f6d89025b73aa5ee293da33d2b3f",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "cc7224c8736d8c2dff7d360d901d84a519ea152ef7e6b5fa5c95210cfa3969e2",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:1898#lead",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "e8dc6a62f8f5cba178e55ac41fa368d0bf7e2adbf1df76bdbae36abaab7db5f2",
+              "dossier_pointer": "/lifecycle_obligations/1",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1898#sec3",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "fb80ca787775966427b1ada9b612bb3f24f7508b9fac45a73500f1d5ee07f115",
+              "dossier_pointer": "/lifecycle_obligations/2",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1898#sec4",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "824441258f89144dc0725812c798f441787ceb560f0a0f09864735c9dae4851a",
+              "dossier_pointer": "/lifecycle_obligations/3",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+              ],
+              "scope_id": "EO:1898#sec5",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "cb86879bd8e4ba3cb679f15d4642b085dbfc01cea671d92095b31675377e862a",
+              "dossier_pointer": "/lifecycle_obligations/4",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1898#sec6",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "d0797636a21df1ff504a71ede139a7f99bbca6bd3fc1c24c9c8fd422cccdaa9b",
+              "dossier_pointer": "/lifecycle_obligations/5",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:1898:3c2df380299ad6e0@1dc826732a2d04d4"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:1898#sec7",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "542a19d9b50c27eae0181a2079c7d0b6ebb54a2a854b38fe5712ab5dda9aae9d",
+              "dossier_pointer": "/lifecycle_obligations/6",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1898#sec8",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "b96b3746d18b213a1ecb1d27454a338fc15316a6503036f2b6738eb7d12a1696",
+              "dossier_pointer": "/lifecycle_obligations/7",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1898#sec9",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "52db627e1aa46514df9f887e6504ca9b34555d10a02e25e17a3d481e797319cd",
+              "dossier_pointer": "/lifecycle_obligations/8",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1898#sec12",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "36cd244ee7eb3df1ac7297a09c80d23f6062a13d0081a25022a02b049f9ce88c",
+              "dossier_pointer": "/lifecycle_obligations/9",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:1898:85afd690eb4411ca@1dc826732a2d04d4",
+                "TERM:EO:1898:cac6686e45630437@1dc826732a2d04d4"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:1898#sec13",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "2a83f3b7f8d06742a9b724ed0e3827509352ff7faf117c2d995d5d437d026e61",
+              "dossier_pointer": "/lifecycle_obligations/10",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1898#sec14",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1917": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "9e77ca2794b61ab68679a804c922afdab4021e8e9c90fee07ab2788ce679ef7b",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "6957237fdfda18bfca46b38e9af4e25be34cf33ec115081d9b49f57960d1931e",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1917#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1923": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "8afde7f79e25e769d9f04ded4e2ba34a80809cfd51315f7b837bf66ef9554524",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "1a1d632f3d881c673d318965f4f888fc56426d1384b8f6276893335a59fe121b",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:1923:4da761dabb0e65c6@28061b732850e7e5",
+                "TERM:EO:1923:698cc6316b1ff3e3@28061b732850e7e5"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate.",
+                "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+              ],
+              "scope_id": "EO:1923#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1931": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "43ab0ee9b8e4d64d61e959899af259560d6b6a3ebdb97c3b1b3d6c2ae78b3b0e",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "3706aadb043d825b7093bb119e8dfdce0ffe667815ca1a2aee4b1145eeb3ffc0",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1931#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:1988": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "6105da4e75e27373102c242420b34e73000bc5f5faecb523c2aad83a89bf888d",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "03181a50611499be07a9603322c888c07cf345f1c80d4e0092b216086058493e",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1988#lead",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "4fbea14e5d3c0c7897e0b1cf06668e53084f5d170f752544da80092fc8b899d9",
+              "dossier_pointer": "/lifecycle_obligations/1",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:1988:ee78630e00a54fa9@855f65f0bef2cceb",
+                "TERM:EO:1988:ee78630e00a54fa9@0a546c3b2eca7077"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:1988#sec1",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "f2aa5664882e416a317fc40272ac2b3b8a2d22020bb12e89a52a4a1084dfdef3",
+              "dossier_pointer": "/lifecycle_obligations/2",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1988#sec2",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "85e30253ff33fc7d77bd982647ea6ba5e43057e62a89b4aa305857721f8bb543",
+              "dossier_pointer": "/lifecycle_obligations/3",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:1988#sec3",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:23": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "b80562de0be4ad429d0cf08ad8bf573d5e14cb565aa0e6360b82001b1cea2234",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "f88bda6c5cdb5e3985f01e0d67c641e76d1d91a01e342abcc60bd77eb8f7f0f1",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:23#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:26": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "5cfb8abbdb8fab75193f56498e970187aaec0f632b39023e1046cf9529a4b373",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "2d392be86ce582e99dc5993d8875980c470f51ee72100f29141842816c932706",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:26#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:314": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "8c54b387a10524fc358c1eea09322cb25d4d6df65cd35af1bfca67ef7661d50f",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "88e3b509165bc065326a4eee22f712320a695010d1906a96a0b26f8c42eb3bce",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause."
+              ],
+              "scope_id": "EO:314#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:348B": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "012fed1aefd97f990dd470a3723cc1a4f664fc7179fefbb214317e1b28b8df12",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "4ecc6f915ecbebca67c528d4786d3cb9369f8af40911a1b449cb3aa9d058d347",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+              ],
+              "scope_id": "EO:348B#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:500": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "69460c03828c67c03535917462cb883a4895aae4dcbae5b886091c5346a58294",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "9691de7f4ec1340049c0743b85f169ec1bb32bb0401c2bf3fdb1f334c8466c85",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+              ],
+              "scope_id": "EO:500#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:556": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "ccc4382b81d15d633beac15036984ede6f56c02e6ea5b483996453c94999f653",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "aad783fcd08415777e2d6480181559247e6963ff753827850da4fd764ecbc617",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:556#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:750": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "a97a43a20330f2fba5ae070e59a9f5f56231a2142f341401fd0e427205126523",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "a88a685f8a9e5a0622f77e620e2093155f3eee2447a552d2b25d990991cfb087",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:750#lead",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "bdf18cadef836b78de41b83fa02394a272922fa7e769333f8ac091afe76020d9",
+              "dossier_pointer": "/lifecycle_obligations/1",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:750#1",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "bc143f0042ce376c99beb22ec651d6b5553a80e9df0c858fa70441eaa643358b",
+              "dossier_pointer": "/lifecycle_obligations/2",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "A completed installment does not establish cessation of the recurring duty; examine remaining installments and later law."
+              ],
+              "scope_id": "EO:750#2",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "7b478e39473f51362e8603b2fd5444ae55a9ea1bb4379760e4379795961edb6e",
+              "dossier_pointer": "/lifecycle_obligations/3",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:750:87e86433eb43cc46@89ddb681c89774a1"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:750#3",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "679e69cd4d55ee314e446a7be6b9eafffd2adbf13bc47f9435cad8060b4bfabf",
+              "dossier_pointer": "/lifecycle_obligations/4",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:750:c0ab9678a3b79ac5@89ddb681c89774a1",
+                "TERM:EO:750:bc39ff63c667e53d@89ddb681c89774a1"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:750#4",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "b19a66c5af488d9bd83470970ed177b69adc248163d9743455363c4db3965216",
+              "dossier_pointer": "/lifecycle_obligations/5",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:750:89294316629ef127@89ddb681c89774a1"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Distinguish the due date, demonstrated performance, and continuing duties. Establish occurrence from evidence and explain its effect on this clause.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:750#5",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "31e2347284a8b7353a6d6798e7f58d8c96cb074df5728dd9a6afbd326fb10daa",
+              "dossier_pointer": "/lifecycle_obligations/6",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:750#6",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "71d1ba4016e2925f6a9bd4a8e2c89e2edc84f32d2ee64238def91cedea5192c6",
+              "dossier_pointer": "/lifecycle_obligations/7",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [
+                "TERM:EO:750:0313535e82fdc7cd@89ddb681c89774a1"
+              ],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+                "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+              ],
+              "scope_id": "EO:750#7",
+              "state": "requires_clause_specific_research"
+            },
+            {
+              "clause_sha256": "a22cc371ce97c14c370a7a73e2789d5e86f3981007a4cf558973c2e1e539257c",
+              "dossier_pointer": "/lifecycle_obligations/8",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:750#8",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      },
+      "EO:983": {
+        "conflicting_versions": [],
+        "current_canonical_claim_sha256": null,
+        "remaining_delta": {
+          "current_reported_gaps": [],
+          "dossier_fingerprint": "27c8e448843713513d2dedd871f12db9cc64d958b37070d56c72038fa102f25e",
+          "existing_lifecycle_questions": [
+            {
+              "clause_sha256": "37c8f25c7b4e9d1953c4b73ab3ad7d5168bcf3946b38874f36a50aa97bcd56de",
+              "dossier_pointer": "/lifecycle_obligations/0",
+              "later_actor_evidence_ids": [],
+              "own_term_evidence_ids": [],
+              "questions": [
+                "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
+              ],
+              "scope_id": "EO:983#whole",
+              "state": "requires_clause_specific_research"
+            }
+          ],
+          "existing_lifecycle_questions_notice": "Current dossier research prompts, not new gap findings or overrides of prior claim/review conclusions.",
+          "new_legal_gaps_invented": [],
+          "prior_differences_require_scope_source_proposition_review": true
+        },
+        "selection_and_checkpoint_records": [],
+        "state": "no_prior_research_located",
+        "status_holds": [],
+        "status_research": [],
+        "unattached_reviews": [],
+        "unattached_status_reviews": [],
+        "unfinished_work": [],
+        "versions": []
+      }
+    },
+    "schema": "eo-claim-kit-prior-research/v1",
+    "whole_case_review_required": true
+  }
+}

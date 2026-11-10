@@ -1,0 +1,118 @@
+﻿{
+    "schema":  "bounded-producer-result/v1",
+    "producer":  "b02-p03",
+    "lane":  "mommsen-5",
+    "started_utc":  "2026-11-10T06:39:04.3593961Z",
+    "started_utc_basis":  "launcher events.v2.jsonl creation time; exact model-start telemetry unavailable",
+    "finished_utc":  "2026-11-10T06:44:04.5648309Z",
+    "actual_model":  null,
+    "requested_model":  "gpt-6.1-sol medium",
+    "tokens":  null,
+    "cash":  null,
+    "human_certified":  0,
+    "source_pages_visually_checked":  true,
+    "visual_method":  "fitz unavailable and Poppler not found; installed pypdf extracted one complete embedded TIFF scan per PDF page, PIL converted losslessly to PNG, view_image inspected full pages. No PDF edits or page crops.",
+    "outcomes":  [
+                     {
+                         "source_pages_visually_checked":  true,
+                         "first_cessation_date":  null,
+                         "inventory_confirmed":  "false",
+                         "instrument_id":  "EO:23",
+                         "reasoning":  "Complete archival replica PDF pages 1-2 visually inspected via embedded full-page scans. Faint manuscript concerns an exposition board and its organization; held OCR is essentially noise and cannot represent the operative commands. No reliable complete clause inventory, first cessation, or savings conclusion can be made. EO:23-1 held mirror was read completely; Executive Order 23 appears only in site navigation, and its 1885 Sternberg sanitary-conference appointment is not a located change to this 1884 board order.",
+                         "material_blockers":  {
+                                                   "value":  [
+                                                                 "EO:23 held OCR at jobs/pinakes-proquest-ingest/output/texts/EO_23.txt is unusable across both pages; obtain a reliable complete transcription checked against a legible copy before inventory/quote decisions.",
+                                                                 "Determine cessation of each board organization and performance command after reliable text recovery; no ending evidence is established.",
+                                                                 "Savings and accrued consequences remain unassessed."
+                                                             ],
+                                                   "Count":  3
+                                               },
+                         "approved":  false,
+                         "outcome":  "blocked",
+                         "sources_inspected":  [
+                                                   {
+                                                       "pages":  [
+                                                                     1,
+                                                                     2
+                                                                 ],
+                                                       "path":  "ProQuest Pre-1937 Orders/PT1-1884-EO-23.pdf",
+                                                       "grade":  "archival_replica_checked",
+                                                       "visual":  true
+                                                   },
+                                                   {
+                                                       "path":  "jobs/pinakes-proquest-ingest/output/texts/EO_23.txt",
+                                                       "entire_text_read":  true
+                                                   },
+                                                   {
+                                                       "path":  "jobs/wikisource-texts/output/texts/EO_23-1.txt",
+                                                       "grade":  "mirror_transcription",
+                                                       "entire_text_read":  true,
+                                                       "visual":  false
+                                                   }
+                                               ]
+                     },
+                     {
+                         "source_pages_visually_checked":  true,
+                         "first_cessation_date":  null,
+                         "inventory_confirmed":  "true",
+                         "instrument_id":  "EO:983",
+                         "reasoning":  "Archival replica PDF page 1 visually checked in full. Single operative permission allows examination-free filling of qualifying fourth-class post-office vacancies occurring before Commission certification of examination/certification capacity. Certification is not established in held evidence. Wording qualifies vacancy occurrence, not expressly the date a qualifying vacancy is filled: certification cannot simply be assumed to extinguish every unexercised permission that day. Full held EO:9830 overflow read: introductory effective date May 1, 1947 and Part III expressly lists No.983 of November 30,1908 for revocation; this is a later text lead, not established first cessation. EO:1776 held text concerns chief post-office inspector classification, not this permission.",
+                         "material_blockers":  {
+                                                   "value":  [
+                                                                 "Affirmative Commission-to-Post-Office certification evidence and its date/scope are absent; do not presume the contingency occurred.",
+                                                                 "Resolve whether and when authority for pre-certification vacancies ceased, including any unfilled qualifying vacancies; no actual appointment or exhaustion inferred.",
+                                                                 "EO:9830 revocation is visible in complete held overflow but not located as a frozen ACT provision; actor original pages not visually checked and its cited text_path is absent in this checkout.",
+                                                                 "Surviving appointments/accrued consequences must be distinguished from permission; savings/residual treatment remains unclosed."
+                                                             ],
+                                                   "Count":  4
+                                               },
+                         "approved":  false,
+                         "outcome":  "blocked",
+                         "sources_inspected":  [
+                                                   {
+                                                       "pages":  [
+                                                                     1
+                                                                 ],
+                                                       "path":  "ProQuest Pre-1937 Orders/PT1-1908-EO-983.pdf",
+                                                       "grade":  "archival_replica_checked",
+                                                       "visual":  true
+                                                   },
+                                                   {
+                                                       "path":  "jobs/pinakes-proquest-ingest/output/texts/EO_983.txt",
+                                                       "entire_text_read":  true
+                                                   },
+                                                   {
+                                                       "path":  "jobs/csc-annual-reports/output/texts/EO_1776.txt",
+                                                       "grade":  "compiled_transcription_lead",
+                                                       "entire_text_read":  true,
+                                                       "visual":  false
+                                                   },
+                                                   {
+                                                       "path":  "jobs/claim-kit/output/actor-texts/EO_9830.json",
+                                                       "pages_in_text":  "PDF 1-11",
+                                                       "entire_text_read":  true,
+                                                       "visual":  false
+                                                   }
+                                               ]
+                     }
+                 ],
+    "search_coverage":  "All member machine_searches read. USC coverage stops 2026-10-09; eCFR as of cutoff; OFR starts 1937 and is inadequate alone for these historical orders. EO983 namier had no parsed name. No search IDs selected as adequate closure; no network performed.",
+    "prior_research":  "Both full views report no prior research located, no conflicting versions, no Valla review queue. No prior conclusion adopted.",
+    "attempts":  [
+                     "Initial interpreter execution denied; ordinary sandbox escalation accepted.",
+                     "fitz import failed: ModuleNotFoundError. No installation attempted.",
+                     "pdftoppm/pdfinfo/mutool not found on PATH; bounded installed-tool checks found no Poppler.",
+                     "Packet-relative actor-texts/EO_9830.json absent; complete overflow read at jobs/claim-kit/output/actor-texts/EO_9830.json instead.",
+                     "EO9830 source text_path jobs/fr-originals/data/full_run/texts/EO_9830.txt absent; overflow text retained as lead only.",
+                     "rg unavailable; targeted Get-Content used.",
+                     "Get-Date -AsUTC unsupported; DateTime.UtcNow used."
+                 ],
+    "files_written":  [
+                          "decisions.csv",
+                          "clauses.csv",
+                          "RESULT.json"
+                      ],
+    "submission_count":  0,
+    "shared_files_modified":  false,
+    "git_mutations":  false
+}

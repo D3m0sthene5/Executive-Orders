@@ -1,0 +1,117 @@
+{
+    "schema":  "bounded-producer-result/v1",
+    "producer":  "b02-p04",
+    "lane":  "mommsen-5",
+    "instrument_ids":  [
+                           "EO:26"
+                       ],
+    "started_utc":  null,
+    "first_observed_utc":  "2026-11-10T06:41:24.1441281Z",
+    "timing_note":  "Actual session start was not captured; first_observed_utc is a timestamp recorded while source review was already underway.",
+    "finished_utc":  "2026-11-10T06:42:51.2346126Z",
+    "actual_model":  null,
+    "requested_model":  "gpt-6.1-sol medium",
+    "tokens":  null,
+    "cash":  null,
+    "human_certification":  0,
+    "source_pages_visually_checked":  false,
+    "outcomes":  [
+                     {
+                         "instrument_id":  "EO:26",
+                         "outcome":  "blocked",
+                         "approved":  false,
+                         "whole_case_ready":  false,
+                         "end_evidence_ids":  [
+
+                                              ],
+                         "effective_date":  null,
+                         "reasoning":  "EO 26 (1887-08-25) directs Treasury to instruct customs collectors to admit qualifying foreign soldier guests of the Chicago October 1887 encampment with baggage, uniforms, arms and equipment free of customs duties, retaining formalities necessary to ensure reexportation. The event reference bounds eligible guests but supplies no express calendar sunset or proof of actual performance. No first cessation of the instruction/admission command or discharge of reexportation conditions is established. Held OCR is severely corrupt; required visual inspection could not be performed with available renderer. EO 11285 operative sections 1-6 concern interest equalization tax and supersede EO 11224, not this order. No complete whole-case claim is submitted.",
+                         "material_blockers":  [
+                                                   "Visual page check not completed: specified Python denied in sandbox; ordinary escalated execution succeeded but import fitz failed (ModuleNotFoundError). No pdftoppm/pdfinfo on PATH or renderer found in bounded local checks; no installations attempted.",
+                                                   "Held OCR contains extensive noise on preceding pages and corrupt words in the operative paragraph. Identity, complete text and inventory cannot be source-confirmed without visual review.",
+                                                   "No affirmative evidence of Treasury instruction issuance/completion, qualifying admissions, final reexportation or first cessation of permission; October 1887 event context is not an explicit dated sunset.",
+                                                   "No source-backed resolution of accrued customs consequences or surviving reexportation conditions.",
+                                                   "Historical later-search coverage inadequate: OFR catalog begins 1937; number-citation searches do not close the 1887 performance and customs history. USC release excludes 2026-10-10 through 2026-10-14 laws.",
+                                                   "EO 11285 text supplies no located provision affecting EO 26; its raw PDF is reported custody_record_only by dispatch and was not visually inspected."
+                                               ],
+                         "earlier_end_check":  "No actual issuance, completion of admissions or reexportation is evidenced. Neither elapsed time nor the encampment month establishes first cessation. No exact or bounded ending date selected.",
+                         "scope_check":  "Single operative paragraph nests a Treasury instruction and customs admission command limited to qualifying invited guests and specified articles, subject to reexportation formalities. Opening recital supplies purpose and class limits; no express fixed window. Proposed inventory trim excludes signature only and remains unconfirmed pending visual review.",
+                         "independent_command_check":  "Account separately for Treasury instruction, conditional admissions/duty waiver and retained reexportation formalities. Completion of one does not prove exhaustion or discharge of the others.",
+                         "savings_check":  "Keep any lawful admissions and accrued duty treatment separate from continuing admission authority and reexportation conditions. No evidence establishes absence or final discharge of residual consequences."
+                     }
+                 ],
+    "sources_actually_inspected":  [
+                                       {
+                                           "evidence_id":  "ORIGINAL:EO:26",
+                                           "text_path":  "jobs/pinakes-proquest-ingest/output/texts/EO_26.txt",
+                                           "inspection":  "Held OCR, including complete legible-tail order and preceding OCR noise; not visual PDF reading",
+                                           "pdf_pages_inspected":  [
+
+                                                                   ],
+                                           "raw_paths_hash_checked":  [
+                                                                          "research/pre-1937-sources/ProQuest Pre-1937 Orders/PT1-1887-EO-26.pdf",
+                                                                          "ProQuest Pre-1937 Orders/PT1-1887-EO-26.pdf"
+                                                                      ],
+                                           "raw_sha256":  "5434f92d449327b91c448d4dc98ebf88cbbfe2e209e134c3f63caa94c095ad9b",
+                                           "grade":  "archival_replica_checked",
+                                           "acceptable_as_original":  false,
+                                           "working_text_confirmations":  false
+                                       },
+                                       {
+                                           "evidence_id":  "ACTOR_TEXT:EO:11285",
+                                           "text_path":  "jobs/fr-originals/data/full_run/texts/EO_11285.txt",
+                                           "inspection":  "Held text; complete EO operative text sections 1-6 at PDF page markers 5-6, with neighbouring material at markers 7-10",
+                                           "pdf_pages_inspected":  [
+
+                                                                   ],
+                                           "source_grade_note":  "Official Federal Register print identified by packet; held OCR not authenticated; raw PDF not inspected",
+                                           "finding":  "No provision affecting EO 26 located. Section 6 supersedes EO 11224."
+                                       }
+                                   ],
+    "packet_context":  "Full views/EO_26.md read: no own_terms, no located actor provision, conflicts empty, no prior research located, lifecycle first-cessation obligation open. Dispatch mandatory custody screen passes but optional EO11285 raw custody reported custody_record_only.",
+    "search_coverage":  {
+                            "selected_ids":  [
+
+                                             ],
+                            "reviewed_machine_ids":  [
+                                                         "current-law:usc",
+                                                         "current-law:ecfr",
+                                                         "later-events:ofr_catalog"
+                                                     ],
+                            "adequate_for_whole_case":  false,
+                            "reason":  "Number searches and post-1937 catalog do not establish historical performance, earlier cessation or residual discharge; USC temporal warning retained."
+                        },
+    "failed_attempts":  [
+                            {
+                                "action":  "Specified Python -I -X utf8 render via fitz",
+                                "result":  "Sandbox Access is denied; no rendering occurred."
+                            },
+                            {
+                                "action":  "Ordinary escalated specified Python execution",
+                                "result":  "Execution allowed; ModuleNotFoundError: No module named fitz; no rendering occurred."
+                            },
+                            {
+                                "action":  "Bounded existing Poppler checks",
+                                "result":  "pdftoppm/pdfinfo unavailable on PATH; no renderer located in checked conventional directories; some parent directory listings access denied; no bypass or installation."
+                            },
+                            {
+                                "action":  "rg applicable-ruling filenames",
+                                "result":  "rg unavailable; exact named ruling files read with Get-Content."
+                            }
+                        ],
+    "inventory_override":  {
+                               "source_id":  "ORIGINAL:EO:26",
+                               "scope_id":  "EO:26#whole",
+                               "char_start":  38972,
+                               "char_end":  39515,
+                               "confirmed":  false
+                           },
+    "standing_note":  "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+    "writes":  [
+                   "decisions.csv",
+                   "clauses.csv",
+                   "RESULT.json"
+               ],
+    "claims_written":  false,
+    "apply_or_complete_run":  false
+}
