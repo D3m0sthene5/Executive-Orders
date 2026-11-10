@@ -1,0 +1,64 @@
+# MOMMSEN-I p02 producer report
+
+Start UTC: entry timestamp was not captured; first exact timestamp captured during source reading was 2026-11-10T03:12:58.414473Z. Earlier protocol/report reads preceded that timestamp.
+
+23 submitted with producer approval; 2 blocked. All 25 members retained. No apply, batch-check, complete, Git, reservations, code, source declarations, outputs or other lanes changed. Human-certified=0; no owner adoption or independent review asserted.
+
+## Source method and qualifications
+
+MOMMSEN-I independently read all complete APP texts, compared their words with held GPO OCR and inspected exact matching APP document records. OCR comparison is not a new image inspection; prior image checks are identified separately. Single dated exemption, no independent continuing command. Dates are stated-term inclusive endpoints with the exclusive-day-start reading disclosed. These are provisional replacement proposals, human-certified=0.
+
+Rehashed 95 unique confirmation text files: 45 APP sources, 25 clause-draft copies, 25 GPO files; all match frozen text_sha256. Clause-draft body equals its APP body after ignoring the added heading and terminal whitespace. Exact matching DOCUMENTS/MIRROR_DOCUMENTS rows were located by sha256 for all 45 APP texts; number, subject, date, and text_sha256 agree. Confirmations are individual: erroneous APP 8637, actor9118, and predecessor8413 retain complete_text_confirmed=false. Their APP record identity/page checks themselves pass. All official_printing confirmation flags remain false because this producer did not inspect page images or authenticate signed originals. original_confirmed remains false. Standing note preserved exactly: original not yet held; replace and re-check quotes when an official copy is retrieved.
+
+Six own orders have actual prior image-check pass rows in PAGE_CHECKS.csv: 8582, 8584, 8615, 8626, 8726, 8810. The other nineteen own GPO witnesses were compared as OCR only. A text header containing a page tag/hash is not represented here as an image inspection. GPO OCR truncates several signatures/datelines; APP is complete through signature and signing line, and prior image checks resolve the noted 8582/8615/8726/8810 OCR truncations.
+
+## Earlier endings, notes and review defects
+
+Fresh producer number-pattern scan read 23,635 files in currently held jobs/*/output/texts, excluding clause-drafts. Pattern covered No. N and Executive Order N; this is bounded coverage, not proof of a universally negative history. Its only genuine later citations were the eight already carried actor orders 9002,9009,9016,9030,8969,9037,9031,9118. Additional source-ladder hits were read in context and are FCC docket numbers (8615,8625,8626,8656,8670,8692,8728,8804,8805,8810), not executive-order references. Frozen U.S.Code/eCFR search coverage warnings remain applicable; machine searches are leads, not proof of statutory nonchange. No employee separation/death or actual-service event is inferred.
+
+Read actual EDGES.csv notes on members: See predecessors for 8710 (8058,8368),8747 (7581,7824,8046,8369),8778 (8401),8804 (8139,8422),8805 (8262,8555),8810 (8413). These earlier instruments are not later endings. EO8805 note erroneously dates EO8555 August16,1941; APP/GPO both sign it September28,1940. Its June30,1941 expiry precedes this new grant. Reciprocal Amended by notes on the earlier Simon exemptions do not turn EO8747 into an ending of its own six-month grant. No member-directed Revoked by note was found in the held edge rows.
+
+Read Cujas c01-c03 producer reports and actual rejected review records, not merely their earlier pass counts. c01 rejected quoted Latte/Latta; applied that personal-name caution to block8637. c02/c03 wrong-end controls 9009,8046,8368,8369 were checked against actual texts: correct stated ends respectively1943-01-31,1940-05-31,1941-03-31,1941-05-31. No invalid old dates were copied. c03 blocked8413 for1041/1941; reconfirmed that defect and kept its complete-text confirmation false in8810. It is unselected context, not a source for8810 first end or events. c02 authority401/404 rejection was read; this packet has no such differing statute page number. EO9002 duplication is disclosed, not falsely declared verbatim.
+
+EO8726 SIGNING_DATE_DISAGREEMENT resolved: APP record is March29,1941; prior PAGE_CHECKS.csv actual image row confirms that signing date. GPO machine1942-03-31 extracted the exemption end as signing date. The clause endpoint remains1942-03-31.
+
+## Per member
+
+| Order | Result | Own stated end | APP matching page record | GPO check | Comparison / actor result |
+|---|---|---|---|---|---|
+| EO:8582 | submit | 1941-10-31 | MIRROR_DOCUMENTS.jsonl:5422 | Prior image pass; OCR read here | APP see. / GPO sec. in the U.S.C. parenthetical; obvious abbreviation transcription error, no changed authority, person, grant or date. |
+| EO:8584 | submit | 1941-12-31 | MIRROR_DOCUMENTS.jsonl:5421 | Prior image pass; OCR read here | Own APP see. / GPO sec.; selected later EO 9002 APP duplicates 47 Stat. 382, 404, whereas GPO prints it once. Both copies identify the same statute and section; repetition adds no legal term. This is a disclosed nonmaterial duplication, not a claim of verbatim agreement. Context/actors read: EO:9002. |
+| EO:8603 | submit | 1941-11-30 | MIRROR_DOCUMENTS.jsonl:5420 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. |
+| EO:8615 | submit | 1942-01-31 | MIRROR_DOCUMENTS.jsonl:5414 | Prior image pass; OCR read here | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. Context/actors read: EO:9009. |
+| EO:8625 | submit | 1942-02-28 | MIRROR_DOCUMENTS.jsonl:54 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. |
+| EO:8626 | submit | 1942-01-31 | MIRROR_DOCUMENTS.jsonl:5413 | Prior image pass; OCR read here | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. Context/actors read: EO:9016. |
+| EO:8628 | submit | 1942-02-28 | MIRROR_DOCUMENTS.jsonl:53 | OCR only; no PAGE_CHECKS row | Selected later EO 9030 GPO OCR reads Februrary / APP February; both give day 28, year 1943. Month spelling is nonmaterial. Context/actors read: EO:9030. |
+| EO:8637 | blocked | 1942-01-31 | MIRROR_DOCUMENTS.jsonl:51 | OCR only; no PAGE_CHECKS row | MATERIAL: APP operative sentence says Joshun G. Hefty; GPO says Joshua G. Hefty. APP also reads 1 hereby for I hereby. The personal-name variant is inside the inventory quote. Blocked pending a freshly bound corrected quotation; no source was changed. Context/actors read: EO:8969. |
+| EO:8656 | submit | 1942-02-28 | MIRROR_DOCUMENTS.jsonl:5412 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. |
+| EO:8670 | submit | 1942-04-30 | MIRROR_DOCUMENTS.jsonl:5410 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. Context/actors read: EO:9037. |
+| EO:8692 | submit | 1942-04-30 | MIRROR_DOCUMENTS.jsonl:49 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. Context/actors read: EO:9031. |
+| EO:8698 | blocked | 1942-04-30 | MIRROR_DOCUMENTS.jsonl:5406 | OCR only; no PAGE_CHECKS row | Own APP 1 hereby / GPO I hereby; selected later EO 9118 APP omits further in I hereby exempt, whereas GPO reads I hereby further exempt. The latter omission is in the selected operative source quote and bears directly on its extension characterization. Blocked pending fresh actor quotation. Context/actors read: EO:9118. |
+| EO:8710 | submit | 1942-03-31 | MIRROR_DOCUMENTS.jsonl:5405 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. Context/actors read: EO:8058, EO:8368. |
+| EO:8726 | submit | 1942-03-31 | MIRROR_DOCUMENTS.jsonl:5404 | Prior image pass; OCR read here | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. |
+| EO:8728 | submit | 1942-06-30 | MIRROR_DOCUMENTS.jsonl:5402 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. |
+| EO:8747 | submit | 1941-11-30 | MIRROR_DOCUMENTS.jsonl:47 | OCR only; no PAGE_CHECKS row | Predecessor EO 8046 APP Treasuiy / GPO Treasury in the agency name; unselected contextual predecessor, no altered operative grant or date. Its actual end is May 31, 1940, not the earlier rejected claim date 1937-05-31. EO 8369 actually ends May 31, 1941, not rejected 1938-05-31. Context/actors read: EO:7581, EO:7824, EO:8046, EO:8369. |
+| EO:8761 | submit | 1942-06-30 | MIRROR_DOCUMENTS.jsonl:45 | OCR only; no PAGE_CHECKS row | GPO OCR retirment / APP retirement, an obvious spelling error with no changed command. |
+| EO:8762 | submit | 1942-09-30 | MIRROR_DOCUMENTS.jsonl:5398 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. |
+| EO:8772 | submit | 1942-08-31 | MIRROR_DOCUMENTS.jsonl:42 | OCR only; no PAGE_CHECKS row | APP Clarence H, / GPO Clarence H. in the operative sentence; punctuation only, same full name and term. |
+| EO:8778 | submit | 1942-06-30 | MIRROR_DOCUMENTS.jsonl:5396 | OCR only; no PAGE_CHECKS row | APP see. / GPO sec. in the U.S.C. parenthetical; no changed authority or grant. Context/actors read: EO:8401. |
+| EO:8796 | submit | 1942-07-31 | MIRROR_DOCUMENTS.jsonl:40 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. |
+| EO:8804 | submit | 1941-09-30 | MIRROR_DOCUMENTS.jsonl:38 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. Context/actors read: EO:8139, EO:8422. |
+| EO:8805 | submit | 1942-06-30 | MIRROR_DOCUMENTS.jsonl:37 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. Context/actors read: EO:8262, EO:8555. |
+| EO:8810 | submit | 1942-06-30 | MIRROR_DOCUMENTS.jsonl:36 | Prior image pass; OCR read here | Own APP fot / GPO for; obvious spelling error. Unselected predecessor EO 8413 APP gives ending June 30, 1041, while GPO gives 1941. Its material error remains unconfirmed; it supplies no first end or later event for this order. This order independently grants a year ending June 30, 1942. Context/actors read: EO:8413. |
+| EO:8825 | submit | 1942-08-31 | MIRROR_DOCUMENTS.jsonl:5403 | OCR only; no PAGE_CHECKS row | No substantive wording variant; differences are formatting, OCR line-end hyphenation, punctuation, signature placement or truncated GPO OCR closing lines. |
+
+## Exact blockers
+
+EO:8637: Quoted own-order operative personal name disagrees: APP Joshun G. Hefty versus official-printing OCR Joshua G. Hefty (EO_8637.txt). Need freshly bound corrected inventory/source quotes, outside authorized packet-only edits.
+EO:8698: Selected later-event ACTOR_TEXT:EO:9118 omits operative further in APP (I hereby exempt); GPO EO_9118.txt reads I hereby further exempt. Need freshly bound actor quotation before approval. Own end 1942-04-30 is unaffected.
+
+## Tool issues and boundaries
+
+Initial combined reads exceeded tool output limits; bounded follow-up reads supplied the omitted source groups. A cp1252 read failed on Unicode metadata; reran using explicit UTF-8. jobs/status-history/output/histories paths referenced by dossier are absent in this checkout; actual held EDGES.csv predecessor notes were read directly instead. No history file or machine output was generated. Fresh scan completed successfully. No new image inspection performed. No deterministic apply/check/complete gate run by producer; coordinator owns those gates.
+
+End UTC: 2026-11-10T03:19:07.347280Z
