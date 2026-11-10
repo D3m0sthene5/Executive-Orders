@@ -3,10 +3,13 @@
 The claim kit cites current law only from an exact slice of a held UTF-8 text
 file, never from a JSON/JSONL record or a whitespace-normalized snippet. This
 module writes each note (or section) text the scanner read as its own .txt
-file, declares it in SOURCES.jsonl under the release-point ZIP it came from
-(url and sha256 of the ZIP, plus the member XML and its sha256 in
-page_or_item), and points every current-law lead about that note or section
-at the extract with the exact character span of its quoted words.
+file and declares it in SOURCES.jsonl by its own identity (sha256 and bytes of
+the extract) with the release-point ZIP it was cut from in ``extracted_from``
+(url and sha256 of the ZIP; the member XML and its sha256 are in page_or_item).
+It points every current-law lead about that note or section at the extract
+(text_path, text_sha256 and the exact character span of its quoted words).
+The claim kit accepts such a lead only through that declaration: same ZIP,
+same page_or_item, matching pins.
 
 Nothing here decides legal status. A lead with an extract is still a lead.
 
@@ -40,14 +43,10 @@ def safe_name(value):
     return name[:120] or "x"
 
 
-def _compact(text):
-    """Text without whitespace, and for each kept character its index in text."""
-    chars, index = [], []
-    for i, ch in enumerate(text):
-        if not ch.isspace():
-            chars.append(ch)
-            index.append(i)
-    return "".join(chars), index
+# --- locate: identical copy in jobs/current-law/usc_extracts.py and jobs/claim-kit/current_evidence.py
+# (the claim kit must not import producer code: its compiler files are hash-pinned; the copies are kept
+# textually identical, checked by jobs/claim-kit/test_current_records.py).
+MIN_COLLAPSED_QUOTE = 12
 
 
 def _unique(hay, needle):
@@ -57,21 +56,44 @@ def _unique(hay, needle):
     return start
 
 
-def locate(text, quote):
+def _collapse(text):
+    """Text with each whitespace run replaced by one space, and each kept character's index in text."""
+    chars, index, space = [], [], False
+    for i, ch in enumerate(text):
+        if ch.isspace():
+            if not space:
+                chars.append(" ")
+                index.append(i)
+            space = True
+        else:
+            chars.append(ch)
+            index.append(i)
+            space = False
+    return "".join(chars), index
+
+
+def locate(text, quote, collapsed=None):
     """(start, end) of the one place ``quote`` occurs in ``text``, else None.
 
-    Tried in order, each requiring exactly one occurrence:
-    1. the quote as given;
-    2. the quote without a leading or trailing "..." (snippet ellipses);
-    3. the same characters ignoring whitespace (snippets collapse line breaks
-       and join a heading to a status line with " | ").
-    The returned span always slices the held text itself; the caller quotes
-    ``text[start:end]``, never the snippet.
+    Tried in order: 1. the quote as given; 2. the quote without a leading or
+    trailing "..." (snippet ellipses); 3. the quote with each whitespace run
+    read as one space and " | " (a heading joined to a status line) read as a
+    line break. Every step needs exactly one occurrence both as written and
+    with whitespace runs collapsed in the text and the quote, so "1234 5"
+    never matches "12345" and an exact hit cannot hide a second, differently
+    spaced one. The caller quotes text[start:end], an exact slice of the held
+    bytes, never the snippet. ``collapsed`` is _collapse(text), if cached.
     """
     if not isinstance(text, str) or not isinstance(quote, str) or not quote.strip():
         return None
+    norm, index = collapsed if collapsed is not None else _collapse(text)
+
+    def once_collapsed(q):
+        needle = _collapse(q)[0].strip()
+        return bool(needle) and _unique(norm, needle) is not None
+
     start = _unique(text, quote)
-    if start is not None:
+    if start is not None and once_collapsed(quote):
         return start, start + len(quote)
     trimmed = quote.strip()
     if trimmed.startswith("..."):
@@ -82,16 +104,16 @@ def locate(text, quote):
     if not trimmed:
         return None
     start = _unique(text, trimmed)
-    if start is not None:
+    if start is not None and once_collapsed(trimmed):
         return start, start + len(trimmed)
-    needle, _ = _compact(trimmed.replace(" | ", " "))
-    if len(needle) < 12:
-        return None  # too short to identify one place without whitespace
-    hay, index = _compact(text)
-    start = _unique(hay, needle)
+    needle = _collapse(trimmed.replace(" | ", "\n"))[0].strip()
+    if len(needle.replace(" ", "")) < MIN_COLLAPSED_QUOTE:
+        return None
+    start = _unique(norm, needle)
     if start is None:
         return None
     return index[start], index[start + len(needle) - 1] + 1
+# --- end of locate copy
 
 
 def member_of(page_or_item):
@@ -158,7 +180,11 @@ class Extracts:
             declarations.append({
                 "source_id": f"{item['source_id']}:{item['kind']}:{item['note_id'] or item['container_id'] or rel}",
                 "instrument_ids": [],
-                "url": zip_rec["url"], "sha256": zip_rec["sha256"], "bytes": zip_rec.get("bytes"),
+                # The record's own identity is the extract (sha256 and bytes of the .txt), so readers
+                # that key held copies by sha256 never take one note for the whole ZIP; the ZIP the
+                # text was cut from is extracted_from, which is how the claim kit reaches it.
+                "url": zip_rec["url"], "sha256": digest, "bytes": len(raw),
+                "extracted_from": {"url": zip_rec["url"], "sha256": zip_rec["sha256"], "bytes": zip_rec.get("bytes")},
                 "content_type": "text/plain; charset=utf-8", "retrieved_utc": zip_rec.get("retrieved_utc"),
                 "route": EXTRACT_ROUTE, "page_or_item": poi, "text_path": rel, "text_sha256": digest,
                 # item_extract names how a lead finds this extract: by its exact page_or_item
@@ -170,7 +196,8 @@ class Extracts:
                 "printed_instrument_ids": sorted(item["printed_ids"]),
                 "notes": ("Exact plain text of one U.S. Code " + ("note" if item["kind"] == "note" else "section")
                           + " as read from the USLM XML member named in page_or_item (line breaks between block "
-                          "elements, spaces collapsed), inside the release-point ZIP at url/sha256. It is an "
+                          "elements, spaces collapsed), inside the release-point ZIP named in extracted_from "
+                          "(url, sha256); sha256 and bytes here are those of this extract. It is an "
                           "editorial print of the Office of the Law Revision Counsel. instrument_ids is empty: "
                           "this text is not any order's own text; printed_instrument_ids lists orders the note "
                           "prints. No legal finding."),
@@ -182,8 +209,12 @@ class Extracts:
 def attach(fragments, held):
     """Point U.S. Code current-predicate leads at their extract with an exact span.
 
-    Returns counts. A lead whose quote cannot be located exactly once keeps
-    text_path (so the claim kit reports the gap) but gets no text or span.
+    ``held`` must hold only extracts whose bytes match their declaration. Every
+    earlier text_path, text_sha256 and span is removed first; a lead whose item
+    is not held keeps none. A lead whose item is held gets text_path and
+    text_sha256, and text/char_start/char_end only when its snippet is located
+    exactly once; without a span the claim kit locates the snippet itself and
+    reports a gap when it cannot. Returns counts.
     """
     counts = {"usc_leads": 0, "with_extract": 0, "located": 0}
     for frag in fragments:
@@ -193,10 +224,8 @@ def attach(fragments, held):
             if entry.get("system") != "usc":
                 continue
             counts["usc_leads"] += 1
-            for key in ("text", "char_start", "char_end", "text_sha256"):
+            for key in ("text", "char_start", "char_end", "text_sha256", "text_path"):
                 entry.pop(key, None)
-            if str(entry.get("text_path") or "").startswith("USC_EO_NOTES.jsonl#"):
-                entry.pop("text_path")
             poi = (entry.get("source") or {}).get("page_or_item")
             if poi not in held:
                 continue

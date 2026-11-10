@@ -38,6 +38,18 @@ class Locate(unittest.TestCase):
         self.assertIsNone(X.locate("a b c", "a  b"))  # too short to match without whitespace
         self.assertIsNone(X.locate("text", "absent words"))
 
+    def test_whitespace_runs_collapse_but_spaces_are_not_deleted(self):
+        # A quote about order 12345 must not land on text about order 1234 (finding 4).
+        self.assertIsNone(X.locate("Ex. Ord. No. 1234 5 U.S.C. 301 applies", "Ex. Ord. No. 12345 U.S.C. 301"))
+        text = "Ex. Ord. No. 1234\n  5 U.S.C. 301 applies"
+        start, end = X.locate(text, "Ex. Ord. No. 1234 5 U.S.C. 301")
+        self.assertEqual(text[start:end], "Ex. Ord. No. 1234\n  5 U.S.C. 301")
+
+    def test_exact_hit_must_also_be_unique_with_whitespace_collapsed(self):
+        text = "Executive Order 12345 is revoked. Later text. Executive Order 12345\nis revoked."
+        self.assertIsNone(X.locate(text, "Executive Order 12345 is revoked."))
+        self.assertIsNone(X.locate(text, "...Executive Order 12345 is revoked..."))
+
 
 class ScannerContainers(unittest.TestCase):
     def test_mentions_carry_their_whole_note_or_section_text(self):
@@ -108,8 +120,10 @@ class Regenerate(unittest.TestCase):
         sources = self.read("SOURCES.jsonl")
         self.assertEqual(sources[0], ZIP)  # the release-point record itself is unchanged
         decl = sources[1]
-        self.assertEqual((decl["url"], decl["sha256"], decl["text_path"], decl["text_sha256"]),
-                         (ZIP["url"], ZIP["sha256"], rel, digest))
+        # Own identity is the extract; the ZIP it was cut from is extracted_from.
+        self.assertEqual((decl["url"], decl["sha256"], decl["bytes"], decl["text_path"], decl["text_sha256"]),
+                         (ZIP["url"], digest, len(raw), rel, digest))
+        self.assertEqual(decl["extracted_from"], {"url": ZIP["url"], "sha256": ZIP["sha256"], "bytes": ZIP["bytes"]})
         self.assertEqual(decl["instrument_ids"], [])
         self.assertEqual(decl["printed_instrument_ids"], ["EO:10000"])
         self.assertEqual((decl["page_or_item"], decl["item_extract"], decl["note_id"]), (POI, "page_or_item", "id27f6"))
@@ -134,6 +148,27 @@ class Regenerate(unittest.TestCase):
         X.regenerate(self.out)
         second = {p.name: p.read_bytes() for p in self.out.rglob("*") if p.is_file()}
         self.assertEqual(first, second)
+
+    def test_lead_of_an_item_that_is_not_held_loses_its_old_pointer(self):
+        # Scenario C: a section extract whose bytes fail its declaration is dropped on regeneration,
+        # and the lead that pointed at it must not keep the stale text_path or pin.
+        section_poi = "5 U.S.C. 5941; usc05.xml (sha256 " + "d" * 64 + ") in xml_uscAll@119-121.zip"
+        (self.out / "usc-sections").mkdir()
+        (self.out / "usc-sections/s-1.txt").write_text("Section text naming Ex. Ord. No. 10000 here.", encoding="utf-8")
+        stale = {"source_id": "usc:x:section:s", "route": X.EXTRACT_ROUTE, "page_or_item": section_poi,
+                 "url": ZIP["url"], "sha256": "f" * 64, "text_path": "usc-sections/s-1.txt", "text_sha256": "f" * 64}
+        write_jsonl(self.out / "SOURCES.jsonl", [ZIP, stale])
+        self.frags[0]["data"].append({"system": "usc", "basis_code": "statutory_text_reference", "where": "USC 5 U.S.C. 5941",
+                                      "snippet": "naming Ex. Ord. No. 10000", "text_path": "usc-sections/s-1.txt",
+                                      "text_sha256": "f" * 64, "text": "naming Ex. Ord. No. 10000", "char_start": 13,
+                                      "char_end": 38, "source": {"url": ZIP["url"], "sha256": ZIP["sha256"],
+                                                                 "page_or_item": section_poi}})
+        write_jsonl(self.out / "FRAGMENTS.jsonl", self.frags)
+        X.regenerate(self.out)
+        entry = self.read("FRAGMENTS.jsonl")[0]["data"][2]
+        for key in ("text_path", "text_sha256", "text", "char_start", "char_end"):
+            self.assertNotIn(key, entry)
+        self.assertNotIn(section_poi, [r.get("page_or_item") for r in self.read("SOURCES.jsonl")])
 
     def test_unlocatable_quote_keeps_pointer_without_span(self):
         self.frags[0]["data"][0]["snippet"] = "Words that the note does not contain at all."

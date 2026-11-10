@@ -92,6 +92,10 @@ report = {
     "orders_with_printed_note_CURRENT_and_no_ending_statement_found": len(printed_no_end),
     "orders_with_printed_note_CURRENT_but_ending_statement_found": len(printed - printed_no_end),
     "orders_reached_only_by_other_kinds": len(other_only),
+    "orders_whose_CURRENT_records_are_all_amending_order_in_status_line": sum(
+        1 for ls in per_order.values() if all(l.get("basis_code") == "amending_order_in_status_line" for l in ls)),
+    "CURRENT_records_with_held_extract_declaration": sum(1 for ls in per_order.values() for l in ls if l.get("held_extract")),
+    "CURRENT_records_total": sum(len(ls) for ls in per_order.values()),
     "orders_reached_only_by_other_kinds_by_basis": dict(sorted(collections.Counter(
         b for i in other_only for b in sorted({l.get("basis_code") for l in per_order[i]})).items())),
     "leads_by_basis_and_CURRENT": {f"{b}|{'current' if ok else 'gap'}": n
