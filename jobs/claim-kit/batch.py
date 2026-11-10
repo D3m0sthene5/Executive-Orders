@@ -457,7 +457,7 @@ def _view_loaded(packet,dossiers,order,source):
         'All material evidence remains in READ.md and the lossless PACKET.json.'])
 
 
-def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=False,history_bundles=None,frozen_evidence=None):
+def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=False,history_bundles=None,frozen_evidence=None,action=None):
     started=time.monotonic();repo=Path(repo).resolve();out=Path(out).resolve();dest=Path(dest).resolve()
     if dest.exists():raise ValueError('prepare destination exists; refusing overwrite')
     if not dest.is_relative_to(repo/'research') or not 1<=len(ids)<=50 or len(set(ids))!=len(ids):raise ValueError('bounded distinct IDs and research destination required')
@@ -465,6 +465,12 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
     locks=json.loads(locks_path.read_bytes()).get('orders',{}) if locks_path.exists() else {}
     dossiers={};pins={};routing={};flight={};shared={};undecided={};frozen={};freeze_stats={}
     index={r['instrument_id']:r for r in json.loads((out/'INDEX.json').read_bytes())} if not dossier_paths else {}
+    import admission
+    # Bentham admission. A correction to an order that already has a claim is exempt; the replacement flag
+    # admits no new order.
+    new=[iid for iid in ids if not (replacement_proposal and iid in owned)]
+    admitted=admission.applies(repo) and bool(new)
+    if admitted:admission.admit(repo,action,new,locks)
     for iid in ids:
         if iid in locks and locks[iid].get('agent')!=agent:raise ValueError('reservation belongs to '+str(locks[iid].get('agent'))+': '+iid)
         if iid in owned and not replacement_proposal:raise ValueError('route existing claim to owner or explicitly prepare replacement proposal: '+iid)
@@ -568,6 +574,7 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
     dispatch=dispatch_check(repo,dest)
     dump(dest/'DISPATCH_CHECK.json',dispatch)
     metrics['dispatch_check']={k:dispatch[k] for k in ('ok','dispatchable_ids','source_blocked_ids','state')}
+    if admitted:admission.record(dest,action,new,agent)
     dump(dest/'PREPARE.json',metrics);return metrics
 
 
