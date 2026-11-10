@@ -727,14 +727,16 @@ def caught(rec, terms=DATE_TERMS):
 # set, as with date plants, so no set holds both.
 TYPED_TERMS = {
     "date_shift": DATE_TERMS,
+    # Distinctive words and field names only: a generic word ("text", "quote", "missing", "source") would let a
+    # rejection for some other reason count as naming the planted defect (review of 89422dce85).
     "later_event_removed": frozenset({"later_event", "later_events", "amendment", "amendments", "amended", "amends",
-                                      "omitted", "omits", "missing"}),
-    "partial_as_whole": frozenset({"partial", "part", "insofar", "qualifier", "qualified", "except", "exception",
-                                   "scope", "quote", "quotation", "whole_order_end"}),
-    "wrong_order_text": frozenset({"original_operative_text", "original_source", "identity", "quote", "quotation",
-                                   "inventory", "text", "wrong"}),
-    "ending_source_swapped": frozenset({"source", "whole_order_end", "first_end", "actor", "quote", "quotation",
-                                        "evidence_id", "provision"}),
+                                      "omitted", "omits"}),
+    "partial_as_whole": frozenset({"partial", "partially", "insofar", "qualifier", "qualified", "except", "exception",
+                                   "excepted"}),
+    "wrong_order_text": frozenset({"original_operative_text", "original_source", "identity", "wrong_order",
+                                   "another_order"}),
+    "ending_source_swapped": frozenset({"ending_source", "evidence_id", "provision", "whole_order_end_source",
+                                        "first_end_source"}),
 }
 TYPED_STATUS = ("later_event_removed", "partial_as_whole", "wrong_order_text", "ending_source_swapped")
 TYPED_DEFECT = {
@@ -1785,7 +1787,17 @@ class Batch:
                            "by name from the producer and from both blind arms (set reviewer_S.reviewer_name)")
 
     def check_overlay_publication(self):
-        """Undecided members complete only as an isolated replacement proposal outside canonical readiness."""
+        """Undecided members complete only as an isolated replacement proposal outside canonical readiness; the
+        kit accepts overlay bundles only under research/excavator/; and a --producer nalimov batch must run under the
+        drafter's own agent name, which its sheets and STATUS_DECISION.json carry (kit complete refuses a packet whose
+        producer differs from the manifest agent). All checked before anything is reserved or paid."""
+        run_dir = Path(self.cfg["run_dir"]).as_posix()
+        if not run_dir.startswith("research/excavator/"):
+            raise Fail(f"--run-dir {run_dir} must be under research/excavator/: the kit writes overlay bundles only there")
+        if self.cfg.get("producer") == "nalimov":
+            agent = nalimov_drafter(self.repo).AGENT
+            if self.cfg.get("agent") != agent:
+                raise Fail(f"--producer nalimov drafts as agent {agent!r}; run the batch with --agent {agent}")
         if (self.cfg.get("publication_mode") or "own_claims") != "replacement_proposal":
             raise Fail("undecided orders go out through the status-overlay route, which the kit completes only as an "
                        "isolated replacement_proposal publication (claim-kit COMPLETION.md); this batch's publication "
@@ -1950,6 +1962,23 @@ class Batch:
         if src.get("approved") is not True:
             return {"error": "the producer's applied lifecycle sheet is not approved; nothing to reconfirm"}
         producer = self.cfg.get("producer") or "workers"
+        if producer != "nalimov":
+            # Whether a script may give a model producer's reconfirmation is an owner decision (review O1, Kean ask
+            # A-20261110-nalimov-calibration); until then only the script producer reconfirms its own sheet.
+            return {"error": "producer reconfirmation of the working sheet is needed; the conveyor gives it only for "
+                             "--producer nalimov (the script is that producer)"}
+        # The working dossier must be the base dossier with only the reviewed status envelope changed: the kit adds
+        # a 'missing' line for a YES (status_overlay.experimental_dossier), and a sheet written before that gap
+        # existed must not be approved against it (review O1).
+        base = read_json(bundle / "EVIDENCE.json") or {}
+        wdos = read_json(bundle / "DOSSIER.json") or {}
+        dos_env = ("whole_order_status", "status_overlay", "notice", "fingerprint")
+        bstrip = {k: v for k, v in (base.get("base_dossier") or {}).items() if k not in dos_env}
+        wstrip = {k: v for k, v in wdos.items() if k not in dos_env} if isinstance(wdos, dict) else None
+        if not bstrip or wstrip != bstrip:
+            changed = sorted(k for k in set(bstrip) | set(wstrip or {}) if (bstrip or {}).get(k) != (wstrip or {}).get(k))
+            return {"error": "the working dossier differs from the base dossier beyond the status envelope "
+                             f"({', '.join(changed[:5])}); producer reconfirmation is needed and the script does not give it"}
         note = {"schema": "maudslay-producer-reconfirmation/v1", "instrument_id": iid, "producer": producer,
                 "reconfirmed_by": "maudslay-conveyor (script)", "kind": "script_reconfirmation",
                 "source_sheet_sha256": canon(src), "working_sheet_sha256": canon(work),
@@ -2222,10 +2251,14 @@ class Batch:
         if overlaid:
             # Respondendi (INTERFACE.md) reads both arms' blind and after-reveal files from the receipts.
             receipts += [ref(files[(md, "A")]) for md in ("BLIND_REVIEW", "AFTER_REVEAL") if files[(md, "A")].exists()]
+            # The script's producer reconfirmation of each working sheet is pinned with it (review O1).
+            receipts += [ref(self.repo / overlay[i]["bundle"] / "RECONFIRMATION.json") for i in overlaid
+                         if (self.repo / overlay[i]["bundle"] / "RECONFIRMATION.json").exists()]
             if (self.cfg.get("publication_mode") or "own_claims") != "replacement_proposal":
                 raise Fail(f"overlay members {overlaid} carry an unadopted working status; the kit completes them only "
                            "as an isolated replacement_proposal publication, never own_claims (COMPLETION.md)")
-        pf = self.workers["producer"].get("model_family", "unknown")
+        pf = ("script (Nalimov drafter)" if self.cfg.get("producer") == "nalimov"
+              else self.workers["producer"].get("model_family", "unknown"))
         fams = {self.workers[f"reviewer_{a}"].get("model_family", "unknown").casefold() for a in "AB"}
         indep = "different_family" if pf.casefold() not in fams else "same_family_separate_context"
         man = {"schema": "eo-claim-kit-completion/v1", "agent": agents.pop(), "producer_model_family": pf,

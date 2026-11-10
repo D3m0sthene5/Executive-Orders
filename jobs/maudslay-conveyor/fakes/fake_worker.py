@@ -178,8 +178,10 @@ def review(prompt, sc):
         if planted and not cfg.get("miss_controls"):
             v, d = "rejected", [{"field": "whole_order_end.date", "problem": "contradicts the cited source"}]
             if "fake_seal" in c:
-                d.append({"field": "later_events", "problem": "the quote, source and text differ from the held "
-                          "original; an event is omitted or the end is partial"})
+                # A fake that names every typed kind: real reviewers name one; kind-specific misses are tested on
+                # caught() directly (test_nalimov ConveyorTypedControlTests).
+                d.append({"field": "later_events", "problem": "an event is omitted, or the end is partial; the "
+                          "original_operative_text identity is another order's; the ending_source provision differs"})
         elif iid in cfg.get("reject", []):
             v, d = "rejected", [{"field": "research_rationale", "problem": "reason does not match the source"}]
         else:

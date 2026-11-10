@@ -77,8 +77,18 @@ def overlay(repo, a):
                     "decision_sha256": sha(dec), "reviewer": rev["reviewer"], "review_sha256": sha(rev),
                     "evidence_sha256": ev["fingerprint"], "owner_acceptance": {"accepted": False}}
         proposal["fingerprint"] = sha(proposal)
+        # As status_overlay.experimental_dossier: the base dossier with the reviewed status envelope only (a YES also
+        # gains a 'missing' line, which the conveyor's reconfirmation must refuse).
+        dossier = dict(ev.get("base_dossier") or {"instrument_id": ev["instrument_id"]})
+        dossier.update(whole_order_status=dec.get("recommended_provisional_status"),
+                       status_overlay={"proposal_sha256": proposal["fingerprint"], "experimental_only": True},
+                       notice="EXPERIMENTAL STATUS OVERLAY; " + str(dossier.get("notice", "")))
+        if dossier["whole_order_status"] == "yes":
+            dossier["missing"] = sorted(set((dossier.get("missing") or []) + [
+                "Current legal predicate and coverage through 2026-10-14 require judgment."]))
+        dossier["fingerprint"] = sha(dossier)
         files = {"EVIDENCE.json": ev, "STATUS_DECISION.json": dec, "STATUS_REVIEW.json": rev,
-                 "PROMOTION_PROPOSAL.json": proposal, "DOSSIER.json": {"instrument_id": ev["instrument_id"]}}
+                 "PROMOTION_PROPOSAL.json": proposal, "DOSSIER.json": dossier}
         if a.lifecycle_sheet:
             src = load(a.lifecycle_sheet)
             if src.get("instrument_id") != ev["instrument_id"]:

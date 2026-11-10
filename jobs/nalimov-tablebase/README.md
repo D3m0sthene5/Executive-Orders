@@ -57,7 +57,12 @@ python -I jobs/nalimov-tablebase/census.py --data CHECKOUT_WITH_OUTPUTS --out re
 python -I jobs/nalimov-tablebase/prescreen.py --data CHECKOUT_WITH_OUTPUTS --evidence SCRATCH/evidence --out SCRATCH/prescreen --mentions CHECKOUT/jobs/current-law/output/MENTIONS.csv
 python -I jobs/nalimov-tablebase/nalimov.py measure --evidence SCRATCH/evidence --only SCRATCH/prescreen/PRESCREEN.json --mentions .../MENTIONS.csv --out research/nalimov/MEASURES.json
 # a run (Augur-gated; see research/nalimov/calibration/WAVE.json), through the conveyor:
-python -I jobs/maudslay-conveyor/conveyor.py run --run-dir RUN --batch b01 --agent nalimov-script     --action status_assignment.undecided --ids EO:N ... --producer nalimov --replacement-proposal     --workers WORKERS.json --wave research/nalimov/calibration/WAVE.json --scratch-root SCRATCH --batch-usd X
+#   the run folder must be under research/excavator/ (the kit writes overlay bundles only there), the agent must be
+#   nalimov-script (the drafter's own name), and the publication path under research/ outside research/readiness
+python -I jobs/maudslay-conveyor/conveyor.py run --run-dir research/excavator/claude-nalimov-calibration --batch b01 \
+    --agent nalimov-script --action status_assignment.undecided --ids EO:N ... --producer nalimov \
+    --replacement-proposal --publication research/excavator/claude-nalimov-calibration/PROPOSAL-b01.jsonl \
+    --workers WORKERS.json --wave research/nalimov/calibration/WAVE.json --scratch-root SCRATCH --batch-usd X
 ```
 
 `SCRATCH` must be outside the repository, and `KEYS/batch` outside both the repository and `SCRATCH`, so no relative
