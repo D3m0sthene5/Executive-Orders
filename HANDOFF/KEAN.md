@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 295; `search` finds the rest)
+## Newest results (6 of 296; `search` finds the rest)
 
+- 2026-11-10 F-20261110-mommsen3-pr260-main-reconcile **worked**: Reconcile pure EO6826 PR260 with main21b182e359, deterministic C7 reservation/append-only register unions, ex… Lesson: Keep local sparse replay absolute counts separate from publishedmain1223 and prior input bases. Head green and actual predecessor merge remain required; no outputbulk or code in claim PR.
 - 2026-11-10 F-20261110-mommsen3-mirror-correction **analysis**: Carry out Claude C-1d as relayed by S-3-3 on the predecessor mirror proposal. Lesson: Do not substitute rejected MIRROR_FRAGMENTS declarations for the designated APP conversion route or operate another lane recovery. No old result is rewritten as new accepted production.
 - 2026-11-10 F-20261110-mommsen3-headless-turn1 **partly worked**: Produce two bounded20-order packets from S-3-3 assigned decided EO6750-7531,using existing custody and claim-… Lesson: Keep actual filing distinct from proposals and local replay distinct from main. New context needs a new packet; place completion outputs inside its exclusion boundary to prevent its own receipt copie…
 - 2026-11-10 F-20261110-mommsen3-blind-input-contract **stopped at gate**: Run maintained blind verification on exact blinded cards and confined source descriptors. Lesson: Allowlist only actual existing confined directories. Do not invent quote offsets for provenance-only confirmations or infer control sensitivity from a preinterpretation refusal.
 - 2026-11-10 F-20261110-mommsen2-road-sparse-ci **partly worked**: PR 252 claim publication against the road-tests sparse checkout. Lesson: Read the committed runner declaration with git show when the worktree file is absent. This one-test fallback keeps the existing scope comparison and allows claim PR CI without changing .github.
 - 2026-11-09 F-20261110-papinian-photius-overlap **analysis**: Papinian pool 1b: recovery.working_text_stale (26 orders, EO 7912-8025) Lesson: A Bentham stratum and a named campaign can be the same orders under two names; split lanes by order ids, not by action names.
-- 2026-11-09 F-20261110-papinian-nea-notices **analysis**: Papinian YES pool (production.claim_ready.yes.fr): producers worked batches y01-y09 by the original_plus_boun… Lesson: Bentham's acquire.nea_continuation_notices (listed free, 0 orders) is the largest single unlock left in the YES stratum: enqueue the annual Federal Register continuation notices for each live IEEPA/N…
 
-Register: 75 owner decisions, 45 answered questions, 295 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 296 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
