@@ -1,0 +1,215 @@
+{
+  "schema": "bounded-producer-result/v1",
+  "producer": "b03-p01",
+  "lane": "mommsen-5",
+  "assignment": [
+    "EO:2822",
+    "EO:3056",
+    "EO:3969"
+  ],
+  "started_utc": null,
+  "started_utc_note": "Exact start was not instrumented; substantive reading began before the first observed clock timestamp. No fabricated start time.",
+  "first_observed_utc": "2026-11-10T07:25:24.451666Z",
+  "finished_utc": "2026-11-10T07:29:02.390184Z",
+  "requested_model": "gpt-6.1-sol",
+  "requested_reasoning_effort": "medium",
+  "actual_model": null,
+  "actual_model_note": "Runtime does not expose an independently verifiable actual model identifier; no model change or delegation performed.",
+  "usage": null,
+  "cash": null,
+  "elapsed_seconds": null,
+  "human_certification": 0,
+  "counts": {
+    "assigned": 3,
+    "submit": 0,
+    "blocked": 3,
+    "unresolved": 0,
+    "clause_scopes": 15
+  },
+  "dispatch": {
+    "path": "research/excavator/mommsen-5-2026-11-10-turn2/mommsen-5-b03-packet/DISPATCH.fresh-v1.json",
+    "ok": true,
+    "scope": "All three assigned identities present in dispatchable_ids; source custody is not legal approval."
+  },
+  "artifacts": {
+    "decisions": "decisions.csv",
+    "clauses": "clauses.csv"
+  },
+  "sources_read": [
+    {
+      "instrument_id": "EO:2822",
+      "evidence_id": "ORIGINAL:EO:2822",
+      "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_2822.txt",
+      "complete_held_text_read": true,
+      "complete_raw_pages_visually_read": true,
+      "pages": [
+        1
+      ],
+      "raw_path": "ProQuest Pre-1937 Orders/PT1-1918-EO-2822.pdf",
+      "raw_sha256": "e05e54895f074a31d1a3d66a4469034629792a11032ae494b57c4be8d7ba54d3",
+      "exit_code": 0,
+      "images": [
+        {
+          "path": "tmp/pdfs/mommsen-5-turn2/EO_2822/page-1.png",
+          "sha256": "e0d0fc38a26a17a263b8595322cc35ed8f718cf5e2dd30e83ba36c59fff2c3ec"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:3056",
+      "evidence_id": "ORIGINAL:EO:3056",
+      "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3056.txt",
+      "complete_held_text_read": true,
+      "complete_raw_pages_visually_read": true,
+      "pages": [
+        1
+      ],
+      "raw_path": "ProQuest Pre-1937 Orders/PT1-1919-EO-3056.pdf",
+      "raw_sha256": "7889b5c4dae487abec2ef9c4d8a70e09560395ed14c81b0dfed582ffffd4da17",
+      "exit_code": 0,
+      "images": [
+        {
+          "path": "tmp/pdfs/mommsen-5-turn2/EO_3056/page-1.png",
+          "sha256": "531b45f541e078a1d2b39cffd9a4d65e799f76c8eaed3a3d30008756f8f17912"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:3969",
+      "evidence_id": "ORIGINAL:EO:3969",
+      "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_3969.txt",
+      "complete_held_text_read": true,
+      "complete_raw_pages_visually_read": true,
+      "pages": [
+        1,
+        2
+      ],
+      "raw_path": "ProQuest Pre-1937 Orders/PT1-1924-EO-3969.pdf",
+      "raw_sha256": "dc81106102437173613c80a5c1aa3aeb234595413d8f47b9791df3783feac540",
+      "exit_code": 0,
+      "images": [
+        {
+          "path": "tmp/pdfs/mommsen-5-turn2/EO_3969/page-1.png",
+          "sha256": "1899bf6a9625934240409b0ff040ad3e492f845f220090a428fa31a16b846b2f"
+        },
+        {
+          "path": "tmp/pdfs/mommsen-5-turn2/EO_3969/page-2.png",
+          "sha256": "f4007b3ab8bff7d6d3920dbabad70e803ec723e6908bcf829a54b95f4c6e214e"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:3461",
+      "evidence_id": "ACTOR_TEXT:EO:3461",
+      "text_path": "jobs/csc-annual-reports/output/texts/EO_3461.txt",
+      "char_start": 0,
+      "char_end": 6611,
+      "complete_held_text_read": true,
+      "complete_instrument_read": false,
+      "raw_pages_visually_read": false,
+      "reason": "The held transcription ends mid-item 27. No actor page rendering supplied and named ProQuest actor PDF/text paths are absent. Did not run stopped annual-report reprint-as-original route; no source identity/completeness/page approval."
+    }
+  ],
+  "member_outcomes": [
+    {
+      "instrument_id": "EO:2822",
+      "outcome": "blocked",
+      "approved": false,
+      "reasoning": "The visually inspected complete single-page replica creates a class-wide civil-service exception for employees of commandeered Ordnance plants and employees under agency contracts for construction or construction and operation. It contains no express war sunset and is not a single appointment permission. ACTOR_TEXT:EO:3461 contains a broad May 16, 1921 revocation, but the held transcription ends in the middle of item 27 and does not reach the target-specific list entry or signature. No first ending is proved by that incomplete witness. Neither the quoted March 3, 1921 resolution nor an issued-original actor witness is supplied in the frozen member evidence. No whole-case proposal.",
+      "earlier_end_check": "Checked the original for an own-term sunset: none. War cessation alone cannot end this unqualified class exception. Read all 6611 held characters of ACTOR_TEXT:EO:3461, including its March 3 resolution recital and broad revocation, not merely its pointer. May 16, 1921 is a concrete candidate, not a proved first cessation: target-specific applicability, complete instrument/effective terms and an earlier-ending inquiry remain open. The three carried number-based searches do not answer these questions; Namier reports no parsable personal name and is inapposite to this employee class.",
+      "scope_check": "One operative paragraph covers both commandeered-plant employees and agency-contract employees (construction alone or construction and operation). The exception extends to the civil service act and rules. No individual appointment or construction completion is inferred; no basis to sever either employee category as already ended.",
+      "independent_command_check": "No separate report, expenditure, contract deadline, or single appointment command. This is an ongoing class exception while applicable, and every category must be covered by a later ending. Do not reduce it to permission used at signing.",
+      "savings_check": "The original has no express savings provision. Accrued appointments, employment/pay and contract consequences may be distinct from prospective exemption authority; neither their occurrence nor their extinction is established. The incomplete EO3461 transcription cannot support a no-residuals conclusion; read the complete actor and applicable statutory savings before closure.",
+      "remaining_obligations": [
+        "Complete and page-inspect the held actor EO3461 through its final list item, operative qualifications and signature; supply an issued-original witness through an allowed route, not the stopped annual-report reprint-as-original route.",
+        "Read the actual March 3, 1921 joint resolution recited in EO3461, including scope, effective provisions and savings; do not substitute the recital.",
+        "Establish the first instrument or event ending both employee-category exceptions, examining earlier changes between March 19, 1918 and the candidate May 16, 1921 and any applicable successor/savings provisions.",
+        "Obtain an official original and recheck quotations under the standing working-text obligation; retained source grade is unchanged."
+      ],
+      "inventory_scopes": [
+        "EO:2822#whole"
+      ],
+      "source_grade_preserved": "archival_replica_scan_pending_codebook"
+    },
+    {
+      "instrument_id": "EO:3056",
+      "outcome": "blocked",
+      "approved": false,
+      "reasoning": "The complete single-page replica, visually read, places four Philippine military reservations under the Philippine Government by the operative words hereby placed, with administration for the inhabitants benefit under section 9 of the August 29, 1916 Act. This is affirmative legal disposition, not merely permission awaiting an unproved physical handover. That transfer must be distinguished from its enduring land-control consequences and the administration qualification. The frozen inventory omits the operative lead and items 1 and 2; all five replacement scopes are supplied. Material OCR errors prevent endorsing the frozen text as faithful. The actual section 9 and site-specific later instruments are absent from the member evidence. No whole-case first cessation established.",
+      "earlier_end_check": "The direct disposition is dated March 3, 1919 on the inspected page. No own-term sunset appears. Neither signing as an automatic end of the administration qualification nor a later sovereignty transition can supply the whole-case first ending without applicable legal text. Read all carried searches: zero number-citation hits are not a search of the four sites by name, the enabling statute or subsequent land-control instruments. Specific question: whether and when the administration-for-benefit qualification ceased or continued for each listed reservation.",
+      "scope_check": "Replacement inventory includes common authority/transfer/administration lead plus Cotabato reservation, Fort Pikit (frozen OCR FortDikit), Fort Reina Regente and Torrey Barracks. The held OCR misreads reservation dates and names: the image says October 19, 1912 for items 2 and 3, while frozen item 2 says 1913 and item 3 is garbled. The image names July 21, 1906 and May 29, 1911 for Torrey amendments; the held text corrupts those dates. Bytes and offsets are preserved; these visual observations are not substituted quotations.",
+      "independent_command_check": "Each of the four listed parcels receives the common hereby-placed disposition and administration qualification. No independent construction, report or delivery command occurs. Legal placement can occur by the instrument itself; physical implementation is not demanded as proof of that legal act. The prospective administration obligation and land consequences require separate analysis under the enabling statute.",
+      "savings_check": "No express savings text appears in the order. Continuing control, administration for inhabitants benefit, and possible vested property consequences cannot be presumed extinguished because the disposition was self-executing. Section 9 and later applicable land/sovereignty instruments and their savings are needed; no ownership right or actual administration event is inferred.",
+      "remaining_obligations": [
+        "Frozen OCR materially corrupts the original reservation identities/dates and signature date; obtain a new faithfully extracted, reviewed packet without silently editing held bytes.",
+        "Read section 9 of the Act of August 29, 1916 actually cited in the lead, including the scope of administration and any savings.",
+        "Obtain the reservation instruments identified by date (April 28, 1910; April 20, 1911; October 19, 1912; May 29, 1903; December 22, 1904; July 21, 1906; May 29, 1911) and map the four parcels exactly.",
+        "Establish site-specific subsequent disposition and the first ending or supported cutoff predicate for administration/control, including relevant savings; a generic Philippine sovereignty date alone does not answer it.",
+        "Official-original replacement and quotation recheck remain standing obligations, with archival_replica_checked preserved."
+      ],
+      "inventory_scopes": [
+        "EO:3056#transfer-administration",
+        "EO:3056#reservation-1",
+        "EO:3056#reservation-2",
+        "EO:3056#reservation-3",
+        "EO:3056#reservation-4"
+      ],
+      "source_grade_preserved": "archival_replica_checked"
+    },
+    {
+      "instrument_id": "EO:3969",
+      "outcome": "blocked",
+      "approved": false,
+      "reasoning": "Both replica pages were read in full. Section 1 replaces section II of the January 9, 1920 order; section 2 adds sections XV-XX. These include recurring fee, cost-taxation and probate/guardianship notice rules, a repeal and a commencement clause. The five-day cost periods and ten-day notice period recur per case; thirty days from March 5, 1924 is commencement (calendar calculation April 4, 1924), not a sunset. The machine fixed-term lead is rejected as a termination theory. Parent and subsequent exact provisions and savings are unproved. The frozen fee table OCR is materially corrupt. No complete lifecycle proposal.",
+      "earlier_end_check": "Examined all original and own-term text, including TERM:EO:3969:9a6d56ecf2ac7f60@cbd736404c5666e3. That span concerns notice procedure, not expiration. The five- and ten-day periods govern proceedings, not the life of the order. Section XX states when it takes effect, not when it ends. No later actor is held in this member; carried number searches do not reconstruct the January 9, 1920 parent or later Canal Zone procedural codifications. Specific earlier-end question: the first superseding provision for each fee/cost/notice rule, not a presumed common abolition or general-repeal date.",
+      "scope_check": "Nine replacement scopes preserve the lead, section 1 replacement, section 2 amendment instruction, and added XV, XVI, XVII, XVIII, XIX and XX. Section II covers government exemption, ordinary District Court party deposits, special-writ deposits, copy-fee exceptions and Magistrate Court deposits. XVII includes estate-value fees, copy fees and discretionary small-estate waiver. XVIII includes posting authority and affidavit/certificate proof prerequisite. OCR materially corrupts the XVII thresholds ($xz,ooo; $,ooo): visible page 1 shows $1,000 and $5,000 boundaries. These observations disclose the defect and do not repair quotations.",
+      "independent_command_check": "The recurring rules do not exhaust when first applied or when their amendment instruction is executed. Independently examine District Court costs and exemptions, Magistrate taxation and fees, probate fee/waiver/copy provisions, notice/posting and proof, and conflict repeal. Section XIX repeals specified Code of Civil Procedure section 531 clauses plus conflicting laws/rules; it does not state that all orders have ended. Section XX commencement is separate. Changes to parent text are later events, not automatic cessation of every amended rule.",
+      "savings_check": "No express general savings clause appears on the two pages. Existing costs, pending proceedings, probate/guardianship notices and completed court acts may persist independently of prospective rules. Preserve the copy-fee exceptions and discretionary waiver as operative scope, not evidence of a general absence of residuals. Exact parent/successor provisions and transition/savings text must be read before concluding extinction or continuation; no actual proceeding or fee payment is assumed.",
+      "remaining_obligations": [
+        "Frozen OCR materially corrupts operative fee thresholds and other procedural language. Obtain a faithful reviewed replacement packet; no silent correction of frozen text.",
+        "Read the January 9, 1920 parent order, especially section II and sections added by this amendment (margin suggests EO3213 but numbering is only a lead); exact original is not supplied here.",
+        "Read the Panama Canal Act of August 24, 1912, its September 21, 1922 amendment, and Code of Civil Procedure section 531 actually referenced, to establish delegation and replaced scope.",
+        "Locate exact later provisions and effective dates affecting each recurring fee/cost/notice rule; inspect applicable codification, repeal, pending-case and accrued-cost savings instead of assigning a common general-repeal endpoint.",
+        "Official-original replacement and quotation recheck remain standing obligations; archival_replica_checked is preserved."
+      ],
+      "inventory_scopes": [
+        "EO:3969#authority-lead",
+        "EO:3969#section-1-replacement-II",
+        "EO:3969#section-2-insertion",
+        "EO:3969#added-XV",
+        "EO:3969#added-XVI",
+        "EO:3969#added-XVII",
+        "EO:3969#added-XVIII",
+        "EO:3969#added-XIX",
+        "EO:3969#added-XX"
+      ],
+      "source_grade_preserved": "archival_replica_checked"
+    }
+  ],
+  "search_assessment": "Carried searches read: checked 2026-11-06; USC OLRC release 119-121, 58 titles through 2026-10-09 (October 10-14 gap), number-citation forms only; eCFR 2026-10-14 and GovInfo bulk 49 titles, target-number references; OFR 6941 disposition records from 1937 onward plus 17521 saved order texts, target naming. All report zero hits for these members. These are bounded negative leads, not worldwide coverage or proof that uncited statutes/site/subject rules do not control. Specific outstanding questions are in the member checks.",
+  "prior_work_valla": "Full assigned native views read; no prior research located, no conflicting versions/status holds/unfinished-work entries, and no member Valla claims/refused-method/review-queue records. Empty context supplies no approval.",
+  "rules_read": [
+    "jobs/claim-kit/AGENT_PROTOCOL.md",
+    "jobs/claim-kit/BATCH.md",
+    "jobs/claim-kit/OCCURRENCE_INTERVALS.md",
+    "research/stage19/CLAIM_SCHEMA.md",
+    "research/readiness/owner_rulings/2026-10-28-evidence-not-convenience.md",
+    "research/readiness/owner_rulings/2026-10-21-strike-and-insert.md",
+    "research/readiness/owner_rulings/2026-10-21-unnamed-instruments.md",
+    "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+    "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+    "research/readiness/owner_rulings/2026-11-08-haloander-decisions.md"
+  ],
+  "scope_compliance": "Only producer decisions.csv, clauses.csv and RESULT.json written. No apply/completion/publication, claims/status/grades/ownership/code changes, Git mutations, delegation, messages or network. No raw-page bytes copied to research artifacts. Requests are listed for coordinator normal acquisition; no FETCH_QUEUE write authorized.",
+  "checks": [
+    "All three assigned members retained; none approved or submitted.",
+    "Four complete primary PNGs viewed and raw/PNG SHA256 pins verified.",
+    "All replacement scopes use original held source IDs, disjoint contiguous offsets, and cover the entire held original; no held text edited.",
+    "Original authentication not claimed; exact source grades, historical confirmation object and standing replacement note preserved.",
+    "Unknown cessation dates and clause states left blank; no date fabricated to satisfy assembly."
+  ],
+  "artifact_sha256": {
+    "decisions.csv": "9d62926850d47b75dc6c37d06a679ea4f218b2cd11482396f0fe7f432974a53c",
+    "clauses.csv": "c21641bcb0b584c81367649545c72af59dc1d7e78977d5c06f6755d428ece9e5"
+  }
+}

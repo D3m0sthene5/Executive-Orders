@@ -1,0 +1,459 @@
+{
+    "schema":  "bounded-producer-result/v1",
+    "producer_id":  "b03-p12",
+    "lane":  "mommsen-5",
+    "assignment":  "S-5-12 decided EO2500-3999",
+    "assigned_identities":  [
+                                "EO:3016N",
+                                "EO:3968"
+                            ],
+    "started_utc":  "2026-11-10T07:22:58.7063967Z",
+    "started_utc_basis":  "Creation time of this producer native event log, used as session-start proxy; no exact model API start timestamp exposed.",
+    "finished_utc":  "2026-11-10T07:29:03.5906196Z",
+    "requested_model":  "gpt-6.1-sol",
+    "requested_reasoning_effort":  "medium",
+    "actual_model":  null,
+    "actual_model_note":  "Runtime identifies Codex based on GPT-6; exact serving model and effort are not exposed to this session.",
+    "usage":  null,
+    "cash":  null,
+    "human_certification":  0,
+    "counts":  {
+                   "submit":  0,
+                   "pages_visually_read":  5,
+                   "assigned":  2,
+                   "unresolved":  0,
+                   "blocked":  2
+               },
+    "dispatch_receipt":  "research/excavator/mommsen-5-2026-11-10-turn2/mommsen-5-b03-packet/DISPATCH.fresh-v1.json",
+    "dispatch_judgment":  "Both assigned identities are dispatchable_for_research, required original/clause bytes held. Custody pass supplies no legal approval.",
+    "members":  [
+                    {
+                        "instrument_id":  "EO:3016N",
+                        "outcome":  "blocked",
+                        "approved":  false,
+                        "dossier_sha256":  "5ce5eac56e96b4a295722859aa1975dd2b47dd0f188e78b5d7de808dbc6ceb34",
+                        "source_read":  {
+                                            "evidence_id":  "ORIGINAL:EO:3016N",
+                                            "raw_path":  "ProQuest Pre-1937 Orders/PT1-1918-EO-3016-N.pdf",
+                                            "raw_sha256":  "dd36c2aaa365139fe939ac0a40f656b2025ceab965aeeca89701943fd701d4d0",
+                                            "text_path":  "jobs/pinakes-proquest-ingest/output/texts/EO_3016N.txt",
+                                            "text_sha256":  "e0f28764dc280e26f66f4cbd7c596c8b4293666598ec7cabefd4c7466bf468f0",
+                                            "full_text_read":  true,
+                                            "complete_rendered_pages_visually_read":  [
+                                                                                          {
+                                                                                              "path":  "tmp/pdfs/mommsen-5-turn2/EO_3016N/page-1.png",
+                                                                                              "sha256":  "0b267134bcab278c2b69f19bd9a39097b299ca9950a95d2875675747c3b5f90f"
+                                                                                          },
+                                                                                          {
+                                                                                              "path":  "tmp/pdfs/mommsen-5-turn2/EO_3016N/page-2.png",
+                                                                                              "sha256":  "18a2e68473ad9f692a93ce59503b02c75a5e1dfff447991695ac090578599a28"
+                                                                                          },
+                                                                                          {
+                                                                                              "path":  "tmp/pdfs/mommsen-5-turn2/EO_3016N/page-3.png",
+                                                                                              "sha256":  "3816961d28262c6ad1affe69863332b954c68feb283a030b099c97a30de8f2ff"
+                                                                                          },
+                                                                                          {
+                                                                                              "path":  "tmp/pdfs/mommsen-5-turn2/EO_3016N/page-4.png",
+                                                                                              "sha256":  "3f4dd4ff4743ad0a7029b654ff984293bba585dd71e117250ec49af833ff8c8e"
+                                                                                          }
+                                                                                      ],
+                                            "raw_and_render_hashes_verified":  true,
+                                            "grade_preserved":  "archival_replica_checked",
+                                            "acceptable_as_original":  false,
+                                            "faithful_frozen_text_confirmed":  false,
+                                            "raw_bytes_copied":  false
+                                        },
+                        "native_view_read":  "research/excavator/mommsen-5-2026-11-10-turn2/mommsen-5-b03-packet/producer-views/EO_3016N.md",
+                        "reasoning":  "All four replica pages read visually. This is Frank L. Polk\u0027s 18 April 1919 order under delegated EO 3016 authority, not a presidential act issued in 1918 merely because of the raw filename. Page 3 authorizes and directs release of rights in 50,000 shares to Ludwig Vogelstein on Custodian terms, including securing indebtedness, trust/security arrangements, and preventing German ownership/control for a period selected by the Custodian. Page 2 describes a prior transfer TO the Custodian, not performance of the newly directed release TO Vogelstein. Page 4 states reasons and an offer to pay, not a receipt or proof of later performance. No first ending or current predicate is established. Frozen OCR materially corrupts the authority recital, statutory dates, names and quantities; leave bytes unchanged and block. Replacement inventory divides the actual page-3 powers and removes page-number/reasons artifacts; it does not cure OCR or confirm a complete faithful text.",
+                        "earlier_end_check":  "No own-term sunset or later actor is supplied. The peace-treaty reference concerns a prospective accounting, not termination of the release/security powers. Neither the offer of payment nor the earlier delivery to the Custodian establishes performance. No wartime-end or general repeal date is assigned. Carried number searches do not resolve Vogelstein/Hirsch property-file events.",
+                        "scope_check":  "Replacement scopes cover page-3 release on discretionary terms, securing present/future-determined indebtedness, trust/security powers over released shares, and German-ownership/control restrictions. Page-4 (a)-(c) are explanatory findings; printed page number 4 is not section 4. The financial restriction powers cannot be collapsed into a presumed immediate release.",
+                        "independent_command_check":  "Separately examined release direction, debt-security condition, trust/security authority, and German-control arrangements. A completed release would not by itself prove completion/discharge of debt-security or control arrangements. No evidence establishes whether these arrangements were made, their duration, or first cessation.",
+                        "savings_check":  "Accrued title, obligations, collateral and trust interests could survive a completed release. Their occurrence, terms and discharge are not established by the order. Distinguish prospective powers from consequences; infer neither actual transfer nor extinguishment.",
+                        "precise_remaining_obligations":  [
+                                                              {
+                                                                  "value":  [
+                                                                                "Material OCR corruption: authority/statute recital and names/quantities must be faithfully represented in a new coordinator-frozen version; no byte edits made here.",
+                                                                                "Actual release/quitclaim execution, date, share scope, debt accounting and security/trust/control terms, or a source first extinguishing each power, are not supplied.",
+                                                                                "EO 3016 of 3 December 1918 and the quoted Trading with the Enemy Act of 6 October 1917 and amendments of 28 March and 4 November 1918 require their actual held originals for authority/duration/savings analysis; their originals are not supplied in this view.",
+                                                                                "Targeted earlier/later evidence by Ludwig Vogelstein, L. Vogelstein \u0026 Company Inc., Aron Hirsch \u0026 Sohn, Ernest G. Hothorn and the 50,000 shares is needed; carried number searches do not resolve this transaction.",
+                                                                                "Original authentication remains unestablished; preserve archival_replica_checked grade and standing replacement/recheck note."
+                                                                            ],
+                                                                  "Count":  5
+                                                              }
+                                                          ],
+                        "clause_research":  [
+                                                {
+                                                    "instrument_id":  "EO:3016N",
+                                                    "scope_id":  "EO:3016N#release",
+                                                    "clause_id":  "",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Authorization/direction to release or quitclaim rights in 50,000 shares, on Custodian terms. Execution and first cessation unproved. Blocked; no legal state/date asserted. Frozen OCR remains materially corrupt.",
+                                                    "inventory_source_id":  "ORIGINAL:EO:3016N",
+                                                    "inventory_char_start":  "3390",
+                                                    "inventory_char_end":  "4096",
+                                                    "inventory_reason":  "Complete replacement inventory: page-3 operative powers only. Exact frozen Unicode offsets preserved; page-4 reasons (a)-(c) and page number 4 are not independent commands. Boundary correction does not repair corrupt OCR or approve complete text."
+                                                },
+                                                {
+                                                    "instrument_id":  "EO:3016N",
+                                                    "scope_id":  "EO:3016N#debt-condition",
+                                                    "clause_id":  "",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Conditions securing payment of present or later-determined indebtedness. No accounting, imposed terms or discharge proved. Blocked; no legal state/date asserted. Frozen OCR remains materially corrupt.",
+                                                    "inventory_source_id":  "ORIGINAL:EO:3016N",
+                                                    "inventory_char_start":  "4096",
+                                                    "inventory_char_end":  "4388",
+                                                    "inventory_reason":  "Complete replacement inventory: page-3 operative powers only. Exact frozen Unicode offsets preserved; page-4 reasons (a)-(c) and page number 4 are not independent commands. Boundary correction does not repair corrupt OCR or approve complete text."
+                                                },
+                                                {
+                                                    "instrument_id":  "EO:3016N",
+                                                    "scope_id":  "EO:3016N#trust-security",
+                                                    "clause_id":  "",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Power to hold released shares as security under a trust agreement or otherwise. Establish actual exercise, terms and first cessation separately. Blocked; no legal state/date asserted. Frozen OCR remains materially corrupt.",
+                                                    "inventory_source_id":  "ORIGINAL:EO:3016N",
+                                                    "inventory_char_start":  "4388",
+                                                    "inventory_char_end":  "4779",
+                                                    "inventory_reason":  "Complete replacement inventory: page-3 operative powers only. Exact frozen Unicode offsets preserved; page-4 reasons (a)-(c) and page number 4 are not independent commands. Boundary correction does not repair corrupt OCR or approve complete text."
+                                                },
+                                                {
+                                                    "instrument_id":  "EO:3016N",
+                                                    "scope_id":  "EO:3016N#german-control",
+                                                    "clause_id":  "",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Power to prevent German hands/control for a Custodian-selected period. No arrangement, period or cessation proved. Blocked; no legal state/date asserted. Frozen OCR remains materially corrupt.",
+                                                    "inventory_source_id":  "ORIGINAL:EO:3016N",
+                                                    "inventory_char_start":  "4779",
+                                                    "inventory_char_end":  "5155",
+                                                    "inventory_reason":  "Complete replacement inventory: page-3 operative powers only. Exact frozen Unicode offsets preserved; page-4 reasons (a)-(c) and page number 4 are not independent commands. Boundary correction does not repair corrupt OCR or approve complete text."
+                                                }
+                                            ],
+                        "source_ids_read":  [
+                                                "CLAUSES:EO:3016N#4",
+                                                "CLAUSES:EO:3016N#a",
+                                                "CLAUSES:EO:3016N#b",
+                                                "CLAUSES:EO:3016N#lead",
+                                                "ORIGINAL:EO:3016N"
+                                            ],
+                        "actor_contexts_supplied":  0,
+                        "actor_provisions_supplied":  0,
+                        "own_terms_read":  [
+
+                                           ],
+                        "carried_searches_examined":  {
+                                                          "@eo:ref":  "Refdd3fd1853ce5ec40723d59"
+                                                      },
+                        "search_judgment":  "All three carried machine searches examined; none selected as adequate whole-case coverage. Zero number hits do not establish occurrence, extinction or first ending. No targeted party/subject/history search is represented as performed. OFR pre-1937 gap is one limitation in addition to the specific unanswered member questions.",
+                        "prior_research_state":  "no_prior_research_located",
+                        "prior_research_qualification":  "No prior versions, conflicting versions or substantive status research located in the frozen member context; lifecycle prompts remain questions.",
+                        "valla_review":  "No claim, refused method reviews or review queue supplied; no reusable approval inferred.",
+                        "working_text":  {
+                                             "confirmations":  [
+                                                                   {
+                                                                       "complete_text_confirmed":  false,
+                                                                       "grade":  "archival_replica_checked",
+                                                                       "identity_confirmed":  true,
+                                                                       "instrument_id":  "EO:3016N",
+                                                                       "pages_confirmed":  true,
+                                                                       "sha256":  "dd36c2aaa365139fe939ac0a40f656b2025ceab965aeeca89701943fd701d4d0",
+                                                                       "text_path":  "jobs/pinakes-proquest-ingest/output/texts/EO_3016N.txt",
+                                                                       "text_sha256":  "e0f28764dc280e26f66f4cbd7c596c8b4293666598ec7cabefd4c7466bf468f0"
+                                                                   }
+                                                               ],
+                                             "quotation_recheck_required":  true,
+                                             "replacement_required":  true,
+                                             "ruling":  "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+                                             "standing_note":  "original not yet held; replace and re-check quotes when an official copy is retrieved."
+                                         },
+                        "proposed_first_end":  null,
+                        "status_change":  false,
+                        "human_certification":  0
+                    },
+                    {
+                        "instrument_id":  "EO:3968",
+                        "outcome":  "blocked",
+                        "approved":  false,
+                        "dossier_sha256":  "5b831edf5734698c58cba6d928de5f5c5d561c71796ebc80f89e718cf42819cc",
+                        "source_read":  {
+                                            "evidence_id":  "ORIGINAL:EO:3968",
+                                            "raw_path":  "ProQuest Pre-1937 Orders/PT1-1924-EO-3968.pdf",
+                                            "raw_sha256":  "70a4f7b86fd8ba3030f2d5b3d8878944b1343090ef99d32fe4d3873877763abb",
+                                            "text_path":  "jobs/pinakes-proquest-ingest/output/texts/EO_3968.txt",
+                                            "text_sha256":  "61f73576f09db47065a3021e3078f3387726c2347e47fa528ad07bc25ac4bbb4",
+                                            "full_text_read":  true,
+                                            "complete_rendered_pages_visually_read":  [
+                                                                                          {
+                                                                                              "path":  "tmp/pdfs/mommsen-5-turn2/EO_3968/page-1.png",
+                                                                                              "sha256":  "176e7522d97fbbed9328fb09b95883cf553a4111d49ed225d1d040b25ecd1450"
+                                                                                          }
+                                                                                      ],
+                                            "raw_and_render_hashes_verified":  true,
+                                            "grade_preserved":  "archival_replica_checked",
+                                            "acceptable_as_original":  false,
+                                            "faithful_frozen_text_confirmed":  false,
+                                            "raw_bytes_copied":  false
+                                        },
+                        "native_view_read":  "research/excavator/mommsen-5-2026-11-10-turn2/mommsen-5-b03-packet/producer-views/EO_3968.md",
+                        "reasoning":  "Complete one-page replica read visually. Sections 1-3 create continuing Canal Zone clemency/prison-rule authorities and parole duties, not a single pardon. Section 4 expressly preserves existing rules until altered or amended by the Governor. It neither sunsets sections 1-3 nor proves that any Governor alteration occurred. Section 5 repeals earlier conflicting executive orders; section 6 delays operation thirty days after 5 March 1924 (4 April 1924), which is commencement, not cessation. No later actor or exact parent/subsequent statutory provision is supplied. Frozen OCR omits Governor in section 1 (Goer) and corrupts by order in section 2 (byore); these concern the legal actor and required instrument and prevent faithful-text confirmation. No bytes corrected and no whole-case submission.",
+                        "earlier_end_check":  "Carried chain and actor lists are empty. No evidence establishes the first repeal/replacement of any delegated power or preserved rule. The Canal Zone type rule identifies codification, later orders and 1979/transition leads but is expressly unreviewed research context. No 1979 boundary or later territorial event can supply an unproved first ending; criminal-law transition and savings need actual provisions.",
+                        "scope_check":  "Section 1 separately empowers clemency, commutation/remission and creation/amendment of a prisoner system. Section 2 delegates prison labor, rewards and welfare/management regulations. Section 3 requires parole terms and permits revocation/recommitment even after the nominal sentence period. Section 4 preserves prior rules; section 5 conflict-repeal and section 6 delayed commencement are additional distinct provisions. Section 4 own-term evidence applies to prior rules, not the whole order.",
+                        "independent_command_check":  "All six section scopes reviewed. Neither an individual clemency act nor one prison regulation exhausts the recurring authorities; parole-condition duties and revocation powers need separate treatment. Section 5\u0027s prospective effects and section 6\u0027s commencement must not be mistaken for an ending of sections 1-4.",
+                        "savings_check":  "Section 4 expressly continues existing rules until Governor alteration/amendment. Identify those rules and their subsequent treatment. Accrued clemency, remissions and parole rights/liabilities must be distinguished from prospective delegation; neither their occurrence nor their expiration is assumed. Later Code/treaty/statutory savings have not been supplied.",
+                        "precise_remaining_obligations":  [
+                                                              {
+                                                                  "value":  [
+                                                                                "Material OCR corruption in section 1 Governor and section 2 by order requires a faithful new frozen version; inspected page itself is legible.",
+                                                                                "Actual section 7 of the Panama Canal Act (24 August 1912), its 21 September 1922 amendment, and applicable subsequent Canal Zone Code enactments/repeal/savings provisions are absent from supplied evidence.",
+                                                                                "First cessation/replacement and effective dates for each continuing authority/duty in sections 1-3 remain unestablished.",
+                                                                                "Identify rules preserved by section 4 and actual Governor alterations/amendments; the detected until-event term does not prove occurrence.",
+                                                                                "Resolve any earlier codification/supersession before considering 1979 treaty/implementing-law transition; read actual criminal-law jurisdiction and savings provisions.",
+                                                                                "Original authentication remains unestablished; preserve archival_replica_checked grade and standing replacement/recheck note."
+                                                                            ],
+                                                                  "Count":  6
+                                                              }
+                                                          ],
+                        "clause_research":  [
+                                                {
+                                                    "instrument_id":  "EO:3968",
+                                                    "scope_id":  "EO:3968#lead",
+                                                    "clause_id":  "CLAUSES:EO:3968#lead",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Section 1 continuing clemency/commutation/remission and prisoner-system powers; no first ending. OCR loses Governor; block pending faithful text and successor provisions. Blocked; state and ending date left unset.",
+                                                    "inventory_source_id":  "",
+                                                    "inventory_char_start":  "",
+                                                    "inventory_char_end":  "",
+                                                    "inventory_reason":  ""
+                                                },
+                                                {
+                                                    "instrument_id":  "EO:3968",
+                                                    "scope_id":  "EO:3968#sec2",
+                                                    "clause_id":  "CLAUSES:EO:3968#sec2",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Continuing prison labor/rewards/welfare regulation powers; no first ending. OCR corrupts by order; block pending faithful text and successor provisions. Blocked; state and ending date left unset.",
+                                                    "inventory_source_id":  "",
+                                                    "inventory_char_start":  "",
+                                                    "inventory_char_end":  "",
+                                                    "inventory_reason":  ""
+                                                },
+                                                {
+                                                    "instrument_id":  "EO:3968",
+                                                    "scope_id":  "EO:3968#sec3",
+                                                    "clause_id":  "CLAUSES:EO:3968#sec3",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Parole conditions duty plus revocation/recommitment authority, including after nominal sentence period. Distinguish individual accrued consequences; no first ending or savings resolution. Blocked; state and ending date left unset.",
+                                                    "inventory_source_id":  "",
+                                                    "inventory_char_start":  "",
+                                                    "inventory_char_end":  "",
+                                                    "inventory_reason":  ""
+                                                },
+                                                {
+                                                    "instrument_id":  "EO:3968",
+                                                    "scope_id":  "EO:3968#sec4",
+                                                    "clause_id":  "CLAUSES:EO:3968#sec4",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Preserves existing rules until Governor alteration/amendment; TERM:EO:3968:bb68b9b3b8b9fe17@61f73576f09db470 is not a whole-order sunset. No actual alteration or scope-specific first ending supplied. Blocked; state and ending date left unset.",
+                                                    "inventory_source_id":  "",
+                                                    "inventory_char_start":  "",
+                                                    "inventory_char_end":  "",
+                                                    "inventory_reason":  ""
+                                                },
+                                                {
+                                                    "instrument_id":  "EO:3968",
+                                                    "scope_id":  "EO:3968#sec5",
+                                                    "clause_id":  "CLAUSES:EO:3968#sec5",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Repeals earlier conflicting executive orders upon effectiveness; does not repeal this order. Conflict inventory and accrued effects require underlying instruments; no whole-order endpoint inferred. Blocked; state and ending date left unset.",
+                                                    "inventory_source_id":  "",
+                                                    "inventory_char_start":  "",
+                                                    "inventory_char_end":  "",
+                                                    "inventory_reason":  ""
+                                                },
+                                                {
+                                                    "instrument_id":  "EO:3968",
+                                                    "scope_id":  "EO:3968#sec6",
+                                                    "clause_id":  "CLAUSES:EO:3968#sec6",
+                                                    "state":  "",
+                                                    "end_id":  "",
+                                                    "effective_date":  "",
+                                                    "mechanism":  "",
+                                                    "effective_date_confirmed":  "false",
+                                                    "current_basis_id":  "",
+                                                    "current_legal_basis":  "",
+                                                    "checked_through":  "",
+                                                    "later_event_ids":  "[]",
+                                                    "later_events":  "[]",
+                                                    "reason":  "Thirty days after 5 March 1924 is 4 April 1924: start of operation, not an expiration. No ending evidence selected. Blocked; state and ending date left unset.",
+                                                    "inventory_source_id":  "",
+                                                    "inventory_char_start":  "",
+                                                    "inventory_char_end":  "",
+                                                    "inventory_reason":  ""
+                                                }
+                                            ],
+                        "source_ids_read":  [
+                                                "CLAUSES:EO:3968#lead",
+                                                "CLAUSES:EO:3968#sec2",
+                                                "CLAUSES:EO:3968#sec3",
+                                                "CLAUSES:EO:3968#sec4",
+                                                "CLAUSES:EO:3968#sec5",
+                                                "CLAUSES:EO:3968#sec6",
+                                                "ORIGINAL:EO:3968",
+                                                "TERM:EO:3968:bb68b9b3b8b9fe17@61f73576f09db470"
+                                            ],
+                        "actor_contexts_supplied":  0,
+                        "actor_provisions_supplied":  0,
+                        "own_terms_read":  [
+                                               "TERM:EO:3968:bb68b9b3b8b9fe17@61f73576f09db470"
+                                           ],
+                        "carried_searches_examined":  {
+                                                          "@eo:ref":  "Rb730a99f11044ff008ecd366"
+                                                      },
+                        "search_judgment":  "All three carried machine searches examined; none selected as adequate whole-case coverage. Zero number hits do not establish occurrence, extinction or first ending. No targeted party/subject/history search is represented as performed. OFR pre-1937 gap is one limitation in addition to the specific unanswered member questions.",
+                        "prior_research_state":  "no_prior_research_located",
+                        "prior_research_qualification":  "No prior versions, conflicting versions or substantive status research located in the frozen member context; lifecycle prompts remain questions.",
+                        "valla_review":  "No claim, refused method reviews or review queue supplied; no reusable approval inferred.",
+                        "working_text":  {
+                                             "confirmations":  [
+                                                                   {
+                                                                       "complete_text_confirmed":  false,
+                                                                       "grade":  "archival_replica_checked",
+                                                                       "identity_confirmed":  true,
+                                                                       "instrument_id":  "EO:3968",
+                                                                       "pages_confirmed":  true,
+                                                                       "sha256":  "70a4f7b86fd8ba3030f2d5b3d8878944b1343090ef99d32fe4d3873877763abb",
+                                                                       "text_path":  "jobs/pinakes-proquest-ingest/output/texts/EO_3968.txt",
+                                                                       "text_sha256":  "61f73576f09db47065a3021e3078f3387726c2347e47fa528ad07bc25ac4bbb4"
+                                                                   }
+                                                               ],
+                                             "quotation_recheck_required":  true,
+                                             "replacement_required":  true,
+                                             "ruling":  "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+                                             "standing_note":  "original not yet held; replace and re-check quotes when an official copy is retrieved."
+                                         },
+                        "proposed_first_end":  null,
+                        "status_change":  false,
+                        "human_certification":  0
+                    }
+                ],
+    "instructions_and_rulings_read":  [
+                                          "jobs/claim-kit/AGENT_PROTOCOL.md",
+                                          "jobs/claim-kit/BATCH.md",
+                                          "research/readiness/owner_rulings/2026-10-28-evidence-not-convenience.md",
+                                          "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+                                          "research/readiness/owner_rulings/2026-10-21-strike-and-insert.md",
+                                          "research/readiness/owner_rulings/2026-10-21-unnamed-instruments.md",
+                                          "research/readiness/owner_rulings/2026-11-08-haloander-decisions.md",
+                                          "research/readiness/type-rules/TR-ALIEN-PROPERTY-SALE.json",
+                                          "research/readiness/type-rules/TR-CANAL-ZONE.json",
+                                          "research/readiness/type-rules/TR-PROPERTY-TRANSFER.json",
+                                          "research/readiness/type-rules/TR-WWI-EMERGENCY.json",
+                                          "research/stage19/CLAIM_SCHEMA.md"
+                                      ],
+    "rule_application":  "Evidence-decides controls occurrence and first cessation; a later formal/general ending cannot replace an unproved first ending. Accrued consequences and preserved rules remain separate from prospective operation. Type rules are unreviewed research leads, never member approval. No legal conclusion is based on their exemplar quotes.",
+    "artifacts":  [
+                      {
+                          "sha256":  "193ad243b7eb0b28115e97f30501e1dba59f463743752a14aa58cbcb0965ce14",
+                          "path":  "research/excavator/mommsen-5-2026-11-10-turn2/mommsen-5-b03-packet/producers/b03-p12/decisions.csv"
+                      },
+                      {
+                          "sha256":  "10cb62e746f1ab2969a0b224213ac1dc52c0d6dfbf962f7537c8b2b1ea9c7b14",
+                          "path":  "research/excavator/mommsen-5-2026-11-10-turn2/mommsen-5-b03-packet/producers/b03-p12/clauses.csv"
+                      }
+                  ],
+    "validation":  {
+                       "raw_text_and_render_hashes_match":  true,
+                       "native_apply_run":  false,
+                       "csv_members_retained":  2,
+                       "claims_published":  0,
+                       "all_approvals_false":  true,
+                       "all_unknown_end_dates_unset":  true,
+                       "inventory_override_scopes":  4,
+                       "csv_clause_research_rows":  10,
+                       "completion_run":  false
+                   },
+    "operational_notes":  [
+                              "Python one-off read failed with Access is denied; native PowerShell performed bounded reads/writes and hash checks. No installations or script/code edits.",
+                              "No network, Git mutation, messages, delegates, source/grade/status/ownership changes, apply or completion.",
+                              "Only own producer-folder decisions.csv, clauses.csv and RESULT.json were written; coordinator retains integration and normal acquisition requests.",
+                              "No finished prior RESULT existed; previous native logs and source manifest retained. Raw primary page bytes were never copied into research artifacts."
+                          ]
+}
