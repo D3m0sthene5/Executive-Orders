@@ -380,8 +380,26 @@ def own_terms(instrument_id, text, source, clauses):
             kinds.append("report_deadline")
         if term and not report and re.search(r"\b(?:period|duration|existence|continue[sd]?|extend[sd]?|term|remain[sd]?|effective|expire[sd]?|terminate[sd]?)\b", sentence, re.I):
             kinds.append("fixed_term")
-        if not report and re.search(r"\b(?:expire[sd]?|sunset|terminate[sd]?|cease)\b", sentence, re.I) and re.search(DATE, sentence, re.I):
+        # A body's own dated end ("shall terminate no later than September 30, 1998"; staff "may be
+        # retained no later than ...") is a sunset even when the sentence also mentions a report
+        # (Respondendi F5: EO 13064 and 13010 sunsets were typed report_deadline only).
+        body_sunset = bool(re.search(r"\b(?:shall|will|is\s+to)\s+(?:terminate|expire|cease(?:\s+to\s+exist)?)\b"
+                                     r"|\bmay\s+be\s+retained\b.{0,60}?\b(?:no|not)\s+later\s+than\b", sentence, re.I | re.S))
+        # "retained" counts only through body_sunset: "still retained for military purposes" and "retained
+        # in the service until 1902" are not sunsets (F5 review finding 3).
+        if ((not report or body_sunset) and re.search(DATE, sentence, re.I)
+                and (body_sunset or re.search(r"\b(?:expire[sd]?|sunset|terminate[sd]?|cease)\b", sentence, re.I))):
             kinds.append("sunset_date")
+        # Duties limited to enumerated years ("for 1999, 2000, and 2001"): a final period of the order's
+        # own terms, distinct from the deadline of a report (Respondendi F5: EO 13116). Only when a duty
+        # verb governs the sentence, and never in a statute title ("Authorization Act for Fiscal Years 1992
+        # and 1993") or a description of reports ("reports of ... for 1906, 1907, and 1908") (finding 4).
+        enumerated = re.search(r"\bfor\s+(?:(?:fiscal|calendar)\s+)?(?:years?\s+)?(?:\d{4}\s*,\s*)+(?:and\s+)?(\d{4})\b|\bfor\s+(?:(?:fiscal|calendar)\s+)?years?\s+\d{4}\s+(?:and|through)\s+(\d{4})\b", sentence, re.I)
+        if enumerated and (re.search(r"\bActs?\s*$|\breports?\s+of\b[^.;]{0,80}$", sentence[:enumerated.start()], re.I)
+                           or not re.search(r"\b(?:shall|will)\b", sentence, re.I)):
+            enumerated = None
+        if enumerated:
+            kinds.append("enumerated_final_period")
         if re.search(r"\buntil\b", sentence, re.I):
             kinds.append("until_event")
         if re.search(r"\btemporary\b.{0,100}\b(?:committee|commission|board|council|body|office)\b|\b(?:committee|commission|board|council|body|office)\b.{0,100}\btemporary\b", sentence, re.I | re.S):
@@ -393,6 +411,10 @@ def own_terms(instrument_id, text, source, clauses):
         for kind in dict.fromkeys(kinds):
             start_match = re.search(r"\b(?:from|beginning(?:\s+on)?|commencing(?:\s+on)?|starting(?:\s+on)?)\s+(" + DATE + ")", sentence, re.I)
             end_match = re.search(r"\b(?:to|through|until|on)\s+(" + DATE + ")", sentence, re.I)
+            bound = None
+            if kind == "sunset_date" and not end_match:
+                end_match = re.search(r"\b(?:no|not)\s+later\s+than\s+(" + DATE + ")", sentence, re.I)
+                bound = "not_later_than" if end_match else None
             start_date = _date(start_match[1]) if start_match else None
             stated_signing_base = bool(kind == "fixed_term" and term and re.search(r"\b(?:from|after|beginning(?:\s+on)?)\s+(?:the\s+)?date\s+of\s+this\s+order\b", sentence, re.I))
             if not start_date and stated_signing_base:
@@ -401,7 +423,15 @@ def own_terms(instrument_id, text, source, clauses):
             computed = _add_term(start_date, term[1], term[3]) if kind == "fixed_term" and term and start_date else None
             scope = next((c["scope_id"] for c in clauses if c["char_start"] <= a < c["char_end"] or a <= c["char_start"] < b), instrument_id + "#whole")
             digest = hashlib.sha256((scope + "\0" + kind + "\0" + sentence).encode()).hexdigest()[:16]
-            result.append({"id": "TERM:" + instrument_id + ":" + digest, "instrument_id": instrument_id, "scope_id": scope, "kind": kind, "text": sentence, "char_start": a, "char_end": b, "start_date": start_date, "stated_end_date": end_date, "computed_end_candidate": computed, "source": source, "confidence": "medium", "notes": "Machine wording lead; no cessation or occurrence inferred." + (" Explicit date-of-this-order base uses the source job's signing-date candidate; confirm the printed signing date." if stated_signing_base else ""), "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved."})
+            record = {"id": "TERM:" + instrument_id + ":" + digest, "instrument_id": instrument_id, "scope_id": scope, "kind": kind, "text": sentence, "char_start": a, "char_end": b, "start_date": start_date, "stated_end_date": end_date, "computed_end_candidate": computed, "source": source, "confidence": "medium", "notes": "Machine wording lead; no cessation or occurrence inferred." + (" Explicit date-of-this-order base uses the source job's signing-date candidate; confirm the printed signing date." if stated_signing_base else ""), "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved."}
+            if bound:
+                record["end_bound"] = bound
+                record["notes"] += " 'No later than' states an upper bound on the end, not the end itself."
+            if kind == "enumerated_final_period":
+                record["final_year"] = enumerated[1] or enumerated[2]
+                record["notes"] += (" The duty is limited to the enumerated years; when the last cycle's duty was performed"
+                                    " is a fact to establish, not a stated date.")
+            result.append(record)
     return result
 
 
