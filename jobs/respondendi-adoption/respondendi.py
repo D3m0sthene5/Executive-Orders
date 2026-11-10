@@ -75,10 +75,11 @@ ROW_FIELDS = [
     "stage16_v3_assessment", "whole_order_first_cessation_verified_by_this_audit",
     "human_certified_by_this_release", "audit_next_step"]
 NEED = {"rule_id", "allowed_actions", "statuses_allowed", "min_blind_arms", "min_controls", "claims_per_control",
-        "control_kinds", "status_control_kinds", "min_control_kinds", "lot", "bound_target", "audit_rate_steady",
+        "control_kinds", "status_control_kinds", "min_control_kinds", "kinds", "text_bases", "cutoff",
+        "bound_target", "audit_rate_steady",
         "min_audits_steady", "stop_confirmed_errors_in_59", "stop_bound", "stop_bound_after_audits",
         "max_unadjudicated_days", "max_plan_age_days", "max_lot_orders", "max_orders_per_week", "max_lots_per_day",
-        "status_only", "status_only_allowed_gate_errors", "status_only_required_checker_steps"}
+        "status_only_allowed_gate_errors", "status_only_required_checker_steps"}
 
 
 class Refused(Exception):
@@ -182,7 +183,21 @@ def parameters(repo):
     if (not set(params["statuses_allowed"]) <= {"yes", "no"} or params["min_blind_arms"] < 2
             or not set(params["status_control_kinds"]) <= set(params["control_kinds"])):
         raise Refused("RULE.md parameters out of range")
+    for kid, kind in params["kinds"].items():
+        if kind.get("status") not in params["statuses_allowed"] or not set(kind.get("required_control_kinds", [])) <= set(params["control_kinds"]):
+            raise Refused(f"RULE.md kind {kid}: status or control kinds out of range")
+        if set(kind.get("overrides", {})) - OVERRIDABLE:
+            raise Refused(f"RULE.md kind {kid}: only {sorted(OVERRIDABLE)} may be overridden per kind")
     return params
+
+
+OVERRIDABLE = {"bound_target", "stop_confirmed_errors_in_59", "stop_bound", "stop_bound_after_audits",
+               "audit_rate_steady", "min_audits_steady"}
+
+
+def effective(params, kind_id):
+    """The rule's parameters with one kind's stricter overrides applied."""
+    return dict(params, **params["kinds"].get(kind_id, {}).get("overrides", {}))
 
 
 def decisions(repo):
@@ -321,7 +336,14 @@ def findings(repo):
     return out
 
 
+def stratum_kind(stratum):
+    """A stratum is '<process fingerprint>:<kind>:<text basis>:<tier>'."""
+    parts = str(stratum).split(":")
+    return parts[1] if len(parts) == 4 else None
+
+
 def stratum_state(repo, stratum, params):
+    params = effective(params, stratum_kind(stratum))
     rows = [f for f in findings(repo) if f.get("stratum") == stratum]
     decided = [f for f in rows if f["finding"] != "open"]
     errors = sum(f["finding"] == "confirmed_error" for f in decided)
@@ -346,54 +368,161 @@ def _arm(name):
     return (match.group(1), match.group(2)) if match else (None, None)
 
 
-def lot_check(claim, params):
-    """The rule's lot: an express, named, unqualified whole-order end by a later presidential instrument.
+def express_check(claim, kind, cutoff, target_id=None):
+    """Zero-token check on a located ending quote: an express, named, unqualified end by a later instrument.
 
-    Zero-token check on the claim's located ending quote: the sentence that names the order by number carries an
-    ending verb and no qualifier; the actor is another order or proclamation; the end falls on or after the actor's
-    signing date and before the cutoff. Anything else stays on a named owner decision.
+    The quote names target_id (default: the order itself) by number within the clause that carries an ending verb,
+    with no qualifier and no section heading in between; the actor is another order or proclamation; the end falls on
+    or after the actor's signing date and before the cutoff.
     """
-    lot = params["lot"]
-    iid = claim.get("instrument_id") or ""
+    iid = target_id or claim.get("instrument_id") or ""
     end = claim.get("whole_order_end") if isinstance(claim.get("whole_order_end"), dict) else {}
     src = end.get("source") if isinstance(end.get("source"), dict) else {}
     why = []
-    if end.get("mechanism") not in lot["mechanisms"]:
-        why.append(f"end mechanism {end.get('mechanism')!r} is outside lot {lot['id']}")
     actor = str(end.get("actor") or "")
-    if not actor.startswith(tuple(lot["actor_prefixes"])) or actor == iid:
+    if not actor.startswith(tuple(kind["actor_prefixes"])) or actor in (iid, claim.get("instrument_id")):
         why.append(f"ending actor {actor!r} is not a later presidential instrument")
     if not src.get("text_path") or not src.get("sha256"):
         why.append("ending source has no held text path and hash")
     signed, date = str(src.get("signing_date") or ""), str(end.get("date") or "")
     if not (re.fullmatch(r"\d{4}-\d{2}-\d{2}", signed) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", date)
-            and signed <= date <= lot["cutoff"]):
+            and signed <= date <= cutoff):
         why.append("end date is not on or after the actor's signing date and before the cutoff")
     target = re.sub(r"\D", "", iid)
-    text = re.sub(r"[­�]\s*", "", str(src.get("quote") or ""))
+    text = re.sub(r"[\u00ad\ufffd]\s*", "", str(src.get("quote") or ""))
     text = re.sub(r"\s+", " ", text).lower()
     hits = [m.start() for m in re.finditer(r"(?<!\d)" + re.escape(target) + r"(?!\d)", text)] if target else []
     if not hits:
-        why.append("the ending quote never names the order by number")
-    elif not any(_named_end(text, at, len(target), lot) for at in hits):
-        why.append("no clause naming the order carries an unqualified ending verb")
+        why.append(f"the ending quote never names {iid} by number")
+    elif not any(_named_end(text, at, len(target), kind) for at in hits):
+        why.append(f"no clause naming {iid} carries an unqualified ending verb")
     return why
 
 
-def _named_end(text, at, width, lot):
+def _named_end(text, at, width, kind):
     """An ending verb within the clause around the number: up to 150 characters before it or 400 after, with no
-    section heading and no qualifier between the number and the verb."""
-    verbs = "|".join(re.escape(v) for v in lot["ending_verbs"])
+    section heading and no qualifier between the number and the verb (or in the 60 characters after the verb)."""
+    verbs = "|".join(re.escape(v) for v in kind["ending_verbs"])
     for m in re.finditer(r"\b(?:" + verbs + r")\b", text[max(0, at - 150):at + width + 400]):
         start = max(0, at - 150) + m.start()
         lo, hi = min(start, at), max(start + len(m.group(0)), at + width)
         span = text[lo:hi]
         tail = re.split(r"[.;]", text[hi:hi + 60])[0]          # "revoked in part", "revoked so far as ..."
         if (re.search(r"\bsec(?:tion)?\.? ?\d", span[1:])
-                or any(q in span + " " + tail for q in lot["qualifiers"])):
+                or any(q in span + " " + tail for q in kind["qualifiers"])):
             continue
         return True
     return False
+
+
+def lot_check(claim, params):
+    """The express-named-revocation check alone (kept for callers of version 1)."""
+    return express_check(claim, params["kinds"]["express_named_revocation"], params["cutoff"])
+
+
+def _records(evidence):
+    dossier = (evidence or {}).get("base_dossier") or {}
+    records = dossier.get("evidence")
+    return dossier, (records if isinstance(records, dict) else {})
+
+
+def text_basis(evidence, params):
+    """'original' when the frozen ORIGINAL is acceptable as an original; 'working' when it is a working text the
+    rule allows (needs F6: the record names its working_text_basis); None otherwise."""
+    dossier, records = _records(evidence)
+    original = records.get(dossier.get("original_source_id")) or {}
+    if original.get("acceptable_as_original") is True:
+        return "original"
+    working = params["text_bases"]["working"]
+    if (original.get("working_text_basis") in working["working_text_basis"]
+            and original.get("grade") in working["grades"]):
+        return "working"
+    return None
+
+
+def classify(repo, claim, decision, evidence, params):
+    """(kind id, text basis, reasons). Every predicate reads only the claim and its pinned frozen evidence.
+
+    A kind whose route is not on main cannot be met: its predicate needs record types (CURRENT:, OWN_TEXT:,
+    PARENT_END:, a working_text_basis) that only the fixed kit emits, and the outer-bound kind also needs a
+    committed owner decision citing its token.
+    """
+    status = claim.get("whole_order_status")
+    end = claim.get("whole_order_end") if isinstance(claim.get("whole_order_end"), dict) else {}
+    mechanism = end.get("mechanism")
+    matches = [kid for kid, kind in params["kinds"].items()
+               if kind["status"] == status and (status == "yes" or mechanism in kind.get("mechanisms", []))]
+    if len(matches) != 1:
+        return None, None, [f"no single lot kind covers status {status!r} with end mechanism {mechanism!r}"]
+    kid = matches[0]
+    kind = params["kinds"][kid]
+    why = []
+    if kind.get("owner_token") and not owner_decision(repo, kind["owner_token"]):
+        why.append(f"lot kind {kid} is inactive: {kind['prerequisite']}")
+    _, records = _records(evidence)
+    basis = [b for b in (decision or {}).get("basis_evidence_ids") or [] if b in records]
+    prefixes = tuple(kind.get("basis_prefixes", []))
+    if prefixes and not any(b.startswith(prefixes) for b in basis):
+        why.append(f"lot kind {kid} needs a status basis of {list(prefixes)} in the frozen evidence"
+                   + (f" (inactive until: {kind['prerequisite']})" if kind.get("prerequisite") else ""))
+    cutoff = params["cutoff"]
+    if kid == "express_named_revocation":
+        why += express_check(claim, kind, cutoff)
+        target = re.sub(r"\D", "", claim.get("instrument_id") or "")
+        for b in basis:
+            r = records[b]
+            if not b.startswith("ACT:"):
+                continue
+            if r.get("scope") == "partial":
+                why.append(f"the basis record {b} is a partial provision")
+            # The machine savings detector also catches budget "savings"; a phrase counts when it sits in the
+            # revoking provision itself or names this order.
+            provision = re.sub(r"\s+", " ", str(r.get("provision_text") or r.get("text") or "")).lower()
+            for phrase in r.get("savings_phrases") or []:
+                flat = re.sub(r"\s+", " ", str(phrase)).lower()
+                if flat and (flat[:80] in provision or provision[:80] in flat
+                             or re.search(r"(?<!\d)" + re.escape(target) + r"(?!\d)", re.sub(r"(?<=\d)[ ,](?=\d)", "", flat))):
+                    why.append(f"the basis record {b} carries a savings phrase in its revoking provision")
+                    break
+    elif kid == "own_terms":
+        date = str(end.get("date") or "")
+        terms = [records[b] for b in basis if b.startswith("TERM:")]
+        if not any(t.get("kind") in kind["term_kinds"] and (t.get("stated_end_date") or t.get("computed_end_candidate")) == date
+                   for t in terms):
+            why.append("no TERM basis of a dated kind states the claimed end date")
+        if end.get("actor") != claim.get("instrument_id") or not date or date > cutoff:
+            why.append("an own-terms end must be the order's own, dated on or before the cutoff")
+    elif kid == "spent_on_issue":
+        own = [records[b] for b in basis if b.startswith("OWN_TEXT:")]
+        if not any(o.get("own_text_kind") == mechanism for o in own):
+            why.append("no OWN_TEXT basis of the claimed kind")
+        if end.get("actor") != claim.get("instrument_id"):
+            why.append("a spent-on-issue end must be the order's own")
+    elif kid == "follows_parent":
+        parent = str(end.get("parent") or "")
+        if not parent.startswith("EO:") or parent == claim.get("instrument_id"):
+            why.append("a follows-parent end must name the parent order")
+        else:
+            why += express_check(claim, kind, cutoff, target_id=parent)
+    elif kid == "yes_current":
+        if claim.get("whole_order_end"):
+            why.append("a YES claim must not assert a whole-order end")
+        if decision.get("current_predicate_checked_through") != cutoff:
+            why.append("the current predicate must be checked through the cutoff")
+        for b, r in records.items():
+            if b.startswith("ACT:") and r.get("scope") in ("whole", "whole_via_parent") and r.get("verb") in kind["ending_verbs"]:
+                why.append(f"held whole-scope ending lead {b} contradicts YES; outside the lot")
+                break
+    elif kid == "outer_bound":
+        if end.get("bound_rule") != kind.get("bound_rule_id"):
+            why.append("an outer-bound end must cite the owner's bound rule")
+    basis_text = text_basis(evidence, params)
+    if basis_text is None:
+        why.append("the frozen original is neither acceptable as an original nor an allowed working text"
+                   f" (working texts inactive until: {params['text_bases']['working']['prerequisite']})")
+    elif basis_text not in kind.get("text_bases", ["original"]):
+        why.append(f"lot kind {kid} does not accept a {basis_text} text")
+    return kid, basis_text, why
 
 
 def qualify(repo, completion, admission_paths, params, statuses, census, adopted_ok=frozenset()):
@@ -496,7 +625,7 @@ def qualify(repo, completion, admission_paths, params, statuses, census, adopted
         producer = (claim.get("claim_kit") or {}).get("agent")
         kind = member.get("publication_kind") or "whole_case"
         status_only = kind == "partial_research"
-        if kind not in ("whole_case", "partial_research") or (status_only and not params.get("status_only")):
+        if kind not in ("whole_case", "partial_research"):
             why.append(f"publication kind {kind!r} is not one the rule adopts")
         if status not in params["statuses_allowed"]:
             why.append(f"status {status!r} is not one the rule allows ({params['statuses_allowed']})")
@@ -514,7 +643,6 @@ def qualify(repo, completion, admission_paths, params, statuses, census, adopted
             if not gaps or off:
                 why.append("status-only claim: its open gaps must be clause-level only "
                            f"({list(allowed)}); found {off or 'none'}")
-        why.extend(lot_check(claim, params))
         for arm in sorted(blind):
             source, want = (after, "upheld_after_reveal") if iid in control_ids else (blind, "upheld")
             record = source.get(arm, {}).get(csha)
@@ -546,6 +674,15 @@ def qualify(repo, completion, admission_paths, params, statuses, census, adopted
                     or proposal.get("decision_sha256") != overlay.get("decision_sha256")
                     or proposal.get("review_sha256") != overlay.get("review_sha256")):
                 why.append("the promotion proposal does not bind this claim's decision and review")
+        kid, basis_text, kind_why = classify(repo, claim, (files or {}).get("decision") or {},
+                                              (files or {}).get("evidence") or {}, params)
+        why.extend(kind_why)
+        kind_rule = params["kinds"].get(kid) or {}
+        if status_only and not kind_rule.get("status_only", False):
+            why.append(f"lot kind {kid} has no status-only tier")
+        lacking = sorted(set(kind_rule.get("required_control_kinds", [])) - kinds)
+        if lacking:
+            why.append(f"lot kind {kid} needs controls of kind {lacking} in the review set")
         check = checker.get(iid) or {}
         if status_only:
             steps = check.get("steps_checker_passed") or {}
@@ -568,6 +705,7 @@ def qualify(repo, completion, admission_paths, params, statuses, census, adopted
         accepted.append({
             "instrument_id": iid, "status": status, "claim_sha256": csha,
             "kind": "status_only" if status_only else "whole_case", "open_gaps": list(gaps),
+            "lot_kind": kid, "text_basis": basis_text,
             "proposal": {"path": pub["path"], "sha256": pub["sha256"], "line": number_},
             "claim_line": raw.decode("utf-8"), "producer": producer,
             "status_reviewer": files["review"].get("reviewer"), "arm_reviewers": sorted(arm_names),
@@ -594,13 +732,18 @@ def gather(repo, completions, admission_paths, params, adopted_ok=frozenset()):
 
 
 def stratum_of(repo, params, prompts, families):
-    """Process fingerprint: a change of prompt, checklist, kit code, rule lot or model family is a new stratum."""
+    """Process fingerprint: a change of prompt, checklist, kit code, rule or model family is a new process; each
+    member's stratum adds its lot kind, text basis and tier (see member_stratum)."""
     if not prompts:
         raise Refused("name the producer and reviewer prompt files (--prompt); they define the process stratum")
-    return canon({"rule_id": params["rule_id"], "lot": params["lot"]["id"], "families": sorted(families),
+    return canon({"rule_id": params["rule_id"], "families": sorted(families),
                   "prompts": sorted(sha(path_in(repo, p).read_bytes()) for p in prompts),
                   "checklist": sha(path_in(repo, CHECKLIST).read_bytes()) if path_in(repo, CHECKLIST).is_file() else None,
-                  "kit": {p: sha(path_in(repo, p).read_bytes()) for p in KIT_PROCESS_FILES if path_in(repo, p).is_file()}})[:24]
+                  "kit": {p: sha(path_in(repo, p).read_bytes()) for p in KIT_PROCESS_FILES if path_in(repo, p).is_file()}})[:16]
+
+
+def member_stratum(process, member):
+    return f"{process}:{member['lot_kind']}:{member['text_basis']}:{member['kind']}"
 
 
 # ---------------------------------------------------------------------------------------------------- writing
@@ -730,25 +873,41 @@ def plan(repo, lot, completions, admission_paths, prompts, date=None, write=Fals
     auth = authorization(repo) if write else None
     accepted, refused, facts, _ = gather(repo, completions, admission_paths, params)
     families = sorted({f for fact in facts for f in fact["families"]})
-    stratum = stratum_of(repo, params, prompts, families)
-    state = stratum_state(repo, stratum, params)
+    process = stratum_of(repo, params, prompts, families)
+    states = {}
+    for m in accepted:
+        m["stratum"] = member_stratum(process, m)
+        states.setdefault(m["stratum"], stratum_state(repo, m["stratum"], params))
+    stopped = [m for m in accepted if states[m["stratum"]]["stopped"]]
+    for m in stopped:
+        refused.append({"instrument_id": m["instrument_id"], "claim_sha256": m["claim_sha256"],
+                        "reasons": [f"stratum {m['stratum']} stopped: {states[m['stratum']]['stopped']}; the owner must "
+                                    f"record a decision citing '{RESUME}{m['stratum']}'"]})
+    accepted = [m for m in accepted if not states[m["stratum"]]["stopped"]]
     planned = {f["instrument_id"] for p in plans(repo) if not p.get("adopted") for f in p["members"]}
     clash = sorted(planned & {m["instrument_id"] for m in accepted})
     if clash:
         raise Refused(f"already planned in another open lot: {', '.join(clash[:10])}")
     ids = [m["instrument_id"] for m in accepted]
-    core = {"schema": PLAN_SCHEMA, "lot": lot, "date": date, "rule_sha256": rule_sha(repo), "stratum": stratum,
+    core = {"schema": PLAN_SCHEMA, "lot": lot, "date": date, "rule_sha256": rule_sha(repo), "process": process,
             "completions": completions, "admissions": list(admission_paths),
             "prompts": [pin(repo, p) for p in prompts],
             "members": [{k: v for k, v in m.items() if k != "claim_line"} for m in accepted], "refused": refused}
     core_sha = canon(core)
-    if state["probation"]:
-        sample = sorted(ids, key=number)
-    else:
-        k = min(len(ids), max(params["min_audits_steady"], math.ceil(params["audit_rate_steady"] * len(ids))))
-        sample = sorted(random.Random(core_sha).sample(sorted(ids), k), key=number)
-    receipt = dict(core, core_sha256=core_sha, probation=state["probation"], audit_sample=sample)
-    result = {"lot": lot, "stratum": stratum, "stratum_state": state, "qualifying": ids, "refused": refused,
+    sample = []
+    for stratum in sorted(states):
+        group = sorted((m["instrument_id"] for m in accepted if m["stratum"] == stratum), key=number)
+        if not group:
+            continue
+        if states[stratum]["probation"]:
+            sample += group
+        else:
+            eff = effective(params, stratum_kind(stratum))
+            k = min(len(group), max(eff["min_audits_steady"], math.ceil(eff["audit_rate_steady"] * len(group))))
+            sample += random.Random(core_sha + stratum).sample(group, k)
+    sample = sorted(sample, key=number)
+    receipt = dict(core, core_sha256=core_sha, strata=states, audit_sample=sample)
+    result = {"lot": lot, "process": process, "strata": states, "qualifying": ids, "refused": refused,
               "audit_sample": sample, "completions": facts, "written": False}
     if not write:
         try:
@@ -756,9 +915,6 @@ def plan(repo, lot, completions, admission_paths, prompts, date=None, write=Fals
         except Refused as exc:
             result["authorization"] = str(exc)
         return result
-    if state["stopped"]:
-        raise Refused(f"stratum {stratum} stopped: {state['stopped']}; the owner must record a decision citing "
-                      f"'{RESUME}{stratum}'")
     if not accepted:
         raise Refused("no proposal meets the rule; nothing planned")
     if len(accepted) > params["max_lot_orders"]:
@@ -798,7 +954,7 @@ def audit_record(repo, lot, iid, auditor, role, family, verdict, status_found, b
         raise Refused("give the audit's dated basis (at least 40 characters)")
     if any(a["lot"] == lot and a["instrument_id"] == iid for a in register(repo, "AUDITS")):
         raise Refused(f"{iid} in lot {lot} is already audited")
-    record = {"schema": "eo-respondendi-audit/v1", "lot": lot, "stratum": receipt["stratum"], "instrument_id": iid,
+    record = {"schema": "eo-respondendi-audit/v1", "lot": lot, "stratum": member["stratum"], "instrument_id": iid,
               "claim_sha256": member["claim_sha256"], "planned_status": member["status"], "auditor": auditor,
               "role": role, "model_family": family, "verdict": verdict, "status_found": status_found, "basis": basis,
               "date": date or today(), "in_sample": iid in receipt.get("audit_sample", []),
@@ -862,22 +1018,20 @@ def adopt(repo, lot, date=None, write=False):
     if receipt["rule_sha256"] != rule_sha(repo):
         raise Refused("RULE.md changed since the plan; plan the lot again under the current rule")
     auth = authorization(repo) if write else None
-    state = stratum_state(repo, receipt["stratum"], params)
+    states = {m["stratum"]: stratum_state(repo, m["stratum"], params) for m in receipt["members"]}
     by_order = {f["instrument_id"]: f for f in findings(repo) if f["lot"] == lot}
     confirmed = [i for i, f in by_order.items() if f["finding"] == "confirmed_error"]
     must = set(receipt["audit_sample"]) | ({m["instrument_id"] for m in receipt["members"]} if confirmed else set())
     missing = sorted((i for i in must if i not in by_order), key=number)
     open_ = sorted((i for i, f in by_order.items() if f["finding"] == "open"), key=number)
-    ok_ids = [m["instrument_id"] for m in receipt["members"]
-              if m["instrument_id"] in by_order and by_order[m["instrument_id"]]["finding"] in ("agree", "auditor_wrong")
-              or (m["instrument_id"] not in must and m["instrument_id"] not in by_order)]
-    result = {"lot": lot, "stratum_state": state, "audits_missing": missing, "open_disagreements": open_,
-              "confirmed_errors": confirmed, "adoptable": ok_ids, "written": False}
+    ok_ids = [m["instrument_id"] for m in receipt["members"] if not states[m["stratum"]]["stopped"] and (
+              m["instrument_id"] in by_order and by_order[m["instrument_id"]]["finding"] in ("agree", "auditor_wrong")
+              or (m["instrument_id"] not in must and m["instrument_id"] not in by_order))]
+    stopped = {s: st["stopped"] for s, st in states.items() if st["stopped"]}
+    result = {"lot": lot, "strata": states, "audits_missing": missing, "open_disagreements": open_,
+              "confirmed_errors": confirmed, "adoptable": ok_ids, "stopped_strata": stopped, "written": False}
     if not write:
         return result
-    if state["stopped"]:
-        raise Refused(f"stratum {receipt['stratum']} stopped: {state['stopped']}; the owner must record a decision "
-                      f"citing '{RESUME}{receipt['stratum']}'")
     if missing:
         raise Refused(f"audits missing for {len(missing)} orders of lot {lot}: {', '.join(missing[:10])}")
     if open_:
@@ -893,7 +1047,7 @@ def adopt(repo, lot, date=None, write=False):
         raise Refused(f"cadence: {params['max_lots_per_day']} lot(s) a day; frozen evidence of packets in flight pins "
                       "the whole status ledger, so adopt once, after the day's batches complete")
     if not ok_ids:
-        raise Refused("no member of the lot is adoptable")
+        raise Refused("no member of the lot is adoptable" + (f"; stopped strata: {stopped}" if stopped else ""))
     week = sum(l["count"] for l in done if 0 <= days(l["date"], date) < 7)
     if week + len(ok_ids) > params["max_orders_per_week"]:
         raise Refused(f"weekly limit: {week} adopted in the last 7 days; {len(ok_ids)} more exceeds {params['max_orders_per_week']}")
@@ -906,7 +1060,7 @@ def adopt(repo, lot, date=None, write=False):
         now = current.get(iid)
         if now is None or now["claim_sha256"] != planned["claim_sha256"]:
             raise Refused(f"{iid} no longer qualifies with its planned claim; plan the lot again")
-        members.append(dict(now, audited=iid in by_order))
+        members.append(dict(now, audited=iid in by_order, stratum=planned["stratum"]))
     decision = auth["decision"]
     rows = [row_for(m, lot, decision) for m in members]
     rows_rel, lot_rel = f"{LOTS}/{lot}/ADOPTION_ROWS.csv", f"{LOTS}/{lot}/LOT.json"
@@ -920,7 +1074,7 @@ def adopt(repo, lot, date=None, write=False):
     audit_pins = [{"path": audits_rel, "sha256": sha(tx.writes[audits_rel])}]
     core = {"schema": LOT_SCHEMA, "lot": lot, "date": date, "rule_id": params["rule_id"],
             "rule_sha256": auth["rule_sha256"], "owner_decision": decision, "owner_ruling": auth["ruling"],
-            "stratum": receipt["stratum"], "plan": pin(repo, f"{LOTS}/{lot}/PLAN.json"),
+            "process": receipt["process"], "plan": pin(repo, f"{LOTS}/{lot}/PLAN.json"),
             "members": [{k: v for k, v in m.items() if k != "claim_line"} for m in members],
             "excluded": [{"instrument_id": i, "finding": by_order[i]["finding"]} for i in sorted(
                 {m["instrument_id"] for m in receipt["members"]} - set(ok_ids), key=number)],
@@ -947,7 +1101,9 @@ def adopt(repo, lot, date=None, write=False):
              "rows": {"path": rows_rel, "sha256": sha(rows_bytes)}, "authorization_pins": pins}
     tx.put(CONTRACT, insert_entry(tx.text(CONTRACT), entry).encode("utf-8"))
     tx.append(REGISTER + "/LOTS.jsonl", jline(
-        {"lot": lot, "date": date, "count": len(members), "stratum": receipt["stratum"], "core_sha256": receipt_out["core_sha256"],
+        {"lot": lot, "date": date, "count": len(members), "process": receipt["process"],
+         "kinds": dict(sorted(__import__("collections").Counter(m["lot_kind"] for m in members).items())),
+         "core_sha256": receipt_out["core_sha256"],
          "rule_sha256": auth["rule_sha256"], "owner_decision": decision}))
     before = len(state_pop["statuses"])
 
@@ -1034,7 +1190,7 @@ def status(repo):
         auth = authorization(repo)
     except Refused as exc:
         auth = str(exc)
-    strata = sorted({p["stratum"] for p in plans(repo)})
+    strata = sorted({m["stratum"] for p in plans(repo) for m in p["members"]})
     done = lots(repo)
     return {"rule_sha256": rule_sha(repo), "authorization": auth,
             "strata": [stratum_state(repo, s, params) for s in strata],
@@ -1059,9 +1215,10 @@ def report_text(repo):
         bound = "none yet" if st["upper_95"] is None else format(st["upper_95"], ".1%")
         lines.append(f"| `{st['stratum']}` | {st['audits']} | {st['confirmed_errors']} | {bound} | {st['audits_needed']} | "
                      f"{'yes' if st['probation'] else 'no'} | {st['stopped'] or 'no'} |")
-    lines += ["", "| Lot | Date | Adopted | Stratum |", "|---|---|---:|---|"]
+    lines += ["", "| Lot | Date | Adopted | By kind |", "|---|---|---:|---|"]
     for lot in lots(repo):
-        lines.append(f"| {lot['lot']} | {lot['date']} | {lot['count']} | `{lot['stratum']}` |")
+        kinds = ", ".join(f"{k} {n}" for k, n in (lot.get("kinds") or {}).items())
+        lines.append(f"| {lot['lot']} | {lot['date']} | {lot['count']} | {kinds} |")
     return "\n".join(lines) + "\n"
 
 

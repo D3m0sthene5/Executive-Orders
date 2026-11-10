@@ -89,33 +89,77 @@ class Fixture:
 
     def build_wave(self, batch="u01", *, arm_b_rejects=(), control_missed=False, status="no", checker_fail=(),
                    reviewer_same_as_arm=False, admitted=None, partial=(), gaps=("unresolved_material_gaps:clause 2 end undated",),
-                   failed_steps=(), kinds=("date_shift", "partial_as_whole"), own_terms=()):
+                   failed_steps=(), kinds=("date_shift", "partial_as_whole"), own_terms=(), lot_kinds=None,
+                   no_basis=(), working=(), working_ok=True, extra_act=()):
+        """lot_kinds: {iid: express|own_terms|spent|parent|yes|outer}; no_basis: orders whose decision cites no
+        kind record (an inactive route); working: orders whose original is a working text."""
         u = f"{WAVE}/{batch}"
         comp = u + "/completion"
+        lot_kinds = dict(lot_kinds or {})
+        for iid in own_terms:
+            lot_kinds[iid] = "own_terms_bare"
         claims, members, outcomes, checks = [], [], [], {}
         for iid in self.ids:
             n = iid.split(":")[1]
             b = f"{u}/overlay/EO_{n}/proposal-v1"
+            lk = lot_kinds.get(iid, "express")
+            st = "yes" if lk == "yes" else status
             reviewer = "arm-A" if reviewer_same_as_arm else f"status-reviewer-{n}"
             review = {"schema": "eo-status-overlay-review/v1", "decision": "accept", "independence_confirmed": True,
                       "source_checks_confirmed": True, "instrument_id": iid, "reviewer": reviewer,
                       "reviewer_role": "independent_ai"}
-            decision = {"instrument_id": iid, "approved": True, "recommended_provisional_status": status}
+            original = ({"acceptable_as_original": False, "grade": "archival_replica_checked",
+                         **({"working_text_basis": "tracker_original_supported"} if working_ok else {})}
+                        if iid in working else {"acceptable_as_original": True, "grade": "original_representation_unverified"})
+            records = {f"ORIGINAL:{iid}": original}
+            revoke = f"Executive Order No. {n} of May 1, 1940, is hereby revoked."
+            if lk == "express":
+                basis = f"ACT:{iid}>EO:9000"
+                records[basis] = {"scope": "whole", "verb": "revoke", "savings_phrases": [], "names_target": True}
+                end = {"actor": "EO:9000", "date": "1950-01-01", "mechanism": "express_revocation"}
+                quote = revoke
+            elif lk in ("own_terms", "own_terms_bare"):
+                basis = f"TERM:{iid}:a"
+                records[basis] = {"kind": "fixed_term", "stated_end_date": "1950-01-01"}
+                end = {"actor": iid, "date": "1950-01-01", "mechanism": "expiration_by_own_terms"}
+                quote = "This order shall remain in effect until January 1, 1950."
+                if lk == "own_terms_bare":
+                    records.pop(basis)
+            elif lk == "spent":
+                basis = f"OWN_TEXT:{iid}:a"
+                records[basis] = {"own_text_kind": "spent_on_issue"}
+                end = {"actor": iid, "date": "1940-05-01", "mechanism": "spent_on_issue"}
+                quote = "The lands described are hereby restored to the public domain."
+            elif lk == "parent":
+                basis = f"PARENT_END:{iid}:EO:8000"
+                records[basis] = {"parent": "EO:8000"}
+                end = {"actor": "EO:9000", "date": "1950-01-01", "mechanism": "follows_parent", "parent": "EO:8000"}
+                quote = "Executive Order No. 8000 of May 1, 1939, as amended, is hereby revoked."
+            elif lk == "yes":
+                basis = f"CURRENT:{iid}:usc"
+                records[basis] = {"text": "Ex. Ord. No. %s ... provided:" % n}
+                end, quote = None, None
+            else:                                                     # outer
+                basis = f"OWN_TEXT:{iid}:outer"
+                end = {"actor": iid, "date": "1990-01-01", "mechanism": "outer_bound", "bound_rule": "D-x"}
+                quote = "Mr. Smith may be appointed without examination."
+            for extra in extra_act:
+                if extra == iid:
+                    records[f"ACT:{iid}>EO:9500"] = {"scope": "whole", "verb": "revoke", "savings_phrases": []}
+            if iid in no_basis:
+                records.pop(basis, None)
+            evidence = {"instrument_id": iid, "base_dossier": {"original_source_id": f"ORIGINAL:{iid}", "evidence": records}}
+            decision = {"instrument_id": iid, "approved": True, "recommended_provisional_status": st,
+                        "basis_evidence_ids": [basis], "current_predicate_checked_through": "2026-10-14" if st == "yes" else None}
             dsha, rsha = R.canon(decision), R.canon(review)
-            proposal = {"recommended_provisional_status": status, "decision_sha256": dsha, "review_sha256": rsha}
-            for name, value in (("EVIDENCE.json", {"instrument_id": iid}), ("STATUS_DECISION.json", decision),
+            proposal = {"recommended_provisional_status": st, "decision_sha256": dsha, "review_sha256": rsha}
+            for name, value in (("EVIDENCE.json", evidence), ("STATUS_DECISION.json", decision),
                                 ("STATUS_REVIEW.json", review), ("PROMOTION_PROPOSAL.json", proposal)):
                 self.wjson(f"{b}/{name}", value)
-            if iid in own_terms:
-                end = {"actor": iid, "date": "1950-01-01", "mechanism": "expiration_by_own_terms",
-                       "source": {"quote": "This order expires on January 1, 1950.", "text_path": "t.txt",
-                                  "sha256": "0" * 64, "signing_date": "1949-01-01"}}
-            else:
-                end = {"actor": "EO:9000", "date": "1950-01-01", "mechanism": "express_revocation",
-                       "source": {"quote": f"Executive Order No. {n} of May 1, 1940, is hereby revoked.",
-                                  "text_path": "jobs/fr-originals/texts/EO_9000.txt", "sha256": "1" * 64,
-                                  "signing_date": "1950-01-01"}}
-            claim = {"instrument_id": iid, "whole_order_status": status, "whole_order_end": end,
+            if end is not None:
+                end["source"] = {"quote": quote, "text_path": "jobs/fr-originals/texts/EO_9000.txt", "sha256": "1" * 64,
+                                 "signing_date": "1950-01-01" if end["actor"] != iid else "1940-05-01"}
+            claim = {"instrument_id": iid, "whole_order_status": st, "whole_order_end": end,
                      "claim_kit": {"agent": "producer-x", "status_overlay": {"decision_sha256": dsha, "review_sha256": rsha}}}
             claims.append(claim)
             csha = R.canon(claim)
@@ -311,12 +355,12 @@ class Adoption(Base):
         self.assertEqual(out["qualifying"], ["EO:2", "EO:4", "EO:5"])
         self.assertIn("arm B", " ".join({r["instrument_id"]: r["reasons"] for r in out["refused"]}["EO:3"]))
 
-    def test_own_terms_end_is_outside_the_lot(self):
+    def test_own_terms_end_needs_its_term_record(self):
         self.fx.build_wave(own_terms=("EO:3",))
         out = self.fx.plan(write=False)
         self.assertNotIn("EO:3", out["qualifying"])
         reasons = " ".join({r["instrument_id"]: r["reasons"] for r in out["refused"]}["EO:3"])
-        self.assertIn("outside lot", reasons)
+        self.assertIn("TERM", reasons)
 
     def test_partial_revocation_quote_is_outside_the_lot(self):
         claim = json.loads(self.fx.path(WAVE + "/u01/overlay/REPLACEMENT_PROPOSAL.jsonl").read_text(encoding="utf-8").splitlines()[0])
@@ -514,23 +558,23 @@ class Audits(Base):
         for iid in ("EO:2", "EO:3"):
             self.record(iid, verdict="disagree", found="yes")
             self.adjudicate(iid, "confirmed_error")
-        stratum = R.plan_of(self.root, "lot-one")["stratum"]
-        with self.assertRaisesRegex(R.Refused, "stopped"):
-            self.fx.adopt()
-        self.fx.approve(token_sha=stratum, kind=R.RESUME, decision_id="D-20991231-resume", ruling_name="resume.md")
+        stratum = R.plan_of(self.root, "lot-one")["members"][0]["stratum"]
         for iid in ("EO:4", "EO:5"):
             self.record(iid)
+        with self.assertRaisesRegex(R.Refused, "stopped strata"):
+            self.fx.adopt()
+        self.fx.approve(token_sha=stratum, kind=R.RESUME, decision_id="D-20991231-resume", ruling_name="resume.md")
         self.assertEqual(self.fx.adopt()["adopted"], 2)
 
     def test_steady_state_samples_after_the_bound_is_met(self):
-        stratum = R.plan_of(self.root, "lot-one")["stratum"]
+        stratum = R.plan_of(self.root, "lot-one")["members"][0]["stratum"]
         fake = "".join(json.dumps({"lot": f"old-{i}", "stratum": stratum, "instrument_id": f"EO:{100 + i}",
                                    "verdict": "agree", "date": "2026-11-01"}) + "\n" for i in range(59))
         self.fx.write(R.REGISTER + "/AUDITS.jsonl", fake)
         self.fx.ids, self.fx.controls = ["EO:6", "EO:7", "EO:8"], ["EO:7", "EO:8"]
         self.fx.build_wave("u02")
         out = self.fx.plan(lot="lot-two", write=False)
-        self.assertFalse(out["stratum_state"]["probation"])
+        self.assertFalse(out["strata"][stratum]["probation"])
         self.assertEqual(len(out["audit_sample"]), 2)                     # 20% of 3 rounds up, at least 2
 
     def test_reversal_keeps_the_claim_with_a_hold(self):
@@ -561,6 +605,88 @@ class Audits(Base):
         self.assertIn("Open plans: lot-one", text)
 
 
+class LotKinds(Base):
+    """Every kind opens on its own probation stratum; a kind whose route is not on main cannot be met."""
+
+    def setUp(self):
+        super().setUp()
+        self.fx.approve()
+
+    def strata(self, out):
+        return {m["instrument_id"]: m["stratum"] for m in R.plan_of(self.root, "lot-one")["members"]} if out.get("written") else {}
+
+    def reasons(self, out, iid):
+        return " ".join({r["instrument_id"]: r["reasons"] for r in out["refused"]}.get(iid, []))
+
+    def test_each_active_and_future_kind_qualifies_with_its_records(self):
+        self.fx.build_wave(lot_kinds={"EO:2": "own_terms", "EO:3": "spent"}, kinds=("date_shift", "later_event_removed"))
+        out = self.fx.plan()
+        self.assertEqual(out["qualifying"], ["EO:2", "EO:3", "EO:4", "EO:5"])
+        strata = self.strata(out)
+        self.assertEqual({s.split(":")[1] for s in strata.values()}, {"own_terms", "spent_on_issue", "express_named_revocation"})
+        self.assertEqual(out["audit_sample"], ["EO:2", "EO:3", "EO:4", "EO:5"])          # every new stratum on probation
+        self.fx.audit_all()
+        self.assertEqual(self.fx.adopt()["adopted"], 4)
+        self.assertTrue(R.verify(self.root)["ok"], R.verify(self.root))
+
+    def test_a_route_not_on_main_stays_inactive(self):
+        self.fx.build_wave(lot_kinds={"EO:2": "spent", "EO:3": "parent"}, no_basis=("EO:2", "EO:3"))
+        out = self.fx.plan(write=False)
+        self.assertNotIn("EO:2", out["qualifying"])
+        self.assertIn("inactive until: F5", self.reasons(out, "EO:2"))
+        self.assertIn("inactive until: F5", self.reasons(out, "EO:3"))
+
+    def test_follows_parent_checks_the_parents_ending_quote(self):
+        self.fx.build_wave(lot_kinds={"EO:2": "parent"})
+        self.assertIn("EO:2", self.fx.plan(write=False)["qualifying"])
+
+    def test_yes_needs_a_current_record_and_a_later_event_control(self):
+        self.fx.build_wave(lot_kinds={"EO:2": "yes"})
+        out = self.fx.plan(write=False)
+        self.assertIn("later_event_removed", self.reasons(out, "EO:2"))
+        self.fx.build_wave(lot_kinds={"EO:2": "yes"}, kinds=("date_shift", "later_event_removed"))
+        self.assertIn("EO:2", self.fx.plan(write=False)["qualifying"])
+        self.fx.build_wave(lot_kinds={"EO:2": "yes"}, kinds=("date_shift", "later_event_removed"), no_basis=("EO:2",))
+        self.assertIn("inactive until: F3", self.reasons(self.fx.plan(write=False), "EO:2"))
+
+    def test_yes_with_a_held_whole_scope_ending_lead_is_refused(self):
+        self.fx.build_wave(lot_kinds={"EO:2": "yes"}, kinds=("date_shift", "later_event_removed"), extra_act=("EO:2",))
+        self.assertIn("contradicts YES", self.reasons(self.fx.plan(write=False), "EO:2"))
+
+    def test_outer_bound_waits_for_the_owner(self):
+        self.fx.build_wave(lot_kinds={"EO:2": "outer"})
+        self.assertIn("outer-bound ask", self.reasons(self.fx.plan(write=False), "EO:2"))
+
+    def test_working_text_needs_the_f6_marker_and_is_its_own_stratum(self):
+        self.fx.build_wave(working=("EO:2",), working_ok=False)
+        self.assertIn("working texts inactive until: F6", self.reasons(self.fx.plan(write=False), "EO:2"))
+        self.fx.build_wave(working=("EO:2",))
+        out = self.fx.plan()
+        strata = self.strata(out)
+        self.assertIn(":working:", strata["EO:2"])
+        self.assertNotEqual(strata["EO:2"], strata["EO:3"])
+
+    def test_a_stopped_stratum_does_not_stop_the_others(self):
+        self.fx.build_wave(lot_kinds={"EO:2": "own_terms", "EO:3": "own_terms"})
+        self.fx.plan()
+        strata = self.strata({"written": True})
+        for iid in ("EO:2", "EO:3"):
+            R.audit_record(self.root, "lot-one", iid, "auditor-gpt", "independent_ai", "OpenAI", "disagree", "yes",
+                           "The order's term was extended by a later order the claim does not list.", date="2026-11-10", write=True)
+            R.adjudicate(self.root, "lot-one", iid, "adjudicator-1", "independent_ai", "Google", "confirmed_error",
+                         "Read the extending order; the term did not expire on the claimed date.", date="2026-11-10", write=True)
+        self.fx.audit_all(only=["EO:4", "EO:5"])
+        self.assertTrue(R.stratum_state(self.root, strata["EO:2"], R.parameters(self.root))["stopped"])
+        out = self.fx.adopt()
+        self.assertEqual(out["adopted"], 2)
+        self.assertEqual(sorted(R.population(self.root)["statuses"]), ["EO:1", "EO:4", "EO:5"])
+
+    def test_yes_stratum_stops_on_one_confirmed_error(self):
+        params = R.parameters(self.root)
+        self.assertEqual(R.effective(params, "yes_current")["stop_confirmed_errors_in_59"], 1)
+        self.assertEqual(R.effective(params, "express_named_revocation")["stop_confirmed_errors_in_59"], 2)
+
+
 class Statistics(unittest.TestCase):
     def test_bounds_match_the_jacquard_rule(self):
         self.assertAlmostEqual(R.upper_bound(0, 59), 1 - 0.05 ** (1 / 59), places=4)
@@ -575,9 +701,10 @@ class Statistics(unittest.TestCase):
         (root / R.RULE).parent.mkdir(parents=True)
         shutil.copy(HERE / "RULE.md", root / R.RULE)
         params = R.parameters(root)
-        self.assertEqual(params["statuses_allowed"], ["no"])
+        self.assertEqual(params["statuses_allowed"], ["no", "yes"])
         self.assertGreaterEqual(params["min_blind_arms"], 2)
-        self.assertEqual(params["lot"]["id"], "express-named-revocation")
+        self.assertEqual(set(params["kinds"]), {"express_named_revocation", "own_terms", "spent_on_issue",
+                                                "follows_parent", "yes_current", "outer_bound"})
 
 
 if __name__ == "__main__":
