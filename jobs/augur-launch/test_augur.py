@@ -87,6 +87,13 @@ class AugurRuleTests(unittest.TestCase):
             plan["actions"] = [{"id": action[0], "orders": action[1], "lanes": action[2]}]
             self.assertTrue(any(words in r for r in self.refusals(sign(plan))), action)
 
+    def test_low_yield_ranked_action_may_run_as_a_probe(self):
+        plan = good_plan()
+        plan["actions"] = [{"id": "production.claim_ready.no.fr", "orders": 30, "lanes": 1}]
+        self.assertEqual(self.refusals(sign(plan)), [])
+        plan["actions"] = [{"id": "production.claim_ready.no.fr", "orders": 31, "lanes": 1}]
+        self.assertTrue(any("below the floor" in r for r in self.refusals(sign(plan))))
+
     def test_novel_configuration_starts_at_stage_zero(self):
         plan = good_plan()
         plan["configuration"]["orchestrator"] = "brand-new-chain"
