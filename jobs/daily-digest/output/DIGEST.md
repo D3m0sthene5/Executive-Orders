@@ -6,19 +6,19 @@ New York date: 2026-11-10. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Numbered series: ready for human review 1,238 of 14,998 orders (8.3%)**
+**Numbered series: ready for human review 1,244 of 14,998 orders (8.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42803017140-1:1e3bf4b24c4d3aca7ce4b6390747de5a3e8d3ff49d59fcf1dfbe78eee64b4c5e` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42810918490-1:2dacdcf3f9a5de71c2e6b41691825982c5011018f9eb96aad95ee5f4cd0dd720` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
 
-Orders with a provisional YES/NO status: 4,301. The other 10,697 have not been researched yet.
+Orders with a provisional YES/NO status: 4,307. The other 10,691 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 713, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
+Ready by text evidence: {'original_supported': 719, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 882; quotation rechecks: 882. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 284. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1551}.
@@ -27,11 +27,11 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 Comparison snapshot: 2026-11-09; intervening runs may be absent.
 - cassiodorus: pages_kept_total: 294 → 296
-- claim-checker: claim_lines_found: 1828 → 1891; claims_all_checks_passed: 1660 → 1723; claims_checked: 1828 → 1891; claims_gate_passed: 1738 → 1801
+- claim-checker: claim_lines_found: 1828 → 1897; claims_all_checks_passed: 1660 → 1729; claims_checked: 1828 → 1897; claims_gate_passed: 1738 → 1807
 - cotton-capture-custody: not_web_sources: 1175 → 1240; wanted_hashes: 1932 → 1997
-- gessner-cards: one_step_from_ready: 216 → 214; ready_for_human_review: 1179 → 1238
+- gessner-cards: not_researched: 10697 → 10691; one_step_from_ready: 216 → 214; ready_for_human_review: 1179 → 1244; with_provisional_status: 4301 → 4307
 - kean: decisions: 74 → 75; findings: 286 → 292; open_owner_questions: 1 → 2
-- readiness-tracker: ready_for_human_review: 1179 → 1238
+- readiness-tracker: orders_with_provisional_status: 4301 → 4307; ready_for_human_review: 1179 → 1244
 - selden-fr-acting: bytes_downloaded: 2729289189 → 1153355666; requests: 129 → 103
 - shepard-citations: land_targets: 3536 → 3534; land_targets_with_any_edge: 1051 → 1049; land_targets_with_ending_candidate: 616 → 615
 - x1-class-engine: modern_families_5_plus: 197 → 205
@@ -49,9 +49,6 @@ Comparison snapshot: 2026-11-09; intervening runs may be absent.
 ## Open asks for the owner (Kean register)
 
 - A-20261108-lean-main (2026-11-08, claude): Should bulk job outputs, data and attempt receipts (~163,000 of main's 194,167 files) be packed into fewer files or moved out of main's tree, accepting that path-based pins and citations must then be re-issued?
-- A-20261110-papinian-board-bytes (2026-11-09, Claude): The board rule (D-20261108-board-rule) cannot run: the 101 held National Mediation Board reports are custody records only (their PDFs, 191.8 MB, sit in source-ladder's discarded runner cache). Which do you want: (a) store the 101 PDFs in the GitHub Release-asset byte store and give claim-checker the
-- A-20261110-papinian-adopt-u01b (2026-11-10, Claude): Adopt the provisional NO status of EO 9674, EO 11957 and EO 12348? Each was proposed under the claim-kit status-overlay route, accepted by an independent AI status reviewer, and upheld by two independent blind AI lifecycle arms whose planted control (EO 11816) both caught; the reviewed claims are in
-- A-20261110-papinian-adopt-u23 (2026-11-10, Claude): Adopt the provisional NO status of EO 9245, EO 10679 and EO 11962 (as for A-20261110-papinian-adopt-u01b)? Each was accepted by an independent AI status reviewer and upheld by two independent blind AI lifecycle arms whose planted control (EO 10938) both caught; claims in research/excavator/claude-pa
 
 ## Published output status
 
@@ -61,4 +58,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42803017140)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42810918490)
