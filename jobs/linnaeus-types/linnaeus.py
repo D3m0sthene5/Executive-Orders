@@ -104,7 +104,7 @@ EXTRA = [
                          r"half[- ]?(holiday|staff)|day of mourning"),
     ("organization_agency", r"establish\w* .{0,60}(committee|commission|board|council|office|agency|administration)|"
                             r"transfer\w* .{0,40}functions"),
-    ("regulations_issuance", r"regulations|prescrib\w*|rules governing|selective service"),
+    ("regulations_issuance", r"regulations|prescrib\w*|rules governing|selective service|manual for courts-martial"),
     ("personnel_designation", r"designat\w*"),
 ]
 EXTRA_C = [(t, re.compile(p)) for t, p in EXTRA]
@@ -113,7 +113,7 @@ EXTRA_C = [(t, re.compile(p)) for t, p in EXTRA]
 AMEND_FORM = re.compile(r"^(amend\w*|amendment of|amendments to|modif\w*|further amend\w*|supplement\w*)\b", re.I)
 REVOKE_FORM = re.compile(r"^(revo\w*|rescind\w*|partial revocation|revocation of|terminat\w* (of )?executive order)\b",
                          re.I)
-ENDING_WORDS = ("revoc", "supersed", "termin", "abol", "resc", "restor", "vacat", "nullif")
+ENDING_WORDS = ("revoc", "supersed", "supersess", "replace", "termin", "abol", "resc", "restor", "vacat", "nullif")
 
 ERAS = ["1862-1906", "1907-1936", "1937-1945", "1946-1989", "1990-2026", "undated"]
 
@@ -209,7 +209,10 @@ def load(root):
         if x.get("instrument_id"):
             app.setdefault(x["instrument_id"], x)
     census = {x["id"]: x for x in read_csv(r / PATHS["census"])}
-    m1118 = {x["instrument_id"] for x in read_csv(r / PATHS["m1118"])}
+    # The M1118 gap: residual orders whose only route is the LC/NARA film (microfilm_pending). Rows whose ProQuest
+    # replica check failed or was not read are another gap and are counted apart.
+    m1118 = {x["instrument_id"]: ("film" if "microfilm_pending" in (x.get("waits_on") or "") else "replica")
+             for x in read_csv(r / PATHS["m1118"])}
     return und, sl, types, pothier, app, census, m1118
 
 
@@ -231,22 +234,29 @@ def ending(mech):
 
 
 def held_leads(root, ids):
-    """iid -> sorted labels of held finding-aid rows that already name the order with an ending word but that
-    STATUS_LEADS does not carry. The 1989 OFR table counts whatever its row says (it states the order's status)."""
+    """(ending, mentions): iid -> sorted labels of held finding-aid rows that name the order WITH an ending word about
+    it but that STATUS_LEADS does not carry, and iid -> labels of rows that name it WITHOUT one (amendments, cross
+    references, the 1989 table's in-force, merged or excluded rows). Only the first kind makes an order
+    'held_ending_lead_unrouted'; the second is recorded so 'unsourced' can be stated exactly (named, but by nothing
+    that speaks of an end). A 1989-table row counts as an ending only in its ended_by_1989 group; a Selden FR-citer row
+    only when its printed relation is in the ending class."""
     r = Path(root)
-    out = collections.defaultdict(set)
+    end, men = collections.defaultdict(set), collections.defaultdict(set)
     for key, label in (("shepard", "shepard"), ("later", "later_events")):
         for x in read_csv(r / PATHS[key]):
             t = x.get("target_id")
-            if t in ids and ending(x.get("mechanism")):
-                out[t].add(f"{label}:{x.get('evidence_type')}")
+            if t in ids:
+                (end if ending(x.get("mechanism")) else men)[t].add(f"{label}:{x.get('evidence_type')}")
     for x in read_csv(r / PATHS["frciters"]):
-        if x.get("target_id") in ids and x.get("acting_on_target") == "True":
-            out[x["target_id"]].add("selden_fr_citers")
+        t = x.get("target_id")
+        if t in ids:
+            ok = x.get("acting_on_target") == "True" and x.get("mechanism_class") == "ending"
+            (end if ok else men)[t].add("selden_fr_citers")
     for x in read_csv(r / PATHS["ofr1989"]):
-        if x.get("census_id") in ids:
-            out[x["census_id"]].add("ofr_codification_1989_table")
-    return {k: sorted(v) for k, v in out.items()}
+        t = x.get("census_id")
+        if t in ids:
+            (end if x.get("group") == "ended_by_1989" else men)[t].add(f"ofr_1989_table:{x.get('group')}")
+    return ({k: sorted(v) for k, v in end.items()}, {k: sorted(v) for k, v in men.items()})
 
 
 def classify_one(iid, types, pothier, app, census, taxonomy):
@@ -311,18 +321,20 @@ def cruden_targets(rows):
 
 COLS = ["instrument_id", "number", "year", "era", "type", "family", "type_source", "x1_class", "x1_confidence",
         "form", "pothier_doctrine", "pothier_status_lead", "pothier_basis_kind", "pothier_lead_kind", "m1118_gap",
-        "held_ending_leads", "stratum", "matched_source", "title", "wpa_summary"]
+        "residual_replica_gap", "held_ending_leads", "held_mentions_without_ending", "stratum", "matched_source", "title", "wpa_summary"]
 
 
 def run(root, out, taxonomy=None):
     und, sl, types, pothier, app, census, m1118 = load(root)
     ids = no_lead(und, sl)
-    held = held_leads(root, set(ids))
+    held, mentions = held_leads(root, set(ids))
     rows = []
     for iid in ids:
         row = classify_one(iid, types, pothier, app, census, taxonomy)
-        row["m1118_gap"] = "yes" if iid in m1118 else ""
+        row["m1118_gap"] = "yes" if m1118.get(iid) == "film" else ""
+        row["residual_replica_gap"] = "yes" if m1118.get(iid) == "replica" else ""
         row["held_ending_leads"] = "|".join(held.get(iid, []))
+        row["held_mentions_without_ending"] = "|".join(mentions.get(iid, []))
         row["stratum"] = stratum(row)
         row["matched_source"] = SOURCES.get(row["family"], ("", ""))[1]
         rows.append(row)
@@ -354,6 +366,9 @@ def run(root, out, taxonomy=None):
         "inputs": dict(PATHS),
         "undecided": len(und), "no_lead": len(rows),
         "m1118_gap_overlap": sum(r["m1118_gap"] == "yes" for r in rows),
+        "residual_replica_gap_overlap": sum(r["residual_replica_gap"] == "yes" for r in rows),
+        "unsourced_named_without_ending_word": sum(r["stratum"] == "unsourced" and bool(r["held_mentions_without_ending"])
+                                                   for r in rows),
         "strata": dict(sorted(collections.Counter(r["stratum"] for r in rows).items())),
         "cs_one_person_left_to_ulpian": by["CS_ONE_PERSON"]["total"],
         "cruden_targets": len(targets),

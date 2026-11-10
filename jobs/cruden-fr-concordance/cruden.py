@@ -5,14 +5,20 @@ reader could find every passage by one word. This job does the same for an order
 asks govinfo's full-text search which Federal Register issues (1936-1993, the years selden-fr-citers does not reach)
 and which Statutes at Large pages print "Executive Order No. N", downloads each hit once, and locates every sentence
 that cites the order with jobs/selden-common (Selden's locator: citation forms, relation words, negation, the target
-printed as actor, planted near-miss controls). Zero model tokens.
+printed as actor). Zero model tokens.
 
 Discovery only. A located sentence is a lead to what a later document says, never a finding that it ended or changed
 the order. A target with no hit, or with hits but no acting sentence, gets a search record and nothing else: a
-concordance's silence is never evidence about an order (D-20261028-evidence-decides). Every fragment is tied to its
-target by the printed number, and, where the citation prints a date, by that date agreeing with the target's own;
-a printed date that disagrees, or another issuer ("Executive Order No. 885 of the Governor General of the Philippine
-Islands"), refuses the match. No status, census, codebook or count changes. Human-certified: 0.
+concordance's silence is never evidence about an order (D-20261028-evidence-decides).
+
+Identity (cruden-locate-2, after the 2026-11-10 hostile review). A sentence is published with its printed relation
+only when a citation in it prints a date equal to the target's own date. A sentence whose printed dates all disagree,
+whose number runs into more digits or a letter, that sits inside the order's own printing, or that names another
+issuer, is refused (kept in LOCATED.csv, never published). A sentence with no printed date, an index or contents
+entry, an exception or savings sentence, or bytes that cannot be re-hashed is published as a pointer only
+(mechanism cross_reference). The acting instrument is named only when the citation lies inside that instrument's own
+printed span (a standalone heading through its filing line); otherwise the page is the actor (NOTICE:...). No status,
+census, codebook or count changes. Human-certified: 0.
 """
 from __future__ import annotations
 
@@ -41,39 +47,61 @@ from fetch_pool import FetchPool, FetchError  # noqa: E402
 import selden_common as S  # noqa: E402  (read-only reuse: locator, fragment and source records, controls)
 
 csv.field_size_limit(min(2 ** 31 - 1, 10 ** 9))
+LOCATOR = "cruden-locate-2"
 UA = "EO-Road-System/1.0 (Cruden concordance of the Federal Register by order number; owner-run research)"
 SEARCH_URL = "https://api.govinfo.gov/search"
 FR_PDF = "https://www.govinfo.gov/content/pkg/{pkg}/pdf/{pkg}.pdf"
 GRANULE_PDF = "https://www.govinfo.gov/content/pkg/{pkg}/pdf/{gran}.pdf"
 FR_FIRST, FR_LAST = "1936-03-14", "1993-12-31"
 PRODUCER = "cruden-fr-concordance"
+MIN_RECALL = 0.6  # planted positives that must be located for a run's controls to pass
 GRADE_FR = ("government_printed_federal_register_issue (govinfo scan of the daily Federal Register; text is the scan's "
             "OCR layer)")
 GRADE_STAT = "government_printed_statutes_at_large_page (govinfo scan; text is the scan's OCR layer)"
 
-# Another issuer of numbered "executive orders" printed right after the citation (Philippine governors-general,
-# territorial governors, the Canal Zone governor, the High Commissioner): the number names some other series.
-OTHER_ISSUER = re.compile(
-    r"^.{0,40}?\b(?:of|by|issued\s+by)\s+the\s+(?:Governor[\s-]*General|Governor|High\s+Commissioner|Commissioner|"
-    r"President\s+of\s+the\s+(?:Commonwealth|Philippines)|Mayor|Secretary)\b|"
-    r"^.{0,80}?\b(?:Philippine|Puerto\s+Rico|Porto\s+Rico|Commonwealth\s+of\s+the|Territory\s+of|Manila|"
-    r"San\s+Juan|Canal\s+Zone\s+Governor)\b", re.I | re.S)
-# Headings of the printed instrument whose text holds the sentence (searched backwards from the citation). A heading
-# is bracketed ('[Public Land Order 945]', the Federal Register's label) or starts a line in capitals ('PUBLIC LAND
-# ORDER 945', 'EXECUTIVE ORDER 10524'); a citation in running text ('pursuant to Executive Order No. 10355') is not.
+MONTHS = ("January|February|March|April|May|June|July|August|September|October|November|December|"
+          r"Jan\.?|Feb\.?|Mar\.?|Apr\.?|Jun\.?|Jul\.?|Aug\.?|Sept?\.?|Oct\.?|Nov\.?|Dec\.?")
+DATE_RE = re.compile(r"\b(" + MONTHS + r")\s+(\d{1,2})\s*,?\s*(1[6-9]\d\d|20\d\d)(?!\d)")
+DATE_DMY = re.compile(r"\b(\d{1,2})\s+(" + MONTHS + r")\s*,?\s*(1[6-9]\d\d|20\d\d)(?!\d)")
+MON = {m[:3].lower(): i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct",
+                                               "nov", "dec"], 1)}
+# Another issuer of numbered "executive orders": grammar after the number ('of the Governor General', 'of the State of
+# California'), or the issuer printed just before it ("Governor's Executive Order", "Canal Zone Executive Order",
+# "by his Executive Order"). Subject words ('lands in the Territory of Alaska') do not count.
+ISSUER_WORDS = (r"Governor[\s-]*General|Governor|Military\s+Governor|High\s+Commissioner|Commissioner|Mayor|"
+                r"Tribal\s+Council|Council|Secretary|Commonwealth|State\s+of\s+\w+|Territory\s+of\s+\w+|"
+                r"Philippine\s+Islands|Government\s+of\s+the\s+Philippine|Canal\s+Zone|Puerto\s+Rico|Porto\s+Rico|Hawaii")
+ISSUER_AFTER = re.compile(r"^[\s,]*(?:No\.?\s*)?(?:of\s+\w+\s+\d{1,2},?\s+\d{4},?\s*)?(?:of|by|issued\s+by)\s+(?:the\s+)?"
+                          r"(?:" + ISSUER_WORDS + r")\b", re.I)
+ISSUER_BEFORE = re.compile(r"(?:Governor'?s|Governor[\s-]*General'?s|Commissioner'?s|Mayor'?s|Canal\s+Zone|Philippine|"
+                           r"Puerto\s+Rico|Porto\s+Rico|Commonwealth|Territorial|State|Tribal|Military\s+Governor'?s|"
+                           r"\bhis|\bits)\s*(?:\(\s*)?$", re.I)
+EXCEPTION = re.compile(r"\bexcept\b|\bexcepting\b|\bother\s+than\b|with\s+the\s+exception\s+of|\bsave\b|"
+                       r"not\s+so\s+as\s+to\s+affect|shall\s+not\s+(?:be\s+)?(?:affect|revoke|modify|appl)|"
+                       r"does\s+not\s+(?:otherwise\s+)?(?:affect|revoke|modify|amend)|\bnot\s+(?:\w+\s+){0,3}affect|"
+                       r"\bexclud|\bsubject\s+to\b|\bnotwithstanding\b", re.I)
+LEADER = re.compile(r"(?:[._]\s?){4,}\s*\d{1,5}\s*$|_{3,}\s*\d{1,5}\b", re.M)  # contents / index leaders
+
+
+def _spaced(ws):
+    return r"\s+".join(r"\s?".join(re.escape(c) for c in w) for w in ws)
+
+
 def _heading(words, digits):
-    def spaced(ws):
-        return r"\s+".join(r"\s?".join(re.escape(c) for c in w) for w in ws)
-    mixed, caps = spaced(words), spaced([w.upper() for w in words])
-    return re.compile(r"(?:\[\s*(?i:" + mixed + r")|(?:^|\n)[ \t]*" + caps + r")\s*(?:N\s?[Oo]\.?\s*)?("
-                      + digits + r")\b")
+    """A standalone heading line: '[Public Land Order 945]' or a capital line 'PUBLIC LAND ORDER 2100'."""
+    mixed, caps = _spaced(words), _spaced([w.upper() for w in words])
+    return re.compile(r"(?m)^[ \t]*(?:\[\s*(?i:" + mixed + r")\s*(?:N\s?[Oo]\.?\s*)?(" + digits + r")\s*\]|"
+                      + caps + r"\s*(?:N\s?[Oo]\.?\s*)?(" + digits + r"))[ \t]*$")
 
 
 HEADINGS = [
     ("PLO", _heading(["Public", "Land", "Order"], r"\d{1,4}")),
     ("PROC", _heading(["Proclamation"], r"\d{4}")),
     ("EO", _heading(["Executive", "Order"], r"\d{4,5}")),
+    # 1936-37 form: 'EXECUTIVE ORDER' on its own line, the title, then '[No. 7500]' on its own line
+    ("EO", re.compile(r"(?m)^[ \t]*\[\s*N\s?[Oo]\.?\s*(\d{4,5})\s*[\]1lI|]\s*$")),
 ]
+CONTINUES = re.compile(r"(?:\band|\bor|\bof|\bto|\bby|,|;|-|revoking|amending|modifying|superseding|see)\s*$", re.I)
 
 
 def now_utc():
@@ -85,6 +113,23 @@ def read_csv(p):
         return []
     with open(p, newline="", encoding="utf-8") as fh:
         return list(csv.DictReader(fh))
+
+
+def tool_versions():
+    v = {"pypdf": "", "pdftotext": ""}
+    try:
+        import pypdf
+        v["pypdf"] = pypdf.__version__
+    except ImportError:
+        pass
+    exe = shutil.which("pdftotext")
+    if exe:
+        try:
+            r = subprocess.run([exe, "-v"], capture_output=True, timeout=30)
+            v["pdftotext"] = (r.stderr or r.stdout).decode("utf-8", "replace").splitlines()[0].strip()
+        except (OSError, subprocess.SubprocessError, IndexError):
+            v["pdftotext"] = "unknown"
+    return v
 
 
 # ---- queries -----------------------------------------------------------------------------------------------------
@@ -102,10 +147,19 @@ def forms(target):
     return out
 
 
-def query(target, collection, after_date):
+def next_day(iso):
+    try:
+        return (dt.date.fromisoformat(iso) + dt.timedelta(days=1)).isoformat()
+    except (TypeError, ValueError):
+        return None
+
+
+def query(target, collection, target_date):
+    """FR: from the day after the order's own date, so its own first printing on the day is not asked for (its
+    printing a few days later is refused by the own-printing rule)."""
     q = f"collection:{collection} AND (" + " OR ".join(forms(target)) + ")"
     if collection == "FR":
-        lo = max(after_date or FR_FIRST, FR_FIRST)
+        lo = max(next_day(target_date) or FR_FIRST, FR_FIRST)
         q += f" AND publishdate:range({lo},{FR_LAST})"
     return q
 
@@ -113,13 +167,13 @@ def query(target, collection, after_date):
 class Searcher:
     """govinfo's documented search API (POST, key in the X-Api-Key header, never in a URL or log)."""
 
-    def __init__(self, key, opener=None, min_interval=0.75, max_searches=2500):
+    def __init__(self, key, opener=None, min_interval=1.0, max_searches=2500):
         self.key, self.opener = key, opener or urllib.request.urlopen
         self.min_interval, self.max_searches = min_interval, max_searches
         self.n, self.last, self.stopped, self.rate_limit = 0, 0.0, "", ""
         self.lock = threading.Lock()
 
-    def search(self, q, page_size=100):
+    def search(self, q, page_size=100, order="ASC"):
         with self.lock:
             if self.stopped:
                 raise FetchError("search stopped: " + self.stopped)
@@ -131,7 +185,7 @@ class Searcher:
             self.last = time.monotonic()
             self.n += 1
         body = json.dumps({"query": q, "pageSize": str(page_size), "offsetMark": "*",
-                           "sorts": [{"field": "publishdate", "sortOrder": "ASC"}]}).encode()
+                           "sorts": [{"field": "publishdate", "sortOrder": order}]}).encode()
         req = urllib.request.Request(SEARCH_URL, data=body, method="POST",
                                      headers={"Content-Type": "application/json", "User-Agent": UA,
                                               "X-Api-Key": self.key})
@@ -179,12 +233,12 @@ def pdf_pages(raw):
             src.write_bytes(raw)
             r = subprocess.run([exe, "-enc", "UTF-8", str(src), "-"], capture_output=True, timeout=600)
             if r.returncode == 0:
-                pages = r.stdout.decode("utf-8", "replace").split("\f")
+                pages = r.stdout.decode("utf-8", "replace").replace("\r\n", "\n").split("\f")
                 if pages and not pages[-1].strip():
                     pages = pages[:-1]
                 return pages, "pdftotext"
     import frpages
-    return frpages.pdf_pages(raw), "pypdf"
+    return [p.replace("\r\n", "\n") for p in frpages.pdf_pages(raw)], "pypdf"
 
 
 def extract_pages(raw, first, last):
@@ -194,64 +248,141 @@ def extract_pages(raw, first, last):
 
 # ---- location ------------------------------------------------------------------------------------------------------
 
-def identity_check(hit, text, target_date):
-    """None when the citation may name the target; else the reason it names something else."""
-    if hit["date_stated"] and target_date and hit["date_stated"] != target_date:
-        return "printed_date_disagrees_with_target"
-    after = text[hit["cite_end"]:hit["cite_end"] + 160]
-    if OTHER_ISSUER.search(after):
-        return "another_issuer_printed_with_the_number"
+def _iso(y, m, d):
+    try:
+        return dt.date(int(y), MON[m[:3].lower()], int(d)).isoformat()
+    except (KeyError, ValueError):
+        return None
+
+
+def dates_after(text, end, limit=70):
+    """Dates printed right after a citation ('of October 30, 1929', 'approved March 9, 1951', 'of 5 January 1914'),
+    stopping at the next order citation or sentence end."""
+    seg = text[end:end + limit]
+    stop = re.search(r"\b(?:Executive\s+Order|E\.\s?O\.|Proclamation|Public\s+Land\s+Order)\b|;|"
+                     r"(?<!\bJan)(?<!\bFeb)(?<!\bMar)(?<!\bApr)(?<!\bJun)(?<!\bJul)(?<!\bAug)(?<!\bSep)(?<!Sept)"
+                     r"(?<!\bOct)(?<!\bNov)(?<!\bDec)(?<!\bNo)(?<!\b[A-Z])\.\s+[A-Z]", seg)
+    if stop:
+        seg = seg[:stop.start() + 1]
+    out = []
+    for m in DATE_RE.finditer(seg):
+        out.append(_iso(m.group(3), m.group(1), m.group(2)))
+    for m in DATE_DMY.finditer(seg):
+        out.append(_iso(m.group(3), m.group(2), m.group(1)))
+    return [d for d in out if d]
+
+
+def boundary_problem(text, s, e, num, suf):
+    """The printed number is not exactly the target's: it runs on into digits ('1085 6', '1,885' read as 1), starts
+    inside a longer number ('10,885' read as 885), or carries a letter or fraction the target lacks ('2656 A', '2656½')."""
+    m = None
+    for m in re.finditer(r"(?<!\d)" + re.escape(num) + r"(?!\d)", text[s:e]):
+        pass
+    if m is None:
+        return None
+    a, b = s + m.start(), s + m.end()
+    after, before = text[b:b + 4], text[max(0, a - 3):a]
+    if re.match(r"\s\d|,\d{3}", after):
+        return "number_runs_on"
+    if re.search(r"\d,\s?$|\d\s$", before):
+        return "number_inside_longer_number"
+    if not suf and re.match(r"\s?[-–]?\s?[A-Za-z](?![A-Za-z])|½|1/2", after):
+        return "number_carries_suffix_target_lacks"
     return None
 
 
-def acting_instrument(text, cite_start, target=None):
-    """(acting_id, label): the nearest instrument heading printed before the citation with no filing line in between,
-    else (None, None) and the caller uses the page as a NOTICE id. A heading that prints the target's own number is a
-    title line citing it ('REVOKING EXECUTIVE ORDER NO. 5214'), not the acting instrument, and is skipped."""
-    tnum = (S.parse_eo(target) or ("",))[0] if target else ""
-    best = None
-    for kind, rx in HEADINGS:
-        for m in rx.finditer(text, 0, cite_start):
-            if kind == "EO" and m.group(1) == tnum:
-                continue
-            if best is None or m.start() > best[1]:
-                best = (kind, m.start(), m.group(1))
-    if best and not S.FILING.search(text, best[1], cite_start):
-        kind, _, num = best
-        return f"{kind}:{num}", {"PLO": "Public Land Order", "PROC": "Proclamation", "EO": "Executive Order"}[kind] + f" {num}"
-    return None, None
+def own_printing(text, cite_start, num, target_date, issue_date):
+    """The citation lies in the order's own printing: under its own standalone heading or '[No. N]' tag with no
+    filing line between, or (an issue within 45 days of the order) on a line that starts with the order's number."""
+    pat = re.compile(r"(?m)^[ \t]*(?:\[\s*N\s?[Oo]\.?\s*" + num + r"\s*[\]1lI|]|" + _spaced(["EXECUTIVE", "ORDER"])
+                     + r"\s*(?:N\s?[Oo]\.?\s*)?" + num + r"\b|\[\s*(?i:executive\s+order)\s*(?:no\.?\s*)?" + num + r"\s*\])")
+    for m in pat.finditer(text, 0, cite_start + 1):
+        if not S.FILING.search(text, m.end(), cite_start):
+            return True
+    try:
+        near = 0 <= (dt.date.fromisoformat(issue_date) - dt.date.fromisoformat(target_date)).days <= 45
+    except (TypeError, ValueError):
+        near = False
+    if near:
+        line_start = text.rfind("\n", 0, cite_start) + 1
+        if re.match(r"\s*(?:Executive\s+Order|E\.\s?O\.)\s*(?:No\.?\s*)?" + num + r"\b", text[line_start:cite_start + 40],
+                    re.I):
+            return True
+    return False
 
 
-def locate(text, target, target_date):
-    """[(hit, refusal_reason_or_None)] for every sentence of `text` citing the target by number."""
+def locate(text, target, target_date, issue_date=None):
+    """[(hit, refusal_or_None, pointer_reasons)] for every sentence of `text` citing the target by number.
+
+    A refusal means the sentence does not name the target (kept in LOCATED.csv only). Pointer reasons mean it may name
+    the target but must not be read as acting on it (published as cross_reference)."""
     out = []
     num, suf = (S.parse_eo(target) or ("", "", ""))[:2]
     for h in S.find_citations(text, target, target_date):
         if h["form"] != "number":
-            # Selden's fallbacks read lists and split OCR; Cruden keeps only a printed 'Executive Order (No.) N'.
-            continue
-        # Selden keeps one hit per sentence (the first citation). A title line and the dated citation can share a
-        # sentence, so every citation of the target inside it is read: one printed date equal to the target's
-        # confirms it; printed dates that all disagree refuse it; another issuer after any citation refuses it.
-        seg = text[h["start"]:h["end"]]
-        dates, ends = [], []
-        for (s, e, n, sx, d) in S.cites.eo_number_mentions(seg):
+            continue  # Selden's fallbacks read lists and split OCR; Cruden keeps only 'Executive Order (No.) N'
+        seg_lo, seg_hi = h["start"], h["end"]
+        cites = []
+        for (s, e, n, sx, d) in S.cites.eo_number_mentions(text[seg_lo:seg_hi]):
             if n == num and (sx or "") == suf:
-                ends.append(h["start"] + e)
-                if d:
-                    dates.append(d.isoformat() if hasattr(d, "isoformat") else d)
-        if target_date and target_date in dates:
-            h = dict(h, date_stated=target_date, date_match=True)
-        elif dates:
-            h = dict(h, date_stated=dates[0], date_match=(dates[0] == target_date) if target_date else None)
-        why = identity_check(h, text, target_date)
-        if not why:
-            for e in ends:
-                if OTHER_ISSUER.search(text[e:e + 160]):
+                cites.append((seg_lo + s, seg_lo + e, d.isoformat() if hasattr(d, "isoformat") else d))
+        if not cites:
+            cites = [(h["cite_start"], h["cite_end"], h["date_stated"])]
+        dates = []
+        for s, e, d in cites:
+            if d:
+                dates.append(d)
+            dates += dates_after(text, e)
+        confirmed = bool(target_date) and target_date in dates
+        why = None
+        for s, e, _ in cites:
+            why = why or boundary_problem(text, s, e, num, suf)
+        if not why and dates and not confirmed:
+            why = "printed_date_disagrees_with_target"
+        if not why and not confirmed:
+            for s, e, _ in cites:
+                if ISSUER_AFTER.search(text[e:e + 90]) or ISSUER_BEFORE.search(
+                        re.sub(r"(?i)\s*(?:the\s+)?$", "", text[max(0, s - 60):s])):
                     why = "another_issuer_printed_with_the_number"
                     break
-        out.append((h, why))
+        if not why and own_printing(text, h["cite_start"], num, target_date, issue_date):
+            why = "inside_the_orders_own_printing"
+        pointer = []
+        if not why:
+            if not confirmed:
+                pointer.append("identity_unconfirmed_no_matching_printed_date")
+            line = text[text.rfind("\n", 0, h["cite_start"]) + 1:text.find("\n", h["cite_end"]) % (len(text) + 1)]
+            if LEADER.search(line) or LEADER.search(text[h["cite_end"]:h["cite_end"] + 120].split("\n")[0]):
+                pointer.append("contents_or_index_entry")
+            if EXCEPTION.search(text[seg_lo:seg_hi]):
+                pointer.append("exception_or_saving_wording_in_sentence")
+        h = dict(h, date_stated=(target_date if confirmed else (dates[0] if dates else None)),
+                 date_match=True if confirmed else (False if dates else None))
+        out.append((h, why, pointer))
     return out
+
+
+def acting_instrument(text, cite_start, target=None):
+    """(acting_id, label) only when the citation lies in that instrument's own printed span: the nearest standalone
+    heading before it, with no filing line between, whose previous line does not run on into it (a title line such as
+    'REVOKING EXECUTIVE ORDER NO. 1885 AND / PUBLIC LAND ORDER NO. 500' is no heading). A heading that prints the
+    target's own number is skipped. Else (None, None): the caller names the page."""
+    tnum = (S.parse_eo(target) or ("",))[0] if target else ""
+    best = None
+    for kind, rx in HEADINGS:
+        for m in rx.finditer(text, 0, cite_start):
+            n = next(g for g in m.groups() if g)
+            if kind == "EO" and n == tnum:
+                continue
+            prev = text[:m.start()].rstrip().rsplit("\n", 1)[-1]
+            if CONTINUES.search(prev):
+                continue
+            if best is None or m.start() > best[1]:
+                best = (kind, m.start(), n)
+    if best and not S.FILING.search(text, best[1], cite_start):
+        kind, _, n = best
+        return f"{kind}:{n}", {"PLO": "Public Land Order", "PROC": "Proclamation", "EO": "Executive Order"}[kind] + f" {n}"
+    return None, None
 
 
 # ---- the run -------------------------------------------------------------------------------------------------------
@@ -264,7 +395,7 @@ class Run:
         self.max_download = int(g("JOB_MAX_DOWNLOAD_GB", 12.0) * 1e9)
         self.deadline = time.monotonic() + g("JOB_TIME_BUDGET_MIN", 280.0) * 60
         self.per_target_cap = {"FR": g("CRUDEN_FR_HITS_PER_TARGET", 40), "STATUTE": g("CRUDEN_STAT_HITS_PER_TARGET", 20)}
-        self.commit_extract_bytes, self.committed = g("CRUDEN_COMMIT_MB", 80) * 1_000_000, 0
+        self.commit_bytes, self.committed = g("CRUDEN_COMMIT_MB", 80) * 1_000_000, 0
         key, self.key_kind = api_key(env)
         self.searcher = Searcher(key, opener=opener, min_interval=g("CRUDEN_SEARCH_INTERVAL", 1.0),
                                  max_searches=g("JOB_MAX_SEARCHES", 2500 if self.key_kind == "real" else 25))
@@ -272,11 +403,11 @@ class Run:
                               max_bytes=450_000_000, timeout=240, user_agent=UA, min_interval=0.1,
                               max_cache_bytes=3 * 1024 ** 3)
         self.premis = premis
+        self.tools = tool_versions()
         self.lock = threading.Lock()
         self.searches, self.sources, self.fragments, self.located, self.failures = [], [], [], [], []
         (self.out / "texts").mkdir(parents=True, exist_ok=True)
         (self.out / "captures").mkdir(parents=True, exist_ok=True)
-        self.extractor = None
 
     def budget(self):
         return self.pool.bytes_downloaded < self.max_download and time.monotonic() < self.deadline
@@ -288,115 +419,136 @@ class Run:
         return fixity.check_one({"package": pkg, "filename": pkg + ".pdf", "url": FR_PDF.format(pkg=pkg),
                                  "shas": set(), "ids": set(), "found_in": set()})
 
-    # one package (an FR issue or a Statutes page granule), all its targets
+    def reserve(self, n):
+        with self.lock:
+            if self.committed + n <= self.commit_bytes and n <= 1_500_000:
+                self.committed += n
+                return True
+            return False
+
     def one(self, unit):
+        """One FR issue or Statutes page, all its targets. Everything is built locally and published at the end, so a
+        failure part way leaves no orphan record."""
         coll, pkg, gran = unit["collection"], unit["package"], unit.get("granule") or ""
+        idate = unit.get("date") or ""
         url = FR_PDF.format(pkg=pkg) if coll == "FR" else GRANULE_PDF.format(pkg=pkg, gran=gran)
         got = self.pool.fetch(url)
         raw = got["body"]
         if not raw.startswith(b"%PDF"):
             raise FetchError("not a PDF")
         pages, tool = pdf_pages(raw)
-        per_page = defaultdict(list)  # page index -> [(target, hit, refusal)]
+        tool_v = f"{tool} {self.tools.get(tool) or ''}".strip()
+        per_page = defaultdict(list)
+        located, sources, fragments = [], [], []
         for t, tdate in sorted(unit["targets"].items()):
-            any_cite = False
+            num = S.parse_eo(t)[0]
+            found = False
             for i, ptxt in enumerate(pages):
-                if not ptxt or not S.printed_anywhere(ptxt, S.parse_eo(t)[0]):
+                if not ptxt or not S.printed_anywhere(ptxt, num):
                     continue
-                for h, why in locate(ptxt, t, tdate):
-                    any_cite = True
-                    per_page[i].append((t, h, why))
-            if not any_cite:
-                self.located.append({"target_id": t, "collection": coll, "package": pkg, "granule": gran,
-                                     "pdf_page": "", "located": False, "refused": "", "acting_id": "",
-                                     "mechanism_printed": "", "acting_on_target": False, "date_stated": "",
-                                     "date_match": "", "quote": "",
-                                     "note": "search hit, but no sentence prints 'Executive Order (No.) N' in the OCR"})
-        gpo, match, presult = "", False, ""
-        if coll == "FR":
+                for h, why, pointer in locate(ptxt, t, tdate, idate):
+                    found = True
+                    per_page[i].append((t, h, why, pointer))
+            if not found:
+                located.append({"target_id": t, "collection": coll, "package": pkg, "granule": gran, "pdf_page": "",
+                                "located": False, "refused": "", "acting_id": "", "mechanism_printed": "",
+                                "published_mechanism": "", "date_stated": "", "date_match": "", "quote": "",
+                                "note": "search hit, but no sentence prints 'Executive Order (No.) N' in the OCR"})
+        gpo, match, presult = "", False, "not_applicable"
+        if coll == "FR" and per_page:
             pr = self.fixity(pkg)
             gpo = pr.get("gpo_sha256") or ""
             match = bool(gpo) and gpo == got["sha256"]
             # check_one compares against hashes it was given (none here); report our own comparison instead.
             presult = "match" if match else ("mismatch" if gpo else (pr.get("result") or "unchecked"))
-        recs = []
+        whole_committed = None
+        if coll == "STATUTE" and per_page and self.reserve(len(raw)):
+            whole_committed = f"captures/{got['sha256']}.pdf"
         for i in sorted(per_page):
-            first, last = i, min(len(pages) - 1, i + 1)
-            text = "".join(f"\n=== PDF page {j + 1} of {len(pages)} ===\n{pages[j]}" for j in range(first, last + 1))
-            stem = f"{gran or pkg}_p{i + 1}"
+            first, last = max(0, i - 1), min(len(pages) - 1, i + 1)
+            parts, off = [], None
             header = (f"Cruden page text. {coll} {gran or pkg}, PDF pages {first + 1}-{last + 1} of {len(pages)}; "
-                      f"source {url} sha256 {got['sha256']}; text by {tool}.\n")
-            full = header + text
-            (self.out / "texts" / f"{stem}.txt").write_text(full, encoding="utf-8")
-            targets = sorted({t for t, _, _ in per_page[i]})
-            issue_src = S.source_record(
-                f"cruden:{coll.lower()}:{gran or pkg}:p{i + 1}", "NOTICE:" + (gran or pkg), targets, url + f"#page={first + 1}",
-                got["sha256"], got["bytes"], "govinfo_search_then_content_pdf",
-                f"{gran or pkg}.pdf PDF pages {first + 1}-{last + 1} of {len(pages)}", f"texts/{stem}.txt",
+                      f"source {url} sha256 {got['sha256']}; text by {tool_v}.\n")
+            pos = len(header)
+            for j in range(first, last + 1):
+                mark = f"\n=== PDF page {j + 1} of {len(pages)} ===\n"
+                if j == i:
+                    off = pos + len(mark)
+                parts.append(mark + pages[j])
+                pos += len(mark) + len(pages[j])
+            full = header + "".join(parts)
+            tsha = S.sha256(full.encode("utf-8"))
+            stem = f"{gran or pkg}_p{i + 1}_{tsha[:12]}"
+            tpath = f"texts/{stem}.txt"
+            targets = sorted({x[0] for x in per_page[i]})
+            common = {"collection": coll, "package": pkg, "granule": gran, "issue_date": idate,
+                      "pdf_pages": [first + 1, last + 1], "cited_pdf_page": i + 1, "page_count": len(pages),
+                      "text_tool": tool_v, "text_sha256": tsha, "locator": LOCATOR}
+            whole = S.source_record(
+                f"cruden:{coll.lower()}:{gran or pkg}:p{i + 1}:{tsha[:12]}", "NOTICE:" + (gran or pkg), targets,
+                url + f"#page={i + 1}", got["sha256"], got["bytes"], "govinfo_search_then_content_pdf",
+                f"{gran or pkg}.pdf PDF page {i + 1} of {len(pages)} (text of pages {first + 1}-{last + 1})", tpath,
                 GRADE_FR if coll == "FR" else GRADE_STAT,
-                "Whole PDF hashed; the cited pages' OCR text is kept. For a Federal Register issue GPO publishes the "
-                "issue's SHA-256 in its PREMIS record; gpo_premis_match says whether these bytes are GPO's.",
-                extra={"collection": coll, "package": pkg, "granule": gran, "gpo_premis_sha256": gpo,
-                       "gpo_premis_match": match, "gpo_premis_result": presult, "issue_date": unit.get("date") or "",
-                       "pdf_pages": [first + 1, last + 1], "page_count": len(pages), "text_tool": tool})
-            cite = issue_src
-            ext, etool = extract_pages(raw, first, last)
-            with self.lock:
-                fits = self.committed + len(ext) <= self.commit_extract_bytes and len(ext) <= 1_500_000
-                if fits:
-                    self.committed += len(ext)
-            if fits:
-                esha = S.sha256(ext)
-                (self.out / "captures" / f"{esha}.pdf").write_bytes(ext)
-                cite = S.source_record(
-                    f"cruden-extract:{esha[:16]}", "NOTICE:" + (gran or pkg), targets, url + f"#page={first + 1}", esha,
-                    len(ext), "govinfo_content_pdf_page_extract", issue_src["page_or_item"] + " (committed extract)",
-                    f"texts/{stem}.txt", issue_src["grade"],
-                    f"PDF pages {first + 1}-{last + 1} extracted with {etool} from the PDF whose sha256 is "
-                    f"source_sha256 (GPO PREMIS match: {match}); re-download it to re-derive.",
-                    cache_path=f"captures/{esha}.pdf",
-                    extra={"collection": coll, "source_sha256": got["sha256"], "gpo_premis_match": match,
-                           "extract_tool": etool})
-            recs.append(issue_src)
-            if cite is not issue_src:
-                recs.append(cite)
-            off = len(header) + len(f"\n=== PDF page {first + 1} of {len(pages)} ===\n")
-            for t, h, why in per_page[i]:
+                "Whole PDF hashed; the cited page's OCR text is kept (text_sha256). For a Federal Register issue GPO "
+                "publishes the issue's SHA-256 in its PREMIS record; gpo_premis_match says whether these bytes are "
+                "GPO's.", cache_path=whole_committed,
+                extra=dict(common, gpo_premis_sha256=gpo, gpo_premis_match=match, gpo_premis_result=presult))
+            cite = whole
+            if not whole_committed:
+                ext, etool = extract_pages(raw, i, i)
+                if self.reserve(len(ext)):
+                    esha = S.sha256(ext)
+                    cite = S.source_record(
+                        f"cruden-extract:{esha[:16]}:{tsha[:8]}", "NOTICE:" + (gran or pkg), targets,
+                        url + f"#page={i + 1}", esha, len(ext), "govinfo_content_pdf_page_extract",
+                        whole["page_or_item"] + " (committed extract of the cited page)", tpath, whole["grade"],
+                        f"PDF page {i + 1} extracted with {etool} from the PDF whose sha256 is source_sha256 (GPO "
+                        f"PREMIS match: {match}); re-download it to re-derive.", cache_path=f"captures/{esha}.pdf",
+                        extra=dict(common, source_sha256=got["sha256"], gpo_premis_match=match, extract_tool=etool,
+                                   extract_bytes=ext))
+            verifiable = bool(cite.get("cache_path")) or match
+            sources.append((whole, cite, full, raw if whole_committed else None))
+            for t, h, why, pointer in per_page[i]:
                 h = dict(h, start=h["start"] + off, end=h["end"] + off, cite_start=h["cite_start"] + off,
                          cite_end=h["cite_end"] + off)
                 actor, label = acting_instrument(full, h["cite_start"], t)
                 if actor is None or actor == t:
-                    actor = "NOTICE:" + (f"{gran}" if gran else f"{pkg}/p{i + 1}")
-                    label = (f"document printed on PDF page {i + 1} of {gran or pkg} (instrument kind not identified "
-                             "by machine)")
-                acting = S.acting_on_target(h) and not why
-                row = {"target_id": t, "collection": coll, "package": pkg, "granule": gran, "pdf_page": i + 1,
-                       "located": True, "refused": why or "", "acting_id": actor,
-                       "mechanism_printed": h["mechanism"], "acting_on_target": acting,
-                       "date_stated": h["date_stated"] or "", "date_match": "" if h["date_match"] is None else h["date_match"],
-                       "quote": S.cites.squeeze(h["quote"])[:300], "note": ""}
-                self.located.append(row)
+                    actor = "NOTICE:" + (gran if gran else f"{pkg}/p{i + 1}")
+                    label = f"document printed on PDF page {i + 1} of {gran or pkg} (instrument not identified by machine)"
+                reasons = list(pointer) + ([] if verifiable else ["bytes_not_verifiable"])
+                if reasons:
+                    h = dict(h, mechanism_class="mention")
+                published = "" if why else (h["mechanism"] if S.acting_on_target(h) else "cross_reference")
+                located.append({"target_id": t, "collection": coll, "package": pkg, "granule": gran, "pdf_page": i + 1,
+                                "located": True, "refused": why or "", "acting_id": actor,
+                                "mechanism_printed": h["mechanism"], "published_mechanism": published,
+                                "date_stated": h["date_stated"] or "",
+                                "date_match": "" if h["date_match"] is None else h["date_match"],
+                                "quote": S.cites.squeeze(h["quote"])[:300], "note": "|".join(reasons)})
                 if why:
-                    continue  # names some other order: kept in LOCATED.csv, never published as a lead
-                flags = ["publication_date_not_instrument_date"]
-                if h["date_match"] is None:
-                    flags.append("identity_by_number_only_no_date_printed")
-                    eo = S.parse_eo(t)
-                    if eo and int(eo[0]) < 1000:
-                        # Short numbers collide with other numbered series; without a printed date the
-                        # sentence is a pointer only.
-                        h = dict(h, mechanism_class="mention")
-                        flags.append("short_number_identity_unconfirmed")
+                    continue  # names something else: kept in LOCATED.csv, never published as a lead
+                flags = ["publication_date_not_instrument_date"] + reasons
                 if actor.startswith("NOTICE:"):
                     flags.append("acting_instrument_not_identified")
-                self.fragments.append(S.fragment(
-                    t, actor, label, h, cite, PRODUCER, unit.get("date") or "",
-                    "publication date of the issue or volume printing the sentence (not the instrument's signing "
-                    "or effective date)", "cruden_fr_number_search" if coll == "FR" else "cruden_statute_number_search",
+                fragments.append(S.fragment(
+                    t, actor, label, h, cite, PRODUCER, idate,
+                    "publication date of the issue or volume printing the sentence (not the instrument's signing or "
+                    "effective date)", "cruden_fr_number_search" if coll == "FR" else "cruden_statute_number_search",
                     flags=flags, extra={"collection": coll, "package": pkg, "granule": gran, "pdf_page": i + 1,
-                                        "source_sha256": got["sha256"], "gpo_premis_match": match}))
-        with self.lock:
-            self.sources.extend(recs)
+                                        "source_sha256": got["sha256"], "gpo_premis_match": match,
+                                        "text_sha256": tsha, "locator": LOCATOR}))
+        with self.lock:  # publish the unit at once
+            for whole, cite, full, rawbytes in sources:
+                (self.out / whole["text_path"]).write_text(full, encoding="utf-8", newline="")
+                if rawbytes is not None:
+                    (self.out / whole["cache_path"]).write_bytes(rawbytes)
+                if cite is not whole:
+                    (self.out / cite["cache_path"]).write_bytes(cite.pop("extract_bytes"))
+                self.sources.append(whole)
+                if cite is not whole:
+                    self.sources.append(cite)
+            self.located.extend(located)
+            self.fragments.extend(fragments)
         return {"bytes": got["bytes"], "pages": len(pages)}
 
 
@@ -407,8 +559,8 @@ def load_targets(repo, env):
 
 def control_targets(repo, exclude, n=30, seed=1737):
     """Planted positives: BLM's PLO table names a pre-1937 order by number with an ending word, in a PLO printed in
-    the Federal Register by 1993 (independent of the page OCR Cruden reads). The concordance must find a sentence
-    citing the order in some Federal Register issue."""
+    the Federal Register by 1993 (independent of the page OCR Cruden reads). The concordance must locate a sentence
+    citing the order, with its date, in some Federal Register issue."""
     import random
     rows = []
     for r in read_csv(Path(repo) / "jobs/shepard-citations/output/PLO_TABLE.csv"):
@@ -422,7 +574,7 @@ def control_targets(repo, exclude, n=30, seed=1737):
             m = re.match(r"(EO:\d+)(?:@[\d-]+)?=(\w+)", ref)
             if m and S.mech_class(m.group(2)) == "ending" and m.group(1) not in exclude:
                 eo = S.parse_eo(m.group(1))
-                if eo and int(eo[0]) >= 1000 and int(eo[0]) < 7532:
+                if eo and 1000 <= int(eo[0]) < 7532:
                     rows.append((m.group(1), r["plo_id"]))
     rows = sorted(set(rows))
     rng = random.Random(seed)
@@ -437,6 +589,49 @@ def control_targets(repo, exclude, n=30, seed=1737):
     return out
 
 
+# Fixed identity negatives, run every run: each must be refused or published only as a pointer.
+IDENTITY_NEGATIVES = [
+    ("EO:885", "1908-06-12", "under Executive Order No. 885 of the Governor General of the Philippine Islands, issued "
+                             "at Manila, October 12, 1935, the allotment is hereby revoked."),
+    ("EO:1885", "1913-11-01", "The Governor's Executive Order No. 1885 is hereby revoked."),
+    ("EO:1885", "1913-11-01", "Canal Zone Executive Order No. 1885 is hereby revoked."),
+    ("EO:1885", "1913-11-01", "Executive Order No. 1885 of the State of California is hereby revoked."),
+    ("EO:1085", "1909-06-01", "Executive Order No. 1085 6 of May 1, 1950, is hereby revoked."),
+    ("EO:885", "1908-06-12", "Executive Order No. 10,885 is hereby revoked."),
+    ("EO:2656", "1917-07-01", "Executive Order No. 2656 A of July 1, 1917, is hereby revoked."),
+    ("EO:3000", "1918-11-11", "Executive Order No. 3000 of May 5, 1931, is hereby revoked."),
+    ("EO:1885", "1913-11-01", "Executive Order No. 1885, approved March 9, 1951, is hereby revoked."),
+    ("EO:1885", "1913-11-01", "All prior withdrawals are hereby revoked except Executive Order No. 1885 of November 1, "
+                              "1913."),
+    ("EO:1885", "1913-11-01", "Executive Order No. 1885 is hereby revoked."),
+    ("EO:8200", "1939-07-29", "EXECUTIVE ORDER 8200\nPARTIAL REVOCATION OF EXECUTIVE ORDER NO. 5886\nBy virtue of the "
+                              "authority vested in me, Executive Order No. 5886 is hereby revoked in part."),
+]
+
+
+def identity_negatives():
+    bad = []
+    for t, d, txt in IDENTITY_NEGATIVES:
+        for h, why, pointer in locate(txt, t, d, "1939-08-01" if t == "EO:8200" else "1960-01-01"):
+            if not why and not pointer and S.acting_on_target(h):
+                bad.append({"target": t, "text": txt[:120]})
+    return {"identity_negatives": len(IDENTITY_NEGATIVES), "identity_negatives_published_as_acting": len(bad),
+            "identity_failures": bad}
+
+
+def prior_valid(prior):
+    try:
+        s = json.loads((prior / "SUMMARY.json").read_text(encoding="utf-8"))
+        c = json.loads((prior / "CONTROLS.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False, "no prior summary or controls"
+    if s.get("locator") != LOCATOR:
+        return False, f"prior locator {s.get('locator')!r} is not {LOCATOR}"
+    if not c.get("passed"):
+        return False, "prior controls did not pass"
+    return True, ""
+
+
 def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, opener=None, premis=None):
     repo, out = Path(repo), Path(out)
     out.mkdir(parents=True, exist_ok=True)
@@ -449,18 +644,21 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
     controls = control_targets(repo, set(targets), n=int(env.get("CRUDEN_CONTROLS") or 30))
     control_ids = {t for t, _ in controls}
 
-    # carry forward: earlier searches and the (target, package) pairs already read
+    # carry forward: searches whose query is unchanged always; read pages, fragments and sources only when the prior
+    # run used this locator and its controls passed (otherwise every hit is read again)
     prior = Path(env.get("JOB_PRIOR_OUTPUT_DIR") or (HERE / "output"))
-    prior_searches = {(r["target_id"], r["collection"]): r for r in S.read_jsonl(prior / "SEARCHES.jsonl")
-                      if r.get("status") == "searched"}
-    done_pairs = {(r["target_id"], r["package"], r.get("granule") or "") for r in read_csv(prior / "LOCATED.csv")}
-    carried = carry_forward(prior, out, run)
+    prior_searches = {}
+    for r in S.read_jsonl(prior / "SEARCHES.jsonl"):
+        if r.get("status") == "searched" and r.get("query") == query(r["target_id"], r["collection"],
+                                                                     dates.get(r["target_id"])):
+            prior_searches[(r["target_id"], r["collection"])] = r
+    ok, why_not = prior_valid(prior)
+    carried, done_pairs = (carry_forward(prior, out, run, control_ids) if ok else (0, set()))
 
     order = [t for t, _ in controls] + targets
     if limit:
         order = order[:limit + len(controls)]
-    # 1. searches: every target in the Federal Register first, then the Statutes at Large
-    for coll in collections_:
+    for coll in collections_:  # every target in the Federal Register first, then the Statutes at Large
         for t in order:
             key = (t, coll)
             if key in prior_searches:
@@ -474,13 +672,19 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
                 continue
             try:
                 res = run.searcher.search(rec["query"])
-                hits = res["hits"][:run.per_target_cap[coll]]
-                rec.update(status="searched", count=res["count"], hits=hits, response_sha256=res["sha256"],
-                           complete=(res["count"] or 0) <= len(hits))
+                hits, count = res["hits"], res["count"]
+                if count is not None and count > len(hits):
+                    late = run.searcher.search(rec["query"], order="DESC")
+                    seen = {(h["package"], h["granule"]) for h in hits}
+                    hits = hits + [h for h in late["hits"] if (h["package"], h["granule"]) not in seen]
+                cap = run.per_target_cap[coll]
+                if len(hits) > cap:  # earliest and latest halves: revocations sit late, first mentions early
+                    hits = hits[:cap // 2] + hits[-(cap - cap // 2):]
+                rec.update(status="searched", count=count, hits=hits, response_sha256=res["sha256"],
+                           complete=count is not None and count <= len(hits))
             except (FetchError, ValueError, OSError) as e:
                 rec.update(status="not_searched_error", error=str(e)[:200])
             run.searches.append(rec)
-    # 2. units: one per package/granule, all targets that hit it and are not yet read there
     units = {}
     for rec in run.searches:
         if rec.get("status") != "searched":
@@ -491,13 +695,12 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
             gran = h.get("granule") if rec["collection"] == "STATUTE" else ""
             if rec["collection"] == "STATUTE" and not gran:
                 continue
-            k = (rec["collection"], h["package"], gran or "")
             if (rec["target_id"], h["package"], gran or "") in done_pairs:
                 continue
+            k = (rec["collection"], h["package"], gran or "")
             u = units.setdefault(k, {"collection": k[0], "package": k[1], "granule": k[2], "date": h.get("date"),
                                      "targets": {}})
             u["targets"][rec["target_id"]] = rec.get("target_date") or None
-    # controls first, then the units serving most targets, then oldest
     todo = sorted(units.values(), key=lambda u: (not (set(u["targets"]) & control_ids), -len(u["targets"]),
                                                   u["date"] or "", u["package"], u["granule"]))
     todo = todo[:run.max_packages]
@@ -520,66 +723,80 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
             if n % 50 == 0:
                 print(f"cruden: {n}/{len(todo)} units, {run.pool.bytes_downloaded / 1e9:.2f} GB, "
                       f"{len(run.fragments)} fragments", flush=True)
-    # 3. controls: planted positives must be found; near-miss negatives must never be
     ctl = measure_controls(run, controls)
+    ctl["carry_forward"] = "used" if ok else f"not used: {why_not}"
     if not ctl["passed"]:
+        # every fragment of this run is a pointer; the next run carries none of them and reads every hit again
         for f in run.fragments:
             for row in f["data"]:
                 row["mechanism"] = "cross_reference"
                 row["flags"] = sorted(set(row["flags"]) | {"controls_failed_this_run"})
-    # control targets' fragments are measurements, not leads for the target set
     fr_out = [f for f in run.fragments if f["instrument_id"] not in control_ids]
     write(out, run, fr_out, ctl, targets, control_ids, started, carried, n, len(todo))
     return json.loads((out / "SUMMARY.json").read_text(encoding="utf-8"))
 
 
-def carry_forward(prior, out, run):
-    """Earlier fragments, sources, located rows and their committed texts and extracts, re-hashed."""
-    n = 0
+def carry_forward(prior, out, run, control_ids):
+    """Earlier sources, fragments and located rows, each re-verified: a text whose sha256 differs from its record's
+    text_sha256, or a committed PDF whose bytes differ from its sha256, is dropped with everything that cites it, and
+    its (target, package) pairs are read again. Control targets are never carried: their units are read every run."""
     if not prior.is_dir() or prior.resolve() == out.resolve():
-        return 0
+        return 0, set()
+    keep = {}
     for r in S.read_jsonl(prior / "SOURCES.jsonl"):
         tp = prior / (r.get("text_path") or "-")
-        if not tp.is_file():
+        if not tp.is_file() or S.sha256(tp.read_bytes()) != r.get("text_sha256"):
             continue
-        (out / "texts").mkdir(parents=True, exist_ok=True)
-        (out / tp.relative_to(prior)).write_bytes(tp.read_bytes())
         cp = r.get("cache_path")
         if cp:
             src = prior / cp
             if not src.is_file() or S.sha256(src.read_bytes()) != r["sha256"]:
-                continue  # an extract that no longer hashes is dropped, not trusted
-            (out / cp).write_bytes(src.read_bytes())
+                continue
+        if set(r.get("instrument_ids") or []) & control_ids:
+            continue
+        keep[r["source_id"]] = r
+    n, cited = 0, set()
+    for f in S.read_jsonl(prior / "FRAGMENTS.jsonl"):
+        rows = f.get("data") or []
+        if f.get("instrument_id") in control_ids or not all(x.get("source_id") in keep for x in rows):
+            continue
+        run.fragments.append(f)
+        cited |= {x["source_id"] for x in rows}
+        n += 1
+    for sid, r in keep.items():
+        (out / r["text_path"]).write_bytes((prior / r["text_path"]).read_bytes())
+        if r.get("cache_path"):
+            (out / r["cache_path"]).write_bytes((prior / r["cache_path"]).read_bytes())
             run.committed += r["bytes"]
         run.sources.append(r)
-    keep = {r["source_id"] for r in run.sources}
-    for f in S.read_jsonl(prior / "FRAGMENTS.jsonl"):
-        if all(row.get("source_id") in keep for row in f.get("data") or []):
-            for row in f["data"]:
-                row["flags"] = sorted(set(row.get("flags") or []) - {"controls_failed_this_run"})
-            run.fragments.append(f)
-            n += 1
+    pairs = set()
+    good_pk = {(r.get("package"), r.get("granule") or "") for r in keep.values()}
     for r in read_csv(prior / "LOCATED.csv"):
+        k = (r["package"], r.get("granule") or "")
+        if r["target_id"] in control_ids:
+            continue
+        if r.get("located") == "True" and k not in good_pk:
+            continue  # its page did not survive verification: read it again
         run.located.append(r)
-    return n
+        pairs.add((r["target_id"], r["package"], r.get("granule") or ""))
+    return n, pairs
 
 
 def measure_controls(run, controls):
-    found = 0
-    misses = []
     loc = defaultdict(list)
     for r in run.located:
         loc[r["target_id"]].append(r)
+    found, misses = 0, []
     for t, plo in controls:
-        rows = [r for r in loc.get(t, []) if str(r.get("located")) == "True" and not r.get("refused")]
+        rows = [r for r in loc.get(t, []) if str(r.get("located")) == "True" and not r.get("refused")
+                and str(r.get("date_match")) == "True"]
         if rows:
             found += 1
         else:
             s = [x for x in run.searches if x["target_id"] == t and x["collection"] == "FR"]
             misses.append({"target": t, "plo": plo, "search_status": s[0].get("status") if s else "none",
                            "hits": s[0].get("count") if s else None})
-    texts = {}
-    pos = []
+    texts, pos = {}, []
     for f in run.fragments:
         row = f["data"][0]
         tp = run.out / (row.get("text_path") or "-")
@@ -589,16 +806,18 @@ def measure_controls(run, controls):
     neg = S.run_controls(pos, texts, seed=1737) if pos else {"negatives": 0, "false_locations": 0, "false_hits": []}
     searched = sum(1 for t, _ in controls if any(x["target_id"] == t and x.get("status") == "searched"
                                                   for x in run.searches))
-    return {"planted_positives": len(controls), "positives_searched": searched, "positives_located": found,
-            "recall": round(found / searched, 4) if searched else None, "misses": misses[:40],
+    recall = round(found / searched, 4) if searched else None
+    idn = identity_negatives()
+    return {"planted_positives": len(controls), "positives_searched": searched, "positives_located_with_date": found,
+            "recall": recall, "min_recall": MIN_RECALL, "misses": misses[:40],
             "near_miss_negatives": neg.get("negatives", 0), "false_locations": neg.get("false_locations", 0),
-            "false_hits": neg.get("false_hits", [])[:40],
-            "passed": searched > 0 and neg.get("false_locations", 0) == 0}
+            "false_hits": neg.get("false_hits", [])[:40], **idn,
+            "passed": bool(searched) and recall is not None and recall >= MIN_RECALL
+            and neg.get("false_locations", 0) == 0 and idn["identity_negatives_published_as_acting"] == 0}
 
 
 def write(out, run, fr_out, ctl, targets, control_ids, started, carried, attempted, todo_n):
-    seen = set()
-    sources = []
+    seen, sources = set(), []
     for s in sorted(run.sources, key=lambda r: r["source_id"]):
         if s["source_id"] not in seen:
             seen.add(s["source_id"])
@@ -615,7 +834,7 @@ def write(out, run, fr_out, ctl, targets, control_ids, started, carried, attempt
     S.write_jsonl(out / "FAILURES.jsonl", run.failures)
     (out / "CONTROLS.json").write_text(json.dumps(ctl, indent=1) + "\n", encoding="utf-8")
     cols = ["target_id", "collection", "package", "granule", "pdf_page", "located", "refused", "acting_id",
-            "mechanism_printed", "acting_on_target", "date_stated", "date_match", "quote", "note"]
+            "mechanism_printed", "published_mechanism", "date_stated", "date_match", "quote", "note"]
     with open(out / "LOCATED.csv", "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, cols, extrasaction="ignore", lineterminator="\n")
         w.writeheader()
@@ -623,44 +842,50 @@ def write(out, run, fr_out, ctl, targets, control_ids, started, carried, attempt
                                                        r.get("granule") or "", str(r.get("pdf_page")))))
     tset = set(targets)
     srch = [r for r in run.searches if r["target_id"] in tset]
+
+    def acting(f):
+        return f["data"][0]["mechanism"] != "cross_reference"
     by_coll = {}
     for coll in sorted({r["collection"] for r in srch}):
         rs = [r for r in srch if r["collection"] == coll]
         ok = [r for r in rs if r.get("status") == "searched"]
-        hit = {r["target_id"] for r in ok if r.get("count")}
-        acting = {f["instrument_id"] for f in frs if f["data"][0].get("collection") == coll
-                  and f["data"][0]["mechanism"] != "cross_reference"}
-        cited = {f["instrument_id"] for f in frs if f["data"][0].get("collection") == coll}
-        by_coll[coll] = {"targets_searched": len(ok), "targets_not_searched": len(rs) - len(ok),
-                         "targets_with_hits": len(hit), "targets_with_located_citation": len(cited),
-                         "targets_with_acting_sentence": len(acting),
-                         "searches_incomplete_over_cap": sum(1 for r in ok if r.get("complete") is False)}
+        by_coll[coll] = {
+            "targets_queried": len(ok), "targets_not_queried": len(rs) - len(ok),
+            "targets_with_search_hits": len({r["target_id"] for r in ok if r.get("count")}),
+            "targets_with_located_citation": len({f["instrument_id"] for f in frs if f["data"][0].get("collection") == coll}),
+            "targets_with_dated_acting_sentence": len({f["instrument_id"] for f in frs
+                                                       if f["data"][0].get("collection") == coll and acting(f)}),
+            "queries_truncated_at_cap": sum(1 for r in ok if r.get("complete") is False)}
     fam = {r["instrument_id"]: r["family"] for r in read_csv(run.repo / "jobs/linnaeus-types/output/CRUDEN_TARGETS.csv")}
-    acting_all = {f["instrument_id"] for f in frs if f["data"][0]["mechanism"] != "cross_reference"}
+    acting_all = {f["instrument_id"] for f in frs if acting(f)}
     cited_all = {f["instrument_id"] for f in frs}
+    queried = {r["target_id"] for r in srch if r.get("status") == "searched"}
     by_family = defaultdict(Counter)
-    searched_all = {r["target_id"] for r in srch if r.get("status") == "searched"}
     for t in targets:
         f = fam.get(t, "")
         by_family[f]["targets"] += 1
-        by_family[f]["searched"] += t in searched_all
-        by_family[f]["cited"] += t in cited_all
-        by_family[f]["acting"] += t in acting_all
+        by_family[f]["queried"] += t in queried
+        by_family[f]["located_citation"] += t in cited_all
+        by_family[f]["dated_acting_sentence"] += t in acting_all
     refused = Counter(r["refused"] for r in run.located if r.get("refused"))
+    pointers = Counter(x for r in run.located for x in (r.get("note") or "").split("|")
+                       if r.get("located") == "True" and x and not r.get("refused"))
     summary = {
-        "job": PRODUCER, "generated_utc": now_utc(), "started_utc": started, "key_kind": run.key_kind,
+        "job": PRODUCER, "locator": LOCATOR, "generated_utc": now_utc(), "started_utc": started,
+        "key_kind": run.key_kind, "tools": run.tools,
         "targets": len(targets), "control_targets": len(control_ids), "searches_made_this_run": run.searcher.n,
-        "search_stopped": run.searcher.stopped, "search_rate_limit": run.searcher.rate_limit, "units_planned": todo_n, "units_attempted": attempted,
-        "units_failed": len(run.failures), "bytes_downloaded": run.pool.bytes_downloaded,
-        "fragments": len(frs), "fragments_carried_forward": carried, "by_collection": by_coll,
-        "orders_with_located_citation": len(cited_all), "orders_with_acting_sentence": len(acting_all),
-        "citations_refused_identity": dict(refused), "by_family": {k: dict(v) for k, v in sorted(by_family.items())},
-        "extracts_committed_bytes": run.committed,
-        "controls": {k: v for k, v in ctl.items() if k not in ("misses", "false_hits")},
-        "limits": ("Leads only. govinfo's search index and the OCR decide what is found; an order with no hit is "
-                   "unsearched-equivalent, never evidence that nothing acted on it. No status, census, codebook or "
-                   "count change. Certified: 0."),
+        "search_stopped": run.searcher.stopped, "search_rate_limit": run.searcher.rate_limit,
+        "units_planned": todo_n, "units_attempted": attempted, "units_failed": len(run.failures),
+        "bytes_downloaded": run.pool.bytes_downloaded, "fragments": len(frs), "fragments_carried_forward": carried,
+        "by_collection": by_coll, "orders_with_located_citation": len(cited_all),
+        "orders_with_dated_acting_sentence": len(acting_all), "citations_refused": dict(refused),
+        "citations_published_as_pointer_only": dict(pointers),
+        "by_family": {k: dict(v) for k, v in sorted(by_family.items())}, "committed_bytes": run.committed,
+        "controls": {k: v for k, v in ctl.items() if k not in ("misses", "false_hits", "identity_failures")},
+        "limits": ("Leads only. 'queried' means govinfo was asked, not that the order was covered: the index and the "
+                   "OCR decide what is found, and an order with no hit or no located sentence is never evidence that "
+                   "nothing acted on it. No status, census, codebook or count change. Certified: 0."),
     }
     (out / "SUMMARY.json").write_text(json.dumps(summary, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({k: summary[k] for k in ("targets", "searches_made_this_run", "units_attempted", "fragments",
-                                                "orders_with_acting_sentence", "controls")}, indent=1), flush=True)
+                                                "orders_with_dated_acting_sentence", "controls")}, indent=1), flush=True)

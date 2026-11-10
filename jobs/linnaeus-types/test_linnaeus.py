@@ -59,12 +59,14 @@ class Linnaeus(unittest.TestCase):
              "title": "Executive Order 8001—Amending Executive Order No. 7000"}])
         write_csv(r / linnaeus.PATHS["census"],
                   [{"id": i, "date_effective": "1912" if i < "EO:2" else "1938"} for i in ids])
-        write_csv(r / linnaeus.PATHS["m1118"], [{"instrument_id": "EO:1500"}])
+        write_csv(r / linnaeus.PATHS["m1118"], [{"instrument_id": "EO:1500", "waits_on": "microfilm_pending (film)"},
+                                                 {"instrument_id": "EO:1501", "waits_on": "replica_check_failed_or_unread"}])
         edge = {"target_id": "EO:1503", "mechanism": "revocation", "evidence_type": "shepard_blm_plo_table"}
         write_csv(r / linnaeus.PATHS["shepard"], [edge, dict(edge, target_id="EO:1502", mechanism="cross_reference")])
         write_csv(r / linnaeus.PATHS["later"], [dict(edge, target_id="EO:0")])
-        write_csv(r / linnaeus.PATHS["frciters"], [{"target_id": "EO:0", "acting_on_target": "False"}])
-        write_csv(r / linnaeus.PATHS["ofr1989"], [{"census_id": "EO:0"}])
+        write_csv(r / linnaeus.PATHS["frciters"], [{"target_id": "EO:8000", "acting_on_target": "True",
+                                                   "mechanism_class": "modifying"}])
+        write_csv(r / linnaeus.PATHS["ofr1989"], [{"census_id": "EO:8001", "group": "effect_merged_into_other_document"}])
         self.rows, self.summary = linnaeus.run(r, r / "out", taxonomy)
         self.by = {x["instrument_id"]: x for x in self.rows}
 
@@ -87,9 +89,15 @@ class Linnaeus(unittest.TestCase):
         self.assertEqual(self.by["EO:1501"]["stratum"], "pothier_decided_lead")
         self.assertEqual(self.by["EO:1503"]["stratum"], "held_ending_lead_unrouted")
         self.assertEqual(self.by["EO:1502"]["stratum"], "unsourced")            # a cross-reference is no ending lead
+        self.assertEqual(self.by["EO:8001"]["stratum"], "unsourced")            # a merged 1989 row is no ending
+        self.assertIn("ofr_1989_table", self.by["EO:8001"]["held_mentions_without_ending"])
+        self.assertEqual(self.by["EO:1501"]["m1118_gap"], "")                    # replica gap, not film
+        self.assertEqual(self.by["EO:1501"]["residual_replica_gap"], "yes")
+        self.assertTrue(linnaeus.ending("supersession") and linnaeus.ending("replacement"))
 
     def test_cruden_targets_exclude_ulpian_and_leads(self):
-        t = [r["instrument_id"] for r in csv.DictReader(open(self.root / "out/CRUDEN_TARGETS.csv", encoding="utf-8"))]
+        with open(self.root / "out/CRUDEN_TARGETS.csv", encoding="utf-8") as fh:
+            t = [r["instrument_id"] for r in csv.DictReader(fh)]
         self.assertEqual(t, ["EO:1502", "EO:8001"])
         self.assertEqual(self.summary["cs_one_person_left_to_ulpian"], 2)
 

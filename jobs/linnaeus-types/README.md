@@ -8,9 +8,17 @@ claim kit's `STATUS_LEADS.jsonl` record has no `lead_actor_ids`, no `own_terms` 
 2026-11-10), gives each a type and a family, and says where it stands:
 
 - `pothier_decided_lead`: a Pothier family doctrine already proposes a status the claim kit does not read;
-- `held_ending_lead_unrouted`: a held finding aid (Shepard, later-events, Selden FR citers, the 1989 OFR table)
-  already names the order with an ending word but `STATUS_LEADS` does not carry it;
-- `unsourced`: neither. These need a new source.
+- `held_ending_lead_unrouted`: a held finding aid already names the order with an ending word about it but
+  `STATUS_LEADS` does not carry it: a Shepard or later-events edge whose mechanism is an ending (revocation,
+  supersession, replacement, termination, abolition, rescission, restoration, vacation, nullification), a Selden FR
+  citer in the ending class, or a 1989 OFR table row in its `ended_by_1989` group;
+- `unsourced`: neither. These need a new source. Rows that name the order without an ending word (amendments,
+  cross references, the 1989 table's in-force, merged or excluded rows) are listed in
+  `held_mentions_without_ending` and do not move an order out of `unsourced`.
+
+The M1118 column counts residual orders whose only route is the LC/NARA film (`microfilm_pending` in
+`research/photius/RESIDUAL.csv`); rows whose ProQuest replica check failed are counted apart
+(`residual_replica_gap`).
 
 Each family is matched to the bulk source that could record its later events or current status (`SOURCES` in
 `linnaeus.py`; the measurements behind each are in `research/linnaeus/REPORT.md`).

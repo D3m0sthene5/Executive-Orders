@@ -394,7 +394,7 @@ def build(repo, write_ids=True):
         actions.append({
             "id": "acquire.cruden_fr_statute_concordance", "kind": "acquisition",
             "description": ("Search the 1936-1993 Federal Register and the Statutes at Large by order number for undecided "
-                            "orders that no held finding aid names (jobs/cruden-fr-concordance; zero model tokens), so "
+                            "orders no held finding aid names with an ending word (jobs/cruden-fr-concordance; zero model tokens), so "
                             "producers on the undecided route can cite the later instrument's own sentence."),
             "orders": 0, "rate_key": "filed_per_attempt.undecided", "cost_key": None, "cost_override_usd": 0,
             "unlocks": [], "overlaps_with": ["status_assignment.undecided"],

@@ -130,15 +130,74 @@ class Cruden(unittest.TestCase):
         ids = {x["instrument_id"] for x in self.frags()}
         self.assertNotIn("EO:885", ids)       # Philippine Governor General's order No. 885
         self.assertNotIn("EO:3000", ids)      # printed date May 5, 1931 is not EO 3000's
-        located = list(csv.DictReader(open(self.out / "LOCATED.csv", encoding="utf-8")))
+        with open(self.out / "LOCATED.csv", encoding="utf-8") as fh:
+            located = list(csv.DictReader(fh))
         why = {r["target_id"]: r["refused"] for r in located if r["refused"]}
-        self.assertEqual(why["EO:885"], "another_issuer_printed_with_the_number")
+        self.assertIn(why["EO:885"], ("another_issuer_printed_with_the_number", "printed_date_disagrees_with_target"))
         self.assertEqual(why["EO:3000"], "printed_date_disagrees_with_target")
 
-    def test_other_issuer_without_date(self):
-        txt = "under Executive Order No. 885 of the Governor General of the Philippine Islands the allotment"
-        hits = cruden.locate(txt, "EO:885", "1908-06-12")
-        self.assertEqual(hits[0][1], "another_issuer_printed_with_the_number")
+    def test_review_identity_cases(self):
+        refused = [
+            ("EO:1885", "1913-11-01", "The Governor's Executive Order No. 1885 is hereby revoked."),
+            ("EO:1885", "1913-11-01", "Canal Zone Executive Order No. 1885 is hereby revoked."),
+            ("EO:1885", "1913-11-01", "The Governor-General of the Philippine Islands, by his Executive Order No. 1885, "
+                                      "is hereby revoked."),
+            ("EO:1885", "1913-11-01", "Executive Order No. 1885 of the State of California is hereby revoked."),
+            ("EO:1085", "1909-06-01", "Executive Order No. 1085 6 is hereby revoked."),
+            ("EO:885", "1908-06-12", "Executive Order No. 10,885 is hereby revoked."),
+            ("EO:2656", "1917-07-01", "Executive Order No. 2656 A is hereby revoked."),
+            ("EO:1885", "1913-11-01", "Executive Order No. 1885, approved March 9, 1951, is hereby revoked."),
+            ("EO:1885", "1913-11-01", "Executive Order No. 1885 of 5 January 1914 is hereby revoked."),
+        ]
+        for t, d, txt in refused:
+            for h, why, pointer in cruden.locate(txt, t, d, "1960-01-01"):
+                self.assertTrue(why, txt)
+        pointers = [
+            ("EO:1885", "1913-11-01", "Executive Order No. 1885 is hereby revoked.", "identity_unconfirmed"),
+            ("EO:1885", "1913-11-01", "All prior withdrawals are hereby revoked except Executive Order No. 1885 of "
+                                      "November 1, 1913.", "exception_or_saving"),
+            ("EO:1885", "1913-11-01", "Executive Order No. 2000 is hereby revoked, but not so as to affect Executive "
+                                      "Order No. 1885 of November 1, 1913.", "exception_or_saving"),
+            ("EO:5214", "1929-10-30", "Alaska; revocation of E. O. 5214, Oct. 30, 1929______________ 1583",
+             "contents_or_index_entry"),
+        ]
+        for t, d, txt, why_expected in pointers:
+            (h, why, pointer), = cruden.locate(txt, t, d, "1960-01-01")
+            self.assertIsNone(why, txt)
+            self.assertTrue(any(p.startswith(why_expected) for p in pointer), (txt, pointer))
+        # true citations are not refused for subject words, a matching date overrides issuer words
+        for txt in ["Executive Order No. 1885 of November 1, 1913, withdrawing lands in the Territory of Alaska, is "
+                    "hereby revoked.",
+                    "Executive Order No. 1885 of November 1, 1913, reserving lands in Puerto Rico, is hereby revoked.",
+                    "Executive Order No. 1885 of November 1, 1913, is hereby revoked by the Secretary of the Interior."]:
+            (h, why, pointer), = cruden.locate(txt, "EO:1885", "1913-11-01", "1960-01-01")
+            self.assertEqual((why, pointer, h["date_match"]), (None, [], True), txt)
+
+    def test_own_printing_is_refused(self):
+        txt = ("EXECUTIVE ORDER 8200\nPARTIAL REVOCATION OF EXECUTIVE ORDER NO. 5886\nBy virtue of the authority "
+               "vested in me, Executive Order No. 5886 of July 12, 1932, is hereby revoked in part.")
+        for h, why, pointer in cruden.locate(txt, "EO:8200", "1939-07-29", "1939-08-01"):
+            self.assertEqual(why, "inside_the_orders_own_printing")
+        contents = "Executive Order 8200: Partial revocation of Executive Order No. 5886 .... 3103"
+        for h, why, pointer in cruden.locate(contents, "EO:8200", "1939-07-29", "1939-08-01"):
+            self.assertTrue(why or pointer)
+        self.assertIn("publishdate:range(1939-07-30,", cruden.query("EO:8200", "FR", "1939-07-29"))
+
+    def test_actor_only_inside_its_own_span(self):
+        cases = [
+            ("[Public Land Order 945]\nAlaska\nExecutive Order No. 1885 is hereby revoked.", "PLO:945"),
+            ("[Public Land Order 944]\ntext\n[F. R. Doc. 50-1; Filed]\nOther agency\nExecutive Order No. 1885 is "
+             "hereby revoked.", None),
+            ("[Public Land Order 945]\nREVOKING EXECUTIVE ORDER NO. 1885 AND\nPUBLIC LAND ORDER NO. 500\nExecutive "
+             "Order No. 1885 is hereby revoked.", "PLO:945"),
+            ("EXECUTIVE ORDER 9000\nAMENDING\nEXECUTIVE ORDER NO. 8000 AND REVOKING EXECUTIVE ORDER NO. 1885\nIt is "
+             "ordered: Executive Order No. 1885 is hereby revoked.", "EO:9000"),
+            ("Some text, see [Public Land Order 100] above, and Executive Order No. 1885 is hereby revoked.", None),
+            ("EXECUTIVE ORDER\nREVOKING ORDER\n[No. 7500]\nExecutive Order No. 1885 is hereby revoked.", "EO:7500"),
+        ]
+        for txt, want in cases:
+            got, _ = cruden.acting_instrument(txt, txt.index("Executive Order No. 1885"), "EO:1885")
+            self.assertEqual(got, want, txt)
 
     def test_partial_act_is_qualified(self):
         self.run_job()
@@ -153,33 +212,51 @@ class Cruden(unittest.TestCase):
         r = next(x for x in rec if x["target_id"] == "EO:6000" and x["collection"] == "FR")
         self.assertEqual((r["status"], r["count"]), ("searched", 0))
         self.assertEqual(s["by_family"]["LAND_WITHDRAWAL"]["targets"], 5)
+        self.assertNotIn("searched", s["by_family"]["LAND_WITHDRAWAL"])  # 'queried' is not coverage
 
     def test_control_target_not_published_as_lead(self):
         s = self.run_job()
         self.assertNotIn("EO:4100", {x["instrument_id"] for x in self.frags()})
-        self.assertEqual(s["controls"]["positives_located"], 1)
+        self.assertEqual(s["controls"]["positives_located_with_date"], 1)
+        self.assertEqual(s["controls"]["identity_negatives_published_as_acting"], 0)
+        self.assertTrue(s["controls"]["passed"])
+
+    def test_controls_fail_on_zero_recall(self):
+        global SEARCH
+        saved = dict(SEARCH)
+        SEARCH["4100"] = []
+        try:
+            s = self.run_job()
+        finally:
+            SEARCH.clear()
+            SEARCH.update(saved)
+        self.assertFalse(s["controls"]["passed"])
+        self.assertTrue(all(x["data"][0]["mechanism"] == "cross_reference" for x in self.frags()))
 
     def test_sources_record_hashes_and_never_one_order(self):
+        import hashlib
         self.run_job()
         src = [json.loads(x) for x in (self.out / "SOURCES.jsonl").read_text().splitlines()]
         self.assertTrue(src)
+        self.assertEqual(len({r["source_id"] for r in src}), len(src))
         for r in src:
             self.assertGreaterEqual(len(r["instrument_ids"]), 2)
             self.assertFalse(r["acceptable_as_original"])
             self.assertRegex(r["sha256"], "^[0-9a-f]{64}$")
+            self.assertEqual(hashlib.sha256((self.out / r["text_path"]).read_bytes()).hexdigest(), r["text_sha256"])
             if r.get("cache_path"):
-                import hashlib
                 self.assertEqual(hashlib.sha256((self.out / r["cache_path"]).read_bytes()).hexdigest(), r["sha256"])
 
     def test_quote_span_points_into_held_text(self):
         self.run_job()
         for f in self.frags():
             d = f["data"][0]
-            text = (self.out / d["text_path"]).read_text(encoding="utf-8")
+            with open(self.out / d["text_path"], encoding="utf-8", newline="") as fh:
+                text = fh.read()
             a, b = map(int, d["quote_span"].split("-"))
             self.assertEqual(text[a:b], d["quote"])
 
-    def test_carry_forward_makes_no_new_downloads(self):
+    def test_carry_forward_reads_only_control_units_again(self):
         self.run_job()
         prior = Path(self.tmp.name) / "prior"
         self.out.rename(prior)
@@ -192,21 +269,34 @@ class Cruden(unittest.TestCase):
         s = cruden.main(self.repo, self.out, Path(self.tmp.name) / "cache2", env=self.env, transport=counting,
                         opener=lambda *a, **k: self.fail("no new search"),
                         premis=lambda pkg: {"gpo_sha256": "", "result": "not_listed"})
-        self.assertEqual([u for u in calls if "/content/" in u], [])
+        self.assertEqual([u for u in calls if "/content/" in u and "FR-1950-01-05" not in u], [])
         self.assertIn("EO:5214", {x["instrument_id"] for x in self.frags()})
         self.assertEqual(s["searches_made_this_run"], 0)
+        self.assertTrue(s["controls"]["passed"])
 
-    def test_short_number_without_date_is_pointer_only(self):
-        txt = "PUBLIC LAND ORDER 5\nExecutive Order No. 812 is hereby revoked.\n"
-        h, why = cruden.locate(txt, "EO:812", "1908-05-01")[0]
-        self.assertIsNone(why)
-        self.assertIsNone(h["date_match"])
+    def test_tampered_text_is_not_carried(self):
+        self.run_job()
+        prior = Path(self.tmp.name) / "prior"
+        self.out.rename(prior)
+        for p in (prior / "texts").glob("FR-1954-03-24_*.txt"):
+            p.write_text(p.read_text(encoding="utf-8") + "tampered", encoding="utf-8")
+        self.env["JOB_PRIOR_OUTPUT_DIR"] = str(prior)
+        calls = []
+
+        def counting(url, headers, timeout):
+            calls.append(url)
+            return transport(url, headers, timeout)
+        cruden.main(self.repo, self.out, Path(self.tmp.name) / "cache3", env=self.env, transport=counting,
+                    opener=lambda *a, **k: self.fail("no new search"),
+                    premis=lambda pkg: {"gpo_sha256": "", "result": "not_listed"})
+        self.assertTrue(any("FR-1954-03-24" in u for u in calls))  # read again, not trusted
 
     def test_query_forms(self):
         q = cruden.query("EO:2656A", "FR", "1917-01-01")
         self.assertIn('"Executive Order No. 2656-A"', q)
         self.assertIn("publishdate:range(1936-03-14,1993-12-31)", q)
         self.assertNotIn("publishdate", cruden.query("EO:5214", "STATUTE", "1929-10-30"))
+
 
 
 if __name__ == "__main__":
