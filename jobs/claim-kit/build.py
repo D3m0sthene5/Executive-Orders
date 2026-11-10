@@ -179,6 +179,238 @@ def unlocated_reason(source_event):
     if proposal.get('mechanism')==NAME_MATCH_MECHANISM:return NAME_MATCH_LEAD
     return TARGET_NOT_LOCATED
 
+ACTING_ROLE='acting_instrument_text'
+NON_CENSUS_ACTOR='non_census_instrument'
+NOT_FOUND_LEXICAL='number not found by the lexical check; may be cited by date or garbled OCR; read the held text at '
+ACTOR_TEXT_LIMIT=50000
+WINDOW_RADIUS=1500
+WINDOW_MAX_CHARS=6000
+WINDOW_BYTES=20000
+WINDOW_CAP=12
+# Official government printings of later instruments as their producers declare them: the govinfo Federal Register
+# issue scan, the govinfo Statutes at Large granule, an official FR page of a later instrument. A federalregister.gov
+# text rendering, a code or table listing or a transcription is not on this list: such a text stays a lead.
+OFFICIAL_GRADE_PREFIXES=('government_printed_federal_register_issue','government_printed_statutes_at_large')
+OFFICIAL_ROLES=frozenset({'official_federal_register_page_of_a_later_instrument'})
+
+def official_acting_grade(grade, role=None):
+    return str(grade or '').startswith(OFFICIAL_GRADE_PREFIXES) or role in OFFICIAL_ROLES
+
+# An executive-order citation that may precede the target's number: "Executive Order(s)" (OCR letter-spacing
+# tolerated), "Exec. Order", "Ex. Ord.", "E.O."/"EO", or a bare "Order(s)" only right after an opening quotation
+# mark (a strike-and-insert quote: '``Orders 13354 and 13355'). "Public Land Order 2748", "Order No. 2748 of the
+# Secretary" and "Secretary's Order 2508 and Order 2509" never qualify.
+_CUE=(r'(?:E[ ]?x[ ]?e[ ]?c[ ]?u[ ]?t[ ]?i[ ]?v[ ]?e[ \t\n]{1,3}O[ ]?r[ ]?d[ ]?e[ ]?r[ ]?s?|\bExec\.[ \t\n]{0,2}Orders?'
+      r'|\bEx\.[ \t\n]{0,2}Ords?\.|\bE\.[ ]?O\.(?:\x27?s)?|\bEOs?'
+      r'|(?:[‘“"\x27`]{1,2})[ \t\n]{0,2}Orders?)'
+      r'(?:[ \t\n]{0,3}\((?:E\.[ ]?O\.|EO)\))?')
+_NUMWORD=r'(?:Nos?\.?|Numbers?|Numbered)'
+_MONTH=r'(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]{0,6}\.?'
+_ITEM=(r'\d(?:[ ]?\d){0,4}(?:-?[A-Za-z])?(?:,?[ \t\n]{1,3}(?:of|dated)[ \t\n]{1,3}'+_MONTH+r'[ \t\n]{1,3}\d{1,2},?[ \t\n]{0,3}\d{4})?'
+       r'(?:,?[ \t\n]{1,3}as[ \t\n]{1,3}amended)?')
+_SEP=r'[ \t\n]{0,3}[,;]?[ \t\n]{0,3}(?:(?:and|or|&)[ \t\n]{1,3})?'
+_PRECEDES=re.compile(_CUE+r'[ \t\n]{0,3}(?:'+_NUMWORD+r'[ \t\n]{0,3})?(?:'+_ITEM+_SEP+r'(?:'+_NUMWORD+r'[ \t\n]{0,3})?){0,20}\Z',re.I)
+_HYPHENATED=re.compile(r'(?<=[A-Za-z])-[ \t]*\n?[ \t]*(?=[a-z])')
+_STATES=('Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|'
+         'Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|'
+         'Montana|Nebraska|Nevada|New[ ]Hampshire|New[ ]Jersey|New[ ]Mexico|New[ ]York|North[ ]Carolina|North[ ]Dakota|'
+         'Ohio|Oklahoma|Oregon|Pennsylvania|Rhode[ ]Island|South[ ]Carolina|South[ ]Dakota|Tennessee|Texas|Utah|Vermont|'
+         r'Virginia|Washington|West[ ]Virginia|Wisconsin|Wyoming|Puerto[ ]Rico|Guam|Philippines?|Philippine|Ill\.|Mich\.')
+# A state, territorial, gubernatorial or foreign order printed right before the cue ("Missouri Executive Order",
+# "the Commonwealth's Executive Order", "Governor's Executive Order").
+_QUALIFIED=re.compile(r'(?:\b(?:'+_STATES+r')|\bState|\bGovernor|\bCommonwealth|\bTerritor(?:y|ial)|\bMayor|\bCounty|\bProvincial)'
+                      r'(?:\x27s|’s)?[ \t\n]{0,3}(?:Emergency[ \t\n]{1,3})?\Z')
+# What follows the number: a hyphenated or comma-grouped number ("17-03", "1991-31", "12, 731"), a citation of the
+# Federal Register, CFR, Statutes or U.S. Code ("9066, 7 F.R. 1407"), or a governor as issuer.
+_FOLLOWS_OTHER=re.compile(r'(?:[ ]?-[ \t\n]{0,2}\d|,[ ]\d{3}\b|[ \t\n]{0,2}(?:F\.[ ]?R\.|FR\b|C\.?F\.?R\.?\b|Stat\.|U\.[ ]?S\.[ ]?C\.)'
+                          r'|[ \t\n]{1,2}(?:hours?|days?|months?|years?|minutes?|percent)\b)')
+_GOVERNOR_AFTER=re.compile(r'\bGovernor\b')
+# Agency Federal Register documents also discuss state programs (implementation plans, state codes): there a
+# state, governor or foreign context in the same sentence, or a state citation right after, refuses the match.
+_AGENCY_STATE_BEFORE=re.compile(r'(?i)\b(?:governor|commonwealth|philippines?|state|states\x27|SIP)\b(?:\x27s)?')
+_AGENCY_STATE_AFTER=re.compile(r'(?i)\b(?:CMR|SIP|state|governor)\b')
+_DATE_AFTER=re.compile(r'\A[ \t\n]{0,2}(?:,|\()?[ \t\n]{0,2}(?:(?:of|dated|on|signed[ \t\n]+on|issued[ \t\n]+on|was[ \t\n]+issued[ \t\n]+on)[ \t\n]{1,3})?'
+                       r'(?:'+_MONTH+r'[ \t\n]{1,3}\d{1,2},?[ \t\n]{0,3}(?P<year>\d{4})|(?P<vol>\d{1,3})[ \t\n]{1,2}F\.?[ ]?R\.?[ \t\n]{1,2}\d)',re.I)
+# Regulatory-review boilerplate of modern rules: an old order number here is a dropped-digit misprint of a modern one
+# ("Executive Order 1266" for 12866, "Executive Order 3132, Federalism").
+_MODERN_BOILERPLATE=re.compile(r'(?i)regulatory[ \t\n]+(?:action|planning|review|flexibility|impact)|federalism|tribal|'
+                               r'principles[ \t\n]+and[ \t\n]+criteria|unfunded[ \t\n]+mandates|paperwork[ \t\n]+reduction|'
+                               r'civil[ \t\n]+justice|environmental[ \t\n]+(?:justice|health[ \t\n]+risks)|energy[ \t\n]+(?:supply|effects)|'
+                               r'significant(?:ly)?[ \t\n]+(?:regulatory|rule|affect|energy)|plain[ \t\n]+language|'
+                               r'OMB[ \t\n]+(?:control|circular|review)|controlled[ \t\n]+unclassified|customer[ \t\n]+experience')
+# The cue and number-word alone, with no list before the number: a direct citation ("Executive Order No. 8790").
+_DIRECT=re.compile(_CUE+r'[ \t\n]{0,3}(?:'+_NUMWORD+r'[ \t\n]{0,3})?\Z',re.I)
+# What may follow a number reached through a list continuation: a delimiter, the end of the list (a verb or
+# function word), or its date or amendment. A noun ("Executive Order 9066 and 8 other orders") ends no list.
+_LIST_END=re.compile(r'(?i)\A(?:[ \t\n]{0,3}(?:[,;:.)\]]|\Z)|[ \t\n]{1,3}(?:and|or|of|dated|as|are|is|were|was|be|been|'
+                     r'shall|hereby|have|has|had|which|that|to|in|so|respectively|revoked|superseded|amended|'
+                     r'terminated|abolished|rescinded|insofar|also|apply|applies|remain|remains|do|does|will|may)\b)')
+_FIVE_DIGIT_CITE=re.compile(r'(?i)(?:Executive[ \t\n]+Orders?|Exec\.[ \t\n]*Order|E\.[ ]?O\.|EO)[ \t\n]{0,3}(?:No\.?[ \t\n]{0,2})?(\d{5})\b')
+
+def _year(value):
+    m=re.match(r'(\d{4})',str(value or ''))
+    return int(m[1]) if m else None
+
+def _dropped_digit(number, others):
+    """True when number is another printed five-digit order number with one digit dropped (1266 for 12866)."""
+    return any(len(o)==len(number)+1 and any(o[:i]+o[i+1:]==number for i in range(len(o))) for o in others)
+
+def target_mentions(iid, text, signing_date=None, agency=False):
+    """Exact spans where a held text prints census order iid by number as an executive-order citation, or None
+    when iid has no plain number form (EO:106½, EO:23-1, EO:UN:...).
+
+    A lexical lead, never a finding. Letter-spaced and hyphenated OCR ("Execu-\\ntive", "7 7 9 4") and long
+    dated lists are tolerated. Refused: a number continuing as another ("17-03", "12, 731"), a citation number
+    of the FR, CFR, Statutes or U.S. Code, a bare year after a comma, a state, governor's or foreign order, a
+    printed date or FR volume that contradicts the order's signing year, and a dropped-digit misprint of a modern
+    order. A miss means only that this check found no number: the text may cite the order by date or in
+    garbled OCR. ``agency`` (an agency Federal Register document) also refuses a state, governor or foreign
+    context in the same sentence before the citation, or a state citation within 80 characters after it."""
+    m=re.fullmatch(r'EO:(\d+)([A-Za-z]?)',iid or '')
+    if not m or not isinstance(text,str):return None
+    digits,suffix=m[1],m[2]
+    # OCR letter-spacing joins digits only when every digit of a number of three or more is single-spaced
+    # ("7 7 9 4"), never two separate numbers ("Executive Order 1 2" is not EO 12; "12 866" is not EO 866).
+    spaced='|'+' '.join(re.escape(ch) for ch in digits) if len(digits)>=3 else ''
+    number='(?:'+re.escape(digits)+spaced+')'+('[ -]?(?i:'+re.escape(suffix)+')' if suffix else '')
+    tail=r'(?![ ]?\d|\w|[.,]\d)' if suffix else r'(?![ ]?\d|\w|[.,]\d|-[A-Za-z]\b)'
+    signed=_year(signing_date);old=(signed<1945) if signed else int(digits)<9000
+    others=None;found=[]
+    for hit in re.finditer(r'(?<![\w.,/$§-])(?<!\d[ ])'+number+tail,text):
+        s,e=hit.start(),hit.end()
+        after=text[e:e+120]
+        if _FOLLOWS_OTHER.match(after) or _GOVERNOR_AFTER.search(after[:80]):continue
+        a=max(0,s-400)
+        # A word character stands in for the text cut off before the window, so a window never starts a cue.
+        before=_HYPHENATED.sub('',('w' if a else '')+text[a:s])
+        cue=_PRECEDES.search(before)
+        if not cue:continue
+        if not _DIRECT.search(before) and not _LIST_END.match(after):continue
+        if _QUALIFIED.search(before[max(0,cue.start()-60):cue.start()]):continue
+        if agency:
+            sentence=re.split(r'[.;:]\s',before[max(0,cue.start()-160):cue.start()])[-1]
+            if _AGENCY_STATE_BEFORE.search(sentence) or _AGENCY_STATE_AFTER.search(after[:80]):continue
+        if 1700<=int(digits)<=2100 and re.search(r',[ \t\n]{0,3}\Z',before):continue  # "Executive Order 6910, 1934"
+        date=_DATE_AFTER.match(after)
+        if date and signed:
+            printed=int(date['year']) if date['year'] else 1935+int(date['vol'])
+            if abs(printed-signed)>(2 if date['vol'] else 1):continue
+        if old and len(digits)<=4:
+            if _MODERN_BOILERPLATE.search(text[max(0,s-250):e+250]):continue
+            if others is None:others={o for o in _FIVE_DIGIT_CITE.findall(text)}
+            if _dropped_digit(digits,others):continue
+        found.append((s,e))
+    return found
+
+def context_windows(text, spans, radius=WINDOW_RADIUS, max_chars=WINDOW_MAX_CHARS):
+    """Exact windows of text around spans, widened to whole lines and merged up to max_chars; [(start, end)].
+    A window never exceeds max_chars, so a span much longer than that is cut at its start plus max_chars."""
+    windows=[]
+    for start,end in sorted(spans):
+        if type(start) is not int or type(end) is not int or not 0<=start<end<=len(text):continue
+        a=max(0,start-radius);b=min(len(text),end+radius)
+        line=text.rfind('\n',max(0,a-200),a)
+        a=line+1 if line>=0 else a
+        line=text.find('\n',b,min(len(text),b+200))
+        b=line+1 if line>=0 else b
+        if b-a>max_chars:a,b=max(0,start-200),min(len(text),max(0,start-200)+max_chars)
+        if windows and a<=windows[-1][1]:
+            if max(b,windows[-1][1])-windows[-1][0]<=max_chars:
+                windows[-1]=(windows[-1][0],max(b,windows[-1][1]));continue
+            a=windows[-1][1]
+            if b<=a:continue
+        windows.append((a,b))
+    return windows
+
+def _actor_context(iid, actor, ar, acts, evidence, missing, signing_date=None):
+    """ACTOR_TEXT evidence for one held actor text: the whole text up to ACTOR_TEXT_LIMIT bytes, else exact windows
+    around each located provision (kept first) and each printed mention of the target, at most WINDOW_CAP windows
+    and WINDOW_BYTES bytes. A non-census acting text is routed only when the lexical check finds the number, and is
+    basis_eligible only when it is also an official printing with no page check owed. Returns the actor_contexts entry, or None."""
+    text=ar['text'];acting=ar.get('role')==ACTING_ROLE
+    mentions=target_mentions(iid,text,signing_date,actor.startswith('FRDOC:')) or []
+    if acting and not mentions:
+        missing.append('Acting text of '+actor+': '+NOT_FOUND_LEXICAL+ar['text_path'])
+        return None
+    key='ACTOR_TEXT:'+actor
+    base={'source':ar['source'],'actor_id':actor}
+    if mentions:base['prints_number_lexical']=True
+    official=acting and official_acting_grade(ar.get('grade'),ar.get('producer_role'))
+    if acting:
+        base.update(actor_kind=NON_CENSUS_ACTOR,grade=ar.get('grade'),acceptable_as_original=False,
+                    requires_page_check=bool(ar.get('requires_page_check')),official_printing=official,
+                    notice='Held text of a later instrument outside the executive-order census, under its own identity. '
+                           'A status basis only when basis_eligible (an official printing in which the lexical check '
+                           'found this order\'s number); otherwise a lead. Exact span only, no legal effect asserted.')
+        if ar.get('location_confidence') is not None:base['location_confidence']=ar['location_confidence']
+    if len(text.encode('utf-8'))<=ACTOR_TEXT_LIMIT:
+        record=dict(base,id=key,text=text,char_start=0,char_end=len(text),role='actor_context')
+        if acting:record['basis_eligible']=bool(official and mentions and not ar.get('requires_page_check'))
+        evidence[key]=record
+        entry={'actor_id':actor,'evidence_id':key}
+        if mentions:entry['prints_number_lexical']=True
+        return entry
+    act_spans=[]
+    for a in acts:
+        source=a.get('actor_source') if isinstance(a.get('actor_source'),dict) else {}
+        if a.get('actor_id')==actor and source.get('text_sha256')==ar['source'].get('text_sha256'):
+            act_spans.append((a.get('char_start'),a.get('char_end')))
+    windows=context_windows(text,act_spans+mentions)
+    has_act=lambda w:any(type(s) is int and w[0]<=s<w[1] for s,_ in act_spans)
+    ordered=[w for w in windows if has_act(w)]+[w for w in windows if not has_act(w)]
+    chosen=[];total=0
+    for w in ordered:
+        size=len(text[w[0]:w[1]].encode('utf-8'))
+        if len(chosen)>=WINDOW_CAP or total+size>WINDOW_BYTES:continue
+        chosen.append(w);total+=size
+    entry={'actor_id':actor,'text_sha256':ar['source']['text_sha256'],'evidence_ids':[],
+           'windows_omitted':len(windows)-len(chosen),'window_bytes':total,'full_text_chars':len(text)}
+    if mentions:entry['prints_number_lexical']=True
+    for start,end in chosen:
+        wid=key+'@'+str(start)
+        record=dict(base,id=wid,text=text[start:end],char_start=start,char_end=end,role='actor_context_window')
+        record.pop('prints_number_lexical',None)
+        named=any(s<end and e>start for s,e in mentions)
+        if named:record['prints_number_lexical']=True
+        if acting:record['basis_eligible']=bool(official and named and not ar.get('requires_page_check'))
+        evidence[wid]=record
+        entry['evidence_ids'].append(wid)
+    if acting:
+        # The held file itself is the full text; its hash is pinned through the window records.
+        entry['held_text_path']=ar['text_path']
+        if entry['windows_omitted']:
+            missing.append('Large acting text of '+actor+': '+str(entry['windows_omitted'])+' more passages are not '
+                           'cited; read the held text at '+ar['text_path']+'.')
+    else:
+        entry['overflow']='actor-texts/'+filename(actor)+'.json'
+        missing.append('Large actor context must be read at '+entry['overflow']+' before deciding scope/savings.')
+    return entry
+
+def select_acting_texts(repo, rows, wanted):
+    """{actor: held acting text record} for the wanted non-census actors; one text per actor, read and hashed.
+
+    The first readable declaration wins in (graded first, a job's output before its data/ shard copies, text path)
+    order; an empty or placeholder text is refused. Returns (selected, refused) where refused lists 'actor: reason'
+    strings."""
+    by_actor=collections.defaultdict(list)
+    for r in rows:
+        if r.get('instrument_id') in wanted and r.get('role')==ACTING_ROLE:by_actor[r['instrument_id']].append(r)
+    selected={};refused=[]
+    for actor,choices in sorted(by_actor.items()):
+        for r in sorted(choices,key=lambda r:(r.get('grade') is None,'/output/' not in r['text_path'],r['text_path'])):
+            try:text=safe_read(repo,r['text_path'])
+            except (OSError,ValueError,UnicodeError) as e:
+                refused.append(actor+': unreadable '+r['text_path']+' ('+type(e).__name__+')');continue
+            digest=hashlib.sha256(text.encode()).hexdigest()
+            if digest!=r['source'].get('text_sha256'):
+                refused.append(actor+': text hash changed '+r['text_path']);continue
+            conflict=identity_conflict(actor,r,text)
+            if conflict:
+                refused.append(actor+': '+conflict);continue
+            selected[actor]=dict(r,source=dict(r['source'],text_path=r['text_path'],text_sha256=digest,signing_date=None,filing_date=None),text=text)
+            break
+    return selected,refused
+
 def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, known_actors=None, prior_confirmation=None):
     draft=corpus['drafts'].get(iid,{})
     d=draft.get('_draft',{})
@@ -220,14 +452,8 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
     for actor in sorted({a['actor_id'] for a in acts}|set(known_actors or [])):
         ar=selected.get(actor)
         if not ar:continue
-        key='ACTOR_TEXT:'+actor
-        if len(ar['text'].encode('utf-8'))<=50000:
-            evidence[key]={'id':key,'source':ar['source'],'text':ar['text'],'char_start':0,'char_end':len(ar['text']),'actor_id':actor,'role':'actor_context'}
-            actor_contexts.append({'actor_id':actor,'evidence_id':key})
-        else:
-            pointer='actor-texts/'+filename(actor)+'.json'
-            actor_contexts.append({'actor_id':actor,'overflow':pointer,'text_sha256':ar['source']['text_sha256']})
-            missing.append('Large actor context must be read at '+pointer+' before deciding scope/savings.')
+        context=_actor_context(iid,actor,ar,acts,evidence,missing,(rec or {}).get('signing_date'))
+        if context:actor_contexts.append(context)
     # Current-law evidence keeps exact held-text offsets. A citation alone cannot be a predicate.
     current=[]
     for n,frag in enumerate(corpus.get('current_law',{}).get(iid,[])):
@@ -323,11 +549,16 @@ def build(repo, out, cache=None):
     # Clause-level citations often declare the same file hundreds of times with
     # different page labels. Preserve every declaration, parse each actual held
     # order/artifact/text once, and choose its best original/locator candidate.
+    acting_rows=[r for r in corpus.get('acting_texts',[]) if r.get('instrument_id') not in universe]
     with ShardedJsonl(out/'TEXT_REPRESENTATIONS.jsonl') as fh:
         for r in declared:
             line(fh,r)
             key=(r['instrument_id'],r['text_path'],r['source'].get('sha256'),r['source'].get('text_sha256'))
             if key not in seen_texts:seen_texts.add(key);text_records.append(r)
+        # Held texts of non-census acting instruments, under their own identity (role acting_instrument_text).
+        # They are never scanned as orders; the status overlay selects them by their CLAUSES source.
+        for r in acting_rows:line(fh,r)
+    counts['acting_text_representations']=len(acting_rows)
     counts['declared_text_representations']=len(declared)
     counts['distinct_held_text_artifacts']=len(text_records)
     with ShardedJsonl(out/'TEXT_CLAUSES.jsonl') as all_clauses:
@@ -420,11 +651,22 @@ def build(repo, out, cache=None):
                 if child!=a['actor_id']:
                     pairs.setdefault((child,a['actor_id'],a['target_id']),{'target_id':child,'actor_id':a['actor_id'],'parent_id':a['target_id']})
     actors_by=collections.defaultdict(list);missing_sources=[];located_pairs={}
+    acting_selected,acting_refused=select_acting_texts(repo,acting_rows,{a for _,a,_ in pairs if a not in universe})
+    for reason in acting_refused:warnings.append('acting text refused: '+reason)
+    unnamed_pairs=set();acting_used=set()
     for pair_no,(key,p) in enumerate(sorted(pairs.items(),key=lambda kv:(kv[0][1],kv[0][0],str(kv[0][2]))),1):
         if pair_no%2000==0:print(f'claim-kit: located {pair_no}/{len(pairs)} known provision pairs',flush=True)
         target,actor,parent=key
         if actor not in universe:
-            missing_by[target].append('Acting identity absent from census: '+actor);continue
+            ar=acting_selected.get(actor)
+            if ar is None:
+                missing_by[target].append('Acting identity absent from census: '+actor);continue
+            if not target_mentions(target,ar['text'],selected.get(target,{}).get('signing_date'),actor.startswith('FRDOC:')):
+                # A lexical miss is not a finding: the text may cite the order by date or in garbled OCR.
+                unnamed_pairs.add((target,actor))
+                missing_by[target].append('Acting text of '+actor+': '+NOT_FOUND_LEXICAL+ar['text_path']);continue
+            # Held and named: its exact text enters the target's dossier as ACTOR_TEXT. No ACT record is made.
+            acting_used.add(actor);counts['acting_text_pairs_named']+=1;continue
         ar=selected.get(actor)
         # Explicit provisions were already located in the whole-text pass. Reuse
         # them; rescanning a shared parent for every amender creates a quadratic
@@ -467,7 +709,12 @@ def build(repo, out, cache=None):
         for pair,values in sorted(all_variants.items()):
             for variant in values.values():line(fh,variant)
     known_actors_by=collections.defaultdict(set)
-    for target,actor,_ in pairs:known_actors_by[target].add(actor)
+    for target,actor,_ in pairs:
+        if (target,actor) not in unnamed_pairs:known_actors_by[target].add(actor)
+    counts['acting_text_pairs_number_not_found']=len(unnamed_pairs);counts['acting_texts_selected']=len(acting_used)
+    for actor in set(acting_selected)-acting_used:del acting_selected[actor]  # free texts that name no order
+    # Decided dossiers see the same actor texts the overlay will select: census texts plus named acting texts.
+    context_texts=dict(selected);context_texts.update({a:acting_selected[a] for a in acting_used})
     counts['known_pairs']=len({(t,a) for t,a,_ in pairs});counts['located_actor_pairs']=sum(map(len,actors_by.values()))
     counts['orders_with_held_text']=len(selected);counts['generic_references_excluded']=generic_total
     confirmation_records=W.load_confirmations(repo)
@@ -504,11 +751,16 @@ def build(repo, out, cache=None):
                          'known_actor_ids':sorted(known_actors_by.get(iid,[]))})
                 line(sf,{'instrument_id':iid,'status':None,'lead_actor_ids':sorted({a['actor_id'] for a in acts}),'own_terms':ts,'has_held_text':iid in selected,'current_law_leads':corpus.get('current_law',{}).get(iid,[]),'status_history':corpus.get('status_histories',{}).get(iid),**({'factual_obligations':corpus['factual_obligations'][iid]} if corpus.get('factual_obligations',{}).get(iid) else {}),'missing':missing_by[iid],'notice':'Separate status-lead queue. Does not decide or write a status.'})
                 continue
-            dossier=package(iid,corpus,selected,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid),prior)
+            dossier=package(iid,corpus,context_texts,c,ts,acts,chain_rec,missing_by[iid],known_actors_by.get(iid),prior)
             name=filename(iid)
             dump(out/'dossiers'/(name+'.json'),dossier)
             dump(out/'sheets'/(name+'.decision.json'),blank_sheet(dossier))
             index.append({'instrument_id':iid,'status':corpus['statuses'][iid], 'dossier':'dossiers/'+name+'.json','clauses':len(dossier['clauses']),'actors':len(acts),'missing':len(dossier['missing']),'conflicts':len(dossier['conflicts']),'fingerprint':dossier['fingerprint']})
+        for actor in sorted(acting_used):
+            # Not a segmentation: the frozen overlay selects an actor's held text by its CLAUSES source.
+            line(cf,{'instrument_id':actor,'source':acting_selected[actor]['source'],'clauses':[],'role':ACTING_ROLE,
+                     'method':'acting_text_not_segmented',
+                     'notes':'Held text of a non-census acting instrument; context only, never an order or a clause inventory.'})
     decided=set(corpus['statuses']);family_rows=[]
     for key,ids in families.items():
         ids=sorted(ids&decided)

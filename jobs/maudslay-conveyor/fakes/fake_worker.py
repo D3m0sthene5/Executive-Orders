@@ -9,7 +9,12 @@ Env MAUDSLAY_FAKE_SCENARIO: JSON with optional
   "reviewer": {"A"|"B": {"miss_controls": bool, "reject": [EO], "fail": bool, "touch": [string], "reasons": str}},
   "touch": {EO: [string]} (extra producer tool-call arguments), "usd": {"producer"|"reviewer": x}, "tokens": n,
   "sleep": {EO: s}, "sleep_once": {EO: s}, "turns": n, "turn_sleep": s, "end_date": "2000-01-02",
-  "canned": {EO: {"decision": {...}, "clauses": {scope: {...}}, "rationale": str}}."""
+  "canned": {EO: {"decision": {...}, "clauses": {scope: {...}}, "rationale": str}},
+  "status_decision": {EO: "blank"} (an undecided order's producer leaves STATUS_DECISION.json blank),
+  "status_reviewer": {"reject": [EO], "fail": bool, "touch": [string], "rename": str}.
+A status-reviewer prompt (STATUS REVIEWER NAME:) fills each STATUS_REVIEW_EO_N.json sheet it lists. A blind reviewer
+treats a claim carrying "fake_seal" as planted when the seal no longer matches (any typed or dated plant); otherwise as
+planted when its whole_order_end date differs from end_date."""
 import csv
 import hashlib
 import json
@@ -54,6 +59,28 @@ def sleep_for(sc, ident):
     time.sleep(s)
 
 
+def fill_status_decision(prompt, sc, iid, agent):
+    """An undecided order: fill the blank STATUS_DECISION.json in the producer's own folder (a status NO resting on
+    the evidence's ACT: records), as a real producer would."""
+    ev_path, dec_path = field(prompt, "STATUS EVIDENCE"), field(prompt, "STATUS DECISION")
+    if not ev_path or not dec_path or (sc.get("status_decision") or {}).get(iid) == "blank":
+        return []
+    ev = json.loads(Path(ev_path).read_text(encoding="utf-8"))
+    dec = json.loads(Path(dec_path).read_text(encoding="utf-8"))
+    h = ev["history_packet"]["history"]
+    recs = ev["base_dossier"]["evidence"]
+    dec.update(agent=agent, approved=True, identity_confirmed=True, basis_review_confirmed=True,
+               earlier_endings_checked=True, partial_scope_checked=True, savings_checked=True,
+               observations_reviewed=list(h.get("observation_ids", [])),
+               conflict_resolutions={f: "Synthetic resolution: the held sources settle this flag explicitly."
+                                     for f in h.get("flags", [])},
+               recommended_provisional_status="no", material_gaps=[],
+               basis_evidence_ids=sorted(k for k in recs if k.startswith(("ACT:", "ACTOR_TEXT:"))),
+               rationale=f"Synthetic producer rationale: the held acting instrument ends the whole of {iid}.")
+    Path(dec_path).write_text(json.dumps(dec, indent=1), encoding="utf-8")
+    return [f"cat {ev_path}"]
+
+
 def produce(prompt, sc):
     iid, work, agent = field(prompt, "ORDER"), Path(field(prompt, "SHEET FOLDER")), field(prompt, "AGENT")
     tools = [f"cat {field(prompt, 'VIEW')}"] + list((sc.get("touch") or {}).get(iid, []))
@@ -92,7 +119,41 @@ def produce(prompt, sc):
     (work / "RATIONALES.json").write_text(json.dumps({f"{s}.main": text}), encoding="utf-8")
     (work / "ASSESSMENT.json").write_text(json.dumps({"id": iid, "outcome": r["outcome"]}), encoding="utf-8")
     (work / "REPORT.md").write_text(f"synthetic {iid} {r['outcome']}\n", encoding="utf-8")
+    if mode != "block":
+        tools += fill_status_decision(prompt, sc, iid, agent)
     return iid, 0, tools
+
+
+def status_review(prompt, sc):
+    """Fill each listed status review sheet: accept, unless the scenario rejects the order."""
+    name = field(prompt, "STATUS REVIEWER NAME")
+    cfg = sc.get("status_reviewer") or {}
+    tools = list(cfg.get("touch", []))
+    if cfg.get("fail"):
+        return name, 1, tools
+    for line in re.findall(r"^MEMBER: (.+)$", prompt, re.M):
+        parts = dict(x.split(": ", 1) for x in line.split(" | ")[1:])
+        iid = line.split(" | ")[0].strip()
+        ev = json.loads(Path(parts["EVIDENCE"]).read_text(encoding="utf-8"))
+        dec = json.loads(Path(parts["DECISION"]).read_text(encoding="utf-8"))
+        tools += [f"cat {parts['EVIDENCE']}", f"cat {parts['DECISION']}"]
+        sheet = Path(parts["SHEET"])
+        rv = json.loads(sheet.read_text(encoding="utf-8"))
+        reject = iid in cfg.get("reject", [])
+        rv.update(decision="reject" if reject else "accept", independence_confirmed=True, source_checks_confirmed=True,
+                  checked_evidence_ids=[ev["base_dossier"]["original_source_id"]] + list(dec.get("basis_evidence_ids") or []),
+                  rationale=("Synthetic status review: the basis sentence is qualified, so the whole-order end fails."
+                             if reject else "Synthetic status review: identity, the basis sentence and its date confirmed."))
+        if cfg.get("rename"):
+            rv["reviewer"] = cfg["rename"]
+        sheet.write_text(json.dumps(rv, indent=1), encoding="utf-8")
+    return name, 0, tools
+
+
+def planted_claim(c, end):
+    if "fake_seal" in c:
+        return canon({k: v for k, v in c.items() if k != "fake_seal"}) != c["fake_seal"]
+    return c.get("whole_order_end", {}).get("date") != end
 
 
 def review(prompt, sc):
@@ -112,10 +173,15 @@ def review(prompt, sc):
         if not line.strip():
             continue
         c = json.loads(line)
-        planted = c.get("whole_order_end", {}).get("date") != end
+        planted = planted_claim(c, end)
         iid = c["instrument_id"]
         if planted and not cfg.get("miss_controls"):
             v, d = "rejected", [{"field": "whole_order_end.date", "problem": "contradicts the cited source"}]
+            if "fake_seal" in c:
+                # A fake that names every typed kind: real reviewers name one; kind-specific misses are tested on
+                # caught() directly (test_nalimov ConveyorTypedControlTests).
+                d.append({"field": "later_events", "problem": "an event is omitted, or the end is partial; the "
+                          "original_operative_text identity is another order's; the ending_source provision differs"})
         elif iid in cfg.get("reject", []):
             v, d = "rejected", [{"field": "research_rationale", "problem": "reason does not match the source"}]
         else:
@@ -134,8 +200,9 @@ def main():
     prompt = sys.stdin.read()
     sc = json.loads(Path(os.environ["MAUDSLAY_FAKE_SCENARIO"]).read_text()) if os.environ.get("MAUDSLAY_FAKE_SCENARIO") else {}
     files = sorted(os.listdir("."))
-    kind = "producer" if "SHEET FOLDER:" in prompt else "reviewer"
-    ident, rc, tools = produce(prompt, sc) if kind == "producer" else review(prompt, sc)
+    kind = ("producer" if "SHEET FOLDER:" in prompt else "status_reviewer" if "STATUS REVIEWER NAME:" in prompt
+            else "reviewer")
+    ident, rc, tools = {"producer": produce, "status_reviewer": status_review, "reviewer": review}[kind](prompt, sc)
     usd = (sc.get("usd") or {}).get(kind, 0.5)
     tok = int(sc.get("tokens", 1000))
     turns = int(sc.get("turns", 1))

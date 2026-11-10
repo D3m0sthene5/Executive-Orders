@@ -1,0 +1,82 @@
+{
+ "wave": "nalimov-calibration-2026-11-10",
+ "author": "claude-opus-5-5",
+ "stage": 0,
+ "objective": {
+  "metric": "verified_claims_per_unit",
+  "text": "Measure, on the 8 script-drafted express-revocation claims that the kit's assembler and the actual claim checker pass, how many both blind verifiers uphold and the status reader accepts, with every planted control caught, per API-equivalent dollar, against the full undecided route (Papinian: 7.71 USD per adopted status).",
+  "reach_note": "This batch measures unit cost and control catch only. Reach comes from research/nalimov/TALLY.json, not from the batch: 12 of 720 express candidates are scriptable now, at most 19 with Accursius F3-F7, 41 with sources, and thousands only with new drafter tiers; 0 of 2,730 decided."
+ },
+ "actions": [
+  {
+   "id": "status_assignment.undecided",
+   "orders": 8,
+   "lanes": 1,
+   "ids": [
+    "EO:10779",
+    "EO:11056",
+    "EO:11232",
+    "EO:11274",
+    "EO:11352",
+    "EO:11361",
+    "EO:12737",
+    "EO:13765"
+   ]
+  }
+ ],
+ "configuration": {
+  "orchestrator": "maudslay-conveyor",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "nalimov-script",
+  "verifier_models": {
+   "A": "claude-sonnet-5-5",
+   "B": "claude-opus-5-5",
+   "S": "claude-sonnet-5-5"
+  },
+  "route": "jobs/maudslay-conveyor/conveyor.py run --producer nalimov --controls typed --replacement-proposal (status-overlay stage: status reviewer reviewer_S, overlay-propose, working claims; then the conveyor's blind arms, typed controls, reveal, agree, complete)"
+ },
+ "limits": {
+  "chain_budget_units": 600000,
+  "spend_per_claim_units": 60000,
+  "no_claim_minutes": 40,
+  "context_kill_tokens": 120000,
+  "reviews_per_hour": 12,
+  "coordinator_units_per_hour": 300000
+ },
+ "premortem": [
+  {
+   "failure": "The drafter fills a wrong field (an inventory gap, an earlier end, a partial scope) and verifiers who see only the small packet uphold it.",
+   "guard": "The drafter (v2, after an independent Fable review found 7 blocking defects in v1) refuses any order with another act, an ending own term, a missing named instrument, a conflict it cannot show, a current-law hit it cannot read, an ending source that is only a transcription, or any clause it cannot type positively; every draft then goes through the kit's own assembler and the actual claim checker (prescreen.py), and only the 8 that pass every step are verified. Replayed on Papinian's frozen evidence, the drafts for EO 11957 and 12348 equal the owner-adopted claims clause for clause. Every session carries typed controls planted apart from their genuine twins, with no mechanical tell (packets.tells); any missed control, invalid arm or status-reader miss stops the batch. Respondendi audits every member cross-family while the stratum is on probation."
+  },
+  {
+   "failure": "The packet leaves out evidence the full dossier holds, so verifiers cannot see what would defeat the claim (common-mode omission).",
+   "guard": "Packets carry every other held act on the order, every catalog and U.S. Code witness and the full actor text or exact windows; the drafter refuses orders whose dossier holds anything it does not put in the packet; the cross-family audit reads the full sources."
+  },
+  {
+   "failure": "Coordinator tokens dominate again (54% on the Codex wave).",
+   "guard": "Drafting, packets, controls, scoring and installation are scripts; the coordinator reads SCORE.json and ADJUDICATE.json only; coordinator_units_per_hour 300k and a 1.5M chain budget."
+  },
+  {
+   "failure": "Evidence changes between the census (reference checkout 854514831e) and the kit's prepare on main.",
+   "guard": "Drafts are made from the prepared packet's own frozen evidence; install refuses a draft whose evidence_sha256 differs from the packet's."
+  },
+  {
+   "failure": "Verifier sessions run long or re-read large contexts.",
+   "guard": "Sessions hold at most 12 genuine targets (about 48k tokens of packet); context_kill_tokens 120k; one fresh session per arm per session."
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261110-papinian-undecided-u23": "Lifecycle rejections came from skipped U.S. Code notes, amendments and inventory errors. The drafter refuses any order with a current-law hit it cannot read as an ended-status note naming the same actor, any other act on the order, and any section heading or operative words outside its clauses; verifiers get checklist items 5-8 for exactly these.",
+  "F-20261110-papinian-undecided-u01b": "Drafts are made only from packets the kit prepares on main with its current status_overlay code (kit.py prepare --action status_assignment.undecided); the census used the kit's own freezer on main's compiled outputs. Adoption runs through Respondendi's standing rule once the owner approves it, otherwise by a named owner decision.",
+  "F-20261110-mommsen-unranked-pools": "All 30 orders are inside Bentham's ranked status_assignment.undecided action (checked against strata/status_assignment.undecided.txt); one lane, 30 orders, prepared through the kit's admission gate, which caps probes at 30.",
+  "F-20261107-haloander-undecided-probe": "The action is now ranked with a measured rate (filed_per_attempt.undecided, 3 of 30). The transcription refusal does not bite here: every drafted order has an acceptable original with no page check owed; adoption is the named bound and goes to Respondendi or the owner.",
+  "F-20261028-4": "Every order is prepared fresh from main's current claim-kit outputs right before drafting; no packet older than the kit generation is reused, and install refuses evidence whose fingerprint changed since drafting.",
+  "F-20261018-7": "No fetching: the run reads only held, hashed texts already frozen in the kit's evidence, so there are no host success rates or URL hashes to forecast.",
+  "F-20261110-nalimov-review-v1": "All 8 drafts passed the kit's assembler, check_claim and every step of the actual claim checker (prescreen.py) before entering this plan; the drafter's tests use the reviewer's real OCR clause texts; the Papinian replay equals the owner-adopted claims for EO 11957 and 12348; packets.tells() and the conveyor's typed plants keep controls indistinguishable from genuine claims."
+ },
+ "respondendi": {
+  "lot_kind": "express_named_revocation",
+  "stratum": "own (manifest agent nalimov-script); pass drafter.py and predicate.py as --prompt when planning",
+  "interface": "overlay_bundle per member, replacement_proposal, >=2 typed controls per review set with control_kind, ADMISSION.json, status review, both blind arms"
+ }
+}
