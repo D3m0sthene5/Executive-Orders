@@ -368,7 +368,7 @@ def policy(claim, repo, index=None, flags=None):
     errors, dependent = [], []
     replica_used = any(checked_replica(ref, index) for _, ref in references(claim))
     if replica_used:
-        if claim.get('informational_flags') != [REPLICA_FLAG]:
+        if REPLICA_FLAG not in (claim.get('informational_flags') or []):
             errors.append('checked_replica:proquest_bytes_flag_required')
     elif REPLICA_FLAG in (claim.get('informational_flags') or []):
         errors.append('checked_replica:proquest_bytes_flag_without_pass')

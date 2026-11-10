@@ -636,7 +636,8 @@ def _assemble(sheet, dossier, repo, interval_partial=False):
     if replica_refs:
         replica_index = FC.shared(repo)
         if any(W.checked_replica(ref, replica_index) for ref in replica_refs):
-            claim["informational_flags"] = [W.REPLICA_FLAG]
+            flags = claim.get("informational_flags") if isinstance(claim.get("informational_flags"), list) else []
+            claim["informational_flags"] = flags + ([W.REPLICA_FLAG] if W.REPLICA_FLAG not in flags else [])
     checks = check_claim(claim, repo, dossier)
     if interval_partial:
         gate_errors = _gate(repo).validate_claim(claim, expected_status=dossier.get("whole_order_status"))
