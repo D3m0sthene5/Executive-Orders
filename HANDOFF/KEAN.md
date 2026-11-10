@@ -18,7 +18,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 - **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
-## Owner decisions not yet carried out by the tools (27)
+## Owner decisions not yet carried out by the tools (26)
 
 - **D-20261021-report-deadline** (partly wired): A board order whose only command is to report within a deadline ends on its express revocation (usually EO 12553), not when the board reports; record the report date and standstil… Checked 2026-11-06 (Justinian F3): assemble.py:554 refuses a report deadline as an end; AGENT_PROTOCOL.md:47. No tool r…
 - **D-20261021-strike-and-insert** (not wired): A clause amended by striking and inserting words continues, amended, until the parent order ends; record the text before and after. 43 clauses in 26 committed claims that treat am… Checked 2026-11-06 (Justinian F3): no code or instruction; claim_gate/checker validate later_events structure only, wit…
@@ -46,7 +46,6 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261108-photius-recheck** (not wired): Run the remaining Photius-stale orders through the Haloander h01 route (producer comparison against the GPO printing, two blind arms with planted controls), never a scripted re-fr… Not yet run: the 2026-11-07 wave budget (75 USD) was spent; about 0.20 USD per order in workers plus coordination.
 - **D-20261109-impact-scoped-checks** (not wired): Never rerun claim-checker or another costly consumer over every claim when a change reaches only some: rerun only the affected claims; full runs only for the consumer's own code o… Not built; meanwhile pick affected claims by hand (checker.py --claims).
 - **D-20261110-papinian-board-bytes** (not wired): Owner: store the 101 NMB report PDFs in the Release-asset store with a claim-checker adapter; adopt corrected board claims by named decision. Upload and adapter not built.
-- **D-20261110-papinian-adopt** (not wired): Owner: adopt provisional NO for EO 9674, 11957, 12348, 9245, 10679, 11962 (Papinian u01b, u02); file the claims canonically. Certified stays 0. Haloander-adopt route; not yet done.
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure.
 
 <!-- kean:drift -->
