@@ -18,6 +18,191 @@
 - **Workers:** 1 Sonnet survey of claim-kit and claim-drafts, about 113k tokens, about 1 min.
 - **Bentham:** this was owner-assigned infrastructure, not a ranked production action; PLAN.md was read and no wave was run.
 - **Asks:** @Owner: A-20261109-claim-checker-cache answered yes; `jobs/claim-checker/CACHE_MB` is 2048 (D-20261109-claim-checker-cache). Check the next selective run's `changed_input_kinds.e` (was about 22).
+## 2026-11-10 ET (Claude, Ulpian: outer bound for one-person orders, Track 3; ask A-20261110-ulpian-outer-bound)
+
+- **Asked:** draft the owner ask for an "outer bound" on one-person orders (a named person's latest possible death
+  ends the order) and measure it. Deliverable is an ask and a design, not adoption. Branch `claude/ulpian-outer-bound`.
+- **Found:** the bound is already the rule (TR-CS-WAIVER; Pothier PD-CS-ONE-PERSON M1, 99 leads, none adopted). What
+  is missing is an adoption route. The new part, a flat adulthood floor of 14, adds at most 20 orders and fails the
+  evidence rule. Its 1883-1900 source did not govern the 1907-1918 orders. The limits bound examinations that the
+  orders waive. It would be a presumption standing in for evidence.
+- **Measured (zero tokens, `jobs/ulpian-outer-bound/ulpian.py measure`):**
+  - 1,178 undecided candidates; 270 pass every gate (one person, one command, clean text, legible date).
+  - **37 are bounded on a quoted fact** (the lot): all waivers, dated 1913-1933, with bounds from 1986 to 2026-03-10.
+  - 233 have no quoted fact. Their required ages run from 4 to 33 years; this is a reading list, not a yield.
+  - 25 post-1936 retirement exemptions need their held texts.
+  - 42 of the 48 Jacquard L1 NOs the owner merged rested on the "at least 14" premise.
+- **Review:** Fable 5.2, separate context, two rounds, 98 held texts read, about 355k tokens. Round 1 found the floor
+  fatal; it also found that tier 1 bypassed the predicate (65 of 99 failed), and gates were missing. All fixed. Round 2
+  found the lot sound in substance; it held 4 rows for a page check (now gated) and fixed 3 sentences.
+  `research/ulpian/REVIEW.md`.
+- **Ask A-20261110-ulpian-outer-bound:** (1) approve RULE.md v2 as the Respondendi lot `ulpian-life-bound` (yes);
+  (2) decline the flat floor; (3) correct the Jacquard L1 rows by reading. `ulpian.py tag` refuses until a decision
+  cites the rule hash.
+- **For Respondendi v2:** the lot slot is the `respondendi_lot` block in `jobs/ulpian-outer-bound/RULE.md`.
+- **Open:** the lifespan source (Guinness or GRG) is not held. The Jacquard L1 rows need a reading, and 9 sound Pothier
+  leads that false screen hits keep out need individual review.
+- **Asks:** @Owner: A-20261110-ulpian-outer-bound. Kean F-20261110-ulpian-outer-bound.
+## 2026-11-10 ET (Claude, RESPONDENDI v2: Ulpian lot added; Maudslay interface I5)
+
+- **Ulpian:** the owner-approved life-bound lot (D-20261110-ulpian-life-bound) is now the v2 kind `ulpian_life_bound`.
+  It opens once PR #271 is on GitHub's main (Respondendi checks Ulpian's rule hash, decision and ruling there and
+  reads CLASS.csv from main). 16 of 37 members are reachable (15 also need F6). The claim gate's
+  `not_later_than_without_formal_disposition` may refuse its claims: Ulpian, check that.
+- **I5:** `jobs/respondendi-adoption/INTERFACE.md` lists every file and field `plan` reads. The merged Maudslay
+  conveyor is not yet compatible: it has no status-overlay route, its controls are untyped date shifts, and undecided
+  batches must publish as replacement proposals. `plan` now finds Maudslay's manifest layout. Kean F-20261110-respondendi-i5.
+- **Rule:** sha e15ae99b..., 70 tests; ask A-20261110-respondendi-standing-rule-v2 revised (rev 1) to that hash.
+  Reach: 468 today, 1,484 once PR #271, F3, F5 and F6 merge.
+- **Asks:** @Owner: A-20261110-respondendi-standing-rule-v2 (rev 1). @Nalimov: map each claim kind you draft to an
+  INTERFACE.md lot kind, or send it for a rule amendment.
+
+## 2026-11-10 ET (Claude, RESPONDENDI v2: one approval for every kind of undecided order)
+
+- **Owner follow-up:** v1's single lot (620 orders) was "really really disappointing"; v2 covers every kind under one
+  approval. Four tracks: this one (Respondendi), Accursius (claim-kit F3-F7), Ulpian (outer-bound ask), Linnaeus (bulk sources).
+- **Built (PR #270):** `jobs/respondendi-adoption/RULE.md` v2 (sha b3774309...), kinds:
+  - express revocation and own terms: active;
+  - spent on issue, incl. amendment-only: opens with F5;
+  - YES with a current source: opens with F3;
+  - working-text basis: opens with F6.
+  Activation is `UNDECIDED_ROUTES` in `jobs/claim-kit/status_overlay.py` on GitHub's main (agreed with Accursius, who
+  adds the names in the F3 and F5/F6 PRs). 67 tests.
+- **Red team (separate Fable 5.2, two rounds):** every blocker it found is fixed; the remaining known limits are listed
+  in REPORT.md section 7. Reach after the fixes: 468 orders today, 1,468 once F3, F5 and F6 merge; own terms 0 for now;
+  9,223 unreached on held leads (sources, not adoption, are the limit). Replay: 5 of 9 past adoptions qualify.
+- **Cost:** wave total 325.04 USD list (v2 added the red team's 28.66 and about 24 of coordinator time).
+  Kean F-20261110-respondendi-v2.
+- **Asks:** @Owner: A-20261110-respondendi-standing-rule-v2, which supersedes A-20261110-respondendi-standing-rule
+  (v1). Recommended yes.
+- **Do not:** record the approval for the owner. For the next undecided wave, follow `UNDECIDED_CHECKLIST.md`: typed
+  controls planted on each kind, an ADMISSION.json, and evidence files in the lot's `audit-evidence/` folder.
+
+## 2026-11-10 ET (Claude, RESPONDENDI: why undecided orders fail, and a standing adoption rule)
+
+- **Diagnosis (Fable 5.2 high, 14 workers):** of Papinian's 84 failed undecided attempts, 0 were unknowable;
+  held evidence supports a status for 65 (59 conservative). Causes: route or tool defect 37, missing later event 24,
+  rule too strict 13, producer error 10. No undecided order can get a YES (no CURRENT records); self-executing and
+  amendment-only orders have no NO basis; held Selden/statute/PLO texts never reach the dossier; the text gate refuses
+  6,052 orders; valid status decisions are discarded when the lifecycle sheet is blocked (9 of 26 in Papinian).
+  `research/excavator/claude-respondendi-2026-11-10/REPORT.md`, `DIAGNOSIS.csv`. Kean F-20261110-respondendi-diagnosis.
+- **Built:** `jobs/respondendi-adoption/` (plan -> cross-family audit -> adjudicate -> adopt; status-only tier;
+  reversal with source-audit holds; verify; owner report; 42 tests, wired into road-tests). It refuses every write
+  until the owner approves RULE.md's exact sha. v1 covers one lot (express named revocations, 687 orders) and audits
+  every member until the 5% bound (59 audits), after the red team showed the first draft did not bound its error
+  (F-20261110-respondendi-redteam). `UNDECIDED_CHECKLIST.md` for producers, arms and coordinators.
+- **Throughput:** 7.5% today (16 of 212); 17-24% with the rule and status-only tier; 45-60% for EO >= 7532 after
+  the routing fixes (F3-F7 in the report, each its own PR because they touch pinned kit files).
+- **Cost:** 272.57 USD list (workers 254.53 Fable 5.2, coordinator 18.04). F-20261110-respondendi-wave.
+- **Asks:** @Owner: A-20261110-respondendi-standing-rule (approve RULE.md sha 85a99023..., recommended yes).
+- **Do not:** record the approval for the owner; adopt anything from past waves (none meets v1's typed controls).
+## 2026-11-10 ET (Claude coordinator, afternoon: guards merged, six tracks, Whitworth line contract)
+
+- **Merged today (owner):** #265 admission and agent-chain stop rules, #266 Papinian rulings (+6 NO statuses),
+  #267 Pergamon board-report store (eumenes job ran green on main), #268 Augur probe floor, #269 Maudslay conveyor.
+  Ready 1,179 -> 1,248, decided 4,301 -> 4,307 in 24 hours; human-certified 0.
+- **Running sessions:** Respondendi (rule v2 over every lot kind; PR #270), Accursius (claim-kit F3-F7; #272-#274),
+  Ulpian (life-bound lot; owner answered "accept all three", recorded in #271 commit 366f65010f; Jacquard L1
+  correction PR next), Linnaeus (bulk sources by type plus disposition-table reconciliation), Larrey (triage gate
+  before dispatch), Nalimov (script-drafted claims, model verifies, batched by acting instrument).
+- **Whitworth (`research/plans/WHITWORTH_LINE_2026-11-10.md`, F-20261110-whitworth-forecast):** interfaces I1-I6
+  between the parts, a registered forecast (first ~30-order calibration batch at most 1.00 USD per filed claim and
+  per adopted status; baselines 7.71 / 4.71 / 3.92), a stop rule (above 2.50 USD or any missed control), and an
+  end-to-end gauge test the coordinator adds before the calibration batch. Review every track PR against it.
+- **Owner pending:** M1118 purchase decision; GitGuardian false positives on #255; Respondendi rule approval.
+
+
+## 2026-11-10 ET (Claude, overnight Codex wave failed; claim-kit admission guard, PR #265)
+
+- **What happened:** SAVIGNY (coordinator) and MOMMSEN-1..5 (gpt-6.1-sol xhigh, headless) ran from about 00:04 to
+  04:24 ET. They used about half the owner's weekly Codex allowance and filed 12 claims, all on branches, none
+  merged. 494 of the 593 orders they reserved were in no Bentham action: Claude wrote those pools into the prompts,
+  and Savigny extended them by EO range. 57% of the decided orders below EO 7532 have no accepted source text.
+  Claude's ruling C-5 wrongly treated Bentham's unranked refusal as advice. Published ready went 1,183 to 1,238 in
+  24 hours, all from Papinian (#257, #261). Kean F-20261110-mommsen-unranked-pools.
+- **Stopped:** STOP file at 04:24 ET; the running lane turns and their workers were killed.
+  `C:\Users\danie\eo-wt\_savigny` keeps the logs, prompts and state. Worktrees mommsen-1..5 keep their work.
+- **Fix (PR #265):** `jobs/claim-kit/admission.py`. kit next and prepare must name a Bentham action; orders outside
+  it are refused; a probe or unranked action is capped at 30 orders across all agents. 31 tests. Backtest: it
+  refuses 494 of the 593 orders reserved overnight. The supervisor (outside the repo) now pauses a lane after 2 hours
+  of running turns without a new filed claim, and kills whole process trees.
+- **Waiting on the owner:**
+  - Claim PRs #252, #260 and #255 (#255 needs the GitGuardian false positive dismissed).
+  - Code PR #263 (Mabillon text_path), which Claude reviewed and approved.
+  - Code PR #262 (claim-kit replica grade), once its tracker hunks are removed.
+  - After #263 and #262 merge: one run each of mabillon-held-printings and the replica route.
+- **Morning list:** EO 506 (not a valid blind review), lane I's seven old-name claims, the owner-assignment decision
+  record (no in-repo source yet), and PR256 (EO 5666 adoption).
+
+
+## 2026-11-10 ET (Claude, PAPINIAN production lane)
+
+- **Filed:** 63 canonical lifecycle claims, merged in PR #257 (48) and PR #261 (15); local replay ready 1,179 ->
+  1,237. custody_stranded 2 of 7, own-claim corrections 6 of 23, claim_ready.yes.fr 55 of 347 (all worked).
+  18 controls planted, 0 missed. Human-certified 0. Report: `research/excavator/claude-papinian-2026-11-10/REPORT.md`.
+- **Undecided (EO >= 7532):** 90 orders, 0 canonical; 6 isolated replacement proposals. Gate STOP after u23.
+- **Not run:** board-rule pilot (report PDFs are custody records only); working_text_stale (MOMMSEN-I's Photius-193).
+- **Cost:** 296.95 USD list (workers 246.09, coordinator 50.86). Workers ran as Agent-tool subagents because
+  `claude -p` is not logged in on this PC. Kean F-20261110-papinian-wave (measures).
+- **Asks:** @Owner: A-20261110-papinian-board-bytes (store the 101 NMB report PDFs for the checker; adopt corrected
+  Justinian board claims), A-20261110-papinian-adopt-u01b and A-20261110-papinian-adopt-u23 (6 NO statuses).
+- **Next lever:** acquisitions, not production: NEA continuation notices (F-20261110-papinian-nea-notices) and an
+  official EO 13286 (F-20261110-papinian-eo13286-mirror), then re-run the blocked YES orders (still reserved).
+- **Correction:** PR #257's table says y01-y09 submitted 56; the producers submitted 64 (filed 40 is right).
+
+## 2026-11-09 ET (Claude, why Mission has been pending since 2026-11-06)
+
+- **Fixed** (branch `claude/mission-checker-scope`): two guard bugs in `jobs/daily-digest/`.
+  - `mission.py` demanded that claim-checker consumed the whole `research/readiness` tree. Since Justinian A2
+    (2026-11-06) the checker records only its declared reads (205 of 743 files). The checker witness now compares
+    only files inside the checker's recorded scope, by the runner's `select` rule; the tracker keeps the whole-tree check.
+  - `dashboard.py` counted the status register without the R9 alias, so EO:7933a showed as outside the census.
+  - 4 new tests; 25 daily-digest tests pass. On current main, Mission now gets past both guards.
+- **Still blocking Mission** (real input problems, not fixed here):
+  - 4 `STALE_SOURCE_AUDIT_HOLD` since 2026-11-06 12:34 UTC: EO 10622, 11040, 11078 and 9922 changed after
+    `research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json`.
+  - 42 Montfaucon rejections since today: tischendorf-originals run 42614824734 rebuilt its fragments around a new target
+    set (134 orders dropped), so checks in m001-panama-1922, m001-trading-1920 and m008 pin rows that no longer exist.
+- Kean F-20261109-mission-refresh-diagnosed.
+- **Asks:** @Owner: none. @Montfaucon/Tischendorf owners: decide how a page check survives a producer retargeting.
+
+## 2026-11-09 ET (Claude, no push starts Run jobs; tags start no workflow)
+
+- **Why:** over 2026-11-06..09 only 18% of Run jobs minutes ended in a successful run, a third were runs
+  refused at publish as stale, and every `pergamon-*` tag push started about ten workflows.
+  `research/diagnostics/actions-throughput-20261109/README.md`; Kean F-20261109-actions-throughput.
+- **Done** (owner decision D-20261109-no-push-runs):
+  - Run jobs starts only on its schedule or by hand. To run your job on your branch:
+    `gh workflow run run-jobs.yml --ref <branch> -f job=<name> -f only=true`.
+  - The sweep reads every commit after the previous sweep's input commit (Actions run history), not a
+    3h20m clock window, so a late sweep or an old-dated commit is no longer missed. The daily run is a sweep.
+  - Every push trigger names `branches: [main]`; the Stage 20/21, Tribonian and R1 workflows run only by hand.
+  - `.github/scripts/workflow_triggers.py` enforces this in the road tests (fails closed). No workflow
+    listens to tag events; only `run-jobs.yml` picks jobs; `arsenale.py requeue` dispatches only its own
+    workflow. An independent review found nine holes in the first version, all fixed with tests;
+    mutation testing killed all 34 breakages. Kean flags the old push-to-run wording if it returns.
+- **Open for the owner:** main has no branch protection, so a red check does not block a merge or a direct
+  push. GitGuardian flags `jobs/_attempts/portfolio-repair-check/42714395090-1/OUTPUT_PINS.json` (a SHA-256
+  pin keyed by a file named `hamilton-token-audit.log`): a false positive only the owner can dismiss.
+- **Not changed:** job outputs are still committed to main, the remaining source of stale refusals.
+
+## 2026-11-09 ET (Claude, live dashboard at dannykind.wiki/eo/dashboard; PC and branch deconfliction)
+
+- **Done:** the control center (`research/progress/control-center/`, all eight tabs) is live at
+  https://www.dannykind.wiki/eo/dashboard through a relay function in the DKLA site (DKLA PR #9, `api/eo-dashboard.js`),
+  the same pattern as `/eo/gesner`. It reads `main` and rechecks every five minutes, so it needs no redeploy. Checked live:
+  every tab renders with no script errors on tracker 1c395a5 (14,998 orders, 1,183 ready, 0 human-certified).
+  Kean F-20261109-dashboard-live.
+- **Found:** Mission publication has been refused on every refresh since 2026-11-06 ("checker did not consume the current
+  canonical readiness tree"), so the Mission tab shows a pending notice. Not diagnosed. Kean F-20261109-mission-refresh-stuck.
+- **Deconfliction (owner's PC, read-only):** waited for PRs #239 and #241-#245 to merge; none open after. The main checkout
+  (`C:\Users\danie\Projects\Executive-Orders`) is on `corps-of-discovery-lewis-clark`, 1,264 commits behind main; its
+  107,497 changed or untracked files are either identical to main or in git history, except runner attempt copies under
+  `jobs/_attempts/` (keep) and the owner's HathiTrust downloads in `research/owner-inbox/hathi-gpo/` (local by design).
+  Of 45 worktrees, the only commits on GitHub nowhere are local branch `claude/clauses-swarm-2026-10-20` (3 commits, 61 files
+  of 2026-10-20 batch packets and dossiers in `C:\Users\danie\eo-wt\clauses`); not pushed, since packets may carry held text.
+  `wpa-lists` is already archived in `research/progress/branch-recovery-2026-10-29/legacy/`. Nothing was deleted or switched.
+- **Asks:** @Owner: none.
 
 ## 2026-11-09 ET (Claude, Valla unblocked and re-certified, PR #245)
 

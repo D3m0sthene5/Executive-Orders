@@ -6,6 +6,15 @@
 
 **Spend tokens where Bentham says (owner, 2026-11-05):** before any agent wave, read `jobs/bentham/output/PLAN.md` (rebuilt daily from measured yields, costs and the orders each action unlocks) and run ranked actions in rank order within the owner's budget. After each batch run `python3 -I jobs/bentham/bentham.py gate --action ID --batches FILE` and stop on STOP. When the wave ends, run `bentham.py usage --wave NAME --phase LABEL` and commit the sanitized output so the next plan is measured on it. See `jobs/bentham/README.md`.
 
+**No wave launches without Augur (proposed by Claude 2026-11-10, after the overnight Codex wave; in force when the owner merges):** write the wave as a plan (`WAVE.json`). It must pass `python -I jobs/augur-launch/augur.py check WAVE.json` before any agent spends, with:
+- an outcome objective, never spend or activity;
+- Bentham actions only;
+- a ramp from a 1-lane, 30-order stage 0 for any configuration not yet measured;
+- every matching Kean warning answered, and a pre-mortem;
+- a review by another model family or the owner, bound to the plan's hash.
+
+An unranked Bentham refusal is a stop, never advice. The claim kit refuses orders outside the named Bentham action (`jobs/claim-kit/admission.py`). The Savigny supervisor stops lanes on measured spend per verified claim. See `jobs/augur-launch/README.md`.
+
 **Lean tree (2026-11-08):** about 97% of the ~194,000 tracked files are job outputs, data, attempt receipts and frozen work papers. Never list or search the whole tree: no bare `git ls-files`, `find .`, `ls -R`, or root-wide `**` glob. Name the folder you need (`git ls-files -- jobs/<name> | head`, `rg term jobs/<name>`). The root `.ignore` makes ripgrep-based search skip outputs and data unless you name them; for Claude Code, `.claude/hooks/ockham_lean_tree.py` refuses the whole-tree commands. Check out only what you need (`git clone --filter=blob:none --sparse`, then `git sparse-checkout set --no-cone` with the folders).
 
 Before doing project work in any session, read `HANDOFF/README.md` and the latest relevant notes in `HANDOFF/`, beginning with the newest entries. Check the current GitHub `main` state; do not rely on an older conversational summary.
@@ -16,7 +25,7 @@ For an Astra session specifically, update `HANDOFF/notes-astra.md` **before endi
 
 **Standard research procedure (owner, 2026-10-17):** work orders through the readiness pipeline in [`research/readiness/README.md`](research/readiness/README.md): pick work from the top of `jobs/readiness-tracker/output/SHARED_UNLOCKS.csv`; request sources through `research/readiness/FETCH_QUEUE.jsonl` instead of fetching by hand; start each order from its draft in `jobs/claim-drafts/output/`; commit claims to `research/readiness/claims/<agent>-<date>.jsonl`; and report tokens and time per order in your HANDOFF note. The working progress measure is orders ready for human review in `jobs/readiness-tracker/output/TRACKER.md`.
 
-For large network scans, big corpus extraction, or commands that exceed the agent's execution environment, create a deterministic, bounded job under `jobs/<name>/`, list its data dependencies in `needs.txt`, and inspect `output/STATUS.json` after GitHub Actions finishes. Preserve failures, query parameters, exact URLs, hashes, and reproducibility metadata.
+For large network scans, big corpus extraction, or commands that exceed the agent's execution environment, create a deterministic, bounded job under `jobs/<name>/`, list its data dependencies in `needs.txt`, start it with `gh workflow run run-jobs.yml --ref <branch> -f job=<name> -f only=true` (no push starts a run, Kean D-20261109-no-push-runs), and inspect `output/STATUS.json` after GitHub Actions finishes. Preserve failures, query parameters, exact URLs, hashes, and reproducibility metadata.
 
 The scientific objective is **the legally defensible lifecycle of each executive order from 1789 to the October 14, 2026 cutoff**, plus historical census recovery. Distinguish catalog hits, editorial citation links, producer claims, research hypotheses, mechanically complete draft dossiers, and independently human-reviewed whole-lifecycle conclusions. Never auto-promote one tier to another, change an immutable codebook or count unverified orders. Prioritize enabling infrastructure that makes subsequent research cheaper, broader, faster and easier to audit.
 

@@ -35,6 +35,9 @@ PATHS = {
 
 
 UNNUMBERED_PATH = "jobs/domesday-register/output/UNNUMBERED_SUMMARY.json"
+# Historical id -> current census id (owner ruling R9; same map as jobs/readiness-tracker ID_ALIASES).
+# The hash-pinned status register keeps the historical spelling.
+ID_ALIASES = {"EO:7933a": "EO:7933A"}
 
 
 def unnumbered_series(root):
@@ -149,6 +152,7 @@ def status_inventory(rows, universe_rows):
     by_order, problems, duplicate_ids = {}, [], set()
     for row in rows:
         iid, status = row.get("instrument_id"), row.get("provisional_substantive_status")
+        iid = ID_ALIASES.get(iid, iid)
         if not iid or status not in ("yes", "no"):
             problems.append(f"Invalid provisional status row: {iid}")
             continue

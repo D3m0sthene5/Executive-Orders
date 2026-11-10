@@ -1,12 +1,10 @@
 name: Acquire common cited Statutes at Large
 
+# Retired from automatic runs (owner, 2026-11-09, Kean D-20261109-no-push-runs): it ran only when a
+# pergamon-* tag push matched its paths, about 79 times in four days, mostly failing. Start it by hand
+# (Actions tab -> Run workflow). .github/scripts/test_workflow_triggers.py keeps it manual.
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/stage20-shared-statutes.yml'
-      - 'research/stage20/code/acquire_shared_statutes.py'
-      - 'research/stage20/code/test_statute_acquisition.py'
 
 permissions:
   contents: write

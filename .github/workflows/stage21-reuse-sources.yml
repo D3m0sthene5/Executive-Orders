@@ -1,11 +1,10 @@
 name: Reuse frozen official EO source links
+# Retired from automatic runs (owner, 2026-11-09, Kean D-20261109-no-push-runs): it ran only when a
+# pergamon-* tag push matched its paths, about 79 times in four days, mostly failing. Start it by hand
+# (Actions tab -> Run workflow). .github/scripts/test_workflow_triggers.py keeps it manual.
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/stage21-reuse-sources.yml'
-      - 'research/stage21/code/attach_stage14_sources.py'
-      - 'research/stage21/code/test_stage14_sources.py'
+
 permissions:
   contents: write
 jobs:

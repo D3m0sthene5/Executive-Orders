@@ -1,14 +1,10 @@
 name: Build deterministic bulk EO review batches
 
+# Retired from automatic runs (owner, 2026-11-09, Kean D-20261109-no-push-runs): it ran only when a
+# pergamon-* tag push matched its paths, about 79 times in four days, mostly failing. Start it by hand
+# (Actions tab -> Run workflow). .github/scripts/test_workflow_triggers.py keeps it manual.
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/stage21-batchforge.yml'
-      - 'research/stage21/code/ofr_batch_forge.py'
-      - 'research/stage21/code/test_batch_forge.py'
-      - 'research/stage21/sources_index/OFFICIAL_SOURCE_CASE_CROSSWALK.csv'
-      - 'research/stage21/original_sources/CASE_ORIGINAL_SOURCE_CUSTODY.csv'
 
 permissions:
   contents: write

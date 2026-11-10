@@ -1,41 +1,41 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,179 of 14,998 orders (7.9%)**
+**Numbered series: ready for human review 1,248 of 14,998 orders (8.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42689042297-1:d1cf1a4dbdc755a985f0bc17af2596ef021ad9ec0bfab5d0fa7cfbda8f458815` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42893197070-1:2517793d6d37d667e2de1b402b888dc1eb4b1b5d279f2f4cd986a200b9d429f0` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
 
-Orders with a provisional YES/NO status: 4,301. The other 10,697 have not been researched yet.
+Orders with a provisional YES/NO status: 4,307. The other 10,691 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 654, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 849; quotation rechecks: 849. These remain work after readiness.
+Ready by text evidence: {'original_supported': 723, 'transcription_dependent': 525}. Provisional working texts do not authenticate originals.
+Outstanding original replacement obligations: 848; quotation rechecks: 848. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 251. Confirmations rejected: {'grade_not_a_working_text_grade': 3, 'not_confirmed': 1630}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 255. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1571}.
 
 ## Steps finished (orders with a provisional status)
 
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
-| Has a provisional YES/NO status | 4,301 | 4,301 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 3,548 | 4,301 | 82.5% |
-| Complete inventory of the order's operative clauses | 1,420 | 4,301 | 33.0% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,204 | 4,301 | 28.0% |
-| Savings clauses and surviving effects closed | 1,407 | 4,301 | 32.7% |
-| Search for later contrary sources recorded, no open conflicts | 2,874 | 4,301 | 66.8% |
+| Has a provisional YES/NO status | 4,307 | 4,307 | 100.0% |
+| Original or explicitly reviewed provisional working text saved | 3,549 | 4,307 | 82.4% |
+| Complete inventory of the order's operative clauses | 1,488 | 4,307 | 34.5% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,277 | 4,307 | 29.6% |
+| Savings clauses and surviving effects closed | 1,475 | 4,307 | 34.2% |
+| Search for later contrary sources recorded, no open conflicts | 2,880 | 4,307 | 66.9% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
-| Opus evidence images matched to this order (Opus cases only) | 125 | 825 | 15.2% |
+| Opus evidence images matched to this order (Opus cases only) | 125 | 788 | 15.9% |
 
 ## Do these first: one action, many orders
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 2,200 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
-| 703 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 2,224 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 737 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 10 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 10 | one source | Retrieve shared source EO::4314 |
@@ -49,22 +49,22 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
-| `NO_PROVISIONAL_STATUS` | 0 | 10,697 |
-| `NO_CLAUSE_INVENTORY` | 2,771 | 2,771 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,771 | 2,771 |
-| `FIRST_END_UNPROVED` | 2,401 | 2,401 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 729 | 2,200 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 548 | 1,573 |
+| `NO_PROVISIONAL_STATUS` | 0 | 10,691 |
+| `NO_CLAUSE_INVENTORY` | 2,714 | 2,714 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,714 | 2,714 |
+| `FIRST_END_UNPROVED` | 2,399 | 2,399 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 733 | 2,224 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 547 | 1,563 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,244 | 1,244 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 189 | 703 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 194 | 737 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
-| `CURRENT_BASIS_UNPROVED` | 370 | 370 |
-| `OPUS_MEDIA_NONE_CITED` | 198 | 198 |
+| `CURRENT_BASIS_UNPROVED` | 315 | 315 |
 | `FIRST_END_UNRESOLVED` | 184 | 184 |
+| `OPUS_MEDIA_NONE_CITED` | 161 | 161 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
-| `CLAIM_INCOMPLETE` | 88 | 88 |
-| `CLAIM_CHECK_FAILED` | 71 | 71 |
-| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 68 | 68 |
+| `CLAIM_INCOMPLETE` | 82 | 82 |
+| `CLAIM_CHECK_FAILED` | 66 | 66 |
+| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 63 | 63 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 24 | 24 |
@@ -91,12 +91,12 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - ofr-compilations: 500
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
-- tischendorf-originals: 721
+- tischendorf-originals: 698
 - mabillon-held-printings: 2,037
 - photius-gpo-volumes: 3,679
 - photius-csc-printings: 143
 - photius-free-printings: 471
-- montfaucon-page-check: 185
+- montfaucon-page-check: 204
 - richardson-volumes (lead only, never counted as the original): 68
 - app-executive-orders (lead only, never counted as the original): 9,902
 - hathi-gpo-orders (lead only, never counted as the original): 1,531
@@ -106,10 +106,10 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - photius-replica-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 2,557
 - montfaucon-page-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 0
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
-- lachmann working-text confirmations (provisional text step only, never an original): 2,408
+- lachmann working-text confirmations (provisional text step only, never an original): 2,349
 - opus-media-match status: 1,155
-- source-ladder: 870
-- claim-checker: 1,530
+- source-ladder: 920
+- claim-checker: 1,593
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities
@@ -127,45 +127,7 @@ See jobs/census-candidates/output/CENSUS_READINESS.md and ITEM_CANDIDATES.csv.
 - STALE_SOURCE_AUDIT_HOLD:EO:11040: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json
 - STALE_SOURCE_AUDIT_HOLD:EO:11078: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json
 - STALE_SOURCE_AUDIT_HOLD:EO:9922: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:1:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:2:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:3:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:4:source fragment changed or ambiguous
 - MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:5:source fragment changed or ambiguous
 - MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:6:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:7:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:8:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:9:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:10:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:11:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:13:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:2:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:4:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:5:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:6:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:10:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:11:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:12:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:13:source fragment changed or ambiguous
-- MONTFAUCON_REJECTED:research/montfaucon/checks/m008-mixed-held-originals.jsonl:6:source fragment changed or ambiguous
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
-- INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
 - INVALID_MONTFAUCON_OFFICIAL_FRAGMENT
 - INVALID_MONTFAUCON_OFFICIAL_FRAGMENT

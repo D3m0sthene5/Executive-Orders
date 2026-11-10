@@ -1,14 +1,10 @@
 name: Compile auditable causal and shared-source research cues
 
+# Retired from automatic runs (owner, 2026-11-09, Kean D-20261109-no-push-runs): it ran only when a
+# pergamon-* tag push matched its paths, about 79 times in four days, mostly failing. Start it by hand
+# (Actions tab -> Run workflow). .github/scripts/test_workflow_triggers.py keeps it manual.
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/stage20-causal-cues.yml'
-      - 'research/stage20/code/build_causal_cues.py'
-      - 'research/stage20/code/test_causal_cues.py'
-      - 'research/stage20/output/OPUS_NOTE_LEADS.jsonl'
-      - 'research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv'
 
 permissions:
   contents: write

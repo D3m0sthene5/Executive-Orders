@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (1)
+## Waiting for the owner (2)
 
-**A-20261108-lean-main**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-papinian-board-bytes**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -44,18 +44,18 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261107-encyclopedie-youngstown** (partly wired): Owner approved, autonomously: the full anonymous Youngstown run over CourtListener's public bulk opinions and improved opinion-level holding detection. The owner creates the CourtListener token and adds the secret; the workflow line passing COURTLISTENER_TOKEN and API_DATA_GOV_KEY is PR 206 for own… Full run 42318378954 started on enc/courts; holding-detection work assigned; PR 206 open.
 - **D-20261108-board-rule** (partly wired): For R3 re-tagged Presidential Emergency Board orders: the board command ends by completion of its task on the held report's transmittal-letter date; the order's own no-change sentence ends at the end of the 30th day after it (inclusive; exclusive stated); EO 12553/12379 stay as formal disposition;… No production run yet; next wave: pilot on the 79 held reports.
 - **D-20261108-photius-recheck** (not wired): Run the remaining Photius-stale orders through the Haloander h01 route (producer comparison against the GPO printing, two blind arms with planted controls), never a scripted re-freeze. Not yet run: the 2026-11-07 wave budget (75 USD) was spent; about 0.20 USD per order in workers plus coordination.
-- **D-20261109-impact-scoped-checks** (partly wired): Never rerun claim-checker or another costly consumer over every claim when a change reaches only some: rerun only the affected claims; full runs only for the consumer's own code or rules, said explicitly. Soundness first: read-audited dependency map (#242), planted controls, periodic full run. claim-checker: Palsgraf impact selection with recorded dependencies, planted controls, weekly reconciling full run (PR claude/palsgraf-impact); outputs byte-identical to full runs on runner and local real data. claim-kit and claim-drafts surveyed, not changed…
+- **D-20261109-impact-scoped-checks** (not wired): Never rerun claim-checker or another costly consumer over every claim when a change reaches only some: rerun only the affected claims; full runs only for the consumer's own code or rules, said explicitly. Soundness first: read-audited dependency map (#242), planted controls, periodic full run. Not built; meanwhile pick affected claims by hand (checker.py --claims).
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 285; `search` finds the rest)
+## Newest results (6 of 292; `search` finds the rest)
 
+- 2026-11-10 F-20261110-mommsen2-road-sparse-ci **partly worked**: PR 252 claim publication against the road-tests sparse checkout. Lesson: Read the committed runner declaration with git show when the worktree file is absent. This one-test fallback keeps the existing scope comparison and allows claim PR CI without changing .github.
+- 2026-11-09 F-20261110-papinian-photius-overlap **analysis**: Papinian pool 1b: recovery.working_text_stale (26 orders, EO 7912-8025) Lesson: A Bentham stratum and a named campaign can be the same orders under two names; split lanes by order ids, not by action names.
+- 2026-11-09 F-20261110-papinian-nea-notices **analysis**: Papinian YES pool (production.claim_ready.yes.fr): producers worked batches y01-y09 by the original_plus_boun… Lesson: Bentham's acquire.nea_continuation_notices (listed free, 0 orders) is the largest single unlock left in the YES stratum: enqueue the annual Federal Register continuation notices for each live IEEPA/N…
+- 2026-11-09 F-20261110-papinian-board-custody **analysis**: Papinian pool 2 pilot: apply owner ruling D-20261108-board-rule to the R3 Presidential Emergency Board orders… Lesson: Bentham's one_step_away rate assumes production can close FIRST_END_UNRESOLVED, but for board orders the step is a byte-custody gap, not research: commit or release-store the report PDFs (and give th…
 - 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 - 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
-- 2026-11-09 F-20261109-palsgraf-impact-selection **worked**: Palsgraf: claim-checker records each claim's inputs (table lookups, files opened/listed/stat'ed, memo replays… Lesson: Record dependencies at the value level while the unit runs, then recompute every fingerprint each run; never trust a hand-made map or a stat. Volatile units (network, today) always rerun. Measure bef…
-- 2026-11-09 F-20261109-gutenberg-valla-pilot-chain **partly worked**: Find why the Valla bounded pilot check fails on every PR (seen on #242 and the sol/montfaucon branches) Lesson: A failing non-required check can hide later failures for days; when it turns red, read every step, not only the first failing one. Next: decide in Valla whether a schema-v2 re-tag file is a productio…
-- 2026-11-09 F-20261109-gutenberg-tsiolkovsky **worked**: Gutenberg item 6: credit Tsiolkovsky's work-hours by channel (the lines each event changed in the moved step'… Lesson: Lines changed in a step's inputs are a proxy for evidence delivered, not proof of cause; a runner result's credit belongs to the campaign that changed the job's code or inputs.
-- 2026-11-09 F-20261109-gutenberg-skipped-witness **worked**: Gutenberg item 3: the narrowest correct stale-confirmation rule for working_text (prior_confirmation_stale),… Lesson: A skipped witness is information (an official printing now exists), not a change in what was confirmed: flag it for the h01 page check rather than void the confirmation. The switch is the owner's (A-…
 
-Register: 75 owner decisions, 46 answered questions, 285 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 292 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

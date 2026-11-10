@@ -2,6 +2,8 @@ name: Geddes advisory lint
 
 on:
   push:
+    # Branch pushes only: a tag push would match every path.
+    branches: [main]
     paths:
       - 'jobs/geddes/**'
       - '.github/workflows/geddes.yml'

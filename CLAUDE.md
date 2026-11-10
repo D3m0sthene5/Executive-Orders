@@ -6,11 +6,20 @@
 
 **Spend tokens where Bentham says (owner, 2026-11-05):** before any agent wave, read `jobs/bentham/output/PLAN.md` (rebuilt daily from measured yields, costs and the orders each action unlocks) and run ranked actions in rank order within the owner's budget. After each batch run `python3 -I jobs/bentham/bentham.py gate --action ID --batches FILE` and stop on STOP. When the wave ends, run `bentham.py usage --wave NAME --phase LABEL` and commit the sanitized output so the next plan is measured on it. See `jobs/bentham/README.md`.
 
+**No wave launches without Augur (proposed by Claude 2026-11-10, after the overnight Codex wave; in force when the owner merges):** write the wave as a plan (`WAVE.json`). It must pass `python -I jobs/augur-launch/augur.py check WAVE.json` before any agent spends, with:
+- an outcome objective, never spend or activity;
+- Bentham actions only;
+- a ramp from a 1-lane, 30-order stage 0 for any configuration not yet measured;
+- every matching Kean warning answered, and a pre-mortem;
+- a review by another model family or the owner, bound to the plan's hash.
+
+An unranked Bentham refusal is a stop, never advice. The claim kit refuses orders outside the named Bentham action (`jobs/claim-kit/admission.py`). The Savigny supervisor stops lanes on measured spend per verified claim, not on what agents report. See `jobs/augur-launch/README.md`.
+
 **Lean tree (2026-11-08):** never list or search the whole ~194,000-file tree; name the folder you need. The root `.ignore` keeps Grep out of outputs and data unless you give their path, and `.claude/hooks/ockham_lean_tree.py` refuses bare `git ls-files`, `find .`, `ls -R` and root-wide `**` globs. Details in `AGENTS.md`.
 
 At the beginning of every session read `HANDOFF/KEAN.md`, `HANDOFF/README.md`, the newest entry of each agent's notes (including `HANDOFF/notes-astra.md`), plus `AGENTS.md`. GitHub is the coordination and evidence base; use it instead of asking the owner to transfer chat transcripts.
 
-Before leaving, write the latest concise work summary and actionable requests to `HANDOFF/notes-claude.md` only. Do not edit Astra/Codex notes. For scripts too large for the current execution environment, commit a bounded job under `jobs/<name>/` with `needs.txt`; use GitHub Actions and verify its `output/STATUS.json`.
+Before leaving, write the latest concise work summary and actionable requests to `HANDOFF/notes-claude.md` only. Do not edit Astra/Codex notes. For scripts too large for the current execution environment, commit a bounded job under `jobs/<name>/` with `needs.txt`, start it with `gh workflow run run-jobs.yml --ref <branch> -f job=<name> -f only=true` (no push starts a run, Kean D-20261109-no-push-runs), and verify its `output/STATUS.json`.
 
 Preserve the immutable evidence/legal codebook, distinguish historical document discovery from identity authentication, and separate AI status hypotheses from source-backed full-lifecycle dossiers and independent human certification. Never inflate the 0 certified whole-lifecycle count by bulk machine review.
 

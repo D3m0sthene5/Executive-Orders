@@ -1,0 +1,184 @@
+{
+  "schema": "eo-project-journal/v1",
+  "title": "Project journal",
+  "updated": "2026-11-09",
+  "how_written": "One entry per project day, written from the dated Kean register (jobs/kean/register: findings, owner decisions, questions), the HANDOFF notes and the daily Mission checkpoints. Ready counts are the readiness tracker's 'ready for human review' on that day's last published generation; a day without a published generation shows none. Ready means a machine-complete dossier waiting for a person, not a certified result: certified whole lifecycles remain 0 throughout.",
+  "headline": {
+    "orders_in_census": 14998,
+    "ready_for_human_review": 1083,
+    "orders_with_provisional_status": 4301,
+    "certified_whole_lifecycles": 0,
+    "as_of": "2026-11-09"
+  },
+  "meaning": [
+    "The project's question is the legally defensible life of every executive order from 1789 to the 14 October 2026 cutoff: when it began, what it commanded, whether and when each command ended, and what survives. In 24 days it went from no order ready for human review to 1,083 machine-complete dossiers, and from no settled status to a provisional yes or no for 4,301 orders.",
+    "Most of the value is not in the count but in the machinery that makes each next order cheaper and auditable: a census of 14,998 orders, a register of identities, held official printings for thousands of orders, a claim kit that turns research into checked claims, a checker that verifies every quotation against held bytes, a tracker that says exactly what each order still lacks, and Kean, which keeps every result and owner decision so no session starts from zero.",
+    "The count has fallen as well as risen, and that is the system working: on 7 November newly found official GPO printings made 193 earlier transcription-based dossiers stale, and they left the ready count until rechecked against the printing. Rules get stricter as evidence improves; nothing is counted on convenience.",
+    "What it does not mean yet: no lifecycle has been independently certified by a person. The 1,083 are ready for that review, with their remaining obligations stated."
+  ],
+  "last_48_hours": {
+    "from": "2026-11-07",
+    "to": "2026-11-09",
+    "ready_start": 992,
+    "ready_end": 1083,
+    "summary": [
+      "Ready rose from 992 to 1,083 (+91) after the 7 November drop, by rechecking stale dossiers against their official printings rather than re-freezing them by script: Haloander's 25 claims (992 to 1,017), Cujas's 68 Photius-stale orders checked against GPO pages by two blind arms with planted controls, and Montfaucon's 500 original-page outcomes from paired blind readers.",
+      "The owner said yes to four Haloander decisions: three NO statuses adopted, a rule for when emergency-board orders end, Bentham measuring the undecided stratum, and the remaining stale transcriptions page-checked rather than re-frozen.",
+      "Infrastructure: one dashboard (Tsiolkovsky folded in), long job chains run in segments (Riquet), Junto wired to measured wave usage (Rumford), and the Gutenberg wave's honest cost accounting, read audit and chain-health check (PR #242, open).",
+      "Papebroch (PR #244) finished the Mabillon fix held since 6 November: 2,015 government-printed passages now verify against their own hashes, Lachmann can read them, and working-text confirmations rise 715 to 776 with none lost (measured on its branch and on Actions; awaiting merge).",
+      "Two owner rulings: rerun the claim checker only for the claims a change can reach (a full 50-minute run had been spent on a change touching one claim; the fix is being built in its own session), and Lachmann now runs after Mabillon in the same run."
+    ]
+  },
+  "days": [
+    {
+      "date": "2026-10-17",
+      "title": "The rules of the road",
+      "ready": 0,
+      "story": "The owner set the standing method: read the handoff at every session start, leave notes before stopping, run anything too large for an agent's machine as a bounded job on GitHub, and keep the immutable codebook. The first big plans all failed in instructive ways: an eight-job automation estimate, a sprint aiming for 300 ready orders, and 'family rules' that would let one shared text close a whole family. A library pilot compared PDF and citation tools on retained files.",
+      "milestones": ["Standing handoff and jobs rules", "First production sprint fails; lessons kept"]
+    },
+    {
+      "date": "2026-10-18",
+      "title": "The first 130",
+      "ready": 130,
+      "story": "The first orders reached ready: a claim swarm on orders with exactly one named revoking order worked. The American Presidency Project was crawled through web-archive captures, which became the project's main independent transcription. HathiTrust GPO volumes for 1,712 orders could not be read that day, and a test of compact case packets did not beat ordinary preparation.",
+      "milestones": ["130 ready", "APP transcriptions held"]
+    },
+    {
+      "date": "2026-10-19",
+      "title": "Sizing the mountain",
+      "ready": 135,
+      "story": "An effort model put the remaining work at about 17,144 agent-hours, later 15,698. The X1 class engine began typing every pre-1937 order so whole classes could share rules. The owner was asked whether a lighter review could serve low-risk cases.",
+      "milestones": ["First effort model"]
+    },
+    {
+      "date": "2026-10-20",
+      "title": "Modern orders and the first postmortem",
+      "ready": 138,
+      "story": "Bowditch's modern status sweep worked; the modern claim factory did not. Lambertini recorded shared savings readings and counterevidence searches once for many orders. Llull wrote a postmortem of the project's first 23 plans, and Hamilton began auditing where tokens went.",
+      "milestones": ["Llull postmortem of 23 plans"]
+    },
+    {
+      "date": "2026-10-21",
+      "title": "Sixteen owner rulings",
+      "ready": 278,
+      "story": "The owner decided sixteen legal and method questions in one day: how report deadlines on emergency boards end, that strike-and-insert amendments continue the order, that a statute not naming an order does not end it, how 'until' dates count, that AI-proposed statuses may be adopted only through review, and that transcriptions and ProQuest scans may serve as working texts. Ready doubled to 278.",
+      "milestones": ["16 owner rulings", "Ready doubles to 278"]
+    },
+    {
+      "date": "2026-10-22",
+      "title": "The owner's ProQuest scans",
+      "ready": 280,
+      "story": "Pinakes began ingesting the owner's ProQuest scans of the orders. Sinclair had a different AI family review 31 provisional NO proposals. The owner was asked for search keys (Brave, SerpAPI, NARA).",
+      "milestones": ["ProQuest ingest begins"]
+    },
+    {
+      "date": "2026-10-23",
+      "title": "Labelled working texts",
+      "story": "Provisional transcription support was labelled and restored verifications put back (PR #55), and one EO 12379 analysis was shared across six orders (PR #56)."
+    },
+    {
+      "date": "2026-10-24",
+      "title": "Deterministic completion",
+      "ready": 285,
+      "story": "kit.py complete replaced the agents that tallied and copied results, and earlier research now loads into each new case so work is never redone. The owner made ordinary production a standing protocol: prepare, view, apply, batch-check, complete."
+    },
+    {
+      "date": "2026-10-25",
+      "title": "Shared facts and record series",
+      "story": "Norton tried answering a shared factual question once for several orders and stopped at its gate. The National Mediation Board's annual reports were read as an institutional record series."
+    },
+    {
+      "date": "2026-10-26",
+      "title": "Early Federal Register pages",
+      "story": "The claim kit stopped picking neighbouring documents on crowded early Federal Register pages. Counterexample-first research did not beat ordinary research on six orders. Paired blind source reviews ran through the night."
+    },
+    {
+      "date": "2026-10-27",
+      "title": "Recovery after a reset",
+      "story": "After a workspace reset, production batches and their whole-case attestations were recovered as explicit new versions rather than overwritten, and the human-checked citation gate learned to read qualified notes."
+    },
+    {
+      "date": "2026-10-28",
+      "title": "Evidence decides",
+      "ready": 310,
+      "story": "The owner's central ruling: agents work out the legal distinctions themselves and record what the evidence establishes, with the best supported date or interval; a claim that something happened needs evidence that it did. Kean was born the same day, so every result and decision would be kept for the next session. The 1,530 one-person civil-service waivers were re-researched under the new ruling, and Namier began matching named people across every held text.",
+      "milestones": ["Evidence-decides ruling", "Kean register begins"]
+    },
+    {
+      "date": "2026-10-29",
+      "title": "Coordinate by model tier",
+      "ready": 395,
+      "story": "The owner ruled that the strongest model coordinates and keeps legal judgment while cheaper models take bounded tasks and scripts take deterministic work. Twenty-six findings in a day: production handoffs audited, hidden friction found, six wiring repairs made, Valla's context isolation repaired, and one independently reviewed shared legal analysis of the 1935 repeal of the NIRA code provisions.",
+      "milestones": ["Tiered-delegation rule", "26 findings in one day"]
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Planted controls bound to the task",
+      "ready": 498,
+      "story": "Planted-control reviews were bound to each lifecycle task's own scope, and shared NRA source research reconciled eight outliers. Ready approached 500."
+    },
+    {
+      "date": "2026-10-31",
+      "title": "Jacquard and Lachmann",
+      "story": "Two engines arrived. Jacquard: the owner allowed sampled class review, with planted errors and zero misses allowed, to adopt provisional NO statuses for well-defined lots, and the waiver, NRA and Canal Zone lots were then reviewed member by member. Lachmann: machine collation that confirms a held working text is the right order, complete and on the right pages. The Apollo claim swarm worked 444 orders.",
+      "milestones": ["Jacquard sampled adoption", "Lachmann working-text confirmation", "Apollo swarm: 444 orders"]
+    },
+    {
+      "date": "2026-11-01",
+      "title": "Erasmus",
+      "story": "Erasmus resubmitted 40 Apollo rejects and corrected 20 flagged filed claims, and Geddes was wired into batch checking."
+    },
+    {
+      "date": "2026-11-02",
+      "title": "Recovered main, 784 ready",
+      "ready": 784,
+      "story": "The combined recovered main generation was published and audited. Missing raw sources were retained through the queued route, Lachmann's checks were reused in ordinary preparation, and the production control center was packaged with the repository."
+    },
+    {
+      "date": "2026-11-03",
+      "title": "A lost run",
+      "story": "The Bacon session's artifacts could not be recovered; the owner was asked for them, and the run was later closed as unrecoverable."
+    },
+    {
+      "date": "2026-11-04",
+      "title": "1,331 ready",
+      "ready": 1331,
+      "story": "The biggest single-day rise. PRs 131-137 were integrated and the combined jobs run; source custody is now screened before any producer is dispatched; reviewed provision histories (MAITLAND) were carried into ordinary assignments. The owner delegated answers to eleven open questions, and the Mission rocket view was repaired to update itself.",
+      "milestones": ["1,331 ready", "Mission repaired"]
+    },
+    {
+      "date": "2026-11-05",
+      "title": "Spend tokens where Bentham says",
+      "story": "Bentham began ranking every possible action by measured yield per cost, and the owner made it the rule for every agent wave. Gessner cards gave each order one page. Tischendorf started proving official printings by comparing page text. Herschel took two probability samples of the 96,598 open order-steps. The owner bought Brave search credit and ruled that fee-based Archives reproductions are not needed.",
+      "milestones": ["Bentham rule", "Herschel census of open steps"]
+    },
+    {
+      "date": "2026-11-06",
+      "title": "The day of fifty-eight decisions",
+      "ready": 1368,
+      "story": "The largest day in the project's record: 95 findings, 58 owner decisions, 64 questions. The headline measure was fixed as operative force at the cutoff, the first-ending interval contract became claim schema v2, and a claim may now contest the ledger. Photius admitted official printings (R37) and microfilm witnesses (R38), and its lanes OCRed 9,086 pages of GPO volumes, read 2,557 ProQuest scans and page-checked free printings. Pothier wrote eleven family doctrines for 5,918 undecided orders, Mabillon proved 1,771 held government printings by text, and the repository's growth was paused near GitHub's cap. Ready peaked at 1,368.",
+      "milestones": ["58 owner decisions", "Photius official printings", "Ready peaks at 1,368"]
+    },
+    {
+      "date": "2026-11-07",
+      "title": "Better evidence, honest drop",
+      "ready": 1017,
+      "story": "Ready fell from 1,185 to 992: Photius had found official GPO printings for 193 orders whose dossiers rested on transcriptions, so those confirmations went stale until checked against the printing. The response was evidence, not a script: Haloander rechecked against the printings and filed 25 lifecycle claims (992 to 1,017). Hansard serialized the progress refresh, and Ptolemy's and Selden's raw files moved to the release byte store.",
+      "milestones": ["Stale-on-better-evidence drop", "Haloander: 25 claims"]
+    },
+    {
+      "date": "2026-11-08",
+      "title": "Cujas and Montfaucon",
+      "story": "The owner said yes to all four Haloander questions. Cujas page-checked 68 Photius-stale orders against their GPO printings with two blind arms and planted controls, all six controls caught. Montfaucon's paired blind readers produced 500 original-page outcomes, including honest negatives where agency reports were reprints, not issued originals. One dashboard replaced several (Tsiolkovsky folded in), and Riquet split long job chains into segments.",
+      "milestones": ["Cujas: 68 rechecked", "Montfaucon: 500 page outcomes"]
+    },
+    {
+      "date": "2026-11-09",
+      "title": "Papebroch and the rerun rule",
+      "ready": 1083,
+      "story": "Papebroch closed the Mabillon text-hash hole held since 6 November: 2,015 government-printed passages now verify, Lachmann reads them, and working-text confirmations rise from 715 to 776 with none lost (PR #244, measured, awaiting merge). The owner ruled that the claim checker must rerun only the claims a change can reach, after a 50-minute full run was spent on a change touching one claim, and that Lachmann runs after Mabillon. The Gutenberg wave made costs honest and added a read audit and daily chain health (PR #242).",
+      "milestones": ["Mabillon texts verify", "Rerun-only-what-changed ruling"]
+    }
+  ]
+}

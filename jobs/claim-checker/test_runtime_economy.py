@@ -113,4 +113,66 @@ class SourceStreamingTests(unittest.TestCase):
         self._failure(UnicodeError('injected decoding failure'))
 
 
+class PergamonCustodyTests(unittest.TestCase):
+    """A SOURCES.jsonl record with a Pergamon locator is fetched, re-hashed here, and counted as held bytes."""
+
+    def setUp(self):
+        import hashlib, os, sys
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.repo = Path(self.tmp.name)
+        self.body = b'%PDF-1.4 stored outside git'
+        self.sha = hashlib.sha256(self.body).hexdigest()
+        path = self.repo / 'jobs/a/output/SOURCES.jsonl'
+        path.parent.mkdir(parents=True)
+        good = {'sha256': self.sha, 'url': 'https://example.org/a.pdf', 'instrument_ids': ['EO 1'], 'cache_path': None,
+                'pergamon': {'sha256': self.sha, 'backend': 'release', 'ext': '.pdf', 'bytes': len(self.body),
+                             'locator': 'mem://' + self.sha + '.pdf'}}
+        wrong = {'sha256': 'b' * 64, 'url': 'https://example.org/b.pdf', 'cache_path': None,
+                 'pergamon': {'sha256': 'c' * 64, 'backend': 'release', 'ext': '.pdf', 'locator': 'mem://x'}}
+        path.write_text(chr(10).join(json.dumps(r) for r in (good, wrong)) + chr(10), encoding='utf8')
+        self.idx = S.HeldIndex(); S.load_job_sources(self.idx, self.repo)
+        self.copy = self.idx.lookup_sha(self.sha)[0]
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / '_lib'))
+        import pergamon_store as PS
+        objects = {self.sha + '.pdf': self.body}
+
+        class Mem:
+            name = 'release'
+            def locator_for(self, sha, ext): return 'mem://' + sha + ext
+            def get(self, locator, max_bytes=0):
+                if locator[6:] not in objects: raise PS.NotFound(locator)
+                return objects[locator[6:]]
+        self.objects, self.PS = objects, PS
+        patcher = mock.patch.object(PS.Store, 'from_env', classmethod(lambda cls, *a, **k: cls(Mem())))
+        patcher.start(); self.addCleanup(patcher.stop)
+        self.cache = self.repo / 'cache'
+
+    def test_loader_marks_only_consistent_locators_as_stored(self):
+        self.assertEqual(self.copy.custody, 'pergamon_store')
+        self.assertTrue(self.copy.bytes_kept)
+        self.assertEqual(self.idx.lookup_sha('b' * 64)[0].custody, 'record_only')   # locator names another hash
+
+    def test_fetch_rehash_and_text_use_the_saved_cache_file(self):
+        reader = S.TextReader(self.cache)
+        self.assertTrue(reader.verify_bytes(self.copy))
+        self.assertEqual(self.copy.local_path, self.cache / 'pergamon' / self.sha[:2] / (self.sha + '.pdf'))
+        self.assertEqual(reader.read_bytes(self.copy)[0], self.body)
+
+    def test_store_returning_wrong_bytes_leaves_the_copy_unverified(self):
+        self.objects[self.sha + '.pdf'] = b'swapped'
+        self.assertIsNone(S.TextReader(self.cache).verify_bytes(self.copy))
+        self.assertIsNone(self.copy.local_path)
+
+    def test_tampered_cache_file_is_caught_by_the_local_rehash(self):
+        reader = S.TextReader(self.cache)
+        self.assertTrue(reader.verify_bytes(self.copy))
+        self.copy.local_path.write_bytes(b'tampered')
+        self.assertFalse(S.TextReader(self.cache).verify_bytes(self.copy))
+
+    def test_fetch_budget_zero_disables_the_network_step(self):
+        with mock.patch.dict('os.environ', {'CLAIM_CHECKER_PERGAMON_FETCHES': '0'}):
+            self.assertIsNone(S.TextReader(self.cache).verify_bytes(self.copy))
+
+
 if __name__ == '__main__': unittest.main()
