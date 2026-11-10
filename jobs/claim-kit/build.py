@@ -271,14 +271,15 @@ def _actor_context(iid, actor, ar, acts, evidence, missing):
 def select_acting_texts(repo, rows, wanted):
     """{actor: held acting text record} for the wanted non-census actors; one text per actor, read and hashed.
 
-    The first readable declaration wins in (graded first, text path) order; an empty or placeholder text is
-    refused. Returns (selected, refused) where refused lists 'actor: reason' strings."""
+    The first readable declaration wins in (graded first, a job's output before its data/ shard copies, text path)
+    order; an empty or placeholder text is refused. Returns (selected, refused) where refused lists 'actor: reason'
+    strings."""
     by_actor=collections.defaultdict(list)
     for r in rows:
         if r.get('instrument_id') in wanted and r.get('role')==ACTING_ROLE:by_actor[r['instrument_id']].append(r)
     selected={};refused=[]
     for actor,choices in sorted(by_actor.items()):
-        for r in sorted(choices,key=lambda r:(r.get('grade') is None,r['text_path'])):
+        for r in sorted(choices,key=lambda r:(r.get('grade') is None,'/output/' not in r['text_path'],r['text_path'])):
             try:text=safe_read(repo,r['text_path'])
             except (OSError,ValueError,UnicodeError) as e:
                 refused.append(actor+': unreadable '+r['text_path']+' ('+type(e).__name__+')');continue
