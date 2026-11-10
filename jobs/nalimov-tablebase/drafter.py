@@ -52,7 +52,7 @@ FLAG_RESOLUTIONS = {
 BENIGN_MISSING = (
     re.compile(r"^Current-law lead lacks an original-source sha256\.$"),
     re.compile(r"^No uniquely located attributed legal-text slice is held for this current-law pointer"),
-    re.compile(r"^Machine segmentation lead; compare the inventory with the official original\.(?! *No confident)"),
+    re.compile(r"^Machine segmentation lead; compare the inventory with the official original\.$"),
 )
 NAMED_MISSING = re.compile(r"^(target provision not located)[^:]*:\s*(\S+)$")
 ENDED_ROLES = {"eo_note_ended_status", "ending_order_in_status_line", "amending_order_in_ended_status_line"}
@@ -91,13 +91,16 @@ PRESERVE = re.compile(r"\b(?:remain\w*|continue\w*|preserv\w*|saved?|shall not (
                       r"not be affected|(?:be )?construed to affect|until (?:modified|superseded|revoked|amended|rescinded))\b")
 ABOUT_DONE = re.compile(r"\b(?:issued|taken|made|prescribed|granted|done|promulgated|acquired|accrued|incurred|pending)\s+"
                         r"(?:under|pursuant\s+to)\b|\bheretofore\b|\b(?:revoked|superseded|rescinded)\s+(?:orders?|"
-                        r"provisions?)\b|\borders?\s+(?:hereby\s+)?(?:revoked|superseded)\b")
+                        r"provisions?)\b|\borders?\s+(?:hereby\s+)?(?:revoked|superseded)\b|\b(?:existing|outstanding|"
+                        r"present|prior)\s+(?:regulations|rules|orders|delegations|designations|determinations|"
+                        r"authorizations|appointments)\b")
 # A delayed or dated effect anywhere in the actor's text (blocks unless the ACT record carries a parsed date).
 MONTH = r"(?:january|february|march|april|may(?=\s+\d)|june|july|august|september|october|november|december)"
 DELAYED = re.compile(r"\b(?:effective|in\s+(?:force|effect)|into\s+effect|operative|take\s+effect|apply)\b[^.;]{0,80}?"
                      r"(?:\b" + MONTH + r"\b|\b\d+\s+days\b|\bdays\s+after\b|\bon\s+and\s+after\b|\bfrom\s+and\s+after\b|"
-                     r"\bupon\s+(?:the\s+)?(?:date|expiration|termination|enactment|appointment)\b)"
-                     r"|\b(?:on\s+and\s+after|from\s+and\s+after)\b")
+                     r"\bupon\s+(?:the\s+)?(?:date|expiration|termination|enactment|appointment)\b|"
+                     r"\bthe\s+(?:first|last|\d+\w*)\s+day\b)"
+                     r"|\b(?:on\s+and\s+after|from\s+and\s+after)\b|\bgo\s+into\s+effect\b")
 SUPERSEDE = re.compile(r"\bsupersed\w*\b")
 
 
@@ -129,7 +132,9 @@ def _sentences(text):
 def _clause_body(text):
     """A clause's normalized text without its leading label."""
     t = flat(text).strip()
-    return re.sub(r"^(?:sec(?:tion)?\s*[\d-]+[a-z]?|\([a-z0-9]+\)|[a-z0-9-]+\.)\s*[.:]?\s*(?:[a-z ]{3,40}\.\s+)?", "", t)
+    # Only the label is removed. A heading word such as "Revocation." stays, as a sentence too short to count (R1: a
+    # pattern that also removed short headings removed short first sentences, e.g. "The Board is hereby abolished.").
+    return re.sub(r"^(?:sec(?:tion)?\s*[\d-]+[a-z]?|\([a-z0-9]+\)|[a-z0-9-]+\.)\s*[.:]?\s*", "", t)
 
 
 def classify_clause(text, target_num=None):
@@ -553,7 +558,8 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
             f"{actor} acts on it in the dossier's acting provisions or chain, and no catalog entry other than the "
             f"witness names an acting instrument."),
         "scope_check": (
-            f"The {verb[:-1]}ion in {label} of {actor} is of the whole of {iid} (no in-part qualifier, no excepted "
+            f"The {'supersession' if verb == 'superseded' else 'revocation'} in {label} of {actor} is of the whole of "
+            f"{iid} (no in-part qualifier, no excepted "
             f"section; zero-token Respondendi predicate), so it reaches every clause."),
         "independent_command_check": (
             (f"Standing commands ended on {end}: {', '.join(cont)}. " if cont else "")

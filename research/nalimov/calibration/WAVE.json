@@ -4,15 +4,14 @@
  "stage": 0,
  "objective": {
   "metric": "verified_claims_per_unit",
-  "text": "Measure, on the 9 script-drafted express-revocation claims that the kit's assembler and the actual claim checker pass, how many both blind verifiers uphold and the status reader accepts, with every planted control caught, per API-equivalent dollar, against the full undecided route (Papinian: 7.71 USD per adopted status)."
+  "text": "Measure, on the 8 script-drafted express-revocation claims that the kit's assembler and the actual claim checker pass, how many both blind verifiers uphold and the status reader accepts, with every planted control caught, per API-equivalent dollar, against the full undecided route (Papinian: 7.71 USD per adopted status)."
  },
  "actions": [
   {
    "id": "status_assignment.undecided",
-   "orders": 9,
+   "orders": 8,
    "lanes": 1,
    "ids": [
-    "EO:8616",
     "EO:10779",
     "EO:11056",
     "EO:11232",
@@ -25,14 +24,15 @@
   }
  ],
  "configuration": {
-  "orchestrator": "nalimov-tablebase",
+  "orchestrator": "maudslay-conveyor",
   "coordinator_model": "claude-opus-5-5",
   "producer_model": "nalimov-script",
   "verifier_models": {
    "A": "claude-sonnet-5-5",
    "B": "claude-opus-5-5",
    "S": "claude-sonnet-5-5"
-  }
+  },
+  "route": "maudslay-conveyor --producer nalimov --controls typed (overlay stage required for undecided members)"
  },
  "limits": {
   "chain_budget_units": 600000,
@@ -45,7 +45,7 @@
  "premortem": [
   {
    "failure": "The drafter fills a wrong field (an inventory gap, an earlier end, a partial scope) and verifiers who see only the small packet uphold it.",
-   "guard": "The drafter (v2, after an independent Fable review found 7 blocking defects in v1) refuses any order with another act, an ending own term, a missing named instrument, a conflict it cannot show, a current-law hit it cannot read, an ending source that is only a transcription, or any clause it cannot type positively; every draft then goes through the kit's own assembler and the actual claim checker (prescreen.py), and only the 9 that pass every step are verified. Replayed on Papinian's frozen evidence, the drafts for EO 11957 and 12348 equal the owner-adopted claims clause for clause. Every session carries typed controls planted apart from their genuine twins, with no mechanical tell (packets.tells); any missed control, invalid arm or status-reader miss stops the batch. Respondendi audits every member cross-family while the stratum is on probation."
+   "guard": "The drafter (v2, after an independent Fable review found 7 blocking defects in v1) refuses any order with another act, an ending own term, a missing named instrument, a conflict it cannot show, a current-law hit it cannot read, an ending source that is only a transcription, or any clause it cannot type positively; every draft then goes through the kit's own assembler and the actual claim checker (prescreen.py), and only the 8 that pass every step are verified. Replayed on Papinian's frozen evidence, the drafts for EO 11957 and 12348 equal the owner-adopted claims clause for clause. Every session carries typed controls planted apart from their genuine twins, with no mechanical tell (packets.tells); any missed control, invalid arm or status-reader miss stops the batch. Respondendi audits every member cross-family while the stratum is on probation."
   },
   {
    "failure": "The packet leaves out evidence the full dossier holds, so verifiers cannot see what would defeat the claim (common-mode omission).",
@@ -70,6 +70,7 @@
   "F-20261110-mommsen-unranked-pools": "All 30 orders are inside Bentham's ranked status_assignment.undecided action (checked against strata/status_assignment.undecided.txt); one lane, 30 orders, prepared through the kit's admission gate, which caps probes at 30.",
   "F-20261107-haloander-undecided-probe": "The action is now ranked with a measured rate (filed_per_attempt.undecided, 3 of 30). The transcription refusal does not bite here: every drafted order has an acceptable original with no page check owed; adoption is the named bound and goes to Respondendi or the owner.",
   "F-20261028-4": "Every order is prepared fresh from main's current claim-kit outputs right before drafting; no packet older than the kit generation is reused, and install refuses evidence whose fingerprint changed since drafting.",
-  "F-20261018-7": "No fetching: the run reads only held, hashed texts already frozen in the kit's evidence, so there are no host success rates or URL hashes to forecast."
+  "F-20261018-7": "No fetching: the run reads only held, hashed texts already frozen in the kit's evidence, so there are no host success rates or URL hashes to forecast.",
+  "F-20261110-nalimov-review-v1": "All 8 drafts passed the kit's assembler, check_claim and every step of the actual claim checker (prescreen.py) before entering this plan; the drafter's tests use the reviewer's real OCR clause texts; the Papinian replay equals the owner-adopted claims for EO 11957 and 12348; packets.tells() and the conveyor's typed plants keep controls indistinguishable from genuine claims."
  }
 }

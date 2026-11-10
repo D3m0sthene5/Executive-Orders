@@ -1,3 +1,20 @@
+## 2026-11-10 ET (Claude, NALIMOV: script-completed claims, PR #279)
+
+- **Done (PR #279, draft):** `jobs/nalimov-tablebase/` drafts a whole claim by script for an express named
+  revocation, from held hashed records only, or names its blocker. `prescreen.py` runs the kit's assembler and the
+  actual checker on every draft. Packets are batched by acting instrument, with typed controls. The Maudslay conveyor
+  gained `--producer nalimov` (drafter replaces the producer stage), `--controls typed` (five control kinds) and
+  list-price measures by stage (Whitworth I4/I6). Report: `research/nalimov/REPORT.md`. No model ran on any order.
+- **Measured on main (854514831e outputs):** express named revocation: 720 candidates, 12 complete drafts, 8 pass
+  every checker step. Decided 0 of 2,732; amendment-only 0 of 601 (F5 not merged); own terms 0. Packets 4.8k tokens
+  per claim. Projected 0.10-0.42 USD per adopted status vs 7.71 measured. Kean F-20261110-nalimov-census.
+- **Review:** Fable 5.2 found 7 blocking defects in v1 (17 of 36 drafts wrong), then 2 small ones in v2. All fixed.
+  Kean F-20261110-nalimov-review-v1. The independent review is in the side-session notes folder (`nalimov/REVIEW.md`).
+- **Waiting on the owner:** A-20261110-nalimov-calibration (sign the 8-order stage-0 plan; accept a script as
+  producer on this route).
+- **Next:** the conveyor's status-overlay stage (undecided members stop after `apply` today). After that, rebase onto
+  Accursius F3, F7, F5, F6 and F4 as they merge. Biggest unlock: official FR copies of 150 revoking orders.
+
 ## 2026-11-10 ET (Claude, overnight Codex wave failed; claim-kit admission guard, PR #265)
 
 - **What happened:** SAVIGNY (coordinator) and MOMMSEN-1..5 (gpt-6.1-sol xhigh, headless) ran from about 00:04 to

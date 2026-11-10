@@ -28,7 +28,7 @@ the filing route accept. The kit's `status_overlay._decision_errors` gate passes
 
 | Kind | Script completes when | Today |
 |---|---|---|
-| `express_named_revocation` (undecided) | one later order names the order and ends it whole (Respondendi's sentence predicate), from an official copy of the ending order, with an acceptable original, no page check, no other act, no ending own term, no unread current-law hit, no conflict it cannot show, a catalog second witness with the same date, and a clause inventory anchored on the order's own text with every clause typed positively | 720 candidates, 13 complete drafts, 9 pass the kit's assembler and every checker step (`research/nalimov/`) |
+| `express_named_revocation` (undecided) | one later order names the order and ends it whole (Respondendi's sentence predicate), from an official copy of the ending order, with an acceptable original, no page check, no other act, no ending own term, no unread current-law hit, no conflict it cannot show, a catalog second witness with the same date, and a clause inventory anchored on the order's own text with every clause typed positively | 720 candidates, 12 complete drafts, 8 pass the kit's assembler and every checker step (`research/nalimov/`) |
 | `decided_express` | the same, for decided NO orders with no ready claim (decided production route; no status decision; no catalog tests, since there is no history packet) | 0 of 2,732 |
 | `amendment_only` (Pothier P2) | the kit emits OWN_TEXT / PARENT_END records (F5, Accursius PR #274); then children are drafted after their parent (`packets.topological`) | 0 until F5 |
 | `own_terms` | not scripted: a stated term needs the extension and later-act checks a script cannot close | 0 |
@@ -88,3 +88,14 @@ never deleted.
 `python -I jobs/nalimov-tablebase/test_nalimov.py` builds every fixture itself (road-tests). The predicate copy in
 `predicate.py` is vendored from Respondendi (PR #270); `PredicateParityTests` compares it with the real module whenever
 `jobs/respondendi-adoption` is checked out.
+
+## In the Maudslay conveyor (Whitworth I4)
+
+`jobs/maudslay-conveyor/conveyor.py run ... --producer nalimov` replaces the producer stage with this drafter
+(`Batch.draft_round`, zero tokens, no repair rounds) and plants typed controls by default (`--controls typed`: date
+shift, later event removed, partial end presented as whole, wrong order's text, swapped ending source; each with its
+own catch terms, at least two kinds per review set, one status-determining). Every later stage (`apply`,
+`batch-check`, plant, blind review, controls, reveal, agree, `complete`) is the conveyor's own, unchanged.
+`MEASURES.json` gains the draft stage, list-price dollars per stage from `jobs/necker-costs/PRICES.json`, and per
+filed claim; dollars per adopted status are filled after adoption. Gap: the conveyor has no status-overlay stage
+yet, so undecided members stop after `apply` (`awaiting_status_review`); that stage is the next piece of work.

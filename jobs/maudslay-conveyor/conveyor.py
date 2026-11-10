@@ -61,7 +61,8 @@ DATE_TERMS = frozenset({"date", "dates", "dated", "first_end", "whole_order_end"
 OUTCOMES = ("submit", "unresolved", "blocked", "route_owner")
 # Settings fixed when a batch starts; a re-run may change only budgets, concurrency, timeouts and switches.
 FIXED = ("agent", "action", "n", "ids", "route", "replacement_proposal", "publication", "publication_mode",
-         "prompt_cap_chars", "review_chunk", "repair_rounds", "adjudicator", "keys_dir", "scratch_root", "wave")
+         "prompt_cap_chars", "review_chunk", "repair_rounds", "adjudicator", "keys_dir", "scratch_root", "wave",
+         "controls", "producer")
 MUTABLE = ("parallel", "item_usd", "item_tokens", "batch_usd", "batch_tokens", "item_timeout", "publish",
            "defer_adjudication", "batches_file", "tools", "workers")
 
@@ -667,13 +668,152 @@ def plant_controls(claims, salt):
     return out, controls
 
 
-def caught(rec):
-    """Rule fixed in advance: the arm rejected the version, and a whole word or field name in its `defects` names a
-    date. Reasons are not read, and no substring of a longer word ("mandate", "update") counts."""
+PRICE_ALIASES = {"opus": "claude-opus-5-5", "sonnet": "claude-sonnet-5-5", "haiku": "claude-haiku-5-5",
+                 "fable": "claude-fable-5-2"}
+
+
+def necker_prices(repo):
+    """API list prices (jobs/necker-costs/PRICES.json), or [] when the file is not checked out."""
+    data = read_json(Path(repo) / "jobs/necker-costs/PRICES.json") or {}
+    return [m for m in data.get("models") or [] if isinstance(m, dict) and m.get("match")]
+
+
+def list_price_usd(w, prices):
+    """One worker's tokens at list price (cache writes at the 5-minute rate), or None when its model is unpriced."""
+    model = str(w.get("model") or "")
+    model = PRICE_ALIASES.get(model, model)
+    row = next((m for m in prices if re.search(m["match"], model)), None)
+    if row is None:
+        return None
+    return ((w.get("input") or 0) * row["input"] + (w.get("cache_read") or 0) * row["cache_read"]
+            + (w.get("cache_write") or 0) * row.get("cache_write_5m", row["input"])
+            + (w.get("output") or 0) * row["output"]) / 1e6
+
+
+def nalimov_drafter(repo):
+    """The Nalimov drafter module (jobs/nalimov-tablebase/drafter.py), for --producer nalimov."""
+    folder = Path(repo) / "jobs/nalimov-tablebase"
+    if not (folder / "drafter.py").exists():
+        raise Fail(f"--producer nalimov needs {folder / 'drafter.py'}; check out jobs/nalimov-tablebase")
+    if str(folder) not in sys.path:
+        sys.path.insert(0, str(folder))
+    import importlib
+    return importlib.import_module("drafter")
+
+
+def caught(rec, terms=DATE_TERMS):
+    """Rule fixed in advance: the arm rejected the version, and a whole word or field name in its `defects` names the
+    planted defect (`terms`; a date by default). Reasons are not read, and no substring of a longer word ("mandate",
+    "update") counts."""
     if not rec or rec.get("verdict") != "rejected":
         return False
     text = json.dumps(rec.get("defects") or [], ensure_ascii=False).lower()
-    return bool(set(re.findall(r"[a-z_]+", text)) & DATE_TERMS)
+    return bool(set(re.findall(r"[a-z_]+", text)) & set(terms))
+
+
+# Typed plants (--controls typed; Respondendi RULE.md control kinds, Whitworth I4). Each kind has the whole words or
+# field names a reviewer's `defects` must contain for the plant to count as caught. Every typed review set gets at
+# least two plants of two kinds, at least one status-determining; the planted version replaces its genuine twin in the
+# set, as with date plants, so no set holds both.
+TYPED_TERMS = {
+    "date_shift": DATE_TERMS,
+    "later_event_removed": frozenset({"later_event", "later_events", "amendment", "amendments", "amended", "amends",
+                                      "omitted", "omits", "missing"}),
+    "partial_as_whole": frozenset({"partial", "part", "insofar", "qualifier", "qualified", "except", "exception",
+                                   "scope", "quote", "quotation", "whole_order_end"}),
+    "wrong_order_text": frozenset({"original_operative_text", "original_source", "identity", "quote", "quotation",
+                                   "inventory", "text", "wrong"}),
+    "ending_source_swapped": frozenset({"source", "whole_order_end", "first_end", "actor", "quote", "quotation",
+                                        "evidence_id", "provision"}),
+}
+TYPED_STATUS = ("later_event_removed", "partial_as_whole", "wrong_order_text", "ending_source_swapped")
+TYPED_DEFECT = {
+    "date_shift": "every first_end and whole_order_end date moved back three years",
+    "later_event_removed": "one later event (an amendment or partial act) removed from the clause that carried it",
+    "partial_as_whole": "the whole-order ending quote given an 'except ... which shall remain in effect' qualifier",
+    "wrong_order_text": "a clause's operative text replaced by the ending order's provision (another order's text)",
+    "ending_source_swapped": "the whole-order end's source replaced by another claim's ending source",
+}
+
+
+def plant_typed_one(c, kind, rng, others):
+    """A planted copy of claim c with one defect of `kind`, or None when c cannot carry it."""
+    p = copy.deepcopy(c)
+    we = p.get("whole_order_end") if isinstance(p.get("whole_order_end"), dict) else None
+    src = (we or {}).get("source") if isinstance((we or {}).get("source"), dict) else None
+    clauses = [x for x in p.get("operative_clauses") or [] if isinstance(x, dict)]
+    if kind == "date_shift":
+        q, n = plant_one(c, "end")
+        return q if n else None
+    if kind == "later_event_removed":
+        with_events = [x for x in clauses if x.get("later_events")]
+        if not with_events:
+            return None
+        x = rng.choice(with_events)
+        x["later_events"] = x["later_events"][1:]
+        return p
+    if kind == "partial_as_whole":
+        if not src or not src.get("quote"):
+            return None
+        src["quote"] = str(src["quote"]).rstrip(" .") + ", except sections 2 and 3 thereof, which shall remain in effect."
+        return p
+    if kind == "wrong_order_text":
+        if not src or not src.get("quote") or not clauses:
+            return None
+        x = rng.choice(clauses)
+        x["original_operative_text"] = src["quote"]
+        if isinstance(x.get("original_source"), dict):
+            x["original_source"]["quote"] = src["quote"]
+        return p
+    if kind == "ending_source_swapped":
+        mine = canon(src)
+        donors = [o for o in others if isinstance(o.get("whole_order_end"), dict)
+                  and isinstance(o["whole_order_end"].get("source"), dict)
+                  and canon(o["whole_order_end"]["source"]) != mine]
+        if not we or not donors:
+            return None
+        d = rng.choice(donors)["whole_order_end"]
+        we["source"] = copy.deepcopy(d["source"])
+        for x in clauses:
+            fe = x.get("first_end")
+            if isinstance(fe, dict) and canon(fe.get("source")) == mine:
+                fe["source"] = copy.deepcopy(d["source"])
+        return p
+    raise Fail(f"unknown control kind {kind}")
+
+
+def plant_typed(claims, salt):
+    """Typed plants: max(2, ceil(n/15)) claims (1 when the batch has fewer than 3), at least two kinds, at least one
+    status-determining. Returns (review set, key rows) like plant_controls."""
+    rng = random.Random(hashlib.sha256(("maudslay-typed-controls:" + salt).encode()).hexdigest())
+    n = 1 if len(claims) < 3 else max(2, -(-len(claims) // 15))
+    pool = sorted(claims, key=lambda c: c["instrument_id"])
+    rng.shuffle(pool)
+    picks, kinds = {}, []
+    for c in pool:
+        if len(picks) >= n and (n == 1 or (len(set(kinds)) >= 2 and set(kinds) & set(TYPED_STATUS))):
+            break
+        order = [k for k in TYPED_TERMS if k not in kinds] + [k for k in TYPED_TERMS if k in kinds]
+        if not set(kinds) & set(TYPED_STATUS):
+            order = [k for k in order if k in TYPED_STATUS] + [k for k in order if k not in TYPED_STATUS]
+        for kind in order:
+            p = plant_typed_one(c, kind, rng, [o for o in claims if o["instrument_id"] != c["instrument_id"]])
+            if p is not None and canon(p) != canon(c):
+                picks[c["instrument_id"]] = (kind, p)
+                kinds.append(kind)
+                break
+    if len(picks) < n or (n > 1 and (len(set(kinds)) < 2 or not set(kinds) & set(TYPED_STATUS))):
+        raise Fail(f"cannot plant {n} typed controls of two kinds with one status-determining in {len(claims)} claims")
+    out, controls = [], []
+    for c in claims:
+        if c["instrument_id"] in picks:
+            kind, p = picks[c["instrument_id"]]
+            out.append(p)
+            controls.append({"instrument_id": c["instrument_id"], "planted": canon(p), "genuine": canon(c),
+                             "defect": TYPED_DEFECT[kind], "type": kind, "catch_terms": sorted(TYPED_TERMS[kind])})
+        else:
+            out.append(c)
+    return out, controls
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -720,7 +860,7 @@ class Batch:
         n = self.order_count()
         chunk = int(self.cfg.get("review_chunk") or 0)
         sessions = -(-n // chunk) if chunk else 1
-        prod = float(self.cap("producer", "usd"))
+        prod = 0.0 if self.cfg.get("producer") == "nalimov" else float(self.cap("producer", "usd"))
         review = sum(float(self.cap(f"reviewer_{a}", "usd")) * (sessions + 1) for a in "AB")
         return round(n * prod * (1 + int(self.cfg.get("repair_rounds") or 0)) + review, 2)
 
@@ -1310,6 +1450,49 @@ class Batch:
                           "setup": lambda folder, iid=iid: self.seed_sheet(iid, folder, folders.get(iid) if rnd else None)})
         return self.pool(items, "produce" if rnd == 0 else "repair")
 
+    def draft_round(self, iids):
+        """--producer nalimov: the Nalimov drafter (jobs/nalimov-tablebase/drafter.py) writes each order's sheet into
+        its own producer folder, the same files a producer worker writes, from the packet's own frozen evidence. Zero
+        tokens. An order the drafter refuses gets no sheet and stays unresolved with the drafter's blocker. Returns the
+        produced map collect() takes."""
+        drafter = nalimov_drafter(self.repo)
+        mentions = self.repo / "jobs/current-law/output/MENTIONS.csv"
+        index = None
+        if mentions.exists():
+            with mentions.open(encoding="utf-8", newline="") as fh:
+                index = drafter.mentions_index(list(csv.DictReader(fh)))
+        pf, prows = read_csv(self.dir / "prepared" / "decisions.csv")
+        cf_, crows = read_csv(self.dir / "prepared" / "clauses.csv")
+        dossiers = None
+        out = {}
+        for iid in iids:
+            folder = self.scratch / "workers" / f"{self.name}-draft-{slug(iid)}"
+            ev_dir = self.packet / "undecided" / slug(iid)
+            if (ev_dir / "EVIDENCE.json").exists():
+                ev, route = read_json(ev_dir / "EVIDENCE.json"), "undecided"
+                blank = read_json(ev_dir / "STATUS_DECISION.json")
+            else:
+                if dossiers is None:
+                    sys.path.insert(0, str(self.repo / "jobs/claim-kit"))
+                    import batch as kit_batch
+                    _, dossiers = kit_batch.load_packet(self.packet, self.repo, check_sources=False)
+                ev, route, blank = {"instrument_id": iid, "base_dossier": dossiers[iid]}, "decided", None
+            prow = next(r for r in prows if r["instrument_id"] == iid)
+            dr = drafter.draft(ev, prow, [c for c in crows if c["instrument_id"] == iid], blank,
+                               mentions=drafter.mentions_for(index, iid) if index else None, route=route)
+            folder.mkdir(parents=True, exist_ok=True)
+            write_json(folder / "DRAFT.json", dict(dr))
+            if not dr.ok:
+                out[iid] = {"reason": "Nalimov drafter refused it (producer route): " + "; ".join(dr["blockers"][:3])}
+                continue
+            write_csv(folder / "decisions.csv", pf, [{k: dr["row"].get(k, "") for k in pf}])
+            write_csv(folder / "clauses.csv", cf_, [{k: c.get(k, "") for k in cf_} for c in dr["clauses"]])
+            (folder / "RATIONALES.json").write_text("{}\n", encoding="utf-8")
+            if dr.get("decision"):
+                write_json(folder / "STATUS_DECISION.json", dr["decision"])
+            out[iid] = {"folder": folder.as_posix(), "drafter": dr["drafter"], "route": route}
+        return out
+
     @staticmethod
     def produced_map(results):
         out = {}
@@ -1701,11 +1884,17 @@ def _run(b, cfg):
         views = prep["views"]
         targets = [i for i in prep["dispatchable"] if i in ids and views.get(i)]
         no_view = [i for i in prep["dispatchable"] if not views.get(i)]
-        rend = L.once("render", lambda: b.render(targets, views))
-        for iid, n in rend["over_cap"].items():
-            adjudicate.append({"instrument_id": iid, "kind": "prompt_over_cap", "blocks_completion": False,
-                               "detail": f"rendered producer prompt {n} chars > cap {rend['cap_chars']}; not dispatched"})
-        go = rend["rendered"]
+        nalimov = cfg.get("producer") == "nalimov"
+        if nalimov:
+            # The Nalimov drafter replaces the producer stage: no prompt, no worker, zero tokens. Every later stage
+            # (apply, batch-check, plant, blind review, controls, reveal, agree, complete) is unchanged.
+            go = targets
+        else:
+            rend = L.once("render", lambda: b.render(targets, views))
+            for iid, n in rend["over_cap"].items():
+                adjudicate.append({"instrument_id": iid, "kind": "prompt_over_cap", "blocks_completion": False,
+                                   "detail": f"rendered producer prompt {n} chars > cap {rend['cap_chars']}; not dispatched"})
+            go = rend["rendered"]
         if not go:
             raise Stop("render: zero orders can be dispatched (all source-blocked, viewless or over the prompt cap)", quality=True)
         pending = [i for i in go if not (b.latest(f"produce:{slug(i)}")[1] or {}).get("ok")]
@@ -1713,8 +1902,11 @@ def _run(b, cfg):
             # A fresh dispatch check right before producers launch, on every (re)start that still launches any.
             n = len({r["key"] for r in L.rows if str(r.get("key", "")).startswith("dispatch:")})
             L.once(f"dispatch:{n + 1}", lambda: b.dispatch(pending))
-        results = b.produce_round(0, go, views, {})
-        produced = b.produced_map(results)
+        if nalimov:
+            produced = L.once("draft", lambda: b.draft_round(go))
+        else:
+            results = b.produce_round(0, go, views, {})
+            produced = b.produced_map(results)
         for iid, v in produced.items():
             if "item cap" in v.get("reason", ""):
                 adjudicate.append({"instrument_id": iid, "kind": "over_item_cap", "blocks_completion": False,
@@ -1738,7 +1930,7 @@ def _run(b, cfg):
             failing = [i for i in chk["failures"] if i in col["submit"]]
             if not failing:
                 raise Fail(f"mechanical failures name no submitted order: {sorted(chk['failures'])[:5]}")
-            if rnd < int(cfg.get("repair_rounds") or 0):
+            if rnd < int(cfg.get("repair_rounds") or 0) and not nalimov:   # a script has nothing to repair with
                 rnd += 1
                 rr = b.produce_round(rnd, failing, views, folders, chk["failures"])
                 for iid, v in b.produced_map(rr).items():
@@ -1765,7 +1957,8 @@ def _run(b, cfg):
             key = read_json(kp)
             if not key or key.get("applied") != chk["applied"]:
                 salt = os.urandom(16).hex()
-                rset, controls = plant_controls(claims, salt)
+                planter = plant_typed if cfg.get("controls") == "typed" else plant_controls
+                rset, controls = planter(claims, salt)
                 key = {"batch": b.name, "applied": chk["applied"], "salt": salt, "controls": controls,
                        "sealed_utc": now()}
                 write_json(kp, key)
@@ -1788,11 +1981,13 @@ def _run(b, cfg):
         def score():
             rows = []
             for k in key["controls"]:
-                ok = {a: caught(blind[a].get(k["planted"])) for a in "AB"}
-                rows.append({"instrument_id": k["instrument_id"], "defect": k["defect"], "caught_A": ok["A"],
-                             "caught_B": ok["B"], "caught": all(ok.values())})
+                terms = frozenset(k.get("catch_terms") or DATE_TERMS)
+                ok = {a: caught(blind[a].get(k["planted"]), terms) for a in "AB"}
+                rows.append({"instrument_id": k["instrument_id"], "defect": k["defect"],
+                             "type": k.get("type"), "caught_A": ok["A"], "caught_B": ok["B"], "caught": all(ok.values())})
             write_json(b.dir / "CONTROLS.json", {"rule": "caught only if both arms rejected the exact planted hash and "
-                                                 "a whole word or field name in their defects names a date",
+                                                 "a whole word or field name in their defects names the planted defect "
+                                                 "(a date, or the plant's typed catch terms)",
                                                  "controls": rows})
             return {"missed": [r["instrument_id"] for r in rows if not r["caught"]], "controls": len(rows)}
 
@@ -1965,7 +2160,20 @@ def write_measures(b, cfg, state, done, verdict, stopped=None):
     machine = {r["key"]: r["data"].get("wall_seconds") for r in b.ledger.rows
                if r.get("status") == "done" and isinstance(r.get("data"), dict) and not r["data"].get("worker")
                and r["data"].get("wall_seconds") is not None}
-    usd = sum(s["usd"] for s in stages.values())
+    list_prices = necker_prices(b.repo)
+    for w in b.ledger.workers():
+        s = stages[w.get("stage") or w.get("role") or "worker"]
+        lp = list_price_usd(w, list_prices)
+        s["usd_list_price"] = None if (lp is None or s.get("usd_list_price", 0) is None) else round(s.get("usd_list_price", 0) + lp, 6)
+    drafted = b.ledger.data("draft")
+    if drafted is not None:
+        stages["draft"] = {"workers": 0, "tokens": 0, "usd": 0.0, "usd_list_price": 0.0,
+                           "orders_drafted": sum(1 for v in drafted.values() if isinstance(v, dict) and v.get("folder")),
+                           "orders_refused": sum(1 for v in drafted.values() if isinstance(v, dict) and not v.get("folder"))}
+    stages["adjudication"] = {"workers": 0, "usd": None, "note": "coordinator adjudication time is not measured here"}
+    usd = sum(s["usd"] for s in stages.values() if isinstance(s.get("usd"), (int, float)))
+    lp_all = [s.get("usd_list_price") for k, s in stages.items() if k != "adjudication"]
+    usd_list = None if any(x is None for x in lp_all) else round(sum(lp_all), 4)
     filed = (done or {}).get("published", 0)
     m = {"schema": "maudslay-measures/v1", "batch": b.name, "action": cfg["action"], "agent": cfg["agent"],
          "written_utc": now(), "state": "stopped" if stopped else "done", "stop_reason": stopped,
@@ -1974,9 +2182,15 @@ def write_measures(b, cfg, state, done, verdict, stopped=None):
                                             "cache_read", "cache_write", "output", "usd", "wall_seconds", "ok",
                                             "killed", "orphaned", "adopted", "over_item_cap", "prompt_chars")}
                      for w in b.ledger.workers()],
-         "totals": {"usd": round(usd, 4), "tokens": sum(s["tokens"] for s in stages.values()),
+         "totals": {"usd": round(usd, 4), "tokens": sum(s.get("tokens") or 0 for s in stages.values()),
                     "attempted": len(state["ids"]), "submitted": state["submitted"], "filed": filed,
-                    "usd_per_filed": round(usd / filed, 4) if filed else None},
+                    "usd_per_filed": round(usd / filed, 4) if filed else None,
+                    "usd_list_price": usd_list,
+                    "usd_list_price_per_filed": round(usd_list / filed, 4) if (filed and usd_list is not None) else None,
+                    "adopted": None, "usd_per_adopted_status": None,
+                    "adoption_note": "adoption happens after completion (Respondendi or a named owner decision); "
+                                     "divide by the adopted count from that record"},
+         "producer": cfg.get("producer") or "workers", "controls_kind": cfg.get("controls") or "date",
          "gate": verdict, "human_certified": 0,
          "note": "Tokens and dollars are the workers' own reported usage (claude stream-json result; codex exec "
                  "turn.completed usage priced from the workers file). A worker with unknown dollars counts at its "
@@ -2017,8 +2231,10 @@ def build_config(a, repo):
                "scratch_root": scratch.as_posix(), "keys_dir": (scratch / "control").as_posix(),
                "batches_file": (Path(a.run_dir) / "BATCHES.json").as_posix(),
                "publication": f"research/readiness/claims/{given['agent']}-{datetime.now(timezone.utc).date()}-"
-                              f"{name}-{a.batch}.jsonl"}
+                              f"{name}-{a.batch}.jsonl", "producer": "workers"}
         cfg.update(given)
+        # The Nalimov producer route plants typed controls unless told otherwise; worker batches keep date plants.
+        cfg.setdefault("controls", "typed" if cfg.get("producer") == "nalimov" else "date")
     for k in ("workers", "tools"):
         if cfg.get(k):
             p = Path(cfg[k])
@@ -2064,6 +2280,10 @@ def main(argv=None):
                         "else own_claims; own-claim corrections by agent claude use own_claims)")
     r.add_argument("--keys-dir", help="sealed control key, review sets and ADJUDICATION.json (default SCRATCH/control)")
     r.add_argument("--batches-file", help="Bentham gate batch file (default RUN/BATCHES.json)")
+    r.add_argument("--producer", choices=("workers", "nalimov"),
+                   help="producer stage: model workers (default) or the Nalimov drafter (zero tokens, no repair rounds)")
+    r.add_argument("--controls", choices=("date", "typed"),
+                   help="planted controls: date shifts (default for workers) or typed plants (default for nalimov)")
     s = sub.add_parser("status", help="print one batch's ledger summary")
     s.add_argument("batch_dir", type=Path)
     c = sub.add_parser("commands", help="print the rendered worker commands without running them")

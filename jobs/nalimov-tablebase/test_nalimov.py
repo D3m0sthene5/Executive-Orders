@@ -316,6 +316,25 @@ class DrafterTests(unittest.TestCase):
         dr = D.draft(ev)
         self.assertTrue(dr.ok, dr["blockers"])
         self.assertEqual({c["mechanism"] for c in dr["clauses"]}, {"express_supersession", "task_completed"})
+        self.assertIn("The supersession in", dr["row"]["scope_check"])
+        self.assertIn("The revocation in", D.draft(make_evidence())["row"]["scope_check"])
+
+    def test_rereview_findings(self):
+        # R1: a short first sentence is not a heading.
+        self.assertEqual(D.classify_clause("Sec. 3. The Board is hereby abolished. Its records shall be kept by the Archivist."),
+                         "needs_judgment")
+        self.assertEqual(D.classify_clause("Sec. 6. R evocation. Executive O rder 12301 of M arch 2 6 ,1981, is revoked."),
+                         "revokes_other")
+        base = ACTOR.replace("THE WHITE HOUSE", "{s}\nTHE WHITE HOUSE")
+        self.assertIn("actor_savings_sentence", self.blockers(make_evidence(
+            actor_text=base.format(s="Existing regulations shall remain in force until amended."))))
+        self.assertIn("actor_effective_sentence_needs_reading", self.blockers(make_evidence(
+            actor_text=base.format(s="This order shall go into effect on the first day of the next month."))))
+        self.assertIn("missing_item", self.blockers(make_evidence(missing=[
+            "Machine segmentation lead; compare the inventory with the official original. No confident operative "
+            "boundary found; unstructured text retained for review"])))
+        self.assertNotIn("missing_item", self.blockers(make_evidence(missing=[
+            "Machine segmentation lead; compare the inventory with the official original."])))
 
     def test_original_and_page_check(self):
         ev = make_evidence()
@@ -565,6 +584,107 @@ class VerifyTests(unittest.TestCase):
     def test_new_key_refused_in_used_folders(self):
         with self.assertRaises(ValueError):
             V.prepare(self.sess, self.key, self.scratch, "s", self.keys)
+
+
+def _conveyor():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("nalimov_test_conveyor", REPO / "jobs/maudslay-conveyor/conveyor.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _claim(iid, actor, quote, events=()):
+    """A minimal Stage 19-shaped claim."""
+    src = {"text_path": f"jobs/x/{actor}.txt", "quote": quote, "evidence_id": "e-" + actor}
+    return {"instrument_id": iid, "whole_order_status": "no",
+            "whole_order_end": {"date": "1980-03-03", "actor": actor, "mechanism": "express_revocation", "source": dict(src)},
+            "operative_clauses": [{"scope_id": iid + "#sec1", "original_operative_text": f"Sec. 1. The Board of {iid} shall act.",
+                                   "original_source": {"text_path": f"jobs/x/{iid}.txt", "quote": f"The Board of {iid} shall act."},
+                                   "state_at_cutoff": "terminated", "later_events": list(events),
+                                   "first_end": {"date": "1980-03-03", "actor": actor, "source": dict(src)}}]}
+
+
+class ConveyorTypedControlTests(unittest.TestCase):
+    """The Maudslay conveyor's typed plants (Whitworth I4) and its Nalimov producer route."""
+    def setUp(self):
+        self.C = _conveyor()
+        ev = [{"effective_date": "1975-01-01", "actor": "EO:11500", "mechanism": "amendment"}]
+        self.claims = [_claim(f"EO:{11100 + i}", "EO:12222" if i % 2 else "EO:12300",
+                              f"Executive Order {11100 + i} is revoked.", ev if i == 3 else ()) for i in range(16)]
+
+    def test_each_kind_changes_the_claim(self):
+        rng = random.Random(3)
+        for kind in self.C.TYPED_TERMS:
+            c = self.claims[3]
+            p = self.C.plant_typed_one(c, kind, rng, self.claims[:3])
+            self.assertIsNotNone(p, kind)
+            self.assertNotEqual(self.C.canon(p), self.C.canon(c), kind)
+        self.assertIsNone(self.C.plant_typed_one(self.claims[0], "later_event_removed", rng, self.claims))
+
+    def test_typed_sets_meet_the_control_rule(self):
+        for salt in ("a", "b", "c", "d"):
+            rset, ctl = self.C.plant_typed(self.claims, salt)
+            kinds = {k["type"] for k in ctl}
+            self.assertGreaterEqual(len(ctl), 2)
+            self.assertGreaterEqual(len(kinds), 2)
+            self.assertTrue(kinds & set(self.C.TYPED_STATUS))
+            self.assertEqual(len(rset), len(self.claims))
+            planted = {k["planted"] for k in ctl}
+            genuine = {k["genuine"] for k in ctl}
+            hashes = {self.C.canon(c) for c in rset}
+            self.assertTrue(planted <= hashes)
+            self.assertFalse(genuine & hashes)          # the twin never sits in the review set
+
+    def test_catch_terms_are_typed(self):
+        rec = {"verdict": "rejected", "defects": ["later_events omits the 1975 amendment by EO 11500"]}
+        self.assertTrue(self.C.caught(rec, self.C.TYPED_TERMS["later_event_removed"]))
+        self.assertFalse(self.C.caught({"verdict": "rejected", "defects": ["the date is three years early"]},
+                                       self.C.TYPED_TERMS["later_event_removed"]))
+        self.assertFalse(self.C.caught({"verdict": "upheld", "defects": []}, self.C.TYPED_TERMS["partial_as_whole"]))
+
+    def test_list_price(self):
+        prices = [{"match": "^claude-sonnet-5-5", "input": 2, "cache_write_5m": 2.5, "cache_read": 0.1, "output": 10}]
+        w = {"model": "sonnet", "input": 1000, "cache_read": 100000, "cache_write": 50000, "output": 5000}
+        self.assertAlmostEqual(self.C.list_price_usd(w, prices), (2000 + 10000 + 125000 + 50000) / 1e6)
+        self.assertIsNone(self.C.list_price_usd({"model": "gpt-x"}, prices))
+
+
+class ConveyorDraftRouteTests(unittest.TestCase):
+    """Batch.draft_round writes the producer folders collect() takes, from the packet's own frozen evidence."""
+    def test_draft_round(self):
+        C = _conveyor()
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name)
+        evs = actor_set("EO:12222", [11111, 11112]) + [make_evidence(iid="EO:11300", original=ORIGINAL.replace("11111", "11300"),
+                                                                     provision="Executive Order 11300 is revoked in part.")]
+        fields = ["instrument_id", "dossier_sha256", "agent", "outcome", "approved", "working_text", "research_rationale"]
+        cfields = ["instrument_id", "scope_id", "clause_id", "state", "end_id", "effective_date", "mechanism"]
+        (root / "batch/prepared").mkdir(parents=True)
+        drows, crows = [], []
+        for e in evs:
+            d = root / "batch/packet/undecided" / e["instrument_id"].replace(":", "_")
+            d.mkdir(parents=True)
+            (d / "EVIDENCE.json").write_text(json.dumps(e), encoding="utf-8")
+            (d / "STATUS_DECISION.json").write_text(json.dumps({"schema": "eo-status-history-decision/v1"}), encoding="utf-8")
+            drows.append({k: "" for k in fields} | {"instrument_id": e["instrument_id"],
+                                                    "dossier_sha256": e["base_dossier"]["fingerprint"], "outcome": "unresolved"})
+            crows += [{k: "" for k in cfields} | {"instrument_id": e["instrument_id"], "scope_id": c["scope_id"],
+                                                  "clause_id": c["id"]} for c in e["base_dossier"]["clauses"]]
+        C.write_csv(root / "batch/prepared/decisions.csv", fields, drows)
+        C.write_csv(root / "batch/prepared/clauses.csv", cfields, crows)
+        b = C.Batch.__new__(C.Batch)
+        b.repo, b.dir, b.packet, b.name, b.scratch = REPO, root / "batch", root / "batch/packet", "b01", root / "scratch"
+        out = b.draft_round([e["instrument_id"] for e in evs])
+        self.assertEqual(sorted(k for k, v in out.items() if v.get("folder")), ["EO:11111", "EO:11112"])
+        self.assertIn("Nalimov drafter refused it", out["EO:11300"]["reason"])
+        folder = Path(out["EO:11111"]["folder"])
+        self.assertEqual(sorted(p.name for p in folder.iterdir()),
+                         ["DRAFT.json", "RATIONALES.json", "STATUS_DECISION.json", "clauses.csv", "decisions.csv"])
+        f, rows = C.read_csv(folder / "decisions.csv")
+        self.assertEqual(f, fields)
+        self.assertEqual(rows[0]["outcome"], "submit")
 
 
 class RouteTests(unittest.TestCase):

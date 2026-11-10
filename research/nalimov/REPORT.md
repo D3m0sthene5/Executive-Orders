@@ -1,21 +1,29 @@
 # Nalimov tablebase, 2026-11-10: script-completed claims, verification packets, cost per adopted status
 
 Owner Tier A plan, ideas 1-3: generate then verify; batch by acting instrument; dependency order. Coordinator:
-Claude Opus 5.5. Tool: `jobs/nalimov-tablebase/`. Data: origin/main 854514831e job outputs (claim-kit generation
-2026-11-10T10:36Z), read-only. No model was run on any order, nothing was filed, adopted or certified. Human-certified: 0.
+Claude Opus 5.5. Code: `jobs/nalimov-tablebase/` and the Maudslay conveyor's new producer route
+(`jobs/maudslay-conveyor/conveyor.py --producer nalimov --controls typed`). Data: origin/main 854514831e job outputs
+(claim-kit generation 2026-11-10T10:36Z), read-only. No model was run on any order. Nothing was filed, adopted or
+certified. Human-certified: 0.
 
 ## Result in one paragraph
 
-A script can complete, on main today, **13 of 720** undecided orders that have an express named whole revocation, and
-**9** of those pass the kit's own assembler, `check_claim` and **every step of the actual claim checker** with no model
-at all (EO 8616, 10779, 11056, 11232, 11274, 11352, 11361, 12737, 13765). The other kinds give 0 today: amendment-only
-children wait for the kit's OWN_TEXT route (F5, PR #274) and their parents are all open; own-terms orders reach 0 under
-Respondendi's predicate; decided orders give 0 of 2,732 (mostly no ACT record or no acceptable original). A verification
-packet is about **4.9k tokens per claim** (32% of the frozen EVIDENCE.json alone, under 1% of the ~751k context per
-attempted order on the full route). Projected worker cost per adopted status is **about $0.17 (range $0.10-0.42)
-against $7.71 measured** on the full route, 18-80x lower. The pool is the limit, not the unit cost: 9 orders now; the
-census names what unlocks more (official copies of revoking orders, the F7 segmenter fix, a drafter tier for recorded
-amendments). The calibration run is prepared and Augur refuses it only for the missing independent plan review.
+On main today a script can complete **12 of 720** undecided orders that have an express named whole revocation.
+**8** of those pass the kit's own assembler, `check_claim` and **every step of the actual claim checker** without any
+model: EO 10779, 11056, 11232, 11274, 11352, 11361, 12737 and 13765. Every other kind gives 0 today:
+- amendment-only children wait for the kit's OWN_TEXT route (F5, PR #274), and all their parents are open;
+- own-terms orders reach 0 under Respondendi's predicate;
+- decided orders give 0 of 2,732.
+
+A verification packet is about **4.8k tokens per claim**. That is 32% of the frozen EVIDENCE.json alone and under 1%
+of the ~751k context per attempted order on the full route. Projected worker cost per adopted status is **about
+$0.17, in a range of $0.10-0.42**. The full route measured **$7.71**, so this is 18-80x lower. The limit is the pool,
+not the unit cost: 8 orders today. The census names what would unlock more:
+- official copies of the revoking orders;
+- the F7 segmenter fix;
+- a drafter tier for recorded amendments.
+
+The calibration plan is ready. Augur refuses it only because the independent plan review is missing.
 
 ## 1. Fully scriptable orders per kind (zero tokens, on main)
 
@@ -24,113 +32,203 @@ amendments). The calibration run is prepared and Augur refuses it only for the m
 
 | Kind | Candidates | Drafted complete | Pass kit assembler + every checker step | What blocks the rest |
 |---|---:|---:|---:|---|
-| Express named revocation (undecided) | 720 (an ACT passing Respondendi's sentence predicate) | 13 | **9** | below |
-| Decided NO orders with no ready claim | 2,732 | 0 | 0 | 1,275 hold no qualifying ACT; 1,272 no acceptable original; 75 page checks; 31 ending source only a transcription |
+| Express named revocation (undecided) | 720 (an ACT passing Respondendi's sentence predicate) | 12 | **8** | below |
+| Decided NO orders with no ready claim | 2,732 | 0 | 0 | 1,275 hold no qualifying ACT; 1,272 have no acceptable original; 75 need page checks; 31 have only a transcription of the ending source |
 | Amendment-only children (Pothier P2, undecided) | 601 | 0 | 0 | no OWN_TEXT / PARENT_END records on main (F5, PR #274); every named parent is undecided (EO 209: 267 children, EO 89: 53); 279 leads name no parent |
-| Own terms (undecided) | 196 dated whole-scope terms | 0 | 0 | Respondendi's own-terms predicate reaches 0; extension and later-act checks need a held negative search |
+| Own terms (undecided) | 196 dated whole-scope terms | 0 | 0 | Respondendi's own-terms predicate reaches 0; the extension and later-act checks need a held negative search |
 
-Express kind, first blocker of the 707 not complete: ending source is a transcription 150; original not acceptable 113;
-another instrument acts 104; own term needs reading 48; several ending actors 45; missing item 35; effective wording
-unparsed 32; page check owed 23. Orders blocked by **one group only** (what one fix would unlock): another act on the
-order 45, inventory (segmenter) 32, a held file missing from the data checkout 15, effective date 6, own terms 5.
-Pre-screen failures among the 13: EO 10940 (quotes not found in the cited PDF), EO 11245, 13575, 13805 (checker
-passes with unverified quotes: clause fragments too short to verify).
+**First blocker** for the express orders not complete:
 
-Batching by acting instrument is real but small at this tier: the 9 orders have 7 actors (EO 11437 ends 11232, 11352
-and 11361 in one sentence). Selden's 16,322 pairs over 5,579 actors include large revokers, but their targets mostly
-carry one of the blockers above. Dependency order is built (`packets.topological`) and becomes active when the
+| First blocker | Orders |
+|---|---:|
+| Ending source held only as a transcription | 150 |
+| Original not acceptable | 113 |
+| Another instrument acts on the order | 104 |
+| Own term needs reading | 48 |
+| Several ending actors | 45 |
+| Missing item | 37 |
+| Effective wording unparsed | 32 |
+| Page check owed | 23 |
+
+**Blocked by one group only** (what a single fix would unlock):
+
+| Blocker group | Orders |
+|---|---:|
+| Another act on the order | 45 |
+| Inventory (segmenter) | 32 |
+| A held file missing from the data checkout | 15 |
+
+Pre-screen failures among the 12 drafts:
+- EO 10940: quotes not found in the cited PDF.
+- EO 11245, 13575, 13805: the checker passes them, but with unverified quotes (clause fragments too short to verify).
+
+Batching by acting instrument is real but small at this tier. The 8 orders have 6 actors; EO 11437 ends 11232, 11352
+and 11361 in one sentence. Selden's 16,322 pairs over 5,579 actors include large revokers, but their targets mostly
+carry one of the blockers above. Dependency order is built (`packets.topological`). It becomes active when the
 amendment-only kind opens.
 
 ## 2. What the drafter writes and how it is checked
 
-For each complete order the drafter fills exactly what a Maudslay producer writes: one `decisions.csv` row, its
-`clauses.csv` rows, `RATIONALES.json`, and `STATUS_DECISION.json` (status NO, basis the ACT record and the actor text).
-Each clause is either a standing command ending with the order (`express_revocation` or `express_supersession` from the
-provision's verb) or a pure revocation of other orders performed on signing (`task_completed`). The kit's
-`_decision_errors` returns nothing on every complete draft; `prescreen.py` assembles each claim with the kit's own
-assembler on the experimental dossier and runs the actual checker.
+For each complete order, the drafter fills exactly what a Maudslay producer writes:
+- one `decisions.csv` row;
+- its `clauses.csv` rows;
+- `RATIONALES.json`;
+- `STATUS_DECISION.json`: status NO, with the ACT record and the actor text as its basis.
+
+Each clause is one of two kinds:
+- a standing command, statement or definition, which ends with the order (`express_revocation` or
+  `express_supersession`, from the provision's verb);
+- a pure revocation of other orders, performed on signing (`task_completed`).
+
+The checks run in this order:
+1. The kit's `_decision_errors` returns nothing on every complete draft.
+2. `prescreen.py` assembles each claim with the kit's own assembler on the experimental dossier and runs the actual
+   checker.
+3. In the conveyor route, the kit's `apply` and `batch-check` run again, unchanged.
 
 Replay on Papinian's 90 frozen undecided dossiers (the full route's own evidence): the drafter completes EO 11957 and
-EO 12348, both adopted by the owner after full review, and **its drafts equal the reviewed claims clause for clause**
-(state, date, mechanism, source), including EO 12348 Sec. 8, a revocation performed on signing. EO 9245 (also adopted)
-is now refused: its only clause transfers functions, which the script will not type.
+EO 12348. The owner adopted both after full review, and **the drafts equal the reviewed claims clause for clause**
+(state, date, mechanism, source). That includes EO 12348 Sec. 8, a revocation performed on signing. EO 9245 (also
+adopted) is refused: its only clause transfers functions, which the script will not type.
 
 ## 3. Packets versus the current dossier
 
-`research/nalimov/MEASURES.json`, measured on real frozen evidence of the 9 orders: 2 sessions, 4 planted controls,
-44k tokens of packet in all, **4.9k tokens per genuine claim** (controls and actor texts included) against 15.2k tokens
-for the frozen EVIDENCE.json alone (ratio 0.32) and about 751k tokens of context per attempted order on the full route
-(Bentham PLAN.md). A packet entry carries the claim fields, every clause's held text with its assigned state, the order's
-own text outside the clauses, every held act on the order, every catalog entry and U.S. Code note, and resolved flags;
-each actor's held text is sent once per session.
+`research/nalimov/MEASURES.json`, measured on the real frozen evidence of the 8 orders:
 
-## 4. Verification and controls
+| Measure | Value |
+|---|---:|
+| Sessions | 2 |
+| Planted controls | 4 |
+| Packet tokens per genuine claim (controls and actor texts included) | **4.8k** |
+| Frozen EVIDENCE.json alone, per order | 14.9k (ratio 0.32) |
+| Context per attempted order on the full route (Bentham PLAN.md) | about 751k |
 
-Two blind arms (A, B) and a status-only reader (S, Respondendi's independent status reviewer, distinct from both arms),
-each a fresh folder outside the repository holding only a prompt and its packet. The sealed key sits in a separate
-folder outside the repository and the scratch tree. Controls: at least 2 per session and one per 15 claims, two kinds,
-one status-determining; mutations (`date_shift`, `ending_source_swapped`, `wrong_order_text`, `partial_as_whole`)
-are planted in a session that does not hold their genuine twin, with the actor text edited consistently; decoys (real
-refused orders drafted with one blocker ignored) when the census supplies them (none at this tier). `packets.tells`
-refuses any session with a mechanical giveaway. The batch stops on any missed control, any arm whose run receipt shows a
-blinding violation, a non-zero exit or no result, and a status reader that accepts a status-determining control.
-`install` writes only upheld, byte-identical drafts into a still-unworked packet, atomically, with a receipt.
+A packet entry carries:
+- the claim fields;
+- every clause's held text, with its assigned state;
+- the order's own text outside the clauses;
+- every held act on the order;
+- every catalog entry and U.S. Code note;
+- the resolved flags.
+
+Each actor's held text is sent once per session.
+
+## 4. Verification, controls and the conveyor
+
+Whitworth I4: the drafter is a producer route inside the Maudslay conveyor (`--producer nalimov`).
+- **Producer stage:** `Batch.draft_round` writes each order's producer folder from the packet's own frozen evidence,
+  at zero tokens. An order the drafter refuses stays unresolved with its blocker, and gets no repair rounds.
+- **Later stages:** `kit.py apply`, `batch-check`, plant, blind review, controls, reveal, agree and `complete` are
+  unchanged.
+- **Typed plants (`--controls typed`, the default for this route):** date shift, later event removed, partial end
+  presented as whole, wrong order's text, and swapped ending source.
+  - Each plant has its own catch terms.
+  - Each review set gets at least 2 plants of 2 kinds, at least one of them status-determining.
+  - The planted version replaces its genuine twin in the set.
+- **Measures (I6):** `MEASURES.json` reports tokens and dollars per stage. The stages are draft, blind review,
+  reveal, repair and adjudication (adjudication marked unmeasured). Dollars are at the
+  `jobs/necker-costs/PRICES.json` list prices, per filed claim and per adopted status. The adopted figure stays null
+  until Respondendi or the owner adopts.
+- **Tests:** the 66 existing conveyor tests pass, and the new route and the typed plants have tests in
+  `test_nalimov.py`.
+
+**Gap for undecided orders:** the conveyor has no status-overlay stage. For undecided members, `kit.py apply` returns
+`awaiting_status_review` and the conveyor stops at "zero claims assembled". All 8 scriptable orders are undecided, so
+the calibration run needs an overlay stage first:
+1. an independent status reviewer writes `STATUS_REVIEW.json`;
+2. `overlay-propose` runs with the lifecycle sheet;
+3. the working claims go into the existing plant → review → complete `--replacement-proposal` path.
+
+The coordinator was told; this is the next piece of work.
+
+The standalone path (`packets.py`, `verify.py`) remains for actor-batched packets and hand-run agents:
+- two blind arms and a status-only reader;
+- a key folder outside the workers' tree;
+- `packets.tells()` refuses any session with a mechanical giveaway;
+- the batch stops on a missed control, an invalid arm or a status-reader miss;
+- `install` writes only upheld, byte-identical drafts into a still-unworked packet, atomically, with a receipt.
 
 ## 5. Independent review
 
-Claude Fable 5.2 reviewed v1 (commit ff831fdea4): changes required, 7 blocking findings, all real, all fixed in v2:
-clause classifier defeated by OCR spacing, active voice and commas (11 of 36 drafts); inventory passing an order whose
-text lay outside its only clause (EO 8455); ending provisions cited from transcriptions (12 of 36; the kit's assembler
-rejects them); a savings scan that missed EO 9691's "Nothing in this order shall be construed to affect reemployment
-rights heretofore acquired"; mechanical control tells (duplicate order ids, a field only decoys filled); blinding
-receipts ignored by scoring and the key one relative path away; `install` overwriting worked members, half-writing on
-failure and not bound to what was verified. Non-blocking findings fixed: catalog entries other than the witness, wider
-delayed-effect forms, same-actor non-ending acts, witness date against the actor's date (EO 10014), actor text required,
-own terms by allow-list, conflict texts shown in the packet, mechanism from the verb, the status reader in the stop rule,
-usage counted once, the "no confident operative boundary" missing line. The review is
-`side-session-notes/.../nalimov/REVIEW.md` (outside the repository); its findings are summarized here.
+Claude Fable 5.2 reviewed v1 (ff831fdea4). The verdict was changes required, with **7 blocking findings**. All were
+real and all are fixed in v2 (28d32adcf7):
+1. The clause classifier was defeated by OCR letter-spacing, active voice and commas (11 of 36 drafts).
+2. The inventory check passed an order whose text lay outside its only clause (EO 8455).
+3. Ending provisions were cited from transcriptions (12 of 36); the kit's assembler rejects these.
+4. The savings scan missed EO 9691's reemployment-rights saving.
+5. Planted controls had mechanical tells.
+6. Blinding receipts were ignored, and the key was one relative path away.
+7. `install` could overwrite worked members, half-write, and was not bound to the verified draft.
+
+The re-review of v2 found 2 small blocking findings, both fixed in v3:
+- a short first sentence was being removed as if it were a heading;
+- "revokeion" appeared in `scope_check`.
+
+The re-review confirmed every v1 fix. Its spot-checks found all 8 pre-screened orders (and EO 8616) correct on
+status, actor, end date and clause states against the held text. It noted three points a verifier may raise:
+- EO 13243 misdates EO 11274; the number governs;
+- EO 14009 sec. 4(b) mentions actions "arising from" EO 13765, which the reviewer did not judge a saving;
+- an OCR'd signature date on EO 11232's original.
+
+Non-blocking findings acted on:
+- the "no confident operative boundary" waiver (this also drops EO 8616, whose segmentation caution is another form);
+- "go into effect";
+- "existing regulations shall remain in force".
+
+Still open (non-blocking):
+- No decoy survives the stricter drafter, so measured sessions carry only mutation controls.
+- Hand-run arms have no tool-call blinding scan.
+- A timed-out worker in the standalone runner needs a receipt.
+
+The review is in `side-session-notes/.../nalimov/REVIEW.md` (outside the repository).
 
 ## 6. Cost per adopted status
 
 Measured on the full route (Papinian, 2026-11-10, workers only): $0.51 per attempted order, $7.71 per adopted status.
 
-Projected for Nalimov (`research/nalimov/project.py`, `PROJECTION.json`): verifier sessions priced at list (A Sonnet 5.5,
-B Opus 5.5, S Sonnet 5.5) from the measured packet sizes, with stated assumptions for turns, output per entry,
-after-reveal reviews, coordinator time and the upheld rate:
+Projected for Nalimov (`research/nalimov/project.py`, `PROJECTION.json`). The verifier sessions are priced at list
+(A Sonnet 5.5, B Opus 5.5, S Sonnet 5.5) from the measured packet sizes. The assumptions stated for each case are the
+number of turns, output per entry, after-reveal reviews, coordinator time and the upheld rate.
 
 | Case | Worker tokens per claim | Worker $ per claim | $ per adopted status | vs $7.71 |
 |---|---:|---:|---:|---:|
 | low (2 turns, 95% upheld) | 54k | 0.08 | 0.10 | 80x lower |
-| mid (3 turns, 80% upheld) | 79k | 0.11 | 0.17 | 45x lower |
-| high (6 turns, 60% upheld) | 162k | 0.17 | 0.42 | 18x lower |
+| mid (3 turns, 80% upheld) | 78k | 0.11 | 0.17 | 44x lower |
+| high (6 turns, 60% upheld) | 161k | 0.17 | 0.42 | 18x lower |
 
-Not included on either side: Respondendi's cross-family audits (every member while a stratum is on probation) and owner
-time. These are projections; the calibration run is the measurement.
+The registered forecast (Whitworth) allows at most $1.00 per filed claim and per adopted status; all three cases are
+under it. Two costs are excluded from both routes: Respondendi's cross-family audits (every member while a stratum is
+on probation) and owner time. These figures are projections. The calibration run is the measurement.
 
 ## 7. Calibration run (not run)
 
-`research/nalimov/calibration/WAVE.json`: stage 0, one lane, the 9 pre-screened orders, action
-`status_assignment.undecided` (all 9 in Bentham's stratum), configuration `nalimov-tablebase|anthropic|nalimov-script`,
-budget 600k units, five pre-mortem entries, all six lessons Augur pushed answered. `augur.py check` refuses only for:
-"review must be bound to this plan" (plan sha256 `b77fd9a64e90fa0185d2b9c7c034629ab4d6ff13e1ea56c03c96bac3a27af128`).
-Augur needs a reviewer of another model family or the owner; the owner's signature was requested through the
-coordinating session. Forecast by Bentham's undecided rate: 0.9 filed for $2.99; the Nalimov projection is about 7
-upheld for about $1.
+`research/nalimov/calibration/WAVE.json`:
+- stage 0, one lane, the 8 pre-screened orders;
+- action `status_assignment.undecided`, with all 8 in Bentham's stratum;
+- configuration `maudslay-conveyor|anthropic|nalimov-script`;
+- budget of 600k units;
+- five pre-mortem entries;
+- all seven lessons Augur pushed are answered, including this route's own review lesson.
+
+`augur.py check` refuses for one reason only: "review must be bound to this plan" (plan sha256
+`6f03cb4309720c7543517d5858eaf61ccfe98862828f9930b0ba5b42c4b0f7f6`). Augur needs a reviewer of another model family,
+or the owner. The run also needs the conveyor's overlay stage (section 4).
 
 ## 8. What would unlock more orders (ranked by the census)
 
 1. **Official copies of revoking orders.** 150 express orders are blocked first because every held copy of the ending
-   provision is a transcription (219 carry the blocker at all). Fetching the GovInfo FR printings of those actors is an
-   acquisition with no model cost.
-2. **Segmenter fix (Accursius F7).** 32 orders are blocked by the inventory alone; 503 carry an inventory blocker.
-3. **A drafter tier for recorded amendments.** 45 are blocked only because another instrument amends the order; when
-   the amending provision names sections that map to clause labels, a script could write the later events.
+   provision is a transcription. Fetching the GovInfo FR printings of those acting orders is an acquisition with no
+   model cost.
+2. **Segmenter fix (Accursius F7).** 32 orders are blocked by the inventory alone.
+3. **A drafter tier for recorded amendments.** 45 orders are blocked only because another instrument amends them.
 4. **F5 (own-text route)** opens the 601 amendment-only children, in dependency order after their parents.
-5. **F6 (working texts)** for the 113 whose own original is not acceptable.
+5. **F6 (working texts)** for the 113 orders whose own original is not acceptable.
 
 ## Files
 
 - `jobs/nalimov-tablebase/`: `drafter.py`, `census.py`, `prescreen.py`, `packets.py`, `verify.py`, `nalimov.py`,
-  `predicate.py` (Respondendi's predicate, vendored with a parity test), prompts, README, 41 tests.
+  `predicate.py` (Respondendi's predicate, vendored with a parity test), prompts, README, and 47 tests including the
+  conveyor route and typed plants.
+- `jobs/maudslay-conveyor/conveyor.py`: `--producer nalimov`, `--controls typed`, list-price measures by stage.
 - `research/nalimov/`: `census/CENSUS.json`, `CENSUS.csv`, `BLOCKER_GROUPS.json`, `PRESCREEN.json`, `MEASURES.json`,
-  `project.py`, `PROJECTION.json`, `calibration/WAVE.json`, this report.
+  `project.py`, `PROJECTION.json`, `calibration/WAVE.json`, and this report.
