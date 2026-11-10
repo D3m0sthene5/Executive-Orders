@@ -81,6 +81,30 @@ def score(measured, action, half_life=HALF_LIFE_DAYS):
             now = float(action["orders"]) * float(r["value"])
             out["rate"] = {"key": r["key"], "value": r["value"], "num": r.get("num"), "den": r.get("den"),
                            "source": r.get("source")}
+            tri = action.get("triage") or {}
+            lift = tri.get("lifts") or {}
+            if tri.get("applied") and lift.get("yield_lift") and not r.get("gated"):
+                # The rate was measured on untriaged draws. Among the orders Larrey admits it is higher: the
+                # back-test's rate among admitted orders over its rate among all attempted (yield_lift). Cost per
+                # admitted attempt is higher too, since review stays while producers go (cost_lift, Model P).
+                # Projections, noted as such, until a gated wave measures the rate (a rate row marked "gated").
+                # The lift can never exceed what keeping out this action's own orders could give if every one of
+                # them would have failed (members / admitted); the cost lift moves in proportion. So an action
+                # Larrey barely touches keeps its measured rate and cost.
+                before = float(action.get("orders_before_triage") or action["orders"])
+                yl = min(float(lift["yield_lift"]), before / float(action["orders"]))
+                frac = (yl - 1.0) / (float(lift["yield_lift"]) - 1.0) if float(lift["yield_lift"]) > 1.0 else 0.0
+                cl = 1.0 + (float(lift.get("cost_lift") or 1.0) - 1.0) * max(0.0, frac)
+                eff = min(1.0, float(r["value"]) * yl)
+                now = float(action["orders"]) * eff
+                out["orders_before_triage"] = action.get("orders_before_triage")
+                out["triage_cost_lift"] = round(cl, 4)
+                out["notes"].append(
+                    f"Larrey triage: {action['orders']} of {action.get('orders_before_triage')} orders admitted; "
+                    f"yield projected at {r['value']} x {round(yl, 4)} per admitted order and cost at x {round(cl, 4)} "
+                    f"per attempt ({lift.get('basis')}; capped at members/admitted), not yet measured on a gated wave")
+            elif tri and not tri.get("applied"):
+                out["notes"].append("Larrey triage not applied: " + str(tri.get("reason")))
     fec = 0.0
     for u in action.get("unlocks") or []:
         r = rate_of(measured, u.get("rate_key"))
@@ -89,6 +113,9 @@ def score(measured, action, half_life=HALF_LIFE_DAYS):
             continue
         fec += float(u.get("orders") or 0) * float(r["value"]) * discount(u.get("delay_days"), half_life)
     cost, basis = cost_of(measured, action)
+    if cost is not None and out.get("triage_cost_lift"):
+        cost *= float(out["triage_cost_lift"])
+        basis += f" x Larrey cost lift {out['triage_cost_lift']} (projection)"
     unit = (measured.get("costs") or {}).get(action.get("cost_key") or "") or {}
     if isinstance(unit.get("usd"), (int, float)):
         out["probe_cost_usd"] = round(float(unit["usd"]) * min(PROBE_ORDERS, int(action.get("orders") or 0)), 2)
@@ -249,7 +276,8 @@ def report(r):
     for i, s in enumerate(r["ranked"], 1):
         per = "∞" if s["per_usd"] == math.inf else f"{100 * s['per_usd']:.1f}"
         mark = "" if s.get("within_budget", True) else " (over budget)"
-        lines.append(f"| {i} | {s['id']}{mark} | {s['kind']} | {s['orders']} | {s['expected_now']} | {s['fecundity']} | "
+        orders = f"{s['orders']} of {s['orders_before_triage']}" if s.get("orders_before_triage") else s["orders"]
+        lines.append(f"| {i} | {s['id']}{mark} | {s['kind']} | {orders} | {s['expected_now']} | {s['fecundity']} | "
                      f"{fmt_usd(s['cost_usd'])} | {per} | {fmt_usd(s['cumulative_usd'])} |")
     if r["unranked"]:
         lines += ["", "Unranked (a yield or cost is not measured; Bentham will not guess). For a production stratum the "
