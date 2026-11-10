@@ -81,6 +81,9 @@ def run(root,out,tokenizer=None):
         for n,s in lines(p):
             ids=s.get('instrument_ids',[])
             if isinstance(s.get('instrument_id'),str):ids=[*ids,s['instrument_id']]
+            # A statute or CFR section declared by its own identity still belongs in the bundle of
+            # each order whose current-law lead cites it (theophilus-sources mentioned_instrument_ids).
+            if isinstance(s.get('mentioned_instrument_ids'),list):ids=[*ids,*s['mentioned_instrument_ids']]
             for iid in ids:
                 if iid in wanted:source_records[iid].append((p,s,n))
     index=[]; metrics=[]

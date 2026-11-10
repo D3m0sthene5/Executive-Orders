@@ -14,7 +14,9 @@ permissions:
 jobs:
   bounded-offline-pilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # 40, was 30: passing runs on 2026-11-10 took 22-29 minutes (checkout about 10, whole-repository isolation
+    # about 8); PR #272 adds 1,028 current-law note extracts and the isolation scan crossed 30 (Accursius F3).
+    timeout-minutes: 40
     env:
       GIT_LFS_SKIP_SMUDGE: '1'
       PYTHONDONTWRITEBYTECODE: '1'
