@@ -18,11 +18,3 @@ The board rule (D-20261108-board-rule) cannot run: the 101 held National Mediati
 *Why:* 173 one_step_away orders (Bentham rank 9, about 138 dossiers estimated) wait on this; no production spend can close them until the report bytes are checkable and the replacement route has an adoption step.
 
 Sources: `research/excavator/claude-haloander-2026-11-07/evidence/R3_BOARD_REPORTS.csv`
-
-## A-20261110-mommsen1-shared-filename (2026-11-10, mommsen-1)
-
-Please resolve the protected SHARED filename instruction (compact mommsen1-) versus S-3-1/S-4-1 Claude correction (mommsen-1-): is there an explicit owner amendment of that SHARED line? No legal finding, grant widening or sealed-receipt rewrite is requested.
-
-*Why:* The current user prompt binds directives except when they break a SHARED RULE. Filename change directly contradicts that protected line. Unaffected production continues; current main native publication prefix and protected prompt need an authoritative resolution.
-
-Sources: `research/excavator/mommsen1-2026-11-10/FILENAME_SHARED_RULE_CONFLICT.md`

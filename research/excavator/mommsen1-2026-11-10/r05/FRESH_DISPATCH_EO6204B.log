@@ -1,0 +1,84 @@
+{
+  "state": "dispatchable_for_research",
+  "ok": true,
+  "packet_sha256": "1308b9a7b6322fd929277feacfabe0fe03c4d43114e9171b89d08459b6db1608",
+  "dispatchable_ids": [
+    "EO:6204B"
+  ],
+  "source_blocked_ids": [],
+  "unique_custody_checks": 3,
+  "wall_seconds": 29.281,
+  "scientific_approval": false,
+  "exceptions": [
+    {
+      "instrument_id": "EO:6204B",
+      "blockers": [],
+      "optional_source_gaps": [
+        "TERM:EO:6204B:8cd77cdd4e99ec60@c897437b14d2f477"
+      ]
+    }
+  ],
+  "research_boundaries": [
+    {
+      "instrument_id": "EO:6204B",
+      "tasks": [
+        {
+          "task_id": "TASK:6cde4641840fb8296054c05f",
+          "kind": "official_original",
+          "availability": "held_lead_not_official_original"
+        },
+        {
+          "task_id": "TASK:e22eec9f58325433d4a7e2b7",
+          "kind": "official_page_image",
+          "availability": "held_text_images_not_confirmed"
+        },
+        {
+          "task_id": "TASK:884feb10f56cf53d03906ba8",
+          "kind": "actual_event_fact",
+          "availability": "research_required"
+        },
+        {
+          "task_id": "TASK:db6873aba9f017623f85385a",
+          "kind": "actual_event_fact",
+          "availability": "research_required"
+        },
+        {
+          "task_id": "TASK:6bd80996f7761bb9f0153ca1",
+          "kind": "actual_event_fact",
+          "availability": "research_required"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    }
+  ],
+  "source_recovery_tasks": [
+    {
+      "task_id": "SOURCE:f62ea39541ef0d577eee01ac",
+      "expected_sha256": "b25de54ee592b1e1bc9fa25ffa94304458524de1d74d588fedb885ae4a09a405",
+      "check_statuses": [
+        "not_held"
+      ],
+      "native_wanted": {
+        "wanted_id": "dispatch-f62ea39541ef0d577eee01ac",
+        "instrument_ids": [
+          "EO:6204B"
+        ],
+        "urls": [
+          "https://babel.hathitrust.org/cgi/pt?id=hvd.hl2724&seq=571"
+        ],
+        "citation": "",
+        "step": "source_custody",
+        "requested_by": "claim-kit dispatch-check"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient."
+    }
+  ],
+  "legal_requirement_coverage": "unknown",
+  "lease": {
+    "state": "free",
+    "resources_checked": 2,
+    "conflicts": []
+  },
+  "receipt": "research\\excavator\\mommsen1-2026-11-10\\r05\\packet-r05-mommsen1\\DISPATCH_EO6204B_BEFORE_PRODUCER.json"
+}
