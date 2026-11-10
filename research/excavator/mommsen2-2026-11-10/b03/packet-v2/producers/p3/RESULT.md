@@ -1,0 +1,3 @@
+Produced [decisions.csv](/C:/Users/danie/eo-wt/mommsen-2/research/excavator/mommsen2-2026-11-10/b03/packet-v2/producers/p3/decisions.csv), [clauses.csv](/C:/Users/danie/eo-wt/mommsen-2/research/excavator/mommsen2-2026-11-10/b03/packet-v2/producers/p3/clauses.csv), and [REPORT.md](/C:/Users/danie/eo-wt/mommsen-2/research/excavator/mommsen2-2026-11-10/b03/packet-v2/producers/p3/REPORT.md).
+
+**1 submit:** EO:393. **4 blocked:** EO:1230, EO:1345, EO:1352, EO:1372, with concrete source leads recorded. Shared inputs unchanged.

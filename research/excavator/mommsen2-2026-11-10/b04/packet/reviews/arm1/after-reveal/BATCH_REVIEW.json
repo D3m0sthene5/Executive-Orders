@@ -1,0 +1,1280 @@
+{
+  "schema": "mommsen-after-reveal-batch-review/v1",
+  "reviewer": "mommsen-2-b04-arm1-after",
+  "model_family": "OpenAI",
+  "independent": true,
+  "separate_context": true,
+  "review_kind": "independent_ai_source_review",
+  "scope": "blocked_target_source_inventory_and_gap_comparison",
+  "input_pins": {
+    "decisions.csv": "c653e4c4527c4efae9e351b29928257a297b697536ae0a58ef7487b4ccb22383",
+    "clauses.csv": "21517417f06bf09cfb394e2924ab5f2f6dc04df5d36a6eaac9857fab1956d990",
+    "reviews/arm1/REVIEW.json": "0a39b7d9dfb3a0823ed8e1bbdce66b8b43cf1332d53ba87b91053d985449d37a",
+    "reviews/arm1/SOURCE_REVIEW.json": "1cf5983edae06ba5d77bc8294b138c5d178c294a542005986c6e90dcf8d9370a"
+  },
+  "packet_file_sha256": "ca9feaad5e3034a8cbb64c5e954133a086cb8676571f1535584839b90942c661",
+  "prior_findings_treatment": "Pinned prior AI source findings are qualified evidence, not automatic approval. This context independently assesses the exact CSV outcomes, inventory spans and remaining gaps against those findings. It does not reattest that all target PDF pages were freshly viewed here; the earlier pinned source examination supplies that page review.",
+  "method": "Read both exact CSV versions after genuine source assessment. Decode only the frozen packet with existing batch.decode to resolve inherited clause IDs, without load_packet or canonical lookup. Read original text bytes and all selected span boundaries; retain blank states and unconfirmed actors. No proposed target claim was supplied.",
+  "counts": {
+    "targets": 20,
+    "confirmed_blocked": 20,
+    "outcome_challenges": 0,
+    "claim_approvals": 0,
+    "status_adoptions": 0,
+    "csv_clause_rows": 95,
+    "blank_clause_states": 35,
+    "unresolved_clause_states": 60
+  },
+  "claims_approved": false,
+  "target_statuses_adopted": false,
+  "human_certification": false,
+  "records": [
+    {
+      "instrument_id": "EO:1131",
+      "dossier_sha256": "9d97a701b370f0d828a39f2c7c245a13d4481f663e7760d7d2f8d32cbfb8504f",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: sections 1-6 retain board appointment, licensing/examination, employment/citizenship and limited pilot amendment. Three years limits individual licenses, not the order. Governor parent and subsequent marine-law history, appointment facts if relied upon, and license savings remain missing.",
+      "prior_source_inventory": "Sections1-6: constitute three-member inspection board; written classification and license issuance; applicant inquiry/examination and three-year licenses with suspension/revocation grounds; permanent-employment qualification/citizenship rule and existing officers' qualification; noncitizen licensing permission; limited amendment of Governor's December 8, 1905 pilot order.",
+      "prior_remaining_questions": [
+        "What later law ends or continues each licensing, employment and board provision, and on what effective dates?",
+        "Read complete Governor's pilot order and intervening Canal law before attributing displacement; distinguish existing licenses and accrued proceedings from prospective rules."
+      ],
+      "producer_remaining_gaps": [
+        "Request the official Governor order of 1905-12-08, including complete pilot scope, and subsequent Canal Zone marine licensing regulations and disposition tables keyed to the 1909-10-02 order.",
+        "Request contemporaneous Chairman appointment records and initial incumbent qualification records if an actual-performance cessation is proposed; obtain the first replacing statute/order, its commencement and savings provisions. No cutoff predicate is established."
+      ],
+      "qualifications_or_challenges": [
+        "CSV clause states are blank, not affirmative legal findings. Inherited clause IDs resolve to the frozen packet source spans; order-level blocked/approved=false governs this unsubmitted work."
+      ],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_1131.txt",
+      "original_text_sha256": "cf9fc15fe777dbcde8a8c932277147b6737c11ec8a629278a2c0fafd7a7e3b6d",
+      "inventory": [
+        {
+          "scope_id": "EO:1131#lead",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 1176,
+          "char_end": 1228,
+          "span_sha256": "43ba706f3543b151a7ae21af2a60fbf68ccd808bb73e108eb654e6e8609fa69d"
+        },
+        {
+          "scope_id": "EO:1131#sec1",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 1229,
+          "char_end": 1573,
+          "span_sha256": "d8e922b7f156c5d8a29624a136a13bdf898a976b6a05587fb7148122b9f105c0"
+        },
+        {
+          "scope_id": "EO:1131#sec2",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 1574,
+          "char_end": 1916,
+          "span_sha256": "224aa3b6ce3a16cdd342351f0ab2b2d469f6c86c6178f1108d1c911d57722987"
+        },
+        {
+          "scope_id": "EO:1131#sec3",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 1917,
+          "char_end": 3058,
+          "span_sha256": "50c48ea9833f552da3d3f0ba8ebc1928e8ca3d358744cf1426a6158030804552"
+        },
+        {
+          "scope_id": "EO:1131#sec4",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 3059,
+          "char_end": 3518,
+          "span_sha256": "74c91eb0b56402e054d3d9113e5193158f4d5f023a6439b7691d4592f9f7f42e"
+        },
+        {
+          "scope_id": "EO:1131#sec5",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 3519,
+          "char_end": 3672,
+          "span_sha256": "de7d0e0304182b2e229e62bf4ee78e7573efd625e53b91f1e9f56463fbb61d91"
+        },
+        {
+          "scope_id": "EO:1131#sec6",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 3673,
+          "char_end": 3902,
+          "span_sha256": "33b0f4839f21ab0cca5a798b861098dd36ad95f1ea4db98fa750921534f9a8e0"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:1153",
+      "dossier_sha256": "4ab28820db2900293c4289e4eeef7435fdbda8e5ac51b272ec1737a0152e186b",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: amendment directions plus restated applicability, referral/report and congressional routing remain separate. A referral does not exhaust a recurring procedure. EO9830 May 1, 1947 is only a candidate until full actor access, parent history and earlier changes are resolved; February 24 signature is not commencement.",
+      "prior_source_inventory": "Two textual additions to February 20, 1908 procedure, followed by full restatement: reasons, department approval, CSC reference and report to President; restrictions/exceptions on recommendations to Congress.",
+      "prior_remaining_questions": [
+        "Did any earlier statute or order alter or end recommendations/reporting restrictions before EO9830?",
+        "Obtain complete pinned actor raw access and test effective-date scope, independent commands and savings; no first end established by listing alone."
+      ],
+      "producer_remaining_gaps": [
+        "Hold and page-check https://www.govinfo.gov/content/pkg/FR-1947-02-25/pdf/FR-1947-02-25.pdf (sha256 e99c5924861f876d90b2a5b5fc9e3c67da5076cafac0633e85906eaa2b92e519), EO 9830 full pp.1259-1269/PDF 1-11; dispatch marks ACT and effective-date evidence unusable/custody_record_only.",
+        "Request the original unnumbered 1908-02-20 parent, plus Civil Service Commission rule/recommendation histories covering 1910-1935 and subsequent changes before 1947-05-01; reconcile congressional-communication statutes and any parent revocation before claiming first cessation."
+      ],
+      "qualifications_or_challenges": [
+        "Producer references full EO9830 OCR. The pinned independent examination did not establish complete actor access: it reports the packet-relative overflow absent and only available preamble/PartIII portions read. This review does not endorse a full-actor no-savings assertion or convert the named revocation lead to a confirmed first end.",
+        "Producer EO5924/Hoover-volume supplemental examination is outside the pinned source review; no fresh endorsement of that supplemental reading is supplied here. It does not cure the blocked parent/actor history.",
+        "Some terminal source spans include signature/date material. This does not create an independent operative command; inventory is substantive, not a count of each source segment as a command."
+      ],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_1153.txt",
+      "original_text_sha256": "145e35344958298a1fcf481fece93a051f6e47d57a2c56d27fcab1a09c0ceb79",
+      "inventory": [
+        {
+          "scope_id": "EO:1153#amendment-directions",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 1151,
+          "char_end": 1754,
+          "span_sha256": "ca1ce8284aba45c71123449b0e5dd7f0eda1ab1f90a2109f410b248ebb2d525c"
+        },
+        {
+          "scope_id": "EO:1153#applicability",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 1754,
+          "char_end": 2247,
+          "span_sha256": "3d72a9f120ccc6cedc9650ba6c6971d99b8f28daf83f8d42f72925576d7df51b"
+        },
+        {
+          "scope_id": "EO:1153#referral-report",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 2247,
+          "char_end": 2524,
+          "span_sha256": "676bceece1043a63250ab9240fcf5bd533c48d645db25ac91d3e4159639b6864"
+        },
+        {
+          "scope_id": "EO:1153#congress-routing",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 2524,
+          "char_end": 3016,
+          "span_sha256": "6a8a96fba654d789cafe96f6230e39f8301034953f95b3a822e4a81982db7ef8"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:1190",
+      "dossier_sha256": "25ebe62db61560eaea4aa2e6ef7bc23173f26d46828f344fffe8d765de24bb97",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: introductory text and Articles 1-6 preserve counsel duties, investigation/subpoena powers, informations, substituted section138, service/return and cumulative preservation, and conflict repeal. Missing parent and later code/court histories and pending-case savings preclude first cessation or cutoff conclusion.",
+      "prior_source_inventory": "Articles1-6: legal-adviser/opinion/litigation/prosecution duties; subpoena and oath powers; information filing/verification; replacement criminal-procedure section138; peace-officer process execution and named officer classes, expressly cumulative; conflict repeal.",
+      "prior_remaining_questions": [
+        "Trace first cessation/current predicate separately for duties, judicial powers and section138 through later Canal institutional/code changes.",
+        "Which existing proceedings and cumulative powers survive each change, under its actual savings and effective provisions?"
+      ],
+      "producer_remaining_gaps": [
+        "Request official Canal Zone Code of Criminal Procedure section 138 before and after 1910-04-16 and subsequent procedural-code source/disposition notes for informations, subpoenas and service of process.",
+        "Request the official Canal Zone government/court reorganization instruments and 1934/1962 Canal Zone Code derivation and repeal tables keyed to the 1910-04-16 order, including commencement and pending-case savings; establish each article first cessation rather than assuming one institutional date."
+      ],
+      "qualifications_or_challenges": [
+        "Some terminal source spans include signature/date material. This does not create an independent operative command; inventory is substantive, not a count of each source segment as a command."
+      ],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_1190.txt",
+      "original_text_sha256": "5a74c50b03032da1b90efaa866de25a1174cd3db7aa61bb44b809228a34bb844",
+      "inventory": [
+        {
+          "scope_id": "EO:1190#lead",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 1115,
+          "char_end": 1217,
+          "span_sha256": "3cdddbf64c3701786fbd8a96b6ae72dbb6ed11745e4e9f2d9394bc4c1c2accdd"
+        },
+        {
+          "scope_id": "EO:1190#art1",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 1217,
+          "char_end": 2159,
+          "span_sha256": "c8da3995f9906d0a31119af3b6d9e9a3d0311d91bd1f984be92888e706c4145a"
+        },
+        {
+          "scope_id": "EO:1190#art2",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 2159,
+          "char_end": 2710,
+          "span_sha256": "9259302250baf20b64dcd11160f2275b6fc0d2941c9b2e13f53e890082afb9cb"
+        },
+        {
+          "scope_id": "EO:1190#art3",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 2710,
+          "char_end": 3273,
+          "span_sha256": "4a5be16ec0e285d2ad4e8a48fd2c65f05674055bee712267769657d7650b137d"
+        },
+        {
+          "scope_id": "EO:1190#art4",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 3273,
+          "char_end": 3600,
+          "span_sha256": "336f574a38ea4247a896e249b258eadf769a641663666cdca6b93762afb96d55"
+        },
+        {
+          "scope_id": "EO:1190#art5",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 3600,
+          "char_end": 4193,
+          "span_sha256": "76d66240513352d4d2a9868eac71b97382e5c324ad7839fd09312be606f87ce3"
+        },
+        {
+          "scope_id": "EO:1190#art6",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 4193,
+          "char_end": 4337,
+          "span_sha256": "09251f8b878ab30579f36bb8c34cefb75a99e876c739b3135ab579f1072d759b"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:1239",
+      "dossier_sha256": "90e7bd3e0a0f199c6c0817df33e68b2bd627d75578fc024d132aa81db292b404",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: lead and Articles 1-5 retain future conveyances, retrospective validation, complete acknowledgment forms, officer authority and express protection of prior instruments. Validation is not exhaustion of prospective formalities. Later code and accrued-title transition remain open.",
+      "prior_source_inventory": "Articles1-5: married woman's conveyance/mortgage requirements; retroactive validation of specified instruments; personal/private acknowledgment procedures and two certificate forms; domestic/foreign authorized acknowledging officials and certificates; specified Civil Code/conflict repeals with express prior-law instrument saving.",
+      "prior_remaining_questions": [
+        "What later instrument changes each acknowledgment and conveyance rule and when?",
+        "Trace surviving validated titles and express savings without calling permanent consequences current regulatory commands or assuming their extinction."
+      ],
+      "producer_remaining_gaps": [
+        "Request the official later Canal Zone Civil Code/1934 and 1962 Code source and repeal tables for married-women conveyances, acknowledgment officers and Civil Code Articles 189/1810, including transition and accrued-title savings.",
+        "For use as selected claim evidence, coordinator must freeze the already-held EO 1295 text and exact Articles 2,8,16,18-19 after source integration; it is not an evidence ID in this frozen packet. Establish the first later change for each Article rather than treating general deed reform as repeal."
+      ],
+      "qualifications_or_challenges": [
+        "Producer adds EO1295 Articles2,8,16,18 as continuation evidence, expressly not frozen as selected evidence IDs. This comparison confirms the block from the original and pinned prior findings; it does not adopt that supplemental examination or fill its evidence-access gap.",
+        "Some terminal source spans include signature/date material. This does not create an independent operative command; inventory is substantive, not a count of each source segment as a command."
+      ],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_1239.txt",
+      "original_text_sha256": "3665592ea922c445c417e392d93cb84c08c9f709e402b0157889d67f51003001",
+      "inventory": [
+        {
+          "scope_id": "EO:1239#lead",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 1168,
+          "char_end": 1267,
+          "span_sha256": "67ade921caf15482022a132ed739c3b98cb2dc5027def5fad8a5dd7aa3955762"
+        },
+        {
+          "scope_id": "EO:1239#art1",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 1267,
+          "char_end": 1697,
+          "span_sha256": "91869a87de3e4197da1204c7d7e7a0bec0ee672a6104314363a4fca068f04b35"
+        },
+        {
+          "scope_id": "EO:1239#art2",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 1697,
+          "char_end": 2314,
+          "span_sha256": "dc4464a179d0f220e44d63cd0801d01e53ac23686fe2b0773383aa745f85a236"
+        },
+        {
+          "scope_id": "EO:1239#art3",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 2314,
+          "char_end": 4640,
+          "span_sha256": "48431f8f57165d1005f190f7142bdeee7f4292ea2c9fa1aebed09d685d19480c"
+        },
+        {
+          "scope_id": "EO:1239#art4",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 4640,
+          "char_end": 5429,
+          "span_sha256": "3eacb819dfcaa44eae4aaecf770bb090d89121dd641f26fa98c68199f9b42356"
+        },
+        {
+          "scope_id": "EO:1239#art5",
+          "csv_state": "",
+          "span_origin": "CSV override",
+          "char_start": 5429,
+          "char_end": 5807,
+          "span_sha256": "0623024bf6e70fa2a43ec82345e0ebf3f8c44ce1a524596d8eeb9d22479aa854"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:1250",
+      "dossier_sha256": "053d3fcb289d1afec06427f054cb31ba3f0cb366914e2899553bb9deb65b6d6d",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: lead and all ten sections retain abolition, continuing collection/deputy duties, bond protection, liens/penalties, enforcement/accounting, redemption/titles, former municipal powers, saved proceedings and senior powers. Abolition cannot supply a whole-order end. Parent tax law, replacement dates and liabilities/savings remain open.",
+      "prior_source_inventory": "Sections1-10: abolish district tax collector; transfer duties/deputies with bond-law preservation; superior tax liens and20% penalty; delinquency warrant, seizure/sale and accounting; personal-property redemption/title; government succession to forfeiture/redemption; real-estate tax deeds; transfer former municipal tax powers; conflict repeal and continuation of earlier proceedings/delinquencies; preserve senior officers' appointment/supervision powers.",
+      "prior_remaining_questions": [
+        "Trace each operative tax and office provision through subsequent Canal legislation/codes with exact effective dates.",
+        "Separate completed abolition and vested tax-sale titles from ongoing liabilities, saved proceedings and prospective administration."
+      ],
+      "producer_remaining_gaps": [
+        "Request Act 7 of 1904-09-01 (especially section 54 and tax sale/redemption provisions), the office-creating order effective 1907-04-15, and later Canal Zone revenue regulations/code derivation and repeal tables keyed to 1910-10-04.",
+        "Request exact replacing tax/administration instruments, effective dates and saved-liens/titles/pending-tax-sale provisions. Deputy assignment or transfer completion requires occurrence evidence if relied upon; no current predicate is established."
+      ],
+      "qualifications_or_challenges": [
+        "CSV clause states are blank, not affirmative legal findings. Inherited clause IDs resolve to the frozen packet source spans; order-level blocked/approved=false governs this unsubmitted work."
+      ],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_1250.txt",
+      "original_text_sha256": "518c9af56131f3565ec872cabecbd63daad715e7facd5fe5f65e618375373cd3",
+      "inventory": [
+        {
+          "scope_id": "EO:1250#lead",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 1168,
+          "char_end": 1248,
+          "span_sha256": "667e333ec33a2ea7d2924dcbba63046c6d9268b95e59fad312b03089fa4fd827"
+        },
+        {
+          "scope_id": "EO:1250#sec1",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 1249,
+          "char_end": 1393,
+          "span_sha256": "c603f498d890c57a160ee1a30481dcc360c4baa32a54917f49ac7dce956fc918"
+        },
+        {
+          "scope_id": "EO:1250#sec2",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 1394,
+          "char_end": 2164,
+          "span_sha256": "105b974fb9b33be03a7c5578227e7c963d7a5f82b7808166eba4eb7ec395200a"
+        },
+        {
+          "scope_id": "EO:1250#sec3",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 2165,
+          "char_end": 2631,
+          "span_sha256": "0e6a7a2cef30b5d13db1463e2f91d70ef517a834dd263a6b874fd1fe1b901e6c"
+        },
+        {
+          "scope_id": "EO:1250#sec4",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 2632,
+          "char_end": 3568,
+          "span_sha256": "d510ea6b0a244bf5bc3ead58758a5b7d6e36d3425aab09aaf76acd735cbb7a11"
+        },
+        {
+          "scope_id": "EO:1250#sec5",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 3569,
+          "char_end": 4265,
+          "span_sha256": "87bb4a53d25473816ca22d1f18c23b9586615fb921bf0147f323817fb0b4134f"
+        },
+        {
+          "scope_id": "EO:1250#sec6",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 4266,
+          "char_end": 4990,
+          "span_sha256": "a8bcb554436ee0f9dc3d9c37ada15da922b12c6c0b131aae7a781edf272d0e43"
+        },
+        {
+          "scope_id": "EO:1250#sec7",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 4991,
+          "char_end": 5446,
+          "span_sha256": "40ca75a3f0c0a2872ce392def8c686309e0435ed020d34bf851b1dca09591dc0"
+        },
+        {
+          "scope_id": "EO:1250#sec8",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 5447,
+          "char_end": 5906,
+          "span_sha256": "1a3d565ede86d12e07a7c17753720d64de45ce8375d2471c11b2001c41e1920d"
+        },
+        {
+          "scope_id": "EO:1250#sec9",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 5907,
+          "char_end": 6431,
+          "span_sha256": "956cac2701cc22a4e2938b2c01b10e50fb7f4ac6bbe9fea50f245ec521f923aa"
+        },
+        {
+          "scope_id": "EO:1250#sec10",
+          "csv_state": "",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 6432,
+          "char_end": 6892,
+          "span_sha256": "9389719df27fe8ec226d968a976db2bdc50f1df05a1efa8c3a07e8ac83b0dd8e"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:1348",
+      "dossier_sha256": "55e2f6e664b7c4eea379a6247e499d78c2abd66cf5a58753f45c340358f2e3b8",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: all four printed paragraphs retain domestic deserter proceedings, discharge/wage/passage/lien/log protections, treaty-conditioned foreign-consular proceedings and express commencement. Arrest-based two months is no order sunset. Later seamen/court/treaty law and pending liabilities remain open.",
+      "prior_source_inventory": "Paragraph1 American-vessel deserter complaint/warrant/hearing and detention/delivery/cost rules; paragraph2 discharge for specified voyage/treatment conditions, wage/passage/employment relief, lien and log entries; paragraph3 treaty-conditioned foreign-consular deserter procedure, nationality exclusions, two-month arrest-based detention ceiling and criminal-case delay; paragraph4 effective wording.",
+      "prior_remaining_questions": [
+        "What later Canal/seamen law or treaty change reaches each rule and on what date?",
+        "Determine first cessation of prospective arrest powers separately from pending cases, discharge relief and liens; no universal two-month ending is supported."
+      ],
+      "producer_remaining_gaps": [
+        "Need post-1911 official Canal court/seamen repeal or displacement and savings provisions for all independent arrest, protective discharge, wage/lien, record and foreign-consular duties."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_1348.txt",
+      "original_text_sha256": "3fb66d09e2dd75e9dcb1775b6c36daff5c3fae6c37f26ee2d85af02b08d2d611",
+      "inventory": [
+        {
+          "scope_id": "EO:1348#1",
+          "csv_state": "unresolved",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 1260,
+          "char_end": 2475,
+          "span_sha256": "18122fc789c55a4f8517b432e440fd8f2f4690ec68f080bc77479bd2e8ab4151"
+        },
+        {
+          "scope_id": "EO:1348#2",
+          "csv_state": "unresolved",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 2476,
+          "char_end": 3816,
+          "span_sha256": "96ecf78129f9c6335a2cf53dd5f0765da9b91099b9116070797250d96f0bf229"
+        },
+        {
+          "scope_id": "EO:1348#3",
+          "csv_state": "unresolved",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 3817,
+          "char_end": 5577,
+          "span_sha256": "e3003f509dba8b54d669b37e4a5053fd5f618741be621833faf3d86e23d7def3"
+        },
+        {
+          "scope_id": "EO:1348#4",
+          "csv_state": "unresolved",
+          "span_origin": "frozen inherited clause ID",
+          "char_start": 5578,
+          "char_end": 5678,
+          "span_sha256": "63dfe14f5b5e311fd8a27287072315139980622c2f92f1bac08cad0d377775c3"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:1353",
+      "dossier_sha256": "09983ae465917b27f50d719d148973bb73a2616c7ee87327f38ba35fd5bc8d4c",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: eight Roman-numbered sections retain tax, licensing/security, measurement, sales, penalties, rulemaking, conflict repeal and commencement; punishment continuation is correctly within V. EO1372 changes commencement to August13,1911. EO1532 remains unconfirmed actor evidence; a prospective still ban alone cannot settle taxes, security or accrued offenses.",
+      "prior_source_inventory": "SectionsI-VIII: ten-cent-per-litre distillation tax; licensing/bond or deposit; meter measurement and withholding license; bulk-sale permission; misdemeanors/penalties; implementing regulations; conflict repeal; delayed effective date.",
+      "prior_remaining_questions": [
+        "Inspect complete pinned EO1532 raw source and distinguish meter amendment from cessation of operating rights.",
+        "Trace tax liabilities/security/enforcement and later law; do not treat January1,1913 ban as automatic whole-order end or original thirty-day term as expiration."
+      ],
+      "producer_remaining_gaps": [
+        "Need visually confirmed complete EO 1532 at annualreportofis1912isth leaf 784/printed 618 and later tax, criminal, regulation and savings law; frozen actor text path absent."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_1353.txt",
+      "original_text_sha256": "f2efd640ebaa9cb003fd303c1ce0453bd1cc7ae84577cf55ea53b8aade4d4d83",
+      "inventory": [
+        {
+          "scope_id": "EO:1353#secI",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1231,
+          "char_end": 1601,
+          "span_sha256": "12a23d5bbd5d275f0e63b93bc54b40e175447b061dbf8bb44a30b0f8fa2e60ca"
+        },
+        {
+          "scope_id": "EO:1353#secII",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1601,
+          "char_end": 2718,
+          "span_sha256": "f082146f7cbcd9d3e4c2c1da71346ca9e6a922620db130ae58286b4017d18f1a"
+        },
+        {
+          "scope_id": "EO:1353#secIII",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2718,
+          "char_end": 3252,
+          "span_sha256": "13afb4bd8767af0d7782e29dff0fddb4be3a52dbe4494bf79ca84123f84ec9d7"
+        },
+        {
+          "scope_id": "EO:1353#secIV",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 3252,
+          "char_end": 3563,
+          "span_sha256": "077c9e8961858888c52c53c403390f29fd527823919881dfb331a36cceeae1ea"
+        },
+        {
+          "scope_id": "EO:1353#secV",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 3563,
+          "char_end": 4200,
+          "span_sha256": "60b024fee63fb9ff1db170321ac545582e41158f50a72247a1ca82b5b92c95cf"
+        },
+        {
+          "scope_id": "EO:1353#secVI",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 4200,
+          "char_end": 4364,
+          "span_sha256": "58532f3abab73a986d8539191d490da1821da69d30b7eada353645d2800e327e"
+        },
+        {
+          "scope_id": "EO:1353#secVII",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 4364,
+          "char_end": 4474,
+          "span_sha256": "6b3b578390a1d4a04925b91504f1398d3982b00e15b1ec30cb31043d30d326dd"
+        },
+        {
+          "scope_id": "EO:1353#secVIII",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 4474,
+          "char_end": 4546,
+          "span_sha256": "bb73f3fb06f11cfe637415983a54a549e9a15b20dbdbf7a10800267dc0f35e27"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:283",
+      "dossier_sha256": "1629d58906359ec25a4cb4e145a9740d0839d5a01847065ff23e492405937852",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: one recurring citizenship-waiver authority subject to CSC regulation; no individual appointment or actual exercise is proved. EO9830 named revocation is a later candidate, not first cessation. Earlier employment/rule history, complete actor access and accrued personnel effects remain open.",
+      "prior_source_inventory": "Sole permission to waive United States citizenship for Isthmus job applicants under Civil Service Commission regulations.",
+      "prior_remaining_questions": [
+        "Did intervening Canal employment law, civil-service rules or departmental regulations end or change this waiver earlier?",
+        "Close pre1937/subject-law coverage, examine full actor/savings and preserve already valid appointments as consequences separate from fresh waiver authority."
+      ],
+      "producer_remaining_gaps": [
+        "Need official EO 1888 and 1912 Canal employment law, CSC waiver/regulation and Rule V chain; visually confirm EO 9830 complete PDF; resolve earlier 1905-1935 effects and appointment/status savings."
+      ],
+      "qualifications_or_challenges": [
+        "Producer references full EO9830 OCR. The pinned independent examination did not establish complete actor access: it reports the packet-relative overflow absent and only available preamble/PartIII portions read. This review does not endorse a full-actor no-savings assertion or convert the named revocation lead to a confirmed first end."
+      ],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_283.txt",
+      "original_text_sha256": "b9003e351eca65cd1b887aad34f7d51f25415d6b4c3675ab13b9b21a73743282",
+      "inventory": [
+        {
+          "scope_id": "EO:283#waiver",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1083,
+          "char_end": 1289,
+          "span_sha256": "df9300c396364e562fcc40884eb9e7d119a5514346edbc5aca838a5b5b01d4a0"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:351",
+      "dossier_sha256": "183bca7c4bac9cf539bcad6d7ecbd41636f933b5aa8593b2a41342249f5fe04b",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: exception, removal-reason records and requested CSC copies are preserved separately. EO8393 concerns Hawaii Governor Order351 of 1929, a different instrument; it supplies no end for this presidential order. Actual removal/rule and record-access histories remain missing.",
+      "prior_source_inventory": "Exception from Civil-Service RuleXII clause2 removal procedure for Isthmus personnel, with independent duty to record reasons and furnish copies/originals to CSC upon request.",
+      "prior_remaining_questions": [
+        "Trace actual later removal/procedural law and the separate record-production obligation.",
+        "What establishes the first cessation or cutoff predicate, including accrued requests/records, after excluding this false number-match lead?"
+      ],
+      "producer_remaining_gaps": [
+        "Need original Rule XII clause 2 and later civil-service/Canal employment revision chain, including independent record-retention, transfer and CSC-access treatment."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_351.txt",
+      "original_text_sha256": "e16c09da81a4088c8ec8b6010bcd0ceef825e3e37a380db0275721c33dc3e784",
+      "inventory": [
+        {
+          "scope_id": "EO:351#procedure",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1080,
+          "char_end": 1232,
+          "span_sha256": "aec90c56988511cb4ead1cabeb60e1117f6c9efca1c733e6c2d3139d3ea41095"
+        },
+        {
+          "scope_id": "EO:351#records",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1232,
+          "char_end": 1375,
+          "span_sha256": "ebcdc259b366c7812e7bb8a19a370280405a8450a1ac1d6d371933d7b70716a3"
+        },
+        {
+          "scope_id": "EO:351#copies",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1375,
+          "char_end": 1478,
+          "span_sha256": "595851f489a70e5ab8a0b1a01e7b75f30b44b3e3b8340dab2a7f9ef7c8177e61"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:377B",
+      "dossier_sha256": "998b43ba64db7cc961258bf995649f255712c877777307fa6e25f8a4eb78ff1c",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: permission changes the venue of the January1906 session, including a session that may continue under EO317A. January1 is not demonstrated adjournment; January2 cannot be a whole-case end. Unlike EO506, the special venue can remain material during continuation. Minutes/cancellation or legal extinguishment and savings remain unproved.",
+      "prior_source_inventory": "Sole permission to hold the quarterly session for January1,1906 at Commission offices in Washington instead of Governor's office on Isthmus; reasons concern engineers' report and travel.",
+      "prior_remaining_questions": [
+        "When did the authorized January session actually conclude, or what legal instrument extinguished its special permission?",
+        "Distinguish a one-session venue permission from recurring schedule, a day's fresh commencement authority, and continuing validity of a convened session; assess intervening changes using adequate source coverage."
+      ],
+      "producer_remaining_gaps": [
+        "Need official January 1906 ICC Washington session minutes/proceedings with final adjournment, or cancellation/alteration; inspect EO 527 parent transition if material."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_377B.txt",
+      "original_text_sha256": "9b20ae088b3b449f71ef0d2fd91e3e83b7b1ee49ff49d7e8e190a25ad4f2e3aa",
+      "inventory": [
+        {
+          "scope_id": "EO:377B#january1906-venue",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1079,
+          "char_end": 1529,
+          "span_sha256": "fb9485ebbcb9fd1427039d720c8a6de69776692a28b333a7ac511028d47e6512"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:384",
+      "dossier_sha256": "50442777b9bdb67830f4e5c64bb9d690ee49c872e91e140b373144e5fb3fa1e2",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: sole Anna F. McCormick permanent-appointment permission is preserved. Temporary employment is not proof of permanent appointment or exhaustion. No deadline, personnel action or other ending is held; later personnel consequences and earlier/legal change search remain open.",
+      "prior_source_inventory": "Sole permission for permanent appointment of Anna F. McCormick to an ICC office position where temporarily employed.",
+      "prior_remaining_questions": [
+        "Obtain exact personnel appointment/declination or other cessation evidence and its date.",
+        "Bound earlier/later legal changes and distinguish subsequent service/pay consequences from unexercised appointing permission."
+      ],
+      "producer_remaining_gaps": [
+        "Obtain Anna F. McCormick permanent appointment/personnel action with effective date, or evidence authorization lapsed unused; lead: Isthmian Canal Commission Washington office appointment registers/personnel/payroll records and 1905-1907 civil-service annual reports. Establish whether exhaustion preceded any later institutional ending and separate accrued personnel rights."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_384.txt",
+      "original_text_sha256": "f677caa42b4c8454b246370dca0637d1e5d5fe52e66a94fa83b0617efe71179b",
+      "inventory": [
+        {
+          "scope_id": "EO:384#whole",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1088,
+          "char_end": 1246,
+          "span_sha256": "8badfc8a015b2c97ac0a263200b1429fd2c1442cddf834ad303b587a27853174"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:391",
+      "dossier_sha256": "4523e4c6fd2073870dd2de844e84988dc2262a99625437a790b002781cda5cf8",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: sole Ralph Whitman Engineer Draftsman appointment permission is preserved. May be appointed does not appoint him. No performance, sunset or ending source supports a first end; personnel action and surviving consequences remain open.",
+      "prior_source_inventory": "Sole permission for permanent appointment of Ralph Whitman as Engineer Draftsman in ICC office where temporarily employed.",
+      "prior_remaining_questions": [
+        "What personnel or legal source establishes actual exercise or other first cessation and its date?",
+        "Trace any remaining authority and consequences separately, with adequate later search beyond number references."
+      ],
+      "producer_remaining_gaps": [
+        "Obtain Ralph Whitman Engineer Draftsman permanent appointment/personnel action with effective date, or evidence authorization lapsed unused; lead: Isthmian Canal Commission Washington office appointment registers/personnel/payroll records and 1906-1907 civil-service annual reports. Close surviving personnel effects independently."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_391.txt",
+      "original_text_sha256": "449dd004bb0a764791773187c79f3d305820433e46217ef54cf38bed574e05e7",
+      "inventory": [
+        {
+          "scope_id": "EO:391#whole",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1075,
+          "char_end": 1254,
+          "span_sha256": "742ddc5f1a5772a0b42f05319cf16d1e56b2007475082f5657befe33f762f46b"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:430",
+      "dossier_sha256": "b361715896e0320e247a52f22c3d577896a9091da1272daeeec63f3487dd2083",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: chairman and Governor/Chief Engineer expense branches and February26,1906 retroactive effectiveness remain distinct. EO474 repeats the entitlement and revokes conflicts only; identical text is no established conflict. Parent/allowance and office histories and accrued reimbursements remain open.",
+      "prior_source_inventory": "Clarifying/amending expense allowances for chairman while away from Washington and governor/chief engineer while away from Isthmus on official business; express retroactive effectiveness.",
+      "prior_remaining_questions": [
+        "Locate a later instrument that actually extinguishes or replaces this allowance, testing precise scope and date.",
+        "Separate prospective entitlement and reimbursement of accrued expenses; address offices/personnel changes and earlier candidates rather than declaring June30 wholesale revocation."
+      ],
+      "producer_remaining_gaps": [
+        "Trace parent EO 418 expense rule as interpreted by EO 430 through later Commission reorganizations/allowance instruments and the 1912-1914 transition. Lead: this held volume and Canal annual reports; obtain source text proving each office expense entitlement first ceased and the treatment of accrued reimbursement claims. EO 474 conflict-only revocation supplies no ending for its identical expense rule."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_430.txt",
+      "original_text_sha256": "bae51e4b25730ca8e3889c5e97ad0029ed30de3c7d7bc3a1fe43b5126ab656b9",
+      "inventory": [
+        {
+          "scope_id": "EO:430#chairman",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1096,
+          "char_end": 1474,
+          "span_sha256": "0dfd4cda27276798b126cb55039539da40ab454e25ec50c9ce32dfe38b49b621"
+        },
+        {
+          "scope_id": "EO:430#governor-chief-engineer",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1474,
+          "char_end": 1666,
+          "span_sha256": "bf7c730d6e8e75478cc219e602868e1d53b6d4b76c0cdc28494de31ff410d898"
+        },
+        {
+          "scope_id": "EO:430#effectivity",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1666,
+          "char_end": 1775,
+          "span_sha256": "58c7fc0a84903577a2fcc4454905b3850170b5692b7cef8708c3445613376871"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:571",
+      "dossier_sha256": "eee3842ed644b643b2e4f9bd9e406123663d0339e15b3c6f3c4f31536a386dc4",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: sole John E. Kidwell transfer permission is retained; existing salary identifies the position rather than creating a separate pay award. No transfer is proved and no deadline is stated. Actual personnel/legal cessation and subsequent employment consequences remain open.",
+      "prior_source_inventory": "Sole permission to transfer John E. Kidwell, accountant/pay-clerk at stated Isthmian salary, to a classified clerical United States position.",
+      "prior_remaining_questions": [
+        "When, if ever, was the authorized transfer effected, or when was the permission otherwise ended?",
+        "Confirm exact person/position and distinguish continuing transferred employment from exhaustion of one transfer permission."
+      ],
+      "producer_remaining_gaps": [
+        "Obtain John E. Kidwell transfer authorization implementation/personnel action identifying receiving office and effective date, or unused-authority lapse evidence; lead: Isthmian Canal Commission payroll/transfer registers and 1907-1908 Civil Service Commission annual reports. No inference of actual transfer from may be transferred."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_571.txt",
+      "original_text_sha256": "08d03d4fd7ef997da32bcdb901fb74b7f3a7bd87e3f4e729f2a039b5b0007349",
+      "inventory": [
+        {
+          "scope_id": "EO:571#whole",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1134,
+          "char_end": 1297,
+          "span_sha256": "27a5c4de937e37e96d5900e991543dd2ea5871fe99e93ca0f3d6b8ece6af0243"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:586",
+      "dossier_sha256": "956c6639d7bb92c6796f6653044405251d2cb8b27f60bc783227587c4cdc31b6",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: all ten numbered sections, including formerly absorbed section4, preserve districts, tax administration, judges/conferences, public works, accounts/rent earmarks, ordinances, abolitions, appointments and conflict repeal. April15,1907 is commencement. EO1250 only partially changes offices/duties; earlier partial actors and all remaining histories/savings need exact frozen support.",
+      "prior_source_inventory": "Ten paragraphs covering district boundaries; tax collector appointments/duties/records/bonds; tax liens/appeals/equalization; district judges and monthly conference; public works; district accounts and rent earmarks; ordinance authority; municipal-office abolition; officer appointments/salaries; inconsistent-law modification/repeal.",
+      "prior_remaining_questions": [
+        "Determine which EO586 provisions conflict with EO1250 and which continue, including liens, accounts, earmarks and prior proceedings.",
+        "Trace each remaining provision to first cessation/current predicate through later institutional/code changes; preserve April15 start distinct from March13 signature."
+      ],
+      "producer_remaining_gaps": [
+        "Freeze the already-held 1908-04-25 public-works transfer (body approval April 25, OCR April 26; issuing text April 8), 1909-05-14 section-4 amendment, and EO 1184 (1910-04-02); they are not selected evidence IDs in this packet. Trace every remaining scope through the 1912 Panama Canal Act, 1914 implementing government/judicial orders and later Canal Zone codes with exact commencement and savings. Establish earliest scope-specific changes and fate of liens/proceedings/property obligations; EO 1250 alone is partial."
+      ],
+      "qualifications_or_challenges": [
+        "Producer identifies additional 1908/1909/1910 partial changes but explicitly requests their frozen integration. They are not approved actors or first ends by this review; the pinned EO1250 analysis alone already supports retaining the block."
+      ],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_586.txt",
+      "original_text_sha256": "35af637174f074d0a444161ebeb2f9d91c8f276fdf6443714036b897878f3427",
+      "inventory": [
+        {
+          "scope_id": "EO:586#1",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1128,
+          "char_end": 2207,
+          "span_sha256": "aa44c1789dc0367e8ece3b664d4ecdb0b3cada84e2fad19b0f551abae9cbcb60"
+        },
+        {
+          "scope_id": "EO:586#2",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2207,
+          "char_end": 3460,
+          "span_sha256": "6556b7310e297df7f70fec367789884bc2bb178c5437306e0a5ff59a8e006229"
+        },
+        {
+          "scope_id": "EO:586#3",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 3460,
+          "char_end": 4531,
+          "span_sha256": "0ae34c3cd7cbb667563c8510b649226b7b2533a441c8f32df2541b0140ce4ace"
+        },
+        {
+          "scope_id": "EO:586#4",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 4531,
+          "char_end": 5310,
+          "span_sha256": "a7f3a786d524536ca5dd736683902a5a1bab9d4bffb34403a826e3d336e4eac9"
+        },
+        {
+          "scope_id": "EO:586#5",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 5310,
+          "char_end": 5676,
+          "span_sha256": "e880f12b5764d9ab0ba64116db7f43f568234a9029d9f5d2e7b66b151989d1de"
+        },
+        {
+          "scope_id": "EO:586#6",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 5676,
+          "char_end": 6034,
+          "span_sha256": "808a93f9c113f322b45c4469b85389a505d3f716dc10b1b66027d8c284b6e7d0"
+        },
+        {
+          "scope_id": "EO:586#7",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 6034,
+          "char_end": 6366,
+          "span_sha256": "6c61018d35725d9e7f0327cebbe8ffdf4899b3e7ab678a4d64d28ac5fdd5e334"
+        },
+        {
+          "scope_id": "EO:586#8",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 6366,
+          "char_end": 6487,
+          "span_sha256": "a52389dba34bd87b849a1264816f72b1279f4c4ef86628f373e30a4dc1d00d05"
+        },
+        {
+          "scope_id": "EO:586#9",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 6487,
+          "char_end": 6657,
+          "span_sha256": "c838522db5a4e07dc0869cab563697bffad67b614777274cb8e566f44bdc60c3"
+        },
+        {
+          "scope_id": "EO:586#10",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 6657,
+          "char_end": 6880,
+          "span_sha256": "62707d03c8e47dee4795dcba8285ef03194a87d51cdc41c4f48f43c95ca782ab"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:600",
+      "dossier_sha256": "afd2c40e72e8d9ea8340ef2502f28e72b03aca51de4bf94b2a1f4a53f214a18e",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: one W. P. Armstrong transfer exception retains competitive-position and salary-cap conditions. Permission is not actual transfer; annual salary is not duration. No event or later legal source establishes first cessation or cutoff authority; accrued service/pay effects remain open.",
+      "prior_source_inventory": "Sole permission for W. P. Armstrong, ICC law clerk at $2400, to transfer to another competitive position at salary no greater than $2500 without transfer-rule limits.",
+      "prior_remaining_questions": [
+        "What exact personnel record establishes use or cessation of this exception, and when?",
+        "Rule out material intervening changes and separate one-use permission from later employment consequences."
+      ],
+      "producer_remaining_gaps": [
+        "Obtain W. P. Armstrong personnel/transfer or separation records from Isthmian Canal Commission/Civil Service Commission files; 1907 Civil Service Report p.119 is the crosswalk lead. Establish actual event and legal effect, or a later withdrawal, before an exact end/current determination.",
+        "Frozen number-citation searches do not establish the complete pre-1937 or subject/parent-code history; no current legal predicate through 2026-10-14 is established."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_600.txt",
+      "original_text_sha256": "b5b91574827fd908fd4ca1fe5717928eee86949c620e66ab3298d2b8973f6441",
+      "inventory": [
+        {
+          "scope_id": "EO:600#whole",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1095,
+          "char_end": 1338,
+          "span_sha256": "a98493afa698c7059aa7c2a9ff6626306728cbb40459057a79da884714d3e96f"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:647",
+      "dossier_sha256": "646eb261c50a440aa77604aace6ce4283e4b6afcaef50d7a2b852c62a5c9b5c3",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: retrospective validation, celebrants/license conditions, age/impediment inquiry, return/registration, fee, misdemeanor and June1,1907 commencement all remain. Old marriage validity is a consequence, not proof of current licensing force. Later marriage/code transition and liabilities remain open.",
+      "prior_source_inventory": "Four paragraphs: retroactive validation of specified marriages; prospective celebrant authority/license/age/impediment requirements; return/registration and $2 fee; misdemeanor for violating officers/ministers.",
+      "prior_remaining_questions": [
+        "Trace later marriage and Canal law for each prospective rule and any savings/effective dates.",
+        "Separate validated marital status/records/accrued liability from current rulemaking and enforcement; no first end/current predicate is established."
+      ],
+      "producer_remaining_gaps": [
+        "Obtain the later Canal Zone marriage enactments and official Canal Zone Code source/repeal/transition tables tracing this 1907-05-31 order, including validation and accrued rights/liabilities. Confirm first replacement separately for licensing, registration, fees and penalty; inspect 1934 code enactment and 1962 revision as research leads only.",
+        "Frozen number-citation searches do not establish the complete pre-1937 or subject/parent-code history; no current legal predicate through 2026-10-14 is established."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_647.txt",
+      "original_text_sha256": "b530c4f460f676a9b25a8671507e9a0218ac7d48bff2fc5bcdc5edc3a70f7f60",
+      "inventory": [
+        {
+          "scope_id": "EO:647#lead",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1079,
+          "char_end": 1130,
+          "span_sha256": "de3ec2531ac412190ef6b9bf73546efb62af85ab5c3504e00d7b910562e6f245"
+        },
+        {
+          "scope_id": "EO:647#1",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1130,
+          "char_end": 1525,
+          "span_sha256": "ce378b145bc7c1b9cef94b98a7b96f7ff60b635ca88c6a816c4830d3fa51eb84"
+        },
+        {
+          "scope_id": "EO:647#2",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1525,
+          "char_end": 1868,
+          "span_sha256": "0baf37fcc4e9ff9d0ad8c93e8357ea6ab82add4a8c4bc83e5819f45aa68495eb"
+        },
+        {
+          "scope_id": "EO:647#2-license",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1868,
+          "char_end": 2165,
+          "span_sha256": "98796a414205754d7272a7dd443bd842c479a2d485cebcf2cbfebaf5a2b53973"
+        },
+        {
+          "scope_id": "EO:647#3",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2165,
+          "char_end": 2354,
+          "span_sha256": "00c5277d85bec98aec0b7506939a32c8895a4f3ec69870a05c29977744111a8e"
+        },
+        {
+          "scope_id": "EO:647#3-fee",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2354,
+          "char_end": 2496,
+          "span_sha256": "f7624a7c393aa9e87d2c1354253c38fef7440042114047273f59f66635e40ef7"
+        },
+        {
+          "scope_id": "EO:647#4",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2496,
+          "char_end": 2627,
+          "span_sha256": "22f7ccb7f7fa994f5d30e8aeaf878792e7807ff1f7e87682cf3efcdcb541aba7"
+        },
+        {
+          "scope_id": "EO:647#effective",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2627,
+          "char_end": 2651,
+          "span_sha256": "837f11998a4eec8e6a4d8798733f068abfd239ecef7aefccf3063fc059daa8a4"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:729",
+      "dossier_sha256": "0eebd777c6ad91692426f2dea0bf9d0eb3a015d5fef12bb6be720a23703d513c",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: amendment lead, all five conduct categories and shared penalty remain connected. Subsection3 retains both unauthorized presence and peddling. January15,1908 starts the amendment; thirty days caps a sentence, not the rule. Parent/code history, possible invalidation and pending-case savings remain open.",
+      "prior_source_inventory": "Adds Penal Code section293-a with five categories (vagrancy, begging, unauthorized presence/peddling, intoxication, disorderly conduct) and common misdemeanor/fine/imprisonment penalty.",
+      "prior_remaining_questions": [
+        "Identify subsequent code/judicial/institutional changes reaching each offense and penalty, with effective dates.",
+        "Assess accrued prosecutions/savings separately from prospective enforcement; original alone cannot establish whole lifecycle."
+      ],
+      "producer_remaining_gaps": [
+        "Obtain complete Canal Zone Penal Code Act 14 Title XIV/section 293-a and authoritative amendment/repeal/source tables, including official 1934 and 1962 Canal Zone Code transition/savings texts and any relevant judicial invalidation. Determine each predicate and common penalty first cessation; these enactments are leads, not adopted endings.",
+        "Frozen number-citation searches do not establish the complete pre-1937 or subject/parent-code history; no current legal predicate through 2026-10-14 is established."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_729.txt",
+      "original_text_sha256": "9933bfd89de2c0f39d21f3d21977fd420480b9d9379bdde51d37a625031d2117",
+      "inventory": [
+        {
+          "scope_id": "EO:729#whole",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1113,
+          "char_end": 1341,
+          "span_sha256": "d077bfa95c61b8763c70e48e4a99b11d2ce6d1e3e5da51d5de608a3c1ed7f71a"
+        },
+        {
+          "scope_id": "EO:729#sub1",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1341,
+          "char_end": 1468,
+          "span_sha256": "60ddccbaca82404246ad1f8bfc126b464a272510a75bf878f4a367f0e0669f0e"
+        },
+        {
+          "scope_id": "EO:729#sub2",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1468,
+          "char_end": 1551,
+          "span_sha256": "7632c52e48b04656ee4d777ce6d6d572ea9970d09f57846ec89ca90213fff307"
+        },
+        {
+          "scope_id": "EO:729#sub3",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1551,
+          "char_end": 2098,
+          "span_sha256": "014724e77ac229adac80bab1a1b1b0889b5fb44b38d4e9bfeb650988a63d110f"
+        },
+        {
+          "scope_id": "EO:729#sub4",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2098,
+          "char_end": 2218,
+          "span_sha256": "33892b46038fb861b324e325cb072c3ba07f92ee3b39e72f16bec126d8f583bf"
+        },
+        {
+          "scope_id": "EO:729#sub5",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2218,
+          "char_end": 2356,
+          "span_sha256": "4453660e8ef758937eb4235ae8d0b4c0164bec00588f4c7f7945376bcef5ea4e"
+        },
+        {
+          "scope_id": "EO:729#penalty",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2356,
+          "char_end": 2554,
+          "span_sha256": "2206dada6f11263f32e5eb8517a159563e9f6c6c084eaa699721d93c2162dc75"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:730",
+      "dossier_sha256": "964132505fb95076f4d99630d9a6f2f1482d5f1ece70235495d6e24adce841ed",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: sale conditions, perishable-property court route, opening/conditional notice, residue holding/on-demand repayment and post-three-year school-fund remittance are preserved. Transaction intervals supply no order sunset or proof of payment. Later law, pending property interests and custody/remittance obligations remain open.",
+      "prior_source_inventory": "Four paragraphs: sale authority after six-month unclaimed period and three-week advertisement; perishable-property judicial route; inspection and four-week mailed notice where address indicated; net sale residue held three years, payable on demand then to public-school fund if unclaimed.",
+      "prior_remaining_questions": [
+        "Trace the sale regime and each residual-money obligation through later law with exact effective and savings rules.",
+        "What evidence distinguishes accrued property interests and pending custody duties from ceased prospective authority? No transaction dates or universal end are supplied."
+      ],
+      "producer_remaining_gaps": [
+        "Obtain official Canal Zone common-carrier/unclaimed-property code source/repeal tables tracing the 1908-01-09 order and transition/savings provisions; inspect 1934/1962 code enactments as leads. For any asserted transaction exhaustion obtain sale/accounting and actual payment/remittance records plus event dates.",
+        "Frozen number-citation searches do not establish the complete pre-1937 or subject/parent-code history; no current legal predicate through 2026-10-14 is established."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_730.txt",
+      "original_text_sha256": "b498ecf52c8d270d587f06b400c910e79177ee62c4f148741ce0d3d3f301e7f5",
+      "inventory": [
+        {
+          "scope_id": "EO:730#lead",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1081,
+          "char_end": 1133,
+          "span_sha256": "031115bc1b0d91ed87feca509181a00833b5e0dfa16cf43a64164a8ce7127137"
+        },
+        {
+          "scope_id": "EO:730#1",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1133,
+          "char_end": 1873,
+          "span_sha256": "b1d5baae077abed8eaefeeae2a5db13a7eaae5fbc524eeef8b710736a5e57764"
+        },
+        {
+          "scope_id": "EO:730#2",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1873,
+          "char_end": 2428,
+          "span_sha256": "4bf8289abd129a6a2777051f03701193f1e8d4d5c1a550034dda6f2ec7991c5c"
+        },
+        {
+          "scope_id": "EO:730#3",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2428,
+          "char_end": 2819,
+          "span_sha256": "299512cf8eec1472e2b0fc3d224fe806c5c20053a7b26e7176adcf60e38b5d8e"
+        },
+        {
+          "scope_id": "EO:730#4",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 2819,
+          "char_end": 3215,
+          "span_sha256": "ad5cfcaa3736a8a45024c6411657a6c4b44f0403b947c0166e278d06865beab6"
+        },
+        {
+          "scope_id": "EO:730#4-remit",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 3215,
+          "char_end": 3419,
+          "span_sha256": "f0775fa5497ea18dd19bd6201a7cbb87a6d797a7ea151fc3906f9b16990656d3"
+        }
+      ]
+    },
+    {
+      "instrument_id": "EO:731",
+      "dossier_sha256": "60fe4a8e7b06fcc5a9714cd139fe75fe4eaf955a569726eb6a730a7a6b6c7b95",
+      "producer_outcome": "blocked",
+      "producer_approved": "false",
+      "outcome_review": "confirmed_blocked",
+      "claim_approval": false,
+      "status_adopted": false,
+      "comparison_with_pinned_source_findings": "Block confirmed: amendment lead, three-circuit rule and each district allocation remain. Textual substitution does not exhaust the amended parent rule. Parent Act1 and exact later court-reorganization/transition sources are missing; no institutional date or judgment consequence is adopted.",
+      "prior_source_inventory": "Amends section22 of Act1: three judicial circuits, assigning Ancon to first, Emperador/Gorgona to second and Cristobal to third.",
+      "prior_remaining_questions": [
+        "Read relevant parent Act1 and subsequent judicial/territorial reorganizations to establish first displacement of each circuit assignment.",
+        "Examine effective dates and pending-case/jurisdiction savings rather than inferring an end from later institutional history."
+      ],
+      "producer_remaining_gaps": [
+        "Obtain complete Canal Zone Laws Act 1 section 22 and amendments, then the Panama Canal Act of 1912 court provisions and implementing judicial-reorganization orders with effective/transition/savings text. Trace whether a change before that enactment first replaced each circuit; no candidate date is adopted without the source.",
+        "Frozen number-citation searches do not establish the complete pre-1937 or subject/parent-code history; no current legal predicate through 2026-10-14 is established."
+      ],
+      "qualifications_or_challenges": [],
+      "original_text_path": "jobs/isthmian-canal-1911/output/texts/EO_731.txt",
+      "original_text_sha256": "c716e75a8f3e82c55dd766e5bfb51c60f3c977e464bd377d7acf454b231db2f3",
+      "inventory": [
+        {
+          "scope_id": "EO:731#lead",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1078,
+          "char_end": 1228,
+          "span_sha256": "159c54603ac7de8d02abef3c033c9b8a57f4dd96726be43919860722cdf1b407"
+        },
+        {
+          "scope_id": "EO:731#sec22",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1228,
+          "char_end": 1323,
+          "span_sha256": "8263d2a8433d619c14a21f494166a418223f53ef57072c78af432f6eb7ec6337"
+        },
+        {
+          "scope_id": "EO:731#circuit1",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1323,
+          "char_end": 1409,
+          "span_sha256": "5f8d440b8e28f5e81d4ebe9fe47fac8051681359bb948ff21b8bd148aaaafbc4"
+        },
+        {
+          "scope_id": "EO:731#circuit2",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1409,
+          "char_end": 1509,
+          "span_sha256": "b9dc154be5cf9bb41adb52f16ad5154fd16d28a813b882c61643c9b60f8f0827"
+        },
+        {
+          "scope_id": "EO:731#circuit3",
+          "csv_state": "unresolved",
+          "span_origin": "CSV override",
+          "char_start": 1509,
+          "char_end": 1599,
+          "span_sha256": "7d99af25b810c49d567c8b5ccd5c8d74cb0fc7ac2d7fba801979a6dd6499f19c"
+        }
+      ]
+    }
+  ]
+}
