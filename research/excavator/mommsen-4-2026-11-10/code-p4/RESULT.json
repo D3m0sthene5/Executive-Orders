@@ -1,0 +1,34 @@
+{
+  "schema": "mommsen-4-code-p4-result/v1",
+  "decision": "D-20261106-photius-p4",
+  "authorization": "S-8-4/C-11; one existing owner-decision wiring fix",
+  "base_head": "31c30a89de",
+  "result": "implemented_locally_for_exact_head_review_not_merged",
+  "patch": "research/excavator/mommsen-4-2026-11-10/code-p4/P4.patch",
+  "patch_sha256": "b4dbf8483405732feb016fdd0757626ee3d8050b6ff555ffb367db0ad42285b8",
+  "test_log": "research/excavator/mommsen-4-2026-11-10/code-p4/TEST_LOG.md",
+  "changes": [
+    "Tracker credits archival_replica_checked only from jobs/photius-replica-check/output/FRAGMENTS.jsonl with exact final pass, matching grade and false original flag; fail, unsure, explicit incompleteness, outstanding page debt, conflicting same-version declarations, forged producer and mismatched fields do not qualify.",
+    "Claim-kit recognizes only an exact, pinned Photius pass as checked-replica evidence, preserving acceptable_as_original=false and existing custody, quote, structural, and review gates.",
+    "Claims citing a checked replica in any source position carry informational_flags=[REPLICA_CHECKED_PROQUEST_BYTES]; the policy rejects a missing or unsupported flag.",
+    "The fragment index cache preserves and revalidates exact checked-replica provenance and same-version conflict markers only on trusted Photius declarations; unrelated declaration objects keep their previous exact shape."
+  ],
+  "not_claimed": [
+    "No source-grade or codebook change, census or frozen-eligibility change, legal finding, human certification, production claim filing, or code merge.",
+    "The flag records ProQuest byte dependence and does not authenticate a signed original."
+  ],
+  "scope_files": [
+    "jobs/readiness-tracker/tracker.py",
+    "jobs/readiness-tracker/test_tracker.py",
+    "jobs/claim-kit/working_text.py",
+    "jobs/claim-kit/fragment_cache.py",
+    "jobs/claim-kit/inputs.py",
+    "jobs/claim-kit/build.py",
+    "jobs/claim-kit/assemble.py",
+    "jobs/claim-kit/test_assemble.py",
+    "jobs/claim-kit/test_working_text_index.py",
+    "jobs/claim-kit/test_lachmann_reuse.py",
+    "jobs/claim-checker/test_checker.py"
+  ],
+  "review_boundary": "Coordinator retains legal judgment, integration, native production gates, and exact-head independent review."
+}

@@ -682,6 +682,31 @@ class CheckerTests(unittest.TestCase):
         self.assertEqual(summary['text_evidence_tier'], 'transcription_dependent')
         self.assertFalse(claim['original_representation']['acceptable_as_original'])
 
+    def test_checked_replica_passes_existing_checker_without_original_upgrade(self):
+        claim = self.working_claim()
+        source = claim['original_representation']
+        source['grade'] = 'archival_replica_checked'
+        for clause in claim['operative_clauses']:
+            clause['original_source']['grade'] = 'archival_replica_checked'
+        claim.pop('working_text')
+        claim['informational_flags'] = ['REPLICA_CHECKED_PROQUEST_BYTES']
+        old = self.repo / 'jobs/app-executive-orders/output/FRAGMENTS.jsonl'
+        old.unlink()
+        fragment = self.repo / 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'
+        fragment.parent.mkdir(parents=True)
+        fragment.write_text(json.dumps({'kind': 'original_representation', 'instrument_id': 'EO:90001',
+            'produced_by': 'photius-replica-check', 'grade': 'archival_replica_checked',
+            'acceptable_as_original': False,
+            'data': dict(source, needs_page_check=False, check={'final': 'pass'})}) + '\n')
+        self.ctx.working_text_index = C.W.Index(self.repo)
+        rows, errors, status = C.check_claim(claim, self.ctx)
+        summary = C.summarise_claim('test', 'test.jsonl', 1, claim, rows, errors, status, self.ctx)
+        self.assertTrue(summary['all_checks_passed'], summary)
+        self.assertIs(source['acceptable_as_original'], False)
+        claim.pop('informational_flags')
+        rows, _, _ = C.check_claim(claim, self.ctx)
+        self.assertTrue(rows_for(rows, 'working_text_policy', 'fail'))
+
     def test_working_text_does_not_waive_custody_only_or_missing_ending(self):
         claim = self.working_claim()
         original_sha = claim['original_representation']['sha256']

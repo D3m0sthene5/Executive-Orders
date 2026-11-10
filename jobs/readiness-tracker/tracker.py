@@ -127,8 +127,7 @@ J = {
     # a 5% sample adjudicated by Opus) is written with grade archival_replica_checked and needs_page_check false. It
     # credits the text step like an official printing, and the row carries the flag REPLICA_CHECKED_PROQUEST_BYTES
     # because the bytes are ProQuest's until NARA M1118 or the owner's Hein facts re-point them.
-    "checked_replica_fragments": ["jobs/photius-replica-check/output/FRAGMENTS.jsonl",
-                                  "jobs/montfaucon-page-check/output/FRAGMENTS_REPLICA.jsonl"],
+    "checked_replica_fragments": ["jobs/photius-replica-check/output/FRAGMENTS.jsonl"],
     # Standalone working-text confirmations (jobs/lachmann). The agent-reviewed file is read second, so its line for an
     # instrument replaces the machine line. They can only make the text step `provisional`, never an original.
     "working_text_confirmations": ["jobs/lachmann/output/CONFIRMATIONS.jsonl",
@@ -339,13 +338,25 @@ def load_job_outputs(root):
         rows, more = read_jsonl(paths)
         problems += more
         ids = set()
+        versions = collections.defaultdict(list)
         for r in rows:
-            if job == 'montfaucon-page-check' and M.digest(r) not in montfaucon_valid['replica']:
-                problems.append('INVALID_MONTFAUCON_REPLICA_FRAGMENT')
-                continue
-            if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str):
-                checked_replica[r["instrument_id"]].append(r.get("data") if isinstance(r.get("data"), dict) else {})
-                ids.add(r["instrument_id"])
+            data = r.get("data") if isinstance(r.get("data"), dict) else {}
+            check = data.get("check") if isinstance(data.get("check"), dict) else {}
+            if (r.get("kind") == "original_representation" and r.get("produced_by") == job
+                    and isinstance(r.get("instrument_id"), str)
+                    and r.get("acceptable_as_original") is False
+                    and data.get("acceptable_as_original") is False):
+                key = (r["instrument_id"], data.get("sha256"), data.get("text_sha256"), data.get("text_path"))
+                passed = (r.get("grade") == data.get("grade") == "archival_replica_checked"
+                          and data.get("needs_page_check") is False
+                          and data.get("requires_page_check") is not True
+                          and data.get("complete_text") is not False
+                          and check.get("final") == "pass")
+                versions[key].append((passed, data))
+        for key, records in versions.items():
+            if records and all(passed for passed, _ in records):
+                checked_replica[key[0]].append(records[0][1])
+                ids.add(key[0])
         used[f"{job} (checked ProQuest replica: credits the text step, bytes ProQuest-dependent)"] = len(ids) if paths else None
     replica = set()
     for rel in J["archival_replica_fragments"]:

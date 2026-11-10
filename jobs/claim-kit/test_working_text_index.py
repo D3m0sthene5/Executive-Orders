@@ -53,6 +53,9 @@ def legacy(repo):
                        'declaration_path': path.relative_to(repo).as_posix(),
                        'requires_page_check': bool(data.get('needs_page_check') or data.get('requires_page_check')),
                        'complete_text': data.get('complete_text'), 'url': data.get('url')}
+                if W.replica_version(row, rec['declaration_path']):
+                    rec['replica_version'] = True
+                    rec['checked_replica'] = W.replica_declaration(row, rec['declaration_path'])
                 if acceptable is False:
                     by_sha.setdefault(W.source_sha(rec), []).append(rec)
                 elif (acceptable is not False and (acceptable is True or row.get('produced_by') in W.OFFICIAL_PRODUCERS)
@@ -135,6 +138,24 @@ class Base(unittest.TestCase):
 
 
 class IndexCacheTests(Base):
+    def test_checked_replica_pass_survives_cache_without_promoting_fail(self):
+        self.write('texts/a.txt', 'alpha')
+        good = row('EO:1', 1, 'texts/a.txt', acceptable=False, produced_by='photius-replica-check',
+                   grade='archival_replica_checked', check={'final': 'pass'})
+        good.update(grade='archival_replica_checked', acceptable_as_original=False)
+        bad = json.loads(json.dumps(good))
+        bad['instrument_id'] = 'EO:2'
+        bad['data']['check']['final'] = 'unsure'
+        self.provider(W.REPLICA_PATH, [good, bad])
+        first = built(self.repo)
+        hit = built(self.repo)
+        self.assertEqual(hit.cache_status, 'hit')
+        self.assertEqual(first.by_sha, hit.by_sha)
+        refs = [r for group in hit.by_sha.values() for r in group]
+        self.assertTrue(next(r for r in refs if r['instrument_id'] == 'EO:1')['checked_replica'])
+        self.assertFalse(next(r for r in refs if r['instrument_id'] == 'EO:2')['checked_replica'])
+        self.assertTrue(next(r for r in refs if r['instrument_id'] == 'EO:2')['replica_version'])
+
     def test_cached_uncached_and_legacy_identical(self):
         self.seed()
         with mock.patch.dict(os.environ, {'CLAIM_KIT_INDEX_CACHE': '0'}):

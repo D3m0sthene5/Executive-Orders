@@ -1,3 +1,11 @@
+## 2026-11-10 UTC: MOMMSEN-IV proposed Photius P4 wiring
+
+- **Done:** One C11-authorized code proposal accepts only trusted final-pass Photius replicas, keeps false original authentication and ProQuest disclosure, and preserves unrelated frozen confirmation objects. Local paired readiness replay1156 to1156; published main1223 remains separate. No claim, status, source grade or human certification change.
+- **Validation:** Focused native tests and legacy-checker Windows parity retained under research/excavator/mommsen-4-2026-11-10/code-p4/. Initial194-order frozen-object regression caught and corrected before publication.
+- **Limitation:** Superseded untracked WIP.patch was mistakenly deleted; exact bytes unavailable, explicitly labeled reconstruction retained. Final patch and tests remain intact.
+- **Next:** Claude exact-head review, then owner code-merge decision. The lane has no code merge grant.
+- **Recorded:** F-20261110-mommsen4-p4-wiring. **Asks:** @Owner: none.
+
 ## 2026-11-05 UTC / November4 ET: stable main integration and native publication complete
 
 - **Done:** Completed PR139/140/144 and integration147/148 landed through PR14981ebb186; PR150dfb8fc43 then repaired the observed production/reporting publication race. Both exact source candidates passed full native Valla and all expected platform, dashboard, register, publication and security checks. Current source330b0f12 passed1202 executions across29 suites per platform before and after merge.

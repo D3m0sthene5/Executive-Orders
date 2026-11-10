@@ -246,11 +246,12 @@ class TrackerTest(unittest.TestCase):
     def test_checked_proquest_replica_credits_the_text_step_with_a_flag(self):
         # Photius P4 (2026-11-06): a replica a worker read and found to be the order counts for the text step; the row
         # carries REPLICA_CHECKED_PROQUEST_BYTES; an unchecked or failed replica stays a lead.
-        def frag(i, check, grade):
+        def frag(i, check, grade, *, final="pass"):
             return json.dumps({"instrument_id": i, "kind": "original_representation", "produced_by": "photius-replica-check",
                                "grade": grade, "acceptable_as_original": False,
                                "data": {"url": "https://congressional.proquest.com/x", "sha256": "a" * 64,
-                                        "page_or_item": "ProQuest replica", "needs_page_check": check, "grade": grade}})
+                                        "page_or_item": "ProQuest replica", "needs_page_check": check, "grade": grade,
+                                        "acceptable_as_original": False, "check": {"final": final}}})
         pq = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "pinakes-proquest-ingest",
                          "data": {"url": "https://congressional.proquest.com/x", "needs_page_check": True}})
         nl = chr(10)
@@ -269,6 +270,34 @@ class TrackerTest(unittest.TestCase):
         orders, s = self.run_tracker(files={**files, tracker.J["fr_fragments"][1]: fr + nl})
         self.assertEqual(orders["EO:1"]["informational_flags"], "")
         self.assertEqual(s["text_step_from_checked_replica"], 0)
+
+    def test_checked_replica_requires_exact_pass_and_provenance(self):
+        rel = tracker.J["checked_replica_fragments"][0]
+        base = {"instrument_id": "EO:1", "kind": "original_representation",
+                "produced_by": "photius-replica-check", "grade": "archival_replica_checked",
+                "acceptable_as_original": False,
+                "data": {"grade": "archival_replica_checked", "acceptable_as_original": False,
+                         "needs_page_check": False, "check": {"final": "pass"}}}
+        for mutation in ({"data": {**base["data"], "check": {"final": "fail"}}},
+                         {"data": {**base["data"], "check": {"final": "unsure"}}},
+                         {"produced_by": "forged-producer"},
+                         {"grade": "archival_replica_check_failed_or_pending"},
+                         {"acceptable_as_original": True},
+                         {"data": {**base["data"], "acceptable_as_original": True}},
+                         {"data": {**base["data"], "complete_text": False}},
+                         {"data": {**base["data"], "requires_page_check": True}}):
+            with self.subTest(mutation=mutation):
+                row = {**base, **mutation}
+                orders, summary = self.run_tracker(files={rel: json.dumps(row) + "\n"})
+                self.assertEqual(orders["EO:1"]["step_original_text"], "open")
+                self.assertNotIn("REPLICA_CHECKED_PROQUEST_BYTES", orders["EO:1"]["informational_flags"])
+                self.assertEqual(summary["text_step_from_checked_replica"], 0)
+        conflicting = {**base, "grade": "archival_replica_check_failed_or_pending",
+                       "data": {**base["data"], "grade": "archival_replica_check_failed_or_pending",
+                                "check": {"final": "fail"}}}
+        orders, summary = self.run_tracker(files={rel: json.dumps(base) + "\n" + json.dumps(conflicting) + "\n"})
+        self.assertEqual(orders["EO:1"]["step_original_text"], "open")
+        self.assertEqual(summary["text_step_from_checked_replica"], 0)
 
     def test_richardson_transcription_is_a_lead_never_the_original(self):
         rec = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "richardson-volumes",

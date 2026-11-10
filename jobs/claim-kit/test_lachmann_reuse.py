@@ -40,6 +40,18 @@ class ReuseTests(unittest.TestCase):
         prior = W.matching_confirmation(self.record, self.repo)
         self.assertEqual(prior['record'], self.record)
         self.assertEqual(prior['source_path'], W.CONFIRMATION_PATHS[0])
+        # Historical frozen prior_confirmation.fragments embeds the whole declaration.
+        # P4 metadata must not alter a non-Photius declaration's exact object shape.
+        expected_fragment = {'instrument_id': 'EO:7', 'grade': 'mirror_transcription',
+                             'acceptable_as_original': False, 'sha256': 'a' * 64,
+                             'text_sha256': self.record['text_sha256'], 'text_path': self.text_path,
+                             'declaration_path': 'jobs/source/output/FRAGMENTS.jsonl',
+                             'requires_page_check': True, 'complete_text': None, 'url': None}
+        self.assertEqual(prior['fragments'], [expected_fragment])
+        from fragment_cache import build
+        cached, _, _, _ = build(self.repo)
+        self.assertEqual(W.matching_confirmation(self.record, self.repo, index=cached)['fragments'],
+                         [expected_fragment])
         self.assertTrue(W.blank([self.record], prior)['confirmations'][0]['pages_confirmed'])
         dossier = {'instrument_id': 'EO:7', 'original_source_id': 'ORIGINAL:EO:7',
                    'evidence': {'ORIGINAL:EO:7': {'source': self.record}},

@@ -21,6 +21,36 @@ OFFICIAL_PRODUCERS = frozenset({'fr-originals', 'ofr-compilations',
 GRADES = frozenset({'compiled_transcription', 'compiled_transcription_lead',
     'mirror_transcription', 'government_printed_copy', 'machine_read_government_printed_copy',
     'government_printed_reproduction', 'archival_replica_scan_pending_codebook'})
+REPLICA_PATH = 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'
+REPLICA_GRADE = 'archival_replica_checked'
+REPLICA_FLAG = 'REPLICA_CHECKED_PROQUEST_BYTES'
+
+
+def replica_version(row, declaration_path):
+    data = row.get('data') if isinstance(row.get('data'), dict) else {}
+    return (declaration_path == REPLICA_PATH and row.get('kind') == 'original_representation'
+            and row.get('produced_by') == 'photius-replica-check'
+            and row.get('acceptable_as_original') is False
+            and data.get('acceptable_as_original') is False)
+
+
+def replica_declaration(row, declaration_path):
+    data = row.get('data') if isinstance(row.get('data'), dict) else {}
+    check = data.get('check') if isinstance(data.get('check'), dict) else {}
+    return (replica_version(row, declaration_path)
+            and row.get('grade') == data.get('grade') == REPLICA_GRADE
+            and data.get('needs_page_check') is False
+            and data.get('requires_page_check') is not True
+            and data.get('complete_text') is not False
+            and check.get('final') == 'pass')
+
+
+def checked_replica(ref, index):
+    if ref.get('grade') != REPLICA_GRADE or ref.get('acceptable_as_original') is not False:
+        return False
+    version = [r for r in index.match(ref) if r.get('replica_version')
+               and all(r.get(k) == ref.get(k) for k in ('instrument_id', 'sha256', 'text_sha256', 'text_path'))]
+    return bool(version) and all(r.get('checked_replica') for r in version)
 
 
 def _child(root, value, base=None):
@@ -105,6 +135,9 @@ class Index:
                            'declaration_path': path.relative_to(self.repo).as_posix(),
                            'requires_page_check': bool(data.get('needs_page_check') or data.get('requires_page_check')),
                            'complete_text': data.get('complete_text'), 'url': data.get('url')}
+                    if replica_version(row, rec['declaration_path']):
+                        rec['replica_version'] = True
+                        rec['checked_replica'] = replica_declaration(row, rec['declaration_path'])
                     if acceptable is False:
                         self.by_sha.setdefault(source_sha(rec), []).append(rec)
                     elif (acceptable is not False and (acceptable is True or row.get('produced_by') in OFFICIAL_PRODUCERS)
@@ -333,13 +366,19 @@ def policy(claim, repo, index=None, flags=None):
     """
     index = index or Index(repo)
     errors, dependent = [], []
+    replica_used = any(checked_replica(ref, index) for _, ref in references(claim))
+    if replica_used:
+        if claim.get('informational_flags') != [REPLICA_FLAG]:
+            errors.append('checked_replica:proquest_bytes_flag_required')
+    elif REPLICA_FLAG in (claim.get('informational_flags') or []):
+        errors.append('checked_replica:proquest_bytes_flag_without_pass')
     for path, ref in references(claim):
         matches = index.match(ref)
         known_derivative_hash = bool(index.by_sha.get(source_sha(ref)))
         flagged = ref.get('acceptable_as_original') is False or ref.get('grade') in GRADES
         # Recognition must not trust a claim-controlled path: an alias cannot
         # erase the derivative classification attached to the actual source hash.
-        if (not known_derivative_hash and not flagged) or index.exact_official(ref):
+        if (not known_derivative_hash and not flagged) or index.exact_official(ref) or checked_replica(ref, index):
             continue
         dependent.append(ref)
         if ref.get('acceptable_as_original') is not False or ref.get('grade') not in GRADES:
