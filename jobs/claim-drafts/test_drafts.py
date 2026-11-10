@@ -970,7 +970,7 @@ class EmbeddedCheckerOfflineTests(Fixture):
     def test_standalone_receipts_are_reused_read_only_and_rehashed(self):
         dest = self.repo / "jobs/claim-checker"
         dest.mkdir(parents=True)
-        for name in ("checker.py", "sources.py"):
+        for name in ("checker.py", "sources.py", "palsgraf.py"):
             shutil.copy(REAL_REPO / "jobs/claim-checker" / name, dest / name)
         inputs, _ = D.discover_inputs(self.repo)
         cache = pathlib.Path(self.tmp) / ".job-cache"
@@ -998,7 +998,7 @@ class EmbeddedCheckerOfflineTests(Fixture):
     def test_checker_cannot_download_even_with_standalone_allowance(self):
         dest = self.repo / "jobs/claim-checker"
         dest.mkdir(parents=True)
-        for name in ("checker.py", "sources.py"):
+        for name in ("checker.py", "sources.py", "palsgraf.py"):
             shutil.copy(REAL_REPO / "jobs/claim-checker" / name, dest / name)
         inputs, _ = D.discover_inputs(self.repo)
         with mock.patch.dict(os.environ, {"CLAIM_CHECKER_VERIFY_DOWNLOADS": "400"}), \
