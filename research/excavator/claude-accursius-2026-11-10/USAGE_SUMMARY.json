@@ -1,0 +1,177 @@
+{
+ "wave": "accursius-2026-11-10",
+ "generated_from": "Claude Code session transcripts via Hamilton profile.py (jobs/hamilton-token-audit); per-call usage_records, sanitized by jobs/bentham/sessions.py",
+ "phase_source": "--phase claim-kit-fixes",
+ "filters": {
+  "session_id_prefix": "4d846e8a-d62f-402c-ab3b-56835551c024",
+  "since": null
+ },
+ "token_categories_note": "fresh_input, cache_read, cache_write and output are separate, nonoverlapping categories and are never summed together. Null means no value observed.",
+ "totals": {
+  "agents": 11,
+  "calls": 1091,
+  "fresh_input": 2264,
+  "cache_read": 319803277,
+  "cache_write_5m": 7853795,
+  "cache_write_1h": 2022272,
+  "cache_write_unclassified": 0,
+  "output": 1103313,
+  "usd_list": 181.583585
+ },
+ "totals_by_phase": {
+  "claim-kit-fixes": {
+   "agents": 11,
+   "calls": 1091,
+   "fresh_input": 2264,
+   "cache_read": 319803277,
+   "cache_write_5m": 7853795,
+   "cache_write_1h": 2022272,
+   "cache_write_unclassified": 0,
+   "output": 1103313,
+   "usd_list": 181.583585
+  }
+ },
+ "totals_by_model_family": {
+  "opus": {
+   "agents": 3,
+   "calls": 661,
+   "fresh_input": 1386,
+   "cache_read": 237630314,
+   "cache_write_5m": 4867202,
+   "cache_write_1h": 2022272,
+   "cache_write_unclassified": 0,
+   "output": 665146,
+   "usd_list": 101.348713
+  },
+  "other": {
+   "agents": 4,
+   "calls": 223,
+   "fresh_input": 460,
+   "cache_read": 36096941,
+   "cache_write_5m": 1820614,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 236765,
+   "usd_list": 70.697466
+  },
+  "sonnet": {
+   "agents": 4,
+   "calls": 207,
+   "fresh_input": 418,
+   "cache_read": 46076022,
+   "cache_write_5m": 1165979,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 201402,
+   "usd_list": 9.537406
+  }
+ },
+ "totals_by_model": {
+  "claude-fable-5-2": {
+   "agents": 4,
+   "calls": 223,
+   "fresh_input": 460,
+   "cache_read": 36096941,
+   "cache_write_5m": 1820614,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 236765,
+   "usd_list": 70.697466
+  },
+  "claude-opus-5-5": {
+   "agents": 3,
+   "calls": 661,
+   "fresh_input": 1386,
+   "cache_read": 237630314,
+   "cache_write_5m": 4867202,
+   "cache_write_1h": 2022272,
+   "cache_write_unclassified": 0,
+   "output": 665146,
+   "usd_list": 101.348713
+  },
+  "claude-sonnet-5-5": {
+   "agents": 4,
+   "calls": 207,
+   "fresh_input": 418,
+   "cache_read": 46076022,
+   "cache_write_5m": 1165979,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 201402,
+   "usd_list": 9.537406
+  }
+ },
+ "totals_by_phase_and_family": {
+  "claim-kit-fixes|opus": {
+   "agents": 3,
+   "calls": 661,
+   "fresh_input": 1386,
+   "cache_read": 237630314,
+   "cache_write_5m": 4867202,
+   "cache_write_1h": 2022272,
+   "cache_write_unclassified": 0,
+   "output": 665146,
+   "usd_list": 101.348713
+  },
+  "claim-kit-fixes|other": {
+   "agents": 4,
+   "calls": 223,
+   "fresh_input": 460,
+   "cache_read": 36096941,
+   "cache_write_5m": 1820614,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 236765,
+   "usd_list": 70.697466
+  },
+  "claim-kit-fixes|sonnet": {
+   "agents": 4,
+   "calls": 207,
+   "fresh_input": 418,
+   "cache_read": 46076022,
+   "cache_write_5m": 1165979,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 201402,
+   "usd_list": 9.537406
+  }
+ },
+ "totals_by_role": {
+  "coordinator": {
+   "agents": 1,
+   "calls": 327,
+   "fresh_input": 690,
+   "cache_read": 145823936,
+   "cache_write_5m": 0,
+   "cache_write_1h": 2022272,
+   "cache_write_unclassified": 0,
+   "output": 312873,
+   "usd_list": 51.603183
+  },
+  "general-purpose": {
+   "agents": 10,
+   "calls": 764,
+   "fresh_input": 1574,
+   "cache_read": 173979341,
+   "cache_write_5m": 7853795,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 790440,
+   "usd_list": 129.980401
+  }
+ },
+ "prices": {
+  "source": "jobs/necker-costs/PRICES.json",
+  "basis": "list price per call: exact model, cache-write class, fast mode (usage.speed) and Haiku 5.5 long-prompt rates; API-equivalent estimate, not an invoice"
+ },
+ "notes": [
+  "Agents counted per grouping can overlap across groupings when one agent used several models.",
+  "Main (coordinator) transcripts are partial: they can span work earlier than the labelled phase.",
+  "Output tokens may be a lower bound where a call never recorded a final count.",
+  "Tokens are what transcripts recorded; they are not an invoice."
+ ],
+ "crosscheck": {
+  "tolerance": "max(0.01 USD, 0.01 x reported)",
+  "sessions": []
+ }
+}
