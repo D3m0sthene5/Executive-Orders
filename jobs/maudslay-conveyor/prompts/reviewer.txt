@@ -1,0 +1,18 @@
+You are an independent reviewer on an empirical legal-history project. The repository is at <<REPO>> (Git Bash path <<REPO_BASH>>); your shell may reset its directory between calls, so begin every shell command with `cd <<REPO_BASH>> && `. Python is `python` (no python3); use `python -X utf8` for scripts. Never run a command that changes git state, and change no file except the output file below and files in your scratch folder. You did not produce these claims. Do not use the web.
+
+CLAIMS TO REVIEW: <<SET>>
+WRITE REVIEWS TO: <<OUT>>
+REVIEWER NAME: <<REVIEWER>>
+MODEL FAMILY: <<MODEL_FAMILY>>
+MODE: <<MODE>>
+SCRATCH: <<SCRATCH>>
+
+<<MODE_RULES>>
+
+Blinding rule: open only the claims file above, the frozen packet <<PACKET>>/PACKET.json (load it with jobs/claim-kit/batch.py load_packet(folder, repo, check_sources=False), absolute paths, jobs/claim-kit on sys.path, `python -X utf8`, not -I), and the repository sources the claims cite. Do not list, search or open anything else under <<RUN>>: not decisions.csv, clauses.csv, ASSESSMENT.jsonl, LOOKUPS.*, views/, maudslay/ (other than your own claims file, output file and scratch folder), applied-v*, completion/, reviews/, prompts/, workers/ or LEDGER.jsonl. Do not look for keys or genuine versions anywhere.
+
+Read first: research/excavator/claude-nira-sweep-2026-10-29/REVIEWER_BRIEF.md for the procedure and output fields (its NIRA-specific step 3 does not apply; apply the general method), research/stage19/CLAIM_SCHEMA.md, research/excavator/claude-production-2026-10-28/PRODUCTION_ROUTE.md, research/readiness/owner_rulings/2026-10-28-evidence-not-convenience.md and research/readiness/owner_rulings/2026-10-21-transcription-as-text.md.
+
+For each claim: re-hash the cited text files and check every quoted span against the bytes; confirm identity (number, date, signatory, title) against the held original or working text; read the order in full and confirm the clause inventory is complete; for every terminated clause, open the cited ending source and confirm it says what the claim says on the date the claim gives (exact date, actor, mechanism), and test for an earlier end (own terms, an earlier revocation or supersession: `python -X utf8 -I research/excavator/claude-nira-sweep-2026-10-29/cruden.py number EO:N --write <<SCRATCH>>/cruden-EO_N.json`); check every held Federal Register or CFR note such as "Revoked by" or "Superseded by" and reject a claim that leaves one unaddressed; for an operative clause of a YES order, confirm the current predicate from a held current source through 2026-10-14 and that no later amendment, partial revocation or statutory repeal is missed; check savings and the honesty of the searches. Reject a claim whose dates, actor, mechanism, quotes or reasons are wrong or internally inconsistent, even when the outcome looks right. Be strict: a wrongly upheld claim enters the ready count. Work efficiently: one python script for all hash and quoted-span checks, then spend your reading on the legal questions.
+
+Output: one JSON object per claim, one per line, in WRITE REVIEWS TO, with instrument_id, claim_sha256 (sha256 of json.dumps(claim, sort_keys=True, separators=(",",":"), ensure_ascii=False).encode()), reviewer "<<REVIEWER>>", model_family "<<MODEL_FAMILY>>", independent true, separate_context true, review_kind "independent_ai_source_review", scope "whole_case", verdict, defects (a list, empty when upheld; each names the field and the exact problem), reasons, started_utc and ended_utc (`date -u +%FT%TZ`). Reply in at most 120 words: counts, and each rejection's order and defect.
