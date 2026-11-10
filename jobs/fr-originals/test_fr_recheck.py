@@ -145,6 +145,9 @@ class FindTests(unittest.TestCase):
         self.assertIsNone(fr_recheck._tag_line("[No. 7700-A]", "7700"))
         self.assertEqual(fr_recheck._tag_line("[No. 7700-A]", "7700A"), "strict")
         self.assertEqual(fr_recheck._tag_line("[No. 83363", "8336"), "bracket_ocr_damaged")
+        # EO 7573: spaced abbreviation and a digit read for the bracket; a real bracket is never a digit
+        self.assertEqual(fr_recheck._tag_line("[N o .75731", "7573"), "strict")
+        self.assertIsNone(fr_recheck._tag_line("[No. 13571]", "1357"))
         self.assertIsNone(fr_recheck._tag_line("[No. 10193]", "1019"))
 
 

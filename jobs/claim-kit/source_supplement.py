@@ -203,8 +203,11 @@ def prepare(repo, parent, declaration_file, agent, dest):
     # would otherwise refuse every already-claimed order. The parent's routing decides; nothing is inferred.
     replacement = any(r.get('route') == 'owner_reviewable_replacement_proposal'
                       for r in packet.get('ownership', {}).values() if isinstance(r, dict))
+    # The supplement works the parent's orders under the parent's admitted Bentham action (admission.py).
+    admitted = parent / 'ADMISSION.json'
+    action = json.loads(admitted.read_text(encoding='utf-8')).get('bentham_action') if admitted.is_file() else None
     stats = B.prepare(repo, parent, dest, list(derived), agent, dossier_paths=paths,
-                      replacement_proposal=replacement, frozen_evidence=evidences or None)
+                      replacement_proposal=replacement, frozen_evidence=evidences or None, action=action)
     receipt = {'schema': 'eo-source-excerpt-prepare-receipt/v1', **provenance,
                'instrument_ids': list(derived), 'native_prepare': stats,
                'undecided_overlay_members': sorted(evidences),

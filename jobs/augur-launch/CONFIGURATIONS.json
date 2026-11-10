@@ -1,0 +1,15 @@
+{
+ "schema": "augur-configurations/v1",
+ "note": "Measured runs per configuration (orchestrator | coordinator model family | producer model family). A run passes when its measured filed dossiers per API-equivalent dollar met augur.FLOOR_PER_USD. Stage = 0 probe (1 lane, 30 orders), 1 small (up to 3 lanes, 300 orders), 2 full. Add a run only from a Kean finding with measures; never by estimate.",
+ "runs": [
+  {"fingerprint": "claude-scripted|anthropic|anthropic", "wave": "cujas-2026-11-08", "stage": 1, "passed": true,
+   "finding": "F-20261108-cujas-usage", "attempted": 75, "filed": 68, "usd": 23.27,
+   "basis": "68 filed for 23.27 USD = 2.9 per dollar; one coordinator driving tools/ scripts"},
+  {"fingerprint": "claude-scripted|anthropic|anthropic", "wave": "papinian-2026-11-10", "stage": 2, "passed": true,
+   "finding": "F-20261110-papinian-wave", "attempted": 467, "filed": 63, "usd": 296.95,
+   "basis": "63 filed for 296.95 USD = 0.21 per dollar; coordinator 17% of cost, scripts in tools/"},
+  {"fingerprint": "savigny-supervisor|openai|openai", "wave": "mommsen-2026-11-10", "stage": 2, "passed": false,
+   "finding": "F-20261110-mommsen-unranked-pools", "attempted": 593, "filed": 12, "usd": null,
+   "basis": "about half a weekly Codex allowance for 12 claims on branches, 0 merged; launched at full scale with no measured stage"}
+ ]
+}
