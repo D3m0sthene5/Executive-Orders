@@ -463,7 +463,8 @@ def write_measure(out):
             w.writerow([r["instrument_id"], r["date"], "" if r["required_age"] is None else r["required_age"],
                         "|".join(r["screens"])])
     summary = summarize(rows)
-    (out / "MEASURE.json").write_text(json.dumps(summary, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    (out / "MEASURE.json").write_text(json.dumps(summary, indent=1, ensure_ascii=False) + "\n", encoding="utf-8",
+                                      newline="\n")
     return summary
 
 

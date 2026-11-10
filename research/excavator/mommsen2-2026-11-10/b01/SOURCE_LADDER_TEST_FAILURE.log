@@ -1,0 +1,106 @@
+........................................................................................................................FE.FFEFFF............................................................
+======================================================================
+ERROR: test_ambiguous_narrative_is_not_selected (test_record_series.SeriesIdentityTests.test_ambiguous_narrative_is_not_selected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\test_record_series.py", line 53, in test_ambiguous_narrative_is_not_selected
+    r = propose(self.root,self.plan(duplicate=True))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\record_series.py", line 77, in propose
+    raise ValueError('text is not the unchanged ladder extraction')
+ValueError: text is not the unchanged ladder extraction
+
+======================================================================
+ERROR: test_later_appointment_is_not_assumed_to_be_eo_date (test_record_series.SeriesIdentityTests.test_later_appointment_is_not_assumed_to_be_eo_date)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\test_record_series.py", line 39, in test_later_appointment_is_not_assumed_to_be_eo_date
+    result = propose(self.root,self.plan())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\record_series.py", line 77, in propose
+    raise ValueError('text is not the unchanged ladder extraction')
+ValueError: text is not the unchanged ladder extraction
+
+======================================================================
+FAIL: test_alias_substring_cannot_match_a_different_word (test_record_series.SeriesIdentityTests.test_alias_substring_cannot_match_a_different_word)
+----------------------------------------------------------------------
+ValueError: text is not the unchanged ladder extraction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\test_record_series.py", line 92, in test_alias_substring_cannot_match_a_different_word
+    with self.assertRaisesRegex(ValueError,'grounded'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "grounded" does not match "text is not the unchanged ladder extraction"
+
+======================================================================
+FAIL: test_changed_raw_source_and_edition_are_refused (test_record_series.SeriesIdentityTests.test_changed_raw_source_and_edition_are_refused)
+----------------------------------------------------------------------
+ValueError: text is not the unchanged ladder extraction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\test_record_series.py", line 70, in test_changed_raw_source_and_edition_are_refused
+    with self.assertRaisesRegex(ValueError,'edition'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "edition" does not match "text is not the unchanged ladder extraction"
+
+======================================================================
+FAIL: test_instrument_number_cannot_be_rebound_to_other_original (test_record_series.SeriesIdentityTests.test_instrument_number_cannot_be_rebound_to_other_original)
+----------------------------------------------------------------------
+ValueError: text is not the unchanged ladder extraction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\test_record_series.py", line 98, in test_instrument_number_cannot_be_rebound_to_other_original
+    with self.assertRaisesRegex(ValueError,'exact instrument identity'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "exact instrument identity" does not match "text is not the unchanged ladder extraction"
+
+======================================================================
+FAIL: test_path_escape_and_missing_identity_date_are_refused (test_record_series.SeriesIdentityTests.test_path_escape_and_missing_identity_date_are_refused)
+----------------------------------------------------------------------
+ValueError: text is not the unchanged ladder extraction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\test_record_series.py", line 86, in test_path_escape_and_missing_identity_date_are_refused
+    with self.assertRaisesRegex(ValueError,'original span'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "original span" does not match "text is not the unchanged ladder extraction"
+
+======================================================================
+FAIL: test_report_date_cannot_replace_eo_reference (test_record_series.SeriesIdentityTests.test_report_date_cannot_replace_eo_reference)
+----------------------------------------------------------------------
+ValueError: text is not the unchanged ladder extraction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\test_record_series.py", line 60, in test_report_date_cannot_replace_eo_reference
+    with self.assertRaisesRegex(ValueError,'original span'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "original span" does not match "text is not the unchanged ladder extraction"
+
+======================================================================
+FAIL: test_same_date_different_entity_does_not_join (test_record_series.SeriesIdentityTests.test_same_date_different_entity_does_not_join)
+----------------------------------------------------------------------
+ValueError: text is not the unchanged ladder extraction
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\eo-wt\mommsen-2\jobs\source-ladder\test_record_series.py", line 49, in test_same_date_different_entity_does_not_join
+    with self.assertRaisesRegex(ValueError,'grounded'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "grounded" does not match "text is not the unchanged ladder extraction"
+
+----------------------------------------------------------------------
+Ran 189 tests in 3.092s
+
+FAILED (failures=6, errors=2)
+Unit tests failed; the job did not run.

@@ -1,0 +1,10 @@
+V2 independent source examination: EO393 upheld; EO506 upheld; genuine EO393 upheld_after_reveal.
+
+Start UTC: 2026-11-10T05:46:40+00:00. End UTC: 2026-11-10T05:49:15.908235+00:00.
+Reviewer: mommsen-2-b03-arm1; OpenAI family, separate review context. Requested model gpt-6.1-sol medium; actual runtime model identity, tokens and cost are unavailable. No workers delegated. This is AI review, not human certification.
+
+Both exact file pins and Stage19 canonical hashes independently matched. Separate maintained verifier receipts were generated before interpretation. Each native receipt remains negative solely for raw_path_missing, with input/text checks passing. The held raw PDF was independently rehashed and matched. Complete PDF80,89,46-49 were rendered into new V2 images and visually examined, including source dates/signatures and the complete parent order. Frozen text and permitted date/subject identity metadata were compared. One attempt to view page46 while rendering was still active returned invalid image data; the completed image was then successfully viewed. Render process completed with exit zero. No source bytes or old outputs were changed.
+
+EO393 independently performs its sole repeal on January12,1906. EO506 permits one date-specific alternative through November15,1906 inclusive, with November16 the first civil date outside the permission. The parent separately governs possible session continuation. No convening, adjournment or administrative event was assumed. Full qualifications, earlier candidates, scope, savings and search limits are recorded per exact version in FINAL_REVIEW_V2.json. Coordinator disclosure is recorded only for the genuine EO393 after-reveal examination; the old planted control remains permanently excluded and its rejection unchanged.
+
+No network, Git, publication, code-file creation, producer reports, packets, keys, canonical claims, counterpart cards or other review arm were used. All new outputs remain within arm1. Earlier sealed and blocked files were preserved. Coordinator owns handoff/Kean.
