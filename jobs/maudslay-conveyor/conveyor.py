@@ -80,7 +80,7 @@ CLAUDE_TEMPLATE = ["claude", "-p", "--model", "{model}", "--output-format", "str
                    "--max-turns", "{max_turns}", "--max-budget-usd", "{item_usd}", "--permission-mode", "auto",
                    "--add-dir", "{repo}"]
 CODEX_TEMPLATE = ["codex", "exec", "--json", "--skip-git-repo-check", "-C", "{cwd}", "-m", "{model}",
-                  "--config", 'model_reasoning_effort="medium"',
+                  "--config", 'model_reasoning_effort="{reasoning_effort}"',
                   "--config", "model_auto_compact_token_limit={auto_compact_tokens}",
                   "--config", "tool_output_token_limit={tool_output_tokens}",
                   "--config", 'approval_policy="never"',
@@ -351,6 +351,30 @@ def render_args(template, mapping):
     left = [t for t in out if re.search(r"\{[a-z_]+\}", t)]
     if left:
         raise Fail(f"unfilled placeholder in command: {left}")
+    return out
+
+
+def resolve_program(pattern):
+    """A worker program given as a path pattern, e.g. %LOCALAPPDATA%/OpenAI/Codex/bin/*/codex.exe: environment
+    variables expanded, then the newest match by modification time."""
+    pat = os.path.expandvars(str(pattern)).replace("\\", "/")
+    import glob
+    hits = sorted(glob.glob(pat), key=lambda h: os.path.getmtime(h), reverse=True)
+    if not hits:
+        raise Fail(f"no worker program matches {pattern} (expanded: {pat})")
+    return Path(hits[0])
+
+
+def claim_owners(repo, ids):
+    """{order: [repo-relative canonical claim files holding a claim for it]} from research/readiness/claims/*.jsonl."""
+    want = set(ids)
+    out = {iid: [] for iid in ids}
+    for f in sorted((Path(repo) / "research/readiness/claims").glob("*.jsonl")):
+        rel = f.relative_to(repo).as_posix()
+        for r in read_jsonl(f):
+            iid = r.get("instrument_id") if isinstance(r, dict) else None
+            if iid in want and rel not in out[iid]:
+                out[iid].append(rel)
     return out
 
 
@@ -810,12 +834,35 @@ class Batch:
     def command(self, role, folder):
         w = self.workers[role]
         mapping = {"model": w["model"], "max_turns": w.get("max_turns", 80), "repo": self.repo.as_posix(),
+                   "reasoning_effort": w.get("reasoning_effort", "medium"),
                    "cwd": Path(folder).as_posix(), "item_usd": self.cap(role, "usd"),
                    "auto_compact_tokens": w.get("auto_compact_tokens", 120000),
                    "tool_output_tokens": w.get("tool_output_tokens", 6000),
                    "writable_roots": json.dumps([Path(folder).as_posix()]),
                    "network": "true" if w.get("network") else "false"}
-        return validate_worker_command(render_args(w["command"], mapping), w["family"])
+        argv = render_args(w["command"], mapping)
+        if w.get("program"):
+            argv[0] = resolve_program(w["program"]).as_posix()
+        return validate_worker_command(argv, w["family"])
+
+    def check_ownership(self):
+        """A correction may be filed as own_claims only over this agent's own canonical claims (Papinian c01).
+
+        Owner ruling D-20261110-papinian-board-bytes: corrected claims of another agent become canonical only by a
+        named owner decision, so they go out as an isolated replacement proposal, never as own_claims."""
+        if not (self.cfg.get("replacement_proposal") and self.cfg.get("publication_mode") == "own_claims"):
+            return
+        if not self.cfg.get("ids"):
+            raise Fail("own-claim corrections need explicit --ids, so their existing claims can be checked first")
+        owners = claim_owners(self.repo, self.cfg["ids"])
+        prefix = self.cfg["agent"] + "-"
+        bad = {iid: files for iid, files in owners.items() if not files or any(not f.split("/")[-1].startswith(prefix)
+                                                                           for f in files)}
+        if bad:
+            shown = "; ".join(f"{iid}: {', '.join(files) or 'no canonical claim'}" for iid, files in sorted(bad.items()))
+            raise Fail(f"--publication-mode own_claims would file over claims this agent ({self.cfg['agent']}) does not "
+                       f"own: {shown}. Use the default replacement_proposal; another agent's corrected claims become "
+                       "canonical only by a named owner decision (D-20261110-papinian-board-bytes)")
 
     def check_workers(self):
         for role, w in self.workers.items():
@@ -1638,6 +1685,7 @@ def _run(b, cfg):
         b.pin_workers()
         b.augur()
         b.check_budget()
+        b.check_ownership()
         b.reap()
         b.verify_scratch()
     except Fail as f:
@@ -2034,12 +2082,18 @@ def main(argv=None):
         if a.cmd == "commands":
             for role, w in load_workers(a.workers).items():
                 argv_ = render_args(w["command"], {"model": w["model"], "max_turns": w.get("max_turns", 80),
+                                                  "reasoning_effort": w.get("reasoning_effort", "medium"),
                                                   "repo": REPO.as_posix(), "cwd": "WORKER_FOLDER",
                                                   "item_usd": w.get("item_usd", a.item_usd),
                                                   "auto_compact_tokens": w.get("auto_compact_tokens", 120000),
                                                   "tool_output_tokens": w.get("tool_output_tokens", 6000),
                                                   "writable_roots": json.dumps(["WORKER_FOLDER"]),
                                                   "network": "true" if w.get("network") else "false"})
+                if w.get("program"):
+                    try:
+                        argv_[0] = resolve_program(w["program"]).as_posix()
+                    except Fail:
+                        argv_[0] = str(w["program"]) + " (not found here)"
                 validate_worker_command(argv_, w["family"])
                 print(role, "(cwd WORKER_FOLDER)", " ".join(argv_), "< PROMPT.txt")
             return 0

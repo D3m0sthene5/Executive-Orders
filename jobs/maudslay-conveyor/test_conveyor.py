@@ -442,11 +442,11 @@ class WorkerCommandTests(ConveyorCase):
             C.validate_worker_command(ok, "codex")  # the program is claude
         with self.assertRaises(C.Fail):
             C.validate_worker_command(ok, "generic")
-        cx = C.render_args(C.CODEX_TEMPLATE, {"cwd": "W", "model": "m", "auto_compact_tokens": 1000,
+        cx = C.render_args(C.CODEX_TEMPLATE, {"cwd": "W", "model": "m", "auto_compact_tokens": 1000, "reasoning_effort": "high",
                                               "tool_output_tokens": 100, "writable_roots": '["W"]', "network": "false"})
         C.validate_worker_command(cx, "codex")
         self.assertNotIn("--ephemeral", cx)  # its rollout file is the mid-run meter
-        for need in ("--skip-git-repo-check", "--json", "model_auto_compact_token_limit=1000",
+        for need in ("--skip-git-repo-check", "--json", 'model_reasoning_effort="high"', "model_auto_compact_token_limit=1000",
                      "tool_output_token_limit=100", 'approval_policy="never"', 'sandbox_mode="workspace-write"',
                      'sandbox_workspace_write.writable_roots=["W"]', "sandbox_workspace_write.network_access=false"):
             self.assertIn(need, cx)
@@ -747,6 +747,88 @@ class GuardTests(ConveyorCase):
                                  f"load_packet('{batch}/packet')"], rules), [])
         self.assertTrue(C.scan([f"cat {batch}/packet/undecided/EO_5/STATUS_DECISION.json"], rules))
         self.assertTrue(C.scan([f"cat {batch}/packet/decisions.csv"], rules))
+
+
+class OwnershipTests(ConveyorCase):
+    def claims_file(self, name, ids):
+        d = self.repo / "research/readiness/claims"
+        d.mkdir(parents=True, exist_ok=True)
+        (d / name).write_text("".join(json.dumps({"schema": "eo-lifecycle-claim/v1", "instrument_id": i}) + "\n"
+                                      for i in ids))
+
+    CORRECTION = ("--ids", "EO:1", "EO:2", "--replacement-proposal")
+
+    def mode(self):
+        return json.loads((self.bdir / "packet/completion/COMPLETION.json").read_text(encoding="utf-8"))["publication"]["mode"]
+
+    def test_own_claim_corrections_over_this_agents_claims_are_allowed(self):
+        self.claims_file("testagent-2026-11-01-c01.jsonl", ["EO:1", "EO:2"])
+        self.assertEqual(self.run_cli(*self.CORRECTION, "--publication-mode", "own_claims"), C.EXIT_DONE)
+        self.assertEqual(self.mode(), "own_claims")
+
+    def test_own_claims_over_another_agents_claims_is_refused_before_any_work(self):
+        self.claims_file("testagent-2026-11-01-c01.jsonl", ["EO:1"])
+        self.claims_file("justinian-2026-11-04-board.jsonl", ["EO:2"])
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            rc = C.main(self.args(*self.CORRECTION, "--publication-mode", "own_claims"))
+        self.assertEqual(rc, C.EXIT_FAILED)
+        self.assertIn("EO:2: research/readiness/claims/justinian-2026-11-04-board.jsonl", out.getvalue())
+        self.assertNotIn("EO:1:", out.getvalue())
+        self.assertEqual((self.calls(), self.worker_calls()), ([], []))
+
+    def test_an_order_with_no_canonical_claim_is_refused_as_own_claims(self):
+        self.claims_file("testagent-2026-11-01-c01.jsonl", ["EO:1"])
+        self.assertEqual(self.run_cli(*self.CORRECTION, "--publication-mode", "own_claims"), C.EXIT_FAILED)
+        self.assertIn("EO:2: no canonical claim", self.run_state()["data"]["reason"])
+
+    def test_corrections_default_to_an_isolated_replacement_proposal(self):
+        self.claims_file("justinian-2026-11-04-board.jsonl", ["EO:1", "EO:2"])
+        self.assertEqual(self.run_cli(*self.CORRECTION), C.EXIT_DONE)
+        self.assertEqual(self.mode(), "replacement_proposal")
+
+
+class CodexProgramTests(ConveyorCase):
+    def install(self, root, hashes):
+        paths = []
+        for i, h in enumerate(hashes):
+            exe = Path(root) / "OpenAI/Codex/bin" / h / "codex.exe"
+            exe.parent.mkdir(parents=True)
+            exe.write_text("")
+            os.utime(exe, (1_000_000 + i * 1000, 1_000_000 + i * 1000))
+            paths.append(exe)
+        return paths
+
+    def test_the_newest_codex_exe_is_resolved_at_run_time(self):
+        with tempfile.TemporaryDirectory() as t, mock.patch.dict(os.environ, {"LOCALAPPDATA": t}):
+            old, new = self.install(t, ["aaa111", "bbb222"])
+            got = C.resolve_program("%LOCALAPPDATA%/OpenAI/Codex/bin/*/codex.exe")
+            self.assertEqual(got.resolve(), new.resolve())
+            with self.assertRaises(C.Fail):
+                C.resolve_program("%LOCALAPPDATA%/OpenAI/Missing/*/codex.exe")
+
+    def test_codex_example_workers_render_with_their_effort_and_caps(self):
+        w = json.loads((HERE / "workers.codex.example.json").read_text())
+        with tempfile.TemporaryDirectory() as t, mock.patch.dict(os.environ, {"LOCALAPPDATA": t}):
+            (_, new) = self.install(t, ["aaa111", "bbb222"])
+            refused = dict(w)
+            (self.repo / "workers.json").write_text(json.dumps(refused))
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(C.main(self.args()), C.EXIT_FAILED)  # placeholder prices: refused until set
+            for role in ("producer", "reviewer_A", "reviewer_B"):
+                w[role]["prices_usd_per_mtok"] = {"input": 1.0, "cached_input": 0.1, "output": 8.0}
+            (self.repo / "workers.json").write_text(json.dumps(w))
+            with contextlib.redirect_stdout(io.StringIO()), mock.patch.object(C, "run", lambda cfg, repo: cfg):
+                cfg = C.main(self.args("--batch-usd", "500"))
+            b = C.Batch(cfg, self.repo)
+            folder = b.scratch / "workers" / "x"
+            prod, rev = b.command("producer", folder), b.command("reviewer_A", folder)
+            self.assertEqual(Path(prod[0]).resolve(), new.resolve())
+            self.assertIn('model_reasoning_effort="medium"', prod)
+            self.assertIn('model_reasoning_effort="high"', rev)
+            self.assertIn("gpt-6.1-sol", prod)
+            self.assertNotIn("--ephemeral", prod)
+            self.assertTrue(all(b.cap(r, "tokens") for r in ("producer", "reviewer_A", "reviewer_B")))
 
 
 KIT_HOME = Path(os.environ.get("MAUDSLAY_KIT_HOME") or C.REPO)

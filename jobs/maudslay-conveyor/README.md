@@ -70,7 +70,7 @@ already done.
 | controls | A control is caught only if both arms rejected its exact planted hash and a whole word or field name in their `defects` names a date (`date`, `first_end`, `whole_order_end`, `signing_date`, `effective_date`, `later_events`, `year` ...). `reasons` are not read, and "mandate" or "update" does not count. Any miss stops the batch | Papinian `finish_pair.py`, tightened |
 | reveal | A fresh session per arm, in a new folder holding only the genuine control claims (`upheld_after_reveal`) | Papinian reveal prompt, without `--resume` |
 | agree | An order files only if both arms upheld the exact version, and is blocked only if both rejected it. Anything else goes to `ADJUDICATE.json` | Papinian `finish_pair.py` both-uphold rule |
-| complete | Writes the review records and manifest, then runs `kit.py complete`, adding `--publish` only when asked. The publication mode is `own_claims` unless `--replacement-proposal` is given (then `replacement_proposal`), and `--publication-mode` sets it explicitly, for example `own_claims` for agent `claude` correcting its own filed claims. If a `complete-vN/PUBLICATION.json` already says `written: true` (a run killed after publishing), that publication is adopted and recorded instead | nira-sweep `make_completion.py` |
+| complete | Writes the review records and manifest, then runs `kit.py complete`, adding `--publish` only when asked. The publication mode is `own_claims`, or `replacement_proposal` when `--replacement-proposal` is given. With `--replacement-proposal`, `--publication-mode own_claims` is allowed only when every order's existing canonical claim is in a `research/readiness/claims/<agent>-*.jsonl` file whose prefix is this run's `--agent` (Papinian's c01 precedent). Otherwise the run is refused before any work, naming the orders and their owning files. Under owner ruling D-20261110-papinian-board-bytes, another agent's corrected claims become canonical only by a named owner decision. If a `complete-vN/PUBLICATION.json` already says `written: true` (a run killed after publishing), that publication is adopted and recorded instead | nira-sweep `make_completion.py` |
 | measure | Writes `MEASURES.json`, upserts the batch line in `RUN/BATCHES.json`, and runs `bentham.py gate` | Bentham README "During a wave" |
 
 ## Blinding is checked, not just asked for
@@ -117,6 +117,18 @@ A `file` decision needs the upholding arm's record. The file is copied into the 
 completion receipt. `--defer-adjudication` instead completes at once and leaves the disagreed orders unfiled.
 
 ## Workers
+
+**On this PC, real runs use Codex workers.** `claude -p` is not usable here: the Claude CLI is not installed or not
+logged in. Use `workers.codex.example.json`. In that file:
+
+- `program` is `%LOCALAPPDATA%/OpenAI/Codex/bin/*/codex.exe`, resolved at run time to the newest `codex.exe`;
+- the model is `gpt-6.1-sol`, with `model_reasoning_effort` medium for the producer and high for the reviewers;
+- each role has an item token cap;
+- the prices are placeholders the owner sets from `jobs/necker-costs/PRICES.json`. Until then the conveyor refuses
+  those workers.
+
+The Claude templates below are for a machine where the CLI works.
+
 
 Workers are set per role (`producer`, `reviewer_A`, `reviewer_B`, or one `reviewer` for both arms) in a JSON file;
 see `workers.example.json`. A role's `command` is one of:
