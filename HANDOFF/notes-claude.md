@@ -1,3 +1,36 @@
+## 2026-11-10 ET (Claude, ACCURSIUS: Respondendi claim-kit fixes F3-F7)
+
+- **Done:** five pull requests, each reviewed by a different model (Fable 5.2) and re-reviewed after fixes:
+  [#272](https://github.com/D3m0sthene5/Executive-Orders/pull/272) F3 CURRENT records,
+  [#273](https://github.com/D3m0sthene5/Executive-Orders/pull/273) F7 machine artifacts,
+  [#274](https://github.com/D3m0sthene5/Executive-Orders/pull/274) F5 OWN_TEXT basis,
+  [#276](https://github.com/D3m0sthene5/Executive-Orders/pull/276) F6 working-text gate,
+  [#275](https://github.com/D3m0sthene5/Executive-Orders/pull/275) F4 acting texts. All five are approved on
+  re-review with 0 blocking findings. All are drafts with
+  "Owner, after merging" lines. Report: `research/excavator/claude-accursius-2026-11-10/REPORT.md`.
+- **Reach on main** (undecided orders, machine leads):
+  - F3: 1,063 get CURRENT records, 834 of them YES-eligible.
+  - F5: 687 get OWN_TEXT records; blind precision 57 of 60.
+  - F6: the text gate opens for 2,554.
+  - F4: 455 get a citable basis record and 1,002 a lead-only one.
+  - F7: 497 clause inventories change.
+- **Diagnosed failures:**
+  - YES-leaning: 11 of the 15 Papinian orders now hold a CURRENT record.
+  - OWN_TEXT exists for EO 12178, 12378, 12379, 13013, 13552, 7621 and 5739.
+- **Merge order** (agreed with Whitworth #277): F3, F7, F5, F6, then F4 after its re-review. #274 and #276
+  conflict on `UNDECIDED_ROUTES`; the second takes the union. One claim-kit rebuild after the compiler-file PRs,
+  then re-prepare every packet. An fr-originals re-location run follows #273.
+- **Not done:**
+  - I could not mark the PRs ready: the permission classifier refused `gh pr ready`.
+  - #272 also raises the Valla pilot job timeout from 30 to 40 minutes; the note extracts pushed it past 30.
+  - Lifecycle claims on R37/P4 texts are still refused by `assemble` (`working_text.GRADES`).
+  - Neighbour-page adoption (F7) was removed, to be redone strictly.
+  - 1,002 F4 orders wait on held govinfo PDFs.
+- **Recorded:** Kean F-20261110-accursius-f3-current, -f4-acting-texts, -f5-own-text, -f6-working-text,
+  -f7-artifacts, -wave. No owner ask: the existing rulings covered every case. Cost 182 USD list (Bentham usage).
+  Human-certified 0.
+
+
 ## 2026-11-10 ET (Claude, overnight Codex wave failed; claim-kit admission guard, PR #265)
 
 - **What happened:** SAVIGNY (coordinator) and MOMMSEN-1..5 (gpt-6.1-sol xhigh, headless) ran from about 00:04 to
