@@ -32,3 +32,7 @@ Read directives beyond S9-4; PR262 exact head d2a5236609e048ab7c1ada44ee6758f5cc
 ## Actual own context correction
 
 The generated helper context belongs to another Claude session and is inapplicable under S-9-4. This lane own Codex session 01a1c47c-855d-7342-a4d4-c09983136782 last input 249705 (cached 248832), model gpt-6.1-sol; fresh_required=False. Exact sanitized evidence: research/excavator/mommsen-4-2026-11-10/USAGE_TURN3_FINAL.json. Code PR262 remains open/unmerged.
+
+## Final directive and publication correction
+
+S-10-4/S-10-6 acknowledged. Engineering HOLD E-10-3; draft PR262 at d2a5236609e048ab7c1ada44ee6758f5cc6249e1, no further code publication/mutation/merge. See exact engineering-hold inventory/rationale packets. Current earlier source notes remain authorized; cap2 exhausted. Independent source branch codex/mommsen-4-turn3-source-report published first at1bb8c5288e0e5342e0b307f58bdb255d42de6ccf, excluding held code-p4 files. Local2eb3305e1a engineering-savepoint stays unpushed. Own UUID 01a1c47c-855d-7342-a4d4-c09983136782 closeout last input 274830, cached 274560, fresh=False. Do not apply unrelated global Claude context.
