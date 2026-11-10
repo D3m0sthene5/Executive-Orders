@@ -21,3 +21,15 @@ four questions, which were put to them with the coordinator's recommendations:
    once the calibration batch has been measured.
 
 These are run approvals and route rules. They adopt no status and change no count. Human certification stays 0.
+
+## Re-signature of the calibration plan (v3)
+
+Signing the v2 plan exposed two things: Augur required written answers to two Kean lessons merged after the plan was
+written (F-20261110-mommsen3-undecided-probe01, F-20261110-mommsen3-codex-core-sandbox), and the plan's reviewers
+were Claude models although the run machine has no Claude CLI. The coordinator answered both lessons in the plan and
+made the status reader and both blind arms Codex sessions, which changed the plan's hash. The owner then typed
+"Yes, sign v3" in the coordinating session (2026-11-10):
+
+5. **D-20261110-nalimov-calibration-v3-signed: sign plan v3.** The owner signs
+   `research/nalimov/calibration/WAVE.json` v3, plan sha256
+   997f123f47b58335c7b2f2cdd6eb1aaea21c98f930120c0ea7e708b80ec49dce, which replaces the signature in item 2.
