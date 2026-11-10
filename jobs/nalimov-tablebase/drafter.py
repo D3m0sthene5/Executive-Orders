@@ -9,12 +9,16 @@ Input: one order's frozen claim-kit evidence (packet/undecided/EO_N/EVIDENCE.jso
 jobs/claim-kit/status_overlay.py) and, when there is one, the packet's prepared decisions.csv / clauses.csv rows.
 Output: the same files a Maudslay producer writes (one decisions.csv row, its clauses.csv rows, RATIONALES.json,
 and the filled STATUS_DECISION.json), so the kit's own `apply`, `batch-check`, status review and `overlay-propose`
-assemble the claim in the exact format the checker and the filing route accept. Nothing here writes a claim,
-a status, a ledger row or a review.
+assemble the claim in the exact format the checker and the filing route accept (prescreen.py runs the kit's
+assembler and the actual checker on every draft before any verifier is paid). Nothing here writes a claim, a status,
+a ledger row or a review.
 
 Every condition is a blocker, never a guess: an order that fails one goes to the ordinary producer route with the
-blocker as its first note. The conditions are deliberately narrower than Respondendi's lot, because a script cannot
-judge an earlier end, a partial scope, a saving or an inventory gap; it can only show that none is held.
+blocker as its first note. A script cannot judge an earlier end, a partial scope, a saving or an inventory gap; it can
+only show that none is held, so every test is written to block when in doubt (a false block costs one producer run; a
+missed defect is a wrong claim). v2 follows the independent review of v1 (Fable 5.2, 2026-11-10): OCR letter-spacing
+is collapsed before any wording test, a clause is a standing command only on a positive pattern, the inventory is
+anchored on the order's own number line, and the savings, delayed-effect, catalog and same-actor tests are wider.
 """
 from __future__ import annotations
 
@@ -26,8 +30,10 @@ import predicate as P
 
 AGENT = "nalimov-script"
 KIND = "express_named_revocation"
-DRAFTER_VERSION = "nalimov-drafter/v1"
-ENDING_TERM_KINDS = {"fixed_term", "sunset_date", "until_event", "emergency_duration", "temporary_body"}
+DRAFTER_VERSION = "nalimov-drafter/v2"
+# Own-term kinds that are never an end of a standing command by themselves (D-20261021-report-deadline; a 'condition'
+# record is a clause's internal condition). Every other kind needs a reading unless its stated date is after the end.
+HARMLESS_TERM_KINDS = {"report_deadline", "condition"}
 REQUIRED_SEARCHES = ("current-law:usc", "current-law:ecfr", "later-events:ofr_catalog")
 # History flags whose resolution is mechanical when the status rests on an exact held revoking provision. Any other
 # flag is a blocker (PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK needs a clause-level reading).
@@ -42,37 +48,57 @@ FLAG_RESOLUTIONS = {
         "No dated observation is relied on; the status rests on the exact held provision of {actor} ({label}) that "
         "revokes {target} by number, read against its hashed source text.",
 }
-# Missing-list lines that do not bear on an express whole revocation; anything else blocks.
+# Missing-list lines that do not bear on an express whole revocation (matched in full); anything else blocks.
 BENIGN_MISSING = (
     re.compile(r"^Current-law lead lacks an original-source sha256\.$"),
     re.compile(r"^No uniquely located attributed legal-text slice is held for this current-law pointer"),
-    re.compile(r"^Machine segmentation lead; compare the inventory with the official original\."),
+    re.compile(r"^Machine segmentation lead; compare the inventory with the official original\.(?! *No confident)"),
 )
-NAMED_MISSING = re.compile(r"^(target provision not located|cited by number, no change provision located|"
-                           r"Large actor context must be read at|No compiled selected actor text located|"
-                           r"Acting identity absent from census)[^:]*:\s*(\S+)")
-REVOKES_OTHER = re.compile(
-    r"^(?:(?:sec|section)\s*\d+[a-z]?\s*[.:]\s*)?(?:the\s+following\s+)?(?:executive orders?|ex ord|e o|proclamations?)\b"
-    r"[^;]{0,600}?\b(?:is|are)\s+(?:hereby\s+)?(?:revoked|superseded|rescinded)\s*[.;]?\s*$")
-ONE_TIME = re.compile(r"\b(?:is|are)\s+(?:hereby\s+)?(?:abolished|transferred|amended|terminated)\b|\bhereby\s+"
-                      r"(?:abolish|transfer|amend)\b|\bto read as follows\b|\bstrik(?:e|ing)\s+out\b|\bis\s+redesignated\b")
-# A section heading at a line start, including OCR letter-spacing ("S e c . 2 .", "S ection 1."). Capital S and a
-# period after the number, so "section 301 of title 3" in running text is not one.
-SECTION_HEAD = re.compile(r"(?m)^[ \t]*S[ \t]*(?:e[ \t]*c[ \t]*(?:t[ \t]*i[ \t]*o[ \t]*n)?|E[ \t]*C)[ \t]*\.?[ \t]*\d+[a-z]?[ \t]*\.")
-OTHER_REVOKED = re.compile(r"\b(?:executive orders?|ex ord|e o|proclamations?)\b[^;]{0,400}?\b(?:is|are)\s+(?:hereby\s+)?"
-                           r"(?:revoked|superseded|rescinded)\b")
-COMMAND = re.compile(r"\b(?:shall|hereby|is directed|are directed|is authorized|are authorized)\b")
-SAVINGS = re.compile(r"\b(?:remain|continue|continued|shall not affect|not be affected|preserv\w*|until (?:modified|"
-                     r"superseded|revoked|amended))\b")
-ENDWORD = re.compile(r"\b(?:revoked|superseded|rescinded)\b")
-SIGNATURE = re.compile(r"(?i)the white house|\[f\. ?r\. doc|\[fr doc|filed \d|billing code")
-# A sentence that sets a date or delay for the actor's effect. An extractor's 'effective_wording' list also catches
-# words like "effective use"; only this pattern blocks an on-signing end.
-DELAYED = re.compile(r"\b(?:shall|will|to)\s+(?:take effect|become effective|be effective)\b(?!\s+(?:immediately|"
-                     r"upon (?:its )?signing|on (?:the date of )?(?:its )?signing))|\beffective\s+(?:on|upon|"
-                     r"as of|at|\d|january|february|march|april|may|june|july|august|september|october|"
-                     r"november|december|\w+ days)\b|\bdays after\b")
+NAMED_MISSING = re.compile(r"^(target provision not located)[^:]*:\s*(\S+)$")
 ENDED_ROLES = {"eo_note_ended_status", "ending_order_in_status_line", "amending_order_in_ended_status_line"}
+
+# --- wording tests, all applied to text after despace() and P._norm() ------------------------------------------
+REVOKE_WORD = r"(?:revok\w*|supersed\w*|rescind\w*|repeal\w*)"
+INSTRUMENT = r"(?:executive\s+orders?|ex\s+ord\w*|e\s+o|proclamations?|orders?\s+nos?)"
+OTHER_INSTRUMENT_REVOKED = re.compile(r"\b" + INSTRUMENT + r"\b[^;]{0,500}?\b" + REVOKE_WORD + r"\b|\b" + REVOKE_WORD
+                                      + r"\b[^;]{0,80}?\b" + INSTRUMENT + r"\b")
+ONE_TIME_VERBS = (r"abolished|transferred|amended|terminated|restored|vacated|redesignated|ratified|confirmed|validated|"
+                  r"exempted|excepted|discontinued|closed|revested|returned|released|relieved|dismissed|retired|reinstated")
+ONE_TIME = re.compile(
+    # done by the order itself: "is/are (hereby) transferred", "be, and they are hereby, transferred", "is hereby
+    # appointed"; not a structure for the future ("members shall be appointed", "to be appointed by the President")
+    r"\b(?:is|are)[\s,]+(?:hereby[\s,]+)?(?:" + ONE_TIME_VERBS + r")\b|\bbe[\s,]+(?:and\s+\w+\s+(?:is|are)[\s,]+)?hereby[\s,]+"
+    r"(?:" + ONE_TIME_VERBS + r"|appointed)\b|\b(?:is|are)[\s,]+hereby[\s,]+appointed\b|\bhereby\W{0,3}(?:abolish|transfer|"
+    r"amend|appoint|restor|vacat|ratif|confirm|exempt|revest|return|releas|reinstat)\w*|\bto read as follows\b|"
+    r"\bstrik(?:e|ing)\s+out\b|\bshall be closed\b")
+STANDING = re.compile(
+    r"\bshall\b|\bmay\b|\bit is (?:hereby )?ordered\b|\b(?:is|are|be)[\s,]+(?:hereby[\s,]+)?(?:established|created|"
+    r"constituted|designated|authorized|empowered|directed|delegated|prescribed|withdrawn|reserved|set apart|assigned|"
+    r"vested|continued|required|prohibited|forbidden|placed|suspended)\b|\bhereby\W{0,3}(?:establish|creat|constitut|"
+    r"designat|authoriz|empower|direct|delegat|prescrib|withdraw|reserv|assign|requir|prohibit|suspend)\w*|"
+    r"\bthere is (?:hereby )?established\b")
+# Non-operative parts that end with the order: statements of purpose or policy, findings and definitions.
+STATEMENT = re.compile(r"^\s*(?:sec(?:tion)?\s*[\d-]+[a-z]?\s*[.:]\s*)?(?:purpose|policy|findings?|definitions?|"
+                       r"background)\b|\bit is (?:the|hereby declared to be the) policy of\b|\bfor (?:the )?purposes? of "
+                       r"this order,? the terms?\b|\bas used in this order\b")
+# A section heading at a line start, including OCR letter-spacing ("S e c . 2 .", "S ection 1."). Capital S and a
+# period after the number, so "section 301 of title 3" in running text is not one. Applied to raw text.
+SECTION_HEAD = re.compile(r"(?m)^[ \t]*S[ \t]*(?:e[ \t]*c[ \t]*(?:t[ \t]*i[ \t]*o[ \t]*n)?|E[ \t]*C)[ \t]*\.?[ \t]*\d+[a-z]?[ \t]*\.")
+COMMAND = re.compile(r"\b(?:shall|hereby|is directed|are directed|is authorized|are authorized|may)\b")
+SIGNATURE = re.compile(r"(?i)the\s+white\s+house|\[f\.?\s?r\.?\s?doc|filed\s+\d|billing\s+code")
+# Savings: a preserving word, and something done under or continued from the revoked instruments.
+PRESERVE = re.compile(r"\b(?:remain\w*|continue\w*|preserv\w*|saved?|shall not (?:be construed to )?(?:affect|impair)|"
+                      r"not be affected|(?:be )?construed to affect|until (?:modified|superseded|revoked|amended|rescinded))\b")
+ABOUT_DONE = re.compile(r"\b(?:issued|taken|made|prescribed|granted|done|promulgated|acquired|accrued|incurred|pending)\s+"
+                        r"(?:under|pursuant\s+to)\b|\bheretofore\b|\b(?:revoked|superseded|rescinded)\s+(?:orders?|"
+                        r"provisions?)\b|\borders?\s+(?:hereby\s+)?(?:revoked|superseded)\b")
+# A delayed or dated effect anywhere in the actor's text (blocks unless the ACT record carries a parsed date).
+MONTH = r"(?:january|february|march|april|may(?=\s+\d)|june|july|august|september|october|november|december)"
+DELAYED = re.compile(r"\b(?:effective|in\s+(?:force|effect)|into\s+effect|operative|take\s+effect|apply)\b[^.;]{0,80}?"
+                     r"(?:\b" + MONTH + r"\b|\b\d+\s+days\b|\bdays\s+after\b|\bon\s+and\s+after\b|\bfrom\s+and\s+after\b|"
+                     r"\bupon\s+(?:the\s+)?(?:date|expiration|termination|enactment|appointment)\b)"
+                     r"|\b(?:on\s+and\s+after|from\s+and\s+after)\b")
+SUPERSEDE = re.compile(r"\bsupersed\w*\b")
 
 
 def sha(text):
@@ -83,26 +109,49 @@ def canon(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
 
 
+def despace(text):
+    """Collapse OCR letter-spacing: "Executive O rder" -> "Executive Order", "R evocation" -> "Revocation",
+    "e x c e p t" -> "except". The articles A and I are left alone."""
+    t = str(text or "")
+    t = re.sub(r"\b([B-HJ-Z]) (?=[a-z]{2,})", r"\1", t)
+    t = re.sub(r"\b(?:[A-Za-z] ){2,}[A-Za-z]\b", lambda m: m.group(0).replace(" ", ""), t)
+    return t
+
+
+def flat(text):
+    return P._norm(despace(text))
+
+
 def _sentences(text):
-    return [s for s in re.split(r"(?<=[.;])\s+", P._norm(text)) if s.strip()]
+    return [s for s in re.split(r"(?<=[.;])\s+", flat(text)) if s.strip()]
 
 
 def _clause_body(text):
     """A clause's normalized text without its leading label."""
-    t = P._norm(text).strip()
-    return re.sub(r"^(?:sec(?:tion)?\s*\d+[a-z]?|\([a-z0-9]+\)|[a-z0-9]+\.)\s*[.:]?\s*", "", t)
+    t = flat(text).strip()
+    return re.sub(r"^(?:sec(?:tion)?\s*[\d-]+[a-z]?|\([a-z0-9]+\)|[a-z0-9-]+\.)\s*[.:]?\s*(?:[a-z ]{3,40}\.\s+)?", "", t)
 
 
-def classify_clause(text):
-    """'revokes_other' (a self-executing revocation of other instruments, performed on signing), 'continuing'
-    (a standing command, ended by the revocation of the whole order) or 'needs_judgment' (a one-time command of another
-    kind: abolition, transfer, amendment of another order; a script cannot date its performance)."""
+def classify_clause(text, target_num=None):
+    """'revokes_other' (only revokes other instruments: performed on signing), 'continuing' (a standing command,
+    ended by the revocation of the whole order), or 'needs_judgment' (a one-time command of another kind, a revocation
+    folded into a standing clause, or a clause with no recognizable standing command). Only a positive pattern makes
+    a clause 'continuing'."""
     body = _clause_body(text)
-    if REVOKES_OTHER.match(body) and not re.search(r"\b(?:shall|amend\w*|except|insofar|so far as|in part)\b", body):
+    nums = [n for n in re.findall(r"(?<!\d)(\d{2,5})(?!\d)", body) if n != (target_num or "")]
+    sentences = [s for s in re.split(r"(?<=[.;])\s+", body) if len(s.strip()) > 12]
+    revoking = [s for s in sentences if re.search(r"\b" + REVOKE_WORD + r"\b", s) and re.search(r"\b" + INSTRUMENT + r"\b", s)]
+    if (sentences and len(revoking) == len(sentences) and nums
+            and not re.search(r"\b(?:shall|except|insofar|so far as|in part|to the extent)\b", body)
+            and not re.search(r"\bamend\w*\b", re.sub(r"\bas amended\b", "", body))):
         return "revokes_other"
-    if ONE_TIME.search(body) or OTHER_REVOKED.search(body):
-        return "needs_judgment"  # a one-time command, or a revocation of another order folded into a standing clause
-    return "continuing"
+    if revoking or OTHER_INSTRUMENT_REVOKED.search(body) and nums:
+        return "needs_judgment"
+    if ONE_TIME.search(body):
+        return "needs_judgment"
+    if STANDING.search(body) or STATEMENT.search(flat(text)):
+        return "continuing"
+    return "unrecognized"   # no standing verb of its own: continuing only as an item of a standing lead-in
 
 
 def mentions_index(rows):
@@ -150,7 +199,30 @@ def _ok_act(record, iid, kind):
 
 def _actor_names(text, iid):
     pattern = P._id_pattern(iid)
-    return bool(pattern and re.search(pattern, P._norm(text)))
+    return bool(pattern and re.search(pattern, flat(text)))
+
+
+def _header_end(text):
+    """End of the kit's own file header ("Instrument: ...\\nSource: ...\\n...\\n\\n"), or 0."""
+    if not text.startswith("Instrument:"):
+        return 0
+    i = text.find("\n\n")
+    return i + 2 if i >= 0 else 0
+
+
+def _number_line(text, num):
+    """Positions of the order's own closing number line ("[No. 8455]"), OCR spacing allowed."""
+    spaced = r"\s*".join(num)
+    return [m.start() for m in re.finditer(r"\[\s*N\s*o\s*\.?\s*" + spaced + r"\s*\]", text)]
+
+
+def _catalog_date(segment):
+    m = re.search(r"\b(" + MONTH + r")\s+(\d{1,2}),?\s+(\d{4})\b", segment)
+    if not m:
+        return None
+    months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october",
+              "november", "december"]
+    return f"{m.group(3)}-{months.index(m.group(1)) + 1:02d}-{int(m.group(2)):02d}"
 
 
 def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=None, kind=None, agent=AGENT, mentions=None,
@@ -158,13 +230,16 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
     """Draft one order. Returns a Draft with 'blockers' (empty when complete), and when complete 'decision',
     'row', 'clauses', 'rationales' and 'facts' (the structured content of its verification packet entry).
 
-    `mentions`: the order's rows of jobs/current-law/output/MENTIONS.csv (rows whose instrument_id is the order or
-    whose snippet prints its number). A U.S. Code or eCFR hit blocks unless every such row is an ended-status note
-    that names the same actor as the end; those notes then go into the packet as a further witness.
+    `mentions`: the order's rows of jobs/current-law/output/MENTIONS.csv (mentions_for). A U.S. Code or eCFR hit
+    blocks unless every such row is an ended-status note that names the same actor as the end; those notes then go
+    into the packet as a further witness.
 
     `route`: "undecided" (status unset; fills STATUS_DECISION.json and needs Respondendi's second witness) or
-    "decided" (the order's provisional status is already NO; only the lifecycle sheet is filled, for the decided
-    production route, and the catalog witness is recorded when held but not required)."""
+    "decided" (the order's provisional status is already NO; only the lifecycle sheet is filled; there is no history
+    packet, so the catalog tests are not run and the witness is not required).
+
+    `ignore`: blocker names to record under 'ignored' instead of 'blockers'. Only for decoy controls (packets.py);
+    a draft with anything ignored is a planted control and is never filed."""
     kind = kind or P.EXPRESS
     d = evidence.get("base_dossier") or {}
     iid = evidence.get("instrument_id") or d.get("instrument_id")
@@ -173,8 +248,6 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
     ignore = frozenset(ignore or ())
 
     def block(message):
-        # `ignore` exists only to build decoy controls (packets.py): a real refused order drafted as if one blocker
-        # were absent. A draft with anything in 'ignored' is a planted control and is never filed.
         (out["ignored"] if message.split(":")[0] in ignore else out["blockers"]).append(message)
 
     if route not in ("undecided", "decided"):
@@ -191,8 +264,13 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
     signed = P._date(original.get("signing_date"))
     if not signed:
         block("target_signing_date_missing")
+    target_num = re.sub(r"\D", "", iid or "")
 
-    # The ending provision: exactly one actor, one base ACT record, every Respondendi condition.
+    # The prepared row's working-text disclosure (the kit's blank_sheet value) lists every non-original record held in
+    # the dossier, cited or not, so it is carried through unchanged: the kit's assembler, run by prescreen.py before
+    # any verifier is paid, refuses a claim that cites a working text without its confirmations.
+
+    # The ending provision: exactly one actor, every Respondendi condition, an official copy.
     acts = {k: r for k, r in recs.items() if k.startswith("ACT:")}
     good = {k: r for k, r in acts.items() if _ok_act(r, iid, kind)
             and len(str(r.get("provision_text") or r.get("text"))) <= kind["max_provision_chars"]
@@ -206,34 +284,44 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
         return out
     actor = actors[0]
     base_id = f"ACT:{iid}>{actor}"
-    act_id = base_id if base_id in good else sorted(good)[0]
-    act = good[act_id]
+    # A source marked acceptable_as_original False (a mirror transcription, a held-text lead) needs the working-text
+    # confirmations of the 2026-10-21 ruling, which a script cannot give; the kit's assembler rejects it otherwise.
+    official = {k: r for k, r in good.items() if (r.get("source") or {}).get("acceptable_as_original") is not False}
+    if not official:
+        block("ending_source_is_working_text: every held copy of the ending provision is a transcription or lead")
+        official = good
+    act_id = base_id if base_id in official else sorted(official)[0]
+    act = official[act_id]
     provision = str(act.get("provision_text") or act.get("text"))
-    target_num = re.sub(r"\D", "", iid)
     for phrase in act.get("savings_phrases") or []:
-        flat = P._norm(phrase)
-        if flat and (flat[:80] in P._norm(provision) or re.search(r"(?<!\d)" + re.escape(target_num) + r"(?!\d)", flat)):
+        f = flat(phrase)
+        if f and (f[:80] in flat(provision) or re.search(r"(?<!\d)" + re.escape(target_num) + r"(?!\d)", f)):
             block(f"savings_phrase_in_provision: {phrase[:80]}")
+    mechanism = "express_supersession" if SUPERSEDE.search(flat(provision)) else "express_revocation"
     actor_signed = P._date(act.get("signing_date"))
-    end = P._date(act.get("effective_date")) or (actor_signed if act.get("effective_class") == "on_signing" else None)
-    delayed = [w for w in act.get("effective_wording") or []
-               if DELAYED.search(P._norm(w.get("text") if isinstance(w, dict) else w))]
-    if delayed and not P._date(act.get("effective_date")):
-        block("effective_wording_unparsed: the actor states a delayed or dated effect without a parsed date")
-    if not end and not delayed and act.get("effective_class") in ("unknown", None) and actor_signed:
-        end = actor_signed  # no delayed or dated effect anywhere in the extracted wording: effective on signing
+    parsed_end = P._date(act.get("effective_date"))
+    end = parsed_end or actor_signed
+    if act.get("effective_class") not in ("on_signing", "unknown", None) and not parsed_end:
+        block(f"effective_class_needs_reading: {act.get('effective_class')}")
+    for w in act.get("effective_wording") or []:
+        if DELAYED.search(flat(w.get("text") if isinstance(w, dict) else w)) and not parsed_end:
+            block("effective_wording_unparsed: the actor states a delayed or dated effect without a parsed date")
+            break
     if not end:
         block("end_date_not_derivable")
     elif not (signed and actor_signed and signed < actor_signed <= end < P.CUTOFF):
         block(f"dates_out_of_order: order {signed}, actor {actor_signed}, end {end}")
 
+    good_ids = set(good)
     for k, r in acts.items():
-        if r.get("actor_id") == actor and r.get("scope") == "partial":
-            block(f"same_actor_partial_act: {k}")
         if r.get("verb") in ("reinstate", "continue"):
             block(f"reinstatement_or_continuation_lead: {k}")
         if r.get("actor_id") != actor:
             block(f"another_instrument_acts: {r.get('actor_id')} ({r.get('verb')}, {r.get('scope')})")
+        elif r.get("scope") == "partial":
+            block(f"same_actor_partial_act: {k}")
+        elif k not in good_ids and not k.startswith(tuple(g + ":" for g in good_ids)):
+            block(f"same_actor_other_act: {k} ({r.get('verb')}, {r.get('scope')})")
     for ev in ((d.get("chain") or {}).get("events") or []):
         if ev.get("actor_id") not in (actor, None):
             block(f"chain_event_by_another_actor: {ev.get('actor_id')}")
@@ -241,35 +329,30 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
     actor_text_id = f"ACTOR_TEXT:{actor}"
     actor_text = recs.get(actor_text_id) or {}
     if not (actor_text.get("text") and isinstance(actor_text.get("source"), dict) and actor_text["source"].get("text_path")):
+        block("actor_text_not_held: the acting order's held text is not in the dossier")
         actor_text_id, actor_text = None, {}
-    for s_ in _sentences(actor_text.get("text") or ""):
-        if DELAYED.search(s_) and re.search(r"\b(?:this order|it)\b", s_) and not P._date(act.get("effective_date")):
-            block(f"actor_effective_sentence_needs_reading: {s_[:160]}")
-            break
-    savings_hits = []
-    scan = actor_text.get("text") or provision
-    for s in _sentences(scan):
-        # A saving preserves something done under, or continued from, the revoked instruments: the sentence names the
-        # order, or speaks of what was issued, taken or made under orders it revokes. "This order shall remain in force
-        # until revoked" is the actor's own term, not a saving.
-        about_revoked = (re.search(P._id_pattern(iid) or r"(?!x)x", s)
-                         or re.search(r"\b(?:issued|taken|made|prescribed|granted|done|promulgated)\s+(?:under|pursuant"
-                                      r"\s+to|by)\b", s) or re.search(r"\b(?:revoked|superseded)\s+(?:orders?|provisions?)", s))
-        if ENDWORD.search(s) and SAVINGS.search(s) and about_revoked and "nothing in this order" not in s:
-            savings_hits.append(s[:200])
-    for s in savings_hits:
-        block(f"actor_savings_sentence: {s}")
+    elif actor_text["source"].get("acceptable_as_original") is False:
+        actor_text_id = None  # still scanned below for savings and effective dates, never cited as a status basis
+    atext = str(actor_text.get("text") or "")
+    if not parsed_end:
+        for s_ in _sentences(atext):
+            if DELAYED.search(s_):
+                block(f"actor_effective_sentence_needs_reading: {s_[:160]}")
+                break
+    for s_ in _sentences(atext or provision):
+        about = re.search(P._id_pattern(iid) or r"(?!x)x", s_) or ABOUT_DONE.search(s_)
+        if PRESERVE.search(s_) and about:
+            block(f"actor_savings_sentence: {s_[:200]}")
 
-    # Own terms: report deadlines are not ends (D-20261021-report-deadline); an ending kind needs a reading unless
-    # its stated date is after the revocation.
     for k, r in recs.items():
-        if k.startswith("TERM:") and r.get("kind") in ENDING_TERM_KINDS:
+        if k.startswith("TERM:") and r.get("kind") not in HARMLESS_TERM_KINDS:
             stated = P._date(r.get("stated_end_date"))
             if not (stated and end and stated > end):
                 block(f"own_term_needs_reading: {k} ({r.get('kind')})")
 
-    # Conflicts in the dossier: resolvable only where the other named actor's held text does not print the number.
-    sheet_resolutions = {}
+    # Conflicts: an actor disagreement is resolved only where the other actor's held text is in the packet and the
+    # order's number is not found in it; the verifier sees that text.
+    sheet_resolutions, conflict_texts = {}, []
     for c in d.get("conflicts") or []:
         code = c.get("code") if isinstance(c, dict) else str(c)
         others = [a.strip() for a in str((c or {}).get("detail", "")).split(",") if a.strip() and a.strip() != actor]
@@ -278,28 +361,28 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
             continue
         notes = []
         for other in others:
-            text = (recs.get(f"ACTOR_TEXT:{other}") or {}).get("text")
-            if not text:
-                block(f"conflict_actor_text_not_held: {other}")
+            rec = recs.get(f"ACTOR_TEXT:{other}") or {}
+            text = rec.get("text")
+            if not text or len(text) > 20000:
+                block(f"conflict_actor_text_not_held_or_too_long: {other}")
             elif _actor_names(text, iid):
                 block(f"conflict_actor_prints_the_number: {other}")
             else:
-                notes.append(f"The held text of {other} does not print the number {target_num}, so it cannot end the "
-                             f"order (owner ruling D-20261021-unnamed-instruments: an instrument that does not name the "
-                             f"target does not end it); the catalog note attaching it to {iid} is an editorial error.")
+                conflict_texts.append({"actor_id": other, "text": text,
+                                       "page_or_item": (rec.get("source") or {}).get("page_or_item")})
+                notes.append(f"The number {target_num} is not found in the held text of {other} (pattern search of the "
+                             f"held OCR text, letter-spacing collapsed); an instrument that does not name the target does "
+                             f"not end it (owner ruling D-20261021-unnamed-instruments).")
         if notes:
-            sheet_resolutions[code] = (" ".join(notes) + f" The whole-order end rests on {actor} alone, whose held "
-                                       f"text states: \"{provision.strip()}\"")
-    resolved_others = {a.strip() for c in d.get("conflicts") or [] if isinstance(c, dict)
-                       for a in str(c.get("detail", "")).split(",")}
+            sheet_resolutions[code] = (" ".join(notes) + f" The whole-order end rests on {actor}, whose held text "
+                                       f"states: \"{provision.strip()}\"")
+    resolved_others = {x["actor_id"] for x in conflict_texts}
     for m in d.get("missing") or []:
         m = str(m)
         if any(p.match(m) for p in BENIGN_MISSING):
             continue
         named = NAMED_MISSING.match(m)
-        if named and named.group(2) in resolved_others and named.group(2) != actor and named.group(1).startswith("target"):
-            continue
-        if named and named.group(2) == actor and named.group(1).startswith("Large actor context") and act.get("text"):
+        if named and named.group(2) in resolved_others:
             continue
         block(f"missing_item: {m[:140]}")
 
@@ -322,7 +405,7 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
         if not mentions:
             block("current_law_mentions_order: the searches report hits but no MENTIONS.csv row was found")
         for m in mentions:
-            snippet = P._norm(m.get("snippet"))
+            snippet = flat(m.get("snippet"))
             if m.get("instrument_id") == iid and m.get("role") == "ending_order_in_status_line":
                 continue  # a note about another order, naming this one as that order's end: not about this order
             if m.get("instrument_id") == iid and "amending_order" in str(m.get("role")):
@@ -340,13 +423,18 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
     history = [P._norm(o.get("text")) for o in hp.get("observations") or [] if isinstance(o, dict) and o.get("text")]
     segments = P._segments(history)
     witness = P.second_witness(segments, actor)
-    if not witness and route == "undecided":
-        block("no_second_witness: no catalog note entry names the same actor as ending the order")
-    later = P._later_acts(history, end, skip=witness[0] if witness else None)
-    if later:
-        block(f"catalog_act_after_end: {later[0][:120]}")
-    if any(("reinstat" in t or "revived" in t) for t in history):
-        block("catalog_reinstatement")
+    if route == "undecided":
+        if not witness:
+            block("no_second_witness: no catalog note entry names the same actor as ending the order")
+        else:
+            wdate = _catalog_date(witness[0])
+            if wdate and actor_signed and wdate != actor_signed:
+                block(f"witness_date_differs: catalog {wdate}, actor signed {actor_signed}")
+        for seg in segments:
+            if re.match(r"[a-z ]+ by:", seg) and seg not in witness:
+                block(f"catalog_entry_acts_on_order: {seg[:120]}")
+        if any(("reinstat" in t or "revived" in t) for t in history):
+            block("catalog_reinstatement")
     label = str(act.get("provision_label") or "its revoking provision").strip()
     flag_resolutions = {}
     for flag in h.get("flags") or []:
@@ -355,50 +443,74 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
         else:
             flag_resolutions[flag] = FLAG_RESOLUTIONS[flag].format(actor=actor, label=label, target=iid)
 
-    # Clause inventory: every clause is either a standing command (ended by the revocation) or a self-executing
-    # revocation of other instruments (performed on signing); nothing operative may sit outside the clauses.
+    # Clause inventory: every clause is a standing command or a pure revocation of other instruments, and nothing
+    # of the order's own text lies outside the clauses. The order's text is anchored on its own heading or closing
+    # "[No. N]" line, never on the first filing line on the page (that may be a neighbouring document's).
     clauses = [c for c in d.get("clauses") or [] if isinstance(c, dict)]
     if not clauses:
         block("no_clause_inventory")
     otext = str(original.get("text") or "")
     obase = int(original.get("char_start") or 0)
-    spans = sorted((int(c.get("char_start") or 0), int(c.get("char_end") or 0)) for c in clauses)
-    for (a0, a1), (b0, _) in zip(spans, spans[1:]):
-        gap = otext[a1 - obase:b0 - obase]
-        if (len(gap.strip()) > 40 and COMMAND.search(P._norm(gap))) or SECTION_HEAD.search(gap):
-            block(f"inventory_gap: operative words or a section heading between clauses at chars {a1}-{b0}")
+    spans = sorted((int(c.get("char_start") or 0) - obase, int(c.get("char_end") or 0) - obase) for c in clauses)
+    unclaimed = []
     if spans and otext:
-        tail = otext[spans[-1][1] - obase:]
-        stop = SIGNATURE.search(tail)
-        tail = tail[:stop.start()] if stop else tail[:600]
-        if (len(tail.strip()) > 40 and COMMAND.search(P._norm(tail))) or SECTION_HEAD.search(tail):
-            block("inventory_gap: operative words or a section heading after the last clause")
-        head = otext[:spans[0][0] - obase]
-        heads = list(re.finditer(r"(?i)(?:executive\s+order|e\.\s?o\.)[^\n]{0,20}?(?<!\d)" + re.escape(target_num)
-                                 + r"(?!\d)[^\n]*\n", head))
-        head = head[heads[-1].end():] if heads else head[-800:]
-        if SECTION_HEAD.search(head) or (COMMAND.search(P._norm(head)) and not re.search(
-                r"(ordered|follows|directed|prescribed)\s*[:.,]?\s*$", P._norm(head).strip())):
+        hend = _header_end(otext)
+        if spans[0][0] < hend:
+            block("clause_starts_in_file_header: a clause holds the kit's own file header")
+        numbers = _number_line(otext, target_num)
+        if numbers and numbers[-1] < spans[-1][1]:
+            block("order_number_line_outside_inventory: the order's own [No. N] line comes before its last clause "
+                  "(a clause belongs to the next document on the page)")
+        heads = list(re.finditer(r"(?i)(?:executive\s+order|e\.\s?o\.)[^\n]{0,20}?(?<!\d)" + r"\s*".join(target_num)
+                                 + r"(?!\d)[^\n]*\n", otext[:spans[0][0]]))
+        start = heads[-1].end() if heads else max(hend, spans[0][0] - 800)
+        head = otext[start:spans[0][0]]
+        if SECTION_HEAD.search(head) or (COMMAND.search(flat(head)) and not re.search(
+                r"(ordered|follows|directed|prescribed)\s*[:.,]?\s*$", flat(head).strip())):
             block("inventory_gap: operative words or a section heading before the first clause")
+        unclaimed.append({"where": "before the first clause", "text": head[-1500:]})
+        for (a0, a1), (b0, _) in zip(spans, spans[1:]):
+            gap = otext[a1:b0]
+            if (len(gap.strip()) > 40 and COMMAND.search(flat(gap))) or SECTION_HEAD.search(gap):
+                block(f"inventory_gap: operative words or a section heading between clauses at chars {a1}-{b0}")
+            if gap.strip():
+                unclaimed.append({"where": f"between clauses, chars {a1 + obase}-{b0 + obase}", "text": gap[:1500]})
+        after = [n for n in numbers if n >= spans[-1][1]]
+        stop = after[0] if after else None
+        if stop is None:
+            sig = SIGNATURE.search(otext, spans[-1][1])
+            stop = sig.start() if sig else min(len(otext), spans[-1][1] + 600)
+        tail = otext[spans[-1][1]:stop]
+        if (len(tail.strip()) > 40 and COMMAND.search(flat(tail))) or SECTION_HEAD.search(tail):
+            block("inventory_gap: operative words or a section heading after the last clause")
+        unclaimed.append({"where": "after the last clause", "text": tail[:1500]})
     states = {}
-    for c in clauses:
+    lead_in = None   # the last standing clause ending with ":" ("shall perform ... including the following:")
+    for c in sorted(clauses, key=lambda c: int(c.get("char_start") or 0)):
         text = str(c.get("text") or (recs.get(c.get("id")) or {}).get("text") or "")
         if not text.strip():
             block(f"clause_text_missing: {c.get('scope_id')}")
             continue
-        states[c["scope_id"]] = classify_clause(text)
+        states[c["scope_id"]] = classify_clause(text, target_num)
+        is_item = re.match(r"\s*\(?(?:[a-z]|\d{1,2}|[ivx]{1,4})\)\s", text)
+        if states[c["scope_id"]] == "unrecognized":
+            states[c["scope_id"]] = "continuing" if (is_item and lead_in) else "needs_judgment"
+        if states[c["scope_id"]] == "continuing" and flat(text).rstrip().endswith(":"):
+            lead_in = c["scope_id"]
+        elif not is_item:
+            lead_in = None
         inner = [m for m in SECTION_HEAD.finditer(text) if text[:m.start()].strip()]
         if inner:
             block(f"clause_spans_several_sections: {c.get('scope_id')} holds the heading {inner[0].group(0).strip()!r}")
         if states[c["scope_id"]] == "needs_judgment":
-            block(f"clause_needs_judgment: {c.get('scope_id')} (abolition, transfer or amendment of another order)")
+            block(f"clause_needs_judgment: {c.get('scope_id')} (not a recognizable standing command or pure revocation)")
     if clauses and states and all(v == "revokes_other" for v in states.values()):
         block("no_continuing_command: every clause only revokes other orders (spent on issue, not this kind)")
 
     out["facts"] = {
         "instrument_id": iid, "signing_date": signed, "actor_id": actor, "actor_signing_date": actor_signed,
         "end_date": end, "act_id": act_id, "actor_text_id": actor_text_id, "provision_label": label,
-        "provision_text": provision, "provision_sha256": sha(provision),
+        "provision_text": provision.strip(), "provision_sha256": sha(provision.strip()), "mechanism": mechanism,
         "provision_locator": {"page_or_item": (act.get("source") or {}).get("page_or_item"),
                               "text_path": (act.get("source") or {}).get("text_path"),
                               "text_sha256": (act.get("source") or {}).get("text_sha256"),
@@ -407,9 +519,10 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
         "original_locator": {"page_or_item": (original.get("source") or {}).get("page_or_item"),
                              "text_path": (original.get("source") or {}).get("text_path"),
                              "text_sha256": (original.get("source") or {}).get("text_sha256")},
-        "witness": witness[0] if witness else None, "current_law_notes": usc_notes, "history_flags": list(h.get("flags") or []),
+        "witness": witness[0] if witness else None, "catalog_entries": segments, "current_law_notes": usc_notes,
+        "history_flags": list(h.get("flags") or []), "conflict_actor_texts": conflict_texts,
         "conflicts": [c.get("code") if isinstance(c, dict) else str(c) for c in d.get("conflicts") or []],
-        "clause_states": states,
+        "clause_states": states, "unclaimed_text": unclaimed,
     }
     if out["blockers"]:
         return out
@@ -418,31 +531,34 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
     searches_used = list(REQUIRED_SEARCHES)
     cont = [s for s, v in states.items() if v == "continuing"]
     spent = [s for s, v in states.items() if v == "revokes_other"]
+    verb = "superseded" if mechanism == "express_supersession" else "revoked"
     rationale = (
-        f"Drafted by script ({DRAFTER_VERSION}, kind {KIND}) from held records only; two blind verifiers check it. "
-        f"{iid} (signed {signed}) is revoked in whole by {actor} (signed {actor_signed}), whose {label} states: "
-        f"\"{provision.strip()}\" ({act['source'].get('page_or_item')}). The provision names the order, carries an "
-        f"ending verb and no qualifier, " + (f"the OFR catalog independently records \"{witness[0]}\", " if witness else "")
-        + f"no other held "
-        f"instrument acts on the order, and the bounded U.S. Code and eCFR searches found no citation of it. "
-        f"Status NO; whole-order end {end}.")
+        f"Drafted by script ({DRAFTER_VERSION}, kind {KIND}) from held records only; the producer confirmations below "
+        f"are the script's mechanical checks, and the source review is by blind verifiers. {iid} (signed {signed}) is "
+        f"{verb} in whole by {actor} (signed {actor_signed}), whose {label} states: \"{provision.strip()}\" "
+        f"({act['source'].get('page_or_item')}). The provision names the order, carries an ending verb and no "
+        f"qualifier, " + (f"the OFR catalog independently records \"{witness[0]}\", " if witness else "")
+        + f"no other held instrument acts on the order, and the bounded U.S. Code and eCFR searches found no citation "
+        f"of it other than ended-status notes naming the same actor. Status NO; whole-order end {end}.")
     savings_reason = (
         f"The revoking provision of {actor} carries no exception or savings phrase, and no sentence of the held text of "
-        f"{actor} preserves anything done under or continued from {iid} (sentence scan for 'revoked', 'superseded' or "
-        f"'rescinded' together with remain, continue, preserve or shall not affect: none). The bounded searches "
-        f"{', '.join(searches_used)} found no held citation of the order in the U.S. Code or eCFR.")
+        f"{actor} pairs a preserving word (remain, continue, preserve, saved, shall not affect, construed to affect, "
+        f"until modified) with this order's number or with things issued, taken, made or acquired under the revoked "
+        f"orders. The bounded searches {', '.join(searches_used)} found no held citation of the order in the U.S. Code "
+        f"or eCFR other than ended-status notes naming {actor}.")
     checks = {
         "earlier_end_check": (
-            f"No earlier end is held: the order's text has no own term of an ending kind dated before {end} (report "
-            f"deadlines are not ends, D-20261021-report-deadline), and no instrument other than {actor} acts on it in "
-            f"the dossier's acting provisions, chain or catalog notes."),
+            f"No earlier end is held: the order has no own term other than report deadlines or conditions ending "
+            f"before {end} (report deadlines are not ends, D-20261021-report-deadline); no instrument other than "
+            f"{actor} acts on it in the dossier's acting provisions or chain, and no catalog entry other than the "
+            f"witness names an acting instrument."),
         "scope_check": (
-            f"The revocation in {label} of {actor} is of the whole of {iid} (no in-part qualifier, no excepted section; "
-            f"zero-token Respondendi predicate), so it reaches every clause."),
+            f"The {verb[:-1]}ion in {label} of {actor} is of the whole of {iid} (no in-part qualifier, no excepted "
+            f"section; zero-token Respondendi predicate), so it reaches every clause."),
         "independent_command_check": (
-            (f"Standing commands ended by the revocation on {end}: {', '.join(cont)}. " if cont else "")
+            (f"Standing commands ended on {end}: {', '.join(cont)}. " if cont else "")
             + (f"Self-executing revocations of other orders, performed on signing ({signed}) and dated by "
-               f"performance, not by the later revocation: {', '.join(spent)}." if spent else
+               f"performance, not by the later end: {', '.join(spent)}." if spent else
                "No clause is a one-time command.")),
         "savings_check": savings_reason,
     }
@@ -466,14 +582,15 @@ def draft(evidence, prepared_row=None, prepared_clauses=None, blank_decision=Non
             state = dict(end_id=d.get("original_source_id"), effective_date=signed, mechanism="task_completed",
                          reason=(f"{scope} only revokes other instruments; that revocation was performed when {iid} was "
                                  f"signed on {signed} (no delayed effective date is held), so its first end is the "
-                                 f"signing date by performance, not the later revocation of {iid}. Source: the held "
-                                 f"original, which contains the clause."))
+                                 f"signing date by performance, not the later end of {iid}. Source: the held original, "
+                                 f"which contains the clause."))
         else:
-            state = dict(end_id=act_id, effective_date=end, mechanism="express_revocation",
+            state = dict(end_id=act_id, effective_date=end, mechanism=mechanism,
                          reason=(f"{scope} is a standing command with no own-terms end held. It remained operative until "
                                  f"{actor} of {actor_signed}, whose {label} states \"{provision.strip()}\" "
-                                 f"({act['source'].get('page_or_item')}); no delayed effective date is held, so the "
-                                 f"revocation is its first end."))
+                                 f"({act['source'].get('page_or_item')}); " + (
+                                     f"its stated effective date is {end}." if parsed_end else
+                                     "no delayed effective date is held, so that is its first end.")))
         base.update({"instrument_id": iid, "scope_id": scope, "clause_id": base.get("clause_id") or c.get("id"),
                      "state": "terminated", "effective_date_confirmed": "true", "current_basis_id": "",
                      "current_legal_basis": "", "checked_through": "", "later_event_ids": "[]", "later_events": "[]",

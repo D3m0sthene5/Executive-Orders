@@ -4,44 +4,23 @@
  "stage": 0,
  "objective": {
   "metric": "verified_claims_per_unit",
-  "text": "Measure, on 30 script-drafted express-revocation claims, how many both blind verifiers uphold and the status reviewer accepts, with every planted control caught, per API-equivalent dollar, against the full undecided route (Papinian: 7.71 USD per adopted status)."
+  "text": "Measure, on the 9 script-drafted express-revocation claims that the kit's assembler and the actual claim checker pass, how many both blind verifiers uphold and the status reader accepts, with every planted control caught, per API-equivalent dollar, against the full undecided route (Papinian: 7.71 USD per adopted status)."
  },
  "actions": [
   {
    "id": "status_assignment.undecided",
-   "orders": 30,
+   "orders": 9,
    "lanes": 1,
    "ids": [
-    "EO:7910",
-    "EO:8277",
-    "EO:8378",
-    "EO:8403",
-    "EO:8455",
-    "EO:8514",
-    "EO:8541",
-    "EO:8571",
-    "EO:9432",
-    "EO:9662",
-    "EO:9866",
-    "EO:9885",
-    "EO:9925",
-    "EO:10014",
-    "EO:10513",
+    "EO:8616",
     "EO:10779",
-    "EO:10940",
     "EO:11056",
     "EO:11232",
-    "EO:11245",
     "EO:11274",
-    "EO:12314",
-    "EO:12331",
-    "EO:12625",
-    "EO:13176",
-    "EO:13575",
-    "EO:13765",
-    "EO:13805",
-    "EO:13925",
-    "EO:13964"
+    "EO:11352",
+    "EO:11361",
+    "EO:12737",
+    "EO:13765"
    ]
   }
  ],
@@ -56,7 +35,7 @@
   }
  },
  "limits": {
-  "chain_budget_units": 1500000,
+  "chain_budget_units": 600000,
   "spend_per_claim_units": 60000,
   "no_claim_minutes": 40,
   "context_kill_tokens": 120000,
@@ -66,7 +45,7 @@
  "premortem": [
   {
    "failure": "The drafter fills a wrong field (an inventory gap, an earlier end, a partial scope) and verifiers who see only the small packet uphold it.",
-   "guard": "The drafter refuses any order with another act, an ending own term, a missing named instrument, a conflict, a current-law hit it cannot read or a section heading outside its clauses; replay on Papinian's 90 frozen dossiers completed only EO 11957, 12348 and 9245, each adopted by the owner after full review. Every session carries typed controls including real drafter-shaped decoys; any missed control stops the batch. Respondendi audits every member cross-family while the stratum is on probation."
+   "guard": "The drafter (v2, after an independent Fable review found 7 blocking defects in v1) refuses any order with another act, an ending own term, a missing named instrument, a conflict it cannot show, a current-law hit it cannot read, an ending source that is only a transcription, or any clause it cannot type positively; every draft then goes through the kit's own assembler and the actual claim checker (prescreen.py), and only the 9 that pass every step are verified. Replayed on Papinian's frozen evidence, the drafts for EO 11957 and 12348 equal the owner-adopted claims clause for clause. Every session carries typed controls planted apart from their genuine twins, with no mechanical tell (packets.tells); any missed control, invalid arm or status-reader miss stops the batch. Respondendi audits every member cross-family while the stratum is on probation."
   },
   {
    "failure": "The packet leaves out evidence the full dossier holds, so verifiers cannot see what would defeat the claim (common-mode omission).",

@@ -14,10 +14,11 @@ standing rule (once the owner approves it) or a named owner decision, after the 
 |---|---|---|
 | Census: which orders a script can complete, per kind, and what blocks the rest | `census.py` | 0 |
 | Draft: fill the producer sheet and `STATUS_DECISION.json` from held records, or name the blocker | `drafter.py` | 0 |
-| Packets: one actor text per session, every target claim it settles, typed planted controls | `packets.py` | 0 |
+| Pre-screen: the kit's own assembler, `check_claim` and the actual claim checker on every draft | `prescreen.py` | 0 |
+| Packets: one actor text per session, every target claim it settles, typed planted controls, no mechanical tells | `packets.py` | 0 |
 | Verify: two blind arms (A, B) and a status-only reader (S), each in a fresh folder outside the repository | `verify.py` | the only model cost |
-| Score: upheld only if both arms uphold; a control caught only if both arms name its defect; any miss stops | `verify.py` | 0 |
-| Install: only upheld drafts go into the prepared packet; the kit's own apply, checker, overlay-propose and completion follow | `nalimov.py install` | 0 |
+| Score: upheld only if both arms uphold; a control caught only if both arms name its defect; any miss, invalid arm or status-reader miss stops | `verify.py` | 0 |
+| Install: only upheld, unchanged drafts go into the still-unworked prepared packet; the kit's own apply, checker, overlay-propose and completion follow | `nalimov.py install` | 0 |
 
 The drafter writes exactly what a Maudslay producer writes (one `decisions.csv` row, its `clauses.csv` rows,
 `RATIONALES.json`, the filled `STATUS_DECISION.json`), so the kit assembles the claim in the format the checker and
@@ -27,15 +28,19 @@ the filing route accept. The kit's `status_overlay._decision_errors` gate passes
 
 | Kind | Script completes when | Today |
 |---|---|---|
-| `express_named_revocation` (undecided) | one later order names the order and ends it whole (Respondendi's sentence predicate), with an acceptable original, no page check, no other act, no ending own term, no unread current-law hit, no conflict it cannot resolve mechanically, a catalog second witness, and a clause inventory with nothing operative outside it | measured in `research/nalimov/census/CENSUS.json` |
-| `decided_express` | the same, for decided NO orders with no ready claim (decided production route; no status decision) | same file |
+| `express_named_revocation` (undecided) | one later order names the order and ends it whole (Respondendi's sentence predicate), from an official copy of the ending order, with an acceptable original, no page check, no other act, no ending own term, no unread current-law hit, no conflict it cannot show, a catalog second witness with the same date, and a clause inventory anchored on the order's own text with every clause typed positively | 720 candidates, 13 complete drafts, 9 pass the kit's assembler and every checker step (`research/nalimov/`) |
+| `decided_express` | the same, for decided NO orders with no ready claim (decided production route; no status decision; no catalog tests, since there is no history packet) | 0 of 2,732 |
 | `amendment_only` (Pothier P2) | the kit emits OWN_TEXT / PARENT_END records (F5, Accursius PR #274); then children are drafted after their parent (`packets.topological`) | 0 until F5 |
 | `own_terms` | not scripted: a stated term needs the extension and later-act checks a script cannot close | 0 |
 
-Each clause gets one of two states: a standing command ends with the revocation (`express_revocation`, the actor's
-date); a clause that only revokes other orders was performed on signing (`task_completed`, the order's own date,
-source the original). Anything else (abolition, transfer, amendment of another order, a revocation folded into a
-standing clause, a clause that holds another section's heading) blocks the order, so it goes to the producer route.
+Each clause gets one of two states: a standing command, a statement of policy or a definition ends with the order
+(`express_revocation` or `express_supersession` from the provision's verb, the actor's date); a clause that only revokes
+other orders was performed on signing (`task_completed`, the order's own date, source the original). Wording tests run
+after OCR letter-spacing is collapsed, and a clause is standing only on a positive pattern ("shall", "is hereby
+established", "it is ordered", a list item under a standing lead-in). Anything else (abolition, transfer, appointment,
+amendment of another order, a revocation folded into a standing clause, a clause that holds another section's heading,
+a clause in the kit's file header) blocks the order, so it goes to the producer route. v2 follows an independent review
+of v1 (Claude Fable 5.2, 7 blocking findings, all fixed; see `research/nalimov/REPORT.md`).
 
 ## Controls
 
@@ -50,20 +55,23 @@ both arms reject it and name the defect code its kind maps to (`packets.CATCH`);
 
 ```text
 python -I jobs/nalimov-tablebase/census.py --data CHECKOUT_WITH_OUTPUTS --out research/nalimov/census --evidence-cache SCRATCH/evidence
-python -I jobs/nalimov-tablebase/nalimov.py measure --evidence SCRATCH/evidence --mentions CHECKOUT/jobs/current-law/output/MENTIONS.csv --out research/nalimov/MEASURES.json
+python -I jobs/nalimov-tablebase/prescreen.py --data CHECKOUT_WITH_OUTPUTS --evidence SCRATCH/evidence --out SCRATCH/prescreen --mentions CHECKOUT/jobs/current-law/output/MENTIONS.csv
+python -I jobs/nalimov-tablebase/nalimov.py measure --evidence SCRATCH/evidence --only SCRATCH/prescreen/PRESCREEN.json --mentions .../MENTIONS.csv --out research/nalimov/MEASURES.json
 # a run (Augur-gated; see research/nalimov/calibration/WAVE.json):
 python -I jobs/claim-kit/kit.py prepare --action status_assignment.undecided ...      # the kit's own packet, ADMISSION.json
 python -I jobs/nalimov-tablebase/nalimov.py draft --packet BATCH/packet --out SCRATCH/drafts --mentions .../MENTIONS.csv
-python -I jobs/nalimov-tablebase/nalimov.py sessions --drafts SCRATCH/drafts --scratch SCRATCH/verify --salt-file SCRATCH/control-salt
-python -I jobs/nalimov-tablebase/nalimov.py run --scratch SCRATCH/verify --workers WORKERS.json   # Maudslay workers file
+python -I jobs/nalimov-tablebase/nalimov.py sessions --drafts SCRATCH/drafts --scratch SCRATCH/verify --key-dir KEYS/batch
+python -I jobs/nalimov-tablebase/nalimov.py run --scratch SCRATCH/verify --key-dir KEYS/batch --workers WORKERS.json   # Maudslay workers file
 #   or run one fresh agent per SCRATCH/verify/workers/* folder by hand and record each with record-usage
-python -I jobs/nalimov-tablebase/nalimov.py score --scratch SCRATCH/verify
+python -I jobs/nalimov-tablebase/nalimov.py score --scratch SCRATCH/verify --key-dir KEYS/batch
+python -I jobs/nalimov-tablebase/nalimov.py reveal --scratch SCRATCH/verify --key-dir KEYS/batch   # genuine twins for after-reveal review
 python -I jobs/nalimov-tablebase/nalimov.py install --packet BATCH/packet --drafts SCRATCH/drafts --only-upheld SCRATCH/verify/SCORE.json
 # then the kit: apply, batch-check, STATUS_REVIEW.json from reader S's accept (named reviewer), overlay-propose, completion
 ```
 
-`SCRATCH` must be outside the repository (worker folders and the sealed key never enter `research/`). Paid worker
-output is never deleted.
+`SCRATCH` must be outside the repository, and `KEYS/batch` outside both the repository and `SCRATCH`, so no relative
+path from a worker folder reaches the sealed key. Each worker attempt keeps its own event file; paid worker output is
+never deleted.
 
 ## Process points for the owner
 
