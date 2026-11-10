@@ -1,0 +1,146 @@
+{
+  "state": "dispatchable_for_research",
+  "ok": true,
+  "packet_sha256": "eb6cf8e34e0a4753216d24ef8a56f1ddaa12eecb641925c5278cf97c4a7d41a6",
+  "dispatchable_ids": [
+    "EO:7420",
+    "EO:7431"
+  ],
+  "source_blocked_ids": [],
+  "unique_custody_checks": 5,
+  "wall_seconds": 123.688,
+  "scientific_approval": false,
+  "exceptions": [
+    {
+      "instrument_id": "EO:7420",
+      "blockers": [],
+      "optional_source_gaps": [
+        "TERM:EO:7420:5ad8fc66f7126513@98482e7407706dc0",
+        "TERM:EO:7420:5dd3e7f908cb2541@98482e7407706dc0",
+        "TERM:EO:7420:9eb1e7996e52ced8@213a1ec9579866a9",
+        "TERM:EO:7420:9eb1e7996e52ced8@8daf45976c33e473",
+        "TERM:EO:7420:bccddbab4c0a683b@213a1ec9579866a9",
+        "TERM:EO:7420:bccddbab4c0a683b@8daf45976c33e473"
+      ]
+    },
+    {
+      "instrument_id": "EO:7431",
+      "blockers": [],
+      "optional_source_gaps": [
+        "TERM:EO:7431:370d677f3b382c60@193da6b9581d7dbb",
+        "TERM:EO:7431:370d677f3b382c60@b8487f13daa69ae3",
+        "TERM:EO:7431:52e541fd0d9d09d6@193da6b9581d7dbb",
+        "TERM:EO:7431:52e541fd0d9d09d6@b8487f13daa69ae3",
+        "TERM:EO:7431:8f80480efdd04698@9249a4244a3909db",
+        "TERM:EO:7431:b6c3682148eb2d4b@9249a4244a3909db"
+      ]
+    }
+  ],
+  "research_boundaries": [
+    {
+      "instrument_id": "EO:7420",
+      "tasks": [
+        {
+          "task_id": "TASK:33913dbd56df74f4158ca277",
+          "kind": "official_original",
+          "availability": "held_lead_not_official_original"
+        },
+        {
+          "task_id": "TASK:d5bf461745cc3e45b86460ba",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        }
+      ],
+      "reported_question_count": 2,
+      "prior_source_blocks": []
+    },
+    {
+      "instrument_id": "EO:7431",
+      "tasks": [
+        {
+          "task_id": "TASK:28b5a19d44b70b0947366d46",
+          "kind": "official_original",
+          "availability": "held_lead_not_official_original"
+        },
+        {
+          "task_id": "TASK:bbace562de16d7ca4b6f92b9",
+          "kind": "locate_held_provision",
+          "availability": "held_not_loaded"
+        }
+      ],
+      "reported_question_count": 3,
+      "prior_source_blocks": []
+    }
+  ],
+  "source_recovery_tasks": [
+    {
+      "task_id": "SOURCE:5b1940e7ed17394903422109",
+      "expected_sha256": "b26bc57e228a34deb8ddd4815c193f85d7e295182c2247c35cb319cc8f289f59",
+      "check_statuses": [
+        "not_held"
+      ],
+      "native_wanted": {
+        "wanted_id": "dispatch-5b1940e7ed17394903422109",
+        "instrument_ids": [
+          "EO:7420",
+          "EO:7431"
+        ],
+        "urls": [
+          "https://babel.hathitrust.org/cgi/pt?id=hvd.hl272j&seq=187",
+          "https://babel.hathitrust.org/cgi/pt?id=hvd.hl272j&seq=191"
+        ],
+        "citation": "",
+        "step": "source_custody",
+        "requested_by": "claim-kit dispatch-check"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient."
+    },
+    {
+      "task_id": "SOURCE:ca372f2e9011bc86616cf6f8",
+      "expected_sha256": "f485e0068ceb8860a295cb1a9858fed13204e64268f801d519c27ec221f399d3",
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "native_wanted": {
+        "wanted_id": "dispatch-ca372f2e9011bc86616cf6f8",
+        "instrument_ids": [
+          "EO:7420"
+        ],
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-7420-exemption-william-t-marshall-from-compulsory-retirement-for-age"
+        ],
+        "citation": "",
+        "step": "source_custody",
+        "requested_by": "claim-kit dispatch-check"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient."
+    },
+    {
+      "task_id": "SOURCE:967ca2dcd62386ff9a0db38a",
+      "expected_sha256": "c1d1242ab7759c23e0c6375c8fc6d2e4816507d761e27851fe3ec87225b67b56",
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "native_wanted": {
+        "wanted_id": "dispatch-967ca2dcd62386ff9a0db38a",
+        "instrument_ids": [
+          "EO:7431"
+        ],
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-7431-exemption-george-c-havenner-from-compulsory-retirement-for-age"
+        ],
+        "citation": "",
+        "step": "source_custody",
+        "requested_by": "claim-kit dispatch-check"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient."
+    }
+  ],
+  "legal_requirement_coverage": "unknown",
+  "lease": {
+    "state": "free",
+    "resources_checked": 3,
+    "conflicts": []
+  },
+  "receipt": "research\\excavator\\mommsen3-2026-11-10-decided02\\mommsen3-decided02-review-v2\\DISPATCH_AFTER_RECOVERY.json"
+}
