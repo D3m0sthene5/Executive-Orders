@@ -1465,8 +1465,10 @@ def build_draft(iid, merged, rd, gate, step_for):
         # machine_hits_for_this_order = how many records of this search name the order. Generally that is the
         # number of fragment items the job emitted for it. For the current-law usc/ecfr searches ("every
         # citation of this order by number") it is every MENTIONS.csv row of that system naming the order,
-        # predicate lead or not (EO 10195 read 0 while two usc rows named it); the fragment count, which
-        # counts predicate leads only, stays in machine_predicate_leads_for_this_order.
+        # predicate lead or not (EO 10195 read 0 while two usc rows named it). The old number, every fragment
+        # item the whole current-law job emitted for the order (all systems, predicate leads, event candidates
+        # and end candidates; the same on the usc and ecfr entries), stays under its own name
+        # machine_fragment_items_for_this_order_all_systems.
         hits = predicate_hits = sum(len(f.get("data") or []) if isinstance(f.get("data"), list) else 1
                                     for kind, lst in merged.frags.get(iid, {}).items() for inp, f in lst if inp.job == s["job"])
         mention_rows = None
@@ -1484,7 +1486,7 @@ def build_draft(iid, merged, rd, gate, step_for):
         if s["complete"]:
             item = {"entry": e, "search_id": s["search_id"], "machine_hits_for_this_order": hits}
             if mention_rows is not None:
-                item["machine_predicate_leads_for_this_order"] = predicate_hits
+                item["machine_fragment_items_for_this_order_all_systems"] = predicate_hits
             if s["kind"] == "ofr_catalog" and year is not None and year < CATALOG_COVERAGE_START_YEAR:
                 item["coverage_warning"] = (f"order dated {year}: the OFR catalog starts in "
                                             f"{CATALOG_COVERAGE_START_YEAR}, so endings before then are not in it; "

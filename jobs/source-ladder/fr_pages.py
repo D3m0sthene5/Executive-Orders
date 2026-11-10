@@ -29,7 +29,7 @@ from __future__ import annotations
 
 import re
 
-LOCATOR_VERSION = 2
+LOCATOR_VERSION = 3  # 3: continued-order anchor, 80-page filing search, bundled-PDF start, tag OCR tolerance
 MAX_SPAN = 25          # pages searched for the closing filing line
 MAX_EXTENDED_SPAN = 80  # second search for the filing line of a long order printed in separate parts
 LONG_SPAN = 12         # longer page ranges are labelled medium (check the end)
@@ -296,7 +296,7 @@ def find_marker(page_texts, number, pages, idx=None):
 CONTINUED = re.compile(r"Continued\s+on\s+next\s+page", re.I)
 # Closing tag lines of any order: "[No. 8108]", OCR "[No. 81081", "[N o .75731".
 ANY_CLOSING_TAG = re.compile(r"^[ \t]*\[?[ \t]*N\s?o\s?\.?[ \t]*(\d(?:[ ]?\d){2,5})[ \t]*[\]1lI|)]?[ \t]*$", re.M | re.I)
-CONTENTS_BOX = re.compile(r"^[ \t]*CONTENTS[ \t]*$", re.M)
+CONTENTS_BOX = re.compile(r"^[ \t]*(?:CONTENTS|Contents)(?:[ \t]+Federal[ \t]+Register)?[ \t]*$", re.M)
 OWN_HEADING_LINE = re.compile(
     r"^[ \t]*E\s?X\s?E\s?C\s?U\s?T\s?I\s?V\s?E[ \t]+O\s?R\s?D\s?E\s?R(?![A-Za-z]*[ \t]*:)(?:[ \t]*N\s?o\.?[ \t]*(\d(?:[ ]?\d){2,4}))?",
     re.I | re.M)
@@ -360,40 +360,15 @@ def other_headings_before(page_texts, number, upto_page, upto_offset):
     return False
 
 
-def _filing_line_end(text, pos):
-    """Offset after the line that closes a filing notice ('[FR Doc. 39-1520; Filed, May 4, 1939;
-    11:37 a. m.]' wraps over two lines): through the next ']' within 120 characters, else the line."""
-    close = text.find("]", pos, pos + 120)
-    if close >= 0:
-        pos = close + 1
-    eol = text.find("\n", pos)
-    return len(text) if eol < 0 else eol + 1
-
-
-def neighbour_span(text, number):
-    """Offsets (start, end, complete) of one order inside a neighbouring order's saved page text, found
-    by its closing tag: from the end of the previous filing line (or the text start) to the
-    next filing line; complete is true when both filing lines were seen. None when the tag is not there. Used for an order the catalog gives no
-    citation, whose pages were extracted under the number of the order printed next to it."""
-    pat = dict(marker_patterns(number))["closing_number_tag"]
-    m = pat.search(text)
-    while m and not tag_context_ok(text, m.start()):
-        m = pat.search(text, m.end())
-    if not m:
-        return None
-    before = list(FILING.finditer(text, 0, m.start()))
-    start = _filing_line_end(text, before[-1].end()) if before else 0
-    after = FILING.search(text, m.end())
-    end = _filing_line_end(text, after.end()) if after else len(text)
-    return start, end, bool(before) and bool(after)
-
-
-def header_page_number(page_texts, i):
+def header_page_number(page_texts, i, cited=None):
     """Printed FR page of PDF page i read from its own running head ("15919Federal Register / Vol. 68 ...",
-    "FEDERAL REGISTER, VOL. 41 ... 7703"), or None. Accepted only when it does not contradict the same read
-    on a neighbouring page (one page apart = one printed page apart)."""
+    "FEDERAL REGISTER, VOL. 41 ... 7703"), or None. Never a number that ends a date ("April 1, 2003"). When the
+    cited FR page is known the read must lie between it and cited + the PDF's page count. It must not
+    contradict the same read on a neighbouring page (one page apart = one printed page apart)."""
     head = re.compile(r"(?im)^[ \t]*(\d{1,5})[ \t]*Federal[ \t]+Register\b"
                       r"|Federal[ \t]+Register\b[^\n]{0,120}?[ \t](\d{1,5})[ \t]*$")
+    month = re.compile(r"(?i)(?:January|February|March|April|May|June|July|August|September|October|November|December)"
+                       r"[.]?[ \t]+\d{1,2}[ \t]*,?[ \t]*$")
 
     def read(k):
         if not 0 <= k < len(page_texts):
@@ -402,11 +377,16 @@ def header_page_number(page_texts, i):
         for ln in lines[:3] + lines[-1:]:
             m = head.search(ln)
             if m:
-                return int(m.group(1) or m.group(2))
+                num = m.group(1) or m.group(2)
+                if m.group(2) and month.search(ln[:m.start(2)]):
+                    continue
+                return int(num)
         return None
 
     mine = read(i)
     if mine is None:
+        return None
+    if cited is not None and not cited <= mine <= cited + len(page_texts):
         return None
     for j in (i - 1, i + 1, i - 2, i + 2):
         other = read(j)
@@ -458,7 +438,7 @@ def locate_order(page_texts, number: str, fr_page: int | None = None, page_hint:
                            or first_match(page_texts, BILLING, mi, n - 1, after=(mi, mend)))
                 res.update(first_page=mi + 1, last_page=(end_hit[0] if end_hit else n - 1) + 1,
                            start_moved=mi > 0, shares_file_with_other_order=True,
-                           start_printed_page=header_page_number(page_texts, mi))
+                           start_printed_page=header_page_number(page_texts, mi, fr_page))
                 res["confidence"] = "medium"
                 res["notes"].append("medium because: the PDF holds more than one order; this order starts at its own "
                                     f"heading on PDF page {mi + 1}, not at the PDF's first page")

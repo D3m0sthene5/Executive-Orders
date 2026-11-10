@@ -398,7 +398,7 @@ class GateAndReadiness(Fixture):
         usc = [m for m in self.draft("EO:200")["_draft"]["proposals"]["later_source_search_machine"]
                if m["search_id"] == "current-law:usc"][0]
         self.assertEqual(usc["machine_hits_for_this_order"], 3)  # every usc row naming EO 200, predicate or not
-        self.assertEqual(usc["machine_predicate_leads_for_this_order"], 1)  # the old count, kept under its own name
+        self.assertEqual(usc["machine_fragment_items_for_this_order_all_systems"], 1)  # the old count, kept under its own name
         # an order with fragments but no MENTIONS row of its own reads 0 rows
         none = [m for m in self.draft("EO:100")["_draft"]["proposals"]["later_source_search_machine"]
                 if m["search_id"] == "current-law:usc"][0]

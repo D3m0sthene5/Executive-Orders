@@ -179,5 +179,91 @@ class HeadingTests(unittest.TestCase):
         self.assertEqual(ids, ["EO:5#sec1", "EO:5#sec2"])
 
 
+EO_13116 = """Executive Order 13116
+IMPLEMENTATION OF THE AGREEMENT
+By the authority vested in me as President, it is hereby ordered as follows:
+PART I: IDENTIFICATION OF TRADE EXPANSION PRIORITIES
+Section 1. Identification. The Trade Representative shall identify priorities.
+Sec. 2. Report. The Trade Representative shall report.
+PART II: IDENTIFICATION OF DISCRIMINATORY GOVERNMENT PROCUREMENT PRACTICES
+Section 1. Identification. The Trade Representative shall identify practices.
+PART III: DIRECTION
+Sec. 1. Direction. The agencies shall comply.
+Sec. 2. Effective date. This order is effective immediately.
+Bill Clinton
+The White House,
+March 31, 1999.
+[FR Doc. 99-8500 Filed 4-1-99; 8:45 am]
+"""
+
+# EO 9578: an FR contents box lists "Part 26--", "Part 60--" ... and the order itself has several Chapters, each
+# restarting at Part I.
+EO_9578 = """Executive Order 9578
+OVERTIME
+By the authority vested in me as President, it is hereby ordered as follows:
+Part 26-- Regulations under
+Part 60--Air traffic rules _____ 8201
+Part 803-- General orders____ 8201
+Part I. Extent of Overtime Pay
+Sec. 1. The employees shall receive overtime.
+Part II. Definitions
+Sec. 1. As used in this order the terms mean the following.
+Part I. Extent of Periodic Within-Grade
+Sec. 1. The employees shall receive increases.
+Part II. Definitions
+Sec. 1. As used here the terms mean the following.
+Franklin D Roosevelt
+The White House,
+June 1, 1945.
+"""
+
+# EO 12540: pay-table captions inside Schedule 8; the repeated "Section 1" belongs to the next order in the file.
+EO_12540 = """Executive Order 12540
+PAY
+By the authority vested in me as President, it is hereby ordered as follows:
+Section 1. The rates of pay are as follows.
+SCHEDULE 8
+Part I-- Monthly Basic Pay
+Rank A 1,000
+Part III--Monthly Basic Allowance For Quarters Rates
+Rank A 200
+Section 2. This order is effective immediately.
+Ronald Reagan
+The White House,
+January 1, 1986.
+Executive Order 12541
+Section 1. Another order.
+"""
+
+
+class PartTests(unittest.TestCase):
+    def ids(self, iid, text):
+        return [c["scope_id"] for c in segment(iid, text)]
+
+    def test_eo13116_real_parts_scope_the_restarting_sections(self):
+        self.assertEqual(self.ids("EO:13116", EO_13116), ["EO:13116#parti-sec1", "EO:13116#parti-sec2", "EO:13116#partii-sec1",
+                                                          "EO:13116#partiii-sec1", "EO:13116#partiii-sec2"])
+
+    def test_eo9578_contents_lines_and_second_chapter_are_not_parts(self):
+        ids = self.ids("EO:9578", EO_9578)
+        self.assertFalse([i for i in ids if "#part" in i], ids)
+
+    def test_eo12540_pay_table_captions_are_not_parts(self):
+        ids = self.ids("EO:12540", EO_12540)
+        self.assertFalse([i for i in ids if "#part" in i], ids)
+
+
+class PrefixTests(unittest.TestCase):
+    def test_land_descriptions_and_wrapped_citations_are_not_headings(self):
+        # EO 2417, EO 2177 (township sections) and EO 12286 (a wrapped citation) printed these lines
+        for line in ("; Sec. 14: 54% NEY, SWY SWY",
+                     ", Sec. 12: W. 4 NE.",
+                     ", Section 104. Regulations under subsection (e)(2)(C) of"):
+            self.assertIsNone(excavate.HEADING.search(line), line)
+
+    def test_stray_comma_before_letter_spaced_heading_still_works(self):
+        self.assertTrue(excavate.HEADING.search(", S ection  1. As used in this order"))
+
+
 if __name__ == "__main__":
     unittest.main()

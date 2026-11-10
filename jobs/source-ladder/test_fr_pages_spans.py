@@ -3,7 +3,7 @@
 Each fixture is the real failing text (condensed) from a held FR scan; nothing here reads
 committed outputs. EO 7573/8332 (closing tag misread), 8109 and 8494 (order continues across a
 page break behind a neighbour's filing line), 11905 (long order printed in separate parts),
-11728/13294 (a PDF that bundles two orders), 8965 (closing tag inside a neighbour's page file).
+11728/13294 (a PDF that bundles two orders), 8332 (catalog page two pages off).
 """
 import sys
 import unittest
@@ -161,45 +161,19 @@ class BundledPdf(unittest.TestCase):
         self.assertEqual((r["first_page"], r["last_page"], r["confidence"]), (1, 1, "high"))
 
 
-EO_8964_FILE = """Instrument: EO:8964
-=== PDF page 2 of 6 ===
-6368 FEDERAL REGISTER, Friday, December 12, 1941
-EXECUTIVE ORDER 8964
-Amending the Rules
-By virtue of the authority vested in me
-Franklin D Roosevelt
-The White House,
-December 11, 1941.
-[No. 8964]
-[F. R. Doc. 41-9100; Filed, December 11, 1941;
-3:44 p. m.]
-EXECUTIVE ORDER
-Withdrawing Public Lands
-By virtue of and pursuant to the authority vested in me
-Franklin D Roosevelt
-The White House,
-December 11, 1941.
-[No. 8965]
-[F. R. Doc. 41-9101; Filed, December 11, 1941;
-3:45 p. m.]
-EXECUTIVE ORDER
-Another order
-"""
+class PrintedPageNeverAYear(unittest.TestCase):
+    def test_running_head_ending_in_the_date_is_not_a_page(self):
+        pages = ["Executive Order 13293 of March 28, 2003@[FR Doc. 03-1 Filed 3-28-03]".replace("@", chr(10)),
+                 "Federal Register / Vol. 68, No. 62 / Tuesday, April 1, 2003@Executive Order 13294 of March 28, 2003@Sec. 1.@[FR Doc. 03-2 Filed 3-28-03]".replace("@", chr(10))]
+        self.assertIsNone(fr_pages.header_page_number(pages, 1, 15917))
+        self.assertIsNone(fr_pages.header_page_number(pages, 1))
+        r = fr_pages.locate_order(pages, "13294", 15917, single_document=True)
+        self.assertEqual(fr_pages.start_citation(r, "68 FR 15917"), "68 FR 15917")
 
-
-class NeighbourPageFile(unittest.TestCase):
-    def test_eo8965_span_is_its_own_body(self):
-        start, end, complete = fr_pages.neighbour_span(EO_8964_FILE, "8965")
-        body = EO_8964_FILE[start:end]
-        self.assertTrue(complete)
-        self.assertIn("Withdrawing Public Lands", body)
-        self.assertIn("[No. 8965]", body)
-        self.assertNotIn("Amending the Rules", body)
-        self.assertNotIn("Another order", body)
-        self.assertTrue(body.rstrip().endswith("3:45 p. m.]"))
-
-    def test_absent_tag(self):
-        self.assertIsNone(fr_pages.neighbour_span(EO_8964_FILE, "8966"))
+    def test_out_of_range_read_is_refused(self):
+        pages = ["x", "FEDERAL REGISTER, VOL. 41, NO. 34 123"]
+        self.assertIsNone(fr_pages.header_page_number(pages, 1, 7703))
+        self.assertEqual(fr_pages.header_page_number(["x", "FEDERAL REGISTER, VOL. 41, NO. 34 7704"], 1, 7703), 7704)
 
 
 class CatalogPageTwoPagesOff(unittest.TestCase):

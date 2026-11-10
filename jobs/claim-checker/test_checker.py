@@ -275,6 +275,22 @@ class FusedFootnoteNumberTests(unittest.TestCase):
         fails = [r for r in rows if r["check"] == "order_exists" and r["result"] == "fail"]
         self.assertTrue(any(r["field"] == "whole_order_end.actor" for r in fails), fails)
 
+    def actor_case(self, actor):
+        """Review finding 1: the number first seen in a verbatim quote must still fail where it is used as an actor."""
+        ctx, claim = self.make(self.FUSED)
+        claim["whole_order_end"]["actor"] = actor
+        rows, errors, status = C.check_claim(claim, ctx)
+        fails = [r for r in rows if r["check"] == "order_exists" and r["result"] == "fail"]
+        self.assertTrue(any(r["field"] == "whole_order_end.actor" and r["status"] == "not_in_universe" for r in fails), (actor, fails))
+        summ = C.summarise_claim("k", "f", 1, claim, rows, errors, status, ctx)
+        self.assertFalse(summ["all_checks_passed"])
+
+    def test_same_number_in_a_quote_and_as_an_actor_id_form_fails(self):
+        self.actor_case("EO:90021")
+
+    def test_same_number_in_a_quote_and_as_an_actor_prose_form_fails(self):
+        self.actor_case("Executive Order 90021")
+
     def test_date_that_disagrees_is_not_resolved(self):
         ctx, claim = self.make(self.FUSED.replace("1949", "1951"))
         rows, _, _ = C.check_claim(claim, ctx)

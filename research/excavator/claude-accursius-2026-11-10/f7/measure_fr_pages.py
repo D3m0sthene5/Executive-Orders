@@ -11,8 +11,9 @@ cannot re-run the locator over a full issue. It measures what the saved page tex
     another order's filing line on the cited page" anchor differ from the old first-heading anchor?
  C. bundled PDF (fix 2, EO 11728/13294 type): for every order whose saved text is whole PDF pages 1-n of a
     per-document PDF, does the new single-document locator move the start past PDF page 1?
- D. neighbour page file (fix 2, EO 8965 type): for every order NOT_FOUND with reason no citation / not received / not in index,
-    is its closing tag inside the saved text of the order numbered up to 3 away?
+ E. long order (fix 2, EO 11905 type): medium orders whose note says no filing line was found; these are the orders
+    the new 80-page filing search can change (it needs the whole PDF, so it cannot be re-run here).
+ (The neighbour-page-file adoption, EO 8965/8534, was removed from this change after review.)
 """
 import csv
 import importlib.util
@@ -51,7 +52,7 @@ def tag_hit(mod, number, text):
 
 
 sources = [json.loads(l) for l in open(base / "SOURCES.jsonl", encoding="utf-8")]
-rows = {"A": [], "B": [], "C": [], "D": []}
+rows = {"A": [], "B": [], "C": [], "E": []}
 n_graded = 0
 for rec in sources:
     iid = rec["instrument_ids"][0]
@@ -83,31 +84,14 @@ for rec in sources:
                 rows["C"].append({"instrument_id": iid, "old_pages": rec["page_or_item"],
                                   "new_first_page": r["first_page"], "start_printed_page": r.get("start_printed_page")})
 
-# D: neighbours
-found_text = {}
+# E: orders whose filing line was not found within 25 pages (medium, "no filing line"): the 80-page search may now end them
 for rec in sources:
-    iid = rec["instrument_ids"][0]
-    tp = base / rec["text_path"]
-    if tp.is_file():
-        found_text[iid] = tp.read_text(encoding="utf-8", errors="replace")
-for r in csv.DictReader(open(base / "NOT_FOUND.csv", encoding="utf-8", newline="")):
-    if r["reason"] not in ("ofr_index_has_no_fr_citation", "ofr_index_not_received_for_publication", "not_in_ofr_index"):
-        continue
-    iid = r["instrument_id"]
-    mm = re.fullmatch(r"EO:(\d+)", iid)
-    if not mm:
-        continue
-    for d in (-1, 1, -2, 2, -3, 3):
-        sib = f"EO:{int(mm.group(1)) + d}"
-        t = found_text.get(sib)
-        if t and new.neighbour_span(t, mm.group(1)):
-            rows["D"].append({"instrument_id": iid, "neighbour": sib, "neighbour_confidence": next(
-                (s.get("location_confidence") for s in sources if s["instrument_ids"][0] == sib), "")})
-            break
+    if rec.get("location_confidence") == "medium" and "no filing line" in (rec.get("notes") or ""):
+        rows["E"].append({"instrument_id": rec["instrument_ids"][0], "page_or_item": rec["page_or_item"]})
 
 summary = {"sources": len(sources), "medium_or_low_graded": n_graded,
            "A_closing_tag_newly_matched": len(rows["A"]), "B_continued_anchor_differs": len(rows["B"]),
-           "C_bundled_pdf_start_moves": len(rows["C"]), "D_adopted_from_neighbour_page_file": len(rows["D"])}
+           "C_bundled_pdf_start_moves": len(rows["C"]), "E_no_filing_line_candidates_for_80_page_search": len(rows["E"])}
 for k, v in rows.items():
     if v:
         with open(out / f"fr_pages_{k}.csv", "w", encoding="utf-8", newline="") as fh:

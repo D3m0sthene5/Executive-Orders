@@ -934,9 +934,12 @@ def check_orders(claim, ctx, rows):
         for written, cands in cited_orders(val):
             if cands[0] in seen:
                 continue
-            seen.add(cands[0])
             step = step_for_path(path)
             hit = next((c for c in cands if c in ctx.universe), None)
+            # The quote exemption is decided per occurrence: an unknown number that passed only inside a
+            # verbatim quote is not marked seen, so a later use outside a quote (an actor) still fails.
+            if hit or not _verbatim_quote_passed(rows, path):
+                seen.add(cands[0])
             if hit == cands[0] and written.startswith("EO:"):
                 _row(rows, step, "order_exists", path, "pass", "in_universe", hit)
             elif hit:
