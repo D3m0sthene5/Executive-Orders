@@ -34,13 +34,13 @@
     "jobs/claim-kit/job.py": "67a39c213771ffc5a6a4a3fdec7e94b7f2aeed45b38f3a7ef63747503ed04c37",
     "jobs/claim-kit/kit.py": "29b2a4f78802d6e9aadbeb09c9fef7960573e037677f02d008d3e3120d7cc7c5",
     "jobs/claim-kit/lifecycle_obligations.py": "61448e4f640b76312df4d47f9f5c000468d1ce7e24d0c5df1115a273e13bf5ab",
-    "jobs/claim-kit/output/ACTING_PROVISIONS.jsonl": "3ba1ed353970272477ff49ad6eebee72c1a8c6b0ef2d0999430e1966a8baa2ad",
-    "jobs/claim-kit/output/ACTING_PROVISIONS.part0001.jsonl": "8a24fdd6cee65f4d6a9a08ce2a9c6a25ef2e66374a462ffa552016f51269960a",
-    "jobs/claim-kit/output/FAMILIES.json": "dce109a776bd238310f7b7632b767cdcc02c95cee3c61c0a99d2e3a038bb3f58",
-    "jobs/claim-kit/output/INDEX.json": "d24478a8d7e69f1c7cc728558e3c4d182c0bdf497013279d16790a2cf410be0a",
-    "jobs/claim-kit/output/OWN_TERMS.jsonl": "b68dff4bcf374885cce8f54a46fd03de20d6db43251c107895b62da22565100e",
-    "jobs/claim-kit/output/OWN_TERMS.part0001.jsonl": "d1e97904b6919caac03acc910e5cda1d7ba1e328a08f2f62a353f7ff3cc1a613",
-    "jobs/claim-kit/output/STATUS_LEADS.jsonl": "71f42da56b70a69c10065ed7107cb53a36ac89d22769feb24069aff64a9ad9c5",
+    "jobs/claim-kit/output/ACTING_PROVISIONS.jsonl": "f2ce84342bec070ed8cb6d7c74bda7d4b31deff6c9e3a9a72c62923c4903236a",
+    "jobs/claim-kit/output/ACTING_PROVISIONS.part0001.jsonl": "512c5df0142fb0de9b2e2f6dc60bed4238d3c15a919ba4d6ff1ecaaf4b6cafc1",
+    "jobs/claim-kit/output/FAMILIES.json": "32594f1648ff94e4c0afbb04e6cee17e6b1f30441ba9a6a5265e195bf1d91e39",
+    "jobs/claim-kit/output/INDEX.json": "08945fab83122e2a2fa0c9c39b8327bca3a505753a201dec51144e9857ea708c",
+    "jobs/claim-kit/output/OWN_TERMS.jsonl": "a3430d787a820c444a15fe1b4277719d1fb4875067a93367a379e1cfa3715e04",
+    "jobs/claim-kit/output/OWN_TERMS.part0001.jsonl": "9f9f5facc1d36faac3e97f09357c8c96382a092f70aa5804982946d6db88e4d7",
+    "jobs/claim-kit/output/STATUS_LEADS.jsonl": "bd3a1f34171212d07936048645a0f0cb0dbeb160d6f068f3037f010610058b4d",
     "jobs/claim-kit/population.py": "315c7dc011748368650a422894eecf442accd3b51fc29bfd8e1a494934b3e3b8",
     "jobs/claim-kit/prior_research.py": "593efd1250e2e515623df44c438ea1258be12d553d4d1290c15c717950293fc7",
     "jobs/claim-kit/provision_history.py": "c34dfe3f75a3b8f28a2ace2f0ab830130c22bef556f3550657bc160c10915cc1",
@@ -132,8 +132,8 @@
     "jobs/photius-gpo-volumes/output/FRAGMENTS.jsonl": "10d34cc8f383200f6b09f25519e547d506f5e81ddb88610a13cc865c697ab16c",
     "jobs/photius-replica-check/output/FRAGMENTS.jsonl": "ffcc9aaab157509210c3f9d2153c25849784152bcf489e65c8558866481160ea",
     "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl": "96746d60d17b4c22558b050ef503d7fbc2c25d83bf0c3c4d3318bccbd237a691",
-    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "2c8a77895ea564fe980d7f8efa02b730dcc5d67908b239b24100279ce792e0e7",
-    "jobs/readiness-tracker/output/SUMMARY.json": "f67770d7d31bbe8d78d5448d3abc4564982c7e11548bbeb2db46687e176ee490",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "fe781151a55f3df0b3843510d372e823782706d7f6eef0af1e9b16ecedb13366",
+    "jobs/readiness-tracker/output/SUMMARY.json": "4a452cb1b684dc572d36f3ce1ac041eafc7d7562f11c74e4bd100e7ffd2aebb6",
     "jobs/readiness-tracker/tracker.py": "0f5adf479133322e9516ef3c882cf3b014c4feac0f86fa573a3e4f9b73b4c526",
     "jobs/richardson-volumes/output/FRAGMENTS.jsonl": "71cc6e670f5666a28a26b514f3698b674b423e66e5e4d8bbe4aca28e99c7ef72",
     "jobs/source-ladder/output/RESULTS.csv": "0c5cf323b83bb2c14416d8f002026299970da5412da70316ec6d5fa5a80ca528",
@@ -351,7 +351,7 @@
     "undated|no": 1,
     "undated|unknown": 1
   },
-  "manifest_sha256": "11185a6ce77d971619c5d8db6e1c222d66066b41a18327f180fa68f808641197",
+  "manifest_sha256": "0e3854637c3a167e8c85cd9333306aa99551c358319cb57940d4816549a16412",
   "outcome_definitions": {
     "blocked_access": "Attempt stopped at an unresolved access dependency; effort is not zero.",
     "blocked_prerequisite": "Attempt stopped with missing research prerequisites; no completed dossier claimed.",
@@ -404,38 +404,34 @@
     },
     {
       "basis_evidence": [
-        "ending:lead",
-        "current:lead",
+        "ending:missing",
+        "current:missing",
         "tracker:open"
       ],
       "blockers": [
         "NO_CLAUSE_INVENTORY",
-        "CURRENT_BASIS_UNPROVED",
+        "FIRST_END_UNPROVED",
         "SAVINGS_RESIDUALS_NOT_CLOSED"
       ],
       "cell_population": 1,
       "era": "1937-1989",
       "families": [
-        "actor:EO:10445",
-        "actor:EO:14085",
-        "own_term:fixed_term",
-        "parent:EO:8809 as amended",
-        "source:3e7592f6c1b452703972c6499961a7906130fe8fdd9a6470f80e115a19f0e0f5"
+        "source:d1a51f76c7afd713e1b6d681b631553ca4311d25fc0a40fb7b0eacab9737e537"
       ],
-      "inclusion_probability": 0.00904977375565611,
-      "instrument_id": "EO:10444",
-      "macro": "1937-1989|yes",
-      "macro_cells": 221,
+      "inclusion_probability": 0.0016542597187758478,
+      "instrument_id": "EO:11461",
+      "macro": "1937-1989|no",
+      "macro_cells": 1209,
       "open_steps": [
         "clause_inventory",
         "ending_or_current_basis",
         "savings_residuals"
       ],
       "original_text": "done",
-      "provisional_status": "yes",
+      "provisional_status": "no",
       "sampled_cells": 2,
-      "stratum": "2470f5fcd443291b153b",
-      "weight": 110.5
+      "stratum": "1456693a08836525f304",
+      "weight": 604.5
     },
     {
       "basis_evidence": [
@@ -478,34 +474,117 @@
         "NO_CLAUSE_INVENTORY",
         "CURRENT_BASIS_UNPROVED",
         "SAVINGS_RESIDUALS_NOT_CLOSED",
-        "QUARANTINED_RELATIONSHIP_CONFLICT",
-        "OPUS_MEDIA_NONE_CITED"
+        "QUARANTINED_RELATIONSHIP_CONFLICT"
       ],
       "cell_population": 1,
       "era": "1937-1989",
       "families": [
-        "actor:EO:12484",
+        "actor:EO:12144",
+        "actor:EO:12379",
+        "actor:EO:12450",
+        "actor:EO:12640",
+        "actor:EO:12672",
+        "actor:EO:13087",
+        "actor:EO:13152",
         "own_term:condition",
         "own_term:fixed_term",
         "own_term:report_deadline",
-        "source:615733b40cf32747c7396220ee3d89582394c5339139cac59dbe2b6989095daa"
+        "own_term:temporary_body",
+        "own_term:until_event",
+        "parent:EO:11022 as amended",
+        "parent:EO:11478 as amended",
+        "parent:EO:11480 as amended",
+        "parent:EO:11830 as amended",
+        "source:2bbe84367ac61a00fa9305998fc1ffef94854553ab085e5eeed81296a09c918b"
       ],
       "inclusion_probability": 0.00904977375565611,
-      "instrument_id": "EO:12473",
+      "instrument_id": "EO:12106",
       "macro": "1937-1989|yes",
       "macro_cells": 221,
       "open_steps": [
         "clause_inventory",
         "ending_or_current_basis",
         "savings_residuals",
-        "counterevidence",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "yes",
+      "sampled_cells": 2,
+      "stratum": "89efc232447c2a3a68d2",
+      "weight": 110.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "CURRENT_BASIS_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "OPUS_MEDIA_NONE_CITED"
+      ],
+      "cell_population": 1,
+      "era": "1937-1989",
+      "families": [
+        "own_term:condition",
+        "own_term:fixed_term",
+        "own_term:report_deadline",
+        "own_term:sunset_date",
+        "own_term:until_event",
+        "source:18be8b02ee89309438e507063abf785ee845d6ddca57f89f3502de12ff7c22b8"
+      ],
+      "inclusion_probability": 0.00904977375565611,
+      "instrument_id": "EO:12436",
+      "macro": "1937-1989|yes",
+      "macro_cells": 221,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
         "opus_media"
       ],
       "original_text": "done",
       "provisional_status": "yes",
       "sampled_cells": 2,
-      "stratum": "8c529e71b651ab2b5cf6",
+      "stratum": "24d991eacc894569a871",
       "weight": 110.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD:current-law"
+      ],
+      "cell_population": 1,
+      "era": "1937-1989",
+      "families": [
+        "own_term:condition",
+        "own_term:report_deadline",
+        "source:945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c"
+      ],
+      "inclusion_probability": 0.0016542597187758478,
+      "instrument_id": "EO:12553",
+      "macro": "1937-1989|no",
+      "macro_cells": 1209,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "750d78c801e1b6936ab2",
+      "weight": 604.5
     },
     {
       "basis_evidence": [
@@ -543,38 +622,6 @@
     {
       "basis_evidence": [
         "ending:lead",
-        "current:missing",
-        "tracker:open"
-      ],
-      "blockers": [
-        "NO_CLAUSE_INVENTORY",
-        "FIRST_END_UNPROVED",
-        "SAVINGS_RESIDUALS_NOT_CLOSED"
-      ],
-      "cell_population": 1,
-      "era": "1990-2026",
-      "families": [
-        "actor:EO:13393",
-        "source:6c8ccaebd66d8b92164adf13ecc6884162347fe5212b7fe99702581e7d094de1"
-      ],
-      "inclusion_probability": 0.011695906432748537,
-      "instrument_id": "EO:13368",
-      "macro": "1990-2026|no",
-      "macro_cells": 171,
-      "open_steps": [
-        "clause_inventory",
-        "ending_or_current_basis",
-        "savings_residuals"
-      ],
-      "original_text": "done",
-      "provisional_status": "no",
-      "sampled_cells": 2,
-      "stratum": "bda9da5ae5f8c7fdabb2",
-      "weight": 85.5
-    },
-    {
-      "basis_evidence": [
-        "ending:lead",
         "current:lead",
         "tracker:open"
       ],
@@ -586,16 +633,16 @@
       "cell_population": 1,
       "era": "1990-2026",
       "families": [
-        "actor:EO:14110",
-        "actor:EO:14117",
-        "actor:EO:14144",
-        "actor:EO:14306",
+        "actor:EO:13808",
+        "actor:EO:13827",
+        "actor:EO:13850",
+        "actor:EO:13857",
+        "actor:EO:13884",
         "own_term:condition",
-        "parent:EO:13694 as amended",
-        "source:2172f69413d0ed56872a3b854b6620be8b24e59b2e8b4694e99a400a275a9797"
+        "source:4849355060147875f648b8e6e7c15f278c49773b343957752642ef188f653ea9"
       ],
       "inclusion_probability": 0.006578947368421052,
-      "instrument_id": "EO:13984",
+      "instrument_id": "EO:13692",
       "macro": "1990-2026|yes",
       "macro_cells": 152,
       "open_steps": [
@@ -606,8 +653,47 @@
       "original_text": "done",
       "provisional_status": "yes",
       "sampled_cells": 1,
-      "stratum": "424f67f478a1ed4339a9",
+      "stratum": "43725a45255e6a19d70c",
       "weight": 152.0
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "QUARANTINED_RELATIONSHIP_CONFLICT"
+      ],
+      "cell_population": 1,
+      "era": "1990-2026",
+      "families": [
+        "actor:EO:14044",
+        "actor:EO:14148",
+        "actor:EO:14154",
+        "actor:EO:14177",
+        "own_term:condition",
+        "own_term:fixed_term",
+        "source:8a1c0932db05c4c7cf69085d723c4120233762423c358692eef540196f630d47"
+      ],
+      "inclusion_probability": 0.011695906432748537,
+      "instrument_id": "EO:14007",
+      "macro": "1990-2026|no",
+      "macro_cells": 171,
+      "open_steps": [
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "done",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "b6cff2e6df9bc6df3fa4",
+      "weight": 85.5
     },
     {
       "basis_evidence": [
@@ -618,13 +704,13 @@
       "blockers": [
         "NO_PROVISIONAL_STATUS"
       ],
-      "cell_population": 174,
+      "cell_population": 181,
       "era": "1990-2026",
       "families": [
         "unknown_family"
       ],
-      "inclusion_probability": 0.0006385696040868454,
-      "instrument_id": "EO:14141",
+      "inclusion_probability": 0.0006138735420503376,
+      "instrument_id": "EO:14072",
       "macro": "1990-2026|unknown",
       "macro_cells": 9,
       "open_steps": [
@@ -638,7 +724,7 @@
       "provisional_status": "unknown",
       "sampled_cells": 1,
       "stratum": "d75042bfb44779e20398",
-      "weight": 1566.0
+      "weight": 1629.0
     },
     {
       "basis_evidence": [
@@ -647,23 +733,23 @@
         "tracker:open"
       ],
       "blockers": [
-        "NO_OFFICIAL_SOURCE_LOCATED",
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "NO_CLAUSE_INVENTORY",
         "FIRST_END_UNPROVED",
         "SAVINGS_RESIDUALS_NOT_CLOSED",
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
       ],
-      "cell_population": 2,
-      "era": "1907-1936",
+      "cell_population": 1,
+      "era": "1862-1906",
       "families": [
-        "own_term:until_event",
-        "source:d34179c3fd47609877fdeade552e8a3608ef3ee817dc8ca2a8977c9d17392d10"
+        "own_term:fixed_term",
+        "source:593cd90234cc94275622ed6fbe4258f37e25c344be5be57c1733cd14d1198a32"
       ],
-      "inclusion_probability": 0.001277139208173691,
-      "instrument_id": "EO:1822",
-      "macro": "1907-1936|no",
-      "macro_cells": 783,
+      "inclusion_probability": 0.011834319526627219,
+      "instrument_id": "EO:231",
+      "macro": "1862-1906|no",
+      "macro_cells": 169,
       "open_steps": [
         "original_text",
         "clause_inventory",
@@ -674,8 +760,87 @@
       "original_text": "open",
       "provisional_status": "no",
       "sampled_cells": 2,
-      "stratum": "1092a8181a9d9d096e2a",
-      "weight": 783.0
+      "stratum": "58cd704025d367dd908b",
+      "weight": 84.5
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+      ],
+      "cell_population": 2,
+      "era": "1907-1936",
+      "families": [
+        "own_term:condition",
+        "own_term:emergency_duration",
+        "source:d1d9ca12656d75236147d3791f8624a9b116f4d6778c009f26155e746da914fe"
+      ],
+      "inclusion_probability": 0.0014534883720930232,
+      "instrument_id": "EO:2733",
+      "macro": "1907-1936|no",
+      "macro_cells": 688,
+      "open_steps": [
+        "original_text",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "open",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "1359345d93967f2408ff",
+      "weight": 688.0
+    },
+    {
+      "basis_evidence": [
+        "ending:lead",
+        "current:lead",
+        "tracker:open"
+      ],
+      "blockers": [
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "NO_CLAUSE_INVENTORY",
+        "CURRENT_BASIS_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE",
+        "OPUS_MEDIA_REFETCH_NEEDED"
+      ],
+      "cell_population": 1,
+      "era": "1907-1936",
+      "families": [
+        "actor:EO:10668",
+        "actor:EO:12832",
+        "own_term:condition",
+        "source:3408beaca64c33df85e5b8ac6d9c2bd75f0bba42f0b3f17a20430da9b583cd6c"
+      ],
+      "inclusion_probability": 0.6666666666666666,
+      "instrument_id": "EO:2859",
+      "macro": "1907-1936|yes",
+      "macro_cells": 3,
+      "open_steps": [
+        "original_text",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence",
+        "opus_media"
+      ],
+      "original_text": "open",
+      "provisional_status": "yes",
+      "sampled_cells": 2,
+      "stratum": "6d47ed33df95de921c3e",
+      "weight": 1.5
     },
     {
       "basis_evidence": [
@@ -688,12 +853,12 @@
         "NO_OFFICIAL_SOURCE_LOCATED",
         "ONLY_COMPILED_TRANSCRIPTION_FOUND"
       ],
-      "cell_population": 302,
+      "cell_population": 303,
       "era": "1862-1906",
       "families": [
         "unknown_family"
       ],
-      "inclusion_probability": 0.000946073793755913,
+      "inclusion_probability": 0.000942951438000943,
       "instrument_id": "EO:347",
       "macro": "1862-1906|unknown",
       "macro_cells": 7,
@@ -709,7 +874,7 @@
       "provisional_status": "unknown",
       "sampled_cells": 2,
       "stratum": "84c78839c2ddace29472",
-      "weight": 1057.0
+      "weight": 1060.5
     },
     {
       "basis_evidence": [
@@ -719,16 +884,16 @@
       ],
       "blockers": [
         "NO_PROVISIONAL_STATUS",
-        "NO_OFFICIAL_SOURCE_LOCATED",
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "ONLY_COMPILED_TRANSCRIPTION_FOUND"
       ],
-      "cell_population": 8,
+      "cell_population": 11,
       "era": "1907-1936",
       "families": [
         "unknown_family"
       ],
-      "inclusion_probability": 0.016666666666666666,
-      "instrument_id": "EO:3940",
+      "inclusion_probability": 0.012121212121212121,
+      "instrument_id": "EO:3776",
       "macro": "1907-1936|unknown",
       "macro_cells": 15,
       "open_steps": [
@@ -743,7 +908,7 @@
       "provisional_status": "unknown",
       "sampled_cells": 2,
       "stratum": "f28fd59205cbd3f362f5",
-      "weight": 60.0
+      "weight": 82.5
     },
     {
       "basis_evidence": [
@@ -788,42 +953,6 @@
         "tracker:open"
       ],
       "blockers": [
-        "NO_OFFICIAL_SOURCE_LOCATED",
-        "ONLY_COMPILED_TRANSCRIPTION_FOUND",
-        "NO_CLAUSE_INVENTORY",
-        "FIRST_END_UNPROVED",
-        "SAVINGS_RESIDUALS_NOT_CLOSED",
-        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
-      ],
-      "cell_population": 1,
-      "era": "1862-1906",
-      "families": [
-        "source:37e215115822e6f4b792efb49f4dbb1b54d43c7250c78b404562cf62ef483d27"
-      ],
-      "inclusion_probability": 0.011834319526627219,
-      "instrument_id": "EO:532",
-      "macro": "1862-1906|no",
-      "macro_cells": 169,
-      "open_steps": [
-        "original_text",
-        "clause_inventory",
-        "ending_or_current_basis",
-        "savings_residuals",
-        "counterevidence"
-      ],
-      "original_text": "open",
-      "provisional_status": "no",
-      "sampled_cells": 2,
-      "stratum": "572e9aecffaae0f64088",
-      "weight": 84.5
-    },
-    {
-      "basis_evidence": [
-        "ending:missing",
-        "current:missing",
-        "tracker:open"
-      ],
-      "blockers": [
         "NO_PROVISIONAL_STATUS"
       ],
       "cell_population": 36,
@@ -859,13 +988,13 @@
         "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "ONLY_COMPILED_TRANSCRIPTION_FOUND"
       ],
-      "cell_population": 15,
+      "cell_population": 14,
       "era": "1862-1906",
       "families": [
         "unknown_family"
       ],
-      "inclusion_probability": 0.019047619047619046,
-      "instrument_id": "EO:60",
+      "inclusion_probability": 0.02040816326530612,
+      "instrument_id": "EO:64",
       "macro": "1862-1906|unknown",
       "macro_cells": 7,
       "open_steps": [
@@ -880,7 +1009,43 @@
       "provisional_status": "unknown",
       "sampled_cells": 2,
       "stratum": "03585afaa485ebe0ed99",
-      "weight": 52.5
+      "weight": 49.0
+    },
+    {
+      "basis_evidence": [
+        "ending:missing",
+        "current:missing",
+        "tracker:open"
+      ],
+      "blockers": [
+        "NO_OFFICIAL_SOURCE_LOCATED",
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND",
+        "NO_CLAUSE_INVENTORY",
+        "FIRST_END_UNPROVED",
+        "SAVINGS_RESIDUALS_NOT_CLOSED",
+        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+      ],
+      "cell_population": 1,
+      "era": "1907-1936",
+      "families": [
+        "source:e2c8c7457897d69f46de9aacf224f6ef27c9f648e622944605c2c2b734f2cdcd"
+      ],
+      "inclusion_probability": 0.0029069767441860465,
+      "instrument_id": "EO:644",
+      "macro": "1907-1936|no",
+      "macro_cells": 688,
+      "open_steps": [
+        "original_text",
+        "clause_inventory",
+        "ending_or_current_basis",
+        "savings_residuals",
+        "counterevidence"
+      ],
+      "original_text": "open",
+      "provisional_status": "no",
+      "sampled_cells": 2,
+      "stratum": "77a3e77277080617305c",
+      "weight": 344.0
     },
     {
       "basis_evidence": [
@@ -894,26 +1059,26 @@
         "SAVINGS_RESIDUALS_NOT_CLOSED",
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
       ],
-      "cell_population": 2,
+      "cell_population": 1,
       "era": "undated",
       "families": [
         "source:a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4"
       ],
-      "inclusion_probability": 0.05,
-      "instrument_id": "EO:6535",
+      "inclusion_probability": 0.1111111111111111,
+      "instrument_id": "EO:6543G",
       "macro": "undated|no",
-      "macro_cells": 10,
+      "macro_cells": 9,
       "open_steps": [
         "clause_inventory",
         "ending_or_current_basis",
         "savings_residuals",
         "counterevidence"
       ],
-      "original_text": "done",
+      "original_text": "provisional",
       "provisional_status": "no",
       "sampled_cells": 1,
-      "stratum": "b717af7d2fbd2b713f26",
-      "weight": 20.0
+      "stratum": "c6457604dccabe68fe4f",
+      "weight": 9.0
     },
     {
       "basis_evidence": [
@@ -924,13 +1089,13 @@
       "blockers": [
         "NO_PROVISIONAL_STATUS"
       ],
-      "cell_population": 16,
+      "cell_population": 17,
       "era": "1907-1936",
       "families": [
         "unknown_family"
       ],
-      "inclusion_probability": 0.008333333333333333,
-      "instrument_id": "EO:6581",
+      "inclusion_probability": 0.00784313725490196,
+      "instrument_id": "EO:6560",
       "macro": "1907-1936|unknown",
       "macro_cells": 15,
       "open_steps": [
@@ -944,134 +1109,7 @@
       "provisional_status": "unknown",
       "sampled_cells": 2,
       "stratum": "346f846493a17cf3531f",
-      "weight": 120.0
-    },
-    {
-      "basis_evidence": [
-        "ending:missing",
-        "current:missing",
-        "tracker:open"
-      ],
-      "blockers": [
-        "NO_CLAUSE_INVENTORY",
-        "FIRST_END_UNPROVED",
-        "SAVINGS_RESIDUALS_NOT_CLOSED",
-        "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
-      ],
-      "cell_population": 1,
-      "era": "1907-1936",
-      "families": [
-        "source:43dd12bd5c94924029e00f2fa12100b820eb0a5fbc3619add54aaa4a79b431a6"
-      ],
-      "inclusion_probability": 0.002554278416347382,
-      "instrument_id": "EO:6813",
-      "macro": "1907-1936|no",
-      "macro_cells": 783,
-      "open_steps": [
-        "clause_inventory",
-        "ending_or_current_basis",
-        "savings_residuals",
-        "counterevidence"
-      ],
-      "original_text": "done",
-      "provisional_status": "no",
-      "sampled_cells": 2,
-      "stratum": "69fd9cf72684210cae82",
-      "weight": 391.5
-    },
-    {
-      "basis_evidence": [
-        "ending:lead",
-        "current:lead",
-        "tracker:open"
-      ],
-      "blockers": [
-        "NO_CLAUSE_INVENTORY",
-        "CURRENT_BASIS_UNPROVED",
-        "SAVINGS_RESIDUALS_NOT_CLOSED",
-        "MACHINE_SEARCH_FOUND_CONTRARY_LEAD:later-events"
-      ],
-      "cell_population": 1,
-      "era": "1907-1936",
-      "families": [
-        "actor:EO:6958",
-        "actor:EO:7028",
-        "actor:EO:7045",
-        "actor:EO:7048",
-        "actor:EO:7098",
-        "actor:EO:7178",
-        "actor:EO:7182",
-        "actor:EO:7245",
-        "actor:EO:7274",
-        "actor:EO:7331",
-        "actor:EO:7364",
-        "actor:EO:7373",
-        "actor:EO:7417",
-        "actor:EO:7425",
-        "actor:EO:7429",
-        "actor:EO:7435",
-        "actor:EO:7442",
-        "actor:EO:7491",
-        "actor:EO:7502",
-        "actor:EO:7503",
-        "actor:EO:7509",
-        "actor:EO:7515",
-        "actor:EO:7520",
-        "actor:EO:7523",
-        "actor:EO:7599",
-        "actor:EO:7713",
-        "actor:EO:8113",
-        "actor:EO:8153",
-        "actor:EO:8158",
-        "actor:EO:8356",
-        "actor:EO:8357",
-        "actor:EO:8380",
-        "actor:EO:8507",
-        "actor:EO:8578",
-        "actor:EO:8579",
-        "actor:EO:8598",
-        "actor:EO:8649",
-        "actor:EO:8652",
-        "actor:EO:8780",
-        "actor:EO:8790",
-        "actor:EO:8791",
-        "actor:EO:8792",
-        "actor:EO:8793",
-        "actor:EO:8794",
-        "actor:EO:8795",
-        "actor:EO:8830",
-        "actor:EO:8865",
-        "actor:EO:8874",
-        "actor:EO:8884",
-        "actor:EO:8892",
-        "actor:EO:8924",
-        "actor:EO:8956",
-        "actor:EO:8957",
-        "actor:EO:9042",
-        "actor:EO:9081",
-        "actor:EO:9101",
-        "actor:EO:9115",
-        "actor:EO:9143",
-        "own_term:condition",
-        "own_term:fixed_term",
-        "own_term:until_event",
-        "source:39cc38af09ddd28d96d983daa04c8b9ab41a1b1c4cb751e89b645a7416661459"
-      ],
-      "inclusion_probability": 0.6666666666666666,
-      "instrument_id": "EO:6910",
-      "macro": "1907-1936|yes",
-      "macro_cells": 3,
-      "open_steps": [
-        "clause_inventory",
-        "ending_or_current_basis",
-        "savings_residuals",
-        "counterevidence"
-      ],
-      "original_text": "done",
-      "provisional_status": "yes",
-      "sampled_cells": 2,
-      "stratum": "b899c560c9dccece3866",
-      "weight": 1.5
+      "weight": 127.5
     },
     {
       "basis_evidence": [
@@ -1108,70 +1146,6 @@
       "sampled_cells": 2,
       "stratum": "9a5e07ccb3fc46257021",
       "weight": 1.5
-    },
-    {
-      "basis_evidence": [
-        "ending:missing",
-        "current:missing",
-        "tracker:open"
-      ],
-      "blockers": [
-        "NO_CLAUSE_INVENTORY",
-        "FIRST_END_UNPROVED",
-        "SAVINGS_RESIDUALS_NOT_CLOSED"
-      ],
-      "cell_population": 1,
-      "era": "1937-1989",
-      "families": [
-        "source:6afa3b9e3674aafa141422891e2fa2919cb50fc2287cc90d986f222f84eac8d2"
-      ],
-      "inclusion_probability": 0.0015552099533437014,
-      "instrument_id": "EO:7646",
-      "macro": "1937-1989|no",
-      "macro_cells": 1286,
-      "open_steps": [
-        "clause_inventory",
-        "ending_or_current_basis",
-        "savings_residuals"
-      ],
-      "original_text": "done",
-      "provisional_status": "no",
-      "sampled_cells": 2,
-      "stratum": "13afbea43854cca308dc",
-      "weight": 643.0
-    },
-    {
-      "basis_evidence": [
-        "ending:missing",
-        "current:missing",
-        "tracker:open"
-      ],
-      "blockers": [
-        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED",
-        "CLAIM_CHECK_FAILED:clause_inventory",
-        "CLAIM_CHECK_FAILED:ending_or_current_basis",
-        "CLAIM_CHECK_FAILED:savings_residuals"
-      ],
-      "cell_population": 1,
-      "era": "1937-1989",
-      "families": [
-        "own_term:fixed_term",
-        "source:74e7a54b88bfd9a7b5fd516697c98d4f0bb6c2f4a856dfaf65f795c5800307c2"
-      ],
-      "inclusion_probability": 0.0015552099533437014,
-      "instrument_id": "EO:7931",
-      "macro": "1937-1989|no",
-      "macro_cells": 1286,
-      "open_steps": [
-        "clause_inventory",
-        "ending_or_current_basis",
-        "savings_residuals"
-      ],
-      "original_text": "done",
-      "provisional_status": "no",
-      "sampled_cells": 2,
-      "stratum": "6f0a4557b9ebe9ca7493",
-      "weight": 643.0
     },
     {
       "basis_evidence": [

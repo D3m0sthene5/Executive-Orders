@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (1)
+## Waiting for the owner (2)
 
-**A-20261108-lean-main**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-papinian-board-bytes**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 293; `search` finds the rest)
+## Newest results (6 of 297; `search` finds the rest)
 
 - 2026-11-10 F-20261110-mommsen2-source-ladder-test-gate **stopped at gate**: Bounded local source-ladder fetch of queued FRUS texts for EO 171 and EO 2406. Lesson: A source-ladder test failure blocks even a two-item bounded fetch. Preserve the failure and use direct public-source research as a lead; do not credit raw custody or page confirmation until verified…
+- 2026-11-10 F-20261110-mommsen2-road-sparse-ci **partly worked**: PR 252 claim publication against the road-tests sparse checkout. Lesson: Read the committed runner declaration with git show when the worktree file is absent. This one-test fallback keeps the existing scope comparison and allows claim PR CI without changing .github.
 - 2026-11-10 F-20261110-mommsen2-filename-route **partly worked**: Complete a MOMMSEN-II claim batch using the owner-specified compact claim filename mommsen2-2026-11-10-b02.js… Lesson: Route around without changing code by publishing as mommsen-2-2026-11-10-b02.jsonl. Keep agent/reservation identity mommsen-2 and record the filename exception; the owner rule and completion validato…
 - 2026-11-10 F-20261110-mommsen2-b05 **failed**: 30member decided-not-ready source-frozen lifecycle batch, source-first two blind arms, control and genuine af… Lesson: Readable original/inventory does not establish first cessation or residual closure. Preserve actual-performance/parent-law/savings gaps; do not dispatch metadata-only custody. Transport refusals and…
 - 2026-11-10 F-20261110-mommsen2-b04 **failed**: 20member decided-not-ready source-frozen lifecycle batch, source-first two blind arms, control and genuine af… Lesson: Readable original/inventory does not establish first cessation or residual closure. Preserve actual-performance/parent-law/savings gaps; do not dispatch metadata-only custody. Transport refusals and…
 - 2026-11-10 F-20261110-mommsen2-b03 **worked**: Twenty decided below-6000 held-original lifecycle assignments with two independent blind arms and native comp… Lesson: Materialize existing source-provider PROVENANCE metadata as well as the held PDF. A raw-only custody entry does not supply per-order text/identity. Keep native blind-verifier raw-path limitations and…
-- 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 
-Register: 75 owner decisions, 45 answered questions, 293 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 297 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

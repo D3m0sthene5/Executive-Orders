@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "59c124feec37acd0d9d329df1f947e22d2540e00ca0565071b8aab908c8c6d2a",
+  "dossier_sha256": "d075bee9706600146ce8c27e01373d84476111b01465d3e901ea720f1c88524b",
   "instrument_id": "EO:6516",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,31 +34,114 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.",
     "target provision not located: EO:6517"
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "mirror_transcription",
-        "identity_confirmed": false,
+        "complete_text_confirmed": true,
+        "grade": "machine_read_government_printed_copy",
+        "identity_confirmed": true,
         "instrument_id": "EO:6516",
         "pages_confirmed": false,
-        "sha256": "ce41326769a06e9a12003bfe7165809f982aeb8236565204f2ae3d04ae1749ca",
-        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6516-excusing-federal-employees-the-district-columbia-from-duty-december.txt",
-        "text_sha256": "70d90d1421dee9ba6a699005b384b5a29eb2fdccdff709744a6cc9f72bddf2f7"
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6516",
+              "requires_page_check": false,
+              "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6516.txt",
+              "text_sha256": "8c22a35f52b22faa04bdce5da2c1ed8ac9819d4d2cae1fb7b8cdc1693ecf5f7d",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6480-6689.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "DEPISITE™ EY THE  UNITED STATES CF A Ce  JAN 22 \"34  7 | Aé  Executive Order  Ex",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT.",
+              "matched_date": "December 20, 1933",
+              "matched_number": "No. 6516",
+              "pages_detail": {},
+              "register_date": "1933-12-20",
+              "register_number": "6516",
+              "similarity": [
+                {
+                  "agrees": false,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.6724,
+                  "length_ratio": 1.2512,
+                  "producer": "app-executive-orders",
+                  "sha256": "ce41326769a06e9a12003bfe7165809f982aeb8236565204f2ae3d04ae1749ca"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6516.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "text_chars": 1054
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6516",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6516.txt",
+            "text_sha256": "8c22a35f52b22faa04bdce5da2c1ed8ac9819d4d2cae1fb7b8cdc1693ecf5f7d",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6516.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "ce41326769a06e9a12003bfe7165809f982aeb8236565204f2ae3d04ae1749ca",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6516-excusing-federal-employees-the-district-columbia-from-duty-december.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6516.txt",
+        "text_sha256": "8c22a35f52b22faa04bdce5da2c1ed8ac9819d4d2cae1fb7b8cdc1693ecf5f7d"
       },
       {
         "complete_text_confirmed": false,
-        "grade": "mirror_transcription",
+        "grade": "machine_read_government_printed_copy",
         "identity_confirmed": false,
         "instrument_id": "EO:6517",
         "pages_confirmed": false,
-        "sha256": "c378e62e8b4d82f141121b95e5305521959eb6d4dbe116b8072e3ec4c805104a",
-        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6517-amendment-executive-order-december-20-1933-excusing-federal-employees.txt",
-        "text_sha256": "ba95c781cd2b3b9ea6f9d847b32c371f941a26d3b88b1dde67c597c673e9a81b"
+        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6517.txt",
+        "text_sha256": "8c24c0008c69709dd58e0e7a5e4d548660554315cb5d107e834a99efe47b8b12"
       }
     ],
     "quotation_recheck_required": true,
