@@ -1,0 +1,81 @@
+{
+  "reviewer": "mommsen-2-b06-arm2-after",
+  "model_family": "OpenAI",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "independent": true,
+  "separate_context": true,
+  "review_kind": "independent_ai_source_review",
+  "scope": "Exact final b06 CSV comparison with pinned EO:4019 source examination and administrative retention of 20 undispatched source holds",
+  "verdict": "confirmed_blocked_disposition",
+  "csv_pins": {
+    "decisions": {
+      "path": "research/excavator/mommsen2-2026-11-10/b06/packet/decisions.csv",
+      "sha256": "8548a9a4091212ab77af413022d66b73068f7f6aecc5259a5712683306a96fcd",
+      "rehash_match": true
+    },
+    "clauses": {
+      "path": "research/excavator/mommsen2-2026-11-10/b06/packet/clauses.csv",
+      "sha256": "4455e6f52ec84a8594befc78be68e8a2d315f8c98beb5dda2afbc23e4c12e0a3",
+      "rehash_match": true
+    }
+  },
+  "pinned_prior_source_review": {
+    "path": "research/excavator/mommsen2-2026-11-10/b06/packet/reviews/arm2/SOURCE_REVIEW.json",
+    "sha256": "420ae24b143eca0e9a4a98936ca431d8a8fd101e90227cbd6bccb5f853f126f0",
+    "rehash_match": true,
+    "scientifically_examined_target": "EO:4019"
+  },
+  "target_review": {
+    "instrument_id": "EO:4019",
+    "dossier_sha256": "ad591bed13a36cef9072fbc3fbb5605f85fd6222ac47dc02db7da87d9912a273",
+    "verdict": "confirm_blocked",
+    "raw_source": {
+      "path": "ProQuest Pre-1937 Orders/PT1-1924-EO-4019.pdf",
+      "sha256": "57bd95e431e9821d642a7b7f976cd0d292b649e21cd42563a0501d3350773e9e",
+      "rehash_match": true,
+      "freshly_rendered_and_visually_reread_all_pages": [1, 2],
+      "identity": "Printed No. 4019, title, full two-page body, Calvin Coolidge signature block and White House June 5, 1924 date agree. Handwritten marginal number alone is not the basis.",
+      "authentication": "Frozen archival_replica_checked and acceptable_as_original false preserved. No autograph or source-grade promotion."
+    },
+    "text_source": {
+      "path": "jobs/pinakes-proquest-ingest/output/texts/EO_4019.txt",
+      "sha256": "d7e69049dfa501a9a068b3604b4c261741bdcac9b119ab2c8a259fb8ff1d16f9",
+      "rehash_match": true,
+      "nine_csv_spans_read_against_exact_text": true
+    },
+    "inventory_comparison": "Final nine disjoint spans address the prior truncated inventory: set-apart/private-rights limitation, page-one boundary and page-two continuation/map reference, Canal Zone/perpetual use declaration, corrected description hereafter, extension/amendment of prior instruments, ratification of prior acts, and two OCR-reordered commencement fragments. Page number, signature/date and trailing noise are excluded from operative spans. Geographic descriptions and commencement fragments are dependent parts, not nine independent duties. Coverage confirmation does not make materially corrupt geographic OCR a faithful legal transcription.",
+    "effective_date": "Express from and after the date hereof supports June 5, 1924 commencement. The ratification of specified acts since February 1, as if the order preceded February 26, is distinct retrospective effect. No next-day delay or whole-order cessation follows.",
+    "first_end_and_current_status": "Blocked correctly. Initial set-apart and ratification can execute legal transitions at commencement, while the hereafter description, territorial/use regime under treaty and expanded jurisdiction require independent scope-specific ending/current-predicate sources. An empty chain, age, provisional NO, parent amendments or disappearance of a territorial label does not establish the first ending of all scopes.",
+    "savings": "Express subject to private rights must remain in analysis. Ratified acts and consequences of amended prior instruments may survive later changes. Neither survival nor extinction is settled without the relevant later sources.",
+    "material_gaps": [
+      "Material contour/monument and other geographic OCR discrepancies remain; page images read 260-foot where frozen text often reads 26-foot.",
+      "Referenced blueprint 6071-1 dated May 15, 1924 absent from supplied two-page representation; precise spatial reconciliation unresolved.",
+      "Treaty, predecessor proclamation/order and possession predicates not independently source-examined here; exact successor/termination/effective-date and tract-specific jurisdiction/savings sources remain absent.",
+      "Frozen original-authentication limitation persists."
+    ],
+    "earlier_candidates_and_limits": "February 1 possession and February 26 proclamation/order are prior predicates extended or ratified, not this order's ending. Prior review's USC October 10-14 gap, number-based CFR search and OFR pre-1937 warning remain; no new external search was run. Treaty and tract changes cannot be excluded by number searches.",
+    "confirmation_limit": "Confirm source-page and substantive inventory coverage and the blocked outcome. Do not infer exact cadastral-text approval, current status, a first-ending claim, complete original authentication, or approval of any unprovided EO:4019 lifecycle claim. All nine clause states remain unresolved; effective_date_confirmed false is not an approved ending date."
+  },
+  "undispatched_source_holds": {
+    "count": 20,
+    "instrument_ids": ["EO:4335", "EO:4553", "EO:4636", "EO:4681", "EO:4801", "EO:5250", "EO:4917", "EO:4729", "EO:4988", "EO:4420", "EO:4701", "EO:4971", "EO:5008", "EO:5065", "EO:5069", "EO:5238", "EO:5295", "EO:5353", "EO:5382", "EO:5463"],
+    "disposition": "Confirm retention as mandatory-source-blocked before model production. CSV rows uniformly say no lifecycle producer assigned, approved false, original/page/inventory confirmations false, with explicit source gaps. These are administrative source holds, not 20 scientific examinations or independent legal findings.",
+    "sources_independently_examined": false,
+    "claims_approved": false
+  },
+  "counts": {
+    "decision_rows": 21,
+    "blocked_outcomes": 21,
+    "approved_rows": 0,
+    "submitted": 0,
+    "nonempty_publication_kind_rows": 0,
+    "source_examined_targets": 1,
+    "undispatched_source_holds": 20,
+    "clause_rows": 9,
+    "clause_states_unresolved": 9
+  },
+  "no_unprovided_claim_approval": true,
+  "human_certified": false,
+  "publication_or_route_restart_authorized": false
+}
