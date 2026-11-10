@@ -21,7 +21,8 @@ from pathlib import Path
 
 import working_text as W
 
-FRAGMENT_GLOBS = ('jobs/*/output/FRAGMENTS*.jsonl', 'jobs/*/data/**/FRAGMENTS*.jsonl')
+FRAGMENT_GLOBS = ('jobs/*/output/FRAGMENTS*.jsonl', 'jobs/*/output/MIRROR_FRAGMENTS*.jsonl',
+                  'jobs/*/data/**/FRAGMENTS*.jsonl')
 CACHE_FORMAT = 'eo-fragment-index-cache/v2'
 CACHE_KEEP = 3
 _ROW_FIELDS = 11
