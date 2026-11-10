@@ -1,0 +1,55 @@
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpqc9piiv9/research/bentham/usage/w-csv/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/runner/work/Executive-Orders/Executive-Orders/research/bentham/usage/dorotheus/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/runner/work/Executive-Orders/Executive-Orders/research/bentham/usage/encyclopedie-2026-11-06/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/runner/work/Executive-Orders/Executive-Orders/research/bentham/usage/gratian/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/runner/work/Executive-Orders/Executive-Orders/research/bentham/usage/gutenberg-2026-11-09/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/runner/work/Executive-Orders/Executive-Orders/research/bentham/usage/justinian/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/runner/work/Executive-Orders/Executive-Orders/research/bentham/usage/photius/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpjg_zgr3_/research/bentham/usage/w/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpoddnrxb2/research/bentham/usage/heavy/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpoddnrxb2/research/bentham/usage/lean/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpk65in66c/research/bentham/usage/w/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.........................................
+----------------------------------------------------------------------
+Ran 45 tests in 1.712s
+
+OK
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/neyman-pilot/job.py", line 33, in <module>
+    tracker=load_tracker(root);live,problems=tracker.build(str(root));committed=csv_rows(root/'jobs/readiness-tracker/output/READINESS_BY_ORDER.csv')
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/tracker.py", line 625, in build
+    holds = load_source_audit_holds(root, claims, claim_gate, problems)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/readiness-tracker/tracker.py", line 915, in load_source_audit_holds
+    if not review.is_relative_to(base) or hashlib.sha256(review.read_bytes()).hexdigest()!=row['review_sha256']:
+                                                         ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/Executive-Orders/Executive-Orders/research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl'
