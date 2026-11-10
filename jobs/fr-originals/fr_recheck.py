@@ -358,7 +358,7 @@ LEADERS = re.compile(r"(?:[._—–\-]\s*){3,}\s*\d+\s*$|\.\s*\.\s*\.")
 # title; the number is in the closing tag). Not "Executive Orders:" (contents).
 GENERIC_HEADING = re.compile(r"^\W{0,3}E\s?X\s?E\s?C\s?U\s?T\s?I\s?V\s?E\s+O\s?R\s?D\s?E\s?R(?!\s?[sS])\W{0,3}$", re.I)
 PROCLAMATION_HEADING = re.compile(r"^\W{0,3}P\s?R\s?O\s?C\s?L\s?A\s?M\s?A\s?T\s?I\s?O\s?N\b\W*(?:\d[\d\s]*\W*)?$")
-ANY_TAG_LINE = re.compile(r"^\W{0,2}\[\s*N\s?o\.?\s*\d{3,5}\s?[A-Za-z]?\s?[\]1lI|)3J}]?\W{0,2}$")
+ANY_TAG_LINE = re.compile(r"^\W{0,2}\[\s*N\s?o\s?\.?\s*\d{3,5}\s?[A-Za-z]?\s?[\]1lI|)3J}]?\W{0,2}$")
 NUMBERED_HEADING_ANY = re.compile(r"^\W{0,3}E\s?X\s?E\s?C\s?U\s?T\s?I\s?V\s?E\s+O\s?R\s?D\s?E\s?R\s*(?:N\s?o\.?\s*)?(\d(?:\s?\d){3,4})", re.I)
 # "Executive Order 12890 of January 1, 1994" as the whole line (the modern heading form).
 MODERN_HEADING_TAIL = re.compile(r"\s*of\s+[A-Z][a-z]+\.?\s+\d{1,2},?\s*\d{4}\W*$")
@@ -412,9 +412,9 @@ def _tag_line(text, number):
     t = text.strip()
     # The opening "[" is required: OCR damage seen so far is on the closing bracket only, and
     # without it a wrapped reference line such as "No. 8792)." would pass for a closing tag.
-    if re.fullmatch(rf"\W{{0,2}}\[\s*N\s?o\.?\s*{d}\s?[\]1lI|)]\W{{0,2}}", t):
+    if re.fullmatch(rf"\W{{0,2}}\[\s*N\s?o\s?\.?\s*{d}\s?(?:\]|[1lI|)](?!\s*\]))\W{{0,2}}", t):
         return "strict"
-    m = re.fullmatch(rf"\W{{0,2}}\[\s*N\s?o\.?\s*{d}\s?([3J}}]?)\W{{0,2}}", t)
+    m = re.fullmatch(rf"\W{{0,2}}\[\s*N\s?o\s?\.?\s*{d}\s?([3J}}]?)\W{{0,2}}", t)
     if m:
         base = re.match(r"\d+", number).group(0)
         # "83363" for 8336 can only be a damaged "]" if 83363 is not itself an order number in scope.

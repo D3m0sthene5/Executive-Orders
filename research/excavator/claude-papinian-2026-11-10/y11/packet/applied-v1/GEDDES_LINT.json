@@ -1,0 +1,45 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "C:\\Users\\danie\\eo-wt\\papinian\\research\\excavator\\claude-papinian-2026-11-10\\y11\\packet\\PACKET.json",
+  "seconds": 86.828,
+  "files_read": 62381,
+  "file_reads": 124772,
+  "packet_fingerprint": "7002244b4d22df1da2f3efbd27462f3480b7356df8604c276baf0b57a3463cd4",
+  "claims_checked": 1,
+  "defect_flags": 0,
+  "coverage_gaps": 3,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:11129",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "387bacee096bdda06ec2d74715fb0d4c4337464e",
+          "tracked_files": 63287,
+          "verified_files": 62375,
+          "missing_or_changed_files": 912,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

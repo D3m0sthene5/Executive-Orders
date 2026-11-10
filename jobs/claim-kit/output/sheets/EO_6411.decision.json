@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "d30c1d0ac2ad1c61d29e6603bcd7cdf2a4716a598fbf0d9861822ae574f2c8d5",
+  "dossier_sha256": "927ef66e5a4393702631173e6360515e49406b476712587c4d3d00c0db8f8585",
   "instrument_id": "EO:6411",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,20 +34,108 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
+        "complete_text_confirmed": true,
         "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "identity_confirmed": true,
         "instrument_id": "EO:6411",
         "pages_confirmed": false,
-        "sha256": "f732517185955194d35de37cc7648422c57993f2c6435d52646e13dad71f5542",
-        "text_path": "jobs/tischendorf-originals/output/texts/EO_6411.txt",
-        "text_sha256": "c1a0d91c4b60ff5edfb99e9c24eb347e1edf99d70ca42ddb7874beb7d5b3b5bd"
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6411",
+              "requires_page_check": false,
+              "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6411.txt",
+              "text_sha256": "49909d693a40285b89da7b479f411d6888cdf78e13f4b42a9f1ca49a6f2c4c75",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6251-6479.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": " S| AG  Executive Order  Cope oF Farr CoMPETITION FOR THE Moror FIRE APPARATUS M",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT.",
+              "matched_date": "November 8, 1933",
+              "matched_number": "No. 6411",
+              "pages_detail": {},
+              "register_date": "1933-11-08",
+              "register_number": "6411",
+              "similarity": [
+                {
+                  "agrees": false,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.6982,
+                  "length_ratio": 1.1101,
+                  "producer": "app-executive-orders",
+                  "sha256": "f6d002258bb4e89305439fc09630cdb4e645e0a66e9461df32e492e614a2845d"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/tischendorf-originals/output/texts/EO_6411.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6411.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "text_chars": 1429
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6411",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6411.txt",
+            "text_sha256": "49909d693a40285b89da7b479f411d6888cdf78e13f4b42a9f1ca49a6f2c4c75",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6411.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "f6d002258bb4e89305439fc09630cdb4e645e0a66e9461df32e492e614a2845d",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6411-code-fair-competition-for-the-motor-fire-apparatus-manufacturing.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6411.txt",
+        "text_sha256": "49909d693a40285b89da7b479f411d6888cdf78e13f4b42a9f1ca49a6f2c4c75"
       }
     ],
     "quotation_recheck_required": true,

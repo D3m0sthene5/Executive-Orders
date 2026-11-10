@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "adf9d83ca96e03b462c931ab1d690d012c1b4fac5db8951f6d4f721b6d95b526",
+  "dossier_sha256": "9eb55e945f221eea857efec1a5b320eabe651f82053f3f03468ce62f1037d426",
   "instrument_id": "EO:6250",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,20 +34,108 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
+        "complete_text_confirmed": true,
         "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "identity_confirmed": true,
         "instrument_id": "EO:6250",
         "pages_confirmed": false,
-        "sha256": "f33289bdb431927860629be49ff99b52f033fdf658a13482f016c4155b722ec4",
-        "text_path": "jobs/tischendorf-originals/output/texts/EO_6250.txt",
-        "text_sha256": "6a872209b5f21b04451ffb5cfdc003ca1fd0c0b967b0a99387cb162ed2ed2f55"
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6250",
+              "requires_page_check": false,
+              "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6250.txt",
+              "text_sha256": "b0b27891aa69a335c35bd574e376997bc0b7f2b7df48293f19af7f5effe307e9",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6071-6250.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "DEPOSITED BY THE ure rs STATES OF AMERICE  sep 18 \"38  Boo CU \\ ~  Executive Ord",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "FRANKLIN D. ROOSEVELT.",
+              "matched_date": "August 16, 1933",
+              "matched_number": "No. 6250",
+              "pages_detail": {},
+              "register_date": "1933-08-16",
+              "register_number": "6250",
+              "similarity": [
+                {
+                  "agrees": false,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.7847,
+                  "length_ratio": 1.1716,
+                  "producer": "app-executive-orders",
+                  "sha256": "2905e83d5120a89d990bdca323dc45605f9251111a676e66e34af8e53bd33f68"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/tischendorf-originals/output/texts/EO_6250.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6250.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "text_chars": 1476
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6250",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6250.txt",
+            "text_sha256": "b0b27891aa69a335c35bd574e376997bc0b7f2b7df48293f19af7f5effe307e9",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6250.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "2905e83d5120a89d990bdca323dc45605f9251111a676e66e34af8e53bd33f68",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6250-code-fair-competition-for-the-legitimate-full-length-dramatic-and.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "1254ff83f7597e80f67d978895b07d5451a2675de492338e5282171b7aed294e",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6250.txt",
+        "text_sha256": "b0b27891aa69a335c35bd574e376997bc0b7f2b7df48293f19af7f5effe307e9"
       }
     ],
     "quotation_recheck_required": true,

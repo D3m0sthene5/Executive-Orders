@@ -31,7 +31,18 @@ never renew a stale seal. See BATCH.md for receipts and existing token telemetry
 
 1. Pull the assigned branch and read `HANDOFF/README.md`, your current assignment,
    `jobs/claim-drafts/AGENT_GUIDE.md` and `research/stage19/CLAIM_SCHEMA.md`.
-   `python jobs/claim-kit/kit.py next --agent NAME --n 20` reserves disjoint work in
+   **Name the Bentham action (`admission.py`).** In a checkout that holds Bentham's plan:
+   - `next` and `prepare` take `--action ID`, an id in `jobs/bentham/output/PLAN.json`.
+   - The kit refuses a call without an action, and any order outside the action's list
+     (`jobs/bentham/output/strata/<ID>.txt`).
+   - It admits at most 30 orders, across all agents, under a `probe.*` or unranked action until Bentham
+     measures it.
+   - Corrections (`--replacement-proposal`) are exempt.
+   - `prepare` writes `ADMISSION.json` beside the packet.
+
+   This enforces the owner's 2026-11-05 rule (D-20261105-1). It exists because pools nobody had measured
+   spent half a weekly Codex allowance for 12 claims on 2026-11-09/10.
+   `python jobs/claim-kit/kit.py next --agent NAME --action ID --n 20` reserves disjoint work in
    `research/readiness/CLAIM_KIT_LOCK.json`, ranked by remaining family unlocks.
    Reservations serialize processes in one shared checkout. Commit/pull reservations
    before dividing work across independent clones; a local lock cannot coordinate
