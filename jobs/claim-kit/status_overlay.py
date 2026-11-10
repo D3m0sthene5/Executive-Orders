@@ -34,9 +34,11 @@ SHA = re.compile(r"[0-9a-f]{64}\Z")
 CUTOFF = "2026-10-14"
 # Undecided-route status bases this module's gate makes live (Respondendi reads this constant from
 # origin/main to activate a lot kind; a route name appears only once its gate code has landed).
+#   current: a CURRENT: basis for YES (the gate below predates Accursius; the records come from F3,
+#            PR #272, so no claim can carry one until that lands)
 #   own_text: OWN_TEXT basis for self-executing and amendment-only orders (Accursius F5)
 #   working_text: a working text the tracker already credits, or a Lachmann confirmation (Accursius F6)
-UNDECIDED_ROUTES = frozenset({"own_text", "working_text"})
+UNDECIDED_ROUTES = frozenset({"current", "own_text", "working_text"})
 NO_BASIS_PREFIXES = ("ACT:", "TERM:", "ACTOR_TEXT:", "OWN_TEXT:")
 
 

@@ -230,7 +230,7 @@ class OverlayRouteTests(_OverlayFixture):
         self.base.assert_rejects("parent_end_requires_own_text_amends_parent_basis")
 
     def test_routes_constant_names_the_live_routes(self):
-        self.assertTrue({"own_text", "working_text"} <= O.UNDECIDED_ROUTES)
+        self.assertEqual(O.UNDECIDED_ROUTES, frozenset({"current", "own_text", "working_text"}))
         self.assertIn("OWN_TEXT:", O.NO_BASIS_PREFIXES)
 
 
