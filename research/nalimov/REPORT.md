@@ -120,6 +120,58 @@ files (`build.py`, `status_overlay.py`, `current_evidence.py`, `excavate.py`), a
 merged build is a 15-30 minute, 1.6 GB kit compile after resolving their overlaps. The tally above is the proxy. The
 real figure comes from rerunning `census.py` on main after each fix merges.
 
+## 1b. One-question tiers (measured, not built)
+
+This is the coordinator's direction after the calibration. The script does everything it can for an order, then
+narrows what is left to single legal questions. Each question comes with a small packet: the decisive held text and
+the field the answer fills. One model answer fills the field, and the claim then goes through the conveyor's ordinary
+review.
+
+The figures are from `research/nalimov/tiers.py` → `TIERS.json`, on the 693 blocked express candidates whose evidence
+froze. All are upper bounds. Cost assumes one Sonnet 5.5 answer per question, plus the mid-case verification ($0.109
+per claim) and the coordinator, at 80% upheld.
+
+| Tier, in build order | Question | Orders with it | Questions | Packet tokens (median) | Unlocked with F3-F7 | $ per adopted status |
+|---|---|---:|---:|---:|---:|---:|
+| one-time commands | was this one-time command performed, and when, per this held text? | 412 | 1,811 | 786 | 27 | 0.20 |
+| recorded amendments | does this held amending provision leave the order whole, and which clause does it change? | 236 | 448 | 945 | 1 | 0.19 |
+| current-law notes (after F3) | does this held U.S. Code / eCFR text state the order in force or ended? | 218 | 1,462 | 919 | 6 | 0.21 |
+| unlocated acting texts (after F4) | does this held text of another order act on this one, and how? | 229 | 472 | 1,301 | 5 | 0.19 |
+| own terms before the end | did this own term end the clause before the revocation? | 203 | 675 | 816 | 5 | 0.19 |
+| delayed effect | when did the revoking provision take effect? | 156 | 156 | 798 | 7 | 0.18 |
+
+A tier alone unlocks few orders, because most blocked orders need several. Cumulative, with F3-F7:
+
+| Tiers built so far | Orders unlocked (cumulative) |
+|---|---:|
+| one-time commands | 34 |
+| + recorded amendments | 44 |
+| + current-law notes | 72 |
+| + unlocated acting texts | 106 |
+| + own terms before the end | 149 |
+| + delayed effect | **189** |
+
+That is about 201 of 720 express orders with today's 12, at 18-21 cents per adopted status against $7.71, roughly
+40x lower.
+
+What stops the rest, after all six tiers:
+- sources (270);
+- a second witness before EO 7532 (215). That needs a source or a Respondendi rule change, not a reading;
+- history flags (87) and savings (82);
+- smaller groups.
+
+Pothier P1 covers almost none of the 412 one-time-command orders: 395 have no Pothier lead. Pothier covers orders with
+no dated history; these all have a revoking act. The one-time question still needs no new ruling. The 2026-10-28
+evidence-decides ruling already separates an exhausted command from its surviving consequences, and it requires
+evidence that the performance happened: an unrecorded performance stays open. Any question whose answer would need a
+doctrine the rulings do not give becomes a Kean ask, never a guess.
+
+Acquisition lists for Linnaeus:
+- `ACQUISITION_DECIDED_NO_LATER_INSTRUMENT.csv`: 1,483 decided orders whose dossier holds no later instrument or
+  ending term (962 of them before EO 7532).
+- `ACQUISITION_OFFICIAL_COPIES_OF_ENDING_ORDERS.csv`: 180 acting orders whose official copy would unblock 219 express
+  orders in part.
+
 ## 2. What the drafter writes and how it is checked
 
 For each complete order, the drafter fills exactly what a Maudslay producer writes:

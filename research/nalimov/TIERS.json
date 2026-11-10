@@ -1,0 +1,184 @@
+{
+ "schema": "nalimov-tiers/v1",
+ "orders_measured": 693,
+ "basis": "express-revocation candidates blocked on main (854514831e outputs); upper bounds",
+ "assumptions": {
+  "question_overhead_tokens": 700,
+  "answer_tokens": 250,
+  "answer_model_price_usd_per_mtok": {
+   "input": 2.0,
+   "output": 10.0
+  },
+  "verify_usd_per_claim": 0.109,
+  "coordinator_usd_per_claim": 0.03,
+  "upheld_rate": 0.8,
+  "answers": "one answer per question; the claim then gets the full conveyor review"
+ },
+ "tiers": {
+  "one_time_commands": {
+   "orders_with_this_blocker": 412,
+   "questions": 1811,
+   "questions_per_order_median": 2.0,
+   "question_packet_tokens_median": 786,
+   "question_packet_tokens_p90": 943,
+   "unlocked_by_this_tier_alone": 11,
+   "unlocked_by_this_tier_with_F3_F7": 27,
+   "needs_fix_first": null,
+   "projected_usd_per_adopted_status": 0.197,
+   "vs_full_route": 39.2,
+   "pothier_lead_kinds": {
+    "no Pothier lead": 395,
+    "merged_into_parent_on_issue": 5,
+    "revoked_by_later_order": 2,
+    "ended_by_later_member_order": 2,
+    "ended_by_later_instrument": 2,
+    "ended_by_named_later_instrument": 2
+   }
+  },
+  "recorded_amendments": {
+   "orders_with_this_blocker": 236,
+   "questions": 448,
+   "questions_per_order_median": 1.0,
+   "question_packet_tokens_median": 944.5,
+   "question_packet_tokens_p90": 1719,
+   "unlocked_by_this_tier_alone": 0,
+   "unlocked_by_this_tier_with_F3_F7": 1,
+   "needs_fix_first": null,
+   "projected_usd_per_adopted_status": 0.185,
+   "vs_full_route": 41.6,
+   "pothier_lead_kinds": {
+    "no Pothier lead": 228,
+    "ended_by_named_later_instrument": 2,
+    "persists_until_revoked_standing_withdrawal": 2,
+    "merged_into_parent_on_issue": 1,
+    "ended_by_later_instrument_date_uncertain": 1,
+    "ended_revoked_by_later_order": 1
+   }
+  },
+  "read_current_law": {
+   "orders_with_this_blocker": 218,
+   "questions": 1462,
+   "questions_per_order_median": 3.0,
+   "question_packet_tokens_median": 919.0,
+   "question_packet_tokens_p90": 937,
+   "unlocked_by_this_tier_alone": 3,
+   "unlocked_by_this_tier_with_F3_F7": 6,
+   "needs_fix_first": "F3",
+   "projected_usd_per_adopted_status": 0.21,
+   "vs_full_route": 36.7,
+   "pothier_lead_kinds": {
+    "no Pothier lead": 218
+   }
+  },
+  "read_unlocated_actor": {
+   "orders_with_this_blocker": 229,
+   "questions": 472,
+   "questions_per_order_median": 1,
+   "question_packet_tokens_median": 1301.0,
+   "question_packet_tokens_p90": 1902,
+   "unlocked_by_this_tier_alone": 1,
+   "unlocked_by_this_tier_with_F3_F7": 5,
+   "needs_fix_first": "F4",
+   "projected_usd_per_adopted_status": 0.186,
+   "vs_full_route": 41.3,
+   "pothier_lead_kinds": {
+    "no Pothier lead": 219,
+    "merged_into_parent_on_issue": 2,
+    "ended_by_later_instrument": 2,
+    "ended_by_later_member_order": 1,
+    "ended_by_later_order": 1,
+    "designation_no_term": 1
+   }
+  },
+  "own_terms_before_end": {
+   "orders_with_this_blocker": 203,
+   "questions": 675,
+   "questions_per_order_median": 2,
+   "question_packet_tokens_median": 816,
+   "question_packet_tokens_p90": 929,
+   "unlocked_by_this_tier_alone": 5,
+   "unlocked_by_this_tier_with_F3_F7": 5,
+   "needs_fix_first": null,
+   "projected_usd_per_adopted_status": 0.191,
+   "vs_full_route": 40.3,
+   "pothier_lead_kinds": {
+    "no Pothier lead": 189,
+    "persists_until_revoked_standing_withdrawal": 3,
+    "ended_by_named_later_instrument": 3,
+    "ended_by_later_instrument_date_uncertain": 1,
+    "ended_by_later_order_naming_it": 1,
+    "revoked_by_named_order": 1
+   }
+  },
+  "delayed_effect": {
+   "orders_with_this_blocker": 156,
+   "questions": 156,
+   "questions_per_order_median": 1.0,
+   "question_packet_tokens_median": 797.5,
+   "question_packet_tokens_p90": 885,
+   "unlocked_by_this_tier_alone": 5,
+   "unlocked_by_this_tier_with_F3_F7": 7,
+   "needs_fix_first": null,
+   "projected_usd_per_adopted_status": 0.179,
+   "vs_full_route": 43.1,
+   "pothier_lead_kinds": {
+    "no Pothier lead": 117,
+    "ended_by_named_later_instrument": 9,
+    "merged_into_parent_on_issue": 4,
+    "revoked_by_later_order": 4,
+    "persists_until_revoked_standing_withdrawal": 4,
+    "ended_by_later_instrument": 3
+   }
+  }
+ },
+ "cumulative": [
+  {
+   "tiers_through": "one_time_commands",
+   "with_F3_F7": true,
+   "orders_unlocked": 34,
+   "new_at_this_step": 34
+  },
+  {
+   "tiers_through": "recorded_amendments",
+   "with_F3_F7": true,
+   "orders_unlocked": 44,
+   "new_at_this_step": 10
+  },
+  {
+   "tiers_through": "read_current_law",
+   "with_F3_F7": true,
+   "orders_unlocked": 72,
+   "new_at_this_step": 28
+  },
+  {
+   "tiers_through": "read_unlocated_actor",
+   "with_F3_F7": true,
+   "orders_unlocked": 106,
+   "new_at_this_step": 34
+  },
+  {
+   "tiers_through": "own_terms_before_end",
+   "with_F3_F7": true,
+   "orders_unlocked": 149,
+   "new_at_this_step": 43
+  },
+  {
+   "tiers_through": "delayed_effect",
+   "with_F3_F7": true,
+   "orders_unlocked": 189,
+   "new_at_this_step": 40
+  }
+ ],
+ "remaining_remedies_after_four_tiers": {
+  "sources": 270,
+  "tier:second_witness": 215,
+  "tier:history_flags": 87,
+  "tier:savings": 82,
+  "tier:first_of_several_ends": 57,
+  "tier:non_census_actor": 53,
+  "tier:empty_history": 52,
+  "tier:amending_order": 24,
+  "tier:partial_ends": 22,
+  "kind:spent_on_issue": 1
+ }
+}

@@ -273,6 +273,10 @@ def run(data, out, chunk=150, limit=None, evidence_cache=None, only=None):
         elif evidence_cache and not isinstance(ev, str) and {x.split(":")[0] for x in bl} <= DECOY_BLOCKERS:
             (evidence_cache / ("decoy-" + iid.replace(":", "_") + ".json")).write_text(
                 json.dumps(ev, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+        if evidence_cache and not isinstance(ev, str) and bl:   # every blocked candidate, for the tier measures
+            (evidence_cache / "blocked").mkdir(exist_ok=True)
+            (evidence_cache / "blocked" / (iid.replace(":", "_") + ".json")).write_text(
+                json.dumps(ev, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
     if only:
         (out / "CENSUS_ONLY.json").write_text(json.dumps({"ids": ids, "complete": [r["instrument_id"] for r in complete]},
                                                          indent=1) + "\n", encoding="utf-8")
