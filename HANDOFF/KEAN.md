@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (5)
+## Waiting for the owner (6)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-l1r-correction**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-nalimov-calibration**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-l1r-correction**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -52,7 +52,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 344; `search` finds the rest)
+## Newest results (6 of 347; `search` finds the rest)
 
 - 2026-11-10 F-20261110-why-warnings-missed **analysis**: Checked what the project already knew before the overnight Codex wave launched (2026-11-09 21:45 ET), and why… Lesson: A lessons register stops nothing unless a gate enforces it at the decision point. jobs/augur-launch/augur.py refuses a wave unless: its objective is an outcome; its actions are Bentham's; it ramps fr…
 - 2026-11-10 F-20261110-whitworth-forecast **analysis**: Whitworth: fixed the interfaces between the six parts of the next production line (Linnaeus, Accursius, Larre… Lesson: Score the first batch against this forecast whatever the result; no larger batch before an end-to-end gauge test is green and the calibration batch is scored
@@ -61,4 +61,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-10 F-20261110-respondendi-wave **worked**: Owner-requested research workflow (Fable 5.2 on High) to lift the undecided-status bottleneck permanently and… Lesson: Fable 5.2 at high effort costs about 25-30 USD per deep-reading worker (cache reads at 1 USD per million dominate); a 14-worker research storm is about 255 USD. Use it for diagnosis that needs whole-…
 - 2026-11-10 F-20261110-respondendi-v2 **worked**: Respondendi v2 at the owner's request: one standing approval for every kind of undecided order (express revoc… Lesson: Breadth without a measured error bound is not breadth: each red-team screen removed a way to adopt a wrong status and cost reach (3,465 claimed in the v2 draft, 1,468 after). The reach that remains i…
 
-Register: 82 owner decisions, 52 answered questions, 344 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 82 owner decisions, 52 answered questions, 347 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
