@@ -447,6 +447,12 @@ class AuditsAndReversal(Base):
         self.fx.wjson(rel, data)
         self.assertFalse(R.verify(self.root)["ok"])
 
+    def test_writes_keep_the_owner_report_current(self):
+        report = self.fx.path(R.REPORT).read_text(encoding="utf-8")
+        self.assertIn("| lot-one |", report)
+        self.record(self.sample[0])
+        self.assertIn("Audits: 1", self.fx.path(R.REPORT).read_text(encoding="utf-8"))
+
     def test_report_states_zero_human_certification(self):
         text = R.report_text(self.root)
         self.assertIn("Human-certified whole lifecycles: 0", text)

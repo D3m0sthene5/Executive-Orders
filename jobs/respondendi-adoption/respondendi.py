@@ -703,6 +703,7 @@ def adopt(repo, lot, completions, admission_paths, date=None, write=False):
         if len(after["statuses"]) != before + len(accepted):
             raise Refused("population did not grow by exactly the adopted orders")
     tx.commit(check)
+    write_report(repo)
     result.update(written=True, adopted=len(accepted), audit_sample=sample, probation=probation,
                   decided_before=before, decided_after=before + len(accepted), owner_decision=decision)
     return result
@@ -758,6 +759,7 @@ def audit_record(repo, lot, iid, auditor, role, family, verdict, status_found, b
         result["stop_id"] = stop_id
         result["next"] = f"reverse {iid}: respondendi.py reverse --lot {lot} --order {iid} --reason ... --write"
     tx.commit(lambda: None)
+    write_report(repo)
     result["written"] = True
     return result
 
@@ -817,6 +819,7 @@ def reverse(repo, lot, iid, reason, date=None, write=False):
         if len(population(repo)["statuses"]) != before - 1:
             raise Refused("population did not shrink by exactly the reversed order")
     tx.commit(check)
+    write_report(repo)
     result["written"] = True
     return result
 
@@ -864,6 +867,13 @@ def report_text(repo):
         lines += ["", "## Pending audits", ""] + [f"- {p['lot']} {p['instrument_id']} (since {p['since']})"
                                                 for p in s["pending_audits"]]
     return "\n".join(lines) + "\n"
+
+
+def write_report(repo):
+    """Regenerate the owner report after every write, so it is never stale."""
+    full = path_in(repo, REPORT)
+    full.parent.mkdir(parents=True, exist_ok=True)
+    full.write_bytes(report_text(repo).encode("utf-8"))
 
 
 def verify(repo):
@@ -983,12 +993,9 @@ def main(argv=None):
         elif args.cmd == "status":
             out = status(repo)
         elif args.cmd == "report":
-            text = report_text(repo)
             if args.write:
-                full = path_in(repo, REPORT)
-                full.parent.mkdir(parents=True, exist_ok=True)
-                full.write_bytes(text.encode("utf-8"))
-            print(text)
+                write_report(repo)
+            print(report_text(repo))
             return 0
         else:
             out = verify(repo)
