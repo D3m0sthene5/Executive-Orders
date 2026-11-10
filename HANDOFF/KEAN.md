@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 289; `search` finds the rest)
+## Newest results (6 of 290; `search` finds the rest)
 
+- 2026-11-10 F-20261110-mommsen1-wave-production **partly worked**: Photius official-print recheck then claim_ready.no.fr batches under the owner wave Lesson: Preserve source reviews but reprepare any packet after Valla context changes. When first-end and residual evidence is absent, block and hand off rather than infer a cessation. Treat unknown cost as u…
 - 2026-11-10 F-20261110-mommsen1-claim-filename-gate **stopped at gate**: Complete MOMMSEN-I NO01 with agent mommsen-1 and the owner-required canonical claim filename mommsen1-2026-11… Lesson: Allow the compact Mommsen lane alias in the own-agent filename gate; keep all other ownership checks and publication requirements unchanged
 - 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 - 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
 - 2026-11-09 F-20261109-mission-refresh-stuck **analysis**: Checked why the dashboard's Mission tab says 'Pending mission publication' after the 2026-11-09 runs settled. Lesson: The freshness guard is working as designed, but every refresh since 2026-11-06 is refused, so something upstream (checker inputs versus the canonical readiness tree) needs a fix before Mission moves…
 - 2026-11-09 F-20261109-mission-refresh-diagnosed **partly worked**: Diagnosed why Mission (jobs/daily-digest/mission.py) has refused every refresh since 2026-11-06 and fixed the… Lesson: A guard that checks another job's recorded inputs must use that job's recorded scope; narrowing a job's freshness scope silently breaks consumers that assumed whole-tree capture. A page check that pi…
-- 2026-11-09 F-20261109-gutenberg-valla-pilot-chain **partly worked**: Find why the Valla bounded pilot check fails on every PR (seen on #242 and the sol/montfaucon branches) Lesson: A failing non-required check can hide later failures for days; when it turns red, read every step, not only the first failing one. Next: decide in Valla whether a schema-v2 re-tag file is a productio…
 
-Register: 76 owner decisions, 45 answered questions, 289 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 76 owner decisions, 45 answered questions, 290 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
