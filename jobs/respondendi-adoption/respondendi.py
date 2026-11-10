@@ -309,6 +309,34 @@ def authorization(repo):
     return dict(found, rule_sha256=digest, main_commit=commit)
 
 
+def ulpian_state(repo, kind):
+    """The owner-approved Ulpian bound rule on GitHub's main, and its class table; (row index, reason or None)."""
+    rule = kind["owner_rule"]
+    token = rule["token"] + rule["sha256"]
+    body = git_main(repo, rule["path"])
+    if body is None or sha(body.replace(b"\r\n", b"\n")) != rule["sha256"]:
+        return {}, f"{rule['path']} on main is not the approved text (sha256 {rule['sha256'][:12]}...)"
+    raw = git_main(repo, DECISIONS) or b""
+    latest = {}
+    for line in raw.decode("utf-8", errors="replace").splitlines():
+        try:
+            record = json.loads(line)
+        except ValueError:
+            continue
+        if record.get("id") == rule["decision"] and record.get("rev", 0) >= latest.get("rev", -1):
+            latest = record
+    ruling = str(latest.get("ruling", "")).strip()
+    sources = [x for x in latest.get("sources") or [] if isinstance(x, str) and x.startswith(RULINGS)]
+    if not (ruling.startswith("Approve") and token in ruling and any(token in (git_main(repo, x) or b"").decode("utf-8", errors="replace")
+                                                                     for x in sources)):
+        return {}, f"no owner approval on main: {rule['decision']} citing {rule['token']}{rule['sha256'][:12]}..."
+    table = git_main(repo, rule["class"])
+    if table is None:
+        return {}, f"{rule['class']} is not on main"
+    rows = {r.get("instrument_id"): r for r in csv.DictReader(io.StringIO(table.decode("utf-8-sig"), newline=""))}
+    return rows, None
+
+
 def routes_on_main(repo):
     """Routes the merged claim kit declares live: UNDECIDED_ROUTES in status_overlay.py on origin/main."""
     raw = git_main(repo, KIT_OVERLAY)
@@ -632,8 +660,11 @@ def classify(repo, claim, decision, evidence, params, routes=None):
     segments = _segments(history)
     acts = {b: r for b, r in records.items() if b.startswith("ACT:")}
     actor_texts = [b for b in records if b.startswith("ACTOR_TEXT:")]
+    life = params["kinds"].get("ulpian_life_bound") or {}
     if status == "yes":
         kid = "yes_current"
+    elif life and end.get("mechanism") in life.get("mechanisms", []):
+        kid = "ulpian_life_bound"
     elif any(b.startswith("OWN_TEXT:") for b in basis):
         kid = "spent_on_issue"
     elif any(b.startswith("TERM:") for b in basis) and end.get("actor") == iid:
@@ -730,6 +761,23 @@ def classify(repo, claim, decision, evidence, params, routes=None):
                     cited.add(str(((item.get("source") or {}) if isinstance(item.get("source"), dict) else {}).get("evidence_id")))
             if parents and not parents & cited:
                 why.append("an amending order's surviving text must cite the held PARENT_END record as its source")
+    elif kid == "ulpian_life_bound":
+        rows, reason = ulpian_state(repo, kind)
+        if reason:
+            why.append(f"lot kind {kid} is inactive until: {kind['prerequisite']} ({reason})")
+        row = rows.get(iid) or {}
+        if not reason and not (row.get("tier") == "quoted_fact" and row.get("status") == "undecided"
+                               and _date(row.get("bound")) and row["bound"] < cutoff):
+            why.append("not a quoted-fact member of the approved Ulpian class with a bound before the cutoff")
+        if row:
+            if end.get("date_kind") != "not_later_than" or end.get("first_cause") != "unresolved" or date != row.get("bound"):
+                why.append("the end must be not_later_than the Ulpian bound, with the first cause unresolved")
+            src = end.get("source") if isinstance(end.get("source"), dict) else {}
+            if src.get("text_path") != row.get("text_path"):
+                why.append("the end must cite the held text the Ulpian class read")
+            flat = json.dumps(claim, ensure_ascii=False).lower()
+            if str(row.get("born_by")) not in flat or "unknown" not in flat:
+                why.append("the claim must state the birth bound it rests on and that use of the permission is unknown")
     elif kid == "yes_current":
         signals = kind["ending_signals"]
         if claim.get("whole_order_end"):
@@ -779,11 +827,17 @@ def qualify(repo, completion, admission_paths, params, statuses, census, adopted
     if not comp.is_dir():
         raise Refused(f"completion folder missing: {completion}")
     crel = rel_of(repo, comp)
-    manifest_rel = rel_of(repo, comp.parent / "COMPLETION.json")
-    manifest = read_json(repo, manifest_rel)
     inputs = read_json(repo, crel + "/INPUTS.json")
-    preserved = (inputs.get("preserved_receipts") or {}).get(manifest_rel)
-    if preserved != sha(path_in(repo, manifest_rel).read_bytes()):
+    receipts_in = inputs.get("preserved_receipts") or {}
+    # The manifest is the COMPLETION.json the completion itself pinned: beside it (claim-kit and Papinian layout) or
+    # in the packet's completion/ folder (Maudslay conveyor layout). Exactly one candidate may exist.
+    candidates = [k for k in receipts_in if k.endswith("/COMPLETION.json")
+                  and k in (rel_of(repo, comp.parent / "COMPLETION.json"), rel_of(repo, comp.parent / "completion" / "COMPLETION.json"))]
+    if len(candidates) != 1:
+        raise Refused(f"{crel}: cannot tell which COMPLETION.json the completion ran with")
+    manifest_rel = candidates[0]
+    manifest = read_json(repo, manifest_rel)
+    if receipts_in[manifest_rel] != sha(path_in(repo, manifest_rel).read_bytes()):
         raise Refused(f"{manifest_rel} differs from the manifest the completion ran with")
     pub = read_json(repo, crel + "/PUBLICATION.json")
     if pub.get("mode") != "replacement_proposal" or pub.get("written") is not True:
@@ -948,6 +1002,9 @@ def qualify(repo, completion, admission_paths, params, statuses, census, adopted
         if status_only and not kind_rule.get("status_only", False):
             why.append(f"lot kind {kid} has no status-only tier")
         lacking = sorted(set(kind_rule.get("required_control_kinds", [])) - control_kinds_by_lot.get(kid, set()))
+        anyof = set(kind_rule.get("required_control_any", []))
+        if anyof and not anyof & control_kinds_by_lot.get(kid, set()):
+            lacking = lacking + [" or ".join(sorted(anyof))]
         if lacking:
             why.append(f"lot kind {kid} needs controls of kind {lacking} planted on claims of that kind in the review set")
         if status_only and any(re.search(params["status_only_forbidden_gap_pattern"], _norm(g)) for g in gaps):
@@ -1713,7 +1770,8 @@ def main(argv=None):
         elif args.cmd == "kinds":
             params, routes = parameters(repo), routes_on_main(repo)
             out = {k: {"status": v["status"], "route": v.get("route"),
-                       "active": not v.get("route") or v["route"] in routes, "prerequisite": v.get("prerequisite")}
+                       "active": (ulpian_state(repo, v)[1] is None) if v.get("owner_rule") else (not v.get("route") or v["route"] in routes),
+                       "prerequisite": v.get("prerequisite")}
                    for k, v in params["kinds"].items()}
             out["working_text_basis_active"] = params["text_bases"]["working"]["route"] in routes
         elif args.cmd == "report":

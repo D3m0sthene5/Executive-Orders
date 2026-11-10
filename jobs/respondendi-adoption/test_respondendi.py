@@ -149,6 +149,12 @@ class Fixture:
                                      "text": "This order shall remain in effect until January 1, 1950."}
                 end = {"actor": iid, "date": "1950-01-01", "mechanism": "own_terms_fixed_term",
                        "quote": "This order shall remain in effect until January 1, 1950."}
+            elif lk == "ulpian":
+                basis = [f"ORIGINAL:{iid}"]
+                end = {"actor": iid, "date": "2025-07-22", "date_kind": "not_later_than", "first_cause": "unresolved",
+                       "mechanism": "life_of_named_person",
+                       "quote": "Mr. Smith, born before February 9, 1903, may be appointed without examination."}
+                rationale = "Birth no later than 1903-02-09 (born_by); end not later than 2025-07-22; use of the permission unknown."
             elif lk in ("spent", "amends"):
                 basis = [f"OWN_TEXT:{iid}#1"]
                 records[basis[0]] = {"own_text_kind": "spent_on_issue" if lk == "spent" else "amends_parent",
@@ -185,13 +191,18 @@ class Fixture:
             for name, value in (("EVIDENCE.json", evidence), ("STATUS_DECISION.json", decision),
                                 ("STATUS_REVIEW.json", review), ("PROMOTION_PROPOSAL.json", proposal)):
                 self.wjson(f"{b}/{name}", value)
-            if end is not None:
+            if end is not None and lk == "ulpian":
+                end["source"] = {"quote": end.pop("quote"), "text_path": f"jobs/csc-annual-reports/output/texts/EO_{n}.txt",
+                                 "sha256": "2" * 64, "signing_date": "1940-05-01"}
+            elif end is not None:
                 end["source"] = {"quote": end.pop("quote"), "text_path": "jobs/fr-originals/texts/EO_9000.txt",
                                  "sha256": "1" * 64, "signing_date": "1950-01-01" if end["actor"] != iid else "1940-05-01"}
             claim = {"instrument_id": iid, "whole_order_status": st, "whole_order_end": end,
                      "claim_kit": {"agent": "producer-x", "status_overlay": {"decision_sha256": dsha, "review_sha256": rsha}}}
             if savings:
                 claim["savings_residuals"] = savings
+            if lk == "ulpian":
+                claim["research_rationale"] = rationale
             claims.append(claim)
             csha = R.canon(claim)
             kind = "partial_research" if iid in partial else "whole_case"
@@ -662,6 +673,49 @@ class LotKinds(Base):
         self.assertEqual(sorted(R.population(self.root)["statuses"]), ["EO:1", "EO:5"])
 
 
+class UlpianLot(Base):
+    """The owner-approved Ulpian bound rule, read from main, opens the life-bound kind."""
+
+    def setUp(self):
+        super().setUp()
+        self.fx.approve()
+
+    def ulpian_on_main(self, bound="2025-07-22"):
+        body = b"# Ulpian bound rule (fixture)\n"
+        digest = hashlib.sha256(body).hexdigest()
+        rule = self.fx.path(R.RULE).read_text(encoding="utf-8").replace(
+            "57a95ba0c11e7207c27de317d7f522c24d05b9aedda91eea261ea2f9c0f64699", digest)
+        self.fx.write(R.RULE, rule)
+        self.fx.write("jobs/ulpian-outer-bound/RULE.md", body)
+        rows = [{"instrument_id": "EO:2", "tier": "quoted_fact", "status": "undecided", "born_by": "1903-02-09",
+                 "bound": bound, "text_path": "jobs/csc-annual-reports/output/texts/EO_2.txt"}]
+        self.fx.write("research/ulpian/CLASS.csv", csv_bytes(rows, list(rows[0])))
+        ruling = self.fx.write(R.RULINGS + "ulpian.md", f"1. Approve. ulpian-rule-sha256:{digest}\n")
+        with self.fx.path(R.DECISIONS).open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps({"id": "D-20261110-ulpian-life-bound", "rev": 0,
+                                 "ruling": f"Approve the Ulpian lot. ulpian-rule-sha256:{digest}", "sources": [ruling]}) + "\n")
+        self.fx.approve(decision_id="D-20991231-respondendi-ulpian", ruling_name="respondendi-ulpian.md")
+
+    def test_the_lot_waits_for_the_owner_rule_on_main(self):
+        self.fx.build_wave(lot_kinds={"EO:2": "ulpian", "EO:4": "ulpian"}, kinds=("second_person_hidden", "partial_as_whole"))
+        self.assertIn("inactive until: PR #271", self.reasons(self.fx.plan(write=False), "EO:2"))
+
+    def test_a_class_member_qualifies_with_its_bound_and_disclosure(self):
+        self.ulpian_on_main()
+        self.fx.build_wave(lot_kinds={"EO:2": "ulpian", "EO:4": "ulpian"}, kinds=("second_person_hidden", "partial_as_whole"))
+        out = self.fx.plan(write=False)
+        self.assertIn("EO:2", out["qualifying"])
+        self.assertIn("not a quoted-fact member", self.reasons(out, "EO:4"))
+
+    def test_a_wrong_bound_or_missing_control_is_refused(self):
+        self.ulpian_on_main(bound="2024-01-01")
+        self.fx.build_wave(lot_kinds={"EO:2": "ulpian", "EO:4": "ulpian"}, kinds=("second_person_hidden", "partial_as_whole"))
+        self.assertIn("not_later_than the Ulpian bound", self.reasons(self.fx.plan(write=False), "EO:2"))
+        self.ulpian_on_main()
+        self.fx.build_wave(lot_kinds={"EO:2": "ulpian"}, kinds=("date_shift", "partial_as_whole"))
+        self.assertIn("planted on claims of that kind", self.reasons(self.fx.plan(write=False), "EO:2"))
+
+
 class StatusOnly(Base):
     def setUp(self):
         super().setUp()
@@ -868,7 +922,8 @@ class Statistics(unittest.TestCase):
         (root / R.RULE).parent.mkdir(parents=True)
         shutil.copy(HERE / "RULE.md", root / R.RULE)
         params = R.parameters(root)
-        self.assertEqual(set(params["kinds"]), {"express_named_revocation", "own_terms", "spent_on_issue", "yes_current"})
+        self.assertEqual(set(params["kinds"]), {"express_named_revocation", "own_terms", "spent_on_issue", "yes_current",
+                                                "ulpian_life_bound"})
         self.assertEqual(params["kinds"]["yes_current"]["route"], "current")
 
 

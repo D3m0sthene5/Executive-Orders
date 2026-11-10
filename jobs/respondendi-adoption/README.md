@@ -51,7 +51,9 @@ python -I jobs/respondendi-adoption/respondendi.py verify               # exit 1
 ```
 
 Without `--write`, `plan` and `adopt` report what would qualify and why the rest would not, and write nothing. The
-owner report is regenerated after every write. Coordinators follow [`UNDECIDED_CHECKLIST.md`](UNDECIDED_CHECKLIST.md).
+owner report is regenerated after every write. Coordinators follow [`UNDECIDED_CHECKLIST.md`](UNDECIDED_CHECKLIST.md);
+producers of batches (the Maudslay conveyor, claim-drafting sessions) follow [`INTERFACE.md`](INTERFACE.md), the list
+of every file and field `plan` reads.
 
 ## Safeguards built in
 
@@ -59,7 +61,8 @@ owner report is regenerated after every write. Coordinators follow [`UNDECIDED_C
   named revocation (`ACT:`, with a sentence-level check and a second witness) and own terms (`TERM:`), both active;
   spent on issue, including amendment-only orders (`OWN_TEXT:`, route `own_text`, F5; always fully audited); YES with a positive current
   source and negative screens (`CURRENT:`, route `current`, F3; always fully audited; stops on one confirmed error);
-  a working-text basis for each kind (route `working_text`, F6). The merged kit's `UNDECIDED_ROUTES` opens a route;
+  the owner-approved Ulpian life-bound lot (opens when PR #271 is on main); a working-text basis for each kind
+  (route `working_text`, F6). The merged kit's `UNDECIDED_ROUTES` opens a route;
   the kit's own gates are re-run on every proposal. Orders outside every kind stay on named owner decisions.
 - **Sequential audit per stratum** (process fingerprint + kind + text basis + tier): every member is audited until
   the stratum's 95% upper bound on the error rate reaches 5% (59 audits with no confirmed error, 93 with one), then

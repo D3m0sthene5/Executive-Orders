@@ -20,9 +20,9 @@ the draft did not bound the error rate it claimed to. Projected conversion on th
 measured 7.5% (16 of 212) to about 17-27% with the rule and status-only tier, and to about 45-60% for EO 7532 and
 later once the routing fixes land. **Version 2** (section 7, ask A-20261110-respondendi-standing-rule-v2) puts every kind of undecided order under
 one approval: express revocations (active), own terms (active), spent on issue including amendment-only orders (F5),
-YES with a positive current source (F3) and working texts (F6). Each kind opens by itself, on its own audit
+YES with a positive current source (F3), the owner-approved Ulpian life-bound lot (PR #271) and working texts (F6). Each kind opens by itself, on its own audit
 probation, when the merged claim kit declares its route live. After two hostile review rounds, 468 orders are
-reachable today and 1,468 once F3, F5 and F6 land. Nothing here adopted a status, changed a count or certified
+reachable today and 1,484 once PR #271, F3, F5 and F6 land. Nothing here adopted a status, changed a count or certified
 anything. Human-certified: 0.
 
 ## 1. Diagnosis: why 84 of Papinian's 90 undecided attempts did not become adoptable
@@ -251,7 +251,7 @@ attempted order plus audits (34% of adopted orders on probation), working the wh
 ## 5. What the owner is asked
 
 **A-20261110-respondendi-standing-rule-v2** (recorded in Kean, `HANDOFF/KEAN_ASKS.md`; it supersedes A-20261110-respondendi-standing-rule, which asked
-about v1): approve `jobs/respondendi-adoption/RULE.md` version 2 (sha256 `b37743092fa817a43add4fdc12733a11faf03c7692f7f1949579eff110d2a659`) as a standing rule. **Recommended:
+about v1): approve `jobs/respondendi-adoption/RULE.md` version 2 (sha256 `e15ae99b3e5ae800e18d331cb2b5fe6ae233aa36052b13f512b86eabbec01423`) as a standing rule. **Recommended:
 yes.**
 
 - **What approval covers.** Undecided-route proposals of every lot kind in the rule are adopted after the audits it
@@ -259,7 +259,7 @@ yes.**
   the claim kit's fix merges, each on its own probation.
 - **How to approve.** Commit, through a merged pull request, an owner-ruling file under
   `research/readiness/owner_rulings/` and a Kean decision whose ruling is exactly
-  `Owner approves respondendi-rule-sha256:b37743092fa817a43add4fdc12733a11faf03c7692f7f1949579eff110d2a659`. The agent who records the owner's answer does that, as for every
+  `Owner approves respondendi-rule-sha256:e15ae99b3e5ae800e18d331cb2b5fe6ae233aa36052b13f512b86eabbec01423`. The agent who records the owner's answer does that, as for every
   other owner decision.
 - **To approve fewer kinds or other numbers,** amend the rule; the recording agent computes the new hash.
 - **What does not change.** Statuses stay provisional AI hypotheses, human-certified stays 0, and count-changing pull
@@ -292,7 +292,7 @@ design, integration, all code); no production claim batch ran and no dossier was
 
 The owner found v1's single lot "really really disappointing" and asked for one rule usable across the whole census:
 one approval for every kind of undecided order, each new kind opening on its own probation with no owner decision
-per kind. Version 2 (`RULE.md`, sha256 `b37743092fa817a43add4fdc12733a11faf03c7692f7f1949579eff110d2a659`) does that. Two rounds of hostile review by a separate Fable 5.2
+per kind. Version 2 (`RULE.md`, sha256 `e15ae99b3e5ae800e18d331cb2b5fe6ae233aa36052b13f512b86eabbec01423`) does that. Two rounds of hostile review by a separate Fable 5.2
 context reshaped it.
 
 **Kinds.** The kind is fixed by the kit-emitted record the status decision cites, never by the producer's wording:
@@ -307,16 +307,24 @@ A kind with a route is active only while GitHub's main declares that route live:
 request that makes a route's gate live adds its name, and a test there ties the constant to the gate. The kit's
 OWN_TEXT gate re-derives each record from the frozen original, so a hand-written record fails.
 
-The working-text basis (F6) opens the same way. An outer-bound lot for one-person orders is reserved: it enters only
-by an amendment after the owner decides the Ulpian ask (A-20261110-ulpian-outer-bound). Ulpian's lot is ready to be
-written into that amendment (PR #271, `jobs/ulpian-outer-bound/RULE.md` v2, sha256 `57a95ba0...`):
-- lot id `ulpian-life-bound`, mechanism `life_of_named_person`, NO only, end kind `not_later_than`;
-- members: the 37 `quoted_fact` rows of `research/ulpian/CLASS.csv`, with the bound equal to the birth bound plus
-  44,724 days;
-- predicate: the claim's not-later-than date equals the CLASS.csv bound and the claim quotes the birth-bound fact; the
-  reviewer confirms one beneficiary, one command and the order's date from the held text.
+The working-text basis (F6) opens the same way.
 
-It stays out of v2 so that approving v2 does not also approve a bound rule the owner has not decided.
+**The Ulpian life-bound lot** (`ulpian_life_bound`) is in the rule since the owner approved it
+(D-20261110-ulpian-life-bound; Ulpian's rule `jobs/ulpian-outer-bound/RULE.md`, sha256 `57a95ba0...`, PR #271). It
+opens when PR #271 is on GitHub's main: Respondendi checks that Ulpian's rule there has the approved hash and that the
+owner's decision and ruling cite it, and reads the class table `research/ulpian/CLASS.csv` from main. Members are
+undecided `quoted_fact` rows with a bound before the cutoff. The claim's end is `not_later_than` the bound, with the
+first cause unresolved; it cites the text the class read and states the birth bound and that use is unknown. A
+control of an Ulpian status kind must be planted on a claim of the kind, every member is audited, and one confirmed
+error stops it. Claim-gate note for that work: the gate emits `not_later_than_without_formal_disposition` for a
+not-later-than end with no formal disposition, so Ulpian's claims need either a disposition or a gate reconciliation
+before they can pass the checker.
+
+**Maudslay interface (I5).** `jobs/respondendi-adoption/INTERFACE.md` states exactly what `plan` reads.
+- `plan` now finds the completion's manifest through the completion's own input pins. That supports both the
+  Papinian layout (manifest beside the completion) and Maudslay's (`packet/completion/COMPLETION.json`).
+- The conveyor as merged (#269) is not yet compatible. It has no status-overlay route (its members carry no overlay
+  bundle), its controls are untyped date shifts, and undecided batches must publish as replacement proposals.
 
 **Reachable orders per kind, measured on main.** Sources: `KINDS.json` and `measure_kinds.py`, which apply the rule's
 own predicates to the compiled leads. Each order is counted once, in the order below. These are eligibility upper
@@ -328,27 +336,30 @@ bounds from machine leads, not findings; each order still needs the full route a
 | `express_named_revocation` | working | active; working text needs F6 | 2 | 0 | 2 |
 | `own_terms` | original | active | 0 | 0 | 0 |
 | `own_terms` | working | active; working text needs F6 | 0 | 0 | 0 |
+| `ulpian_life_bound` | original | needs PR #271 on main (owner approved D-20261110-ulpian-life-bound) | 1 | 1 | 0 |
+| `ulpian_life_bound` | working | needs PR #271 on main (owner approved D-20261110-ulpian-life-bound); working text needs F6 | 15 | 15 | 0 |
 | `spent_on_issue` | original | needs F5 (route own_text) | 103 | 103 | 0 |
 | `spent_on_issue` | working | needs F5 (route own_text); working text needs F6 | 660 | 660 | 0 |
 | `yes_current` | original | needs F3 (route current) | 234 | 0 | 234 |
 | `yes_current` | working | needs F3 (route current); working text needs F6 | 1 | 1 | 0 |
-| `no kind reaches it on held leads` | - | - | 9,223 | 5,710 | 3,513 |
+| `no kind reaches it on held leads` | - | - | 9,207 | 5,694 | 3,513 |
 
 **What the numbers mean.**
 - 468 orders are reachable by the kinds active today (all express revocations).
+- 16 more once PR #271 is on main (Ulpian's 37 class members less those with no usable text; 15 of
+  the 16 also need F6).
 - 763 more once F5 is merged. The F5 classifier itself reaches 763 undecided orders, with measured precision of
   42 of 50, so every spent-on-issue member is audited.
 - 235 more once F3 is merged, and 2 once F6 is merged.
-- That makes 1,468 in all. The first v2 draft claimed 3,465, and v1 620. The difference is the
-  price of the two review rounds. Each screen they added keeps a measured way of adopting a wrong status out of the
-  lot.
+- That makes 1,484 in all. The first v2 draft claimed 3,465, and v1 620. The difference is the price of the two
+  review rounds. Each screen they added keeps a measured way of adopting a wrong status out of the lot.
 - Own terms reaches 0 today: no machine TERM text both sets an expiry for "this order" and is free of later acts,
   extension wording and actor texts. The kind stays in the rule and opens as soon as cleaner TERM records exist.
 - Two limits make the count low for old orders:
   - the second witness was measured only from the OFR catalog, which starts at EO 7532 (older orders' frozen
     histories carry other notes the tool reads);
   - spent-on-issue below EO 7532 was counted from Pothier's P1/P2 leads.
-- The 9,223 orders no kind reaches need sources first (Linnaeus's bulk sources by order type) or remain open. The
+- The 9,207 orders no kind reaches need sources first (Linnaeus's bulk sources by order type) or remain open. The
   rule never fills a gap.
 
 **What the two review rounds changed.**

@@ -1,3 +1,17 @@
+## 2026-11-10 ET (Claude, RESPONDENDI v2: Ulpian lot added; Maudslay interface I5)
+
+- **Ulpian:** the owner-approved life-bound lot (D-20261110-ulpian-life-bound) is now the v2 kind `ulpian_life_bound`.
+  It opens once PR #271 is on GitHub's main (Respondendi checks Ulpian's rule hash, decision and ruling there and
+  reads CLASS.csv from main). 16 of 37 members are reachable (15 also need F6). The claim gate's
+  `not_later_than_without_formal_disposition` may refuse its claims: Ulpian, check that.
+- **I5:** `jobs/respondendi-adoption/INTERFACE.md` lists every file and field `plan` reads. The merged Maudslay
+  conveyor is not yet compatible: it has no status-overlay route, its controls are untyped date shifts, and undecided
+  batches must publish as replacement proposals. `plan` now finds Maudslay's manifest layout. Kean F-20261110-respondendi-i5.
+- **Rule:** sha e15ae99b..., 70 tests; ask A-20261110-respondendi-standing-rule-v2 revised (rev 1) to that hash.
+  Reach: 468 today, 1,484 once PR #271, F3, F5 and F6 merge.
+- **Asks:** @Owner: A-20261110-respondendi-standing-rule-v2 (rev 1). @Nalimov: map each claim kind you draft to an
+  INTERFACE.md lot kind, or send it for a rule amendment.
+
 ## 2026-11-10 ET (Claude, RESPONDENDI v2: one approval for every kind of undecided order)
 
 - **Owner follow-up:** v1's single lot (620 orders) was "really really disappointing"; v2 covers every kind under one

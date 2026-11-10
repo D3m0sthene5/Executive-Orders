@@ -29,9 +29,7 @@ first qualifying claim of a newly active kind opens its stratum on probation; no
 | `spent_on_issue` | NO | The basis cites a whole-order `OWN_TEXT:` record by the order itself (scope whole; the kit's whole-order test found no continuing sentence; the kit's gate re-derives the record from the frozen original), of kind `spent_on_issue` or `amends_parent` (Pothier ruling P2 as the owner applied it on 2026-11-09: the amending command is spent on issue; the inserted text is a consequence in the parent), with its operative text. The end is the order's own, on its signing date. No catalog entry records a later act on the order. For an amending order whose parent's end is held (`PARENT_END:`), the claim's savings record cites that record as its source. No status-only tier. Every member is audited (the classifier's measured precision is 84%, 42 of 50, 95% about 71-93%). | `own_text` (F5) |
 | `yes_current` | YES | The basis cites a `CURRENT:` record and the current predicate is checked through the cutoff; the claim asserts no end. Allow-list screens, all zero-token: every catalog note entry carries a label in `allowed_labels`; no observation, event or current-law lead carries an ending signal; the dossier lists no missing source; no `ACT:` or `ACTOR_TEXT:` record; no own-terms record of an ending kind; every search in `complete_searches` complete. The review set holds a `later_event_removed` control planted on a YES claim. Every member of every YES lot is audited, and one confirmed error stops YES. | `current` (F3) |
 
-**Reserved (not in this version):** an outer-bound lot for one-person orders. It enters only by an amendment of this
-rule after the owner decides the outer-bound ask, because it needs a bound rule and a basis record this rule does not
-define.
+| `ulpian_life_bound` | NO | The owner's Ulpian bound rule (D-20261110-ulpian-life-bound) is on GitHub's main at the approved hash, with its decision and ruling. The order is a `quoted_fact` member of that rule's class table (`research/ulpian/CLASS.csv` on main), still undecided, with a bound before the cutoff. The claim's whole-order end is `not_later_than` that bound with the first cause unresolved, cites the held text the class read, states the birth bound it rests on and that use of the permission is unknown. The review set holds at least one control of the Ulpian status kinds (a hidden second person or clause, or a fact about another person) planted on a claim of this kind. Every member is audited, and one confirmed error stops the kind. | the owner's Ulpian rule on main (PR #271) |
 
 **Text basis.** Each kind accepts an original (the frozen ORIGINAL is acceptable as an original) and, while the merged
 kit declares the `working_text` route live (F6), a working text: the ORIGINAL record names its `working_text_basis`
@@ -150,6 +148,17 @@ claim is not filed canonically; the order goes on to decided-order production. N
    "status_only": false,
    "prerequisite": "F3 merged: UNDECIDED_ROUTES on main includes current (claim kit builds CURRENT records for undecided orders)",
    "overrides": {"stop_confirmed_errors_in_59": 1, "audit_rate_steady": 1.0, "min_audits_steady": 1}
+  },
+  "ulpian_life_bound": {
+   "status": "no",
+   "mechanisms": ["life_of_named_person"],
+   "owner_rule": {"path": "jobs/ulpian-outer-bound/RULE.md", "sha256": "57a95ba0c11e7207c27de317d7f522c24d05b9aedda91eea261ea2f9c0f64699",
+                  "token": "ulpian-rule-sha256:", "decision": "D-20261110-ulpian-life-bound", "class": "research/ulpian/CLASS.csv"},
+   "required_control_any": ["second_person_hidden", "second_clause_hidden", "fact_about_another_person"],
+   "text_bases": ["original", "working"],
+   "status_only": false,
+   "prerequisite": "PR #271 merged: the Ulpian rule, its owner decision and class table on main",
+   "overrides": {"stop_confirmed_errors_in_59": 1, "audit_rate_steady": 1.0, "min_audits_steady": 1}
   }
  },
  "text_bases": {
@@ -163,8 +172,10 @@ claim is not filed canonically; the order goes on to decided-order production. N
  "min_blind_arms": 2,
  "min_controls": 2,
  "claims_per_control": 15,
- "control_kinds": ["date_shift", "partial_as_whole", "transfer_as_end", "later_event_removed", "ending_source_swapped", "wrong_order_text"],
- "status_control_kinds": ["partial_as_whole", "transfer_as_end", "later_event_removed", "ending_source_swapped", "wrong_order_text"],
+ "control_kinds": ["date_shift", "partial_as_whole", "transfer_as_end", "later_event_removed", "ending_source_swapped", "wrong_order_text",
+                   "second_person_hidden", "second_clause_hidden", "class_clause_hidden", "fact_about_another_person"],
+ "status_control_kinds": ["partial_as_whole", "transfer_as_end", "later_event_removed", "ending_source_swapped", "wrong_order_text",
+                          "second_person_hidden", "second_clause_hidden", "class_clause_hidden", "fact_about_another_person"],
  "min_control_kinds": 2,
  "bound_target": 0.05,
  "audit_rate_steady": 0.20,

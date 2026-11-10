@@ -124,7 +124,15 @@ for l in open(S / "pothier_leads.jsonl", encoding="utf-8"):
             or "exhausted" in basis or "performs one act" in basis or "takes effect when issued" in basis):
         spent.add(r["instrument_id"])
 
+import subprocess
+_cls = subprocess.run(["git", "-C", str(REPO), "show", "origin/main:research/ulpian/CLASS.csv"], capture_output=True)
+if _cls.returncode:
+    _cls = subprocess.run(["git", "-C", str(REPO), "show", "origin/claude/ulpian-outer-bound:research/ulpian/CLASS.csv"], capture_output=True)
+ulpian = {r["instrument_id"] for r in csv.DictReader(__import__("io").StringIO(_cls.stdout.decode("utf-8-sig")))
+          if r.get("tier") == "quoted_fact" and r.get("status") == "undecided" and (r.get("bound") or "9999") < CUTOFF}
+
 kinds = [("express_named_revocation", "active", express), ("own_terms", "active", own_terms),
+         ("ulpian_life_bound", "needs PR #271 on main (owner approved D-20261110-ulpian-life-bound)", lambda i: i in ulpian),
          ("spent_on_issue", "needs F5 (route own_text)", lambda i: i in spent), ("yes_current", "needs F3 (route current)", yes)]
 seen, rows = set(), []
 
